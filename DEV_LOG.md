@@ -153,3 +153,30 @@
 - **根本原因**：只修改了 `git-clone` 分支的代碼，未全面檢視所有 `switch case` 分支。
 - **矯正措施**：修改 `installer.js` 的 `npm/pip/composer/cargo` 分支，移除主機執行邏輯，推遲至 `core/sandbox.js` 產生對應的依賴安裝指令在 Docker 內執行。
 - **預防措施**：執行修改時，必須遵守全域變更掃描 SOP，檢視 `switch` 區塊的所有可能進入點。
+
+### 2026-07-19：批量工具擴增與深層索引 (Phase 12.5)
+
+#### 需求與動機
+1. **擴充註冊庫生態**：用戶提供 26 個全新 AI 工具專案（涵蓋 Legal, Trading, Slide Generation 等），需要快速將其索引至系統。
+2. **Monorepo 解析**：這些專案中有 5 個為彙整型大補帖 (Monorepo)，如果僅註冊表層，檢索引擎將無法觸及內部的微技能，需要進行深層索引 (Deep Indexing)。
+
+#### 完成項目
+- [x] **批量註冊**：使用 `node cli.js batch-add` 成功將 26 個 GitHub URL 註冊至 `tools.json`。
+- [x] **自動化深層掃描**：對 `knowledge-work-plugins`, `financial-services`, `claude-for-legal`, `skill`, `skills-JimLiu` 執行了 `index-subtools`。
+- [x] **索引成果**：成功為這 5 個大補帖拆解出總計 **568** 個子工具，大幅提升了語義檢索 L3 與關鍵字 L2 的命中範圍。總工具庫突破 160+ 主專案，包含近千個微技能。
+
+### 2026-07-19：專案全域 MECE 清理與文件同步 (Phase 13)
+
+#### 需求與動機
+1. **保持極致潔淨 (MECE)**：專案經過多輪迭代，根目錄開始出現如 `urls.txt`、`my_sft_dataset.jsonl` 等暫時性或匯出產物。必須將它們收納至獨立目錄，以符合「相互獨立、完全窮盡」的分類邏輯。
+2. **文件同步**：`README.md` 需要更新，以反映 Phase 12 的 Sandbox 隔離、Telemetry 遙測與 SFT 資料萃取等新特性，讓使用者了解最新的架構與功能。
+
+#### 完成項目
+- [x] **目錄清理**：建立 `.exports/` 目錄，將匯出的資料集與批量網址檔移入，並更新 `.gitignore` 排除追蹤。
+- [x] **IDE 配置檔審查**：確認 `.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.trae`, `.kiro` 皆維持為導向 `.agents/AGENTS.md` 的單一真理來源指標，無冗餘配置。
+- [x] **README 重構**：
+  - 更新已註冊工具數量為「>160 庫」。
+  - 在「快速開始」補充 `invoke` 與 `export-dataset` 指令。
+  - 在「核心特性」補上 Sandbox 安全隔離與 Telemetry 動態評分的說明。
+  - 在「架構樹」補上 `core/sandbox.js`, `core/telemetry.js`, `scripts/export-dataset.js`。
+- [x] **建立還原基準點**：執行 `npm test` 確認功能無損，並建立清晰的 Git Commit (`chore: perform MECE global cleanup and documentation synchronization`) 推送至遠端倉庫。
