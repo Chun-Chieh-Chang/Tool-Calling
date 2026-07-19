@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -24,26 +24,35 @@ export function installTool(tool, baseTempDir) {
   console.log(`\x1b[2m目標路徑: ${targetDir}\x1b[0m`);
 
   const method = tool.install?.method || 'git-clone';
-  let command = '';
 
   try {
     switch (method) {
-      case 'git-clone':
-        command = `git clone ${tool.install?.repoUrl || tool.url}.git "${targetDir}"`;
-        execSync(command, { stdio: 'inherit' });
+      case 'git-clone': {
+        const repoUrl = tool.install?.repoUrl || tool.url;
+        const result = spawnSync('git', ['clone', `${repoUrl}.git`, targetDir], { stdio: 'inherit' });
+        if (result.status !== 0) throw new Error(`git clone failed for ${repoUrl}`);
         // Sandbox Mode: 不在本機執行 npm install 或 pip install，將其推遲至 invoke 階段的沙盒內執行
         break;
-      case 'git-clone-sparse':
+      }
+      case 'git-clone-sparse': {
+        const repoUrl = tool.install?.repoUrl || tool.url;
         mkdirSync(targetDir, { recursive: true });
         console.log(`\x1b[36m執行 Sparse Checkout，僅下載子目錄: ${tool.install.subpath}...\x1b[0m`);
-        execSync(`git clone --filter=blob:none --no-checkout ${tool.install?.repoUrl || tool.url}.git .`, { cwd: targetDir, stdio: 'inherit' });
-        execSync(`git sparse-checkout set ${tool.install.subpath}`, { cwd: targetDir, stdio: 'inherit' });
-        execSync(`git checkout ${tool.install.branch || 'main'}`, { cwd: targetDir, stdio: 'inherit' });
+        
+        let result = spawnSync('git', ['clone', '--filter=blob:none', '--no-checkout', `${repoUrl}.git`, '.'], { cwd: targetDir, stdio: 'inherit' });
+        if (result.status !== 0) throw new Error('git clone failed for sparse checkout');
+        
+        result = spawnSync('git', ['sparse-checkout', 'set', tool.install.subpath], { cwd: targetDir, stdio: 'inherit' });
+        if (result.status !== 0) throw new Error('git sparse-checkout set failed');
+        
+        result = spawnSync('git', ['checkout', tool.install.branch || 'main'], { cwd: targetDir, stdio: 'inherit' });
+        if (result.status !== 0) throw new Error('git checkout failed');
         
         const subPathDir = join(targetDir, tool.install.subpath);
         // Sandbox Mode: 不在本機安裝依賴
         console.log(`\n\x1b[32m✓ 安裝完成\x1b[0m`);
         return subPathDir;
+      }
 
 
       case 'npm':

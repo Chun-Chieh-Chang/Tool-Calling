@@ -1,5 +1,5 @@
-import { execSync } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
@@ -15,9 +15,7 @@ function loadRegistry() {
 }
 
 function saveRegistry(registry) {
-  import('node:fs').then(fs => {
-    fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf-8');
-  });
+  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf-8');
 }
 
 function parseMarkdownDescription(content) {
@@ -72,7 +70,8 @@ export function scanMonorepo(toolId) {
     console.log(`正在下載專案...`);
     // 確保抓取 root url
     const repoUrl = tool.install?.repoUrl || tool.url;
-    execSync(`git clone --depth 1 ${repoUrl}.git "${targetDir}"`, { stdio: 'ignore' });
+    const cloneResult = spawnSync('git', ['clone', '--depth', '1', `${repoUrl}.git`, targetDir], { stdio: 'ignore' });
+    if (cloneResult.status !== 0) throw new Error(`git clone failed for ${repoUrl}`);
     
     // 遍歷目錄
     const subTools = [];

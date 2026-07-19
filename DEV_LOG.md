@@ -185,7 +185,7 @@
 ### 2026-07-19：嚴重安全事故 - API 金鑰外洩 (Phase 13.5)
 
 #### 問題描述
-在實作 scripts/enrich-registry.js 批次更新腳本時，將真實的 Agnes AI API 金鑰 (sk-SMfdNFc2...) 寫死於程式碼中作為預設值，並隨同 Commit c00000 推送至 GitHub 公開倉庫，造成嚴重的憑證外洩風險。
+在實作 scripts/enrich-registry.js 批次更新腳本時，將真實的 Agnes AI API 金鑰 (sk-SMfdNFc2...) 寫死於程式碼中作為預設值，並隨同 Commit c00000 推送至 GitHub 公開倉庫，造成嚴重的憑證外洩風險。
 
 #### 矯正措施 (Corrective Action - CAPA)
 - **移除金鑰**：修改 scripts/enrich-registry.js，強制僅從環境變數 process.env.AGNES_API_KEY 讀取金鑰，若無則拋出錯誤並中斷執行。
