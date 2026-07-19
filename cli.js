@@ -72,7 +72,8 @@ function error(text) {
 
 function cmdList() {
   header('工具註冊庫');
-  const byCategory = listByCategory();
+  const registry = loadRegistryRaw();
+  const byCategory = listByCategory(registry.tools);
   let total = 0;
 
   for (const [category, tools] of byCategory) {
@@ -105,7 +106,8 @@ function cmdSearch(query, options = {}) {
   }
 
   header(`搜尋: "${query}"`);
-  const results = search(query, { topK: options.topK || 5 });
+  const registry = loadRegistryRaw();
+  const results = search(registry.tools, query, { topK: options.topK || 5, category: options.category });
 
   if (results.length === 0) {
     warn('未找到匹配的工具。');
@@ -286,7 +288,8 @@ function cmdValidate() {
 async function cmdHealthCheck() {
   header('工具可用性健康檢查');
 
-  const tools = listAll();
+  const registry = loadRegistryRaw();
+  const tools = listAll(registry.tools);
   let healthy = 0;
   let failed = 0;
 
@@ -318,7 +321,8 @@ function cmdInfo(id) {
     process.exit(1);
   }
 
-  const tool = getById(id);
+  const registry = loadRegistryRaw();
+  const tool = getById(registry.tools, id);
   if (!tool) {
     error(`未找到工具: ${id}`);
     process.exit(1);
@@ -407,7 +411,8 @@ async function cmdInstall(id) {
     process.exit(1);
   }
 
-  const tool = getById(id);
+  const registry = loadRegistryRaw();
+  const tool = getById(registry.tools, id);
   if (!tool) {
     error(`未找到工具: ${id}。請先使用 list 或 search 確認工具 ID。`);
     process.exit(1);
