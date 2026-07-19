@@ -23,7 +23,7 @@ export function recordTrace(toolId, args, exitCode, duration, errorMessage = nul
   const trace = {
     timestamp: new Date().toISOString(),
     toolId,
-    args: args.join(' '),
+    args: args.length > 0 ? '[REDACTED]' : '', // Privacy Fix: Do not log raw user args
     exitCode,
     success: exitCode === 0,
     duration,

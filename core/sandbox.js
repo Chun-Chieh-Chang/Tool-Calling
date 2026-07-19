@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
@@ -64,31 +64,62 @@ function getSetupCommand(workspacePath, tool) {
  * @param {string[]} args 
  */
 export function invokeInSandbox(tool, targetDir, args) {
-  const image = tool.sandbox?.image || getDefaultImage(tool.language);
+  let image = tool.sandbox?.image || getDefaultImage(tool.language);
   
+  // 驗證 image 白名單
+  const allowedImages = [
+    'python:3.10-slim',
+    'node:18-alpine',
+    'golang:1.21-alpine',
+    'rust:1.75-slim',
+    'php:8.2-cli-alpine',
+    'ubuntu:22.04'
+  ];
+  if (!allowedImages.includes(image)) {
+    console.warn(`\x1b[33m警告:\x1b[0m 映像檔 ${image} 不在白名單中，退回預設映像檔 ubuntu:22.04`);
+    image = 'ubuntu:22.04';
+  }
+
   console.log(`\x1b[36m[Sandbox]\x1b[0m 正在準備容器環境: ${image}`);
   
   const setupCmd = getSetupCommand(targetDir, tool);
   const userCmd = args.join(' ');
   const finalCmd = `${setupCmd}${userCmd || 'echo "No command provided"'}`;
   
-  // Docker 掛載指令
-  // 處理 Windows 路徑，需轉為 Docker 能接受的格式 (通常 docker run 在 Win 也能接受 C:\... 但保險起見直接用 targetDir)
   const mountPath = targetDir.replace(/\\/g, '/');
   
-  const dockerCmd = `docker run --rm -v "${mountPath}:/workspace" -w /workspace ${image} sh -c "${finalCmd}"`;
+  const dockerArgs = [
+    'run', '--rm',
+    '-v', `${mountPath}:/workspace`,
+    '-w', '/workspace',
+    '--cap-drop', 'ALL',
+    '--user', '1000:1000',
+    '--memory=512m',
+    '--cpus=1',
+    image,
+    'sh', '-c', finalCmd
+  ];
   
   console.log(`\x1b[36m[Sandbox]\x1b[0m 啟動隔離執行: ${userCmd}`);
   
   try {
     const startTime = Date.now();
-    // 使用 stdio: 'inherit' 直接將容器的輸出串流到本機終端機
-    execSync(dockerCmd, { stdio: 'inherit' });
+    const result = spawnSync('docker', dockerArgs, { stdio: 'inherit' });
     const duration = Date.now() - startTime;
+
+    if (result.error) {
+      throw result.error;
+    }
+    
+    if (result.status !== 0) {
+      console.log(`\n\x1b[31m✗ 執行失敗\x1b[0m (Exit Code: ${result.status})`);
+      return { exitCode: result.status || 1, duration, error: `Command failed with exit code ${result.status}` };
+    }
+
     console.log(`\n\x1b[32m✓ 執行完畢\x1b[0m (耗時 ${duration}ms)`);
     return { exitCode: 0, duration };
   } catch (error) {
-    console.log(`\n\x1b[31m✗ 執行失敗\x1b[0m (Exit Code: ${error.status})`);
-    return { exitCode: error.status || 1, duration: 0, error: error.message };
+    console.log(`\n\x1b[31m✗ 執行異常\x1b[0m: ${error.message}`);
+    return { exitCode: 1, duration: 0, error: error.message };
   }
 }

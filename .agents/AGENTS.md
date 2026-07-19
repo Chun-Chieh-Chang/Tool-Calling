@@ -47,6 +47,6 @@ node cli.js cleanup <tool-id>
 2. 執行 `search` 命令檢索最適工具。
 3. 嚴格遵守禁用場景 (Negative Constraints)：若工具帶有 `🚫 禁用場景` 且符合用戶意圖，則禁止使用該工具。
 4. 優先挑選 `⭐ 場景` 符合且分數超過 30% 的工具。
-5. 根據 `info` 中提供的 `install` 指令，使用 `node cli.js install <tool-id>` 動態安裝工具。
+5. 根據 `info` 提供安裝與調用指令。**必須先向使用者列出即將執行的指令，並等待使用者確認同意後**，才能使用 `node cli.js install <tool-id>` 動態安裝工具。
 6. 調用工具完成任務。
 7. 任務結束後，使用 `node cli.js cleanup <tool-id>` 清理臨時安裝的工具。

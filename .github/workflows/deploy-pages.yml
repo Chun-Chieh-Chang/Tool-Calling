@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies (if any)
         run: npm install || true
 
+      - name: Validate Registry (Software Validation)
+        run: npm run validate
+
       - name: Run Tests (Software Validation)
         run: npm test
 

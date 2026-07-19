@@ -3039,7 +3039,7 @@
       "status": "experimental"
     },
     {
-      "id": "skillmd-openai",
+      "id": "skillmd-openai-playwright",
       "name": "SKILL.Md",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/playwright-interactive/SKILL.md",
       "description": "Skills Catalog for Codex.",
@@ -3094,7 +3094,7 @@
       "status": "experimental"
     },
     {
-      "id": "skillmd-openai",
+      "id": "skillmd-openai-figma",
       "name": "SKILL.Md",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-generate-design/SKILL.md",
       "description": "Skills Catalog for Codex.",

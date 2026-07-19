@@ -21,51 +21,7 @@ function generateId(name) {
     .replace(/^-|-$/g, '');
 }
 
-/**
- * 簡易 HTML 標籤提取器
- */
-function extractMeta(html) {
-  const result = {
-    title: '',
-    description: '',
-    about: '',
-    language: 'other',
-    topics: [],
-  };
 
-  // 提取 title
-  const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
-  if (titleMatch) {
-    result.title = titleMatch[1].replace('GitHub - ', '').split(':')[0].trim();
-  }
-
-  // 提取 meta description
-  const descMatch = html.match(/<meta\s+name="description"\s+content="([^"]*)"/i);
-  if (descMatch) {
-    result.description = descMatch[1].replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
-  }
-
-  // 提取 repo description (About)
-  const aboutMatch = html.match(/<p class="f4 my-3">([^<]*)<\/p>/i) || html.match(/<p class="f4 mb-3">([^<]*)<\/p>/i);
-  if (aboutMatch) {
-    result.about = aboutMatch[1].trim();
-  }
-
-  // 提取語言
-  const langMatch = html.match(/<span class="color-fg-default text-bold mr-1">([^<]*)<\/span>/i);
-  if (langMatch) {
-    result.language = langMatch[1].toLowerCase().trim();
-  }
-
-  // 提取 topics
-  const topicRegex = /<a[^>]*class="[^"]*topic-tag[^"]*"[^>]*>([^<]*)<\/a>/gi;
-  let tMatch;
-  while ((tMatch = topicRegex.exec(html)) !== null) {
-    result.topics.push(tMatch[1].trim().toLowerCase());
-  }
-
-  return result;
-}
 
 /**
  * 根據描述與標籤猜測分類
@@ -89,7 +45,12 @@ function guessCategory(desc, topics) {
 function guessInstall(url, language) {
   if (language === 'python') return { method: 'pip', command: `pip install git+${url}.git` };
   if (language === 'typescript' || language === 'javascript') return { method: 'npm', command: `npm install ${url}` };
-  if (language === 'php') return { method: 'composer', command: `composer require ...` };
+  if (language === 'php') {
+    const parts = url.split('/');
+    const repo = parts[parts.length - 1];
+    const owner = parts[parts.length - 2];
+    return { method: 'composer', command: `composer require ${owner}/${repo}` };
+  }
   if (language === 'rust') return { method: 'cargo', command: `cargo install --git ${url}` };
   return { method: 'git-clone', command: `git clone ${url}.git` };
 }
@@ -113,10 +74,11 @@ async function scan(url, options = {}) {
   try {
     // 取得基礎 repo 資訊
     const rootUrl = `https://github.com/${owner}/${repo}`;
-    const res = await fetch(rootUrl, {
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}`;
+    const res = await fetch(apiUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'User-Agent': 'Tool-Calling-Scanner/1.0',
+        'Accept': 'application/vnd.github.v3+json',
       }
     });
 
@@ -124,10 +86,14 @@ async function scan(url, options = {}) {
       throw new Error(`HTTP 錯誤: ${res.status} ${res.statusText}`);
     }
 
-    const html = await res.text();
-    const meta = extractMeta(html);
+    const repoData = await res.json();
+    const meta = {
+      description: repoData.description || '',
+      language: (repoData.language || 'other').toLowerCase(),
+      topics: repoData.topics || [],
+    };
 
-    let description = meta.about || meta.description;
+    let description = meta.description;
 
     // 若有子目錄，嘗試抓取其專屬 README.md 或 SKILL.md
     if (subpath) {

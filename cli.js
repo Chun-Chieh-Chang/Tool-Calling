@@ -488,11 +488,11 @@ async function cmdInvoke(id, invokeArgs) {
 
 // ─── 命令：cleanup ────────────────────────────────────────────────────────
 
-async function cmdCleanup() {
+async function cmdCleanup(id) {
   const { cleanup } = await import('./core/cleanup.js');
   const tempDir = join(__dirname, '.temp');
   header('系統復歸與清理');
-  cleanup(tempDir);
+  cleanup(tempDir, id);
 }
 
 // ─── 幫助訊息 ─────────────────────────────────────────────────────────────
@@ -564,7 +564,7 @@ switch (command) {
     break;
   }
   case 'cleanup':
-    await cmdCleanup();
+    await cmdCleanup(args[0]);
     break;
   case 'add':
     await cmdAdd(args[0]);
