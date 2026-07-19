@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-19T11:16:11.142Z",
+  "lastUpdated": "2026-07-19T11:47:56.950Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -979,7 +979,59 @@
         "llms"
       ],
       "addedAt": "2026-07-19T05:20:38.814Z",
-      "status": "experimental"
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Client",
+          "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\r \r ## Setup\r \r 1. **Install dependencies:**\r    ``",
+          "subpath": "advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/client"
+        },
+        {
+          "name": "Web",
+          "description": "### `npm start`\r Runs the app in the development mode.\\\r Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\r \r The page will reload when you make changes.\\\r You may also s",
+          "subpath": "advanced_ai_agents/multi_agent_apps/ai_news_and_podcast_agents/web"
+        },
+        {
+          "name": "Frontend",
+          "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\r \r ## Getting Started\r \r First, run the developmen",
+          "subpath": "advanced_llm_apps/multimodal_video_moment_finder/frontend"
+        },
+        {
+          "name": "Advisor Orchestrator Worker",
+          "description": ">-",
+          "subpath": "agent_skills/advisor-orchestrator-worker"
+        },
+        {
+          "name": "Commit Archaeologist",
+          "description": ">-",
+          "subpath": "agent_skills/commit-archaeologist"
+        },
+        {
+          "name": "Project Graveyard",
+          "description": ">-",
+          "subpath": "agent_skills/project-graveyard"
+        },
+        {
+          "name": "Scope Creep Detector",
+          "description": ">-",
+          "subpath": "agent_skills/scope-creep-detector"
+        },
+        {
+          "name": "Chatgpt App Builder",
+          "description": "|",
+          "subpath": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/chatgpt-app-builder"
+        },
+        {
+          "name": "Mcp Apps Builder",
+          "description": "|",
+          "subpath": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/mcp-apps-builder"
+        },
+        {
+          "name": "Mcp Builder",
+          "description": "|",
+          "subpath": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/mcp-builder"
+        }
+      ]
     },
     {
       "id": "desktopcommandermcp",
@@ -9309,6 +9361,603 @@
         "wand-pro"
       ],
       "addedAt": "2026-07-19T11:16:11.142Z",
+      "status": "experimental"
+    },
+    {
+      "id": "memos",
+      "name": "Memos",
+      "url": "https://github.com/usememos/memos",
+      "description": "Open-source, self-hosted note-taking tool built for quick capture. Markdown-native, lightweight, and fully yours. - usememos/memos",
+      "category": "其他",
+      "language": "go",
+      "triggers": [
+        "memos",
+        "react",
+        "go",
+        "docker",
+        "markdown",
+        "social-network",
+        "memo",
+        "sqlite"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/usememos/memos.git",
+        "repoUrl": "https://github.com/usememos/memos"
+      },
+      "capabilities": [
+        "react",
+        "go",
+        "docker",
+        "markdown",
+        "social-network"
+      ],
+      "addedAt": "2026-07-19T11:47:44.700Z",
+      "status": "experimental"
+    },
+    {
+      "id": "memos-MemTensor",
+      "name": "MemOS",
+      "url": "https://github.com/MemTensor/MemOS",
+      "description": "Self-evolving memory OS for LLM &amp; AI Agents: ultra-persistent memory, hybrid-retrieval, and cross-task skill reuse, with 35.24% token savings - MemTensor/MemOS",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "memos",
+        "python",
+        "agent",
+        "ai",
+        "skills",
+        "memory",
+        "mcp",
+        "self-hosted"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/MemTensor/MemOS",
+        "repoUrl": "https://github.com/MemTensor/MemOS"
+      },
+      "capabilities": [
+        "python",
+        "agent",
+        "ai",
+        "skills",
+        "memory"
+      ],
+      "addedAt": "2026-07-19T11:47:45.374Z",
+      "status": "experimental"
+    },
+    {
+      "id": "metaharness",
+      "name": "Metaharness",
+      "url": "https://github.com/ruvnet/metaharness",
+      "description": "🛠️ The meta-harness for AI agents — scaffold your own focused, branded agent harness with its own npx CLI, MCP server, memory, learning loop, and witness-signed releases. Works with Claude Code, Codex, pi.dev, Hermes, OpenClaw, and RVM (hardware-isolated sandbox). - ruvnet/metaharness",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "metaharness",
+        "mcp",
+        "scaffold",
+        "multi-agent",
+        "sandboxing",
+        "rvm",
+        "scaffolding",
+        "codex"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/ruvnet/metaharness",
+        "repoUrl": "https://github.com/ruvnet/metaharness"
+      },
+      "capabilities": [
+        "mcp",
+        "scaffold",
+        "multi-agent",
+        "sandboxing",
+        "rvm"
+      ],
+      "addedAt": "2026-07-19T11:47:46.075Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Compare Harnesses",
+          "description": "Diff two scaffolded harnesses (ADR-031). Reports manifest meta drift + host list + per-file fingerprint changes (added/removed/changed). Exits 0 IDENTICAL, 1 DRIFT, 2 missing manifest. Use --bundle for the ADR-031 schema-1 JSON envelope.",
+          "subpath": ".claude-plugin/skills/compare-harnesses"
+        },
+        {
+          "name": "Create Harness",
+          "description": "Scaffold your own focused AI agent harness — pick host (Claude Code, Codex, pi.dev, Hermes), template, agents, skills, and ship a npm-publishable harness with its own npx CLI. Use when a user asks to \"create my own agent harness\", \"scaffold a harness\", \"make a custom Claude Code plugin like ruflo\", or \"build a vertical AI assistant for X\".",
+          "subpath": ".claude-plugin/skills/create-harness"
+        },
+        {
+          "name": "Diag Harness",
+          "description": "Kernel-version skew check (ADR-027). Reports manifest surface + manifest kernel + installed kernel + verdict (match/patch-diff/minor-diff/major-diff). Exits 1 on minor/major skew with a copy-pasteable `npm install @metaharness/kernel@X.Y.Z` next step. Exits 2 if no .harness/manifest.json at path.",
+          "subpath": ".claude-plugin/skills/diag-harness"
+        },
+        {
+          "name": "Example Harness",
+          "description": "Scaffold a ready-made AI agent harness in one command from the 19 published @metaharness/* example packages — 9 host integrations (Claude Code, Codex, Hermes, pi.dev, OpenClaw, RVM, Copilot, OpenCode, GitHub Actions) + 10 vertical pods (devops, research, trading, support, legal, coding, education, sales, gaming, repo-maintainer).",
+          "subpath": ".claude-plugin/skills/example-harness"
+        },
+        {
+          "name": "Harness Secrets",
+          "description": "GCP Secret Manager integration: validate setup, fetch values, or confirm an NPM_TOKEN is non-revoked via `npm whoami`. Used for publish-time token rotation without long-lived keys in CI.",
+          "subpath": ".claude-plugin/skills/harness-secrets"
+        },
+        {
+          "name": "List Templates",
+          "description": "List the available harness templates and what each one ships with. Use when the user asks \"what templates are available\", \"what verticals does the harness generator support\", or \"show me what I can scaffold\".",
+          "subpath": ".claude-plugin/skills/list-templates"
+        },
+        {
+          "name": "Oia Manifest",
+          "description": "Emit .harness/oia-manifest.json declaring layer alignment with the OIA v0.1 9-layer reference architecture. Self-describes the harness's MCP wiring, witness signing, audit log, identity posture (always 'none' at v0.1). --check verifies an existing manifest, --dry-run prints without writing, --json emits to stdout.",
+          "subpath": ".claude-plugin/skills/oia-manifest"
+        },
+        {
+          "name": "Publish Harness",
+          "description": "Publish a generated harness to npm — runs the smoke test, signs the witness manifest, and dispatches `npm publish --provenance` from your tagged release.",
+          "subpath": ".claude-plugin/skills/publish-harness"
+        },
+        {
+          "name": "Repo Genome",
+          "description": "7-section readiness scorecard for a LOCAL repo. Reports repo type + agent topology + MCP risk + test confidence + release readiness + recommended harness plan + scorecard. Exit 0 ready, 1 needs-work, 2 blocked. --json for the 6-field scorecard, --bundle for the ADR-031 schema-1 envelope.",
+          "subpath": ".claude-plugin/skills/repo-genome"
+        },
+        {
+          "name": "Score Harness",
+          "description": "5-dimension scorecard (0-100, grade A/B/C/F) for a scaffolded harness. Dimensions: Repo understanding (25%), Agent usefulness (25%), MCP safety (20%), Test coverage (15%), Publish readiness (15%). Emits a 6-field badges block (score + mcpRisk + 4 booleans) ready for the harness README. Exit 0 A/B, 1 C, 2 F.",
+          "subpath": ".claude-plugin/skills/score-harness"
+        },
+        {
+          "name": "Threat Model",
+          "description": "MCP threat-model artifact for a scaffolded harness. Reports allowed/denied tools, dangerous permissions count, secrets reachability, network/shell/file-write grants, default-deny posture. Verdict: clean (exit 0) / medium (exit 1) / high (exit 2). The 'enterprise gold' artifact for PR + compliance review.",
+          "subpath": ".claude-plugin/skills/threat-model"
+        },
+        {
+          "name": "Upgrade Harness",
+          "description": "Drift detection + apply for a scaffolded harness. Re-renders the template with the same vars, computes added/removed/changed file plan, and applies with Git-style conflict markers or .rej files. Default is dry-run.",
+          "subpath": ".claude-plugin/skills/upgrade-harness"
+        },
+        {
+          "name": "Validate Harness",
+          "description": "Release-readiness umbrella check for a scaffolded harness — runs doctor, witness verify, hardcoded-path scan, MCP server config, and GCP Secret Manager validation in one shot. Exits non-zero if any sub-check fails.",
+          "subpath": ".claude-plugin/skills/validate-harness"
+        },
+        {
+          "name": "Verify Witness",
+          "description": "Verify the Ed25519 witness manifest of a scaffolded harness. Fast yes/no signature check that proves the publisher signed this exact file set — separate from the full release-readiness umbrella in validate-harness.",
+          "subpath": ".claude-plugin/skills/verify-witness"
+        }
+      ]
+    },
+    {
+      "id": "self-harness",
+      "name": "Self Harness",
+      "url": "https://github.com/datawhalechina/self-harness",
+      "description": "本项目是关于Harness Engineering的开源教程，旨在帮助开发者理解和掌握在大模型时代，如何为复杂、长时间运行的 AI 智能体（Agent）构建健壮的底层运行架构。 - datawhalechina/self-harness",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "self-harness",
+        "self",
+        "harness"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/datawhalechina/self-harness.git",
+        "repoUrl": "https://github.com/datawhalechina/self-harness"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:46.730Z",
+      "status": "experimental"
+    },
+    {
+      "id": "browser-harness",
+      "name": "Browser Harness",
+      "url": "https://github.com/browser-use/browser-harness",
+      "description": "Browser Harness | Self-healing harness that enables LLMs to complete any task. - browser-use/browser-harness",
+      "category": "測試與自動化",
+      "language": "python",
+      "triggers": [
+        "browser-harness",
+        "browser",
+        "harness",
+        "cdp",
+        "browser-automation",
+        "web-automation",
+        "playwright",
+        "cloud-browser"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/browser-use/browser-harness.git",
+        "repoUrl": "https://github.com/browser-use/browser-harness"
+      },
+      "capabilities": [
+        "cdp",
+        "browser-automation",
+        "web-automation",
+        "playwright",
+        "cloud-browser"
+      ],
+      "addedAt": "2026-07-19T11:47:47.314Z",
+      "status": "experimental"
+    },
+    {
+      "id": "openharness",
+      "name": "OpenHarness",
+      "url": "https://github.com/HKUDS/OpenHarness",
+      "description": "\"OpenHarness: Open Agent Harness with a Built-in Personal Agent--Ohmo!\" - HKUDS/OpenHarness",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "openharness"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/HKUDS/OpenHarness.git",
+        "repoUrl": "https://github.com/HKUDS/OpenHarness"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:47.975Z",
+      "status": "experimental"
+    },
+    {
+      "id": "humanizer",
+      "name": "Humanizer",
+      "url": "https://github.com/blader/humanizer",
+      "description": "Claude Code skill that removes signs of AI-generated writing from text - blader/humanizer",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "humanizer"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/blader/humanizer.git",
+        "repoUrl": "https://github.com/blader/humanizer"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:48.943Z",
+      "status": "experimental"
+    },
+    {
+      "id": "humanizer-zh-tw",
+      "name": "Humanizer Zh TW",
+      "url": "https://github.com/kevintsai1202/Humanizer-zh-TW",
+      "description": "Humanizer 的繁體中文版本，Agent Skills，專門去除文字中 AI 生成的痕跡。.",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "humanizer-zh-tw",
+        "humanizer"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/kevintsai1202/Humanizer-zh-TW.git",
+        "repoUrl": "https://github.com/kevintsai1202/Humanizer-zh-TW"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:49.708Z",
+      "status": "experimental"
+    },
+    {
+      "id": "stop-slop",
+      "name": "Stop Slop",
+      "url": "https://github.com/hardikpandya/stop-slop",
+      "description": "A skill file for removing AI tells from prose.",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "stop-slop",
+        "stop",
+        "slop"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/hardikpandya/stop-slop.git",
+        "repoUrl": "https://github.com/hardikpandya/stop-slop"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:50.295Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ai-flavor-remover",
+      "name": "Ai Flavor Remover",
+      "url": "https://github.com/hylarucoder/ai-flavor-remover",
+      "description": "AI 味去除 - 仅在 Gemini 2.5 Pro 上测试通过.",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "ai-flavor-remover",
+        "flavor",
+        "remover"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/hylarucoder/ai-flavor-remover.git",
+        "repoUrl": "https://github.com/hylarucoder/ai-flavor-remover"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:51.033Z",
+      "status": "experimental"
+    },
+    {
+      "id": "remove-ai-flavor-writing-skill",
+      "name": "Remove Ai Flavor Writing Skill",
+      "url": "https://github.com/B1lli/remove-ai-flavor-writing-skill",
+      "description": "去AI味 skill for Codex: a compact Chinese AI writing humanizer for AI味清理, template sentence shells, and fake engagement endings. - B1lli/remove-ai-flavor-writing-skill",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "remove-ai-flavor-writing-skill",
+        "remove",
+        "flavor",
+        "writing",
+        "skill",
+        "humanizer",
+        "ai-writing",
+        "chinese-writing"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/B1lli/remove-ai-flavor-writing-skill.git",
+        "repoUrl": "https://github.com/B1lli/remove-ai-flavor-writing-skill"
+      },
+      "capabilities": [
+        "humanizer",
+        "ai-writing",
+        "chinese-writing",
+        "ai-humanizer",
+        "claude-code-skill"
+      ],
+      "addedAt": "2026-07-19T11:47:51.664Z",
+      "status": "experimental"
+    },
+    {
+      "id": "shuorenhua",
+      "name": "Shuorenhua",
+      "url": "https://github.com/MrGeDiao/shuorenhua",
+      "description": "说人话｜中文优先的去 AI 味改写 skill：保事实、分场景、改完可直接发。Chinese-first rewrite skill for Codex / Claude Code / Cursor / ChatGPT — removes AI tone, preserves facts. - MrGeDiao/shuorenhua",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "shuorenhua",
+        "skill",
+        "writing",
+        "prompt",
+        "developer-tools",
+        "chinese",
+        "cursor",
+        "codex"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/MrGeDiao/shuorenhua.git",
+        "repoUrl": "https://github.com/MrGeDiao/shuorenhua"
+      },
+      "capabilities": [
+        "skill",
+        "writing",
+        "prompt",
+        "developer-tools",
+        "chinese"
+      ],
+      "addedAt": "2026-07-19T11:47:52.403Z",
+      "status": "experimental"
+    },
+    {
+      "id": "de-ai-prompt-enhancer-writer-booster-skill",
+      "name": "De AI Prompt Enhancer Writer Booster SKILL",
+      "url": "https://github.com/OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
+      "description": "去AI味提示词-作家增强-SKILL.",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "de-ai-prompt-enhancer-writer-booster-skill",
+        "prompt",
+        "enhancer",
+        "writer",
+        "booster",
+        "skill"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
+        "repoUrl": "https://github.com/OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:47:53.118Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Author Written",
+          "description": "---\r name: Author-written\r description: |\r   去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\r   基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\r   宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\r   AI 词汇、否定式排比、过多的连接性短语。",
+          "subpath": ".backup/Author-written"
+        },
+        {
+          "name": "Humanizer",
+          "description": "|",
+          "subpath": ".backup/humanizer"
+        },
+        {
+          "name": "Humanizer Zh",
+          "description": "---\r name: humanizer-zh\r description: |\r   去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\r   基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\r   宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\r   AI 词汇、否定式排比、过多的连接性短语。\r ",
+          "subpath": ".backup/humanizer-zh"
+        },
+        {
+          "name": "My Writing",
+          "description": "---\r name: my-writing\r description: |\r   去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\r   基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\r   宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\r   AI 词汇、否定式排比、过多的连接性短语。\r al",
+          "subpath": ".backup/my-writing"
+        },
+        {
+          "name": "Writer Pro One",
+          "description": "精确复现特定作者的中文写作风格。适用于：(1) 以该风格从零生成文章，(2) 将AI风格或其他风格的文章改写为该风格，(3) 在同一次任务里对草稿做终稿打磨/精修（保持作者笔力，不得改成中性说明书），(4) 审阅文章是否符合该风格，(5) 结构保真地将非简体中文翻译为简体中文（保留原始结构与不可改动片段，如人名/专名、代码、代码块、URL 等；不擅自增删）。核心特征：半文半白的用词、长短交替的句式节奏、类比先行的论证方式、冷面热心的情感表达、第一人称介入的立场标定；并在不破坏作者习惯的前提下，清除显眼的 AI 写作痕迹（24 项检测）。触发词：写作、改写、风格、润色、重写、精修、再优化、二稿、终稿、最终版、翻译、译、translate、翻成、译成、转为简体。",
+          "subpath": ".backup/writer-Pro-one"
+        },
+        {
+          "name": "De AI Writing",
+          "description": "中文写作、改写、润色、翻译和审阅的去 AI 味技能。用于保留原意和原文风格，减少路标词、讲义腔、模板句式、协作口吻和 AI 痕迹。默认轻量加载，按任务只读取必要参考章节。",
+          "subpath": "de-AI-writing"
+        },
+        {
+          "name": "Good Writing",
+          "description": "复现特定作者中文写作风格的轻量 Skill。用于从零写作、改写、终稿精修、风格审阅和结构保真翻译。默认先读风格摘要，不再启动时通读完整范文或大型检测清单。",
+          "subpath": "good-writing"
+        }
+      ]
+    },
+    {
+      "id": "writing-agent",
+      "name": "Writing Agent",
+      "url": "https://github.com/itallstartedwithaidea/writing-agent",
+      "description": "Ghost Writer — AI Content Engine with 40-point QA, 18 platform formatters, and triple-detector validation. Built on Ghost Protocol. Passes GPTZero, Pangram, and Originality.ai. - itallstartedwithaidea/writing-agent",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "writing-agent",
+        "writing",
+        "agent",
+        "nlp",
+        "stylometry",
+        "content-generation",
+        "ghost-protocol",
+        "cloudflare-workers"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/itallstartedwithaidea/writing-agent",
+        "repoUrl": "https://github.com/itallstartedwithaidea/writing-agent"
+      },
+      "capabilities": [
+        "nlp",
+        "stylometry",
+        "content-generation",
+        "ghost-protocol",
+        "cloudflare-workers"
+      ],
+      "addedAt": "2026-07-19T11:47:53.845Z",
+      "status": "experimental"
+    },
+    {
+      "id": "mathmodelagent",
+      "name": "MathModelAgent",
+      "url": "https://github.com/zhangchenhaobest/MathModelAgent",
+      "description": "🤖📐专为数学建模设计的 Agent ,自动完成数学建模，生成一份完整的可以直接提交的论文。 An Agent Designed for Mathematical Modeling ,Automatically complete mathmodel and generate a complete paper ready for submission. - zhangchenhaobest/MathModelAgent",
+      "category": "AI 框架",
+      "language": "vue",
+      "triggers": [
+        "mathmodelagent",
+        "research-agent",
+        "paper-writing-agent"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/zhangchenhaobest/MathModelAgent.git",
+        "repoUrl": "https://github.com/zhangchenhaobest/MathModelAgent"
+      },
+      "capabilities": [
+        "research-agent",
+        "paper-writing-agent"
+      ],
+      "addedAt": "2026-07-19T11:47:54.586Z",
+      "status": "experimental"
+    },
+    {
+      "id": "blender",
+      "name": "Blender",
+      "url": "https://github.com/blender/blender",
+      "description": "Official mirror of Blender.",
+      "category": "多媒體生成",
+      "language": "c++",
+      "triggers": [
+        "blender",
+        "animation",
+        "rendering",
+        "computer-graphics",
+        "modeling",
+        "b3d",
+        "3d"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/blender/blender.git",
+        "repoUrl": "https://github.com/blender/blender"
+      },
+      "capabilities": [
+        "animation",
+        "rendering",
+        "computer-graphics",
+        "modeling",
+        "b3d"
+      ],
+      "addedAt": "2026-07-19T11:47:55.376Z",
+      "status": "experimental"
+    },
+    {
+      "id": "vibe-trading",
+      "name": "Vibe Trading",
+      "url": "https://github.com/HKUDS/Vibe-Trading",
+      "description": "\"Vibe-Trading: Your Personal Trading Agent\".",
+      "category": "測試與自動化",
+      "language": "python",
+      "triggers": [
+        "vibe-trading",
+        "vibe",
+        "trading",
+        "python",
+        "mcp",
+        "multi-agent",
+        "fintech",
+        "quantitative-finance"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/HKUDS/Vibe-Trading.git",
+        "repoUrl": "https://github.com/HKUDS/Vibe-Trading"
+      },
+      "capabilities": [
+        "python",
+        "trading",
+        "mcp",
+        "multi-agent",
+        "fintech"
+      ],
+      "addedAt": "2026-07-19T11:47:56.328Z",
+      "status": "experimental"
+    },
+    {
+      "id": "omniroute",
+      "name": "OmniRoute",
+      "url": "https://github.com/diegosouzapw/OmniRoute",
+      "description": "Never stop coding. Free AI gateway: one endpoint, 231+ providers (50+ free), connect Claude Code, Codex, Cursor, Cline &amp; Copilot to FREE Claude/GPT/Gemini. RTK+Caveman stacked compression saves 15-95% tokens, smart auto-fallback, MCP/A2A, multimodal APIs, Desktop/PWA. - diegosouzapw/OmniRoute",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "omniroute",
+        "mcp",
+        "gemini",
+        "openai",
+        "cursor",
+        "copilot",
+        "codex",
+        "cline"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/diegosouzapw/OmniRoute",
+        "repoUrl": "https://github.com/diegosouzapw/OmniRoute"
+      },
+      "capabilities": [
+        "mcp",
+        "gemini",
+        "openai",
+        "cursor",
+        "copilot"
+      ],
+      "addedAt": "2026-07-19T11:47:56.950Z",
       "status": "experimental"
     }
   ]
