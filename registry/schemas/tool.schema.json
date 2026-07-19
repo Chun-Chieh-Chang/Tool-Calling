@@ -81,9 +81,15 @@
           "properties": {
             "method": {
               "type": "string",
-              "enum": ["npm", "pip", "git-clone", "composer", "cargo", "manual"]
+              "enum": ["npm", "pip", "git-clone", "git-clone-sparse", "composer", "cargo", "manual"]
             },
             "command": {
+              "type": "string"
+            },
+            "branch": {
+              "type": "string"
+            },
+            "subpath": {
               "type": "string"
             },
             "requirements": {

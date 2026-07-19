@@ -101,17 +101,19 @@ async function scan(url, options = {}) {
 
   if (!silent) console.log(`\x1b[36m掃描 URL:\x1b[0m ${url}`);
 
-  // 驗證 URL
-  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/?$/;
+  // 驗證 URL (支援 Monorepo 子目錄)
+  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/tree\/([^/]+)\/(.+))?\/?$/;
   const match = url.match(githubRegex);
   if (!match) {
-    throw new Error('僅支援 GitHub 倉庫 URL (格式: https://github.com/owner/repo)');
+    throw new Error('僅支援 GitHub 倉庫 URL (格式: https://github.com/owner/repo 或 https://github.com/owner/repo/tree/main/subpath)');
   }
 
-  const [, owner, repo] = match;
+  const [, owner, repo, branch, subpath] = match;
 
   try {
-    const res = await fetch(url, {
+    // 取得基礎 repo 資訊
+    const rootUrl = `https://github.com/${owner}/${repo}`;
+    const res = await fetch(rootUrl, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -125,27 +127,70 @@ async function scan(url, options = {}) {
     const html = await res.text();
     const meta = extractMeta(html);
 
-    // 優先使用 about 作為描述，若無則使用 meta description
     let description = meta.about || meta.description;
-    // 移除 "Contribute to owner/repo development..." 的廢話
+
+    // 若有子目錄，嘗試抓取其專屬 README.md 或 SKILL.md
+    if (subpath) {
+      const candidates = ['SKILL.md', 'README.md'];
+      for (const file of candidates) {
+        const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${subpath}/${file}`;
+        const rawRes = await fetch(rawUrl);
+        if (rawRes.ok) {
+          const readmeText = await rawRes.text();
+          let content = readmeText;
+          if (content.startsWith('---')) {
+            const endIdx = content.indexOf('---', 3);
+            if (endIdx > -1) {
+              const fm = content.substring(3, endIdx);
+              const descMatch = fm.match(/description:\s*(.+)/);
+              if (descMatch) {
+                description = descMatch[1].trim().replace(/^['"]|['"]$/g, '');
+                break;
+              }
+              content = content.substring(endIdx + 3).trim();
+            }
+          }
+
+          // 抓取第一段非標題段落
+          const paragraphs = content.split('\n\n');
+          const firstP = paragraphs.find(p => p.trim() && !p.startsWith('#') && !p.startsWith('!') && !p.startsWith('<') && !p.startsWith('-'));
+          if (firstP) {
+            description = firstP.replace(/\n/g, ' ').trim().slice(0, 200);
+            break;
+          }
+        }
+      }
+    }
+
     description = description.replace(new RegExp(`Contribute to ${owner}/${repo}.*?GitHub\\.?`, 'i'), '').trim();
     if (!description) {
-      description = `${owner}/${repo} - 待補充描述`;
+      description = `${owner}/${repo}${subpath ? '/' + subpath : ''} - 待補充描述`;
     }
 
     const category = guessCategory(description, meta.topics);
-    const install = guessInstall(url, meta.language);
+    // 處理基礎網址與安裝方式
+    const install = guessInstall(rootUrl, meta.language);
+    install.repoUrl = rootUrl;
+    
+    if (subpath) {
+      install.method = 'git-clone-sparse';
+      install.branch = branch;
+      install.subpath = subpath;
+    }
 
-    // 生成觸發詞
+    // 決定名稱與 ID
+    const baseName = subpath ? subpath.split('/').pop() : repo;
+
     const triggers = new Set([
-      repo.toLowerCase(),
-      ...repo.toLowerCase().split('-').filter(w => w.length > 2),
+      baseName.toLowerCase(),
+      ...baseName.toLowerCase().split('-').filter(w => w.length > 2),
+      ...(subpath ? [] : repo.toLowerCase().split('-').filter(w => w.length > 2)),
       ...meta.topics
     ]);
 
     const toolEntry = {
-      id: generateId(repo),
-      name: repo.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      id: generateId(baseName),
+      name: baseName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
       url: url.replace(/\/$/, ''),
       description,
       category,

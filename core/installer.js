@@ -29,7 +29,7 @@ export function installTool(tool, baseTempDir) {
   try {
     switch (method) {
       case 'git-clone':
-        command = `git clone ${tool.url}.git "${targetDir}"`;
+        command = `git clone ${tool.install?.repoUrl || tool.url}.git "${targetDir}"`;
         execSync(command, { stdio: 'inherit' });
         // 若有 package.json，自動 npm install
         if (existsSync(join(targetDir, 'package.json'))) {
@@ -42,6 +42,27 @@ export function installTool(tool, baseTempDir) {
           execSync('pip install -r requirements.txt', { cwd: targetDir, stdio: 'inherit' });
         }
         break;
+      case 'git-clone-sparse':
+        mkdirSync(targetDir, { recursive: true });
+        console.log(`\x1b[36m執行 Sparse Checkout，僅下載子目錄: ${tool.install.subpath}...\x1b[0m`);
+        execSync(`git clone --filter=blob:none --no-checkout ${tool.install?.repoUrl || tool.url}.git .`, { cwd: targetDir, stdio: 'inherit' });
+        execSync(`git sparse-checkout set ${tool.install.subpath}`, { cwd: targetDir, stdio: 'inherit' });
+        execSync(`git checkout ${tool.install.branch || 'main'}`, { cwd: targetDir, stdio: 'inherit' });
+        
+        const subPathDir = join(targetDir, tool.install.subpath);
+        // 若有 package.json，自動 npm install
+        if (existsSync(join(subPathDir, 'package.json'))) {
+          console.log(`\x1b[36m偵測到 package.json，執行 npm install...\x1b[0m`);
+          execSync('npm install', { cwd: subPathDir, stdio: 'inherit' });
+        }
+        // 若有 requirements.txt，自動 pip install
+        if (existsSync(join(subPathDir, 'requirements.txt'))) {
+          console.log(`\x1b[36m偵測到 requirements.txt，執行 pip install...\x1b[0m`);
+          execSync('pip install -r requirements.txt', { cwd: subPathDir, stdio: 'inherit' });
+        }
+        console.log(`\n\x1b[32m✓ 安裝完成\x1b[0m`);
+        return subPathDir;
+
 
       case 'npm':
         // 建立空的 package.json 然後安裝

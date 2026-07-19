@@ -134,17 +134,19 @@ async function cmdAdd(url) {
     process.exit(1);
   }
 
-  // 基本 URL 格式驗證
-  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)\/?$/;
+  // 基本 URL 格式驗證 (支援 Monorepo 子目錄)
+  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/tree\/([^/]+)\/(.+))?\/?$/;
   const match = url.match(githubRegex);
   if (!match) {
     error(`無效的 GitHub URL: ${url}`);
-    console.log(`${c.dim}預期格式: https://github.com/owner/repo${c.reset}`);
+    console.log(`${c.dim}預期格式: https://github.com/owner/repo 或 https://github.com/owner/repo/tree/main/subpath${c.reset}`);
     process.exit(1);
   }
 
-  const [, owner, repo] = match;
-  const id = generateId(repo);
+  const [, owner, repo, branch, subpath] = match;
+  // 若有 subpath，ID 取 subpath 最後一段，否則取 repo
+  const baseName = subpath ? subpath.split('/').pop() : repo;
+  let id = generateId(baseName);
   const registry = loadRegistryRaw();
 
   // 重複檢測

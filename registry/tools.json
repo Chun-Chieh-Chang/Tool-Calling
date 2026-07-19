@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-19T02:49:04.935Z",
+  "lastUpdated": "2026-07-19T05:07:05.047Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -341,6 +341,27 @@
       ],
       "addedAt": "2026-07-19T10:33:00+08:00",
       "status": "active"
+    },
+    {
+      "id": "tdd",
+      "name": "Tdd",
+      "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd",
+      "description": "Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions \"red-green-refactor\", or wants integration tests.",
+      "category": "測試與自動化",
+      "language": "shell",
+      "triggers": [
+        "tdd"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "git clone https://github.com/mattpocock/skills.git",
+        "repoUrl": "https://github.com/mattpocock/skills",
+        "branch": "main",
+        "subpath": "skills/engineering/tdd"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:07:05.045Z",
+      "status": "experimental"
     }
   ]
 }
