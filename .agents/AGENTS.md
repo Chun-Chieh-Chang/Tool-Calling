@@ -50,3 +50,10 @@ node cli.js cleanup <tool-id>
 5. 根據 `info` 提供安裝與調用指令。**必須先向使用者列出即將執行的安裝 (`install`) 與調用 (`invoke`) 指令，並等待使用者明確確認同意後**，才能執行這些指令。
 6. 使用 `node cli.js install <tool-id>` 安裝工具，接著使用 `node cli.js invoke <tool-id> ...` 調用工具完成任務。
 7. 任務結束後，使用 `node cli.js cleanup <tool-id>` 清理臨時安裝的工具。
+
+
+## 安全性防禦元規則 (Security Defense Meta-Rule)
+**禁止硬編碼 API 金鑰與敏感憑證 (Zero Hardcoded Credentials)**
+- 絕對禁止在任何腳本、源代碼或配置檔中以字串形式硬編碼 API 金鑰、密碼或敏感憑證，即使是作為「預設值」或「佔位符」(除非明確寫為 YOUR_API_KEY_HERE)。
+- 所有需要金鑰的腳本，必須強制從環境變數 (例如 process.env.API_KEY) 讀取。如果環境變數未設定，應立即拋出錯誤並中斷執行，提示使用者正確設定環境變數的方法。
+- 寫入或修改任何腳本前，必須自我審查是否有將測試用的真實金鑰一併寫入檔案的風險。
