@@ -83,5 +83,23 @@
 #### RCA / CAPA
 - **問題**：`batch-add` 時遇到 `https://github.com/owner/repo/blob/main/subpath` 格式導致正則驗證失敗並中斷進程。
 - **矯正措施**：修改 `cli.js` 與 `scan-tool.js` 中的 GitHub 正則表達式支援 `(?:tree|blob)`，並在 `batch-add` 迴圈中加入 `try...catch` 防護機制。
-- **問題**：針對具有相同倉庫名稱（如 `openai/skills` 與 `anthropics/skills`）的網址，產生 ID 衝突。
 - **矯正措施**：在 `cmdAdd` 中增加邏輯，當 ID 碰撞但 URL 不同時，動態將 owner 加上 baseName 作為新 ID (`skills-anthropics`)。
+
+### 2026-07-19 — 千級技能精準調度架構升級 (Phase 9)
+
+#### 需求
+因應系統工具即將邁入千級規模，需解決「注意力稀釋 (Attention Dilution)」與「標籤混淆 (Label Confusion)」兩大核心問題，避免 Agent 在高度相似的工具群中發生「工具使用幻覺 (Tool-use Hallucination)」。
+
+#### 完成項目
+- [x] **導入負樣本約束 (Hard Negatives)**：
+  - 更新 `tool.schema.json` 加入 `negativeConstraints` (禁用場景)。
+  - 修改 `core/search-engine.js` 關鍵字檢索邏輯，當檢索詞命中禁用場景時，給予致命扣分 (強制降至 1%)。
+  - 在 `cli.js` 中實作紅色的 `🚫 禁用場景` 警告顯示，加強 LLM 辨識度。
+- [x] **實作領域分類過濾 (Category Routing)**：
+  - 更新 `cli.js` 的 `search` 指令，支援 `-c, --category <name>` 參數。
+  - 在 `core/search-engine.js` 中於核心算法前加入前置過濾，將 $O(N)$ 空間降維至 $O(\log N)$。
+- [x] **文檔收納**：將架構白皮書收錄至 `docs/references/agent-skill-routing/` 以保持專案 MECE 結構。
+
+#### RCA / CAPA
+- **問題**：`search-engine.js` 處理負樣本時，因 `queryTokens` 的 `includes` 邏輯無法正確捕捉未切分開的中文字串 (如 "撰寫後端代碼ppt")，導致負樣本扣分失效。
+- **矯正措施**：改用 `normalize(query).includes(negNorm)`，直接判斷原始查詢字串是否包含負樣本詞彙，修復並驗證成功。

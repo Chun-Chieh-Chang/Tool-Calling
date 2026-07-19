@@ -181,10 +181,27 @@ export function keywordMatch(tools, query) {
       }
     }
 
-    if (score > 0) {
+    // 負樣本約束匹配 (Hard Negative)
+    let isNegativeMatch = false;
+    if (tool.negativeConstraints) {
+      for (const neg of tool.negativeConstraints) {
+        const negNorm = normalize(neg);
+        if (negNorm.length >= 2 && normalize(query).includes(negNorm)) {
+          isNegativeMatch = true;
+          break;
+        }
+      }
+    }
+
+    if (score > 0 || isNegativeMatch) {
+      if (isNegativeMatch) {
+        if (!matchedKeywords.includes(`🚫 禁用場景`)) matchedKeywords.push(`🚫 禁用場景`);
+      }
+      
       // 正規化分數到 0~1 範圍
       const maxPossible = tool.triggers.length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2;
-      const normalizedScore = Math.min(score / maxPossible, 0.99);
+      // 如果命中負樣本，強制給予極低分數 (0.01)
+      const normalizedScore = isNegativeMatch ? 0.01 : Math.min(score / maxPossible, 0.99);
       results.push({
         tool,
         score: Math.round(normalizedScore * 100) / 100,

@@ -17,9 +17,9 @@ Tool-Calling 是一套 AI Agent 工具調用基礎設施。當你說出咒語 **
 # 列出所有已註冊工具
 node cli.js list
 
-# 搜尋工具（支援中英文自然語言）
+# 搜尋工具（支援自然語言與分類過濾）
 node cli.js search "我要做簡報"
-node cli.js search "security vulnerability scan"
+node cli.js search "security vulnerability scan" -c "安全性"
 
 # 查看工具詳情（包含 ⭐ 場景與 ★ 優勢）
 node cli.js info playwright
@@ -51,6 +51,8 @@ node cli.js validate
 系統內建了強大的工具解析能力：
 1. **Deep Indexing (深層索引)**：對於包含了數十個技能的 Monorepo（如 `agent-skills`），透過 `index-subtools` 指令可剖開表層，精準萃取內部每一項微技能，讓 AI 一擊命中。
 2. **Tool Differentiation (差異化對比)**：Schema 支援 `useCase` (最佳場景) 與 `advantages` (優勢清單)。檢索引擎會高亮展示這些特徵，讓 AI 在面對功能重疊的工具時能做出最聰明的決策。
+3. **Category Routing (領域分類過濾)**：使用 `-c, --category` 參數，將搜尋空間瞬間降維，避免千級規模下的注意力稀釋。
+4. **Hard Negatives (負樣本約束)**：支援 `negativeConstraints` (🚫 禁用場景)，當用戶查詢命中禁用詞彙時，強制扣除分數使該工具墊底，徹底杜絕工具使用幻覺。
 
 ## 架構
 

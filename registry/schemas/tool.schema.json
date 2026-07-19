@@ -126,6 +126,11 @@
           "items": { "type": "string" },
           "description": "核心優勢或特點清單"
         },
+        "negativeConstraints": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "禁用場景或負樣本約束，命中時大幅降低推薦分數"
+        },
         "addedAt": {
           "type": "string",
           "format": "date-time",

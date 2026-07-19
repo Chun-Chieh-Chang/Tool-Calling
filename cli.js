@@ -122,6 +122,9 @@ function cmdSearch(query, options = {}) {
     if (tool.useCase) {
       console.log(`   ${c.yellow}⭐ 場景:${c.reset} ${tool.useCase}`);
     }
+    if (tool.negativeConstraints?.length) {
+      console.log(`   ${c.red}🚫 禁用場景:${c.reset} ${tool.negativeConstraints.join('、')}`);
+    }
     if (matchedKeywords && matchedKeywords.length > 0) {
       console.log(`   ${c.magenta}匹配:${c.reset} ${matchedKeywords.slice(0, 5).join(', ')}`);
     }
@@ -332,6 +335,9 @@ function cmdInfo(id) {
   if (tool.useCase) {
     console.log(`  ${c.yellow}⭐ 場景:${c.reset}  ${tool.useCase}`);
   }
+  if (tool.negativeConstraints?.length) {
+    console.log(`  ${c.red}🚫 禁用場景:${c.reset} ${tool.negativeConstraints.join('、')}`);
+  }
   if (tool.advantages?.length) {
     console.log(`  ${c.yellow}★ 優勢:${c.reset}   ${tool.advantages.join('、')}`);
   }
@@ -440,7 +446,7 @@ ${c.bold}用法:${c.reset}
   node cli.js <command> [args]
 
 ${c.bold}核心命令:${c.reset}
-  ${c.cyan}search${c.reset} <query>           搜尋最適工具（支援自然語言）
+  ${c.cyan}search${c.reset} <query> [-c category] 搜尋最適工具（支援自然語言與分類過濾）
   ${c.cyan}install${c.reset} <id>             動態安裝工具到 .temp/ 臨時目錄
   ${c.cyan}cleanup${c.reset}                  移除所有臨時工具，復歸系統
 
@@ -467,9 +473,20 @@ switch (command) {
   case 'list':
     cmdList();
     break;
-  case 'search':
-    cmdSearch(args.join(' '));
+  case 'search': {
+    const searchArgs = [];
+    let searchCat = undefined;
+    for (let i = 0; i < args.length; i++) {
+      if (args[i] === '-c' || args[i] === '--category') {
+        searchCat = args[i + 1];
+        i++;
+      } else {
+        searchArgs.push(args[i]);
+      }
+    }
+    cmdSearch(searchArgs.join(' '), { category: searchCat });
     break;
+  }
   case 'info':
     cmdInfo(args[0]);
     break;

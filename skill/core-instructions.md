@@ -21,8 +21,8 @@ Tool-Calling 是一套 AI Agent 工具調用基礎設施，為新專案開發提
 所有操作透過 Node.js CLI 執行（需 Node.js >= 18）：
 
 ```bash
-# 搜尋最適工具（支援中英文自然語言）
-node d:/Self-developed_Apps/Tool-Calling/cli.js search "<用戶任務描述>"
+# 搜尋最適工具（支援自然語言與分類過濾）
+node d:/Self-developed_Apps/Tool-Calling/cli.js search "<用戶任務描述>" [-c <分類>]
 
 # 列出所有已註冊工具
 node d:/Self-developed_Apps/Tool-Calling/cli.js list
@@ -51,7 +51,10 @@ node d:/Self-developed_Apps/Tool-Calling/cli.js health-check
 當用戶說出「啟動全自動工具調用模式」後，依序執行：
 
 1. **解析意圖** — 分析用戶的任務需求，提取關鍵字
-2. **檢索工具** — 執行 `node cli.js search "<任務描述>"`，取得信心度排名。注意搜尋結果中的 `⭐ 場景` 與 `★ 優勢` 來區分同質工具。
+2. **檢索工具** — 執行 `node cli.js search "<任務描述>"`，取得信心度排名。
+   - **過濾雜訊**：若搜索範圍過大，可加上 `-c, --category` 參數限定大分類。
+   - **規避幻覺**：密切注意結果中的 `🚫 禁用場景` 警告，若任務踩中地雷，絕對不可選用該工具。
+   - **精準打擊**：利用 `⭐ 場景` 與 `★ 優勢` 來區分同質工具。
 3. **評估結果** — 信心度較高且 `useCase` 最吻合的工具納入候選；若無匹配，告知用戶並建議手動添加。
 4. **安裝調用** — 根據工具的 `install` 欄位動態安裝（pip/npm/git clone，支援 Sparse Checkout）。
 5. **執行任務** — 調用工具完成用戶任務
