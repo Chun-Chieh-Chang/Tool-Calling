@@ -14,7 +14,8 @@
     "list": "node cli.js list",
     "search": "node cli.js search",
     "health-check": "node cli.js health-check",
-    "validate": "node cli.js validate"
+    "validate": "node cli.js validate",
+    "enrich": "node scripts/enrich-registry.js"
   },
   "keywords": [
     "tool-calling",
