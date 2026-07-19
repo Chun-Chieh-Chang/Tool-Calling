@@ -488,7 +488,26 @@ export function search(registryTools, query, options = {}) {
   // L1 精確匹配
   const l1Results = exactMatch(tools, query);
   if (l1Results.length > 0) {
-    return l1Results.slice(0, topK);
+    let finalL1 = l1Results.slice(0, topK);
+    const { telemetryStats } = options;
+    if (telemetryStats) {
+      for (const result of finalL1) {
+        const stats = telemetryStats[result.tool.id];
+        if (stats && stats.total >= 2) {
+          if (stats.successRate <= 0.3) {
+            result.score = result.score * 0.1;
+            if (!result.matchedKeywords) result.matchedKeywords = [];
+            result.matchedKeywords.push('⚠️ 軌跡警告: 成功率極低');
+          } else if (stats.successRate >= 0.8) {
+            result.score = Math.min(result.score * 1.2, 0.99);
+            if (!result.matchedKeywords) result.matchedKeywords = [];
+            result.matchedKeywords.push('🌟 軌跡推薦: 高成功率');
+          }
+        }
+      }
+      finalL1.sort((a, b) => b.score - a.score);
+    }
+    return finalL1;
   }
 
   // L2 關鍵字匹配
@@ -511,6 +530,25 @@ export function search(registryTools, query, options = {}) {
       seen.add(r.tool.id);
       // L3 分數降權（乘 0.5）以確保 L2 優先
       merged.push({ ...r, score: Math.round(r.score * 0.5 * 100) / 100 });
+    }
+  }
+
+  // 套用 Telemetry 動態權重
+  const { telemetryStats } = options;
+  if (telemetryStats) {
+    for (const result of merged) {
+      const stats = telemetryStats[result.tool.id];
+      if (stats && stats.total >= 2) { // 至少累積 2 次才具有統計意義
+        if (stats.successRate <= 0.3) {
+          result.score = result.score * 0.1; // 重罰
+          if (!result.matchedKeywords) result.matchedKeywords = [];
+          result.matchedKeywords.push('⚠️ 軌跡警告: 成功率極低');
+        } else if (stats.successRate >= 0.8) {
+          result.score = Math.min(result.score * 1.2, 0.99); // 獎勵
+          if (!result.matchedKeywords) result.matchedKeywords = [];
+          result.matchedKeywords.push('🌟 軌跡推薦: 高成功率');
+        }
+      }
     }
   }
 

@@ -133,3 +133,23 @@
 - [x] **文件目錄重構**：將過長的白皮書目錄 `docs/references/agent-skill-routing/...` 重新命名並整併至 `docs/architecture/`，提昇目錄結構的可讀性。
 - [x] **文件同步更新**：更新了 `README.md` 的專案架構樹與 GitHub Pages 網頁連結，確保文件與當前代碼結構一致。
 - [x] **建立版本基準點**：清理完畢後，透過 `git add .` 與 `git commit` 將專案推進至全新的高潔淨狀態，並推送至 GitHub 遠端倉庫。
+
+### 2026-07-19：沙盒隔離、遙測追蹤與資料萃取 (Phase 12)
+
+#### 需求與動機
+1. **動態沙盒隔離 (Sandbox Invocation Mode)**：原先 `installer.js` 會在主機環境執行 `npm install` 與 `pip install`，存在極大的安全隱患（RCE 風險）。需導入 Docker 隔離執行環境，保護主機安全。
+2. **軌跡追蹤與動態權重 (Telemetry)**：系統需要具備自我學習能力。藉由記錄工具調用的成功與失敗軌跡，動態調整 TF-IDF 的權重分數，實現自動化的淘汰與推薦機制。
+3. **SFT 微調資料集萃取**：為了未來能微調出專精於工具調用選擇的專屬 LLM（如 Llama-3-ToolCalling），需將成功調用的歷史軌跡萃取為 ShareGPT/OpenAI Chat ML 格式的微調資料集。
+
+#### 完成項目
+- [x] **沙盒隔離實作**：擴充了 `registry/schemas/tool.schema.json` 支援 `sandbox` 屬性，並實作 `core/sandbox.js` 管理 Docker 容器生命週期，修改 `installer.js` 避免於主機執行任何相依套件安裝。
+- [x] **CLI 新增指令**：於 `cli.js` 新增 `invoke <id> [args...]`，實現安全隔離執行工具。
+- [x] **遙測系統實作**：建立 `core/telemetry.js`，將軌跡寫入至 `~/.tool-calling/traces/traces.jsonl`，並修改 `cli.js` 在 `invoke` 結束後自動記錄。
+- [x] **搜尋演算法動態加權**：修改 `core/search-engine.js`，讀取 Telemetry 並於搜尋時動態乘上懲罰 (0.1x) 或獎勵 (1.2x) 係數，並在匹配關鍵字中顯示提示。
+- [x] **資料萃取工具**：實作 `scripts/export-dataset.js`，新增 `export-dataset` 指令，成功將成功的軌跡轉換為 OpenAI Chat ML 的訓練格式。
+
+#### RCA / CAPA
+- **問題**：實作沙盒時，遺漏了 `npm` 與 `pip` 安裝方式的防禦，導致 `installer.js` 仍然在主機執行 `pip install`。
+- **根本原因**：只修改了 `git-clone` 分支的代碼，未全面檢視所有 `switch case` 分支。
+- **矯正措施**：修改 `installer.js` 的 `npm/pip/composer/cargo` 分支，移除主機執行邏輯，推遲至 `core/sandbox.js` 產生對應的依賴安裝指令在 Docker 內執行。
+- **預防措施**：執行修改時，必須遵守全域變更掃描 SOP，檢視 `switch` 區塊的所有可能進入點。

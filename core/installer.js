@@ -31,16 +31,7 @@ export function installTool(tool, baseTempDir) {
       case 'git-clone':
         command = `git clone ${tool.install?.repoUrl || tool.url}.git "${targetDir}"`;
         execSync(command, { stdio: 'inherit' });
-        // 若有 package.json，自動 npm install
-        if (existsSync(join(targetDir, 'package.json'))) {
-          console.log(`\x1b[36m偵測到 package.json，執行 npm install...\x1b[0m`);
-          execSync('npm install', { cwd: targetDir, stdio: 'inherit' });
-        }
-        // 若有 requirements.txt，自動 pip install
-        if (existsSync(join(targetDir, 'requirements.txt'))) {
-          console.log(`\x1b[36m偵測到 requirements.txt，執行 pip install...\x1b[0m`);
-          execSync('pip install -r requirements.txt', { cwd: targetDir, stdio: 'inherit' });
-        }
+        // Sandbox Mode: 不在本機執行 npm install 或 pip install，將其推遲至 invoke 階段的沙盒內執行
         break;
       case 'git-clone-sparse':
         mkdirSync(targetDir, { recursive: true });
@@ -50,34 +41,17 @@ export function installTool(tool, baseTempDir) {
         execSync(`git checkout ${tool.install.branch || 'main'}`, { cwd: targetDir, stdio: 'inherit' });
         
         const subPathDir = join(targetDir, tool.install.subpath);
-        // 若有 package.json，自動 npm install
-        if (existsSync(join(subPathDir, 'package.json'))) {
-          console.log(`\x1b[36m偵測到 package.json，執行 npm install...\x1b[0m`);
-          execSync('npm install', { cwd: subPathDir, stdio: 'inherit' });
-        }
-        // 若有 requirements.txt，自動 pip install
-        if (existsSync(join(subPathDir, 'requirements.txt'))) {
-          console.log(`\x1b[36m偵測到 requirements.txt，執行 pip install...\x1b[0m`);
-          execSync('pip install -r requirements.txt', { cwd: subPathDir, stdio: 'inherit' });
-        }
+        // Sandbox Mode: 不在本機安裝依賴
         console.log(`\n\x1b[32m✓ 安裝完成\x1b[0m`);
         return subPathDir;
 
 
       case 'npm':
-        // 建立空的 package.json 然後安裝
-        mkdirSync(targetDir, { recursive: true });
-        execSync('npm init -y', { cwd: targetDir, stdio: 'ignore' });
-        command = tool.install.command;
-        execSync(command, { cwd: targetDir, stdio: 'inherit' });
-        break;
-
       case 'pip':
       case 'composer':
       case 'cargo':
         mkdirSync(targetDir, { recursive: true });
-        command = tool.install.command;
-        execSync(command, { cwd: targetDir, stdio: 'inherit' });
+        // Sandbox Mode: 不在本機執行安裝指令，交由 Sandbox 處理
         break;
 
       default:

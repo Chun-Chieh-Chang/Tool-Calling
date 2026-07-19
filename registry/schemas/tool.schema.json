@@ -99,6 +99,17 @@
           },
           "description": "安裝方式"
         },
+        "sandbox": {
+          "type": "object",
+          "properties": {
+            "image": {
+              "type": "string",
+              "description": "Docker 映像檔名稱 (例如 node:18-alpine 或 python:3.10-slim)"
+            }
+          },
+          "required": ["image"],
+          "description": "沙盒執行環境配置"
+        },
         "capabilities": {
           "type": "array",
           "items": { "type": "string" },

@@ -99,15 +99,26 @@ function cmdList() {
 
 // ─── 命令：search ─────────────────────────────────────────────────────────
 
-function cmdSearch(query, options = {}) {
+async function cmdSearch(query, options = {}) {
   if (!query) {
     error('請提供搜尋查詢。用法: node cli.js search "我想做簡報"');
     process.exit(1);
   }
 
+  let telemetryStats = {};
+  try {
+    // 只有 Node.js 環境能使用 telemetry
+    const { getTelemetryStats } = await import('./core/telemetry.js');
+    telemetryStats = getTelemetryStats();
+  } catch (e) {}
+
   header(`搜尋: "${query}"`);
   const registry = loadRegistryRaw();
-  const results = search(registry.tools, query, { topK: options.topK || 5, category: options.category });
+  const results = search(registry.tools, query, { 
+    topK: options.topK || 5, 
+    category: options.category,
+    telemetryStats 
+  });
 
   if (results.length === 0) {
     warn('未找到匹配的工具。');
@@ -424,9 +435,52 @@ async function cmdInstall(id) {
   header(`動態安裝: ${tool.name}`);
   try {
     const targetPath = installTool(tool, tempDir);
-    success(`工具已就緒: ${c.bold}${targetPath}${c.reset}`);
-    console.log(`\n${c.yellow}提示: 您現在可以切換到該目錄執行工具。任務完成後，請執行 'node cli.js cleanup' 進行復歸。${c.reset}\n`);
+    success(`工具原始碼已就緒: ${c.bold}${targetPath}${c.reset}`);
+    console.log(`\n${c.yellow}提示: 您現在可以執行 'node cli.js invoke ${tool.id}' 在沙盒中安全執行。${c.reset}\n`);
   } catch (err) {
+    error(err.message);
+    process.exit(1);
+  }
+}
+
+// ─── 命令：invoke ────────────────────────────────────────────────────────
+
+async function cmdInvoke(id, invokeArgs) {
+  if (!id) {
+    error('請提供工具 ID。用法: node cli.js invoke <tool-id> [args...]');
+    process.exit(1);
+  }
+
+  const registry = loadRegistryRaw();
+  const tool = getById(registry.tools, id);
+  if (!tool) {
+    error(`未找到工具: ${id}。請先使用 list 或 search 確認工具 ID。`);
+    process.exit(1);
+  }
+
+  const { installTool } = await import('./core/installer.js');
+  const { invokeInSandbox } = await import('./core/sandbox.js');
+  const { recordTrace } = await import('./core/telemetry.js');
+  const tempDir = join(__dirname, '.temp');
+  
+  header(`沙盒安全調用: ${tool.name}`);
+  let result = { exitCode: 1, duration: 0 };
+  
+  try {
+    // 確保原始碼存在 (只會 clone 不會在主機裝依賴)
+    const targetPath = installTool(tool, tempDir);
+    
+    // 進入 Sandbox
+    result = invokeInSandbox(tool, targetPath, invokeArgs);
+    
+    // 記錄 Telemetry
+    recordTrace(tool.id, invokeArgs, result.exitCode, result.duration, result.error);
+    
+    if (result.exitCode !== 0) {
+      process.exit(result.exitCode);
+    }
+  } catch (err) {
+    recordTrace(tool.id, invokeArgs, 1, result.duration, err.message);
     error(err.message);
     process.exit(1);
   }
@@ -452,8 +506,10 @@ ${c.bold}用法:${c.reset}
 
 ${c.bold}核心命令:${c.reset}
   ${c.cyan}search${c.reset} <query> [-c category] 搜尋最適工具（支援自然語言與分類過濾）
-  ${c.cyan}install${c.reset} <id>             動態安裝工具到 .temp/ 臨時目錄
+  ${c.cyan}invoke${c.reset} <id> [args...]      在 Docker 沙盒中安全執行工具（自動安裝）
+  ${c.cyan}install${c.reset} <id>             獲取工具原始碼到 .temp/ 臨時目錄
   ${c.cyan}cleanup${c.reset}                  移除所有臨時工具，復歸系統
+  ${c.cyan}export-dataset${c.reset} [path]    匯出 Telemetry 作為 LLM 微調資料集
 
 ${c.bold}管理命令:${c.reset}
   ${c.cyan}list${c.reset}                    列出所有已註冊工具
@@ -489,7 +545,7 @@ switch (command) {
         searchArgs.push(args[i]);
       }
     }
-    cmdSearch(searchArgs.join(' '), { category: searchCat });
+    await cmdSearch(searchArgs.join(' '), { category: searchCat });
     break;
   }
   case 'info':
@@ -498,6 +554,15 @@ switch (command) {
   case 'install':
     await cmdInstall(args[0]);
     break;
+  case 'invoke':
+    await cmdInvoke(args[0], args.slice(1));
+    break;
+  case 'export-dataset': {
+    const registry = loadRegistryRaw();
+    const { exportDataset } = await import('./scripts/export-dataset.js');
+    exportDataset(registry.tools, args[0] || 'dataset.jsonl');
+    break;
+  }
   case 'cleanup':
     await cmdCleanup();
     break;
