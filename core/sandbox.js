@@ -94,6 +94,8 @@ export function invokeInSandbox(tool, targetDir, args) {
     '-w', '/workspace',
     '--network', 'none',
     '--read-only',
+    '--tmpfs', '/tmp',
+    '--env', 'HOME=/tmp',
     '--cap-drop', 'ALL',
     '--user', '1000:1000',
     '--memory=512m',

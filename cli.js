@@ -492,7 +492,11 @@ async function cmdCleanup(id) {
   const { cleanup } = await import('./core/cleanup.js');
   const tempDir = join(__dirname, '.temp');
   header('系統復歸與清理');
-  cleanup(tempDir, id);
+  try {
+    cleanup(tempDir, id);
+  } catch (err) {
+    error(err.message);
+  }
 }
 
 // ─── 幫助訊息 ─────────────────────────────────────────────────────────────
