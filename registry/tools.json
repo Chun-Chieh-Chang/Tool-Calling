@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-19T09:26:01.863Z",
+  "lastUpdated": "2026-07-19T10:52:42.314Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -9042,6 +9042,38 @@
         "anime"
       ],
       "addedAt": "2026-07-19T09:26:01.863Z",
+      "status": "experimental"
+    },
+    {
+      "id": "understand-anything",
+      "name": "Understand Anything",
+      "url": "https://github.com/Egonex-AI/Understand-Anything",
+      "description": "Graphs that teach &gt; graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and ask questions about. Works with Claude Code, Codex, Cursor, Copilot, Gemini CLI, and more. - Egonex-AI/Understand-Anything",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "understand-anything",
+        "understand",
+        "anything",
+        "memory",
+        "knowledge-graph",
+        "knowledge-base",
+        "codex",
+        "business-knowledge"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/Egonex-AI/Understand-Anything",
+        "repoUrl": "https://github.com/Egonex-AI/Understand-Anything"
+      },
+      "capabilities": [
+        "memory",
+        "knowledge-graph",
+        "knowledge-base",
+        "codex",
+        "business-knowledge"
+      ],
+      "addedAt": "2026-07-19T10:52:42.313Z",
       "status": "experimental"
     }
   ]
