@@ -1,0 +1,346 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-07-19T02:49:04.935Z",
+  "tools": [
+    {
+      "id": "ppt-master",
+      "name": "PPT Master",
+      "url": "https://github.com/hugohe3/ppt-master",
+      "description": "AI 將文件或主題轉為原生 PowerPoint 簡報，支援形狀、轉場動畫、數據圖表、表格、音頻旁白及自定義 .pptx 模板",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "ppt",
+        "powerpoint",
+        "簡報",
+        "投影片",
+        "演示文稿",
+        "slides",
+        "presentation",
+        "deck"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install ppt-master",
+        "requirements": [
+          "python>=3.8"
+        ]
+      },
+      "capabilities": [
+        "document-to-ppt",
+        "template-support",
+        "audio-narration",
+        "chart-generation",
+        "transition-animation"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "graphify",
+      "name": "Graphify",
+      "url": "https://github.com/Graphify-Labs/graphify",
+      "description": "AI 編碼助手技能，將任意代碼、SQL、R 腳本、Shell 腳本、文件、論文、圖片或影片資料夾轉為可查詢知識圖譜",
+      "category": "知識管理",
+      "language": "typescript",
+      "triggers": [
+        "knowledge graph",
+        "知識圖譜",
+        "code analysis",
+        "graphify",
+        "架構分析",
+        "codebase understanding",
+        "知識庫",
+        "code map"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install graphify",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "code-to-graph",
+        "sql-schema-analysis",
+        "cross-project-search",
+        "infrastructure-mapping"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "strix",
+      "name": "Strix",
+      "url": "https://github.com/usestrix/strix",
+      "description": "開源 AI 滲透測試工具，自動發現並修復應用程式的安全漏洞",
+      "category": "安全性",
+      "language": "python",
+      "triggers": [
+        "pentest",
+        "penetration test",
+        "security",
+        "vulnerability",
+        "漏洞",
+        "安全測試",
+        "滲透測試",
+        "security scan",
+        "安全掃描"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install strix",
+        "requirements": [
+          "python>=3.9"
+        ]
+      },
+      "capabilities": [
+        "vulnerability-scanning",
+        "auto-fix",
+        "compliance-check",
+        "penetration-testing"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "ai-animation-video-generator",
+      "name": "AI Animation Video Generator",
+      "url": "https://github.com/Zeshanabdullah/ai-animation-video-generator",
+      "description": "免費無限制 AI 動畫影片生成器，無需註冊或使用限制即可創建 AI 動畫影片",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "animation",
+        "video",
+        "動畫",
+        "影片生成",
+        "動畫影片",
+        "animate",
+        "cartoon",
+        "卡通"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Zeshanabdullah/ai-animation-video-generator.git",
+        "requirements": [
+          "python>=3.8"
+        ]
+      },
+      "capabilities": [
+        "animation-generation",
+        "video-creation",
+        "free-unlimited"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "open-generative-ai",
+      "name": "Open Generative AI",
+      "url": "https://github.com/Anil-matcha/Open-Generative-AI",
+      "description": "開源 AI 圖片與影片生成工作室，整合 200+ 模型（Flux, Midjourney, Kling, Sora, Veo），無內容過濾，可自行部署",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "image generation",
+        "video generation",
+        "AI art",
+        "圖片生成",
+        "影片生成",
+        "generative",
+        "midjourney",
+        "flux",
+        "sora",
+        "AI 圖片",
+        "AI 影片"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Anil-matcha/Open-Generative-AI.git",
+        "requirements": [
+          "python>=3.8"
+        ]
+      },
+      "capabilities": [
+        "image-generation",
+        "video-generation",
+        "multi-model-200+",
+        "self-hosted",
+        "no-content-filter"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "imaginairy",
+      "name": "ImaginAIry",
+      "url": "https://github.com/brycedrennan/imaginAIry",
+      "description": "Pythonic AI 圖片與影片生成庫，提供程式化 API 進行影像生成、編輯與處理",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "imagine",
+        "image",
+        "圖片",
+        "AI image",
+        "stable diffusion",
+        "imaginairy",
+        "img2img",
+        "影像編輯"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install imaginairy",
+        "requirements": [
+          "python>=3.8"
+        ]
+      },
+      "capabilities": [
+        "image-generation",
+        "image-editing",
+        "video-generation",
+        "pythonic-api",
+        "batch-processing"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "vercel-ai-skills",
+      "name": "Vercel AI SDK Skills",
+      "url": "https://github.com/vercel-labs/skills",
+      "description": "Vercel AI SDK 技能集合，為 AI 聊天機器人添加可組合的工具調用能力",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "vercel",
+        "ai sdk",
+        "skill",
+        "chatbot",
+        "tool calling",
+        "ai agent",
+        "composable tools"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install @vercel/ai-skills",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "tool-calling",
+        "chatbot-extension",
+        "composable-skills",
+        "ai-sdk-integration"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "total-typescript-skills",
+      "name": "Total TypeScript Skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Matt Pocock 的 TypeScript 學習與技能參考資源，涵蓋進階型別技巧與型別體操",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "typescript",
+        "type",
+        "型別",
+        "ts skills",
+        "type challenge",
+        "type gymnastics",
+        "型別體操"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/mattpocock/skills.git",
+        "requirements": [
+          "node>=16"
+        ]
+      },
+      "capabilities": [
+        "typescript-learning",
+        "type-challenges",
+        "advanced-types",
+        "reference-guide"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "url": "https://github.com/microsoft/playwright",
+      "description": "微軟出品的跨瀏覽器端到端測試框架，支援 Chromium、Firefox、WebKit 自動化測試、截圖、PDF 生成",
+      "category": "測試與自動化",
+      "language": "typescript",
+      "triggers": [
+        "playwright",
+        "test",
+        "e2e",
+        "browser",
+        "自動化測試",
+        "端到端",
+        "截圖",
+        "scraping",
+        "爬蟲",
+        "browser automation",
+        "UI test"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install playwright",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "e2e-testing",
+        "cross-browser",
+        "screenshot",
+        "pdf-generation",
+        "web-scraping",
+        "auto-wait"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    },
+    {
+      "id": "flysystem",
+      "name": "Flysystem",
+      "url": "https://github.com/thephpleague/flysystem",
+      "description": "PHP 檔案系統抽象層，提供統一介面操作本地、S3、GCS 等多種儲存後端",
+      "category": "基礎設施",
+      "language": "php",
+      "triggers": [
+        "filesystem",
+        "storage",
+        "file",
+        "s3",
+        "cloud storage",
+        "flysystem",
+        "檔案系統",
+        "儲存"
+      ],
+      "install": {
+        "method": "composer",
+        "command": "composer require league/flysystem",
+        "requirements": [
+          "php>=8.0"
+        ]
+      },
+      "capabilities": [
+        "filesystem-abstraction",
+        "multi-backend",
+        "s3-integration",
+        "gcs-integration",
+        "local-storage"
+      ],
+      "addedAt": "2026-07-19T10:33:00+08:00",
+      "status": "active"
+    }
+  ]
+}

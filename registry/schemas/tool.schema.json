@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tool Registry Schema",
+  "description": "定義 Tool-Calling 系統的工具註冊格式",
+  "type": "object",
+  "required": ["version", "lastUpdated", "tools"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema 版本號"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "最後更新時間 (ISO 8601)"
+    },
+    "tools": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Tool"
+      }
+    }
+  },
+  "definitions": {
+    "Tool": {
+      "type": "object",
+      "required": ["id", "name", "url", "description", "category", "language", "triggers", "status"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "工具唯一識別符 (kebab-case)"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "工具顯示名稱"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "GitHub 倉庫 URL"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "description": "工具功能描述"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "文件生產力",
+            "知識管理",
+            "安全性",
+            "多媒體生成",
+            "AI 框架",
+            "學習資源",
+            "測試與自動化",
+            "基礎設施",
+            "其他"
+          ],
+          "description": "工具分類"
+        },
+        "language": {
+          "type": "string",
+          "enum": ["python", "typescript", "javascript", "php", "go", "rust", "java", "other"],
+          "description": "主要程式語言"
+        },
+        "triggers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "description": "觸發關鍵字列表"
+        },
+        "install": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": ["npm", "pip", "git-clone", "composer", "cargo", "manual"]
+            },
+            "command": {
+              "type": "string"
+            },
+            "requirements": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "description": "安裝方式"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "工具能力標籤"
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "加入時間"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "deprecated", "experimental"],
+          "description": "工具狀態"
+        }
+      }
+    }
+  }
+}

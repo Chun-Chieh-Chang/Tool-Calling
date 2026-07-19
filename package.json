@@ -1,0 +1,31 @@
+{
+  "name": "tool-calling",
+  "version": "1.0.0",
+  "description": "全自動工具調用效能外掛系統 — AI Agent 工具發現、檢索、調用、清理的基礎設施",
+  "type": "module",
+  "main": "cli.js",
+  "bin": {
+    "tool-calling": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js",
+    "test": "node --test tests/",
+    "add": "node cli.js add",
+    "list": "node cli.js list",
+    "search": "node cli.js search",
+    "health-check": "node cli.js health-check",
+    "validate": "node cli.js validate"
+  },
+  "keywords": [
+    "tool-calling",
+    "ai-agent",
+    "tool-registry",
+    "auto-invoke",
+    "plugin-system"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

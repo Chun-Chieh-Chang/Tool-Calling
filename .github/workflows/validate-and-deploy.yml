@@ -1,0 +1,82 @@
+name: Validation and Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests (確效)
+        run: npm test
+
+      - name: Validate Registry (格式檢查)
+        run: npm run validate
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Generate Static Registry View
+        run: |
+          mkdir public
+          cp README.md public/index.md
+          # 建立一個簡單的 index.html 以渲染 README
+          cat << 'EOF' > public/index.html
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <title>Tool-Calling Registry</title>
+            <script type="module" src="https://md-block.verou.me/md-block.js"></script>
+            <style>
+              body { max-width: 800px; margin: 40px auto; font-family: system-ui, sans-serif; padding: 0 20px; line-height: 1.6; }
+            </style>
+          </head>
+          <body>
+            <md-block>
+          $(cat public/index.md)
+            </md-block>
+          </body>
+          </html>
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './public'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
