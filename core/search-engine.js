@@ -137,6 +137,7 @@ export function keywordMatch(tools, query) {
 
     // 子工具匹配 (權重中：每個匹配 +1.5)
     if (tool.subTools) {
+      let subToolScore = 0;
       for (const subTool of tool.subTools) {
         const subName = normalize(subTool.name);
         const subDesc = normalize(subTool.description);
@@ -144,11 +145,11 @@ export function keywordMatch(tools, query) {
         
         for (const token of queryTokens) {
           if (subName.includes(token) && token.length >= 2) {
-            score += 1.5;
+            subToolScore += 1.5;
             subMatch = true;
           }
           if (subDesc.includes(token) && token.length >= 3) {
-            score += 1.0;
+            subToolScore += 1.0;
             subMatch = true;
           }
         }
@@ -156,6 +157,8 @@ export function keywordMatch(tools, query) {
           matchedKeywords.push(`subtool:${subTool.name}`);
         }
       }
+      // 限制子工具的加分上限，避免包含上百個工具的 Monorepo 霸榜
+      score += Math.min(subToolScore, 6);
     }
 
     // 場景與優勢匹配 (權重高：每個匹配 +2)
@@ -199,7 +202,7 @@ export function keywordMatch(tools, query) {
       }
       
       // 正規化分數到 0~1 範圍
-      const maxPossible = tool.triggers.length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2;
+      const maxPossible = tool.triggers.length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0);
       // 如果命中負樣本，強制給予極低分數 (0.01)
       const normalizedScore = isNegativeMatch ? 0.01 : Math.min(score / maxPossible, 0.99);
       results.push({
