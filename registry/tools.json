@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-19T10:52:42.314Z",
+  "lastUpdated": "2026-07-19T11:16:11.142Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -9074,6 +9074,241 @@
         "business-knowledge"
       ],
       "addedAt": "2026-07-19T10:52:42.313Z",
+      "status": "experimental"
+    },
+    {
+      "id": "andrej-karpathy-skills",
+      "name": "Andrej Karpathy Skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls. - multica-ai/andrej-karpathy-skills",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "andrej-karpathy-skills",
+        "andrej",
+        "karpathy",
+        "skills"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/multica-ai/andrej-karpathy-skills.git",
+        "repoUrl": "https://github.com/multica-ai/andrej-karpathy-skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:16:05.644Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Karpathy Guidelines",
+          "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+          "subpath": "skills/karpathy-guidelines"
+        }
+      ]
+    },
+    {
+      "id": "eigenflux-arena",
+      "name": "Eigenflux Arena",
+      "url": "https://github.com/thunguo/eigenflux-arena",
+      "description": "EigenFlux is an open-source framework that enables AI agents to communicate and broadcast within a shared network. - thunguo/eigenflux-arena",
+      "category": "AI 框架",
+      "language": "go",
+      "triggers": [
+        "eigenflux-arena",
+        "eigenflux",
+        "arena"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/thunguo/eigenflux-arena.git",
+        "repoUrl": "https://github.com/thunguo/eigenflux-arena"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:16:06.743Z",
+      "status": "experimental"
+    },
+    {
+      "id": "council-of-high-intelligence",
+      "name": "Council Of High Intelligence",
+      "url": "https://github.com/0xnyk/council-of-high-intelligence",
+      "description": "Structured multi-perspective deliberation for hard decisions. Run full councils, focused triads, or duo debates across Claude Code, Codex, Gemini CLI, and OpenCode. - 0xNyk/council-of-high-intelligence",
+      "category": "AI 框架",
+      "language": "shell",
+      "triggers": [
+        "council-of-high-intelligence",
+        "council",
+        "high",
+        "intelligence",
+        "open-source",
+        "opencode",
+        "decision-making",
+        "codex"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/0xnyk/council-of-high-intelligence.git",
+        "repoUrl": "https://github.com/0xnyk/council-of-high-intelligence"
+      },
+      "capabilities": [
+        "open-source",
+        "opencode",
+        "decision-making",
+        "codex",
+        "multi-agent-systems"
+      ],
+      "addedAt": "2026-07-19T11:16:07.451Z",
+      "status": "experimental"
+    },
+    {
+      "id": "grok-build",
+      "name": "Grok Build",
+      "url": "https://github.com/xai-org/grok-build",
+      "description": "SpaceXAI's coding agent harness and TUI. Fullscreen, mouse interactive, extensible. - xai-org/grok-build",
+      "category": "AI 框架",
+      "language": "rust",
+      "triggers": [
+        "grok-build",
+        "grok",
+        "build"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/xai-org/grok-build",
+        "repoUrl": "https://github.com/xai-org/grok-build"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:16:08.161Z",
+      "status": "experimental"
+    },
+    {
+      "id": "codex-dream-skin",
+      "name": "Codex Dream Skin",
+      "url": "https://github.com/Fei-Away/Codex-Dream-Skin",
+      "description": "Codex Dream Skin.",
+      "category": "其他",
+      "language": "javascript",
+      "triggers": [
+        "codex-dream-skin",
+        "codex",
+        "dream",
+        "skin"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/Fei-Away/Codex-Dream-Skin",
+        "repoUrl": "https://github.com/Fei-Away/Codex-Dream-Skin"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:16:08.706Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lingbot-map",
+      "name": "Lingbot Map",
+      "url": "https://github.com/robbyant/lingbot-map",
+      "description": "A feed-forward 3D foundation model for reconstructing scenes from streaming data - Robbyant/lingbot-map",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "lingbot-map",
+        "lingbot",
+        "map"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/robbyant/lingbot-map.git",
+        "repoUrl": "https://github.com/robbyant/lingbot-map"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T11:16:09.457Z",
+      "status": "experimental"
+    },
+    {
+      "id": "opencut",
+      "name": "Opencut",
+      "url": "https://github.com/opencut-app/opencut",
+      "description": "The open-source CapCut alternative.",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "opencut",
+        "editor",
+        "oss",
+        "videoeditor"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/opencut-app/opencut",
+        "repoUrl": "https://github.com/opencut-app/opencut"
+      },
+      "capabilities": [
+        "editor",
+        "oss",
+        "videoeditor"
+      ],
+      "addedAt": "2026-07-19T11:16:09.991Z",
+      "status": "experimental"
+    },
+    {
+      "id": "voicebox",
+      "name": "Voicebox",
+      "url": "https://github.com/jamiepine/voicebox",
+      "description": "The open-source AI voice studio. Clone, dictate, create. - jamiepine/voicebox",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "voicebox",
+        "ai",
+        "cuda",
+        "whisper",
+        "mlx",
+        "voice-ai",
+        "voice-clone",
+        "qwen3-tts"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/jamiepine/voicebox",
+        "repoUrl": "https://github.com/jamiepine/voicebox"
+      },
+      "capabilities": [
+        "ai",
+        "cuda",
+        "whisper",
+        "mlx",
+        "voice-ai"
+      ],
+      "addedAt": "2026-07-19T11:16:10.553Z",
+      "status": "experimental"
+    },
+    {
+      "id": "wand-enhancer",
+      "name": "Wand Enhancer",
+      "url": "https://github.com/k1tbyte/Wand-Enhancer",
+      "description": "Advanced UX and interoperability extension for Wand (WeMod) app - k1tbyte/Wand-Enhancer",
+      "category": "其他",
+      "language": "c#",
+      "triggers": [
+        "wand-enhancer",
+        "wand",
+        "enhancer",
+        "csharp",
+        "wpf",
+        "wemod",
+        "wand-pro"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/k1tbyte/Wand-Enhancer.git",
+        "repoUrl": "https://github.com/k1tbyte/Wand-Enhancer"
+      },
+      "capabilities": [
+        "csharp",
+        "wpf",
+        "wand",
+        "wemod",
+        "wand-pro"
+      ],
+      "addedAt": "2026-07-19T11:16:11.142Z",
       "status": "experimental"
     }
   ]
