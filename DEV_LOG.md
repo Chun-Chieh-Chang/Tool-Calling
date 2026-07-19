@@ -103,3 +103,21 @@
 #### RCA / CAPA
 - **問題**：`search-engine.js` 處理負樣本時，因 `queryTokens` 的 `includes` 邏輯無法正確捕捉未切分開的中文字串 (如 "撰寫後端代碼ppt")，導致負樣本扣分失效。
 - **矯正措施**：改用 `normalize(query).includes(negNorm)`，直接判斷原始查詢字串是否包含負樣本詞彙，修復並驗證成功。
+
+### 2026-07-19 — GitHub Pages 靜態網站建置與 CI/CD 部署 (Phase 10)
+
+#### 需求
+將現有的檢索系統擴展至瀏覽器端，建立 Premium UI 靜態網站，並透過 GitHub Actions 達成推播自動確效與部署。
+
+#### 完成項目
+- [x] **核心代碼解耦 (Isomorphic Code)**：拔除 `core/search-engine.js` 中的 `node:fs` 依賴，使同一套檢索引擎能同時在 Node CLI 與 Browser 中完美運行。
+- [x] **Premium UI 介面實作**：以 Vanilla HTML/CSS/JS 實作「毛玻璃 (Glassmorphism)」與深色系 (Dark Mode) 介面，渲染 140+ 工具卡片。
+- [x] **自動化建置部署**：撰寫 `scripts/build-web.js` 與 `.github/workflows/deploy-pages.yml`，實現 `npm test` 自動確效與靜態網頁打包。
+
+#### RCA / CAPA
+- **問題**：線上部署完成後，畫面變成全白/空白，且 Console 出現 `marked()` 函式庫的廢棄警告。
+- **原因分析 (Root Cause)**：這是我（AI）在此前階段產生的失誤。早前曾建立過一份舊的自動部署腳本 `.github/workflows/validate-and-deploy.yml`。本次建立新版網頁時，**我沒有先檢查 `.github/workflows/` 目錄**，就直接新增了第二份腳本 `deploy-pages.yml`。導致 Push 後兩個腳本同時觸發並產生競爭，舊腳本覆蓋了新網頁的輸出，且舊腳本內含的 `md-block.js` 引發了上述報錯。
+- **矯正措施 (Corrective Action)**：使用 `git rm` 刪除了舊有的衝突檔案 `validate-and-deploy.yml`，確保系統內只有唯一正確的部署流程。
+- **預防措施 (Preventive Action)**：未來開發新專案，新增 CI/CD 或配置檔案前，必須強制執行 **「狀態前置掃描 (Pre-condition Scan)」**：
+  1. 建立任何部署工作流（如 `.github/workflows`）前，必須先執行 `ls` 盤點該目錄下是否已有功能重疊的舊檔案。
+  2. 若有舊檔案，應優先採取「修改/更新」或「明確刪除後再建立」，絕對禁止在未確認環境狀態下「盲目新增」同質檔案。
