@@ -58,20 +58,27 @@ node cli.js validate
 
 ```
 Tool-Calling/
+├── .agents/
+│   └── AGENTS.md              # Agent 觸發指令與全域統一設定 (Single Source of Truth)
 ├── cli.js                     # CLI 入口
 ├── core/
-│   ├── search-engine.js       # TF-IDF 三層檢索引擎
+│   ├── search-engine.js       # TF-IDF 三層檢索引擎 (Pure JS，支援瀏覽器與 Node)
 │   ├── installer.js           # 動態安裝 (支援 Sparse Checkout)
 │   └── cleanup.js             # 清理機制
+├── docs/
+│   └── architecture/          # 技能路由優化白皮書與架構圖
 ├── registry/
 │   ├── tools.json             # 工具註冊庫 (包含子工具紀錄)
 │   └── schemas/
-│       └── tool.schema.json   # 支援 useCase, advantages 的 JSON Schema
+│       └── tool.schema.json   # JSON Schema
 ├── scripts/
+│   ├── build-web.js           # 靜態網頁打包腳本
 │   ├── scan-tool.js           # GitHub URL 解析器
 │   └── scan-monorepo.js       # 深層索引掃描器
-└── skill/
-    └── SKILL.md               # Agent Skill 入口
+└── web/
+    ├── index.html             # Premium UI 檢索介面 (暗色系、毛玻璃)
+    ├── style.css              # 介面樣式
+    └── app.js                 # 網頁端搜尋邏輯
 ```
 
 ## 檢索引擎

@@ -121,3 +121,15 @@
 - **預防措施 (Preventive Action)**：未來開發新專案，新增 CI/CD 或配置檔案前，必須強制執行 **「狀態前置掃描 (Pre-condition Scan)」**：
   1. 建立任何部署工作流（如 `.github/workflows`）前，必須先執行 `ls` 盤點該目錄下是否已有功能重疊的舊檔案。
   2. 若有舊檔案，應優先採取「修改/更新」或「明確刪除後再建立」，絕對禁止在未確認環境狀態下「盲目新增」同質檔案。
+
+### 2026-07-19 — 專案 MECE 結構整併與優化 (Phase 11)
+
+#### 需求
+執行專案的全局盤點與清理，移除冗餘檔案，整合分散設定檔，更新核心文件以符合最新狀態，並建立乾淨的版本基準點。
+
+#### 完成項目
+- [x] **移除冗餘檔案**：刪除了無效的 `skill/adapters/agnes-integration.js`、`skill/core-instructions.md` 與 `skill/SKILL.md`。
+- [x] **Agent 規則 MECE 整合**：建立單一真理來源 `.agents/AGENTS.md`，將散落於 `.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.trae`, `.kiro` 等平台的指令精簡為單一指標，消弭維護負擔與版本分歧。
+- [x] **文件目錄重構**：將過長的白皮書目錄 `docs/references/agent-skill-routing/...` 重新命名並整併至 `docs/architecture/`，提昇目錄結構的可讀性。
+- [x] **文件同步更新**：更新了 `README.md` 的專案架構樹與 GitHub Pages 網頁連結，確保文件與當前代碼結構一致。
+- [x] **建立版本基準點**：清理完畢後，透過 `git add .` 與 `git commit` 將專案推進至全新的高潔淨狀態，並推送至 GitHub 遠端倉庫。
