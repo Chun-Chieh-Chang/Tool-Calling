@@ -22,6 +22,11 @@ export function exportDataset(tools, outputPath) {
       const trace = JSON.parse(line);
       // 只萃取成功的執行紀錄
       if (trace.success) {
+        // 因隱私因素被遮蔽的參數，無法作為有效的 SFT 訓練資料
+        if (trace.args === '[REDACTED]') {
+          continue;
+        }
+
         const tool = tools.find(t => t.id === trace.toolId);
         if (!tool) continue;
 

@@ -7,6 +7,10 @@ import { join } from 'node:path';
  * @param {string} [toolId] - 指定要清理的工具 ID (選填)
  */
 export function cleanup(tempDir, toolId) {
+  if (toolId && (toolId.includes('..') || toolId.includes('/') || toolId.includes('\\'))) {
+    throw new Error('Invalid tool ID: Path traversal detected.');
+  }
+  
   const targetDir = toolId ? join(tempDir, toolId) : tempDir;
 
   if (existsSync(targetDir)) {

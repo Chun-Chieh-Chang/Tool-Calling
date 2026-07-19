@@ -92,6 +92,8 @@ export function invokeInSandbox(tool, targetDir, args) {
     'run', '--rm',
     '-v', `${mountPath}:/workspace`,
     '-w', '/workspace',
+    '--network', 'none',
+    '--read-only',
     '--cap-drop', 'ALL',
     '--user', '1000:1000',
     '--memory=512m',
