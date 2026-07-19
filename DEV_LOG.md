@@ -57,3 +57,31 @@
 #### RCA / CAPA
 - **問題**：若擷取的為 `SKILL.md` 往往含有 YAML frontmatter (`---`)，單純抓取第一段會將 frontmatter 的字串也擷取下來。
 - **矯正措施**：增加解析 `---` 區塊的邏輯，自動提取 `description: ...` 的內容，若無則剔除 frontmatter 再抓取第一段。
+
+### 2026-07-19 — 擴展與優化：深層索引、大補帖與差異化 (Phase 6 - 8)
+
+#### 需求
+隨著工具庫快速膨脹（超過 140 個工具），需要解決三大問題：
+1. **大補帖深層索引**：包含大量子技能的 Monorepo（如 `agent-skills`）無法被檢索引擎識別內部功能。
+2. **同質工具鑑別**：大量功能相似的工具（例如各種 NotebookLM 轉 PPT 工具）在檢索時無法區分優劣與最佳場景。
+3. **批量匯入效率**：一次性導入數十個 GitHub 專案。
+
+#### 完成項目
+- [x] **實作 Deep Indexing (深層索引)**：
+  - 開發 `scripts/scan-monorepo.js`，支援自動 Clone 並遞迴掃描子目錄的 `README.md` / `SKILL.md`。
+  - 在 Schema 增加 `subTools`，儲存掃描結果。
+  - CLI 新增 `index-subtools <id>` 命令。
+- [x] **檢索引擎 L2/L3 升級**：
+  - 將子工具 (`subTools`) 與其敘述動態納入關鍵字比對與 TF-IDF 權重計算，確保外層查詢能命中內層子工具。
+- [x] **批量大補帖匯入**：
+  - CLI 新增 `batch-add` 命令，支援讀取純文字 URL 清單自動排程新增，包含自動錯誤捕捉，防止中斷。
+- [x] **工具差異化對比機制 (Tool Differentiation Framework)**：
+  - Schema 擴充 `useCase` (最佳場景) 與 `advantages` (優勢清單)。
+  - 檢索引擎為這兩個屬性加上高權重匹配。
+  - 終端機 `search` 與 `info` 輸出排版高亮展示 ⭐ 場景，幫助 AI 做出調用決策。
+
+#### RCA / CAPA
+- **問題**：`batch-add` 時遇到 `https://github.com/owner/repo/blob/main/subpath` 格式導致正則驗證失敗並中斷進程。
+- **矯正措施**：修改 `cli.js` 與 `scan-tool.js` 中的 GitHub 正則表達式支援 `(?:tree|blob)`，並在 `batch-add` 迴圈中加入 `try...catch` 防護機制。
+- **問題**：針對具有相同倉庫名稱（如 `openai/skills` 與 `anthropics/skills`）的網址，產生 ID 衝突。
+- **矯正措施**：在 `cmdAdd` 中增加邏輯，當 ID 碰撞但 URL 不同時，動態將 owner 加上 baseName 作為新 ID (`skills-anthropics`)。

@@ -2,13 +2,14 @@
 
 /**
  * Tool-Calling CLI
- * 命令列介面：add / list / search / remove / validate / health-check
+ * 命令列介面：add / list / search / remove / validate / health-check / index-subtools
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { search, listAll, listByCategory, getById } from './core/search-engine.js';
+import { scanMonorepo } from './scripts/scan-monorepo.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -118,6 +119,9 @@ function cmdSearch(query, options = {}) {
     console.log(`${c.bold}#${i + 1}${c.reset} ${c.cyan}${tool.name}${c.reset} ${c.dim}(${tool.id})${c.reset}`);
     console.log(`   信心度: ${c.green}${bar}${c.reset} ${(score * 100).toFixed(0)}%  [${matchLevel}]`);
     console.log(`   ${c.dim}${tool.description.slice(0, 80)}${c.reset}`);
+    if (tool.useCase) {
+      console.log(`   ${c.yellow}⭐ 場景:${c.reset} ${tool.useCase}`);
+    }
     if (matchedKeywords && matchedKeywords.length > 0) {
       console.log(`   ${c.magenta}匹配:${c.reset} ${matchedKeywords.slice(0, 5).join(', ')}`);
     }
@@ -128,16 +132,18 @@ function cmdSearch(query, options = {}) {
 
 // ─── 命令：add ──────────────────────────────────────────────────────────────
 
-async function cmdAdd(url) {
+async function cmdAdd(url, isBatch = false) {
   if (!url) {
+    if (isBatch) throw new Error('請提供 GitHub URL');
     error('請提供 GitHub URL。用法: node cli.js add https://github.com/owner/repo');
     process.exit(1);
   }
 
-  // 基本 URL 格式驗證 (支援 Monorepo 子目錄)
-  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/tree\/([^/]+)\/(.+))?\/?$/;
+  // 基本 URL 格式驗證 (支援 Monorepo 子目錄與單一檔案)
+  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|blob)\/([^/]+)\/(.+))?\/?$/;
   const match = url.match(githubRegex);
   if (!match) {
+    if (isBatch) throw new Error(`無效的 GitHub URL: ${url}`);
     error(`無效的 GitHub URL: ${url}`);
     console.log(`${c.dim}預期格式: https://github.com/owner/repo 或 https://github.com/owner/repo/tree/main/subpath${c.reset}`);
     process.exit(1);
@@ -150,9 +156,13 @@ async function cmdAdd(url) {
   const registry = loadRegistryRaw();
 
   // 重複檢測
-  if (registry.tools.some(t => t.id === id || t.url === url)) {
+  if (registry.tools.some(t => t.url === url)) {
     warn(`工具已存在: ${id} (${url})`);
     return;
+  }
+  
+  if (registry.tools.some(t => t.id === id)) {
+    id = generateId(`${owner}-${baseName}`);
   }
 
   console.log(`${c.cyan}正在掃描 GitHub 倉庫: ${url}...${c.reset}`);
@@ -319,14 +329,42 @@ function cmdInfo(id) {
   console.log(`  ${c.bold}語言:${c.reset}     ${tool.language}`);
   console.log(`  ${c.bold}狀態:${c.reset}     ${tool.status}`);
   console.log(`  ${c.bold}觸發詞:${c.reset}   ${tool.triggers.join(', ')}`);
+  if (tool.useCase) {
+    console.log(`  ${c.yellow}⭐ 場景:${c.reset}  ${tool.useCase}`);
+  }
+  if (tool.advantages?.length) {
+    console.log(`  ${c.yellow}★ 優勢:${c.reset}   ${tool.advantages.join('、')}`);
+  }
   if (tool.capabilities?.length) {
     console.log(`  ${c.bold}能力:${c.reset}     ${tool.capabilities.join(', ')}`);
   }
   if (tool.install) {
     console.log(`  ${c.bold}安裝:${c.reset}     ${tool.install.command} [${tool.install.method}]`);
   }
+  if (tool.subTools?.length) {
+    console.log(`  ${c.bold}子工具 (${tool.subTools.length}):${c.reset}`);
+    for (const st of tool.subTools) {
+      console.log(`    - ${c.cyan}${st.name}${c.reset}`);
+      console.log(`      ${c.dim}${st.description.slice(0, 80)}${c.reset}`);
+      console.log(`      ${c.dim}路徑: ${st.subpath}${c.reset}`);
+    }
+  }
   console.log(`  ${c.bold}加入時間:${c.reset} ${tool.addedAt}`);
   console.log();
+}
+
+// ─── 命令：index-subtools ──────────────────────────────────────────────────
+
+function cmdIndexSubtools(id) {
+  if (!id) {
+    error('請提供工具 ID。用法: node cli.js index-subtools agent-skills');
+    process.exit(1);
+  }
+  try {
+    scanMonorepo(id);
+  } catch (err) {
+    error(`掃描失敗: ${err.message}`);
+  }
 }
 
 // ─── 命令：batch-add ─────────────────────────────────────────────────────
@@ -347,7 +385,11 @@ async function cmdBatchAdd(filePath) {
 
   header(`批量新增 (${urls.length} 個 URL)`);
   for (const url of urls) {
-    await cmdAdd(url);
+    try {
+      await cmdAdd(url, true);
+    } catch (err) {
+      error(`✗ ${err.message}`);
+    }
   }
 }
 
@@ -408,6 +450,7 @@ ${c.bold}管理命令:${c.reset}
   ${c.cyan}add${c.reset} <github-url>         新增工具（自動解析）
   ${c.cyan}batch-add${c.reset} <file>         從檔案批量新增
   ${c.cyan}remove${c.reset} <id|url>          移除工具
+  ${c.cyan}index-subtools${c.reset} <id>      深層掃描並索引大補帖內部的子工具
   ${c.cyan}validate${c.reset}                 驗證註冊庫格式
   ${c.cyan}health-check${c.reset}             檢查所有工具 URL
 
@@ -444,6 +487,9 @@ switch (command) {
     break;
   case 'remove':
     cmdRemove(args[0]);
+    break;
+  case 'index-subtools':
+    cmdIndexSubtools(args[0]);
     break;
   case 'validate':
     cmdValidate();

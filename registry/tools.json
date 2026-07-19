@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-19T05:07:05.047Z",
+  "lastUpdated": "2026-07-19T09:12:17.784Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -361,6 +361,3996 @@
       },
       "capabilities": [],
       "addedAt": "2026-07-19T05:07:05.045Z",
+      "status": "experimental"
+    },
+    {
+      "id": "postgres-mcp",
+      "name": "Postgres Mcp",
+      "url": "https://github.com/crystaldba/postgres-mcp",
+      "description": "Postgres MCP Pro provides configurable read/write access and performance analysis for you and your AI agents. - crystaldba/postgres-mcp",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "postgres-mcp",
+        "postgres",
+        "mcp"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/crystaldba/postgres-mcp.git",
+        "repoUrl": "https://github.com/crystaldba/postgres-mcp"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:02.971Z",
+      "status": "experimental"
+    },
+    {
+      "id": "github-mcp-server",
+      "name": "Github Mcp Server",
+      "url": "https://github.com/github/github-mcp-server",
+      "description": "GitHub's official MCP Server.",
+      "category": "其他",
+      "language": "go",
+      "triggers": [
+        "github-mcp-server",
+        "github",
+        "mcp",
+        "server",
+        "mcp-server"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/github/github-mcp-server.git",
+        "repoUrl": "https://github.com/github/github-mcp-server"
+      },
+      "capabilities": [
+        "github",
+        "mcp",
+        "mcp-server"
+      ],
+      "addedAt": "2026-07-19T05:17:03.831Z",
+      "status": "experimental"
+    },
+    {
+      "id": "context7",
+      "name": "Context7",
+      "url": "https://github.com/upstash/context7",
+      "description": "Context7 Platform -- Up-to-date code documentation for LLMs and AI code editors - upstash/context7",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "context7",
+        "mcp",
+        "llm",
+        "mcp-server",
+        "vibe-coding"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/upstash/context7",
+        "repoUrl": "https://github.com/upstash/context7"
+      },
+      "capabilities": [
+        "mcp",
+        "llm",
+        "mcp-server",
+        "vibe-coding"
+      ],
+      "addedAt": "2026-07-19T05:17:04.440Z",
+      "status": "experimental"
+    },
+    {
+      "id": "sequentialthinking",
+      "name": "Sequentialthinking",
+      "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+      "description": "An MCP server implementation that provides a tool for dynamic and reflective problem-solving through a structured thinking process.",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "sequentialthinking"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npm install https://github.com/modelcontextprotocol/servers",
+        "repoUrl": "https://github.com/modelcontextprotocol/servers",
+        "branch": "main",
+        "subpath": "src/sequentialthinking"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:06.102Z",
+      "status": "experimental"
+    },
+    {
+      "id": "mcp-sequential-thinking",
+      "name": "Mcp Sequential Thinking",
+      "url": "https://github.com/arben-adm/mcp-sequential-thinking",
+      "description": "arben-adm/mcp-sequential-thinking - 待補充描述",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "mcp-sequential-thinking",
+        "mcp",
+        "sequential",
+        "thinking"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/arben-adm/mcp-sequential-thinking.git",
+        "repoUrl": "https://github.com/arben-adm/mcp-sequential-thinking"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:06.906Z",
+      "status": "experimental"
+    },
+    {
+      "id": "memmy-agent",
+      "name": "Memmy Agent",
+      "url": "https://github.com/MemTensor/memmy-agent",
+      "description": "One Agent. One memory. Shared by every AI. 🍙.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "memmy-agent",
+        "memmy",
+        "agent",
+        "ai",
+        "memory",
+        "ai-assistants",
+        "ai-agents",
+        "long-term-memory"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/MemTensor/memmy-agent",
+        "repoUrl": "https://github.com/MemTensor/memmy-agent"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "memory",
+        "ai-assistants",
+        "ai-agents"
+      ],
+      "addedAt": "2026-07-19T05:17:07.528Z",
+      "status": "experimental"
+    },
+    {
+      "id": "build-your-own-x",
+      "name": "Build Your Own X",
+      "url": "https://github.com/codecrafters-io/build-your-own-x",
+      "description": "Master programming by recreating your favorite technologies from scratch. - codecrafters-io/build-your-own-x",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "build-your-own-x",
+        "build",
+        "your",
+        "own",
+        "programming",
+        "tutorials",
+        "free",
+        "awesome-list"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/codecrafters-io/build-your-own-x.git",
+        "repoUrl": "https://github.com/codecrafters-io/build-your-own-x"
+      },
+      "capabilities": [
+        "programming",
+        "tutorials",
+        "free",
+        "awesome-list",
+        "tutorial-code"
+      ],
+      "addedAt": "2026-07-19T05:17:08.271Z",
+      "status": "experimental"
+    },
+    {
+      "id": "posthog",
+      "name": "Posthog",
+      "url": "https://github.com/posthog/posthog",
+      "description": ":hedgehog: PostHog is the leading platform for building self-driving products. Our developer tools – AI observability, analytics, session replay, flags, experiments, error tracking, logs, and more – capture all the context agents need to diagnose problems, uncover opportunities, and ship fixes. Steer it all from Slack, web, desktop, or the MCP. - PostHog/posthog",
+      "category": "測試與自動化",
+      "language": "python",
+      "triggers": [
+        "posthog",
+        "react",
+        "javascript",
+        "python",
+        "typescript",
+        "analytics",
+        "web-analytics",
+        "feature-flags"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/posthog/posthog.git",
+        "repoUrl": "https://github.com/posthog/posthog"
+      },
+      "capabilities": [
+        "react",
+        "javascript",
+        "python",
+        "typescript",
+        "analytics"
+      ],
+      "addedAt": "2026-07-19T05:17:08.839Z",
+      "status": "experimental"
+    },
+    {
+      "id": "hallmark",
+      "name": "Hallmark",
+      "url": "https://github.com/nutlope/hallmark",
+      "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex. - Nutlope/hallmark",
+      "category": "AI 框架",
+      "language": "css",
+      "triggers": [
+        "hallmark"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/nutlope/hallmark.git",
+        "repoUrl": "https://github.com/nutlope/hallmark"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:09.451Z",
+      "status": "experimental"
+    },
+    {
+      "id": "code-review-graph",
+      "name": "Code Review Graph",
+      "url": "https://github.com/tirth8205/code-review-graph",
+      "description": "Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding tools read only what matters, with benchmarked context reductions on reviews and large-repo workflows. - tirth8205/code-review-graph",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "code-review-graph",
+        "code",
+        "review",
+        "graph",
+        "python",
+        "tree-sitter",
+        "mcp",
+        "static-analysis"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/tirth8205/code-review-graph.git",
+        "repoUrl": "https://github.com/tirth8205/code-review-graph"
+      },
+      "capabilities": [
+        "python",
+        "tree-sitter",
+        "mcp",
+        "static-analysis",
+        "incremental"
+      ],
+      "addedAt": "2026-07-19T05:17:10.130Z",
+      "status": "experimental"
+    },
+    {
+      "id": "officecli",
+      "name": "OfficeCLI",
+      "url": "https://github.com/iOfficeAI/OfficeCLI",
+      "description": "OfficeCLI is the first and best Office suite  purpose-built for AI agents to read, edit, and automate Word, Excel, and PowerPoint files. Free, open-source, single binary, no Office installation required. - iOfficeAI/OfficeCLI",
+      "category": "學習資源",
+      "language": "c#",
+      "triggers": [
+        "officecli",
+        "agent",
+        "cli",
+        "ai",
+        "skills",
+        "presentation",
+        "excel",
+        "word"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/iOfficeAI/OfficeCLI.git",
+        "repoUrl": "https://github.com/iOfficeAI/OfficeCLI"
+      },
+      "capabilities": [
+        "agent",
+        "cli",
+        "ai",
+        "skills",
+        "presentation"
+      ],
+      "addedAt": "2026-07-19T05:17:10.734Z",
+      "status": "experimental"
+    },
+    {
+      "id": "orca",
+      "name": "Orca",
+      "url": "https://github.com/stablyai/orca",
+      "description": "Orca is the ADE for working with a fleet of parallel agents. Run any coding agent with your own subscription. Available on desktop and mobile. - stablyai/orca",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "orca",
+        "cli",
+        "terminal",
+        "opencode",
+        "ide",
+        "devtools",
+        "mobile-app",
+        "orchestration"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/stablyai/orca",
+        "repoUrl": "https://github.com/stablyai/orca"
+      },
+      "capabilities": [
+        "cli",
+        "terminal",
+        "opencode",
+        "ide",
+        "devtools"
+      ],
+      "addedAt": "2026-07-19T05:17:11.328Z",
+      "status": "experimental"
+    },
+    {
+      "id": "herdr",
+      "name": "Herdr",
+      "url": "https://github.com/ogulcancelik/herdr",
+      "description": "agent multiplexer that lives in your terminal.",
+      "category": "AI 框架",
+      "language": "rust",
+      "triggers": [
+        "herdr",
+        "agent",
+        "rust",
+        "tmux",
+        "cli",
+        "terminal",
+        "ai",
+        "devtools"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/ogulcancelik/herdr",
+        "repoUrl": "https://github.com/ogulcancelik/herdr"
+      },
+      "capabilities": [
+        "agent",
+        "rust",
+        "tmux",
+        "cli",
+        "terminal"
+      ],
+      "addedAt": "2026-07-19T05:17:11.916Z",
+      "status": "experimental"
+    },
+    {
+      "id": "impeccable",
+      "name": "Impeccable",
+      "url": "https://github.com/pbakaus/impeccable",
+      "description": "The design language that makes your AI harness better at design. - pbakaus/impeccable",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "impeccable"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/pbakaus/impeccable",
+        "repoUrl": "https://github.com/pbakaus/impeccable"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:12.641Z",
+      "status": "experimental"
+    },
+    {
+      "id": "slidesmaker",
+      "name": "Slides_maker",
+      "url": "https://github.com/addsumtech/slides_maker",
+      "description": "Turn papers, code, and docs into presentation-ready, natively editable PPTX in Codex / Claude Code. Native charts and equations, speaker notes, click-build animations, and an independent critic review before delivery. - addsumtech/slides_maker",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "slides_maker",
+        "python",
+        "agent",
+        "ai",
+        "skill",
+        "presentation",
+        "slides",
+        "powerpoint"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/addsumtech/slides_maker.git",
+        "repoUrl": "https://github.com/addsumtech/slides_maker"
+      },
+      "capabilities": [
+        "python",
+        "agent",
+        "ai",
+        "skill",
+        "presentation"
+      ],
+      "addedAt": "2026-07-19T05:17:13.356Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lean-ctx",
+      "name": "Lean Ctx",
+      "url": "https://github.com/yvgude/lean-ctx",
+      "description": "Control what your AI can see. LeanCTX (Lean Context) is the context intelligence layer for AI agents — one local Rust binary that decides what they read, remembers what they learn, guards what they touch, and proves what they save. 60–90% fewer tokens as the receipt. 76 MCP tools, 30+ agents, local-first. - yvgude/lean-ctx",
+      "category": "學習資源",
+      "language": "rust",
+      "triggers": [
+        "lean-ctx",
+        "lean",
+        "ctx",
+        "rust",
+        "ai",
+        "mcp",
+        "developer-tools",
+        "cursor"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/yvgude/lean-ctx",
+        "repoUrl": "https://github.com/yvgude/lean-ctx"
+      },
+      "capabilities": [
+        "rust",
+        "ai",
+        "mcp",
+        "developer-tools",
+        "cursor"
+      ],
+      "addedAt": "2026-07-19T05:17:14.069Z",
+      "status": "experimental"
+    },
+    {
+      "id": "loop-engineering",
+      "name": "Loop Engineering",
+      "url": "https://github.com/cobusgreyling/loop-engineering",
+      "description": "Practical patterns, starters &amp; CLI tools for loop engineering with AI coding agents. Design systems that prompt and orchestrate agents (inspired by Addy Osmani and Boris Cherny). Includes loop-audit, loop-init, loop-cost. - cobusgreyling/loop-engineering",
+      "category": "測試與自動化",
+      "language": "javascript",
+      "triggers": [
+        "loop-engineering",
+        "loop",
+        "engineering",
+        "automation",
+        "mcp",
+        "devtools",
+        "grok",
+        "codex"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/cobusgreyling/loop-engineering",
+        "repoUrl": "https://github.com/cobusgreyling/loop-engineering"
+      },
+      "capabilities": [
+        "automation",
+        "mcp",
+        "devtools",
+        "grok",
+        "codex"
+      ],
+      "addedAt": "2026-07-19T05:17:14.745Z",
+      "status": "experimental"
+    },
+    {
+      "id": "loop-engineering-orange-book",
+      "name": "Loop Engineering Orange Book",
+      "url": "https://github.com/alchaincyf/loop-engineering-orange-book",
+      "description": "别再问我什么是 Loop Engineering — 橙皮书系列。A plain-language guide to loop engineering (中文 + English PDF). Free. - alchaincyf/loop-engineering-orange-book",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "loop-engineering-orange-book",
+        "loop",
+        "engineering",
+        "orange",
+        "book"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/alchaincyf/loop-engineering-orange-book.git",
+        "repoUrl": "https://github.com/alchaincyf/loop-engineering-orange-book"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:15.326Z",
+      "status": "experimental"
+    },
+    {
+      "id": "guizang-ppt-skill",
+      "name": "Guizang Ppt Skill",
+      "url": "https://github.com/op7418/guizang-ppt-skill",
+      "description": "AI-agent Skill for generating polished HTML slide decks: editorial magazine and Swiss layouts, image prompts, social covers, and a WebGL/low-power presentation runtime. - op7418/guizang-ppt-skill",
+      "category": "多媒體生成",
+      "language": "html",
+      "triggers": [
+        "guizang-ppt-skill",
+        "guizang",
+        "ppt",
+        "skill",
+        "skills",
+        "presentation",
+        "image-generation",
+        "codex"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/op7418/guizang-ppt-skill.git",
+        "repoUrl": "https://github.com/op7418/guizang-ppt-skill"
+      },
+      "capabilities": [
+        "skills",
+        "skill",
+        "presentation",
+        "image-generation",
+        "codex"
+      ],
+      "addedAt": "2026-07-19T05:17:15.937Z",
+      "status": "experimental"
+    },
+    {
+      "id": "open-slide",
+      "name": "Open Slide",
+      "url": "https://github.com/1weiho/open-slide",
+      "description": "A slide framework built for agents.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "open-slide",
+        "open",
+        "slide",
+        "react",
+        "agent",
+        "slides"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/1weiho/open-slide",
+        "repoUrl": "https://github.com/1weiho/open-slide"
+      },
+      "capabilities": [
+        "react",
+        "agent",
+        "slides"
+      ],
+      "addedAt": "2026-07-19T05:17:16.543Z",
+      "status": "experimental"
+    },
+    {
+      "id": "html-ppt-skill",
+      "name": "Html Ppt Skill",
+      "url": "https://github.com/lewislulu/html-ppt-skill",
+      "description": "HTML PPT Studio — AgentSkill with 24 themes, 31 layouts, 20+ animations for building professional HTML presentations - lewislulu/html-ppt-skill",
+      "category": "多媒體生成",
+      "language": "html",
+      "triggers": [
+        "html-ppt-skill",
+        "html",
+        "ppt",
+        "skill"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/lewislulu/html-ppt-skill.git",
+        "repoUrl": "https://github.com/lewislulu/html-ppt-skill"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:17:17.067Z",
+      "status": "experimental"
+    },
+    {
+      "id": "awesome-llm-apps",
+      "name": "Awesome Llm Apps",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "description": "100+ AI Agent &amp; RAG apps you can actually run — clone, customize, ship. - Shubhamsaboo/awesome-llm-apps",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "awesome-llm-apps",
+        "awesome",
+        "llm",
+        "apps",
+        "python",
+        "agents",
+        "rag",
+        "llms"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Shubhamsaboo/awesome-llm-apps.git",
+        "repoUrl": "https://github.com/Shubhamsaboo/awesome-llm-apps"
+      },
+      "capabilities": [
+        "python",
+        "agents",
+        "rag",
+        "llms"
+      ],
+      "addedAt": "2026-07-19T05:20:38.814Z",
+      "status": "experimental"
+    },
+    {
+      "id": "desktopcommandermcp",
+      "name": "DesktopCommanderMCP",
+      "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
+      "description": "This is MCP server for Claude that gives it terminal control, file system search and diff file editing capabilities - wonderwhy-er/DesktopCommanderMCP",
+      "category": "測試與自動化",
+      "language": "typescript",
+      "triggers": [
+        "desktopcommandermcp",
+        "agent",
+        "ai",
+        "mcp",
+        "code-analysis",
+        "code-generation",
+        "terminal-ai",
+        "terminal-automation"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/wonderwhy-er/DesktopCommanderMCP",
+        "repoUrl": "https://github.com/wonderwhy-er/DesktopCommanderMCP"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "mcp",
+        "code-analysis",
+        "code-generation"
+      ],
+      "addedAt": "2026-07-19T05:20:41.446Z",
+      "status": "experimental"
+    },
+    {
+      "id": "stitch-skills",
+      "name": "Stitch Skills",
+      "url": "https://github.com/google-labs-code/stitch-skills",
+      "description": "A library of Agent Skills designed to work with the Stitch MCP server. Each skill follows the Agent Skills open standard, for compatibility with coding agents such as Antigravity, Gemini CLI, Claude Code, Cursor. - google-labs-code/stitch-skills",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "stitch-skills",
+        "stitch",
+        "skills"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/google-labs-code/stitch-skills",
+        "repoUrl": "https://github.com/google-labs-code/stitch-skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:26:14.339Z",
+      "status": "experimental"
+    },
+    {
+      "id": "designmd",
+      "name": "Design.Md",
+      "url": "https://github.com/google-labs-code/design.md",
+      "description": "A format specification for describing a visual identity to coding agents. DESIGN.md gives agents a persistent, structured understanding of a design system. - google-labs-code/design.md",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "design.md"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/google-labs-code/design.md",
+        "repoUrl": "https://github.com/google-labs-code/design.md"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T05:26:15.280Z",
+      "status": "experimental"
+    },
+    {
+      "id": "rag-anything",
+      "name": "Rag Anything",
+      "url": "https://github.com/hkuds/rag-anything",
+      "description": "\"RAG-Anything: All-in-One RAG Framework\".",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "rag-anything",
+        "rag",
+        "anything",
+        "retrieval-augmented-generation",
+        "multi-modal-rag"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/hkuds/rag-anything.git",
+        "repoUrl": "https://github.com/hkuds/rag-anything"
+      },
+      "capabilities": [
+        "retrieval-augmented-generation",
+        "multi-modal-rag"
+      ],
+      "addedAt": "2026-07-19T07:09:54.674Z",
+      "status": "experimental"
+    },
+    {
+      "id": "cli-anything",
+      "name": "CLI Anything",
+      "url": "https://github.com/HKUDS/CLI-Anything",
+      "description": "\"CLI-Anything: Making ALL Software Agent-Native\" -- CLI-Hub: https://clianything.cc/ - HKUDS/CLI-Anything",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "cli-anything",
+        "cli",
+        "anything"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/HKUDS/CLI-Anything.git",
+        "repoUrl": "https://github.com/HKUDS/CLI-Anything"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:09:55.697Z",
+      "status": "experimental"
+    },
+    {
+      "id": "agent-skills",
+      "name": "Agent Skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "description": "Production-grade engineering skills for AI coding agents. - addyosmani/agent-skills",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "agent-skills",
+        "agent",
+        "skills",
+        "cursor",
+        "codex",
+        "antigravity",
+        "claude-code"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/addyosmani/agent-skills",
+        "repoUrl": "https://github.com/addyosmani/agent-skills"
+      },
+      "capabilities": [
+        "skills",
+        "cursor",
+        "codex",
+        "antigravity",
+        "agent-skills"
+      ],
+      "addedAt": "2026-07-19T07:09:56.409Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Evals",
+          "description": "How this repo measures whether its skills actually work: that they **trigger** when they should, **stay distinct** from each other, and **change agent behavior** the way each skill promises.",
+          "subpath": "evals"
+        },
+        {
+          "name": "Browser Testing With Devtools",
+          "description": "Run `node server.js`, open `http://127.0.0.1:4173`, enter an email, and submit the form. The report should be based on runtime console, network, and DOM evidence.",
+          "subpath": "evals/fixtures/browser-testing-with-devtools"
+        },
+        {
+          "name": "Api And Interface Design",
+          "description": "Guides stable API and interface design. Use when designing APIs, module boundaries, or any public interface. Use when creating REST or GraphQL endpoints, defining type contracts between modules, or establishing boundaries between frontend and backend.",
+          "subpath": "skills/api-and-interface-design"
+        },
+        {
+          "name": "Browser Testing With Devtools",
+          "description": "Tests in real browsers via Chrome DevTools MCP. Use when building or debugging anything that runs in a browser. Use when you need to inspect the DOM, capture console errors, analyze network requests, profile performance, or verify visual output with real runtime data. Requires the chrome-devtools MCP server to be configured.",
+          "subpath": "skills/browser-testing-with-devtools"
+        },
+        {
+          "name": "Ci Cd And Automation",
+          "description": "Automates CI/CD pipeline setup. Use when setting up or modifying build and deployment pipelines. Use when you need to automate quality gates, configure test runners in CI, or establish deployment strategies.",
+          "subpath": "skills/ci-cd-and-automation"
+        },
+        {
+          "name": "Code Review And Quality",
+          "description": "Conducts multi-axis code review. Use before merging any change. Use when reviewing code written by yourself, another agent, or a human. Use when you need to assess code quality across multiple dimensions before it enters the main branch.",
+          "subpath": "skills/code-review-and-quality"
+        },
+        {
+          "name": "Code Simplification",
+          "description": "Simplifies code for clarity. Use when refactoring code for clarity without changing behavior. Use when code works but is harder to read, maintain, or extend than it should be. Use when reviewing code that has accumulated unnecessary complexity.",
+          "subpath": "skills/code-simplification"
+        },
+        {
+          "name": "Context Engineering",
+          "description": "Optimizes agent context setup. Use when starting a new session, when agent output quality degrades, when switching between tasks, or when you need to configure rules files and context for a project.",
+          "subpath": "skills/context-engineering"
+        },
+        {
+          "name": "Debugging And Error Recovery",
+          "description": "Guides systematic root-cause debugging. Use when tests fail, builds break, behavior doesn't match expectations, or you encounter any unexpected error. Use when you need a systematic approach to finding and fixing the root cause rather than guessing.",
+          "subpath": "skills/debugging-and-error-recovery"
+        },
+        {
+          "name": "Deprecation And Migration",
+          "description": "Manages deprecation and migration. Use when removing old systems, APIs, or features. Use when migrating users from one implementation to another. Use when deciding whether to maintain or sunset existing code.",
+          "subpath": "skills/deprecation-and-migration"
+        },
+        {
+          "name": "Documentation And Adrs",
+          "description": "Records decisions and documentation. Use when making architectural decisions, changing public APIs, shipping features, or when you need to record context that future engineers and agents will need to understand the codebase.",
+          "subpath": "skills/documentation-and-adrs"
+        },
+        {
+          "name": "Doubt Driven Development",
+          "description": "Subjects every non-trivial decision to a fresh-context adversarial review before it stands. Use when correctness matters more than speed, when working in unfamiliar code, when stakes are high (production, security-sensitive logic, irreversible operations), or any time a confident output would be cheaper to verify now than to debug later.",
+          "subpath": "skills/doubt-driven-development"
+        },
+        {
+          "name": "Frontend Ui Engineering",
+          "description": "Builds production-quality, accessible, responsive user-facing UIs. Use when building or modifying interfaces and pages, creating components, implementing layouts, meeting WCAG accessibility requirements, managing state, or when the output needs to look and feel production-quality rather than AI-generated.",
+          "subpath": "skills/frontend-ui-engineering"
+        },
+        {
+          "name": "Git Workflow And Versioning",
+          "description": "Structures git workflow practices. Use when making any code change. Use when committing, branching, resolving conflicts, or when you need to organize work across multiple parallel streams. Use when cutting a release, choosing a semantic version bump, tagging, or writing a changelog.",
+          "subpath": "skills/git-workflow-and-versioning"
+        },
+        {
+          "name": "Idea Refine",
+          "description": "Refines raw ideas into sharp, actionable concepts through structured divergent and convergent thinking. Use when an idea is still vague, when you need to stress-test assumptions before committing to a plan, or when you want to expand options before converging on one. Triggers on \"ideate\", \"refine this idea\", or \"stress-test my plan\".",
+          "subpath": "skills/idea-refine"
+        },
+        {
+          "name": "Incremental Implementation",
+          "description": "Delivers changes incrementally. Use when implementing any feature or change that touches more than one file. Use when you're about to write a large amount of code at once, or when a task feels too big to land in one step.",
+          "subpath": "skills/incremental-implementation"
+        },
+        {
+          "name": "Interview Me",
+          "description": "Extracts what the user actually wants instead of what they think they should want. Achieves this through one-question-at-a-time interview until ~95% confidence about the underlying intent. Use when an ask is underspecified (\"build me X\" without \"for whom\" or \"why now\"), when the user explicitly invokes (\"interview me\", \"grill me\", \"are we sure?\", \"stress-test my thinking\"), or when you catch yourself silently filling in ambiguous requirements before any plan, spec, or code exists.",
+          "subpath": "skills/interview-me"
+        },
+        {
+          "name": "Observability And Instrumentation",
+          "description": "Instruments code so production behavior is visible and diagnosable. Use when adding logging, metrics, tracing, or alerting. Use when shipping any feature that runs in production and you need evidence it works. Use when production issues are reported but you can't tell what happened from the available data.",
+          "subpath": "skills/observability-and-instrumentation"
+        },
+        {
+          "name": "Performance Optimization",
+          "description": "Optimizes application performance across frontend, backend, queries, and databases. Use when performance requirements exist, when you suspect performance regressions, when Core Web Vitals or load times need improvement, when N+1 query patterns need fixing, or when profiling reveals bottlenecks.",
+          "subpath": "skills/performance-optimization"
+        },
+        {
+          "name": "Planning And Task Breakdown",
+          "description": "Breaks work into ordered tasks. Use when you have a spec or clear requirements and need to break work into implementable tasks. Use when a task feels too large to start, when you need to estimate scope, or when parallel work is possible.",
+          "subpath": "skills/planning-and-task-breakdown"
+        },
+        {
+          "name": "Security And Hardening",
+          "description": "Hardens code against vulnerabilities. Use when handling user input, authentication, data storage, or external integrations. Use when building any feature that accepts untrusted data, manages user sessions, or interacts with third-party services.",
+          "subpath": "skills/security-and-hardening"
+        },
+        {
+          "name": "Shipping And Launch",
+          "description": "Prepares production launches. Use when preparing to deploy to production. Use when you need a pre-launch checklist, when setting up monitoring, when planning a staged rollout, or when you need a rollback strategy.",
+          "subpath": "skills/shipping-and-launch"
+        },
+        {
+          "name": "Source Driven Development",
+          "description": "Grounds every implementation decision in official documentation. Use when you want authoritative, source-cited code free from outdated patterns. Use when building with any framework or library where correctness matters.",
+          "subpath": "skills/source-driven-development"
+        },
+        {
+          "name": "Spec Driven Development",
+          "description": "Creates specs before coding. Use when starting a new project, feature, or significant change and no specification exists yet. Use when requirements are unclear, ambiguous, or only exist as a vague idea.",
+          "subpath": "skills/spec-driven-development"
+        },
+        {
+          "name": "Test Driven Development",
+          "description": "Drives development with tests. Use when implementing any logic, fixing any bug, or changing any behavior. Use when you need to prove that code works, when a bug report arrives, or when you're about to modify existing functionality.",
+          "subpath": "skills/test-driven-development"
+        },
+        {
+          "name": "Using Agent Skills",
+          "description": "Discovers and invokes agent skills. Use when starting a session or when you need to discover which skill applies to the current task. This is the meta-skill that governs how all other skills are discovered and invoked.",
+          "subpath": "skills/using-agent-skills"
+        }
+      ]
+    },
+    {
+      "id": "awesome-agent-skills",
+      "name": "Awesome Agent Skills",
+      "url": "https://github.com/heilcheng/awesome-agent-skills",
+      "description": "Tutorials, Guides and Agent Skills Directories.",
+      "category": "測試與自動化",
+      "language": "typescript",
+      "triggers": [
+        "awesome-agent-skills",
+        "awesome",
+        "agent",
+        "skills",
+        "productivity",
+        "automation",
+        "mcp",
+        "vscode"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/heilcheng/awesome-agent-skills",
+        "repoUrl": "https://github.com/heilcheng/awesome-agent-skills"
+      },
+      "capabilities": [
+        "productivity",
+        "automation",
+        "awesome",
+        "mcp",
+        "vscode"
+      ],
+      "addedAt": "2026-07-19T07:09:57.052Z",
+      "status": "experimental"
+    },
+    {
+      "id": "directus",
+      "name": "Directus",
+      "url": "https://github.com/directus/directus",
+      "description": "The flexible backend for all your projects 🐰 Turn your DB into a headless CMS, admin panels, or apps with a custom UI, instant APIs, auth &amp; more. - directus/directus",
+      "category": "知識管理",
+      "language": "typescript",
+      "triggers": [
+        "directus",
+        "javascript",
+        "mysql",
+        "api",
+        "graphql",
+        "cms",
+        "app",
+        "node"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/directus/directus",
+        "repoUrl": "https://github.com/directus/directus"
+      },
+      "capabilities": [
+        "javascript",
+        "mysql",
+        "api",
+        "graphql",
+        "cms"
+      ],
+      "addedAt": "2026-07-19T07:09:57.756Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ui-ux-pro-max-skill",
+      "name": "Ui Ux Pro Max Skill",
+      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "description": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms - nextlevelbuilder/ui-ux-pro-max-skill",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "ui-ux-pro-max-skill",
+        "pro",
+        "max",
+        "skill",
+        "react",
+        "ui-design",
+        "html5",
+        "landing-page"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "repoUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill"
+      },
+      "capabilities": [
+        "react",
+        "ui-design",
+        "html5",
+        "landing-page",
+        "command-line"
+      ],
+      "addedAt": "2026-07-19T07:09:58.321Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lanshu-animated-architecture-diagram",
+      "name": "Lanshu Animated Architecture Diagram",
+      "url": "https://github.com/cclank/lanshu-animated-architecture-diagram",
+      "description": "Premium hand-drawn animated architecture diagram Codex skill - cclank/lanshu-animated-architecture-diagram",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "lanshu-animated-architecture-diagram",
+        "lanshu",
+        "animated",
+        "architecture",
+        "diagram"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/cclank/lanshu-animated-architecture-diagram.git",
+        "repoUrl": "https://github.com/cclank/lanshu-animated-architecture-diagram"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:09:59.071Z",
+      "status": "experimental"
+    },
+    {
+      "id": "agency-agents",
+      "name": "Agency Agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "description": "A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables. - msitarzewski/agency-agents",
+      "category": "AI 框架",
+      "language": "shell",
+      "triggers": [
+        "agency-agents",
+        "agency",
+        "agents"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/msitarzewski/agency-agents.git",
+        "repoUrl": "https://github.com/msitarzewski/agency-agents"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:00.080Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Examples",
+          "description": "This directory contains example outputs demonstrating how the agency's agents can be orchestrated together to tackle real-world tasks.",
+          "subpath": "examples"
+        },
+        {
+          "name": "Integrations",
+          "description": "This directory contains The Agency integrations and converted formats for supported agentic coding tools.",
+          "subpath": "integrations"
+        },
+        {
+          "name": "Aider",
+          "description": "The full Agency roster is consolidated into a single `CONVENTIONS.md` file. Aider reads this file automatically when it's present in your project root.",
+          "subpath": "integrations/aider"
+        },
+        {
+          "name": "Antigravity",
+          "description": "Installs the full Agency roster as Antigravity skills. Each agent is prefixed with `agency-` to avoid conflicts with existing skills.",
+          "subpath": "integrations/antigravity"
+        },
+        {
+          "name": "Claude Code",
+          "description": "The Agency was built for Claude Code. No conversion needed — agents work natively with the existing `.md` + YAML frontmatter format.",
+          "subpath": "integrations/claude-code"
+        },
+        {
+          "name": "Codex",
+          "description": "Converts all Agency agents into Codex custom agent TOML files. Each source agent becomes one standalone `.toml` file containing the minimal Codex-required fields: `name`, `description`, and `developer",
+          "subpath": "integrations/codex"
+        },
+        {
+          "name": "Cursor",
+          "description": "Converts the full Agency roster into Cursor `.mdc` rule files. Rules are **project-scoped** — install them from your project root.",
+          "subpath": "integrations/cursor"
+        },
+        {
+          "name": "Gemini Cli",
+          "description": "Packages all Agency agents as Gemini CLI subagents. These agents install to `~/.gemini/agents/`.",
+          "subpath": "integrations/gemini-cli"
+        },
+        {
+          "name": "Github Copilot",
+          "description": "The Agency works with GitHub Copilot out of the box. No conversion needed — agents use the existing `.md` + YAML frontmatter format.",
+          "subpath": "integrations/github-copilot"
+        },
+        {
+          "name": "Hermes",
+          "description": "Generated by `scripts/convert.sh --tool hermes`.",
+          "subpath": "integrations/hermes"
+        },
+        {
+          "name": "Kimi",
+          "description": "Converts all Agency agents into Kimi Code CLI agent specifications. Each agent becomes a directory containing `agent.yaml` (agent spec) and `system.md` (system prompt).",
+          "subpath": "integrations/kimi"
+        },
+        {
+          "name": "Mcp Memory",
+          "description": "> Give any agent persistent memory across sessions using the Model Context Protocol (MCP).",
+          "subpath": "integrations/mcp-memory"
+        },
+        {
+          "name": "Openclaw",
+          "description": "OpenClaw agents are installed as workspaces containing `SOUL.md`, `AGENTS.md`, and `IDENTITY.md` files. The installer copies each workspace into `~/.openclaw/agency-agents/` and registers it when the ",
+          "subpath": "integrations/openclaw"
+        },
+        {
+          "name": "Opencode",
+          "description": "OpenCode agents are `.md` files with YAML frontmatter stored in `.opencode/agents/`. The converter maps named colors to hex codes and adds `mode: subagent` so agents are invoked on-demand via `@agent-",
+          "subpath": "integrations/opencode"
+        },
+        {
+          "name": "Qwen",
+          "description": "Qwen Code uses project-scoped `.md` SubAgent files in `.qwen/agents/`.",
+          "subpath": "integrations/qwen"
+        },
+        {
+          "name": "Vibe",
+          "description": "Mistral Vibe uses two files per agent: - A TOML configuration file (`~/.vibe/agents/<slug>.toml`) - A Markdown prompt file (`~/.vibe/prompts/<slug>.md`)",
+          "subpath": "integrations/vibe"
+        },
+        {
+          "name": "Windsurf",
+          "description": "The full Agency roster is consolidated into a single `.windsurfrules` file. Rules are **project-scoped** — install them from your project root.",
+          "subpath": "integrations/windsurf"
+        },
+        {
+          "name": "Zcode",
+          "description": "[ZCode](https://z.ai) is Z.ai's GLM-based coding agent harness. Each agency agent is rendered as a standalone Markdown agent file with `name` and `description` frontmatter, which ZCode discovers from ",
+          "subpath": "integrations/zcode"
+        },
+        {
+          "name": "I18n",
+          "description": "Localize agent `name` and `description` fields in YAML frontmatter to Simplified Chinese. This makes agent names readable in Copilot Chat's agent picker for Chinese-speaking users.",
+          "subpath": "scripts/i18n"
+        }
+      ]
+    },
+    {
+      "id": "codebase-memory-mcp",
+      "name": "Codebase Memory Mcp",
+      "url": "https://github.com/DeusData/codebase-memory-mcp",
+      "description": "High-performance code intelligence MCP server. Indexes codebases into a persistent knowledge graph — average repo in milliseconds. 158 languages, sub-ms queries, 99% fewer tokens. Single static binary, zero dependencies. - DeusData/codebase-memory-mcp",
+      "category": "AI 框架",
+      "language": "c",
+      "triggers": [
+        "codebase-memory-mcp",
+        "codebase",
+        "memory",
+        "mcp",
+        "tree-sitter",
+        "sqlite",
+        "opencode",
+        "code-analysis"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/DeusData/codebase-memory-mcp.git",
+        "repoUrl": "https://github.com/DeusData/codebase-memory-mcp"
+      },
+      "capabilities": [
+        "tree-sitter",
+        "sqlite",
+        "mcp",
+        "opencode",
+        "code-analysis"
+      ],
+      "addedAt": "2026-07-19T07:10:00.827Z",
+      "status": "experimental"
+    },
+    {
+      "id": "codebase-memory-mcp-pro",
+      "name": "Codebase Memory Mcp Pro",
+      "url": "https://github.com/win4r/codebase-memory-mcp-pro",
+      "description": "Community fork of DeusData/codebase-memory-mcp (MIT) — incremental-reindex CALLS-edge fix + 9 integrated upstream PRs. Pure-C code knowledge-graph MCP server. - win4r/codebase-memory-mcp-pro",
+      "category": "知識管理",
+      "language": "c",
+      "triggers": [
+        "codebase-memory-mcp-pro",
+        "codebase",
+        "memory",
+        "mcp",
+        "pro"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/win4r/codebase-memory-mcp-pro.git",
+        "repoUrl": "https://github.com/win4r/codebase-memory-mcp-pro"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:01.858Z",
+      "status": "experimental"
+    },
+    {
+      "id": "openmontage",
+      "name": "OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "description": "World's first open-source, agentic video production system. 12 pipelines, 52 tools, 500+ agent skills. Turn your AI coding assistant into a full video production studio. - calesthio/OpenMontage",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "openmontage",
+        "python",
+        "agent",
+        "flux",
+        "open-source",
+        "text-to-speech",
+        "ai",
+        "ffmpeg"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/calesthio/OpenMontage.git",
+        "repoUrl": "https://github.com/calesthio/OpenMontage"
+      },
+      "capabilities": [
+        "python",
+        "agent",
+        "flux",
+        "open-source",
+        "text-to-speech"
+      ],
+      "addedAt": "2026-07-19T07:10:02.795Z",
+      "status": "experimental"
+    },
+    {
+      "id": "video-use",
+      "name": "Video Use",
+      "url": "https://github.com/browser-use/video-use",
+      "description": "Edit videos with coding agents.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "video-use",
+        "video",
+        "use"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/browser-use/video-use.git",
+        "repoUrl": "https://github.com/browser-use/video-use"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:03.456Z",
+      "status": "experimental"
+    },
+    {
+      "id": "cognee",
+      "name": "Cognee",
+      "url": "https://github.com/topoteretes/cognee",
+      "description": "Cognee is the open-source AI memory platform for agents. Give your AI agents persistent long-term memory across sessions with a self-hosted knowledge graph engine. - topoteretes/cognee",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "cognee",
+        "open-source",
+        "ai",
+        "knowledge",
+        "knowledge-graph",
+        "help-wanted",
+        "graph-database",
+        "memory-management"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/topoteretes/cognee.git",
+        "repoUrl": "https://github.com/topoteretes/cognee"
+      },
+      "capabilities": [
+        "open-source",
+        "ai",
+        "knowledge",
+        "knowledge-graph",
+        "help-wanted"
+      ],
+      "addedAt": "2026-07-19T07:10:04.137Z",
+      "status": "experimental"
+    },
+    {
+      "id": "caveman",
+      "name": "Caveman",
+      "url": "https://github.com/juliusbrussee/caveman",
+      "description": "🪨 why use many token when few token do trick — Claude Code skill that cuts 65% of tokens by talking like caveman - JuliusBrussee/caveman",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "caveman",
+        "ai",
+        "skill",
+        "meme",
+        "tokens",
+        "claude",
+        "llm",
+        "prompt-engineering"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/juliusbrussee/caveman",
+        "repoUrl": "https://github.com/juliusbrussee/caveman"
+      },
+      "capabilities": [
+        "ai",
+        "skill",
+        "meme",
+        "tokens",
+        "caveman"
+      ],
+      "addedAt": "2026-07-19T07:10:04.731Z",
+      "status": "experimental"
+    },
+    {
+      "id": "caveman-code",
+      "name": "Caveman Code",
+      "url": "https://github.com/JuliusBrussee/caveman-code",
+      "description": "JuliusBrussee/caveman-code - 待補充描述",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "caveman-code",
+        "caveman",
+        "code"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/JuliusBrussee/caveman-code",
+        "repoUrl": "https://github.com/JuliusBrussee/caveman-code"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:05.609Z",
+      "status": "experimental"
+    },
+    {
+      "id": "codex-plugin-cc",
+      "name": "Codex Plugin Cc",
+      "url": "https://github.com/openai/codex-plugin-cc",
+      "description": "Use Codex from Claude Code to review code or delegate tasks. - openai/codex-plugin-cc",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "codex-plugin-cc",
+        "codex",
+        "plugin"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/openai/codex-plugin-cc",
+        "repoUrl": "https://github.com/openai/codex-plugin-cc"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:06.118Z",
+      "status": "experimental"
+    },
+    {
+      "id": "whisper",
+      "name": "Whisper",
+      "url": "https://github.com/openai/whisper",
+      "description": "Robust Speech Recognition via Large-Scale Weak Supervision - openai/whisper",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "whisper"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/openai/whisper.git",
+        "repoUrl": "https://github.com/openai/whisper"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:06.644Z",
+      "status": "experimental"
+    },
+    {
+      "id": "openai-agents-js",
+      "name": "Openai Agents Js",
+      "url": "https://github.com/openai/openai-agents-js",
+      "description": "A lightweight, powerful framework for multi-agent workflows and voice agents - openai/openai-agents-js",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "openai-agents-js",
+        "openai",
+        "agents",
+        "typescript",
+        "realtime-api",
+        "openai-api"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/openai/openai-agents-js",
+        "repoUrl": "https://github.com/openai/openai-agents-js"
+      },
+      "capabilities": [
+        "typescript",
+        "openai",
+        "agents",
+        "realtime-api",
+        "openai-api"
+      ],
+      "addedAt": "2026-07-19T07:10:07.314Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skills",
+      "name": "Skills",
+      "url": "https://github.com/openai/skills",
+      "description": "Skills Catalog for Codex.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skills"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:07.912Z",
+      "status": "experimental"
+    },
+    {
+      "id": "openai-mcpkit",
+      "name": "Openai Mcpkit",
+      "url": "https://github.com/openai/openai-mcpkit",
+      "description": "openai/openai-mcpkit - 待補充描述",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "openai-mcpkit",
+        "openai",
+        "mcpkit"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/openai/openai-mcpkit.git",
+        "repoUrl": "https://github.com/openai/openai-mcpkit"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:08.562Z",
+      "status": "experimental"
+    },
+    {
+      "id": "html-deck-editor",
+      "name": "Html Deck Editor",
+      "url": "https://github.com/wengzige/html-deck-editor",
+      "description": "Anchor Deck: local-first HTML presentation editor for converting AI-generated slides into editable HTML decks - wengzige/html-deck-editor",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "html-deck-editor",
+        "html",
+        "deck",
+        "editor",
+        "presentation",
+        "zip",
+        "local-first",
+        "presentation-editor"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/wengzige/html-deck-editor",
+        "repoUrl": "https://github.com/wengzige/html-deck-editor"
+      },
+      "capabilities": [
+        "editor",
+        "html",
+        "presentation",
+        "zip",
+        "local-first"
+      ],
+      "addedAt": "2026-07-19T07:10:09.201Z",
+      "status": "experimental"
+    },
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "description": "An agentic skills framework &amp; software development methodology that works. - obra/superpowers",
+      "category": "學習資源",
+      "language": "shell",
+      "triggers": [
+        "superpowers",
+        "ai",
+        "skills",
+        "coding",
+        "brainstorming",
+        "sdlc",
+        "obra",
+        "subagent-driven-development"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/obra/superpowers.git",
+        "repoUrl": "https://github.com/obra/superpowers"
+      },
+      "capabilities": [
+        "ai",
+        "skills",
+        "coding",
+        "superpowers",
+        "brainstorming"
+      ],
+      "addedAt": "2026-07-19T07:10:09.740Z",
+      "status": "experimental"
+    },
+    {
+      "id": "claude-mem",
+      "name": "Claude Mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "description": "Persistent Context Across Sessions for Every Agent –  Captures everything your agent does during sessions, compresses it with AI, and injects relevant context back into future sessions. Works with Claude Code, OpenClaw, Codex, Gemini, Hermes, Copilot, OpenCode + More - thedotmack/claude-mem",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "claude-mem",
+        "claude",
+        "mem",
+        "ai",
+        "sqlite",
+        "embeddings",
+        "artificial-intelligence",
+        "ai-agents"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/thedotmack/claude-mem",
+        "repoUrl": "https://github.com/thedotmack/claude-mem"
+      },
+      "capabilities": [
+        "ai",
+        "sqlite",
+        "embeddings",
+        "artificial-intelligence",
+        "ai-agents"
+      ],
+      "addedAt": "2026-07-19T07:10:10.414Z",
+      "status": "experimental"
+    },
+    {
+      "id": "agent-reach",
+      "name": "Agent Reach",
+      "url": "https://github.com/Panniantong/agent-reach",
+      "description": "Give your AI agent eyes to see the entire internet. Read &amp; search Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu — one CLI, zero API fees. - Panniantong/Agent-Reach",
+      "category": "測試與自動化",
+      "language": "python",
+      "triggers": [
+        "agent-reach",
+        "agent",
+        "reach",
+        "python",
+        "cli",
+        "automation",
+        "mcp",
+        "web-scraper"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Panniantong/agent-reach.git",
+        "repoUrl": "https://github.com/Panniantong/agent-reach"
+      },
+      "capabilities": [
+        "python",
+        "cli",
+        "automation",
+        "mcp",
+        "web-scraper"
+      ],
+      "addedAt": "2026-07-19T07:10:11.038Z",
+      "status": "experimental"
+    },
+    {
+      "id": "gitnexus",
+      "name": "GitNexus",
+      "url": "https://github.com/abhigyanpatwari/GitNexus",
+      "description": "GitNexus: The Zero-Server Code Intelligence Engine -       GitNexus is a client-side knowledge graph creator that runs entirely in your browser. Drop in a git repository (Github, Gitlab, Azure, Local) or ZIP file, and get an interactive knowledge graph with a built in Graph RAG Agent. Perfect for code exploration - abhigyanpatwari/GitNexus",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "gitnexus"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/abhigyanpatwari/GitNexus",
+        "repoUrl": "https://github.com/abhigyanpatwari/GitNexus"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:11.785Z",
+      "status": "experimental"
+    },
+    {
+      "id": "humanizer-zh",
+      "name": "Humanizer Zh",
+      "url": "https://github.com/op7418/humanizer-zh",
+      "description": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。 - op7418/Humanizer-zh",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "humanizer-zh",
+        "humanizer"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/op7418/humanizer-zh.git",
+        "repoUrl": "https://github.com/op7418/humanizer-zh"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:10:12.455Z",
+      "status": "experimental"
+    },
+    {
+      "id": "mini-agent",
+      "name": "Mini Agent",
+      "url": "https://github.com/MiniMax-AI/Mini-Agent",
+      "description": "A minimal yet professional single agent demo project that showcases the core execution pipeline and production-grade features of agents. - MiniMax-AI/Mini-Agent",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "mini-agent",
+        "mini",
+        "agent",
+        "minimax",
+        "llm"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/MiniMax-AI/Mini-Agent.git",
+        "repoUrl": "https://github.com/MiniMax-AI/Mini-Agent"
+      },
+      "capabilities": [
+        "agent",
+        "minimax",
+        "llm"
+      ],
+      "addedAt": "2026-07-19T07:10:13.191Z",
+      "status": "experimental"
+    },
+    {
+      "id": "terax-ai",
+      "name": "Terax Ai",
+      "url": "https://github.com/crynta/terax-ai",
+      "description": "Lightweight (7MB) Terminal-first AI-native dev workspace - crynta/terax-ai",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "terax-ai",
+        "terax",
+        "windows",
+        "macos",
+        "linux",
+        "rust",
+        "terminal",
+        "ai"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/crynta/terax-ai",
+        "repoUrl": "https://github.com/crynta/terax-ai"
+      },
+      "capabilities": [
+        "windows",
+        "macos",
+        "linux",
+        "rust",
+        "terminal"
+      ],
+      "addedAt": "2026-07-19T07:10:13.833Z",
+      "status": "experimental"
+    },
+    {
+      "id": "cl4r1t4s",
+      "name": "CL4R1T4S",
+      "url": "https://github.com/elder-plinius/CL4R1T4S",
+      "description": "LEAKED SYSTEM PROMPTS FOR CHATGPT, CLAUDE, GEMINI, GROK, PERPLEXITY, CURSOR, LOVABLE, REPLIT, AND MORE! - AI SYSTEMS TRANSPARENCY FOR ALL! 👐 - elder-plinius/CL4R1T4S",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "cl4r1t4s",
+        "google",
+        "tools",
+        "ai",
+        "system",
+        "prompt",
+        "hacking",
+        "gemini"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/elder-plinius/CL4R1T4S.git",
+        "repoUrl": "https://github.com/elder-plinius/CL4R1T4S"
+      },
+      "capabilities": [
+        "google",
+        "tools",
+        "ai",
+        "system",
+        "prompt"
+      ],
+      "addedAt": "2026-07-19T07:54:01.888Z",
+      "status": "experimental"
+    },
+    {
+      "id": "frontend-design",
+      "name": "Frontend Design",
+      "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
+      "description": "Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "frontend-design",
+        "frontend",
+        "design",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/anthropics/skills.git",
+        "repoUrl": "https://github.com/anthropics/skills",
+        "branch": "main",
+        "subpath": "skills/frontend-design"
+      },
+      "capabilities": [
+        "agent-skills"
+      ],
+      "addedAt": "2026-07-19T07:54:02.964Z",
+      "status": "experimental"
+    },
+    {
+      "id": "open-design",
+      "name": "Open Design",
+      "url": "https://github.com/nexu-io/open-design",
+      "description": "🎨 The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images &amp; video — real files, HTML/PDF/PPTX/MP4 export. 🤖 Claude Code / Codex / Cursor / Gemini / OpenCode / Qwen &amp; 20+ CLIs via BYOK. - nexu-io/open-design",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "open-design",
+        "open",
+        "design",
+        "desktop-app",
+        "design-systems",
+        "prototyping",
+        "design-tools",
+        "no-code"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/nexu-io/open-design",
+        "repoUrl": "https://github.com/nexu-io/open-design"
+      },
+      "capabilities": [
+        "desktop-app",
+        "design-systems",
+        "prototyping",
+        "design-tools",
+        "no-code"
+      ],
+      "addedAt": "2026-07-19T07:55:22.101Z",
+      "status": "experimental"
+    },
+    {
+      "id": "react-best-practices",
+      "name": "React Best Practices",
+      "url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
+      "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+      "category": "其他",
+      "language": "javascript",
+      "triggers": [
+        "react-best-practices",
+        "react",
+        "best",
+        "practices"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npm install https://github.com/vercel-labs/agent-skills",
+        "repoUrl": "https://github.com/vercel-labs/agent-skills",
+        "branch": "main",
+        "subpath": "skills/react-best-practices"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:23.210Z",
+      "status": "experimental"
+    },
+    {
+      "id": "playwright-skill",
+      "name": "Playwright Skill",
+      "url": "https://github.com/lackeyjb/playwright-skill",
+      "description": "Claude Code Skill for browser automation with Playwright. Model-invoked - Claude autonomously writes and executes custom automation for testing and validation. - lackeyjb/playwright-skill",
+      "category": "測試與自動化",
+      "language": "javascript",
+      "triggers": [
+        "playwright-skill",
+        "playwright",
+        "skill",
+        "nodejs",
+        "automation",
+        "developer-tools",
+        "browser-automation",
+        "claude"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/lackeyjb/playwright-skill",
+        "repoUrl": "https://github.com/lackeyjb/playwright-skill"
+      },
+      "capabilities": [
+        "nodejs",
+        "automation",
+        "developer-tools",
+        "browser-automation",
+        "claude"
+      ],
+      "addedAt": "2026-07-19T07:55:23.793Z",
+      "status": "experimental"
+    },
+    {
+      "id": "awesome-copilot",
+      "name": "Awesome Copilot",
+      "url": "https://github.com/github/awesome-copilot",
+      "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot. - github/awesome-copilot",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "awesome-copilot",
+        "awesome",
+        "copilot",
+        "ai",
+        "agents",
+        "hacktoberfest",
+        "github-copilot",
+        "prompt-engineering"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/github/awesome-copilot.git",
+        "repoUrl": "https://github.com/github/awesome-copilot"
+      },
+      "capabilities": [
+        "awesome",
+        "ai",
+        "agents",
+        "hacktoberfest",
+        "github-copilot"
+      ],
+      "addedAt": "2026-07-19T07:55:24.619Z",
+      "status": "experimental"
+    },
+    {
+      "id": "kane-cli",
+      "name": "Kane Cli",
+      "url": "https://github.com/LambdaTest/kane-cli",
+      "description": "Kane CLI by TestMu AI (Formerly LambdaTest).",
+      "category": "測試與自動化",
+      "language": "javascript",
+      "triggers": [
+        "kane-cli",
+        "kane",
+        "cli",
+        "qa",
+        "natural-language",
+        "test-automation",
+        "cursor",
+        "copilot"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/LambdaTest/kane-cli",
+        "repoUrl": "https://github.com/LambdaTest/kane-cli"
+      },
+      "capabilities": [
+        "cli",
+        "qa",
+        "natural-language",
+        "test-automation",
+        "cursor"
+      ],
+      "addedAt": "2026-07-19T07:55:25.297Z",
+      "status": "experimental"
+    },
+    {
+      "id": "gh-fix-ci",
+      "name": "Gh Fix Ci",
+      "url": "https://github.com/openai/skills/tree/main/skills/.curated/gh-fix-ci",
+      "description": "Use when a user asks to debug or fix failing GitHub PR checks that run in GitHub Actions; use `gh` to inspect checks and logs, summarize failure context, draft a fix plan, and implement only after explicit approval. Treat external providers (for example Buildkite) as out of scope and report only the details URL.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "gh-fix-ci",
+        "fix"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills",
+        "branch": "main",
+        "subpath": "skills/.curated/gh-fix-ci"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:26.189Z",
+      "status": "experimental"
+    },
+    {
+      "id": "gh-address-comments",
+      "name": "Gh Address Comments",
+      "url": "https://github.com/openai/skills/tree/main/skills/.curated/gh-address-comments",
+      "description": "Help address review/issue comments on the open GitHub PR for the current branch using gh CLI; verify gh auth first and prompt the user to authenticate if not logged in.",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "gh-address-comments",
+        "address",
+        "comments"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills",
+        "branch": "main",
+        "subpath": "skills/.curated/gh-address-comments"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:26.555Z",
+      "status": "experimental"
+    },
+    {
+      "id": "figma-generate-library",
+      "name": "Figma Generate Library",
+      "url": "https://github.com/openai/skills/tree/main/skills/.curated/figma-generate-library",
+      "description": "Build or update a professional-grade design system in Figma from a codebase. Use when the user wants to create variables/tokens, build component libraries, set up theming (light/dark modes), document foundations, or reconcile gaps between code and Figma. This skill teaches WHAT to build and in WHAT ORDER — it complements the `figma-use` skill which teaches HOW to call the Plugin API. Both skills should be loaded together.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "figma-generate-library",
+        "figma",
+        "generate",
+        "library"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills",
+        "branch": "main",
+        "subpath": "skills/.curated/figma-generate-library"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:27.407Z",
+      "status": "experimental"
+    },
+    {
+      "id": "awesome-notebooklm-workflows",
+      "name": "Awesome Notebooklm Workflows",
+      "url": "https://github.com/notebooklmremover/awesome-notebooklm-workflows",
+      "description": "A curated collection of free tools, scripts &amp; resources for   Google NotebookLM — watermark removal, audio processing, prompts &amp; more. - notebooklmremover/awesome-notebooklm-workflows",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "awesome-notebooklm-workflows",
+        "awesome",
+        "notebooklm",
+        "workflows",
+        "awesome-list",
+        "client-side",
+        "video-watermark",
+        "privacy-first"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/notebooklmremover/awesome-notebooklm-workflows.git",
+        "repoUrl": "https://github.com/notebooklmremover/awesome-notebooklm-workflows"
+      },
+      "capabilities": [
+        "awesome-list",
+        "client-side",
+        "video-watermark",
+        "privacy-first",
+        "pdf-watermark"
+      ],
+      "addedAt": "2026-07-19T07:55:28.240Z",
+      "status": "experimental"
+    },
+    {
+      "id": "notebooklm-obsidian-pipeline",
+      "name": "Notebooklm Obsidian Pipeline",
+      "url": "https://github.com/Floucs/notebooklm-obsidian-pipeline",
+      "description": "Floucs/notebooklm-obsidian-pipeline - 待補充描述",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "notebooklm-obsidian-pipeline",
+        "notebooklm",
+        "obsidian",
+        "pipeline"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Floucs/notebooklm-obsidian-pipeline.git",
+        "repoUrl": "https://github.com/Floucs/notebooklm-obsidian-pipeline"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:29.009Z",
+      "status": "experimental"
+    },
+    {
+      "id": "aippt",
+      "name": "AIPPT",
+      "url": "https://github.com/LRriver/AIPPT",
+      "description": "Open-source AI PPT workbench featuring controllable end-to-end generation, per-slide editing, and editable PPTX export. - LRriver/AIPPT",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "aippt",
+        "python",
+        "typescript",
+        "slides",
+        "slide-generator",
+        "ppt-generator",
+        "pdf2ppt",
+        "llm"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/LRriver/AIPPT.git",
+        "repoUrl": "https://github.com/LRriver/AIPPT"
+      },
+      "capabilities": [
+        "python",
+        "typescript",
+        "slides",
+        "slide-generator",
+        "ppt-generator"
+      ],
+      "addedAt": "2026-07-19T07:55:29.727Z",
+      "status": "experimental",
+      "useCase": "專業的高保真 AI PPT 生成與編輯工作站",
+      "advantages": [
+        "支援端到端編輯",
+        "提供多樣化版型",
+        "開源且可控"
+      ]
+    },
+    {
+      "id": "awesome-notebooklm-prompts",
+      "name": "Awesome NotebookLM Prompts",
+      "url": "https://github.com/serenakeyitan/awesome-notebookLM-prompts",
+      "description": "A curated collection of the strongest NotebookLM slide prompts sourced from the real creative underground . Your go-to resource for AI powerpoint :P - serenakeyitan/awesome-notebookLM-prompts",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "awesome-notebooklm-prompts",
+        "awesome",
+        "notebooklm",
+        "prompts",
+        "google",
+        "ai",
+        "prompt",
+        "gemini"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/serenakeyitan/awesome-notebookLM-prompts.git",
+        "repoUrl": "https://github.com/serenakeyitan/awesome-notebookLM-prompts"
+      },
+      "capabilities": [
+        "google",
+        "ai",
+        "prompt",
+        "gemini",
+        "prompts"
+      ],
+      "addedAt": "2026-07-19T07:55:30.346Z",
+      "status": "experimental"
+    },
+    {
+      "id": "notebooklm2ppt",
+      "name": "NotebookLM2PPT",
+      "url": "https://github.com/elliottzheng/NotebookLM2PPT",
+      "description": "🚀从 PDF 到全可编辑 PPT 的智能转换工具，让 NotebookLM 的演示文稿真正为你所用。 - elliottzheng/NotebookLM2PPT",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "notebooklm2ppt",
+        "automation",
+        "image-processing",
+        "pdf-to-ppt",
+        "productivity-tool",
+        "notebooklm"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/elliottzheng/NotebookLM2PPT.git",
+        "repoUrl": "https://github.com/elliottzheng/NotebookLM2PPT"
+      },
+      "capabilities": [
+        "automation",
+        "image-processing",
+        "pdf-to-ppt",
+        "productivity-tool",
+        "notebooklm"
+      ],
+      "addedAt": "2026-07-19T07:55:31.064Z",
+      "status": "experimental",
+      "useCase": "將 NotebookLM PDF 報告快速轉為可編輯的 PPT 投影片",
+      "advantages": [
+        "專為 NotebookLM PDF 格式優化",
+        "生成結果全可編輯"
+      ]
+    },
+    {
+      "id": "notebooklm-skill",
+      "name": "Notebooklm Skill",
+      "url": "https://github.com/claude-world/notebooklm-skill",
+      "description": "NotebookLM does the research, Claude writes the content. Research → Synthesis → Content Creation → Publishing. Claude Code Skill + MCP Server. - claude-world/notebooklm-skill",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "notebooklm-skill",
+        "notebooklm",
+        "skill",
+        "podcast-generator",
+        "ai-research",
+        "content-pipeline",
+        "mcp-server",
+        "claude-code"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/claude-world/notebooklm-skill.git",
+        "repoUrl": "https://github.com/claude-world/notebooklm-skill"
+      },
+      "capabilities": [
+        "podcast-generator",
+        "ai-research",
+        "content-pipeline",
+        "notebooklm",
+        "mcp-server"
+      ],
+      "addedAt": "2026-07-19T07:55:32.030Z",
+      "status": "experimental"
+    },
+    {
+      "id": "nblm2pptx",
+      "name": "NBLM2PPTX",
+      "url": "https://github.com/laihenyi/NBLM2PPTX",
+      "description": "Convert NotebookLM PDFs to PPTX with separated background images and editable text layers using Gemini AI - laihenyi/NBLM2PPTX",
+      "category": "多媒體生成",
+      "language": "html",
+      "triggers": [
+        "nblm2pptx",
+        "ocr",
+        "pdf-converter",
+        "pptx",
+        "ai-tool",
+        "text-removal",
+        "google-gemini",
+        "gemini-ai"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/laihenyi/NBLM2PPTX.git",
+        "repoUrl": "https://github.com/laihenyi/NBLM2PPTX"
+      },
+      "capabilities": [
+        "ocr",
+        "pdf-converter",
+        "pptx",
+        "ai-tool",
+        "text-removal"
+      ],
+      "addedAt": "2026-07-19T07:55:32.685Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ai-short-video-engine",
+      "name": "AI Short Video Engine",
+      "url": "https://github.com/chenwr727/AI-Short-Video-Engine",
+      "description": "AI Short Video Engine: Where AI Meets Video Rendering. Transform Articles into Viral-Ready Video Reels with AI-Powered Precision. AI Short Video Engine: 让AI替你拍短视频。用AI精准打造爆款短视频，文章秒变流量密码 - chenwr727/AI-Short-Video-Engine",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "ai-short-video-engine",
+        "short",
+        "video",
+        "engine",
+        "agent",
+        "video-generator",
+        "douyin",
+        "tiktok"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/chenwr727/AI-Short-Video-Engine.git",
+        "repoUrl": "https://github.com/chenwr727/AI-Short-Video-Engine"
+      },
+      "capabilities": [
+        "agent",
+        "video-generator",
+        "douyin",
+        "tiktok",
+        "reels"
+      ],
+      "addedAt": "2026-07-19T07:55:33.363Z",
+      "status": "experimental"
+    },
+    {
+      "id": "mineru2ppt",
+      "name": "MinerU2PPT",
+      "url": "https://github.com/JuniverseCoder/MinerU2PPT",
+      "description": "High-fidelity tool to convert PDF files and images into fully editable PowerPoint presentations (.pptx). Unlike basic converters, it uses AI-powered structure extraction (MinerU) to accurately reconstruct text, layouts, and images, ensuring the output is not just a screenshot but a professional, modifiable document. - JuniverseCoder/MinerU2PPT",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "mineru2ppt",
+        "ocr",
+        "pdf-to-ppt",
+        "notebooklm",
+        "mineru",
+        "pdf-to-pptx",
+        "document-reconstruction",
+        "image-to-pptx"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/JuniverseCoder/MinerU2PPT.git",
+        "repoUrl": "https://github.com/JuniverseCoder/MinerU2PPT"
+      },
+      "capabilities": [
+        "ocr",
+        "pdf-to-ppt",
+        "notebooklm",
+        "mineru",
+        "pdf-to-pptx"
+      ],
+      "addedAt": "2026-07-19T07:55:34.092Z",
+      "status": "experimental"
+    },
+    {
+      "id": "awesome-notebooklm",
+      "name": "Awesome Notebooklm",
+      "url": "https://github.com/etewiah/awesome-notebooklm",
+      "description": "A curated list of tools related to notebooklm as well as examples of great podcasts generated by notebooklm - etewiah/awesome-notebooklm",
+      "category": "其他",
+      "language": "other",
+      "triggers": [
+        "awesome-notebooklm",
+        "awesome",
+        "notebooklm",
+        "awesome-list"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/etewiah/awesome-notebooklm.git",
+        "repoUrl": "https://github.com/etewiah/awesome-notebooklm"
+      },
+      "capabilities": [
+        "awesome",
+        "awesome-list",
+        "notebooklm"
+      ],
+      "addedAt": "2026-07-19T07:55:34.804Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ontology-playground",
+      "name": "Ontology Playground",
+      "url": "https://github.com/microsoft/Ontology-Playground",
+      "description": "Free, open-source web app for learning about ontologies and Microsoft Fabric IQ. Explore a catalogue of pre-built ontologies, design your own visually, export as RDF/XML, and share interactive diagrams. Zero backend, fully static. - microsoft/Ontology-Playground",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "ontology-playground",
+        "ontology",
+        "playground"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/microsoft/Ontology-Playground",
+        "repoUrl": "https://github.com/microsoft/Ontology-Playground"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:35.347Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ontology",
+      "name": "Ontology",
+      "url": "https://github.com/openenergyplatform/ontology",
+      "description": "Repository for the Open Energy Ontology (OEO).",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "ontology",
+        "energy",
+        "open-energy-family"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/openenergyplatform/ontology.git",
+        "repoUrl": "https://github.com/openenergyplatform/ontology"
+      },
+      "capabilities": [
+        "energy",
+        "ontology",
+        "open-energy-family"
+      ],
+      "addedAt": "2026-07-19T07:55:36.119Z",
+      "status": "experimental"
+    },
+    {
+      "id": "notebooklm-slide-pipeline",
+      "name": "Notebooklm Slide Pipeline",
+      "url": "https://github.com/dittowang/notebooklm-slide-pipeline",
+      "description": "dittowang/notebooklm-slide-pipeline - 待補充描述",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "notebooklm-slide-pipeline",
+        "notebooklm",
+        "slide",
+        "pipeline"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/dittowang/notebooklm-slide-pipeline.git",
+        "repoUrl": "https://github.com/dittowang/notebooklm-slide-pipeline"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:36.803Z",
+      "status": "experimental",
+      "useCase": "建立自動化的 NotebookLM 到簡報的資料流管道",
+      "advantages": [
+        "適合工程化部署",
+        "支援批量 Pipeline 處理"
+      ]
+    },
+    {
+      "id": "animejs-v4-ai-guidelines",
+      "name": "Animejs V4 Ai Guidelines",
+      "url": "https://github.com/Makio64/animejs-v4-ai-guidelines",
+      "description": "Guidelines for Anime.js v4 for AI + GSAP → Anime.js migration guide. - Makio64/animejs-v4-ai-guidelines",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "animejs-v4-ai-guidelines",
+        "animejs",
+        "guidelines"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Makio64/animejs-v4-ai-guidelines.git",
+        "repoUrl": "https://github.com/Makio64/animejs-v4-ai-guidelines"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:37.548Z",
+      "status": "experimental"
+    },
+    {
+      "id": "book-to-skill",
+      "name": "Book To Skill",
+      "url": "https://github.com/virgiliojr94/book-to-skill",
+      "description": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work. - virgiliojr94/book-to-skill",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "book-to-skill",
+        "book",
+        "skill"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/virgiliojr94/book-to-skill.git",
+        "repoUrl": "https://github.com/virgiliojr94/book-to-skill"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:38.182Z",
+      "status": "experimental"
+    },
+    {
+      "id": "book2skills",
+      "name": "Book2skills",
+      "url": "https://github.com/simbajigege/book2skills",
+      "description": "Create best skills based on best books.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "book2skills",
+        "skills",
+        "investing",
+        "stock-analysis",
+        "anthropic",
+        "anthropic-claude",
+        "agent-skills",
+        "agentskills"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/simbajigege/book2skills.git",
+        "repoUrl": "https://github.com/simbajigege/book2skills"
+      },
+      "capabilities": [
+        "skills",
+        "investing",
+        "stock-analysis",
+        "anthropic",
+        "anthropic-claude"
+      ],
+      "addedAt": "2026-07-19T07:55:38.777Z",
+      "status": "experimental"
+    },
+    {
+      "id": "book-skill-generator",
+      "name": "Book Skill Generator",
+      "url": "https://github.com/CymChad/book-skill-generator",
+      "description": "从书籍中提取核心方法论，生成可执行的 Agent Skill.",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "book-skill-generator",
+        "book",
+        "skill",
+        "generator"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/CymChad/book-skill-generator.git",
+        "repoUrl": "https://github.com/CymChad/book-skill-generator"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:39.450Z",
+      "status": "experimental"
+    },
+    {
+      "id": "markitdown",
+      "name": "Markitdown",
+      "url": "https://github.com/microsoft/markitdown",
+      "description": "Python tool for converting files and office documents to Markdown. - microsoft/markitdown",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "markitdown",
+        "markdown",
+        "pdf",
+        "openai",
+        "microsoft-office",
+        "autogen",
+        "langchain",
+        "autogen-extension"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/microsoft/markitdown.git",
+        "repoUrl": "https://github.com/microsoft/markitdown"
+      },
+      "capabilities": [
+        "markdown",
+        "pdf",
+        "openai",
+        "microsoft-office",
+        "autogen"
+      ],
+      "addedAt": "2026-07-19T07:55:40.025Z",
+      "status": "experimental"
+    },
+    {
+      "id": "markitdown-website",
+      "name": "Markitdown Website",
+      "url": "https://github.com/GoneTone/markitdown-website",
+      "description": "免費線上文件轉換工具，將 PDF、DOCX、XLSX、PPTX、HTML、CSV、EPUB 轉換為 Markdown。檔案處理在瀏覽器本機端完成，網址轉換經由伺服器代理，完全保護隱私。 由 Microsoft MarkItDown 提供轉換核心，透過 Pyodide（Python WebAssembly）在瀏覽器中直接執行 Python。網頁首次聯網初始化後，即可離線使用。 - GoneTone/markitdown-website",
+      "category": "文件生產力",
+      "language": "javascript",
+      "triggers": [
+        "markitdown-website",
+        "markitdown",
+        "website"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/GoneTone/markitdown-website",
+        "repoUrl": "https://github.com/GoneTone/markitdown-website"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:55:40.594Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skills-anthropics",
+      "name": "Skills",
+      "url": "https://github.com/anthropics/skills",
+      "description": "Public repository for Agent Skills.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skills",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/anthropics/skills.git",
+        "repoUrl": "https://github.com/anthropics/skills"
+      },
+      "capabilities": [
+        "agent-skills"
+      ],
+      "addedAt": "2026-07-19T07:56:07.002Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd",
+      "name": "SKILL.Md",
+      "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-implement-design/SKILL.md",
+      "description": "Skills Catalog for Codex.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skill.md"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills",
+        "branch": "main",
+        "subpath": "skills/.curated/figma-implement-design/SKILL.md"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:56:08.532Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-vercel-labs",
+      "name": "SKILL.Md",
+      "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
+      "description": "Vercel's official collection of agent skills.",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "skill.md"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npm install https://github.com/vercel-labs/agent-skills",
+        "repoUrl": "https://github.com/vercel-labs/agent-skills",
+        "branch": "main",
+        "subpath": "skills/web-design-guidelines/SKILL.md"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:56:09.949Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-nexu-io",
+      "name": "SKILL.Md",
+      "url": "https://github.com/nexu-io/open-design/blob/main/skills/web-design-guidelines/SKILL.md",
+      "description": "🎨 The open-source Claude Design alternative. 🖥️ Local-first desktop app. 🖼️ Your coding agent becomes the design engine: prototypes, landing pages, dashboards, slides, images &amp; video — real files, HTML/PDF/PPTX/MP4 export. 🤖 Claude Code / Codex / Cursor / Gemini / OpenCode / Qwen &amp; 20+ CLIs via BYOK. - nexu-io/open-design",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "skill.md",
+        "desktop-app",
+        "design-systems",
+        "prototyping",
+        "design-tools",
+        "no-code",
+        "ai-agents",
+        "ui-generator"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npm install https://github.com/nexu-io/open-design",
+        "repoUrl": "https://github.com/nexu-io/open-design",
+        "branch": "main",
+        "subpath": "skills/web-design-guidelines/SKILL.md"
+      },
+      "capabilities": [
+        "desktop-app",
+        "design-systems",
+        "prototyping",
+        "design-tools",
+        "no-code"
+      ],
+      "addedAt": "2026-07-19T07:56:11.286Z",
+      "status": "experimental"
+    },
+    {
+      "id": "agent-skills-vercel-labs",
+      "name": "Agent Skills",
+      "url": "https://github.com/vercel-labs/agent-skills",
+      "description": "Vercel's official collection of agent skills.",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "agent-skills",
+        "agent",
+        "skills"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/vercel-labs/agent-skills",
+        "repoUrl": "https://github.com/vercel-labs/agent-skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:56:11.360Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-microsoft",
+      "name": "SKILL.Md",
+      "url": "https://github.com/microsoft/playwright-cli/blob/main/skills/playwright-cli/SKILL.md",
+      "description": "CLI for common Playwright actions. Record and generate Playwright code, inspect selectors and take screenshots. - microsoft/playwright-cli",
+      "category": "測試與自動化",
+      "language": "javascript",
+      "triggers": [
+        "skill.md",
+        "playwright"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npm install https://github.com/microsoft/playwright-cli",
+        "repoUrl": "https://github.com/microsoft/playwright-cli",
+        "branch": "main",
+        "subpath": "skills/playwright-cli/SKILL.md"
+      },
+      "capabilities": [
+        "playwright"
+      ],
+      "addedAt": "2026-07-19T07:56:12.760Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-openai",
+      "name": "SKILL.Md",
+      "url": "https://github.com/openai/skills/blob/main/skills/.curated/playwright-interactive/SKILL.md",
+      "description": "Skills Catalog for Codex.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skill.md"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills",
+        "branch": "main",
+        "subpath": "skills/.curated/playwright-interactive/SKILL.md"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:56:13.423Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-github",
+      "name": "SKILL.Md",
+      "url": "https://github.com/github/awesome-copilot/blob/main/skills/playwright-generate-test/SKILL.md",
+      "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot. - github/awesome-copilot",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skill.md",
+        "awesome",
+        "ai",
+        "agents",
+        "hacktoberfest",
+        "github-copilot",
+        "prompt-engineering",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/github/awesome-copilot.git",
+        "repoUrl": "https://github.com/github/awesome-copilot",
+        "branch": "main",
+        "subpath": "skills/playwright-generate-test/SKILL.md"
+      },
+      "capabilities": [
+        "awesome",
+        "ai",
+        "agents",
+        "hacktoberfest",
+        "github-copilot"
+      ],
+      "addedAt": "2026-07-19T07:56:14.785Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-openai",
+      "name": "SKILL.Md",
+      "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-generate-design/SKILL.md",
+      "description": "Skills Catalog for Codex.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skill.md"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/openai/skills.git",
+        "repoUrl": "https://github.com/openai/skills",
+        "branch": "main",
+        "subpath": "skills/.curated/figma-generate-design/SKILL.md"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:56:15.567Z",
+      "status": "experimental"
+    },
+    {
+      "id": "book-to-skill-apple-ouyang",
+      "name": "Book To Skill",
+      "url": "https://github.com/apple-ouyang/book-to-skill",
+      "description": "把书拆成 AI Agent 可执行的 Skill，让书中的智慧变成你的决策副驾驶 | Turn books into executable AI Agent Skills - apple-ouyang/book-to-skill",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "book-to-skill",
+        "book",
+        "skill"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/apple-ouyang/book-to-skill.git",
+        "repoUrl": "https://github.com/apple-ouyang/book-to-skill"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T07:56:16.367Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd-anthropics",
+      "name": "SKILL.Md",
+      "url": "https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md",
+      "description": "Public repository for Agent Skills.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "skill.md",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/anthropics/skills.git",
+        "repoUrl": "https://github.com/anthropics/skills",
+        "branch": "main",
+        "subpath": "skills/pdf/SKILL.md"
+      },
+      "capabilities": [
+        "agent-skills"
+      ],
+      "addedAt": "2026-07-19T07:56:17.018Z",
+      "status": "experimental"
+    },
+    {
+      "id": "browser-use",
+      "name": "Browser Use",
+      "url": "https://github.com/browser-use/browser-use",
+      "description": "🌐 Make websites accessible for AI agents. Automate tasks online with ease. - browser-use/browser-use",
+      "category": "測試與自動化",
+      "language": "python",
+      "triggers": [
+        "browser-use",
+        "browser",
+        "use",
+        "python",
+        "browser-automation",
+        "ai-agents",
+        "playwright",
+        "ai-tools"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/browser-use/browser-use.git",
+        "repoUrl": "https://github.com/browser-use/browser-use"
+      },
+      "capabilities": [
+        "python",
+        "browser-automation",
+        "ai-agents",
+        "playwright",
+        "ai-tools"
+      ],
+      "addedAt": "2026-07-19T08:58:13.502Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skills-browserbase",
+      "name": "Skills",
+      "url": "https://github.com/browserbase/skills",
+      "description": "Browserbase's official collection of agent skills to access the web. - browserbase/skills",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "skills"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/browserbase/skills",
+        "repoUrl": "https://github.com/browserbase/skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T08:58:14.210Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Agent Experience",
+          "description": "Audit the developer experience of a product, SDK, docs site, or SKILL.md by dropping multiple Claude subagents at it with only a tiny task prompt and real tools (WebFetch, Bash, Write). Agents must discover the docs themselves, install deps, ask for credentials if needed, and attempt real execution. The skill captures each agent's trace — tool calls, retries, wall time, errors — and scores on Setup Friction, Speed, Efficiency, Error Recovery, and Doc Quality, then emits an HTML report with an A–F grade and concrete fixes. Use when the user asks to audit agent experience, test a skill, audit docs for agents, check if a SDK is agent-friendly, validate a SKILL.md, measure agent DX, or benchmark how painful onboarding is for an AI agent. Triggers: 'audit agent experience', 'test this skill', 'audit docs for agents', 'is my SDK agent-friendly', 'run a DX audit', 'agent experience test', 'test my docs', 'how do agents do with my product'.",
+          "subpath": "skills/agent-experience"
+        },
+        {
+          "name": "Autobrowse",
+          "description": "Self-improving browser automation via the auto-research loop. Iteratively runs a browsing task, reads the trace, and improves the navigation skill (strategy.md) until it reliably passes. Supports parallel runs across multiple tasks using sub-agents. Use when you want to build or improve browser automation skills for specific website tasks.",
+          "subpath": "skills/autobrowse"
+        },
+        {
+          "name": "Browser",
+          "description": "Automate web browser interactions using natural language via CLI commands. Use when the user asks to browse websites, navigate web pages, extract data from websites, take screenshots, fill forms, click buttons, or interact with web applications. Supports remote Browserbase sessions with Browserbase Identity, Verified browsers, automatic CAPTCHA solving, and residential proxies — ideal for protected websites and JavaScript-heavy pages.",
+          "subpath": "skills/browser"
+        },
+        {
+          "name": "Browser To Api",
+          "description": "Turn a website's observable HTTP traffic into a best-effort OpenAPI 3.1 spec by analyzing a `browser-trace` capture. Use when the user wants to discover/extract API endpoints from a browser session, build an OpenAPI doc from network traffic, or document a third-party site's XHR/fetch surface for client integration.",
+          "subpath": "skills/browser-to-api"
+        },
+        {
+          "name": "Browser Trace",
+          "description": "Capture a full DevTools-protocol trace of any browser automation — CDP firehose, screenshots, and DOM dumps — then bisect the stream into per-page searchable buckets. Use when the user wants to debug a failed run, audit network/console/DOM activity, attach a trace to an in-progress session, or feed structured per-page summaries back into an agent loop so its next iteration learns from the last one.",
+          "subpath": "skills/browser-trace"
+        },
+        {
+          "name": "Browser Use To Stagehand",
+          "description": "Migrate browser-use (Python) browser-automation scripts to Stagehand v3 (TypeScript) on Browserbase. Use when the user wants to convert, port, rewrite, or migrate a browser-use Agent script to Stagehand, map browser-use features/APIs to Stagehand primitives (act/extract/observe/agent), or move agentic browser automation onto Browserbase with more determinism. Triggers on \"browser-use\", \"browser_use\", or \"Agent(task=...)\".",
+          "subpath": "skills/browser-use-to-stagehand"
+        },
+        {
+          "name": "Company Research",
+          "description": "|",
+          "subpath": "skills/company-research"
+        },
+        {
+          "name": "Competitor Analysis",
+          "description": "|",
+          "subpath": "skills/competitor-analysis"
+        },
+        {
+          "name": "Cookie Sync",
+          "description": "Sync cookies from local Chrome to a Browserbase persistent context so the browse CLI can access authenticated sites. Use when the user wants to browse as themselves, sync cookies, or log into sites via Browserbase.",
+          "subpath": "skills/cookie-sync"
+        },
+        {
+          "name": "Event Prospecting",
+          "description": "|",
+          "subpath": "skills/event-prospecting"
+        },
+        {
+          "name": "Fetch",
+          "description": "Use this skill when the user wants to retrieve a URL without a full browser session: fetch HTML or JSON from static pages, inspect status codes or headers, follow redirects, or get page source for simple scraping. Prefer it over a browser when JavaScript rendering and page interaction are not needed. Supports proxies and redirect control.",
+          "subpath": "skills/fetch"
+        },
+        {
+          "name": "Functions",
+          "description": "Deploy serverless browser automation as cloud functions using Browserbase. Use when the user wants to deploy browser automation to run on a schedule or cron, create a webhook endpoint for browser tasks, run automation in the cloud instead of locally, or asks about Browserbase Functions.",
+          "subpath": "skills/functions"
+        },
+        {
+          "name": "Safe Browser",
+          "description": "Build local constrained-browser agents with a safe_browser tool that owns CDP, enforces a domain allowlist with Fetch interception, and lets a runtime Claude Agent SDK agent complete browsing tasks without raw browser, shell, or CDP access. Use when the user wants an agent to browse or scrape while staying on approved domains, demo blocked off-domain navigation, or generate a safe browser client.",
+          "subpath": "skills/safe-browser"
+        },
+        {
+          "name": "Search",
+          "description": "Use this skill when the user wants to search the web without a full browser session: find URLs, titles, and metadata for a query. Prefer it over a browser when you just need search results, not page content. Returns structured results with titles, URLs, authors, and dates.",
+          "subpath": "skills/search"
+        },
+        {
+          "name": "Ui Test",
+          "description": "AI-powered adversarial UI testing via the browse CLI. Analyzes git diffs to test only what changed, or explores the full app to find bugs. Tests functional correctness, accessibility, responsive layout, and UX heuristics. Use when the user asks to test UI changes, QA a pull request, audit accessibility, or run exploratory testing. Supports local browser (localhost) and remote Browserbase (deployed sites).",
+          "subpath": "skills/ui-test"
+        },
+        {
+          "name": "Webmcp Gen",
+          "description": "Create, compile, and validate site-specific WebMCP init scripts from a target URL and desired tool capability. Use when the user wants to author WebMCP tools for a website, produce a webmcp.init.js artifact, or test WebMCP registration and invocation through Stagehand.",
+          "subpath": "skills/webmcp-gen"
+        }
+      ]
+    },
+    {
+      "id": "autogen",
+      "name": "Autogen",
+      "url": "https://github.com/microsoft/autogen",
+      "description": "A programming framework for agentic AI.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "autogen",
+        "framework",
+        "ai",
+        "agents",
+        "chatgpt",
+        "llm-agent",
+        "agentic",
+        "llm-framework"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/microsoft/autogen.git",
+        "repoUrl": "https://github.com/microsoft/autogen"
+      },
+      "capabilities": [
+        "framework",
+        "ai",
+        "agents",
+        "autogen",
+        "chatgpt"
+      ],
+      "addedAt": "2026-07-19T08:58:14.947Z",
+      "status": "experimental"
+    },
+    {
+      "id": "metagpt",
+      "name": "Metagpt",
+      "url": "https://github.com/foundationagents/metagpt",
+      "description": "🌟 The Multi-Agent Framework: First AI Software Company, Towards Natural Language Programming - FoundationAgents/MetaGPT",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "metagpt",
+        "agent",
+        "multi-agent",
+        "gpt",
+        "llm"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/foundationagents/metagpt.git",
+        "repoUrl": "https://github.com/foundationagents/metagpt"
+      },
+      "capabilities": [
+        "agent",
+        "multi-agent",
+        "gpt",
+        "llm",
+        "metagpt"
+      ],
+      "addedAt": "2026-07-19T08:58:15.646Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lobehub",
+      "name": "Lobehub",
+      "url": "https://github.com/lobehub/lobehub",
+      "description": "🤯 LobeHub is your Chief Agent Operator, organizing your agents into 7×24 operations by hiring, scheduling, and reporting on your entire AI team. - lobehub/lobehub",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "lobehub",
+        "agent",
+        "ai",
+        "skills",
+        "fable",
+        "mcp",
+        "gemini",
+        "openai"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/lobehub/lobehub",
+        "repoUrl": "https://github.com/lobehub/lobehub"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "skills",
+        "fable",
+        "mcp"
+      ],
+      "addedAt": "2026-07-19T08:58:16.383Z",
+      "status": "experimental"
+    },
+    {
+      "id": "transformers",
+      "name": "Transformers",
+      "url": "https://github.com/huggingface/transformers",
+      "description": "🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training.  - GitHub - huggingface/transformers: 🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, audio, and multimodal models, for both inference and training.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "transformers",
+        "audio",
+        "python",
+        "nlp",
+        "machine-learning",
+        "natural-language-processing",
+        "deep-learning",
+        "pytorch"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/huggingface/transformers.git",
+        "repoUrl": "https://github.com/huggingface/transformers"
+      },
+      "capabilities": [
+        "audio",
+        "python",
+        "nlp",
+        "machine-learning",
+        "natural-language-processing"
+      ],
+      "addedAt": "2026-07-19T08:58:16.921Z",
+      "status": "experimental"
+    },
+    {
+      "id": "cocoindex",
+      "name": "Cocoindex",
+      "url": "https://github.com/cocoindex-io/cocoindex",
+      "description": "Incremental engine for long horizon agents 🌟 Star if you like it! - cocoindex-io/cocoindex",
+      "category": "AI 框架",
+      "language": "rust",
+      "triggers": [
+        "cocoindex",
+        "python",
+        "rust",
+        "real-time",
+        "ai",
+        "etl",
+        "indexing",
+        "data-engineering"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/cocoindex-io/cocoindex",
+        "repoUrl": "https://github.com/cocoindex-io/cocoindex"
+      },
+      "capabilities": [
+        "python",
+        "rust",
+        "real-time",
+        "ai",
+        "etl"
+      ],
+      "addedAt": "2026-07-19T08:58:17.590Z",
+      "status": "experimental"
+    },
+    {
+      "id": "stable-diffusion-webui",
+      "name": "Stable Diffusion Webui",
+      "url": "https://github.com/automatic1111/stable-diffusion-webui",
+      "description": "Stable Diffusion web UI.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "stable-diffusion-webui",
+        "stable",
+        "diffusion",
+        "webui",
+        "web",
+        "ai",
+        "deep-learning",
+        "torch"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/automatic1111/stable-diffusion-webui.git",
+        "repoUrl": "https://github.com/automatic1111/stable-diffusion-webui"
+      },
+      "capabilities": [
+        "web",
+        "ai",
+        "deep-learning",
+        "torch",
+        "pytorch"
+      ],
+      "addedAt": "2026-07-19T08:58:18.186Z",
+      "status": "experimental"
+    },
+    {
+      "id": "stable-diffusion-webui-localization-zhtw",
+      "name": "Stable Diffusion Webui Localization Zh_TW",
+      "url": "https://github.com/benlisquare/stable-diffusion-webui-localization-zh_TW",
+      "description": "Traditional Chinese translation extension for Stable Diffusion web UI by AUTOMATIC1111 - benlisquare/stable-diffusion-webui-localization-zh_TW",
+      "category": "其他",
+      "language": "javascript",
+      "triggers": [
+        "stable-diffusion-webui-localization-zh_tw",
+        "stable",
+        "diffusion",
+        "webui",
+        "localization",
+        "zh_tw"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/benlisquare/stable-diffusion-webui-localization-zh_TW",
+        "repoUrl": "https://github.com/benlisquare/stable-diffusion-webui-localization-zh_TW"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T08:58:19.005Z",
+      "status": "experimental"
+    },
+    {
+      "id": "langflow",
+      "name": "Langflow",
+      "url": "https://github.com/langflow-ai/langflow",
+      "description": "Langflow is a powerful tool for building and deploying AI-powered agents and workflows. - langflow-ai/langflow",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "langflow",
+        "multiagent",
+        "agents",
+        "react-flow",
+        "large-language-models",
+        "generative-ai",
+        "chatgpt"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/langflow-ai/langflow.git",
+        "repoUrl": "https://github.com/langflow-ai/langflow"
+      },
+      "capabilities": [
+        "multiagent",
+        "agents",
+        "react-flow",
+        "large-language-models",
+        "generative-ai"
+      ],
+      "addedAt": "2026-07-19T08:58:19.748Z",
+      "status": "experimental"
+    },
+    {
+      "id": "mem0",
+      "name": "Mem0",
+      "url": "https://github.com/mem0ai/mem0",
+      "description": "Universal memory layer for AI Agents.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "mem0",
+        "python",
+        "application",
+        "state-management",
+        "ai",
+        "memory",
+        "chatbots",
+        "memory-management"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/mem0ai/mem0",
+        "repoUrl": "https://github.com/mem0ai/mem0"
+      },
+      "capabilities": [
+        "python",
+        "application",
+        "state-management",
+        "ai",
+        "memory"
+      ],
+      "addedAt": "2026-07-19T08:58:20.408Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ruflo",
+      "name": "Ruflo",
+      "url": "https://github.com/ruvnet/ruflo",
+      "description": "🌊 The leading agent meta-harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational AI systems. Features adaptive memory, self-learning intelligence, RAG integration, and native Claude Code / Codex / Hermes and many more Integrated - ruvnet/ruflo",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "ruflo",
+        "npm",
+        "typescript",
+        "skills",
+        "multi-agent",
+        "swarm",
+        "agents",
+        "harness"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/ruvnet/ruflo",
+        "repoUrl": "https://github.com/ruvnet/ruflo"
+      },
+      "capabilities": [
+        "npm",
+        "typescript",
+        "skills",
+        "multi-agent",
+        "swarm"
+      ],
+      "addedAt": "2026-07-19T08:58:21.029Z",
+      "status": "experimental"
+    },
+    {
+      "id": "crewai",
+      "name": "Crewai",
+      "url": "https://github.com/crewaiinc/crewai",
+      "description": "Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks. - crewAIInc/crewAI",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "crewai",
+        "ai",
+        "agents",
+        "ai-agents",
+        "llms",
+        "aiagentframework"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/crewaiinc/crewai.git",
+        "repoUrl": "https://github.com/crewaiinc/crewai"
+      },
+      "capabilities": [
+        "ai",
+        "agents",
+        "ai-agents",
+        "llms",
+        "aiagentframework"
+      ],
+      "addedAt": "2026-07-19T08:58:21.721Z",
+      "status": "experimental"
+    },
+    {
+      "id": "hermes-agent",
+      "name": "Hermes Agent",
+      "url": "https://github.com/nousresearch/hermes-agent",
+      "description": "The agent that grows with you.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "hermes-agent",
+        "hermes",
+        "agent",
+        "ai",
+        "openai",
+        "codex",
+        "ai-agents",
+        "claude"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/nousresearch/hermes-agent.git",
+        "repoUrl": "https://github.com/nousresearch/hermes-agent"
+      },
+      "capabilities": [
+        "ai",
+        "openai",
+        "hermes",
+        "codex",
+        "ai-agents"
+      ],
+      "addedAt": "2026-07-19T08:58:22.309Z",
+      "status": "experimental"
+    },
+    {
+      "id": "maigret",
+      "name": "Maigret",
+      "url": "https://github.com/soxoj/maigret",
+      "description": "🕵️‍♂️ Collect a dossier on a person by username from 3000+ sites - soxoj/maigret",
+      "category": "安全性",
+      "language": "python",
+      "triggers": [
+        "maigret",
+        "python",
+        "cli",
+        "open-source",
+        "osint",
+        "social-network",
+        "scraping",
+        "sherlock"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/soxoj/maigret.git",
+        "repoUrl": "https://github.com/soxoj/maigret"
+      },
+      "capabilities": [
+        "python",
+        "cli",
+        "open-source",
+        "osint",
+        "social-network"
+      ],
+      "addedAt": "2026-07-19T08:58:22.865Z",
+      "status": "experimental"
+    },
+    {
+      "id": "open-webui",
+      "name": "Open Webui",
+      "url": "https://github.com/open-webui/open-webui",
+      "description": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...) - open-webui/open-webui",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "open-webui",
+        "open",
+        "webui",
+        "ui",
+        "ai",
+        "mcp",
+        "openapi",
+        "self-hosted"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/open-webui/open-webui.git",
+        "repoUrl": "https://github.com/open-webui/open-webui"
+      },
+      "capabilities": [
+        "ui",
+        "ai",
+        "mcp",
+        "openapi",
+        "self-hosted"
+      ],
+      "addedAt": "2026-07-19T08:58:23.604Z",
+      "status": "experimental"
+    },
+    {
+      "id": "aider",
+      "name": "Aider",
+      "url": "https://github.com/Aider-AI/aider",
+      "description": "aider is AI pair programming in your terminal.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "aider",
+        "cli",
+        "command-line",
+        "gemini",
+        "openai",
+        "llama",
+        "sonnet",
+        "gpt-3"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Aider-AI/aider.git",
+        "repoUrl": "https://github.com/Aider-AI/aider"
+      },
+      "capabilities": [
+        "cli",
+        "command-line",
+        "gemini",
+        "openai",
+        "llama"
+      ],
+      "addedAt": "2026-07-19T08:58:24.266Z",
+      "status": "experimental"
+    },
+    {
+      "id": "tech-interview-handbook",
+      "name": "Tech Interview Handbook",
+      "url": "https://github.com/yangshun/tech-interview-handbook",
+      "description": "Curated coding interview preparation materials for busy software engineers - yangshun/tech-interview-handbook",
+      "category": "基礎設施",
+      "language": "typescript",
+      "triggers": [
+        "tech-interview-handbook",
+        "tech",
+        "interview",
+        "handbook",
+        "algorithm",
+        "algorithms",
+        "interview-practice",
+        "interview-questions"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/yangshun/tech-interview-handbook",
+        "repoUrl": "https://github.com/yangshun/tech-interview-handbook"
+      },
+      "capabilities": [
+        "algorithm",
+        "algorithms",
+        "interview-practice",
+        "interview-questions",
+        "coding-interviews"
+      ],
+      "addedAt": "2026-07-19T09:12:02.900Z",
+      "status": "experimental"
+    },
+    {
+      "id": "tech-interview-handbook-Avishkar201",
+      "name": "Tech Interview Handbook",
+      "url": "https://github.com/Avishkar201/tech-interview-handbook",
+      "description": "Avishkar201/tech-interview-handbook - 待補充描述",
+      "category": "其他",
+      "language": "javascript",
+      "triggers": [
+        "tech-interview-handbook",
+        "tech",
+        "interview",
+        "handbook"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/Avishkar201/tech-interview-handbook",
+        "repoUrl": "https://github.com/Avishkar201/tech-interview-handbook"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-19T09:12:03.659Z",
+      "status": "experimental"
+    },
+    {
+      "id": "awesome-selfhosted",
+      "name": "Awesome Selfhosted",
+      "url": "https://github.com/awesome-selfhosted/awesome-selfhosted",
+      "description": "A list of Free Software network services and web applications which can be hosted on your own servers - awesome-selfhosted/awesome-selfhosted",
+      "category": "其他",
+      "language": "other",
+      "triggers": [
+        "awesome-selfhosted",
+        "awesome",
+        "selfhosted",
+        "cloud",
+        "privacy",
+        "hosting",
+        "self-hosted",
+        "free-software"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/awesome-selfhosted/awesome-selfhosted.git",
+        "repoUrl": "https://github.com/awesome-selfhosted/awesome-selfhosted"
+      },
+      "capabilities": [
+        "awesome",
+        "cloud",
+        "privacy",
+        "selfhosted",
+        "hosting"
+      ],
+      "addedAt": "2026-07-19T09:12:04.259Z",
+      "status": "experimental"
+    },
+    {
+      "id": "javascript-algorithms",
+      "name": "Javascript Algorithms",
+      "url": "https://github.com/trekhleb/javascript-algorithms",
+      "description": "📝 Algorithms and data structures implemented in JavaScript with explanations and links to further readings - trekhleb/javascript-algorithms",
+      "category": "其他",
+      "language": "javascript",
+      "triggers": [
+        "javascript-algorithms",
+        "javascript",
+        "algorithms",
+        "computer-science",
+        "algorithm",
+        "interview",
+        "data-structures",
+        "interview-preparation"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/trekhleb/javascript-algorithms",
+        "repoUrl": "https://github.com/trekhleb/javascript-algorithms"
+      },
+      "capabilities": [
+        "javascript",
+        "computer-science",
+        "algorithm",
+        "algorithms",
+        "interview"
+      ],
+      "addedAt": "2026-07-19T09:12:04.960Z",
+      "status": "experimental"
+    },
+    {
+      "id": "30-seconds-of-code",
+      "name": "30 Seconds Of Code",
+      "url": "https://github.com/Chalarangelo/30-seconds-of-code",
+      "description": "Coding articles to level up your development skills - Chalarangelo/30-seconds-of-code",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "30-seconds-of-code",
+        "seconds",
+        "code",
+        "nodejs",
+        "javascript",
+        "css",
+        "git",
+        "html"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/Chalarangelo/30-seconds-of-code",
+        "repoUrl": "https://github.com/Chalarangelo/30-seconds-of-code"
+      },
+      "capabilities": [
+        "nodejs",
+        "javascript",
+        "css",
+        "git",
+        "html"
+      ],
+      "addedAt": "2026-07-19T09:12:05.664Z",
+      "status": "experimental"
+    },
+    {
+      "id": "gitignore",
+      "name": "Gitignore",
+      "url": "https://github.com/github/gitignore",
+      "description": "A collection of useful .gitignore templates.",
+      "category": "其他",
+      "language": "other",
+      "triggers": [
+        "gitignore",
+        "git"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/github/gitignore.git",
+        "repoUrl": "https://github.com/github/gitignore"
+      },
+      "capabilities": [
+        "gitignore",
+        "git"
+      ],
+      "addedAt": "2026-07-19T09:12:06.466Z",
+      "status": "experimental"
+    },
+    {
+      "id": "langchain",
+      "name": "Langchain",
+      "url": "https://github.com/langchain-ai/langchain",
+      "description": "The agent engineering platform.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "langchain",
+        "python",
+        "open-source",
+        "enterprise",
+        "framework",
+        "typescript",
+        "ai",
+        "gemini"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/langchain-ai/langchain.git",
+        "repoUrl": "https://github.com/langchain-ai/langchain"
+      },
+      "capabilities": [
+        "python",
+        "open-source",
+        "enterprise",
+        "framework",
+        "typescript"
+      ],
+      "addedAt": "2026-07-19T09:12:07.059Z",
+      "status": "experimental"
+    },
+    {
+      "id": "n8n",
+      "name": "N8n",
+      "url": "https://github.com/n8n-io/n8n",
+      "description": "Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations. - n8n-io/n8n",
+      "category": "測試與自動化",
+      "language": "typescript",
+      "triggers": [
+        "n8n",
+        "cli",
+        "workflow",
+        "integrations",
+        "development",
+        "automation",
+        "typescript",
+        "ai"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/n8n-io/n8n",
+        "repoUrl": "https://github.com/n8n-io/n8n"
+      },
+      "capabilities": [
+        "cli",
+        "workflow",
+        "integrations",
+        "development",
+        "automation"
+      ],
+      "addedAt": "2026-07-19T09:12:07.700Z",
+      "status": "experimental"
+    },
+    {
+      "id": "openclaw",
+      "name": "Openclaw",
+      "url": "https://github.com/openclaw/openclaw",
+      "description": "Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞  - GitHub - openclaw/openclaw: Your own personal AI assistant. Any OS. Any Platform. The lobster way. 🦞",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "openclaw",
+        "ai",
+        "personal",
+        "assistant",
+        "own-your-data",
+        "crustacean",
+        "molty"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/openclaw/openclaw",
+        "repoUrl": "https://github.com/openclaw/openclaw"
+      },
+      "capabilities": [
+        "ai",
+        "personal",
+        "assistant",
+        "own-your-data",
+        "crustacean"
+      ],
+      "addedAt": "2026-07-19T09:12:08.399Z",
+      "status": "experimental"
+    },
+    {
+      "id": "dify",
+      "name": "Dify",
+      "url": "https://github.com/langgenius/dify",
+      "description": "Production-ready platform for agentic workflow development. - langgenius/dify",
+      "category": "測試與自動化",
+      "language": "typescript",
+      "triggers": [
+        "dify",
+        "python",
+        "agent",
+        "workflow",
+        "automation",
+        "ai",
+        "mcp",
+        "nextjs"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/langgenius/dify",
+        "repoUrl": "https://github.com/langgenius/dify"
+      },
+      "capabilities": [
+        "python",
+        "agent",
+        "workflow",
+        "automation",
+        "ai"
+      ],
+      "addedAt": "2026-07-19T09:12:09.024Z",
+      "status": "experimental"
+    },
+    {
+      "id": "public-apis",
+      "name": "Public Apis",
+      "url": "https://github.com/public-apis/public-apis",
+      "description": "A collective list of free APIs.",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "public-apis",
+        "public",
+        "apis",
+        "api",
+        "lists",
+        "open-source",
+        "list",
+        "development"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/public-apis/public-apis.git",
+        "repoUrl": "https://github.com/public-apis/public-apis"
+      },
+      "capabilities": [
+        "api",
+        "lists",
+        "open-source",
+        "list",
+        "development"
+      ],
+      "addedAt": "2026-07-19T09:12:09.823Z",
+      "status": "experimental"
+    },
+    {
+      "id": "developer-roadmap",
+      "name": "Developer Roadmap",
+      "url": "https://github.com/nilbuild/developer-roadmap",
+      "description": "Interactive roadmaps, guides and other educational content to help developers grow in their careers. - nilbuild/developer-roadmap",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "developer-roadmap",
+        "developer",
+        "roadmap",
+        "computer-science",
+        "python-roadmap",
+        "devops-roadmap",
+        "react-roadmap",
+        "frontend-roadmap"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/nilbuild/developer-roadmap",
+        "repoUrl": "https://github.com/nilbuild/developer-roadmap"
+      },
+      "capabilities": [
+        "computer-science",
+        "roadmap",
+        "python-roadmap",
+        "developer-roadmap",
+        "devops-roadmap"
+      ],
+      "addedAt": "2026-07-19T09:12:10.535Z",
+      "status": "experimental"
+    },
+    {
+      "id": "the-evolution-of-a-go-programmer",
+      "name": "The Evolution Of A Go Programmer",
+      "url": "https://github.com/SuperPaintman/the-evolution-of-a-go-programmer",
+      "description": "The Evolution of a Go Programmer.",
+      "category": "其他",
+      "language": "go",
+      "triggers": [
+        "the-evolution-of-a-go-programmer",
+        "the",
+        "evolution",
+        "programmer",
+        "go",
+        "golang",
+        "roadmap",
+        "developer-roadmap"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/SuperPaintman/the-evolution-of-a-go-programmer.git",
+        "repoUrl": "https://github.com/SuperPaintman/the-evolution-of-a-go-programmer"
+      },
+      "capabilities": [
+        "go",
+        "golang",
+        "roadmap",
+        "developer-roadmap",
+        "go-roadmap"
+      ],
+      "addedAt": "2026-07-19T09:12:11.339Z",
+      "status": "experimental"
+    },
+    {
+      "id": "dotnet-developer-roadmap",
+      "name": "Dotnet Developer Roadmap",
+      "url": "https://github.com/saifaustcse/dotnet-developer-roadmap",
+      "description": "Full-stack .NET Developer Roadmap.",
+      "category": "其他",
+      "language": "other",
+      "triggers": [
+        "dotnet-developer-roadmap",
+        "dotnet",
+        "developer",
+        "roadmap",
+        "dotnetcore",
+        "full-stack",
+        "dotnet-core",
+        "developer-roadmap"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/saifaustcse/dotnet-developer-roadmap.git",
+        "repoUrl": "https://github.com/saifaustcse/dotnet-developer-roadmap"
+      },
+      "capabilities": [
+        "roadmap",
+        "dotnet",
+        "dotnetcore",
+        "full-stack",
+        "dotnet-core"
+      ],
+      "addedAt": "2026-07-19T09:12:12.028Z",
+      "status": "experimental"
+    },
+    {
+      "id": "free-programming-books",
+      "name": "Free Programming Books",
+      "url": "https://github.com/ebookfoundation/free-programming-books",
+      "description": ":books: Freely available programming books.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "free-programming-books",
+        "free",
+        "programming",
+        "books",
+        "education",
+        "list",
+        "resource",
+        "hacktoberfest"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/ebookfoundation/free-programming-books.git",
+        "repoUrl": "https://github.com/ebookfoundation/free-programming-books"
+      },
+      "capabilities": [
+        "education",
+        "list",
+        "books",
+        "resource",
+        "hacktoberfest"
+      ],
+      "addedAt": "2026-07-19T09:12:12.711Z",
+      "status": "experimental"
+    },
+    {
+      "id": "system-design-primer",
+      "name": "System Design Primer",
+      "url": "https://github.com/donnemartin/system-design-primer",
+      "description": "Learn how to design large-scale systems. Prep for the system design interview.  Includes Anki flashcards. - donnemartin/system-design-primer",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "system-design-primer",
+        "system",
+        "design",
+        "primer",
+        "python",
+        "development",
+        "programming",
+        "web"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/donnemartin/system-design-primer.git",
+        "repoUrl": "https://github.com/donnemartin/system-design-primer"
+      },
+      "capabilities": [
+        "python",
+        "design",
+        "development",
+        "programming",
+        "web"
+      ],
+      "addedAt": "2026-07-19T09:12:13.537Z",
+      "status": "experimental"
+    },
+    {
+      "id": "coding-interview-university",
+      "name": "Coding Interview University",
+      "url": "https://github.com/jwasham/coding-interview-university",
+      "description": "A complete computer science study plan to become a software engineer. - jwasham/coding-interview-university",
+      "category": "其他",
+      "language": "other",
+      "triggers": [
+        "coding-interview-university",
+        "coding",
+        "interview",
+        "university",
+        "computer-science",
+        "algorithm",
+        "algorithms",
+        "data-structures"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/jwasham/coding-interview-university.git",
+        "repoUrl": "https://github.com/jwasham/coding-interview-university"
+      },
+      "capabilities": [
+        "computer-science",
+        "algorithm",
+        "algorithms",
+        "interview",
+        "data-structures"
+      ],
+      "addedAt": "2026-07-19T09:12:14.665Z",
+      "status": "experimental"
+    },
+    {
+      "id": "the-art-of-command-line",
+      "name": "The Art Of Command Line",
+      "url": "https://github.com/jlevy/the-art-of-command-line",
+      "description": "Master the command line, in one page.",
+      "category": "文件生產力",
+      "language": "other",
+      "triggers": [
+        "the-art-of-command-line",
+        "the",
+        "art",
+        "command",
+        "line",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/jlevy/the-art-of-command-line.git",
+        "repoUrl": "https://github.com/jlevy/the-art-of-command-line"
+      },
+      "capabilities": [
+        "windows",
+        "macos",
+        "linux",
+        "bash",
+        "documentation"
+      ],
+      "addedAt": "2026-07-19T09:12:15.340Z",
+      "status": "experimental"
+    },
+    {
+      "id": "project-based-learning",
+      "name": "Project Based Learning",
+      "url": "https://github.com/practical-tutorials/project-based-learning",
+      "description": "Curated list of project-based tutorials.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "project-based-learning",
+        "project",
+        "based",
+        "learning",
+        "javascript",
+        "python",
+        "golang",
+        "tutorial"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/practical-tutorials/project-based-learning.git",
+        "repoUrl": "https://github.com/practical-tutorials/project-based-learning"
+      },
+      "capabilities": [
+        "javascript",
+        "python",
+        "golang",
+        "tutorial",
+        "cpp"
+      ],
+      "addedAt": "2026-07-19T09:12:16.172Z",
+      "status": "experimental"
+    },
+    {
+      "id": "you-dont-know-js",
+      "name": "You Dont Know Js",
+      "url": "https://github.com/getify/you-dont-know-js",
+      "description": "A book series (2 published editions) on the JS language. - getify/You-Dont-Know-JS",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "you-dont-know-js",
+        "you",
+        "dont",
+        "know",
+        "javascript",
+        "education",
+        "programming",
+        "es6"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/getify/you-dont-know-js.git",
+        "repoUrl": "https://github.com/getify/you-dont-know-js"
+      },
+      "capabilities": [
+        "javascript",
+        "education",
+        "programming",
+        "es6",
+        "async"
+      ],
+      "addedAt": "2026-07-19T09:12:16.841Z",
+      "status": "experimental"
+    },
+    {
+      "id": "the-book-of-secret-knowledge",
+      "name": "The Book Of Secret Knowledge",
+      "url": "https://github.com/trimstray/the-book-of-secret-knowledge",
+      "description": "A collection of inspiring lists, manuals, cheatsheets, blogs, hacks, one-liners, cli/web tools and more. - trimstray/the-book-of-secret-knowledge",
+      "category": "安全性",
+      "language": "other",
+      "triggers": [
+        "the-book-of-secret-knowledge",
+        "the",
+        "book",
+        "secret",
+        "knowledge",
+        "linux",
+        "lists",
+        "security"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/trimstray/the-book-of-secret-knowledge.git",
+        "repoUrl": "https://github.com/trimstray/the-book-of-secret-knowledge"
+      },
+      "capabilities": [
+        "linux",
+        "lists",
+        "security",
+        "devops",
+        "awesome"
+      ],
+      "addedAt": "2026-07-19T09:12:17.784Z",
       "status": "experimental"
     }
   ]

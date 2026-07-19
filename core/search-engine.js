@@ -120,14 +120,62 @@ export function keywordMatch(tools, query) {
       }
     }
 
-    // 能力標籤匹配（權重中：+2）
+    // 能力標籤匹配 (權重中：每個匹配 +1.5)
     if (tool.capabilities) {
       for (const cap of tool.capabilities) {
-        const capNorm = normalize(cap).replace(/-/g, ' ');
+        const capNorm = normalize(cap);
         for (const token of queryTokens) {
           if (capNorm.includes(token) && token.length >= 2) {
+            score += 1.5;
+            if (!matchedKeywords.includes(cap)) {
+              matchedKeywords.push(cap);
+            }
+          }
+        }
+      }
+    }
+
+    // 子工具匹配 (權重中：每個匹配 +1.5)
+    if (tool.subTools) {
+      for (const subTool of tool.subTools) {
+        const subName = normalize(subTool.name);
+        const subDesc = normalize(subTool.description);
+        let subMatch = false;
+        
+        for (const token of queryTokens) {
+          if (subName.includes(token) && token.length >= 2) {
+            score += 1.5;
+            subMatch = true;
+          }
+          if (subDesc.includes(token) && token.length >= 3) {
+            score += 1.0;
+            subMatch = true;
+          }
+        }
+        if (subMatch && !matchedKeywords.includes(`subtool:${subTool.name}`)) {
+          matchedKeywords.push(`subtool:${subTool.name}`);
+        }
+      }
+    }
+
+    // 場景與優勢匹配 (權重高：每個匹配 +2)
+    if (tool.useCase) {
+      const useCaseNorm = normalize(tool.useCase);
+      for (const token of queryTokens) {
+        if (useCaseNorm.includes(token) && token.length >= 2) {
+          score += 2;
+          if (!matchedKeywords.includes(`場景匹配`)) matchedKeywords.push(`場景匹配`);
+        }
+      }
+    }
+    
+    if (tool.advantages) {
+      for (const adv of tool.advantages) {
+        const advNorm = normalize(adv);
+        for (const token of queryTokens) {
+          if (advNorm.includes(token) && token.length >= 2) {
             score += 2;
-            matchedKeywords.push(`[cap:${cap}]`);
+            if (!matchedKeywords.includes(`優勢匹配`)) matchedKeywords.push(`優勢匹配`);
           }
         }
       }
@@ -250,6 +298,11 @@ function buildToolText(tool) {
     tool.category, tool.category,
     // 能力標籤 ×1
     ...(tool.capabilities || []).map(c => c.replace(/-/g, ' ')),
+    // 場景與優勢
+    tool.useCase || '',
+    ...(tool.advantages || []),
+    // 子工具
+    ...(tool.subTools || []).map(st => `${st.name} ${st.description}`)
   ];
   return parts.join(' ');
 }
@@ -417,7 +470,7 @@ export function semanticSearch(tools, query, threshold = 0.03) {
 export function search(query, options = {}) {
   const { topK = 5, category, language } = options;
   const registry = loadRegistry();
-  let tools = registry.tools.filter(t => t.status === 'active');
+  let tools = registry.tools.filter(t => t.status === 'active' || t.status === 'experimental');
 
   // 前置過濾
   if (category) {

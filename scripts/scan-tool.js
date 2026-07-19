@@ -102,7 +102,7 @@ async function scan(url, options = {}) {
   if (!silent) console.log(`\x1b[36m掃描 URL:\x1b[0m ${url}`);
 
   // 驗證 URL (支援 Monorepo 子目錄)
-  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/tree\/([^/]+)\/(.+))?\/?$/;
+  const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|blob)\/([^/]+)\/(.+))?\/?$/;
   const match = url.match(githubRegex);
   if (!match) {
     throw new Error('僅支援 GitHub 倉庫 URL (格式: https://github.com/owner/repo 或 https://github.com/owner/repo/tree/main/subpath)');

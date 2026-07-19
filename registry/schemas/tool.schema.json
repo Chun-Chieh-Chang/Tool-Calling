@@ -104,6 +104,28 @@
           "items": { "type": "string" },
           "description": "工具能力標籤"
         },
+        "subTools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "subpath": { "type": "string" }
+            },
+            "required": ["name", "description", "subpath"]
+          },
+          "description": "大補帖內部的子工具列表"
+        },
+        "useCase": {
+          "type": "string",
+          "description": "最佳適用場景與功能定位"
+        },
+        "advantages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "核心優勢或特點清單"
+        },
         "addedAt": {
           "type": "string",
           "format": "date-time",
@@ -118,3 +140,4 @@
     }
   }
 }
+

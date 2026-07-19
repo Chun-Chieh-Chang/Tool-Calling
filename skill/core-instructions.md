@@ -39,6 +39,9 @@ node d:/Self-developed_Apps/Tool-Calling/cli.js batch-add <urls.txt>
 # 驗證註冊庫格式
 node d:/Self-developed_Apps/Tool-Calling/cli.js validate
 
+# 針對大補帖專案執行深層索引 (提取內部子工具)
+node d:/Self-developed_Apps/Tool-Calling/cli.js index-subtools <tool-id>
+
 # 健康檢查
 node d:/Self-developed_Apps/Tool-Calling/cli.js health-check
 ```
@@ -48,33 +51,28 @@ node d:/Self-developed_Apps/Tool-Calling/cli.js health-check
 當用戶說出「啟動全自動工具調用模式」後，依序執行：
 
 1. **解析意圖** — 分析用戶的任務需求，提取關鍵字
-2. **檢索工具** — 執行 `node cli.js search "<任務描述>"`，取得信心度排名
-3. **評估結果** — 信心度 ≥ 30% 的工具納入候選；若無匹配，告知用戶並建議手動添加
-4. **安裝調用** — 根據工具的 `install` 欄位動態安裝（pip/npm/git clone）
+2. **檢索工具** — 執行 `node cli.js search "<任務描述>"`，取得信心度排名。注意搜尋結果中的 `⭐ 場景` 與 `★ 優勢` 來區分同質工具。
+3. **評估結果** — 信心度較高且 `useCase` 最吻合的工具納入候選；若無匹配，告知用戶並建議手動添加。
+4. **安裝調用** — 根據工具的 `install` 欄位動態安裝（pip/npm/git clone，支援 Sparse Checkout）。
 5. **執行任務** — 調用工具完成用戶任務
 6. **清理復歸** — 任務完成後，移除臨時安裝的工具（刪除 `.temp/` 目錄），保持系統清潔
 
-## 已註冊工具分類（10 個初始工具）
+## 已註冊工具概覽（超過 140 個工具）
 
-| 分類 | 工具 | 用途 |
-|------|------|------|
-| 文件生產力 | PPT Master | AI 簡報生成（Python） |
-| 知識管理 | Graphify | 代碼知識圖譜（TypeScript） |
-| 安全性 | Strix | AI 滲透測試（Python） |
-| 多媒體生成 | AI Animation Video Generator | 動畫影片（Python） |
-| 多媒體生成 | Open Generative AI | 200+ AI 模型圖片/影片（Python） |
-| 多媒體生成 | ImaginAIry | Pythonic 圖片生成（Python） |
-| AI 框架 | Vercel AI SDK Skills | AI 技能組合（TypeScript） |
-| 學習資源 | Total TypeScript Skills | TS 進階型別（TypeScript） |
-| 測試與自動化 | Playwright | 跨瀏覽器 E2E 測試（TypeScript） |
-| 基礎設施 | Flysystem | PHP 檔案系統抽象（PHP） |
+目前工具庫涵蓋多個領域，包含但不限於：
+- **文件生產力**：AIPPT, NotebookLM2PPT, Markitdown...
+- **知識管理**：Graphify, Ontology...
+- **🤖 AI 框架**：Langchain, Dify, MetaGPT, CrewAI, Autogen...
+- **測試與自動化**：Playwright, n8n...
+- **多媒體生成**：Stable Diffusion WebUI, Open Generative AI...
+- **學習資源**：技術面試寶典、系統設計指南等。
 
 ## 擴充方式
 
 系統支援無限制新增工具：
-- **CLI 新增**：`node cli.js add <github-url>`
+- **CLI 單筆新增**：`node cli.js add <github-url/tree/main/subpath>`
 - **批量匯入**：`node cli.js batch-add <urls.txt>`（每行一個 URL）
-- **手動編輯**：直接修改 `registry/tools.json`
+- **手動編輯**：直接修改 `registry/tools.json`（可手動擴充 `useCase` 與 `advantages`）
 
 ## 關鍵檔案位置
 
