@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>系統架構圖 — SkillsBuilder × Tool-Calling 協作流程</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --green: #4ade80;
+      --yellow: #facc15;
+      --orange: #fb923c;
+      --red: #f87171;
+      --purple: #c084fc;
+      --cyan: #22d3ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* ===== 主架構圖 ===== */
+    .architecture-diagram {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+    }
+    .arch-title {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    /* 層級區塊 */
+    .layer {
+      display: flex;
+      gap: 1.2rem;
+      align-items: stretch;
+      margin-bottom: 1rem;
+    }
+    .layer:last-child { margin-bottom: 0; }
+
+    .layer-label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      background: rgba(96,165,250,0.12);
+      color: var(--accent);
+      padding: 0.8rem 0.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      width: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .layer-content {
+      flex: 1;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* 節點卡片 */
+    .node {
+      background: #0a0f1e;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      min-width: 180px;
+      flex: 1;
+      position: relative;
+    }
+    .node h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .node p {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    .node code {
+      color: var(--cyan);
+      font-family: "Cascadia Code", "Fira Code", monospace;
+      font-size: 0.8rem;
+    }
+
+    /* 顏色變體 */
+    .node-sb { border-color: var(--purple); }
+    .node-sb h4 { color: var(--purple); }
+    .node-tc { border-color: var(--accent); }
+    .node-tc h4 { color: var(--accent); }
+    .node-index { border-color: var(--yellow); }
+    .node-index h4 { color: var(--yellow); }
+    .node-user { border-color: var(--green); }
+    .node-user h4 { color: var(--green); }
+    .node-docker { border-color: var(--orange); }
+    .node-docker h4 { color: var(--orange); }
+    .node-telemetry { border-color: var(--cyan); }
+    .node-telemetry h4 { color: var(--cyan); }
+
+    /* 箭頭連接線 */
+    .connector {
+      text-align: center;
+      padding: 0.5rem 0;
+      color: var(--muted);
+      font-size: 1.5rem;
+      letter-spacing: 0.3rem;
+    }
+    .connector-down::after {
+      content: '⬇';
+    }
+    .connector-right::before {
+      content: '→';
+    }
+    .connector-loop::after {
+      content: '↻';
+    }
+
+    /* ===== 數據流圖 ===== */
+    .flow-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .flow-section h2 {
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .flow-step {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+      padding: 1rem 1.2rem;
+      background: #0a0f1e;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+    .flow-step:last-child { margin-bottom: 0; }
+
+    .flow-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+    .flow-text {
+      flex: 1;
+    }
+    .flow-text strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .flow-text span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== 雙專案對照表 ===== */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 0.7rem 1rem;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    .comparison-table th {
+      background: rgba(96,165,250,0.1);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .comparison-table tr:nth-child(even) {
+      background: rgba(255,255,255,0.02);
+    }
+
+    /* ===== 目錄索引 ===== */
+    .toc {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .toc h3 {
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+      font-size: 1.1rem;
+    }
+    .toc ol {
+      padding-left: 1.5rem;
+      color: var(--muted);
+    }
+    .toc li {
+      margin-bottom: 0.4rem;
+    }
+    .toc a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .toc a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      .layer { flex-direction: column; }
+      .layer-label { writing-mode: horizontal-tb; width: auto; height: 2.2rem; }
+      .layer-content { flex-direction: column; }
+      .node { min-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>🏗️ 系統架構圖</h1>
+  <p class="subtitle">SkillsBuilder × Tool-Calling 協作流程完整視覺化</p>
+
+  <!-- 目錄 -->
+  <div class="toc">
+    <h3>📑 目錄</h3>
+    <ol>
+      <li><a href="#overview">整體架構總覽</a></li>
+      <li><a href="#lifecycle">完整生命週期流程</a></li>
+      <li><a href="#daily">日常使用流程</a></li>
+      <li><a href="#data">數據流與檔案結構</a></li>
+      <li><a href="#compare">兩專案功能對照表</a></li>
+    </ol>
+  </div>
+
+  <!-- 整體架構總覽 -->
+  <div id="overview" class="architecture-diagram">
+    <div class="arch-title">整體架構總覽 — 技能從生產到執行的完整閉環</div>
+
+    <!-- 第一層：用戶觸發 -->
+    <div class="layer">
+      <div class="layer-label">用戶層</div>
+      <div class="layer-content">
+        <div class="node node-user">
+          <h4>👤 開發者 / 用戶</h4>
+          <p>透過 IDE 對話框或終端機發出任務需求<br>
+            <code>「啟動全自動工具調用模式，我要___」</code></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector connector-down"></div>
+
+    <!-- 第二層：SkillsBuilder 治理 -->
+    <div class="layer">
+      <div class="layer-label">治理層</div>
+      <div class="layer-content">
+        <div class="node node-sb">
+          <h4>📦 SkillsBuilder 技能庫</h4>
+          <p><code>skills/core/</code> · <code>skills/dev/</code> · <code>skills/ui/</code><br>
+            93 個 SKILL.md 靜態資產<br>
+            MECE 分類、YAML frontmatter、觸發關鍵字</p>
+        </div>
+        <div class="node node-sb">
+          <h4>🔧 Skill 治理工具</h4>
+          <p><code>/skill-creator</code> — 創建技能<br>
+            <code>/vetter</code> — 安全審計<br>
+            <code>/complexity-reduction</code> — 複雜度削減</p>
+        </div>
+        <div class="node node-sb">
+          <h4>📚 Wiki 知識本體</h4>
+          <p><code>wiki/entities/</code> — 實體定義<br>
+            <code>wiki/concepts/</code> — 核心概念<br>
+            Karpathy LLM Wiki + Hermes 哲學</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector connector-down"></div>
+
+    <!-- 第三層：索引銜接 -->
+    <div class="layer">
+      <div class="layer-label">銜接層</div>
+      <div class="layer-content">
+        <div class="node node-index">
+          <h4>🔗 index-subtools</h4>
+          <p><code>node cli.js add &lt;url&gt;</code><br>
+            <code>node cli.js index-subtools skillsbuilder</code><br>
+            將 SkillsBuilder 的 93 個技能解析為 subTools 陣列</p>
+        </div>
+        <div class="node node-index">
+          <h4>📋 registry/tools.json</h4>
+          <p>207 個主工具 + subTools 子技能<br>
+            JSON Schema 驗證格式<br>
+            包含 triggers / useCase / advantages / negativeConstraints</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector connector-down"></div>
+
+    <!-- 第四層：Tool-Calling 執行引擎 -->
+    <div class="layer">
+      <div class="layer-label">執行層</div>
+      <div class="layer-content">
+        <div class="node node-tc">
+          <h4>🔍 Search Engine</h4>
+          <p>L1 精確匹配 → L2 關鍵字 → L3 TF-IDF 語義<br>
+            同義詞擴展 + N-gram 重疊度<br>
+            Telemetry 動態加權</p>
+        </div>
+        <div class="node node-tc">
+          <h4>📦 Installer</h4>
+          <p>git clone / git-clone-sparse<br>
+            SAFE_REPO_URL 白名單<br>
+            防參數注入 + 路徑穿越</p>
+        </div>
+        <div class="node node-docker">
+          <h4>🐳 Docker Sandbox</h4>
+          <p>隔離執行環境<br>
+            <code>--network none</code><br>
+            <code>--read-only</code> · <code>512MB</code> · <code>1 CPU</code></p>
+        </div>
+        <div class="node node-tc">
+          <h4>🧹 Cleanup</h4>
+          <p>自動移除 .temp/ 臨時目錄<br>
+            系統復歸乾淨狀態</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="connector connector-down"></div>
+
+    <!-- 第五層：回饋迴路 -->
+    <div class="layer">
+      <div class="layer-label">學習層</div>
+      <div class="layer-content">
+        <div class="node node-telemetry">
+          <h4>📈 Telemetry</h4>
+          <p><code>~/.tool-calling/traces/</code><br>
+            記錄成功/失敗軌跡<br>
+            動態調整搜尋權重</p>
+        </div>
+        <div class="node node-telemetry">
+          <h4>💾 SFT Dataset Export</h4>
+          <p><code>export-dataset</code> 指令<br>
+            成功軌跡 → OpenAI Chat ML<br>
+            用於未來 LLM 微調</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 完整生命週期流程 -->
+  <div id="lifecycle" class="flow-section">
+    <h2>🔄 技能完整生命週期</h2>
+
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <strong>生產（SkillsBuilder）</strong>
+        <span>開發者使用 <code>/skill-creator</code> 或 <code>/skill-architect</code> 創建 SKILL.md，遵循 YAML frontmatter + MECE 分類規範。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <strong>審計（SkillsBuilder）</strong>
+        <span><code>/vetter</code> 檢查安全性、<code>/agent-shield</code> 掃描硬編碼密鑰、<code>/complexity-reduction</code> 確保 YAGNI / DRY。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <strong>部署（SkillsBuilder）</strong>
+        <span><code>INSTALL.ps1</code> 透過 Symbolic Link / Deep Copy 將技能部署到 Claude Code、Cursor、Gemini 等 IDE。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <strong>索引（Tool-Calling）</strong>
+        <span><code>node cli.js add &lt;url&gt;</code> + <code>index-subtools skillsbuilder</code> 將 SkillsBuilder 的 93 個技能解析進 tools.json 的 subTools 陣列。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-text">
+        <strong>檢索（Tool-Calling）</strong>
+        <span>用戶發出任務 → L1 精確匹配 → L2 關鍵字 → L3 TF-IDF 語義 → Telemetry 動態加權 → 返回 Top-K 結果。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">6</div>
+      <div class="flow-text">
+        <strong>安裝（Tool-Calling）</strong>
+        <span><code>install</code> 將工具原始碼下載至 <code>.temp/&lt;tool-id&gt;</code>（Sparse Checkout 支援），不污染主機環境。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">7</div>
+      <div class="flow-text">
+        <strong>執行（Tool-Calling）</strong>
+        <span><code>invoke</code> 在 Docker 沙盒中隔離執行：<code>--network none</code> + <code>--read-only</code> + <code>512MB</code> 記憶體限制，完全免疫 RCE 風險。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">8</div>
+      <div class="flow-text">
+        <strong>清理（Tool-Calling）</strong>
+        <span><code>cleanup</code> 移除 <code>.temp/&lt;tool-id&gt;</code> 臨時目錄，系統復歸乾淨狀態。</span>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="flow-num">9</div>
+      <div class="flow-text">
+        <strong>學習（Tool-Calling）</strong>
+        <span><code>telemetry</code> 記錄執行結果 → 成功率高 → 下次搜尋加分；成功率低 → 扣分。成功軌跡可匯出為 SFT 資料集用於 LLM 微調。</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 日常使用流程 -->
+  <div id="daily" class="flow-section">
+    <h2>⚡ 日常使用流程（兩種觸發方式）</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div>
+        <h3 style="color: var(--green); margin-bottom: 1rem;">方式 A：IDE 對話觸發</h3>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--green);">A1</div>
+          <div class="flow-text">
+            <strong>用戶輸入咒語</strong>
+            <span>「啟動全自動工具調用模式，我要做投影片」</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--green);">A2</div>
+          <div class="flow-text">
+            <strong>AI Agent 解析意圖</strong>
+            <span>提取關鍵字「投影片」+ 場景「做」</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--green);">A3</div>
+          <div class="flow-text">
+            <strong>執行 search</strong>
+            <span><code>node cli.js search "做投影片"</code> → 返回 Top 5 候選工具</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--green);">A4</div>
+          <div class="flow-text">
+            <strong>列出指令等待確認</strong>
+            <span>展示 install / invoke 命令，等用戶說「可以」</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--green);">A5</div>
+          <div class="flow-text">
+            <strong>自動執行 + 清理</strong>
+            <span>install → invoke（Docker 沙盒）→ cleanup</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="color: var(--orange); margin-bottom: 1rem;">方式 B：終端機手動操作</h3>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--orange);">B1</div>
+          <div class="flow-text">
+            <strong>搜尋工具</strong>
+            <span><code>node cli.js search "我要做投影片"</code></span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--orange);">B2</div>
+          <div class="flow-text">
+            <strong>查看詳情</strong>
+            <span><code>node cli.js info ppt-master</code>（檢查 🚫 禁用場景）</span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--orange);">B3</div>
+          <div class="flow-text">
+            <strong>安裝到暫存區</strong>
+            <span><code>node cli.js install ppt-master</code></span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--orange);">B4</div>
+          <div class="flow-text">
+            <strong>沙盒執行</strong>
+            <span><code>node cli.js invoke ppt-master</code></span>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num" style="background: var(--orange);">B5</div>
+          <div class="flow-text">
+            <strong>清理臨時檔案</strong>
+            <span><code>node cli.js cleanup ppt-master</code></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 數據流與檔案結構 -->
+  <div id="data" class="flow-section">
+    <h2>📂 數據流與檔案結構</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div>
+        <h3 style="color: var(--purple); margin-bottom: 1rem;">SkillsBuilder 檔案結構</h3>
+        <div class="code-block" style="background: #0a0f1e; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; overflow-x: auto;">
+          <pre style="font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.82rem; color: #e2e8f0; white-space: pre;">SkillsBuilder/
+├── skills/
+│   ├── core/              ← 核心技能（10+）
+│   │   └── tavily/SKILL.md
+│   ├── dev/               ← 開發技能（49+）
+│   │   └── graphify/SKILL.md
+│   └── ui/                ← UI 設計技能（1+）
+├── wiki/
+│   ├── entities/          ← 知識實體定義
+│   └── concepts/          ← 核心概念文檔
+├── raw/external/          ← 外部子模組
+│   └── agency-agents-zh/  ← 193+ 人格庫
+├── hooks/                 ← IDE Session Hook
+├── INSTALL.ps1            ← 一鍵部署腳本
+├── verify.ps1             ← 驗證腳本
+└── package.json           ← npm 依賴管理</pre>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Tool-Calling 檔案結構</h3>
+        <div class="code-block" style="background: #0a0f1e; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; overflow-x: auto;">
+          <pre style="font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.82rem; color: #e2e8f0; white-space: pre;">Tool-Calling/
+├── core/
+│   ├── search-engine.js   ← TF-IDF 三層檢索引擎
+│   ├── installer.js       ← 動態安裝（含安全防護）
+│   ├── sandbox.js         ← Docker 沙盒管理
+│   ├── telemetry.js       ← 軌跡追蹤與統計
+│   └── cleanup.js         ← 臨時目錄清理
+├── registry/
+│   ├── tools.json         ← 工具註冊庫（207 庫）
+│   └── schemas/
+│       └── tool.schema.json
+├── scripts/
+│   ├── scan-tool.js       ← GitHub URL 掃描器
+│   ├── scan-monorepo.js   ← 深層索引掃描器
+│   ├── enrich-registry.js ← AI 批次補齊元資料
+│   ├── export-dataset.js  ← SFT 資料萃取
+│   └── build-web.js       ← 靜態網站打包
+├── web/                   ← Premium UI 檢索介面
+├── tests/
+│   └── search.test.js     ← 6 項單元測試
+└── docs/                  ← 文檔（新手指南 + 架構圖）</pre>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="color: var(--yellow); margin: 1.5rem 0 1rem;">🔗 關鍵數據流</h3>
+    <div class="code-block" style="background: #0a0f1e; border: 1px solid var(--border); border-radius: 8px; padding: 1rem; overflow-x: auto;">
+      <pre style="font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 0.85rem; color: #e2e8f0; white-space: pre;">
+SkillsBuilder/skills/  ──[index-subtools]──→  registry/tools.json.subTools[]
+                                                      │
+                                              [search query]
+                                                      │
+                                                      ▼
+                                          core/search-engine.js
+                                    L1 exact → L2 keyword → L3 TF-IDF
+                                                      │
+                                              [Top-K results]
+                                                      │
+                                              [user confirms]
+                                                      │
+                                                      ▼
+                                          core/installer.js
+                                    git clone / sparse checkout → .temp/{tool-id}/
+                                                      │
+                                              [invoke]
+                                                      │
+                                                      ▼
+                                          core/sandbox.js
+                                    Docker container (--network none, --read-only)
+                                                      │
+                                              [result]
+                                                      │
+                                                      ▼
+                                    ┌──────────────────┴──────────────────┐
+                                    │                                   │
+                              core/cleanup.js                    core/telemetry.js
+                                    │                                   │
+                                    ▼                                   ▼
+                            .temp removed                        traces.jsonl
+                                                            (~/.tool-calling/)
+                                                                    │
+                                                            [export-dataset]
+                                                                    │
+                                                                    ▼
+                                                              dataset.jsonl
+                                                          (OpenAI Chat ML format)</pre>
+    </div>
+  </div>
+
+  <!-- 雙專案對照表 -->
+  <div id="compare" class="flow-section">
+    <h2>⚖️ 兩專案功能對照表</h2>
+
+    <table class="comparison-table">
+      <tr>
+        <th>維度</th>
+        <th style="color: var(--purple);">SkillsBuilder</th>
+        <th style="color: var(--accent);">Tool-Calling</th>
+      </tr>
+      <tr>
+        <td><strong>定位</strong></td>
+        <td>靜態技能資產倉庫 + 治理規範</td>
+        <td>動態工具調度引擎 + 安全執行</td>
+      </tr>
+      <tr>
+        <td><strong>核心資料</strong></td>
+        <td><code>93 個 SKILL.md</code>（純 Markdown 指引文件）</td>
+        <td><code>207 個工具註冊條目</code>（結構化 JSON）</td>
+      </tr>
+      <tr>
+        <td><strong>觸發方式</strong></td>
+        <td>IDE Slash Command：<code>/tavily</code>, <code>/graphify</code>…</td>
+        <td>CLI 指令：<code>node cli.js search/invoke</code></td>
+      </tr>
+      <tr>
+        <td><strong>檢索能力</strong></td>
+        <td>❌ 無內建搜尋引擎</td>
+        <td>✅ L1/L2/L3 三層漸進式檢索 + Telemetry 加權</td>
+      </tr>
+      <tr>
+        <td><strong>執行能力</strong></td>
+        <td>❌ 技能為靜態 SOP，不直接執行</td>
+        <td>✅ Docker 沙盒隔離執行 + 自動清理</td>
+      </tr>
+      <tr>
+        <td><strong>安全機制</strong></td>
+        <td><code>/agent-shield</code> 靜態掃描</td>
+        <td>Docker 隔離 + SAFE_REPO_URL 白名單 + 防注入</td>
+      </tr>
+      <tr>
+        <td><strong>學習進化</strong></td>
+        <td>❌ 無自我學習機制</td>
+        <td>✅ Telemetry 動態加權 + SFT 資料集匯出</td>
+      </tr>
+      <tr>
+        <td><strong>IDE 適配</strong></td>
+        <td>✅ 十餘種 IDE 適配（Claude/Cursor/Gemini…）</td>
+        <td>❌ 僅 CLI + Web UI</td>
+      </tr>
+      <tr>
+        <td><strong>銜接點</strong></td>
+        <td colspan="2" style="text-align:center;"><code>node cli.js index-subtools skillsbuilder</code> → 將 SkillsBuilder 技能索引進 Tool-Calling 搜尋庫</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 一句話總結 -->
+  <div style="background: linear-gradient(135deg, #1e3a5f, #172554); border: 2px solid var(--accent); border-radius: 12px; padding: 1.5rem; text-align: center; font-size: 1.15rem; margin-top: 2rem;">
+    <p><strong style="color: var(--accent);">一句話總結：</strong></p>
+    <p>SkillsBuilder 管「<strong>有什麼技能、怎麼治理</strong>」，Tool-Calling 管「<strong>怎麼找到、怎麼安全執行</strong>」。</p>
+    <p style="margin-top: 0.8rem; color: var(--muted); font-size: 0.95rem;">兩者透過 <code>index-subtools</code> 銜接，構成「技能生產 → 治理 → 部署 → 檢索 → 執行 → 學習」的完整閉環。</p>
+  </div>
+
+  <footer>
+    <p>SkillsBuilder × Tool-Calling System Architecture | MIT License</p>
+  </footer>
+
+</div>
+</body>
+</html>
