@@ -43,14 +43,22 @@ node cli.js index-subtools agent-skills
 node cli.js validate
 ```
 
-## 已註冊工具 (>160 庫)
+## 已註冊工具 (207 庫)
 
-庫中目前已收錄超過 160+ 頂尖開源代理技能、框架與學習資源。部分精選類別包含：
+庫中目前已收錄 **207 個**頂尖開源代理技能、框架與學習資源。部分精選類別包含：
 - 📄 **文件生產力**：AIPPT, NotebookLM2PPT, Markitdown...
 - 🧠 **知識管理**：Graphify, Ontology...
 - 🤖 **AI 框架**：Langchain, Dify, MetaGPT, CrewAI, Autogen...
 - 🧪 **測試與自動化**：Playwright, n8n...
 - 🎨 **多媒體生成**：Stable Diffusion WebUI, Open Generative AI...
+
+## 安全性強化 (Phase 14)
+
+`core/installer.js` 已全面強化防呆機制：
+- ✅ `SAFE_REPO_URL` 白名單限制，僅允許 `https://github.com/<owner>/<repo>` 格式
+- ✅ `assertSafeRef` 防護參數注入（阻擋 `-` 開頭）與路徑穿越（阻擋 `..`）
+- ✅ 陣列傳參 + `--` 明確標記，避免 git 誤判旗標
+- ✅ Git RCE 防禦：封鎖 `ext::` 傳輸協定等惡意 payload
 
 ## 核心特性：差異化與深層索引
 

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>實際開發情境 — SkillsBuilder × Tool-Calling</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card-alt: #172033;
+      --border: #334155;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --green: #4ade80;
+      --yellow: #facc15;
+      --orange: #fb923c;
+      --red: #f87171;
+      --purple: #c084fc;
+      --cyan: #22d3ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 0.3rem;
+      color: var(--accent);
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* 情境背景 */
+    .scenario-card {
+      background: linear-gradient(135deg, #1e3a5f, #1e293b);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .scenario-card h2 { color: var(--accent); font-size: 1.2rem; margin-bottom: 0.8rem; }
+    .scenario-card blockquote {
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      font-style: italic;
+      color: var(--text);
+      margin: 0.8rem 0;
+    }
+
+    /* 步驟區塊 */
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+    }
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .step-green .step-num { background: var(--green); color: #000; }
+    .step-yellow .step-num { background: var(--yellow); color: #000; }
+    .step-orange .step-num { background: var(--orange); }
+    .step-blue .step-num { background: var(--accent); }
+    .step-purple .step-num { background: var(--purple); }
+    .step h2 { font-size: 1.25rem; }
+    .step h3 { color: var(--accent); font-size: 1.05rem; margin: 1.2rem 0 0.5rem; }
+    .step p { margin-bottom: 0.8rem; color: var(--text); }
+
+    /* 引用/對話框 */
+    .dialogue {
+      background: rgba(96,165,250,0.08);
+      border-left: 3px solid var(--accent);
+      padding: 0.7rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .dialogue strong { color: var(--accent); }
+
+    .success-box {
+      background: rgba(74,222,128,0.08);
+      border-left: 3px solid var(--green);
+      padding: 0.7rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      color: var(--green);
+      font-size: 0.95rem;
+    }
+
+    .warning-box {
+      background: rgba(250,204,21,0.08);
+      border-left: 3px solid var(--yellow);
+      padding: 0.7rem 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      color: var(--yellow);
+      font-size: 0.95rem;
+    }
+
+    /* 程式碼區塊 */
+    .code-block {
+      background: #0a0f1e;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      overflow-x: auto;
+    }
+    .code-block pre {
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: #e2e8f0;
+      white-space: pre;
+    }
+    .code-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 0.65rem 0.8rem;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: rgba(96,165,250,0.1); color: var(--accent); font-weight: 600; }
+    tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+    /* 技能觸發列表 */
+    .skill-list {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    .skill-list li {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .skill-list li:last-child { border-bottom: none; }
+    .skill-tag {
+      display: inline-block;
+      background: rgba(96,165,250,0.15);
+      color: var(--accent);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-family: "Cascadia Code", "Fira Code", monospace;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* 時間軸 */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.6rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -1.65rem;
+      top: 0.55rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-time {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* 總結卡片 */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .summary-card {
+      background: var(--card-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.2rem;
+    }
+    .summary-card h4 {
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .summary-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* 一句話總結 */
+    .one-liner {
+      background: linear-gradient(135deg, #1e3a5f, #172554);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.15rem;
+      margin-top: 2.5rem;
+    }
+    .one-liner strong { color: var(--accent); }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.5rem; }
+      .step { padding: 1.2rem; }
+      h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>🎬 實際開發情境</h1>
+  <p class="subtitle">SkillsBuilder × Tool-Calling 搭配使用完整案例<br>以「個人作品集網站」專案為例</p>
+
+  <!-- 情境背景 -->
+  <div class="scenario-card">
+    <h2>📋 任務背景</h2>
+    <blockquote>
+      「幫我做一个响应式个人作品集网站，要有暗色系、毛玻璃效果，能展示我的项目、文章、联系方式。」
+    </blockquote>
+    <p style="color:var(--muted); margin-top:0.8rem;">
+      你是自由接案者。這個案子需要<strong>需求分析 → 規劃 → UI 設計 → 實作 → 安全審查 → 外部工具調用</strong>等完整流程。以下用三天說明兩個專案如何協同工作。
+    </p>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="step step-green">
+    <div class="step-header">
+      <span class="step-num">1</span>
+      <h2>第一天：用 SkillsBuilder 建立工作纪律</h2>
+    </div>
+
+    <h3>🕙 上午 10:00 — 打開 IDE，啟動開發流程</h3>
+    <p>打開你的 IDE（Claude Code / Cursor / Antigravity 任一），SkillsBuilder 已透過 <code>INSTALL.ps1</code> 部署好技能，可直接觸發。</p>
+
+    <div class="dialogue">
+      <strong>你對 AI 說：</strong><br>
+      「我要開始做一個作品集網站，幫我啟動開發流程。」
+    </div>
+
+    <p>AI 會自動依序觸發 SkillsBuilder 的技能文件：</p>
+
+    <ul class="skill-list">
+      <li>
+        <span class="skill-tag">/grill-requirements</span>
+        <span>先拷問你：客戶有哪些隱藏需求？目標受眾是誰？有沒有參考網站？</span>
+      </li>
+      <li>
+        <span class="skill-tag">/planning-with-files</span>
+        <span>生成 <code>task_plan.md</code>、<code>findings.md</code>、<code>progress.md</code>，追蹤進度。</span>
+      </li>
+      <li>
+        <span class="skill-tag">/writing-plans</span>
+        <span>把模糊的「暗色系、毛玻璃」翻譯成可執行的規格清單。</span>
+      </li>
+      <li>
+        <span class="skill-tag">/premium-design</span>
+        <span>套用 Morandi 色系 + Glassmorphism UI 規範。</span>
+      </li>
+      <li>
+        <span class="skill-tag">/tdd-enforcer</span>
+        <span>強制先寫測試再寫程式碼，杜絕 Vibe Coding。</span>
+      </li>
+    </ul>
+
+    <div class="success-box">✅ 到這裡你完全不用自己找工具——SkillsBuilder 的技能文件就是這些 SOP 的 Source of Truth。</div>
+
+    <h3>🕚 上午 11:00 — 完成第一個頁面後做 Code Review</h3>
+
+    <div class="dialogue">
+      <strong>你對 AI 說：</strong><br>
+      「幫我審查這段程式碼。」
+    </div>
+
+    <p>AI 觸發 <span class="skill-tag">/receiving-code-review</span>，以嚴謹態度分析你的程式碼風格、安全性、回歸風險。</p>
+
+    <h3>🕞 下午 2:00 — 發現不小心寫了 API Key</h3>
+
+    <div class="code-block">
+      <div class="code-label">你發現了這行危險程式碼：</div>
+      <pre>const apiKey = 'sk-1234567890abcdef';  // ← Hardcoded credential</pre>
+    </div>
+
+    <div class="dialogue">
+      <strong>你對 AI 說：</strong><br>
+      「掃描一下有沒有洩漏的密鑰。」
+    </div>
+
+    <p>AI 觸發 <span class="skill-tag">/agent-shield</span>，掃描所有 staged 檔案，輸出：</p>
+
+    <div class="code-block">
+      <pre>⚠️ Critical: src/config.js:12 — hardcoded API Key detected
+🔧 Suggestion: Replace with process.env.API_KEY</pre>
+    </div>
+
+    <div class="warning-box">⚠️ 這就是 SkillsBuilder 的價值——它不執行工具，但它<strong>確保你做每件事的時候都有正確的 SOP 和防呆機制</strong>。</div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="step step-yellow">
+    <div class="step-header">
+      <span class="step-num">2</span>
+      <h2>第二天：用 Tool-Calling 執行具體任務</h2>
+    </div>
+    <p>SkillsBuilder 幫你<strong>怎麼做</strong>，Tool-Calling 幫你<strong>用什麼工具做</strong>。今天開始進入「接單 → 選工具 → 沙盒執行」的流程。</p>
+
+    <h3>🕙 上午 10:00 — 需要生成投影片給客戶看</h3>
+
+    <div class="dialogue">
+      <strong>你對 AI 說：</strong><br>
+      「啟動全自動工具調用模式，我要做一份投影片給客戶看。」
+    </div>
+
+    <p>AI 自動走 AGENTS.md 內建的 SOP：</p>
+
+    <div class="code-block">
+      <div class="code-label">① 搜尋最適工具</div>
+      <pre>node cli.js search "我要做投影片給客戶看"</pre>
+    </div>
+
+    <div class="code-block">
+      <pre>#1 PPT Master (ppt-master)          信心度: 92% [L2-keyword]
+   ⭐ 場景: Transform meeting notes into polished slide decks
+   🚫 禁用場景: Not for video or interactive web slideshows
+   🔗 https://github.com/hugohe3/ppt-master
+
+#2 AIPPT                              信心度: 78% [L2-keyword]
+#3 NotebookLM2PPT                     信心度: 65% [L3-semantic]</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">② 查看詳情，確認禁用場景</div>
+      <pre>node cli.js info ppt-master</pre>
+    </div>
+
+    <div class="code-block">
+      <pre>ID:            ppt-master
+URL:           https://github.com/hugohe3/ppt-master
+描述:          AI tool converting docs or topics into native PowerPoint decks
+分類:          文件生產力
+語言:          python
+⭐ 場景:       Transform meeting notes into polished slide decks
+🚫 禁用場景:   Do not use for creating video content or interactive web-based slideshows
+★ 優勢:        Generates fully editable .pptx files
+               Supports custom templates, transition animations
+               Directly converts text documents into structured outlines
+安裝:          pip install ppt-master [pip]</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">③ 安裝（只抓到 .temp/，不污染系統）</div>
+      <pre>node cli.js install ppt-master</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">④ Docker 沙盒中執行（完全隔離，不怕中毒）</div>
+      <pre>node cli.js invoke ppt-master</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">⑤ 用完清理</div>
+      <pre>node cli.js cleanup ppt-master</pre>
+    </div>
+
+    <div class="success-box">✅ 整個過程中，<code>ppt-master</code> 只在 Docker 容器裡運行，不會在你的電腦上留下任何相依套件。</div>
+
+    <h3>🕐 下午 1:00 — 需要分析競品網站架構</h3>
+
+    <div class="dialogue">
+      <strong>你對 AI 說：</strong><br>
+      「啟動全自動工具調用模式，幫我分析競品的網站架構。」
+    </div>
+
+    <div class="code-block">
+      <pre>node cli.js search "分析競品網站架構"
+→ 命中 Playwright（自動化瀏覽器測試工具）
+
+node cli.js install playwright
+node cli.js invoke playwright --url https://competitor.com --screenshot
+→ 輸出：截圖 + 頁面結構分析報告</pre>
+    </div>
+
+    <h3>🕒 下午 3:00 — 需要畫專案架構圖</h3>
+
+    <div class="dialogue">
+      <strong>你對 AI 說：</strong><br>
+      「啟動全自動工具調用模式，幫我畫系統架構圖。」
+    </div>
+
+    <div class="code-block">
+      <pre>node cli.js search "畫系統架構圖"
+→ 命中 Graphify（知識圖譜工具）
+
+node cli.js install graphify
+node cli.js invoke graphify --input ./src --format mermaid
+→ 輸出：project-graph.mmd（可在 Mermaid Live Editor 渲染）</pre>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="step step-orange">
+    <div class="step-header">
+      <span class="step-num">3</span>
+      <h2>第三天：兩個專案真正接軌</h2>
+    </div>
+
+    <p>你用自己的 <span class="skill-tag">/skill-creator</span> 寫了一個新技能 <code>my-portfolio-generator</code>，放在 SkillsBuilder 目錄下：</p>
+
+    <div class="code-block">
+      <pre>d:/Self-developed_Apps/SkillsBuilder/skills/dev/my-portfolio-generator/SKILL.md</pre>
+    </div>
+
+    <p>現在你想讓 Tool-Calling 也能搜尋到這個自訂技能：</p>
+
+    <div class="code-block">
+      <div class="code-label">① 進到 Tool-Calling</div>
+      <pre>cd d:/Self-developed_Apps/Tool-Calling</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">② 註冊 SkillsBuilder 為工具來源</div>
+      <pre>node cli.js add https://github.com/Chun-Chieh-Chang/SkillsBuilder</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">③ 深度索引，掃出全部技能</div>
+      <pre>node cli.js index-subtools skillsbuilder</pre>
+    </div>
+
+    <div class="code-block">
+      <pre>開始深層掃描 Monorepo: SkillsBuilder
+正在下載專案...
+掃描目錄結構...
+✓ 發現 93 個子工具
+已將 subTools 寫入資料庫。</pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-label">④ 驗證</div>
+      <pre>node cli.js search "作品集生成器"</pre>
+    </div>
+
+    <div class="code-block">
+      <pre>#1 my-portfolio-generator (信心度 85%) [L2-keyword]
+#2 ppt-master (信心度 72%)</pre>
+    </div>
+
+    <div class="success-box">✅ 你的自訂技能現在也是 Tool-Calling 搜尋庫的一等公民了。SkillsBuilder 負責<strong>治理與部署</strong>，Tool-Calling 負責<strong>檢索與執行</strong>。</div>
+  </div>
+
+  <!-- 三天總覽時間軸 -->
+  <div class="step step-blue">
+    <div class="step-header">
+      <span class="step-num">📊</span>
+      <h2>三天開發流程總覽</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">Day 1 — SkillsBuilder 管「怎麼做」</div>
+        <p>
+          <span class="skill-tag">/grill-requirements</span> 需求反轉拷問<br>
+          <span class="skill-tag">/planning-with-files</span> 產生任務計劃<br>
+          <span class="skill-tag">/premium-design</span> 套用 UI 規範<br>
+          <span class="skill-tag">/tdd-enforcer</span> 強制 TDD<br>
+          <span class="skill-tag">/agent-shield</span> 安全掃描<br>
+          <span class="skill-tag">/receiving-code-review</span> 程式碼審查
+        </p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">Day 2 — Tool-Calling 管「用什麼工具做」</div>
+        <p>
+          <span class="skill-tag">search</span> 語義搜尋最適工具<br>
+          <span class="skill-tag">info</span> 查看詳細資訊與禁用場景<br>
+          <span class="skill-tag">install</span> 動態安裝到 .temp/<br>
+          <span class="skill-tag">invoke</span> Docker 沙盒隔離執行<br>
+          <span class="skill-tag">cleanup</span> 用完自動清理
+        </p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">Day 3 — 兩者接軌</div>
+        <p>
+          SkillsBuilder 新增自訂技能 → <span class="skill-tag">index-subtools</span> 索引進 Tool-Calling → 自訂技能也能被自動搜尋調用
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分工總結 -->
+  <div class="step">
+    <div class="step-header">
+      <span class="step-num">🧩</span>
+      <h2>分工總結</h2>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h4>📝 SkillsBuilder</h4>
+        <p>管<strong>流程、規範、品質</strong>。<br>確保你在對的時間做對的事。<br>它是你的 SOP 圖書館。</p>
+      </div>
+      <div class="summary-card">
+        <h4>⚡ Tool-Calling</h4>
+        <p>管<strong>檢索、安裝、執行、清理</strong>。<br>讓外部工具自動找到、安全跑完、用完消失。<br>它是你的工具調度引擎。</p>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>開發階段</th><th>使用專案</th><th>具體動作</th></tr>
+      <tr><td>需求分析</td><td>SkillsBuilder</td><td><code>/grill-requirements</code> 拷問模糊需求</td></tr>
+      <tr><td>專案規劃</td><td>SkillsBuilder</td><td><code>/planning-with-files</code> 產生 task_plan.md</td></tr>
+      <tr><td>UI 設計</td><td>SkillsBuilder</td><td><code>/premium-design</code> 套用設計規範</td></tr>
+      <tr><td>程式碼實作</td><td>SkillsBuilder</td><td><code>/tdd-enforcer</code> 強制先寫測試</td></tr>
+      <tr><td>安全審查</td><td>SkillsBuilder</td><td><code>/agent-shield</code> 掃描硬編碼密鑰</td></tr>
+      <tr><td>程式碼審查</td><td>SkillsBuilder</td><td><code>/receiving-code-review</code> 嚴謹審計</td></tr>
+      <tr><td>執行外部工具</td><td>Tool-Calling</td><td><code>search → invoke</code> 自動選工具並沙盒執行</td></tr>
+      <tr><td>畫架構圖</td><td>Tool-Calling</td><td><code>invoke graphify</code> 產出 Mermaid 圖</td></tr>
+      <tr><td>生成投影片</td><td>Tool-Calling</td><td><code>invoke ppt-master</code> 自動安裝、執行、清理</td></tr>
+    </table>
+  </div>
+
+  <!-- 一句話總結 -->
+  <div class="one-liner">
+    <p><strong>一句話總結：</strong></p>
+    <p>SkillsBuilder 讓你「知道怎麼做」，Tool-Calling 讓你「自動做到」。</p>
+    <p style="margin-top:0.8rem;color:var(--muted);font-size:0.95rem;">前者是 SOP 圖書館，後者是工具調度引擎。合起來才是完整的 AI 輔助開發閉環。</p>
+  </div>
+
+  <footer>
+    <p>SkillsBuilder × Tool-Calling 實際開發情境 | MIT License</p>
+  </footer>
+
+</div>
+</body>
+</html>
