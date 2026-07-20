@@ -194,3 +194,13 @@
 
 #### 預防措施 (Preventive Action - CAPA)
 - 觸發 <proactive_self_evolution> 規則，主動於專案全域指令 .agents/AGENTS.md 中新增了 **「禁止硬編碼 API 金鑰與敏感憑證 (Zero Hardcoded Credentials)」** 條款。未來撰寫任何需驗證的腳本前，強制實施自我審查，確保無憑證硬編碼情事。
+
+### 2026-07-20：安全性強化 (Phase 14)
+
+#### 需求與動機
+修復 `installer.js` 中潛在的 Git RCE 與路徑穿越漏洞（例如 `ext::` 傳輸層、`--upload-pack` 參數注入、以及子目錄的路徑穿越）。
+
+#### 完成項目
+- [x] 導入 `SAFE_REPO_URL` 正則白名單，嚴格限制 Github Repo URL 格式。
+- [x] 實作 `assertSafeRef` 函式，防止參數注入（阻擋 `-` 開頭）與路徑穿越（阻擋 `..`）。
+- [x] 將修復後的 `core/installer.js` 提交並推送到遠端。
