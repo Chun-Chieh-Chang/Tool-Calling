@@ -1,6 +1,33 @@
-import { spawnSync } from 'node:child_process';
+import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative, isAbsolute } from 'node:path';
+
+// 只允許乾淨的 https://github.com/<owner>/<repo>(.git) 形式。
+// 這同時擋掉：
+//  1. shell 中繼字元 (即便改用陣列傳參也一併防禦，避免依賴單一防線)
+//  2. git 的 `ext::<command>` 傳輸協定 RCE(這是 git 本身的功能，不是 shell 的問題，
+//     陣列傳參無法防禦，必須在交給 git 之前就擋掉非 https://github.com 的協定)
+const SAFE_REPO_URL = /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+(?:\.git)?$/;
+
+// 分支/子路徑不允許路徑穿越，且不能以 '-' 開頭
+// (以 '-' 開頭會被 git 誤判成參數而不是資料，即所謂的「參數注入」)
+function assertSafeRef(value, label) {
+  if (typeof value !== 'string' || value.length === 0) {
+    throw new Error(`${label} 不可為空`);
+  }
+  if (value.startsWith('-')) {
+    throw new Error(`${label} 不可以 '-' 開頭 (疑似參數注入): ${value}`);
+  }
+  if (value.split('/').includes('..')) {
+    throw new Error(`${label} 含有路徑穿越字元: ${value}`);
+  }
+}
+
+function assertSafeRepoUrl(url) {
+  if (!SAFE_REPO_URL.test(url)) {
+    throw new Error(`不安全或不支援的 repoUrl(僅允許 https://github.com/<owner>/<repo>): ${url}`);
+  }
+}
 
 /**
  * 動態安裝工具到臨時目錄
@@ -24,31 +51,41 @@ export function installTool(tool, baseTempDir) {
   console.log(`\x1b[2m目標路徑: ${targetDir}\x1b[0m`);
 
   const method = tool.install?.method || 'git-clone';
+  const rawRepoUrl = tool.install?.repoUrl || tool.url;
 
   try {
     switch (method) {
       case 'git-clone': {
-        const repoUrl = tool.install?.repoUrl || tool.url;
-        const result = spawnSync('git', ['clone', `${repoUrl}.git`, targetDir], { stdio: 'inherit' });
-        if (result.status !== 0) throw new Error(`git clone failed for ${repoUrl}`);
+        const repoUrl = `${rawRepoUrl}.git`;
+        assertSafeRepoUrl(repoUrl);
+        // 陣列傳參 (execFileSync 不經過 shell 解析)，並以 `--` 明確標記後面都是位置參數，
+        // 避免 repoUrl/targetDir 被 git 誤判成旗標。
+        execFileSync('git', ['clone', '--', repoUrl, targetDir], { stdio: 'inherit' });
         // Sandbox Mode: 不在本機執行 npm install 或 pip install，將其推遲至 invoke 階段的沙盒內執行
         break;
       }
       case 'git-clone-sparse': {
-        const repoUrl = tool.install?.repoUrl || tool.url;
+        const repoUrl = `${rawRepoUrl}.git`;
+        assertSafeRepoUrl(repoUrl);
+        assertSafeRef(tool.install.subpath, 'subpath');
+        const branch = tool.install.branch || 'main';
+        assertSafeRef(branch, 'branch');
+
         mkdirSync(targetDir, { recursive: true });
         console.log(`\x1b[36m執行 Sparse Checkout，僅下載子目錄: ${tool.install.subpath}...\x1b[0m`);
-        
-        let result = spawnSync('git', ['clone', '--filter=blob:none', '--no-checkout', `${repoUrl}.git`, '.'], { cwd: targetDir, stdio: 'inherit' });
-        if (result.status !== 0) throw new Error('git clone failed for sparse checkout');
-        
-        result = spawnSync('git', ['sparse-checkout', 'set', tool.install.subpath], { cwd: targetDir, stdio: 'inherit' });
-        if (result.status !== 0) throw new Error('git sparse-checkout set failed');
-        
-        result = spawnSync('git', ['checkout', tool.install.branch || 'main'], { cwd: targetDir, stdio: 'inherit' });
-        if (result.status !== 0) throw new Error('git checkout failed');
-        
+        execFileSync('git', ['clone', '--filter=blob:none', '--no-checkout', '--', repoUrl, '.'], { cwd: targetDir, stdio: 'inherit' });
+        execFileSync('git', ['sparse-checkout', 'set', '--', tool.install.subpath], { cwd: targetDir, stdio: 'inherit' });
+        // 注意：對 `git checkout` 而言 `--` 代表「後面是路徑，不是分支」，語意跟 clone/sparse-checkout
+        // 不同，加了反而會把分支名當檔案路徑處理導致失敗。分支名的參數注入已經由 assertSafeRef
+        // (擋開頭 '-') 防護，這裡不需要也不能加 `--`。
+        execFileSync('git', ['checkout', branch], { cwd: targetDir, stdio: 'inherit' });
+
         const subPathDir = join(targetDir, tool.install.subpath);
+        // 二次防禦：確保最終路徑真的還在 targetDir 底下 (防止 join() 因奇怪的 subpath 跳出去)
+        const rel = relative(targetDir, subPathDir);
+        if (rel.startsWith('..') || isAbsolute(rel)) {
+          throw new Error(`subpath 解析後跳出安裝目錄範圍: ${tool.install.subpath}`);
+        }
         // Sandbox Mode: 不在本機安裝依賴
         console.log(`\n\x1b[32m✓ 安裝完成\x1b[0m`);
         return subPathDir;
