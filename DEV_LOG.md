@@ -256,3 +256,20 @@
 
 #### RCA / CAPA
 - (本次為專案架構優化，無特殊錯誤發生，成功瘦身並提升專案整潔度)
+
+### 2026-07-21 — MCP 介面整合與安全防禦固化 (Phase 18)
+
+#### 需求與動機
+1. **防禦機制固化**：將 Claude 提出的三項安全需求（強制金鑰自檢、Prompt Injection 防禦標籤 `<untrusted_data>`、以及優雅降級 Fallback 機制）寫入專案的最高指導原則 `.agents/AGENTS.md`。
+2. **MCP (Model Context Protocol) 介面實作**：避免直接引入 Smart Reranker 帶來的新攻擊面與外部 API 成本，改以提供標準的 MCP 介面，讓 AI Agent (如 Claude Desktop) 透過兩階段漸進式揭露 (Progressive Disclosure) 來安全地檢索與調用工具。
+
+#### 完成項目
+- [x] **安全防禦固化**：更新 `.agents/AGENTS.md` 加入 `LLM 整合安全與防禦元規則`。
+- [x] **MCP Server 實作**：新增 `mcp-server.js`，實作 STDIO 傳輸介面，並暴露出 `list_tools`、`search_tools`、`get_tool_detail` 與 `run_tool` 四個工具。
+- [x] **沙盒執行對接**：`run_tool` 成功對接 `core/sandbox.js` 邏輯，保留嚴格的 Docker 容器限制 (`--network none`, `--read-only`, `--cap-drop ALL`)。
+- [x] **依賴更新**：`package.json` 新增 `@modelcontextprotocol/sdk`。
+- [x] **文件同步**：更新 `README.md` 加入 MCP 伺服器的啟動與設定方式。
+
+#### RCA / CAPA
+- **問題 (審查階段發現)**：開發夥伴 (opencode) 雖然完美實作了程式碼與 `README.md` 的更新並完成了 Commit 推播，但遺漏了同步更新 `DEV_LOG.md`，違反了 `AGENTS.md` 中「禁止文件與代碼提交脫鉤 (Zero Detached Commits for Docs/Logs)」的規則。
+- **矯正措施**：主動補上本階段的開發日誌紀錄，並進行補充 Commit。
