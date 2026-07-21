@@ -15,7 +15,8 @@
     "search": "node cli.js search",
     "health-check": "node cli.js health-check",
     "validate": "node cli.js validate",
-    "enrich": "node scripts/enrich-registry.js"
+    "enrich": "node scripts/enrich-registry.js",
+    "mcp": "node mcp-server.js"
   },
   "keywords": [
     "tool-calling",
@@ -28,5 +29,8 @@
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
   }
 }
