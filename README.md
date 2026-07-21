@@ -43,9 +43,9 @@ node cli.js index-subtools agent-skills
 node cli.js validate
 ```
 
-## 已註冊工具 (207 庫)
+## 已註冊工具 (>265 庫)
 
-庫中目前已收錄 **207 個**頂尖開源代理技能、框架與學習資源。部分精選類別包含：
+庫中目前已收錄 **超過 265 個**頂尖開源代理技能、框架與學習資源。包含透過深層拆解所取得的上千個微技能。部分精選類別包含：
 - 📄 **文件生產力**：AIPPT, NotebookLM2PPT, Markitdown...
 - 🧠 **知識管理**：Graphify, Ontology...
 - 🤖 **AI 框架**：Langchain, Dify, MetaGPT, CrewAI, Autogen...
