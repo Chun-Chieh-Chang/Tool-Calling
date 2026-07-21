@@ -77,6 +77,7 @@ Tool-Calling/
 ├── .agents/
 │   └── AGENTS.md              # Agent 觸發指令與全域統一設定 (Single Source of Truth)
 ├── cli.js                     # CLI 入口
+├── mcp-server.js              # MCP (Model Context Protocol) 伺服器
 ├── core/
 │   ├── search-engine.js       # TF-IDF 三層檢索引擎 (Pure JS，支援瀏覽器與 Node)
 │   ├── installer.js           # 動態安裝 (支援 Sparse Checkout)
@@ -109,6 +110,49 @@ Tool-Calling/
 | L1 | 精確匹配（ID/名稱）| "playwright", "ppt-master" |
 | L2 | 關鍵字匹配（觸發詞+分類+場景/優勢）| "我想做簡報", "安全掃描" |
 | L3 | 語義檢索（TF-IDF）| 模糊描述、跨語言查詢、子工具穿透 |
+
+## MCP (Model Context Protocol) 整合
+
+本專案提供 MCP 伺服器，可讓 Claude Desktop、Cursor 等支援 MCP 的 AI Agent 直接搜尋、查詢與執行工具。
+
+### 啟動 MCP 伺服器
+
+```bash
+node mcp-server.js
+# 或
+npm run mcp
+```
+
+### 在 Claude Desktop 中掛載
+
+編輯 `claude_desktop_config.json`：
+
+```json
+{
+  "mcpServers": {
+    "tool-calling": {
+      "command": "node",
+      "args": ["D:/path/to/Tool-Calling/mcp-server.js"]
+    }
+  }
+}
+```
+
+### 可用工具
+
+| 工具 | 說明 | ⚠️ |
+|---|---|---|
+| `list_tools` | 列出所有已註冊工具（可依分類過濾） | |
+| `search_tools` | 搜尋工具（支援自然語言 + 分類過濾 + 成功率權重） | |
+| `get_tool_detail` | 取得工具完整註冊資訊（觸發詞、能力、場景、禁用場景等） | |
+| `run_tool` | 在 Docker 沙盒中執行指定工具 | 同步執行，會阻塞連線直到完成 |
+
+### 安全設計
+
+- **STDIO 傳輸**：不開網路埠，無 SSRF / CORS 攻擊面
+- **Docker 沙盒**：所有工具執行隔離於唯讀容器（`--network none --read-only --cap-drop ALL`）
+- **無 API Key**：MCP server 不需要任何外部 API 金鑰
+- **Telemetry 追蹤**：所有 `run_tool` 調用自動記錄軌跡，供搜尋引擎動態調整權重
 
 ## License
 
