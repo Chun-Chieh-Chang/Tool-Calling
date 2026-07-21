@@ -222,3 +222,22 @@
 
 #### RCA / CAPA
 - (無異常狀況，系統穩定處理大批量子技能的解析與寫入)
+
+### 2026-07-21 — 第二波批量工具擴增與深層拆解 (Phase 16)
+
+#### 需求與動機
+1. **擴充註冊庫生態**：將使用者提供的另外 22 個新 GitHub 專案 URL 批量加入工具庫。
+2. **大補帖深層索引 (檢查是否需要拆解)**：針對新匯入且疑似為綜合技能包的專案進行深層掃描。
+
+#### 完成項目
+- [x] **批量註冊**：建立 `.exports/urls_batch4.txt` 並執行 `node cli.js batch-add`，成功將新專案加入 `tools.json` 註冊庫。
+- [x] **自動化深層掃描**：對多個可能的大補帖執行 `index-subtools`，成功拆解出更多子工具：
+  - `skills-emilkowalski` (發現 7 個子工具)
+  - `skills-MiniMax-AI` (發現 23 個子工具)
+  - `ui-skills` (發現 7 個子工具)
+  - `stitch-skills` (發現 15 個子工具)
+  - `andrej-karpathy-skills` (發現 1 個子工具)
+- [x] **MECE 檔案管理**：`urls_batch4.txt` 已經直接建立在 `.exports/` 目錄中，無需再做搬移。
+
+#### RCA / CAPA
+- (無異常狀況，系統穩定處理所有解析與寫入)

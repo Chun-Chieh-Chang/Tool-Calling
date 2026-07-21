@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-21T13:11:03.440Z",
+  "lastUpdated": "2026-07-21T13:46:10.654Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -1446,6 +1446,83 @@
         "Do not use if building standalone MCP servers unrelated to the Stitch ecosystem",
         "Avoid for non-coding-agent workflows that do not require standardized skill definitions",
         "Not suitable for creating custom MCP server implementations from scratch"
+      ],
+      "subTools": [
+        {
+          "name": "React Components",
+          "description": ">-",
+          "subpath": "plugins/stitch-build/skills/react-components"
+        },
+        {
+          "name": "React Native",
+          "description": ">-",
+          "subpath": "plugins/stitch-build/skills/react-native"
+        },
+        {
+          "name": "React Vite Dashboard",
+          "description": "Convert Stitch designs into production React + Vite dashboards with TanStack Query, accessible tokens from DESIGN.md, and Web3-ready patterns (ethers/viem).",
+          "subpath": "plugins/stitch-build/skills/react-vite-dashboard"
+        },
+        {
+          "name": "Remotion",
+          "description": "Generate walkthrough videos from Stitch projects using Remotion with smooth transitions, zooming, and text overlays",
+          "subpath": "plugins/stitch-build/skills/remotion"
+        },
+        {
+          "name": "Shadcn Ui",
+          "description": "Expert guidance for integrating and building applications with shadcn/ui components, including component discovery, installation, customization, and best practices.",
+          "subpath": "plugins/stitch-build/skills/shadcn-ui"
+        },
+        {
+          "name": "Code To Design",
+          "description": ">-",
+          "subpath": "plugins/stitch-design/skills/code-to-design"
+        },
+        {
+          "name": "Extract Design Md",
+          "description": ">-",
+          "subpath": "plugins/stitch-design/skills/extract-design-md"
+        },
+        {
+          "name": "Extract Static Html",
+          "description": ">-",
+          "subpath": "plugins/stitch-design/skills/extract-static-html"
+        },
+        {
+          "name": "Generate Design",
+          "description": ">-",
+          "subpath": "plugins/stitch-design/skills/generate-design"
+        },
+        {
+          "name": "Manage Design System",
+          "description": ">-",
+          "subpath": "plugins/stitch-design/skills/manage-design-system"
+        },
+        {
+          "name": "Upload To Stitch",
+          "description": ">-",
+          "subpath": "plugins/stitch-design/skills/upload-to-stitch"
+        },
+        {
+          "name": "Design Md",
+          "description": "Analyze Stitch projects and synthesize a semantic design system into DESIGN.md files",
+          "subpath": "plugins/stitch-utilities/skills/design-md"
+        },
+        {
+          "name": "Enhance Prompt",
+          "description": "Transforms vague UI ideas into polished, Stitch-optimized prompts. Enhances specificity, adds UI/UX keywords, injects design system context, and structures output for better generation results.",
+          "subpath": "plugins/stitch-utilities/skills/enhance-prompt"
+        },
+        {
+          "name": "Stitch Loop",
+          "description": "Teaches agents to iteratively build websites using Stitch with an autonomous baton-passing loop pattern",
+          "subpath": "plugins/stitch-utilities/skills/stitch-loop"
+        },
+        {
+          "name": "Taste Design",
+          "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
+          "subpath": "plugins/stitch-utilities/skills/taste-design"
+        }
       ]
     },
     {
@@ -21021,6 +21098,679 @@
         "claude-code"
       ],
       "addedAt": "2026-07-21T13:11:03.440Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skills-emilkowalski",
+      "name": "Skills",
+      "url": "https://github.com/emilkowalski/skills",
+      "description": "Skills for Design Engineers.",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "skills"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/emilkowalski/skills.git",
+        "repoUrl": "https://github.com/emilkowalski/skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:05.179Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Animation Vocabulary",
+          "description": "Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its exact term (\"the bouncy thing when a popover opens\" → Pop in; \"the iOS rubber-band scroll\" → Rubber-banding). Use when the user asks \"what's it called when…\", or describes a motion effect without knowing its name and wants the right word to prompt an AI or designer with. For naming an effect, not designing or building one.",
+          "subpath": "skills/animation-vocabulary"
+        },
+        {
+          "name": "Apple Design",
+          "description": "Apple's approach to interface design and fluid, physical motion, translated for the web. Use when building or reviewing gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions, translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion, or the design foundations (feedback, spatial consistency, restraint) behind Apple-style interfaces.",
+          "subpath": "skills/apple-design"
+        },
+        {
+          "name": "Emil Design Eng",
+          "description": "This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.",
+          "subpath": "skills/emil-design-eng"
+        },
+        {
+          "name": "Find Animation Opportunities",
+          "description": "Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. Read-only; it proposes motion with exact values, it does not implement it. Use when the user asks \"what could be animated here?\" or wants to \"make this feel more alive\". For fixing existing animations, use improve-animations or review-animations instead.",
+          "subpath": "skills/find-animation-opportunities"
+        },
+        {
+          "name": "Improve Animations",
+          "description": "Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans improvements, it does not apply them. Use when the user asks to \"improve the animations\", \"audit the motion\", \"make this app feel better\", or wants a roadmap of animation fixes rather than a review of a single diff.",
+          "subpath": "skills/improve-animations"
+        },
+        {
+          "name": "Pick Ui Library",
+          "description": "Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it does not trigger on its own.",
+          "subpath": "skills/pick-ui-library"
+        },
+        {
+          "name": "Review Animations",
+          "description": "Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned.",
+          "subpath": "skills/review-animations"
+        }
+      ]
+    },
+    {
+      "id": "codex-ppt-skill",
+      "name": "Codex Ppt Skill",
+      "url": "https://github.com/ningzimu/codex-ppt-skill",
+      "description": "GPT-Image-2 PPT Generator Skill for Creating Image-Based PowerPoint Presentations in Codex and Other Skill-Compatible Agents",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "codex-ppt-skill",
+        "codex",
+        "ppt",
+        "skill",
+        "agent-skills",
+        "ai-ppt",
+        "claude-code",
+        "gpt-image-2"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/ningzimu/codex-ppt-skill.git",
+        "repoUrl": "https://github.com/ningzimu/codex-ppt-skill"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-ppt",
+        "claude-code",
+        "codex",
+        "gpt-image-2"
+      ],
+      "addedAt": "2026-07-21T13:46:05.453Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skills-MiniMax-AI",
+      "name": "Skills",
+      "url": "https://github.com/MiniMax-AI/skills",
+      "description": "MiniMax-AI/skills - 待補充描述",
+      "category": "學習資源",
+      "language": "c#",
+      "triggers": [
+        "skills"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/MiniMax-AI/skills.git",
+        "repoUrl": "https://github.com/MiniMax-AI/skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:05.746Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Pr Review",
+          "description": ">",
+          "subpath": ".claude/skills/pr-review"
+        },
+        {
+          "name": "Color Font Skill",
+          "description": "Choose presentation-ready color palettes and font pairings for PPT/design tasks. Use when users ask for visual theme choices, brand-safe palettes, or font recommendations. Triggers include: 配色, 色板, 字体, color palette, font, PPT配色, 字体搭配.",
+          "subpath": "plugins/pptx-plugin/skills/color-font-skill"
+        },
+        {
+          "name": "Design Style Skill",
+          "description": ">",
+          "subpath": "plugins/pptx-plugin/skills/design-style-skill"
+        },
+        {
+          "name": "Ppt Editing Skill",
+          "description": "Edit existing PowerPoint files or templates with XML-safe workflows. Use for template-based deck updates: analyze layouts, map content to slides, duplicate/reorder/delete slides safely, edit slide XML in parallel, clean orphaned assets, and repack validated PPTX output.",
+          "subpath": "plugins/pptx-plugin/skills/ppt-editing-skill"
+        },
+        {
+          "name": "Ppt Orchestra Skill",
+          "description": "Plan and orchestrate multi-slide PowerPoint creation from scratch. Use before generating a full deck with subagents: classify each slide type, enforce visual variety, set typography/spacing rules, and run text-based QA to catch content issues.",
+          "subpath": "plugins/pptx-plugin/skills/ppt-orchestra-skill"
+        },
+        {
+          "name": "Slide Making Skill",
+          "description": "Implement single-slide PowerPoint pages with PptxGenJS. Use when writing or fixing slide JS files: dimensions, positioning, text/image/chart APIs, styling rules, and export expectations for native .pptx output.",
+          "subpath": "plugins/pptx-plugin/skills/slide-making-skill"
+        },
+        {
+          "name": "Android Native Dev",
+          "description": "Android native application development and UI design guide. Covers Material Design 3, Kotlin/Compose development, project configuration, accessibility, and build troubleshooting. Read this before Android native application development.",
+          "subpath": "skills/android-native-dev"
+        },
+        {
+          "name": "Buddy Sings",
+          "description": ">",
+          "subpath": "skills/buddy-sings"
+        },
+        {
+          "name": "Flutter Dev",
+          "description": "|",
+          "subpath": "skills/flutter-dev"
+        },
+        {
+          "name": "Frontend Dev",
+          "description": "|",
+          "subpath": "skills/frontend-dev"
+        },
+        {
+          "name": "Fullstack Dev",
+          "description": "|",
+          "subpath": "skills/fullstack-dev"
+        },
+        {
+          "name": "Gif Sticker Maker",
+          "description": "|",
+          "subpath": "skills/gif-sticker-maker"
+        },
+        {
+          "name": "Ios Application Dev",
+          "description": "|",
+          "subpath": "skills/ios-application-dev"
+        },
+        {
+          "name": "Minimax Docx",
+          "description": ">",
+          "subpath": "skills/minimax-docx"
+        },
+        {
+          "name": "Minimax Multimodal Toolkit",
+          "description": "Use mmx to generate text, images, video, speech, and music via the MiniMax AI platform. Use when the user wants to create media content, chat with MiniMax models, perform web search, or manage MiniMax API resources from the terminal.",
+          "subpath": "skills/minimax-multimodal-toolkit"
+        },
+        {
+          "name": "Minimax Music Gen",
+          "description": ">",
+          "subpath": "skills/minimax-music-gen"
+        },
+        {
+          "name": "Minimax Music Playlist",
+          "description": ">",
+          "subpath": "skills/minimax-music-playlist"
+        },
+        {
+          "name": "Minimax Pdf",
+          "description": ">",
+          "subpath": "skills/minimax-pdf"
+        },
+        {
+          "name": "Minimax Xlsx",
+          "description": "Open, create, read, analyze, edit, or validate Excel/spreadsheet files (.xlsx, .xlsm, .csv, .tsv). Use when the user asks to create, build, modify, analyze, read, validate, or format any Excel spreadsheet, financial model, pivot table, or tabular data file. Covers: creating new xlsx from scratch, reading and analyzing existing files, editing existing xlsx with zero format loss, formula recalculation and validation, and applying professional financial formatting standards. Triggers on 'spreadsheet', 'Excel', '.xlsx', '.csv', 'pivot table', 'financial model', 'formula', or any request to produce tabular data in Excel format.",
+          "subpath": "skills/minimax-xlsx"
+        },
+        {
+          "name": "Pptx Generator",
+          "description": "Generate, edit, and read PowerPoint presentations. Create from scratch with PptxGenJS (cover, TOC, content, section divider, summary slides), edit existing PPTX via XML workflows, or extract text with markitdown. Triggers: PPT, PPTX, PowerPoint, presentation, slide, deck, slides.",
+          "subpath": "skills/pptx-generator"
+        },
+        {
+          "name": "React Native Dev",
+          "description": "|",
+          "subpath": "skills/react-native-dev"
+        },
+        {
+          "name": "Shader Dev",
+          "description": "Comprehensive GLSL shader techniques for creating stunning visual effects — ray marching, SDF modeling, fluid simulation, particle systems, procedural generation, lighting, post-processing, and more.",
+          "subpath": "skills/shader-dev"
+        },
+        {
+          "name": "Vision Analysis",
+          "description": ">",
+          "subpath": "skills/vision-analysis"
+        }
+      ]
+    },
+    {
+      "id": "gstack",
+      "name": "Gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "description": "Use Garry Tan's exact Claude Code setup: 23 opinionated tools that serve as CEO, Designer, Eng Manager, Release Manager, Doc Engineer, and QA",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "gstack"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/garrytan/gstack",
+        "repoUrl": "https://github.com/garrytan/gstack"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:06.050Z",
+      "status": "experimental"
+    },
+    {
+      "id": "presentation-report-preflight",
+      "name": "Presentation Report Preflight",
+      "url": "https://github.com/archlizheng/presentation-report-preflight",
+      "description": "汇报型演示前置策划 Skill：在生成 PPT/HTML 之前，把主题/源文档/旧 deck 转成一份可交接的 Presentation Strategy Brief。",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "presentation-report-preflight",
+        "presentation",
+        "report",
+        "preflight",
+        "agent-skills",
+        "ai",
+        "claude-code",
+        "claude-skill"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/archlizheng/presentation-report-preflight.git",
+        "repoUrl": "https://github.com/archlizheng/presentation-report-preflight"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai",
+        "claude-code",
+        "claude-skill",
+        "codex"
+      ],
+      "addedAt": "2026-07-21T13:46:06.332Z",
+      "status": "experimental"
+    },
+    {
+      "id": "huashu-design",
+      "name": "Huashu Design",
+      "url": "https://github.com/alchaincyf/huashu-design",
+      "description": "Huashu Design · HTML-native design skill for Claude Code · Claude Code 里 HTML 原生的设计 skill · 高保真原型 / 幻灯片 / 动画 + 20 设计哲学 + 5 维评审 + MP4 导出 · Agent-agnostic",
+      "category": "AI 框架",
+      "language": "html",
+      "triggers": [
+        "huashu-design",
+        "huashu",
+        "design"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/alchaincyf/huashu-design.git",
+        "repoUrl": "https://github.com/alchaincyf/huashu-design"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:06.613Z",
+      "status": "experimental"
+    },
+    {
+      "id": "archify",
+      "name": "Archify",
+      "url": "https://github.com/tt-a1i/archify",
+      "description": "Any agent Skill: generate beautiful architecture diagrams with dark/light theme toggle and PNG/JPEG/WebP/SVG export",
+      "category": "AI 框架",
+      "language": "html",
+      "triggers": [
+        "archify",
+        "anthropic",
+        "architecture-diagram",
+        "claude-skill",
+        "dark-mode",
+        "developer-tools",
+        "diagram-as-code",
+        "html-diagram"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/tt-a1i/archify.git",
+        "repoUrl": "https://github.com/tt-a1i/archify"
+      },
+      "capabilities": [
+        "anthropic",
+        "architecture-diagram",
+        "claude-skill",
+        "dark-mode",
+        "developer-tools"
+      ],
+      "addedAt": "2026-07-21T13:46:06.908Z",
+      "status": "experimental"
+    },
+    {
+      "id": "claude-code-infrastructure-showcase",
+      "name": "Claude Code Infrastructure Showcase",
+      "url": "https://github.com/diet103/claude-code-infrastructure-showcase",
+      "description": "Examples of my Claude Code infrastructure with skill auto-activation, hooks, and agents",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "claude-code-infrastructure-showcase",
+        "claude",
+        "code",
+        "infrastructure",
+        "showcase"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/diet103/claude-code-infrastructure-showcase",
+        "repoUrl": "https://github.com/diet103/claude-code-infrastructure-showcase"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:07.191Z",
+      "status": "experimental"
+    },
+    {
+      "id": "airllm",
+      "name": "Airllm",
+      "url": "https://github.com/lyogavin/airllm",
+      "description": "AirLLM 70B inference with single 4GB GPU",
+      "category": "多媒體生成",
+      "language": "jupyter notebook",
+      "triggers": [
+        "airllm",
+        "chinese-llm",
+        "chinese-nlp",
+        "finetune",
+        "generative-ai",
+        "instruct-gpt",
+        "instruction-set",
+        "llama"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/lyogavin/airllm.git",
+        "repoUrl": "https://github.com/lyogavin/airllm"
+      },
+      "capabilities": [
+        "chinese-llm",
+        "chinese-nlp",
+        "finetune",
+        "generative-ai",
+        "instruct-gpt"
+      ],
+      "addedAt": "2026-07-21T13:46:07.468Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ui-skills",
+      "name": "Ui Skills",
+      "url": "https://github.com/ibelick/ui-skills",
+      "description": "Skills for Design Engineers",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "ui-skills",
+        "skills"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/ibelick/ui-skills",
+        "repoUrl": "https://github.com/ibelick/ui-skills"
+      },
+      "capabilities": [
+        "skills",
+        "ui-skills"
+      ],
+      "addedAt": "2026-07-21T13:46:07.738Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Baseline Ui",
+          "description": "Quickly deslop UI code by fixing spacing, hierarchy, typography, and small layout issues. Use when the interface needs a fast cleanup or polish pass.",
+          "subpath": "skills/baseline-ui"
+        },
+        {
+          "name": "Create Design Md",
+          "description": "Create or update a DESIGN.md from an existing product repository or public website. Use when asked to document an interface's design language, reconstruct its visual system, extract design tokens and guidance from current evidence, or give coding agents persistent UI context. Do not modify product source or promote accidental implementation patterns into design decisions.",
+          "subpath": "skills/create-design-md"
+        },
+        {
+          "name": "Fixing Accessibility",
+          "description": "Audit and fix HTML accessibility issues including ARIA labels, keyboard navigation, focus management, color contrast, and form errors. Use when adding interactive controls, forms, dialogs, or reviewing WCAG compliance.",
+          "subpath": "skills/fixing-accessibility"
+        },
+        {
+          "name": "Fixing Metadata",
+          "description": ">",
+          "subpath": "skills/fixing-metadata"
+        },
+        {
+          "name": "Fixing Motion Performance",
+          "description": "Audit and fix animation performance issues including layout thrashing, compositor properties, scroll-linked motion, and blur effects. Use when animations stutter, transitions jank, or reviewing CSS/JS animation performance.",
+          "subpath": "skills/fixing-motion-performance"
+        },
+        {
+          "name": "Improve Ui",
+          "description": "Audit an existing product surface against its own design evidence, identify verified UI problems, and write self-contained implementation plans for another agent. Strictly read-only on product source. Use when asked to review, refine, improve, or clean up an interface without replacing its identity; investigate design-system drift; or prepare a design handoff.",
+          "subpath": "skills/improve-ui"
+        },
+        {
+          "name": "Ui Skills Root",
+          "description": "Use before UI-related work to select the smallest useful UI Skills context through the ui-skills CLI.",
+          "subpath": "skills/ui-skills-root"
+        }
+      ]
+    },
+    {
+      "id": "ossie",
+      "name": "Ossie",
+      "url": "https://github.com/apache/ossie",
+      "description": "Apache Ossie, industry wide specification effort to standardize how we exchange semantic metadata across analytics, AI and BI platforms, providing a vendor neutral, single source of truth for semantic data",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "ossie",
+        "metadata",
+        "semantic"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/apache/ossie.git",
+        "repoUrl": "https://github.com/apache/ossie"
+      },
+      "capabilities": [
+        "metadata",
+        "semantic"
+      ],
+      "addedAt": "2026-07-21T13:46:08.026Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skill-creator",
+      "name": "Skill Creator",
+      "url": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
+      "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+      "category": "測試與自動化",
+      "language": "python",
+      "triggers": [
+        "skill-creator",
+        "skill",
+        "creator",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/anthropics/skills.git",
+        "repoUrl": "https://github.com/anthropics/skills",
+        "branch": "main",
+        "subpath": "skills/skill-creator"
+      },
+      "capabilities": [
+        "agent-skills"
+      ],
+      "addedAt": "2026-07-21T13:46:08.571Z",
+      "status": "experimental"
+    },
+    {
+      "id": "workbuddyguide",
+      "name": "WorkBuddyGuide",
+      "url": "https://github.com/AlephAITech/WorkBuddyGuide",
+      "description": "A practical, open-source guide to mastering WorkBuddy through real-world workflows.开源的 WorkBuddy 实战蓝皮书：教程、真实工作流、Skills、MCP、自动化与多智能体实践。",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "workbuddyguide",
+        "codex",
+        "guide",
+        "llm",
+        "workbuddy"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/AlephAITech/WorkBuddyGuide.git",
+        "repoUrl": "https://github.com/AlephAITech/WorkBuddyGuide"
+      },
+      "capabilities": [
+        "codex",
+        "guide",
+        "llm",
+        "workbuddy"
+      ],
+      "addedAt": "2026-07-21T13:46:08.916Z",
+      "status": "experimental"
+    },
+    {
+      "id": "destructivecommandguard",
+      "name": "Destructive_command_guard",
+      "url": "https://github.com/Dicklesworthstone/destructive_command_guard",
+      "description": "The Destructive Command Guard (dcg) is for blocking dangerous git and shell commands from being executed by agents.",
+      "category": "AI 框架",
+      "language": "rust",
+      "triggers": [
+        "destructive_command_guard",
+        "ai-agents",
+        "cli",
+        "developer-tools",
+        "git",
+        "rust",
+        "safety"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/Dicklesworthstone/destructive_command_guard",
+        "repoUrl": "https://github.com/Dicklesworthstone/destructive_command_guard"
+      },
+      "capabilities": [
+        "ai-agents",
+        "cli",
+        "developer-tools",
+        "git",
+        "rust"
+      ],
+      "addedAt": "2026-07-21T13:46:09.192Z",
+      "status": "experimental"
+    },
+    {
+      "id": "orca-GNOME",
+      "name": "Orca",
+      "url": "https://github.com/GNOME/orca",
+      "description": "Read-only mirror of https://gitlab.gnome.org/GNOME/orca",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "orca"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/GNOME/orca.git",
+        "repoUrl": "https://github.com/GNOME/orca"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:09.490Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ds4",
+      "name": "Ds4",
+      "url": "https://github.com/antirez/ds4",
+      "description": "DeepSeek 4 Flash and PRO local inference engine for Metal, CUDA and ROCm",
+      "category": "其他",
+      "language": "c",
+      "triggers": [
+        "ds4"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/antirez/ds4.git",
+        "repoUrl": "https://github.com/antirez/ds4"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:09.781Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ai-job-search",
+      "name": "Ai Job Search",
+      "url": "https://github.com/MadsLorentzen/ai-job-search",
+      "description": "The job search that runs on your machine. AI job application framework built on Claude Code: evaluate postings, tailor CVs, write cover letters, prep interviews. Fork it and own it.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "ai-job-search",
+        "job",
+        "search",
+        "ai",
+        "ai-agents",
+        "career",
+        "claude-code",
+        "cover-letter"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/MadsLorentzen/ai-job-search",
+        "repoUrl": "https://github.com/MadsLorentzen/ai-job-search"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "career",
+        "claude-code",
+        "cover-letter"
+      ],
+      "addedAt": "2026-07-21T13:46:10.050Z",
+      "status": "experimental"
+    },
+    {
+      "id": "colibri",
+      "name": "Colibri",
+      "url": "https://github.com/JustVugg/colibri",
+      "description": "Run GLM-5.2 (744B MoE) on a 25GB-RAM consumer machine — pure C, zero deps, experts streamed from disk. Tiny engine, immense model. 🐦",
+      "category": "其他",
+      "language": "c",
+      "triggers": [
+        "colibri"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/JustVugg/colibri.git",
+        "repoUrl": "https://github.com/JustVugg/colibri"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-21T13:46:10.358Z",
+      "status": "experimental"
+    },
+    {
+      "id": "openhands",
+      "name": "Openhands",
+      "url": "https://github.com/OpenHands/openhands",
+      "description": "🙌 OpenHands: AI-Driven Development",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "openhands",
+        "agent",
+        "artificial-intelligence",
+        "chatgpt",
+        "claude-ai",
+        "cli",
+        "developer-tools",
+        "gpt"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/OpenHands/openhands.git",
+        "repoUrl": "https://github.com/OpenHands/openhands"
+      },
+      "capabilities": [
+        "agent",
+        "artificial-intelligence",
+        "chatgpt",
+        "claude-ai",
+        "cli"
+      ],
+      "addedAt": "2026-07-21T13:46:10.654Z",
       "status": "experimental"
     }
   ]
