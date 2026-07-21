@@ -204,3 +204,21 @@
 - [x] 導入 `SAFE_REPO_URL` 正則白名單，嚴格限制 Github Repo URL 格式。
 - [x] 實作 `assertSafeRef` 函式，防止參數注入（阻擋 `-` 開頭）與路徑穿越（阻擋 `..`）。
 - [x] 將修復後的 `core/installer.js` 提交並推送到遠端。
+
+### 2026-07-21 — 批量工具擴增與深層拆解 (Phase 15)
+
+#### 需求與動機
+1. **擴充註冊庫生態**：將 36 個新的 GitHub 專案 URL 批量加入工具庫。
+2. **大補帖深層索引 (檢查是否需要拆解)**：針對其中包含多個技能的 Cybersecurity 和 LLM API 等大補帖進行深層掃描。
+
+#### 完成項目
+- [x] **批量註冊**：建立 `urls_batch3.txt` 並執行 `node cli.js batch-add urls_batch3.txt`，成功將新專案加入 `tools.json` 註冊庫。
+- [x] **自動化深層掃描**：對多個可能的大補帖執行 `index-subtools`，成功拆解大量子工具：
+  - `anthropic-cybersecurity-skills` (發現 817 個子工具)
+  - `cybersecurity-skills` (發現 29 個子工具)
+  - `claude-code-cybersecurity-skill` (發現 19 個子工具)
+  - `awesome-free-llm-apis` (發現 1 個子工具)
+- [x] **MECE 檔案管理**：完成批量匯入後，將 `urls_batch3.txt` 移至 `.exports/` 中，保持根目錄乾淨。
+
+#### RCA / CAPA
+- (無異常狀況，系統穩定處理大批量子技能的解析與寫入)
