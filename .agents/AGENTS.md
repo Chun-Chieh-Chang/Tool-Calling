@@ -63,3 +63,9 @@ node cli.js cleanup <tool-id>
 - 當修改代碼與相關文件（如 `DEV_LOG.md`）時，必須確保兩者在同一個提交 (Commit) 內一併處理，以維持變更的「原子性」。
 - 絕對禁止在執行 `git push` 後才去修改日誌或文件，卻向用戶宣稱「已將所有變更（包含文件）推送到遠端」。
 - 行動準則：執行 `git commit` 與 `git push` 之前，必須強制自我檢查，確認所有預期修改的檔案（包含開發日誌）都已經被修改且 `git add`。任何向用戶回報的狀態，必須與遠端倉庫的實際狀態嚴格保持一致。
+
+## 大語言模型 (LLM) 整合安全與防禦元規則 (LLM Integration Security Meta-Rule)
+**禁止忽視提示詞注入與錯誤處理 (Zero Prompt Injection & Hard Failures)**
+1. **強制金鑰自檢**：除了遵守「禁止硬編碼 API 金鑰」規則外，任何呼叫 LLM API 的程式碼，必須確保金鑰「只能」從環境變數讀取，嚴禁提供預設值。若無環境變數必須直接拋錯中斷。**在 Commit 前，必須強制以 `grep` 檢查程式碼中是否殘留 `sk-` 等金鑰字串。**
+2. **提示詞注入防禦 (Prompt Injection Defense)**：當構建 Prompt 時，所有來自第三方 (如 GitHub Repos) 抓取的描述、內容或變數，必須被明確標記為「不可信資料 (Untrusted Data)」，並與系統指令 (System Instructions) 嚴格隔離 (例如使用 XML tags 包覆)，防止惡意描述操縱模型決策。
+3. **優雅降級 (Graceful Degradation / Fallback)**：當呼叫外部 LLM API (如 Smart Reranker) 發生超時、額度耗盡或網路錯誤時，系統必須自動 Fallback (退回) 至既有的穩健機制 (例如本地 TF-IDF 檢索)，絕對不允許因外部 API 失敗導致整個核心服務崩潰。
