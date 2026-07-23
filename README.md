@@ -116,36 +116,115 @@ Agnes 就會自動幫你搜尋、確認、執行、清理。
 
 ---
 
-## 用法五：在新專案中使用（從別的資料夾呼叫）
+## 用法五：在新專案中自動觸發（最省事 ⭐⭐）
 
-假設你在做一個新專案，資料夾在 `D:\MyNewProject`，但你想要用到 Tool-Calling 的工具搜尋功能。有兩種做法：
+這是**最重要也最實用**的一節。假設你剛建立了一個新專案（例如一個網站、一個 App），你希望每次打開這個專案時，AI 都能自動幫你用上 Tool-Calling 和 SkillsBuilder 的功能，不用每次都手動設定。
 
-### 做法 A：直接連到 Tool-Calling 的目錄（最簡單）
+### 第一步：先完成一次性的環境設定
 
-不用複製任何東西，直接指向 Tool-Calling 的位置：
+在開始任何新專案之前，先做兩件事（**只做一次**）：
 
-```bash
-# 在 D:\MyNewProject 的終端機中
-cd D:\Self-developed_Apps\Tool-Calling
-node cli.js search "我要做簡報"
+#### A. 安裝 SkillsBuilder 的全域技能
+
+進入 SkillsBuilder 目錄，執行安裝腳本：
+
+```powershell
+cd D:\Self-developed_Apps\SkillsBuilder
+.\INSTALL.ps1
 ```
 
-或者用完整路徑：
+這會把所有開發技能（程式碼審查、測試驅動、知識管理等 57 個技能）安裝到你的系統全域，以後每個新專案都能直接用。
+
+#### B. 讓 AI 知道 Tool-Calling 在哪裡
+
+如果你用 Claude Desktop 或 Cursor，按照「用法二」的步驟，把 Tool-Calling 接上去。這樣 AI 在任何專案中都能自動搜尋工具。
+
+---
+
+### 第二步：在新專案中「一句話啟動」
+
+每次你開啟一個新專案，只要對 AI 說一句話，兩個系統就會自動啟動：
+
+#### 啟動 SkillsBuilder（開發紀律 + 知識庫）
+
+在新專案目錄中對 AI 說：
+
+> **「啟動 SkillsBuilder 開發模式」**
+
+AI 會自動幫你做這些事：
+- 建立 `DEV_LOG.md`（開發日誌）和 `wiki/`（知識庫）
+- 載入所有開發規範（PDCA 流程、UI 設計標準、程式碼審查規則）
+- 啟動圖譜索引（graphify），快速理解專案結構
+
+#### 啟動 Tool-Calling（工具搜尋）
+
+在同一個專案中對 AI 說：
+
+> **「啟動全自動工具調用模式」**
+
+AI 會自動幫你做這些事：
+- 解析你的任務需求
+- 從 279 個工具中找出最適合的
+- 等待你確認後，自動安裝、執行、清理
+
+---
+
+### 完整的日常工作流程
+
+想像你在做一個新專案，完整的流程是這樣：
+
+```
+1. 打開新專案資料夾
+   ↓
+2. 對 AI 說：「啟動 SkillsBuilder 開發模式」
+   → AI 自動建立開發架構和知識庫
+   ↓
+3. 對 AI 說：「啟動全自動工具調用模式」
+   → AI 自動準備好工具搜尋功能
+   ↓
+4. 開始工作，隨時說你需要什麼工具
+   → AI 自動搜尋、安裝、執行、清理
+   ↓
+5. 專案完成
+   → SkillsBuilder 自動記錄經驗到 wiki/
+   → Tool-Calling 自動更新工具使用頻率統計
+```
+
+**重點：** 第 1 步的兩句咒語，每個新專案只需要說一次。之後就交給 AI 自動運作。
+
+---
+
+### 如果沒有用 Agnes，該怎麼辦？
+
+如果你用的是 Claude Desktop、Cursor 或其他 AI 工具，同樣可以達到類似效果：
+
+| AI 工具 | 怎麼做 |
+|---------|--------|
+| **Claude Desktop** | 接上 Tool-Calling 的 MCP Server（見用法二），然後直接說「幫我搜尋可以做簡報的工具」 |
+| **Cursor** | 同樣接上 MCP Server，在編輯器內直接對話使用 |
+| **其他工具** | 手動執行 `node cli.js search "..."` 搜尋工具，或使用網頁版 `web/index.html` |
+
+---
+
+## 用法六：從別的資料夾呼叫（不切換目錄）
+
+如果你不想離開目前的專案資料夾，也可以直接指定完整路徑：
 
 ```bash
 node "D:\Self-developed_Apps\Tool-Calling\cli.js" search "我要做簡報"
 ```
 
-### 做法 B：把 Tool-Calling 設為專案依賴（進階）
+或者用 PowerShell 的 alias 方式（一勞永逸）：
 
-如果你希望每個新專案都能方便地用 `npm run search` 這種方式呼叫：
-
-1. 在你的新專案資料夾中：
-```bash
-npm install -g tool-calling
+1. 在 PowerShell 中執行：
+```powershell
+New-Alias -Name tc -Value "D:\Self-developed_Apps\Tool-Calling\cli.js" -Scope Global
 ```
 
-這樣你就可以在任何地方輸入 `tool-calling search "..."` 來使用。
+2. 之後在任何地方都可以輸入：
+```powershell
+tc search "我要做簡報"
+```
 
 ---
 
