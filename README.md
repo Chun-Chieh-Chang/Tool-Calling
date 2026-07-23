@@ -265,14 +265,33 @@ Tool-Calling/
 ├── cli.js              ← 命令列入口，用來搜尋和管理工具
 ├── mcp-server.js       ← 讓 Claude / Cursor 等 AI 軟體能使用這個工具箱
 ├── registry/
-│   └── tools.json      ← 工具清單（目前 279 個）
+│   ├── tools.json      ← 工具清單（目前 279 個）
+│   └── schemas/        ← JSON Schema 驗證格式
 ├── core/
-│   ├── search-engine.js  ← 搜尋引擎
-│   ├── installer.js      ← 安裝工具
-│   ├── sandbox.js        ← Docker 沙盒隔離
-│   └── cleanup.js        ← 清理工具
-└── web/
-    └── index.html        ← 網頁版介面（雙擊就能開）
+│   ├── search-engine.js  ← 三層檢索引擎（L1精確/L2關鍵字/L3語義）
+│   ├── installer.js      ← 動態安裝工具（支援 Sparse Checkout）
+│   ├── sandbox.js        ← Docker 沙盒隔離執行
+│   ├── telemetry.js      ← 工具調用軌跡追蹤與動態權重調整
+│   ├── cleanup.js        ← 任務後自動清理
+│   └── registry.js       ← 共享模組：載入/儲存工具註冊庫
+├── scripts/
+│   ├── build-web.js        ← 靜態網頁打包腳本
+│   ├── enrich-registry.js  ← AI 批次補齊工具資料
+│   ├── export-dataset.js   ← 萃取 Telemetry 為 SFT 訓練資料
+│   ├── scan-tool.js        ← GitHub URL 解析器
+│   ├── scan-monorepo.js    ← Monorepo 深層索引掃描器
+│   └── scanner-utils.js    ← 共享模組：Markdown 描述解析
+├── tests/
+│   └── search.test.js      ← 單元測試（6 項核心邏輯）
+├── web/
+│   ├── index.html          ← 網頁版檢索介面
+│   ├── style.css           ← 暗色系毛玻璃風格樣式
+│   └── app.js              ← 前端搜尋邏輯
+├── docs/
+│   ├── architecture/       ← 技能路由優化白皮書
+│   └── relationship-diagram.html ← 三角色關係圖解
+└── .agents/
+    └── AGENTS.md           ← 系統級開發規範（單一真理來源）
 ```
 
 ---

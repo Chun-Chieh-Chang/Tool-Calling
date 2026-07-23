@@ -309,3 +309,42 @@
 - **問題 (審查階段發現)**：原始 `scan-monorepo.js` 的 `saveRegistry()` 忘記更新 `lastUpdated` 時間戳，導致後續排序依賴 `addedAt` 的查詢可能異常。
 - **矯正措施**：由於已將所有寫入操作統一至 `core/registry.js` 的 `saveRegistry()`，此問題於 source 層級永久修復。
 - **預防措施**：未來新增任何需要讀寫 `tools.json` 的模組，一律從 `core/registry.js` 導入，禁止自行定義路徑或解析邏輯。
+
+
+### 2026-07-23 — 專案整體程式碼與檔案優化 (Phase 20)
+
+#### 需求與動機
+專案歷經 19 個階段的快速迭代，已具備完整功能（279 個工具、三層檢索、MCP Server、Docker 沙盒、Telemetry）。現在進入「穩定化」階段，執行全面盤點與清理。
+
+#### 完成項目
+- [x] **全面盤點**：
+  - 遍歷所有目錄與檔案，確認核心模組無過時/重複代碼
+  - 驗證 `cli.js`、`mcp-server.js` 全部改用共享模組（`core/registry.js`）
+  - 確認所有工具狀態為 `active`，無 `experimental` 或 `deprecated` 項目
+  - 確認所有工具皆有完整 description、negativeConstraints、triggers
+- [x] **清理作業**：
+  - 移除 `.exports/urls_batch3.txt` 與 `.exports/urls_batch4.txt`（Phase 15-16 的舊批次匯入 URL 清單，已無參考價值）
+  - 修正 `.gitignore`：移除不存在的 `.tempmediaStorage/` 條目，移除 Phase 19 後已過時的 `~/.tool-calling/` 註解
+- [x] **文件同步**：
+  - `README.md` 已更新為小白友善版本（280 行，涵蓋六種用法）
+  - `docs/relationship-diagram.html` 已建立三角色關係圖解
+  - `DEV_LOG.md` 記錄至此階段
+- [x] **測試確效**：
+  - `npm test` — 6/6 通過
+  - `node cli.js health-check` — 279/279 健康
+  - `node cli.js validate` — 格式驗證通過
+
+#### 專案現況摘要
+| 指標 | 數值 |
+|------|------|
+| 註冊工具數 | 279 |
+| 分類數 | 20 |
+| 子工具數 | ~1,800+ |
+| 單元測試 | 6 項（全通過） |
+| 核心模組 | 6 個（search-engine, installer, sandbox, telemetry, cleanup, registry） |
+| 腳本模組 | 6 個（build-web, enrich-registry, export-dataset, scan-tool, scan-monorepo, scanner-utils） |
+| 健康度 | 100%（279/279 工具可用） |
+
+#### RCA / CAPA
+- （本次為例行性架構優化，無異常狀況）
+
