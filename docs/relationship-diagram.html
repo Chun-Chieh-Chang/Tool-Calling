@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新專案 × Tool-Calling × SkillsBuilder 關係圖解</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 40px 20px;
+    line-height: 1.8;
+  }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #60a5fa;
+  }
+  .subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 50px;
+    font-size: 15px;
+  }
+
+  /* ====== 主視覺：三圓交會圖 ====== */
+  .diagram-container {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    position: relative;
+    height: 520px;
+  }
+  .venn-circle {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 20px;
+    transition: transform 0.3s;
+    cursor: default;
+  }
+  .venn-circle:hover { transform: scale(1.05); }
+  .circle-new {
+    top: 30px; left: 50%; transform: translateX(-50%);
+    background: rgba(96, 165, 250, 0.15);
+    border: 3px solid #60a5fa;
+    color: #93c5fd;
+  }
+  .circle-tool {
+    bottom: 40px; left: 50px;
+    background: rgba(52, 211, 153, 0.15);
+    border: 3px solid #34d399;
+    color: #6ee7b7;
+  }
+  .circle-skill {
+    bottom: 40px; right: 50px;
+    background: rgba(251, 191, 36, 0.15);
+    border: 3px solid #fbbf24;
+    color: #fcd34d;
+  }
+  .circle-label { pointer-events: none; }
+  .circle-icon { font-size: 36px; display: block; margin-bottom: 8px; }
+  .circle-desc { font-size: 13px; font-weight: normal; opacity: 0.85; margin-top: 6px; }
+
+  /* 箭頭 */
+  .arrow {
+    position: absolute;
+    font-size: 28px;
+    color: #94a3b8;
+    z-index: 10;
+  }
+  .arrow-down { top: 210px; left: 50%; transform: translateX(-50%); }
+  .arrow-left { bottom: 170px; left: 220px; transform: rotate(-60deg); }
+  .arrow-right { bottom: 170px; right: 220px; transform: rotate(60deg); }
+
+  /* 互動說明區 */
+  .section-title {
+    text-align: center;
+    font-size: 22px;
+    color: #f1f5f9;
+    margin: 40px 0 24px;
+  }
+
+  .flow-cards {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+  }
+  .flow-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px 32px;
+  }
+  .flow-card h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .flow-card p {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .flow-card code {
+    background: rgba(255,255,255,0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #e2e8f0;
+  }
+  .flow-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .flow-card ul li {
+    padding: 4px 0;
+    color: #cbd5e1;
+    font-size: 14px;
+  }
+  .flow-card ul li::before {
+    content: "→ ";
+    color: #60a5fa;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .badge-blue { background: rgba(96,165,250,0.2); color: #93c5fd; }
+  .badge-green { background: rgba(52,211,153,0.2); color: #6ee7b7; }
+  .badge-yellow { background: rgba(251,191,36,0.2); color: #fcd34d; }
+
+  .analogy {
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(96,165,250,0.08);
+    border: 1px solid rgba(96,165,250,0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+  }
+  .analogy h3 { color: #60a5fa; margin-bottom: 16px; }
+  .analogy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .analogy-item {
+    text-align: center;
+    padding: 16px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+  }
+  .analogy-item .icon { font-size: 32px; margin-bottom: 8px; }
+  .analogy-item .label { font-weight: bold; font-size: 15px; }
+  .analogy-item .desc { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+
+  .summary-box {
+    max-width: 900px;
+    margin: 40px auto;
+    background: rgba(52,211,153,0.08);
+    border: 1px solid rgba(52,211,153,0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+  }
+  .summary-box h3 { color: #34d399; margin-bottom: 12px; }
+  .summary-box p { color: #cbd5e1; font-size: 15px; }
+</style>
+</head>
+<body>
+
+<h1>🏗️ 新專案 × 🔧 Tool-Calling × 🏭 SkillsBuilder</h1>
+<p class="subtitle">一張圖看懂三個角色怎麼分工合作</p>
+
+<!-- ====== 三圓交會圖 ====== -->
+<div class="diagram-container">
+  <!-- 上方：新專案 -->
+  <div class="venn-circle circle-new">
+    <div class="circle-label">
+      <span class="circle-icon">🏗️</span>
+      新專案<br>
+      <span class="circle-desc">你要做的東西<br>（網站、App、工具…）</span>
+    </div>
+  </div>
+
+  <!-- 左下：Tool-Calling -->
+  <div class="venn-circle circle-tool">
+    <div class="circle-label">
+      <span class="circle-icon">🔧</span>
+      Tool-Calling<br>
+      <span class="circle-desc">工具箱<br>（找工具、用工具）</span>
+    </div>
+  </div>
+
+  <!-- 右下：SkillsBuilder -->
+  <div class="venn-circle circle-skill">
+    <div class="circle-label">
+      <span class="circle-icon">🏭</span>
+      SkillsBuilder<br>
+      <span class="circle-desc">技能工廠<br>（造工具、管工具）</span>
+    </div>
+  </div>
+
+  <!-- 箭頭：從 SkillsBuilder → Tool-Calling -->
+  <div class="arrow arrow-left">←</div>
+  <!-- 箭頭：從 Tool-Calling → 新專案 -->
+  <div class="arrow arrow-down">↓</div>
+  <!-- 箭頭：從 SkillsBuilder → 新專案（直接繼承） -->
+  <div class="arrow arrow-right">→</div>
+</div>
+
+<!-- ====== 白話比喻 ====== -->
+<div class="analogy">
+  <h3>💡 用最白話的比喻來說明</h3>
+  <div class="analogy-grid">
+    <div class="analogy-item">
+      <div class="icon">🏗️</div>
+      <div class="label">新專案</div>
+      <div class="desc">就像你要蓋一棟房子</div>
+    </div>
+    <div class="analogy-item">
+      <div class="icon">🔧</div>
+      <div class="label">Tool-Calling</div>
+      <div class="desc">像是五金行，有各種工具可以借</div>
+    </div>
+    <div class="analogy-item">
+      <div class="icon">🏭</div>
+      <div class="label">SkillsBuilder</div>
+      <div class="desc">像是工具工廠，可以生產新工具</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 三種搭配方式 ====== -->
+<h2 class="section-title">三種搭配方式</h2>
+<div class="flow-cards">
+
+  <!-- 方式一：新專案 + Tool-Calling -->
+  <div class="flow-card">
+    <h3><span class="badge badge-blue">方式一</span> 新專案 ← Tool-Calling（最常用）</h3>
+    <p>你在做新專案時，需要某個工具（例如「做簡報」），直接問 Tool-Calling 就好。</p>
+    <ul>
+      <li>你對 AI 說：「幫我產生一份簡報」</li>
+      <li>AI 用 Tool-Calling 搜尋工具箱 → 找到 PPT 工具 → 自動安裝執行</li>
+      <li>結果回傳給你，全程不用自己動手</li>
+    </ul>
+    <p style="margin-top:10px; font-size:13px; color:#94a3b8;">
+      適合：日常開發、快速完成任務
+    </p>
+  </div>
+
+  <!-- 方式二：SkillsBuilder → Tool-Calling -->
+  <div class="flow-card">
+    <h3><span class="badge badge-yellow">方式二</span> SkillsBuilder → Tool-Calling（擴充工具箱）</h3>
+    <p>當現有的 279 個工具不夠用，你想「自己造一個新工具」。</p>
+    <ul>
+      <li>在 SkillsBuilder 裡用 <code>skill-creator</code> 技能開發新工具</li>
+      <li>SkillsBuilder 會幫你整理好描述、分類、觸發詞</li>
+      <li>把新工具匯出到 Tool-Calling 的工具箱</li>
+      <li>之後就能像其他工具一樣被搜尋和使用了</li>
+    </ul>
+    <p style="margin-top:10px; font-size:13px; color:#94a3b8;">
+      適合：你有客製化需求，現成工具不夠用
+    </p>
+  </div>
+
+  <!-- 方式三：SkillsBuilder → 新專案（直接繼承） -->
+  <div class="flow-card">
+    <h3><span class="badge badge-green">方式三</span> SkillsBuilder → 新專案（直接繼承）</h3>
+    <p>SkillsBuilder 還包含許多「開發紀律」和「知識庫」，可以直接帶到新專案。</p>
+    <ul>
+      <li>在新專案目錄對 AI 說：「啟動 SkillsBuilder 開發模式」</li>
+      <li>AI 自動建立 DEV_LOG.md、wiki/ 等標準架構</li>
+      <li>載入 SkillsBuilder 的 57 個開發技能（如程式碼審查、測試驅動等）</li>
+      <li>所有專案共享同一套開發規範和經驗</li>
+    </ul>
+    <p style="margin-top:10px; font-size:13px; color:#94a3b8;">
+      適合：希望每個新專案都有標準化的開發流程
+    </p>
+  </div>
+
+</div>
+
+<!-- ====== 總結 ====== -->
+<div class="summary-box">
+  <h3>✅ 一次記住重點</h3>
+  <p>
+    <strong>SkillsBuilder</strong> = 工廠（造技能、管知識）<br>
+    <strong>Tool-Calling</strong> = 超市（找工具、用工具）<br>
+    <strong>新專案</strong> = 消費者（享受前兩者的成果）
+  </p>
+  <p style="margin-top: 12px;">
+    工廠把工具送到超市 → 消費者去超市挑工具來用<br>
+    同時工廠也有自己的「開發規範」可以直接帶到新專案使用
+  </p>
+</div>
+
+</body>
+</html>

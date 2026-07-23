@@ -2,7 +2,7 @@
 
 > 一個幫你自動找工具、裝工具、用工具的 AI 助手
 
-## 什麼這是什麼？
+## 這是什麼？
 
 想像你有一個 **工具箱**，裡面放了 279 個不同的開源工具：
 
@@ -17,9 +17,7 @@
 
 ---
 
-## 三種用法（從簡單到進階）
-
-### 用法一：自己搜尋（最直覺）
+## 用法一：自己搜尋（最直覺）
 
 打開終端機（命令提示字元），輸入：
 
@@ -39,7 +37,9 @@ node cli.js search "我要做簡報"
 | 新增一個新工具 | `node cli.js add https://github.com/使用者/倉庫名稱` |
 | 移除一個工具 | `node cli.js remove 工具ID` |
 
-### 用法二：讓 AI 自動幫你用（推薦 ⭐）
+---
+
+## 用法二：讓 AI 自動幫你用（推薦 ⭐）
 
 如果你在用 **Claude Desktop** 或 **Cursor** 這類 AI 軟體，可以把這個工具箱接上去。
 
@@ -55,9 +55,10 @@ AI 就會自己：
 
 全程不用你動手。
 
-#### 怎麼接？
+### 怎麼接？
 
-**Claude Desktop：**
+#### Claude Desktop
+
 1. 在檔案總管地址列貼上 `%APPDATA%\Claude\`
 2. 打開（或建立）`claude_desktop_config.json`
 3. 寫入這段：
@@ -77,7 +78,8 @@ AI 就會自己：
 
 4. 重啟 Claude Desktop
 
-**Cursor：**
+#### Cursor
+
 1. 打開 Settings → Features → MCP
 2. 點擊 Add New MCP Server
 3. Name 填 `tool-calling`
@@ -85,13 +87,65 @@ AI 就會自己：
 5. Command 填 `node D:\你的路徑\Tool-Calling\mcp-server.js`
 6. 存檔，重啟 Cursor
 
-### 用法三：在 Agnes 對話中使用
+---
+
+## 用法三：在 Agnes 對話中使用
 
 在 Agnes 聊天中說：
 
 > 「啟動全自動工具調用模式，我想做一份簡報」
 
 Agnes 就會自動幫你搜尋、確認、執行、清理。
+
+---
+
+## 用法四：跟 SkillsBuilder 搭配使用（擴充工具箱）
+
+**SkillsBuilder** 是一個用來「開發和整理技能」的工具，而 **Tool-Calling** 是「搜尋和使用技能」的工具。兩者搭配起來就像：
+
+- **SkillsBuilder** = 工廠（生產技能）
+- **Tool-Calling** = 超市（搜尋和購買技能）
+
+### 搭配方式
+
+1. **用 SkillsBuilder 開發新技能** — 寫好技能後，SkillsBuilder 會幫你整理好描述、分類、觸發詞等資訊
+2. **把技能匯出到 Tool-Calling** — 技能建好後，把它們加進 Tool-Calling 的工具箱裡
+3. **在 Tool-Calling 裡搜尋和使用** — 之後任何時候都能用 `search` 找到你開發的技能
+
+簡單說：SkillsBuilder 負責「造」，Tool-Calling 負責「找」。
+
+---
+
+## 用法五：在新專案中使用（從別的資料夾呼叫）
+
+假設你在做一個新專案，資料夾在 `D:\MyNewProject`，但你想要用到 Tool-Calling 的工具搜尋功能。有兩種做法：
+
+### 做法 A：直接連到 Tool-Calling 的目錄（最簡單）
+
+不用複製任何東西，直接指向 Tool-Calling 的位置：
+
+```bash
+# 在 D:\MyNewProject 的終端機中
+cd D:\Self-developed_Apps\Tool-Calling
+node cli.js search "我要做簡報"
+```
+
+或者用完整路徑：
+
+```bash
+node "D:\Self-developed_Apps\Tool-Calling\cli.js" search "我要做簡報"
+```
+
+### 做法 B：把 Tool-Calling 設為專案依賴（進階）
+
+如果你希望每個新專案都能方便地用 `npm run search` 這種方式呼叫：
+
+1. 在你的新專案資料夾中：
+```bash
+npm install -g tool-calling
+```
+
+這樣你就可以在任何地方輸入 `tool-calling search "..."` 來使用。
 
 ---
 

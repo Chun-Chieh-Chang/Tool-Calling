@@ -55,6 +55,7 @@ export function exactMatch(tools, query) {
 
 /**
  * L2 關鍵字匹配：查詢字串與工具觸發關鍵字 + 分類 + 描述 交叉匹配
+ * 使用 _l2Cache 避免每次 keystroke 重新 normalize。
  * @param {object[]} tools - 工具列表
  * @param {string} query - 查詢字串
  * @returns {object[]} 匹配結果（含分數，按分數降序）
@@ -63,33 +64,54 @@ export function keywordMatch(tools, query) {
   const queryTokens = tokenize(query);
   if (queryTokens.length === 0) return [];
 
+  const queryNorm = normalize(query);
   const results = [];
 
   for (const tool of tools) {
     let score = 0;
     const matchedKeywords = [];
 
+    // 從快取讀取正規化後的欄位；若快取未就緒則即時建立
+    let cached;
+    if (_l2Cache && _l2Cache.has(tool.id)) {
+      cached = _l2Cache.get(tool.id);
+    } else {
+      cached = {
+        triggersNorm: (tool.triggers || []).map(t => normalize(t)),
+        categoryNorm: normalize(tool.category),
+        descNorm: normalize(tool.description),
+        capsNorm: (tool.capabilities || []).map(c => normalize(c)),
+        subToolsNorm: (tool.subTools || []).map(st => ({
+          name: normalize(st.name),
+          description: normalize(st.description),
+        })),
+        useCaseNorm: tool.useCase ? normalize(tool.useCase) : null,
+        advantagesNorm: (tool.advantages || []).map(a => normalize(a)),
+        maxPossible: (tool.triggers || []).length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0),
+      };
+    }
+
     // 觸發關鍵字匹配（權重最高：每個匹配 +3）
-    for (const trigger of tool.triggers) {
-      const triggerNorm = normalize(trigger);
+    for (let ti = 0; ti < (tool.triggers || []).length; ti++) {
+      const triggerNorm = cached.triggersNorm[ti] || normalize(tool.triggers[ti]);
       // 查詢包含觸發詞
-      if (normalize(query).includes(triggerNorm)) {
+      if (queryNorm.includes(triggerNorm)) {
         score += 3;
-        matchedKeywords.push(trigger);
+        matchedKeywords.push(tool.triggers[ti]);
       }
       // 觸發詞包含查詢的某個 token
       for (const token of queryTokens) {
         if (triggerNorm.includes(token) && token.length >= 2) {
           score += 1.5;
-          if (!matchedKeywords.includes(trigger)) {
-            matchedKeywords.push(trigger);
+          if (!matchedKeywords.includes(tool.triggers[ti])) {
+            matchedKeywords.push(tool.triggers[ti]);
           }
         }
       }
     }
 
     // 分類匹配（權重中：+2）
-    const categoryNorm = normalize(tool.category);
+    const categoryNorm = cached.categoryNorm;
     for (const token of queryTokens) {
       if (categoryNorm.includes(token) && token.length >= 2) {
         score += 2;
@@ -98,7 +120,7 @@ export function keywordMatch(tools, query) {
     }
 
     // 描述匹配（權重低：+1）
-    const descNorm = normalize(tool.description);
+    const descNorm = cached.descNorm;
     for (const token of queryTokens) {
       if (descNorm.includes(token) && token.length >= 2) {
         score += 1;
@@ -107,13 +129,13 @@ export function keywordMatch(tools, query) {
 
     // 能力標籤匹配 (權重中：每個匹配 +1.5)
     if (tool.capabilities) {
-      for (const cap of tool.capabilities) {
-        const capNorm = normalize(cap);
+      for (let ci = 0; ci < tool.capabilities.length; ci++) {
+        const capNorm = cached.capsNorm[ci] || normalize(tool.capabilities[ci]);
         for (const token of queryTokens) {
           if (capNorm.includes(token) && token.length >= 2) {
             score += 1.5;
-            if (!matchedKeywords.includes(cap)) {
-              matchedKeywords.push(cap);
+            if (!matchedKeywords.includes(tool.capabilities[ci])) {
+              matchedKeywords.push(tool.capabilities[ci]);
             }
           }
         }
@@ -121,13 +143,14 @@ export function keywordMatch(tools, query) {
     }
 
     // 子工具匹配 (權重中：每個匹配 +1.5)
-    if (tool.subTools) {
+    if (tool.subTools && cached.subToolsNorm) {
       let subToolScore = 0;
-      for (const subTool of tool.subTools) {
-        const subName = normalize(subTool.name);
-        const subDesc = normalize(subTool.description);
+      for (let si = 0; si < tool.subTools.length; si++) {
+        const sub = tool.subTools[si];
+        const subName = cached.subToolsNorm[si]?.name || normalize(sub.name);
+        const subDesc = cached.subToolsNorm[si]?.description || normalize(sub.description);
         let subMatch = false;
-        
+
         for (const token of queryTokens) {
           if (subName.includes(token) && token.length >= 2) {
             subToolScore += 1.5;
@@ -138,8 +161,8 @@ export function keywordMatch(tools, query) {
             subMatch = true;
           }
         }
-        if (subMatch && !matchedKeywords.includes(`subtool:${subTool.name}`)) {
-          matchedKeywords.push(`subtool:${subTool.name}`);
+        if (subMatch && !matchedKeywords.includes(`subtool:${sub.name}`)) {
+          matchedKeywords.push(`subtool:${sub.name}`);
         }
       }
       // 限制子工具的加分上限，避免包含上百個工具的 Monorepo 霸榜
@@ -147,19 +170,18 @@ export function keywordMatch(tools, query) {
     }
 
     // 場景與優勢匹配 (權重高：每個匹配 +2)
-    if (tool.useCase) {
-      const useCaseNorm = normalize(tool.useCase);
+    if (cached.useCaseNorm) {
       for (const token of queryTokens) {
-        if (useCaseNorm.includes(token) && token.length >= 2) {
+        if (cached.useCaseNorm.includes(token) && token.length >= 2) {
           score += 2;
           if (!matchedKeywords.includes(`場景匹配`)) matchedKeywords.push(`場景匹配`);
         }
       }
     }
-    
-    if (tool.advantages) {
-      for (const adv of tool.advantages) {
-        const advNorm = normalize(adv);
+
+    if (tool.advantages && cached.advantagesNorm) {
+      for (let ai = 0; ai < tool.advantages.length; ai++) {
+        const advNorm = cached.advantagesNorm[ai] || normalize(tool.advantages[ai]);
         for (const token of queryTokens) {
           if (advNorm.includes(token) && token.length >= 2) {
             score += 2;
@@ -171,10 +193,9 @@ export function keywordMatch(tools, query) {
 
     // 負樣本約束匹配 (Hard Negative)
     let isNegativeMatch = false;
-    if (tool.negativeConstraints) {
-      for (const neg of tool.negativeConstraints) {
-        const negNorm = normalize(neg);
-        if (negNorm.length >= 2 && normalize(query).includes(negNorm)) {
+    if (cached.negativeConstraintsNorm) {
+      for (const negNorm of cached.negativeConstraintsNorm) {
+        if (negNorm.length >= 2 && queryNorm.includes(negNorm)) {
           isNegativeMatch = true;
           break;
         }
@@ -185,9 +206,9 @@ export function keywordMatch(tools, query) {
       if (isNegativeMatch) {
         if (!matchedKeywords.includes(`🚫 禁用場景`)) matchedKeywords.push(`🚫 禁用場景`);
       }
-      
+
       // 正規化分數到 0~1 範圍
-      const maxPossible = tool.triggers.length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0);
+      const maxPossible = cached.maxPossible;
       // 如果命中負樣本，強制給予極低分數 (0.01)
       const normalizedScore = isNegativeMatch ? 0.01 : Math.min(score / maxPossible, 0.99);
       results.push({
@@ -288,9 +309,12 @@ function charNgrams(text, n = 2) {
 /**
  * 建立工具的多層文字表示（用於 TF-IDF 計算）
  * 觸發詞和名稱重複加入以提升權重
+ * 上限 MAX_TOOL_TEXT_LEN 字元，避免 N-gram 在超大子工具清單上爆炸
  * @param {object} tool
  * @returns {string}
  */
+const MAX_TOOL_TEXT_LEN = 1200; // cap: ~600 Chinese chars / 1200 ASCII chars of bigrams
+
 function buildToolText(tool) {
   const parts = [
     // 名稱 ×3 （最高權重）
@@ -309,7 +333,11 @@ function buildToolText(tool) {
     // 子工具
     ...(tool.subTools || []).map(st => `${st.name} ${st.description}`)
   ];
-  return parts.join(' ');
+  let text = parts.join(' ');
+  if (text.length > MAX_TOOL_TEXT_LEN) {
+    text = text.slice(0, MAX_TOOL_TEXT_LEN);
+  }
+  return text;
 }
 
 /**
@@ -405,9 +433,16 @@ export function semanticSearch(tools, query, threshold = 0.03) {
   const expandedQueryTokens = expandSynonyms(rawQueryTokens);
   const queryNgrams = charNgrams(query);
 
-  // Step 2: 建立所有文檔的 token 集合
-  const toolTexts = tools.map(t => buildToolText(t));
-  const allDocTokens = toolTexts.map(t => tokenize(t));
+  // Step 2: 使用快取的工具文字；若無快取則即時建立
+  let toolTexts;
+  let allDocTokens;
+  if (_l3Cache) {
+    toolTexts = tools.map(t => _l3Cache.get(t.id || '')?.toolText || buildToolText(t));
+    allDocTokens = tools.map(t => _l3Cache.get(t.id || '')?.docTokens || tokenize(buildToolText(t)));
+  } else {
+    toolTexts = tools.map(t => buildToolText(t));
+    allDocTokens = toolTexts.map(t => tokenize(t));
+  }
   // 加入查詢自身以計算 IDF
   allDocTokens.push(expandedQueryTokens);
 
@@ -459,6 +494,69 @@ export function semanticSearch(tools, query, threshold = 0.03) {
   }
 
   return results.sort((a, b) => b.score - a.score);
+}
+
+// ─── L2 結果快取 ──────────────────────────────────────────────────────────
+
+/**
+ * L2 關鍵字匹配的預計算快取。
+ * 在 init() 時期一次建立，避免每次 keystroke 重新 normalize 所有 sub-tool name/description。
+ * 結構：Map<tool.id, { triggersNorm, categoryNorm, descNorm, capsNorm, subToolsNorm }>
+ */
+let _l2Cache = null;
+let _l2CacheVersion = -1; // 當 registry 重載時失效
+
+/**
+ * L3 語義檢索的預計算快取。
+ * 結構：Map<tool.id, { toolText, docTokens }>
+ */
+let _l3Cache = null;
+
+/**
+ * 預先為所有工具建立 L2 + L3 快取（在 init / 頁面載入時呼叫一次）
+ * @param {object[]} tools
+ */
+export function warmL2Cache(tools) {
+  _l2Cache = new Map();
+  _l3Cache = new Map();
+
+  for (const tool of tools) {
+    const id = tool.id || '';
+
+    // L2 cache entry
+    const l2Entry = {
+      triggersNorm: (tool.triggers || []).map(t => normalize(t)),
+      categoryNorm: normalize(tool.category),
+      descNorm: normalize(tool.description),
+      capsNorm: (tool.capabilities || []).map(c => normalize(c)),
+      subToolsNorm: (tool.subTools || []).map(st => ({
+        name: normalize(st.name),
+        description: normalize(st.description),
+      })),
+      useCaseNorm: tool.useCase ? normalize(tool.useCase) : null,
+      advantagesNorm: (tool.advantages || []).map(a => normalize(a)),
+      negativeConstraintsNorm: (tool.negativeConstraints || []).map(n => normalize(n)),
+      maxPossible: (tool.triggers || []).length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0),
+    };
+    _l2Cache.set(id, l2Entry);
+
+    // L3 cache entry: pre-build tool text and tokenize once
+    const toolText = buildToolText(tool);
+    _l3Cache.set(id, {
+      toolText,
+      docTokens: tokenize(toolText),
+    });
+  }
+  _l2CacheVersion++;
+}
+
+/**
+ * 清除所有快取
+ */
+export function clearL2Cache() {
+  _l2Cache = null;
+  _l3Cache = null;
+  _l2CacheVersion = -1;
 }
 
 // ─── 統一搜尋入口 ────────────────────────────────────────────────────────
