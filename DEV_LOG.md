@@ -273,3 +273,39 @@
 #### RCA / CAPA
 - **問題 (審查階段發現)**：開發夥伴 (opencode) 雖然完美實作了程式碼與 `README.md` 的更新並完成了 Commit 推播，但遺漏了同步更新 `DEV_LOG.md`，違反了 `AGENTS.md` 中「禁止文件與代碼提交脫鉤 (Zero Detached Commits for Docs/Logs)」的規則。
 - **矯正措施**：主動補上本階段的開發日誌紀錄，並進行補充 Commit。
+
+### 2026-07-23 — 全面程式碼重構與共享模組抽取 (Phase 19)
+
+#### 需求與動機
+在歷經 18 個階段的快速迭代後，專案中積累了大量的程式碼重複 (Duplication)：
+- `loadRegistry()` / `saveRegistry()` 在 4 個檔案中各寫一份 (`cli.js`, `mcp-server.js`, `scan-monorepo.js`, `enrich-registry.js`)
+- `generateId()` 在 `cli.js` 與 `scan-tool.js` 中重複
+- `parseMarkdownDescription()` 在 `scan-tool.js` 內嵌實作，`scan-monorepo.js` 獨立函式
+- Docker 沙盒建置邏輯 (`allowedImages`, docker args 陣列) 在 `core/sandbox.js` 與 `mcp-server.js` 中各寫一份
+- `.gitignore` 中的 `~/.tool-calling/` 條目因 Git 不展開 `~` 實為無效
+
+#### 完成項目
+- [x] **共享模組抽取**：
+  - 建立 `core/registry.js`，統一提供 `loadRegistry()` / `saveRegistry()` / `getToolById()` / `generateId()`
+  - 建立 `scripts/scanner-utils.js`，統一提供 `parseMarkdownDescription()`
+  - 更新 `cli.js`, `mcp-server.js`, `scan-tool.js`, `scan-monorepo.js`, `enrich-registry.js` 全部改用共享模組
+- [x] **Docker 沙盒邏輯合併**：
+  - `core/sandbox.js` 提取 `buildDockerArgs()` 內部函式供兩種模式共用
+  - 新增 `invokeInSandboxCapture()` 導出（pipe stdio，供 MCP server 使用）
+  - `mcp-server.js` 移除重複的 `executeInSandbox()` / `allowedImages` / `__dirname` 常數
+- [x] **無效配置清理**：修正 `.gitignore` 中的惰性 `~/.tool-calling/` 條目為說明註解
+- [x] **一致性修正**：`scan-monorepo.js` 原本的 `saveRegistry()` 缺少 `lastUpdated` 更新，統一使用共享模組後自動修復
+- [x] **文件同步**：更新 `DEV_LOG.md` 記錄本階段
+
+#### 移除/重構統計
+| 類別 | 數量 |
+|------|------|
+| 移除重複函式 (程式碼行) | ~80 行 |
+| 統一路徑常數 (REGISTRY_PATH) | 4 處 → 1 處 |
+| 合併 Docker 建置邏輯 | 2 處 → 1 處 |
+| 新增共享模組 | 2 個 (`core/registry.js`, `scripts/scanner-utils.js`) |
+
+#### RCA / CAPA
+- **問題 (審查階段發現)**：原始 `scan-monorepo.js` 的 `saveRegistry()` 忘記更新 `lastUpdated` 時間戳，導致後續排序依賴 `addedAt` 的查詢可能異常。
+- **矯正措施**：由於已將所有寫入操作統一至 `core/registry.js` 的 `saveRegistry()`，此問題於 source 層級永久修復。
+- **預防措施**：未來新增任何需要讀寫 `tools.json` 的模組，一律從 `core/registry.js` 導入，禁止自行定義路徑或解析邏輯。

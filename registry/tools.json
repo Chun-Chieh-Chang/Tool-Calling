@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-21T13:46:10.654Z",
+  "lastUpdated": "2026-07-23T04:42:21.890Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -21772,6 +21772,218 @@
       ],
       "addedAt": "2026-07-21T13:46:10.654Z",
       "status": "experimental"
+    },
+    {
+      "id": "antigravity-notebooklm-mcp",
+      "name": "Antigravity Notebooklm Mcp",
+      "url": "https://github.com/jackc1111/antigravity-notebooklm-mcp",
+      "description": "jackc1111/antigravity-notebooklm-mcp - 待補充描述",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "antigravity-notebooklm-mcp",
+        "antigravity",
+        "notebooklm",
+        "mcp"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/jackc1111/antigravity-notebooklm-mcp",
+        "repoUrl": "https://github.com/jackc1111/antigravity-notebooklm-mcp"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-23T04:32:04.698Z",
+      "status": "experimental"
+    },
+    {
+      "id": "khunotebooklmmcp",
+      "name": "Khunotebooklmmcp",
+      "url": "https://github.com/drtagkim/khunotebooklmmcp",
+      "description": "NotebookLM MCP (Antigravity)",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "khunotebooklmmcp"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/drtagkim/khunotebooklmmcp",
+        "repoUrl": "https://github.com/drtagkim/khunotebooklmmcp"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-23T04:34:37.814Z",
+      "status": "experimental"
+    },
+    {
+      "id": "pi",
+      "name": "Pi",
+      "url": "https://github.com/earendil-works/pi",
+      "description": "AI agent toolkit: unified LLM API, agent loop, TUI, coding agent CLI",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "pi"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/earendil-works/pi",
+        "repoUrl": "https://github.com/earendil-works/pi"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-23T04:42:21.889Z",
+      "status": "experimental",
+      "subTools": [
+        {
+          "name": "Agent",
+          "description": "Stateful agent with tool execution and event streaming. Built on `@earendil-works/pi-ai`.",
+          "subpath": "packages/agent"
+        },
+        {
+          "name": "Ai",
+          "description": "Unified LLM API with provider collections, automatic auth resolution, token and cost tracking, and simple context persistence and hand-off to other models mid-session.",
+          "subpath": "packages/ai"
+        },
+        {
+          "name": "Coding Agent",
+          "description": "> New issues and PRs from new contributors are auto-closed by default. Maintainers review auto-closed issues daily. See [CONTRIBUTING.md](../../CONTRIBUTING.md).",
+          "subpath": "packages/coding-agent"
+        },
+        {
+          "name": "Examples",
+          "description": "Example code for pi-coding-agent SDK and extensions.",
+          "subpath": "packages/coding-agent/examples"
+        },
+        {
+          "name": "Extensions",
+          "description": "Example extensions for pi-coding-agent.",
+          "subpath": "packages/coding-agent/examples/extensions"
+        },
+        {
+          "name": "Doom Overlay",
+          "description": "Play DOOM as an overlay in pi. Demonstrates that the overlay system can handle real-time game rendering at 35 FPS.",
+          "subpath": "packages/coding-agent/examples/extensions/doom-overlay"
+        },
+        {
+          "name": "Dynamic Resources",
+          "description": "Example skill loaded from resources_discover",
+          "subpath": "packages/coding-agent/examples/extensions/dynamic-resources"
+        },
+        {
+          "name": "Plan Mode",
+          "description": "Read-only exploration mode for safe code analysis.",
+          "subpath": "packages/coding-agent/examples/extensions/plan-mode"
+        },
+        {
+          "name": "Subagent",
+          "description": "Delegate tasks to specialized subagents with isolated context windows.",
+          "subpath": "packages/coding-agent/examples/extensions/subagent"
+        },
+        {
+          "name": "Sdk",
+          "description": "Programmatic usage of pi-coding-agent via `createAgentSession()` and `createAgentSessionRuntime()`.",
+          "subpath": "packages/coding-agent/examples/sdk"
+        },
+        {
+          "name": "Consecutive Hyphens",
+          "description": "A skill with consecutive hyphens in the name.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/consecutive-hyphens"
+        },
+        {
+          "name": "Disable Model Invocation",
+          "description": "A skill that cannot be invoked by the model.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/disable-model-invocation"
+        },
+        {
+          "name": "Invalid Name Chars",
+          "description": "A skill with invalid characters in the name.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/invalid-name-chars"
+        },
+        {
+          "name": "Invalid Yaml",
+          "description": "[unclosed bracket",
+          "subpath": "packages/coding-agent/test/fixtures/skills/invalid-yaml"
+        },
+        {
+          "name": "Long Name",
+          "description": "A skill with a name that exceeds 64 characters.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/long-name"
+        },
+        {
+          "name": "Missing Description",
+          "description": "This skill has no description field.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/missing-description"
+        },
+        {
+          "name": "Multiline Description",
+          "description": "|",
+          "subpath": "packages/coding-agent/test/fixtures/skills/multiline-description"
+        },
+        {
+          "name": "Name Mismatch",
+          "description": "A skill with a name that doesn't match the directory.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/name-mismatch"
+        },
+        {
+          "name": "Child Skill",
+          "description": "A nested skill in a subdirectory.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/nested/child-skill"
+        },
+        {
+          "name": "No Frontmatter",
+          "description": "This skill has no YAML frontmatter at all.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/no-frontmatter"
+        },
+        {
+          "name": "Root Skill Preferred",
+          "description": "Root skill should win.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/root-skill-preferred"
+        },
+        {
+          "name": "Nested Child",
+          "description": "Nested skill should be ignored.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/root-skill-preferred/nested-child"
+        },
+        {
+          "name": "Unknown Field",
+          "description": "A skill with an unknown frontmatter field.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/unknown-field"
+        },
+        {
+          "name": "Valid Skill",
+          "description": "A valid skill for testing purposes.",
+          "subpath": "packages/coding-agent/test/fixtures/skills/valid-skill"
+        },
+        {
+          "name": "Calendar",
+          "description": "First calendar skill.",
+          "subpath": "packages/coding-agent/test/fixtures/skills-collision/first/calendar"
+        },
+        {
+          "name": "Calendar",
+          "description": "Second calendar skill.",
+          "subpath": "packages/coding-agent/test/fixtures/skills-collision/second/calendar"
+        },
+        {
+          "name": "Suite",
+          "description": "Use `test/suite/` for the new harness-based test suite around `AgentSession` and `AgentSessionRuntime`.",
+          "subpath": "packages/coding-agent/test/suite"
+        },
+        {
+          "name": "Server",
+          "description": "Experimental. This package is under active development and may change or be removed without notice. Its CLI, APIs, and behavior are not yet stable.",
+          "subpath": "packages/server"
+        },
+        {
+          "name": "Sqlite Node",
+          "description": "Node sqlite storage backend for `@earendil-works/pi-agent-core` sessions. Provides the `node:sqlite` adapter (`SqliteDatabase` implementation) and the SQLite session repo/storage implementation (`Sqli",
+          "subpath": "packages/storage/sqlite-node"
+        },
+        {
+          "name": "Tui",
+          "description": "Minimal terminal UI framework with differential rendering and synchronized output for flicker-free interactive CLI applications.",
+          "subpath": "packages/tui"
+        }
+      ]
     }
   ]
 }

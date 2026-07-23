@@ -1,10 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const REGISTRY_PATH = join(__dirname, '..', 'registry', 'tools.json');
+import { loadRegistry, saveRegistry } from '../core/registry.js';
 
 const API_KEY = process.env.AGNES_API_KEY;
 if (!API_KEY) {
@@ -15,15 +9,6 @@ if (!API_KEY) {
 const API_URL = 'https://apihub.agnes-ai.com/v1/chat/completions';
 const MODEL = 'agnes-2.0-flash';
 const CONCURRENCY = 5;
-
-function loadRegistry() {
-  return JSON.parse(readFileSync(REGISTRY_PATH, 'utf-8'));
-}
-
-function saveRegistry(data) {
-  data.lastUpdated = new Date().toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(data, null, 2), 'utf-8');
-}
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

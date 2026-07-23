@@ -5,35 +5,15 @@
  * 命令列介面：add / list / search / remove / validate / health-check / index-subtools
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { search, listAll, listByCategory, getById } from './core/search-engine.js';
 import { scanMonorepo } from './scripts/scan-monorepo.js';
+import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const REGISTRY_PATH = join(__dirname, 'registry', 'tools.json');
-
-// ─── 工具函式 ─────────────────────────────────────────────────────────────
-
-function loadRegistryRaw() {
-  return JSON.parse(readFileSync(REGISTRY_PATH, 'utf-8'));
-}
-
-function saveRegistry(data) {
-  data.lastUpdated = new Date().toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(data, null, 2), 'utf-8');
-}
-
-function generateId(name) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
 
 // ─── ANSI 顏色 ─────────────────────────────────────────────────────────────
 
@@ -72,7 +52,7 @@ function error(text) {
 
 function cmdList() {
   header('工具註冊庫');
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const byCategory = listByCategory(registry.tools);
   let total = 0;
 
@@ -113,7 +93,7 @@ async function cmdSearch(query, options = {}) {
   } catch (e) {}
 
   header(`搜尋: "${query}"`);
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const results = search(registry.tools, query, { 
     topK: options.topK || 5, 
     category: options.category,
@@ -169,7 +149,7 @@ async function cmdAdd(url, isBatch = false) {
   // 若有 subpath，ID 取 subpath 最後一段，否則取 repo
   const baseName = subpath ? subpath.split('/').pop() : repo;
   let id = generateId(baseName);
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
 
   // 重複檢測
   if (registry.tools.some(t => t.url === url)) {
@@ -214,7 +194,7 @@ function cmdRemove(idOrUrl) {
     process.exit(1);
   }
 
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const idx = registry.tools.findIndex(
     t => t.id === idOrUrl || t.url === idOrUrl
   );
@@ -234,7 +214,7 @@ function cmdRemove(idOrUrl) {
 function cmdValidate() {
   header('驗證 tools.json');
 
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   let errors = 0;
   let warnings = 0;
 
@@ -299,7 +279,7 @@ function cmdValidate() {
 async function cmdHealthCheck() {
   header('工具可用性健康檢查');
 
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const tools = listAll(registry.tools);
   let healthy = 0;
   let failed = 0;
@@ -332,7 +312,7 @@ function cmdInfo(id) {
     process.exit(1);
   }
 
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const tool = getById(registry.tools, id);
   if (!tool) {
     error(`未找到工具: ${id}`);
@@ -422,7 +402,7 @@ async function cmdInstall(id) {
     process.exit(1);
   }
 
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const tool = getById(registry.tools, id);
   if (!tool) {
     error(`未找到工具: ${id}。請先使用 list 或 search 確認工具 ID。`);
@@ -451,7 +431,7 @@ async function cmdInvoke(id, invokeArgs) {
     process.exit(1);
   }
 
-  const registry = loadRegistryRaw();
+  const registry = loadRegistry();
   const tool = getById(registry.tools, id);
   if (!tool) {
     error(`未找到工具: ${id}。請先使用 list 或 search 確認工具 ID。`);
@@ -562,7 +542,7 @@ switch (command) {
     await cmdInvoke(args[0], args.slice(1));
     break;
   case 'export-dataset': {
-    const registry = loadRegistryRaw();
+    const registry = loadRegistry();
     const { exportDataset } = await import('./scripts/export-dataset.js');
     exportDataset(registry.tools, args[0] || 'dataset.jsonl');
     break;

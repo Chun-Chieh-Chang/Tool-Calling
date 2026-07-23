@@ -1,48 +1,15 @@
 #!/usr/bin/env node
 
-/**
- * Tool-Calling MCP Server
- *
- * 提供 MCP (Model Context Protocol) STDIO 傳輸介面，
- * 讓支援 MCP 的 AI Agent (如 Claude Desktop, Cursor 等)
- * 能直接搜尋、查詢與執行本系統的工具。
- *
- * 傳輸層: STDIO (安全、零網路埠、與 Claude Desktop 原生相容)
- *
- * @see https://modelcontextprotocol.io
- */
-
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
-import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { spawnSync } from "node:child_process";
-
-// ─── Constants ─────────────────────────────────────────────────────────────
+import { loadRegistry, getToolById } from "./core/registry.js";
+import { invokeInSandboxCapture } from "./core/sandbox.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const REGISTRY_PATH = join(__dirname, "registry", "tools.json");
-
-// ─── Registry Loader ───────────────────────────────────────────────────────
-
-function loadRegistry() {
-  try {
-    const data = JSON.parse(readFileSync(REGISTRY_PATH, "utf-8"));
-    return data.tools || [];
-  } catch (err) {
-    throw new Error(`無法載入工具註冊庫: ${err.message}`);
-  }
-}
-
-function getToolById(toolId) {
-  const tools = loadRegistry();
-  return tools.find((t) => t.id === toolId) || null;
-}
-
-// ─── Telemetry 整合 (非侵入載入) ────────────────────────────────────────
 
 const telemetryPromise = import("./core/telemetry.js").catch(() => null);
 
@@ -50,86 +17,6 @@ async function getTelemetry() {
   const mod = await telemetryPromise;
   return mod || null;
 }
-
-// ─── Sandbox 執行 ─────────────────────────────────────────────────────────
-
-function executeInSandbox(tool, args = []) {
-  // 此處邏輯與 core/sandbox.js 的 invokeInSandbox 一致，
-  // 但直接在 MCP server 中 import 以減少間接層。
-  const allowedImages = [
-    "python:3.10-slim",
-    "node:18-alpine",
-    "golang:1.21-alpine",
-    "rust:1.75-slim",
-    "php:8.2-cli-alpine",
-    "ubuntu:22.04",
-  ];
-
-  let image = tool.sandbox?.image || "ubuntu:22.04";
-  if (!allowedImages.includes(image)) {
-    image = "ubuntu:22.04";
-  }
-
-  const mountPath = join(
-    __dirname,
-    ".temp",
-    tool.id
-  ).replace(/\\/g, "/");
-  const userCmd = args.join(" ");
-  const finalCmd = userCmd || 'echo "No command provided"';
-
-  const dockerArgs = [
-    "run",
-    "--rm",
-    "-v",
-    `${mountPath}:/workspace`,
-    "-w",
-    "/workspace",
-    "--network",
-    "none",
-    "--read-only",
-    "--tmpfs",
-    "/tmp",
-    "--env",
-    "HOME=/tmp",
-    "--cap-drop",
-    "ALL",
-    "--user",
-    "1000:1000",
-    "--memory=512m",
-    "--cpus=1",
-    image,
-    "sh",
-    "-c",
-    finalCmd,
-  ];
-
-  const startTime = Date.now();
-  try {
-    const result = spawnSync("docker", dockerArgs, {
-      stdio: "pipe",
-      encoding: "utf-8",
-      timeout: 300_000, // 5 分鐘上限
-    });
-    const duration = Date.now() - startTime;
-
-    if (result.error) {
-      return { exitCode: 1, duration, error: result.error.message, stdout: "", stderr: "" };
-    }
-
-    return {
-      exitCode: result.status ?? 1,
-      duration,
-      stdout: result.stdout || "",
-      stderr: result.stderr || "",
-      error: result.status === 0 ? null : `Exit code ${result.status}`,
-    };
-  } catch (err) {
-    return { exitCode: 1, duration: Date.now() - startTime, error: err.message, stdout: "", stderr: "" };
-  }
-}
-
-// ─── MCP Server 初始化 ───────────────────────────────────────────────────
 
 const server = new McpServer(
   {
@@ -143,8 +30,6 @@ const server = new McpServer(
   }
 );
 
-// ─── Tool: list_tools ──────────────────────────────────────────────────────
-
 server.tool(
   "list_tools",
   "列出所有已註冊的工具（可依分類過濾）",
@@ -156,7 +41,7 @@ server.tool(
   },
   async (args) => {
     try {
-      const tools = loadRegistry();
+      const tools = loadRegistry().tools;
       let filtered = tools;
 
       if (args.category) {
@@ -190,8 +75,6 @@ server.tool(
   }
 );
 
-// ─── Tool: search_tools ────────────────────────────────────────────────────
-
 server.tool(
   "search_tools",
   "搜尋工具（支援自然語言查詢與分類過濾），僅回傳摘要資訊作為初步意圖識別",
@@ -203,9 +86,8 @@ server.tool(
   async (args) => {
     try {
       const { search } = await import("./core/search-engine.js");
-      const tools = loadRegistry();
+      const tools = loadRegistry().tools;
 
-      // 載入 telemetry 動態權重
       const telemetry = await getTelemetry();
       const telemetryStats = telemetry?.getTelemetryStats() || {};
 
@@ -241,8 +123,6 @@ server.tool(
     }
   }
 );
-
-// ─── Tool: get_tool_detail ────────────────────────────────────────────────
 
 server.tool(
   "get_tool_detail",
@@ -280,11 +160,9 @@ server.tool(
   }
 );
 
-// ─── Tool: run_tool ────────────────────────────────────────────────────────
-
 server.tool(
   "run_tool",
-  "⚠️ 在 Docker 沙盒中執行指定工具（同步執行，容器執行期間 MCP 連線將等待完成）",
+  "在 Docker 沙盒中執行指定工具（同步執行，容器執行期間 MCP 連線將等待完成）",
   {
     tool_id: z.string().min(1).describe("工具 ID"),
     args: z
@@ -311,16 +189,12 @@ server.tool(
         };
       }
 
-      // 確保工具原始碼已安裝
-      // installTool 內建快取，若已安裝會直接回傳路徑
       const { installTool } = await import("./core/installer.js");
       const tempDir = join(__dirname, ".temp");
       const targetPath = installTool(tool, tempDir);
 
-      // 在沙盒中執行
-      const result = executeInSandbox(tool, toolArgs);
+      const result = invokeInSandboxCapture(tool, targetPath, toolArgs);
 
-      // 記錄 Telemetry
       const telemetry = await getTelemetry();
       if (telemetry) {
         telemetry.recordTrace(
@@ -354,7 +228,6 @@ server.tool(
       };
     } catch (err) {
       const duration = Date.now() - startTime;
-      // 嘗試記錄錯誤軌跡
       const telemetry = await getTelemetry();
       if (telemetry) {
         telemetry.recordTrace(toolId, args.args || [], 1, duration, err.message);
@@ -363,8 +236,6 @@ server.tool(
     }
   }
 );
-
-// ─── 啟動 ─────────────────────────────────────────────────────────────────
 
 async function main() {
   try {

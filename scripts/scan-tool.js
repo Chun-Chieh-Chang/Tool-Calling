@@ -1,25 +1,7 @@
 #!/usr/bin/env node
 
-/**
- * Tool-Calling Scanner
- * 解析 GitHub URL，自動提取專案資訊並生成工具註冊條目格式
- */
-
 import { parseArgs } from 'node:util';
-
-// ─── 輔助函式 ─────────────────────────────────────────────────────────────
-
-/**
- * 根據名稱生成 kebab-case ID
- */
-function generateId(name) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
+import { generateId } from '../core/registry.js';
 
 
 

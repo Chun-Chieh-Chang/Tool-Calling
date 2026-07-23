@@ -5,4 +5,4 @@ node_modules/
 .DS_Store
 *.log
 dist/
-~/.tool-calling/
+# ~/.tool-calling/ — Git 不展開 ~，此路徑在 home 目錄 (專案外)，無需 gitignore

@@ -1,3 +1,10 @@
+/**
+ * @module core/sandbox
+ * Shared sandbox execution module.
+ *   invokeInSandbox()     — CLI mode: inherits stdio for interactive output
+ *   invokeInSandboxCapture() — MCP/server mode: captures stdout/stderr via pipe
+ */
+
 import { spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -63,31 +70,31 @@ function getSetupCommand(workspacePath, tool) {
  * @param {string} targetDir 
  * @param {string[]} args 
  */
-export function invokeInSandbox(tool, targetDir, args) {
+const allowedImages = [
+  'python:3.10-slim',
+  'node:18-alpine',
+  'golang:1.21-alpine',
+  'rust:1.75-slim',
+  'php:8.2-cli-alpine',
+  'ubuntu:22.04'
+];
+
+function resolveImage(tool) {
   let image = tool.sandbox?.image || getDefaultImage(tool.language);
-  
-  // 驗證 image 白名單
-  const allowedImages = [
-    'python:3.10-slim',
-    'node:18-alpine',
-    'golang:1.21-alpine',
-    'rust:1.75-slim',
-    'php:8.2-cli-alpine',
-    'ubuntu:22.04'
-  ];
   if (!allowedImages.includes(image)) {
     console.warn(`\x1b[33m警告:\x1b[0m 映像檔 ${image} 不在白名單中，退回預設映像檔 ubuntu:22.04`);
     image = 'ubuntu:22.04';
   }
+  return image;
+}
 
-  console.log(`\x1b[36m[Sandbox]\x1b[0m 正在準備容器環境: ${image}`);
-  
+function buildDockerArgs(tool, targetDir, args) {
+  const image = resolveImage(tool);
   const setupCmd = getSetupCommand(targetDir, tool);
   const userCmd = args.join(' ');
   const finalCmd = `${setupCmd}${userCmd || 'echo "No command provided"'}`;
-  
   const mountPath = targetDir.replace(/\\/g, '/');
-  
+
   const dockerArgs = [
     'run', '--rm',
     '-v', `${mountPath}:/workspace`,
@@ -103,7 +110,14 @@ export function invokeInSandbox(tool, targetDir, args) {
     image,
     'sh', '-c', finalCmd
   ];
-  
+
+  return { image, dockerArgs, userCmd };
+}
+
+export function invokeInSandbox(tool, targetDir, args) {
+  const { image, dockerArgs, userCmd } = buildDockerArgs(tool, targetDir, args);
+
+  console.log(`\x1b[36m[Sandbox]\x1b[0m 正在準備容器環境: ${image}`);
   console.log(`\x1b[36m[Sandbox]\x1b[0m 啟動隔離執行: ${userCmd}`);
   
   try {
@@ -125,5 +139,33 @@ export function invokeInSandbox(tool, targetDir, args) {
   } catch (error) {
     console.log(`\n\x1b[31m✗ 執行異常\x1b[0m: ${error.message}`);
     return { exitCode: 1, duration: 0, error: error.message };
+  }
+}
+
+export function invokeInSandboxCapture(tool, targetDir, args) {
+  const { image, dockerArgs, userCmd } = buildDockerArgs(tool, targetDir, args);
+  const startTime = Date.now();
+
+  try {
+    const result = spawnSync('docker', dockerArgs, {
+      stdio: 'pipe',
+      encoding: 'utf-8',
+      timeout: 300_000,
+    });
+    const duration = Date.now() - startTime;
+
+    if (result.error) {
+      return { exitCode: 1, duration, error: result.error.message, stdout: '', stderr: '' };
+    }
+
+    return {
+      exitCode: result.status ?? 1,
+      duration,
+      stdout: result.stdout || '',
+      stderr: result.stderr || '',
+      error: result.status === 0 ? null : `Exit code ${result.status}`,
+    };
+  } catch (err) {
+    return { exitCode: 1, duration: Date.now() - startTime, error: err.message, stdout: '', stderr: '' };
   }
 }

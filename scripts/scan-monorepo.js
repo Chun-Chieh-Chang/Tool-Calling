@@ -1,46 +1,14 @@
 import { spawnSync } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
+import { loadRegistry, saveRegistry } from '../core/registry.js';
+import { parseMarkdownDescription } from './scanner-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const REGISTRY_PATH = join(__dirname, '..', 'registry', 'tools.json');
 const TEMP_DIR = join(__dirname, '..', '.temp');
-
-function loadRegistry() {
-  const raw = readFileSync(REGISTRY_PATH, 'utf-8');
-  return JSON.parse(raw);
-}
-
-function saveRegistry(registry) {
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf-8');
-}
-
-function parseMarkdownDescription(content) {
-  let description = '';
-  // 優先解析 YAML Frontmatter
-  if (content.startsWith('---')) {
-    const endIdx = content.indexOf('---', 3);
-    if (endIdx > -1) {
-      const fm = content.substring(3, endIdx);
-      const descMatch = fm.match(/description:\s*(.+)/);
-      if (descMatch) {
-        return descMatch[1].trim().replace(/^['"]|['"]$/g, '');
-      }
-      content = content.substring(endIdx + 3).trim();
-    }
-  }
-
-  // 抓取第一段非標題段落
-  const paragraphs = content.split('\n\n');
-  const firstP = paragraphs.find(p => p.trim() && !p.startsWith('#') && !p.startsWith('!') && !p.startsWith('<') && !p.startsWith('-'));
-  if (firstP) {
-    description = firstP.replace(/\n/g, ' ').trim().slice(0, 200);
-  }
-  return description;
-}
 
 export function scanMonorepo(toolId) {
   const registry = loadRegistry();
