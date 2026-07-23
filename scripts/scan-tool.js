@@ -8,16 +8,93 @@ import { generateId } from '../core/registry.js';
 /**
  * 根據描述與標籤猜測分類
  */
+const CATEGORY_RULES = [
+  // 安全性
+  { cat: '安全性', keywords: ['cybersec', 'osint', 'pentest', 'vulnerability', 'exploit', 'ctf'] },
+  // 瀏覽器自動化
+  { cat: '瀏覽器自動化', keywords: ['browser-automation', 'headless-browser', 'anti-detect', 'playwright'] },
+  // 資料庫
+  { cat: '資料庫', keywords: ['database', 'nosql', 'postgres', 'mongodb', 'sql-schema', 'azure-storage'] },
+  // 行銷
+  { cat: '行銷', keywords: ['marketing', 'copywriting', 'copy-editing', 'advertising', 'cro'] },
+  // 設計
+  { cat: '設計', keywords: ['typography', 'frontend-design', 'graphic design', 'figma'] },
+  // 音訊
+  { cat: '音訊', keywords: ['tts', 'text-to-speech', 'speech-to-text', 'podcast'] },
+  // 影片
+  { cat: '影片', keywords: ['youtube', 'transcript', 'lip-sync', 'video-generation'] },
+  // 研究
+  { cat: '研究', keywords: ['research', 'arxiv', 'sota', 'publication'] },
+  // 文件生產力
+  { cat: '文件生產力', keywords: ['powerpoint', 'presentation', 'spreadsheet', 'docx', 'xlsx'] },
+  // 知識管理
+  { cat: '知識管理', keywords: ['knowledge-graph', 'knowledge-base', 'memory'] },
+  // 基礎設施
+  { cat: '基礎設施', keywords: ['infrastructure', 'devops', 'kubernetes', 'docker', 'deploy'] },
+  // 測試與自動化
+  { cat: '測試與自動化', keywords: ['e2e', 'playwright', 'testing', 'benchmark', 'qa'] },
+  // API 整合
+  { cat: 'API 整合', keywords: ['mcp-server', 'webhook', 'graphql', 'rest-api', 'sdk'] },
+  // AI 代理
+  { cat: 'AI 代理', keywords: ['agent-framework', 'agent-toolkit', 'agent harness', 'agentic'] },
+  // 多媒體生成
+  { cat: '多媒體生成', keywords: ['text-to-image', 'image-generation', 'generative-ai', 'ai-art'] },
+  // 學習資源
+  { cat: '學習資源', keywords: ['tutorial', 'awesome-list', 'reference-guide', 'type-challenges'] },
+];
+
+/**
+ * 檢查關鍵字是否以完整詞彙（word boundary）存在於 text 中
+ */
+function matchWord(text, kw) {
+  const idx = text.indexOf(kw);
+  if (idx === -1) return false;
+  const before = idx === 0 || text[idx - 1] === ' ' || text[idx - 1] === '-' || text[idx - 1] === '_';
+  const after = idx + kw.length >= text.length || text[idx + kw.length] === ' ' || text[idx + kw.length] === '-' || text[idx + kw.length] === '_';
+  return before && after;
+}
+
+const FALLBACK_KEYWORDS = [
+  { cat: '安全性', keywords: ['security', 'vulnerability', 'pentest', 'osint', 'cybersec'] },
+  { cat: '瀏覽器自動化', keywords: ['browser-automation', 'undetected'] },
+  { cat: '資料庫', keywords: ['database', 'nosql', 'postgres', 'mysql', 'mongodb', 'convex'] },
+  { cat: '行銷', keywords: ['marketing', 'copywriting', 'copy-editing', 'advertising'] },
+  { cat: '設計', keywords: ['design', 'figma', 'typography'] },
+  { cat: '音訊', keywords: ['audio', 'music', 'sound', 'speech', 'voice', 'podcast'] },
+  { cat: '影片', keywords: ['video', 'youtube', 'transcript', 'animation', 'avatar'] },
+  { cat: '研究', keywords: ['research', 'paper', 'arxiv', 'sota', 'publication', 'survey'] },
+  { cat: '文件生產力', keywords: ['document', 'presentation', 'excel', 'word', 'pdf', 'spreadsheet', 'powerpoint'] },
+  { cat: '數據分析', keywords: ['analytics', 'monitoring', 'telemetry', 'observability'] },
+  { cat: '知識管理', keywords: ['knowledge', 'memory', 'rag'] },
+  { cat: '基礎設施', keywords: ['infrastructure', 'devops', 'kubernetes', 'docker', 'cloud', 'deploy', 'hosting'] },
+  { cat: '測試與自動化', keywords: ['testing', 'test-driven', 'qa', 'lint', 'quality', 'audit', 'benchmark'] },
+  { cat: 'API 整合', keywords: ['integration', 'mcp-server', 'webhook', 'graphql', 'sdk'] },
+  { cat: 'AI 代理', keywords: ['agent-framework', 'agent-toolkit', 'autonomous', 'agentic'] },
+  { cat: '多媒體生成', keywords: ['image', 'generative', 'creative'] },
+  { cat: '學習資源', keywords: ['tutorial', 'course', 'guide', 'handbook', 'curated'] },
+];
+
 function guessCategory(desc, topics) {
   const text = (desc + ' ' + topics.join(' ')).toLowerCase();
-  if (text.includes('security') || text.includes('vulnerability') || text.includes('pentest')) return '安全性';
-  if (text.includes('image') || text.includes('video') || text.includes('animation') || text.includes('generative')) return '多媒體生成';
-  if (text.includes('test') || text.includes('e2e') || text.includes('playwright') || text.includes('automation')) return '測試與自動化';
-  if (text.includes('learn') || text.includes('tutorial') || text.includes('course') || text.includes('skills')) return '學習資源';
-  if (text.includes('ai') || text.includes('llm') || text.includes('agent')) return 'AI 框架';
-  if (text.includes('graph') || text.includes('knowledge')) return '知識管理';
-  if (text.includes('file') || text.includes('storage') || text.includes('system')) return '基礎設施';
-  if (text.includes('document') || text.includes('ppt') || text.includes('presentation')) return '文件生產力';
+
+  // Phase 1: 精準比對 — 複合關鍵字 + word boundary
+  for (const { cat, keywords } of CATEGORY_RULES) {
+    if (keywords.some(k => matchWord(text, k))) return cat;
+  }
+
+  // Phase 2: 一般比對 — 也使用 word boundary
+  for (const { cat, keywords } of FALLBACK_KEYWORDS) {
+    if (keywords.some(k => matchWord(text, k))) return cat;
+  }
+
+  // Phase 3: 從 URL 推測
+  if (text.includes('microsoft') || text.includes('azure')) return '基礎設施';
+  if (text.includes('aws') || text.includes('google-cloud')) return '基礎設施';
+
+  if (text.includes('ai') || text.includes('llm')) return 'AI 代理';
+  if (text.includes('agent') || text.includes('skill')) return '開發工具';
+  if (text.includes('cli') || text.includes('command')) return '開發工具';
+  if (text.includes('automation')) return '測試與自動化';
   return '其他';
 }
 
@@ -187,4 +264,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     .catch(() => process.exit(1));
 }
 
-export { scan };
+export { scan, guessCategory };
