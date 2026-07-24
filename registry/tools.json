@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-24T09:10:00+08:00",
+  "lastUpdated": "2026-07-24T09:30:00+08:00",
   "tools": [
     {
       "id": "ppt-master",
@@ -896,8 +896,8 @@
       ]
     },
     {
-      "id": "orca",
-      "name": "Orca",
+      "id": "stablyai-orca",
+      "name": "Orca (Stably AI)",
       "url": "https://github.com/stablyai/orca",
       "description": "Desktop/mobile ADE for orchestrating parallel coding agents with your own subscriptions.",
       "category": "開發工具",
@@ -1629,8 +1629,8 @@
       ]
     },
     {
-      "id": "agent-skills",
-      "name": "Agent Skills",
+      "id": "addyosmani-agent-skills",
+      "name": "Agent Skills (Addy Osmani)",
       "url": "https://github.com/addyosmani/agent-skills",
       "description": "Curated prompt skills for AI coding agents to standardize and improve engineering workflows.",
       "category": "學習資源",
@@ -1802,8 +1802,8 @@
       ]
     },
     {
-      "id": "awesome-agent-skills",
-      "name": "Awesome Agent Skills",
+      "id": "heilcheng-awesome-agent-skills",
+      "name": "Awesome Agent Skills (Heilcheng)",
       "url": "https://github.com/heilcheng/awesome-agent-skills",
       "description": "Curated directory of tutorials, guides, and skills for building AI agents and automations.",
       "category": "學習資源",
@@ -2470,17 +2470,19 @@
       ]
     },
     {
-      "id": "skills",
-      "name": "Skills",
+      "id": "openai-codex-skills",
+      "name": "Skills (OpenAI Codex)",
       "url": "https://github.com/openai/skills",
       "description": "A curated catalog of reusable skills to enhance OpenAI Codex coding agent capabilities.",
       "category": "學習資源",
       "language": "python",
       "triggers": [
-        "skills",
+        "openai-skills",
         "codex",
         "coding",
-        "agent"
+        "agent",
+        "reusable-skills",
+        "openai-codex"
       ],
       "install": {
         "method": "pip",
@@ -3643,8 +3645,8 @@
       ]
     },
     {
-      "id": "notebooklm-skill",
-      "name": "Notebooklm Skill",
+      "id": "claude-world-notebooklm",
+      "name": "NotebookLM Skill (Claude World)",
       "url": "https://github.com/claude-world/notebooklm-skill",
       "description": "Automate research-to-content workflows using NotebookLM and Claude Code via MCP.",
       "category": "音訊",
@@ -3979,8 +3981,8 @@
       ]
     },
     {
-      "id": "book-to-skill",
-      "name": "Book To Skill",
+      "id": "virgiliojr94-book-to-skill",
+      "name": "Book To Skill (Virgilio)",
       "url": "https://github.com/virgiliojr94/book-to-skill",
       "description": "Converts technical PDF books into Claude Code skills for instant study and workflow integration.",
       "category": "文件生產力",
@@ -4167,14 +4169,15 @@
       ]
     },
     {
-      "id": "skills-anthropics",
-      "name": "Skills",
+      "id": "anthropic-claude-skills",
+      "name": "Skills (Anthropic Claude)",
       "url": "https://github.com/anthropics/skills",
       "description": "Anthropic's public repository for discovering and implementing AI agent skills.",
       "category": "AI 代理",
       "language": "python",
       "triggers": [
-        "skills",
+        "anthropic-skills",
+        "claude-skills",
         "agent-skills",
         "anthropic",
         "ai-agents"
@@ -4294,8 +4297,8 @@
       ]
     },
     {
-      "id": "skillmd",
-      "name": "SKILL.Md",
+      "id": "openai-figma-implement-skill",
+      "name": "SKILL.Md (OpenAI Figma Implement)",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-implement-design/SKILL.md",
       "description": "Codex skill guiding implementation of Figma designs into production code.",
       "category": "設計",
@@ -4330,8 +4333,8 @@
       ]
     },
     {
-      "id": "skillmd-vercel-labs",
-      "name": "SKILL.Md",
+      "id": "vercel-web-design-guidelines-skill",
+      "name": "SKILL.Md (Vercel Web Design)",
       "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
       "description": "Guidelines for AI agents to implement professional web design and UI/UX standards.",
       "category": "設計",
@@ -4365,8 +4368,8 @@
       ]
     },
     {
-      "id": "skillmd-nexu-io",
-      "name": "SKILL.Md",
+      "id": "nexu-prototype-generator-skill",
+      "name": "SKILL.Md (Nexu Prototype)",
       "url": "https://github.com/nexu-io/open-design/blob/main/skills/web-design-guidelines/SKILL.md",
       "description": "Open-source design tool enabling AI agents to generate prototypes and export real files.",
       "category": "設計",
@@ -4406,16 +4409,16 @@
       ]
     },
     {
-      "id": "agent-skills-vercel-labs",
-      "name": "Agent Skills",
+      "id": "vercel-agent-skills",
+      "name": "Agent Skills (Vercel)",
       "url": "https://github.com/vercel-labs/agent-skills",
       "description": "Vercel's curated library of reusable skills to enhance AI agent capabilities.",
       "category": "學習資源",
       "language": "javascript",
       "triggers": [
+        "vercel-agent-skills",
         "agent-skills",
         "agent",
-        "skills",
         "vercel",
         "ai-assistant"
       ],
@@ -4440,8 +4443,8 @@
       ]
     },
     {
-      "id": "skillmd-microsoft",
-      "name": "SKILL.Md",
+      "id": "microsoft-playwright-cli-skill",
+      "name": "SKILL.Md (Microsoft Playwright CLI)",
       "url": "https://github.com/microsoft/playwright-cli/blob/main/skills/playwright-cli/SKILL.md",
       "description": "CLI for Playwright actions, recording, code generation, selector inspection, and screenshots.",
       "category": "瀏覽器自動化",
@@ -4477,8 +4480,8 @@
       ]
     },
     {
-      "id": "skillmd-openai-playwright",
-      "name": "SKILL.Md",
+      "id": "openai-playwright-automation-skill",
+      "name": "SKILL.Md (OpenAI Playwright)",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/playwright-interactive/SKILL.md",
       "description": "Markdown-based guide for automating Playwright browser interactions within AI coding assistants.",
       "category": "瀏覽器自動化",
@@ -4511,8 +4514,8 @@
       ]
     },
     {
-      "id": "skillmd-github",
-      "name": "SKILL.Md",
+      "id": "github-copilot-playwright-test-skill",
+      "name": "SKILL.Md (GitHub Copilot Test)",
       "url": "https://github.com/github/awesome-copilot/blob/main/skills/playwright-generate-test/SKILL.md",
       "description": "Curated community skills and configurations to optimize GitHub Copilot workflows.",
       "category": "學習資源",
@@ -4552,8 +4555,8 @@
       ]
     },
     {
-      "id": "skillmd-openai-figma",
-      "name": "SKILL.Md",
+      "id": "openai-figma-generate-skill",
+      "name": "SKILL.Md (OpenAI Figma Generate)",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-generate-design/SKILL.md",
       "description": "Curated instruction files guiding AI coding agents through specialized workflows.",
       "category": "學習資源",
@@ -4593,6 +4596,7 @@
       "category": "AI 代理",
       "language": "other",
       "triggers": [
+        "book-to-skill-apple-ouyang",
         "book-to-skill",
         "book",
         "skill"
@@ -4618,8 +4622,8 @@
       ]
     },
     {
-      "id": "skillmd-anthropics",
-      "name": "SKILL.Md",
+      "id": "anthropic-pdf-analysis-skill",
+      "name": "SKILL.Md (Anthropic PDF)",
       "url": "https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md",
       "description": "Curated collection of SKILL.md files defining AI agent behaviors and workflows.",
       "category": "學習資源",
@@ -4694,16 +4698,16 @@
       ]
     },
     {
-      "id": "skills-browserbase",
-      "name": "Skills",
+      "id": "browserbase-web-automation-skills",
+      "name": "Skills (Browserbase Web Automation)",
       "url": "https://github.com/browserbase/skills",
       "description": "Reusable agent skills for reliable web automation and browser interaction via Browserbase.",
       "category": "開發工具",
       "language": "javascript",
       "triggers": [
-        "skills",
+        "browserbase-skills",
         "browserbase",
-        "web automation",
+        "web-automation",
         "agent",
         "browser"
       ],
@@ -5252,13 +5256,14 @@
       ]
     },
     {
-      "id": "hermes-agent",
-      "name": "Hermes Agent",
+      "id": "nousresearch-hermes-coding-agent",
+      "name": "Hermes Agent (Nous Research Coding)",
       "url": "https://github.com/nousresearch/hermes-agent",
       "description": "Open-source AI coding agent by Nous Research for intelligent software development automation.",
       "category": "研究",
       "language": "python",
       "triggers": [
+        "nousresearch-hermes-coding-agent",
         "hermes-agent",
         "hermes",
         "ai-agents",
@@ -5417,13 +5422,14 @@
       ]
     },
     {
-      "id": "tech-interview-handbook",
-      "name": "Tech Interview Handbook",
+      "id": "yangshun-tech-interview-handbook",
+      "name": "Tech Interview Handbook (Yang Shun)",
       "url": "https://github.com/yangshun/tech-interview-handbook",
       "description": "Curated coding interview prep for engineers covering algorithms and system design.",
       "category": "學習資源",
       "language": "typescript",
       "triggers": [
+        "yangshun-tech-interview-handbook",
         "algorithm",
         "interview-prep",
         "coding-interviews",
@@ -5463,6 +5469,7 @@
       "category": "學習資源",
       "language": "javascript",
       "triggers": [
+        "tech-interview-handbook-Avishkar201",
         "tech-interview-handbook",
         "interview",
         "coding-prep",
@@ -6477,6 +6484,7 @@
       "category": "學習資源",
       "language": "other",
       "triggers": [
+        "voltagent-awesome-agent-skills",
         "ai-agents",
         "coding-assistant",
         "prompt-library",
@@ -12181,13 +12189,14 @@
       ]
     },
     {
-      "id": "vibe-trading",
-      "name": "Vibe Trading",
+      "id": "hkuds-vibe-trading",
+      "name": "Vibe Trading (HKUDS Research)",
       "url": "https://github.com/HKUDS/Vibe-Trading",
       "description": "Multi-agent LLM trading system using MCP for automated financial strategy execution.",
       "category": "AI 代理",
       "language": "python",
       "triggers": [
+        "hkuds-vibe-trading",
         "vibe-trading",
         "mcp",
         "multi-agent",
@@ -15508,13 +15517,14 @@
       ]
     },
     {
-      "id": "vibe-trading-agent-vibe-trading",
-      "name": "Vibe Trading",
+      "id": "agent-vibe-trading-personal",
+      "name": "Vibe Trading (Personal)",
       "url": "https://github.com/agent-vibe-trading/vibe-trading",
       "description": "Automated personal trading agent for market analysis and execution.",
       "category": "開發工具",
       "language": "python",
       "triggers": [
+        "agent-vibe-trading-personal",
         "vibe-trading",
         "vibe-trading-agent",
         "install-vibe-trading",
@@ -15547,13 +15557,14 @@
       ]
     },
     {
-      "id": "frontend-slides",
-      "name": "Frontend Slides",
+      "id": "zarazhangrui-frontend-slides",
+      "name": "Frontend Slides (Generator)",
       "url": "https://github.com/zarazhangrui/frontend-slides",
       "description": "Generate interactive web slide decks using AI coding agents and frontend code.",
       "category": "文件生產力",
       "language": "javascript",
       "triggers": [
+        "zarazhangrui-frontend-slides",
         "frontend-slides",
         "slides",
         "html",
@@ -15671,6 +15682,7 @@
       "category": "文件生產力",
       "language": "other",
       "triggers": [
+        "kelemani-react-slides",
         "react",
         "learning",
         "virtual-dom",
@@ -15751,14 +15763,14 @@
       ]
     },
     {
-      "id": "skills-JimLiu",
-      "name": "Skills",
+      "id": "baoyu-skills",
+      "name": "Skills (Baoyu Creative)",
       "url": "https://github.com/JimLiu/baoyu-skills/tree/main/skills",
       "description": "Reusable AI agent skill templates for Claude, Codex, and OpenClaw coding assistants.",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
-        "skills",
+        "baoyu-skills",
         "agent-skills",
         "claude-skills",
         "codex-skills",
@@ -20790,6 +20802,7 @@
       "category": "AI 代理",
       "language": "python",
       "triggers": [
+        "hermes-agent-NousResearch",
         "hermes-agent",
         "ai-agent",
         "autonomous-llm",
@@ -21143,13 +21156,14 @@
       ]
     },
     {
-      "id": "hermes-studio",
-      "name": "Hermes Studio",
+      "id": "jpeetz-hermes-studio",
+      "name": "Hermes Studio (Orchestrator)",
       "url": "https://github.com/JPeetz/Hermes-Studio",
       "description": "Self-hosted web UI for Hermes Agent with chat, memory, and multi-agent orchestration.",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
+        "jpeetz-hermes-studio",
         "hermes-studio",
         "ai-agent",
         "dashboard",
@@ -21190,6 +21204,7 @@
       "category": "數據分析",
       "language": "typescript",
       "triggers": [
+        "hermes-studio-EKKOLearnAI",
         "hermes-studio",
         "dashboard",
         "ai-agent",
@@ -21729,14 +21744,14 @@
       ]
     },
     {
-      "id": "skills-emilkowalski",
-      "name": "Skills",
+      "id": "emil-design-skills",
+      "name": "Skills (Emil Design Eng)",
       "url": "https://github.com/emilkowalski/skills",
       "description": "Curated skills for Design Engineers to enhance productivity and workflow efficiency.",
       "category": "設計",
       "language": "other",
       "triggers": [
-        "skills",
+        "emil-design-skills",
         "design-engineering",
         "productivity",
         "prototyping"
@@ -21838,14 +21853,14 @@
       ]
     },
     {
-      "id": "skills-MiniMax-AI",
-      "name": "Skills",
+      "id": "minimax-ppt-skills",
+      "name": "Skills (MiniMax PPT)",
       "url": "https://github.com/MiniMax-AI/skills",
       "description": "MiniMax AI skills repository for modular agent capabilities and functional extensions.",
       "category": "AI 代理",
       "language": "c#",
       "triggers": [
-        "skills",
+        "minimax-ppt-skills",
         "agent-modules",
         "mini-max-integration"
       ],
@@ -22429,8 +22444,8 @@
       ]
     },
     {
-      "id": "orca-GNOME",
-      "name": "Orca",
+      "id": "gnome-orca",
+      "name": "Orca (GNOME Screen Reader)",
       "url": "https://github.com/GNOME/orca",
       "description": "Screen reader for GNOME desktop, enabling accessibility for visually impaired users.",
       "category": "其他",
@@ -22865,6 +22880,7 @@
       "category": "知識管理",
       "language": "python",
       "triggers": [
+        "notebooklm-skill-PleasePrompto",
         "notebooklm",
         "notebooklm-skill",
         "gemini",
@@ -23760,14 +23776,14 @@
       ]
     },
     {
-      "id": "skills-qu-skills",
-      "name": "Skills",
+      "id": "qu-integration-skills",
+      "name": "Skills (Qu Integration)",
       "url": "https://github.com/qu-skills/skills",
       "description": "Enables agents to access hundreds of apps and services via API skills.",
       "category": "開發工具",
       "language": "shell",
       "triggers": [
-        "skills",
+        "qu-integration-skills",
         "integration",
         "automation",
         "api-access"
@@ -23833,13 +23849,14 @@
       ]
     },
     {
-      "id": "agent-skills-get-convex",
-      "name": "Agent Skills",
+      "id": "convex-agent-skills",
+      "name": "Agent Skills (Convex)",
       "url": "https://github.com/get-convex/agent-skills",
       "description": "Convex skills library for building AI agents with reusable capabilities.",
       "category": "資料庫",
       "language": "typescript",
       "triggers": [
+        "convex-agent-skills",
         "agent-skills",
         "convex",
         "ai-agent",
@@ -23866,14 +23883,14 @@
       ]
     },
     {
-      "id": "skills-agentspace-so",
-      "name": "Skills",
+      "id": "agentspace-skill-manager",
+      "name": "Skills (Agentspace Manager)",
       "url": "https://github.com/agentspace-so/skills",
       "description": "Manage and organize agent skills for enhanced capability.",
       "category": "開發工具",
       "language": "shell",
       "triggers": [
-        "skills",
+        "agentspace-skill-manager",
         "agent-capabilities",
         "modular-tools",
         "skill-management"
@@ -24159,8 +24176,8 @@
       ]
     },
     {
-      "id": "skills-elevenlabs",
-      "name": "Skills",
+      "id": "elevenlabs-voice-skills",
+      "name": "Skills (ElevenLabs Voice)",
       "url": "https://github.com/elevenlabs/skills",
       "description": "Open-source skills for integrating ElevenLabs voice AI into agents.",
       "category": "音訊",
@@ -24199,8 +24216,8 @@
       ]
     },
     {
-      "id": "skills-browser-act",
-      "name": "Skills",
+      "id": "browser-act-automation",
+      "name": "Skills (Browser Act)",
       "url": "https://github.com/browser-act/skills",
       "description": "Browser automation CLI for AI agents with anti-bot bypass and parallel execution.",
       "category": "基礎設施",
@@ -24238,14 +24255,14 @@
       ]
     },
     {
-      "id": "skills-runcomfy-com",
-      "name": "Skills",
+      "id": "runcomfy-intent-skills",
+      "name": "Skills (RunComfy)",
       "url": "https://github.com/runcomfy-com/skills",
       "description": "RunComfy skills for model-pinned branding and intent routing via skills.sh.",
       "category": "開發工具",
       "language": "other",
       "triggers": [
-        "skills",
+        "runcomfy-intent-skills",
         "runcomfy",
         "intent-routing",
         "model-api"
@@ -24271,14 +24288,14 @@
       ]
     },
     {
-      "id": "skills-doany-ai",
-      "name": "Skills",
+      "id": "doany-comfyui-skills",
+      "name": "Skills (DoAny ComfyUI)",
       "url": "https://github.com/doany-ai/skills",
       "description": "Mirror of RunComfy agent skills for ComfyUI workflow automation.",
       "category": "開發工具",
       "language": "other",
       "triggers": [
-        "skills",
+        "doany-comfyui-skills",
         "comfyui",
         "agent",
         "workflow"
