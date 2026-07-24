@@ -4061,10 +4061,11 @@
       "id": "book-skill-generator",
       "name": "Book Skill Generator",
       "url": "https://github.com/CymChad/book-skill-generator",
-      "description": "从书籍内容中提炼核心方法论，自动生成可执行的 Agent Skill。",
-      "category": "開發工具",
+      "description": "Extracts core methodologies from book content and automatically generates executable Agent Skills.",
+      "category": "开发工具",
       "language": "other",
       "triggers": [
+        "book-to-agent-skill",
         "book",
         "skill",
         "generator",
@@ -4077,19 +4078,24 @@
         "command": "git clone https://github.com/CymChad/book-skill-generator.git",
         "repoUrl": "https://github.com/CymChad/book-skill-generator"
       },
-      "capabilities": [],
+      "capabilities": [
+        "methodology-extraction",
+        "skill-generation",
+        "knowledge-conversion",
+        "agent-workflow"
+      ],
       "addedAt": "2026-07-19T07:55:39.450Z",
       "status": "active",
-      "useCase": "将专业书籍转化为可直接调用的 Agent 技能，例如根据《原子习惯》生成行为养成助手。",
+      "useCase": "Transform professional books into directly callable Agent skills, such as generating behavior-building assistants based on 'Atomic Habits'.",
       "advantages": [
-        "自动化从非结构化书籍文本中提取可执行的方法论",
-        "将静态知识转化为动态的 Agent 工作流",
-        "大幅降低创建领域专用技能的门槛与成本"
+        "Automatically extracts actionable methodologies from unstructured book texts",
+        "Converts static knowledge into dynamic Agent workflows",
+        "Significantly lowers the threshold and cost of creating domain-specific skills"
       ],
       "negativeConstraints": [
-        "不适合处理实时数据查询或动态新闻检索",
-        "不适用于需要创意写作或艺术生成的场景",
-        "当源材料缺乏结构化方法论时效果不佳"
+        "Not suitable for real-time data queries or dynamic news retrieval",
+        "Not applicable for scenarios requiring creative writing or art generation",
+        "Less effective when source materials lack structured methodologies"
       ]
     },
     {
@@ -14908,7 +14914,7 @@
       "id": "claude-for-legal-zh",
       "name": "Claude For Legal ZH",
       "url": "https://github.com/CSlawyer1985/claude-for-legal-ZH",
-      "description": "面向中国法实务的 Claude Code 法律 Agent 与 MCP 连接器参考框架",
+      "description": "Reference framework for Claude Code legal Agent and MCP connector for Chinese law practice.",
       "category": "API 整合",
       "language": "python",
       "triggers": [
@@ -14933,16 +14939,16 @@
       ],
       "addedAt": "2026-07-19T12:33:23.312Z",
       "status": "active",
-      "useCase": "法律从业者利用 Claude Code 调用中国法 MCP 连接器，自动检索法条并辅助起草或审查法律文书。",
+      "useCase": "Legal practitioners use Claude Code to invoke China law MCP connectors, automatically retrieve legal provisions, and assist in drafting or reviewing legal documents.",
       "advantages": [
-        "专为《中国法》场景优化，适配中文法律术语与合规逻辑",
-        "原生支持 Claude Code 与 Codex，通过 MCP 协议实现数据源连接",
-        "提供模块化法律 Agent 与技能框架，便于二次开发与复用"
+        "Optimized for Chinese law scenarios, adapted to Chinese legal terminology and compliance logic",
+        "Native support for Claude Code and Codex, achieving data source connections through MCP protocol",
+        "Provides modular legal Agent and skill framework, facilitating secondary development and reuse"
       ],
       "negativeConstraints": [
-        "不适用于非中国法域（如美国法、欧盟法）的法律咨询或文档生成",
-        "不应用于替代执业律师的最终法律意见或法庭辩护策略",
-        "在无 MCP 数据源配置时无法进行实时法条检索与案例分析"
+        "Not applicable for legal consultation or document generation outside Chinese law jurisdiction (e.g., US law, EU law)",
+        "Should not replace final legal opinions from practicing lawyers or court defense strategies",
+        "Unable to perform real-time legal provision retrieval and case analysis without MCP data source configuration"
       ]
     },
     {
@@ -20647,7 +20653,7 @@
       "id": "cybersecurity-skills-Hi-FullHouse",
       "name": "CyberSecurity Skills",
       "url": "https://github.com/Hi-FullHouse/CyberSecurity-Skills",
-      "description": "AI运维的网络安全技能知识库，提供专业安全知识与实践指南。",
+      "description": "Cybersecurity skill knowledge base for AI-driven operations, providing professional security knowledge and practice guidelines.",
       "category": "AI 代理",
       "language": "python",
       "triggers": [
@@ -20662,19 +20668,24 @@
         "command": "pip install git+https://github.com/Hi-FullHouse/CyberSecurity-Skills.git",
         "repoUrl": "https://github.com/Hi-FullHouse/CyberSecurity-Skills"
       },
-      "capabilities": [],
+      "capabilities": [
+        "security-knowledge",
+        "pentesting-guides",
+        "vulnerability-analysis",
+        "defense-strategies"
+      ],
       "addedAt": "2026-07-21T13:10:55.253Z",
       "status": "active",
-      "useCase": "安全研究人员快速查阅特定漏洞利用原理或防御配置的最佳实践。",
+      "useCase": "Security researchers quickly consult best practices for specific vulnerability exploitation principles or defense configurations.",
       "advantages": [
-        "由AI驱动，提供智能化的知识检索与解答。",
-        "涵盖广泛的网络安全技能领域，结构清晰。",
-        "开源社区维护，内容持续更新且透明。"
+        "AI-driven, providing intelligent knowledge retrieval and answers",
+        "Covers a wide range of cybersecurity skill areas with clear structure",
+        "Maintained by open-source community with continuous updates and transparency"
       ],
       "negativeConstraints": [
-        "不适合用于实时的网络攻击执行或自动化渗透测试。",
-        "不替代专业的商业级SIEM或EDR安全监控平台。",
-        "不适用于需要法律合规性审计的正式报告生成。"
+        "Not suitable for real-time network attack execution or automated penetration testing",
+        "Does not replace professional commercial-grade SIEM or EDR security monitoring platforms",
+        "Not applicable for formal report generation requiring legal compliance auditing"
       ]
     },
     {
@@ -24775,7 +24786,7 @@
       "advantages": [
         "Bridges vibe coding with full agentic engineering",
         "Strong multi-step planning capabilities",
-        "From Z.ai (formerly智谱AI) research team",
+        "From Z.ai (formerly Zhipu AI) research team",
         "Optimized for autonomous agent workflows"
       ],
       "negativeConstraints": [
