@@ -99,13 +99,14 @@
         "penetration test",
         "security",
         "vulnerability",
-        "漏洞",
+        "scanning",
+        "漏洞掃描",
         "安全測試",
         "滲透測試",
         "security scan",
-        "安全掃描",
         "auto-fix",
-        "compliance-check"
+        "compliance-check",
+        "penetration-testing"
       ],
       "install": {
         "method": "pip",

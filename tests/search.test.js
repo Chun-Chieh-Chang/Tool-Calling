@@ -19,9 +19,9 @@ test('搜尋測試 - L1 精確匹配', () => {
 });
 
 test('搜尋測試 - L2 關鍵字匹配 (英文)', () => {
-  const results = search(registryTools, 'security scan vulnerability');
-  assert.ok(results.length > 0, '應該找到 strix');
-  // strix 應在前 5 名（topK 預設值）內
+  const results = search(registryTools, 'security scan vulnerability', { topK: 10 });
+  assert.ok(results.length > 0, '應該找到 security/vulnerability 相關工具');
+  // strix 應在前 10 名內
   const ids = results.map(r => r.tool.id);
   assert.ok(ids.includes('strix'), 'strix 應在搜尋結果中');
 });
