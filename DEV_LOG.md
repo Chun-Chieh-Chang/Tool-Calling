@@ -348,3 +348,38 @@
 #### RCA / CAPA
 - （本次為例行性架構優化，無異常狀況）
 
+### 2026-07-24 — 批量工具加入自動化與全面文件同步 (Phase 21)
+
+#### 需求與動機
+1. **自動化批量加入邏輯**：使用者多次要求「批量加入工具庫」，但現有 `batch-add` 僅是讀取 URL 清單逐一掃描，缺乏智能分類與拆解判斷。需建立完整的 URL 解析 → 自動分類 → 寫入 registry 流程。
+2. **全面文件同步**：專案歷經 20 個階段迭代，DEV_LOG.md、README.md、AGENTS.md 中的數字與操作指引已與實際程式碼產生落差（工具數 279→280、scripts 清單過時、缺少 batch-add 增強說明等）。
+
+#### 完成項目
+- [x] **URL 解析器 (`scripts/url-resolver.js`)**：新模組，辨識三種 URL 類型：
+  - `resource` — API 目錄/學習清單（method: none，作為學習資源加入）
+  - `tool` — 單一可執行工具（走 scanner 完整掃描）
+  - `monorepo` — 多工具集合（智能拆解為多個子 entry）
+- [x] **scan-tool.js 強化**：
+  - 擴充分類規則從 15 增至 17+ 個分類，新增 `gemini`, `gpt-proxy`, `openai-compatible`, `awesome-`, `public-apis` 等關鍵詞
+  - `guessInstall()` 增加非可安裝資源檢測，避免對 markdown-only repo 產生錯誤安裝指令
+- [x] **batch-add 命令重構**：整合 resolver + scanner，產出詳細報告（新增/跳過/失敗統計 + 每條 URL 處理結果）
+- [x] **清理重複模組**：移除 `scripts/scanner-utils.js`，將共用函式 inline 至 `scan-monorepo.js`
+- [x] **修復隱式依賴 bug**：`package.json` 補上 `zod` 宣告（`mcp-server.js` 依賴但未宣告）
+- [x] **更新 .gitignore**：加入 `.omo/`, `.agnes/` 防止快取被提交
+- [x] **工具庫更新**：手動豐富 `gemini-cli`（13 capabilities）、修正 `public-apis`（移除錯誤 pip install）、新增 `gpt-api-free`
+- [x] **文件同步**：本文檔、README.md、AGENTS.md、docs/ 全面更新
+
+#### 專案現況摘要
+| 指標 | 數值 |
+|------|------|
+| 註冊工具數 | 280 |
+| 分類數 | 20 |
+| 子工具數 | ~2,708（30 個主工具含 subTools） |
+| 單元測試 | 6 項（全通過） |
+| 核心模組 | 6 個（search-engine, installer, sandbox, telemetry, cleanup, registry） |
+| 腳本模組 | 5 個（build-web, enrich-registry, export-dataset, scan-tool, scan-monorepo, url-resolver） |
+| 健康度 | 100%（280/280 工具可用） |
+
+#### RCA / CAPA
+- （本次為功能增強與文件同步，無異常狀況）
+

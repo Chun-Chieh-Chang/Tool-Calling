@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **工具箱**，裡面放了 279 個不同的開源工具：
+想像你有一個 **工具箱**，裡面放了 280 個不同的開源工具：
 
 - 📄 做簡報的（AIPPT、NotebookLM2PPT）
 - 🧠 管理知識的（Graphify、Ontology）
@@ -35,6 +35,7 @@ node cli.js search "我要做簡報"
 | 搜尋工具 | `node cli.js search "我想做簡報"` |
 | 看某個工具的詳細資料 | `node cli.js info playwright` |
 | 新增一個新工具 | `node cli.js add https://github.com/使用者/倉庫名稱` |
+| **批量新增多個工具** | `node cli.js batch-add urls.txt` |
 | 移除一個工具 | `node cli.js remove 工具ID` |
 
 ---
@@ -164,7 +165,7 @@ AI 會自動幫你做這些事：
 
 AI 會自動幫你做這些事：
 - 解析你的任務需求
-- 從 279 個工具中找出最適合的
+- 從 280 個工具中找出最適合的
 - 等待你確認後，自動安裝、執行、清理
 
 ---
@@ -245,7 +246,7 @@ tc search "我要做簡報"
 A：需要安裝 [Node.js](https://nodejs.org/)（版本 18 以上）。裝好後就能用指令列模式了。如果要讓 AI 自動執行工具，還需要安裝 Docker。
 
 **Q：裡面有多少工具？**
-A：目前超過 279 個，涵蓋 20 多個分類。
+A：目前超過 280 個，涵蓋 20 多個分類。
 
 **Q：我可以自己加工具嗎？**
 A：可以！只要提供 GitHub 倉庫網址就行：
@@ -265,7 +266,7 @@ Tool-Calling/
 ├── cli.js              ← 命令列入口，用來搜尋和管理工具
 ├── mcp-server.js       ← 讓 Claude / Cursor 等 AI 軟體能使用這個工具箱
 ├── registry/
-│   ├── tools.json      ← 工具清單（目前 279 個）
+│   ├── tools.json      ← 工具清單（目前 280 個）
 │   └── schemas/        ← JSON Schema 驗證格式
 ├── core/
 │   ├── search-engine.js  ← 三層檢索引擎（L1精確/L2關鍵字/L3語義）
@@ -275,12 +276,12 @@ Tool-Calling/
 │   ├── cleanup.js        ← 任務後自動清理
 │   └── registry.js       ← 共享模組：載入/儲存工具註冊庫
 ├── scripts/
-│   ├── build-web.js        ← 靜態網頁打包腳本
-│   ├── enrich-registry.js  ← AI 批次補齊工具資料
-│   ├── export-dataset.js   ← 萃取 Telemetry 為 SFT 訓練資料
-│   ├── scan-tool.js        ← GitHub URL 解析器
-│   ├── scan-monorepo.js    ← Monorepo 深層索引掃描器
-│   └── scanner-utils.js    ← 共享模組：Markdown 描述解析
+│   ├── build-web.js            ← 靜態網頁打包腳本
+│   ├── enrich-registry.js      ← AI 批次補齊工具資料（需 AGNES_API_KEY）
+│   ├── export-dataset.js       ← 萃取 Telemetry 為 SFT 訓練資料
+│   ├── scan-tool.js            ← GitHub URL 解析器（自動分類 + 安裝猜測）
+│   ├── scan-monorepo.js        ← Monorepo 深層索引掃描器
+│   └── url-resolver.js         ← URL 類型解析器（tool/resource/monorepo 辨識與拆解）
 ├── tests/
 │   └── search.test.js      ← 單元測試（6 項核心邏輯）
 ├── web/
@@ -289,6 +290,7 @@ Tool-Calling/
 │   └── app.js              ← 前端搜尋邏輯
 ├── docs/
 │   ├── architecture/       ← 技能路由優化白皮書
+│   ├── batch-add-automation.md ← 批量加入工具庫自動化邏輯說明
 │   └── relationship-diagram.html ← 三角色關係圖解
 └── .agents/
     └── AGENTS.md           ← 系統級開發規範（單一真理來源）

@@ -12,35 +12,55 @@ const CATEGORY_RULES = [
   // 安全性
   { cat: '安全性', keywords: ['cybersec', 'osint', 'pentest', 'vulnerability', 'exploit', 'ctf'] },
   // 瀏覽器自動化
-  { cat: '瀏覽器自動化', keywords: ['browser-automation', 'headless-browser', 'anti-detect', 'playwright'] },
+  { cat: '瀏覽器自動化', keywords: ['browser-automation', 'headless-browser', 'anti-detect', 'playwright', 'puppeteer'] },
   // 資料庫
-  { cat: '資料庫', keywords: ['database', 'nosql', 'postgres', 'mongodb', 'sql-schema', 'azure-storage'] },
+  { cat: '資料庫', keywords: ['database', 'nosql', 'postgres', 'mongodb', 'sql-schema', 'azure-storage', 'convex'] },
   // 行銷
-  { cat: '行銷', keywords: ['marketing', 'copywriting', 'copy-editing', 'advertising', 'cro'] },
+  { cat: '行銷', keywords: ['marketing', 'copywriting', 'copy-editing', 'advertising', 'cro', 'growth-hacking'] },
   // 設計
-  { cat: '設計', keywords: ['typography', 'frontend-design', 'graphic design', 'figma'] },
+  { cat: '設計', keywords: ['typography', 'frontend-design', 'graphic design', 'figma', 'ui-kit', 'design-system'] },
   // 音訊
-  { cat: '音訊', keywords: ['tts', 'text-to-speech', 'speech-to-text', 'podcast'] },
+  { cat: '音訊', keywords: ['tts', 'text-to-speech', 'speech-to-text', 'podcast', 'audio-processing', 'music'] },
   // 影片
-  { cat: '影片', keywords: ['youtube', 'transcript', 'lip-sync', 'video-generation'] },
+  { cat: '影片', keywords: ['youtube', 'transcript', 'lip-sync', 'video-generation', 'video-editing', 'ffmpeg'] },
   // 研究
-  { cat: '研究', keywords: ['research', 'arxiv', 'sota', 'publication'] },
+  { cat: '研究', keywords: ['research', 'arxiv', 'sota', 'publication', 'literature-review', 'paper'] },
   // 文件生產力
-  { cat: '文件生產力', keywords: ['powerpoint', 'presentation', 'spreadsheet', 'docx', 'xlsx'] },
+  { cat: '文件生產力', keywords: ['powerpoint', 'presentation', 'spreadsheet', 'docx', 'xlsx', 'pdf', 'document'] },
   // 知識管理
-  { cat: '知識管理', keywords: ['knowledge-graph', 'knowledge-base', 'memory'] },
+  { cat: '知識管理', keywords: ['knowledge-graph', 'knowledge-base', 'memory', 'wiki', 'note-taking'] },
   // 基礎設施
-  { cat: '基礎設施', keywords: ['infrastructure', 'devops', 'kubernetes', 'docker', 'deploy'] },
+  { cat: '基礎設施', keywords: ['infrastructure', 'devops', 'kubernetes', 'docker', 'deploy', 'ci-cd', 'cloud'] },
   // 測試與自動化
-  { cat: '測試與自動化', keywords: ['e2e', 'playwright', 'testing', 'benchmark', 'qa'] },
+  { cat: '測試與自動化', keywords: ['e2e', 'playwright', 'testing', 'benchmark', 'qa', 'selenium', 'cypress'] },
   // API 整合
-  { cat: 'API 整合', keywords: ['mcp-server', 'webhook', 'graphql', 'rest-api', 'sdk'] },
+  { cat: 'API 整合', keywords: ['mcp-server', 'webhook', 'graphql', 'rest-api', 'sdk', 'api-gateway'] },
   // AI 代理
-  { cat: 'AI 代理', keywords: ['agent-framework', 'agent-toolkit', 'agent harness', 'agentic'] },
+  { cat: 'AI 代理', keywords: ['agent-framework', 'agent-toolkit', 'agent harness', 'agentic', 'autonomous-agent', 'llm-app', 'ai-agent', 'cli-agent', 'code-assistant', 'gemini', 'gpt-proxy', 'openai-compatible'] },
   // 多媒體生成
-  { cat: '多媒體生成', keywords: ['text-to-image', 'image-generation', 'generative-ai', 'ai-art'] },
+  { cat: '多媒體生成', keywords: ['text-to-image', 'image-generation', 'generative-ai', 'ai-art', 'stable-diffusion'] },
   // 學習資源
-  { cat: '學習資源', keywords: ['tutorial', 'awesome-list', 'reference-guide', 'type-challenges'] },
+  { cat: '學習資源', keywords: ['tutorial', 'awesome-list', 'reference-guide', 'type-challenges', 'curriculum', 'roadmap', 'api-directory', 'free-apis', 'public-apis', 'catalog', 'list-of', 'awesome-', 'handbook'] },
+];
+
+/**
+ * 備用關鍵字（Phase 2 使用）
+ */
+const FALLBACK_KEYWORDS = [
+  { cat: '安全性', keywords: ['security', 'vulnerability', 'pentest', 'osint', 'cybersec'] },
+  { cat: '瀏覽器自動化', keywords: ['browser-automation', 'undetected', 'scraping'] },
+  { cat: '資料庫', keywords: ['database', 'nosql', 'postgres', 'mysql', 'mongodb', 'convex', 'sqlite'] },
+  { cat: '行銷', keywords: ['marketing', 'copywriting', 'copy-editing', 'advertising'] },
+  { cat: '設計', keywords: ['design', 'figma', 'typography', 'css', 'responsive'] },
+  { cat: '音訊', keywords: ['audio', 'music', 'sound', 'speech', 'voice', 'podcast'] },
+  { cat: '影片', keywords: ['video', 'youtube', 'transcript', 'animation', 'avatar'] },
+  { cat: '研究', keywords: ['research', 'paper', 'arxiv', 'sota', 'publication', 'survey'] },
+  { cat: '文件生產力', keywords: ['document', 'presentation', 'excel', 'word', 'pdf', 'spreadsheet', 'powerpoint'] },
+  { cat: '數據分析', keywords: ['analytics', 'monitoring', 'telemetry', 'observability', 'dashboard'] },
+  { cat: '知識管理', keywords: ['knowledge', 'memory', 'rag', 'vector-db'] },
+  { cat: '基礎設施', keywords: ['infrastructure', 'devops', 'kubernetes', 'docker', 'cloud', 'deploy', 'hosting'] },
+  { cat: '測試與自動化', keywords: ['testing', 'test-driven', 'qa', 'lint', 'quality', 'audit', 'benchmark'] },
+  { cat: 'API 整合', keywords: ['integration', 'mcp-server', 'webhook', 'graphql', 'rest-api', 'api-proxy'] },
 ];
 
 /**
@@ -53,26 +73,6 @@ function matchWord(text, kw) {
   const after = idx + kw.length >= text.length || text[idx + kw.length] === ' ' || text[idx + kw.length] === '-' || text[idx + kw.length] === '_';
   return before && after;
 }
-
-const FALLBACK_KEYWORDS = [
-  { cat: '安全性', keywords: ['security', 'vulnerability', 'pentest', 'osint', 'cybersec'] },
-  { cat: '瀏覽器自動化', keywords: ['browser-automation', 'undetected'] },
-  { cat: '資料庫', keywords: ['database', 'nosql', 'postgres', 'mysql', 'mongodb', 'convex'] },
-  { cat: '行銷', keywords: ['marketing', 'copywriting', 'copy-editing', 'advertising'] },
-  { cat: '設計', keywords: ['design', 'figma', 'typography'] },
-  { cat: '音訊', keywords: ['audio', 'music', 'sound', 'speech', 'voice', 'podcast'] },
-  { cat: '影片', keywords: ['video', 'youtube', 'transcript', 'animation', 'avatar'] },
-  { cat: '研究', keywords: ['research', 'paper', 'arxiv', 'sota', 'publication', 'survey'] },
-  { cat: '文件生產力', keywords: ['document', 'presentation', 'excel', 'word', 'pdf', 'spreadsheet', 'powerpoint'] },
-  { cat: '數據分析', keywords: ['analytics', 'monitoring', 'telemetry', 'observability'] },
-  { cat: '知識管理', keywords: ['knowledge', 'memory', 'rag'] },
-  { cat: '基礎設施', keywords: ['infrastructure', 'devops', 'kubernetes', 'docker', 'cloud', 'deploy', 'hosting'] },
-  { cat: '測試與自動化', keywords: ['testing', 'test-driven', 'qa', 'lint', 'quality', 'audit', 'benchmark'] },
-  { cat: 'API 整合', keywords: ['integration', 'mcp-server', 'webhook', 'graphql', 'sdk'] },
-  { cat: 'AI 代理', keywords: ['agent-framework', 'agent-toolkit', 'autonomous', 'agentic'] },
-  { cat: '多媒體生成', keywords: ['image', 'generative', 'creative'] },
-  { cat: '學習資源', keywords: ['tutorial', 'course', 'guide', 'handbook', 'curated'] },
-];
 
 function guessCategory(desc, topics) {
   const text = (desc + ' ' + topics.join(' ')).toLowerCase();
@@ -99,19 +99,33 @@ function guessCategory(desc, topics) {
 }
 
 /**
- * 根據 URL 與語言猜測安裝方式
+ * 根據 URL、語言與 repo 特徵猜測安裝方式
+ * 若 repo 是「目錄/清單/文件」而非可執行套件，回傳 method: 'none'
  */
-function guessInstall(url, language) {
-  if (language === 'python') return { method: 'pip', command: `pip install git+${url}.git` };
-  if (language === 'typescript' || language === 'javascript') return { method: 'npm', command: `npm install ${url}` };
+function guessInstall(url, language, description, topics) {
+  const text = ((description || '') + ' ' + (topics || []).join(' ')).toLowerCase();
+  
+  // 非可安裝資源的訊號
+  const resourceSignals = [
+    'awesome-list', 'public-apis', 'free-api', 'api-directory', 'catalog',
+    'list of', 'curated', 'directory', 'resource-list', 'cheatsheet',
+    'roadmap', 'tutorial', 'learning-path', 'handbook', 'reference-guide'
+  ];
+  if (resourceSignals.some(s => text.includes(s)) || 
+      topics.some(t => t.startsWith('awesome-') || t === 'public-apis' || t === 'free-apis')) {
+    return { method: 'none', command: url, repoUrl: url };
+  }
+
+  if (language === 'python') return { method: 'pip', command: `pip install git+${url}.git`, repoUrl: url };
+  if (language === 'typescript' || language === 'javascript') return { method: 'npm', command: `npx ${url.split('/').pop()}`, repoUrl: url };
   if (language === 'php') {
     const parts = url.split('/');
     const repo = parts[parts.length - 1];
     const owner = parts[parts.length - 2];
-    return { method: 'composer', command: `composer require ${owner}/${repo}` };
+    return { method: 'composer', command: `composer require ${owner}/${repo}`, repoUrl: url };
   }
-  if (language === 'rust') return { method: 'cargo', command: `cargo install --git ${url}` };
-  return { method: 'git-clone', command: `git clone ${url}.git` };
+  if (language === 'rust') return { method: 'cargo', command: `cargo install --git ${url}`, repoUrl: url };
+  return { method: 'git-clone', command: `git clone ${url}.git`, repoUrl: url };
 }
 
 // ─── 主程式 ─────────────────────────────────────────────────────────────────
@@ -194,7 +208,7 @@ async function scan(url, options = {}) {
 
     const category = guessCategory(description, meta.topics);
     // 處理基礎網址與安裝方式
-    const install = guessInstall(rootUrl, meta.language);
+    const install = guessInstall(rootUrl, meta.language, description, meta.topics);
     install.repoUrl = rootUrl;
     
     if (subpath) {

@@ -382,15 +382,136 @@ async function cmdBatchAdd(filePath) {
   }
 
   const content = readFileSync(filePath, 'utf-8');
-  const urls = content.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#'));
-
+  const rawUrls = content.split(/\r?\n/).map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+  
+  // 去重
+  const urls = [...new Set(rawUrls)];
+  
   header(`批量新增 (${urls.length} 個 URL)`);
+
+  const { resolve } = await import('./scripts/url-resolver.js');
+  const { scan } = await import('./scripts/scan-tool.js');
+  const registry = loadRegistry();
+
+  let added = 0;
+  let skipped = 0;
+  let failed = 0;
+  const results = [];
+
   for (const url of urls) {
     try {
-      await cmdAdd(url, true);
+      // Step 1: 解析 URL 類型
+      const resolved = await resolve(url);
+      
+      if (resolved.action === 'add-as-is') {
+        // Resource 類型 — 直接從 GitHub API 抓基本資訊
+        const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|blob)\/([^/]+)\/(.+))?\/?$/;
+        const match = url.match(githubRegex);
+        if (match) {
+          const [, owner, repo] = match;
+          const apiRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+            headers: { 'User-Agent': 'Tool-Calling-Scanner/1.0' }
+          });
+          if (apiRes.ok) {
+            const data = await apiRes.json();
+            const toolEntry = {
+              id: generateId(repo),
+              name: repo.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+              url,
+              description: data.description || `${owner}/${repo} - 參考資料`,
+              category: '學習資源',
+              language: (data.language || 'markdown').toLowerCase(),
+              triggers: [repo.toLowerCase(), ...((data.topics || []).slice(0, 5))],
+              install: { method: 'none', command: url, repoUrl: `https://github.com/${owner}/${repo}` },
+              capabilities: (data.topics || []).slice(0, 5),
+              addedAt: new Date().toISOString(),
+              status: 'active'
+            };
+            
+            if (!registry.tools.some(t => t.url === url)) {
+              registry.tools.push(toolEntry);
+              console.log(`${c.green}✓ 已新增 (資源):${c.reset} ${toolEntry.name} — ${url}`);
+              added++;
+              results.push({ url, status: 'added', type: 'resource', name: toolEntry.name });
+            } else {
+              console.log(`${c.yellow}⊘ 已存在:${c.reset} ${url}`);
+              skipped++;
+              results.push({ url, status: 'skipped', type: 'resource' });
+            }
+          }
+        }
+        continue;
+      }
+
+      // Step 2: Tool / Monorepo — 走 scanner
+      if (resolved.action === 'scan-and-add') {
+        console.log(`${c.cyan}正在掃描:${c.reset} ${url}`);
+        const newTool = await scan(url, { silent: true });
+        
+        if (!registry.tools.some(t => t.url === url)) {
+          registry.tools.push(newTool);
+          console.log(`${c.green}✓ 已新增:${c.reset} ${newTool.name} (${newTool.id}) — ${c.dim}${newTool.category}${c.reset}`);
+          added++;
+          results.push({ url, status: 'added', type: resolved.type, name: newTool.name, category: newTool.category });
+        } else {
+          console.log(`${c.yellow}⊘ 已存在:${c.reset} ${url}`);
+          skipped++;
+          results.push({ url, status: 'skipped', type: resolved.type });
+        }
+        continue;
+      }
+
+      // Step 3: Monorepo 拆解
+      if (resolved.action === 'split' && resolved.subTools.length >= 2) {
+        console.log(`${c.magenta}⬡ Monorepo 拆解:${c.reset} ${url} → ${resolved.subTools.length} 個子工具`);
+        let subAdded = 0;
+        
+        for (const sub of resolved.subTools) {
+          const subUrl = sub.url;
+          
+          if (registry.tools.some(t => t.url === subUrl)) {
+            console.log(`  ${c.yellow}⊘ 已存在:${c.reset} ${sub.path}`);
+            continue;
+          }
+          
+          try {
+            const subTool = await scan(subUrl, { silent: true });
+            registry.tools.push(subTool);
+            console.log(`  ${c.green}✓${c.reset} ${subTool.name} (${subTool.id}) — ${c.dim}${subTool.category}${c.reset}`);
+            subAdded++;
+            added++;
+            results.push({ url: subUrl, status: 'added', type: 'monorepo-sub', parent: url, name: subTool.name, path: sub.path });
+          } catch (err) {
+            console.log(`  ${c.red}✗${c.reset} ${sub.path}: ${err.message}`);
+            failed++;
+          }
+        }
+        
+        if (subAdded > 0) {
+          console.log(`${c.cyan}  拆解完成: ${subAdded}/${resolved.subTools.length} 個子工具已加入${c.reset}\n`);
+        }
+        continue;
+      }
     } catch (err) {
-      error(`✗ ${err.message}`);
+      console.log(`${c.red}✗ 失敗:${c.reset} ${url} — ${err.message}`);
+      failed++;
+      results.push({ url, status: 'failed', error: err.message });
     }
+  }
+
+  saveRegistry(registry);
+  
+  // 總結報告
+  header(`批量新增完成`);
+  console.log(`  ${c.green}新增: ${added}${c.reset} | ${c.yellow}跳過: ${skipped}${c.reset} | ${c.red}失敗: ${failed}${c.reset} | 總計: ${urls.length}`);
+  
+  if (results.length > 0) {
+    console.log(`\n${c.dim}─ 詳細報告 ─${c.reset}`);
+    results.forEach(r => {
+      const icon = r.status === 'added' ? c.green : r.status === 'skipped' ? c.yellow : c.red;
+      const extra = r.category ? ` — ${c.dim}${r.category}${c.reset}` : '';
+      console.log(`  ${icon}${r.status === 'added' ? '✓' : r.status === 'skipped' ? '⊘' : '✗'}${c.reset} ${r.name || r.path || r.url}${extra}`);
+    });
   }
 }
 
@@ -498,8 +619,8 @@ ${c.bold}核心命令:${c.reset}
 ${c.bold}管理命令:${c.reset}
   ${c.cyan}list${c.reset}                    列出所有已註冊工具
   ${c.cyan}info${c.reset} <id>                查看工具詳細資訊
-  ${c.cyan}add${c.reset} <github-url>         新增工具（自動解析）
-  ${c.cyan}batch-add${c.reset} <file>         從檔案批量新增
+  ${c.cyan}add${c.reset} <github-url>         新增工具（自動解析類型：tool/resource/monorepo）
+  ${c.cyan}batch-add${c.reset} <file>         從檔案批量新增（支援多行 URL，自動分類與去重）
   ${c.cyan}remove${c.reset} <id|url>          移除工具
   ${c.cyan}index-subtools${c.reset} <id>      深層掃描並索引大補帖內部的子工具
   ${c.cyan}validate${c.reset}                 驗證註冊庫格式

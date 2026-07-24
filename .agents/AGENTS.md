@@ -4,7 +4,7 @@
 > **觸發咒語**: 「啟動全自動工具調用模式」
 
 ## 系統說明
-本專案是一套 AI Agent 工具調用基礎設施。當用戶的任務匹配已註冊工具的關鍵字時，自動檢索並推薦最適合的開發工具。目前系統內含有超過 200+ 個工具。
+本專案是一套 AI Agent 工具調用基礎設施。當用戶的任務匹配已註冊工具的關鍵字時，自動檢索並推薦最適合的開發工具。目前系統內含有超過 280 個工具。
 
 ## 觸發條件
 - 用戶說出「啟動全自動工具調用模式」
@@ -32,8 +32,8 @@ node cli.js info <tool-id>
 
 ### 新增工具
 ```bash
-node cli.js add <github-url>
-node cli.js batch-add <urls.txt>
+node cli.js add <github-url>           # 單一工具
+node cli.js batch-add <urls.txt>      # 批量新增（自動分類、去重、monorepo 拆解）
 ```
 
 ### 安裝/清理
@@ -44,12 +44,24 @@ node cli.js cleanup <tool-id>
 
 ## 全自動調用 SOP
 1. 解析用戶意圖，提取關鍵字與場景。
-2. 執行 `search` 命令檢索最適工具。
+2. 執行 `search` 命令檢索最適工具（支援 `-c <分類>` 前置過濾）。
 3. 嚴格遵守禁用場景 (Negative Constraints)：若工具帶有 `🚫 禁用場景` 且符合用戶意圖，則禁止使用該工具。
 4. 優先挑選 `⭐ 場景` 符合且分數超過 30% 的工具。
 5. 根據 `info` 提供安裝與調用指令。**必須先向使用者列出即將執行的安裝 (`install`) 與調用 (`invoke`) 指令，並等待使用者明確確認同意後**，才能執行這些指令。
 6. 使用 `node cli.js install <tool-id>` 安裝工具，接著使用 `node cli.js invoke <tool-id> ...` 調用工具完成任務。
 7. 任務結束後，使用 `node cli.js cleanup <tool-id>` 清理臨時安裝的工具。
+
+## 批量新增工具 SOP
+當使用者要求「批量加入工具庫」時：
+1. 讀取提供的 URL 清單（每行一個 GitHub URL）。
+2. 執行 `node cli.js batch-add urls.txt`。
+3. 系統會自動：
+   - 解析每個 URL 類型（tool / resource / monorepo）
+   - 對 tool 類型執行完整掃描與分類
+   - 對 resource 類型（如 API 目錄、學習清單）以 method: none 加入
+   - 對 monorepo 類型（含 skills/ agents/ 等子目錄）自動拆解為多個子工具
+   - 自動去重，跳過已存在的 URL
+4. 檢視輸出報告，確認新增/跳過/失敗數量。
 
 
 ## 安全性防禦元規則 (Security Defense Meta-Rule)

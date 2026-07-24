@@ -4,11 +4,28 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { loadRegistry, saveRegistry } from '../core/registry.js';
-import { parseMarkdownDescription } from './scanner-utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const TEMP_DIR = join(__dirname, '..', '.temp');
+
+/**
+ * 從 Markdown 內容萃取描述（取代 scanner-utils.js）
+ */
+function parseMarkdownDescription(content) {
+  if (content.startsWith('---')) {
+    const endIdx = content.indexOf('---', 3);
+    if (endIdx > -1) {
+      const fm = content.substring(3, endIdx);
+      const descMatch = fm.match(/description:\s*(.+)/);
+      if (descMatch) return descMatch[1].trim().replace(/^['"]|['"]$/g, '');
+      content = content.substring(endIdx + 3).trim();
+    }
+  }
+  const paragraphs = content.split('\n\n');
+  const firstP = paragraphs.find(p => p.trim() && !p.startsWith('#') && !p.startsWith('!') && !p.startsWith('<') && !p.startsWith('-'));
+  return firstP ? firstP.replace(/\n/g, ' ').trim().slice(0, 200) : '';
+}
 
 export function scanMonorepo(toolId) {
   const registry = loadRegistry();

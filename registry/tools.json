@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-23T05:44:45.221Z",
+  "lastUpdated": "2026-07-24T14:35:15.326Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -596,13 +596,15 @@
       "name": "Sequentialthinking",
       "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
       "description": "Enables step-by-step reflective reasoning and structured problem decomposition via MCP.",
-      "category": "其他",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "sequentialthinking",
         "reasoning",
         "problem-solving",
-        "step-by-step"
+        "step-by-step",
+        "reflective",
+        "structured-planning"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -897,7 +899,7 @@
     },
     {
       "id": "orca",
-      "name": "Orca",
+      "name": "Orca (Terminal Multiplexer)",
       "url": "https://github.com/stablyai/orca",
       "description": "Desktop/mobile ADE for orchestrating parallel coding agents with your own subscriptions.",
       "category": "開發工具",
@@ -2333,7 +2335,7 @@
       "name": "Caveman Code",
       "url": "https://github.com/JuliusBrussee/caveman-code",
       "description": "Minimalist coding extension for streamlined, raw development workflows.",
-      "category": "其他",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "caveman-code",
@@ -2342,7 +2344,9 @@
         "minimalist",
         "extension",
         "raw",
-        "developer"
+        "developer",
+        "coding-extension",
+        "raw-development"
       ],
       "install": {
         "method": "npm",
@@ -3189,14 +3193,17 @@
       "name": "React Best Practices",
       "url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
       "description": "Optimize React and Next.js apps with Vercel's engineering best practices.",
-      "category": "其他",
+      "category": "設計",
       "language": "javascript",
       "triggers": [
         "react",
         "nextjs",
         "performance",
         "optimization",
-        "vercel"
+        "vercel",
+        "next.js",
+        "best-practices",
+        "frontend"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -3647,7 +3654,7 @@
       "name": "Notebooklm Skill",
       "url": "https://github.com/claude-world/notebooklm-skill",
       "description": "Automate research-to-content workflows using NotebookLM and Claude Code via MCP.",
-      "category": "音訊",
+      "category": "知識管理",
       "language": "python",
       "triggers": [
         "notebooklm",
@@ -3844,14 +3851,17 @@
       "name": "Ontology Playground",
       "url": "https://github.com/microsoft/Ontology-Playground",
       "description": "Visual ontology builder with pre-built catalogs, RDF/XML export, and zero-backend static hosting.",
-      "category": "其他",
+      "category": "知識管理",
       "language": "typescript",
       "triggers": [
         "ontology-playground",
         "ontology",
         "playground",
         "rdf-export",
-        "semantic-modeling"
+        "semantic-modeling",
+        "rdf",
+        "visual-builder",
+        "knowledge-graph"
       ],
       "install": {
         "method": "npm",
@@ -4168,7 +4178,7 @@
     },
     {
       "id": "skills-anthropics",
-      "name": "Skills",
+      "name": "Anthropic Skills",
       "url": "https://github.com/anthropics/skills",
       "description": "Anthropic's public repository for discovering and implementing AI agent skills.",
       "category": "AI 代理",
@@ -4295,7 +4305,7 @@
     },
     {
       "id": "skillmd",
-      "name": "SKILL.Md",
+      "name": "SkillMD",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-implement-design/SKILL.md",
       "description": "Codex skill guiding implementation of Figma designs into production code.",
       "category": "設計",
@@ -4331,7 +4341,7 @@
     },
     {
       "id": "skillmd-vercel-labs",
-      "name": "SKILL.Md",
+      "name": "Vercel Labs SkillMD",
       "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
       "description": "Guidelines for AI agents to implement professional web design and UI/UX standards.",
       "category": "設計",
@@ -4366,7 +4376,7 @@
     },
     {
       "id": "skillmd-nexu-io",
-      "name": "SKILL.Md",
+      "name": "Nexu.io SkillMD",
       "url": "https://github.com/nexu-io/open-design/blob/main/skills/web-design-guidelines/SKILL.md",
       "description": "Open-source design tool enabling AI agents to generate prototypes and export real files.",
       "category": "設計",
@@ -4441,7 +4451,7 @@
     },
     {
       "id": "skillmd-microsoft",
-      "name": "SKILL.Md",
+      "name": "Microsoft SkillMD",
       "url": "https://github.com/microsoft/playwright-cli/blob/main/skills/playwright-cli/SKILL.md",
       "description": "CLI for Playwright actions, recording, code generation, selector inspection, and screenshots.",
       "category": "瀏覽器自動化",
@@ -4478,7 +4488,7 @@
     },
     {
       "id": "skillmd-openai-playwright",
-      "name": "SKILL.Md",
+      "name": "OpenAI Playwright SkillMD",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/playwright-interactive/SKILL.md",
       "description": "Markdown-based guide for automating Playwright browser interactions within AI coding assistants.",
       "category": "瀏覽器自動化",
@@ -4512,7 +4522,7 @@
     },
     {
       "id": "skillmd-github",
-      "name": "SKILL.Md",
+      "name": "GitHub SkillMD",
       "url": "https://github.com/github/awesome-copilot/blob/main/skills/playwright-generate-test/SKILL.md",
       "description": "Curated community skills and configurations to optimize GitHub Copilot workflows.",
       "category": "學習資源",
@@ -4553,7 +4563,7 @@
     },
     {
       "id": "skillmd-openai-figma",
-      "name": "SKILL.Md",
+      "name": "OpenAI Figma SkillMD",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-generate-design/SKILL.md",
       "description": "Curated instruction files guiding AI coding agents through specialized workflows.",
       "category": "學習資源",
@@ -4619,7 +4629,7 @@
     },
     {
       "id": "skillmd-anthropics",
-      "name": "SKILL.Md",
+      "name": "Anthropic SkillMD",
       "url": "https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md",
       "description": "Curated collection of SKILL.md files defining AI agent behaviors and workflows.",
       "category": "學習資源",
@@ -4695,7 +4705,7 @@
     },
     {
       "id": "skills-browserbase",
-      "name": "Skills",
+      "name": "Browserbase Agent Skills",
       "url": "https://github.com/browserbase/skills",
       "description": "Reusable agent skills for reliable web automation and browser interaction via Browserbase.",
       "category": "開發工具",
@@ -5060,7 +5070,7 @@
       "name": "Stable Diffusion Webui Localization Zh_TW",
       "url": "https://github.com/benlisquare/stable-diffusion-webui-localization-zh_TW",
       "description": "Traditional Chinese localization extension for AUTOMATIC1111's Stable Diffusion WebUI.",
-      "category": "其他",
+      "category": "設計",
       "language": "javascript",
       "triggers": [
         "stable-diffusion-webui",
@@ -5068,7 +5078,11 @@
         "traditional-chinese",
         "a1111",
         "sd-webui",
-        "localization-extension"
+        "localization-extension",
+        "localization",
+        "traduction",
+        "chinese",
+        "stable-diffusion"
       ],
       "install": {
         "method": "npm",
@@ -5534,13 +5548,15 @@
       "name": "Javascript Algorithms",
       "url": "https://github.com/trekhleb/javascript-algorithms",
       "description": "JavaScript algorithms and data structures reference with explanations for learning and interviews.",
-      "category": "其他",
+      "category": "學習資源",
       "language": "javascript",
       "triggers": [
         "javascript",
         "algorithms",
         "data-structures",
-        "interview-preparation"
+        "interview-preparation",
+        "reference",
+        "tutorial"
       ],
       "install": {
         "method": "npm",
@@ -5616,14 +5632,16 @@
       "name": "Gitignore",
       "url": "https://github.com/github/gitignore",
       "description": "Official GitHub .gitignore templates for various languages and environments.",
-      "category": "其他",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "gitignore",
         "git",
         "templates",
         "repository",
-        "version control"
+        "version control",
+        "github",
+        "version-control"
       ],
       "install": {
         "method": "git-clone",
@@ -5819,48 +5837,48 @@
     },
     {
       "id": "public-apis",
-      "name": "Public Apis",
+      "name": "Public APIs",
       "url": "https://github.com/public-apis/public-apis",
-      "description": "Curated directory of free APIs for developers.",
+      "description": "A collective list of free APIs for development. Community-curated catalog with 50+ categories covering Animals, Auth, Blockchain, Finance, Geo, News, Sports, Weather, and more — ideal for prototyping, research, and production integrations.",
       "category": "學習資源",
-      "language": "python",
+      "language": "markdown",
       "triggers": [
         "public-apis",
-        "public",
-        "apis",
-        "api",
-        "lists",
-        "open-source",
-        "list",
-        "development",
-        "free-apis",
+        "free-api",
+        "api-catalog",
         "api-directory",
-        "developer-tools"
+        "discover api",
+        "find api",
+        "open data",
+        "免費 API",
+        "API 目錄"
       ],
       "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/public-apis/public-apis.git",
+        "method": "none",
+        "command": "https://github.com/public-apis/public-apis",
         "repoUrl": "https://github.com/public-apis/public-apis"
       },
       "capabilities": [
-        "api",
-        "lists",
-        "open-source",
-        "list",
-        "development"
+        "api-discovery",
+        "categorized-browse",
+        "documentation-links",
+        "community-maintained",
+        "multi-domain"
       ],
       "addedAt": "2026-07-19T09:12:09.823Z",
       "status": "active",
-      "useCase": "Developers can quickly discover and integrate reliable third-party endpoints for prototyping or production applications.",
+      "useCase": "當開發者需要快速找到可用的第三方免費 API 進行原型開發、資料填充或研究驗證時，可直接在此目錄中搜尋與瀏覽。",
       "advantages": [
-        "Community-maintained open-source repository ensures current and verified listings.",
-        "Categorized by domain such as authentication, finance, and healthcare for efficient discovery.",
-        "Provides direct access to documentation and usage details for each API."
+        "涵蓋 50+ 分類（金融、地理、運動、天氣、區塊鏈等），支援多領域需求",
+        "社群共同維護，確保條目最新且可驗證",
+        "每個 API 都提供官方文件連結，方便直接深入使用",
+        "MIT 授權，可自由參考與引用"
       ],
       "negativeConstraints": [
-        "Not suitable for discovering proprietary, paid-only, or internal enterprise APIs.",
-        "Does not replace official vendor documentation or guarantee service availability.",
-        "Inappropriate for managing private API gateways or internal governance workflows."
+        "僅為 API 目錄，不提供 API 本身的呼叫或管理功能",
+        "不保證所列 API 的服務可用性 (SLA)",
+        "不涵蓋商業付費 API 或企業內部 API",
+        "不能替代各 API 供應商的官方文件"
       ]
     },
     {
@@ -5950,13 +5968,15 @@
       "name": "Dotnet Developer Roadmap",
       "url": "https://github.com/saifaustcse/dotnet-developer-roadmap",
       "description": "Comprehensive learning path for mastering full-stack .NET development.",
-      "category": "其他",
+      "category": "學習資源",
       "language": "other",
       "triggers": [
         "dotnet",
         "roadmap",
         "dotnetcore",
-        "full-stack"
+        "full-stack",
+        "developer",
+        "learning-path"
       ],
       "install": {
         "method": "git-clone",
@@ -6201,7 +6221,7 @@
       "name": "You Dont Know Js",
       "url": "https://github.com/getify/you-dont-know-js",
       "description": "Open-source book series mastering core JavaScript concepts, scope, async, and modern syntax.",
-      "category": "其他",
+      "category": "學習資源",
       "language": "other",
       "triggers": [
         "javascript",
@@ -6209,7 +6229,9 @@
         "async",
         "scope",
         "closures",
-        "you-dont-know-js"
+        "you-dont-know-js",
+        "book",
+        "curriculum"
       ],
       "install": {
         "method": "git-clone",
@@ -6327,7 +6349,7 @@
       "name": "CodexPlusPlus",
       "url": "https://github.com/BigPizzaV3/CodexPlusPlus",
       "description": "Enhances CodexApp with improved usability, comfort, and developer experience features.",
-      "category": "其他",
+      "category": "開發工具",
       "language": "rust",
       "triggers": [
         "codexplusplus",
@@ -11266,7 +11288,7 @@
       "name": "Codex Dream Skin",
       "url": "https://github.com/Fei-Away/Codex-Dream-Skin",
       "description": "Visual theme for coding environments with dream-inspired aesthetics.",
-      "category": "其他",
+      "category": "設計",
       "language": "javascript",
       "triggers": [
         "codex-dream-skin",
@@ -11419,7 +11441,7 @@
       "name": "Wand Enhancer",
       "url": "https://github.com/k1tbyte/Wand-Enhancer",
       "description": "Advanced UX and interoperability extension for the WeMod Wand desktop app.",
-      "category": "其他",
+      "category": "開發工具",
       "language": "c#",
       "triggers": [
         "wand",
@@ -15730,7 +15752,7 @@
     },
     {
       "id": "skills-JimLiu",
-      "name": "Skills",
+      "name": "JimLiu Skills",
       "url": "https://github.com/JimLiu/baoyu-skills/tree/main/skills",
       "description": "Reusable AI agent skill templates for Claude, Codex, and OpenClaw coding assistants.",
       "category": "AI 代理",
@@ -20687,13 +20709,16 @@
       "name": "Open Notebook",
       "url": "https://github.com/lfnovo/open-notebook",
       "description": "Open-source Notebook LM alternative with enhanced flexibility and features.",
-      "category": "其他",
+      "category": "知識管理",
       "language": "typescript",
       "triggers": [
         "open-notebook",
         "note-taking",
         "self-hosted",
-        "ai-notes"
+        "ai-notes",
+        "notebook",
+        "knowledge-base",
+        "alternative"
       ],
       "install": {
         "method": "npm",
@@ -20802,41 +20827,64 @@
     },
     {
       "id": "gemini-cli",
-      "name": "Gemini Cli",
+      "name": "Gemini CLI",
       "url": "https://github.com/google-gemini/gemini-cli",
-      "description": "Open-source CLI agent integrating Gemini AI directly into your terminal for enhanced productivity.",
-      "category": "API 整合",
+      "description": "Google's official open-source CLI agent that brings Gemini AI directly into your terminal. Supports code understanding, generation, debugging, and automation via natural language — with MCP extensibility, GitHub integration, and 1M-token context window.",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "gemini-cli",
-        "ai-agents",
-        "terminal-automation",
-        "code-generation"
+        "gemini",
+        "google gemini",
+        "terminal ai",
+        "gemini cli",
+        "code assistant",
+        "gemini-agent",
+        "gemini-2.5-flash",
+        "gemini-code-assist"
       ],
       "install": {
         "method": "npm",
-        "command": "npm install https://github.com/google-gemini/gemini-cli",
+        "command": "npx @google/gemini-cli",
+        "alternatives": [
+          "npm install -g @google/gemini-cli",
+          "brew install gemini-cli"
+        ],
+        "requirements": [
+          "node>=18"
+        ],
         "repoUrl": "https://github.com/google-gemini/gemini-cli"
       },
       "capabilities": [
-        "ai",
-        "ai-agents",
-        "cli",
-        "gemini",
-        "gemini-api"
+        "code-understanding",
+        "code-generation",
+        "debugging",
+        "shell-automation",
+        "file-operations",
+        "web-fetching",
+        "mcp-extensibility",
+        "github-integration",
+        "non-interactive-mode",
+        "json-output",
+        "stream-json-events",
+        "multimodal-input",
+        "checkpointing"
       ],
       "addedAt": "2026-07-21T13:10:56.753Z",
       "status": "active",
-      "useCase": "Developers can use it to quickly generate, debug, or refactor code snippets via natural language commands in the terminal.",
+      "useCase": "在終端機中直接以自然語言指令進行程式碼審查、除錯、重構、PR 查詢與自動化任務；支援非互動模式用於 CI/CD 腳本。",
       "advantages": [
-        "Seamless integration with existing terminal workflows and shell environments.",
-        "Leverages Google's advanced Gemini models for high-quality code assistance.",
-        "Open-source nature allows for community contributions and transparency."
+        "Google 官方出品，整合 Gemini 2.5 Flash 等先進模型，支援 1M token 上下文視窗",
+        "無縫嵌入現有終端工作流程，無需切換 GUI",
+        "開放原始碼，社群可貢獻與稽核",
+        "支援 MCP 協議擴展自訂工具，可整合媒體生成等進階功能",
+        "提供三種認證方式：Google Sign-in（免費）、API Key、Vertex AI（企業級）"
       ],
       "negativeConstraints": [
-        "Not suitable for users who prefer a graphical user interface over command-line interaction.",
-        "Requires an active internet connection to access the Gemini API.",
-        "May incur costs depending on the underlying API usage limits."
+        "僅支援命令列介面，不適合偏好圖形化操作的使用者",
+        "需要穩定網路連線以存取 Gemini API",
+        "超出免費配額後可能產生費用（依所使用的 API tier 而定）",
+        "不適用於離線開發情境"
       ]
     },
     {
@@ -21363,7 +21411,7 @@
       "name": "Compound Engineering Plugin",
       "url": "https://github.com/everyinc/compound-engineering-plugin",
       "description": "Official plugin for Compound Engineering across Claude, Codex, and Cursor.",
-      "category": "其他",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "compound-engineering-plugin",
@@ -21371,7 +21419,10 @@
         "engineering",
         "plugin",
         "claude-code",
-        "cursor"
+        "cursor",
+        "compound-engineering",
+        "claude",
+        "codex"
       ],
       "install": {
         "method": "npm",
@@ -21669,7 +21720,7 @@
     },
     {
       "id": "officecli-officecli",
-      "name": "Officecli",
+      "name": "OfficeCLI (GitHub)",
       "url": "https://github.com/officecli/officecli",
       "description": "CLI tool to generate editable Office files from prompts.",
       "category": "文件生產力",
@@ -21708,7 +21759,7 @@
     },
     {
       "id": "skills-emilkowalski",
-      "name": "Skills",
+      "name": "Emil Kowalski Skills",
       "url": "https://github.com/emilkowalski/skills",
       "description": "Curated skills for Design Engineers to enhance productivity and workflow efficiency.",
       "category": "設計",
@@ -21817,7 +21868,7 @@
     },
     {
       "id": "skills-MiniMax-AI",
-      "name": "Skills",
+      "name": "MiniMax AI Skills",
       "url": "https://github.com/MiniMax-AI/skills",
       "description": "MiniMax AI skills repository for modular agent capabilities and functional extensions.",
       "category": "AI 代理",
@@ -22408,10 +22459,10 @@
     },
     {
       "id": "orca-GNOME",
-      "name": "Orca",
+      "name": "Orca GNOME (Screen Reader)",
       "url": "https://github.com/GNOME/orca",
       "description": "Screen reader for GNOME desktop, enabling accessibility for visually impaired users.",
-      "category": "其他",
+      "category": "設計",
       "language": "python",
       "triggers": [
         "orca",
@@ -22443,13 +22494,17 @@
       "name": "Ds4",
       "url": "https://github.com/antirez/ds4",
       "description": "Local LLM inference engine for DeepSeek models on Metal, CUDA, and ROCm.",
-      "category": "其他",
+      "category": "AI 代理",
       "language": "c",
       "triggers": [
         "ds4",
         "deepseek",
         "local-inference",
-        "metal-cuda-rocm"
+        "metal-cuda-rocm",
+        "llm-inference",
+        "local-model",
+        "metal",
+        "cuda"
       ],
       "install": {
         "method": "git-clone",
@@ -22516,13 +22571,17 @@
       "name": "Colibri",
       "url": "https://github.com/JustVugg/colibri",
       "description": "Run GLM-5.2 on low-RAM devices via pure C engine with disk-streamed experts.",
-      "category": "其他",
+      "category": "AI 代理",
       "language": "c",
       "triggers": [
         "colibri",
         "glm-5.2",
         "low-ram-inference",
-        "pure-c-llm"
+        "pure-c-llm",
+        "llm-inference",
+        "glm",
+        "local-model",
+        "low-ram"
       ],
       "install": {
         "method": "git-clone",
@@ -22589,13 +22648,15 @@
       "name": "Antigravity Notebooklm Mcp",
       "url": "https://github.com/jackc1111/antigravity-notebooklm-mcp",
       "description": "MCP server for NotebookLM integration, enabling AI-powered note-taking and knowledge management.",
-      "category": "其他",
+      "category": "知識管理",
       "language": "typescript",
       "triggers": [
         "notebooklm",
         "mcp",
         "antigravity",
-        "knowledge-base"
+        "knowledge-base",
+        "note-taking",
+        "knowledge"
       ],
       "install": {
         "method": "npm",
@@ -22622,13 +22683,15 @@
       "name": "Khunotebooklmmcp",
       "url": "https://github.com/drtagkim/khunotebooklmmcp",
       "description": "MCP server for NotebookLM, enabling AI-powered note-taking and knowledge management via API.",
-      "category": "其他",
+      "category": "知識管理",
       "language": "typescript",
       "triggers": [
         "khunotebooklmmcp",
         "notebooklm",
         "mcp-server",
-        "document-summarization"
+        "document-summarization",
+        "mcp",
+        "knowledge-management"
       ],
       "install": {
         "method": "npm",
@@ -23739,7 +23802,7 @@
     },
     {
       "id": "skills-qu-skills",
-      "name": "Skills",
+      "name": "QU Skills",
       "url": "https://github.com/qu-skills/skills",
       "description": "Enables agents to access hundreds of apps and services via API skills.",
       "category": "開發工具",
@@ -23845,7 +23908,7 @@
     },
     {
       "id": "skills-agentspace-so",
-      "name": "Skills",
+      "name": "AgentSpace Skills",
       "url": "https://github.com/agentspace-so/skills",
       "description": "Manage and organize agent skills for enhanced capability.",
       "category": "開發工具",
@@ -24138,7 +24201,7 @@
     },
     {
       "id": "skills-elevenlabs",
-      "name": "Skills",
+      "name": "ElevenLabs Skills",
       "url": "https://github.com/elevenlabs/skills",
       "description": "Open-source skills for integrating ElevenLabs voice AI into agents.",
       "category": "音訊",
@@ -24178,7 +24241,7 @@
     },
     {
       "id": "skills-browser-act",
-      "name": "Skills",
+      "name": "Browser Automation Skills",
       "url": "https://github.com/browser-act/skills",
       "description": "Browser automation CLI for AI agents with anti-bot bypass and parallel execution.",
       "category": "基礎設施",
@@ -24217,7 +24280,7 @@
     },
     {
       "id": "skills-runcomfy-com",
-      "name": "Skills",
+      "name": "RunComfy Skills",
       "url": "https://github.com/runcomfy-com/skills",
       "description": "RunComfy skills for model-pinned branding and intent routing via skills.sh.",
       "category": "開發工具",
@@ -24250,7 +24313,7 @@
     },
     {
       "id": "skills-doany-ai",
-      "name": "Skills",
+      "name": "DoAny AI Skills",
       "url": "https://github.com/doany-ai/skills",
       "description": "Mirror of RunComfy agent skills for ComfyUI workflow automation.",
       "category": "開發工具",
@@ -24279,6 +24342,52 @@
         "Not suitable for standalone image editing without a ComfyUI backend.",
         "Ineffective for real-time video processing due to batch-oriented design.",
         "Does not replace core ComfyUI node functionality for basic rendering."
+      ]
+    },
+    {
+      "id": "gpt-api-free",
+      "name": "GPT API Free",
+      "url": "https://github.com/chatanywhere/GPT_API_free",
+      "description": "Free and paid access to GPT, DeepSeek, Claude, and more via OpenAI-compatible API endpoints. No SDK installation required — simply configure your app's API base URL and key to use any OpenAI-compatible client.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "gpt-api-free",
+        "chatanywhere",
+        "free gpt",
+        "openai compatible",
+        "gpt proxy",
+        "claude api",
+        "deepseek api",
+        "GPT 代理",
+        "免費 GPT"
+      ],
+      "install": {
+        "method": "none",
+        "command": "No installation required — configure API base URL in your existing OpenAI-compatible client.",
+        "repoUrl": "https://github.com/chatanywhere/GPT_API_free"
+      },
+      "capabilities": [
+        "gpt-access",
+        "deepseek-access",
+        "claude-access",
+        "openai-compatible",
+        "multi-model",
+        "zero-install"
+      ],
+      "addedAt": "2026-07-24T14:00:00+08:00",
+      "status": "active",
+      "useCase": "當需要免費或低成本存取 GPT、Claude、DeepSeek 等多個 AI 模型時，可直接透過 OpenAI-compatible 格式呼叫，無需安裝額外 SDK。",
+      "advantages": [
+        "一次配置即可存取多個模型（GPT、Claude、DeepSeek 等）",
+        "完全相容 OpenAI API 格式，可直接替換現有專案的 base_url",
+        "無需安裝額外套件，降低依賴複雜度",
+        "同時提供免費與付費方案，彈性選擇"
+      ],
+      "negativeConstraints": [
+        "不保證免費端點的穩定性與速率限制",
+        "不適合用於需要 SLA 保證的生產環境關鍵服務",
+        "使用付費方案時費用取決於實際呼叫量"
       ]
     }
   ]

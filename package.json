@@ -15,7 +15,6 @@
     "search": "node cli.js search",
     "health-check": "node cli.js health-check",
     "validate": "node cli.js validate",
-    "enrich": "node scripts/enrich-registry.js",
     "mcp": "node mcp-server.js"
   },
   "keywords": [
@@ -31,6 +30,7 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0"
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25"
   }
 }
