@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-24T08:45:00+08:00",
+  "lastUpdated": "2026-07-24T09:10:00+08:00",
   "tools": [
     {
       "id": "ppt-master",
@@ -24354,6 +24354,499 @@
         "Free tier has rate limits (~50 queries/day)",
         "Uses undocumented internal APIs of NotebookLM — not suitable for production-critical workflows",
         "Intended for personal/experimental purposes only"
+      ]
+    },
+    {
+      "id": "img2threejs",
+      "name": "Img2threejs",
+      "url": "https://github.com/hoainho/img2threejs",
+      "description": "Rebuild the object in a reference image as a code-only, procedural, quality-gated, animation-ready Three.js model. Token-efficient image-to-3D.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "img2threejs",
+        "image-to-3d",
+        "three-js",
+        "3d-model-generation",
+        "procedural-3d",
+        "claude-code",
+        "computer-graphics",
+        "token-efficient-3d"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/hoainho/img2threejs.git",
+        "repoUrl": "https://github.com/hoainho/img2threejs"
+      },
+      "capabilities": [
+        "image-to-3d",
+        "procedural-generation",
+        "three-js-export",
+        "animation-ready",
+        "quality-gated"
+      ],
+      "addedAt": "2026-07-24T00:57:34.920Z",
+      "status": "experimental",
+      "useCase": "Converting reference images into lightweight 3D models for web visualization, VR, or game development using procedural Three.js code.",
+      "advantages": [
+        "Code-only output — no binary model files needed",
+        "Procedural and animation-ready with quality gates",
+        "Token-efficient compared to other image-to-3D approaches",
+        "Claude Code compatible agent workflow"
+      ],
+      "negativeConstraints": [
+        "Not suitable for photorealistic 3D reconstruction requiring texture maps",
+        "Avoid for complex organic shapes that need mesh editing"
+      ]
+    },
+    {
+      "id": "wayfinder",
+      "name": "Wayfinder",
+      "url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/wayfinder/SKILL.md",
+      "description": "Plan large-scale work as a shared map of investigation tickets on your issue tracker. Charts the way from a loose idea to a clear destination by creating research, prototype, grilling, and task tickets — resolving one at a time until the path is visible.",
+      "category": "AI 代理",
+      "language": "shell",
+      "triggers": [
+        "wayfinder",
+        "matt-pocock-skills",
+        "skill.md",
+        "large-planning",
+        "investigation-tickets",
+        "issue-tracker",
+        "fog-of-war",
+        "frontier-tickets"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "git clone https://github.com/mattpocock/skills.git && cd skills && cp -r skills/engineering/wayfinder ~/.agents/skills/",
+        "repoUrl": "https://github.com/mattpocock/skills",
+        "branch": "main",
+        "subpath": "skills/engineering/wayfinder"
+      },
+      "capabilities": [
+        "large-work-planning",
+        "investigation-tickets",
+        "decision-mapping",
+        "fog-of-war-tracking",
+        "ticket-types-research",
+        "ticket-types-prototype",
+        "ticket-types-grilling",
+        "ticket-types-task",
+        "frontier-discovery",
+        "out-of-scope-management"
+      ],
+      "addedAt": "2026-07-24T00:57:41.300Z",
+      "status": "experimental",
+      "useCase": "Planning a huge chunk of engineering work that exceeds a single agent session's context — break it into investigation tickets on an issue tracker and resolve them one at a time.",
+      "advantages": [
+        "Scales beyond single-session context limits by mapping work as tracker issues",
+        "Four ticket types: research (AFK), prototype (HITL), grilling (HITL), task (HITL/AFK)",
+        "Deliberate fog-of-war management — only ticket what you can precisely phrase",
+        "Concurrent session support with native blocking edges and claim mechanism",
+        "Domain-agnostic — works for engineering, course content, or any structured effort"
+      ],
+      "negativeConstraints": [
+        "Requires an issue tracker to be provided and configured",
+        "Not suitable for small tasks that fit within a single agent session",
+        "Only resolves one ticket per session — not for rapid-fire execution"
+      ]
+    },
+    {
+      "id": "agentic-inbox",
+      "name": "Agentic Inbox",
+      "url": "https://github.com/cloudflare/agentic-inbox",
+      "description": "A self-hosted email client with an AI agent, running entirely on Cloudflare Workers. Process, respond to, and manage emails with autonomous AI agents in a privacy-preserving architecture.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "agentic-inbox",
+        "cloudflare-workers",
+        "email-agent",
+        "self-hosted-email",
+        "ai-email",
+        "email-automation",
+        "agentic",
+        "inbox"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/cloudflare/agentic-inbox",
+        "repoUrl": "https://github.com/cloudflare/agentic-inbox"
+      },
+      "capabilities": [
+        "email-processing",
+        "ai-agent-responses",
+        "self-hosted",
+        "cloudflare-workers",
+        "privacy-preserving",
+        "autonomous-email-management"
+      ],
+      "addedAt": "2026-07-24T00:57:45.900Z",
+      "status": "experimental",
+      "useCase": "Self-hosted email management where AI agents autonomously process, categorize, and draft responses to incoming messages.",
+      "advantages": [
+        "Runs entirely on Cloudflare Workers — no server infrastructure needed",
+        "Privacy-preserving: data stays in your own environment",
+        "AI agent integration for autonomous email processing",
+        "Open-source and self-hostable"
+      ],
+      "negativeConstraints": [
+        "Requires Cloudflare Workers account and configuration",
+        "Not suitable for enterprise email systems requiring Exchange/ActiveSync support"
+      ]
+    },
+    {
+      "id": "open-higgsfield-ai",
+      "name": "Open Higgsfield AI",
+      "url": "https://github.com/Autom8AI/Open-Higgsfield-AI",
+      "description": "Open-source alternative to Higgsfield AI — Free AI image generation & cinema studio with 20+ models (Flux, SDXL, Midjourney, Ideogram). Self-hosted, customizable, MIT licensed.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "open-higgsfield-ai",
+        "higgsfield",
+        "ai-image-generation",
+        "cinema-studio",
+        "flux-model",
+        "sdxl",
+        "midjourney-alternative",
+        "self-hosted-ai"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Autom8AI/Open-Higgsfield-AI.git",
+        "repoUrl": "https://github.com/Autom8AI/Open-Higgsfield-AI"
+      },
+      "capabilities": [
+        "image-generation",
+        "cinema-studio",
+        "flux-model",
+        "sdxl-support",
+        "multi-model-switching",
+        "self-hosted-deployment"
+      ],
+      "addedAt": "2026-07-24T00:57:51.421Z",
+      "status": "experimental",
+      "useCase": "Self-hosted AI image generation and cinema studio with access to 20+ models without cloud API dependencies.",
+      "advantages": [
+        "20+ models including Flux, SDXL, Midjourney-style, and Ideogram",
+        "MIT licensed — fully open source and self-hostable",
+        "No cloud API costs or rate limits",
+        "Customizable pipeline for specific use cases"
+      ],
+      "negativeConstraints": [
+        "Requires GPU hardware for reasonable generation speeds",
+        "Not suitable for environments without Python/gpu support"
+      ]
+    },
+    {
+      "id": "shepherd",
+      "name": "Shepherd",
+      "url": "https://github.com/shepherd-agents/shepherd",
+      "description": "A runtime substrate that turns an agent's execution into a reversible, Git-like trace, so meta-agents can observe, fork, replay, and revert any run. Couples agent and environments in a copy-on-write fork ~5x faster than docker commit, with ~95% KV-cache reuse on replay. Framework built for meta-agents to supervise, optimize, and train other agents",
+      "category": "基礎設施",
+      "language": "python",
+      "triggers": [
+        "shepherd",
+        "mcts-rl",
+        "meta-agents",
+        "meta-optimization",
+        "runtime-supervision",
+        "tree-rl",
+        "workflow-automation"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/shepherd-agents/shepherd.git",
+        "repoUrl": "https://github.com/shepherd-agents/shepherd"
+      },
+      "capabilities": [
+        "mcts-rl",
+        "meta-agents",
+        "meta-optimization",
+        "runtime-supervision",
+        "tree-rl"
+      ],
+      "addedAt": "2026-07-24T00:57:56.876Z",
+      "status": "experimental"
+    },
+    {
+      "id": "hyperframes",
+      "name": "Hyperframes",
+      "url": "https://github.com/heygen-com/hyperframes",
+      "description": "Write HTML. Render video. Built for agents.",
+      "category": "影片",
+      "language": "typescript",
+      "triggers": [
+        "hyperframes",
+        "ai",
+        "animation",
+        "ffmpeg",
+        "framework",
+        "gsap",
+        "html",
+        "mcp"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install https://github.com/heygen-com/hyperframes",
+        "repoUrl": "https://github.com/heygen-com/hyperframes"
+      },
+      "capabilities": [
+        "ai",
+        "animation",
+        "ffmpeg",
+        "framework",
+        "gsap"
+      ],
+      "addedAt": "2026-07-24T00:58:15.627Z",
+      "status": "experimental"
+    },
+    {
+      "id": "hy3",
+      "name": "Hy3",
+      "url": "https://github.com/Tencent-Hunyuan/Hy3",
+      "description": "Hy3 (295B A21B), a leading reasoning and agent model in its size class from Tencent Hunyuan, with great cost efficiency and strong agentic capabilities.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "hy3",
+        "tencent-hunyuan",
+        "295b",
+        "moe-model",
+        "reasoning-model",
+        "agent-model",
+        "cost-efficient-llm"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Tencent-Hunyuan/Hy3.git",
+        "repoUrl": "https://github.com/Tencent-Hunyuan/Hy3"
+      },
+      "capabilities": [
+        "reasoning",
+        "agentic-workflows",
+        "moe-architecture",
+        "cost-efficient-inference"
+      ],
+      "addedAt": "2026-07-24T00:58:21.123Z",
+      "status": "experimental",
+      "useCase": "Deploying or fine-tuning a 295B MoE reasoning model for agentic workflows where cost efficiency matters.",
+      "advantages": [
+        "Leading reasoning performance in its size class (295B total, 21B active)",
+        "Cost-efficient inference via Mixture-of-Experts architecture",
+        "Strong agentic capabilities built in",
+        "From Tencent Hunyuan research team"
+      ],
+      "negativeConstraints": [
+        "Requires significant GPU memory for full model deployment",
+        "Not suitable for edge devices or low-resource environments"
+      ]
+    },
+    {
+      "id": "mimo-v25-asr",
+      "name": "MiMo V2.5 ASR",
+      "url": "https://github.com/XiaomiMiMo/MiMo-V2.5-ASR",
+      "description": "Robust Speech Recognition Across Languages, Dialects, and Complex Acoustic Scenarios — Xiaomi's advanced automatic speech recognition model with multilingual support.",
+      "category": "音訊",
+      "language": "python",
+      "triggers": [
+        "mimo-v2.5-asr",
+        "mimo",
+        "asr",
+        "speech-recognition",
+        "automatic-speech-recognition",
+        "multilingual-asr",
+        "dialect-recognition"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/XiaomiMiMo/MiMo-V2.5-ASR.git",
+        "repoUrl": "https://github.com/XiaomiMiMo/MiMo-V2.5-ASR"
+      },
+      "capabilities": [
+        "speech-to-text",
+        "multilingual-support",
+        "dialect-recognition",
+        "complex-acoustic-scenarios",
+        "robust-asr"
+      ],
+      "addedAt": "2026-07-24T00:58:26.585Z",
+      "status": "experimental",
+      "useCase": "Speech recognition tasks requiring robust performance across multiple languages, dialects, and noisy acoustic environments.",
+      "advantages": [
+        "Cross-language and cross-dialect support",
+        "Designed for complex acoustic scenarios",
+        "From Xiaomi's research team",
+        "Robust to noise and environmental variations"
+      ],
+      "negativeConstraints": [
+        "Requires GPU for efficient inference",
+        "May need fine-tuning for very niche dialects not in training data"
+      ]
+    },
+    {
+      "id": "minimax-m3",
+      "name": "MiniMax M3",
+      "url": "https://github.com/MiniMax-AI/MiniMax-M3",
+      "description": "MiniMax M3 — a powerful language model from MiniMax with strong reasoning, coding, and agentic capabilities for real-world applications.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "minimax-m3",
+        "minimax",
+        "language-model",
+        "reasoning-model",
+        "coding-model",
+        "agentic-model"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/MiniMax-AI/MiniMax-M3.git",
+        "repoUrl": "https://github.com/MiniMax-AI/MiniMax-M3"
+      },
+      "capabilities": [
+        "reasoning",
+        "code-generation",
+        "agentic-workflows",
+        "natural-language-understanding"
+      ],
+      "addedAt": "2026-07-24T00:58:32.177Z",
+      "status": "experimental",
+      "useCase": "Deploying or integrating MiniMax M3 for tasks requiring strong reasoning, code generation, and agentic workflows.",
+      "advantages": [
+        "Strong multi-domain capabilities including reasoning and coding",
+        "Optimized for agentic workflows",
+        "From MiniMax AI research team",
+        "Open weights for self-hosting"
+      ],
+      "negativeConstraints": [
+        "Requires significant GPU resources for full deployment",
+        "May need fine-tuning for domain-specific tasks"
+      ]
+    },
+    {
+      "id": "glm-5",
+      "name": "GLM 5",
+      "url": "https://github.com/zai-org/GLM-5",
+      "description": "GLM-5: From Vibe Coding to Agentic Engineering — Z.ai's latest language model advancing from interactive coding to autonomous agentic workflows.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "glm-5",
+        "z-ai",
+        "agentic-engineering",
+        "vibe-coding",
+        "glm",
+        "autonomous-agents",
+        "code-agent"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/zai-org/GLM-5.git",
+        "repoUrl": "https://github.com/zai-org/GLM-5"
+      },
+      "capabilities": [
+        "agentic-coding",
+        "long-horizon-tasks",
+        "autonomous-workflows",
+        "multi-step-planning"
+      ],
+      "addedAt": "2026-07-24T00:58:37.703Z",
+      "status": "experimental",
+      "useCase": "Autonomous coding and agentic engineering tasks that require long-horizon planning and multi-step execution.",
+      "advantages": [
+        "Bridges vibe coding with full agentic engineering",
+        "Strong multi-step planning capabilities",
+        "From Z.ai (formerly智谱AI) research team",
+        "Optimized for autonomous agent workflows"
+      ],
+      "negativeConstraints": [
+        "Requires GPU for inference",
+        "May need API access or cloud deployment for full capabilities"
+      ]
+    },
+    {
+      "id": "step-37-flash",
+      "name": "Step 3.7 Flash",
+      "url": "https://github.com/stepfun-ai/Step-3.7-Flash",
+      "description": "A high-efficiency Flash model for real-world agents — optimized for speed and cost in production agentic workflows.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "step-3.7-flash",
+        "stepfun-ai",
+        "flash-model",
+        "high-efficiency-llm",
+        "real-world-agents",
+        "cost-efficient-inference"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/stepfun-ai/Step-3.7-Flash.git",
+        "repoUrl": "https://github.com/stepfun-ai/Step-3.7-Flash"
+      },
+      "capabilities": [
+        "fast-inference",
+        "agentic-workflows",
+        "cost-efficient",
+        "production-ready"
+      ],
+      "addedAt": "2026-07-24T00:58:43.236Z",
+      "status": "experimental",
+      "useCase": "Production agentic workflows requiring fast, cost-efficient inference without sacrificing reasoning quality.",
+      "advantages": [
+        "High efficiency optimized for real-world agent deployments",
+        "Fast inference with lower latency",
+        "Cost-effective for high-volume agent tasks",
+        "From StepFun AI research team"
+      ],
+      "negativeConstraints": [
+        "May trade some reasoning depth for speed compared to larger models",
+        "Requires GPU infrastructure for deployment"
+      ]
+    },
+    {
+      "id": "ppt-agent-skills",
+      "name": "PPT Agent Skills",
+      "url": "https://github.com/sunbigfly/ppt-agent-skills",
+      "description": "A code-driven presentation generation framework. Build presentations like software engineering — using multi-agent collaboration to generate HTML-to-PPTX content programmatically.",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "ppt-agent-skills",
+        "ppt",
+        "html-to-pptx",
+        "multi-agent",
+        "pitch-deck",
+        "presentation-generation",
+        "code-driven-slides",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/sunbigfly/ppt-agent-skills.git",
+        "repoUrl": "https://github.com/sunbigfly/ppt-agent-skills"
+      },
+      "capabilities": [
+        "html-to-pptx",
+        "multi-agent-collaboration",
+        "code-driven-generation",
+        "pitch-deck",
+        "programmatic-slides"
+      ],
+      "addedAt": "2026-07-24T01:04:09.760Z",
+      "status": "experimental",
+      "useCase": "Generating professional PowerPoint presentations through code-driven workflows with multi-agent collaboration — ideal for pitch decks and structured presentations.",
+      "advantages": [
+        "Code-driven approach ensures reproducible and version-controlled presentations",
+        "Multi-agent collaboration for content quality",
+        "HTML-to-PPTX pipeline for web-native slide design",
+        "Software engineering methodology applied to presentation creation"
+      ],
+      "negativeConstraints": [
+        "Requires Python environment with pip",
+        "Not suitable for quick manual slide editing — designed for programmatic generation"
       ]
     }
   ]
