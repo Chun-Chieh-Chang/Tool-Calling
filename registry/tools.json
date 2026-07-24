@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-23T05:44:45.221Z",
+  "lastUpdated": "2026-07-24T08:45:00+08:00",
   "tools": [
     {
       "id": "ppt-master",
@@ -11190,40 +11190,62 @@
     },
     {
       "id": "council-of-high-intelligence",
-      "name": "Council Of High Intelligence",
-      "url": "https://github.com/0xnyk/council-of-high-intelligence",
-      "description": "Multi-agent deliberation framework for complex decisions across AI coding tools.",
+      "name": "Council of High Intelligence",
+      "url": "https://github.com/0xNyk/council-of-high-intelligence",
+      "description": "Structured multi-perspective deliberation framework. Assigns hard questions to deliberately different analytical personas, forces direct disagreement, and returns a verdict preserving unresolved questions, dissent, kill criteria, and next concrete action.",
       "category": "AI 代理",
       "language": "shell",
       "triggers": [
-        "multi-agent-systems",
+        "council-of-high-intelligence",
+        "multi-agent-deliberation",
         "decision-making",
-        "council-of-high-intelligence"
+        "structured-reasoning",
+        "multi-agent-systems",
+        "council",
+        "claude-code-plugin",
+        "codex",
+        "gemini-cli",
+        "opencode",
+        "agent-debate",
+        "verdict-framework"
       ],
       "install": {
         "method": "git-clone",
-        "command": "git clone https://github.com/0xnyk/council-of-high-intelligence.git",
-        "repoUrl": "https://github.com/0xnyk/council-of-high-intelligence"
+        "command": "git clone https://github.com/0xNyk/council-of-high-intelligence.git && cd council-of-high-intelligence && ./install.sh",
+        "requirements": [
+          "Claude Code / Codex / Gemini CLI / OpenCode (one or more)",
+          "Bash shell"
+        ]
       },
       "capabilities": [
-        "open-source",
-        "opencode",
-        "decision-making",
-        "codex",
-        "multi-agent-systems"
+        "multi-perspective-deliberation",
+        "cross-examination",
+        "weighted-voting",
+        "named-triads",
+        "provider-routing",
+        "kill-criteria-tracking",
+        "verdict-synthesis",
+        "bias-detection",
+        "risk-analysis",
+        "architecture-evaluation"
       ],
       "addedAt": "2026-07-19T11:16:07.451Z",
       "status": "active",
-      "useCase": "Ideal for engineering teams evaluating architectural trade-offs before committing to major codebase refactors.",
+      "useCase": "High-stakes engineering decisions with material downside, competing values, or irreversible choices — e.g., architectural trade-offs, pricing models, shipping deadlines, risk assessments.",
       "advantages": [
-        "Supports parallel AI agent debates to reduce single-model bias",
-        "Seamlessly integrates with multiple CLI coding environments",
-        "Structured output formats for traceable decision reasoning"
+        "18 grounded analytical personas with structured reasoning methods and known blind spots",
+        "Three modes: Full (complete protocol), Quick (breadth without adversarial round), Duo (single polarity)",
+        "Named triads for domain-specific panels (architecture, strategy, ethics, debugging, risk, etc.)",
+        "Multi-provider routing separates polarity pairs across different model families",
+        "Verdicts lead with unresolved items, kill criteria, and one concrete next step",
+        "Evidence labels separate FACT, INFERENCE, ASSUMPTION, UNKNOWN",
+        "Claude Code plugin marketplace support for one-click installation"
       ],
       "negativeConstraints": [
-        "Real-time latency-sensitive operations requiring instant responses",
-        "Simple scripting tasks that do not benefit from multi-agent analysis",
-        "Environments with strict token limits or low API quotas"
+        "Not suitable for factual lookups — use direct answers or primary documentation instead",
+        "Avoid for cheap and reversible choices — run an experiment instead",
+        "Do not convene a council to manufacture support for a decision already made",
+        "Requires significant token budget for full protocol deliberation"
       ]
     },
     {
@@ -24279,6 +24301,59 @@
         "Not suitable for standalone image editing without a ComfyUI backend.",
         "Ineffective for real-time video processing due to batch-oriented design.",
         "Does not replace core ComfyUI node functionality for basic rendering."
+      ]
+    },
+    {
+      "id": "notebooklm-antigravity-skill",
+      "name": "NotebookLM Antigravity Skill",
+      "url": "https://github.com/JunSuzuki1973/notebooklm-antigravity-skill",
+      "description": "Agent Skill for Google Antigravity that provides seamless integration with Google NotebookLM through the nlm CLI — creating notebooks, adding sources, generating audio podcasts, web research, and natural language querying.",
+      "category": "知識管理",
+      "language": "shell",
+      "triggers": [
+        "notebooklm-antigravity-skill",
+        "notebooklm",
+        "antigravity",
+        "nlm",
+        "google-notebooklm",
+        "notebooklm-cli",
+        "ai-research",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/JunSuzuki1973/notebooklm-antigravity-skill.git && cd notebooklm-antigravity-skill && bash scripts/install.sh",
+        "requirements": [
+          "uv (recommended) or pipx or pip",
+          "Chrome browser (for authentication)"
+        ]
+      },
+      "capabilities": [
+        "notebook-management",
+        "source-import",
+        "audio-podcast-generation",
+        "web-research",
+        "natural-language-query",
+        "youtube-transcript",
+        "google-drive-integration",
+        "video-generation",
+        "mind-map",
+        "slide-deck"
+      ],
+      "addedAt": "2026-07-24T00:38:23.781Z",
+      "status": "experimental",
+      "useCase": "Research workflows requiring multi-source synthesis: import URLs, PDFs, YouTube videos into a NotebookLM notebook and generate AI-powered audio overviews or query findings.",
+      "advantages": [
+        "Seamless integration with Google Antigravity agent framework",
+        "Supports diverse source types: URLs, YouTube, files, Google Drive, direct text",
+        "Generates AI audio podcasts, explainer videos, flashcards, infographics, and slide decks",
+        "Web research with auto-discovery of top sources on any topic"
+      ],
+      "negativeConstraints": [
+        "Requires Google account authentication via Chrome (cookies expire every 2-4 weeks)",
+        "Free tier has rate limits (~50 queries/day)",
+        "Uses undocumented internal APIs of NotebookLM — not suitable for production-critical workflows",
+        "Intended for personal/experimental purposes only"
       ]
     }
   ]
