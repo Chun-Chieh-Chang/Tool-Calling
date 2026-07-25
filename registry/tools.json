@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-24T15:45:09.360Z",
+  "lastUpdated": "2026-07-25T03:33:36.818Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -25674,6 +25674,127 @@
       "addedAt": "2026-07-25T03:08:00.000Z",
       "status": "active",
       "stars": 5500
+    },
+    {
+      "id": "tensorflow",
+      "name": "tensorflow",
+      "url": "https://github.com/tensorflow/tensorflow",
+      "description": "An Open Source Machine Learning Framework for Everyone",
+      "category": "開發工具",
+      "language": "c++",
+      "triggers": [
+        "tensorflow",
+        "deep-learning",
+        "deep-neural-networks",
+        "distributed",
+        "machine-learning"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/tensorflow/tensorflow"
+      },
+      "capabilities": [
+        "deep-learning",
+        "deep-neural-networks",
+        "distributed",
+        "machine-learning",
+        "ml",
+        "neural-network"
+      ],
+      "useCase": "An Open Source Machine Learning Framework for Everyone — 本週漲星 +196501 (2026-W30 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 196,501 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-25)",
+        "2026-W30 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 196501,
+      "addedAt": "2026-07-25T03:33:36.818Z",
+      "status": "active"
+    },
+    {
+      "id": "ohmyzsh",
+      "name": "ohmyzsh",
+      "url": "https://github.com/ohmyzsh/ohmyzsh",
+      "description": "🙃   A delightful community-driven (with 2,500+ contributors) framework for managing your zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python",
+      "category": "基礎設施",
+      "language": "shell",
+      "triggers": [
+        "ohmyzsh",
+        "cli",
+        "cli-app",
+        "oh-my-zsh",
+        "oh-my-zsh-plugin",
+        "oh-my-zsh-theme"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ohmyzsh/ohmyzsh"
+      },
+      "capabilities": [
+        "cli",
+        "cli-app",
+        "oh-my-zsh",
+        "oh-my-zsh-plugin",
+        "oh-my-zsh-theme",
+        "ohmyzsh"
+      ],
+      "useCase": "🙃   A delightful community-driven (with 2,500+ contributors) framework for managing your zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool that makes it easy to keep up with the latest updates from the community. — 本週漲星 +188788 (2026-W30 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 188,788 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-23)",
+        "2026-W30 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 188788,
+      "addedAt": "2026-07-25T03:33:36.818Z",
+      "status": "active"
+    },
+    {
+      "id": "javaguide",
+      "name": "JavaGuide",
+      "url": "https://github.com/Snailclimb/JavaGuide",
+      "description": "Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "javaguide",
+        "agent",
+        "context-engineering",
+        "deepseek",
+        "interview"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Snailclimb/JavaGuide"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "context-engineering",
+        "deepseek",
+        "interview",
+        "java"
+      ],
+      "useCase": "Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发 — 本週漲星 +157281 (2026-W30 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 157,281 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-21)",
+        "2026-W30 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 157281,
+      "addedAt": "2026-07-25T03:33:36.818Z",
+      "status": "active"
     }
   ]
 }

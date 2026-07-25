@@ -662,6 +662,42 @@
 - **問題**：先前移除 DOM 元素 `#expandAllBtn` 時，忽略了 `handleSearch()` 事件處置內部的顯隱隱藏屬性控制。
 - **矯正與預防措施 (CAPA)**：刪除前端 DOM 元素時，必須強制全案搜尋 (`grep`) 該 id 變數，確保監聽器與事件函式內部 100% 無殘留引用。
 
+### 2026-07-25 — 每週漲星 Top 10 自動探勘與入庫系統 (Phase 41)
+
+#### 需求與動機
+使用者需求：「幫我在本專案建立一個搜索的工具，能夠自動在 Github 搜索當週漲星數最大的前10名工具，並自動將該工具納入本專案的工具箱中。可以用 world week 的方式記錄備查。」
+
+#### 完成項目
+- [x] **自動探勘腳本 (`scripts/trending-weekly.js`)**：
+  - 跨 10 大領域 (AI Agent, LLM, 開發工具, 自動化, 數據分析, ML, GenAI, DevOps, UI, CLI) 搜尋 GitHub 高星數 repos。
+  - 讀取 `star-snapshots.json` 與即時 API 資料計算 Star 漲幅 delta，排序取前 10 名。
+  - 自動入庫新工具至 `registry/tools.json`（含完整 `useCase`, `negativeConstraints`, `advantages` 元資料），去重跳過已存在工具。
+  - 支援 Token 無效 (401) 自動降級為無認證模式 + 指數退避重試機制。
+- [x] **World Week 週報系統 (`registry/weekly-reports/YYYY-WXX.md`)**：每次執行自動產出結構化 Markdown 週報。
+- [x] **GitHub Actions 排程 (`.github/workflows/trending-weekly.yml`)**：每週一凌晨自動執行，偵測新工具入庫並推送。
+- [x] **NPM Script 整合**：新增 `npm run trending` 指令。
+- [x] **首次執行驗證**：2026-W30 探勘 292 個 repos，發現 Top 10 漲星工具，自動入庫 3 個新工具 (304→307)。
+- [x] **確效驗證**：`node cli.js validate` (307/307 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- **問題 (首次執行)**: 本地環境存在無效 `GITHUB_TOKEN` 導致 401 Unauthorized 錯誤。
+- **矯正措施**: 實作 Token 自動降級機制 (`authDropped` flag) — 偵測到 401 時自動移除無效 Authorization header 並以無認證模式重試。
+
+### 2026-07-25 — 每週漲星探勘腳本防禦門檻強化 (Phase 42)
+
+#### 需求與動機
+使用者指示：「增加防禦條件：排除 fork repos (`repo.fork === true`)、最低 Star 絕對門檻 (`stars >= 5000`)」。
+
+#### 完成項目
+- [x] ** Fork Repository 強制排除**：探勘與入庫雙重過濾關卡加入 `if (repo.fork) continue;`，防止非原創衍生庫混入。
+- [x] ** 絕對 Star 下限 (≥ 5,000⭐)**：設定 `MIN_STARS_THRESHOLD = 5000`，只允許成熟且具高星數認證的開源項目進入候選榜，徹底防禦灌水與低質量 Repo。
+- [x] **確效驗證**：`node --check scripts/trending-weekly.js` (0 錯誤)、`node cli.js validate` (307/307 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為自動化工具防禦門檻強化，無異常狀況）
+
+
+
 
 
 
