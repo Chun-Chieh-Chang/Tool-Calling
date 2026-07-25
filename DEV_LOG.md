@@ -1241,6 +1241,27 @@
 - **問題**：預設 OrbitControls 滾輪推進以 3D 座標原點 (0,0,0) 為中心，導致角落區域的節點放大時離游標越來越遠。
 - **矯正與預防措施 (CAPA)**：開啟 controls().zoomToCursor = true 並搭配 enableDamping 阻尼滑順感，徹底解決 3D 空間角落對焦難題。
 
+### 2026-07-25 — 3D 真 Raycast 游標視線對焦與 Orbit Target 重置 (True 3D Cursor Raycast Zoom) (Phase 70)
+
+#### 需求與動機
+使用者反饋：「2D空間的縮放有達到我的需求，但3D空間還沒達到，請再修訂」。徹底解決 Three.js 預設 `zoomToCursor` 未更新 `controls.target` 導致滾輪無法像 2D Pixel-Exact 一樣完美鎖定游標位置的缺陷。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - `OrbitControls` 預設的 `zoomToCursor` 僅沿著鏡頭朝交點方向逼近，但其旋轉與中心焦點 `controls.target` 依然固定在原點 `(0,0,0)`。只要使用者稍微旋轉滑鼠，鏡頭便會繞回 `(0,0,0)`，造成沒有真正「像素級聚焦」於游標處的感受。
+- [x] **矯正與預防措施 (CAPA - Raycaster + Orbit Target Lerp)**：
+  - 手動接管 `#network3d` 的 `wheel` 事件，引入 **Three.js `Raycaster` 光線投射**：
+    1. 將滑鼠螢幕點轉換為 3D NDC 視線空間。
+    2. 使用 `raycaster.intersectObjects` 精確捕捉游標所指之 3D 節點 Mesh 或 3D 視線深處座標 `targetPoint`。
+    3. 計算相機沿該光線軸線的極速逼近向量，並調用 `controls.target.lerp(targetPoint, 0.25)` 將相機旋轉與觀察焦點**100% 鎖定在滑鼠所指的 3D 物件上**！
+- [x] **確效驗證與測試**：
+  - 3D 滾輪對焦體驗達成與 2D 完全一致的「指哪裡、放大哪裡，並以此點為轉動軸心」的極致操控感受。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- **問題**：OrbitControls 預設 zoomToCursor 未更新 Orbit Target 座標，導致無法實現 100% 像素級對焦。
+- **矯正與預防措施 (CAPA)**：手動實現 Raycaster 光線投射，將滑鼠交點即時賦予 controls.target，達成與 2D 完全對齊的指哪放大哪體驗。
+
 
 
 

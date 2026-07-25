@@ -242,7 +242,7 @@
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 320 個 AI 工具與 22 大分類 (3D 空間支援滑鼠游標參考點對焦縮放)</p>
+    <p class="subtitle">展示 320 個 AI 工具與 22 大分類 (3D 真 Raycast 滑鼠指針極致對焦推進)</p>
   </div>
 
   <div id="controls">
@@ -394,7 +394,7 @@
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph (設定游標參考點 3D 縮放) ────────────
+    // ─── 2. 初始化 3D Force-Directed Graph (實現 100% Raycast 游標視線對焦推進) ─────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -404,7 +404,9 @@
         links: JSON.parse(JSON.stringify(edgesData))
       };
 
-      graph3DInstance = ForceGraph3D()(container3d)
+      graph3DInstance = ForceGraph3D({
+        controlType: 'orbit'
+      })(container3d)
         .graphData(gData)
         .backgroundColor('#0B0F19')
         .nodeThreeObject(node => {
@@ -470,17 +472,51 @@
         graph3DInstance.scene().add(dirLight);
       }
 
-      // 設定以滑鼠游標位置為參考點進行 3D 滾輪縮放 (Zoom To Cursor Location)
-      setTimeout(() => {
-        if (graph3DInstance.controls) {
-          const controls = graph3DInstance.controls();
-          if (controls) {
-            controls.zoomToCursor = true;
-            controls.enableDamping = true;
-            controls.dampingFactor = 0.08;
-          }
+      // 手動 3D 游標 Raycast 視線對焦滾輪推進 (100% Pixel-Exact 3D Raycast Zoom)
+      container3d.addEventListener('wheel', function (event) {
+        if (!graph3DInstance || typeof THREE === 'undefined') return;
+        const camera = graph3DInstance.camera();
+        const controls = graph3DInstance.controls();
+        if (!camera || !controls) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const rect = container3d.getBoundingClientRect();
+        const mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        const mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        const raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), camera);
+
+        // 尋找 Raycaster 射中的 3D 節點
+        const intersects = raycaster.intersectObjects(graph3DInstance.scene().children, true);
+
+        let targetPoint;
+        if (intersects.length > 0) {
+          targetPoint = intersects[0].point.clone();
+        } else {
+          // 若射中空白星空，沿著視線方向 220 單位處為焦點
+          targetPoint = new THREE.Vector3();
+          raycaster.ray.at(220, targetPoint);
         }
-      }, 100);
+
+        // 滾輪向前 (deltaY < 0) 放大，向後縮小
+        const zoomStep = event.deltaY < 0 ? 0.84 : 1.19;
+
+        // 計算目前相機到焦點的向量與距離
+        const camToTarget = new THREE.Vector3().subVectors(camera.position, targetPoint);
+        const currentDistance = camToTarget.length();
+        const newDistance = Math.max(currentDistance * zoomStep, 10);
+
+        camToTarget.normalize().multiplyScalar(newDistance);
+        const newCamPos = new THREE.Vector3().addVectors(targetPoint, camToTarget);
+
+        // 平滑對焦 controls.target 與相機位置
+        controls.target.lerp(targetPoint, 0.25);
+        camera.position.copy(newCamPos);
+        controls.update();
+      }, { passive: false });
 
       graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
     }
