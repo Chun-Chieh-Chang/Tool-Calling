@@ -26,7 +26,9 @@ const baseCategoryColors = {
 
 // 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
 function getContrastTextColor(hexColor) {
+  if (!hexColor) return "#FFFFFF";
   const hex = hexColor.replace('#', '');
+  if (hex.length !== 6) return "#FFFFFF";
   const r = parseInt(hex.substring(0, 2), 16);
   const g = parseInt(hex.substring(2, 4), 16);
   const b = parseInt(hex.substring(4, 6), 16);
@@ -42,7 +44,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (支援右鍵/中鍵/Shift+左鍵 3D 平移與 Raycast 對焦)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (3D 色彩 1:1 比照 2D 色彩大師規範)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -68,7 +70,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       highlight: { background: "#6366F1", border: "#FFFFFF" },
       hover: { background: "#6366F1", border: "#FFFFFF" }
     },
-    colorHex: "#818CF8",
+    colorHex: "#6366F1",
     font: { color: "#FFFFFF", size: 22, face: "Inter", bold: true },
     val: 40
   });
@@ -108,6 +110,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         hover: { background: colorHex, border: "#93C5FD" }
       },
       colorHex: colorHex,
+      textColor: textColor,
       font: {
         color: textColor,
         size: 16,
@@ -468,7 +471,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (支援左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪 Raycast 精態對焦)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (3D 色彩 1:1 完全比照 2D 色彩大師規範)</p>
   </div>
 
   <div id="controls">
@@ -564,7 +567,19 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph (解鎖旋轉、平移與 Raycast 縮放) ──────────
+    // Helper: 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
+    function getContrastTextColorJS(hexColor) {
+      if (!hexColor) return "#FFFFFF";
+      const hex = hexColor.replace('#', '');
+      if (hex.length !== 6) return "#FFFFFF";
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
+    }
+
+    // ─── 2. 初始化 3D Force-Directed Graph (1:1 對齊 2D 色彩大師體系) ─────────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -584,30 +599,54 @@ export function generateKnowledgeGraph(registryInput = null) {
 
           const group = new THREE.Group();
 
-          // A. 3D 實體自發光球體 Mesh
+          // A. 3D 實體自發光球體 Mesh (1:1 比照 2D Design Tokens)
           const radius = Math.max((node.val || 10) / 3, 3);
+          const nodeColor = node.colorHex || (node.group === 'root' ? '#6366F1' : (node.group === 'subtool' ? '#64748B' : '#3B82F6'));
+
           const geometry = new THREE.SphereGeometry(radius, 16, 16);
           const material = new THREE.MeshPhongMaterial({
-            color: node.colorHex || '#3B82F6',
-            emissive: node.colorHex || '#3B82F6',
-            emissiveIntensity: 0.35,
+            color: nodeColor,
+            emissive: nodeColor,
+            emissiveIntensity: node.group === 'category' ? 0.45 : (node.group === 'root' ? 0.6 : 0.25),
             transparent: true,
             opacity: 0.92
           });
           const sphere = new THREE.Mesh(geometry, material);
           group.add(sphere);
 
-          // B. 3D 文字浮動 Sprite
+          // B. 3D 文字浮動 Sprite (1:1 對齊 2D Theme Color 標籤與黑白對比色)
           if (typeof SpriteText !== 'undefined') {
             const cleanText = node.label.replace('\\n', ' ');
             const sprite = new SpriteText(cleanText);
-            sprite.textColor = node.group === 'category' ? '#60A5FA' : (node.group === 'root' ? '#C084FC' : '#F8FAFC');
-            sprite.textHeight = node.group === 'root' ? 12 : (node.group === 'category' ? 9 : 6);
+
+            if (node.group === 'root') {
+              sprite.textColor = '#FFFFFF';
+              sprite.backgroundColor = 'rgba(79, 70, 229, 0.9)';
+              sprite.textHeight = 11;
+              sprite.fontWeight = 'bold';
+            } else if (node.group === 'category') {
+              // Category 1:1 比照 2D 分類主題色與自動黑白對比字體
+              const bgHex = node.colorHex || '#2563EB';
+              const txtColor = getContrastTextColorJS(bgHex);
+              sprite.textColor = txtColor;
+              sprite.backgroundColor = bgHex;
+              sprite.textHeight = 8.5;
+              sprite.fontWeight = 'bold';
+            } else if (node.group === 'tool') {
+              // Tool 1:1 比照 2D (亮白字體 + 深色背景 + 分類顏色外框)
+              sprite.textColor = '#F8FAFC';
+              sprite.backgroundColor = 'rgba(30, 41, 59, 0.88)';
+              sprite.strokeColor = node.colorHex || '#3B82F6';
+              sprite.strokeWidth = 1.5;
+              sprite.textHeight = 6;
+            } else {
+              // SubTool 1:1 比照 2D 灰色標籤
+              sprite.textColor = '#CBD5E1';
+              sprite.backgroundColor = 'rgba(51, 65, 85, 0.8)';
+              sprite.textHeight = 4.5;
+            }
+
             sprite.fontFace = 'Inter, sans-serif';
-            sprite.fontWeight = 'bold';
-            sprite.strokeWidth = 2;
-            sprite.strokeColor = '#0F172A';
-            sprite.backgroundColor = 'rgba(15, 23, 42, 0.7)';
             sprite.padding = 3;
             sprite.borderRadius = 4;
             sprite.position.set(0, radius + 8, 0);
@@ -889,7 +928,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D Graph with full Panning support (Right/Middle/Shift+Left Click) updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 3D Graph colors aligned 1:1 with 2D Master Palette for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

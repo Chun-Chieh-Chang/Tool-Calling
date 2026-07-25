@@ -1284,6 +1284,28 @@
 - **問題**：3d-force-graph 預設平移功能未明確啟用，導致使用者無法在 3D 空間中像 2D 一樣移動畫面視野。
 - **矯正與預防措施 (CAPA)**：顯式設定 controls.enablePan = true 與 screenSpacePanning = true，並增加多重熱鍵相容與 UI 提示。
 
+### 2026-07-25 — 3D 空間色彩 1:1 完全比照 2D 色彩大師規範 (1:1 3D/2D Master Palette Alignment) (Phase 72)
+
+#### 需求與動機
+使用者需求：「將3D使用的顏色比照2D」。將 3D 空間中球體自發光色、文字標籤顏色與背景對比色 1:1 對齊 2D Design Tokens。
+
+#### 完成項目
+- [x] **3D 實體球體色彩完全對齊 (3D Sphere Mesh Colors)**：
+  - Root: 紫藍色高亮光暈 (`#6366F1`)。
+  - Category: 100% 比照 `baseCategoryColors` 專屬 Morandi 色彩 (如琥珀黃 `#D97706`、翡翠綠 `#059669`、皇家藍 `#2563EB`)。
+  - Tool: 繼承所屬 Category 主題色。
+  - SubTool: 灰藍色發光小球體 (`#64748B`)。
+- [x] **3D SpriteText 浮動標籤色彩與黑白文字演算法對齊 (Contrast Text Algorithm)**：
+  - Category 標籤背景採用該 Category 專屬主題色，文字自動依 Luminance 演算法切換黑/白高對比字體 (`getContrastTextColorJS`)。
+  - Tool 標籤採用亮白字體 `#F8FAFC` + 深色底 + Category 邊框線，100% 還原 2D 視覺風格。
+- [x] **確效驗證與測試**：
+  - 3D 空間視覺層次與 2D 完全對齊，呈現奢華和諧的國際級質感。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：3D 視角原先採用單一藍色文字標籤與預設發光色，缺乏與 2D Morandi 設計代幣色彩大師規範的 1:1 對齊。
+- **矯正與預防措施 (CAPA)**：重構 nodeThreeObject 的 SpriteText 背景、文字色與 MeshPhongMaterial 光學材質，達到 3D/2D 雙視角 100% 色彩與黑白對比一致性。
+
 
 
 
