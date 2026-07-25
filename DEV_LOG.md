@@ -711,6 +711,22 @@
 #### RCA / CAPA
 - （本次為前端新功能與視覺頁面開發，無異常狀況）
 
+### 2026-07-25 — 每週漲星數欄位標頭與卡片標籤強化 (Phase 44)
+
+#### 需求與動機
+使用者需求：「增加一欄顯示漲星數」。
+
+#### 完成項目
+- [x] **排行榜欄位標頭強化**：更新 [web/index.html](file:///d:/Self-developed_Apps/Tool-Calling/web/index.html)，明確標註 `⭐ 累積總 Star 數` 與 `🔥 當週漲星數 (Delta)` 欄位。
+- [x] **漲星數視覺標籤 (Badge & Tags)**：
+  - 排行榜表格以赤紅高亮 Badge 顯示 `🔥 +11 漲星`。
+  - 工具卡片 (`createToolCard`) 自動為新納入工具生成 `<span class="tag">🔥 當週漲星 +N</span>` 標籤。
+- [x] **確效驗證**：`node --check web/app.js` (0 錯誤)、`node cli.js validate` (311/311 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為表格 UI 與卡片標籤欄位強化，無異常狀況）
+
+
 
 
 

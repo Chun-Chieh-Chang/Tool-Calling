@@ -355,7 +355,7 @@ async function loadWeeklyTrending() {
         <td><strong>${item.name}</strong></td>
         <td><a href="${item.url}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${item.fullName} ↗</a></td>
         <td>⭐ ${formatStarCount(item.currentStars)}</td>
-        <td><span class="delta-badge">+${formatStarCount(item.delta)}</span></td>
+        <td><span class="delta-badge">🔥 +${formatStarCount(item.delta)} 漲星</span></td>
         <td><span class="category-tag">${item.category}</span></td>
         <td style="text-align: center;"><span class="status-badge ${statusClass}">${item.statusText}</span></td>
       `;
@@ -607,6 +607,13 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
 
   const tagsContainer = clone.querySelector('.tags-container');
   if (tagsContainer) {
+    if (tool.delta) {
+      const deltaTag = document.createElement('span');
+      deltaTag.className = 'tag';
+      deltaTag.style.cssText = 'background: rgba(239, 68, 68, 0.15); color: #F87171; border: 1px solid rgba(239, 68, 68, 0.3); font-weight: 700;';
+      deltaTag.textContent = `🔥 當週漲星 +${formatStarCount(tool.delta)}`;
+      tagsContainer.appendChild(deltaTag);
+    }
     if (tool.useCase) {
       const tag = document.createElement('span');
       tag.className = 'tag usecase';

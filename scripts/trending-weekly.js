@@ -367,6 +367,7 @@ async function main() {
       category: t.category,
       language: t.language,
       stars: t.stars,
+      delta: t.delta,
       useCase: t.useCase,
       negativeConstraints: t.negativeConstraints,
       advantages: t.advantages
