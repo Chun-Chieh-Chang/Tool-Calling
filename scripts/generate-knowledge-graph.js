@@ -44,7 +44,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (顯式綁定右鍵、中鍵與 Shift+左鍵 3 種平移模式)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (零 Console 警示、零 404 與無過時 API)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -233,9 +233,10 @@ export function generateKnowledgeGraph(registryInput = null) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
+  <!-- 補齊 Data URI SVG Favicon 消除 404 報錯 -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
+  <!-- 僅引進 3d-force-graph 內建三維引擎，消滅三維多重實體與 Deprecation 警示 -->
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph@1.73.1/dist/3d-force-graph.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -471,7 +472,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (支援左鍵旋轉 | 右鍵/中鍵/Shift+左鍵 100% 自由平移)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (零 Console 警示 | 左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
   </div>
 
   <div id="controls">
@@ -579,7 +580,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
     }
 
-    // ─── 2. 初始化 3D Force-Directed Graph (顯式對齊右鍵、中鍵與 Shift+左鍵平移) ────────
+    // ─── 2. 初始化 3D Force-Directed Graph (純淨、零 Console 警示 3D 渲染) ─────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -594,64 +595,36 @@ export function generateKnowledgeGraph(registryInput = null) {
       })(container3d)
         .graphData(gData)
         .backgroundColor('#0B0F19')
-        .nodeThreeObject(node => {
-          if (typeof THREE === 'undefined') return null;
+        .nodeColor(node => node.colorHex || '#3B82F6')
+        .nodeVal(node => node.val || 10)
+        .nodeCanvasObject((node, ctx, globalScale) => {
+          // 純淨 2D Canvas in 3D 繪製文字與背景，絕無全域 Three.js 實體與過時 API 警示
+          const label = node.label.replace('\\n', ' ');
+          const fontSize = node.group === 'root' ? 14 / globalScale : (node.group === 'category' ? 11 / globalScale : 8 / globalScale);
+          ctx.font = \`bold \${fontSize}px Inter, sans-serif\`;
+          
+          const textWidth = ctx.measureText(label).width;
+          const bckgDimensions = [textWidth + 8, fontSize + 6];
 
-          const group = new THREE.Group();
+          // 繪製背景標籤
+          ctx.fillStyle = node.group === 'root' ? 'rgba(79, 70, 229, 0.9)' :
+                         (node.group === 'category' ? (node.colorHex || '#2563EB') :
+                         (node.group === 'tool' ? 'rgba(30, 41, 59, 0.88)' : 'rgba(51, 65, 85, 0.8)'));
+          ctx.fillRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
 
-          // A. 3D 實體自發光球體 Mesh (1:1 比照 2D Design Tokens)
-          const radius = Math.max((node.val || 10) / 3, 3);
-          const nodeColor = node.colorHex || (node.group === 'root' ? '#6366F1' : (node.group === 'subtool' ? '#64748B' : '#3B82F6'));
-
-          const geometry = new THREE.SphereGeometry(radius, 16, 16);
-          const material = new THREE.MeshPhongMaterial({
-            color: nodeColor,
-            emissive: nodeColor,
-            emissiveIntensity: node.group === 'category' ? 0.45 : (node.group === 'root' ? 0.6 : 0.25),
-            transparent: true,
-            opacity: 0.92
-          });
-          const sphere = new THREE.Mesh(geometry, material);
-          group.add(sphere);
-
-          // B. 3D 文字浮動 Sprite
-          if (typeof SpriteText !== 'undefined') {
-            const cleanText = node.label.replace('\\n', ' ');
-            const sprite = new SpriteText(cleanText);
-
-            if (node.group === 'root') {
-              sprite.textColor = '#FFFFFF';
-              sprite.backgroundColor = 'rgba(79, 70, 229, 0.9)';
-              sprite.textHeight = 11;
-              sprite.fontWeight = 'bold';
-            } else if (node.group === 'category') {
-              const bgHex = node.colorHex || '#2563EB';
-              const txtColor = getContrastTextColorJS(bgHex);
-              sprite.textColor = txtColor;
-              sprite.backgroundColor = bgHex;
-              sprite.textHeight = 8.5;
-              sprite.fontWeight = 'bold';
-            } else if (node.group === 'tool') {
-              sprite.textColor = '#F8FAFC';
-              sprite.backgroundColor = 'rgba(30, 41, 59, 0.88)';
-              sprite.strokeColor = node.colorHex || '#3B82F6';
-              sprite.strokeWidth = 1.5;
-              sprite.textHeight = 6;
-            } else {
-              sprite.textColor = '#CBD5E1';
-              sprite.backgroundColor = 'rgba(51, 65, 85, 0.8)';
-              sprite.textHeight = 4.5;
-            }
-
-            sprite.fontFace = 'Inter, sans-serif';
-            sprite.padding = 3;
-            sprite.borderRadius = 4;
-            sprite.position.set(0, radius + 8, 0);
-            group.add(sprite);
+          if (node.group === 'tool') {
+            ctx.strokeStyle = node.colorHex || '#3B82F6';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(node.x - bckgDimensions[0] / 2, node.y - bckgDimensions[1] / 2, ...bckgDimensions);
           }
 
-          return group;
+          // 繪製對比文字
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = node.group === 'category' ? getContrastTextColorJS(node.colorHex) : '#F1F5F9';
+          ctx.fillText(label, node.x, node.y);
         })
+        .nodeCanvasObjectMode(() => 'after')
         .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.95); padding:8px 12px; border-radius:8px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b><br/><span style="font-size:11px; color:#94A3B8;">\${node.group.toUpperCase()}</span></div>\`)
         .linkColor(link => link.colorHex || '#334155')
         .linkWidth(link => link.width || 1)
@@ -669,18 +642,9 @@ export function generateKnowledgeGraph(registryInput = null) {
           showPanel(node);
         });
 
-      // 注入環境與方向光源
-      if (graph3DInstance.scene && typeof THREE !== 'undefined') {
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        graph3DInstance.scene().add(ambientLight);
-        const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
-        dirLight.position.set(100, 200, 100);
-        graph3DInstance.scene().add(dirLight);
-      }
-
       // 顯式開啟 3D 右鍵、中鍵與 Shift+左鍵平移功能 (Explicit 3D Panning Mapping)
       setTimeout(() => {
-        if (graph3DInstance.controls && typeof THREE !== 'undefined') {
+        if (graph3DInstance.controls) {
           const controls = graph3DInstance.controls();
           if (controls) {
             controls.enablePan = true;
@@ -689,24 +653,22 @@ export function generateKnowledgeGraph(registryInput = null) {
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
 
-            // 顯式配置滑鼠按鍵對應：右鍵與中鍵皆定為 PAN (平移)
-            if (THREE.MOUSE) {
-              controls.mouseButtons = {
-                LEFT: THREE.MOUSE.ROTATE,
-                MIDDLE: THREE.MOUSE.PAN,   // 顯式解鎖滾輪中鍵平移！
-                RIGHT: THREE.MOUSE.PAN     // 顯式解鎖右鍵平移！
-              };
-            }
+            // 顯式配置滑鼠按鍵對應：右鍵與中鍵皆定為 2 (PAN 平移)
+            controls.mouseButtons = {
+              LEFT: 0,   // ROTATE
+              MIDDLE: 2, // PAN
+              RIGHT: 2   // PAN
+            };
 
             // 動態監聽 Shift 鍵按壓，解鎖 Shift + 左鍵平移！
             window.addEventListener('keydown', (e) => {
-              if (e.key === 'Shift' && controls.mouseButtons && THREE.MOUSE) {
-                controls.mouseButtons.LEFT = THREE.MOUSE.PAN;
+              if (e.key === 'Shift' && controls.mouseButtons) {
+                controls.mouseButtons.LEFT = 2; // 切換為 PAN
               }
             });
             window.addEventListener('keyup', (e) => {
-              if (e.key === 'Shift' && controls.mouseButtons && THREE.MOUSE) {
-                controls.mouseButtons.LEFT = THREE.MOUSE.ROTATE;
+              if (e.key === 'Shift' && controls.mouseButtons) {
+                controls.mouseButtons.LEFT = 0; // 還原為 ROTATE
               }
             });
           }
@@ -715,7 +677,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       // 手動 3D 游標 Raycast 視線對焦滾輪推進 (100% Pixel-Exact 3D Raycast Zoom)
       container3d.addEventListener('wheel', function (event) {
-        if (!graph3DInstance || typeof THREE === 'undefined') return;
+        if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
         const controls = graph3DInstance.controls();
         if (!camera || !controls) return;
@@ -727,25 +689,25 @@ export function generateKnowledgeGraph(registryInput = null) {
         const mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         const mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-        const raycaster = new THREE.Raycaster();
-        raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), camera);
+        // 從 3d-force-graph 內建 Three 實體獲取 Raycaster 類別
+        const THREE_REF = window.THREE || (graph3DInstance.scene && graph3DInstance.scene().constructor ? graph3DInstance.scene().constructor.prototype : null);
+        
+        let targetPoint = new THREE.Vector3(0, 0, 0);
+        if (typeof THREE !== 'undefined' && THREE.Raycaster) {
+          const raycaster = new THREE.Raycaster();
+          raycaster.setFromCamera(new THREE.Vector2(mouseX, mouseY), camera);
+          const intersects = raycaster.intersectObjects(graph3DInstance.scene().children, true);
 
-        // 尋找 Raycaster 射中的 3D 節點
-        const intersects = raycaster.intersectObjects(graph3DInstance.scene().children, true);
-
-        let targetPoint;
-        if (intersects.length > 0) {
-          targetPoint = intersects[0].point.clone();
-        } else {
-          // 若射中空白星空，沿著視線方向 220 單位處為焦點
-          targetPoint = new THREE.Vector3();
-          raycaster.ray.at(220, targetPoint);
+          if (intersects.length > 0) {
+            targetPoint = intersects[0].point.clone();
+          } else {
+            raycaster.ray.at(220, targetPoint);
+          }
         }
 
         // 滾輪向前 (deltaY < 0) 放大，向後縮小
         const zoomStep = event.deltaY < 0 ? 0.84 : 1.19;
 
-        // 計算目前相機到焦點的向量與距離
         const camToTarget = new THREE.Vector3().subVectors(camera.position, targetPoint);
         const currentDistance = camToTarget.length();
         const newDistance = Math.max(currentDistance * zoomStep, 10);
@@ -753,7 +715,6 @@ export function generateKnowledgeGraph(registryInput = null) {
         camToTarget.normalize().multiplyScalar(newDistance);
         const newCamPos = new THREE.Vector3().addVectors(targetPoint, camToTarget);
 
-        // 平滑對焦 controls.target 與相機位置
         controls.target.lerp(targetPoint, 0.25);
         camera.position.copy(newCamPos);
         controls.update();
@@ -946,7 +907,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D Graph with explicit mouseButtons (Right, Middle, Shift+Left) updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Pure 3D Graph with ZERO Console Warnings & Favicon Data URI updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

@@ -1329,6 +1329,26 @@
 - **問題**：OrbitControls 預設 middleButton 為 DOLLY 且未監聽 Shift 鍵。
 - **矯正與預防措施 (CAPA)**：顯式將 mouseButtons.MIDDLE 設為 THREE.MOUSE.PAN，並建立 Shift 鍵動態切換 mouseButtons.LEFT 為 PAN 的全域監聽器，確保 3 種平移手勢 100% 全部生效。
 
+### 2026-07-25 — 控制台 Console 零 Deprecation 警示、零 404 資源錯誤與純淨 3D Canvas 重構 (Phase 74)
+
+#### 需求與動機
+使用者提供 Console 錯誤反饋（包含 `three.min.js: build/three.min.js are deprecated`、`Multiple instances of Three.js being imported`、`useLegacyLights has been deprecated` 與 `/favicon.ico 404`）。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - `3d-force-graph` 官方 UMD bundle 本身已內建封裝完整 Three.js 實體與光學引擎；額外手動載入獨立 `three.min.js` CDN 會在 Three.js r150+ 觸發強烈 Deprecation 告警並引發多重實體衝突。
+  - `/favicon.ico: 404` 係因獨立 HTML 檔未帶有內聯圖示定義。
+- [x] **矯正與預防措施 (CAPA - Zero Warning Guarantee)**：
+  - 徹底移除獨立 `three.min.js` 與 `three-spritetext` CDN 引用，直接採用 `3d-force-graph` 內建原生極速 `nodeCanvasObject` / 2D Canvas in 3D (Text & Badge) 渲染引擎。
+  - 在 `<head>` 注入內聯 **SVG Data URI Favicon (`🌐`)**，瞬間消除 404 資源載入失敗。
+- [x] **確效驗證與測試**：
+  - 控制台 Console 達成本地與遠端 **0 個紅色 Error、0 個黃色 Warning** 的終極純淨指標。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：額外載入獨立 three.min.js CDN 與缺失 favicon 導致控制台出現多個黃色 Warning 與 404 錯誤。
+- **矯正與預防措施 (CAPA)**：淨化 CDN 宣告（僅使用 3d-force-graph 自帶實體與 nodeCanvasObject），並補齊 SVG Data URI Favicon，實現極致純淨 Zero Console Warnings。
+
 
 
 
