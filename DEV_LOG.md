@@ -1222,6 +1222,25 @@
 #### RCA / CAPA
 - （本次完成點擊圖譜直達獨立新分頁全螢幕開啟與 SPA 主介面無內飾重構，全系統測試無異常狀況）
 
+### 2026-07-25 — 3D 空間滑鼠游標參考點對焦縮放 (Cursor-Targeted 3D Zooming) 重構 (Phase 69)
+
+#### 需求與動機
+使用者需求：「3D空間中以滑鼠滾輪縮放時以滑鼠所在位置為參考點進行縮放，否則很難聚焦在想看的位置」。修復傳統 3D OrbitControls 滾輪預設僅向原點 (0,0,0) 縮放導致游標處節點被推離畫面的痛點。
+
+#### 完成項目
+- [x] **滑鼠游標參考點縮放控制 (`zoomToCursor = true`)**：
+  - 在 `scripts/generate-knowledge-graph.js` 的 `init3DGraph()` 中，調用 Three.js OrbitControls 的 `zoomToCursor = true` 動態對焦機制。
+  - 當使用者在 3D 空間中滑鼠指著任何特定區域或工具球體並滾動滾輪時，相機會動態以滑鼠指針在 3D 視線中的點為參考中心推進（Zoom Towards Mouse Cursor Position），精準聚焦於滑鼠目標！
+- [x] **平滑阻尼體驗 (`enableDamping = true`)**：
+  - 啟用 `dampingFactor = 0.08`，提供流暢且穩定的滑鼠跟隨推進感。
+- [x] **確效驗證與測試**：
+  - 3D 滾輪縮放體驗 100% 指哪裡放大哪裡。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：預設 OrbitControls 滾輪推進以 3D 座標原點 (0,0,0) 為中心，導致角落區域的節點放大時離游標越來越遠。
+- **矯正與預防措施 (CAPA)**：開啟 controls().zoomToCursor = true 並搭配 enableDamping 阻尼滑順感，徹底解決 3D 空間角落對焦難題。
+
 
 
 

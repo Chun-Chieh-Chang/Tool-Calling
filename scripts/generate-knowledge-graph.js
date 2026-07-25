@@ -42,7 +42,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (3D 空間 100% 高亮發光球體與文字組裝)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (支援滑鼠游標位置 3D 縮放聚焦)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -468,7 +468,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 空間 100% 光照球體與立體文字標籤對齊)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 空間支援滑鼠游標參考點對焦縮放)</p>
   </div>
 
   <div id="controls">
@@ -554,7 +554,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph (帶光源發光球體與文字 Group) ───────────────
+    // ─── 2. 初始化 3D Force-Directed Graph (設定游標參考點 3D 縮放) ────────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -630,6 +630,18 @@ export function generateKnowledgeGraph(registryInput = null) {
         graph3DInstance.scene().add(dirLight);
       }
 
+      // 設定以滑鼠游標位置為參考點進行 3D 滾輪縮放 (Zoom To Cursor Location)
+      setTimeout(() => {
+        if (graph3DInstance.controls) {
+          const controls = graph3DInstance.controls();
+          if (controls) {
+            controls.zoomToCursor = true;
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.08;
+          }
+        }
+      }, 100);
+
       graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
     }
 
@@ -696,47 +708,6 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       }
     }
-
-    // 跨 View 即時搜尋與分類連動
-    window.addEventListener('message', function(event) {
-      const msg = event.data;
-      if (!msg) return;
-
-      if (msg.type === 'SYNC_FILTER' || msg.type === 'SEARCH') {
-        const query = (msg.query || '').toLowerCase().trim();
-        const cat = msg.category || '';
-
-        if (cat) {
-          const legendEl = Array.from(document.querySelectorAll('.legend-item')).find(el => el.textContent.includes(cat));
-          filterCategory(cat, legendEl);
-          return;
-        }
-
-        if (query) {
-          if (is3DMode && graph3DInstance) {
-            const found = graph3DInstance.graphData().nodes.find(n => n.label.toLowerCase().includes(query));
-            if (found) {
-              graph3DInstance.cameraPosition(
-                { x: (found.x || 0) + 80, y: (found.y || 0) + 80, z: (found.z || 0) + 80 },
-                found,
-                1000
-              );
-              showPanel(found);
-            }
-          } else {
-            const found = data2d.nodes.get().find(n => n.label.toLowerCase().includes(query));
-            if (found) {
-              network2d.focus(found.id, { scale: 1.2, animation: { duration: 800 } });
-              network2d.selectNodes([found.id]);
-              showPanel(found);
-            }
-          }
-        } else {
-          closePanel();
-          document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
-        }
-      }
-    });
 
     // 2D Node click handler
     network2d.on('click', function (params) {
@@ -858,7 +829,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D Graph with guaranteed illuminating Spheres & Group Text Sprites updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 3D Graph with zoomToCursor = true updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
