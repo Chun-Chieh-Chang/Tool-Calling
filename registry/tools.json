@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-25T07:58:45.113Z",
+  "lastUpdated": "2026-07-25T11:50:35.829Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26188,6 +26188,110 @@
           "subpath": "skills/write-connector"
         }
       ]
+    },
+    {
+      "id": "data-to-html",
+      "name": "Data To Html",
+      "url": "https://github.com/eriksvedang/data-to-html",
+      "description": "Convert clojure data to html",
+      "category": "其他",
+      "language": "clojure",
+      "triggers": [
+        "data-to-html",
+        "data",
+        "html"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/eriksvedang/data-to-html.git",
+        "repoUrl": "https://github.com/eriksvedang/data-to-html"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-25T11:50:33.180Z",
+      "status": "experimental"
+    },
+    {
+      "id": "exceltohtml",
+      "name": "ExcelToHtml",
+      "url": "https://github.com/kotynia/ExcelToHtml",
+      "description": "Excel To HTML Library and Console Application",
+      "category": "文件生產力",
+      "language": "c#",
+      "triggers": [
+        "exceltohtml",
+        "calulation",
+        "converter",
+        "engine",
+        "excel",
+        "html"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/kotynia/ExcelToHtml.git",
+        "repoUrl": "https://github.com/kotynia/ExcelToHtml"
+      },
+      "capabilities": [
+        "calulation",
+        "converter",
+        "engine",
+        "excel",
+        "html"
+      ],
+      "addedAt": "2026-07-25T11:50:34.098Z",
+      "status": "experimental"
+    },
+    {
+      "id": "excel-to-html",
+      "name": "Excel To Html",
+      "url": "https://github.com/shseam13/excel-to-html",
+      "description": "This software can take input from raw excel file and c generate custom html document.",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "excel-to-html",
+        "excel",
+        "html"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/shseam13/excel-to-html.git",
+        "repoUrl": "https://github.com/shseam13/excel-to-html"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-25T11:50:34.994Z",
+      "status": "experimental"
+    },
+    {
+      "id": "xlsxtohtmlconverter",
+      "name": "XlsxToHtmlConverter",
+      "url": "https://github.com/Fei-Sheng-Wu/XlsxToHtmlConverter",
+      "description": "A fast, versatile, and powerful XLSX to HTML converter. Support an extensive scope of cell stylings and additional elements. Empower the efficient transformation of spreadsheets into well-structured web documents. Provide the ability to easily customize every aspect of the conversion process with progress callbacks. Only depend on the Open XML SDK.",
+      "category": "文件生產力",
+      "language": "c#",
+      "triggers": [
+        "xlsxtohtmlconverter",
+        "conversion",
+        "converter",
+        "csharp",
+        "data",
+        "document",
+        "dotnet",
+        "excel"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Fei-Sheng-Wu/XlsxToHtmlConverter.git",
+        "repoUrl": "https://github.com/Fei-Sheng-Wu/XlsxToHtmlConverter"
+      },
+      "capabilities": [
+        "conversion",
+        "converter",
+        "csharp",
+        "data",
+        "document"
+      ],
+      "addedAt": "2026-07-25T11:50:35.829Z",
+      "status": "experimental"
     }
   ]
 }
