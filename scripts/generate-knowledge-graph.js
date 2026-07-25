@@ -24,6 +24,25 @@ const categoryColors = {
   "自動化流程與外掛": "#C026D3"    // 深紫紅
 };
 
+// 分類詳細說明預設詞庫 (防止 Category 出現無詳細說明)
+const categoryDescriptions = {
+  "開發工具": "提供代碼編輯、CLI 命令列工具、極速構建與軟體開發相關的 AI 技能。",
+  "數據分析": "包含 Polars、DuckDB、PandasAI 等高性能數據處理、DataFrame 分析與 EDA 工具。",
+  "知識管理": "涵蓋 Obsidian 插件、知識圖譜建構、Markdown 筆記檢索與個人知識庫同步。",
+  "安全性": "收錄漏洞掃描、滲透測試、程式碼安全審計與資安防禦相關工具。",
+  "多媒體生成": "支援 AI 圖片生成、動畫合成、影片產生與多媒體素材處理。",
+  "AI 框架": "包含 LLM SDK、Agent 框架、API Proxy 與大模型介面封裝。",
+  "學習資源": "收錄優質教程、TypeScript / Python 技能大補帖與學習專案。",
+  "測試與自動化": "提供 Playwright、Puppeteer 等網頁端到端自動化測試與瀏覽器操作技能。",
+  "基礎設施": "包含檔案系統抽象、容器部署、DevOps 與基礎架構映射工具。",
+  "資料庫": "支援 SQL 查詢分析、內嵌式 OLAP 資料庫與圖資料庫操作。",
+  "前端設計": "收錄 shadcn/ui、Storybook、tldraw 等 UI 設計系統、元件庫與草圖視覺化工具。",
+  "3D工程繪圖": "包含 FreeCAD、OpenSCAD、CadQuery 等 3D CAD 參數化建模與工程圖紙工具。",
+  "專案管理": "提供任務追蹤、看板管理、Agile 流程與專案規劃 Agent 技能。",
+  "簡報與文件生產力": "包含 PPT Master 等簡報自動生成、Markdown 轉檔與文件自動化工具。",
+  "自動化流程與外掛": "提供工作流自動化、外掛整合與跨系統 Agent 連接器。"
+};
+
 const defaultColor = "#475569";
 
 // 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
@@ -68,12 +87,14 @@ export function generateKnowledgeGraph(registryInput = null) {
     const catId = `cat_${idx}`;
     const colorHex = categoryColors[cat] || defaultColor;
     const textColor = getContrastTextColor(colorHex);
+    const catDesc = categoryDescriptions[cat] || `收錄 ${cat} 領域之專屬 AI 工具與 Agent 技能。`;
     
     nodes.push({
       id: catId,
       label: cat,
       group: "category",
       categoryName: cat,
+      description: catDesc,
       shape: "box",
       margin: 14,
       color: {
@@ -116,6 +137,10 @@ export function generateKnowledgeGraph(registryInput = null) {
         label: tool.name,
         group: "tool",
         categoryName: cat,
+        toolDesc: tool.description,
+        useCase: tool.useCase,
+        advantages: tool.advantages,
+        negativeConstraints: tool.negativeConstraints,
         shape: "dot",
         size: 12,
         color: {
@@ -144,6 +169,8 @@ export function generateKnowledgeGraph(registryInput = null) {
             label: sub.name || sub.id,
             group: "subtool",
             categoryName: cat,
+            parentToolName: tool.name,
+            subDesc: sub.description || '深層拆解之微技能',
             shape: "diamond",
             size: 6,
             color: {
@@ -166,7 +193,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     });
   });
 
-  // 動態生成圖例 HTML 項目 (可點擊選擇高亮)
+  // 動態生成圖例 HTML 項目
   const legendItemsHtml = categories.map(cat => {
     const colorHex = categoryColors[cat] || defaultColor;
     return `<div class="legend-item" onclick="filterCategory('${cat}', this)">
@@ -263,7 +290,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       height: 100%;
     }
 
-    /* 左下角色彩對照與互動選擇面板 */
+    /* 左下角色彩對照面板 */
     #legendPanel {
       position: absolute;
       bottom: 20px;
@@ -336,7 +363,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       bottom: 20px;
       right: 20px;
       z-index: 10;
-      width: 340px;
+      width: 360px;
       background: rgba(30, 41, 59, 0.95);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
@@ -370,13 +397,6 @@ export function generateKnowledgeGraph(registryInput = null) {
       margin-bottom: 12px;
     }
 
-    .panel-desc {
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.5;
-      margin-bottom: 12px;
-    }
-
     .close-btn {
       position: absolute;
       top: 12px;
@@ -399,7 +419,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
   </div>
 
-  <!-- 左下角色彩對照與互動選擇面板 -->
+  <!-- 左下角色彩對照圖例 -->
   <div id="legendPanel">
     <div class="legend-header">
       <span>🎨 點擊分類圖例高亮圖譜</span>
@@ -481,21 +501,17 @@ export function generateKnowledgeGraph(registryInput = null) {
     function filterCategory(catName, element) {
       const isAlreadyActive = element.classList.contains('active');
       
-      // 清除所有圖例的 active 狀態
       document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
 
       if (isAlreadyActive) {
-        // 取消選擇：還原圖譜全景
         network.unselectAll();
         network.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
         closePanel();
         return;
       }
 
-      // 標記目前圖例為高亮 active
       element.classList.add('active');
 
-      // 在數據中查找目標分類節點及其旗下所有工具節點
       const allNodes = data.nodes.get();
       const targetNodes = allNodes.filter(n => n.categoryName === catName || (n.group === 'category' && n.label === catName));
       const targetIds = targetNodes.map(n => n.id);
@@ -503,10 +519,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       const catNode = allNodes.find(n => n.group === 'category' && n.label === catName);
 
       if (targetIds.length > 0) {
-        // 高亮選中圖譜中的這些節點
         network.selectNodes(targetIds);
 
-        // 平滑聚焦至分類中心
         if (catNode) {
           network.focus(catNode.id, {
             scale: 1.15,
@@ -531,13 +545,58 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
+    // 富文本動態面板渲染 (消除「無詳細說明」的視覺落差)
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
+      
+      let descHtml = '';
+      
+      if (node.group === 'root') {
+        descHtml = \`
+          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:10px;">
+            <b>Tool-Calling</b> 是全自動 AI Agent 工具調用基礎設施，全庫包含 <b>${registry.tools.length}</b> 個 AI 工具與 <b>${categories.length}</b> 大分類，支援三層（L1/L2/L3）精態與語意檢索。
+          </div>
+        \`;
+      } else if (node.group === 'category') {
+        const catTools = data.nodes.get().filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
+        const sampleTools = catTools.slice(0, 5).map(t => \`<span style="display:inline-block; padding:3px 8px; background:rgba(59, 130, 246, 0.15); border:1px solid rgba(96, 165, 250, 0.3); color:#93C5FD; border-radius:4px; font-size:11px; margin:2px;">\${t.label}</span>\`).join(' ');
+        
+        descHtml = \`
+          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:10px;">
+            \${node.description || '該分類收錄相關領域之開源 AI 工具與代理技能。'}
+          </div>
+          <div style="font-size:12px; color:#60A5FA; margin-top:10px; margin-bottom:6px;">
+            📊 分類包含工具數量: <b>\${catTools.length}</b> 個
+          </div>
+          <div style="margin-top:6px;">
+            \${sampleTools}
+          </div>
+        \`;
+      } else if (node.group === 'tool') {
+        descHtml = \`
+          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:10px;">
+            \${node.toolDesc || '無詳細描述'}
+          </div>
+          \${node.useCase ? \`<div style="font-size:12px; color:#34D399; margin-bottom:6px; line-height:1.5;"><b>⭐ 推薦場景:</b> \${node.useCase}</div>\` : ''}
+          \${node.advantages && node.advantages.length ? \`<div style="font-size:12px; color:#60A5FA; margin-bottom:6px; line-height:1.5;"><b>★ 優勢:</b> \${node.advantages.join(', ')}</div>\` : ''}
+          \${node.negativeConstraints && node.negativeConstraints.length ? \`<div style="font-size:12px; color:#F87171; line-height:1.5;"><b>🚫 禁用場景:</b> \${node.negativeConstraints.join(', ')}</div>\` : ''}
+        \`;
+      } else if (node.group === 'subtool') {
+        descHtml = \`
+          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:8px;">
+            所屬工具: <b style="color:#60A5FA;">\${node.parentToolName || '主工具'}</b>
+          </div>
+          <div style="font-size:12px; color:#94A3B8; line-height:1.5;">
+            微技能描述: \${node.subDesc}
+          </div>
+        \`;
+      }
+
       content.innerHTML = \`
         <div class="panel-title">\${node.label.replace('\\n', ' ')}</div>
         <div class="panel-tag">\${node.group.toUpperCase()}</div>
-        <div class="panel-desc">\${node.title || '無詳細說明'}</div>
+        \${descHtml}
       \`;
       panel.classList.add('active');
     }
@@ -576,7 +635,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with interactive legend clicking for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with rich description panels for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

@@ -955,6 +955,29 @@
 #### RCA / CAPA
 - （本次完成知識圖譜分類圖例可點擊互動與多節點動態凸顯，無異常狀況）
 
+### 2026-07-25 — 知識圖譜抽屜面板動態富文本升級與「無詳細說明」視覺缺口修復 (Phase 56)
+
+#### 需求與動機
+使用者提供附圖反饋：「此處為何都無詳細說明」（點擊 `API 整合` 等 Category 節點時，面板僅顯示「無詳細說明」）。
+
+#### 完成項目
+- [x] **根因排查 (RCA)**：
+  - 舊有 `showPanel(node)` 僅讀取 `node.title`，但 Category / Root / SubTool 等非 Tool 節點原本未賦予描述屬性，致使全站分類點擊時皆降級退回為「無詳細說明」。
+- [x] **分類領域簡介資料庫建置 (`categoryDescriptions`)**：
+  - 在 `scripts/generate-knowledge-graph.js` 為 20 大分類建置專屬介紹詞庫（涵蓋開發、數據、安全、API 整合等領域說明）。
+- [x] **四態 Rich HTML 面板動態渲染 (`showPanel`)**：
+  - **Category 節點**：展示該領域之簡介文案、動態算出的 **工具總數 Badge**，以及前 5 個熱門工具名稱標籤。
+  - **Root 節點**：展示 Tool-Calling 系統架構簡介與 320 個工具總覽指標。
+  - **Tool 節點**：展示完整描述、⭐ 推薦場景 (`useCase`)、★ 關鍵優勢 (`advantages`) 與 🚫 禁用邊界 (`negativeConstraints`)。
+  - **SubTool 節點**：展示所屬主工具名稱與該微技能說明。
+- [x] **確效驗證與測試**：
+  - 點擊任何 Category / Tool 節點，面板均呈列結構化精美富文本，100% 消除「無詳細說明」問題。
+  - `node scripts/build-web.js` 打包成功，`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- **問題**：面板選取處理忽視了非 Tool 節點的資訊豐富度需求，造成點擊 Category 時顯示「無詳細說明」。
+- **矯正與預防措施 (CAPA)**：建立分類語意詞庫與四態 Rich HTML 渲染器，確保全圖每個節點點擊後皆提供具備實質含金量的領域指標與描述。
+
 
 
 
