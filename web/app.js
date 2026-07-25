@@ -187,7 +187,13 @@ function renderSearchResults(results) {
   const grid = document.createElement('div');
   grid.className = 'grid';
   results.forEach(res => {
-    grid.appendChild(createToolCard(res.tool, res.score, res.matchLevel, res.matchedKeywords));
+    // res 可能是 search result 物件 { tool, score, matchLevel, matchedKeywords }
+    // 也可能是純 tool 物件（來自 category filter）
+    const tool = res.tool || res;
+    const score = res.score ?? null;
+    const matchLevel = res.matchLevel ?? null;
+    const matchedKeywords = res.matchedKeywords || [];
+    grid.appendChild(createToolCard(tool, score, matchLevel, matchedKeywords));
   });
   resultsGrid.appendChild(grid);
 }
