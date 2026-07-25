@@ -26,6 +26,16 @@ const categoryColors = {
 
 const defaultColor = "#94A3B8";
 
+// 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
+function getContrastTextColor(hexColor) {
+  const hex = hexColor.replace('#', '');
+  const r = parseInt(hex.substring(0, 2), 16);
+  const g = parseInt(hex.substring(2, 4), 16);
+  const b = parseInt(hex.substring(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
+}
+
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
   if (!registry) {
@@ -43,7 +53,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     group: "root",
     shape: "ellipse",
     color: { background: "#6366F1", border: "#818CF8", highlight: { background: "#818CF8", border: "#C7D2FE" } },
-    font: { color: "#FFFFFF", size: 22, face: "Inter" },
+    font: { color: "#FFFFFF", size: 22, face: "Inter", bold: true },
     value: 40
   });
 
@@ -52,6 +62,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   categories.forEach((cat, idx) => {
     const catId = `cat_${idx}`;
     const colorHex = categoryColors[cat] || defaultColor;
+    const textColor = getContrastTextColor(colorHex);
     
     nodes.push({
       id: catId,
@@ -60,7 +71,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       shape: "box",
       margin: 12,
       color: { background: colorHex, border: colorHex, highlight: { background: colorHex, border: "#FFFFFF" } },
-      font: { color: "#FFFFFF", size: 16, face: "Inter", bold: true },
+      font: { color: textColor, size: 16, face: "Inter", bold: true },
       value: 25
     });
 
@@ -83,7 +94,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         shape: "dot",
         size: 12,
         color: { background: "#1E293B", border: colorHex, highlight: { background: colorHex, border: "#FFFFFF" } },
-        font: { color: "#F1F5F9", size: 12, face: "Inter" },
+        font: { color: "#F8FAFC", size: 13, face: "Inter", strokeWidth: 3, strokeColor: "#0F172A" },
         title: `<b>${tool.name}</b><br/>ID: ${tool.id}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`
       });
 
@@ -105,7 +116,7 @@ export function generateKnowledgeGraph(registryInput = null) {
             shape: "diamond",
             size: 6,
             color: { background: "#334155", border: "#64748B" },
-            font: { color: "#94A3B8", size: 10, face: "Inter" }
+            font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" }
           });
 
           edges.push({
@@ -154,7 +165,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       top: 20px;
       left: 20px;
       z-index: 10;
-      background: rgba(30, 41, 59, 0.85);
+      background: rgba(30, 41, 59, 0.88);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-color);
       border-radius: 12px;
@@ -186,7 +197,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .search-box {
-      background: rgba(30, 41, 59, 0.85);
+      background: rgba(30, 41, 59, 0.88);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-color);
       border-radius: 10px;
@@ -214,7 +225,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       right: 20px;
       z-index: 10;
       width: 340px;
-      background: rgba(30, 41, 59, 0.9);
+      background: rgba(30, 41, 59, 0.95);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
       border-radius: 14px;
@@ -378,7 +389,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with contrast text color optimization for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

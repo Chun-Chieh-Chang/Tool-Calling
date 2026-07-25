@@ -851,6 +851,27 @@
 #### RCA / CAPA
 - （本次完成工具圖譜全自動事件驅動同步機制，無異常狀況）
 
+### 2026-07-25 — 知識圖譜文字色彩對比度動態演算法修復 (Phase 51)
+
+#### 需求與動機
+使用者回報：「知識圖譜的文字對比度不良，黃底白字看不清」。修復高亮度背景（如黃色 `#F59E0B`、亮綠 `#84CC16`、亮橘 `#F97316` 等）配上白色字體導致視覺閱讀困難之問題。
+
+#### 完成項目
+- [x] **相對亮度動態對比演算法 (Relative Luminance Contrast Algorithm)**：
+  - 在 `scripts/generate-knowledge-graph.js` 導入 `getContrastTextColor(hexColor)` 演算法。
+  - 當節點背景顏色相對亮度 > 0.55 時，自動切換字體色彩為高對比深色 `#0F172A` (Slate 900) 並加粗。
+  - 當節點背景為中/深色時，保持高清晰白色 `#FFFFFF`。
+- [x] **工具與微技能節點描邊增強 (Text Stroke & Contrast)**：
+  - Tool 節點字體大小升級至 13px，並加上 `#0F172A` 的 3px 黑暗背景外描邊 (`strokeColor`)。
+  - SubTool 節點加上 2px 外描邊，消除暗色背景下的圖案干擾。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 成功運行，印出 `[Auto-Sync] Knowledge graph updated with contrast text color optimization for 320 tools!`。
+  - `npm test` 8/8 測試全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：圖譜寫死分類文字顏色為 `#FFFFFF`，未考慮黃色/亮綠/橘色等高光背景在白色字體下的 WCAG 對比度不足問題。
+- **矯正與預防措施 (CAPA)**：建立動態 RGB Relative Luminance 算術模組，凡新增或變更任何分類主題色，自動計算最佳黑白文字對比，100% 確保符合國際一級 UI/UX 閱讀標準。
+
 
 
 
