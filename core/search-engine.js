@@ -27,6 +27,23 @@ function tokenize(text) {
     .filter(t => t.length > 0);
 }
 
+// 子工具（subTool）正規化字串快取。部分「monorepo / skills 合集」工具帶有
+// 數百個 subTools（實測最多達 817 個），若每次 keywordMatch() 呼叫（也就是
+// 每次按鍵搜尋）都重新對每一個 subTool 的 name/description 做
+// toLowerCase/trim/replace，會是明顯的重複運算。以 subTool 物件本身
+// （而非外層 tools 陣列參照）為 key 做記憶化，可讓這些正規化字串在整個
+// 程序生命週期內只計算一次。
+const subToolNormCache = new WeakMap();
+
+function getSubToolNorm(subTool) {
+  let entry = subToolNormCache.get(subTool);
+  if (!entry) {
+    entry = { name: normalize(subTool.name), desc: normalize(subTool.description) };
+    subToolNormCache.set(subTool, entry);
+  }
+  return entry;
+}
+
 // ─── L1：精確匹配 ────────────────────────────────────────────────────────
 
 /**
@@ -55,7 +72,6 @@ export function exactMatch(tools, query) {
 
 /**
  * L2 關鍵字匹配：查詢字串與工具觸發關鍵字 + 分類 + 描述 交叉匹配
- * 使用 _l2Cache 避免每次 keystroke 重新 normalize。
  * @param {object[]} tools - 工具列表
  * @param {string} query - 查詢字串
  * @returns {object[]} 匹配結果（含分數，按分數降序）
@@ -63,55 +79,35 @@ export function exactMatch(tools, query) {
 export function keywordMatch(tools, query) {
   const queryTokens = tokenize(query);
   if (queryTokens.length === 0) return [];
+  const normQuery = normalize(query); // 提到迴圈外，避免對每個 tool 的每個 trigger 重複正規化同一個查詢字串
 
-  const queryNorm = normalize(query);
   const results = [];
 
   for (const tool of tools) {
     let score = 0;
     const matchedKeywords = [];
 
-    // 從快取讀取正規化後的欄位；若快取未就緒則即時建立
-    let cached;
-    if (_l2Cache && _l2Cache.has(tool.id)) {
-      cached = _l2Cache.get(tool.id);
-    } else {
-      cached = {
-        triggersNorm: (tool.triggers || []).map(t => normalize(t)),
-        categoryNorm: normalize(tool.category),
-        descNorm: normalize(tool.description),
-        capsNorm: (tool.capabilities || []).map(c => normalize(c)),
-        subToolsNorm: (tool.subTools || []).map(st => ({
-          name: normalize(st.name),
-          description: normalize(st.description),
-        })),
-        useCaseNorm: tool.useCase ? normalize(tool.useCase) : null,
-        advantagesNorm: (tool.advantages || []).map(a => normalize(a)),
-        maxPossible: (tool.triggers || []).length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0),
-      };
-    }
-
     // 觸發關鍵字匹配（權重最高：每個匹配 +3）
-    for (let ti = 0; ti < (tool.triggers || []).length; ti++) {
-      const triggerNorm = cached.triggersNorm[ti] || normalize(tool.triggers[ti]);
+    for (const trigger of tool.triggers) {
+      const triggerNorm = normalize(trigger);
       // 查詢包含觸發詞
-      if (queryNorm.includes(triggerNorm)) {
+      if (normQuery.includes(triggerNorm)) {
         score += 3;
-        matchedKeywords.push(tool.triggers[ti]);
+        matchedKeywords.push(trigger);
       }
       // 觸發詞包含查詢的某個 token
       for (const token of queryTokens) {
         if (triggerNorm.includes(token) && token.length >= 2) {
           score += 1.5;
-          if (!matchedKeywords.includes(tool.triggers[ti])) {
-            matchedKeywords.push(tool.triggers[ti]);
+          if (!matchedKeywords.includes(trigger)) {
+            matchedKeywords.push(trigger);
           }
         }
       }
     }
 
     // 分類匹配（權重中：+2）
-    const categoryNorm = cached.categoryNorm;
+    const categoryNorm = normalize(tool.category);
     for (const token of queryTokens) {
       if (categoryNorm.includes(token) && token.length >= 2) {
         score += 2;
@@ -120,7 +116,7 @@ export function keywordMatch(tools, query) {
     }
 
     // 描述匹配（權重低：+1）
-    const descNorm = cached.descNorm;
+    const descNorm = normalize(tool.description);
     for (const token of queryTokens) {
       if (descNorm.includes(token) && token.length >= 2) {
         score += 1;
@@ -129,13 +125,13 @@ export function keywordMatch(tools, query) {
 
     // 能力標籤匹配 (權重中：每個匹配 +1.5)
     if (tool.capabilities) {
-      for (let ci = 0; ci < tool.capabilities.length; ci++) {
-        const capNorm = cached.capsNorm[ci] || normalize(tool.capabilities[ci]);
+      for (const cap of tool.capabilities) {
+        const capNorm = normalize(cap);
         for (const token of queryTokens) {
           if (capNorm.includes(token) && token.length >= 2) {
             score += 1.5;
-            if (!matchedKeywords.includes(tool.capabilities[ci])) {
-              matchedKeywords.push(tool.capabilities[ci]);
+            if (!matchedKeywords.includes(cap)) {
+              matchedKeywords.push(cap);
             }
           }
         }
@@ -143,26 +139,32 @@ export function keywordMatch(tools, query) {
     }
 
     // 子工具匹配 (權重中：每個匹配 +1.5)
-    if (tool.subTools && cached.subToolsNorm) {
+    //
+    // 精確度修正：對於帶有數百個 subTools 的「monorepo / skills 合集」工具
+    // （實測 anthropic-cybersecurity-skills 有 817 個 subTools），若各自
+    // 獨立比對查詢的每個詞、任一子工具命中任一詞就加分，會導致查詢中的
+    // 不同詞語「分別」巧合命中完全不相關的子工具而拉高分數。例如查詢
+    // 「database migration」在該工具的 817 個子工具中，"database" 命中了
+    // 4 個跟資料庫遷移無關的憑證竊取/機密管理子工具，"migration" 又命中了
+    // 1 個後量子加密遷移的子工具——湊在一起讓整個工具被誤判為高相關。
+    // 修正做法：多詞查詢時，要求同一個子工具「同時」命中所有查詢詞
+    // （詞語共現），才視為真正相關；單詞查詢則維持原本行為。
+    if (tool.subTools) {
       let subToolScore = 0;
-      for (let si = 0; si < tool.subTools.length; si++) {
-        const sub = tool.subTools[si];
-        const subName = cached.subToolsNorm[si]?.name || normalize(sub.name);
-        const subDesc = cached.subToolsNorm[si]?.description || normalize(sub.description);
-        let subMatch = false;
+      for (const subTool of tool.subTools) {
+        const { name: subName, desc: subDesc } = getSubToolNorm(subTool);
 
-        for (const token of queryTokens) {
-          if (subName.includes(token) && token.length >= 2) {
-            subToolScore += 1.5;
-            subMatch = true;
-          }
-          if (subDesc.includes(token) && token.length >= 3) {
-            subToolScore += 1.0;
-            subMatch = true;
-          }
-        }
-        if (subMatch && !matchedKeywords.includes(`subtool:${sub.name}`)) {
-          matchedKeywords.push(`subtool:${sub.name}`);
+        const nameMatchedTokens = queryTokens.filter(t => t.length >= 2 && subName.includes(t));
+        const descMatchedTokens = queryTokens.filter(t => t.length >= 3 && subDesc.includes(t));
+        const matchedTokenCount = new Set([...nameMatchedTokens, ...descMatchedTokens]).size;
+
+        // 多詞查詢要求同一子工具內詞語共現；單詞查詢只需命中該詞
+        const requiredCount = queryTokens.length > 1 ? queryTokens.length : 1;
+        if (matchedTokenCount < requiredCount) continue;
+
+        subToolScore += nameMatchedTokens.length * 1.5 + descMatchedTokens.length * 1.0;
+        if (!matchedKeywords.includes(`subtool:${subTool.name}`)) {
+          matchedKeywords.push(`subtool:${subTool.name}`);
         }
       }
       // 限制子工具的加分上限，避免包含上百個工具的 Monorepo 霸榜
@@ -170,18 +172,19 @@ export function keywordMatch(tools, query) {
     }
 
     // 場景與優勢匹配 (權重高：每個匹配 +2)
-    if (cached.useCaseNorm) {
+    if (tool.useCase) {
+      const useCaseNorm = normalize(tool.useCase);
       for (const token of queryTokens) {
-        if (cached.useCaseNorm.includes(token) && token.length >= 2) {
+        if (useCaseNorm.includes(token) && token.length >= 2) {
           score += 2;
           if (!matchedKeywords.includes(`場景匹配`)) matchedKeywords.push(`場景匹配`);
         }
       }
     }
-
-    if (tool.advantages && cached.advantagesNorm) {
-      for (let ai = 0; ai < tool.advantages.length; ai++) {
-        const advNorm = cached.advantagesNorm[ai] || normalize(tool.advantages[ai]);
+    
+    if (tool.advantages) {
+      for (const adv of tool.advantages) {
+        const advNorm = normalize(adv);
         for (const token of queryTokens) {
           if (advNorm.includes(token) && token.length >= 2) {
             score += 2;
@@ -193,9 +196,10 @@ export function keywordMatch(tools, query) {
 
     // 負樣本約束匹配 (Hard Negative)
     let isNegativeMatch = false;
-    if (cached.negativeConstraintsNorm) {
-      for (const negNorm of cached.negativeConstraintsNorm) {
-        if (negNorm.length >= 2 && queryNorm.includes(negNorm)) {
+    if (tool.negativeConstraints) {
+      for (const neg of tool.negativeConstraints) {
+        const negNorm = normalize(neg);
+        if (negNorm.length >= 2 && normalize(query).includes(negNorm)) {
           isNegativeMatch = true;
           break;
         }
@@ -206,9 +210,9 @@ export function keywordMatch(tools, query) {
       if (isNegativeMatch) {
         if (!matchedKeywords.includes(`🚫 禁用場景`)) matchedKeywords.push(`🚫 禁用場景`);
       }
-
+      
       // 正規化分數到 0~1 範圍
-      const maxPossible = cached.maxPossible;
+      const maxPossible = tool.triggers.length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0);
       // 如果命中負樣本，強制給予極低分數 (0.01)
       const normalizedScore = isNegativeMatch ? 0.01 : Math.min(score / maxPossible, 0.99);
       results.push({
@@ -225,52 +229,12 @@ export function keywordMatch(tools, query) {
 
 // ─── L3：語義檢索（TF-IDF + N-gram + 同義詞擴展）──────────────────────
 
-/**
- * 內建同義詞詞典（中英文雙向映射）
- * 用於查詢擴展：當用戶說「做簡報」時，自動匹配 "ppt", "slides", "presentation" 等
- */
-const SYNONYM_MAP = {
-  // 簡報相關
-  '簡報': ['ppt', 'powerpoint', 'slides', 'presentation', '投影片', '演示文稿', 'deck'],
-  'ppt': ['簡報', 'powerpoint', 'slides', 'presentation', '投影片'],
-  'presentation': ['簡報', 'ppt', 'slides', '投影片', 'deck'],
-  // 安全相關
-  '安全': ['security', 'vulnerability', '漏洞', 'pentest', '滲透'],
-  'security': ['安全', 'vulnerability', '漏洞', 'pentest', '滲透測試'],
-  '漏洞': ['vulnerability', 'security', '安全', 'pentest'],
-  // 圖片/影片相關
-  '圖片': ['image', 'photo', '影像', 'picture', 'img'],
-  'image': ['圖片', 'photo', '影像', 'picture', 'img'],
-  '影片': ['video', '動畫', 'animation', 'movie', 'clip'],
-  'video': ['影片', '動畫', 'animation', 'movie'],
-  '動畫': ['animation', 'video', '影片', 'animate', 'cartoon'],
-  'animation': ['動畫', 'video', '影片', 'animate', 'cartoon'],
-  // 生成相關
-  '生成': ['generate', 'create', 'make', '產生', '建立'],
-  'generate': ['生成', 'create', 'make', '產生'],
-  // 測試相關
-  '測試': ['test', 'testing', 'e2e', '自動化測試'],
-  'test': ['測試', 'testing', 'e2e', '自動化'],
-  '自動化': ['automation', 'automated', '測試'],
-  // 檔案/儲存相關
-  '檔案': ['file', 'document', 'storage', '儲存'],
-  'file': ['檔案', 'document', 'storage', '儲存'],
-  '儲存': ['storage', 'file', '檔案', 'cloud'],
-  'storage': ['儲存', 'file', '檔案', 'cloud'],
-  // 知識/分析相關
-  '知識': ['knowledge', 'graph', '圖譜', '分析'],
-  'knowledge': ['知識', 'graph', '圖譜'],
-  '分析': ['analysis', 'analyze', '解析', 'understand'],
-  'analysis': ['分析', 'analyze', '解析'],
-  // 瀏覽器相關
-  '瀏覽器': ['browser', 'chromium', 'firefox', 'webkit'],
-  'browser': ['瀏覽器', 'chromium', 'firefox', 'webkit'],
-  '爬蟲': ['scraping', 'crawler', 'spider', 'scrape'],
-  'scraping': ['爬蟲', 'crawler', 'spider'],
-  // 截圖相關
-  '截圖': ['screenshot', 'capture', 'snapshot'],
-  'screenshot': ['截圖', 'capture', 'snapshot'],
-};
+// 同義詞詞典改為 build 時從 registry 既有的中英雙語 triggers 自動挖掘產生
+// （見 scripts/mine-synonyms.js），並在此直接 import 產出的靜態檔案。
+// 只要 registry/tools.json 更新，重新執行 `node scripts/mine-synonyms.js`
+// （或跑 `npm run build:web`，會自動先重新挖掘一次）即可讓詞典跟著變新，
+// 不需要再手動維護一份固定字典。
+import { SYNONYM_MAP } from './synonyms.generated.js';
 
 /**
  * 同義詞擴展：將查詢字串中的詞擴展為同義詞集合
@@ -306,15 +270,22 @@ function charNgrams(text, n = 2) {
   return ngrams;
 }
 
+// 單一工具文字表示的長度上限。少數「monorepo / skills 合集」工具帶有
+// 數百個 subTools（實測 claude-skills 798 個、anthropic-cybersecurity-skills
+// 817 個，未截斷前文字長度分別達 195,689 與 96,521 字元，相較其餘工具
+// 平均 ~2,500 字元高出 2 個數量級）。若不設上限，這些工具會因為詞彙
+// 覆蓋面極廣，在 TF-IDF／N-gram 計算中對「任何」查詢都容易產生偶然重疊，
+// 導致霸榜（精確度下降），同時也是每次查詢中 charNgrams 耗時的主要來源
+// （效能下降）。優先保留名稱/觸發詞/描述/分類/場景等高權重欄位，
+// 子工具內容只在預算內納入。
+const MAX_TOOL_TEXT_LENGTH = 3000;
+
 /**
  * 建立工具的多層文字表示（用於 TF-IDF 計算）
  * 觸發詞和名稱重複加入以提升權重
- * 上限 MAX_TOOL_TEXT_LEN 字元，避免 N-gram 在超大子工具清單上爆炸
  * @param {object} tool
  * @returns {string}
  */
-const MAX_TOOL_TEXT_LEN = 1200; // cap: ~600 Chinese chars / 1200 ASCII chars of bigrams
-
 function buildToolText(tool) {
   const parts = [
     // 名稱 ×3 （最高權重）
@@ -330,14 +301,11 @@ function buildToolText(tool) {
     // 場景與優勢
     tool.useCase || '',
     ...(tool.advantages || []),
-    // 子工具
+    // 子工具（有長度預算保護，避免 monorepo 霸榜，見 MAX_TOOL_TEXT_LENGTH）
     ...(tool.subTools || []).map(st => `${st.name} ${st.description}`)
   ];
-  let text = parts.join(' ');
-  if (text.length > MAX_TOOL_TEXT_LEN) {
-    text = text.slice(0, MAX_TOOL_TEXT_LEN);
-  }
-  return text;
+  const text = parts.join(' ');
+  return text.length > MAX_TOOL_TEXT_LENGTH ? text.slice(0, MAX_TOOL_TEXT_LENGTH) : text;
 }
 
 /**
@@ -407,17 +375,62 @@ function cosineSimilarity(vecA, vecB) {
 }
 
 /**
- * 計算 N-gram 重疊度
- * @param {string[]} ngrams1
- * @param {string[]} ngrams2
+ * 計算 N-gram 重疊度（Dice 係數）
+ * @param {Set<string>} set1
+ * @param {Set<string>} set2
  * @returns {number} 0~1
  */
-function ngramOverlap(ngrams1, ngrams2) {
-  if (ngrams1.length === 0 || ngrams2.length === 0) return 0;
-  const set1 = new Set(ngrams1);
-  const set2 = new Set(ngrams2);
-  const intersection = [...set1].filter(x => set2.has(x));
-  return (2 * intersection.length) / (set1.size + set2.size); // Dice 係數
+function ngramSetOverlap(set1, set2) {
+  if (set1.size === 0 || set2.size === 0) return 0;
+  // 用較小的集合去查較大的集合，交集運算次數最少
+  const [small, large] = set1.size <= set2.size ? [set1, set2] : [set2, set1];
+  let intersectionSize = 0;
+  for (const x of small) {
+    if (large.has(x)) intersectionSize++;
+  }
+  return (2 * intersectionSize) / (set1.size + set2.size);
+}
+
+// ─── 每個工具的檢索用資料快取 ────────────────────────────────────────────
+//
+// 效能問題根因：舊版 semanticSearch 每次呼叫（也就是每次 debounce 後的
+// 按鍵輸入）都會對「全部工具」重新執行 buildToolText → tokenize →
+// charNgrams → computeTF，即使 registry 內容完全沒變。實測 279 個工具下，
+// 光是 charNgrams 一項就要 ~130ms，整體 search() 平均要價 230~500ms —
+// 對「即時搜尋」的體驗來說太慢。
+//
+// 這裡改用 WeakMap 以「工具物件本身」為 key 做記憶化（而非以陣列參照
+// 為 key）。這樣不管 search() 內部怎麼 filter 出不同的子陣列（依
+// status／category／language），只要是同一個工具物件，文字/分詞/
+// TF/N-gram 集合都只會計算一次、之後永久複用，直到程序重啟。
+const toolIndexCache = new WeakMap();
+
+function getToolIndex(tool) {
+  let entry = toolIndexCache.get(tool);
+  if (!entry) {
+    const text = buildToolText(tool);
+    const tokens = tokenize(text);
+    entry = {
+      tokens,
+      tf: computeTF(tokens),
+      ngramSet: new Set(charNgrams(text)),
+    };
+    toolIndexCache.set(tool, entry);
+  }
+  return entry;
+}
+
+/**
+ * 預先建立（warm up）搜尋索引快取。建議在載入 registry 後立即呼叫一次
+ * （例如網頁端 fetch 完 tools.json 後），把 buildToolText/tokenize/
+ * charNgrams 的成本挪到「使用者打字之前」，避免第一次搜尋卡頓。
+ * 之後才輸入的查詢就只需要做查詢端的輕量運算。
+ * @param {object[]} tools - 工具列表（通常是完整 registry）
+ */
+export function warmSearchIndex(tools) {
+  for (const tool of tools) {
+    getToolIndex(tool);
+  }
 }
 
 /**
@@ -431,23 +444,14 @@ export function semanticSearch(tools, query, threshold = 0.03) {
   // Step 1: 查詢同義詞擴展
   const rawQueryTokens = tokenize(query);
   const expandedQueryTokens = expandSynonyms(rawQueryTokens);
-  const queryNgrams = charNgrams(query);
+  const queryNgramSet = new Set(charNgrams(query));
 
-  // Step 2: 使用快取的工具文字；若無快取則即時建立
-  let toolTexts;
-  let allDocTokens;
-  if (_l3Cache) {
-    toolTexts = tools.map(t => _l3Cache.get(t.id || '')?.toolText || buildToolText(t));
-    allDocTokens = tools.map(t => _l3Cache.get(t.id || '')?.docTokens || tokenize(buildToolText(t)));
-  } else {
-    toolTexts = tools.map(t => buildToolText(t));
-    allDocTokens = toolTexts.map(t => tokenize(t));
-  }
-  // 加入查詢自身以計算 IDF
-  allDocTokens.push(expandedQueryTokens);
+  // Step 2: 取得（或建立並快取）每個工具的分詞結果
+  const toolIndexes = tools.map(getToolIndex);
 
-  // Step 3: 計算 IDF
-  const idf = computeIDF(allDocTokens);
+  // Step 3: 計算 IDF（僅對已快取好的 tokens 做文檔頻率統計，不含查詢本身，
+  // 也不重新做任何字串前處理，成本遠低於原本版本）
+  const idf = computeIDF(toolIndexes.map(idx => idx.tokens));
 
   // Step 4: 計算查詢的 TF-IDF 向量
   const queryTF = computeTF(expandedQueryTokens);
@@ -461,10 +465,9 @@ export function semanticSearch(tools, query, threshold = 0.03) {
 
   for (let i = 0; i < tools.length; i++) {
     const tool = tools[i];
-    const docTokens = allDocTokens[i];
+    const { tf: docTF, ngramSet: toolNgramSet } = toolIndexes[i];
 
     // TF-IDF 餘弦相似度（權重 0.6）
-    const docTF = computeTF(docTokens);
     const docVec = new Map();
     for (const [token, tf] of docTF) {
       docVec.set(token, tf * (idf.get(token) || 1));
@@ -472,8 +475,7 @@ export function semanticSearch(tools, query, threshold = 0.03) {
     const tfidfScore = cosineSimilarity(queryVec, docVec);
 
     // N-gram 重疊度（權重 0.4）— 對中文子字串匹配特別有效
-    const toolNgrams = charNgrams(toolTexts[i]);
-    const ngramScore = ngramOverlap(queryNgrams, toolNgrams);
+    const ngramScore = ngramSetOverlap(queryNgramSet, toolNgramSet);
 
     // 加權融合
     const combinedScore = tfidfScore * 0.6 + ngramScore * 0.4;
@@ -494,69 +496,6 @@ export function semanticSearch(tools, query, threshold = 0.03) {
   }
 
   return results.sort((a, b) => b.score - a.score);
-}
-
-// ─── L2 結果快取 ──────────────────────────────────────────────────────────
-
-/**
- * L2 關鍵字匹配的預計算快取。
- * 在 init() 時期一次建立，避免每次 keystroke 重新 normalize 所有 sub-tool name/description。
- * 結構：Map<tool.id, { triggersNorm, categoryNorm, descNorm, capsNorm, subToolsNorm }>
- */
-let _l2Cache = null;
-let _l2CacheVersion = -1; // 當 registry 重載時失效
-
-/**
- * L3 語義檢索的預計算快取。
- * 結構：Map<tool.id, { toolText, docTokens }>
- */
-let _l3Cache = null;
-
-/**
- * 預先為所有工具建立 L2 + L3 快取（在 init / 頁面載入時呼叫一次）
- * @param {object[]} tools
- */
-export function warmL2Cache(tools) {
-  _l2Cache = new Map();
-  _l3Cache = new Map();
-
-  for (const tool of tools) {
-    const id = tool.id || '';
-
-    // L2 cache entry
-    const l2Entry = {
-      triggersNorm: (tool.triggers || []).map(t => normalize(t)),
-      categoryNorm: normalize(tool.category),
-      descNorm: normalize(tool.description),
-      capsNorm: (tool.capabilities || []).map(c => normalize(c)),
-      subToolsNorm: (tool.subTools || []).map(st => ({
-        name: normalize(st.name),
-        description: normalize(st.description),
-      })),
-      useCaseNorm: tool.useCase ? normalize(tool.useCase) : null,
-      advantagesNorm: (tool.advantages || []).map(a => normalize(a)),
-      negativeConstraintsNorm: (tool.negativeConstraints || []).map(n => normalize(n)),
-      maxPossible: (tool.triggers || []).length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0),
-    };
-    _l2Cache.set(id, l2Entry);
-
-    // L3 cache entry: pre-build tool text and tokenize once
-    const toolText = buildToolText(tool);
-    _l3Cache.set(id, {
-      toolText,
-      docTokens: tokenize(toolText),
-    });
-  }
-  _l2CacheVersion++;
-}
-
-/**
- * 清除所有快取
- */
-export function clearL2Cache() {
-  _l2Cache = null;
-  _l3Cache = null;
-  _l2CacheVersion = -1;
 }
 
 // ─── 統一搜尋入口 ────────────────────────────────────────────────────────

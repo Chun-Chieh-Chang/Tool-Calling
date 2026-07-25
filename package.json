@@ -10,11 +10,13 @@
   "scripts": {
     "start": "node cli.js",
     "test": "node --test tests/search.test.js",
+    "mine-synonyms": "node scripts/mine-synonyms.js",
     "add": "node cli.js add",
     "list": "node cli.js list",
     "search": "node cli.js search",
     "health-check": "node cli.js health-check",
     "validate": "node cli.js validate",
+    "enrich": "node scripts/enrich-registry.js",
     "mcp": "node mcp-server.js"
   },
   "keywords": [
@@ -30,7 +32,6 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0",
-    "zod": "^3.25"
+    "@modelcontextprotocol/sdk": "^1.29.0"
   }
 }

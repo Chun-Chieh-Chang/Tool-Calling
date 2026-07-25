@@ -1,4 +1,4 @@
-import { search, listAll, listByCategory, warmL2Cache } from './core/search-engine.js';
+import { search, listAll, listByCategory, warmSearchIndex } from './core/search-engine.js';
 
 let registryTools = [];
 
@@ -18,9 +18,17 @@ async function init() {
     registryTools = data.tools;
     
     populateCategories();
-    // 預熱 L2 快取：在首次輸入前把 normalize 結果算好，避免第一個 keystroke 頓卡
-    warmL2Cache(registryTools);
     renderTools(registryTools);
+
+    // 預熱搜尋索引：把 buildToolText/tokenize/charNgrams 的成本挪到這裡
+    // （頁面載入完成、使用者還沒開始打字時），之後每次搜尋都直接複用快取。
+    // 用 requestIdleCallback（若瀏覽器支援）避免阻塞首次渲染。
+    const warm = () => warmSearchIndex(registryTools);
+    if (typeof requestIdleCallback === 'function') {
+      requestIdleCallback(warm);
+    } else {
+      setTimeout(warm, 0);
+    }
     
     // 事件監聽
     searchInput.addEventListener('input', debounce(handleSearch, 300));
