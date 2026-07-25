@@ -403,8 +403,27 @@
 #### RCA / CAPA
 - **問題**：`renderSearchResults` 假設傳入的項目直接為 valid tool 物件或帶有非空 `.tool` 屬性的搜尋結果物件，且 `createToolCard` 缺乏對 `tool` 物件及 `.name` 屬性的 null/undefined 預防校驗。當前選單切換或搜尋結果回傳異常 structure 時，存取 `tool.name` 導致 `Cannot read properties of undefined (reading 'name')` 崩潰。
 - **矯正與預防措施 (CAPA)**：
-  1. 在 UI 視圖層 (`createToolCard` / `renderSearchResults`) 實施「雙重防衛」 (Double Guarding)，對傳入的物件進行型別與 key 存在的校驗，無效物件優雅降級跳過。
+  1. 在 UI 視圖層 (`createToolCard` / `renderSearchResults`) 實施「雙重防護」 (Double Guarding)，對傳入的物件進行型別與 key 存在的校驗，無效物件優雅降級跳過。
   2. 在核心邏輯層 (`search-engine.js`) 的 `normalize` 與過濾器增加對 `Array` / `null` / `undefined` 的安全防禦。
   3. 補充自動化單元測試涵蓋異常邊界資料。
+
+### 2026-07-25 — 網站 Favicon 圖標設計與 404 資源缺失修正 (Phase 23)
+
+#### 需求與動機
+瀏覽器主動向 GitHub Pages 請求 `/favicon.ico` 資源時觸發 `GET https://chun-chieh-chang.github.io/favicon.ico 404 (Not Found)` 錯誤。
+
+#### 完成項目
+- [x] **極致視覺設計 (Favicon Assets)**：
+  - 設計兼具深色毛玻璃質感與向量質感的 `favicon.svg` (含圓角深色基底、扳手 🔧 與閃電 ⚡ 高光漸層與發光濾鏡)。
+  - 生成 `favicon.ico` 雙備援資源，確保現代與傳統瀏覽器皆能正常載入。
+- [x] **HTML 標籤整合**：
+  - 更新 [web/index.html](file:///d:/Self-developed_Apps/Tool-Calling/web/index.html)，補齊 `<link rel="icon" type="image/svg+xml" href="favicon.svg">` 與 `<link rel="alternate icon" href="favicon.ico">`。
+- [x] **建置腳本升級**：
+  - 更新 [scripts/build-web.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/build-web.js)，部署時自動將 Favicon 資源複製至 `./dist`。
+
+#### RCA / CAPA
+- **問題**：`web/index.html` 缺少 `<link rel="icon">` 標籤宣告且根目錄未提供 `favicon.ico`，導致瀏覽器發出預設 `/favicon.ico` HTTP 請求時回傳 HTTP 404。
+- **矯正與預防措施 (CAPA)**：補齊 SVG 與 ICO 格式的 Favicon 資源與 HTML 宣告，並於 CI/CD 構建流程中自動進行複製，防止資源丟失。
+
 
 

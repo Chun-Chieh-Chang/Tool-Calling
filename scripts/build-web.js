@@ -36,6 +36,12 @@ console.log(`同義詞詞典已更新（${stats.totalTerms} 個詞彙，來自 $
 fs.copyFileSync(path.join(webDir, 'index.html'), path.join(distDir, 'index.html'));
 fs.copyFileSync(path.join(webDir, 'style.css'), path.join(distDir, 'style.css'));
 fs.copyFileSync(path.join(webDir, 'app.js'), path.join(distDir, 'app.js'));
+if (fs.existsSync(path.join(webDir, 'favicon.svg'))) {
+  fs.copyFileSync(path.join(webDir, 'favicon.svg'), path.join(distDir, 'favicon.svg'));
+}
+if (fs.existsSync(path.join(webDir, 'favicon.ico'))) {
+  fs.copyFileSync(path.join(webDir, 'favicon.ico'), path.join(distDir, 'favicon.ico'));
+}
 
 // 複製依賴檔案
 fs.copyFileSync(path.join(rootDir, 'core', 'search-engine.js'), path.join(distDir, 'core', 'search-engine.js'));
