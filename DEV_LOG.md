@@ -1183,6 +1183,27 @@
 - **問題**：three-spritetext 依賴全域 window.THREE，但三維 CDN 載入順序缺失導致讀取 CanvasTexture 時拋錯。
 - **矯正與預防措施 (CAPA)**：建立三維 CDN 嚴密載入鏈 (three.js ➜ three-spritetext ➜ 3d-force-graph)，並在程式碼中加入全域變數存在性防禦。
 
+### 2026-07-25 — 3D 空間 Mesh 球體 + SpriteText Group 組裝與雙光源注入重構 (Phase 67)
+
+#### 需求與動機
+使用者反饋：「3D空間看不到任何東西」。修復 `nodeThreeObject` 覆蓋預設球體造成的畫面空白狀況。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - 當自訂 `nodeThreeObject` 僅回傳單一 Sprite 物件時，`3d-force-graph` 會完全覆蓋抹除預設的 3D 球體 Mesh；若此時 Sprite 材質貼圖初始化受阻，將導致整片 3D 畫面呈現一片漆黑。
+- [x] **矯正與預防措施 (CAPA - THREE.Group Component Assembly)**：
+  - 在 `nodeThreeObject` 內部採用 `THREE.Group()` 設計模式：
+    1. **`THREE.Mesh` (實體自發光球體)**：採用 `THREE.MeshPhongMaterial` 與 `emissiveIntensity: 0.35`，確保在深空背景下 100% 絕對亮顯。
+    2. **`SpriteText` (懸浮 3D 標籤)**：設定 `textHeight` 與 3px 黑色描邊邊框，位置擺放在球體頂部 (`radius + 8`)。
+  - **環境光與方向光注入**: 於 3D Scene 加入 `AmbientLight` (強度 0.8) 與 `DirectionalLight` (強度 1.2)，提供星際般的立體光澤度。
+- [x] **確效驗證與測試**：
+  - 3D 宇宙空間下 320+ 個 3D 光亮球體與文字標籤 100% 安定絢麗呈現。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- **問題**：自訂 nodeThreeObject 時只回傳單一 Sprite 導致預設 3D 球體被覆蓋抹除。
+- **矯正與預防措施 (CAPA)**：使用 THREE.Group() 將 MeshPhongMaterial 實體球體與 SpriteText 物件組裝組合，並注入環境光與平行光，確保 3D 空間 100% 明亮安定呈現。
+
 
 
 
