@@ -511,7 +511,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     // 點擊圖例 (Legend Click) 凸顯分類與關聯節點
     function filterCategory(catName, element) {
-      const isAlreadyActive = element.classList.contains('active');
+      const isAlreadyActive = element && element.classList.contains('active');
       
       document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
 
@@ -522,7 +522,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         return;
       }
 
-      element.classList.add('active');
+      if (element) element.classList.add('active');
 
       const allNodes = data.nodes.get();
       const targetNodes = allNodes.filter(n => n.categoryName === catName || (n.group === 'category' && n.label === catName));
@@ -542,6 +542,40 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       }
     }
+
+    // 監聽來自主頁面 (app.js) 的跨 View 全域搜尋與分類即時連動訊息 (Cross-View Realtime Sync)
+    window.addEventListener('message', function(event) {
+      const msg = event.data;
+      if (!msg) return;
+
+      if (msg.type === 'SYNC_FILTER' || msg.type === 'SEARCH') {
+        const query = (msg.query || '').toLowerCase().trim();
+        const cat = msg.category || '';
+
+        if (cat) {
+          const legendEl = Array.from(document.querySelectorAll('.legend-item')).find(el => el.textContent.includes(cat));
+          filterCategory(cat, legendEl);
+          return;
+        }
+
+        if (query) {
+          const found = data.nodes.get().find(n => n.label.toLowerCase().includes(query));
+          if (found) {
+            network.focus(found.id, {
+              scale: 1.2,
+              animation: { duration: 800, easingFunction: 'easeInOutQuad' }
+            });
+            network.selectNodes([found.id]);
+            showPanel(found);
+          }
+        } else {
+          network.unselectAll();
+          network.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+          closePanel();
+          document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+        }
+      }
+    });
 
     // Node click handler
     network.on('click', function (params) {
@@ -656,7 +690,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 100% data-driven knowledge graph updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 100% data-driven knowledge graph with cross-view sync updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

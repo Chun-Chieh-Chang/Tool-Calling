@@ -48,9 +48,9 @@
         <button id="trendingTabBtn" class="tab-btn">
           <span>🔥</span> 每週漲星榜
         </button>
-        <a href="knowledge-graph.html" target="_blank" class="tab-btn" style="text-decoration:none;">
+        <button id="graphTabBtn" class="tab-btn">
           <span>🌐</span> 互動式工具圖譜
-        </a>
+        </button>
       </div>
     </div>
 
@@ -192,6 +192,13 @@
       </div>
       <div id="newlyAddedGrid" class="grid">
         <!-- 本週新納入工具卡片將由 JS 動態生成 -->
+      </div>
+    </div>
+
+    <!-- 互動式工具圖譜視圖 (Interactive Knowledge Graph View) -->
+    <div id="graphView" style="display: none; width: 100%;">
+      <div class="glass-panel" style="padding: 12px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color);">
+        <iframe id="graphIframe" src="knowledge-graph.html" style="width: 100%; height: 850px; border: none; border-radius: 12px;"></iframe>
       </div>
     </div>
   </main>

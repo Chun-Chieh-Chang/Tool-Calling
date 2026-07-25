@@ -999,6 +999,29 @@
 #### RCA / CAPA
 - （本次完成知識圖譜全自動 100% 資料驅動解耦與零死角即時連動，無異常狀況）
 
+### 2026-07-25 — 全站 4 大分頁視圖單一真理來源 (AppState) 實時連動引擎重構 (Phase 58)
+
+#### 需求與動機
+使用者需求：「各頁面同步連動的邏輯必須清晰並且統一」（附圖示出 📊 儀表板總覽、🔧 工具目錄列表、🔥 每週漲星榜、🌐 互動式工具圖譜 4 大分頁標籤）。
+
+#### 完成項目
+- [x] **單一真理來源全域狀態架構 (`AppState`)**：
+  - 於 `web/app.js` 建立統一狀態物件 `AppState` (包含 `currentTab`, `query`, `category`, `registryTools`, `filteredTools`)。
+- [x] **統一四視圖連動同步引擎 (`syncAllViews`)**：
+  - 實現狀態單向流 (Unidirectional Data Flow)：用戶於全域搜尋框輸入、選擇選單或切換頁籤 ➜ 自動觸發 `syncAllViews()`。
+  - `syncAllViews()` 純函式同步對 4 大 View 進行原子更新：
+    1. **儀表板 View**：同步更新 KPI、Chart.js 統計圖與分類 Overview。
+    2. **目錄列表 View**：同步過濾工具卡片與匹配層級。
+    3. **每週漲星榜 View**：同步對齊趨勢數據與熱門條目。
+    4. **互動式工具圖譜 View**：跨 iframe 傳遞 `{ type: 'SYNC_FILTER', query, category, tab }` 指令，實現圖譜相機焦點與節點即時高亮同步。
+- [x] **第 4 分頁內嵌 SPA 化 (`#graphView`)**：
+  - 將「🌐 互動式工具圖譜」由外連標籤升級為 SPA 視圖 `#graphView`，使 4 大分頁具備 100% 一致的 UI 操作體驗。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 打包成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- （本次完成全站 4 大分頁 View 單一真理來源 (Single Source of Truth) 連動引擎重構，無異常狀況）
+
 
 
 

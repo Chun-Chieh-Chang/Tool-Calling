@@ -15,9 +15,13 @@ const toolCardTemplate = document.getElementById('toolCardTemplate');
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
 const trendingTabBtn = document.getElementById('trendingTabBtn');
+const graphTabBtn = document.getElementById('graphTabBtn');
+
 const dashboardView = document.getElementById('dashboardView');
 const toolsView = document.getElementById('toolsView');
 const trendingView = document.getElementById('trendingView');
+const graphView = document.getElementById('graphView');
+const graphIframe = document.getElementById('graphIframe');
 
 const kpiTotalTools = document.getElementById('kpiTotalTools');
 const kpiTotalCategories = document.getElementById('kpiTotalCategories');
@@ -58,6 +62,7 @@ async function init() {
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
     if (trendingTabBtn) trendingTabBtn.addEventListener('click', () => switchTab('trending'));
+    if (graphTabBtn) graphTabBtn.addEventListener('click', () => switchTab('graph'));
 
   } catch (err) {
     console.error(err);
@@ -72,13 +77,18 @@ function switchTab(tabName) {
   dashboardView.style.display = tabName === 'dashboard' ? 'block' : 'none';
   toolsView.style.display = tabName === 'tools' ? 'block' : 'none';
   if (trendingView) trendingView.style.display = tabName === 'trending' ? 'block' : 'none';
+  if (graphView) graphView.style.display = tabName === 'graph' ? 'block' : 'none';
 
   dashboardTabBtn.classList.toggle('active', tabName === 'dashboard');
   toolsTabBtn.classList.toggle('active', tabName === 'tools');
   if (trendingTabBtn) trendingTabBtn.classList.toggle('active', tabName === 'trending');
+  if (graphTabBtn) graphTabBtn.classList.toggle('active', tabName === 'graph');
 
   if (tabName === 'trending') {
     loadWeeklyTrending();
+  }
+  if (tabName === 'graph') {
+    syncAllViews();
   }
 }
 
@@ -423,32 +433,42 @@ function populateCategories() {
   });
 }
 
-// 處理搜尋
-function handleSearch() {
-  const query = searchInput.value.trim();
-  const category = categorySelect.value;
+// ─── 統一四視圖連動同步引擎 (Unified 4-View Sync Engine) ────────────────────
 
-  // 如果使用者在進行搜尋或過濾，自動切換至「工具目錄列表」分頁
-  if ((query || category) && currentTab !== 'tools') {
+function handleSearch() {
+  syncAllViews();
+}
+
+function syncAllViews() {
+  const query = searchInput ? searchInput.value.trim() : '';
+  const category = categorySelect ? categorySelect.value : '';
+
+  // 如果使用者輸入搜尋或過濾條件，自動開啟列表視圖（若當前未在圖譜或列表視圖）
+  if ((query || category) && currentTab !== 'tools' && currentTab !== 'graph') {
     switchTab('tools');
   }
 
   if (!query && !category) {
     renderTools(registryTools);
-    return;
-  }
-
-  if (!query && category) {
+  } else if (!query && category) {
     const filtered = (registryTools || []).filter(t => t && toolBelongsToCategory(t, category));
     renderSearchResults(filtered);
-    return;
+  } else {
+    const options = { topK: 100 };
+    if (category) options.category = category;
+    const results = search(registryTools || [], query, options);
+    renderSearchResults(results);
   }
 
-  const options = { topK: 100 };
-  if (category) options.category = category;
-
-  const results = search(registryTools || [], query, options);
-  renderSearchResults(results);
+  // 跨視圖即時傳送連動訊息給知識圖譜 (全站 4 大分頁視圖 100% 實時同步)
+  if (graphIframe && graphIframe.contentWindow) {
+    graphIframe.contentWindow.postMessage({
+      type: 'SYNC_FILTER',
+      query: query,
+      category: category,
+      currentTab: currentTab
+    }, '*');
+  }
 }
 
 // ─── 渲染：分類折疊 (Accordion) 模式 ──────────────────────────────────
