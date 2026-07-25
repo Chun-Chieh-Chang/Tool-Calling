@@ -36,6 +36,7 @@ node cli.js search "我要做簡報"
 | 看某個工具的詳細資料 | `node cli.js info playwright` |
 | 新增一個新工具 | `node cli.js add https://github.com/使用者/倉庫名稱` |
 | **批量新增多個工具** | `node cli.js batch-add urls.txt` |
+| **深層拆解 Monorepo 子工具** | `node cli.js index-subtools 工具ID` |
 | 移除一個工具 | `node cli.js remove 工具ID` |
 
 ---
@@ -279,8 +280,12 @@ Tool-Calling/
 │   ├── build-web.js            ← 靜態網頁打包腳本
 │   ├── enrich-registry.js      ← AI 批次補齊工具資料（需 AGNES_API_KEY）
 │   ├── export-dataset.js       ← 萃取 Telemetry 為 SFT 訓練資料
+│   ├── mine-synonyms.js        ← 同義詞自動探勘腳本
+│   ├── populate-stars.js       ← 補齊 GitHub Stars 數據腳本
 │   ├── scan-tool.js            ← GitHub URL 解析器（自動分類 + 安裝猜測）
 │   ├── scan-monorepo.js        ← Monorepo 深層索引掃描器
+│   ├── sync-github-stars.js    ← 定期同步 GitHub Stars 數據
+│   ├── trending-weekly.js      ← 每週漲星數探勘腳本
 │   └── url-resolver.js         ← URL 類型解析器（tool/resource/monorepo 辨識與拆解）
 ├── tests/
 │   └── search.test.js      ← 單元測試（6 項核心邏輯）

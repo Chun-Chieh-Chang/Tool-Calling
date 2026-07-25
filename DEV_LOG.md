@@ -726,6 +726,51 @@
 #### RCA / CAPA
 - （本次為表格 UI 與卡片標籤欄位強化，無異常狀況）
 
+### 2026-07-25 — 批量新增工具庫與 Monorepo 深層拆解驗證 (Phase 45)
+
+#### 需求與動機
+使用者需求：「繼續幫我把以下這些網址批量加入工具庫(檢查是否需要拆解)：
+- https://github.com/langchain-ai/openwiki
+- https://github.com/img2threejs/img2threejs」
+
+#### 完成項目
+- [x] **批量工具掃描與去重修復 (`batch-add`)**：
+  - 執行 `node cli.js batch-add` 讀取 URL 進行工具庫擴充與重複判定。
+  - 發現 `img2threejs/img2threejs` 為原有 `hoainho/img2threejs` 之組織轉移專案，自動修正原始工具之 `url` / `repoUrl` / `command` 並清理重複條目。
+- [x] **Monorepo 深層拆解檢測 (`index-subtools`)**：
+  - 針對 `openwiki` 執行深層掃描，自動識別並拆解出 2 個子工具 (`Mermaid Diagrams`, `Write Connector`) 寫入資料庫 `subTools`。
+  - 針對 `img2threejs` 執行深層掃描，確認無子工具目錄結構。
+- [x] **詮釋資料完整性補齊與品質門禁 (`validate`)**：
+  - 補齊 `openwiki` 之 `useCase` (推薦場景)、`negativeConstraints` (禁用場景)、`advantages` (優勢) 與多維觸發詞，並將狀態升級為 `active`。
+  - 執行 `node cli.js validate` 確效驗證，達到 0 錯誤標準。
+
+#### RCA / CAPA
+- **問題分析 (RCA)**：`batch-add` 在進行去重檢查時，因 GitHub Organization 重定向或舊 URL 變更 (如 `hoainho/img2threejs` -> `img2threejs/img2threejs`)，可能導致 ID 生成一致但 JSON 追加重複項。
+- **預防措施 (CAPA)**：新增/修訂工具後強制執行 `node cli.js validate` 檢查重複 ID 與缺少場景欄位，及時修復重複項與詮釋資料缺漏。
+
+### 2026-07-25 — 專案全域 Code & File 整合優化與 MECE 審查 (Phase 46)
+
+#### 需求與動機
+使用者需求：「執行專案的整體程式碼與檔案優化作業（1. 全面盤點與清理 2. 同步更新開發文件 3. 遵循 MECE 原則整合 4. 建立還原基準點 5. 推送至 GitHub）」
+
+#### 完成項目
+- [x] **全域盤點與 MECE 清理作業**：
+  - 清理獨立一線/過時臨時檔案：`console.log(i+1+'`, `t.id`, `temp_first200.txt`。
+  - 清理一次性掃描/測試殘留腳本：`scripts/check-inserts.cjs`, `scripts/insert-opencodex-entries.mjs`, `scripts/validate-entries.mjs`。
+  - 清理測試拷貝儲存庫：`Kimi-K3-Code-Free-Desktop-AI/`, `opencodex/`。
+- [x] **開發文件同步更新 (`README.md` & `DEV_LOG.md`)**：
+  - 更新 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) CLI 指令表，新增 `index-subtools` Monorepo 深層拆解指令。
+  - 補全 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) 檔案結構中包含 `trending-weekly.js`, `mine-synonyms.js` 在內的最新腳本清單。
+- [x] **確效驗證與品質門禁**：
+  - `node cli.js validate` (0 錯誤，311 個工具格式合規)
+  - `npm test` (8/8 核心檢索單元測試全數 PASS)
+  - `node scripts/build-web.js` (Web 發行檔順利建構)
+
+#### RCA / CAPA
+- （本次為全域 MECE 檔案盤點、一線殘留清理與文件同步更新，無異常狀況）
+
+
+
 
 
 

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-25T03:41:05.133Z",
+  "lastUpdated": "2026-07-25T07:58:45.113Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -24668,7 +24668,7 @@
     {
       "id": "img2threejs",
       "name": "Img2threejs",
-      "url": "https://github.com/hoainho/img2threejs",
+      "url": "https://github.com/img2threejs/img2threejs",
       "description": "Rebuild the object in a reference image as a code-only, procedural, quality-gated, animation-ready Three.js model. Token-efficient image-to-3D.",
       "category": "多媒體生成",
       "language": "python",
@@ -24684,8 +24684,8 @@
       ],
       "install": {
         "method": "pip",
-        "command": "pip install git+https://github.com/hoainho/img2threejs.git",
-        "repoUrl": "https://github.com/hoainho/img2threejs"
+        "command": "pip install git+https://github.com/img2threejs/img2threejs.git",
+        "repoUrl": "https://github.com/img2threejs/img2threejs"
       },
       "capabilities": [
         "image-to-3d",
@@ -25949,6 +25949,245 @@
       "stars": 58678,
       "addedAt": "2026-07-25T03:41:05.133Z",
       "status": "active"
+    },
+    {
+      "id": "kimi-k3-code-free-desktop-ai",
+      "name": "Kimi K3 Code Free Desktop AI",
+      "url": "https://github.com/kimik3free/Kimi-K3-Code-Free-Desktop-AI",
+      "description": "Incomplete frontend demo; README claims desktop AI client but actual code lacks backend, desktop shell, sandbox, and working API. Not suitable for agent tool library.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "kimi k3",
+        "moonshot ai",
+        "code assistant"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/kimik3free/Kimi-K3-Code-Free-Desktop-AI.git",
+        "repoUrl": "https://github.com/kimik3free/Kimi-K3-Code-Free-Desktop-AI"
+      },
+      "capabilities": [
+        "ai-chat-prototype",
+        "file-upload-demo"
+      ],
+      "addedAt": "2026-07-25T06:10:17.561Z",
+      "status": "deprecated",
+      "useCase": "Research/reference only — demonstrates Kimi API wire format; not recommended for production use.",
+      "advantages": [],
+      "negativeConstraints": [
+        "Repository is incomplete; no backend or desktop packaging exists.",
+        "README claims functionality that does not exist in source code.",
+        "Not suitable as an agent skill; use Moonshot AI official API instead."
+      ]
+    },
+    {
+      "id": "opencodex",
+      "name": "OpenCodex",
+      "url": "https://github.com/lidge-jun/opencodex",
+      "description": "Universal Provider Proxy for OpenAI Codex & Claude Code — route any LLM provider through a local gateway with 60+ Management APIs, web search, image generation, multi-agent support, and OAuth/Key pooling for 40+ providers.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "opencodex",
+        "ocx",
+        "codex proxy",
+        "llm proxy",
+        "provider routing",
+        "claude code proxy",
+        "web search sidecar",
+        "multi-agent routing"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install -g @bitkyc08/opencodex && ocx init && ocx start",
+        "branch": "main",
+        "repoUrl": "https://github.com/lidge-jun/opencodex",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "provider-routing",
+        "web-search-sidecar",
+        "image-generation",
+        "multi-agent-v2",
+        "oauth-auth",
+        "api-key-pooling",
+        "claude-code-gateway",
+        "codex-proxy",
+        "usage-analytics",
+        "model-management",
+        "combo-aliases",
+        "shadow-calls"
+      ],
+      "addedAt": "2026-07-25T06:10:17.562Z",
+      "status": "experimental",
+      "useCase": "Let you use Claude, Gemini, Grok, Kimi, DeepSeek, Ollama, etc. with OpenAI Codex CLI/App/SDK or Claude Code by running a local proxy on localhost:10100.",
+      "advantages": [
+        "Supports 40+ LLM providers through 8 protocol adapters with automatic model discovery.",
+        "Full Management API (60+ endpoints) for programmatic provider, model, OAuth account, and agent configuration.",
+        "Built-in web search and vision sidecars via ChatGPT forward or Anthropic credentials.",
+        "Pooling + auto-failover for ChatGPT accounts; quota tracking and rate-limit-aware rotation.",
+        "Auto-start service integration (launchd/systemd/Task Scheduler), model sync to Codex, and hot-reload config."
+      ],
+      "negativeConstraints": [
+        "Management API requires auth token; external clients must obtain one via /api/keys.",
+        "Web search and image generation require OpenAI upstream (ChatGPT login or API key).",
+        "Provider base URLs are filtered through SSRF/DNS safety checks; non-public domains may be blocked."
+      ],
+      "subTools": [
+        {
+          "name": "Provider Management",
+          "description": "CRUD operations for LLM providers: list, add, update, remove, test connectivity, set context caps, manage selected models allowlist.",
+          "subpath": "src/server/management/provider-routes.ts"
+        },
+        {
+          "name": "Model Catalog",
+          "description": "List full model directory, disable/enable models, add/update/remove custom models, configure per-provider model allowlists.",
+          "subpath": "src/server/management/model-routes.ts"
+        },
+        {
+          "name": "Combo/Alias Manager",
+          "description": "Create, update, rename, and delete virtual combo models that span multiple provider/model targets with failover or round-robin strategy.",
+          "subpath": "src/server/management/combo-routes.ts"
+        },
+        {
+          "name": "OAuth Account Manager",
+          "description": "OAuth login lifecycle, multi-account switch, aliases, API key pool management, and management API key generation.",
+          "subpath": "src/server/management/oauth-account-routes.ts"
+        },
+        {
+          "name": "Settings & Health",
+          "description": "Get/update Codex runtime settings, startup health checks, project config diagnostics, startup action installation.",
+          "subpath": "src/server/management/config-routes.ts"
+        },
+        {
+          "name": "Sync & Update",
+          "description": "Sync models to Codex, check/run/query updates.",
+          "subpath": "src/server/management/config-routes.ts"
+        },
+        {
+          "name": "Sidecar & Shadow Call Config",
+          "description": "Configure web search and vision sidecar backends/models, enable shadow call interception for helper functions.",
+          "subpath": "src/server/management/config-routes.ts"
+        },
+        {
+          "name": "Logs & Usage Analytics",
+          "description": "Request logs with filtering, debug settings toggle, usage summary with cost estimation, storage scanner.",
+          "subpath": "src/server/management/logs-usage-routes.ts"
+        },
+        {
+          "name": "System Monitor",
+          "description": "Process PID, Bun version, memory usage, platform info, stream mode status, watchdog state.",
+          "subpath": "src/server/management/system-routes.ts"
+        },
+        {
+          "name": "Multi-Agent v2",
+          "description": "Toggle multi_agent_v2 surface, set max concurrent threads, control v1/v2 mode.",
+          "subpath": "src/server/management/agent-settings-routes.ts"
+        },
+        {
+          "name": "Subagent Injection",
+          "description": "Configure subagent prompt injection model, effort level, and custom prompt templates.",
+          "subpath": "src/server/management/agent-settings-routes.ts"
+        },
+        {
+          "name": "Effort Caps",
+          "description": "Set global and sub-agent-level reasoning effort ceilings.",
+          "subpath": "src/server/management/agent-settings-routes.ts"
+        },
+        {
+          "name": "Subagent Model Picker",
+          "description": "Choose up to 5 routed models featured in Codex's spawn_agent catalog.",
+          "subpath": "src/server/management/agent-settings-routes.ts"
+        },
+        {
+          "name": "Claude Code Gateway",
+          "description": "Configure Claude Code inbound proxy: model mapping, tier models, auto-context, blocked skills, web search/vision overrides.",
+          "subpath": "src/server/management/agent-settings-routes.ts"
+        },
+        {
+          "name": "Web Search Relay",
+          "description": "POST /v1/alpha/search — relays Codex web search requests through ChatGPT forward provider.",
+          "subpath": "src/server/search.ts"
+        },
+        {
+          "name": "Image Generation Relay",
+          "description": "POST /v1/images/generations & /v1/images/edits — relays OpenAI image generation to frontend tool.",
+          "subpath": "src/server/images.ts"
+        },
+        {
+          "name": "Vision Sidecar",
+          "description": "Describe images for text-only models using gpt-4o/mini sidecar with LRU cache and bounded concurrency.",
+          "subpath": "src/vision/index.ts"
+        },
+        {
+          "name": "Tool Catalog Guard",
+          "description": "Injects tool contract prompt preventing non-OpenAI adapters from using neighboring-agent tool names.",
+          "subpath": "src/adapters/tool-catalog-nudge.ts"
+        },
+        {
+          "name": "Tool Definition Schema",
+          "description": "OcxTool type: function tool definitions with namespace support, parallel tool calls, tool choice, reasoning, and structured output flags.",
+          "subpath": "src/types.ts"
+        },
+        {
+          "name": "CLI Commands",
+          "description": "ocx start/stop/sync/status/doctor/gui/login/account/models/provider/update/health/service/tray/uninstall/codex-shim.",
+          "subpath": "src/cli/index.ts"
+        }
+      ]
+    },
+    {
+      "id": "openwiki",
+      "name": "Openwiki",
+      "url": "https://github.com/langchain-ai/openwiki",
+      "description": "OpenWiki is a CLI that writes and maintains agent documentation for your codebase.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "openwiki",
+        "agent-docs",
+        "codebase-documentation",
+        "langchain-wiki",
+        "auto-doc-generator"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx openwiki",
+        "repoUrl": "https://github.com/langchain-ai/openwiki"
+      },
+      "capabilities": [
+        "agent-docs",
+        "codebase-wiki",
+        "documentation-generator",
+        "mermaid-diagrams"
+      ],
+      "addedAt": "2026-07-25T07:58:11.855Z",
+      "status": "active",
+      "useCase": "Automatically generating and maintaining comprehensive agent-focused documentation and knowledge bases for software codebases.",
+      "advantages": [
+        "CLI tool designed specifically for AI agent codebase documentation",
+        "Supports automated maintenance and updates of architectural docs",
+        "Integrates Mermaid diagram generation and custom source connectors"
+      ],
+      "negativeConstraints": [
+        "Not intended for non-codebase general end-user documentation or static blog rendering",
+        "Avoid using when only inline code comments or simple JSDoc comments are needed"
+      ],
+      "subTools": [
+        {
+          "name": "Mermaid Diagrams",
+          "description": "Embed Mermaid diagrams in generated wiki pages. Use whenever documenting a runtime or request flow, a call sequence, a state machine or lifecycle, a data model or entity relationships, or non-trivial control flow, since these are clearer as a diagram than as prose. Also use when an update run touches a page that already contains a mermaid fence, or a page that contains a text fence a previous run degraded.",
+          "subpath": "skills/mermaid-diagrams"
+        },
+        {
+          "name": "Write Connector",
+          "description": "Add a new built-in OpenWiki source connector. Use when a user asks to create or implement an OpenWiki connector.",
+          "subpath": "skills/write-connector"
+        }
+      ]
     }
   ]
 }
