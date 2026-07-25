@@ -1082,6 +1082,29 @@
 #### RCA / CAPA
 - （本次完成全專案檔案盤點清理、MECE 結構整合與文件同步，全系統測試無異常狀況）
 
+### 2026-07-25 — 知識圖譜 3D 宇宙物理力學空間 (3D Force Graph) 與 2D/3D 雙視角切換 (Phase 62)
+
+#### 需求與動機
+使用者需求：「能否讓知識圖譜在 3D 空間中呈現」。導入 Three.js / 3d-force-graph 3D 物理力學空間視角。
+
+#### 完成項目
+- [x] **3D Force Graph 空間引擎整合 (`3d-force-graph`)**：
+  - 引進 3D 粒子流與星空深色系宇宙背景 (`#0B0F19`)。
+  - **3D 節點立體球體**: Root 亮紫巨型球體 (`val: 35`)、Category 領域配色球體 (`val: 20`)、Tool 工具球體 (`val: 10`) 與 SubTool 拆解球體 (`val: 5`)。
+  - **3D 光束連線與粒子特效**: 虛線邊界套用 3D 動態粒子流 (`linkDirectionalParticles`)。
+- [x] **2D / 3D 雙引擎視角切換按鈕 (`toggle3DMode`)**：
+  - 於 UI 右上角新增 **`[ 🌌 切換至 3D 宇宙視角 / 📄 切換至 2D 平面視角 ]`**。
+  - 支援全方位 3D 自由旋轉 (Orbit Rotate)、縮放 (Zoom) 與平移。
+- [x] **3D 相機動態飛入與全站 4-View 跨視圖即時同步 (Camera Fly-To Animation)**：
+  - 點擊 3D 球體時，相機自動觸發平滑飛入 (`cameraPosition`) 至該節點前，並開展左下角富文本抽屜面板。
+  - 跨視圖 `SYNC_STATE` 訊息同步支援 3D 空間視角搜尋與相機定位。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 打包發行成功。
+  - `npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次完成 3D 宇宙空間圖譜與 2D/3D 雙視角動態切換引擎重構，無異常狀況）
+
 
 
 

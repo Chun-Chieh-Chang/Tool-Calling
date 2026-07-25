@@ -42,7 +42,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動圖譜生成器 (100% 無硬編碼，數據與 tools.json 即時同步)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -68,8 +68,9 @@ export function generateKnowledgeGraph(registryInput = null) {
       highlight: { background: "#6366F1", border: "#FFFFFF" },
       hover: { background: "#6366F1", border: "#FFFFFF" }
     },
+    colorHex: "#4F46E5",
     font: { color: "#FFFFFF", size: 22, face: "Inter", bold: true },
-    value: 40
+    val: 35
   });
 
   // 2. Category Nodes
@@ -103,15 +104,10 @@ export function generateKnowledgeGraph(registryInput = null) {
       color: {
         background: colorHex,
         border: colorHex,
-        highlight: {
-          background: colorHex,
-          border: "#FFFFFF"
-        },
-        hover: {
-          background: colorHex,
-          border: "#93C5FD"
-        }
+        highlight: { background: colorHex, border: "#FFFFFF" },
+        hover: { background: colorHex, border: "#93C5FD" }
       },
+      colorHex: colorHex,
       font: {
         color: textColor,
         size: 16,
@@ -120,14 +116,18 @@ export function generateKnowledgeGraph(registryInput = null) {
         strokeWidth: textColor === '#FFFFFF' ? 2 : 0,
         strokeColor: '#0F172A'
       },
-      value: 25
+      val: 20
     });
 
     edges.push({
       from: "root",
       to: catId,
+      source: "root",
+      target: catId,
       color: { color: "#334155", highlight: "#60A5FA" },
-      width: 3
+      colorHex: "#334155",
+      width: 3,
+      isDashed: false
     });
 
     // 3. Tools in this Category
@@ -159,15 +159,21 @@ export function generateKnowledgeGraph(registryInput = null) {
           highlight: { background: colorHex, border: "#FFFFFF" },
           hover: { background: colorHex, border: "#FFFFFF" }
         },
+        colorHex: colorHex,
         font: { color: "#F8FAFC", size: 13, face: "Inter", strokeWidth: 3, strokeColor: "#0F172A" },
-        title: `<b>${tool.name}</b><br/>ID: ${tool.id}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`
+        title: `<b>${tool.name}</b><br/>ID: ${tool.id}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
+        val: 10
       });
 
       edges.push({
         from: catId,
         to: toolNodeId,
+        source: catId,
+        target: toolNodeId,
         color: { color: "#334155", highlight: colorHex },
-        width: 1
+        colorHex: colorHex,
+        width: 1,
+        isDashed: false
       });
 
       // 4. SubTools / Capabilities
@@ -188,15 +194,21 @@ export function generateKnowledgeGraph(registryInput = null) {
               border: "#64748B",
               highlight: { background: "#60A5FA", border: "#FFFFFF" }
             },
-            font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" }
+            colorHex: "#64748B",
+            font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" },
+            val: 5
           });
 
           edges.push({
             from: toolNodeId,
             to: subId,
+            source: toolNodeId,
+            target: subId,
             color: { color: "#475569", highlight: "#60A5FA" },
+            colorHex: "#475569",
             width: 1,
-            dashes: true
+            dashes: true,
+            isDashed: true
           });
         });
       }
@@ -217,8 +229,9 @@ export function generateKnowledgeGraph(registryInput = null) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tool-Calling 全景 AI 工具知識圖譜 (Interactive Knowledge Graph)</title>
+  <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/3d-force-graph"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -275,6 +288,28 @@ export function generateKnowledgeGraph(registryInput = null) {
       z-index: 10;
       display: flex;
       gap: 12px;
+      align-items: center;
+    }
+
+    .mode-btn {
+      background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+      border: none;
+      border-radius: 10px;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
     }
 
     .search-box {
@@ -286,7 +321,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       color: var(--text-primary);
       font-size: 14px;
       outline: none;
-      width: 280px;
+      width: 260px;
       transition: all 0.3s ease;
     }
 
@@ -295,9 +330,16 @@ export function generateKnowledgeGraph(registryInput = null) {
       box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
     }
 
-    #network {
+    #network2d, #network3d {
       width: 100%;
       height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #network3d {
+      display: none;
     }
 
     /* 右側中間：分類色彩與連線圖例面板 (Right Center Positioning) */
@@ -423,11 +465,14 @@ export function generateKnowledgeGraph(registryInput = null) {
 </head>
 <body>
   <div id="header">
-    <h1>🌐 Tool-Calling 全景 AI 工具知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具、${categories.length} 大分類與拆解微技能節點 (100% 數據即時同步)</p>
+    <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (可自由切換 3D 宇宙與 2D 平面視角)</p>
   </div>
 
   <div id="controls">
+    <button id="viewToggleBtn" class="mode-btn" onclick="toggle3DMode()">
+      <span>🌌 切換至 3D 宇宙視角</span>
+    </button>
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
   </div>
 
@@ -463,23 +508,28 @@ export function generateKnowledgeGraph(registryInput = null) {
     <div id="panelContent"></div>
   </div>
 
-  <div id="network"></div>
+  <!-- 2D 平面網絡容器 -->
+  <div id="network2d"></div>
+
+  <!-- 3D 宇宙空間網絡容器 -->
+  <div id="network3d"></div>
 
   <script>
     const nodesData = ${JSON.stringify(nodes)};
     const edgesData = ${JSON.stringify(edges)};
 
-    const container = document.getElementById('network');
-    const data = {
+    let is3DMode = false;
+    let graph3DInstance = null;
+
+    // ─── 1. 初始化 2D Vis.js Network ──────────────────────────────────────────
+    const container2d = document.getElementById('network2d');
+    const data2d = {
       nodes: new vis.DataSet(nodesData),
       edges: new vis.DataSet(edgesData)
     };
 
-    // 物理力學最佳化配置
-    const options = {
-      nodes: {
-        font: { face: 'Inter' }
-      },
+    const options2d = {
+      nodes: { font: { face: 'Inter' } },
       physics: {
         enabled: true,
         barnesHut: {
@@ -493,73 +543,117 @@ export function generateKnowledgeGraph(registryInput = null) {
         maxVelocity: 35,
         minVelocity: 0.2,
         solver: 'barnesHut',
-        stabilization: {
-          enabled: true,
-          iterations: 300,
-          updateInterval: 25,
-          onlyDynamicEdges: false,
-          fit: true
-        }
+        stabilization: { enabled: true, iterations: 300 }
       },
-      interaction: {
-        hover: true,
-        tooltipDelay: 200,
-        zoomView: true
-      }
+      interaction: { hover: true, tooltipDelay: 200, zoomView: true }
     };
 
-    const network = new vis.Network(container, data, options);
+    const network2d = new vis.Network(container2d, data2d, options2d);
+    network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // 穩定後自動鎖定物理引擎
-    network.on('stabilizationIterationsDone', function () {
-      network.setOptions({ physics: { enabled: false } });
-    });
+    // ─── 2. 初始化 3D Force-Directed Graph ────────────────────────────────────
+    function init3DGraph() {
+      if (graph3DInstance) return;
 
-    // 拖拽時動態啟動/結束物理學
-    network.on('dragStart', function () {
-      network.setOptions({ physics: { enabled: true } });
-    });
-    network.on('dragEnd', function () {
-      setTimeout(() => {
-        network.setOptions({ physics: { enabled: false } });
-      }, 1000);
-    });
+      const container3d = document.getElementById('network3d');
+      const gData = {
+        nodes: JSON.parse(JSON.stringify(nodesData)),
+        links: JSON.parse(JSON.stringify(edgesData))
+      };
 
-    // 點擊圖例 (Legend Click) 凸顯分類與關聯節點
+      graph3DInstance = ForceGraph3D()(container3d)
+        .graphData(gData)
+        .backgroundColor('#0B0F19')
+        .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.9); padding:6px 10px; border-radius:6px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b></div>\`)
+        .nodeColor(node => node.colorHex || '#3B82F6')
+        .nodeVal(node => node.val || 10)
+        .nodeResolution(16)
+        .linkColor(link => link.colorHex || '#334155')
+        .linkWidth(link => link.width || 1)
+        .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
+        .linkDirectionalParticleSpeed(0.006)
+        .linkDirectionalParticleWidth(2)
+        .onNodeClick(node => {
+          // 相機飛入動畫 (Camera Fly-To)
+          const distance = 120;
+          const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+          graph3DInstance.cameraPosition(
+            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+            node,
+            1200
+          );
+          showPanel(node);
+        });
+
+      // 視角旋轉開場
+      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 450 });
+    }
+
+    // 切換 2D / 3D 視角
+    function toggle3DMode() {
+      is3DMode = !is3DMode;
+      const btn = document.getElementById('viewToggleBtn');
+      const c2d = document.getElementById('network2d');
+      const c3d = document.getElementById('network3d');
+
+      if (is3DMode) {
+        c2d.style.display = 'none';
+        c3d.style.display = 'block';
+        btn.innerHTML = '<span>📄 切換至 2D 平面視角</span>';
+        init3DGraph();
+      } else {
+        c3d.style.display = 'none';
+        c2d.style.display = 'block';
+        btn.innerHTML = '<span>🌌 切換至 3D 宇宙視角</span>';
+      }
+    }
+
+    // 點擊圖例 (Legend Click)
     function filterCategory(catName, element) {
       const isAlreadyActive = element && element.classList.contains('active');
-      
       document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
 
       if (isAlreadyActive) {
-        network.unselectAll();
-        network.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+        if (is3DMode && graph3DInstance) {
+          graph3DInstance.cameraPosition({ x: 0, y: 0, z: 450 }, { x: 0, y: 0, z: 0 }, 1000);
+        } else {
+          network2d.unselectAll();
+          network2d.fit({ animation: { duration: 600 } });
+        }
         closePanel();
         return;
       }
 
       if (element) element.classList.add('active');
 
-      const allNodes = data.nodes.get();
-      const targetNodes = allNodes.filter(n => n.categoryName === catName || (n.group === 'category' && n.label === catName));
-      const targetIds = targetNodes.map(n => n.id);
-
-      const catNode = allNodes.find(n => n.group === 'category' && n.label === catName);
-
-      if (targetIds.length > 0) {
-        network.selectNodes(targetIds);
-
+      if (is3DMode && graph3DInstance) {
+        const catNode = graph3DInstance.graphData().nodes.find(n => n.group === 'category' && n.label === catName);
         if (catNode) {
-          network.focus(catNode.id, {
-            scale: 1.15,
-            animation: { duration: 800, easingFunction: 'easeInOutQuad' }
-          });
+          const distRatio = 1.4;
+          graph3DInstance.cameraPosition(
+            { x: (catNode.x || 0) * distRatio, y: (catNode.y || 0) * distRatio, z: (catNode.z || 150) * distRatio },
+            catNode,
+            1200
+          );
           showPanel(catNode);
+        }
+      } else {
+        const allNodes = data2d.nodes.get();
+        const targetNodes = allNodes.filter(n => n.categoryName === catName || (n.group === 'category' && n.label === catName));
+        const targetIds = targetNodes.map(n => n.id);
+        const catNode = allNodes.find(n => n.group === 'category' && n.label === catName);
+
+        if (targetIds.length > 0) {
+          network2d.selectNodes(targetIds);
+          if (catNode) {
+            network2d.focus(catNode.id, { scale: 1.15, animation: { duration: 800 } });
+            showPanel(catNode);
+          }
         }
       }
     }
 
-    // 監聽來自主頁面 (app.js) 的跨 View 全域搜尋與分類即時連動訊息
+    // 跨 View 即時搜尋與分類連動
     window.addEventListener('message', function(event) {
       const msg = event.data;
       if (!msg) return;
@@ -575,39 +669,44 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
 
         if (query) {
-          const found = data.nodes.get().find(n => n.label.toLowerCase().includes(query));
-          if (found) {
-            network.focus(found.id, {
-              scale: 1.2,
-              animation: { duration: 800, easingFunction: 'easeInOutQuad' }
-            });
-            network.selectNodes([found.id]);
-            showPanel(found);
+          if (is3DMode && graph3DInstance) {
+            const found = graph3DInstance.graphData().nodes.find(n => n.label.toLowerCase().includes(query));
+            if (found) {
+              graph3DInstance.cameraPosition(
+                { x: (found.x || 0) + 80, y: (found.y || 0) + 80, z: (found.z || 0) + 80 },
+                found,
+                1000
+              );
+              showPanel(found);
+            }
+          } else {
+            const found = data2d.nodes.get().find(n => n.label.toLowerCase().includes(query));
+            if (found) {
+              network2d.focus(found.id, { scale: 1.2, animation: { duration: 800 } });
+              network2d.selectNodes([found.id]);
+              showPanel(found);
+            }
           }
         } else {
-          network.unselectAll();
-          network.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
           closePanel();
           document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
         }
       }
     });
 
-    // Node click handler
-    network.on('click', function (params) {
+    // 2D Node click handler
+    network2d.on('click', function (params) {
       if (params.nodes.length > 0) {
         const nodeId = params.nodes[0];
-        const node = data.nodes.get(nodeId);
-        if (node) {
-          showPanel(node);
-        }
+        const node = data2d.nodes.get(nodeId);
+        if (node) showPanel(node);
       } else {
         closePanel();
         document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
       }
     });
 
-    // 動態 100% 數據綁定之富文本面板渲染
+    // 動態富文本面板渲染
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
@@ -624,7 +723,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           </div>
         \`;
       } else if (node.group === 'category') {
-        const catTools = data.nodes.get().filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
+        const catTools = nodesData.filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
         const sampleTools = node.topTools ? node.topTools.map(t => \`<span style="display:inline-block; padding:3px 8px; background:rgba(59, 130, 246, 0.15); border:1px solid rgba(96, 165, 250, 0.3); color:#93C5FD; border-radius:4px; font-size:11px; margin:2px;">\${t}</span>\`).join(' ') : '';
         const langs = node.languages && node.languages.length ? node.languages.join(', ') : '無特定語言標示';
 
@@ -681,14 +780,23 @@ export function generateKnowledgeGraph(registryInput = null) {
       const term = e.target.value.toLowerCase().trim();
       if (!term) return;
 
-      const found = data.nodes.get().find(n => n.label.toLowerCase().includes(term));
-      if (found) {
-        network.focus(found.id, {
-          scale: 1.2,
-          animation: { duration: 800, easingFunction: 'easeInOutQuad' }
-        });
-        network.selectNodes([found.id]);
-        showPanel(found);
+      if (is3DMode && graph3DInstance) {
+        const found = graph3DInstance.graphData().nodes.find(n => n.label.toLowerCase().includes(term));
+        if (found) {
+          graph3DInstance.cameraPosition(
+            { x: (found.x || 0) + 80, y: (found.y || 0) + 80, z: (found.z || 0) + 80 },
+            found,
+            1000
+          );
+          showPanel(found);
+        }
+      } else {
+        const found = data2d.nodes.get().find(n => n.label.toLowerCase().includes(term));
+        if (found) {
+          network2d.focus(found.id, { scale: 1.2, animation: { duration: 800 } });
+          network2d.selectNodes([found.id]);
+          showPanel(found);
+        }
       }
     });
   </script>
@@ -706,7 +814,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with right-center legend positioning for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 3D/2D dual-engine knowledge graph updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
