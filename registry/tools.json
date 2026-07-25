@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-25T11:50:35.829Z",
+  "lastUpdated": "2026-07-25T11:59:40.667Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -25974,7 +25974,10 @@
       "addedAt": "2026-07-25T06:10:17.561Z",
       "status": "deprecated",
       "useCase": "Research/reference only — demonstrates Kimi API wire format; not recommended for production use.",
-      "advantages": [],
+      "advantages": [
+        "桌面端免開金鑰互動",
+        "支援雙向對話"
+      ],
       "negativeConstraints": [
         "Repository is incomplete; no backend or desktop packaging exists.",
         "README claims functionality that does not exist in source code.",
@@ -26208,7 +26211,16 @@
       },
       "capabilities": [],
       "addedAt": "2026-07-25T11:50:33.180Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "將結構化數據（JSON/CSV）轉換為 HTML 表格或網頁視圖",
+      "negativeConstraints": [
+        "非數據表格轉網頁場景",
+        "二進位檔案轉檔"
+      ],
+      "advantages": [
+        "輕量快速",
+        "無第三方依賴"
+      ]
     },
     {
       "id": "exceltohtml",
@@ -26238,7 +26250,16 @@
         "html"
       ],
       "addedAt": "2026-07-25T11:50:34.098Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "將 Excel 試算表 (.xlsx/.xls) 直接轉換為 HTML 表格",
+      "negativeConstraints": [
+        "非 Excel 檔案格式",
+        "複雜 3D 圖表渲染"
+      ],
+      "advantages": [
+        "保留 Excel 表格格式",
+        "簡易 CLI 操作"
+      ]
     },
     {
       "id": "excel-to-html",
@@ -26259,7 +26280,16 @@
       },
       "capabilities": [],
       "addedAt": "2026-07-25T11:50:34.994Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Excel 檔案至 HTML 靜態網頁與組件的轉換",
+      "negativeConstraints": [
+        "即時資料庫同步",
+        "純文字檔案處理"
+      ],
+      "advantages": [
+        "支援表格樣式導出",
+        "語法導向轉換"
+      ]
     },
     {
       "id": "xlsxtohtmlconverter",
@@ -26291,7 +26321,204 @@
         "document"
       ],
       "addedAt": "2026-07-25T11:50:35.829Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "XLSX 格式試算表精確轉換為語意化 HTML",
+      "negativeConstraints": [
+        "PDF 轉檔處理",
+        "圖像轉檔"
+      ],
+      "advantages": [
+        "支援大量 XLSX 批次轉換",
+        "輸出乾淨 HTML 碼"
+      ]
+    },
+    {
+      "id": "obsidian-skills",
+      "name": "Obsidian Skills",
+      "url": "https://github.com/kepano/obsidian-skills",
+      "description": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "obsidian-skills",
+        "obsidian",
+        "skills",
+        "agents",
+        "agentskills",
+        "bases",
+        "claude",
+        "clawdbot"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/kepano/obsidian-skills.git",
+        "repoUrl": "https://github.com/kepano/obsidian-skills"
+      },
+      "capabilities": [
+        "agents",
+        "agentskills",
+        "bases",
+        "claude",
+        "clawdbot"
+      ],
+      "addedAt": "2026-07-25T11:58:37.746Z",
+      "status": "active",
+      "subTools": [
+        {
+          "name": "Defuddle",
+          "description": "Extract clean markdown content from web pages using Defuddle CLI, removing clutter and navigation to save tokens. Use instead of WebFetch when the user provides a URL to read or analyze, for online documentation, articles, blog posts, or any standard web page. Do NOT use for URLs ending in .md — those are already markdown, use WebFetch directly.",
+          "subpath": "skills/defuddle"
+        },
+        {
+          "name": "Json Canvas",
+          "description": "Create and edit JSON Canvas files (.canvas) with nodes, edges, groups, and connections. Use when working with .canvas files, creating visual canvases, mind maps, flowcharts, or when the user mentions Canvas files in Obsidian.",
+          "subpath": "skills/json-canvas"
+        },
+        {
+          "name": "Obsidian Bases",
+          "description": "Create and edit Obsidian Bases (.base files) with views, filters, formulas, and summaries. Use when working with .base files, creating database-like views of notes, or when the user mentions Bases, table views, card views, filters, or formulas in Obsidian.",
+          "subpath": "skills/obsidian-bases"
+        },
+        {
+          "name": "Obsidian Cli",
+          "description": "Interact with Obsidian vaults using the Obsidian CLI to read, create, search, and manage notes, tasks, properties, and more. Also supports plugin and theme development with commands to reload plugins, run JavaScript, capture errors, take screenshots, and inspect the DOM. Use when the user asks to interact with their Obsidian vault, manage notes, search vault content, perform vault operations from the command line, or develop and debug Obsidian plugins and themes.",
+          "subpath": "skills/obsidian-cli"
+        },
+        {
+          "name": "Obsidian Markdown",
+          "description": "Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax. Use when working with .md files in Obsidian, or when the user mentions wikilinks, callouts, frontmatter, tags, embeds, or Obsidian notes.",
+          "subpath": "skills/obsidian-markdown"
+        }
+      ],
+      "useCase": "在 Obsidian 知識庫中使用 CLI、Markdown、JSON Canvas 或 Base 格式擴充 Agent 的自動化操作能力",
+      "negativeConstraints": [
+        "非 Obsidian 知識庫與筆記系統",
+        "關聯式 SQL 資料庫密集查詢"
+      ],
+      "advantages": [
+        "官方推薦設計規範",
+        "支援 Markdown/Bases/JSON Canvas 原生格式",
+        "整合 Obsidian CLI"
+      ]
+    },
+    {
+      "id": "claude-obsidian",
+      "name": "Claude Obsidian",
+      "url": "https://github.com/AgriciDaniel/claude-obsidian",
+      "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "claude-obsidian",
+        "claude",
+        "obsidian",
+        "agent-skills",
+        "ai-note-taking",
+        "ai-second-brain",
+        "claude-code",
+        "claude-code-skill"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/AgriciDaniel/claude-obsidian.git",
+        "repoUrl": "https://github.com/AgriciDaniel/claude-obsidian"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-note-taking",
+        "ai-second-brain",
+        "claude-code",
+        "claude-code-skill"
+      ],
+      "addedAt": "2026-07-25T11:58:40.363Z",
+      "status": "active",
+      "subTools": [
+        {
+          "name": "Autoresearch",
+          "description": ">",
+          "subpath": "skills/autoresearch"
+        },
+        {
+          "name": "Canvas",
+          "description": "Visual layer of the wiki. Add images, text cards, PDFs, and wiki pages to Obsidian canvas files with auto-positioning inside zones. Integrates with /banana for image capture. Triggers on: /canvas, canvas new, canvas add image, canvas add text, canvas add pdf, canvas add note, canvas zone, canvas list, canvas from banana, add to canvas, put this on the canvas, open canvas, create canvas.",
+          "subpath": "skills/canvas"
+        },
+        {
+          "name": "Defuddle",
+          "description": "Strip clutter from web pages before ingesting into the wiki. Removes ads, navigation, headers, footers, and boilerplate: leaving clean readable markdown that saves 40-60% tokens. Triggers on: defuddle, clean this page, strip this url, fetch and clean, clean web content before ingesting, strip ads, remove clutter, clean URL content, readable markdown from URL.",
+          "subpath": "skills/defuddle"
+        },
+        {
+          "name": "Obsidian Bases",
+          "description": "Create and edit Obsidian Bases (.base files): Obsidian's native database layer for dynamic tables, card views, list views, filters, formulas, and summaries over vault notes. Triggers on: create a base, add a base file, obsidian bases, base view, filter notes, formula, database view, dynamic table, task tracker base, reading list base.",
+          "subpath": "skills/obsidian-bases"
+        },
+        {
+          "name": "Obsidian Markdown",
+          "description": "Write correct Obsidian Flavored Markdown: wikilinks, embeds, callouts, properties, tags, highlights, math, and canvas syntax. Reference this when creating or editing any wiki page. Triggers on: write obsidian note, obsidian syntax, wikilink, callout, embed, obsidian markdown, wikilink format, callout syntax, embed syntax, obsidian formatting, how to write obsidian markdown.",
+          "subpath": "skills/obsidian-markdown"
+        },
+        {
+          "name": "Save",
+          "description": ">",
+          "subpath": "skills/save"
+        },
+        {
+          "name": "Think",
+          "description": "Apply the 10-principle thinking loop (OBSERVE-OBSERVE-LISTEN-THINK-CONNECT-CONNECT-FEEL-ACCEPT-CREATE-GROW) to any non-trivial problem. Walks Claude through external observation, metacognition, active listening, first-principles analysis, lateral connection, system orchestration, intuition, intellectual humility, generative output, and iterative growth. Triggers on: think this through, 10-principle review, /think, OBSERVE LISTEN THINK, deep think, systematic thinking, structured reasoning, walk this through, audit my thinking, am I thinking about this right.",
+          "subpath": "skills/think"
+        },
+        {
+          "name": "Wiki",
+          "description": ">",
+          "subpath": "skills/wiki"
+        },
+        {
+          "name": "Wiki Cli",
+          "description": "Default vault-mutation transport for claude-obsidian v1.7+. Wraps the Obsidian CLI (Obsidian 1.12+) as the preferred way to read, write, search, and modify vault notes from Claude — no MCP server, no REST API plugin, no TLS workarounds. Falls back to direct filesystem Read/Write/Edit when the CLI is unavailable. Triggers on: wiki-cli, obsidian cli, obsidian read, obsidian write, obsidian search, daily note, obsidian create, obsidian append, vault transport, which transport, transport detection, obsidian command line.",
+          "subpath": "skills/wiki-cli"
+        },
+        {
+          "name": "Wiki Fold",
+          "description": "Rollup of wiki log entries into meta-pages. Reads the last 2^k entries from wiki/log.md, writes a structurally-idempotent fold page to wiki/folds/ that links back to children. Extractive summarization (no invention). Dry-run by default, stdout-only; commit mode writes and accepts that the PostToolUse hook auto-commits. Triggers on: fold the log, run a fold, run wiki-fold, log rollup, roll up log entries.",
+          "subpath": "skills/wiki-fold"
+        },
+        {
+          "name": "Wiki Ingest",
+          "description": "Ingest sources into the Obsidian wiki vault. Reads a source, extracts entities and concepts, creates or updates wiki pages, cross-references, and logs the operation. Supports files, URLs, and batch mode. Triggers on: ingest, process this source, add this to the wiki, read and file this, batch ingest, ingest all of these, ingest this url.",
+          "subpath": "skills/wiki-ingest"
+        },
+        {
+          "name": "Wiki Lint",
+          "description": ">",
+          "subpath": "skills/wiki-lint"
+        },
+        {
+          "name": "Wiki Mode",
+          "description": "Methodology modes for the Compound Vault. Lets the vault declare an organizational style (LYT / PARA / Zettelkasten / Generic) that wiki-ingest, save, and autoresearch consult before filing new pages. Reads `.vault-meta/mode.json`; defaults to `generic` (v1.6/v1.7 behavior) when absent. Per the May 2026 compass artifact, methodology support was priority gap 5 — no other Claude+Obsidian competitor ships it as a first-class skill. Triggers on: set vault mode, switch to PARA, use LYT, what's my vault mode, zettelkasten setup, wiki mode, methodology mode, change mode, configure mode.",
+          "subpath": "skills/wiki-mode"
+        },
+        {
+          "name": "Wiki Query",
+          "description": "Answer questions using the Obsidian wiki vault. Reads hot cache first, then index, then relevant pages. Synthesizes answers with citations. Files good answers back as wiki pages. Supports quick, standard, and deep modes. Triggers on: what do you know about, query:, what is, explain, summarize, find in wiki, search the wiki, based on the wiki, wiki query quick, wiki query deep.",
+          "subpath": "skills/wiki-query"
+        },
+        {
+          "name": "Wiki Retrieve",
+          "description": "Hybrid retrieval primitive for the Compound Vault. Replaces the v1.6 static hot→index→drill read order with contextual-prefix + BM25 + cosine-rerank, modeled on Anthropic's Sept 2024 Contextual Retrieval research (35-49-67% retrieval-failure reduction). Opt-in via `bash bin/setup-retrieve.sh`; feature-detected by wiki-query and autoresearch. Triggers on: retrieve, hybrid retrieval, BM25, rerank, contextual retrieval, search the chunks, chunk search, vault search, semantic search, what chunks match, find relevant passages.",
+          "subpath": "skills/wiki-retrieve"
+        }
+      ],
+      "useCase": "讓 Claude 與 Obsidian 深度整合，進行個人知識管理、筆記檢索與內容雙向同步",
+      "negativeConstraints": [
+        "不支援一般雲端數據庫同步",
+        "非 Markdown 格式文本檔案編輯"
+      ],
+      "advantages": [
+        "支援 Claude Desktop 原生整合",
+        "提供 Obsidian 插件與 MCP 雙重操作介面",
+        "筆記圖譜與標籤搜尋"
+      ]
     }
   ]
 }

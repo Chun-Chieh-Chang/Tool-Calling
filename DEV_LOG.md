@@ -769,11 +769,44 @@
 #### RCA / CAPA
 - （本次為全域 MECE 檔案盤點、一線殘留清理與文件同步更新，無異常狀況）
 
+### 2026-07-25 — 後台殭屍程序盤點與終止作業 (Phase 47)
 
+#### 需求與動機
+使用者需求：「終止後台殭屍程序」。盤點 Antigravity Agent 後台任務與 Windows 系統環境中懸掛/殘留之後台進程，清理無回應或孤立之背景資源。
 
+#### 完成項目
+- [x] **Antigravity Task 盤點**：確認內部 Agent 無運行中背景任務 (`No background tasks are currently running`)。
+- [x] **系統進程掃描**：掃描發現 4 個前次任務殘留之 `chrome-devtools-mcp` 後台 Node.js 程序 (PID: 6916, 19764, 20416, 21916)。
+- [x] **程序終止與確效 (Kill Zombies)**：執行強制終止程序 (`Stop-Process -Force`)，並重新盤點系統進程，確認 4 個懸掛 Node.js 進程全數終止乾淨。
 
+#### RCA / CAPA
+- **問題**：先前工具測試/執行時啟動之 MCP 後台進程 (`chrome-devtools-mcp`) 在任務結束後未主動關閉，造成背景記憶體佔用與孤立進程。
+- **矯正與預防措施 (CAPA)**：建立進程掃描與清理腳本，對於外部啟動之一次性 MCP / Node 服務，確保於任務結束後執行清理 SOP。
 
+### 2026-07-25 — Obsidian 專用工具庫批量加入與 Monorepo 拆解 (Phase 48)
 
+#### 需求與動機
+使用者需求：「繼續幫我把以下這些網址批量加入工具庫(檢查是否需要拆解)：
+- https://github.com/kepano/obsidian-skills
+- https://github.com/AgriciDaniel/claude-obsidian」
+
+#### 完成項目
+- [x] **批量匯入 (`batch-add`)**：成功將 2 個 Obsidian 生態系 GitHub 專案導入 tools 註冊庫。
+  - `obsidian-skills` (kepano/obsidian-skills) - 開發工具
+  - `claude-obsidian` (AgriciDaniel/claude-obsidian) - 知識管理
+- [x] **Monorepo 深層拆解 (`index-subtools`)**：
+  - 對 `obsidian-skills` 執行拆解，成功發現並索引 **5 個子工具**。
+  - 對 `claude-obsidian` 執行拆解，成功發現並索引 **15 個子工具**。
+  - 共計拆解出 **20 個微技能子工具**，極大地增強語意檢索能力。
+- [x] **品質門禁與詮釋資料補齊 (`validate` & `enrich`)**：
+  - 100% 補齊 `useCase`, `negativeConstraints`, `advantages` 等屬性，提升狀態為 `active`。
+  - 執行 `node cli.js validate` 達成全庫 320/320 工具 100% 驗證通過。
+- [x] **建置與單元測試確效**：
+  - `node scripts/build-web.js` 打包成功。
+  - `npm test` 8/8 測試全數 PASS。
+
+#### RCA / CAPA
+- （本次為 Obsidian 生態工具批次匯入、Monorepo 拆解與品質確效，無異常狀況）
 
 
 
