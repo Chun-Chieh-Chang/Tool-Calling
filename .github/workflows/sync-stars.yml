@@ -1,0 +1,43 @@
+name: Auto Sync GitHub Stars
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # 每週日半夜自動執行一次 Star 同步
+  workflow_dispatch: # 支援在 GitHub Actions 介面手動點擊觸發
+
+permissions:
+  contents: write
+
+jobs:
+  sync-stars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Sync Live GitHub Stars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-github-stars.js
+
+      - name: Validate Registry & Build Web
+        run: |
+          npm run validate
+          node scripts/build-web.js
+
+      - name: Commit and Push if updated
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add registry/tools.json dist/
+          if git diff --staged --quiet; then
+            echo "No star changes detected."
+          else
+            git commit -m "chore(cron): auto-sync live GitHub star counts [skip ci]"
+            git push
+          fi

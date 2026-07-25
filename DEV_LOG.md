@@ -635,6 +635,21 @@
 #### RCA / CAPA
 - （本次為卡片排序演算法與 UI 體驗升級，無異常狀況）
 
+### 2026-07-25 — GitHub Star 數動態自動偵測與排程同步系統 (Phase 39)
+
+#### 需求與動機
+使用者詢問：「star 數會隨時改變，是否能自動偵測」。
+
+#### 完成項目
+- [x] **動態 Star 同步腳本**：撰寫 [scripts/sync-github-stars.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/sync-github-stars.js)，自動透過 GitHub API 獲取最新的 `stargazers_count`。
+- [x] **GitHub Actions 自動排程 (.github/workflows/sync-stars.yml)**：設定 Cron 定時任務（每週日半夜自動運行）與手動一鍵觸發，自動同步更新工具庫並部署。
+- [x] **NPM Script 整合**：新增 `npm run sync-stars` 指令。
+- [x] **確效驗證**：`node cli.js validate` (304/304 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為自動化 CI/CD 排程與資料動態同步功能開發，無異常狀況）
+
+
 
 
 
