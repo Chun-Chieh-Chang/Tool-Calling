@@ -588,12 +588,28 @@ select {
 
 .category-overview-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: calc(var(--spacing-base) * 5);
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(var(--spacing-base) * 4);
   margin-bottom: calc(var(--spacing-base) * 10);
 }
+@media (max-width: 1024px) {
+  .category-overview-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .category-overview-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .category-overview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .cat-card {
-  padding: calc(var(--spacing-base) * 5);
+  padding: calc(var(--spacing-base) * 4);
   cursor: pointer;
   display: flex;
   flex-direction: column;
