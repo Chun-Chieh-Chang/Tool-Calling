@@ -183,6 +183,98 @@ select {
   font-weight: 500;
 }
 
+/* Expand/Collapse All Button */
+.expand-all-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: calc(var(--spacing-base) * 1) calc(var(--spacing-base) * 3);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.expand-all-btn:hover {
+  color: var(--brand-color);
+  border-color: var(--brand-color);
+  background: rgba(96, 165, 250, 0.08);
+}
+
+/* Accordion */
+.accordion-section {
+  margin-bottom: calc(var(--spacing-base) * 3);
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: var(--surface-color);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: calc(var(--spacing-base) * 3) calc(var(--spacing-base) * 4);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-primary);
+  font-family: inherit;
+}
+.accordion-header:hover {
+  background: var(--surface-hover);
+  border-color: var(--brand-color);
+}
+
+.accordion-header-left {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-base) * 3);
+}
+
+.accordion-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+.accordion-section.open .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.accordion-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--brand-color);
+  background: rgba(96, 165, 250, 0.12);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Accordion Content */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
+  opacity: 0;
+}
+.accordion-content.open {
+  max-height: 99999px;
+  opacity: 1;
+  padding-top: calc(var(--spacing-base) * 3);
+}
+
 /* Grid */
 .grid {
   display: grid;

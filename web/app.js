@@ -8,6 +8,7 @@ const categorySelect = document.getElementById('categorySelect');
 const resultsGrid = document.getElementById('resultsGrid');
 const resultCount = document.getElementById('resultCount');
 const toolCardTemplate = document.getElementById('toolCardTemplate');
+const expandAllBtn = document.getElementById('expandAllBtn');
 
 // 初始化
 async function init() {
@@ -16,34 +17,58 @@ async function init() {
     if (!res.ok) throw new Error('Failed to load tools registry');
     const data = await res.json();
     registryTools = data.tools;
-    
+
     populateCategories();
     renderTools(registryTools);
 
-    // 預熱搜尋索引：把 buildToolText/tokenize/charNgrams 的成本挪到這裡
-    // （頁面載入完成、使用者還沒開始打字時），之後每次搜尋都直接複用快取。
-    // 用 requestIdleCallback（若瀏覽器支援）避免阻塞首次渲染。
+    // 預熱搜尋索引
     const warm = () => warmSearchIndex(registryTools);
     if (typeof requestIdleCallback === 'function') {
       requestIdleCallback(warm);
     } else {
       setTimeout(warm, 0);
     }
-    
+
     // 事件監聽
     searchInput.addEventListener('input', debounce(handleSearch, 300));
     categorySelect.addEventListener('change', handleSearch);
+    expandAllBtn.addEventListener('click', toggleAllSections);
   } catch (err) {
     console.error(err);
     resultCount.textContent = '載入失敗，請稍後再試。';
   }
 }
 
+// ─── 分類工具函式 ────────────────────────────────────────────────────────
+
+/**
+ * 取得工具的所有分類（支援 string 與 array 格式）
+ * @returns {string[]}
+ */
+function getToolCategories(tool) {
+  if (!tool.category) return ['未分類'];
+  if (Array.isArray(tool.category)) return tool.category.length > 0 ? tool.category : ['未分類'];
+  return [tool.category];
+}
+
+/**
+ * 檢查工具是否屬於某個分類
+ */
+function toolBelongsToCategory(tool, category) {
+  const cats = getToolCategories(tool);
+  return cats.includes(category);
+}
+
 // 產生分類選單
 function populateCategories() {
-  const map = listByCategory(registryTools);
-  const categories = Array.from(map.keys()).sort();
-  categories.forEach(cat => {
+  const allCats = new Set();
+  for (const tool of registryTools) {
+    for (const cat of getToolCategories(tool)) {
+      allCats.add(cat);
+    }
+  }
+  const sorted = Array.from(allCats).sort();
+  sorted.forEach(cat => {
     const option = document.createElement('option');
     option.value = cat;
     option.textContent = cat;
@@ -55,64 +80,161 @@ function populateCategories() {
 function handleSearch() {
   const query = searchInput.value.trim();
   const category = categorySelect.value;
-  
+
   if (!query && !category) {
     renderTools(registryTools);
+    expandAllBtn.style.display = '';
     return;
   }
-  
+
   if (!query && category) {
-    const filtered = registryTools.filter(t => t.category === category);
-    renderTools(filtered);
+    const filtered = registryTools.filter(t => toolBelongsToCategory(t, category));
+    renderSearchResults(filtered);
+    expandAllBtn.style.display = 'none';
     return;
   }
-  
-  // 執行搜尋引擎
-  const options = { topK: 100 }; // 網頁端顯示多一點
+
+  const options = { topK: 100 };
   if (category) options.category = category;
-  
+
   const results = search(registryTools, query, options);
   renderSearchResults(results);
+  expandAllBtn.style.display = 'none';
 }
 
-// 渲染所有工具 (無搜尋狀態)
+// ─── 渲染：分類折疊 (Accordion) 模式 ──────────────────────────────────
+
+// 狀態追蹤：記錄每個分類的展開/收合狀態
+const sectionState = {};
+
 function renderTools(tools) {
   resultsGrid.innerHTML = '';
   resultCount.textContent = `顯示 ${tools.length} 個工具`;
-  
-  tools.forEach(tool => {
-    const el = createToolCard(tool);
-    resultsGrid.appendChild(el);
-  });
+
+  // 按分類分組（支援多分類工具出現在多個 section）
+  const grouped = {};
+  for (const tool of tools) {
+    const cats = getToolCategories(tool);
+    for (const cat of cats) {
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(tool);
+    }
+  }
+
+  // 排序分類
+  const sortedCategories = Object.keys(grouped).sort();
+
+  for (const cat of sortedCategories) {
+    const catTools = grouped[cat];
+    const sectionId = `section-${cat.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '-')}`;
+
+    // 預設全部展開
+    if (sectionState[cat] === undefined) sectionState[cat] = true;
+    const isOpen = sectionState[cat];
+
+    // 建立 section 容器
+    const section = document.createElement('div');
+    section.className = 'accordion-section';
+
+    // 建立 header
+    const header = document.createElement('button');
+    header.className = 'accordion-header';
+    header.setAttribute('aria-expanded', String(isOpen));
+    header.setAttribute('aria-controls', sectionId);
+    header.innerHTML = `
+      <div class="accordion-header-left">
+        <span class="accordion-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+        <span class="accordion-title">${cat}</span>
+        <span class="accordion-count">${catTools.length}</span>
+      </div>
+    `;
+
+    header.addEventListener('click', () => {
+      sectionState[cat] = !sectionState[cat];
+      section.classList.toggle('open', sectionState[cat]);
+      header.setAttribute('aria-expanded', String(sectionState[cat]));
+    });
+
+    // 建立 content 容器
+    const content = document.createElement('div');
+    content.id = sectionId;
+    content.className = `accordion-content ${isOpen ? 'open' : ''}`;
+
+    // 在 content 內建 grid
+    const grid = document.createElement('div');
+    grid.className = 'grid';
+    for (const tool of catTools) {
+      grid.appendChild(createToolCard(tool, null, null, [], cat));
+    }
+    content.appendChild(grid);
+
+    section.appendChild(header);
+    section.appendChild(content);
+    resultsGrid.appendChild(section);
+  }
 }
 
-// 渲染搜尋結果
+// 搜尋結果：扁平列表（不分組）
 function renderSearchResults(results) {
   resultsGrid.innerHTML = '';
   resultCount.textContent = `找到 ${results.length} 個匹配工具`;
-  
+
+  // 搜尋時不使用 accordion，直接平鋪結果
+  const grid = document.createElement('div');
+  grid.className = 'grid';
   results.forEach(res => {
-    const el = createToolCard(res.tool, res.score, res.matchLevel, res.matchedKeywords);
-    resultsGrid.appendChild(el);
+    grid.appendChild(createToolCard(res.tool, res.score, res.matchLevel, res.matchedKeywords));
   });
+  resultsGrid.appendChild(grid);
 }
 
-// 建立卡片 DOM
-function createToolCard(tool, score = null, matchLevel = null, matchedKeywords = []) {
+// ─── 展開 / 收合全部 ──────────────────────────────────────────────────
+
+function toggleAllSections() {
+  // 判斷目前是展開還是收合狀態
+  const allOpen = Object.values(sectionState).every(v => v === true);
+  const newState = !allOpen;
+
+  // 更新所有分類狀態
+  for (const cat of Object.keys(sectionState)) {
+    sectionState[cat] = newState;
+  }
+
+  // 更新所有 section 的 DOM
+  const sections = resultsGrid.querySelectorAll('.accordion-section');
+  sections.forEach(section => {
+    section.classList.toggle('open', newState);
+    const header = section.querySelector('.accordion-header');
+    if (header) header.setAttribute('aria-expanded', String(newState));
+  });
+
+  // 更新按鈕文字
+  expandAllBtn.textContent = newState ? '收合全部' : '展開全部';
+}
+
+// ─── 建立卡片 DOM ─────────────────────────────────────────────────────
+
+function createToolCard(tool, score = null, matchLevel = null, matchedKeywords = [], currentCategory = null) {
   const clone = toolCardTemplate.content.cloneNode(true);
   const article = clone.querySelector('article');
-  
+
   clone.querySelector('.tool-name').textContent = tool.name;
   clone.querySelector('.tool-desc').textContent = tool.description || '無描述';
-  clone.querySelector('.category-tag').textContent = tool.category || '未分類';
+  // 若卡片屬於多分類 section，顯示當前 section 的分類；否則顯示工具的分類
+  const displayCat = currentCategory || getToolCategories(tool).join(' / ');
+  clone.querySelector('.category-tag').textContent = displayCat;
   clone.querySelector('.github-link').href = tool.url;
-  
+
   const badge = clone.querySelector('.match-badge');
   if (score !== null) {
     const percentage = Math.round(score * 100);
     badge.textContent = `${percentage}% Match`;
     article.querySelector('.progress-bar').style.width = `${percentage}%`;
-    
+
     if (matchLevel === 'L1-exact') badge.classList.add('exact');
     else if (matchLevel === 'L2-keyword') badge.classList.add('keyword');
     else badge.classList.add('semantic');
@@ -120,30 +242,27 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
     badge.style.display = 'none';
     article.querySelector('.progress-bar-container').style.display = 'none';
   }
-  
+
   const tagsContainer = clone.querySelector('.tags-container');
-  // 加入場景
   if (tool.useCase) {
     const tag = document.createElement('span');
     tag.className = 'tag usecase';
     tag.textContent = '⭐ ' + tool.useCase;
     tagsContainer.appendChild(tag);
   }
-  // 加入禁用場景
   if (tool.negativeConstraints && tool.negativeConstraints.length > 0) {
     const tag = document.createElement('span');
     tag.className = 'tag highlight';
     tag.textContent = '🚫 ' + tool.negativeConstraints[0] + (tool.negativeConstraints.length > 1 ? '...' : '');
     tagsContainer.appendChild(tag);
   }
-  // 匹配關鍵字
   if (matchedKeywords && matchedKeywords.length > 0) {
     const tag = document.createElement('span');
     tag.className = 'tag';
     tag.textContent = '匹配: ' + matchedKeywords.slice(0, 2).join(', ');
     tagsContainer.appendChild(tag);
   }
-  
+
   return clone;
 }
 
