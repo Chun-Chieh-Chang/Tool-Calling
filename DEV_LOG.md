@@ -571,6 +571,25 @@
 - **問題**：前期刪除 `toggleAllSections()` 時清理殘留，多留了一個孤立括號。
 - **矯正與預防措施 (CAPA)**：每次編輯前端腳本後強制執行 `node --check web/app.js` 靜態語法診斷，確保 0 語法錯誤才能 Commit。
 
+### 2026-07-25 — 頂級 GitHub 數據分析 5 大工具庫擴充 (Phase 35)
+
+#### 需求與動機
+使用者需求：「數據分析工具過於單薄，請到 Github 搜索最高評價的5個數據分析工具，加入到本專案工具箱」。
+
+#### 完成項目
+- [x] **檢索並精選 5 大頂級數據分析工具**：
+  1. `duckdb` (DuckDB, ~39.7k ⭐) - 高性能內嵌式 SQL OLAP 資料庫。
+  2. `polars` (Polars, ~39.1k ⭐) - Rust 編寫的極速多執行緒 DataFrames 處理庫。
+  3. `pandas-ai` (PandasAI, ~23.7k ⭐) - 對話式 AI 自然語言 DataFrame 分析 Agent。
+  4. `pygwalker` (PyGWalker, ~15.9k ⭐) - 拖拽式 Tableau 風格 DataFrame 視覺化 UI。
+  5. `ydata-profiling` (YData Profiling, ~11.0k ⭐) - 一行程式碼自動生成 EDA 數據診斷報告。
+- [x] **100% 符合新防禦元規則**：每個工具皆 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` 與 `capabilities`，狀態為 `active`。
+- [x] **確效驗證**：`node cli.js validate` (298/298 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為數據分析領域核心工具補強，無異常狀況）
+
+
 
 
 

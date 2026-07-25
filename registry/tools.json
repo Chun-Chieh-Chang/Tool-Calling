@@ -24940,6 +24940,201 @@
         "不保證免費端點的穩定性與速率限制",
         "不適合用於需要 SLA 保證的生產環境"
       ]
+    },
+    {
+      "id": "pandas-ai",
+      "name": "PandasAI",
+      "url": "https://github.com/sinaptik-ai/pandas-ai",
+      "description": "Conversational AI agent interface for pandas and polars dataframes using natural language.",
+      "category": "數據分析",
+      "language": "python",
+      "triggers": [
+        "pandas-ai",
+        "pandasai",
+        "data-analysis",
+        "dataframe-ai",
+        "natural-language-data",
+        "eda-agent"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install pandasai",
+        "repoUrl": "https://github.com/sinaptik-ai/pandas-ai"
+      },
+      "capabilities": [
+        "conversational-data-analysis",
+        "nl-to-sql",
+        "dataframe-agent",
+        "chart-generation"
+      ],
+      "useCase": "Analyzing dataframes and generating complex data visualizations directly through natural language prompts.",
+      "advantages": [
+        "Translates natural language questions directly into executable Python code and charts",
+        "Seamless integration with Pandas, Polars, DuckDB, and SQL databases",
+        "Built-in privacy safeguards preventing raw data leakage to external LLM providers"
+      ],
+      "negativeConstraints": [
+        "Not recommended for deterministic real-time data streaming without LLM involvement",
+        "Avoid for simple static CSV filtering where basic pandas indexing is faster"
+      ],
+      "addedAt": "2026-07-25T03:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "duckdb",
+      "name": "DuckDB",
+      "url": "https://github.com/duckdb/duckdb",
+      "description": "High-performance in-process SQL OLAP database management system for analytical queries.",
+      "category": "數據分析",
+      "language": "python",
+      "triggers": [
+        "duckdb",
+        "olap",
+        "sql-analysis",
+        "in-process-db",
+        "columnar-database",
+        "parquet-analysis"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install duckdb",
+        "repoUrl": "https://github.com/duckdb/duckdb"
+      },
+      "capabilities": [
+        "olap-analytical-queries",
+        "parquet-reading",
+        "vectorized-execution",
+        "zero-copy-integration"
+      ],
+      "useCase": "Executing high-speed analytical SQL queries over large Parquet files, CSVs, or DataFrames with zero database setup.",
+      "advantages": [
+        "Vectorized columnar execution engine running 10x-100x faster than traditional SQLite",
+        "Direct zero-copy querying of Arrow, Pandas, and Parquet files without data copying",
+        "Zero-dependency single binary footprint embedding seamlessly into Python or Node.js applications"
+      ],
+      "negativeConstraints": [
+        "Not suitable for high-concurrency transactional OLTP web applications with frequent single-row writes",
+        "Avoid for distributed multi-node cloud data warehousing workloads requiring petabyte clustering"
+      ],
+      "addedAt": "2026-07-25T03:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "polars",
+      "name": "Polars",
+      "url": "https://github.com/pola-rs/polars",
+      "description": "Lightning-fast multi-threaded DataFrames library written in Rust with lazy evaluation.",
+      "category": "數據分析",
+      "language": "rust",
+      "triggers": [
+        "polars",
+        "dataframe",
+        "fast-pandas",
+        "rust-dataframe",
+        "lazy-evaluation",
+        "big-data-analysis"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install polars",
+        "repoUrl": "https://github.com/pola-rs/polars"
+      },
+      "capabilities": [
+        "multi-threaded-dataframes",
+        "lazy-query-optimization",
+        "apache-arrow-memory",
+        "out-of-core-processing"
+      ],
+      "useCase": "Processing and manipulating multi-gigabyte datasets fast with multi-threading and optimized lazy query plans.",
+      "advantages": [
+        "Written in Rust with multi-threaded parallel execution utilizing all available CPU cores",
+        "Lazy evaluation API with query optimizer reducing redundant computations and memory usage",
+        "Built natively on Apache Arrow memory model for seamless zero-copy interoperability"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects bound to legacy Pandas-specific third-party plugin ecosystems",
+        "Avoid when simple lightweight dictionary transformations are sufficient without dataframe overhead"
+      ],
+      "addedAt": "2026-07-25T03:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "pygwalker",
+      "name": "PyGWalker",
+      "url": "https://github.com/Kanaries/pygwalker",
+      "description": "Turn Pandas dataframes into a Tableau-style interactive visual analytics drag-and-drop UI.",
+      "category": "數據分析",
+      "language": "python",
+      "triggers": [
+        "pygwalker",
+        "tableau-python",
+        "interactive-eda",
+        "visual-analytics",
+        "graphic-walker",
+        "jupyter-viz"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install pygwalker",
+        "repoUrl": "https://github.com/Kanaries/pygwalker"
+      },
+      "capabilities": [
+        "tableau-style-ui",
+        "drag-and-drop-analytics",
+        "graphic-walker-viz",
+        "jupyter-notebook-integration"
+      ],
+      "useCase": "Exploring datasets interactively through drag-and-drop visual charts directly inside Jupyter Notebooks or web apps.",
+      "advantages": [
+        "Provides a full Tableau-like visual exploration UI directly within Jupyter notebooks",
+        "Enables zero-code drag-and-drop multidimensional chart creation and data filtering",
+        "Lightweight integration supporting Pandas, Polars, DuckDB, and Streamlit"
+      ],
+      "negativeConstraints": [
+        "Not suitable for headless background automated batch reporting without a GUI",
+        "Avoid for real-time streaming dashboard rendering with sub-second websocket pushes"
+      ],
+      "addedAt": "2026-07-25T03:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "ydata-profiling",
+      "name": "YData Profiling",
+      "url": "https://github.com/ydataai/ydata-profiling",
+      "description": "Automated exploratory data analysis (EDA) and comprehensive HTML profiling report generator.",
+      "category": "數據分析",
+      "language": "python",
+      "triggers": [
+        "ydata-profiling",
+        "pandas-profiling",
+        "automated-eda",
+        "data-quality-report",
+        "dataset-profiling",
+        "eda-report"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install ydata-profiling",
+        "repoUrl": "https://github.com/ydataai/ydata-profiling"
+      },
+      "capabilities": [
+        "automated-eda-reports",
+        "dataset-health-audit",
+        "correlation-matrices",
+        "missing-data-analysis"
+      ],
+      "useCase": "Generating comprehensive automated HTML data quality and exploratory analysis reports with a single line of code.",
+      "advantages": [
+        "Generates detailed interactive HTML reports including data distributions, correlations, and missing values",
+        "Detects data quality issues, anomalies, skewness, and duplicate entries automatically",
+        "One-line execution suitable for rapid initial dataset health checks and EDA documentation"
+      ],
+      "negativeConstraints": [
+        "Not recommended for real-time latency-sensitive production inference pipelines",
+        "Avoid on massive multi-terabyte datasets without sampling due to memory-intensive profiling"
+      ],
+      "addedAt": "2026-07-25T03:00:00.000Z",
+      "status": "active"
     }
   ]
 }
