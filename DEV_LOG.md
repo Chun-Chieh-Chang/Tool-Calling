@@ -1105,6 +1105,24 @@
 #### RCA / CAPA
 - （本次完成 3D 宇宙空間圖譜與 2D/3D 雙視角動態切換引擎重構，無異常狀況）
 
+### 2026-07-25 — 3D 空間 3D 常駐文字標籤 (3D Text Sprite) 與分類圖例完全同步重構 (Phase 63)
+
+#### 需求與動機
+使用者需求：「3D視圖中也應該要像2D圖一樣顯示圖例與工具名稱」。補齊 3D 空間常駐文字與圖例高亮能力。
+
+#### 完成項目
+- [x] **3D 常駐文字 Billboard 標籤器 (`create3DTextSprite`)**：
+  - 於 `scripts/generate-knowledge-graph.js` 實現 Three.js `THREE.Sprite` 與 `THREE.CanvasTexture` 動態繪製。
+  - 在 3D 宇宙空間中，每個 3D 球體上方常駐顯示高清晰度、無死角面向鏡頭的文字標籤（Category 展示亮藍標籤、Tool 展示亮白標籤，並帶有 6px 深色立體描邊邊框）。
+- [x] **3D 視角與右側圖例面板 100% 互動連動 (`filterCategory`)**：
+  - 點擊右側中間圖例面板的分類標籤時，3D 空間自動平滑過渡相機，飛至目標 Category 球體並觸發資訊面板。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 打包發行成功。
+  - `npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- （本次完成 3D 空間 3D 常駐文字標籤與對角圖例面板互動連動，無異常狀況）
+
 
 
 

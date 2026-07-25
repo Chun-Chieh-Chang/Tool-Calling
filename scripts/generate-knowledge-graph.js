@@ -42,7 +42,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (支援 3D 空間 3D 常駐文字與動態亮顯)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -231,6 +231,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/three"></script>
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -466,7 +467,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (可自由切換 3D 宇宙與 2D 平面視角)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 空間支援 3D 浮動名稱標籤與對角圖例面板)</p>
   </div>
 
   <div id="controls">
@@ -476,7 +477,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
   </div>
 
-  <!-- 右側中間：分類色彩與連線型態圖例面板 -->
+  <!-- 右側中間：分類色彩與連線型態圖例面板 (2D/3D 通用) -->
   <div id="legendPanel">
     <div class="legend-header">
       <span>🎨 點擊分類圖例高亮圖譜</span>
@@ -551,7 +552,40 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph ────────────────────────────────────
+    // ─── 3D 空間 Canvas 3D 常駐文字 Sprite 貼圖生成器 ─────────────────────────
+    function create3DTextSprite(text, colorHex, group) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 384;
+      canvas.height = 96;
+      const ctx = canvas.getContext('2d');
+
+      const cleanText = text.replace('\\n', ' ');
+      ctx.font = group === 'category' ? 'Bold 28px Inter, sans-serif' : (group === 'root' ? 'Bold 32px Inter, sans-serif' : '22px Inter, sans-serif');
+      
+      // 顏色調配
+      if (group === 'root') ctx.fillStyle = '#C084FC';
+      else if (group === 'category') ctx.fillStyle = '#60A5FA';
+      else ctx.fillStyle = '#F8FAFC';
+
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // 黑色立體描邊，確保在深色 3D 宇宙中 100% 清晰可讀
+      ctx.strokeStyle = '#0F172A';
+      ctx.lineWidth = 6;
+      ctx.strokeText(cleanText, 192, 48);
+      ctx.fillText(cleanText, 192, 48);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
+      const sprite = new THREE.Sprite(spriteMaterial);
+
+      const scaleFactor = group === 'root' ? 50 : (group === 'category' ? 36 : 24);
+      sprite.scale.set(scaleFactor, scaleFactor / 4, 1);
+      return sprite;
+    }
+
+    // ─── 2. 初始化 3D Force-Directed Graph (帶常駐 3D 標籤與發光球體) ──────────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -564,29 +598,46 @@ export function generateKnowledgeGraph(registryInput = null) {
       graph3DInstance = ForceGraph3D()(container3d)
         .graphData(gData)
         .backgroundColor('#0B0F19')
-        .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.9); padding:6px 10px; border-radius:6px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b></div>\`)
-        .nodeColor(node => node.colorHex || '#3B82F6')
-        .nodeVal(node => node.val || 10)
-        .nodeResolution(16)
+        .nodeThreeObject(node => {
+          const group = new THREE.Group();
+
+          // 1. 3D 實體球體 (Sphere Mesh)
+          const radius = Math.max(node.val / 2.8, 3);
+          const geometry = new THREE.SphereGeometry(radius, 16, 16);
+          const material = new THREE.MeshLambertMaterial({
+            color: node.colorHex || '#3B82F6',
+            transparent: true,
+            opacity: 0.92
+          });
+          const sphere = new THREE.Mesh(geometry, material);
+          group.add(sphere);
+
+          // 2. 3D 常駐文字標籤 Sprite (總是面向鏡頭)
+          const textSprite = create3DTextSprite(node.label, node.colorHex, node.group);
+          textSprite.position.set(0, radius + 8, 0);
+          group.add(textSprite);
+
+          return group;
+        })
+        .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.95); padding:8px 12px; border-radius:8px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b><br/><span style="font-size:11px; color:#94A3B8;">\${node.group.toUpperCase()}</span></div>\`)
         .linkColor(link => link.colorHex || '#334155')
         .linkWidth(link => link.width || 1)
-        .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
-        .linkDirectionalParticleSpeed(0.006)
-        .linkDirectionalParticleWidth(2)
+        .linkDirectionalParticles(link => link.isDashed ? 3 : 0)
+        .linkDirectionalParticleSpeed(0.007)
+        .linkDirectionalParticleWidth(2.5)
         .onNodeClick(node => {
-          // 相機飛入動畫 (Camera Fly-To)
-          const distance = 120;
-          const distRatio = 1 + distance / Math.hypot(node.x, node.y, node.z);
+          const distance = 140;
+          const distRatio = 1 + distance / Math.hypot(node.x || 1, node.y || 1, node.z || 1);
           graph3DInstance.cameraPosition(
-            { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio },
+            { x: (node.x || 0) * distRatio, y: (node.y || 0) * distRatio, z: (node.z || 0) * distRatio },
             node,
             1200
           );
           showPanel(node);
         });
 
-      // 視角旋轉開場
-      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 450 });
+      // 預設 3D 相機位置
+      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
     }
 
     // 切換 2D / 3D 視角
@@ -615,7 +666,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       if (isAlreadyActive) {
         if (is3DMode && graph3DInstance) {
-          graph3DInstance.cameraPosition({ x: 0, y: 0, z: 450 }, { x: 0, y: 0, z: 0 }, 1000);
+          graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 }, { x: 0, y: 0, z: 0 }, 1000);
         } else {
           network2d.unselectAll();
           network2d.fit({ animation: { duration: 600 } });
@@ -814,7 +865,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D/2D dual-engine knowledge graph updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 3D graph updated with 3D persistent text labels & legend integration for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
