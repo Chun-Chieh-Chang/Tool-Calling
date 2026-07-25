@@ -487,7 +487,7 @@
           showPanel(node);
         });
 
-      // 顯式開啟 3D 右鍵、中鍵與 Shift+左鍵平移功能 (Explicit 3D Panning Mapping)
+      // 顯式開啟 3D 右鍵、中鍵與 Shift+左鍵平移功能 (Explicit 3D Panning & Shift-Left Pan Algorithm)
       setTimeout(() => {
         if (graph3DInstance.controls) {
           const controls = graph3DInstance.controls();
@@ -499,24 +499,70 @@
             controls.rotateSpeed = 1.0;
 
             controls.mouseButtons = {
-              LEFT: 0,   // ROTATE
-              MIDDLE: 2, // PAN
-              RIGHT: 2   // PAN
+              LEFT: 0,   // 普通左鍵: 旋轉 (ROTATE)
+              MIDDLE: 2, // 滾輪中鍵: 平移 (PAN)
+              RIGHT: 2   // 滑鼠右鍵: 平移 (PAN)
             };
-
-            window.addEventListener('keydown', (e) => {
-              if (e.key === 'Shift' && controls.mouseButtons) {
-                controls.mouseButtons.LEFT = 2; // PAN
-              }
-            });
-            window.addEventListener('keyup', (e) => {
-              if (e.key === 'Shift' && controls.mouseButtons) {
-                controls.mouseButtons.LEFT = 0; // ROTATE
-              }
-            });
           }
         }
       }, 100);
+
+      // 防止右鍵跳出瀏覽器選單
+      container3d.addEventListener('contextmenu', e => e.preventDefault());
+
+      // 完美解鎖 Shift + 滑鼠左鍵拖曳 100% 視角平移 (Capturing Pointerdown Shift-Pan Algorithm)
+      let isShiftPanning = false;
+      let lastPanX = 0, lastPanY = 0;
+
+      container3d.addEventListener('pointerdown', function (e) {
+        if (e.button === 0 && e.shiftKey) {
+          isShiftPanning = true;
+          lastPanX = e.clientX;
+          lastPanY = e.clientY;
+          try { container3d.setPointerCapture(e.pointerId); } catch (err) { }
+          e.stopPropagation();
+        }
+      }, true);
+
+      container3d.addEventListener('pointermove', function (e) {
+        if (isShiftPanning && (e.buttons & 1)) {
+          const dx = e.clientX - lastPanX;
+          const dy = e.clientY - lastPanY;
+          lastPanX = e.clientX;
+          lastPanY = e.clientY;
+
+          if (graph3DInstance) {
+            const camera = graph3DInstance.camera();
+            const controls = graph3DInstance.controls();
+            if (camera && controls && controls.target) {
+              const Vector3Class = controls.target.constructor;
+              const target = controls.target;
+
+              const distance = camera.position.distanceTo(target);
+              const fovRad = (camera.fov || 45) * Math.PI / 180;
+              const factor = (distance * Math.tan(fovRad / 2) * 2) / (container3d.clientHeight || 1080);
+
+              const vLeft = new Vector3Class(-dx * factor, 0, 0).applyQuaternion(camera.quaternion);
+              const vUp = new Vector3Class(0, dy * factor, 0).applyQuaternion(camera.quaternion);
+
+              const panOffset = new Vector3Class().addVectors(vLeft, vUp);
+
+              camera.position.add(panOffset);
+              target.add(panOffset);
+              controls.update();
+            }
+          }
+          e.stopPropagation();
+        }
+      }, true);
+
+      container3d.addEventListener('pointerup', function (e) {
+        if (isShiftPanning) {
+          isShiftPanning = false;
+          try { container3d.releasePointerCapture(e.pointerId); } catch (err) { }
+          e.stopPropagation();
+        }
+      }, true);
 
       // 安全 3D 滾輪推進演算法
       container3d.addEventListener('wheel', function (event) {

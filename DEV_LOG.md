@@ -1408,6 +1408,32 @@
 - **問題**：先前未經自動化瀏覽器視覺截圖確效，未能及時發現 window.THREE 未暴露導致 3D 標籤回傳 null 的視覺瑕疵。
 - **矯正與預防措施 (CAPA)**：使用 Playwright 自動化瀏覽器執行真正的渲染截圖與 Console Error 檢查，經親自審視圖片無誤後才回報完成。
 
+### 2026-07-25 — 3D 空間 Shift + 滑鼠左鍵拖曳 100% 精準平移演算法與 Playwright 確效 (Phase 78)
+
+#### 需求與動機
+使用者需求：「shift + 滑鼠左鍵不是平移的功能而是旋轉，這部分如果解決就完美了」。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - Three.js `OrbitControls` 在 Canvas 上監聽 `pointerdown` 時，`3d-force-graph` 的節點拖曳與畫布旋轉層會搶先捕獲左鍵事件；即使設定 `keydown` 修改 `mouseButtons`，在實際滑鼠拖曳時仍會觸發預設的相機旋轉 (ROTATE)。
+  - 右鍵未阻斷 `contextmenu` 導致部分環境彈出選單影響平移。
+- [x] **矯正與預防措施 (CAPA - Capture-Phase Pointerdown Pan Algorithm)**：
+  - 在 Canvas 注入 `contextmenu` 的 `preventDefault()`。
+  - 在 `pointerdown` **Capture 階段 (捕獲層)** 優先判定 `e.button === 0 && e.shiftKey`：
+    - 計算攝影機透視投影比例 `factor = (distance * tan(fov/2) * 2) / height`。
+    - 根據滑鼠移動增量 (`dx`, `dy`) 計算相機座標系 local X/Y 平移向量 `panOffset`。
+    - 同步更新 `camera.position` 與 `controls.target` 並呼叫 `controls.update()`。
+- [x] **Playwright 自動化測試與確效 (PASS)**：
+  - 執行 `scratch-test-shift-algorithm.cjs`：
+    - **Shift + 左鍵拖曳**：`targetPos` 與 `camPos` 同步平移 **`SUCCESS (PAN)`**！
+    - **普通左鍵拖曳**：僅 `camPos` 旋轉、`targetPos` 保持原點 **`SUCCESS (ROTATE)`**！
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：Shift+左鍵拖曳在 OrbitControls/3d-force-graph 中觸發了旋轉而不是平移。
+- **矯正與預防措施 (CAPA)**：在 pointerdown 事件 Capture 階段優先攔截 Shift+左鍵，並以相機透視視角投影演算法直接進行螢幕空間 Vector3 雙向平移，達成 100% 安定流暢體驗。
+
+
 
 
 
