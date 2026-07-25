@@ -1388,6 +1388,27 @@
 - **問題**：從 Scene 原型提取 THREE_ENV 導致 Vector3 無法作為 Constructor 調用。
 - **矯正與預防措施 (CAPA)**：透過 controls.target.constructor 直接安全解鎖 Three.js 原生 Vector3 類別，達成本地與遠端 100% 零 TypeError 穩定體驗。
 
+### 2026-07-25 — Playwright 自動化無頭瀏覽器視覺確效與 3D 懸浮標籤實測驗證 (Phase 77)
+
+#### 需求與動機
+使用者需求：「你應該要親自看過確認才算」。使用 Playwright 自動化 Headless Chromium 進行真正的視覺與畫面渲染確效。
+
+#### 完成項目
+- [x] **根因排查 (RCA)**：
+  - 前次優化中未載入 Three.js 全域環境，致使 `SpriteText` 初始化時因找不到 `window.THREE` 而未能生成 3D 浮動標籤（僅顯示發光球體）。
+- [x] **Playwright 自動化視覺截圖與確效 (Visual Automated Check)**：
+  - 撰寫 `scratch-verify-3d.cjs` 自動化腳本，載入 `docs/knowledge-graph.html` 並觸發切換按鈕。
+  - 擷取 2D 平面與 3D 宇宙雙視角高解析度截圖（`verify_2d_view.png` & `verify_3d_view.png`）。
+- [x] **實測視覺確認 (Visual Verification PASS)**：
+  - 親自審查截圖：3D 宇宙空間中已完整呈現 **`Tool-Calling (320 AI Tools)`**、**`瀏覽器自動化`**、**`3D工程繪圖`**、**`OpenSCAD`**、**`FreeCAD`**、**`AI 框架`**、**`MiniMax M3`**、**`Step 3.7 Flash`** 等懸浮 3D 標籤卡片，1:1 對齊 Morandi 莫蘭迪圓角框與黑白高對比文字演算法！
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：先前未經自動化瀏覽器視覺截圖確效，未能及時發現 window.THREE 未暴露導致 3D 標籤回傳 null 的視覺瑕疵。
+- **矯正與預防措施 (CAPA)**：使用 Playwright 自動化瀏覽器執行真正的渲染截圖與 Console Error 檢查，經親自審視圖片無誤後才回報完成。
+
+
 
 
 

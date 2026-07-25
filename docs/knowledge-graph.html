@@ -6,6 +6,8 @@
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph@1.73.1/dist/3d-force-graph.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -415,7 +417,7 @@
       return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
     }
 
-    // ─── 2. 初始化 3D Force-Directed Graph (百分百安全 Vector3 與 3D 滾輪推進) ──
+    // ─── 2. 初始化 3D Force-Directed Graph ──
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -433,65 +435,38 @@
         .nodeColor(node => node.colorHex || '#3B82F6')
         .nodeVal(node => node.val || 10)
         .nodeThreeObject(node => {
-          // 使用 3d-force-graph UMD 內建暴露的 window.THREE 繪製 Canvas Sprite 標籤
-          const T = window.THREE;
-          if (!T || !T.CanvasTexture) return null;
-
+          if (typeof SpriteText === 'undefined') return null;
           const label = node.label.replace('\n', ' ');
           const bgHex = node.colorHex || '#2563EB';
           const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#F1F5F9';
 
-          // 建立高解析度 Canvas 繪製文字標籤
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          const fontSize = node.group === 'root' ? 28 : (node.group === 'category' ? 24 : (node.group === 'tool' ? 18 : 14));
-          ctx.font = 'bold ' + fontSize + 'px Inter, sans-serif';
-          const textWidth = ctx.measureText(label).width;
-          const padX = 16, padY = 10;
-          canvas.width = textWidth + padX * 2;
-          canvas.height = fontSize + padY * 2;
+          const sprite = new SpriteText(label);
+          sprite.fontFace = 'Inter, sans-serif';
+          sprite.fontWeight = 'bold';
 
-          // 背景填充 (1:1 對齊 2D 色彩大師規範)
-          ctx.fillStyle = node.group === 'root' ? 'rgba(79, 70, 229, 0.92)' :
-                         (node.group === 'category' ? bgHex :
-                         (node.group === 'tool' ? 'rgba(30, 41, 59, 0.90)' : 'rgba(51, 65, 85, 0.85)'));
-          const r = 6;
-          ctx.beginPath();
-          ctx.moveTo(r, 0);
-          ctx.lineTo(canvas.width - r, 0);
-          ctx.quadraticCurveTo(canvas.width, 0, canvas.width, r);
-          ctx.lineTo(canvas.width, canvas.height - r);
-          ctx.quadraticCurveTo(canvas.width, canvas.height, canvas.width - r, canvas.height);
-          ctx.lineTo(r, canvas.height);
-          ctx.quadraticCurveTo(0, canvas.height, 0, canvas.height - r);
-          ctx.lineTo(0, r);
-          ctx.quadraticCurveTo(0, 0, r, 0);
-          ctx.closePath();
-          ctx.fill();
-
-          // Tool 邊框線 (比照 2D Category 外框色)
-          if (node.group === 'tool') {
-            ctx.strokeStyle = bgHex;
-            ctx.lineWidth = 3;
-            ctx.stroke();
+          if (node.group === 'root') {
+            sprite.textHeight = 10;
+            sprite.backgroundColor = 'rgba(79, 70, 229, 0.92)';
+            sprite.textColor = '#FFFFFF';
+          } else if (node.group === 'category') {
+            sprite.textHeight = 8;
+            sprite.backgroundColor = bgHex;
+            sprite.textColor = txtColor;
+          } else if (node.group === 'tool') {
+            sprite.textHeight = 5;
+            sprite.backgroundColor = 'rgba(30, 41, 59, 0.90)';
+            sprite.strokeColor = bgHex;
+            sprite.strokeWidth = 1.5;
+            sprite.textColor = '#F8FAFC';
+          } else {
+            sprite.textHeight = 3.5;
+            sprite.backgroundColor = 'rgba(51, 65, 85, 0.85)';
+            sprite.textColor = '#CBD5E1';
           }
 
-          // 繪製對比文字
-          ctx.font = 'bold ' + fontSize + 'px Inter, sans-serif';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillStyle = txtColor;
-          ctx.fillText(label, canvas.width / 2, canvas.height / 2);
-
-          // 轉成 Three.js CanvasTexture Sprite
-          const texture = new T.CanvasTexture(canvas);
-          texture.needsUpdate = true;
-          const material = new T.SpriteMaterial({ map: texture, transparent: true, depthWrite: false });
-          const sprite = new T.Sprite(material);
-          const scaleBase = node.group === 'root' ? 40 : (node.group === 'category' ? 32 : (node.group === 'tool' ? 22 : 16));
-          const aspect = canvas.width / canvas.height;
-          sprite.scale.set(scaleBase * aspect / 2, scaleBase / 2, 1);
-          sprite.position.set(0, (node.val || 10) / 3 + 6, 0);
+          sprite.padding = 3;
+          sprite.borderRadius = 4;
+          sprite.position.set(0, (node.val || 10) / 3 + 8, 0);
           return sprite;
         })
         .nodeThreeObjectExtend(true)
@@ -543,7 +518,7 @@
         }
       }, 100);
 
-      // 安全 3D 滾輪推進演算法 (使用 controls.target.constructor 絕對解鎖 Vector3)
+      // 安全 3D 滾輪推進演算法
       container3d.addEventListener('wheel', function (event) {
         if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
@@ -553,7 +528,6 @@
         event.preventDefault();
         event.stopPropagation();
 
-        // 100% 絕對安全獲取 Three.js Vector3 建構子
         const Vector3Class = controls.target.constructor;
         if (!Vector3Class) return;
 
