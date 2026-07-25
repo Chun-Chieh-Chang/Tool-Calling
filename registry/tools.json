@@ -25135,6 +25135,122 @@
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
       "status": "active"
+    },
+    {
+      "id": "shadcn-ui",
+      "name": "shadcn/ui",
+      "url": "https://github.com/shadcn-ui/ui",
+      "description": "Beautifully designed accessible UI component system copied directly into React and Tailwind codebases.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "shadcn-ui",
+        "shadcn",
+        "ui-component-generator",
+        "tailwind-ui",
+        "design-system",
+        "radix-ui"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx shadcn@latest init",
+        "repoUrl": "https://github.com/shadcn-ui/ui"
+      },
+      "capabilities": [
+        "ui-component-generation",
+        "design-system-scaffolding",
+        "tailwind-styling",
+        "accessible-primitives"
+      ],
+      "useCase": "Generating production-ready accessible React/Tailwind UI components and building modern cohesive design systems.",
+      "advantages": [
+        "Components are copied directly into source code giving developers 100% control without NPM dependency locks",
+        "Built natively on Radix UI primitives ensuring WAI-ARIA accessibility compliance out of the box",
+        "Seamless integration with Tailwind CSS for effortless dark mode and custom theme tokens"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-React/Tailwind web stacks like plain Vanilla JS or Vue without custom adapters",
+        "Avoid for backend API microservices without frontend user interface requirements"
+      ],
+      "addedAt": "2026-07-25T03:05:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "storybook",
+      "name": "Storybook",
+      "url": "https://github.com/storybookjs/storybook",
+      "description": "Frontend workshop environment for building, testing, and documenting isolated UI components.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "storybook",
+        "component-workshop",
+        "ui-testing",
+        "design-system-docs",
+        "isolated-ui"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx storybook@latest init",
+        "repoUrl": "https://github.com/storybookjs/storybook"
+      },
+      "capabilities": [
+        "isolated-ui-development",
+        "visual-regression-testing",
+        "design-system-documentation",
+        "component-mocking"
+      ],
+      "useCase": "Developing, visual testing, and documenting complex web UI components in an isolated workshop environment.",
+      "advantages": [
+        "Isolates component rendering allowing developers to build UI states without running complex backend servers",
+        "Automates visual regression testing and accessibility audits across hundreds of UI component states",
+        "Serves as a single source of truth interactive design system catalog for design and engineering teams"
+      ],
+      "negativeConstraints": [
+        "Not recommended for small single-page static sites where isolated component mocking adds unnecessary overhead",
+        "Avoid for pure backend logic services without user interface components"
+      ],
+      "addedAt": "2026-07-25T03:05:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "tldraw",
+      "name": "tldraw",
+      "url": "https://github.com/tldraw/tldraw",
+      "description": "Infinite canvas graphics library for visual UI wireframing, web design sketching, and Generative UI.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "tldraw",
+        "infinite-canvas",
+        "ui-wireframing",
+        "web-design-sketch",
+        "gen-ui-canvas",
+        "whiteboard-ui"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install @tldraw/tldraw",
+        "repoUrl": "https://github.com/tldraw/tldraw"
+      },
+      "capabilities": [
+        "infinite-canvas-drawing",
+        "ui-wireframing-canvas",
+        "generative-ui-layouts",
+        "real-time-collaboration"
+      ],
+      "useCase": "Building interactive visual UI wireframing canvases, prototyping page layouts, or embedding GenUI sketching interfaces.",
+      "advantages": [
+        "Ultra-responsive vector drawing engine built specifically for web UI prototyping and wireframing",
+        "Easily embeddable React canvas component supporting custom shapes, tools, and real-time multiplayer",
+        "First-class AI integration capabilities for converting canvas UI sketches directly into code"
+      ],
+      "negativeConstraints": [
+        "Not suitable for server-side static document generation without browser DOM rendering",
+        "Avoid for heavy 3D WebGL game engine rendering pipelines"
+      ],
+      "addedAt": "2026-07-25T03:05:00.000Z",
+      "status": "active"
     }
   ]
 }

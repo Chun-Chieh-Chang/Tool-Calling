@@ -589,6 +589,23 @@
 #### RCA / CAPA
 - （本次為數據分析領域核心工具補強，無異常狀況）
 
+### 2026-07-25 — 頂級 GitHub 前端頁面設計 3 大工具庫擴充 (Phase 36)
+
+#### 需求與動機
+使用者需求：「前端頁面設計工具也是一樣，到 Github 尋找前3名，並加入到本專案工具庫」。
+
+#### 完成項目
+- [x] **檢索並精選 3 大頂級前端設計工具**：
+  1. `shadcn-ui` (shadcn/ui, ~75.0k ⭐) - 可存取 React/Tailwind UI 元件生成與設計系統建構。
+  2. `storybook` (Storybook, ~84.0k ⭐) - 前端 UI 元件獨立開發工作坊與設計系統文檔庫。
+  3. `tldraw` (tldraw, ~37.0k ⭐) - 無限畫布 UI 線框圖繪製與 GenUI 向量草圖圖層。
+- [x] **100% 符合新防禦元規則**：每個工具皆 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` 與 `capabilities`，狀態為 `active`。
+- [x] **確效驗證**：`node cli.js validate` (301/301 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為 UI/UX 設計領域核心工具補強，無異常狀況）
+
+
 
 
 
