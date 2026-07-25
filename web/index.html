@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tool-Calling | AI Agent 工具檢索庫</title>
-  <meta name="description" content="全自動工具調用效能外掛系統 - 擁有 200+ 頂尖開源 AI 代理技能與工具的檢索庫">
+  <title>Tool-Calling | AI Agent 工具檢索庫儀表板</title>
+  <meta name="description" content="全自動工具調用效能外掛系統 - 擁有 280+ 頂尖開源 AI 代理技能與工具的檢索庫與儀表板">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="alternate icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <!-- Chart.js 統計圖表庫 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="background-effects">
@@ -22,7 +24,7 @@
     <header class="header">
       <div class="logo-area">
         <h1>Tool-Calling <span>🔧⚡</span></h1>
-        <p class="subtitle">全自動工具調用效能外掛系統</p>
+        <p class="subtitle">全自動工具調用效能外掛系統與數據儀表板</p>
       </div>
       <div class="search-container glass-panel">
         <input type="text" id="searchInput" placeholder="描述你的需求，例如：「我想做簡報」或「security scan」..." autocomplete="off">
@@ -32,13 +34,101 @@
       </div>
     </header>
 
-    <div class="stats-bar">
-      <span id="resultCount">載入中...</span>
-      <button id="expandAllBtn" class="expand-all-btn">收合全部</button>
+    <!-- 視圖切換頁籤 (Segmented Tabs) -->
+    <div class="view-tabs-container">
+      <div class="view-tabs">
+        <button id="dashboardTabBtn" class="tab-btn active">
+          <span>📊</span> 儀表板總覽
+        </button>
+        <button id="toolsTabBtn" class="tab-btn">
+          <span>🔧</span> 工具目錄列表
+        </button>
+      </div>
     </div>
 
-    <div id="resultsGrid" class="grid">
-      <!-- 搜尋結果將由 JS 動態渲染在這裡 -->
+    <!-- 儀表板視圖 (Dashboard View) -->
+    <div id="dashboardView">
+      <!-- KPI 關鍵指標區塊 -->
+      <div class="kpi-grid">
+        <div class="kpi-card glass-panel">
+          <div class="kpi-icon-wrapper">🛠️</div>
+          <div class="kpi-content">
+            <span class="kpi-value" id="kpiTotalTools">--</span>
+            <span class="kpi-label">已註冊工具總數</span>
+            <span class="kpi-subtext">已確效 100% 可用</span>
+          </div>
+        </div>
+
+        <div class="kpi-card glass-panel">
+          <div class="kpi-icon-wrapper">📁</div>
+          <div class="kpi-content">
+            <span class="kpi-value" id="kpiTotalCategories">--</span>
+            <span class="kpi-label">領域分類總數</span>
+            <span class="kpi-subtext">覆蓋完整開發場景</span>
+          </div>
+        </div>
+
+        <div class="kpi-card glass-panel">
+          <div class="kpi-icon-wrapper">⚡</div>
+          <div class="kpi-content">
+            <span class="kpi-value" id="kpiTotalSubtools">--</span>
+            <span class="kpi-label">延伸子技能數</span>
+            <span class="kpi-subtext">Monorepo 深層檢索</span>
+          </div>
+        </div>
+
+        <div class="kpi-card glass-panel">
+          <div class="kpi-icon-wrapper">🎯</div>
+          <div class="kpi-content">
+            <span class="kpi-value">L1 ~ L3</span>
+            <span class="kpi-label">三層檢索引擎</span>
+            <span class="kpi-subtext">精確 • 關鍵字 • 語義</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 統計圖表區塊 (Charts Layout) -->
+      <div class="dashboard-charts-container">
+        <div class="chart-card glass-panel">
+          <div class="chart-header">
+            <h3 class="chart-title">📊 各分類工具數量分佈</h3>
+            <span class="chart-subtitle">點擊柱狀圖可直接篩選列表</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="categoryChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card glass-panel">
+          <div class="chart-header">
+            <h3 class="chart-title">💻 工具開發語言占比</h3>
+            <span class="chart-subtitle">Language Breakdown</span>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="languageChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- 各分類概覽條目面板 -->
+      <div class="section-title-bar">
+        <h2>🗂️ 分類條目與數據概覽</h2>
+      </div>
+      <div id="categoryOverviewGrid" class="category-overview-grid">
+        <!-- 分類卡片將由 JS 動態生成 -->
+      </div>
+    </div>
+
+    <!-- 工具目錄視圖 (Tools List View) -->
+    <div id="toolsView" style="display: none;">
+      <div class="stats-bar">
+        <span id="resultCount">載入中...</span>
+        <button id="expandAllBtn" class="expand-all-btn">收合全部</button>
+      </div>
+
+      <div id="resultsGrid" class="grid">
+        <!-- 搜尋結果將由 JS 動態渲染在這裡 -->
+      </div>
     </div>
   </main>
 

@@ -1,6 +1,9 @@
 import { search, listAll, listByCategory, warmSearchIndex } from './core/search-engine.js';
 
 let registryTools = [];
+let categoryChartInstance = null;
+let languageChartInstance = null;
+let currentTab = 'dashboard';
 
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
@@ -10,15 +13,26 @@ const resultCount = document.getElementById('resultCount');
 const toolCardTemplate = document.getElementById('toolCardTemplate');
 const expandAllBtn = document.getElementById('expandAllBtn');
 
+const dashboardTabBtn = document.getElementById('dashboardTabBtn');
+const toolsTabBtn = document.getElementById('toolsTabBtn');
+const dashboardView = document.getElementById('dashboardView');
+const toolsView = document.getElementById('toolsView');
+
+const kpiTotalTools = document.getElementById('kpiTotalTools');
+const kpiTotalCategories = document.getElementById('kpiTotalCategories');
+const kpiTotalSubtools = document.getElementById('kpiTotalSubtools');
+const categoryOverviewGrid = document.getElementById('categoryOverviewGrid');
+
 // 初始化
 async function init() {
   try {
     const res = await fetch('./registry/tools.json');
     if (!res.ok) throw new Error('Failed to load tools registry');
     const data = await res.json();
-    registryTools = data.tools;
+    registryTools = Array.isArray(data.tools) ? data.tools : [];
 
     populateCategories();
+    renderDashboard();
     renderTools(registryTools);
 
     // 預熱搜尋索引
@@ -33,9 +47,251 @@ async function init() {
     searchInput.addEventListener('input', debounce(handleSearch, 300));
     categorySelect.addEventListener('change', handleSearch);
     expandAllBtn.addEventListener('click', toggleAllSections);
+
+    if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
+    if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
+
   } catch (err) {
     console.error(err);
-    resultCount.textContent = '載入失敗，請稍後再試。';
+    if (resultCount) resultCount.textContent = '載入失敗，請稍後再試。';
+  }
+}
+
+// ─── 分頁切換 (Tab Switcher) ──────────────────────────────────────────────
+
+function switchTab(tabName) {
+  currentTab = tabName;
+  if (tabName === 'dashboard') {
+    dashboardView.style.display = 'block';
+    toolsView.style.display = 'none';
+    dashboardTabBtn.classList.add('active');
+    toolsTabBtn.classList.remove('active');
+  } else {
+    dashboardView.style.display = 'none';
+    toolsView.style.display = 'block';
+    toolsTabBtn.classList.add('active');
+    dashboardTabBtn.classList.remove('active');
+  }
+}
+
+// ─── 儀表板計算與渲染 ───────────────────────────────────────────────────
+
+function renderDashboard() {
+  if (!Array.isArray(registryTools) || registryTools.length === 0) return;
+
+  // 1. KPI 數據統計
+  const totalTools = registryTools.length;
+  const categoriesSet = new Set();
+  let totalSubtools = 0;
+  const categoryCounts = {};
+  const languageCounts = {};
+
+  for (const tool of registryTools) {
+    if (!tool) continue;
+    const cats = getToolCategories(tool);
+    for (const cat of cats) {
+      categoriesSet.add(cat);
+      categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+    }
+
+    if (Array.isArray(tool.subTools)) {
+      totalSubtools += tool.subTools.length;
+    }
+
+    const lang = tool.language || '其他 / 常規';
+    languageCounts[lang] = (languageCounts[lang] || 0) + 1;
+  }
+
+  if (kpiTotalTools) kpiTotalTools.textContent = totalTools;
+  if (kpiTotalCategories) kpiTotalCategories.textContent = categoriesSet.size;
+  if (kpiTotalSubtools) kpiTotalSubtools.textContent = `~${totalSubtools}+`;
+
+  // 2. 渲染圖表
+  renderCategoryChart(categoryCounts);
+  renderLanguageChart(languageCounts);
+
+  // 3. 渲染分類概覽卡片
+  renderCategoryOverview(categoryCounts);
+}
+
+// ─── Chart.js 統計圖表 ─────────────────────────────────────────────────
+
+function renderCategoryChart(categoryCounts) {
+  const canvas = document.getElementById('categoryChart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  const sortedCategories = Object.entries(categoryCounts)
+    .sort((a, b) => b[1] - a[1]);
+
+  const labels = sortedCategories.map(item => item[0]);
+  const dataValues = sortedCategories.map(item => item[1]);
+
+  if (categoryChartInstance) {
+    categoryChartInstance.destroy();
+  }
+
+  const ctx = canvas.getContext('2d');
+  categoryChartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '工具數量',
+        data: dataValues,
+        backgroundColor: 'rgba(96, 165, 250, 0.7)',
+        borderColor: '#60A5FA',
+        borderWidth: 1,
+        borderRadius: 6,
+        hoverBackgroundColor: 'rgba(59, 130, 246, 0.95)'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#1E293B',
+          titleColor: '#F1F5F9',
+          bodyColor: '#94A3B8',
+          borderColor: '#334155',
+          borderWidth: 1,
+          padding: 10,
+          displayColors: false
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#94A3B8', font: { family: 'Inter', size: 11 } },
+          grid: { display: false }
+        },
+        y: {
+          ticks: { color: '#94A3B8', font: { family: 'Inter', size: 11 } },
+          grid: { color: 'rgba(51, 65, 85, 0.4)' }
+        }
+      },
+      onClick: (event, elements) => {
+        if (elements.length > 0) {
+          const index = elements[0].index;
+          const clickedCategory = labels[index];
+          if (clickedCategory && categorySelect) {
+            categorySelect.value = clickedCategory;
+            handleSearch();
+            switchTab('tools');
+          }
+        }
+      }
+    }
+  });
+}
+
+function renderLanguageChart(languageCounts) {
+  const canvas = document.getElementById('languageChart');
+  if (!canvas || typeof Chart === 'undefined') return;
+
+  const sortedLangs = Object.entries(languageCounts)
+    .sort((a, b) => b[1] - a[1]);
+
+  const labels = sortedLangs.map(item => item[0]);
+  const dataValues = sortedLangs.map(item => item[1]);
+
+  const palette = [
+    '#60A5FA', '#34D399', '#FBBF24', '#F87171', 
+    '#A78BFA', '#F472B6', '#38BDF8', '#818CF8'
+  ];
+
+  if (languageChartInstance) {
+    languageChartInstance.destroy();
+  }
+
+  const ctx = canvas.getContext('2d');
+  languageChartInstance = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: dataValues,
+        backgroundColor: palette.slice(0, labels.length),
+        borderColor: '#0F172A',
+        borderWidth: 2,
+        hoverOffset: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: {
+            color: '#94A3B8',
+            font: { family: 'Inter', size: 12 },
+            boxWidth: 12,
+            padding: 12
+          }
+        },
+        tooltip: {
+          backgroundColor: '#1E293B',
+          titleColor: '#F1F5F9',
+          bodyColor: '#94A3B8',
+          borderColor: '#334155',
+          borderWidth: 1,
+          padding: 10
+        }
+      }
+    }
+  });
+}
+
+// ─── 渲染：分類條目面板卡片 ──────────────────────────────────────────
+
+function renderCategoryOverview(categoryCounts) {
+  if (!categoryOverviewGrid) return;
+  categoryOverviewGrid.innerHTML = '';
+
+  const grouped = {};
+  for (const tool of registryTools) {
+    if (!tool) continue;
+    const cats = getToolCategories(tool);
+    for (const cat of cats) {
+      if (!grouped[cat]) grouped[cat] = [];
+      grouped[cat].push(tool);
+    }
+  }
+
+  const sortedCategories = Object.keys(grouped).sort();
+
+  for (const cat of sortedCategories) {
+    const catTools = grouped[cat];
+    const card = document.createElement('div');
+    card.className = 'cat-card glass-panel';
+
+    const topToolsList = catTools.slice(0, 3).map(t => `<li>${t.name}</li>`).join('');
+
+    card.innerHTML = `
+      <div>
+        <div class="cat-card-header">
+          <span class="cat-name">${cat}</span>
+          <span class="cat-badge">${catTools.length} 個條目</span>
+        </div>
+        <ul class="cat-preview-list">
+          ${topToolsList}
+        </ul>
+      </div>
+      <div class="cat-card-footer">
+        <span>探索該分類工具 →</span>
+      </div>
+    `;
+
+    card.addEventListener('click', () => {
+      if (categorySelect) {
+        categorySelect.value = cat;
+        handleSearch();
+        switchTab('tools');
+      }
+    });
+
+    categoryOverviewGrid.appendChild(card);
   }
 }
 
@@ -81,6 +337,11 @@ function populateCategories() {
 function handleSearch() {
   const query = searchInput.value.trim();
   const category = categorySelect.value;
+
+  // 如果使用者在進行搜尋或過濾，自動切換至「工具目錄列表」分頁
+  if ((query || category) && currentTab !== 'tools') {
+    switchTab('tools');
+  }
 
   if (!query && !category) {
     renderTools(registryTools);
