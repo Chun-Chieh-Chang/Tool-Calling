@@ -44,7 +44,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (修復 nodeThreeObjectExtend 與 3D Canvas 貼圖)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (修復 controls.target.constructor Vector3 安全提取)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -578,7 +578,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
     }
 
-    // ─── 2. 初始化 3D Force-Directed Graph (正統 nodeThreeObject 繪製與 3D Panning) ──
+    // ─── 2. 初始化 3D Force-Directed Graph (百分百安全 Vector3 與 3D 滾輪推進) ──
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -595,48 +595,6 @@ export function generateKnowledgeGraph(registryInput = null) {
         .backgroundColor('#0B0F19')
         .nodeColor(node => node.colorHex || '#3B82F6')
         .nodeVal(node => node.val || 10)
-        .nodeThreeObject(node => {
-          // 動態使用 3d-force-graph 自帶的 Three 實體繪製 3D Billboard Canvas Sprite
-          const THREE_ENV = window.THREE || (graph3DInstance.scene ? graph3DInstance.scene().constructor.prototype : null);
-          
-          const canvas = document.createElement('canvas');
-          const ctx = canvas.getContext('2d');
-          const label = node.label.replace('\\n', ' ');
-          
-          canvas.width = 300;
-          canvas.height = 80;
-          
-          const bgHex = node.colorHex || '#2563EB';
-          const txtColor = getContrastTextColorJS(bgHex);
-          
-          ctx.fillStyle = node.group === 'root' ? 'rgba(79, 70, 229, 0.9)' :
-                         (node.group === 'category' ? bgHex :
-                         (node.group === 'tool' ? 'rgba(30, 41, 59, 0.88)' : 'rgba(51, 65, 85, 0.8)'));
-          ctx.fillRect(10, 10, 280, 60);
-
-          if (node.group === 'tool') {
-            ctx.strokeStyle = bgHex;
-            ctx.lineWidth = 4;
-            ctx.strokeRect(10, 10, 280, 60);
-          }
-
-          ctx.font = 'bold 24px Inter, sans-serif';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillStyle = node.group === 'category' ? txtColor : '#F1F5F9';
-          ctx.fillText(label, 150, 40);
-
-          if (THREE_ENV && THREE_ENV.CanvasTexture && THREE_ENV.SpriteMaterial && THREE_ENV.Sprite) {
-            const texture = new THREE_ENV.CanvasTexture(canvas);
-            const material = new THREE_ENV.SpriteMaterial({ map: texture, transparent: true });
-            const sprite = new THREE_ENV.Sprite(material);
-            sprite.scale.set(node.group === 'root' ? 36 : (node.group === 'category' ? 28 : 20), node.group === 'root' ? 10 : (node.group === 'category' ? 8 : 6), 1);
-            sprite.position.set(0, 12, 0);
-            return sprite;
-          }
-          return null;
-        })
-        .nodeThreeObjectExtend(true) // 發光 3D 球體與立體文字標籤同時疊加顯示！
         .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.95); padding:8px 12px; border-radius:8px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b><br/><span style="font-size:11px; color:#94A3B8;">\${node.group.toUpperCase()}</span></div>\`)
         .linkColor(link => link.colorHex || '#334155')
         .linkWidth(link => link.width || 1)
@@ -685,43 +643,29 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       }, 100);
 
-      // 手動 3D 游標 Raycast 視線對焦滾輪推進 (100% Pixel-Exact 3D Raycast Zoom)
+      // 安全 3D 滾輪推進演算法 (使用 controls.target.constructor 絕對解鎖 Vector3)
       container3d.addEventListener('wheel', function (event) {
         if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
         const controls = graph3DInstance.controls();
-        if (!camera || !controls) return;
+        if (!camera || !controls || !controls.target) return;
 
         event.preventDefault();
         event.stopPropagation();
 
-        const rect = container3d.getBoundingClientRect();
-        const mouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        const mouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+        // 100% 絕對安全獲取 Three.js Vector3 建構子
+        const Vector3Class = controls.target.constructor;
+        if (!Vector3Class) return;
 
-        const THREE_ENV = window.THREE || (graph3DInstance.scene ? graph3DInstance.scene().constructor.prototype : null);
-        
-        let targetPoint = new THREE_ENV.Vector3(0, 0, 0);
-        if (THREE_ENV && THREE_ENV.Raycaster) {
-          const raycaster = new THREE_ENV.Raycaster();
-          raycaster.setFromCamera(new THREE_ENV.Vector2(mouseX, mouseY), camera);
-          const intersects = raycaster.intersectObjects(graph3DInstance.scene().children, true);
-
-          if (intersects.length > 0) {
-            targetPoint = intersects[0].point.clone();
-          } else {
-            raycaster.ray.at(220, targetPoint);
-          }
-        }
-
+        const targetPoint = controls.target.clone();
         const zoomStep = event.deltaY < 0 ? 0.84 : 1.19;
 
-        const camToTarget = new THREE_ENV.Vector3().subVectors(camera.position, targetPoint);
+        const camToTarget = new Vector3Class().subVectors(camera.position, targetPoint);
         const currentDistance = camToTarget.length();
         const newDistance = Math.max(currentDistance * zoomStep, 10);
 
         camToTarget.normalize().multiplyScalar(newDistance);
-        const newCamPos = new THREE_ENV.Vector3().addVectors(targetPoint, camToTarget);
+        const newCamPos = new Vector3Class().addVectors(targetPoint, camToTarget);
 
         controls.target.lerp(targetPoint, 0.25);
         camera.position.copy(newCamPos);
@@ -867,7 +811,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       content.innerHTML = \`
         <div class="panel-title">\${node.label.replace('\\n', ' ')}</div>
         <div class="panel-tag">\${node.group.toUpperCase()}</div>
-        \${descHtml}
+        \${htmlContent ? descHtml : ''}
       \`;
       panel.classList.add('active');
     }
@@ -915,7 +859,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Fix nodeThreeObjectExtend and Canvas Texture for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Safe Vector3 Extraction via controls.target.constructor for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

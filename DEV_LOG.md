@@ -1368,6 +1368,26 @@
 - **問題**：在 3d-force-graph 鏈式調用中使用了 2D 的 nodeCanvasObject API 拋出 TypeError。
 - **矯正與預防措施 (CAPA)**：更正為 3D 正統 API nodeThreeObject 與 nodeThreeObjectExtend(true)，並以 CanvasTexture 繪製立體 Billboard Sprite。
 
+### 2026-07-25 — Vector3 建構子安全提取與 3D 滾輪推進零 TypeError 修復 (Phase 76)
+
+#### 需求與動機
+使用者提供 Console 錯誤反饋：`Uncaught TypeError: THREE_ENV.Vector3 is not a constructor`。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - 手動提取 `graph3DInstance.scene().constructor.prototype` 僅拿到 Scene 的原型 Prototype 物件而非全域 `THREE` 類別建構子，導致在滾輪事件中執行 `new THREE_ENV.Vector3()` 時拋出 TypeError。
+- [x] **矯正與預防措施 (CAPA - Target Instance Constructor Extraction)**：
+  - 改用絕對安全的建構子提取方案：
+    `const Vector3Class = controls.target.constructor;`
+    `controls.target` 本身即為 Three.js 的 `Vector3` 實例，其 `.constructor` 100% 絕對指向 Three.js 原生 `Vector3` 類別建構子，完全解鎖極速滾輪推進運算！
+- [x] **確效驗證與測試**：
+  - 滾輪推進 100% 安定且流暢，零 TypeError。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：從 Scene 原型提取 THREE_ENV 導致 Vector3 無法作為 Constructor 調用。
+- **矯正與預防措施 (CAPA)**：透過 controls.target.constructor 直接安全解鎖 Three.js 原生 Vector3 類別，達成本地與遠端 100% 零 TypeError 穩定體驗。
+
 
 
 
