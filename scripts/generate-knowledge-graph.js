@@ -473,6 +473,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
     <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (零 Console 警示 | 左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
+    <p style="font-size: 11px; color: #60A5FA; margin-top: 4px; font-weight: 500;">Developed by Wesley Chang, July-2026.</p>
   </div>
 
   <div id="controls">

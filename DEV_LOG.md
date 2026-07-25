@@ -1433,6 +1433,33 @@
 - **問題**：Shift+左鍵拖曳在 OrbitControls/3d-force-graph 中觸發了旋轉而不是平移。
 - **矯正與預防措施 (CAPA)**：在 pointerdown 事件 Capture 階段優先攔截 Shift+左鍵，並以相機透視視角投影演算法直接進行螢幕空間 Vector3 雙向平移，達成 100% 安定流暢體驗。
 
+### 2026-07-25 — 全面盤點清理 (MECE)、作者資訊注入與全流程程式碼基準線優化 (Phase 79)
+
+#### 需求與動機
+使用者需求：總結記錄今日問題與踩坑經驗，執行專案 5 大步驟全流程優化（全面盤點清理、同步更新文件、MECE 結構整合、建立版本基準點與推送 GitHub）。
+
+#### 完成項目
+- [x] **步驟 1：全面盤點與清理作業 (MECE Cleanup)**：
+  - 徹底掃描專案，移除開發調試產生的根目錄臨時檔 (`scratch-*.cjs`)。
+  - 將視覺確效邏輯整合為常態化單元測試腳本 `tests/knowledge-graph.test.js`。
+- [x] **步驟 2：同步更新開發相關文件與作者資訊注入 (Author Attribution)**：
+  - 於 `scripts/generate-knowledge-graph.js`、`docs/knowledge-graph.html` 與 `web/index.html` 之標頭與頁尾注入作者專屬資訊標記：
+    **`Developed by Wesley Chang, July-2026.`**
+  - 同步更新 `README.md`，完整補充 2D/3D 雙視角全景圖譜、3 種平移操控模式與常態化驗證指引。
+- [x] **步驟 3：MECE 原則結構整合與套件優化 (Package & Test Alignment)**：
+  - 更新 `package.json` 中的 `test` 指令為 `node --test tests/*.test.js`，實現全自動雙視角與關鍵字雙層測試覆蓋。
+  - 執行 `node scripts/build-web.js`，完成 `./dist` 與 `./docs` 的發行檔案同步與靜態打包。
+- [x] **步驟 4 & 5：建立 Commit 基準點與 GitHub 遠端推送**：
+  - 9/9 測試組全數 PASS 綠燈！
+  - 提交規範之 Commit 訊息並推送至 `origin/main`。
+
+#### RCA / CAPA
+- **今日問題與踩坑總結 (Lessons Learned & CAPA)**：
+  1. **Three.js UMD 閉包與 window.THREE**：3d-force-graph 封裝了內部 Three.js 實體但預設未暴露全域，若手動引用過時 three.min.js 會觸發 Multiple Instances 警告。最後透過相適應的 three.min.js (v0.149.0) + SpriteText 達成 0 Warning 0 Error 絢麗懸浮卡片渲染。
+  2. **Three.js OrbitControls 與相機座標系平移**：OrbitControls 內部預設的 event.shiftKey 處理會在 3d-force-graph 拖曳捕獲層中被干擾。最穩定的解法是直接在 pointerdown Capture 階段，以相機透視視角比例算力直接進行螢幕空間 Vector3 雙向平移。
+  3. **軟體確效原則 (Mandatory Verification)**：一律必須透過 Playwright 無頭瀏覽器實際截圖並親自審查畫面，確保「所寫即所見、所見即完全無瑕」。
+
+
 
 
 
