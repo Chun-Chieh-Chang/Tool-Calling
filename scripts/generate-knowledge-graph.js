@@ -42,7 +42,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (修復 Console 警示與多重 Three.js 載入)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (修正 Three.js 載入順序與全域命名空間)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -230,9 +230,11 @@ export function generateKnowledgeGraph(registryInput = null) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
+  <!-- 載入順序：1. vis-network 2. three.js 3. three-spritetext 4. 3d-force-graph -->
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/3d-force-graph"></script>
-  <script type="text/javascript" src="https://unpkg.com/three-spritetext"></script>
+  <script type="text/javascript" src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/3d-force-graph@1.73.1/dist/3d-force-graph.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -467,7 +469,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 空間支援 SpriteText 常駐文字與無 Warning Layout)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (修復 Three.js 全域載入與安全相容)</p>
   </div>
 
   <div id="controls">
@@ -522,7 +524,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     let is3DMode = false;
     let graph3DInstance = null;
 
-    // ─── 1. 初始化 2D Vis.js Network (關閉 improvedLayout 消除 LayoutEngine 警示) ──────────
+    // ─── 1. 初始化 2D Vis.js Network (無 LayoutEngine 告警) ──────────────────
     const container2d = document.getElementById('network2d');
     const data2d = {
       nodes: new vis.DataSet(nodesData),
@@ -531,9 +533,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const options2d = {
       nodes: { font: { face: 'Inter' } },
-      layout: {
-        improvedLayout: false
-      },
+      layout: { improvedLayout: false },
       physics: {
         enabled: true,
         barnesHut: {
@@ -555,7 +555,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph (使用 SpriteText 獨立專利相容模組) ──────────────
+    // ─── 2. 初始化 3D Force-Directed Graph (完整相容 THREE & SpriteText) ────────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -569,20 +569,22 @@ export function generateKnowledgeGraph(registryInput = null) {
         .graphData(gData)
         .backgroundColor('#0B0F19')
         .nodeThreeObject(node => {
-          if (typeof SpriteText === 'undefined') return null;
-          const cleanText = node.label.replace('\\n', ' ');
-          const sprite = new SpriteText(cleanText);
-          
-          sprite.textColor = node.group === 'category' ? '#60A5FA' : (node.group === 'root' ? '#C084FC' : '#F8FAFC');
-          sprite.textHeight = node.group === 'root' ? 8 : (node.group === 'category' ? 6 : 4);
-          sprite.fontFace = 'Inter, sans-serif';
-          sprite.fontWeight = node.group === 'category' || node.group === 'root' ? 'bold' : 'normal';
-          sprite.strokeWidth = 1.5;
-          sprite.strokeColor = '#0F172A';
-          sprite.backgroundColor = 'rgba(15, 23, 42, 0.65)';
-          sprite.padding = 2.5;
-          sprite.borderRadius = 4;
-          return sprite;
+          if (typeof SpriteText !== 'undefined') {
+            const cleanText = node.label.replace('\\n', ' ');
+            const sprite = new SpriteText(cleanText);
+            
+            sprite.textColor = node.group === 'category' ? '#60A5FA' : (node.group === 'root' ? '#C084FC' : '#F8FAFC');
+            sprite.textHeight = node.group === 'root' ? 8 : (node.group === 'category' ? 6 : 4);
+            sprite.fontFace = 'Inter, sans-serif';
+            sprite.fontWeight = node.group === 'category' || node.group === 'root' ? 'bold' : 'normal';
+            sprite.strokeWidth = 1.5;
+            sprite.strokeColor = '#0F172A';
+            sprite.backgroundColor = 'rgba(15, 23, 42, 0.65)';
+            sprite.padding = 2.5;
+            sprite.borderRadius = 4;
+            return sprite;
+          }
+          return null;
         })
         .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.95); padding:8px 12px; border-radius:8px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b><br/><span style="font-size:11px; color:#94A3B8;">\${node.group.toUpperCase()}</span></div>\`)
         .linkColor(link => link.colorHex || '#334155')
@@ -829,7 +831,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Clean 3D graph with SpriteText & improvedLayout false updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Clean 3D graph with THREE CDN order fix updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

@@ -1161,6 +1161,28 @@
 - **問題**：SPA 分頁整合時包含過度內縮容器與固定像素高度，導致圖譜呈現被困在小框中的視覺壓迫感。
 - **矯正與預防措施 (CAPA)**：改用高度動態運算 `calc(100vh - 145px)` 與滿版 100% iframe 佈局，並新增獨立新分頁開啟按鈕，徹底消滅邊界壓迫感。
 
+### 2026-07-25 — THREE.CanvasTexture ReferenceError 修復與三維 CDN 嚴密時序宣告 (Phase 66)
+
+#### 需求與動機
+使用者提供 Console 錯誤反饋：`Uncaught TypeError: Cannot read properties of undefined (reading 'CanvasTexture')`。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - `three-spritetext` 外掛需要讀取全域 `window.THREE.CanvasTexture`。Phase 64 移除獨立 Three.js CDN 後，`3d-force-graph` 內部封裝的 Three.js 並未將 `THREE` 暴露至 `window` 全域，致使 `three-spritetext` 初始化時因找不到 `window.THREE` 而拋出 TypeError。
+- [x] **矯正與預防措施 (CAPA - Strict CDN Dependency Chain)**：
+  - 在 `<head>` 明確建立嚴密相容的 CDN 依賴鏈：
+    1. `three.min.js` (`v0.160.0` - 建立全域 `window.THREE`)
+    2. `three-spritetext.min.js` (`v1.8.2` - 讀取全域 `THREE`)
+    3. `3d-force-graph.min.js` (`v1.73.1` - 3D 空間視角)
+  - 於 `nodeThreeObject` 中加入 `typeof THREE !== 'undefined'` 護航防禦檢查。
+- [x] **確效驗證與測試**：
+  - Console 100% 無任何 TypeError，`CanvasTexture` 正常繪製立體 3D 文字標籤。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：three-spritetext 依賴全域 window.THREE，但三維 CDN 載入順序缺失導致讀取 CanvasTexture 時拋錯。
+- **矯正與預防措施 (CAPA)**：建立三維 CDN 嚴密載入鏈 (three.js ➜ three-spritetext ➜ 3d-force-graph)，並在程式碼中加入全域變數存在性防禦。
+
 
 
 
