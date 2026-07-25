@@ -170,7 +170,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         width: 1
       });
 
-      // 4. SubTools / Capabilities (預設顯色清晰，點擊凸顯虛線)
+      // 4. SubTools / Capabilities
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -300,21 +300,22 @@ export function generateKnowledgeGraph(registryInput = null) {
       height: 100%;
     }
 
-    /* 左下角色彩與連線說明圖例面板 */
+    /* 右側中間：分類色彩與連線圖例面板 (Right Center Positioning) */
     #legendPanel {
       position: absolute;
-      bottom: 20px;
-      left: 20px;
-      z-index: 10;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 15;
       background: rgba(30, 41, 59, 0.92);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 14px 18px;
-      max-height: 320px;
+      max-height: calc(100vh - 160px);
       width: 270px;
       overflow-y: auto;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
     }
 
     .legend-header {
@@ -368,11 +369,12 @@ export function generateKnowledgeGraph(registryInput = null) {
       flex-shrink: 0;
     }
 
+    /* 左下角：富文本詳細抽屜面板 */
     #detailPanel {
       position: absolute;
       bottom: 20px;
-      right: 20px;
-      z-index: 10;
+      left: 20px;
+      z-index: 20;
       width: 360px;
       background: rgba(30, 41, 59, 0.95);
       backdrop-filter: blur(16px);
@@ -429,7 +431,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
   </div>
 
-  <!-- 左下角色彩與連線型態圖例 -->
+  <!-- 右側中間：分類色彩與連線型態圖例面板 -->
   <div id="legendPanel">
     <div class="legend-header">
       <span>🎨 點擊分類圖例高亮圖譜</span>
@@ -439,7 +441,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       ${legendItemsHtml}
     </div>
 
-    <!-- 🔗 連線型態圖例說明 (Edge Legend) -->
+    <!-- 🔗 連線型態圖例說明 -->
     <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
       <span>🔗 圖譜連線類型說明</span>
     </div>
@@ -455,6 +457,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     </div>
   </div>
 
+  <!-- 左下角：詳細抽屜面板 -->
   <div id="detailPanel">
     <button class="close-btn" onclick="closePanel()">×</button>
     <div id="panelContent"></div>
@@ -703,7 +706,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with edge type legend for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with right-center legend positioning for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
