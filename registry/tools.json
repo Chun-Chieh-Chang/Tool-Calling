@@ -24572,7 +24572,7 @@
       "id": "shepherd",
       "name": "Shepherd",
       "url": "https://github.com/shepherd-agents/shepherd",
-      "description": "A runtime substrate that turns an agent's execution into a reversible, Git-like trace, so meta-agents can observe, fork, replay, and revert any run. Couples agent and environments in a copy-on-write fork ~5x faster than docker commit, with ~95% KV-cache reuse on replay. Framework built for meta-agents to supervise, optimize, and train other agents",
+      "description": "Reversible execution substrate enabling meta-agents to observe, fork, replay, and train LLM agents.",
       "category": "基礎設施",
       "language": "python",
       "triggers": [
@@ -24597,13 +24597,23 @@
         "tree-rl"
       ],
       "addedAt": "2026-07-24T00:57:56.876Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Building, supervising, and training complex meta-agent workflows requiring state checkpointing, time-travel debugging, and MCTS tree search.",
+      "advantages": [
+        "Copy-on-write process forking ~5x faster than docker commit",
+        "~95% KV-cache reuse on replay for efficient LLM rollouts",
+        "Git-like reversible trace enabling seamless state branching and time travel"
+      ],
+      "negativeConstraints": [
+        "Simple stateless LLM API calls that do not require state checkpointing or execution branching",
+        "Basic single-turn chat completion workflows without agentic tree search"
+      ]
     },
     {
       "id": "hyperframes",
       "name": "Hyperframes",
       "url": "https://github.com/heygen-com/hyperframes",
-      "description": "Write HTML. Render video. Built for agents.",
+      "description": "Agentic HTML-to-video rendering framework powered by GSAP and FFmpeg for programmatically generated animations.",
       "category": "影片",
       "language": "typescript",
       "triggers": [
@@ -24629,7 +24639,17 @@
         "gsap"
       ],
       "addedAt": "2026-07-24T00:58:15.627Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Programmatically generating dynamic video content and motion graphics from HTML/CSS layouts using AI agents.",
+      "advantages": [
+        "Renders HTML/CSS DOM directly into frame-accurate video output",
+        "Integrated GSAP animation engine with FFmpeg hardware accelerated encoding",
+        "Designed for headless AI agent web video synthesis pipelines"
+      ],
+      "negativeConstraints": [
+        "Interactive real-time user-facing video streaming or live broadcasting",
+        "Raw video editing without HTML/DOM layout requirements"
+      ]
     },
     {
       "id": "hy3",

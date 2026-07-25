@@ -514,6 +514,36 @@
 - **問題**：`@media (max-width: 1200px)` 門檻設定過高，導致常見的中小型桌面/筆電螢幕或縮小視窗視圖被誤判為 3 欄。
 - **矯正與預防措施 (CAPA)**：將 4 欄佈局的適用範圍下探至 768px 門檻，確保桌面端與筆電端 100% 呈列 4 欄美觀版面。
 
+### 2026-07-25 — 冗餘按鈕「展開全部 / 收合全部」清理 (Phase 31)
+
+#### 需求與動機
+使用者回報：「附圖這個東西既然沒有功能，就應該把它移除」。
+
+#### 完成項目
+- [x] **移除 DOM 元素**：刪除 `index.html` 中的 `#expandAllBtn` 按鈕。
+- [x] **清理腳本與樣式**：從 `web/app.js` 與 `web/style.css` 移除 `expandAllBtn` 及 `toggleAllSections()`，維護 MECE 代碼極致乾淨。
+- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
+
+#### RCA / CAPA
+- **問題**：留在工具列表上方且功能已不適用的「展開/收合」按鈕造成 UI 視覺雜訊與操作疑惑。
+- **矯正與預防措施 (CAPA)**：貫徹 MECE 與極簡 UI 原則，第一時間清理無效按鈕，確保介面每個元素皆有明確價值。
+
+### 2026-07-25 — 工具庫詮釋資料 100% 補齊與卡片視覺對齊 (Phase 32)
+
+#### 需求與動機
+分析發現截圖中 `shepherd` 卡片缺少 `useCase` 與 `negativeConstraints` 黃/紅雙標籤。依據 [scripts/enrich-registry.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/enrich-registry.js) 既有標準規範補齊。
+
+#### 完成項目
+- [x] **詮釋資料盤點與補全**：經程式碼盤點發現 293 個工具中僅 `shepherd` 與 `hyperframes` 缺乏場景欄位，已嚴格依據既有 Prompt 規格補齊 `useCase`, `negativeConstraints`, `advantages` 並升級狀態為 `active`。
+- [x] **100% 資料完備度達到**：全站 293 個工具全數 100% 具備 `useCase` 與 `negativeConstraints` 雙標籤。
+- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
+
+#### RCA / CAPA
+- **問題**：個別實驗性工具加入時缺乏標準 metadata，導致前端卡片渲染時標籤區域空白。
+- **矯正與預防措施 (CAPA)**：補齊遺漏工具詮釋資料，達成 293/293 個工具 100% 通過品質門禁。
+
+
+
 
 
 

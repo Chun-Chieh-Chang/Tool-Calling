@@ -184,24 +184,7 @@ select {
   font-weight: 500;
 }
 
-/* Expand/Collapse All Button */
-.expand-all-btn {
-  background: transparent;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-full);
-  color: var(--text-secondary);
-  font-family: inherit;
-  font-size: 0.75rem;
-  font-weight: 500;
-  padding: calc(var(--spacing-base) * 1) calc(var(--spacing-base) * 3);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.expand-all-btn:hover {
-  color: var(--brand-color);
-  border-color: var(--brand-color);
-  background: rgba(96, 165, 250, 0.08);
-}
+
 
 /* Accordion */
 .accordion-section {

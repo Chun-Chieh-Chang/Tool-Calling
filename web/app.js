@@ -11,7 +11,6 @@ const categorySelect = document.getElementById('categorySelect');
 const resultsGrid = document.getElementById('resultsGrid');
 const resultCount = document.getElementById('resultCount');
 const toolCardTemplate = document.getElementById('toolCardTemplate');
-const expandAllBtn = document.getElementById('expandAllBtn');
 
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
@@ -46,7 +45,6 @@ async function init() {
     // 事件監聽
     searchInput.addEventListener('input', debounce(handleSearch, 300));
     categorySelect.addEventListener('change', handleSearch);
-    expandAllBtn.addEventListener('click', toggleAllSections);
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
@@ -471,28 +469,6 @@ function renderSearchResults(results) {
   resultsGrid.appendChild(grid);
 }
 
-// ─── 展開 / 收合全部 ──────────────────────────────────────────────────
-
-function toggleAllSections() {
-  // 判斷目前是展開還是收合狀態
-  const allOpen = Object.values(sectionState).every(v => v === true);
-  const newState = !allOpen;
-
-  // 更新所有分類狀態
-  for (const cat of Object.keys(sectionState)) {
-    sectionState[cat] = newState;
-  }
-
-  // 更新所有 section 的 DOM
-  const sections = resultsGrid.querySelectorAll('.accordion-section');
-  sections.forEach(section => {
-    section.classList.toggle('open', newState);
-    const header = section.querySelector('.accordion-header');
-    if (header) header.setAttribute('aria-expanded', String(newState));
-  });
-
-  // 更新按鈕文字
-  expandAllBtn.textContent = newState ? '收合全部' : '展開全部';
 }
 
 // ─── 建立卡片 DOM ─────────────────────────────────────────────────────
