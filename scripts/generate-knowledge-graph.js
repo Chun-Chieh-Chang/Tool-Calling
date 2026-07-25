@@ -42,7 +42,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (支援 3D 空間 3D 常駐文字與動態亮顯)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (修復 Console 警示與多重 Three.js 載入)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -231,8 +231,8 @@ export function generateKnowledgeGraph(registryInput = null) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/three"></script>
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph"></script>
+  <script type="text/javascript" src="https://unpkg.com/three-spritetext"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -467,7 +467,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 空間支援 3D 浮動名稱標籤與對角圖例面板)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 空間支援 SpriteText 常駐文字與無 Warning Layout)</p>
   </div>
 
   <div id="controls">
@@ -522,7 +522,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     let is3DMode = false;
     let graph3DInstance = null;
 
-    // ─── 1. 初始化 2D Vis.js Network ──────────────────────────────────────────
+    // ─── 1. 初始化 2D Vis.js Network (關閉 improvedLayout 消除 LayoutEngine 警示) ──────────
     const container2d = document.getElementById('network2d');
     const data2d = {
       nodes: new vis.DataSet(nodesData),
@@ -531,12 +531,15 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const options2d = {
       nodes: { font: { face: 'Inter' } },
+      layout: {
+        improvedLayout: false
+      },
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -4000,
+          gravitationalConstant: -4500,
           centralGravity: 0.25,
-          springLength: 110,
+          springLength: 120,
           springConstant: 0.02,
           damping: 0.35,
           avoidOverlap: 0.6
@@ -544,7 +547,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         maxVelocity: 35,
         minVelocity: 0.2,
         solver: 'barnesHut',
-        stabilization: { enabled: true, iterations: 300 }
+        stabilization: { enabled: true, iterations: 250 }
       },
       interaction: { hover: true, tooltipDelay: 200, zoomView: true }
     };
@@ -552,40 +555,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 3D 空間 Canvas 3D 常駐文字 Sprite 貼圖生成器 ─────────────────────────
-    function create3DTextSprite(text, colorHex, group) {
-      const canvas = document.createElement('canvas');
-      canvas.width = 384;
-      canvas.height = 96;
-      const ctx = canvas.getContext('2d');
-
-      const cleanText = text.replace('\\n', ' ');
-      ctx.font = group === 'category' ? 'Bold 28px Inter, sans-serif' : (group === 'root' ? 'Bold 32px Inter, sans-serif' : '22px Inter, sans-serif');
-      
-      // 顏色調配
-      if (group === 'root') ctx.fillStyle = '#C084FC';
-      else if (group === 'category') ctx.fillStyle = '#60A5FA';
-      else ctx.fillStyle = '#F8FAFC';
-
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      // 黑色立體描邊，確保在深色 3D 宇宙中 100% 清晰可讀
-      ctx.strokeStyle = '#0F172A';
-      ctx.lineWidth = 6;
-      ctx.strokeText(cleanText, 192, 48);
-      ctx.fillText(cleanText, 192, 48);
-
-      const texture = new THREE.CanvasTexture(canvas);
-      const spriteMaterial = new THREE.SpriteMaterial({ map: texture, transparent: true });
-      const sprite = new THREE.Sprite(spriteMaterial);
-
-      const scaleFactor = group === 'root' ? 50 : (group === 'category' ? 36 : 24);
-      sprite.scale.set(scaleFactor, scaleFactor / 4, 1);
-      return sprite;
-    }
-
-    // ─── 2. 初始化 3D Force-Directed Graph (帶常駐 3D 標籤與發光球體) ──────────────
+    // ─── 2. 初始化 3D Force-Directed Graph (使用 SpriteText 獨立專利相容模組) ──────────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -599,25 +569,20 @@ export function generateKnowledgeGraph(registryInput = null) {
         .graphData(gData)
         .backgroundColor('#0B0F19')
         .nodeThreeObject(node => {
-          const group = new THREE.Group();
-
-          // 1. 3D 實體球體 (Sphere Mesh)
-          const radius = Math.max(node.val / 2.8, 3);
-          const geometry = new THREE.SphereGeometry(radius, 16, 16);
-          const material = new THREE.MeshLambertMaterial({
-            color: node.colorHex || '#3B82F6',
-            transparent: true,
-            opacity: 0.92
-          });
-          const sphere = new THREE.Mesh(geometry, material);
-          group.add(sphere);
-
-          // 2. 3D 常駐文字標籤 Sprite (總是面向鏡頭)
-          const textSprite = create3DTextSprite(node.label, node.colorHex, node.group);
-          textSprite.position.set(0, radius + 8, 0);
-          group.add(textSprite);
-
-          return group;
+          if (typeof SpriteText === 'undefined') return null;
+          const cleanText = node.label.replace('\\n', ' ');
+          const sprite = new SpriteText(cleanText);
+          
+          sprite.textColor = node.group === 'category' ? '#60A5FA' : (node.group === 'root' ? '#C084FC' : '#F8FAFC');
+          sprite.textHeight = node.group === 'root' ? 8 : (node.group === 'category' ? 6 : 4);
+          sprite.fontFace = 'Inter, sans-serif';
+          sprite.fontWeight = node.group === 'category' || node.group === 'root' ? 'bold' : 'normal';
+          sprite.strokeWidth = 1.5;
+          sprite.strokeColor = '#0F172A';
+          sprite.backgroundColor = 'rgba(15, 23, 42, 0.65)';
+          sprite.padding = 2.5;
+          sprite.borderRadius = 4;
+          return sprite;
         })
         .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.95); padding:8px 12px; border-radius:8px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b><br/><span style="font-size:11px; color:#94A3B8;">\${node.group.toUpperCase()}</span></div>\`)
         .linkColor(link => link.colorHex || '#334155')
@@ -636,7 +601,6 @@ export function generateKnowledgeGraph(registryInput = null) {
           showPanel(node);
         });
 
-      // 預設 3D 相機位置
       graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
     }
 
@@ -865,7 +829,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D graph updated with 3D persistent text labels & legend integration for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Clean 3D graph with SpriteText & improvedLayout false updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

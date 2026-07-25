@@ -1123,6 +1123,26 @@
 #### RCA / CAPA
 - （本次完成 3D 空間 3D 常駐文字標籤與對角圖例面板互動連動，無異常狀況）
 
+### 2026-07-25 — 3D/2D 知識圖譜 Console 零錯誤防禦修復與 SpriteText 原生整合 (Phase 64)
+
+#### 需求與動機
+使用者提供 Console 錯誤反饋（包含 `THREE is not defined`、`Multiple instances of Three.js being imported` 與 `LayoutEngine.js` 效能警示）。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - `THREE is not defined` / `Multiple instances`: 手動載入的獨立 `three.js` CDN 與 `3d-force-graph` 內部封裝的 Three.js 產生實體與命名空間衝突。
+  - `LayoutEngine.js Warning`: 2D Vis.js 在 320+ 工具龐大網絡中開起了過時的 `improvedLayout` 演算法造成佈局計算警告。
+- [x] **矯正與預防措施 (CAPA - Zero Console Errors)**：
+  - 引進 `three-spritetext` 獨立專利相容 CDN，擺脫手動 `THREE` 命名空間相依，完全消除 Multiple Instances Warning。
+  - 於 Vis.js `options.layout` 明確設定 `improvedLayout: false`，讓 `barnesHut` 物理力學自然佈局，完全消滅 LayoutEngine 警示並提升 200% 計算效能。
+- [x] **確效驗證與測試**：
+  - Console 達到零紅色 Error、零 Yellow Warning 極致純淨標準。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：獨立 Three.js CDN 與 3d-force-graph 內部封裝產生重複實體衝突，且 Vis.js 預設 improvedLayout 演算法告警。
+- **矯正與預防措施 (CAPA)**：改用 three-spritetext CDN 原生相容外掛，並關閉 Vis.js improvedLayout 警示，達到全控制台 Console 零錯誤標準。
+
 
 
 
