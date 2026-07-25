@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-07-25T00:43:04.043Z
+ * 產生時間：2026-07-25T01:53:56.775Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -75,91 +75,67 @@ export const SYNONYM_MAP = {
     "code analysis",
     "codebase understanding"
   ],
-  "漏洞": [
+  "漏洞掃描": [
     "pentest",
     "penetration test",
     "security",
     "vulnerability",
+    "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check",
-    "安全"
+    "compliance-check"
   ],
   "pentest": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "penetration test",
-    "security",
-    "vulnerability",
-    "security scan"
+    "滲透測試"
   ],
   "penetration test": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "pentest",
-    "security",
-    "vulnerability",
-    "security scan"
+    "滲透測試"
   ],
   "security": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "pentest",
-    "penetration test",
-    "vulnerability",
-    "security scan"
+    "滲透測試"
   ],
   "vulnerability": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "pentest",
-    "penetration test",
-    "security",
-    "security scan"
+    "滲透測試"
+  ],
+  "scanning": [
+    "漏洞掃描",
+    "安全測試",
+    "滲透測試"
   ],
   "security scan": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "pentest",
-    "penetration test",
-    "security",
-    "vulnerability"
+    "滲透測試"
   ],
   "auto-fix": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "pentest",
-    "penetration test",
-    "security",
-    "vulnerability"
+    "滲透測試"
   ],
   "compliance-check": [
-    "漏洞",
+    "漏洞掃描",
     "安全測試",
-    "滲透測試",
-    "安全掃描",
-    "pentest",
-    "penetration test",
-    "security",
-    "vulnerability"
+    "滲透測試"
+  ],
+  "penetration-testing": [
+    "漏洞掃描",
+    "安全測試",
+    "滲透測試"
   ],
   "安全測試": [
     "pentest",
     "penetration test",
     "security",
     "vulnerability",
+    "scanning",
     "security scan",
     "auto-fix",
     "compliance-check"
@@ -169,15 +145,7 @@ export const SYNONYM_MAP = {
     "penetration test",
     "security",
     "vulnerability",
-    "security scan",
-    "auto-fix",
-    "compliance-check"
-  ],
-  "安全掃描": [
-    "pentest",
-    "penetration test",
-    "security",
-    "vulnerability",
+    "scanning",
     "security scan",
     "auto-fix",
     "compliance-check"
@@ -461,6 +429,78 @@ export const SYNONYM_MAP = {
     "php",
     "abstraction"
   ],
+  "免費-gpt": [
+    "gpt-api-free",
+    "chatanywhere",
+    "free-gpt",
+    "openai-compatible",
+    "gpt-proxy",
+    "claude-api",
+    "deepseek-api"
+  ],
+  "gpt-api-free": [
+    "免費-gpt",
+    "chatanywhere",
+    "free-gpt",
+    "openai-compatible",
+    "gpt-proxy",
+    "claude-api",
+    "deepseek-api"
+  ],
+  "chatanywhere": [
+    "免費-gpt",
+    "gpt-api-free",
+    "free-gpt",
+    "openai-compatible",
+    "gpt-proxy",
+    "claude-api",
+    "deepseek-api"
+  ],
+  "free-gpt": [
+    "免費-gpt",
+    "gpt-api-free",
+    "chatanywhere",
+    "openai-compatible",
+    "gpt-proxy",
+    "claude-api",
+    "deepseek-api"
+  ],
+  "openai-compatible": [
+    "免費-gpt",
+    "gpt-api-free",
+    "chatanywhere",
+    "free-gpt",
+    "gpt-proxy",
+    "claude-api",
+    "deepseek-api"
+  ],
+  "gpt-proxy": [
+    "免費-gpt",
+    "gpt-api-free",
+    "chatanywhere",
+    "free-gpt",
+    "openai-compatible",
+    "claude-api",
+    "deepseek-api"
+  ],
+  "claude-api": [
+    "免費-gpt",
+    "gpt-api-free",
+    "chatanywhere",
+    "free-gpt",
+    "openai-compatible",
+    "gpt-proxy",
+    "deepseek-api"
+  ],
+  "deepseek-api": [
+    "免費-gpt",
+    "gpt-api-free",
+    "chatanywhere",
+    "free-gpt",
+    "openai-compatible",
+    "gpt-proxy",
+    "claude-api"
+  ],
   "翻譯": [
     "translate",
     "translation",
@@ -478,16 +518,6 @@ export const SYNONYM_MAP = {
     "翻譯",
     "translate",
     "localization"
-  ],
-  "安全": [
-    "漏洞",
-    "pentest",
-    "penetration test",
-    "security",
-    "vulnerability",
-    "security scan",
-    "auto-fix",
-    "compliance-check"
   ],
   "測試": [
     "自動化測試",
