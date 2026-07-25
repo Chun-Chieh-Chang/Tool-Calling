@@ -81,3 +81,10 @@ node cli.js cleanup <tool-id>
 1. **強制金鑰自檢**：除了遵守「禁止硬編碼 API 金鑰」規則外，任何呼叫 LLM API 的程式碼，必須確保金鑰「只能」從環境變數讀取，嚴禁提供預設值。若無環境變數必須直接拋錯中斷。**在 Commit 前，必須強制以 `grep` 檢查程式碼中是否殘留 `sk-` 等金鑰字串。**
 2. **提示詞注入防禦 (Prompt Injection Defense)**：當構建 Prompt 時，所有來自第三方 (如 GitHub Repos) 抓取的描述、內容或變數，必須被明確標記為「不可信資料 (Untrusted Data)」，並與系統指令 (System Instructions) 嚴格隔離 (例如使用 XML tags 包覆)，防止惡意描述操縱模型決策。
 3. **優雅降級 (Graceful Degradation / Fallback)**：當呼叫外部 LLM API (如 Smart Reranker) 發生超時、額度耗盡或網路錯誤時，系統必須自動 Fallback (退回) 至既有的穩健機制 (例如本地 TF-IDF 檢索)，絕對不允許因外部 API 失敗導致整個核心服務崩潰。
+
+## 新工具詮釋資料完整性防禦元規則 (Tool Metadata Completeness Meta-Rule)
+**禁止不完整詮釋資料工具入庫與提交 (Zero Missing Metadata Tools)**
+1. **強制場景標籤完備**：每當新增、修訂或導入新工具時，必須確認該工具 100% 包含 `useCase` (推薦場景) 與 `negativeConstraints` (禁用場景) 欄位。
+2. **自動確效門禁**：提交 Git 前必須執行 `node cli.js validate`。若 `cli.js validate` 拋出缺少 `useCase` 或 `negativeConstraints` 之錯誤，禁止執行提交與推送。
+3. **對齊生成規範**：場景標籤建構必須嚴格遵循 [scripts/enrich-registry.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/enrich-registry.js) 或 `tool-enrichment` Skill 的 Prompt 標準，絕不標新立異。
+

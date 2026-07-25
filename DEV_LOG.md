@@ -542,6 +542,23 @@
 - **問題**：個別實驗性工具加入時缺乏標準 metadata，導致前端卡片渲染時標籤區域空白。
 - **矯正與預防措施 (CAPA)**：補齊遺漏工具詮釋資料，達成 293/293 個工具 100% 通過品質門禁。
 
+### 2026-07-25 — 詮釋資料構建標準化 RCA/CAPA 與 Skill 內建 (Phase 33)
+
+#### 需求與動機
+使用者指出「推薦與禁用場景缺失的問題已經不是第一次出現，可見系統在接到新的工具路徑後，並沒有一套統一的規則去建構這些資訊，請執行 RCA 與 CAPA」。
+
+#### 完成項目
+- [x] **RCA 診斷**：發現 `cli.js validate` 未將 `useCase` 與 `negativeConstraints` 列入必填，導致不合規工具能無警告入庫。
+- [x] **CAPA 1 (門禁升級)**：更新 `cli.js` 中的 `cmdValidate()`，將 `useCase` 與 `negativeConstraints` 缺失提升為 Error 必阻擋級別。
+- [x] **CAPA 2 (Skill 內建)**：建立 [.agents/skills/tool-enrichment/SKILL.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/skills/tool-enrichment/SKILL.md)，規範標準 LLM 提示詞與句型（`useCase` 一句話場景、`negativeConstraints` 1-3 個禁用邊界）。
+- [x] **CAPA 3 (元規則寫入)**：於 [.agents/AGENTS.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/AGENTS.md) 加入「新工具詮釋資料完整性防禦元規則」。
+- [x] **確效與測試**：`node cli.js validate` (293/293 通過)、`node scripts/build-web.js` 與 `npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- **問題**：驗證門禁漏洞 + 導入流程缺乏 Agent Skill 指引。
+- **矯正與預防措施 (CAPA)**：4 層防禦體系（程式碼門禁 + 內建 Skill + 專案規則 + 自主進化）徹底防禦迴歸。
+
+
 
 
 

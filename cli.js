@@ -261,6 +261,24 @@ function cmdValidate() {
       warn(`工具 "${tool.id}" 描述過短`);
       warnings++;
     }
+
+    // 推薦場景 (useCase)
+    if (!tool.useCase) {
+      error(`工具 "${tool.id}" 缺少推薦場景 (useCase)`);
+      errors++;
+    }
+
+    // 禁用場景 (negativeConstraints)
+    if (!tool.negativeConstraints || !Array.isArray(tool.negativeConstraints) || tool.negativeConstraints.length === 0) {
+      error(`工具 "${tool.id}" 缺少禁用場景 (negativeConstraints)`);
+      errors++;
+    }
+
+    // 優勢標籤 (advantages)
+    if (!tool.advantages || !Array.isArray(tool.advantages) || tool.advantages.length === 0) {
+      warn(`工具 "${tool.id}" 缺少優勢標籤 (advantages)`);
+      warnings++;
+    }
   }
 
   console.log(`${c.dim}─────────────────────────────────────────${c.reset}`);
