@@ -1204,6 +1204,24 @@
 - **問題**：自訂 nodeThreeObject 時只回傳單一 Sprite 導致預設 3D 球體被覆蓋抹除。
 - **矯正與預防措施 (CAPA)**：使用 THREE.Group() 將 MeshPhongMaterial 實體球體與 SpriteText 物件組裝組合，並注入環境光與平行光，確保 3D 空間 100% 明亮安定呈現。
 
+### 2026-07-25 — 點擊互動式工具圖譜直接跳轉獨立新分頁全螢幕開啟重構 (Phase 68)
+
+#### 需求與動機
+使用者需求：「點擊互動式工具圖譜時直接跳轉到獨立新分頁全螢幕開啟，不需要在當前頁面顯示」。精簡 Web 介面並提升全螢幕瀏覽體驗。
+
+#### 完成項目
+- [x] **導覽頁籤按鈕開展 (`web/index.html`)**：
+  - 將「🌐 互動式工具圖譜」按鈕宣告為獨立外連標籤 `<a href="knowledge-graph.html" target="_blank" class="tab-btn" style="text-decoration:none;">`。
+  - 點擊時直接以 `target="_blank"` 於瀏覽器獨立新分頁開啟 100vw x 100vh 滿版全螢幕 3D/2D 知識圖譜。
+- [x] **SPA 頁面視圖淨化 (`web/index.html` & `web/app.js`)**：
+  - 徹底移除 SPA 當前頁面中的內嵌 `#graphView` iframe 容器，還原當前頁面為乾淨純粹的儀表板與工具列表主介面。
+- [x] **確效驗證與測試**：
+  - 點擊按鈕 100% 直達全螢幕獨立圖譜。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- （本次完成點擊圖譜直達獨立新分頁全螢幕開啟與 SPA 主介面無內飾重構，全系統測試無異常狀況）
+
 
 
 
