@@ -1349,6 +1349,25 @@
 - **問題**：額外載入獨立 three.min.js CDN 與缺失 favicon 導致控制台出現多個黃色 Warning 與 404 錯誤。
 - **矯正與預防措施 (CAPA)**：淨化 CDN 宣告（僅使用 3d-force-graph 自帶實體與 nodeCanvasObject），並補齊 SVG Data URI Favicon，實現極致純淨 Zero Console Warnings。
 
+### 2026-07-25 — 3D 圖譜 API 修正 (`nodeThreeObjectExtend`) 與零 TypeError 穩定重構 (Phase 75)
+
+#### 需求與動機
+使用者提供 Console 錯誤反饋：`Uncaught TypeError: ...nodeCanvasObject is not a function`。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - `nodeCanvasObject` 是 `force-graph` (2D 畫布引擎) 的專屬 API，而 `3d-force-graph` (3D 空間光學引擎) 的對應 API 為 `nodeThreeObject` 與 `nodeThreeObjectExtend`。在 3D 鏈式調用中誤呼叫 `nodeCanvasObject` 導致 TypeError。
+- [x] **矯正與預防措施 (CAPA - Native 3D Billboard & Extend API)**：
+  - 將 API 更正為 3D 正統的 `.nodeThreeObject(...)`，並啟用 `.nodeThreeObjectExtend(true)`。
+  - 使用 `3d-force-graph` 封裝暴露之 Three `CanvasTexture` 建立 High-DPI 3D Billboard Sprite 標籤，讓 **發光 3D 實體球體** 與 **立體懸浮文字標籤** 完美同時疊加渲染！
+- [x] **確效驗證與測試**：
+  - TypeError 100% 消除，3D 宇宙視角發光球體與標籤絢麗展現，切換至 3D 順暢極速。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：在 3d-force-graph 鏈式調用中使用了 2D 的 nodeCanvasObject API 拋出 TypeError。
+- **矯正與預防措施 (CAPA)**：更正為 3D 正統 API nodeThreeObject 與 nodeThreeObjectExtend(true)，並以 CanvasTexture 繪製立體 Billboard Sprite。
+
 
 
 
