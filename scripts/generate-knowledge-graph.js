@@ -5,26 +5,26 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 顏色定義 (Premium Color Master Palette)
+// 高級對比與莫蘭迪色系 (Premium High-Contrast Palette, 無刺眼爆亮黃)
 const categoryColors = {
-  "開發工具": "#3B82F6",
-  "數據分析": "#10B981",
-  "知識管理": "#8B5CF6",
-  "安全性": "#EF4444",
-  "多媒體生成": "#EC4899",
-  "AI 框架": "#F59E0B",
-  "學習資源": "#6366F1",
-  "測試與自動化": "#14B8A6",
-  "基礎設施": "#64748B",
-  "資料庫": "#06B6D4",
-  "前端設計": "#A855F7",
-  "3D工程繪圖": "#F97316",
-  "專案管理": "#0EA5E9",
-  "簡報與文件生產力": "#84CC16",
-  "自動化流程與外掛": "#D946EF"
+  "開發工具": "#2563EB",         // 寶藍
+  "數據分析": "#059669",         // 深翡翠綠
+  "知識管理": "#7C3AED",         // 深紫
+  "安全性": "#DC2626",           // 深紅
+  "多媒體生成": "#DB2777",       // 深粉
+  "AI 框架": "#D97706",         // 暖金棕/深琥珀 (絕非刺眼黃)
+  "學習資源": "#4F46E5",         // 靛藍
+  "測試與自動化": "#0D9488",     // 深青綠
+  "基礎設施": "#475569",         // 石板灰
+  "資料庫": "#0891B2",           // 深青
+  "前端設計": "#9333EA",         // 紫
+  "3D工程繪圖": "#EA580C",       // 深橘
+  "專案管理": "#0284C7",         // 天藍
+  "簡報與文件生產力": "#65A30D",   // 深綠
+  "自動化流程與外掛": "#C026D3"    // 深紫紅
 };
 
-const defaultColor = "#94A3B8";
+const defaultColor = "#475569";
 
 // 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
 function getContrastTextColor(hexColor) {
@@ -52,7 +52,12 @@ export function generateKnowledgeGraph(registryInput = null) {
     label: `Tool-Calling\n(${registry.tools.length} AI Tools)`,
     group: "root",
     shape: "ellipse",
-    color: { background: "#6366F1", border: "#818CF8", highlight: { background: "#818CF8", border: "#C7D2FE" } },
+    color: {
+      background: "#4F46E5",
+      border: "#6366F1",
+      highlight: { background: "#6366F1", border: "#FFFFFF" },
+      hover: { background: "#6366F1", border: "#FFFFFF" }
+    },
     font: { color: "#FFFFFF", size: 22, face: "Inter", bold: true },
     value: 40
   });
@@ -69,9 +74,27 @@ export function generateKnowledgeGraph(registryInput = null) {
       label: cat,
       group: "category",
       shape: "box",
-      margin: 12,
-      color: { background: colorHex, border: colorHex, highlight: { background: colorHex, border: "#FFFFFF" } },
-      font: { color: textColor, size: 16, face: "Inter", bold: true },
+      margin: 14,
+      color: {
+        background: colorHex,
+        border: colorHex,
+        highlight: {
+          background: colorHex, // 💡 強制指定 Highlight 背景色為分類原色，徹底防止 Vis.js 預設選中變爆亮黃底！
+          border: "#FFFFFF"
+        },
+        hover: {
+          background: colorHex,
+          border: "#93C5FD"
+        }
+      },
+      font: {
+        color: textColor,
+        size: 16,
+        face: "Inter",
+        bold: true,
+        strokeWidth: textColor === '#FFFFFF' ? 2 : 0,
+        strokeColor: '#0F172A'
+      },
       value: 25
     });
 
@@ -93,7 +116,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         group: "tool",
         shape: "dot",
         size: 12,
-        color: { background: "#1E293B", border: colorHex, highlight: { background: colorHex, border: "#FFFFFF" } },
+        color: {
+          background: "#1E293B",
+          border: colorHex,
+          highlight: { background: colorHex, border: "#FFFFFF" },
+          hover: { background: colorHex, border: "#FFFFFF" }
+        },
         font: { color: "#F8FAFC", size: 13, face: "Inter", strokeWidth: 3, strokeColor: "#0F172A" },
         title: `<b>${tool.name}</b><br/>ID: ${tool.id}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`
       });
@@ -115,7 +143,11 @@ export function generateKnowledgeGraph(registryInput = null) {
             group: "subtool",
             shape: "diamond",
             size: 6,
-            color: { background: "#334155", border: "#64748B" },
+            color: {
+              background: "#334155",
+              border: "#64748B",
+              highlight: { background: "#475569", border: "#FFFFFF" }
+            },
             font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" }
           });
 
@@ -370,7 +402,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       edges: new vis.DataSet(edgesData)
     };
 
-    // 物理力學最佳化配置 (修復永久跳動/動態不穩定)
+    // 物理力學最佳化配置
     const options = {
       nodes: {
         font: { face: 'Inter' }
@@ -382,15 +414,15 @@ export function generateKnowledgeGraph(registryInput = null) {
           centralGravity: 0.25,
           springLength: 110,
           springConstant: 0.02,
-          damping: 0.35,            // 高阻尼迅速耗散跳動動能
+          damping: 0.35,
           avoidOverlap: 0.6
         },
         maxVelocity: 35,
-        minVelocity: 0.2,             // 降低門檻，使粒子順利停止
+        minVelocity: 0.2,
         solver: 'barnesHut',
         stabilization: {
           enabled: true,
-          iterations: 300,            // 增加預先計算次數
+          iterations: 300,
           updateInterval: 25,
           onlyDynamicEdges: false,
           fit: true
@@ -405,7 +437,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const network = new vis.Network(container, data, options);
 
-    // 穩定後自動鎖定物理引擎，徹底防範永久微跳動
+    // 穩定後自動鎖定物理引擎，徹底防範跳動
     network.on('stabilizationIterationsDone', function () {
       network.setOptions({ physics: { enabled: false } });
     });
@@ -478,7 +510,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with physics stabilization fixes for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with selection highlight fixes for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
