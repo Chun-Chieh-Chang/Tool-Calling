@@ -811,7 +811,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       content.innerHTML = \`
         <div class="panel-title">\${node.label.replace('\\n', ' ')}</div>
         <div class="panel-tag">\${node.group.toUpperCase()}</div>
-        \${htmlContent ? descHtml : ''}
+        \${descHtml}
       \`;
       panel.classList.add('active');
     }
