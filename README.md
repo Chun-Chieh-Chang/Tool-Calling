@@ -1,25 +1,26 @@
 # Tool-Calling 🔧⚡
 
-> 一個幫你自動找工具、裝工具、用工具的 AI 助手
+> 一個幫你自動找工具、裝工具、用工具的全自動 AI 助手與知識圖譜系統
 
 ## 這是什麼？
 
-想像你有一個 **工具箱**，裡面放了 280 個不同的開源工具：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **320+ 個開源 AI 工具與 Agent 技能**：
 
-- 📄 做簡報的（AIPPT、NotebookLM2PPT）
-- 🧠 管理知識的（Graphify、Ontology）
-- 🤖 AI 框架（Langchain、Dify、CrewAI）
-- 🧪 測試工具（Playwright、n8n）
-- 🎨 圖片影片生成（Stable Diffusion）
+- 📊 **數據與分析**：Grafana、Pandas-AI、PostHog
+- 📄 **簡報與文件生產力**：AIPPT、NotebookLM2PPT、Docling
+- 🧠 **知識管理與圖譜**：Graphify、Ontology、RAGFlow
+- 🤖 **AI 框架**：LangChain、Dify、CrewAI、AutoGen
+- 🧪 **測試與自動化**：Playwright、n8n、Browser-Use
+- 🎨 **多媒體與設計**：Stable Diffusion、ComfyUI、Canvas
 - 還有更多……
 
-**這個專案的作用就是：** 當你需要做某件事時，它幫你自動找到最適合的工具，裝好、執行完、再收乾淨。
+**這個專案的作用就是：** 當你需要做某件事時，它幫你自動找到最適合的工具，裝好、執行完、再收乾淨，同時提供 **全站 4 大分頁實時連動與 100% 資料驅動的互動式知識圖譜**。
 
 ---
 
 ## 用法一：自己搜尋（最直覺）
 
-打開終端機（命令提示字元），輸入：
+打開心命令提示字元（CMD / PowerShell），輸入：
 
 ```bash
 node cli.js search "我要做簡報"
@@ -41,7 +42,25 @@ node cli.js search "我要做簡報"
 
 ---
 
-## 用法二：讓 AI 自動幫你用（推薦 ⭐）
+## 用法二：網頁版與 4 大分頁實時連動 Web UI (推薦 ⭐)
+
+開啟專案下的 `web/index.html` 或執行打包 `node scripts/build-web.js`：
+
+全站包含 **4 大視圖分頁**，並由全域 `AppState` 單一真理來源實時連動：
+
+1. 📊 **儀表板總覽**：KPI 統計指標、Chart.js 分類與語言分佈圖、分類 Overview。
+2. 🔧 **工具目錄列表**：三層檢索（L1精態/L2關鍵字/L3語意）工具卡片與 Match 比例。
+3. 🔥 **每週漲星榜**：自動探勘 GitHub 當週熱門漲星排行榜。
+4. 🌐 **互動式工具圖譜**：
+   - **100% Data-Driven**：所有描述、數字與關聯 100% 由 `tools.json` 動態運算產生。
+   - **連線語意說明**：
+     - ━ **實線**：主分類歸屬網絡 (Category Hierarchy)
+     - ╌ **虛線**：拆解微技能與能力 (Capability / SubTool)，點擊時亮顯。
+   - **對角雙面板佈局**：右中分類選擇器 + 左下富文本抽屜面板。
+
+---
+
+## 用法三：讓 AI 自動幫你用 (MCP Server)
 
 如果你在用 **Claude Desktop** 或 **Cursor** 這類 AI 軟體，可以把這個工具箱接上去。
 
@@ -54,8 +73,6 @@ AI 就會自己：
 2. 安裝工具
 3. 執行工具
 4. 把結果回傳給你
-
-全程不用你動手。
 
 ### 怎麼接？
 
@@ -91,7 +108,7 @@ AI 就會自己：
 
 ---
 
-## 用法三：在 Agnes 對話中使用
+## 用法四：在 Agnes 對話中使用
 
 在 Agnes 聊天中說：
 
@@ -101,132 +118,12 @@ Agnes 就會自動幫你搜尋、確認、執行、清理。
 
 ---
 
-## 用法四：跟 SkillsBuilder 搭配使用（擴充工具箱）
+## 用法五：跟 SkillsBuilder 搭配使用（擴充工具箱）
 
 **SkillsBuilder** 是一個用來「開發和整理技能」的工具，而 **Tool-Calling** 是「搜尋和使用技能」的工具。兩者搭配起來就像：
 
 - **SkillsBuilder** = 工廠（生產技能）
 - **Tool-Calling** = 超市（搜尋和購買技能）
-
-### 搭配方式
-
-1. **用 SkillsBuilder 開發新技能** — 寫好技能後，SkillsBuilder 會幫你整理好描述、分類、觸發詞等資訊
-2. **把技能匯出到 Tool-Calling** — 技能建好後，把它們加進 Tool-Calling 的工具箱裡
-3. **在 Tool-Calling 裡搜尋和使用** — 之後任何時候都能用 `search` 找到你開發的技能
-
-簡單說：SkillsBuilder 負責「造」，Tool-Calling 負責「找」。
-
----
-
-## 用法五：在新專案中自動觸發（最省事 ⭐⭐）
-
-這是**最重要也最實用**的一節。假設你剛建立了一個新專案（例如一個網站、一個 App），你希望每次打開這個專案時，AI 都能自動幫你用上 Tool-Calling 和 SkillsBuilder 的功能，不用每次都手動設定。
-
-### 第一步：先完成一次性的環境設定
-
-在開始任何新專案之前，先做兩件事（**只做一次**）：
-
-#### A. 安裝 SkillsBuilder 的全域技能
-
-進入 SkillsBuilder 目錄，執行安裝腳本：
-
-```powershell
-cd D:\Self-developed_Apps\SkillsBuilder
-.\INSTALL.ps1
-```
-
-這會把所有開發技能（程式碼審查、測試驅動、知識管理等 57 個技能）安裝到你的系統全域，以後每個新專案都能直接用。
-
-#### B. 讓 AI 知道 Tool-Calling 在哪裡
-
-如果你用 Claude Desktop 或 Cursor，按照「用法二」的步驟，把 Tool-Calling 接上去。這樣 AI 在任何專案中都能自動搜尋工具。
-
----
-
-### 第二步：在新專案中「一句話啟動」
-
-每次你開啟一個新專案，只要對 AI 說一句話，兩個系統就會自動啟動：
-
-#### 啟動 SkillsBuilder（開發紀律 + 知識庫）
-
-在新專案目錄中對 AI 說：
-
-> **「啟動 SkillsBuilder 開發模式」**
-
-AI 會自動幫你做這些事：
-- 建立 `DEV_LOG.md`（開發日誌）和 `wiki/`（知識庫）
-- 載入所有開發規範（PDCA 流程、UI 設計標準、程式碼審查規則）
-- 啟動圖譜索引（graphify），快速理解專案結構
-
-#### 啟動 Tool-Calling（工具搜尋）
-
-在同一個專案中對 AI 說：
-
-> **「啟動全自動工具調用模式」**
-
-AI 會自動幫你做這些事：
-- 解析你的任務需求
-- 從 280 個工具中找出最適合的
-- 等待你確認後，自動安裝、執行、清理
-
----
-
-### 完整的日常工作流程
-
-想像你在做一個新專案，完整的流程是這樣：
-
-```
-1. 打開新專案資料夾
-   ↓
-2. 對 AI 說：「啟動 SkillsBuilder 開發模式」
-   → AI 自動建立開發架構和知識庫
-   ↓
-3. 對 AI 說：「啟動全自動工具調用模式」
-   → AI 自動準備好工具搜尋功能
-   ↓
-4. 開始工作，隨時說你需要什麼工具
-   → AI 自動搜尋、安裝、執行、清理
-   ↓
-5. 專案完成
-   → SkillsBuilder 自動記錄經驗到 wiki/
-   → Tool-Calling 自動更新工具使用頻率統計
-```
-
-**重點：** 第 1 步的兩句咒語，每個新專案只需要說一次。之後就交給 AI 自動運作。
-
----
-
-### 如果沒有用 Agnes，該怎麼辦？
-
-如果你用的是 Claude Desktop、Cursor 或其他 AI 工具，同樣可以達到類似效果：
-
-| AI 工具 | 怎麼做 |
-|---------|--------|
-| **Claude Desktop** | 接上 Tool-Calling 的 MCP Server（見用法二），然後直接說「幫我搜尋可以做簡報的工具」 |
-| **Cursor** | 同樣接上 MCP Server，在編輯器內直接對話使用 |
-| **其他工具** | 手動執行 `node cli.js search "..."` 搜尋工具，或使用網頁版 `web/index.html` |
-
----
-
-## 用法六：從別的資料夾呼叫（不切換目錄）
-
-如果你不想離開目前的專案資料夾，也可以直接指定完整路徑：
-
-```bash
-node "D:\Self-developed_Apps\Tool-Calling\cli.js" search "我要做簡報"
-```
-
-或者用 PowerShell 的 alias 方式（一勞永逸）：
-
-1. 在 PowerShell 中執行：
-```powershell
-New-Alias -Name tc -Value "D:\Self-developed_Apps\Tool-Calling\cli.js" -Scope Global
-```
-
-2. 之後在任何地方都可以輸入：
-```powershell
-tc search "我要做簡報"
-```
 
 ---
 
@@ -241,64 +138,47 @@ tc search "我要做簡報"
 
 ---
 
-## 常見問題
-
-**Q：我需要裝什麼才能用？**
-A：需要安裝 [Node.js](https://nodejs.org/)（版本 18 以上）。裝好後就能用指令列模式了。如果要讓 AI 自動執行工具，還需要安裝 Docker。
-
-**Q：裡面有多少工具？**
-A：目前超過 280 個，涵蓋 20 多個分類。
-
-**Q：我可以自己加工具嗎？**
-A：可以！只要提供 GitHub 倉庫網址就行：
-```bash
-node cli.js add https://github.com/使用者/倉庫名稱
-```
-
-**Q：這些工具免費嗎？**
-A：專案本身是 MIT 授權（免費）。裡面的每個工具各有自己的授權，使用前請確認。
-
----
-
-## 檔案說明
+## 檔案與架構說明 (MECE 分類)
 
 ```
 Tool-Calling/
-├── cli.js              ← 命令列入口，用來搜尋和管理工具
-├── mcp-server.js       ← 讓 Claude / Cursor 等 AI 軟體能使用這個工具箱
+├── cli.js              ← 命令列控制端（支援 search, add, batch-add, list, info 等）
+├── mcp-server.js       ← MCP 通訊伺服器（適配 Claude Desktop / Cursor）
 ├── registry/
-│   ├── tools.json      ← 工具清單（目前 280 個）
-│   └── schemas/        ← JSON Schema 驗證格式
+│   ├── tools.json      ← 工具庫主單一真理來源（目前 320+ 個 AI 工具）
+│   └── schemas/        ← JSON Schema 規範格式
 ├── core/
-│   ├── search-engine.js  ← 三層檢索引擎（L1精確/L2關鍵字/L3語義）
-│   ├── installer.js      ← 動態安裝工具（支援 Sparse Checkout）
-│   ├── sandbox.js        ← Docker 沙盒隔離執行
-│   ├── telemetry.js      ← 工具調用軌跡追蹤與動態權重調整
-│   ├── cleanup.js        ← 任務後自動清理
-│   └── registry.js       ← 共享模組：載入/儲存工具註冊庫
+│   ├── search-engine.js  ← 三層檢索引擎（L1精確/L2關鍵字/L3 TF-IDF 語意）
+│   ├── synonyms.generated.js ← 自動挖掘與同義詞詞典
+│   ├── installer.js      ← 動態工具安裝器 (支援 Sparse Checkout)
+│   ├── sandbox.js        ← Docker 沙盒隔離執行環境
+│   ├── telemetry.js      ← 工具調用軌跡追蹤
+│   ├── cleanup.js        ← 任務執行完畢清理器
+│   └── registry.js       ← 工具庫載入與寫入核心模組
 ├── scripts/
-│   ├── build-web.js            ← 靜態網頁打包腳本
-│   ├── enrich-registry.js      ← AI 批次補齊工具資料（需 AGNES_API_KEY）
+│   ├── build-web.js            ← 靜態 Web 與圖譜打包發行腳本
+│   ├── generate-knowledge-graph.js ← 100% Data-Driven 互動式圖譜生成器
+│   ├── enrich-registry.js      ← AI 批次補齊 recommended useCase 與 constraints
 │   ├── export-dataset.js       ← 萃取 Telemetry 為 SFT 訓練資料
 │   ├── mine-synonyms.js        ← 同義詞自動探勘腳本
 │   ├── populate-stars.js       ← 補齊 GitHub Stars 數據腳本
-│   ├── scan-tool.js            ← GitHub URL 解析器（自動分類 + 安裝猜測）
-│   ├── scan-monorepo.js        ← Monorepo 深層索引掃描器
-│   ├── sync-github-stars.js    ← 定期同步 GitHub Stars 數據
-│   ├── trending-weekly.js      ← 每週漲星數探勘腳本
-│   └── url-resolver.js         ← URL 類型解析器（tool/resource/monorepo 辨識與拆解）
+│   ├── scan-tool.js            ← GitHub URL 自動掃描解析器
+│   ├── scan-monorepo.js        ← Monorepo 深層索引拆解器
+│   ├── sync-github-stars.js    ← GitHub Stars 定期同步器
+│   ├── trending-weekly.js      ← 每週熱門漲星排行榜探勘器
+│   └── url-resolver.js         ← URL 類型自動解析器
 ├── tests/
-│   └── search.test.js      ← 單元測試（6 項核心邏輯）
+│   └── search.test.js      ← 8 項單元測試 Suite
 ├── web/
-│   ├── index.html          ← 網頁版檢索介面
-│   ├── style.css           ← 暗色系毛玻璃風格樣式
-│   └── app.js              ← 前端搜尋邏輯
+│   ├── index.html          ← 全站 4 大分頁 Web 主介面
+│   ├── style.css           ← 暗色系毛玻璃與 Design Tokens 樣式
+│   └── app.js              ← AppState 單一真理來源 4 視圖連動引擎
 ├── docs/
-│   ├── architecture/       ← 技能路由優化白皮書
-│   ├── batch-add-automation.md ← 批量加入工具庫自動化邏輯說明
-│   └── relationship-diagram.html ← 三角色關係圖解
+│   ├── knowledge-graph.html    ← 100% 資料驅動全景互動式知識圖譜
+│   ├── batch-add-automation.md ← 批量加入自動化白皮書
+│   └── architecture/           ← 技能路由優化架構白皮書
 └── .agents/
-    └── AGENTS.md           ← 系統級開發規範（單一真理來源）
+    └── AGENTS.md           ← 專案級開發 SOP 與安全防禦規則
 ```
 
 ---
