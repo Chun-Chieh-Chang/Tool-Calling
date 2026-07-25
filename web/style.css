@@ -275,11 +275,15 @@ select {
   padding-top: calc(var(--spacing-base) * 3);
 }
 
-/* Grid */
+/* Results Container & Grid Layout */
+.results-container {
+  width: 100%;
+}
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: calc(var(--spacing-base) * 6);
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: calc(var(--spacing-base) * 5);
+  width: 100%;
 }
 
 /* Tool Card */
