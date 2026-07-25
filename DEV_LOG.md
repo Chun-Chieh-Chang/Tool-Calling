@@ -978,6 +978,27 @@
 - **問題**：面板選取處理忽視了非 Tool 節點的資訊豐富度需求，造成點擊 Category 時顯示「無詳細說明」。
 - **矯正與預防措施 (CAPA)**：建立分類語意詞庫與四態 Rich HTML 渲染器，確保全圖每個節點點擊後皆提供具備實質含金量的領域指標與描述。
 
+### 2026-07-25 — 知識圖譜全自動 100% 資料驅動 (Data-Driven) 即時動態連動重構 (Phase 57)
+
+#### 需求與動機
+使用者需求：「知識圖譜的所有訊息都必須自動連動工具庫即時更新」。消除任何寫死的靜態字串，確保整個知識圖譜的所有文字、指標、屬性與圖例 100% 由 `registry/tools.json` 即時運算並自動產生。
+
+#### 完成項目
+- [x] **動態分類技術領域摘要萃取器 (Dynamic Category Summary Extractor)**：
+  - 重構 `scripts/generate-knowledge-graph.js`，拔除寫死簡介文案。
+  - 對每一個 Category 節點，由該分類下所有工具的 `useCase` 與 `description` 動態提煉領域關鍵應用與介紹。
+- [x] **全屬性即時數據繫結 (Tool Data Binding)**：
+  - 將 `tools.json` 每個工具的最新屬性（`id`, `name`, `description`, `useCase`, `advantages`, `negativeConstraints`, `language`, `install`, `capabilities`）直接繫結於圖譜節點。
+  - 面板渲染 `showPanel` 100% 即時呈現 `tools.json` 當前內容。
+- [x] **無上限動態分類主題色生成 (Dynamic HSL Color Generator)**：
+  - 當未來新增第 21+ 個全新領域分類時，自動透過 HSL 離散演算法產生專屬高對比主題色與文字顏色，實現無上限擴充。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 印出 `[Auto-Sync] 100% data-driven knowledge graph updated for 320 tools!`。
+  - `npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次完成知識圖譜全自動 100% 資料驅動解耦與零死角即時連動，無異常狀況）
+
 
 
 
