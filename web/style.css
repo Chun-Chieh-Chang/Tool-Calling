@@ -80,9 +80,9 @@ body {
 
 /* Layout */
 .container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: calc(var(--spacing-base) * 8) calc(var(--spacing-base) * 4);
+  padding: calc(var(--spacing-base) * 6) calc(var(--spacing-base) * 6);
 }
 
 /* Header */
@@ -281,9 +281,24 @@ select {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: calc(var(--spacing-base) * 5);
   width: 100%;
+}
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Tool Card */
@@ -463,13 +478,19 @@ select {
   grid-template-columns: repeat(4, 1fr);
   gap: calc(var(--spacing-base) * 4);
   margin-bottom: calc(var(--spacing-base) * 8);
+  width: 100%;
 }
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 860px) {
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .kpi-grid {
     grid-template-columns: 1fr;
   }
@@ -585,24 +606,33 @@ select {
   align-items: center;
   gap: calc(var(--spacing-base) * 2);
 }
+.stats-bar-controls {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-base) * 4);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
 
 .category-overview-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: calc(var(--spacing-base) * 4);
   margin-bottom: calc(var(--spacing-base) * 10);
+  width: 100%;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .category-overview-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .category-overview-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .category-overview-grid {
     grid-template-columns: 1fr;
   }

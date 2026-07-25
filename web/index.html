@@ -26,6 +26,14 @@
         <h1>Tool-Calling <span>🔧⚡</span></h1>
         <p class="subtitle">全自動工具調用效能外掛系統與數據儀表板</p>
       </div>
+
+      <!-- 全域通用搜尋與分類過濾列 (兩頁面邏輯一致) -->
+      <div class="search-container glass-panel">
+        <input type="text" id="searchInput" placeholder="搜尋工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
+        <select id="categorySelect">
+          <option value="">所有分類</option>
+        </select>
+      </div>
     </header>
 
     <!-- 視圖切換頁籤 (Segmented Tabs) -->
@@ -42,7 +50,7 @@
 
     <!-- 儀表板視圖 (Dashboard View) -->
     <div id="dashboardView">
-      <!-- KPI 關鍵指標區塊 -->
+      <!-- KPI 關鍵指標區塊 (4 欄) -->
       <div class="kpi-grid">
         <div class="kpi-card glass-panel">
           <div class="kpi-icon-wrapper">🛠️</div>
@@ -104,7 +112,7 @@
         </div>
       </div>
 
-      <!-- 各分類概覽條目面板 -->
+      <!-- 各分類概覽條目面板 (4 欄) -->
       <div class="section-title-bar">
         <h2>🗂️ 分類條目與數據概覽</h2>
       </div>
@@ -115,20 +123,16 @@
 
     <!-- 工具目錄視圖 (Tools List View) -->
     <div id="toolsView" style="display: none;">
-      <div class="search-container glass-panel" style="margin: 0 auto calc(var(--spacing-base) * 6) auto;">
-        <input type="text" id="searchInput" placeholder="搜尋工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
-        <select id="categorySelect">
-          <option value="">所有分類</option>
-        </select>
-      </div>
-
-      <div class="stats-bar">
-        <span id="resultCount">載入中...</span>
-        <button id="expandAllBtn" class="expand-all-btn">收合全部</button>
+      <div class="section-title-bar">
+        <h2>🛠️ 所有工具條目與檢索結果</h2>
+        <div class="stats-bar-controls">
+          <span id="resultCount">載入中...</span>
+          <button id="expandAllBtn" class="expand-all-btn">收合全部</button>
+        </div>
       </div>
 
       <div id="resultsGrid" class="results-container">
-        <!-- 搜尋結果將由 JS 動態渲染在這裡 -->
+        <!-- 搜尋結果將由 JS 動態渲染在這裡 (4 欄) -->
       </div>
     </div>
   </main>
