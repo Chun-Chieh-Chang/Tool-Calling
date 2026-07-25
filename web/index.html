@@ -26,12 +26,6 @@
         <h1>Tool-Calling <span>🔧⚡</span></h1>
         <p class="subtitle">全自動工具調用效能外掛系統與數據儀表板</p>
       </div>
-      <div class="search-container glass-panel">
-        <input type="text" id="searchInput" placeholder="描述你的需求，例如：「我想做簡報」或「security scan」..." autocomplete="off">
-        <select id="categorySelect">
-          <option value="">所有分類</option>
-        </select>
-      </div>
     </header>
 
     <!-- 視圖切換頁籤 (Segmented Tabs) -->
@@ -121,6 +115,13 @@
 
     <!-- 工具目錄視圖 (Tools List View) -->
     <div id="toolsView" style="display: none;">
+      <div class="search-container glass-panel" style="margin: 0 auto calc(var(--spacing-base) * 6) auto;">
+        <input type="text" id="searchInput" placeholder="搜尋工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
+        <select id="categorySelect">
+          <option value="">所有分類</option>
+        </select>
+      </div>
+
       <div class="stats-bar">
         <span id="resultCount">載入中...</span>
         <button id="expandAllBtn" class="expand-all-btn">收合全部</button>

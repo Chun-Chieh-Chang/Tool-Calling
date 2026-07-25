@@ -520,6 +520,16 @@ export function search(registryTools, query, options = {}) {
   const { topK = 5, category, language } = options;
   let tools = registryTools.filter(t => t.status === 'active' || t.status === 'experimental');
 
+  // 處理自然語言口語字眼前綴 (例如: "我想做簡報" -> "做簡報", "請幫我 scan" -> "scan")
+  let targetQuery = (query || '').trim();
+  const intentPrefixRegex = /^(我想|請幫我|幫我|我要|我想要|如何|要如何|可以用|我需要|要怎麼|怎麼)\s*/i;
+  if (intentPrefixRegex.test(targetQuery)) {
+    const stripped = targetQuery.replace(intentPrefixRegex, '').trim();
+    if (stripped.length > 0) {
+      targetQuery = stripped;
+    }
+  }
+
   // 前置過濾
   if (category) {
     const normCategory = normalize(category);
@@ -534,7 +544,7 @@ export function search(registryTools, query, options = {}) {
   }
 
   // L1 精確匹配
-  const l1Results = exactMatch(tools, query);
+  const l1Results = exactMatch(tools, targetQuery);
   if (l1Results.length > 0) {
     let finalL1 = l1Results.slice(0, topK);
     const { telemetryStats } = options;
@@ -559,10 +569,10 @@ export function search(registryTools, query, options = {}) {
   }
 
   // L2 關鍵字匹配
-  const l2Results = keywordMatch(tools, query);
+  const l2Results = keywordMatch(tools, targetQuery);
 
   // L3 語義檢索（作為補充）
-  const l3Results = semanticSearch(tools, query);
+  const l3Results = semanticSearch(tools, targetQuery);
 
   // 融合：L2 優先，L3 補充未出現的工具
   const seen = new Set();

@@ -68,3 +68,10 @@ test('搜尋測試 - 陣列分類與魯棒性測試', () => {
   assert.ok(results.length > 0, '應能正確匹配陣列型別分類');
 });
 
+test('搜尋測試 - 口語化前綴自動清洗 (例如: 我想做簡報)', () => {
+  const results = search(registryTools, '我想做簡報');
+  assert.ok(results.length > 0, '「我想做簡報」應能自動清洗前綴並命中 ppt-master');
+  assert.equal(results[0].tool.id, 'ppt-master');
+});
+
+
