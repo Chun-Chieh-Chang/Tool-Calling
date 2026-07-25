@@ -558,6 +558,20 @@
 - **問題**：驗證門禁漏洞 + 導入流程缺乏 Agent Skill 指引。
 - **矯正與預防措施 (CAPA)**：4 層防禦體系（程式碼門禁 + 內建 Skill + 專案規則 + 自主進化）徹底防禦迴歸。
 
+### 2026-07-25 — 前端腳本 SyntaxError 語法緊急修復 (Phase 34)
+
+#### 需求與動機
+使用者回報瀏覽器出現 `Uncaught SyntaxError: Unexpected token '}'` 錯誤。
+
+#### 完成項目
+- [x] **語法檢驗與修復**：透過 `node --check` 診斷出 `web/app.js` 第 472 行殘留多餘的孤立右括號 `}`，已進行精密外科手術刪除。
+- [x] **確效驗證**：`node --check web/app.js` 與 `node --check dist/app.js` 均 0 錯誤通過，`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS。
+
+#### RCA / CAPA
+- **問題**：前期刪除 `toggleAllSections()` 時清理殘留，多留了一個孤立括號。
+- **矯正與預防措施 (CAPA)**：每次編輯前端腳本後強制執行 `node --check web/app.js` 靜態語法診斷，確保 0 語法錯誤才能 Commit。
+
+
 
 
 

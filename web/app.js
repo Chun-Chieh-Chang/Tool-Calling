@@ -469,8 +469,6 @@ function renderSearchResults(results) {
   resultsGrid.appendChild(grid);
 }
 
-}
-
 // ─── 建立卡片 DOM ─────────────────────────────────────────────────────
 
 function createToolCard(tool, score = null, matchLevel = null, matchedKeywords = [], currentCategory = null) {
