@@ -383,3 +383,28 @@
 #### RCA / CAPA
 - （本次為功能增強與文件同步，無異常狀況）
 
+### 2026-07-25 — 前端 UI 防禦性重構與 Uncaught TypeError 修復 (Phase 22)
+
+#### 需求與動機
+使用者回報前端 `web/app.js` 選擇分類選單時發生執行階段未捕捉錯誤：
+`app.js:225 Uncaught TypeError: Cannot read properties of undefined (reading 'name') at createToolCard`
+
+#### 完成項目
+- [x] **`web/app.js` 防禦性層級修復**：
+  - `createToolCard()`：加入嚴格空值與型別檢查 (`if (!tool || typeof tool !== 'object' || !tool.name) return null;`)。
+  - `renderSearchResults()`：加入對 `results` 陣列項目的結構校驗，支援 search result 物件與純 tool 物件，防範 `undefined` 或缺漏屬性傳入 `createToolCard`。
+  - `getToolCategories()` / `toolBelongsToCategory()`：加入 `!tool` 空值防衛，防止非預期參數造成 TypeError。
+- [x] **`core/search-engine.js` 檢索引擎魯棒性升級**：
+  - `normalize()`：擴充支援 Array、非字串與 null/undefined 安全處理。
+  - `search()` 前置過濾：支援單一分類字串與陣列分類 (`t.category`) 精確匹配與正規化比較。
+- [x] **單元測試補充**：
+  - 在 `tests/search.test.js` 中新增「陣列分類與魯棒性測試」，涵蓋 `null` / `undefined` 與陣列型別分類輸入，確保 100% 通過。
+
+#### RCA / CAPA
+- **問題**：`renderSearchResults` 假設傳入的項目直接為 valid tool 物件或帶有非空 `.tool` 屬性的搜尋結果物件，且 `createToolCard` 缺乏對 `tool` 物件及 `.name` 屬性的 null/undefined 預防校驗。當前選單切換或搜尋結果回傳異常 structure 時，存取 `tool.name` 導致 `Cannot read properties of undefined (reading 'name')` 崩潰。
+- **矯正與預防措施 (CAPA)**：
+  1. 在 UI 視圖層 (`createToolCard` / `renderSearchResults`) 實施「雙重防衛」 (Double Guarding)，對傳入的物件進行型別與 key 存在的校驗，無效物件優雅降級跳過。
+  2. 在核心邏輯層 (`search-engine.js`) 的 `normalize` 與過濾器增加對 `Array` / `null` / `undefined` 的安全防禦。
+  3. 補充自動化單元測試涵蓋異常邊界資料。
+
+

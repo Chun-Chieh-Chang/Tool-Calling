@@ -11,7 +11,13 @@
  * @returns {string}
  */
 function normalize(text) {
-  return (text || '').toLowerCase().trim().replace(/\s+/g, ' ');
+  if (Array.isArray(text)) {
+    return text.map(t => normalize(t)).join(' ');
+  }
+  if (typeof text !== 'string') {
+    return (text || '').toString().toLowerCase().trim().replace(/\s+/g, ' ');
+  }
+  return text.toLowerCase().trim().replace(/\s+/g, ' ');
 }
 
 /**
@@ -516,7 +522,12 @@ export function search(registryTools, query, options = {}) {
 
   // 前置過濾
   if (category) {
-    tools = tools.filter(t => normalize(t.category) === normalize(category));
+    const normCategory = normalize(category);
+    tools = tools.filter(t => {
+      if (!t || !t.category) return false;
+      const cats = Array.isArray(t.category) ? t.category : [t.category];
+      return cats.some(c => normalize(c) === normCategory);
+    });
   }
   if (language) {
     tools = tools.filter(t => normalize(t.language) === normalize(language));

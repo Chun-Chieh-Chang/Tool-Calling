@@ -55,3 +55,16 @@ test('搜尋測試 - 無匹配結果', () => {
   // 若閾值設定得當，應該找不到
   assert.equal(results.length, 0);
 });
+
+test('搜尋測試 - 陣列分類與魯棒性測試', () => {
+  const mockTools = [
+    { id: 't1', name: 'Tool 1', category: ['多媒體生成', 'AI助手'], status: 'active', triggers: ['ai'] },
+    { id: 't2', name: 'Tool 2', category: '多媒體生成', status: 'active', triggers: ['video'] },
+    null,
+    undefined,
+    { id: 't3', name: 'Tool 3', status: 'active', triggers: ['test'] }
+  ];
+  const results = search(mockTools.filter(Boolean), 'ai', { category: '多媒體生成' });
+  assert.ok(results.length > 0, '應能正確匹配陣列型別分類');
+});
+

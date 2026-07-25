@@ -46,7 +46,7 @@ async function init() {
  * @returns {string[]}
  */
 function getToolCategories(tool) {
-  if (!tool.category) return ['未分類'];
+  if (!tool || !tool.category) return ['未分類'];
   if (Array.isArray(tool.category)) return tool.category.length > 0 ? tool.category : ['未分類'];
   return [tool.category];
 }
@@ -55,6 +55,7 @@ function getToolCategories(tool) {
  * 檢查工具是否屬於某個分類
  */
 function toolBelongsToCategory(tool, category) {
+  if (!tool) return false;
   const cats = getToolCategories(tool);
   return cats.includes(category);
 }
@@ -88,7 +89,7 @@ function handleSearch() {
   }
 
   if (!query && category) {
-    const filtered = registryTools.filter(t => toolBelongsToCategory(t, category));
+    const filtered = (registryTools || []).filter(t => t && toolBelongsToCategory(t, category));
     renderSearchResults(filtered);
     expandAllBtn.style.display = 'none';
     return;
@@ -97,7 +98,7 @@ function handleSearch() {
   const options = { topK: 100 };
   if (category) options.category = category;
 
-  const results = search(registryTools, query, options);
+  const results = search(registryTools || [], query, options);
   renderSearchResults(results);
   expandAllBtn.style.display = 'none';
 }
@@ -109,11 +110,13 @@ const sectionState = {};
 
 function renderTools(tools) {
   resultsGrid.innerHTML = '';
+  if (!Array.isArray(tools)) return;
   resultCount.textContent = `顯示 ${tools.length} 個工具`;
 
   // 按分類分組（支援多分類工具出現在多個 section）
   const grouped = {};
   for (const tool of tools) {
+    if (!tool) continue;
     const cats = getToolCategories(tool);
     for (const cat of cats) {
       if (!grouped[cat]) grouped[cat] = [];
@@ -168,7 +171,9 @@ function renderTools(tools) {
     const grid = document.createElement('div');
     grid.className = 'grid';
     for (const tool of catTools) {
-      grid.appendChild(createToolCard(tool, null, null, [], cat));
+      if (!tool) continue;
+      const card = createToolCard(tool, null, null, [], cat);
+      if (card) grid.appendChild(card);
     }
     content.appendChild(grid);
 
@@ -181,19 +186,26 @@ function renderTools(tools) {
 // 搜尋結果：扁平列表（不分組）
 function renderSearchResults(results) {
   resultsGrid.innerHTML = '';
+  if (!Array.isArray(results)) {
+    resultCount.textContent = '找到 0 個匹配工具';
+    return;
+  }
   resultCount.textContent = `找到 ${results.length} 個匹配工具`;
 
   // 搜尋時不使用 accordion，直接平鋪結果
   const grid = document.createElement('div');
   grid.className = 'grid';
   results.forEach(res => {
+    if (!res) return;
     // res 可能是 search result 物件 { tool, score, matchLevel, matchedKeywords }
     // 也可能是純 tool 物件（來自 category filter）
-    const tool = res.tool || res;
+    const tool = (res.tool && typeof res.tool === 'object') ? res.tool : (res.name ? res : null);
+    if (!tool || !tool.name) return;
     const score = res.score ?? null;
     const matchLevel = res.matchLevel ?? null;
     const matchedKeywords = res.matchedKeywords || [];
-    grid.appendChild(createToolCard(tool, score, matchLevel, matchedKeywords));
+    const card = createToolCard(tool, score, matchLevel, matchedKeywords);
+    if (card) grid.appendChild(card);
   });
   resultsGrid.appendChild(grid);
 }
@@ -225,6 +237,11 @@ function toggleAllSections() {
 // ─── 建立卡片 DOM ─────────────────────────────────────────────────────
 
 function createToolCard(tool, score = null, matchLevel = null, matchedKeywords = [], currentCategory = null) {
+  if (!tool || typeof tool !== 'object' || !tool.name) {
+    console.warn('createToolCard received invalid tool object:', tool);
+    return null;
+  }
+
   const clone = toolCardTemplate.content.cloneNode(true);
   const article = clone.querySelector('article');
 
@@ -233,40 +250,44 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
   // 若卡片屬於多分類 section，顯示當前 section 的分類；否則顯示工具的分類
   const displayCat = currentCategory || getToolCategories(tool).join(' / ');
   clone.querySelector('.category-tag').textContent = displayCat;
-  clone.querySelector('.github-link').href = tool.url;
+  clone.querySelector('.github-link').href = tool.url || '#';
 
   const badge = clone.querySelector('.match-badge');
   if (score !== null) {
     const percentage = Math.round(score * 100);
     badge.textContent = `${percentage}% Match`;
-    article.querySelector('.progress-bar').style.width = `${percentage}%`;
+    const progressBar = article.querySelector('.progress-bar');
+    if (progressBar) progressBar.style.width = `${percentage}%`;
 
     if (matchLevel === 'L1-exact') badge.classList.add('exact');
     else if (matchLevel === 'L2-keyword') badge.classList.add('keyword');
     else badge.classList.add('semantic');
   } else {
-    badge.style.display = 'none';
-    article.querySelector('.progress-bar-container').style.display = 'none';
+    if (badge) badge.style.display = 'none';
+    const progressBarContainer = article.querySelector('.progress-bar-container');
+    if (progressBarContainer) progressBarContainer.style.display = 'none';
   }
 
   const tagsContainer = clone.querySelector('.tags-container');
-  if (tool.useCase) {
-    const tag = document.createElement('span');
-    tag.className = 'tag usecase';
-    tag.textContent = '⭐ ' + tool.useCase;
-    tagsContainer.appendChild(tag);
-  }
-  if (tool.negativeConstraints && tool.negativeConstraints.length > 0) {
-    const tag = document.createElement('span');
-    tag.className = 'tag highlight';
-    tag.textContent = '🚫 ' + tool.negativeConstraints[0] + (tool.negativeConstraints.length > 1 ? '...' : '');
-    tagsContainer.appendChild(tag);
-  }
-  if (matchedKeywords && matchedKeywords.length > 0) {
-    const tag = document.createElement('span');
-    tag.className = 'tag';
-    tag.textContent = '匹配: ' + matchedKeywords.slice(0, 2).join(', ');
-    tagsContainer.appendChild(tag);
+  if (tagsContainer) {
+    if (tool.useCase) {
+      const tag = document.createElement('span');
+      tag.className = 'tag usecase';
+      tag.textContent = '⭐ ' + tool.useCase;
+      tagsContainer.appendChild(tag);
+    }
+    if (tool.negativeConstraints && tool.negativeConstraints.length > 0) {
+      const tag = document.createElement('span');
+      tag.className = 'tag highlight';
+      tag.textContent = '🚫 ' + tool.negativeConstraints[0] + (tool.negativeConstraints.length > 1 ? '...' : '');
+      tagsContainer.appendChild(tag);
+    }
+    if (matchedKeywords && matchedKeywords.length > 0) {
+      const tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.textContent = '匹配: ' + matchedKeywords.slice(0, 2).join(', ');
+      tagsContainer.appendChild(tag);
+    }
   }
 
   return clone;
