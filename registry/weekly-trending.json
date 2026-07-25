@@ -1,0 +1,197 @@
+{
+  "worldWeek": "2026-W30",
+  "lastUpdated": "2026-07-25T03:41:05.133Z",
+  "dateRange": "2026-07-18 ~ 2026-07-25",
+  "scannedReposCount": 215,
+  "newlyAddedCount": 4,
+  "top10": [
+    {
+      "rank": 1,
+      "name": "worldmonitor",
+      "fullName": "koala73/worldmonitor",
+      "url": "https://github.com/koala73/worldmonitor",
+      "currentStars": 73420,
+      "delta": 11,
+      "category": "AI 代理",
+      "isNewlyAdded": true,
+      "statusText": "🆕 本週納入"
+    },
+    {
+      "rank": 2,
+      "name": "awesome-claude-skills",
+      "fullName": "ComposioHQ/awesome-claude-skills",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "currentStars": 70137,
+      "delta": 7,
+      "category": "AI 代理",
+      "isNewlyAdded": true,
+      "statusText": "🆕 本週納入"
+    },
+    {
+      "rank": 3,
+      "name": "superpowers",
+      "fullName": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "currentStars": 260653,
+      "delta": 5,
+      "category": "開發工具",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 4,
+      "name": "awesome-llm-apps",
+      "fullName": "Shubhamsaboo/awesome-llm-apps",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "currentStars": 127403,
+      "delta": 4,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 5,
+      "name": "agency-agents",
+      "fullName": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "currentStars": 136467,
+      "delta": 3,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 6,
+      "name": "browser-use",
+      "fullName": "browser-use/browser-use",
+      "url": "https://github.com/browser-use/browser-use",
+      "currentStars": 106643,
+      "delta": 2,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 7,
+      "name": "pi",
+      "fullName": "earendil-works/pi",
+      "url": "https://github.com/earendil-works/pi",
+      "currentStars": 77127,
+      "delta": 2,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 8,
+      "name": "taste-skill",
+      "fullName": "Leonxlnx/taste-skill",
+      "url": "https://github.com/Leonxlnx/taste-skill",
+      "currentStars": 67311,
+      "delta": 2,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 9,
+      "name": "ktransformers",
+      "fullName": "kvcache-ai/ktransformers",
+      "url": "https://github.com/kvcache-ai/ktransformers",
+      "currentStars": 19003,
+      "delta": 2,
+      "category": "AI 代理",
+      "isNewlyAdded": true,
+      "statusText": "🆕 本週納入"
+    },
+    {
+      "rank": 10,
+      "name": "daily_stock_analysis",
+      "fullName": "ZhuLinsen/daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "currentStars": 58678,
+      "delta": 2,
+      "category": "AI 代理",
+      "isNewlyAdded": true,
+      "statusText": "🆕 本週納入"
+    }
+  ],
+  "addedTools": [
+    {
+      "id": "worldmonitor",
+      "name": "worldmonitor",
+      "url": "https://github.com/koala73/worldmonitor",
+      "description": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+      "category": "AI 代理",
+      "language": "typescript",
+      "stars": 73420,
+      "useCase": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface — 本週漲星 +11 (2026-W30 自動探勘入庫)。",
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages": [
+        "GitHub ⭐ 73,420 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-25)",
+        "2026-W30 漲星探勘自動入庫"
+      ]
+    },
+    {
+      "id": "awesome-claude-skills",
+      "name": "awesome-claude-skills",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
+      "category": "AI 代理",
+      "language": "python",
+      "stars": 70137,
+      "useCase": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — 本週漲星 +7 (2026-W30 自動探勘入庫)。",
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages": [
+        "GitHub ⭐ 70,137 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-24)",
+        "2026-W30 漲星探勘自動入庫"
+      ]
+    },
+    {
+      "id": "ktransformers",
+      "name": "ktransformers",
+      "url": "https://github.com/kvcache-ai/ktransformers",
+      "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
+      "category": "AI 代理",
+      "language": "python",
+      "stars": 19003,
+      "useCase": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations — 本週漲星 +2 (2026-W30 自動探勘入庫)。",
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages": [
+        "GitHub ⭐ 19,003 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-24)",
+        "2026-W30 漲星探勘自動入庫"
+      ]
+    },
+    {
+      "id": "daily-stock-analysis",
+      "name": "daily_stock_analysis",
+      "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
+      "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-f",
+      "category": "AI 代理",
+      "language": "python",
+      "stars": 58678,
+      "useCase": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs. — 本週漲星 +2 (2026-W30 自動探勘入庫)。",
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages": [
+        "GitHub ⭐ 58,678 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-24)",
+        "2026-W30 漲星探勘自動入庫"
+      ]
+    }
+  ]
+}

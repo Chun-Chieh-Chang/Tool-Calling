@@ -685,3 +685,176 @@ select {
   align-items: center;
 }
 
+/* ─── 每週漲星榜 (Weekly Trending View) ────────────────────────────────── */
+
+.trending-header-card {
+  padding: calc(var(--spacing-base) * 6);
+  margin-bottom: calc(var(--spacing-base) * 8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: calc(var(--spacing-base) * 6);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+}
+@media (max-width: 768px) {
+  .trending-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.trending-title-group {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--spacing-base) * 3);
+  margin-bottom: calc(var(--spacing-base) * 2);
+}
+.trending-title-group h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.trending-date-badge {
+  background: rgba(96, 165, 250, 0.15);
+  color: var(--brand-color);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+.trending-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.trending-meta-stats {
+  display: flex;
+  gap: calc(var(--spacing-base) * 4);
+  flex-shrink: 0;
+}
+.trending-stat-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: calc(var(--spacing-base) * 3) calc(var(--spacing-base) * 4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.trending-stat-pill.highlight {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.trending-stat-pill .stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+.trending-stat-pill.highlight .stat-num {
+  color: #34D399;
+}
+.trending-stat-pill .stat-text {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* 排行榜表格 (Leaderboard Table) */
+.leaderboard-container {
+  overflow-x: auto;
+  margin-bottom: calc(var(--spacing-base) * 8);
+  padding: calc(var(--spacing-base) * 2);
+}
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  text-align: left;
+}
+.leaderboard-table th {
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  padding: calc(var(--spacing-base) * 3.5) calc(var(--spacing-base) * 4);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+.leaderboard-table td {
+  padding: calc(var(--spacing-base) * 4);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.4);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+.leaderboard-table tr:last-child td {
+  border-bottom: none;
+}
+.leaderboard-table tr:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* 排名 Badge */
+.rank-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.9375rem;
+}
+.rank-badge.rank-1 {
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+  color: #0F172A;
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.5);
+}
+.rank-badge.rank-2 {
+  background: linear-gradient(135deg, #94A3B8, #CBD5E1);
+  color: #0F172A;
+  box-shadow: 0 0 10px rgba(203, 213, 225, 0.4);
+}
+.rank-badge.rank-3 {
+  background: linear-gradient(135deg, #B45309, #D97706);
+  color: #FFFFFF;
+  box-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
+}
+.rank-badge.rank-other {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+}
+
+/* Delta / Growth Badge */
+.delta-badge {
+  color: #34D399;
+  font-weight: 700;
+  background: rgba(52, 211, 153, 0.12);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.status-badge.newly-added {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.2);
+}
+.status-badge.in-registry {
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--brand-color);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+

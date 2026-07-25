@@ -336,6 +336,46 @@ async function main() {
 
   writeFileSync(reportPath, reportLines.join('\n'), 'utf-8');
   console.log(`  📝 週報已寫入：${reportPath}`);
+
+  // 9. 生成 JSON 數據檔供前端 UI 渲染 (weekly-trending.json)
+  const jsonPath = join(ROOT, 'registry', 'weekly-trending.json');
+  const trendingData = {
+    worldWeek,
+    lastUpdated: now.toISOString(),
+    dateRange: `${weekAgoStr} ~ ${now.toISOString().slice(0, 10)}`,
+    scannedReposCount: allRepos.size,
+    newlyAddedCount: addedCount,
+    top10: top10.map((r, i) => {
+      const wasAdded = addedTools.some(at => at.url === r.html_url);
+      return {
+        rank: i + 1,
+        name: r.name,
+        fullName: r.full_name,
+        url: r.html_url,
+        currentStars: r.currentStars,
+        delta: r.delta,
+        category: inferCategory(r),
+        isNewlyAdded: wasAdded,
+        statusText: wasAdded ? '🆕 本週納入' : '✅ 已在工具箱'
+      };
+    }),
+    addedTools: addedTools.map(t => ({
+      id: t.id,
+      name: t.name,
+      url: t.url,
+      description: t.description,
+      category: t.category,
+      language: t.language,
+      stars: t.stars,
+      useCase: t.useCase,
+      negativeConstraints: t.negativeConstraints,
+      advantages: t.advantages
+    }))
+  };
+
+  writeFileSync(jsonPath, JSON.stringify(trendingData, null, 2), 'utf-8');
+  console.log(`  📊 JSON 數據已寫入：${jsonPath}`);
+
   console.log(`\n\x1b[32m[完成] ${worldWeek} 每週漲星探勘作業結束！\x1b[0m\n`);
 }
 

@@ -45,6 +45,9 @@
         <button id="toolsTabBtn" class="tab-btn">
           <span>🔧</span> 工具目錄列表
         </button>
+        <button id="trendingTabBtn" class="tab-btn">
+          <span>🔥</span> 每週漲星榜
+        </button>
       </div>
     </div>
 
@@ -132,6 +135,60 @@
 
       <div id="resultsGrid" class="results-container">
         <!-- 搜尋結果將由 JS 動態渲染在這裡 (4 欄) -->
+      </div>
+    </div>
+
+    <!-- 每週漲星榜視圖 (Weekly Trending View) -->
+    <div id="trendingView" style="display: none;">
+      <div class="trending-header-card glass-panel">
+        <div class="trending-header-info">
+          <div class="trending-title-group">
+            <h2 id="trendingWorldWeek">🏆 GitHub 每週漲星排行榜</h2>
+            <span id="trendingDateRange" class="trending-date-badge">載入中...</span>
+          </div>
+          <p class="trending-desc">自動探勘 GitHub 全網熱門開源項目，計算每週 Star 漲幅前 10 名，並自動納入本專案工具箱。</p>
+        </div>
+        <div class="trending-meta-stats">
+          <div class="trending-stat-pill">
+            <span class="stat-num" id="trendingScannedCount">--</span>
+            <span class="stat-text">探勘 Repos 數</span>
+          </div>
+          <div class="trending-stat-pill highlight">
+            <span class="stat-num" id="trendingAddedCount">--</span>
+            <span class="stat-text">本週新納入工具箱</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title-bar">
+        <h2>🔥 本週漲星 Top 10 排行榜 (World Week)</h2>
+        <span class="chart-subtitle">依近一週 Star 增加量 (Delta) 精確排序</span>
+      </div>
+
+      <div class="leaderboard-container glass-panel">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th style="width: 70px; text-align: center;">名次</th>
+              <th>工具專案名稱</th>
+              <th>GitHub Repository</th>
+              <th>當前 Stars</th>
+              <th>當週 Star 漲幅</th>
+              <th>領域分類</th>
+              <th style="text-align: center;">工具箱納入狀態</th>
+            </tr>
+          </thead>
+          <tbody id="leaderboardBody">
+            <!-- 由 JS 動態生成 1 ~ 10 名條目 -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title-bar" style="margin-top: calc(var(--spacing-base) * 10);">
+        <h2>🆕 本週自動納入本專案工具箱的工具特寫</h2>
+      </div>
+      <div id="newlyAddedGrid" class="grid">
+        <!-- 本週新納入工具卡片將由 JS 動態生成 -->
       </div>
     </div>
   </main>

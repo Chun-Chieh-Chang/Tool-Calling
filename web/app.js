@@ -14,13 +14,22 @@ const toolCardTemplate = document.getElementById('toolCardTemplate');
 
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
+const trendingTabBtn = document.getElementById('trendingTabBtn');
 const dashboardView = document.getElementById('dashboardView');
 const toolsView = document.getElementById('toolsView');
+const trendingView = document.getElementById('trendingView');
 
 const kpiTotalTools = document.getElementById('kpiTotalTools');
 const kpiTotalCategories = document.getElementById('kpiTotalCategories');
 const kpiTotalSubtools = document.getElementById('kpiTotalSubtools');
 const categoryOverviewGrid = document.getElementById('categoryOverviewGrid');
+
+const trendingWorldWeek = document.getElementById('trendingWorldWeek');
+const trendingDateRange = document.getElementById('trendingDateRange');
+const trendingScannedCount = document.getElementById('trendingScannedCount');
+const trendingAddedCount = document.getElementById('trendingAddedCount');
+const leaderboardBody = document.getElementById('leaderboardBody');
+const newlyAddedGrid = document.getElementById('newlyAddedGrid');
 
 // 初始化
 async function init() {
@@ -48,6 +57,7 @@ async function init() {
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
+    if (trendingTabBtn) trendingTabBtn.addEventListener('click', () => switchTab('trending'));
 
   } catch (err) {
     console.error(err);
@@ -59,16 +69,16 @@ async function init() {
 
 function switchTab(tabName) {
   currentTab = tabName;
-  if (tabName === 'dashboard') {
-    dashboardView.style.display = 'block';
-    toolsView.style.display = 'none';
-    dashboardTabBtn.classList.add('active');
-    toolsTabBtn.classList.remove('active');
-  } else {
-    dashboardView.style.display = 'none';
-    toolsView.style.display = 'block';
-    toolsTabBtn.classList.add('active');
-    dashboardTabBtn.classList.remove('active');
+  dashboardView.style.display = tabName === 'dashboard' ? 'block' : 'none';
+  toolsView.style.display = tabName === 'tools' ? 'block' : 'none';
+  if (trendingView) trendingView.style.display = tabName === 'trending' ? 'block' : 'none';
+
+  dashboardTabBtn.classList.toggle('active', tabName === 'dashboard');
+  toolsTabBtn.classList.toggle('active', tabName === 'tools');
+  if (trendingTabBtn) trendingTabBtn.classList.toggle('active', tabName === 'trending');
+
+  if (tabName === 'trending') {
+    loadWeeklyTrending();
   }
 }
 
@@ -309,6 +319,69 @@ function renderCategoryOverview(categoryCounts) {
     });
 
     categoryOverviewGrid.appendChild(card);
+  }
+}
+
+// ─── 每週漲星榜數據載入與渲染 ──────────────────────────────────────────────
+
+let weeklyTrendingLoaded = false;
+
+async function loadWeeklyTrending() {
+  if (!leaderboardBody) return;
+  if (weeklyTrendingLoaded) return;
+
+  try {
+    const res = await fetch('./registry/weekly-trending.json');
+    if (!res.ok) throw new Error('Weekly trending data not found');
+    const data = await res.json();
+
+    if (trendingWorldWeek) trendingWorldWeek.textContent = `🏆 GitHub 每週漲星排行榜 (${data.worldWeek || '2026-W30'})`;
+    if (trendingDateRange) trendingDateRange.textContent = `探勘區間：${data.dateRange || '近 7 天'}`;
+    if (trendingScannedCount) trendingScannedCount.textContent = data.scannedReposCount ? data.scannedReposCount.toLocaleString() : '--';
+    if (trendingAddedCount) trendingAddedCount.textContent = `${data.newlyAddedCount || 0} 個工具`;
+
+    // 1. 渲染排行榜表格 (Top 10 Leaderboard)
+    leaderboardBody.innerHTML = '';
+    const top10 = Array.isArray(data.top10) ? data.top10 : [];
+
+    top10.forEach(item => {
+      const tr = document.createElement('tr');
+      const rankClass = item.rank === 1 ? 'rank-1' : item.rank === 2 ? 'rank-2' : item.rank === 3 ? 'rank-3' : 'rank-other';
+      const rankEmoji = item.rank === 1 ? '🥇' : item.rank === 2 ? '🥈' : item.rank === 3 ? '🥉' : item.rank;
+      const statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
+
+      tr.innerHTML = `
+        <td style="text-align: center;"><span class="rank-badge ${rankClass}">${rankEmoji}</span></td>
+        <td><strong>${item.name}</strong></td>
+        <td><a href="${item.url}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${item.fullName} ↗</a></td>
+        <td>⭐ ${formatStarCount(item.currentStars)}</td>
+        <td><span class="delta-badge">+${formatStarCount(item.delta)}</span></td>
+        <td><span class="category-tag">${item.category}</span></td>
+        <td style="text-align: center;"><span class="status-badge ${statusClass}">${item.statusText}</span></td>
+      `;
+      leaderboardBody.appendChild(tr);
+    });
+
+    // 2. 渲染本週新納入本專案工具箱的工具特寫 (Newly Added Tools Highlight)
+    if (newlyAddedGrid) {
+      newlyAddedGrid.innerHTML = '';
+      const addedTools = Array.isArray(data.addedTools) ? data.addedTools : [];
+      if (addedTools.length === 0) {
+        newlyAddedGrid.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-secondary); text-align: center; padding: 24px;">本週探勘之 Top 10 工具皆已在庫存中，暫無新增入庫工具。</div>';
+      } else {
+        addedTools.forEach(tool => {
+          const card = createToolCard(tool, null, null, [], tool.category);
+          if (card) newlyAddedGrid.appendChild(card);
+        });
+      }
+    }
+
+    weeklyTrendingLoaded = true;
+  } catch (err) {
+    console.warn('Could not load weekly trending JSON:', err);
+    if (leaderboardBody) {
+      leaderboardBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-secondary); padding: 24px;">尚未生成當週漲星數據報告。您可以執行 `npm run trending` 手動生成。</td></tr>';
+    }
   }
 }
 

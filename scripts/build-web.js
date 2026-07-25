@@ -47,5 +47,9 @@ if (fs.existsSync(path.join(webDir, 'favicon.ico'))) {
 fs.copyFileSync(path.join(rootDir, 'core', 'search-engine.js'), path.join(distDir, 'core', 'search-engine.js'));
 fs.copyFileSync(path.join(rootDir, 'core', 'synonyms.generated.js'), path.join(distDir, 'core', 'synonyms.generated.js'));
 fs.copyFileSync(path.join(rootDir, 'registry', 'tools.json'), path.join(distDir, 'registry', 'tools.json'));
+const trendingPath = path.join(rootDir, 'registry', 'weekly-trending.json');
+if (fs.existsSync(trendingPath)) {
+  fs.copyFileSync(trendingPath, path.join(distDir, 'registry', 'weekly-trending.json'));
+}
 
 console.log('Web build completed successfully in ./dist');
