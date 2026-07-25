@@ -1262,6 +1262,28 @@
 - **問題**：OrbitControls 預設 zoomToCursor 未更新 Orbit Target 座標，導致無法實現 100% 像素級對焦。
 - **矯正與預防措施 (CAPA)**：手動實現 Raycaster 光線投射，將滑鼠交點即時賦予 controls.target，達成與 2D 完全對齊的指哪放大哪體驗。
 
+### 2026-07-25 — 3D 空間自由平移 (3D Panning / Translation) 完全解鎖與操控卡片補齊 (Phase 71)
+
+#### 需求與動機
+使用者需求：「3D空間不只有旋轉，也需要有平移功能」。補齊 Three.js 3D 相機平移能力，讓使用者能在 3D 宇宙空間中像 2D 畫布一樣自由平移觀測。
+
+#### 完成項目
+- [x] **完整平移功能設定 (`enablePan = true`)**：
+  - 在 `scripts/generate-knowledge-graph.js` 的 `init3DGraph()` 中，設定 `controls.enablePan = true` 與 `controls.screenSpacePanning = true`。
+- [x] **解鎖多重平移輸入組合**：
+  - 支援 **滑鼠右鍵拖曳 (Right Click + Drag)** 平移。
+  - 支援 **滑鼠中鍵按壓拖曳 (Middle Click + Drag)** 平移。
+  - 支援 **Shift + 滑鼠左鍵拖曳 (Shift + Left Click + Drag)** 平移。
+- [x] **操控提示面板補充**：
+  - 於右側中間圖例面板最下方，新增 **`🎮 3D 空間操控技巧`** 明確指引卡片。
+- [x] **確效驗證與測試**：
+  - 3D 空間平移順暢穩定，搭配 Raycast 縮放對焦體驗極佳。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：3d-force-graph 預設平移功能未明確啟用，導致使用者無法在 3D 空間中像 2D 一樣移動畫面視野。
+- **矯正與預防措施 (CAPA)**：顯式設定 controls.enablePan = true 與 screenSpacePanning = true，並增加多重熱鍵相容與 UI 提示。
+
 
 
 

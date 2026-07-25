@@ -242,7 +242,7 @@
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 320 個 AI 工具與 22 大分類 (3D 真 Raycast 滑鼠指針極致對焦推進)</p>
+    <p class="subtitle">展示 320 個 AI 工具 (支援左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪 Raycast 精態對焦)</p>
   </div>
 
   <div id="controls">
@@ -342,6 +342,16 @@
         <span><b>虛線</b>：拆解微技能/能力 (點擊亮顯)</span>
       </div>
     </div>
+
+    <!-- 🎮 3D 操控技巧說明 -->
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+      <span>🎮 3D 空間操控技巧</span>
+    </div>
+    <div style="font-size: 11px; color: #94A3B8; line-height: 1.5; padding: 4px;">
+      • <b>旋轉 (Rotate)</b>: 滑鼠左鍵拖曳<br/>
+      • <b>平移 (Pan)</b>: 右鍵 / 中鍵 / Shift+左鍵拖曳<br/>
+      • <b>對焦縮放 (Zoom)</b>: 滾輪指哪裡放大哪裡
+    </div>
   </div>
 
   <!-- 左下角：詳細抽屜面板 -->
@@ -394,7 +404,7 @@
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph (實現 100% Raycast 游標視線對焦推進) ─────────
+    // ─── 2. 初始化 3D Force-Directed Graph (解鎖旋轉、平移與 Raycast 縮放) ──────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -471,6 +481,20 @@
         dirLight.position.set(100, 200, 100);
         graph3DInstance.scene().add(dirLight);
       }
+
+      // 開啟 3D 平移功能 (Enable 3D Panning: 右鍵 / 中鍵 / Shift+左鍵拖曳)
+      setTimeout(() => {
+        if (graph3DInstance.controls) {
+          const controls = graph3DInstance.controls();
+          if (controls) {
+            controls.enablePan = true;
+            controls.panSpeed = 1.2;
+            controls.screenSpacePanning = true;
+            controls.enableRotate = true;
+            controls.rotateSpeed = 1.0;
+          }
+        }
+      }, 100);
 
       // 手動 3D 游標 Raycast 視線對焦滾輪推進 (100% Pixel-Exact 3D Raycast Zoom)
       container3d.addEventListener('wheel', function (event) {

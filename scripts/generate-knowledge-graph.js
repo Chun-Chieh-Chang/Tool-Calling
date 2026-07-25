@@ -42,7 +42,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (實現手動 Raycast 100% 游標視線對焦 3D 縮放)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (支援右鍵/中鍵/Shift+左鍵 3D 平移與 Raycast 對焦)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -468,7 +468,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具與 ${categories.length} 大分類 (3D 真 Raycast 滑鼠指針極致對焦推進)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (支援左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪 Raycast 精態對焦)</p>
   </div>
 
   <div id="controls">
@@ -501,6 +501,16 @@ export function generateKnowledgeGraph(registryInput = null) {
         <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #94A3B8;"></span>
         <span><b>虛線</b>：拆解微技能/能力 (點擊亮顯)</span>
       </div>
+    </div>
+
+    <!-- 🎮 3D 操控技巧說明 -->
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+      <span>🎮 3D 空間操控技巧</span>
+    </div>
+    <div style="font-size: 11px; color: #94A3B8; line-height: 1.5; padding: 4px;">
+      • <b>旋轉 (Rotate)</b>: 滑鼠左鍵拖曳<br/>
+      • <b>平移 (Pan)</b>: 右鍵 / 中鍵 / Shift+左鍵拖曳<br/>
+      • <b>對焦縮放 (Zoom)</b>: 滾輪指哪裡放大哪裡
     </div>
   </div>
 
@@ -554,7 +564,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
-    // ─── 2. 初始化 3D Force-Directed Graph (實現 100% Raycast 游標視線對焦推進) ─────────
+    // ─── 2. 初始化 3D Force-Directed Graph (解鎖旋轉、平移與 Raycast 縮放) ──────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -631,6 +641,20 @@ export function generateKnowledgeGraph(registryInput = null) {
         dirLight.position.set(100, 200, 100);
         graph3DInstance.scene().add(dirLight);
       }
+
+      // 開啟 3D 平移功能 (Enable 3D Panning: 右鍵 / 中鍵 / Shift+左鍵拖曳)
+      setTimeout(() => {
+        if (graph3DInstance.controls) {
+          const controls = graph3DInstance.controls();
+          if (controls) {
+            controls.enablePan = true;
+            controls.panSpeed = 1.2;
+            controls.screenSpacePanning = true;
+            controls.enableRotate = true;
+            controls.rotateSpeed = 1.0;
+          }
+        }
+      }, 100);
 
       // 手動 3D 游標 Raycast 視線對焦滾輪推進 (100% Pixel-Exact 3D Raycast Zoom)
       container3d.addEventListener('wheel', function (event) {
@@ -865,7 +889,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D Graph with custom Raycast cursor zoom & target lerp updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 3D Graph with full Panning support (Right/Middle/Shift+Left Click) updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
