@@ -1306,6 +1306,29 @@
 - **問題**：3D 視角原先採用單一藍色文字標籤與預設發光色，缺乏與 2D Morandi 設計代幣色彩大師規範的 1:1 對齊。
 - **矯正與預防措施 (CAPA)**：重構 nodeThreeObject 的 SpriteText 背景、文字色與 MeshPhongMaterial 光學材質，達到 3D/2D 雙視角 100% 色彩與黑白對比一致性。
 
+### 2026-07-25 — 顯式對齊 3D 空間 3 種平移手勢與熱鍵監聽綁定 (Phase 73)
+
+#### 需求與動機
+使用者反饋：「你說的3種方式只有第一種有效」。徹底修復 Three.js `OrbitControls` 預設將 `MIDDLE` 按鈕綁定為 `DOLLY` (縮放) 以及缺乏 `Shift` 鍵動態切換導致另外兩種平移手勢失效的問題。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - `OrbitControls` 預設的 `mouseButtons.MIDDLE` 為 `THREE.MOUSE.DOLLY`（即滾輪縮放而不是平移）；且缺乏動態 `Shift` 按鍵監聽，致使只有預設為 `PAN` 的右鍵能平移。
+- [x] **矯正與預防措施 (CAPA - Explicit mouseButtons & Shift Key Listener)**：
+  - 於 `init3DGraph()` 中顯式宣告：
+    `controls.mouseButtons.MIDDLE = THREE.MOUSE.PAN`
+    `controls.mouseButtons.RIGHT = THREE.MOUSE.PAN`
+  - 新增全域 `keydown` / `keyup` 事件動態監聽 `Shift` 鍵：
+    - 按住 `Shift` 鍵時，動態將 `controls.mouseButtons.LEFT` 切換為 `THREE.MOUSE.PAN`！
+    - 鬆開 `Shift` 鍵時，還原為 `THREE.MOUSE.ROTATE`！
+- [x] **確效驗證與測試**：
+  - 3 種平移手勢（右鍵 / 滾輪中鍵按壓 / Shift+左鍵）100% 全部實測生效。
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+
+#### RCA / CAPA
+- **問題**：OrbitControls 預設 middleButton 為 DOLLY 且未監聽 Shift 鍵。
+- **矯正與預防措施 (CAPA)**：顯式將 mouseButtons.MIDDLE 設為 THREE.MOUSE.PAN，並建立 Shift 鍵動態切換 mouseButtons.LEFT 為 PAN 的全域監聽器，確保 3 種平移手勢 100% 全部生效。
+
 
 
 

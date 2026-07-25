@@ -44,7 +44,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (3D 色彩 1:1 比照 2D 色彩大師規範)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (顯式綁定右鍵、中鍵與 Shift+左鍵 3 種平移模式)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -471,7 +471,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (3D 色彩 1:1 完全比照 2D 色彩大師規範)</p>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (支援左鍵旋轉 | 右鍵/中鍵/Shift+左鍵 100% 自由平移)</p>
   </div>
 
   <div id="controls">
@@ -579,7 +579,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
     }
 
-    // ─── 2. 初始化 3D Force-Directed Graph (1:1 對齊 2D 色彩大師體系) ─────────────
+    // ─── 2. 初始化 3D Force-Directed Graph (顯式對齊右鍵、中鍵與 Shift+左鍵平移) ────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -614,7 +614,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           const sphere = new THREE.Mesh(geometry, material);
           group.add(sphere);
 
-          // B. 3D 文字浮動 Sprite (1:1 對齊 2D Theme Color 標籤與黑白對比色)
+          // B. 3D 文字浮動 Sprite
           if (typeof SpriteText !== 'undefined') {
             const cleanText = node.label.replace('\\n', ' ');
             const sprite = new SpriteText(cleanText);
@@ -625,7 +625,6 @@ export function generateKnowledgeGraph(registryInput = null) {
               sprite.textHeight = 11;
               sprite.fontWeight = 'bold';
             } else if (node.group === 'category') {
-              // Category 1:1 比照 2D 分類主題色與自動黑白對比字體
               const bgHex = node.colorHex || '#2563EB';
               const txtColor = getContrastTextColorJS(bgHex);
               sprite.textColor = txtColor;
@@ -633,14 +632,12 @@ export function generateKnowledgeGraph(registryInput = null) {
               sprite.textHeight = 8.5;
               sprite.fontWeight = 'bold';
             } else if (node.group === 'tool') {
-              // Tool 1:1 比照 2D (亮白字體 + 深色背景 + 分類顏色外框)
               sprite.textColor = '#F8FAFC';
               sprite.backgroundColor = 'rgba(30, 41, 59, 0.88)';
               sprite.strokeColor = node.colorHex || '#3B82F6';
               sprite.strokeWidth = 1.5;
               sprite.textHeight = 6;
             } else {
-              // SubTool 1:1 比照 2D 灰色標籤
               sprite.textColor = '#CBD5E1';
               sprite.backgroundColor = 'rgba(51, 65, 85, 0.8)';
               sprite.textHeight = 4.5;
@@ -681,9 +678,9 @@ export function generateKnowledgeGraph(registryInput = null) {
         graph3DInstance.scene().add(dirLight);
       }
 
-      // 開啟 3D 平移功能 (Enable 3D Panning: 右鍵 / 中鍵 / Shift+左鍵拖曳)
+      // 顯式開啟 3D 右鍵、中鍵與 Shift+左鍵平移功能 (Explicit 3D Panning Mapping)
       setTimeout(() => {
-        if (graph3DInstance.controls) {
+        if (graph3DInstance.controls && typeof THREE !== 'undefined') {
           const controls = graph3DInstance.controls();
           if (controls) {
             controls.enablePan = true;
@@ -691,6 +688,27 @@ export function generateKnowledgeGraph(registryInput = null) {
             controls.screenSpacePanning = true;
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
+
+            // 顯式配置滑鼠按鍵對應：右鍵與中鍵皆定為 PAN (平移)
+            if (THREE.MOUSE) {
+              controls.mouseButtons = {
+                LEFT: THREE.MOUSE.ROTATE,
+                MIDDLE: THREE.MOUSE.PAN,   // 顯式解鎖滾輪中鍵平移！
+                RIGHT: THREE.MOUSE.PAN     // 顯式解鎖右鍵平移！
+              };
+            }
+
+            // 動態監聽 Shift 鍵按壓，解鎖 Shift + 左鍵平移！
+            window.addEventListener('keydown', (e) => {
+              if (e.key === 'Shift' && controls.mouseButtons && THREE.MOUSE) {
+                controls.mouseButtons.LEFT = THREE.MOUSE.PAN;
+              }
+            });
+            window.addEventListener('keyup', (e) => {
+              if (e.key === 'Shift' && controls.mouseButtons && THREE.MOUSE) {
+                controls.mouseButtons.LEFT = THREE.MOUSE.ROTATE;
+              }
+            });
           }
         }
       }, 100);
@@ -928,7 +946,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 3D Graph colors aligned 1:1 with 2D Master Palette for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] 3D Graph with explicit mouseButtons (Right, Middle, Shift+Left) updated for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
