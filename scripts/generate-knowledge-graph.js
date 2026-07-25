@@ -10,8 +10,8 @@ const baseCategoryColors = {
   "開發工具": "#2563EB",
   "數據分析": "#059669",
   "知識管理": "#7C3AED",
-  "安全性": "#DC2626",
-  "多媒體生成": "#DB2777",
+  "安全性": "#EF4444",
+  "多媒體生成": "#EC4899",
   "AI 框架": "#D97706",
   "學習資源": "#4F46E5",
   "測試與自動化": "#0D9488",
@@ -54,7 +54,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   const nodes = [];
   const edges = [];
 
-  // 1. Root Node (完全動態計算總數與時間戳)
+  // 1. Root Node
   nodes.push({
     id: "root",
     label: `Tool-Calling\n(${registry.tools.length} AI Tools)`,
@@ -72,7 +72,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     value: 40
   });
 
-  // 2. Category Nodes (從 tools.json 動態聚合與提煉摘要)
+  // 2. Category Nodes
   const categories = [...new Set(registry.tools.map(t => t.category))].filter(Boolean);
   
   categories.forEach((cat, idx) => {
@@ -80,12 +80,10 @@ export function generateKnowledgeGraph(registryInput = null) {
     const colorHex = getCategoryColor(cat, idx);
     const textColor = getContrastTextColor(colorHex);
     
-    // 動態計算該分類下的工具清單與語言指標
     const catTools = registry.tools.filter(t => t.category === cat);
     const languages = [...new Set(catTools.map(t => t.language).filter(Boolean))];
     const useCases = catTools.map(t => t.useCase).filter(Boolean);
     
-    // 動態合成分類技術領域描述文案 (Data-Driven Dynamic Description)
     let dynamicCatDesc = `收錄 ${catTools.length} 個與「${cat}」相關之 AI 工具與 Agent 技能。`;
     if (useCases.length > 0) {
       dynamicCatDesc += ` 核心應用場景涵蓋：${useCases.slice(0, 2).join('；')} 等。`;
@@ -132,7 +130,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       width: 3
     });
 
-    // 3. Tools in this Category (全屬性綁定 tools.json 動態欄位)
+    // 3. Tools in this Category
     catTools.forEach(tool => {
       const toolNodeId = `tool_${tool.id}`;
       
@@ -168,11 +166,11 @@ export function generateKnowledgeGraph(registryInput = null) {
       edges.push({
         from: catId,
         to: toolNodeId,
-        color: { color: "#1E293B", highlight: colorHex },
+        color: { color: "#334155", highlight: colorHex },
         width: 1
       });
 
-      // 4. SubTools / Capabilities (動態連結)
+      // 4. SubTools / Capabilities (預設顯色清晰，點擊凸顯虛線)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -188,7 +186,7 @@ export function generateKnowledgeGraph(registryInput = null) {
             color: {
               background: "#334155",
               border: "#64748B",
-              highlight: { background: "#475569", border: "#FFFFFF" }
+              highlight: { background: "#60A5FA", border: "#FFFFFF" }
             },
             font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" }
           });
@@ -196,8 +194,8 @@ export function generateKnowledgeGraph(registryInput = null) {
           edges.push({
             from: toolNodeId,
             to: subId,
-            color: { color: "#0F172A" },
-            width: 0.5,
+            color: { color: "#475569", highlight: "#60A5FA" },
+            width: 1,
             dashes: true
           });
         });
@@ -302,7 +300,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       height: 100%;
     }
 
-    /* 左下角色彩對照面板 */
+    /* 左下角色彩與連線說明圖例面板 */
     #legendPanel {
       position: absolute;
       bottom: 20px;
@@ -313,7 +311,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 14px 18px;
-      max-height: 280px;
+      max-height: 320px;
       width: 270px;
       overflow-y: auto;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
@@ -431,7 +429,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
   </div>
 
-  <!-- 左下角色彩對照圖例 -->
+  <!-- 左下角色彩與連線型態圖例 -->
   <div id="legendPanel">
     <div class="legend-header">
       <span>🎨 點擊分類圖例高亮圖譜</span>
@@ -439,6 +437,21 @@ export function generateKnowledgeGraph(registryInput = null) {
     </div>
     <div class="legend-grid">
       ${legendItemsHtml}
+    </div>
+
+    <!-- 🔗 連線型態圖例說明 (Edge Legend) -->
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+      <span>🔗 圖譜連線類型說明</span>
+    </div>
+    <div class="legend-grid">
+      <div class="legend-item" style="cursor:default;">
+        <span style="display:inline-block; width:16px; height:2px; background:#60A5FA;"></span>
+        <span><b>實線</b>：主分類歸屬網絡</span>
+      </div>
+      <div class="legend-item" style="cursor:default;">
+        <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #94A3B8;"></span>
+        <span><b>虛線</b>：拆解微技能/能力 (點擊亮顯)</span>
+      </div>
     </div>
   </div>
 
@@ -543,7 +556,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     }
 
-    // 監聽來自主頁面 (app.js) 的跨 View 全域搜尋與分類即時連動訊息 (Cross-View Realtime Sync)
+    // 監聽來自主頁面 (app.js) 的跨 View 全域搜尋與分類即時連動訊息
     window.addEventListener('message', function(event) {
       const msg = event.data;
       if (!msg) return;
@@ -591,7 +604,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 動態 100% 數據綁定之富文本面板渲染 (完全取自即時更新之 tools.json)
+    // 動態 100% 數據綁定之富文本面板渲染
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
@@ -690,7 +703,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] 100% data-driven knowledge graph with cross-view sync updated for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with edge type legend for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
