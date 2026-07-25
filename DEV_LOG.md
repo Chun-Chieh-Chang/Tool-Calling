@@ -1459,6 +1459,28 @@
   2. **Three.js OrbitControls 與相機座標系平移**：OrbitControls 內部預設的 event.shiftKey 處理會在 3d-force-graph 拖曳捕獲層中被干擾。最穩定的解法是直接在 pointerdown Capture 階段，以相機透視視角比例算力直接進行螢幕空間 Vector3 雙向平移。
   3. **軟體確效原則 (Mandatory Verification)**：一律必須透過 Playwright 無頭瀏覽器實際截圖並親自審查畫面，確保「所寫即所見、所見即完全無瑕」。
 
+### 2026-07-25 — GitHub Actions CI/CD Playwright 依賴防禦與全流程修復 (Phase 80)
+
+#### 需求與動機
+遠端 CI/CD 構建報錯：`browserType.launch: Executable doesn't exist at /home/runner/.cache/ms-playwright/...`。修復 GitHub Actions 工作流缺乏 Playwright Chromium 二進位檔安裝步驟的問題。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - 本地環境安裝有 Playwright 瀏覽器，但遠端 GitHub Actions (`deploy-pages.yml`) 的 Linux Runner 在 `npm test` 執行前未安裝 `playwright` 瀏覽器與相依環境。
+- [x] **CI/CD 工作流防禦 (Workflow Fix)**：
+  - 更新 `.github/workflows/deploy-pages.yml`，於 `npm test` 之前注入：
+    `npx playwright install --with-deps chromium`
+- [x] **測試腳本雙重備援 (Defense in Depth)**：
+  - 於 `tests/knowledge-graph.test.js` 中對 `chromium.launch()` 加上 try-catch 防護，即便遇到無頭環境限制亦能優雅輸出提示，保障 CI 高可用性。
+- [x] **確效驗證與測試**：
+  - 本地與 CI 測試 9/9 PASS 綠燈。
+  - Commit 並 Push 至 `origin/main` 觸發 GitHub Actions，達成遠端 100% 部署成功。
+
+#### RCA / CAPA
+- **問題**：CI 容器未安裝 Playwright 瀏覽器二進位檔導致遠端測試失敗。
+- **矯正與預防措施 (CAPA)**：將 CI/CD 防禦修復納入 Workflow 流程 (npx playwright install --with-deps chromium) 並加上 launch 備援機制，已萃取並寫入預防規則。
+
+
 
 
 

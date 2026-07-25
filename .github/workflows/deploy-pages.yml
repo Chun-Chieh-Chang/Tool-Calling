@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies (if any)
         run: npm install || true
 
+      - name: Install Playwright Browsers & Dependencies
+        run: npx playwright install --with-deps chromium
+
       - name: Validate Registry (Software Validation)
         run: npm run validate
 
