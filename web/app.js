@@ -362,14 +362,12 @@ function handleSearch() {
 
   if (!query && !category) {
     renderTools(registryTools);
-    expandAllBtn.style.display = '';
     return;
   }
 
   if (!query && category) {
     const filtered = (registryTools || []).filter(t => t && toolBelongsToCategory(t, category));
     renderSearchResults(filtered);
-    expandAllBtn.style.display = 'none';
     return;
   }
 
@@ -378,7 +376,6 @@ function handleSearch() {
 
   const results = search(registryTools || [], query, options);
   renderSearchResults(results);
-  expandAllBtn.style.display = 'none';
 }
 
 // ─── 渲染：分類折疊 (Accordion) 模式 ──────────────────────────────────

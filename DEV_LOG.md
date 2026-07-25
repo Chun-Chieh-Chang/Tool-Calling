@@ -649,6 +649,20 @@
 #### RCA / CAPA
 - （本次為自動化 CI/CD 排程與資料動態同步功能開發，無異常狀況）
 
+### 2026-07-25 — 點擊分類卡片 ReferenceError 變數殘留修復 (Phase 40)
+
+#### 需求與動機
+使用者回報控制台出現 `Uncaught ReferenceError: expandAllBtn is not defined at handleSearch (app.js:353:5)` 錯誤。
+
+#### 完成項目
+- [x] **徹底清理變更遺留**：診斷並移除 [web/app.js](file:///d:/Self-developed_Apps/Tool-Calling/web/app.js) `handleSearch()` 函式內部 3 處殘留的 `expandAllBtn` 屬性設定。
+- [x] **確效驗證**：`grep_search` 確認全專案 0 殘留，`node --check web/app.js` 與 `node --check dist/app.js` 均 0 錯誤通過，`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS。
+
+#### RCA / CAPA
+- **問題**：先前移除 DOM 元素 `#expandAllBtn` 時，忽略了 `handleSearch()` 事件處置內部的顯隱隱藏屬性控制。
+- **矯正與預防措施 (CAPA)**：刪除前端 DOM 元素時，必須強制全案搜尋 (`grep`) 該 id 變數，確保監聽器與事件函式內部 100% 無殘留引用。
+
+
 
 
 

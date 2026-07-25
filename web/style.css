@@ -672,3 +672,16 @@ select {
   border-top: 1px dashed var(--border-color);
 }
 
+/* Star Badge Style */
+.match-badge.star-badge {
+  background: rgba(251, 191, 36, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+  font-size: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+}
+
