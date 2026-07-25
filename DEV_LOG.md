@@ -605,6 +605,23 @@
 #### RCA / CAPA
 - （本次為 UI/UX 設計領域核心工具補強，無異常狀況）
 
+### 2026-07-25 — 最多人在用 3D 工程繪圖 3 大神器擴充 (Phase 37)
+
+#### 需求與動機
+使用者需求：「幫我搜尋最多人使用的前三名3D工程繪圖工具並加入到本專案工具箱」。
+
+#### 完成項目
+- [x] **檢索並精選 3 大頂級 3D 工程繪圖工具**：
+  1. `freecad` (FreeCAD, ~32.3k ⭐) - 全功能參數化 3D 機械工程 CAD 與 2D 技術圖紙繪製工具。
+  2. `openscad` (OpenSCAD, ~9.8k ⭐) - 程式碼驅動之 3D CAD 與 3D 列印建模編譯器。
+  3. `cadquery` (CadQuery, ~5.5k ⭐) - Python 腳本式 3D CAD 參數化繪圖與裝配體框架。
+- [x] **100% 符合新防禦元規則**：每個工具皆 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` 與 `capabilities`，狀態為 `active`，分類歸為 `3D工程繪圖`。
+- [x] **確效驗證**：`node cli.js validate` (304/304 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為 3D工程繪圖領域核心工具補強，無異常狀況）
+
+
 
 
 

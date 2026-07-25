@@ -25251,6 +25251,125 @@
       ],
       "addedAt": "2026-07-25T03:05:00.000Z",
       "status": "active"
+    },
+    {
+      "id": "freecad",
+      "name": "FreeCAD",
+      "url": "https://github.com/FreeCAD/FreeCAD",
+      "description": "Parametric 3D CAD modeler for mechanical engineering, 2D technical drafting, and BIM architectural modeling.",
+      "category": "3D工程繪圖",
+      "language": "c++",
+      "triggers": [
+        "freecad",
+        "3d-cad",
+        "engineering-drafting",
+        "parametric-modeling",
+        "mechanical-cad",
+        "step-stl-export"
+      ],
+      "install": {
+        "method": "conda",
+        "command": "conda install -c conda-forge freecad",
+        "repoUrl": "https://github.com/FreeCAD/FreeCAD"
+      },
+      "capabilities": [
+        "parametric-3d-modeling",
+        "2d-technical-drawing",
+        "bim-architecture",
+        "fem-analysis",
+        "step-iges-conversion"
+      ],
+      "useCase": "Designing parametric 3D mechanical components, generating technical 2D engineering drawings, and exporting STEP/STL files.",
+      "advantages": [
+        "Modular architecture supporting mechanical design, FEM analysis, CNC G-code toolpaths, and BIM workbench",
+        "Native STEP, IGES, STL, DXF, and IFC format support ensuring seamless industrial CAD interoperability",
+        "Full Python scripting API allowing automated parametric geometry generation and macro customization"
+      ],
+      "negativeConstraints": [
+        "Not suitable for organic freeform mesh sculpting or character animation (use Blender instead)",
+        "Avoid for simple 2D architectural quick sketches where lightweight 2D vector software is faster"
+      ],
+      "addedAt": "2026-07-25T03:08:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "openscad",
+      "name": "OpenSCAD",
+      "url": "https://github.com/openscad/openscad",
+      "description": "Programmatic script-based 3D CAD modeler for parametric mechanical parts and 3D printing.",
+      "category": "3D工程繪圖",
+      "language": "c++",
+      "triggers": [
+        "openscad",
+        "code-cad",
+        "scripted-3d-modeling",
+        "csg-modeling",
+        "3d-printing-cad",
+        "parametric-parts"
+      ],
+      "install": {
+        "method": "apt",
+        "command": "apt install openscad",
+        "repoUrl": "https://github.com/openscad/openscad"
+      },
+      "capabilities": [
+        "code-based-cad-modeling",
+        "constructive-solid-geometry",
+        "3d-printing-stl-generation",
+        "headless-script-rendering"
+      ],
+      "useCase": "Creating exact parametric 3D mechanical models and 3D-printable parts using code and mathematical formulas.",
+      "advantages": [
+        "Constructive Solid Geometry (CSG) compiler converting code scripts into precise 3D solid models",
+        "100% parametric code representation making model modifications as simple as changing variable values",
+        "Headless CLI rendering support for automated backend 3D model generation pipelines"
+      ],
+      "negativeConstraints": [
+        "Not recommended for interactive drag-and-drop mouse-driven CAD modeling workflows",
+        "Avoid for artistic sculpting or high-polygon character modeling without mathematical definition"
+      ],
+      "addedAt": "2026-07-25T03:08:00.000Z",
+      "status": "active"
+    },
+    {
+      "id": "cadquery",
+      "name": "CadQuery",
+      "url": "https://github.com/CadQuery/cadquery",
+      "description": "Python-based parametric 3D CAD scripting framework built on the OpenCASCADE technology kernel.",
+      "category": "3D工程繪圖",
+      "language": "python",
+      "triggers": [
+        "cadquery",
+        "python-cad",
+        "cq-editor",
+        "opencascade-python",
+        "cad-scripting",
+        "parametric-cad-python"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install cadquery",
+        "repoUrl": "https://github.com/CadQuery/cadquery"
+      },
+      "capabilities": [
+        "python-cad-scripting",
+        "opencascade-kernel",
+        "cq-workbench",
+        "step-export",
+        "assembly-modeling"
+      ],
+      "useCase": "Writing clean Python scripts to construct complex parametric 3D CAD assemblies and mechanical components programmatically.",
+      "advantages": [
+        "Fluent Python API inspired by jQuery for intuitive 3D selector navigation and geometric operations",
+        "Powered by the industrial-grade OpenCASCADE CAD kernel for precise B-Rep and NURBS surface modeling",
+        "Seamless Python ecosystem integration for automated CAD model generation and parametric optimization"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-programmers requiring a pure graphical WYSIWYG CAD interface",
+        "Avoid for basic 2D raster graphic editing without 3D CAD geometry requirements"
+      ],
+      "addedAt": "2026-07-25T03:08:00.000Z",
+      "status": "active"
     }
   ]
 }
