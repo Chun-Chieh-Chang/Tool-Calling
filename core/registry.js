@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { generateKnowledgeGraph } from '../scripts/generate-knowledge-graph.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,6 +14,11 @@ export function loadRegistry() {
 export function saveRegistry(data) {
   data.lastUpdated = new Date().toISOString();
   writeFileSync(REGISTRY_PATH, JSON.stringify(data, null, 2), 'utf-8');
+  try {
+    generateKnowledgeGraph(data);
+  } catch (err) {
+    console.warn('[Warning] 自動更新知識圖譜時發生警告:', err.message);
+  }
 }
 
 export function getToolById(toolId) {

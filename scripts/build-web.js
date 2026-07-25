@@ -18,10 +18,13 @@ fs.mkdirSync(distDir, { recursive: true });
 fs.mkdirSync(path.join(distDir, 'core'), { recursive: true });
 fs.mkdirSync(path.join(distDir, 'registry'), { recursive: true });
 
-// 每次部署前重新挖掘同義詞詞典，確保跟 registry 目前內容同步
-// （同時也更新 repo 內的 core/synonyms.generated.js，讓本地開發環境一致）
+import { generateKnowledgeGraph } from './generate-knowledge-graph.js';
+
 const registryPath = path.join(rootDir, 'registry', 'tools.json');
 const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
+
+// 每次部署前重新產生全景知識圖譜與同義詞詞典
+generateKnowledgeGraph(registry);
 const { map: synonymMap, stats } = mineSynonyms(registry.tools);
 const synonymsSource = `/**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
@@ -41,6 +44,9 @@ if (fs.existsSync(path.join(webDir, 'favicon.svg'))) {
 }
 if (fs.existsSync(path.join(webDir, 'favicon.ico'))) {
   fs.copyFileSync(path.join(webDir, 'favicon.ico'), path.join(distDir, 'favicon.ico'));
+}
+if (fs.existsSync(path.join(rootDir, 'docs', 'knowledge-graph.html'))) {
+  fs.copyFileSync(path.join(rootDir, 'docs', 'knowledge-graph.html'), path.join(distDir, 'knowledge-graph.html'));
 }
 
 // 複製依賴檔案

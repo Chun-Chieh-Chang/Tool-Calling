@@ -808,6 +808,49 @@
 #### RCA / CAPA
 - （本次為 Obsidian 生態工具批次匯入、Monorepo 拆解與品質確效，無異常狀況）
 
+### 2026-07-25 — 全自動工具調用：本專案全景 AI 工具知識圖譜建置 (Phase 49)
+
+#### 需求與動機
+使用者觸發：「啟動全自動工具調用模式：創建本專案的工具圖譜」。
+
+#### 完成項目
+- [x] **全自動調用 SOP 貫徹**：
+  - 意圖解析與檢索 ➜ 匹配 `graphify` (Graphify - 知識圖譜生成器)。
+  - 列出 `install` 與 `invoke` 指令取得使用者授權 ➜ 於 Docker 沙盒順利執行。
+  - 任務結束後執行 `node cli.js cleanup graphify` 復歸清理。
+- [x] **專案全景動態知識圖譜網頁產出 (`knowledge-graph.html`)**：
+  - 開發 `scripts/generate-knowledge-graph.js`，將全庫 320 個工具、20 大分類及微技能關聯建構為互動式 Vis.js 網絡。
+  - 提供節點高亮、力導向物理效果、分類色彩系統、關鍵字搜尋定位與工具詳情抽屜面板。
+  - 將產出放置於 [docs/knowledge-graph.html](file:///d:/Self-developed_Apps/Tool-Calling/docs/knowledge-graph.html) 與 `./dist/knowledge-graph.html`。
+- [x] **全站 UI 導航整合**：
+  - 於 `web/index.html` 頂部頁籤新增 `🌐 互動式工具圖譜` 按鈕連結，供使用者一鍵跳轉。
+- [x] **確效與測試**：
+  - `node scripts/build-web.js` (成功包含知識圖譜靜態發行檔)。
+  - `npm test` 8/8 測試 PASS。
+
+#### RCA / CAPA
+- （本次遵循全自動調用 SOP 完成工具安裝、沙盒調用、圖譜建置與環境復歸，無異常狀況）
+
+### 2026-07-25 — 工具圖譜與工具庫即時動態自動同步機制 (Phase 50)
+
+#### 需求與動機
+使用者需求：「讓工具圖譜自動隨著工具庫的更新而更新」。達成工具庫 (`registry/tools.json`) 異動時，全景知識圖譜 (`knowledge-graph.html`) 零延遲即時自動重構與更新。
+
+#### 完成項目
+- [x] **圖譜生成模組升級 (`scripts/generate-knowledge-graph.js`)**：
+  - 重構為可導出模組函式 `export function generateKnowledgeGraph(registryInput)`，支援接受動態 JSON 物件或讀取磁碟。
+  - 保留 CLI 獨立執行能力，並在圖譜 Header 加上「(自動即時同步中)」標識。
+- [x] **工具庫持久化寫入點攔截 (`core/registry.js`)**：
+  - 於 `saveRegistry(data)` 內部加入自動呼叫 Hook，任何指令（如 `add`, `batch-add`, `index-subtools`, `enrich-registry` 等）凡寫入或修改工具庫，即刻 **自動重新產出知識圖譜**。
+- [x] **網站發行構建流水線整合 (`scripts/build-web.js`)**：
+  - 於 CI/CD 與本地靜態網頁打包流程中加入自動產生圖譜關聯，確保 `./dist` 發行網站始終發佈 100% 最新圖譜。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 驗證成功印出 `[Auto-Sync] Knowledge graph updated with 320 tools!`。
+  - `npm test` 8/8 測試全數 PASS 綠燈。
+
+#### RCA / CAPA
+- （本次完成工具圖譜全自動事件驅動同步機制，無異常狀況）
+
 
 
 
