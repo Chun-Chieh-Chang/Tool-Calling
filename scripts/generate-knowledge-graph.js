@@ -105,9 +105,9 @@ export function generateKnowledgeGraph(registryInput = null) {
         width: 1
       });
 
-      // 4. SubTools / Capabilities (如果存在)
+      // 4. SubTools / Capabilities (限制每工具最多顯示 3 個子節點，防止密集彈簧震盪)
       if (tool.subTools && Array.isArray(tool.subTools)) {
-        tool.subTools.slice(0, 5).forEach((sub, sIdx) => {
+        tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
           nodes.push({
             id: subId,
@@ -225,7 +225,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       height: 100%;
     }
 
-    /* 左下角圖例對照面板 (Color Legend Panel) */
+    /* 左下角色彩對照面板 */
     #legendPanel {
       position: absolute;
       bottom: 20px;
@@ -370,23 +370,31 @@ export function generateKnowledgeGraph(registryInput = null) {
       edges: new vis.DataSet(edgesData)
     };
 
+    // 物理力學最佳化配置 (修復永久跳動/動態不穩定)
     const options = {
       nodes: {
         font: { face: 'Inter' }
       },
       physics: {
+        enabled: true,
         barnesHut: {
-          gravitationalConstant: -3000,
-          centralGravity: 0.3,
-          springLength: 95,
-          springConstant: 0.04,
-          damping: 0.09,
-          avoidOverlap: 0.5
+          gravitationalConstant: -4000,
+          centralGravity: 0.25,
+          springLength: 110,
+          springConstant: 0.02,
+          damping: 0.35,            // 高阻尼迅速耗散跳動動能
+          avoidOverlap: 0.6
         },
-        maxVelocity: 50,
-        minVelocity: 0.75,
+        maxVelocity: 35,
+        minVelocity: 0.2,             // 降低門檻，使粒子順利停止
         solver: 'barnesHut',
-        stabilization: { iterations: 150 }
+        stabilization: {
+          enabled: true,
+          iterations: 300,            // 增加預先計算次數
+          updateInterval: 25,
+          onlyDynamicEdges: false,
+          fit: true
+        }
       },
       interaction: {
         hover: true,
@@ -396,6 +404,21 @@ export function generateKnowledgeGraph(registryInput = null) {
     };
 
     const network = new vis.Network(container, data, options);
+
+    // 穩定後自動鎖定物理引擎，徹底防範永久微跳動
+    network.on('stabilizationIterationsDone', function () {
+      network.setOptions({ physics: { enabled: false } });
+    });
+
+    // 當使用者拖拽節點時動態啟動/結束物理學
+    network.on('dragStart', function () {
+      network.setOptions({ physics: { enabled: true } });
+    });
+    network.on('dragEnd', function () {
+      setTimeout(() => {
+        network.setOptions({ physics: { enabled: false } });
+      }, 1000);
+    });
 
     // Node click handler
     network.on('click', function (params) {
@@ -455,7 +478,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with color legend panel for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with physics stabilization fixes for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
