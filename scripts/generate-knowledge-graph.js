@@ -5,14 +5,14 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 高級對比與莫蘭迪色系 (Premium High-Contrast Palette, 無刺眼爆亮黃)
+// 高級對比與莫蘭迪色系 (Premium High-Contrast Palette)
 const categoryColors = {
   "開發工具": "#2563EB",         // 寶藍
   "數據分析": "#059669",         // 深翡翠綠
   "知識管理": "#7C3AED",         // 深紫
   "安全性": "#DC2626",           // 深紅
   "多媒體生成": "#DB2777",       // 深粉
-  "AI 框架": "#D97706",         // 暖金棕/深琥珀 (絕非刺眼黃)
+  "AI 框架": "#D97706",         // 暖金棕/深琥珀
   "學習資源": "#4F46E5",         // 靛藍
   "測試與自動化": "#0D9488",     // 深青綠
   "基礎設施": "#475569",         // 石板灰
@@ -73,13 +73,14 @@ export function generateKnowledgeGraph(registryInput = null) {
       id: catId,
       label: cat,
       group: "category",
+      categoryName: cat,
       shape: "box",
       margin: 14,
       color: {
         background: colorHex,
         border: colorHex,
         highlight: {
-          background: colorHex, // 💡 強制指定 Highlight 背景色為分類原色，徹底防止 Vis.js 預設選中變爆亮黃底！
+          background: colorHex,
           border: "#FFFFFF"
         },
         hover: {
@@ -114,6 +115,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         id: toolNodeId,
         label: tool.name,
         group: "tool",
+        categoryName: cat,
         shape: "dot",
         size: 12,
         color: {
@@ -133,7 +135,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         width: 1
       });
 
-      // 4. SubTools / Capabilities (限制每工具最多顯示 3 個子節點，防止密集彈簧震盪)
+      // 4. SubTools / Capabilities
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -141,6 +143,7 @@ export function generateKnowledgeGraph(registryInput = null) {
             id: subId,
             label: sub.name || sub.id,
             group: "subtool",
+            categoryName: cat,
             shape: "diamond",
             size: 6,
             color: {
@@ -163,10 +166,13 @@ export function generateKnowledgeGraph(registryInput = null) {
     });
   });
 
-  // 動態生成圖例 HTML 項目
+  // 動態生成圖例 HTML 項目 (可點擊選擇高亮)
   const legendItemsHtml = categories.map(cat => {
     const colorHex = categoryColors[cat] || defaultColor;
-    return `<div class="legend-item"><span class="legend-badge" style="background:${colorHex}"></span><span>${cat}</span></div>`;
+    return `<div class="legend-item" onclick="filterCategory('${cat}', this)">
+      <span class="legend-badge" style="background:${colorHex}"></span>
+      <span>${cat}</span>
+    </div>`;
   }).join('');
 
   const htmlContent = `<!DOCTYPE html>
@@ -257,19 +263,19 @@ export function generateKnowledgeGraph(registryInput = null) {
       height: 100%;
     }
 
-    /* 左下角色彩對照面板 */
+    /* 左下角色彩對照與互動選擇面板 */
     #legendPanel {
       position: absolute;
       bottom: 20px;
       left: 20px;
       z-index: 10;
-      background: rgba(30, 41, 59, 0.90);
+      background: rgba(30, 41, 59, 0.92);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 14px 18px;
       max-height: 280px;
-      width: 260px;
+      width: 270px;
       overflow-y: auto;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     }
@@ -287,7 +293,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     .legend-grid {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 4px;
     }
 
     .legend-item {
@@ -296,6 +302,25 @@ export function generateKnowledgeGraph(registryInput = null) {
       gap: 8px;
       font-size: 12px;
       color: var(--text-primary);
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      border: 1px solid transparent;
+    }
+
+    .legend-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(3px);
+    }
+
+    .legend-item.active {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(96, 165, 250, 0.6);
+      color: #60A5FA;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
     }
 
     .legend-badge {
@@ -374,10 +399,10 @@ export function generateKnowledgeGraph(registryInput = null) {
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
   </div>
 
-  <!-- 左下角色彩對照圖例 -->
+  <!-- 左下角色彩對照與互動選擇面板 -->
   <div id="legendPanel">
     <div class="legend-header">
-      <span>🎨 分類色彩圖例</span>
+      <span>🎨 點擊分類圖例高亮圖譜</span>
       <span style="font-size:11px; color:#94A3B8;">(${categories.length} 類)</span>
     </div>
     <div class="legend-grid">
@@ -437,12 +462,12 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const network = new vis.Network(container, data, options);
 
-    // 穩定後自動鎖定物理引擎，徹底防範跳動
+    // 穩定後自動鎖定物理引擎
     network.on('stabilizationIterationsDone', function () {
       network.setOptions({ physics: { enabled: false } });
     });
 
-    // 當使用者拖拽節點時動態啟動/結束物理學
+    // 拖拽時動態啟動/結束物理學
     network.on('dragStart', function () {
       network.setOptions({ physics: { enabled: true } });
     });
@@ -451,6 +476,46 @@ export function generateKnowledgeGraph(registryInput = null) {
         network.setOptions({ physics: { enabled: false } });
       }, 1000);
     });
+
+    // 點擊圖例 (Legend Click) 凸顯分類與關聯節點
+    function filterCategory(catName, element) {
+      const isAlreadyActive = element.classList.contains('active');
+      
+      // 清除所有圖例的 active 狀態
+      document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+
+      if (isAlreadyActive) {
+        // 取消選擇：還原圖譜全景
+        network.unselectAll();
+        network.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+        closePanel();
+        return;
+      }
+
+      // 標記目前圖例為高亮 active
+      element.classList.add('active');
+
+      // 在數據中查找目標分類節點及其旗下所有工具節點
+      const allNodes = data.nodes.get();
+      const targetNodes = allNodes.filter(n => n.categoryName === catName || (n.group === 'category' && n.label === catName));
+      const targetIds = targetNodes.map(n => n.id);
+
+      const catNode = allNodes.find(n => n.group === 'category' && n.label === catName);
+
+      if (targetIds.length > 0) {
+        // 高亮選中圖譜中的這些節點
+        network.selectNodes(targetIds);
+
+        // 平滑聚焦至分類中心
+        if (catNode) {
+          network.focus(catNode.id, {
+            scale: 1.15,
+            animation: { duration: 800, easingFunction: 'easeInOutQuad' }
+          });
+          showPanel(catNode);
+        }
+      }
+    }
 
     // Node click handler
     network.on('click', function (params) {
@@ -462,6 +527,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       } else {
         closePanel();
+        document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
       }
     });
 
@@ -510,7 +576,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with selection highlight fixes for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with interactive legend clicking for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行
