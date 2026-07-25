@@ -1143,6 +1143,24 @@
 - **問題**：獨立 Three.js CDN 與 3d-force-graph 內部封裝產生重複實體衝突，且 Vis.js 預設 improvedLayout 演算法告警。
 - **矯正與預防措施 (CAPA)**：改用 three-spritetext CDN 原生相容外掛，並關閉 Vis.js improvedLayout 警示，達到全控制台 Console 零錯誤標準。
 
+### 2026-07-25 — 工具圖譜 100% 滿版無內縮沉浸式佈局與獨立全螢幕新分頁開展重構 (Phase 65)
+
+#### 需求與動機
+使用者詢問：「工具圖譜為何不像之前的全版面顯示，而是被塞進了一個容器中」。修復 Phase 58 中 SPA 內縮容器造成的空間被遮擋問題。
+
+#### 完成項目
+- [x] **根因分析 (RCA)**：
+  - 舊有 `#graphView` 在 `web/index.html` 中外包了一層帶 Padding (`12px`) 與邊框線的 `.glass-panel` 內縮容器，且指定固定高度 `850px`，失去全版面張力。
+- [x] **矯正與預防措施 (CAPA - 100% Immersive Fullscreen View)**：
+  - 移除內縮毛玻璃邊框容器，將 `#graphView` iframe 設為動態 100% 滿版高度 `height: calc(100vh - 145px); width: 100%; border: none;`，頂天立地呈現滿版視覺震撼。
+  - 於 `#graphView` 右上角加設 **`[ ↗ 獨立新分頁全螢幕開啟 ]`** 高級透明外連按鈕，兼具 SPA 內嵌即時連動與獨立 100vw x 100vh 全螢幕檢視兩大極致體驗。
+- [x] **確效驗證與測試**：
+  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- **問題**：SPA 分頁整合時包含過度內縮容器與固定像素高度，導致圖譜呈現被困在小框中的視覺壓迫感。
+- **矯正與預防措施 (CAPA)**：改用高度動態運算 `calc(100vh - 145px)` 與滿版 100% iframe 佈局，並新增獨立新分頁開啟按鈕，徹底消滅邊界壓迫感。
+
 
 
 
