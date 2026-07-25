@@ -131,6 +131,12 @@ export function generateKnowledgeGraph(registryInput = null) {
     });
   });
 
+  // 動態生成圖例 HTML 項目
+  const legendItemsHtml = categories.map(cat => {
+    const colorHex = categoryColors[cat] || defaultColor;
+    return `<div class="legend-item"><span class="legend-badge" style="background:${colorHex}"></span><span>${cat}</span></div>`;
+  }).join('');
+
   const htmlContent = `<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -219,6 +225,55 @@ export function generateKnowledgeGraph(registryInput = null) {
       height: 100%;
     }
 
+    /* 左下角圖例對照面板 (Color Legend Panel) */
+    #legendPanel {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(30, 41, 59, 0.90);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px;
+      max-height: 280px;
+      width: 260px;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .legend-header {
+      font-size: 13px;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legend-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .legend-badge {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
     #detailPanel {
       position: absolute;
       bottom: 20px;
@@ -285,6 +340,17 @@ export function generateKnowledgeGraph(registryInput = null) {
 
   <div id="controls">
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
+  </div>
+
+  <!-- 左下角色彩對照圖例 -->
+  <div id="legendPanel">
+    <div class="legend-header">
+      <span>🎨 分類色彩圖例</span>
+      <span style="font-size:11px; color:#94A3B8;">(${categories.length} 類)</span>
+    </div>
+    <div class="legend-grid">
+      ${legendItemsHtml}
+    </div>
   </div>
 
   <div id="detailPanel">
@@ -389,7 +455,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     fs.writeFileSync(path.join(distDir, 'knowledge-graph.html'), htmlContent, 'utf8');
   }
 
-  console.log(`[Auto-Sync] Knowledge graph updated with contrast text color optimization for ${registry.tools.length} tools!`);
+  console.log(`[Auto-Sync] Knowledge graph updated with color legend panel for ${registry.tools.length} tools!`);
 }
 
 // 支援命令列獨立執行

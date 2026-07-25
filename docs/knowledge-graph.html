@@ -86,6 +86,55 @@
       height: 100%;
     }
 
+    /* 左下角圖例對照面板 (Color Legend Panel) */
+    #legendPanel {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(30, 41, 59, 0.90);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px;
+      max-height: 280px;
+      width: 260px;
+      overflow-y: auto;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .legend-header {
+      font-size: 13px;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legend-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-primary);
+    }
+
+    .legend-badge {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
     #detailPanel {
       position: absolute;
       bottom: 20px;
@@ -152,6 +201,17 @@
 
   <div id="controls">
     <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
+  </div>
+
+  <!-- 左下角色彩對照圖例 -->
+  <div id="legendPanel">
+    <div class="legend-header">
+      <span>🎨 分類色彩圖例</span>
+      <span style="font-size:11px; color:#94A3B8;">(22 類)</span>
+    </div>
+    <div class="legend-grid">
+      <div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>文件生產力</span></div><div class="legend-item"><span class="legend-badge" style="background:#06B6D4"></span><span>資料庫</span></div><div class="legend-item"><span class="legend-badge" style="background:#EF4444"></span><span>安全性</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>影片</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>API 整合</span></div><div class="legend-item"><span class="legend-badge" style="background:#6366F1"></span><span>學習資源</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>瀏覽器自動化</span></div><div class="legend-item"><span class="legend-badge" style="background:#64748B"></span><span>基礎設施</span></div><div class="legend-item"><span class="legend-badge" style="background:#14B8A6"></span><span>測試與自動化</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>AI 代理</span></div><div class="legend-item"><span class="legend-badge" style="background:#8B5CF6"></span><span>知識管理</span></div><div class="legend-item"><span class="legend-badge" style="background:#3B82F6"></span><span>開發工具</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>設計</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>音訊</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>研究</span></div><div class="legend-item"><span class="legend-badge" style="background:#EC4899"></span><span>多媒體生成</span></div><div class="legend-item"><span class="legend-badge" style="background:#10B981"></span><span>數據分析</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>行銷</span></div><div class="legend-item"><span class="legend-badge" style="background:#F59E0B"></span><span>AI 框架</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>UI/UX設計</span></div><div class="legend-item"><span class="legend-badge" style="background:#F97316"></span><span>3D工程繪圖</span></div><div class="legend-item"><span class="legend-badge" style="background:#94A3B8"></span><span>其他</span></div>
+    </div>
   </div>
 
   <div id="detailPanel">
