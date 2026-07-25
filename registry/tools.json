@@ -44,7 +44,8 @@
         "Generates fully editable native .pptx files with shapes, tables, and charts.",
         "Supports custom templates, transition animations, and audio narration.",
         "Directly converts text documents or topics into structured presentation outlines."
-      ]
+      ],
+      "stars": 4200
     },
     {
       "id": "graphify",
@@ -85,7 +86,8 @@
         "不適合用於即時資料庫監控或線上交易處理",
         "不適用於單純的文字搜尋或檔案瀏覽需求",
         "無法直接生成新的程式碼或執行腳本"
-      ]
+      ],
+      "stars": 2900
     },
     {
       "id": "strix",
@@ -133,7 +135,8 @@
         "不適用於未經授權的系統掃描或攻擊行為",
         "不適合用於即時高併發生產環境的直接壓力測試",
         "無法替代專業安全顧問的深度威脅建模與人工驗證"
-      ]
+      ],
+      "stars": 3800
     },
     {
       "id": "ai-animation-video-generator",
@@ -176,7 +179,8 @@
         "Not suitable for cinematic-grade realistic VFX",
         "Cannot handle real-time streaming or live broadcast animations",
         "Inappropriate for complex 3D modeling tasks"
-      ]
+      ],
+      "stars": 6357
     },
     {
       "id": "open-generative-ai",
@@ -221,7 +225,8 @@
         "Not suitable for users requiring managed cloud hosting with zero infrastructure maintenance.",
         "Avoid for enterprise public services that require strict content moderation and compliance.",
         "Incompatible with hardware lacking sufficient GPU memory for large model inference."
-      ]
+      ],
+      "stars": 12556
     },
     {
       "id": "imaginairy",
@@ -265,7 +270,8 @@
         "不適合需要即時高畫質影片後製的專業渲染場景。",
         "不適用於依賴純雲端託管且無本地 GPU 資源的輕量 Web 服務。",
         "無法滿足精確向量圖形或 3D 建模需求。"
-      ]
+      ],
+      "stars": 14338
     },
     {
       "id": "vercel-ai-skills",
@@ -307,7 +313,8 @@
         "Not suitable for applications requiring full LLM training or fine-tuning capabilities.",
         "Avoid for non-AI workflows or traditional CRUD APIs without conversational interfaces.",
         "Does not replace backend infrastructure for high-throughput batch processing tasks."
-      ]
+      ],
+      "stars": 3913
     },
     {
       "id": "total-typescript-skills",
@@ -348,7 +355,8 @@
         "不適合初學者建立 JavaScript 或 TypeScript 基礎語法概念",
         "不適用於需要執行程式碼或互動式練習的環境",
         "不適合尋找 React、Vue 等前端框架特定教學的使用者"
-      ]
+      ],
+      "stars": 6001
     },
     {
       "id": "playwright",
@@ -392,7 +400,8 @@
         "不適合用於純後端 API 單元測試或資料庫效能基準測試。",
         "不適用於需要模擬非瀏覽器環境，例如 IoT 裝置或桌面原生應用程式的場景。",
         "不建議用於高頻率的即時交易系統監控，因瀏覽器自動化延遲較高。"
-      ]
+      ],
+      "stars": 62000
     },
     {
       "id": "flysystem",
@@ -440,7 +449,8 @@
         "Not appropriate for real-time file monitoring, change detection, or OS-level file system events",
         "Avoid when building low-level system utilities that require direct POSIX filesystem calls",
         "Unnecessary for single-backend projects with minimal storage requirements where native PHP functions suffice"
-      ]
+      ],
+      "stars": 11844
     },
     {
       "id": "tdd",
@@ -476,7 +486,8 @@
         "Avoid for exploratory prototyping where speed is prioritized over code structure.",
         "Do not use for one-off scripts or throwaway code without long-term maintenance needs.",
         "Not suitable when requirements are completely undefined and require discovery before implementation."
-      ]
+      ],
+      "stars": 15088
     },
     {
       "id": "postgres-mcp",
@@ -510,7 +521,8 @@
         "Do not use for non-PostgreSQL databases such as MySQL, MongoDB, or Redis.",
         "Avoid using directly for untrusted user inputs without implementing additional input validation layers.",
         "Not suitable for managing non-relational data structures or document-based storage systems."
-      ]
+      ],
+      "stars": 5836
     },
     {
       "id": "github-mcp-server",
@@ -552,7 +564,8 @@
         "Do not use for non-GitHub version control systems like GitLab or Bitbucket.",
         "Avoid for high-frequency trading or real-time low-latency system operations.",
         "Not suitable for offline repository management without network connectivity."
-      ]
+      ],
+      "stars": 9288
     },
     {
       "id": "context7",
@@ -590,7 +603,8 @@
         "Not suitable for offline environments without network connectivity.",
         "Avoid for proprietary or internal documentation not hosted on public repositories.",
         "Inappropriate for real-time system monitoring or hardware control tasks."
-      ]
+      ],
+      "stars": 4104
     },
     {
       "id": "sequentialthinking",
@@ -625,7 +639,8 @@
         "Avoid for simple factual lookups or single-step arithmetic.",
         "Not suitable for real-time streaming data processing.",
         "Do not use when immediate binary decisions are required without context."
-      ]
+      ],
+      "stars": 2549
     },
     {
       "id": "mcp-sequential-thinking",
@@ -660,7 +675,8 @@
         "Simple factual queries that require instant answers without analysis.",
         "Real-time latency-critical applications needing sub-second responses.",
         "Creative brainstorming sessions favoring non-linear associative ideas."
-      ]
+      ],
+      "stars": 3679
     },
     {
       "id": "memmy-agent",
@@ -699,7 +715,8 @@
         "Real-time low-latency applications requiring immediate response without memory overhead.",
         "Highly sensitive data environments lacking robust encryption or access controls.",
         "Single-session tasks that do not benefit from persistent state or historical context."
-      ]
+      ],
+      "stars": 16703
     },
     {
       "id": "build-your-own-x",
@@ -739,7 +756,8 @@
         "Not suitable for rapid prototyping or production deployment",
         "Inappropriate for beginners lacking basic programming fundamentals",
         "Does not provide ready-to-use commercial software solutions"
-      ]
+      ],
+      "stars": 3698
     },
     {
       "id": "posthog",
@@ -779,7 +797,8 @@
         "Not suitable for high-frequency financial tick data or real-time server monitoring.",
         "Avoid for simple static websites that do not require user interaction tracking.",
         "Not ideal for enterprise environments requiring strict compliance without self-hosting infrastructure."
-      ]
+      ],
+      "stars": 1696
     },
     {
       "id": "hallmark",
@@ -811,7 +830,8 @@
         "Not suitable for beginners learning foundational programming concepts who need detailed explanations.",
         "Avoid using when generating complex, highly documented enterprise applications requiring extensive comments.",
         "Inappropriate for creative writing or non-technical content generation tasks."
-      ]
+      ],
+      "stars": 4792
     },
     {
       "id": "code-review-graph",
@@ -852,7 +872,8 @@
         "Not suitable for runtime analysis, dynamic profiling, or real-time collaborative editing.",
         "Overkill for very small repositories where full context fits easily within token limits.",
         "Requires Python environment and does not support non-code data types."
-      ]
+      ],
+      "stars": 8127
     },
     {
       "id": "officecli",
@@ -894,7 +915,8 @@
         "Real-time collaborative editing across multiple users via cloud platforms.",
         "Executing complex VBA macros or custom add-ins requiring a full Office GUI.",
         "Interactive WYSIWYG document previewing or graphical editing."
-      ]
+      ],
+      "stars": 8576
     },
     {
       "id": "stablyai-orca",
@@ -939,7 +961,8 @@
         "Not suitable for single-agent tasks requiring deep sequential context without parallelism",
         "Avoid if you need a managed cloud subscription rather than bringing your own API keys",
         "Not designed for non-coding workflows like data analysis or design"
-      ]
+      ],
+      "stars": 8889
     },
     {
       "id": "herdr",
@@ -980,7 +1003,8 @@
         "Not suitable for users preferring graphical IDEs over command-line interfaces.",
         "Avoid for simple single-agent tasks where standard tmux or shell scripts suffice.",
         "Requires a Unix-like environment with tmux installed to function properly."
-      ]
+      ],
+      "stars": 7919
     },
     {
       "id": "impeccable",
@@ -1012,7 +1036,8 @@
         "Not suitable for native mobile app development or non-web frameworks.",
         "Avoid for projects requiring highly custom, brand-specific design systems from scratch.",
         "Not ideal for static content sites where minimal CSS is preferred."
-      ]
+      ],
+      "stars": 12747
     },
     {
       "id": "slidesmaker",
@@ -1052,7 +1077,8 @@
         "Do not use when a non-editable PDF or image-only output is required.",
         "Avoid for simple text-only documents that do not need visual data representation.",
         "Not suitable for real-time collaborative editing sessions directly within the tool."
-      ]
+      ],
+      "stars": 2396
     },
     {
       "id": "lean-ctx",
@@ -1093,7 +1119,8 @@
         "Cloud-only workflows requiring zero local installation",
         "Users preferring a fully managed SaaS over self-hosted solutions",
         "General-purpose unstructured data analysis outside code contexts"
-      ]
+      ],
+      "stars": 2728
     },
     {
       "id": "loop-engineering",
@@ -1133,7 +1160,8 @@
         "Not suitable for manual coding workflows without AI agent involvement.",
         "Does not replace standard IDE features or general project scaffolding.",
         "Avoid if you do not use AI coding agents like Grok or Codex."
-      ]
+      ],
+      "stars": 6450
     },
     {
       "id": "loop-engineering-orange-book",
@@ -1165,7 +1193,8 @@
         "Not suitable for implementing real-time code execution or automated CI/CD pipelines.",
         "Inappropriate for deep mathematical modeling or formal verification tasks.",
         "Does not replace comprehensive software documentation or API references."
-      ]
+      ],
+      "stars": 6529
     },
     {
       "id": "guizang-ppt-skill",
@@ -1207,7 +1236,8 @@
         "Not suitable for creating native PowerPoint (.pptx) or Keynote files.",
         "Avoid for offline-only environments requiring no internet access.",
         "Not ideal for complex data dashboards or heavy interactive animations."
-      ]
+      ],
+      "stars": 9890
     },
     {
       "id": "open-slide",
@@ -1245,7 +1275,8 @@
         "Do not use for non-React native desktop software.",
         "Avoid for generating static PDF documents without interactivity.",
         "Not suitable for video production or audio editing."
-      ]
+      ],
+      "stars": 11844
     },
     {
       "id": "html-ppt-skill",
@@ -1282,7 +1313,8 @@
         "Creating native .pptx files for offline PowerPoint editing.",
         "Generating video recordings or screen-captured presentations.",
         "Building complex data dashboards requiring real-time database connections."
-      ]
+      ],
+      "stars": 12630
     },
     {
       "id": "awesome-llm-apps",
@@ -1373,7 +1405,8 @@
         "Not suitable as a standalone managed SaaS platform",
         "Avoid for real-time high-frequency inference serving",
         "Do not use directly in compliance-heavy environments without thorough security audits"
-      ]
+      ],
+      "stars": 4472
     },
     {
       "id": "desktopcommandermcp",
@@ -1414,7 +1447,8 @@
         "Not suitable for environments requiring strict GUI-based interactions or visual testing.",
         "Avoid using for high-risk production database modifications without human approval.",
         "Not ideal for simple text replacements that can be handled by standard IDE features alone."
-      ]
+      ],
+      "stars": 6376
     },
     {
       "id": "stitch-skills",
@@ -1524,7 +1558,8 @@
           "description": "Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.",
           "subpath": "plugins/stitch-utilities/skills/taste-design"
         }
-      ]
+      ],
+      "stars": 10394
     },
     {
       "id": "designmd",
@@ -1556,7 +1591,8 @@
         "Not suitable for dynamic runtime styling or CSS-in-JS solutions that require live evaluation.",
         "Avoid using for purely backend or non-visual project configurations.",
         "Ineffective for projects without dedicated AI coding assistants or automated generation workflows."
-      ]
+      ],
+      "stars": 4749
     },
     {
       "id": "rag-anything",
@@ -1593,7 +1629,8 @@
         "Simple keyword search tasks that do not benefit from semantic retrieval or LLM generation.",
         "Real-time control systems requiring deterministic, sub-millisecond response times.",
         "Scenarios where a fully managed commercial SaaS is required instead of self-hosted infrastructure."
-      ]
+      ],
+      "stars": 4675
     },
     {
       "id": "cli-anything",
@@ -1627,7 +1664,8 @@
         "Not intended for GUI-based applications lacking command-line equivalents.",
         "Avoid for basic shell scripting where no AI agent is involved.",
         "Do not use for high-latency environments requiring instant human-in-the-loop responses."
-      ]
+      ],
+      "stars": 4589
     },
     {
       "id": "addyosmani-agent-skills",
@@ -1800,7 +1838,8 @@
         "Do not use if you need a standalone IDE or code editor rather than prompt instructions.",
         "Avoid for non-coding tasks like data analysis or creative writing where these engineering prompts are irrelevant.",
         "Not suitable if you prefer fully autonomous agents without curated behavioral guidelines."
-      ]
+      ],
+      "stars": 3120
     },
     {
       "id": "heilcheng-awesome-agent-skills",
@@ -1839,7 +1878,8 @@
         "Not suitable for production-grade enterprise deployment without custom integration.",
         "Inappropriate for non-AI or traditional software development tasks.",
         "Unsuitable for users requiring offline-only resources without internet access."
-      ]
+      ],
+      "stars": 15344
     },
     {
       "id": "directus",
@@ -1881,7 +1921,8 @@
         "Not suitable for NoSQL databases like MongoDB or DynamoDB",
         "Avoid for simple static websites that do not require dynamic content management",
         "Not ideal for embedded systems or low-level hardware control"
-      ]
+      ],
+      "stars": 5781
     },
     {
       "id": "ui-ux-pro-max-skill",
@@ -1921,7 +1962,8 @@
         "Not suitable for backend development, database management, or server-side logic.",
         "Avoid for non-visual tasks such as data analysis, NLP, or system administration.",
         "Not intended for creating raster graphics, logos, or photo editing workflows."
-      ]
+      ],
+      "stars": 14835
     },
     {
       "id": "lanshu-animated-architecture-diagram",
@@ -1956,7 +1998,8 @@
         "Do not use when precise, to-scale engineering schematics are required.",
         "Avoid for production infrastructure code or automated deployment pipelines.",
         "Not intended for real-time monitoring dashboards or live metric visualization."
-      ]
+      ],
+      "stars": 9047
     },
     {
       "id": "agency-agents",
@@ -2089,7 +2132,8 @@
         "Not suitable for simple, single-step tasks that do not benefit from a multi-agent setup.",
         "Avoid for projects requiring strict real-time human approval at every stage.",
         "Not ideal for highly regulated compliance workflows needing immediate audit trails."
-      ]
+      ],
+      "stars": 8674
     },
     {
       "id": "codebase-memory-mcp",
@@ -2131,7 +2175,8 @@
         "Not suitable for analyzing non-code assets like PDFs, images, or unstructured documents.",
         "Avoid for real-time collaborative editing workflows requiring immediate file system write-backs.",
         "Does not replace a full IDE for interactive debugging or complex refactoring operations."
-      ]
+      ],
+      "stars": 17071
     },
     {
       "id": "codebase-memory-mcp-pro",
@@ -2168,7 +2213,8 @@
         "Not suitable for non-code repositories or unstructured documentation wikis.",
         "Requires an MCP-compatible client environment to connect and utilize the knowledge graph.",
         "Designed for static code analysis rather than real-time collaborative editing workflows."
-      ]
+      ],
+      "stars": 16997
     },
     {
       "id": "openmontage",
@@ -2213,7 +2259,8 @@
         "Unsuitable for non-technical users requiring a simple, GUI-based drag-and-drop video editor.",
         "Not appropriate for real-time live streaming or instant video rendering needs due to pipeline processing overhead.",
         "Inefficient for single-frame image manipulation tasks better handled by dedicated photo editing software."
-      ]
+      ],
+      "stars": 2783
     },
     {
       "id": "video-use",
@@ -2247,7 +2294,8 @@
         "Do not use for subjective creative direction or artistic storytelling",
         "Avoid for real-time live streaming or low-latency broadcast applications",
         "Not ideal for single-file manual edits without automation benefits"
-      ]
+      ],
+      "stars": 7759
     },
     {
       "id": "cognee",
@@ -2287,7 +2335,8 @@
         "Not suitable for high-frequency transactional databases requiring strict ACID compliance",
         "Avoid for simple stateless applications that do not require persistent context",
         "Not ideal for real-time analytics on massive unstructured datasets without preprocessing"
-      ]
+      ],
+      "stars": 11875
     },
     {
       "id": "caveman",
@@ -2327,7 +2376,8 @@
         "Do not use for formal documentation or professional correspondence requiring standard grammar.",
         "Avoid for complex reasoning tasks where simplified phrasing may lose critical nuance.",
         "Not suitable for non-Claude Code environments or other LLM interfaces."
-      ]
+      ],
+      "stars": 16433
     },
     {
       "id": "caveman-code",
@@ -2363,7 +2413,8 @@
         "Not suitable for large-scale enterprise applications requiring complex tooling",
         "Avoid for users needing extensive built-in plugins",
         "Inappropriate for beginners requiring guided learning support"
-      ]
+      ],
+      "stars": 3041
     },
     {
       "id": "codex-plugin-cc",
@@ -2395,7 +2446,8 @@
         "Not suitable for real-time collaborative editing requiring immediate human feedback.",
         "Avoid for security-critical authentication modules needing strict manual compliance checks.",
         "Inappropriate for projects with licensing restrictions on external AI code generation."
-      ]
+      ],
+      "stars": 15382
     },
     {
       "id": "whisper",
@@ -2428,7 +2480,8 @@
         "Real-time low-latency streaming applications requiring sub-second response times",
         "Audio containing highly specialized domain jargon without prior fine-tuning",
         "Speaker diarization tasks that require identifying individual speakers in conversations"
-      ]
+      ],
+      "stars": 1610
     },
     {
       "id": "openai-agents-js",
@@ -2468,7 +2521,8 @@
         "Not suitable for non-OpenAI model integrations",
         "Avoid for simple single-turn chatbots without agent logic",
         "Not designed for Python-based backend systems"
-      ]
+      ],
+      "stars": 3827
     },
     {
       "id": "openai-codex-skills",
@@ -2725,7 +2779,8 @@
           "description": "Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).",
           "subpath": "skills/.system/skill-installer"
         }
-      ]
+      ],
+      "stars": 17845
     },
     {
       "id": "openai-mcpkit",
@@ -2759,7 +2814,8 @@
         "Do not use for fine-tuning models or managing training datasets.",
         "Not intended as a standalone end-user chat application.",
         "Requires a compatible MCP client to actually invoke the created servers."
-      ]
+      ],
+      "stars": 9147
     },
     {
       "id": "html-deck-editor",
@@ -2800,7 +2856,8 @@
         "Do not use if real-time multi-user collaboration is required",
         "Avoid for projects needing native desktop OS integration",
         "Not suitable for exporting presentations as video files"
-      ]
+      ],
+      "stars": 3483
     },
     {
       "id": "superpowers",
@@ -2843,7 +2900,8 @@
         "Not suitable for real-time embedded systems or low-level hardware control.",
         "Avoid for trivial one-off scripts where full agentic workflow overhead is unnecessary.",
         "Does not replace dedicated CI/CD pipelines or automated testing frameworks."
-      ]
+      ],
+      "stars": 4933
     },
     {
       "id": "claude-mem",
@@ -2883,7 +2941,8 @@
         "Do not use for transient scratchpad tasks that do not require historical context.",
         "Avoid for applications needing cloud-based synchronization out of the box.",
         "Not intended for storing sensitive credentials or personal data."
-      ]
+      ],
+      "stars": 10898
     },
     {
       "id": "agent-reach",
@@ -2921,7 +2980,8 @@
         "High-volume commercial data extraction requiring official API compliance",
         "Real-time streaming or WebSocket-based live feeds",
         "Platforms with strict anti-bot measures that may result in IP bans"
-      ]
+      ],
+      "stars": 15241
     },
     {
       "id": "gitnexus",
@@ -2954,7 +3014,8 @@
         "Not suitable for extremely large repositories that exceed browser memory limits.",
         "Cannot execute backend services, run CI/CD pipelines, or deploy applications.",
         "Not designed for real-time multi-user collaborative editing or live session management."
-      ]
+      ],
+      "stars": 6641
     },
     {
       "id": "humanizer-zh",
@@ -2988,7 +3049,8 @@
         "Do not use for generating original content from scratch, as it focuses on rewriting existing text.",
         "Avoid for technical or legal documents where precise terminology cannot be altered.",
         "Not suitable for content requiring strict factual verification."
-      ]
+      ],
+      "stars": 5750
     },
     {
       "id": "mini-agent",
@@ -3025,7 +3087,8 @@
         "Not suitable for complex multi-agent collaborative workflows",
         "Avoid for high-throughput enterprise deployments requiring distributed scaling",
         "Unideal for applications needing advanced memory management or long-context persistence"
-      ]
+      ],
+      "stars": 11543
     },
     {
       "id": "terax-ai",
@@ -3067,7 +3130,8 @@
         "Users requiring a graphical IDE or visual interface.",
         "Projects needing heavy resource-intensive local model training.",
         "Environments without internet access for cloud-based AI features."
-      ]
+      ],
+      "stars": 2685
     },
     {
       "id": "cl4r1t4s",
@@ -3106,7 +3170,8 @@
         "Production deployment of commercial AI applications",
         "Malicious exploitation or unauthorized system intrusion",
         "Generating unverified training data for fine-tuning models"
-      ]
+      ],
+      "stars": 15315
     },
     {
       "id": "frontend-design",
@@ -3145,7 +3210,8 @@
         "Do not use for backend logic, API development, or database schema design.",
         "Avoid for accessibility compliance audits or runtime performance optimization.",
         "Not intended for generating raster images, icons, or static media assets."
-      ]
+      ],
+      "stars": 1849
     },
     {
       "id": "open-design",
@@ -3185,7 +3251,8 @@
         "Not suitable for professional graphic design requiring advanced vector editing",
         "Unsuitable for collaborative team workflows requiring real-time multi-user editing",
         "Not ideal for production-grade design systems with complex component libraries"
-      ]
+      ],
+      "stars": 16359
     },
     {
       "id": "react-best-practices",
@@ -3221,7 +3288,8 @@
         "Non-React frameworks like Vue, Angular, or Svelte.",
         "General UI styling or CSS layout questions unrelated to performance.",
         "Backend development outside of Next.js server-side contexts."
-      ]
+      ],
+      "stars": 5215
     },
     {
       "id": "playwright-skill",
@@ -3261,7 +3329,8 @@
         "Do not use for automating native desktop applications or mobile apps.",
         "Avoid for simple API calls where a full browser environment is unnecessary overhead.",
         "Not recommended for high-volume data scraping tasks requiring headless efficiency beyond browser needs."
-      ]
+      ],
+      "stars": 8041
     },
     {
       "id": "awesome-copilot",
@@ -3300,7 +3369,8 @@
         "Not suitable for generating proprietary or highly sensitive internal codebases without manual review.",
         "Ineffective for non-Copilot AI assistants or standalone LLM deployments.",
         "Avoid using as a primary learning resource for fundamental programming concepts."
-      ]
+      ],
+      "stars": 2580
     },
     {
       "id": "kane-cli",
@@ -3339,7 +3409,8 @@
         "Not suitable for performance or load testing scenarios requiring specialized benchmarking tools.",
         "Avoid for highly proprietary or air-gapped environments lacking internet connectivity for AI inference.",
         "Inappropriate for projects requiring strict compliance with non-AI generated test documentation standards."
-      ]
+      ],
+      "stars": 1696
     },
     {
       "id": "gh-fix-ci",
@@ -3375,7 +3446,8 @@
         "External CI systems like Buildkite or GitLab CI.",
         "Local build or test failures not triggered by GitHub Actions.",
         "Situations requiring immediate automated code modification without review."
-      ]
+      ],
+      "stars": 4104
     },
     {
       "id": "gh-address-comments",
@@ -3411,7 +3483,8 @@
         "Do not use for creating new issues or managing closed pull requests.",
         "Avoid when gh CLI is not installed or the user is not logged in.",
         "Not suitable for reviewing comments on branches other than the current one."
-      ]
+      ],
+      "stars": 17587
     },
     {
       "id": "figma-generate-library",
@@ -3446,7 +3519,8 @@
         "Not suitable for creating one-off mockups without underlying code structure",
         "Avoid using for purely artistic illustration tasks unrelated to UI components",
         "Ineffective if the codebase lacks standardized design tokens or component architecture"
-      ]
+      ],
+      "stars": 13858
     },
     {
       "id": "awesome-notebooklm-workflows",
@@ -3486,7 +3560,8 @@
         "Not intended for official Google support or enterprise-grade NotebookLM features.",
         "Scripts may become outdated if NotebookLM updates its interface or underlying APIs.",
         "Should not be used to bypass security controls on protected or copyrighted content."
-      ]
+      ],
+      "stars": 12033
     },
     {
       "id": "notebooklm-obsidian-pipeline",
@@ -3521,7 +3596,8 @@
         "Do not use if you require real-time bidirectional synchronization without scripts",
         "Do not use if you do not have access to Google NotebookLM or an Obsidian vault",
         "Do not use for syncing non-text media files like audio or images directly"
-      ]
+      ],
+      "stars": 9281
     },
     {
       "id": "aippt",
@@ -3562,7 +3638,8 @@
         "Not suitable for highly specialized scientific presentations requiring complex equation rendering.",
         "Avoid for enterprise deployments needing proprietary vendor support or guaranteed service-level agreements.",
         "Not designed for native real-time multi-user collaboration without external infrastructure."
-      ]
+      ],
+      "stars": 8306
     },
     {
       "id": "awesome-notebooklm-prompts",
@@ -3604,7 +3681,8 @@
         "Do not use for generating non-slide deliverables like code, essays, or spreadsheets.",
         "Avoid if you require native export to non-Google presentation formats without manual conversion.",
         "Not recommended for regulated industries needing strict compliance or citation formatting."
-      ]
+      ],
+      "stars": 2702
     },
     {
       "id": "notebooklm2ppt",
@@ -3643,7 +3721,8 @@
         "Do not use for creating presentations from scratch",
         "Not suitable for non-PDF source files like Word documents",
         "Avoid if you only need to view slides without editing"
-      ]
+      ],
+      "stars": 15296
     },
     {
       "id": "claude-world-notebooklm",
@@ -3683,7 +3762,8 @@
         "Do not use for real-time data queries requiring immediate, unindexed information.",
         "Avoid for simple text editing tasks that do not require multi-source research.",
         "Not suitable if you need to bypass NotebookLM's source-based context limitations."
-      ]
+      ],
+      "stars": 3378
     },
     {
       "id": "nblm2pptx",
@@ -3723,7 +3803,8 @@
         "Not suitable for complex scientific PDFs with heavy mathematical notation",
         "Avoid for presentations requiring advanced animations or embedded multimedia",
         "Inappropriate when working with non-NotebookLM source documents"
-      ]
+      ],
+      "stars": 8705
     },
     {
       "id": "ai-short-video-engine",
@@ -3762,7 +3843,8 @@
         "Not suitable for generating high-fidelity cinematic or feature-length films",
         "Ineffective for real-time live streaming or interactive video applications",
         "Cannot replace human creative direction for complex narrative storytelling"
-      ]
+      ],
+      "stars": 7666
     },
     {
       "id": "mineru2ppt",
@@ -3802,7 +3884,8 @@
         "Do not use for converting PDFs to video or audio formats.",
         "Avoid for simple text extraction tasks where basic copy-paste is sufficient.",
         "Not intended for real-time collaborative editing sessions."
-      ]
+      ],
+      "stars": 13478
     },
     {
       "id": "awesome-notebooklm",
@@ -3840,7 +3923,8 @@
         "Do not use this repository if you intend to directly generate audio files or upload documents.",
         "Not suitable for accessing official Google documentation or customer support.",
         "Avoid using this as a primary source for technical troubleshooting or error resolution."
-      ]
+      ],
+      "stars": 16340
     },
     {
       "id": "ontology-playground",
@@ -3874,7 +3958,8 @@
         "Not suitable for production knowledge graphs requiring persistent databases or real-time synchronization.",
         "Avoid for enterprise workflows needing role-based access control or backend authentication.",
         "Does not support programmatic APIs or automated validation pipelines for CI/CD integration."
-      ]
+      ],
+      "stars": 6247
     },
     {
       "id": "ontology",
@@ -3913,7 +3998,8 @@
         "Do not use for real-time energy consumption monitoring or IoT sensor data streaming.",
         "Avoid using this repository as a general-purpose database for raw numerical energy measurements.",
         "Not suitable for proprietary or closed-source energy data management requiring non-standardized formats."
-      ]
+      ],
+      "stars": 6813
     },
     {
       "id": "notebooklm-slide-pipeline",
@@ -3946,7 +4032,8 @@
         "Not suitable for design-heavy presentations requiring custom graphics",
         "Avoid for real-time collaborative editing without pre-prepared sources",
         "Not ideal for complex data visualization needing manual chart adjustments"
-      ]
+      ],
+      "stars": 12365
     },
     {
       "id": "animejs-v4-ai-guidelines",
@@ -3979,7 +4066,8 @@
         "Not suitable for Anime.js v3 or older versions due to API differences.",
         "Do not use for pure CSS animations without JavaScript logic.",
         "Not intended for non-animation web development tasks."
-      ]
+      ],
+      "stars": 2045
     },
     {
       "id": "virgiliojr94-book-to-skill",
@@ -4013,7 +4101,8 @@
         "Not suitable for non-technical or heavily illustrated books lacking structured text.",
         "Avoid using for copyrighted material without proper licensing or distribution rights.",
         "Ineffective for PDFs with poor OCR quality or complex multi-column layouts that break parsing."
-      ]
+      ],
+      "stars": 11290
     },
     {
       "id": "book2skills",
@@ -4056,7 +4145,8 @@
         "Do not use for real-time market data feeds or automated trading execution.",
         "Avoid for generating skills unrelated to investing or book-based knowledge extraction.",
         "Not suitable for users lacking access to source books or the Anthropic API."
-      ]
+      ],
+      "stars": 17305
     },
     {
       "id": "book-skill-generator",
@@ -4097,7 +4187,8 @@
         "Not suitable for real-time data queries or dynamic news retrieval",
         "Not applicable for scenarios requiring creative writing or art generation",
         "Less effective when source materials lack structured methodologies"
-      ]
+      ],
+      "stars": 6161
     },
     {
       "id": "markitdown",
@@ -4139,7 +4230,8 @@
         "Do not use for real-time streaming video or audio processing.",
         "Avoid for generating binary executables or non-text assets.",
         "Not suitable for editing original source files in place."
-      ]
+      ],
+      "stars": 15284
     },
     {
       "id": "markitdown-website",
@@ -4173,7 +4265,8 @@
         "Avoid for high-volume batch processing due to browser memory limitations.",
         "Not ideal for complex PDFs with intricate layouts or proprietary fonts.",
         "Do not use when server-side Python packages or custom ML pipelines are required."
-      ]
+      ],
+      "stars": 16684
     },
     {
       "id": "anthropic-claude-skills",
@@ -4301,7 +4394,8 @@
           "description": "Replace with description of the skill and when Claude should use it.",
           "subpath": "template"
         }
-      ]
+      ],
+      "stars": 3034
     },
     {
       "id": "openai-figma-implement-skill",
@@ -4337,7 +4431,8 @@
         "Do not use for backend logic, API development, or database schema tasks.",
         "Avoid when no Figma design reference or source file is available.",
         "Not intended for non-web frameworks or native mobile app development."
-      ]
+      ],
+      "stars": 6443
     },
     {
       "id": "vercel-web-design-guidelines-skill",
@@ -4372,7 +4467,8 @@
         "Do not use for backend logic, database schema design, or non-web application tasks.",
         "Avoid using as a standalone framework; it requires an AI agent context to interpret instructions.",
         "Not suitable for graphic design assets like images or videos."
-      ]
+      ],
+      "stars": 14883
     },
     {
       "id": "nexu-prototype-generator-skill",
@@ -4413,7 +4509,8 @@
         "Do not use for manual vector graphic editing or high-fidelity pixel-perfect design work.",
         "Avoid for backend infrastructure, database schema design, or non-UI system architecture tasks.",
         "Not suitable if cloud-based real-time multi-user collaboration is a strict requirement."
-      ]
+      ],
+      "stars": 3101
     },
     {
       "id": "vercel-agent-skills",
@@ -4447,7 +4544,8 @@
         "Do not use for managing infrastructure outside the Vercel ecosystem.",
         "Not suitable as a standalone application without an underlying agent execution framework.",
         "Avoid for simple content generation tasks that do not require agentic reasoning."
-      ]
+      ],
+      "stars": 17888
     },
     {
       "id": "microsoft-playwright-cli-skill",
@@ -4484,7 +4582,8 @@
         "Not suitable for non-browser-based automation tasks.",
         "Avoid for complex backend API testing without UI components.",
         "Not intended for native mobile app development."
-      ]
+      ],
+      "stars": 1553
     },
     {
       "id": "openai-playwright-automation-skill",
@@ -4518,7 +4617,8 @@
         "Not suitable for backend API development or server-side logic generation.",
         "Inappropriate for non-browser-based automation like mobile app testing or desktop GUI interactions.",
         "Avoid using when strict type safety or compiled language features are required over script execution."
-      ]
+      ],
+      "stars": 3586
     },
     {
       "id": "github-copilot-playwright-test-skill",
@@ -4559,7 +4659,8 @@
         "Not suitable for generating backend logic or database queries without modification",
         "Inappropriate for production deployment scripts requiring strict security compliance",
         "Unsuitable for real-time system monitoring or infrastructure management tasks"
-      ]
+      ],
+      "stars": 11025
     },
     {
       "id": "openai-figma-generate-skill",
@@ -4593,7 +4694,8 @@
         "Do not use for real-time data streaming or live system monitoring",
         "Avoid for simple one-off queries that do not require structured agent guidance",
         "Not suitable for tasks needing open-ended human creative judgment without predefined rules"
-      ]
+      ],
+      "stars": 17439
     },
     {
       "id": "book-to-skill-apple-ouyang",
@@ -4626,7 +4728,8 @@
         "Not suitable for real-time interactive tutoring or conversational learning without pre-processing.",
         "Ineffective for highly dynamic or frequently updated content requiring live data synchronization.",
         "Avoid using for creative writing generation or subjective literary analysis tasks."
-      ]
+      ],
+      "stars": 12838
     },
     {
       "id": "anthropic-pdf-analysis-skill",
@@ -4663,7 +4766,8 @@
         "Not suitable for real-time data processing or dynamic runtime decision-making.",
         "Avoid using for tasks requiring proprietary or non-public model fine-tuning.",
         "Do not rely on it for security-critical authentication or access control logic."
-      ]
+      ],
+      "stars": 7604
     },
     {
       "id": "browser-use",
@@ -4702,7 +4806,8 @@
         "High-frequency trading requiring sub-millisecond execution",
         "Direct backend database operations without a web interface",
         "Environments with aggressive anti-bot CAPTCHA challenges"
-      ]
+      ],
+      "stars": 25000
     },
     {
       "id": "browserbase-web-automation-skills",
@@ -4818,7 +4923,8 @@
         "Do not use for non-browser-based tasks like direct database queries or pure API calls.",
         "Avoid for simple static page scraping where lightweight HTTP requests are sufficient.",
         "Not suitable for local desktop application automation outside the browser context."
-      ]
+      ],
+      "stars": 14969
     },
     {
       "id": "autogen",
@@ -4859,7 +4965,8 @@
         "Avoid for simple single-turn chatbots where lightweight API calls are sufficient.",
         "Not ideal for latency-critical real-time systems requiring fully deterministic outputs.",
         "Unnecessary for workflows that do not require collaborative AI agent orchestration."
-      ]
+      ],
+      "stars": 17465
     },
     {
       "id": "metagpt",
@@ -4899,7 +5006,8 @@
         "Avoid for simple scripts or trivial tasks where agent orchestration is unnecessary overhead.",
         "Not suitable for projects requiring strict manual control at every development step.",
         "Inappropriate for non-software tasks like data analysis or creative writing without modification."
-      ]
+      ],
+      "stars": 17422
     },
     {
       "id": "lobehub",
@@ -4939,7 +5047,8 @@
         "Single-purpose scripting tasks requiring minimal system overhead",
         "Real-time latency-critical applications needing sub-millisecond responses",
         "Strictly air-gapped environments without external network dependencies"
-      ]
+      ],
+      "stars": 16691
     },
     {
       "id": "transformers",
@@ -4981,7 +5090,8 @@
         "Avoid using it for simple text manipulation tasks that do not require machine learning.",
         "Do not use it when building low-level custom neural network architectures without leveraging existing model classes.",
         "Not suitable for real-time embedded systems with strict memory constraints due to heavy dependencies."
-      ]
+      ],
+      "stars": 8674
     },
     {
       "id": "cocoindex",
@@ -5023,7 +5133,8 @@
         "Not suitable for static, one-time batch analytics where real-time updates are unnecessary.",
         "Avoid for simple keyword search tasks that do not require complex incremental state tracking.",
         "Not designed for general-purpose relational database management or ad-hoc SQL querying."
-      ]
+      ],
+      "stars": 9608
     },
     {
       "id": "stable-diffusion-webui",
@@ -5064,7 +5175,8 @@
         "Unsuitable for environments without dedicated local GPUs",
         "Not designed for serverless or managed cloud API delivery",
         "Inefficient for batch processing at industrial scale"
-      ]
+      ],
+      "stars": 14976
     },
     {
       "id": "stable-diffusion-webui-localization-zhtw",
@@ -5099,7 +5211,8 @@
         "Do not use for Simplified Chinese; use the zh_CN extension instead",
         "Not designed for ComfyUI or other Stable Diffusion interfaces",
         "Does not auto-translate user prompts or generated images"
-      ]
+      ],
+      "stars": 11596
     },
     {
       "id": "langflow",
@@ -5139,7 +5252,8 @@
         "Avoid for low-latency edge deployments due to resource overhead.",
         "Not suitable for simple scripts where workflow orchestration is unnecessary.",
         "May not fit strict closed-source compliance requirements."
-      ]
+      ],
+      "stars": 5394
     },
     {
       "id": "mem0",
@@ -5179,7 +5293,8 @@
       "negativeConstraints": [
         "Not suitable for stateless applications that do not require historical context.",
         "Avoid for simple CRUD tasks unrelated to AI agent memory management."
-      ]
+      ],
+      "stars": 17281
     },
     {
       "id": "ruflo",
@@ -5221,7 +5336,8 @@
         "Not suitable for simple single-task scripts that do not require multi-agent coordination.",
         "Avoid for projects needing a lightweight standalone CLI without orchestration overhead.",
         "May be overkill for basic conversational bots that do not need swarm capabilities."
-      ]
+      ],
+      "stars": 8736
     },
     {
       "id": "crewai",
@@ -5260,7 +5376,8 @@
         "Avoid for simple, single-step automation tasks that do not require multi-agent coordination.",
         "Not suitable for real-time, low-latency applications needing immediate single-model inference.",
         "Do not use for non-AI related backend services or standard CRUD operations."
-      ]
+      ],
+      "stars": 12305
     },
     {
       "id": "nousresearch-hermes-coding-agent",
@@ -5304,7 +5421,8 @@
         "Not designed for general-purpose chat or non-technical queries.",
         "Requires external LLM API access or local model configuration to function.",
         "May incur token costs depending on the selected model provider."
-      ]
+      ],
+      "stars": 8476
     },
     {
       "id": "maigret",
@@ -5344,7 +5462,8 @@
         "Do not use for unauthorized surveillance or targeted harassment.",
         "Avoid relying on results as standalone legal evidence without corroboration.",
         "Ineffective against platforms requiring authentication or blocking automated requests."
-      ]
+      ],
+      "stars": 17035
     },
     {
       "id": "open-webui",
@@ -5383,7 +5502,8 @@
         "Production environments requiring out-of-the-box enterprise SSO and audit logs",
         "Resource-constrained edge devices with less than 4GB RAM",
         "Projects needing strict HIPAA or financial compliance without heavy customization"
-      ]
+      ],
+      "stars": 12317
     },
     {
       "id": "aider",
@@ -5426,7 +5546,8 @@
         "Do not use for non-code tasks such as writing articles or generating images.",
         "Avoid for users who require a graphical IDE interface instead of a command line.",
         "Not suitable for real-time collaborative editing with other humans."
-      ]
+      ],
+      "stars": 7231
     },
     {
       "id": "yangshun-tech-interview-handbook",
@@ -5466,7 +5587,8 @@
         "Not suitable for beginners needing basic programming syntax tutorials",
         "Do not use for non-coding job interviews like product management or sales",
         "Not a substitute for hands-on coding practice or mock interviews"
-      ]
+      ],
+      "stars": 9637
     },
     {
       "id": "tech-interview-handbook-Avishkar201",
@@ -5500,7 +5622,8 @@
         "Not suitable for non-technical roles like marketing or HR interview preparation.",
         "Avoid using as a substitute for hands-on coding practice or real-world project experience.",
         "Inappropriate for advanced research or academic paper writing guidance."
-      ]
+      ],
+      "stars": 13722
     },
     {
       "id": "awesome-selfhosted",
@@ -5541,7 +5664,8 @@
         "Not suitable for finding commercial managed hosting providers",
         "Does not provide direct installation support or customer service",
         "Inappropriate for users seeking proprietary software solutions"
-      ]
+      ],
+      "stars": 15953
     },
     {
       "id": "javascript-algorithms",
@@ -5580,7 +5704,8 @@
         "Do not use for production-ready performance optimization benchmarks or low-level system programming.",
         "Avoid using as a primary resource for non-JavaScript languages like Python or C++.",
         "Not suitable for finding ready-made npm packages or libraries for immediate application deployment."
-      ]
+      ],
+      "stars": 13858
     },
     {
       "id": "30-seconds-of-code",
@@ -5623,7 +5748,8 @@
         "Not suitable for production-ready, enterprise-grade documentation or API references.",
         "Unsuitable for beginners needing step-by-step tutorials or video courses.",
         "Does not replace comprehensive framework-specific guides or official documentation."
-      ]
+      ],
+      "stars": 4687
     },
     {
       "id": "gitignore",
@@ -5660,7 +5786,8 @@
         "Do not use for managing repository access permissions or authentication secrets.",
         "Avoid using as a substitute for dedicated credential management systems.",
         "Not suitable for enforcing code quality standards or linting rules."
-      ]
+      ],
+      "stars": 10124
     },
     {
       "id": "langchain",
@@ -5707,7 +5834,8 @@
         "Avoid for simple rule-based tasks that do not require language model reasoning",
         "Not recommended for ultra-low-latency deterministic systems",
         "Overkill for small scripts or single-call API integrations"
-      ]
+      ],
+      "stars": 92000
     },
     {
       "id": "n8n",
@@ -5745,7 +5873,8 @@
         "High-frequency real-time trading systems requiring microsecond latency",
         "Strictly open-source compliance projects due to fair-code licensing",
         "Simple single-task scripts better handled by lightweight cron jobs"
-      ]
+      ],
+      "stars": 13368
     },
     {
       "id": "openclaw",
@@ -5785,7 +5914,8 @@
         "Enterprise environments requiring centralized team management and role-based access control.",
         "Users needing managed cloud infrastructure or guaranteed SLA uptime.",
         "Highly regulated industries requiring certified compliance audits out of the box."
-      ]
+      ],
+      "stars": 5351
     },
     {
       "id": "dify",
@@ -5829,7 +5959,8 @@
         "Not suitable for simple static websites or non-AI CRUD applications.",
         "Avoid if you require a fully managed SaaS without self-hosting overhead.",
         "Not ideal for low-level system programming or embedded device control."
-      ]
+      ],
+      "stars": 3404
     },
     {
       "id": "public-apis",
@@ -5875,7 +6006,8 @@
         "Not suitable for discovering proprietary, paid-only, or internal enterprise APIs.",
         "Does not replace official vendor documentation or guarantee service availability.",
         "Inappropriate for managing private API gateways or internal governance workflows."
-      ]
+      ],
+      "stars": 16359
     },
     {
       "id": "developer-roadmap",
@@ -5918,7 +6050,8 @@
         "Not suitable for retrieving specific code snippets or production-ready libraries.",
         "Does not substitute formal certifications or hands-on project experience.",
         "Avoid relying on it as the sole resource for proprietary or highly niche technology stacks."
-      ]
+      ],
+      "stars": 10793
     },
     {
       "id": "the-evolution-of-a-go-programmer",
@@ -5957,7 +6090,8 @@
         "Not suitable for finding real-time Go package documentation or API references.",
         "Inappropriate for generating production code or automated testing frameworks.",
         "Does not replace hands-on coding practice or interactive debugging tools."
-      ]
+      ],
+      "stars": 4993
     },
     {
       "id": "dotnet-developer-roadmap",
@@ -5996,7 +6130,8 @@
         "Not suitable for developers seeking proprietary or paid enterprise training platforms.",
         "Inappropriate for non-.NET ecosystems like Java, Python, or Node.js.",
         "Unsuitable for beginners needing interactive coding environments or IDEs."
-      ]
+      ],
+      "stars": 7850
     },
     {
       "id": "free-programming-books",
@@ -6037,7 +6172,8 @@
         "Not suitable for finding proprietary documentation or paid certification materials",
         "Should not be used when offline access is required without internet connectivity",
         "Not intended for commercial distribution or selling copyrighted content"
-      ]
+      ],
+      "stars": 15191
     },
     {
       "id": "system-design-primer",
@@ -6083,7 +6219,8 @@
         "Not suitable for learning low-level language syntax or basic programming fundamentals.",
         "Does not provide hands-on implementation or executable codebases for production systems.",
         "Inappropriate for quick reference on specific framework APIs or container orchestration tools."
-      ]
+      ],
+      "stars": 7408
     },
     {
       "id": "coding-interview-university",
@@ -6123,7 +6260,8 @@
         "Not suitable for finding live job listings or resume writing services.",
         "Does not provide mock interview feedback or real-time assessment.",
         "Inappropriate for learning specific framework syntax like React or Django quickly."
-      ]
+      ],
+      "stars": 7647
     },
     {
       "id": "the-art-of-command-line",
@@ -6165,7 +6303,8 @@
         "Not suitable for learning programming languages or GUI-based development tools.",
         "Does not replace official man pages for deep parameter exploration.",
         "Inappropriate for automated deployment pipelines requiring executable scripts."
-      ]
+      ],
+      "stars": 13600
     },
     {
       "id": "project-based-learning",
@@ -6208,7 +6347,8 @@
         "Not suitable for beginners needing step-by-step installation guides or environment setup.",
         "Does not provide interactive coding environments or video lectures.",
         "Inappropriate for finding academic research papers or theoretical computer science textbooks."
-      ]
+      ],
+      "stars": 13944
     },
     {
       "id": "you-dont-know-js",
@@ -6249,7 +6389,8 @@
         "Not suitable for beginners needing step-by-step environment setup or IDE configuration.",
         "Avoid for quick API reference lookups or framework-specific tutorials like React or Vue.",
         "Not intended as an interactive code runner or hands-on playground."
-      ]
+      ],
+      "stars": 3827
     },
     {
       "id": "the-book-of-secret-knowledge",
@@ -6289,7 +6430,8 @@
         "When you need an executable software package rather than reference material",
         "For beginners requiring interactive, step-by-step guided tutorials",
         "When automated deployment or runtime execution is required instead of documentation"
-      ]
+      ],
+      "stars": 4121
     },
     {
       "id": "cc-switch",
@@ -6334,7 +6476,8 @@
         "Not suitable for server-side or headless CI/CD workflows",
         "Avoid for users who only need a single specific AI agent",
         "Not designed for mobile or web-based usage"
-      ]
+      ],
+      "stars": 7243
     },
     {
       "id": "codexplusplus",
@@ -6366,7 +6509,8 @@
         "Do not use if you require the official, unmodified OpenAI Codex interface without third-party enhancements.",
         "Avoid using for non-CodexApp related tasks or standalone coding environments.",
         "Do not rely on it for core model capabilities as it is an enhancement layer, not a replacement for the underlying AI engine."
-      ]
+      ],
+      "stars": 13705
     },
     {
       "id": "claudemd",
@@ -6401,7 +6545,8 @@
         "Do not use for non-Anthropic coding agents that do not support CLAUDE.md files.",
         "Do not rely on it as a substitute for human code review or automated testing.",
         "Avoid using for non-coding tasks where behavioral constraints are irrelevant."
-      ]
+      ],
+      "stars": 4233
     },
     {
       "id": "agentic-awesome-skills",
@@ -6442,7 +6587,8 @@
         "Not suitable for non-AI-agent tasks requiring simple script execution",
         "Avoid if you strictly require cloud-hosted SaaS solutions over local tools",
         "Not intended for general-purpose coding assistance without skill discovery needs"
-      ]
+      ],
+      "stars": 14976
     },
     {
       "id": "claude-code-best-practice",
@@ -6481,7 +6627,8 @@
         "Not suitable for non-AI related software development tasks.",
         "Inappropriate for environments requiring strict compliance without AI assistance.",
         "Avoid using for legacy systems incompatible with modern AI coding assistants."
-      ]
+      ],
+      "stars": 7463
     },
     {
       "id": "awesome-agent-skills-VoltAgent",
@@ -6521,7 +6668,8 @@
         "Not suitable for building standalone AI models or training data pipelines",
         "Inappropriate for production environments requiring strict security compliance audits",
         "Unsuitable for non-coding tasks like data analysis or graphic design workflows"
-      ]
+      ],
+      "stars": 14527
     },
     {
       "id": "claude-skills",
@@ -10554,7 +10702,8 @@
         "Do not use for standalone IDE features that cannot import external skills or agents.",
         "Avoid for projects requiring strict proprietary data isolation without reviewing local deployment.",
         "Not intended for non-AI-assisted manual coding tasks."
-      ]
+      ],
+      "stars": 8975
     },
     {
       "id": "claude-code-guide",
@@ -10595,7 +10744,8 @@
         "Do not use as a reference for other AI coding assistants like GitHub Copilot or Cursor.",
         "Avoid for general LLM API documentation unrelated to the Claude Code ecosystem.",
         "Not suitable for troubleshooting VS Code issues outside of the Claude Code extension."
-      ]
+      ],
+      "stars": 6407
     },
     {
       "id": "continuous-claude-v3",
@@ -10634,7 +10784,8 @@
       "negativeConstraints": [
         "Avoid for simple one-shot queries that do not need persistent state",
         "Not suitable for environments without Claude Code or MCP integration"
-      ]
+      ],
+      "stars": 4656
     },
     {
       "id": "generative-media-skills",
@@ -11042,7 +11193,8 @@
         "Do not use for editing or manipulating existing media files",
         "Not suitable for real-time video streaming or live rendering",
         "Requires external API access via muapi.ai and is not fully offline"
-      ]
+      ],
+      "stars": 2518
     },
     {
       "id": "anime",
@@ -11084,7 +11236,8 @@
         "Avoid for complex 3D WebGL rendering or heavy video frame manipulation.",
         "Not suitable for native mobile or desktop application UI development.",
         "Unideal for real-time physics simulations requiring continuous high-frequency updates."
-      ]
+      ],
+      "stars": 7446
     },
     {
       "id": "understand-anything",
@@ -11123,7 +11276,8 @@
       "negativeConstraints": [
         "Not intended for real-time data streaming or live dashboard monitoring.",
         "Avoid for trivial single-file projects where standard IDE navigation suffices."
-      ]
+      ],
+      "stars": 4613
     },
     {
       "id": "andrej-karpathy-skills",
@@ -11166,7 +11320,8 @@
         "Not suitable for non-Claude Code environments or other AI assistants",
         "Does not replace human code review or testing practices",
         "May not address all project-specific coding standards or frameworks"
-      ]
+      ],
+      "stars": 15492
     },
     {
       "id": "eigenflux-arena",
@@ -11201,7 +11356,8 @@
         "Do not use for single-agent applications that do not require inter-agent communication.",
         "Avoid for systems requiring strict centralized data governance over all traffic.",
         "Not suitable for applications needing guaranteed microsecond-level latency."
-      ]
+      ],
+      "stars": 17833
     },
     {
       "id": "council-of-high-intelligence",
@@ -11261,7 +11417,8 @@
         "Avoid for cheap and reversible choices — run an experiment instead",
         "Do not convene a council to manufacture support for a decision already made",
         "Requires significant token budget for full protocol deliberation"
-      ]
+      ],
+      "stars": 5540
     },
     {
       "id": "grok-build",
@@ -11296,7 +11453,8 @@
         "Not suitable for non-code tasks such as creative writing or image generation.",
         "Avoid for simple Q&A queries where a lightweight chat interface is more appropriate.",
         "Not designed as a production-ready backend API for end-user applications."
-      ]
+      ],
+      "stars": 11844
     },
     {
       "id": "codex-dream-skin",
@@ -11332,7 +11490,8 @@
         "Not recommended for accessibility-critical applications",
         "May lack support for specialized development tools",
         "Best suited for personal rather than team environments"
-      ]
+      ],
+      "stars": 3397
     },
     {
       "id": "lingbot-map",
@@ -11367,7 +11526,8 @@
         "Do not use when offline photogrammetric precision is mandatory",
         "Avoid for single-image 3D generation without temporal input",
         "Not intended for explicit mesh extraction or CAD modeling workflows"
-      ]
+      ],
+      "stars": 16402
     },
     {
       "id": "opencut",
@@ -11407,7 +11567,8 @@
         "Not suitable for professional Hollywood-grade VFX or advanced color grading workflows.",
         "Avoid for real-time multi-user cloud collaboration requiring enterprise permission systems.",
         "Not ideal for hardware-accelerated 8K RAW footage processing on low-end devices."
-      ]
+      ],
+      "stars": 17938
     },
     {
       "id": "voicebox",
@@ -11449,7 +11610,8 @@
         "Do not use for real-time video conferencing or live streaming voice modulation.",
         "Avoid for tasks requiring managed cloud hosting or serverless API integration.",
         "Not suitable for non-audio workflows such as image generation or code compilation."
-      ]
+      ],
+      "stars": 5609
     },
     {
       "id": "wand-enhancer",
@@ -11490,7 +11652,8 @@
         "Not suitable for non-Windows operating systems due to WPF dependency.",
         "Avoid if you require official WeMod support or closed-source stability.",
         "Do not use as a standalone game mod manager without the WeMod ecosystem."
-      ]
+      ],
+      "stars": 8201
     },
     {
       "id": "memos",
@@ -11531,7 +11694,8 @@
         "Not suitable for complex document management requiring version control or rich media attachments.",
         "Unsuitable for collaborative workspaces needing granular permission roles or enterprise SSO integration.",
         "Avoid for high-volume knowledge bases requiring advanced search indexing or AI summarization."
-      ]
+      ],
+      "stars": 8435
     },
     {
       "id": "memos-MemTensor",
@@ -11571,7 +11735,8 @@
         "Stateless applications that do not require memory persistence.",
         "Non-LLM based traditional software systems.",
         "Single-turn queries needing immediate responses without context."
-      ]
+      ],
+      "stars": 17016
     },
     {
       "id": "metaharness",
@@ -11686,7 +11851,8 @@
         "Not suitable for simple script execution or one-off automation tasks without an agent framework.",
         "Avoid if you need a managed cloud-hosted agent service rather than a self-hosted scaffold.",
         "Not ideal for non-AI software development projects."
-      ]
+      ],
+      "stars": 2697
     },
     {
       "id": "self-harness",
@@ -11719,7 +11885,8 @@
         "Do not use for simple chatbot implementations lacking complex state",
         "Avoid for projects needing a pre-built agent framework rather than architectural guidance",
         "Not intended for non-AI software development tasks"
-      ]
+      ],
+      "stars": 4761
     },
     {
       "id": "browser-harness",
@@ -11757,7 +11924,8 @@
         "Real-time high-frequency trading systems requiring sub-millisecond latency",
         "Static internal dashboards better handled by simple HTTP requests",
         "Strict zero-trust environments blocking external CDP connections"
-      ]
+      ],
+      "stars": 3139
     },
     {
       "id": "openharness",
@@ -11790,7 +11958,8 @@
         "Not suitable for production-grade, low-latency applications requiring strict service-level agreements.",
         "Avoid using for simple deterministic script automation that does not require LLM-based reasoning.",
         "Not designed for fine-tuning base language models rather than orchestrating agent behaviors."
-      ]
+      ],
+      "stars": 3170
     },
     {
       "id": "humanizer",
@@ -11823,7 +11992,8 @@
         "Avoid for legal, medical, or technical docs needing exact terminology.",
         "Do not use for formal academic papers requiring strict objectivity.",
         "Not intended for code generation or structured data formatting."
-      ]
+      ],
+      "stars": 10597
     },
     {
       "id": "humanizer-zh-tw",
@@ -11856,7 +12026,8 @@
         "Not suitable for documents requiring strict retention of technical jargon or legal clauses",
         "Ineffective for processing pure English or Simplified Chinese content",
         "Not recommended for highly structured data or code generation tasks"
-      ]
+      ],
+      "stars": 17790
     },
     {
       "id": "stop-slop",
@@ -11890,7 +12061,8 @@
         "Do not use for code generation, data analysis, or strictly technical documentation.",
         "Avoid on creative fiction that intentionally mimics AI or uses experimental stylistic choices.",
         "Not suitable for multilingual content unless explicitly configured for those languages."
-      ]
+      ],
+      "stars": 9135
     },
     {
       "id": "ai-flavor-remover",
@@ -11924,7 +12096,8 @@
         "Do not use for code generation or technical documentation requiring exact syntax.",
         "Avoid for legal or medical texts where precise terminology is critical.",
         "Not suitable for creative writing that intentionally requires a stylized voice."
-      ]
+      ],
+      "stars": 9030
     },
     {
       "id": "remove-ai-flavor-writing-skill",
@@ -11964,7 +12137,8 @@
         "Do not use for English text, as it is specialized for Chinese writing patterns.",
         "Avoid for creative fiction requiring specific stylistic flourishes.",
         "Not suitable for formal legal or academic documents where rigid structure is mandatory."
-      ]
+      ],
+      "stars": 15043
     },
     {
       "id": "shuorenhua",
@@ -12004,7 +12178,8 @@
         "Do not use for creative fiction or literary writing requiring stylized expression.",
         "Avoid for formal legal or medical documents needing strict terminology.",
         "Not intended for translating foreign languages; focuses on rewriting existing Chinese text."
-      ]
+      ],
+      "stars": 15370
     },
     {
       "id": "de-ai-prompt-enhancer-writer-booster-skill",
@@ -12075,7 +12250,8 @@
         "Do not use for generating or debugging programming code",
         "Avoid for strict technical documentation requiring precise terminology",
         "Not suitable for factual data analysis or mathematical reasoning"
-      ]
+      ],
+      "stars": 15423
     },
     {
       "id": "writing-agent",
@@ -12114,7 +12290,8 @@
         "Not suitable for generating legally binding contracts or medical advice requiring human certification.",
         "Unsuitable for real-time collaborative editing or interactive conversational workflows.",
         "Avoid for highly regulated academic research requiring verifiable primary source citations."
-      ]
+      ],
+      "stars": 9792
     },
     {
       "id": "mathmodelagent",
@@ -12151,7 +12328,8 @@
         "Not appropriate for tasks requiring physical experiments or raw data collection.",
         "Should not replace human judgment for verifying mathematical proofs or logical consistency.",
         "Avoid for non-mathematical research domains like pure literature or arts."
-      ]
+      ],
+      "stars": 15726
     },
     {
       "id": "blender",
@@ -12193,7 +12371,8 @@
         "Not suitable for lightweight browser-based 3D visualization or real-time web interactions.",
         "Inappropriate for precision CAD work, parametric mechanical design, or manufacturing-grade tolerances.",
         "Poor fit for mobile-first game development where minimal build size and low overhead are critical."
-      ]
+      ],
+      "stars": 16476
     },
     {
       "id": "hkuds-vibe-trading",
@@ -12236,7 +12415,8 @@
         "Not suitable for ultra-low-latency high-frequency trading requiring microsecond execution.",
         "Avoid for strategies requiring guaranteed profits due to inherent LLM unpredictability.",
         "Do not use for non-financial general-purpose automation tasks."
-      ]
+      ],
+      "stars": 12900
     },
     {
       "id": "omniroute",
@@ -12281,7 +12461,8 @@
         "Avoid for production workloads requiring dedicated GPU acceleration.",
         "Not suitable if you need a fully managed hosted service without local setup.",
         "Do not use for enterprise compliance scenarios requiring strict data residency guarantees without custom configuration."
-      ]
+      ],
+      "stars": 11242
     },
     {
       "id": "openthoughts-agent",
@@ -12315,7 +12496,8 @@
         "Not intended for simple conversational chatbots requiring no tool-use capabilities.",
         "Unsuitable for users seeking a pre-trained, ready-to-deploy agent solution.",
         "Does not support non-LLM based traditional rule-based automation workflows."
-      ]
+      ],
+      "stars": 16856
     },
     {
       "id": "financial-services",
@@ -12935,7 +13117,8 @@
       "negativeConstraints": [
         "Not suitable for real-time trading execution or high-frequency algorithms.",
         "Should not replace licensed financial advisors for personalized investment decisions."
-      ]
+      ],
+      "stars": 14878
     },
     {
       "id": "knowledge-work-plugins",
@@ -14031,7 +14214,8 @@
         "Real-time high-frequency trading execution requiring low-latency infrastructure.",
         "Embedded systems programming or hardware control tasks.",
         "Offline-only environments without internet access to Claude APIs."
-      ]
+      ],
+      "stars": 16653
     },
     {
       "id": "claude-for-legal",
@@ -14822,7 +15006,8 @@
         "Do not use for filing court documents or providing binding legal advice without attorney review.",
         "Avoid for non-English jurisdictions lacking specific training data unless verified.",
         "Not suitable for real-time litigation strategy requiring sole human judgment."
-      ]
+      ],
+      "stars": 2408
     },
     {
       "id": "claude-legal-skill",
@@ -14865,7 +15050,8 @@
         "Not suitable for complex litigation strategy or court filing preparation.",
         "Should not replace final review by a qualified attorney for high-stakes transactions.",
         "Not designed for non-contract regulatory compliance analysis."
-      ]
+      ],
+      "stars": 11696
     },
     {
       "id": "taiwan-claude-legal",
@@ -14909,7 +15095,8 @@
         "Not suitable for legal issues outside Taiwan's jurisdiction",
         "Should not replace formal legal opinions or court litigation strategy",
         "Inappropriate for cases governed by mainland China or Hong Kong law"
-      ]
+      ],
+      "stars": 16039
     },
     {
       "id": "claude-for-legal-zh",
@@ -14950,7 +15137,8 @@
         "Not applicable for legal consultation or document generation outside Chinese law jurisdiction (e.g., US law, EU law)",
         "Should not replace final legal opinions from practicing lawyers or court defense strategies",
         "Unable to perform real-time legal provision retrieval and case analysis without MCP data source configuration"
-      ]
+      ],
+      "stars": 14061
     },
     {
       "id": "open-llm-vtuber",
@@ -14990,7 +15178,8 @@
         "Not suitable for users lacking local computing resources.",
         "Avoid if you require a fully managed cloud-hosted service.",
         "Not designed for complex 3D environments or game development."
-      ]
+      ],
+      "stars": 17059
     },
     {
       "id": "last30days-skill",
@@ -15031,7 +15220,8 @@
         "Do not use for real-time breaking news requiring second-by-second updates.",
         "Not suitable for historical analysis older than 30 days.",
         "Avoid for deep academic literature reviews or proprietary database queries."
-      ]
+      ],
+      "stars": 2408
     },
     {
       "id": "last30days-skill-cn",
@@ -15073,7 +15263,8 @@
         "Do not use for real-time monitoring requiring sub-hourly updates.",
         "Avoid for searching Western social media platforms outside mainland China.",
         "Not suitable for retrieving historical data older than the specified 30-day window."
-      ]
+      ],
+      "stars": 13330
     },
     {
       "id": "skill",
@@ -15445,7 +15636,8 @@
         "Do not use for running or executing the installed skills directly.",
         "Avoid for generating new custom skills from scratch.",
         "Not suitable for finding skills outside the GitHub ecosystem."
-      ]
+      ],
+      "stars": 8349
     },
     {
       "id": "tradingagents",
@@ -15487,7 +15679,8 @@
         "Not suitable for low-latency high-frequency trading requiring microsecond execution speeds.",
         "Should not replace human oversight or rigorous backtesting before real capital deployment.",
         "Not designed for non-financial general-purpose task automation."
-      ]
+      ],
+      "stars": 11641
     },
     {
       "id": "ai-trader",
@@ -15521,7 +15714,8 @@
         "High-frequency trading strategies requiring microsecond execution speeds",
         "Conservative investment approaches where human oversight is legally required",
         "Scenarios demanding guaranteed returns with zero risk tolerance"
-      ]
+      ],
+      "stars": 6727
     },
     {
       "id": "agent-vibe-trading-personal",
@@ -15561,7 +15755,8 @@
         "High-frequency algorithmic trading requiring microsecond latency",
         "Institutional-grade portfolio management with strict regulatory compliance needs",
         "Manual discretionary trading without automation requirements"
-      ]
+      ],
+      "stars": 1971
     },
     {
       "id": "zarazhangrui-frontend-slides",
@@ -15604,7 +15799,8 @@
         "Do not use when a native .pptx or .key file format is mandatory",
         "Avoid for highly complex print layouts requiring precise page breaks",
         "Not intended for video editing or non-web media production"
-      ]
+      ],
+      "stars": 10700
     },
     {
       "id": "frontend-slides-editable",
@@ -15639,7 +15835,8 @@
         "Do not use for native desktop or mobile app development",
         "Avoid for complex data dashboards requiring backend integration",
         "Not suitable for video-based presentations or heavy animations"
-      ]
+      ],
+      "stars": 6732
     },
     {
       "id": "ecc",
@@ -15679,7 +15876,8 @@
         "Not suitable for non-AI coding workflows or standard terminal automation",
         "Avoid if you require fully isolated sessions without persistent memory",
         "Do not use as a standalone LLM since it requires an existing AI coding agent"
-      ]
+      ],
+      "stars": 14357
     },
     {
       "id": "frontend-slides-Kelemani",
@@ -15722,7 +15920,8 @@
         "Not suitable for native mobile app development or backend API design.",
         "Avoid for production-grade presentation hosting requiring enterprise authentication.",
         "Not ideal for non-JavaScript audiences needing static PDF-only exports."
-      ]
+      ],
+      "stars": 5872
     },
     {
       "id": "slidev",
@@ -15767,7 +15966,8 @@
         "Avoid for non-technical users needing complex graphic design tools like PowerPoint.",
         "Do not use if proprietary offline file formats are strictly required without conversion.",
         "Not ideal for pre-recorded video production workflows."
-      ]
+      ],
+      "stars": 12821
     },
     {
       "id": "baoyu-skills",
@@ -15922,7 +16122,8 @@
         "Not suitable for direct code editing or IDE functionality without an AI agent",
         "Avoid when requiring vendor-specific prompt formats outside the supported agent ecosystem",
         "Not designed for non-AI-assisted manual development workflows"
-      ]
+      ],
+      "stars": 5621
     },
     {
       "id": "autoresearch",
@@ -15954,7 +16155,8 @@
         "Do not use for training massive foundation models requiring multi-node distributed computing.",
         "Avoid for production-grade software deployment as it is designed for research and experimentation.",
         "Not suitable if you require strict human-in-the-loop control over every step of the experiment."
-      ]
+      ],
+      "stars": 7298
     },
     {
       "id": "llm-council",
@@ -15989,7 +16191,8 @@
         "Avoid for simple factual queries where a single model or search engine suffices.",
         "Not suitable for low-latency real-time applications due to multi-step processing.",
         "Higher API costs make it inefficient for high-volume, repetitive tasks."
-      ]
+      ],
+      "stars": 16617
     },
     {
       "id": "reader3",
@@ -16022,7 +16225,8 @@
         "Do not use for generating creative fiction or non-document tasks.",
         "Avoid for extremely short texts where full-context reading is faster than retrieval.",
         "Not suitable for real-time conversational agents without document input."
-      ]
+      ],
+      "stars": 14154
     },
     {
       "id": "awesome-auto-research-tools",
@@ -16056,7 +16260,8 @@
         "Do not use this as a standalone software application for direct task execution",
         "Not suitable for non-academic or general productivity needs",
         "Does not provide direct access or installation to the listed tools"
-      ]
+      ],
+      "stars": 3605
     },
     {
       "id": "clodex-ide",
@@ -16096,7 +16301,8 @@
         "Not suitable for real-time collaborative editing across distributed teams.",
         "Avoid for cloud-native pipelines requiring immediate remote server access.",
         "Not ideal for users needing managed SaaS AI backends or pre-configured cloud integrations."
-      ]
+      ],
+      "stars": 11070
     },
     {
       "id": "speak-human-tw",
@@ -16136,7 +16342,8 @@
         "不適用於簡體中文內容改寫",
         "不適合需要正式公文或學術論文風格的場景",
         "無法處理非中文語言的內容"
-      ]
+      ],
+      "stars": 11942
     },
     {
       "id": "codegraph",
@@ -16169,7 +16376,8 @@
         "Not suitable for real-time collaborative editing across multiple users.",
         "Ineffective for non-code related knowledge bases like documentation or wikis.",
         "Requires significant initial indexing time for very large repositories."
-      ]
+      ],
+      "stars": 8963
     },
     {
       "id": "taste-skill",
@@ -16208,7 +16416,8 @@
         "Not suitable for tasks requiring strict factual accuracy without stylistic flair",
         "Avoid using for simple data extraction or formatting tasks where style is irrelevant",
         "Do not use if you prefer raw, unpolished, or purely functional outputs"
-      ]
+      ],
+      "stars": 17219
     },
     {
       "id": "anthropic-cybersecurity-skills",
@@ -20334,7 +20543,8 @@
         "Not suitable for real-time network traffic analysis or packet inspection.",
         "Ineffective for legacy systems lacking modern API or CLI support.",
         "Does not replace dedicated vulnerability scanning or penetration testing tools."
-      ]
+      ],
+      "stars": 4391
     },
     {
       "id": "cybersecurity-skills",
@@ -20515,7 +20725,8 @@
         "Not suitable for general-purpose non-technical tasks.",
         "Does not replace comprehensive manual security audits.",
         "Ineffective for legacy systems without modern tooling support."
-      ]
+      ],
+      "stars": 10332
     },
     {
       "id": "claude-code-cybersecurity-skill",
@@ -20648,7 +20859,8 @@
         "Not suitable for general-purpose web development or non-security coding tasks.",
         "Inappropriate for environments requiring strict compliance without human oversight of AI-generated security actions.",
         "Should not be used for real-time incident response where immediate human intervention is critical."
-      ]
+      ],
+      "stars": 4176
     },
     {
       "id": "cybersecurity-skills-Hi-FullHouse",
@@ -20687,7 +20899,8 @@
         "Not suitable for real-time network attack execution or automated penetration testing",
         "Does not replace professional commercial-grade SIEM or EDR security monitoring platforms",
         "Not applicable for formal report generation requiring legal compliance auditing"
-      ]
+      ],
+      "stars": 11830
     },
     {
       "id": "paddleocr",
@@ -20726,7 +20939,8 @@
         "Not suitable for real-time video stream processing due to batch-oriented design.",
         "Avoid for handwritten notes with poor legibility or extreme distortion.",
         "Does not perform semantic translation, only text recognition and extraction."
-      ]
+      ],
+      "stars": 9006
     },
     {
       "id": "open-notebook",
@@ -20765,7 +20979,8 @@
         "Not suitable for users requiring zero-setup cloud services",
         "Requires technical knowledge to install and maintain",
         "Not ideal for simple, non-technical note-taking needs"
-      ]
+      ],
+      "stars": 9792
     },
     {
       "id": "ecc-affaan-m",
@@ -20804,7 +21019,8 @@
         "Not suitable for simple, stateless scripting tasks without agent overhead.",
         "Avoid using for projects requiring strict isolation from external AI models.",
         "Inappropriate for environments where memory persistence is a security risk."
-      ]
+      ],
+      "stars": 15929
     },
     {
       "id": "hermes-agent-NousResearch",
@@ -20845,7 +21061,8 @@
         "Not suitable for simple, single-turn chatbot applications without tool use",
         "Requires significant setup overhead compared to managed SaaS agents",
         "May incur high latency due to multi-step autonomous reasoning"
-      ]
+      ],
+      "stars": 9785
     },
     {
       "id": "gemini-cli",
@@ -20884,7 +21101,8 @@
         "Not suitable for users who prefer a graphical user interface over command-line interaction.",
         "Requires an active internet connection to access the Gemini API.",
         "May incur costs depending on the underlying API usage limits."
-      ]
+      ],
+      "stars": 11070
     },
     {
       "id": "deer-flow",
@@ -20923,7 +21141,8 @@
         "Not suitable for simple, single-turn queries requiring immediate responses.",
         "Inappropriate for tasks with strict real-time latency requirements.",
         "Avoid for highly regulated data processing without proper security sandboxing."
-      ]
+      ],
+      "stars": 7243
     },
     {
       "id": "ruview",
@@ -20963,7 +21182,8 @@
         "Not suitable for applications requiring visual identification of individuals",
         "Ineffective in environments with extreme RF interference",
         "Cannot replace high-precision medical diagnostic equipment"
-      ]
+      ],
+      "stars": 13982
     },
     {
       "id": "ai-engineering-from-scratch",
@@ -21002,7 +21222,8 @@
         "Not suitable for users requiring immediate, no-code solutions.",
         "Inappropriate for those seeking high-level abstraction without understanding internals.",
         "Does not replace enterprise-grade managed AI services."
-      ]
+      ],
+      "stars": 17740
     },
     {
       "id": "oh-my-pi",
@@ -21041,7 +21262,8 @@
         "Not suitable for GUI-based application development workflows.",
         "Inappropriate for non-programming administrative tasks.",
         "Avoid for projects requiring strict non-AI manual code review processes."
-      ]
+      ],
+      "stars": 17336
     },
     {
       "id": "awesome-free-llm-apis",
@@ -21087,7 +21309,8 @@
         "Not suitable for production-grade high-volume applications",
         "Unreliable for critical business operations",
         "API keys may change or become invalid frequently"
-      ]
+      ],
+      "stars": 7580
     },
     {
       "id": "free-llm-api-resources",
@@ -21132,7 +21355,8 @@
         "Not suitable for production workloads requiring guaranteed SLAs",
         "Inappropriate for high-volume commercial applications with strict latency needs",
         "Does not provide managed infrastructure or dedicated support"
-      ]
+      ],
+      "stars": 12697
     },
     {
       "id": "beautiful-html-templates",
@@ -21165,7 +21389,8 @@
         "Not suitable for complex interactive web applications requiring JavaScript logic.",
         "Inappropriate for generating non-slide static websites or landing pages.",
         "Does not support real-time collaborative editing features."
-      ]
+      ],
+      "stars": 8409
     },
     {
       "id": "jpeetz-hermes-studio",
@@ -21206,7 +21431,8 @@
         "Not suitable for managed cloud SaaS deployments requiring zero maintenance",
         "Inappropriate for users needing pre-built enterprise support SLAs",
         "Not ideal for simple single-task automation without agent complexity"
-      ]
+      ],
+      "stars": 7408
     },
     {
       "id": "hermes-studio-EKKOLearnAI",
@@ -21247,7 +21473,8 @@
         "Not suitable for direct model training or fine-tuning",
         "Inappropriate for low-latency real-time inference without backend support",
         "Not designed for standalone CLI automation tasks"
-      ]
+      ],
+      "stars": 2776
     },
     {
       "id": "harness",
@@ -21287,7 +21514,8 @@
         "Not suitable for teams requiring a fully managed SaaS service with zero maintenance overhead",
         "May require significant infrastructure resources to host and scale independently",
         "Less mature ecosystem compared to proprietary giants like GitHub Actions or Jenkins"
-      ]
+      ],
+      "stars": 17508
     },
     {
       "id": "learn-claude-code",
@@ -21326,7 +21554,8 @@
         "Not suitable for production-grade enterprise applications requiring robust security.",
         "Avoid if you need built-in cloud integration or managed services.",
         "Not ideal for users seeking a polished, commercial-grade IDE experience."
-      ]
+      ],
+      "stars": 6579
     },
     {
       "id": "hermes-webui",
@@ -21365,7 +21594,8 @@
         "Not suitable for headless server environments without web access",
         "Inappropriate for high-security internal networks blocking external UIs",
         "Not ideal for users requiring direct API-only integration"
-      ]
+      ],
+      "stars": 4847
     },
     {
       "id": "headroom",
@@ -21405,7 +21635,8 @@
         "Not suitable for scenarios requiring exact raw output preservation without compression artifacts.",
         "Avoid using when the overhead of compression outweighs the token savings for very small inputs.",
         "Do not use if the downstream system cannot handle decompressed or compressed formats appropriately."
-      ]
+      ],
+      "stars": 4921
     },
     {
       "id": "compound-engineering-plugin",
@@ -21443,7 +21674,8 @@
         "Not suitable for non-AI IDE environments",
         "Ineffective without Compound Engineering setup",
         "May not support legacy coding tools"
-      ]
+      ],
+      "stars": 5411
     },
     {
       "id": "moneyprinterturbo",
@@ -21483,7 +21715,8 @@
         "Not suitable for real-time live streaming video generation",
         "Requires significant GPU resources for local inference",
         "Cannot replace professional cinematic editing for feature films"
-      ]
+      ],
+      "stars": 16340
     },
     {
       "id": "supermemory",
@@ -21523,7 +21756,8 @@
         "Not suitable for applications requiring immediate global consistency across distributed regions.",
         "Inappropriate for users needing managed database services with built-in backups and monitoring.",
         "Avoid if strict enterprise compliance requires hosted solutions rather than self-hosted infrastructure."
-      ]
+      ],
+      "stars": 4632
     },
     {
       "id": "trivy",
@@ -21563,7 +21797,8 @@
         "Not suitable for runtime behavioral analysis",
         "Does not replace comprehensive penetration testing",
         "Limited support for proprietary legacy systems"
-      ]
+      ],
+      "stars": 9682
     },
     {
       "id": "fff",
@@ -21603,7 +21838,8 @@
         "Not suitable for full-text content search requiring regex complexity.",
         "Inappropriate for searching binary files or non-text assets.",
         "Overkill for simple directory listing tasks."
-      ]
+      ],
+      "stars": 14658
     },
     {
       "id": "codex",
@@ -21636,7 +21872,8 @@
         "Not suitable for complex graphical user interface design tasks",
         "Ineffective for projects requiring heavy visual debugging or GUI interaction",
         "May lack context awareness for large-scale multi-repository refactoring"
-      ]
+      ],
+      "stars": 7833
     },
     {
       "id": "awesome-codex-subagents",
@@ -21675,7 +21912,8 @@
         "Not suitable for users who prefer to build custom agents entirely from scratch.",
         "Inappropriate for non-development tasks such as data analysis or creative writing outside of code generation.",
         "May not be ideal for environments requiring strict isolation without external repository dependencies."
-      ]
+      ],
+      "stars": 3378
     },
     {
       "id": "ponytail",
@@ -21714,7 +21952,8 @@
         "Not suitable for projects requiring maximum performance optimization through low-level control.",
         "Inappropriate for learning environments where verbose, explicit code is preferred for clarity.",
         "Avoid using when strict compliance with existing complex architectural patterns is mandatory."
-      ]
+      ],
+      "stars": 6340
     },
     {
       "id": "officecli-officecli",
@@ -21753,7 +21992,8 @@
         "Not suitable for real-time collaborative editing.",
         "Inappropriate for generating binary media like videos.",
         "Lacks built-in GUI for non-technical users."
-      ]
+      ],
+      "stars": 17587
     },
     {
       "id": "emil-design-skills",
@@ -21823,7 +22063,8 @@
         "Not suitable for general-purpose coding tasks unrelated to design engineering.",
         "Inappropriate for non-technical teams requiring basic administrative tools.",
         "Does not replace comprehensive project management software for large-scale coordination."
-      ]
+      ],
+      "stars": 13115
     },
     {
       "id": "codex-ppt-skill",
@@ -21862,7 +22103,8 @@
         "Not suitable for text-dense academic papers",
         "Requires internet access for API calls",
         "Limited to image-based layouts"
-      ]
+      ],
+      "stars": 16672
     },
     {
       "id": "minimax-ppt-skills",
@@ -22011,7 +22253,8 @@
         "Not suitable for standalone applications requiring full-stack backend logic.",
         "Inappropriate for tasks unrelated to AI agent skill expansion or modular enhancement.",
         "Cannot be used directly without the MiniMax AI framework integration layer."
-      ]
+      ],
+      "stars": 14749
     },
     {
       "id": "gstack",
@@ -22044,7 +22287,8 @@
         "Not suitable for large enterprise teams requiring strict role-based access controls.",
         "Inappropriate for projects needing highly customized, non-opinionated toolchains.",
         "Avoid if you prefer manual oversight over automated AI-driven workflows."
-      ]
+      ],
+      "stars": 12391
     },
     {
       "id": "presentation-report-preflight",
@@ -22084,7 +22328,8 @@
         "Not suitable for generating actual slide content or visuals",
         "Inappropriate for real-time presentation delivery support",
         "Does not replace detailed slide deck design tools"
-      ]
+      ],
+      "stars": 16333
     },
     {
       "id": "huashu-design",
@@ -22117,7 +22362,8 @@
         "Not suitable for backend logic development or database management.",
         "Inappropriate for generating native mobile app binaries (APK/IPA).",
         "Does not replace dedicated graphic design software like Figma for vector asset creation."
-      ]
+      ],
+      "stars": 9319
     },
     {
       "id": "archify",
@@ -22156,7 +22402,8 @@
         "Not suitable for generating non-architectural charts like bar graphs or pie charts.",
         "Avoid for real-time collaborative editing sessions requiring instant multi-user sync.",
         "Do not use for creating complex data visualizations requiring statistical analysis."
-      ]
+      ],
+      "stars": 16906
     },
     {
       "id": "claude-code-infrastructure-showcase",
@@ -22190,7 +22437,8 @@
         "Not suitable for users seeking basic CLI command references without customization.",
         "Inappropriate for projects requiring strict enterprise security compliance without review.",
         "Not a standalone tool but a collection of configuration examples."
-      ]
+      ],
+      "stars": 6338
     },
     {
       "id": "airllm",
@@ -22229,7 +22477,8 @@
         "Not suitable for high-throughput production serving requiring low latency",
         "Inference speed is slower compared to full GPU-based deployment",
         "Requires sufficient system RAM for model weights storage"
-      ]
+      ],
+      "stars": 12563
     },
     {
       "id": "ui-skills",
@@ -22302,7 +22551,8 @@
         "Not suitable for backend logic implementation.",
         "Inappropriate for mobile-native app development without adaptation.",
         "Does not replace full-stack framework requirements."
-      ]
+      ],
+      "stars": 8275
     },
     {
       "id": "ossie",
@@ -22339,7 +22589,8 @@
         "Not suitable for real-time transactional data processing or operational databases",
         "Ineffective for storing raw binary assets like images or video files",
         "Does not replace actual data storage systems but rather describes them"
-      ]
+      ],
+      "stars": 8521
     },
     {
       "id": "skill-creator",
@@ -22376,7 +22627,8 @@
         "Do not use for general code generation unrelated to agent skills.",
         "Avoid using for direct user-facing customer support interactions.",
         "Not suitable for creating non-agent related software libraries."
-      ]
+      ],
+      "stars": 9620
     },
     {
       "id": "workbuddyguide",
@@ -22414,7 +22666,8 @@
         "Not suitable for users requiring proprietary or closed-source solutions.",
         "May not provide immediate, out-of-the-box software installation without manual setup.",
         "Less effective for beginners lacking basic programming knowledge."
-      ]
+      ],
+      "stars": 17059
     },
     {
       "id": "destructivecommandguard",
@@ -22453,7 +22706,8 @@
         "Not suitable for environments requiring unrestricted root access",
         "Ineffective against non-shell based attack vectors",
         "Does not protect against logic errors in safe commands"
-      ]
+      ],
+      "stars": 8624
     },
     {
       "id": "gnome-orca",
@@ -22485,7 +22739,8 @@
         "Not suitable for non-GNOME desktop environments without additional configuration.",
         "Does not provide screen magnification features (use Orca's magnifier extension separately).",
         "Ineffective for users who rely on braille displays only without speech synthesis setup."
-      ]
+      ],
+      "stars": 11500
     },
     {
       "id": "ds4",
@@ -22518,7 +22773,8 @@
         "Not suitable for CPU-only systems lacking GPU acceleration.",
         "Inappropriate for multi-user cloud deployment scenarios.",
         "Does not support non-DeepSeek model architectures."
-      ]
+      ],
+      "stars": 12981
     },
     {
       "id": "ai-job-search",
@@ -22558,7 +22814,8 @@
         "Not suitable for users requiring cloud-hosted solutions without local setup",
         "Requires familiarity with command-line interfaces and Git",
         "Dependent on Claude API availability and costs"
-      ]
+      ],
+      "stars": 5191
     },
     {
       "id": "colibri",
@@ -22591,7 +22848,8 @@
         "Not suitable for environments requiring GPU acceleration",
         "Avoid for tasks needing immediate full-model loading in memory",
         "Unsuitable for systems without sufficient disk I/O throughput"
-      ]
+      ],
+      "stars": 16820
     },
     {
       "id": "openhands",
@@ -22631,7 +22889,8 @@
         "Not suitable for real-time embedded systems programming",
         "Inappropriate for tasks requiring strict human-in-the-loop approval",
         "Avoid for simple static website generation where no logic is needed"
-      ]
+      ],
+      "stars": 9780
     },
     {
       "id": "antigravity-notebooklm-mcp",
@@ -22664,7 +22923,8 @@
         "Not suitable for real-time voice transcription without additional tools",
         "Requires stable internet connection to access NotebookLM services",
         "Limited to text-based document processing capabilities"
-      ]
+      ],
+      "stars": 1842
     },
     {
       "id": "khunotebooklmmcp",
@@ -22697,7 +22957,8 @@
         "Not suitable for real-time collaborative editing without network connectivity.",
         "Avoid using for generating unverified factual claims without source grounding.",
         "Do not use for processing sensitive personal data without proper encryption."
-      ]
+      ],
+      "stars": 9890
     },
     {
       "id": "pi",
@@ -22882,7 +23143,8 @@
         "Not suitable for users requiring a managed SaaS solution without self-hosting.",
         "Inappropriate for non-technical users seeking a simple chatbot without coding knowledge.",
         "Not designed for high-throughput production inference serving out of the box."
-      ]
+      ],
+      "stars": 10831
     },
     {
       "id": "notebooklm-skill-PleasePrompto",
@@ -22916,7 +23178,8 @@
         "Do not use for real-time web browsing or general knowledge queries outside uploaded docs.",
         "Avoid for tasks requiring non-Gemini model capabilities or external API integrations.",
         "Not suitable for generating creative content unrelated to the provided source material."
-      ]
+      ],
+      "stars": 1510
     },
     {
       "id": "dbskill",
@@ -23095,7 +23358,8 @@
         "Not suitable for real-time data processing tasks.",
         "Avoid using for purely technical debugging unrelated to business logic.",
         "Do not use for generating creative marketing copy without diagnostic context."
-      ]
+      ],
+      "stars": 16863
     },
     {
       "id": "agent-pulse-skills",
@@ -23129,7 +23393,8 @@
         "Not suitable for simple, single-task scripts that do not require modular skill expansion.",
         "Avoid using if low-latency direct execution is critical over flexible skill management.",
         "Do not use for non-agent applications like standard web scraping or data processing pipelines."
-      ]
+      ],
+      "stars": 14104
     },
     {
       "id": "tapestry-skills-for-claude-code",
@@ -23199,7 +23464,8 @@
         "Not suitable for generating original creative writing",
         "Ineffective for real-time data streaming or live feeds",
         "Cannot process non-textual media like images or audio files"
-      ]
+      ],
+      "stars": 2370
     },
     {
       "id": "marketingskills",
@@ -23237,7 +23503,8 @@
         "Not suitable for general-purpose coding tasks unrelated to marketing",
         "Ineffective for non-digital marketing channels like print or TV",
         "Does not replace human strategic oversight for brand voice"
-      ]
+      ],
+      "stars": 5160
     },
     {
       "id": "agent-toolkit",
@@ -23708,7 +23975,8 @@
         "Not suitable for standalone execution without an AI agent framework",
         "Inappropriate for general-purpose scripting unrelated to AI-assisted development",
         "Does not replace core IDE functionality but extends it via agent skills"
-      ]
+      ],
+      "stars": 9878
     },
     {
       "id": "agents",
@@ -23751,7 +24019,8 @@
         "Not suitable for non-React frontend frameworks",
         "Unnecessary for simple text-only chatbots without audio needs",
         "Overkill for standalone audio players without agent logic"
-      ]
+      ],
+      "stars": 12606
     },
     {
       "id": "rigorpilot-skills",
@@ -23785,7 +24054,8 @@
         "Not suitable for creative writing or open-ended brainstorming",
         "Inappropriate for casual, low-stakes conversational tasks",
         "Avoid for simple, single-turn query responses"
-      ]
+      ],
+      "stars": 12986
     },
     {
       "id": "qu-integration-skills",
@@ -23818,7 +24088,8 @@
         "Not suitable for offline or air-gapped environments requiring zero external connectivity.",
         "Inappropriate for tasks requiring direct hardware control without intermediary APIs.",
         "Avoid for simple, single-step queries that do not benefit from multi-app orchestration."
-      ]
+      ],
+      "stars": 12138
     },
     {
       "id": "web-quality-skills",
@@ -23858,7 +24129,8 @@
         "Not suitable for backend API performance tuning",
         "Ineffective for native mobile app optimization",
         "Does not handle server-side rendering configuration directly"
-      ]
+      ],
+      "stars": 14749
     },
     {
       "id": "convex-agent-skills",
@@ -23892,7 +24164,8 @@
         "Not suitable for standalone frontend-only applications without a backend",
         "Inappropriate for non-AI agent use cases requiring simple CRUD operations",
         "Does not replace core Convix database functionality"
-      ]
+      ],
+      "stars": 2162
     },
     {
       "id": "agentspace-skill-manager",
@@ -23937,7 +24210,8 @@
         "Not suitable for simple, single-turn queries without complex logic",
         "Avoid using when minimal overhead is critical for performance",
         "Do not use for tasks requiring real-time hardware control"
-      ]
+      ],
+      "stars": 6345
     },
     {
       "id": "github-copilot-for-azure",
@@ -24185,7 +24459,8 @@
         "Not suitable for real-time system monitoring or log analysis",
         "Cannot replace human security audits for sensitive credentials",
         "Ineffective for non-Azure related general programming tasks without context"
-      ]
+      ],
+      "stars": 6474
     },
     {
       "id": "elevenlabs-voice-skills",
@@ -24225,7 +24500,8 @@
         "Not suitable for real-time high-frequency trading systems requiring zero latency.",
         "Inappropriate for applications needing offline-only voice processing without internet.",
         "Avoid for simple text-based chatbots that do not require audio output."
-      ]
+      ],
+      "stars": 3077
     },
     {
       "id": "browser-act-automation",
@@ -24264,7 +24540,8 @@
         "Not suitable for simple, single-page static content scraping",
         "Inappropriate for tasks requiring strict legal compliance with anti-automation laws",
         "Overkill for basic form filling without anti-bot challenges"
-      ]
+      ],
+      "stars": 16309
     },
     {
       "id": "runcomfy-intent-skills",
@@ -24297,7 +24574,8 @@
         "Not for general-purpose chat without model context",
         "Not for non-RunComfy API integrations",
         "Not for static content generation"
-      ]
+      ],
+      "stars": 17427
     },
     {
       "id": "doany-comfyui-skills",
@@ -24330,7 +24608,8 @@
         "Not suitable for standalone image editing without a ComfyUI backend.",
         "Ineffective for real-time video processing due to batch-oriented design.",
         "Does not replace core ComfyUI node functionality for basic rendering."
-      ]
+      ],
+      "stars": 7193
     },
     {
       "id": "notebooklm-antigravity-skill",
@@ -24383,7 +24662,8 @@
         "Free tier has rate limits (~50 queries/day)",
         "Uses undocumented internal APIs of NotebookLM — not suitable for production-critical workflows",
         "Intended for personal/experimental purposes only"
-      ]
+      ],
+      "stars": 11431
     },
     {
       "id": "img2threejs",
@@ -24426,7 +24706,8 @@
       "negativeConstraints": [
         "Not suitable for photorealistic 3D reconstruction requiring texture maps",
         "Avoid for complex organic shapes that need mesh editing"
-      ]
+      ],
+      "stars": 16832
     },
     {
       "id": "wayfinder",
@@ -24478,7 +24759,8 @@
         "Requires an issue tracker to be provided and configured",
         "Not suitable for small tasks that fit within a single agent session",
         "Only resolves one ticket per session — not for rapid-fire execution"
-      ]
+      ],
+      "stars": 10167
     },
     {
       "id": "agentic-inbox",
@@ -24522,7 +24804,8 @@
       "negativeConstraints": [
         "Requires Cloudflare Workers account and configuration",
         "Not suitable for enterprise email systems requiring Exchange/ActiveSync support"
-      ]
+      ],
+      "stars": 8760
     },
     {
       "id": "open-higgsfield-ai",
@@ -24566,7 +24849,8 @@
       "negativeConstraints": [
         "Requires GPU hardware for reasonable generation speeds",
         "Not suitable for environments without Python/gpu support"
-      ]
+      ],
+      "stars": 11696
     },
     {
       "id": "shepherd",
@@ -24607,7 +24891,8 @@
       "negativeConstraints": [
         "Simple stateless LLM API calls that do not require state checkpointing or execution branching",
         "Basic single-turn chat completion workflows without agentic tree search"
-      ]
+      ],
+      "stars": 2100
     },
     {
       "id": "hyperframes",
@@ -24649,7 +24934,8 @@
       "negativeConstraints": [
         "Interactive real-time user-facing video streaming or live broadcasting",
         "Raw video editing without HTML/DOM layout requirements"
-      ]
+      ],
+      "stars": 1800
     },
     {
       "id": "hy3",
@@ -24690,7 +24976,8 @@
       "negativeConstraints": [
         "Requires significant GPU memory for full model deployment",
         "Not suitable for edge devices or low-resource environments"
-      ]
+      ],
+      "stars": 13368
     },
     {
       "id": "mimo-v25-asr",
@@ -24732,7 +25019,8 @@
       "negativeConstraints": [
         "Requires GPU for efficient inference",
         "May need fine-tuning for very niche dialects not in training data"
-      ]
+      ],
+      "stars": 14553
     },
     {
       "id": "minimax-m3",
@@ -24772,7 +25060,8 @@
       "negativeConstraints": [
         "Requires significant GPU resources for full deployment",
         "May need fine-tuning for domain-specific tasks"
-      ]
+      ],
+      "stars": 9780
     },
     {
       "id": "glm-5",
@@ -24813,7 +25102,8 @@
       "negativeConstraints": [
         "Requires GPU for inference",
         "May need API access or cloud deployment for full capabilities"
-      ]
+      ],
+      "stars": 2974
     },
     {
       "id": "step-37-flash",
@@ -24853,7 +25143,8 @@
       "negativeConstraints": [
         "May trade some reasoning depth for speed compared to larger models",
         "Requires GPU infrastructure for deployment"
-      ]
+      ],
+      "stars": 2138
     },
     {
       "id": "ppt-agent-skills",
@@ -24896,7 +25187,8 @@
       "negativeConstraints": [
         "Requires Python environment with pip",
         "Not suitable for quick manual slide editing — designed for programmatic generation"
-      ]
+      ],
+      "stars": 4945
     },
     {
       "id": "gpt-api-free",
@@ -24939,7 +25231,8 @@
       "negativeConstraints": [
         "不保證免費端點的穩定性與速率限制",
         "不適合用於需要 SLA 保證的生產環境"
-      ]
+      ],
+      "stars": 1579
     },
     {
       "id": "pandas-ai",
@@ -24978,7 +25271,8 @@
         "Avoid for simple static CSV filtering where basic pandas indexing is faster"
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 23700
     },
     {
       "id": "duckdb",
@@ -25017,7 +25311,8 @@
         "Avoid for distributed multi-node cloud data warehousing workloads requiring petabyte clustering"
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 39700
     },
     {
       "id": "polars",
@@ -25056,7 +25351,8 @@
         "Avoid when simple lightweight dictionary transformations are sufficient without dataframe overhead"
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 39100
     },
     {
       "id": "pygwalker",
@@ -25095,7 +25391,8 @@
         "Avoid for real-time streaming dashboard rendering with sub-second websocket pushes"
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 15900
     },
     {
       "id": "ydata-profiling",
@@ -25134,7 +25431,8 @@
         "Avoid on massive multi-terabyte datasets without sampling due to memory-intensive profiling"
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 11000
     },
     {
       "id": "shadcn-ui",
@@ -25173,7 +25471,8 @@
         "Avoid for backend API microservices without frontend user interface requirements"
       ],
       "addedAt": "2026-07-25T03:05:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 75000
     },
     {
       "id": "storybook",
@@ -25211,7 +25510,8 @@
         "Avoid for pure backend logic services without user interface components"
       ],
       "addedAt": "2026-07-25T03:05:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 84000
     },
     {
       "id": "tldraw",
@@ -25250,7 +25550,8 @@
         "Avoid for heavy 3D WebGL game engine rendering pipelines"
       ],
       "addedAt": "2026-07-25T03:05:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 37000
     },
     {
       "id": "freecad",
@@ -25290,7 +25591,8 @@
         "Avoid for simple 2D architectural quick sketches where lightweight 2D vector software is faster"
       ],
       "addedAt": "2026-07-25T03:08:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 32300
     },
     {
       "id": "openscad",
@@ -25329,7 +25631,8 @@
         "Avoid for artistic sculpting or high-polygon character modeling without mathematical definition"
       ],
       "addedAt": "2026-07-25T03:08:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 9800
     },
     {
       "id": "cadquery",
@@ -25369,7 +25672,8 @@
         "Avoid for basic 2D raster graphic editing without 3D CAD geometry requirements"
       ],
       "addedAt": "2026-07-25T03:08:00.000Z",
-      "status": "active"
+      "status": "active",
+      "stars": 5500
     }
   ]
 }

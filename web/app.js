@@ -241,7 +241,18 @@ function renderLanguageChart(languageCounts) {
   });
 }
 
-// ─── 渲染：分類條目面板卡片 ──────────────────────────────────────────
+function getCategoryStarScore(catTools) {
+  if (!Array.isArray(catTools)) return 0;
+  return catTools.reduce((sum, t) => sum + (t ? (t.stars || 0) : 0), 0);
+}
+
+function formatStarCount(num) {
+  if (!num || isNaN(num)) return '0';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+  return String(num);
+}
+
+// ─── 渲染：分類條目面板卡片 (按 Star 數由高到低，由左至右、由上至下排列) ───
 
 function renderCategoryOverview(categoryCounts) {
   if (!categoryOverviewGrid) return;
@@ -257,20 +268,28 @@ function renderCategoryOverview(categoryCounts) {
     }
   }
 
-  const sortedCategories = Object.keys(grouped).sort();
+  // 按照 Star 數總和由高到低（由左至右、由上至下）排序分類
+  const sortedCategories = Object.keys(grouped).sort((a, b) => {
+    const scoreA = getCategoryStarScore(grouped[a]);
+    const scoreB = getCategoryStarScore(grouped[b]);
+    if (scoreB !== scoreA) return scoreB - scoreA;
+    return grouped[b].length - grouped[a].length;
+  });
 
   for (const cat of sortedCategories) {
-    const catTools = grouped[cat];
+    // 類別內工具亦按 Star 數排序
+    const catTools = grouped[cat].sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    const totalStars = getCategoryStarScore(catTools);
     const card = document.createElement('div');
     card.className = 'cat-card glass-panel';
 
-    const topToolsList = catTools.slice(0, 3).map(t => `<li>${t.name}</li>`).join('');
+    const topToolsList = catTools.slice(0, 3).map(t => `<li>${t.name} ${t.stars ? `<span style="opacity:0.6;font-size:0.75rem;">(⭐${formatStarCount(t.stars)})</span>` : ''}</li>`).join('');
 
     card.innerHTML = `
       <div>
         <div class="cat-card-header">
           <span class="cat-name">${cat}</span>
-          <span class="cat-badge">${catTools.length} 個條目</span>
+          <span class="cat-badge">⭐ ${formatStarCount(totalStars)} • ${catTools.length} 個條目</span>
         </div>
         <ul class="cat-preview-list">
           ${topToolsList}
@@ -383,11 +402,18 @@ function renderTools(tools) {
     }
   }
 
-  // 排序分類
-  const sortedCategories = Object.keys(grouped).sort();
+  // 依 Star 數總和由高到低（由左至右、由上至下）排序分類
+  const sortedCategories = Object.keys(grouped).sort((a, b) => {
+    const scoreA = getCategoryStarScore(grouped[a]);
+    const scoreB = getCategoryStarScore(grouped[b]);
+    if (scoreB !== scoreA) return scoreB - scoreA;
+    return grouped[b].length - grouped[a].length;
+  });
 
   for (const cat of sortedCategories) {
-    const catTools = grouped[cat];
+    // 類別內的工具亦按 Star 數由高到低排序 (由左至右、由上至下)
+    const catTools = grouped[cat].sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    const totalStars = getCategoryStarScore(catTools);
     const sectionId = `section-${cat.replace(/[^a-zA-Z0-9\u4e00-\u9fa5]/g, '-')}`;
 
     // 預設全部展開
@@ -498,7 +524,13 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
     else if (matchLevel === 'L2-keyword') badge.classList.add('keyword');
     else badge.classList.add('semantic');
   } else {
-    if (badge) badge.style.display = 'none';
+    if (badge && tool.stars) {
+      badge.textContent = `⭐ ${formatStarCount(tool.stars)}`;
+      badge.style.display = 'inline-block';
+      badge.classList.add('star-badge');
+    } else if (badge) {
+      badge.style.display = 'none';
+    }
     const progressBarContainer = article.querySelector('.progress-bar-container');
     if (progressBarContainer) progressBarContainer.style.display = 'none';
   }

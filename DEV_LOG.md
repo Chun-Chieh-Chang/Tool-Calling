@@ -621,6 +621,21 @@
 #### RCA / CAPA
 - （本次為 3D工程繪圖領域核心工具補強，無異常狀況）
 
+### 2026-07-25 — 分類與工具卡片 Star 數降序排列 (由左至右、由上至下) (Phase 38)
+
+#### 需求與動機
+使用者需求：「能否讓各分類卡片按照 star 數量由左至右、由上至下依序排列」。
+
+#### 完成項目
+- [x] **分類卡片 Star 降序排序**：更新 `renderCategoryOverview()` 與 `renderTools()`，分類一律依該分類下 tools 的 Star 總數由高到低（由左至右、由上至下）排列。
+- [x] **工具卡片 Star 降序排序與 Badge**：類別內工具卡片依 `stars` 降序流暢排列，並於卡片標頭顯示 `⭐ Star 數` Badge。
+- [x] **Star 資料庫賦予 (`scripts/populate-stars.js`)**：確保全庫 304 個工具 100% 具備 `stars` 數值。
+- [x] **確效驗證**：`node --check web/app.js` (0 錯誤)、`node cli.js validate` (304/304 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+
+#### RCA / CAPA
+- （本次為卡片排序演算法與 UI 體驗升級，無異常狀況）
+
+
 
 
 
