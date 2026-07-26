@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-25T11:59:40.667Z",
+  "lastUpdated": "2026-07-26T13:13:24.093Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26519,6 +26519,361 @@
         "提供 Obsidian 插件與 MCP 雙重操作介面",
         "筆記圖譜與標籤搜尋"
       ]
+    },
+    {
+      "id": "skillmd",
+      "name": "SKILL.Md",
+      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/.claude/skills/ui-ux-pro-max/SKILL.md",
+      "description": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms",
+      "category": "設計",
+      "language": "python",
+      "triggers": [
+        "skill.md",
+        "ai-skills",
+        "antigravity",
+        "claude",
+        "claude-code",
+        "codex",
+        "command-line",
+        "copilot"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "repoUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+        "branch": "main",
+        "subpath": ".claude/skills/ui-ux-pro-max/SKILL.md"
+      },
+      "capabilities": [
+        "ai-skills",
+        "antigravity",
+        "claude",
+        "claude-code",
+        "codex"
+      ],
+      "addedAt": "2026-07-26T13:09:22.293Z",
+      "status": "experimental"
+    },
+    {
+      "id": "skillmd",
+      "name": "SKILL.Md",
+      "url": "https://github.com/github/awesome-copilot/blob/main/skills/premium-frontend-ui/SKILL.md",
+      "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "skill.md",
+        "agent-skills",
+        "agents",
+        "ai",
+        "awesome",
+        "custom-agents",
+        "github-copilot",
+        "hacktoberfest"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "pip install git+https://github.com/github/awesome-copilot.git",
+        "repoUrl": "https://github.com/github/awesome-copilot",
+        "branch": "main",
+        "subpath": "skills/premium-frontend-ui/SKILL.md"
+      },
+      "capabilities": [
+        "agent-skills",
+        "agents",
+        "ai",
+        "awesome",
+        "custom-agents"
+      ],
+      "addedAt": "2026-07-26T13:09:23.245Z",
+      "status": "experimental"
+    },
+    {
+      "id": "seedance-20",
+      "name": "Seedance 2.0",
+      "url": "https://github.com/Emily2040/seedance-2.0",
+      "description": "Comprehensive production pipeline for quad-modal AI filmmaking with Seedance 2.0",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "seedance-2.0",
+        "seedance",
+        "2.0"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Emily2040/seedance-2.0.git",
+        "repoUrl": "https://github.com/Emily2040/seedance-2.0"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-26T13:09:25.556Z",
+      "status": "experimental"
+    },
+    {
+      "id": "seedance2-skill",
+      "name": "Seedance2 Skill",
+      "url": "https://github.com/dexhunter/seedance2-skill",
+      "description": "skill to create best prompts for generating videos with seedance2.0",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "seedance2-skill",
+        "seedance2",
+        "skill",
+        "prompt",
+        "seedance",
+        "seedance-2",
+        "video-prompt"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/dexhunter/seedance2-skill.git",
+        "repoUrl": "https://github.com/dexhunter/seedance2-skill"
+      },
+      "capabilities": [
+        "prompt",
+        "seedance",
+        "seedance-2",
+        "video-prompt"
+      ],
+      "addedAt": "2026-07-26T13:09:26.579Z",
+      "status": "experimental"
+    },
+    {
+      "id": "remotion",
+      "name": "Remotion",
+      "url": "https://github.com/remotion-dev/remotion",
+      "description": "🎥      Make videos programmatically with React",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "remotion",
+        "javascript",
+        "react",
+        "video"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx remotion",
+        "repoUrl": "https://github.com/remotion-dev/remotion"
+      },
+      "capabilities": [
+        "javascript",
+        "react",
+        "video"
+      ],
+      "addedAt": "2026-07-26T13:09:27.187Z",
+      "status": "experimental"
+    },
+    {
+      "id": "opencv",
+      "name": "Opencv",
+      "url": "https://github.com/opencv/opencv",
+      "description": "Open Source Computer Vision Library",
+      "category": "其他",
+      "language": "c++",
+      "triggers": [
+        "opencv",
+        "c-plus-plus",
+        "computer-vision",
+        "deep-learning",
+        "image-processing"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/opencv/opencv.git",
+        "repoUrl": "https://github.com/opencv/opencv"
+      },
+      "capabilities": [
+        "c-plus-plus",
+        "computer-vision",
+        "deep-learning",
+        "image-processing",
+        "opencv"
+      ],
+      "addedAt": "2026-07-26T13:09:27.686Z",
+      "status": "experimental"
+    },
+    {
+      "id": "frame",
+      "name": "Frame",
+      "url": "https://github.com/66HEX/frame",
+      "description": "FFmpeg GUI",
+      "category": "影片",
+      "language": "rust",
+      "triggers": [
+        "frame",
+        "ffmpeg",
+        "ffmpeg-gui",
+        "gpui",
+        "gpui-ce",
+        "linux",
+        "macos",
+        "media-converter"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/66HEX/frame",
+        "repoUrl": "https://github.com/66HEX/frame"
+      },
+      "capabilities": [
+        "ffmpeg",
+        "ffmpeg-gui",
+        "gpui",
+        "gpui-ce",
+        "linux"
+      ],
+      "addedAt": "2026-07-26T13:09:29.473Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ffmpeg",
+      "name": "Ffmpeg",
+      "url": "https://github.com/ffmpeg/ffmpeg",
+      "description": "Mirror of https://git.ffmpeg.org/ffmpeg.git",
+      "category": "音訊",
+      "language": "c",
+      "triggers": [
+        "ffmpeg",
+        "audio",
+        "c",
+        "fft",
+        "hevc",
+        "hls",
+        "matroska",
+        "mp4"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/ffmpeg/ffmpeg.git",
+        "repoUrl": "https://github.com/ffmpeg/ffmpeg"
+      },
+      "capabilities": [
+        "audio",
+        "c",
+        "ffmpeg",
+        "fft",
+        "hevc"
+      ],
+      "addedAt": "2026-07-26T13:09:31.888Z",
+      "status": "experimental"
+    },
+    {
+      "id": "pdf2md-agent-skill",
+      "name": "Pdf2md Agent Skill",
+      "url": "https://github.com/taotaoboom/pdf2md-agent-skill",
+      "description": "让 LLM agent 高效读懂任何文档：PDF/Word/PPT/Excel 转 Markdown，PDF 智能分流（文本页 PyMuPDF + 公式页/扫描页视觉 OCR）",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "pdf2md-agent-skill",
+        "pdf2md",
+        "agent",
+        "skill",
+        "agent-skill",
+        "claude-code",
+        "claude-code-skill",
+        "document-conversion"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/taotaoboom/pdf2md-agent-skill.git",
+        "repoUrl": "https://github.com/taotaoboom/pdf2md-agent-skill"
+      },
+      "capabilities": [
+        "agent-skill",
+        "claude-code",
+        "claude-code-skill",
+        "document-conversion",
+        "latex"
+      ],
+      "addedAt": "2026-07-26T13:09:32.510Z",
+      "status": "experimental"
+    },
+    {
+      "id": "exercises-dataset",
+      "name": "Exercises Dataset",
+      "url": "https://github.com/hasaneyldrm/exercises-dataset",
+      "description": "1,324-exercise fitness dataset — animation GIFs, 180×180 thumbnails, muscle-group & equipment data, and step-by-step instructions in 6 languages. The exercise data layer behind the LogPress app.",
+      "category": "資料庫",
+      "language": "html",
+      "triggers": [
+        "exercises-dataset",
+        "exercises",
+        "dataset",
+        "exercise-database",
+        "fitness",
+        "fitness-app",
+        "gym",
+        "json"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/hasaneyldrm/exercises-dataset.git",
+        "repoUrl": "https://github.com/hasaneyldrm/exercises-dataset"
+      },
+      "capabilities": [
+        "dataset",
+        "exercise-database",
+        "exercises",
+        "fitness",
+        "fitness-app"
+      ],
+      "addedAt": "2026-07-26T13:09:33.527Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ai-agent-book",
+      "name": "Ai Agent Book",
+      "url": "https://github.com/bojieli/ai-agent-book",
+      "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "ai-agent-book",
+        "agent",
+        "book",
+        "agent-memory",
+        "ai-agent",
+        "coding-agent",
+        "context-engineering",
+        "large-language-models"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/bojieli/ai-agent-book.git",
+        "repoUrl": "https://github.com/bojieli/ai-agent-book"
+      },
+      "capabilities": [
+        "agent",
+        "agent-memory",
+        "ai-agent",
+        "book",
+        "coding-agent"
+      ],
+      "addedAt": "2026-07-26T13:13:18.811Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lingbot-map",
+      "name": "Lingbot Map",
+      "url": "https://github.com/Robbyant/lingbot-map",
+      "description": "A feed-forward 3D foundation model for reconstructing scenes from streaming data",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "lingbot-map",
+        "lingbot",
+        "map"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Robbyant/lingbot-map.git",
+        "repoUrl": "https://github.com/Robbyant/lingbot-map"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-26T13:13:24.092Z",
+      "status": "experimental"
     }
   ]
 }
