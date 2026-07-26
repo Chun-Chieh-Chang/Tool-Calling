@@ -1,5 +1,19 @@
 # Tool-Calling 開發日誌
 
+## 2026-07-26 — CI/CD Workflow git add dist/ 忽略檔案錯誤修復
+
+### 需求
+修復 GitHub Actions 定時觸發 `Auto Sync GitHub Stars` 任務失敗問題。
+
+### 原因分析 (RCA)
+Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專案 `.gitignore` 中設定了 `dist/`。當 Git 嘗試 add 被 ignore 的目錄時，會拋出 `The following paths are ignored by one of your .gitignore files: dist` 錯誤並離開（Exit code 1），導致 CI 任務終止失敗。
+
+### 矯正與預防措施 (CAPA)
+- **矯正**:
+  - `sync-stars.yml`: 分離 `git add`，檢查 `dist/` 目錄存在時，使用 `git add -f dist/` 強制追蹤。
+  - `trending-weekly.yml`: 同樣分離 `git add` 並加上 `git add -f dist/` 條件防禦。
+- **預防**: 遵循 CI/CD 防禦原則 (Deployment Defense Meta-Rule)，在自動化腳本寫入 git add 包含 build 產出物時，必須先確認是否包含在 `.gitignore` 中並加上 `-f` 強制加入或專屬判斷。
+
 ## 2026-07-26 — Strix 安全掃描修復 (Security Hardening)
 
 ### 需求
