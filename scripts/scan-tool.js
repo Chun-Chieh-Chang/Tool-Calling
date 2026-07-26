@@ -201,7 +201,18 @@ async function scan(url, options = {}) {
       }
     }
 
-    description = description.replace(new RegExp(`Contribute to ${owner}/${repo}.*?GitHub\\.?`, 'i'), '').trim();
+    // 移除 GitHub 自動生成的 boilerplate 描述 (使用字串操作避免 regex injection)
+    const boilerplate = `Contribute to ${owner}/${repo}`;
+    const descLower = description.toLowerCase();
+    const bpIdx = descLower.indexOf(boilerplate.toLowerCase());
+    if (bpIdx !== -1) {
+      const ghIdx = descLower.indexOf('github', bpIdx + boilerplate.length);
+      if (ghIdx !== -1) {
+        let endIdx = ghIdx + 6; // "GitHub".length
+        if (description[endIdx] === '.') endIdx++;
+        description = (description.slice(0, bpIdx) + description.slice(endIdx)).trim();
+      }
+    }
     if (!description) {
       description = `${owner}/${repo}${subpath ? '/' + subpath : ''} - 待補充描述`;
     }

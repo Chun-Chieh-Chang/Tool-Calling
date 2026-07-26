@@ -1,5 +1,45 @@
 # Tool-Calling 開發日誌
 
+## 2026-07-26 — Strix 安全掃描修復 (Security Hardening)
+
+### 需求
+修復 Strix Standard 安全掃描回報的 3 筆 finding（1 HIGH / 2 MEDIUM），全部經人工驗證確認為真實漏洞。
+
+### Finding 清單與修復
+
+| # | 嚴重度 | CWE | 問題 | 檔案 | 修復方式 |
+|---|--------|-----|------|------|----------|
+| 1 | HIGH | CWE-78 | 命令注入 — `sh -c` 串接未過濾參數 | `core/sandbox.js` | Shell escaping + install allowlist |
+| 2 | MEDIUM | CWE-185 | Regex Injection / ReDoS | `scripts/scan-tool.js` | 動態 RegExp → 字串操作 |
+| 3 | MEDIUM | CWE-829 | CI/CD 供應鏈 — 可變標籤引用 | `.github/workflows/*.yml` | 固定至 commit SHA |
+
+### 完成項目
+- [x] `core/sandbox.js` — 新增 `shellEscape()` POSIX 標準 shell 跳脫
+- [x] `core/sandbox.js` — 新增 `validateInstallCommand()` 白名單前綴驗證
+- [x] `core/sandbox.js` — `buildDockerArgs()` 對 user args 套用 shellEscape
+- [x] `core/sandbox.js` — `getSetupCommand()` 對 install command 過 allowlist
+- [x] `scripts/scan-tool.js` — L204 動態 `new RegExp()` 改為 `indexOf()` 字串操作
+- [x] `.github/workflows/deploy-pages.yml` — 5 個 action 固定至 SHA
+- [x] `.github/workflows/sync-stars.yml` — 2 個 action 固定至 SHA
+- [x] `.github/workflows/trending-weekly.yml` — 2 個 action 固定至 SHA
+
+### RCA (Root Cause Analysis)
+1. **CWE-78**: `buildDockerArgs()` 設計時僅考慮了容器隔離（network none, read-only, cap-drop ALL），忽略了 `sh -c` 本身會解析 shell 元字元的風險。`getSetupCommand()` 同樣直接信任 `tools.json` 中的 `install.command`，未考慮 registry 被汙染的情境。
+2. **CWE-185**: 為了移除 GitHub boilerplate 描述而使用動態 RegExp 建構子，未對 URL 來源的 `owner/repo` 進行 regex 元字元跳脫。
+3. **CWE-829**: 初始 CI/CD 設定時直接使用官方範例的 `@v4` 格式，未遵循 SHA pinning 最佳實踐。
+
+### CAPA (Corrective and Preventive Actions)
+- **矯正**: 如上修復清單。
+- **預防**: 
+  - 凡涉及 `child_process` 或 `spawnSync` 的代碼，未來必須通過 shell injection 審查。
+  - 凡使用 `new RegExp()` 且參數來自外部輸入，必須先 escape regex 元字元。
+  - GitHub Actions 新增/更新時，必須使用 SHA pinning 格式（`@<sha> # vN`）。
+
+### 驗證結果
+- `npm test`: 9/9 通過
+- `npm run validate`: 320/320 工具通過
+- Security verification script: 15/15 邊界測試通過（7 shellEscape + 4 allowlist allow + 4 allowlist reject）
+
 ## 2026-07-19 — 初始建設 (Phase 1)
 
 ### 需求

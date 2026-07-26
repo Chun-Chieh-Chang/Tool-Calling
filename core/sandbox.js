@@ -10,6 +10,55 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
 /**
+ * POSIX shell escape — 將單一引數用單引號包裹，防止 shell 元字元注入。
+ * 內部的單引號以 '\'' 跳脫（結束引號 → 跳脫單引號 → 重新開啟引號）。
+ * @param {string} arg
+ * @returns {string}
+ */
+function shellEscape(arg) {
+  if (arg === '') return "''";
+  return "'" + arg.replace(/'/g, "'\\''") + "'";
+}
+
+/**
+ * 安裝指令白名單前綴驗證。
+ * 僅允許已知安全的套件管理器指令，拒絕任意 shell 命令。
+ * @param {string} cmd - 來自 tool.install.command 的安裝指令
+ * @returns {string} 驗證通過的原始指令
+ * @throws {Error} 若指令不在白名單中
+ */
+const ALLOWED_INSTALL_PREFIXES = [
+  'npm install',
+  'npm i ',
+  'npm ci',
+  'npx ',
+  'pip install',
+  'pip3 install',
+  'composer require',
+  'composer install',
+  'cargo install',
+  'cargo build',
+  'git clone',
+  'go install',
+  'go get',
+];
+
+function validateInstallCommand(cmd) {
+  if (!cmd || typeof cmd !== 'string') {
+    throw new Error('[Sandbox 安全] install.command 為空或非字串');
+  }
+  const trimmed = cmd.trim();
+  const isAllowed = ALLOWED_INSTALL_PREFIXES.some(prefix => trimmed.startsWith(prefix));
+  if (!isAllowed) {
+    throw new Error(
+      `[Sandbox 安全] install.command 被拒絕：「${trimmed}」不在白名單中。` +
+      `\n允許的前綴: ${ALLOWED_INSTALL_PREFIXES.join(', ')}`
+    );
+  }
+  return trimmed;
+}
+
+/**
  * 推斷工具對應的 Docker 映像檔
  */
 function getDefaultImage(language) {
@@ -41,7 +90,7 @@ function getSetupCommand(workspacePath, tool) {
     // 檢查標記檔案避免重複安裝
     const flagFile = join(workspacePath, '.installed');
     if (!existsSync(flagFile)) {
-      commands.push(tool.install.command);
+      commands.push(validateInstallCommand(tool.install.command));
       commands.push('touch .installed');
     }
   } else {
@@ -91,7 +140,7 @@ function resolveImage(tool) {
 function buildDockerArgs(tool, targetDir, args) {
   const image = resolveImage(tool);
   const setupCmd = getSetupCommand(targetDir, tool);
-  const userCmd = args.join(' ');
+  const userCmd = args.length > 0 ? args.map(shellEscape).join(' ') : '';
   const finalCmd = `${setupCmd}${userCmd || 'echo "No command provided"'}`;
   const mountPath = targetDir.replace(/\\/g, '/');
 
