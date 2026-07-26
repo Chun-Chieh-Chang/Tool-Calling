@@ -26521,42 +26521,8 @@
       ]
     },
     {
-      "id": "skillmd",
-      "name": "SKILL.Md",
-      "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/.claude/skills/ui-ux-pro-max/SKILL.md",
-      "description": "An AI SKILL that provide design intelligence for building professional UI/UX multiple platforms",
-      "category": "設計",
-      "language": "python",
-      "triggers": [
-        "skill.md",
-        "ai-skills",
-        "antigravity",
-        "claude",
-        "claude-code",
-        "codex",
-        "command-line",
-        "copilot"
-      ],
-      "install": {
-        "method": "git-clone-sparse",
-        "command": "pip install git+https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
-        "repoUrl": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-        "branch": "main",
-        "subpath": ".claude/skills/ui-ux-pro-max/SKILL.md"
-      },
-      "capabilities": [
-        "ai-skills",
-        "antigravity",
-        "claude",
-        "claude-code",
-        "codex"
-      ],
-      "addedAt": "2026-07-26T13:09:22.293Z",
-      "status": "experimental"
-    },
-    {
-      "id": "skillmd",
-      "name": "SKILL.Md",
+      "id": "premium-frontend-ui-skill",
+      "name": "Premium Frontend UI Skill",
       "url": "https://github.com/github/awesome-copilot/blob/main/skills/premium-frontend-ui/SKILL.md",
       "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
       "category": "AI 代理",
@@ -26852,27 +26818,6 @@
         "coding-agent"
       ],
       "addedAt": "2026-07-26T13:13:18.811Z",
-      "status": "experimental"
-    },
-    {
-      "id": "lingbot-map",
-      "name": "Lingbot Map",
-      "url": "https://github.com/Robbyant/lingbot-map",
-      "description": "A feed-forward 3D foundation model for reconstructing scenes from streaming data",
-      "category": "其他",
-      "language": "python",
-      "triggers": [
-        "lingbot-map",
-        "lingbot",
-        "map"
-      ],
-      "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/Robbyant/lingbot-map.git",
-        "repoUrl": "https://github.com/Robbyant/lingbot-map"
-      },
-      "capabilities": [],
-      "addedAt": "2026-07-26T13:13:24.092Z",
       "status": "experimental"
     }
   ]
