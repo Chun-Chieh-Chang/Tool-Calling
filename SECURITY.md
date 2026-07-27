@@ -1,21 +1,28 @@
 # Security Policy
 
+## Scope
+
+This project is a **tool registry and CLI** for cataloging AI/LLM tools. The security of registry data (`registry/tools.json`) and the sandbox execution environment (`core/sandbox.js`) are the primary concerns.
+
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
-
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| Version | Supported |
+|---------|-----------|
+| 1.0.x   | ✅ |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+Please **do not** open a public GitHub issue. Instead, report via:
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+- **GitHub Security Advisory**: Use the "Report a vulnerability" link under the repo's Security tab
+- **Email**: Open an issue requesting a private contact method
+
+You can expect an acknowledgement within 48 hours and an update at least every 7 days.
+
+## Security Practices
+
+- No `eval()` or dynamic code execution anywhere in the project
+- Sandbox execution (`core/sandbox.js`) uses Docker isolation for untrusted tool code
+- API keys (e.g., `AGNES_API_KEY`) are read from environment variables only — never hardcoded or committed
+- All GitHub Actions workflow pins are SHA-pinned (not branch references)
+- Dependencies are minimal: 1 runtime + 1 dev dependency

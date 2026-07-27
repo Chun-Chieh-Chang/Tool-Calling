@@ -1,1558 +1,1563 @@
-# Tool-Calling 開發日誌
+# Tool-Calling ?�發?��?
 
-## 2026-07-26 — CI/CD Workflow git add dist/ 忽略檔案錯誤修復
+## 2026-07-26 ??CI/CD Workflow git add dist/ 忽略檔�??�誤修復
 
-### 需求
-修復 GitHub Actions 定時觸發 `Auto Sync GitHub Stars` 任務失敗問題。
+### ?��?
+修復 GitHub Actions 定�?觸發 `Auto Sync GitHub Stars` 任�?失�??��???
 
-### 原因分析 (RCA)
-Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專案 `.gitignore` 中設定了 `dist/`。當 Git 嘗試 add 被 ignore 的目錄時，會拋出 `The following paths are ignored by one of your .gitignore files: dist` 錯誤並離開（Exit code 1），導致 CI 任務終止失敗。
+### ?��??��? (RCA)
+Workflow ?�本中使?��? `git add registry/tools.json dist/` ?�令，�?專�? `.gitignore` 中設定�? `dist/`?�當 Git ?�試 add �?ignore ?�目?��?，�??�出 `The following paths are ignored by one of your .gitignore files: dist` ?�誤並離?��?Exit code 1）�?導致 CI 任�?終止失�???
 
-### 矯正與預防措施 (CAPA)
-- **矯正**:
-  - `sync-stars.yml`: 分離 `git add`，檢查 `dist/` 目錄存在時，使用 `git add -f dist/` 強制追蹤。
-  - `trending-weekly.yml`: 同樣分離 `git add` 並加上 `git add -f dist/` 條件防禦。
-- **預防**: 遵循 CI/CD 防禦原則 (Deployment Defense Meta-Rule)，在自動化腳本寫入 git add 包含 build 產出物時，必須先確認是否包含在 `.gitignore` 中並加上 `-f` 強制加入或專屬判斷。
+### ?�正?��??�措??(CAPA)
+- **?�正**:
+  - `sync-stars.yml`: ?�離 `git add`，檢??`dist/` ?��?存在?��?使用 `git add -f dist/` 強制追蹤??
+  - `trending-weekly.yml`: ?�樣?�離 `git add` 並�?�?`git add -f dist/` 條件?�禦??
+- **?�防**: ?�循 CI/CD ?�禦?��? (Deployment Defense Meta-Rule)，在?��??�腳?�寫??git add ?�含 build ?�出?��?，�??��?確�??�否?�含??`.gitignore` 中並?��? `-f` 強制?�入?��?屬判?��?
 
-## 2026-07-26 — Strix 安全掃描修復 (Security Hardening)
+## 2026-07-26 ??Strix 安全?��?修復 (Security Hardening)
 
-### 需求
-修復 Strix Standard 安全掃描回報的 3 筆 finding（1 HIGH / 2 MEDIUM），全部經人工驗證確認為真實漏洞。
+### ?��?
+修復 Strix Standard 安全?��??�報??3 �?finding�? HIGH / 2 MEDIUM）�??�部經人工�?證確認為?�實漏�???
 
-### Finding 清單與修復
+### Finding 清單?�修�?
 
-| # | 嚴重度 | CWE | 問題 | 檔案 | 修復方式 |
+| # | ?��?�?| CWE | ?��? | 檔�? | 修復?��? |
 |---|--------|-----|------|------|----------|
-| 1 | HIGH | CWE-78 | 命令注入 — `sh -c` 串接未過濾參數 | `core/sandbox.js` | Shell escaping + install allowlist |
-| 2 | MEDIUM | CWE-185 | Regex Injection / ReDoS | `scripts/scan-tool.js` | 動態 RegExp → 字串操作 |
-| 3 | MEDIUM | CWE-829 | CI/CD 供應鏈 — 可變標籤引用 | `.github/workflows/*.yml` | 固定至 commit SHA |
+| 1 | HIGH | CWE-78 | ?�令注入 ??`sh -c` 串接?��?濾�???| `core/sandbox.js` | Shell escaping + install allowlist |
+| 2 | MEDIUM | CWE-185 | Regex Injection / ReDoS | `scripts/scan-tool.js` | ?��? RegExp ??字串?��? |
+| 3 | MEDIUM | CWE-829 | CI/CD 供�??????��?標籤引用 | `.github/workflows/*.yml` | ?��???commit SHA |
 
-### 完成項目
-- [x] `core/sandbox.js` — 新增 `shellEscape()` POSIX 標準 shell 跳脫
-- [x] `core/sandbox.js` — 新增 `validateInstallCommand()` 白名單前綴驗證
-- [x] `core/sandbox.js` — `buildDockerArgs()` 對 user args 套用 shellEscape
-- [x] `core/sandbox.js` — `getSetupCommand()` 對 install command 過 allowlist
-- [x] `scripts/scan-tool.js` — L204 動態 `new RegExp()` 改為 `indexOf()` 字串操作
-- [x] `.github/workflows/deploy-pages.yml` — 5 個 action 固定至 SHA
-- [x] `.github/workflows/sync-stars.yml` — 2 個 action 固定至 SHA
-- [x] `.github/workflows/trending-weekly.yml` — 2 個 action 固定至 SHA
+### 完�??�目
+- [x] `core/sandbox.js` ???��? `shellEscape()` POSIX 標�? shell 跳脫
+- [x] `core/sandbox.js` ???��? `validateInstallCommand()` ?��??��?綴�?�?
+- [x] `core/sandbox.js` ??`buildDockerArgs()` �?user args 套用 shellEscape
+- [x] `core/sandbox.js` ??`getSetupCommand()` �?install command ??allowlist
+- [x] `scripts/scan-tool.js` ??L204 ?��? `new RegExp()` ?�為 `indexOf()` 字串?��?
+- [x] `.github/workflows/deploy-pages.yml` ??5 ??action ?��???SHA
+- [x] `.github/workflows/sync-stars.yml` ??2 ??action ?��???SHA
+- [x] `.github/workflows/trending-weekly.yml` ??2 ??action ?��???SHA
 
 ### RCA (Root Cause Analysis)
-1. **CWE-78**: `buildDockerArgs()` 設計時僅考慮了容器隔離（network none, read-only, cap-drop ALL），忽略了 `sh -c` 本身會解析 shell 元字元的風險。`getSetupCommand()` 同樣直接信任 `tools.json` 中的 `install.command`，未考慮 registry 被汙染的情境。
-2. **CWE-185**: 為了移除 GitHub boilerplate 描述而使用動態 RegExp 建構子，未對 URL 來源的 `owner/repo` 進行 regex 元字元跳脫。
-3. **CWE-829**: 初始 CI/CD 設定時直接使用官方範例的 `@v4` 格式，未遵循 SHA pinning 最佳實踐。
+1. **CWE-78**: `buildDockerArgs()` 設�??��??�慮了容?��??��?network none, read-only, cap-drop ALL）�?忽略�?`sh -c` ?�身?�解??shell ?��??��?風險?�`getSetupCommand()` ?�樣?�接信任 `tools.json` 中�? `install.command`，未?�慮 registry 被�??��??��???
+2. **CWE-185**: ?��?移除 GitHub boilerplate ?�述?�使?��???RegExp 建�?子�??��? URL 來�???`owner/repo` ?��? regex ?��??�跳?��?
+3. **CWE-829**: ?��? CI/CD 設�??�直?�使?��??��?例�? `@v4` ?��?，未?�循 SHA pinning ?�佳實踐�?
 
 ### CAPA (Corrective and Preventive Actions)
-- **矯正**: 如上修復清單。
-- **預防**: 
-  - 凡涉及 `child_process` 或 `spawnSync` 的代碼，未來必須通過 shell injection 審查。
-  - 凡使用 `new RegExp()` 且參數來自外部輸入，必須先 escape regex 元字元。
-  - GitHub Actions 新增/更新時，必須使用 SHA pinning 格式（`@<sha> # vN`）。
+- **?�正**: 如�?修復清單??
+- **?�防**: 
+  - ?��???`child_process` ??`spawnSync` ?�代碼�??��?必�??��? shell injection 審查??
+  - ?�使??`new RegExp()` 且�??��??��??�輸?��?必�???escape regex ?��??��?
+  - GitHub Actions ?��?/?�新?��?必�?使用 SHA pinning ?��?（`@<sha> # vN`）�?
 
-### 驗證結果
-- `npm test`: 9/9 通過
-- `npm run validate`: 320/320 工具通過
-- Security verification script: 15/15 邊界測試通過（7 shellEscape + 4 allowlist allow + 4 allowlist reject）
+### 驗�?結�?
+- `npm test`: 9/9 ?��?
+- `npm run validate`: 320/320 工具?��?
+- Security verification script: 15/15 ?��?測試?��?�? shellEscape + 4 allowlist allow + 4 allowlist reject�?
 
-## 2026-07-19 — 初始建設 (Phase 1)
+## 2026-07-19 ???��?建設 (Phase 1)
 
-### 需求
-建立全自動工具調用效能外掛系統，解析 10 個 GitHub 工具 URL，建立工具註冊庫與檢索引擎。
+### ?��?
+建�??�自?�工?�調?��??��??�系統�?�?? 10 ??GitHub 工具 URL，建立工?�註?�庫?�檢索�??��?
 
-### 完成項目
-- [x] 專案結構建立 (`package.json`, 目錄架構)
-- [x] JSON Schema 驗證格式 (`registry/schemas/tool.schema.json`)
-- [x] 工具註冊庫 (`registry/tools.json`) — 10 個工具
-- [x] 三層檢索引擎 (`core/search-engine.js`) — L1 精確/L2 關鍵字/L3 語義
-- [x] CLI 介面 (`cli.js`) — 8 個命令
-- [x] Agent Skill 入口 (`skill/SKILL.md`)
-- [x] 開發日誌 (`DEV_LOG.md`)
+### 完�??�目
+- [x] 專�?結�?建�? (`package.json`, ?��??��?)
+- [x] JSON Schema 驗�??��? (`registry/schemas/tool.schema.json`)
+- [x] 工具註�?�?(`registry/tools.json`) ??10 ?�工??
+- [x] 三層檢索引�? (`core/search-engine.js`) ??L1 精確/L2 ?�鍵�?L3 語義
+- [x] CLI 介面 (`cli.js`) ??8 ?�命�?
+- [x] Agent Skill ?�口 (`skill/SKILL.md`)
+- [x] ?�發?��? (`DEV_LOG.md`)
 
-### 已解析工具
-| # | 名稱 | 分類 | 語言 |
+### 已解?�工??
+| # | ?�稱 | ?��? | 語�? |
 |---|------|------|------|
-| 1 | PPT Master | 文件生產力 | Python |
-| 2 | Graphify | 知識管理 | TypeScript |
-| 3 | Strix | 安全性 | Python |
-| 4 | AI Animation Video Generator | 多媒體生成 | Python |
-| 5 | Open Generative AI | 多媒體生成 | Python |
-| 6 | ImaginAIry | 多媒體生成 | Python |
+| 1 | PPT Master | ?�件?�產??| Python |
+| 2 | Graphify | ?��?管�? | TypeScript |
+| 3 | Strix | 安全??| Python |
+| 4 | AI Animation Video Generator | 多�?體�???| Python |
+| 5 | Open Generative AI | 多�?體�???| Python |
+| 6 | ImaginAIry | 多�?體�???| Python |
 | 7 | Vercel AI SDK Skills | AI 框架 | TypeScript |
-| 8 | Total TypeScript Skills | 學習資源 | TypeScript |
-| 9 | Playwright | 測試與自動化 | TypeScript |
-| 10 | Flysystem | 基礎設施 | PHP |
+| 8 | Total TypeScript Skills | 學�?資�? | TypeScript |
+| 9 | Playwright | 測試?�自?��? | TypeScript |
+| 10 | Flysystem | ?��?設施 | PHP |
 
-### 2026-07-19 — 系統整合與優化 (Phase 2 - 5)
+### 2026-07-19 ??系統?��??�優??(Phase 2 - 5)
 
-#### 需求
-實作工具掃描器，升級三層檢索引擎，並支援多種 AI Agent 平台的指令適配。
+#### ?��?
+實�?工具?��??��??��?三層檢索引�?，並?�援多種 AI Agent 平台?��?令適?��?
 
-#### 完成項目
-- [x] 工具掃描器 (`scripts/scan-tool.js`) — 支援從 GitHub URL 自動抓取 meta 並推測分類。
-- [x] L3 語義檢索升級 — 使用 TF-IDF + 字元 N-gram + 中英文同義詞對齊取代簡易 Jaccard 算法。
-- [x] 各平台適配檔案建立 (`.cursorrules`, `.windsurfrules`, `AGENTS.md` 等)。
-- [x] 動態安裝模組 (`core/installer.js` & `core/cleanup.js`)，支援依賴項自動安裝，並整合進 CLI 的 `install` 與 `cleanup` 命令。
-- [x] 單元測試建置 (`tests/search.test.js`)，共 6 項核心邏輯測試。
-
-#### RCA / CAPA
-- **問題**：`node --test tests/` 目錄執行測試時，Windows Node.js 18+ 環境可能因為 ESM 與 CommonJS 模組解析機制產生 `MODULE_NOT_FOUND`。
-- **矯正措施**：直接指定目標檔案 `node --test tests/search.test.js` 解決問題，測試 100% 通過。
-### 2026-07-19 — 支援 GitHub 子目錄 (Monorepo) 工具匯入與安裝
-
-#### 需求
-為了能精準拆解並匯入包含多個獨立工具的 Monorepo 專案（如 `mattpocock/skills`），系統需要支援針對特定子目錄的解析與安裝。
-
-#### 完成項目
-- [x] **CLI 解析升級**：更新 `cli.js` 支援 `/tree/branch/subpath` 格式。
-- [x] **智能文檔解析**：`scan-tool.js` 現支援透過 Raw API 抓取子目錄的 `README.md` 或 `SKILL.md`，並加入對 YAML Frontmatter 的解析邏輯以取得精確描述。
-- [x] **Git Sparse Checkout 實作**：`installer.js` 新增 `git-clone-sparse` 安裝方法，只下載該特定子目錄，大幅加速安裝過程與節省儲存空間。
-- [x] **Schema 擴充**：更新 `registry/schemas/tool.schema.json` 支援 `branch` 和 `subpath` 屬性。
+#### 完�??�目
+- [x] 工具?��???(`scripts/scan-tool.js`) ???�援�?GitHub URL ?��??��? meta 並推測�?類�?
+- [x] L3 語義檢索?��? ??使用 TF-IDF + 字�? N-gram + 中英?��?義�?對�??�代簡�? Jaccard 算�???
+- [x] ?�平?�適?��?案建�?(`.cursorrules`, `.windsurfrules`, `AGENTS.md` �???
+- [x] ?��?安�?模�? (`core/installer.js` & `core/cleanup.js`)，支?��?賴�??��?安�?，並?��???CLI ??`install` ??`cleanup` ?�令??
+- [x] ?��?測試建置 (`tests/search.test.js`)，共 6 ?�核心�?輯測試�?
 
 #### RCA / CAPA
-- **問題**：若擷取的為 `SKILL.md` 往往含有 YAML frontmatter (`---`)，單純抓取第一段會將 frontmatter 的字串也擷取下來。
-- **矯正措施**：增加解析 `---` 區塊的邏輯，自動提取 `description: ...` 的內容，若無則剔除 frontmatter 再抓取第一段。
+- **?��?**：`node --test tests/` ?��??��?測試?��?Windows Node.js 18+ ?��??�能?�為 ESM ??CommonJS 模�?�??機制?��? `MODULE_NOT_FOUND`??
+- **?�正?�施**：直?��?定目標�?�?`node --test tests/search.test.js` �?��?��?，測�?100% ?��???
+### 2026-07-19 ???�援 GitHub 子目??(Monorepo) 工具?�入?��?�?
 
-### 2026-07-19 — 擴展與優化：深層索引、大補帖與差異化 (Phase 6 - 8)
+#### ?��?
+?��??�精準�?�?��?�入?�含多個獨立工?��? Monorepo 專�?（�? `mattpocock/skills`）�?系統?�要支?��?對特定�??��??�解?��?安�???
 
-#### 需求
-隨著工具庫快速膨脹（超過 140 個工具），需要解決三大問題：
-1. **大補帖深層索引**：包含大量子技能的 Monorepo（如 `agent-skills`）無法被檢索引擎識別內部功能。
-2. **同質工具鑑別**：大量功能相似的工具（例如各種 NotebookLM 轉 PPT 工具）在檢索時無法區分優劣與最佳場景。
-3. **批量匯入效率**：一次性導入數十個 GitHub 專案。
-
-#### 完成項目
-- [x] **實作 Deep Indexing (深層索引)**：
-  - 開發 `scripts/scan-monorepo.js`，支援自動 Clone 並遞迴掃描子目錄的 `README.md` / `SKILL.md`。
-  - 在 Schema 增加 `subTools`，儲存掃描結果。
-  - CLI 新增 `index-subtools <id>` 命令。
-- [x] **檢索引擎 L2/L3 升級**：
-  - 將子工具 (`subTools`) 與其敘述動態納入關鍵字比對與 TF-IDF 權重計算，確保外層查詢能命中內層子工具。
-- [x] **批量大補帖匯入**：
-  - CLI 新增 `batch-add` 命令，支援讀取純文字 URL 清單自動排程新增，包含自動錯誤捕捉，防止中斷。
-- [x] **工具差異化對比機制 (Tool Differentiation Framework)**：
-  - Schema 擴充 `useCase` (最佳場景) 與 `advantages` (優勢清單)。
-  - 檢索引擎為這兩個屬性加上高權重匹配。
-  - 終端機 `search` 與 `info` 輸出排版高亮展示 ⭐ 場景，幫助 AI 做出調用決策。
+#### 完�??�目
+- [x] **CLI �???��?**：更??`cli.js` ?�援 `/tree/branch/subpath` ?��???
+- [x] **?�能?��?�??**：`scan-tool.js` ?�支?�透�? Raw API ?��?子目?��? `README.md` ??`SKILL.md`，並?�入�?YAML Frontmatter ?�解?��?輯以?��?精確?�述??
+- [x] **Git Sparse Checkout 實�?**：`installer.js` ?��? `git-clone-sparse` 安�??��?，只下�?該特定�??��?，大幅�??��?裝�?程�?節?�儲存空?��?
+- [x] **Schema ?��?**：更??`registry/schemas/tool.schema.json` ?�援 `branch` ??`subpath` 屬性�?
 
 #### RCA / CAPA
-- **問題**：`batch-add` 時遇到 `https://github.com/owner/repo/blob/main/subpath` 格式導致正則驗證失敗並中斷進程。
-- **矯正措施**：修改 `cli.js` 與 `scan-tool.js` 中的 GitHub 正則表達式支援 `(?:tree|blob)`，並在 `batch-add` 迴圈中加入 `try...catch` 防護機制。
-- **矯正措施**：在 `cmdAdd` 中增加邏輯，當 ID 碰撞但 URL 不同時，動態將 owner 加上 baseName 作為新 ID (`skills-anthropics`)。
+- **?��?**：若?��??�為 `SKILL.md` 往往?��? YAML frontmatter (`---`)，單純�??�第一段�?�?frontmatter ?��?串�??��?下�???
+- **?�正?�施**：�??�解??`---` ?�塊�??�輯，自?��???`description: ...` ?�內容�??�無?��???frontmatter ?��??�第一段�?
 
-### 2026-07-19 — 千級技能精準調度架構升級 (Phase 9)
+### 2026-07-19 ???��??�優?��?深層索�??�大補�??�差?��? (Phase 6 - 8)
 
-#### 需求
-因應系統工具即將邁入千級規模，需解決「注意力稀釋 (Attention Dilution)」與「標籤混淆 (Label Confusion)」兩大核心問題，避免 Agent 在高度相似的工具群中發生「工具使用幻覺 (Tool-use Hallucination)」。
+#### ?��?
+?��?工具庫快?�膨?��?超�? 140 ?�工?��?，�?要解決�?大�?題�?
+1. **大�?帖深層索�?*：�??�大?��??�?��? Monorepo（�? `agent-skills`）無法被檢索引�?識別?�部?�能??
+2. **?�質工具?�別**：大?��??�相似�?工具（�?如�?�?NotebookLM �?PPT 工具）在檢索?�無法�??�優????�佳場?��?
+3. **?��??�入?��?**：�?次性�??�數?��?GitHub 專�???
 
-#### 完成項目
-- [x] **導入負樣本約束 (Hard Negatives)**：
-  - 更新 `tool.schema.json` 加入 `negativeConstraints` (禁用場景)。
-  - 修改 `core/search-engine.js` 關鍵字檢索邏輯，當檢索詞命中禁用場景時，給予致命扣分 (強制降至 1%)。
-  - 在 `cli.js` 中實作紅色的 `🚫 禁用場景` 警告顯示，加強 LLM 辨識度。
-- [x] **實作領域分類過濾 (Category Routing)**：
-  - 更新 `cli.js` 的 `search` 指令，支援 `-c, --category <name>` 參數。
-  - 在 `core/search-engine.js` 中於核心算法前加入前置過濾，將 $O(N)$ 空間降維至 $O(\log N)$。
-- [x] **文檔收納**：將架構白皮書收錄至 `docs/references/agent-skill-routing/` 以保持專案 MECE 結構。
-
-#### RCA / CAPA
-- **問題**：`search-engine.js` 處理負樣本時，因 `queryTokens` 的 `includes` 邏輯無法正確捕捉未切分開的中文字串 (如 "撰寫後端代碼ppt")，導致負樣本扣分失效。
-- **矯正措施**：改用 `normalize(query).includes(negNorm)`，直接判斷原始查詢字串是否包含負樣本詞彙，修復並驗證成功。
-
-### 2026-07-19 — GitHub Pages 靜態網站建置與 CI/CD 部署 (Phase 10)
-
-#### 需求
-將現有的檢索系統擴展至瀏覽器端，建立 Premium UI 靜態網站，並透過 GitHub Actions 達成推播自動確效與部署。
-
-#### 完成項目
-- [x] **核心代碼解耦 (Isomorphic Code)**：拔除 `core/search-engine.js` 中的 `node:fs` 依賴，使同一套檢索引擎能同時在 Node CLI 與 Browser 中完美運行。
-- [x] **Premium UI 介面實作**：以 Vanilla HTML/CSS/JS 實作「毛玻璃 (Glassmorphism)」與深色系 (Dark Mode) 介面，渲染 140+ 工具卡片。
-- [x] **自動化建置部署**：撰寫 `scripts/build-web.js` 與 `.github/workflows/deploy-pages.yml`，實現 `npm test` 自動確效與靜態網頁打包。
+#### 完�??�目
+- [x] **實�? Deep Indexing (深層索�?)**�?
+  - ?�發 `scripts/scan-monorepo.js`，支?�自??Clone 並�?迴�??��??��???`README.md` / `SKILL.md`??
+  - ??Schema 增�? `subTools`，儲存�??��??��?
+  - CLI ?��? `index-subtools <id>` ?�令??
+- [x] **檢索引�? L2/L3 ?��?**�?
+  - 將�?工具 (`subTools`) ?�其?�述?��?納入?�鍵字�?對�? TF-IDF 權�?計�?，確保�?層查詢能?�中?�層子工?��?
+- [x] **?��?大�?帖匯??*�?
+  - CLI ?��? `batch-add` ?�令，支?��??��??��? URL 清單?��??��??��?，�??�自?�錯誤�??��??�止中斷??
+- [x] **工具差異?��?比�???(Tool Differentiation Framework)**�?
+  - Schema ?��? `useCase` (?�佳場?? ??`advantages` (?�勢清單)??
+  - 檢索引�??�這兩?�屬?��?上�?權�??��???
+  - 終端�?`search` ??`info` 輸出?��?高亮展示 �??�景，幫??AI ?�出調用決�???
 
 #### RCA / CAPA
-- **問題**：線上部署完成後，畫面變成全白/空白，且 Console 出現 `marked()` 函式庫的廢棄警告。
-- **原因分析 (Root Cause)**：這是我（AI）在此前階段產生的失誤。早前曾建立過一份舊的自動部署腳本 `.github/workflows/validate-and-deploy.yml`。本次建立新版網頁時，**我沒有先檢查 `.github/workflows/` 目錄**，就直接新增了第二份腳本 `deploy-pages.yml`。導致 Push 後兩個腳本同時觸發並產生競爭，舊腳本覆蓋了新網頁的輸出，且舊腳本內含的 `md-block.js` 引發了上述報錯。
-- **矯正措施 (Corrective Action)**：使用 `git rm` 刪除了舊有的衝突檔案 `validate-and-deploy.yml`，確保系統內只有唯一正確的部署流程。
-- **預防措施 (Preventive Action)**：未來開發新專案，新增 CI/CD 或配置檔案前，必須強制執行 **「狀態前置掃描 (Pre-condition Scan)」**：
-  1. 建立任何部署工作流（如 `.github/workflows`）前，必須先執行 `ls` 盤點該目錄下是否已有功能重疊的舊檔案。
-  2. 若有舊檔案，應優先採取「修改/更新」或「明確刪除後再建立」，絕對禁止在未確認環境狀態下「盲目新增」同質檔案。
+- **?��?**：`batch-add` ?��???`https://github.com/owner/repo/blob/main/subpath` ?��?導致�??驗�?失�?並中?�進�???
+- **?�正?�施**：修??`cli.js` ??`scan-tool.js` 中�? GitHub �??表�?式支??`(?:tree|blob)`，並??`batch-add` 迴�?中�???`try...catch` ?�護機制??
+- **?�正?�施**：在 `cmdAdd` 中�??��?輯�???ID 碰�?�?URL 不�??��??��?�?owner ?��? baseName 作為??ID (`skills-anthropics`)??
 
-### 2026-07-19 — 專案 MECE 結構整併與優化 (Phase 11)
+### 2026-07-19 ???��??�?�精準調度架構�?�?(Phase 9)
 
-#### 需求
-執行專案的全局盤點與清理，移除冗餘檔案，整合分散設定檔，更新核心文件以符合最新狀態，並建立乾淨的版本基準點。
+#### ?��?
+?��?系統工具?��??�入?��?規模，�?�?��?�注?��?稀??(Attention Dilution)?��??��?籤混�?(Label Confusion)?�兩大核心�?題�??��? Agent ?��?度相似�?工具群中?��??�工?�使?�幻�?(Tool-use Hallucination)?��?
 
-#### 完成項目
-- [x] **移除冗餘檔案**：刪除了無效的 `skill/adapters/agnes-integration.js`、`skill/core-instructions.md` 與 `skill/SKILL.md`。
-- [x] **Agent 規則 MECE 整合**：建立單一真理來源 `.agents/AGENTS.md`，將散落於 `.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.trae`, `.kiro` 等平台的指令精簡為單一指標，消弭維護負擔與版本分歧。
-- [x] **文件目錄重構**：將過長的白皮書目錄 `docs/references/agent-skill-routing/...` 重新命名並整併至 `docs/architecture/`，提昇目錄結構的可讀性。
-- [x] **文件同步更新**：更新了 `README.md` 的專案架構樹與 GitHub Pages 網頁連結，確保文件與當前代碼結構一致。
-- [x] **建立版本基準點**：清理完畢後，透過 `git add .` 與 `git commit` 將專案推進至全新的高潔淨狀態，並推送至 GitHub 遠端倉庫。
-
-### 2026-07-19：沙盒隔離、遙測追蹤與資料萃取 (Phase 12)
-
-#### 需求與動機
-1. **動態沙盒隔離 (Sandbox Invocation Mode)**：原先 `installer.js` 會在主機環境執行 `npm install` 與 `pip install`，存在極大的安全隱患（RCE 風險）。需導入 Docker 隔離執行環境，保護主機安全。
-2. **軌跡追蹤與動態權重 (Telemetry)**：系統需要具備自我學習能力。藉由記錄工具調用的成功與失敗軌跡，動態調整 TF-IDF 的權重分數，實現自動化的淘汰與推薦機制。
-3. **SFT 微調資料集萃取**：為了未來能微調出專精於工具調用選擇的專屬 LLM（如 Llama-3-ToolCalling），需將成功調用的歷史軌跡萃取為 ShareGPT/OpenAI Chat ML 格式的微調資料集。
-
-#### 完成項目
-- [x] **沙盒隔離實作**：擴充了 `registry/schemas/tool.schema.json` 支援 `sandbox` 屬性，並實作 `core/sandbox.js` 管理 Docker 容器生命週期，修改 `installer.js` 避免於主機執行任何相依套件安裝。
-- [x] **CLI 新增指令**：於 `cli.js` 新增 `invoke <id> [args...]`，實現安全隔離執行工具。
-- [x] **遙測系統實作**：建立 `core/telemetry.js`，將軌跡寫入至 `~/.tool-calling/traces/traces.jsonl`，並修改 `cli.js` 在 `invoke` 結束後自動記錄。
-- [x] **搜尋演算法動態加權**：修改 `core/search-engine.js`，讀取 Telemetry 並於搜尋時動態乘上懲罰 (0.1x) 或獎勵 (1.2x) 係數，並在匹配關鍵字中顯示提示。
-- [x] **資料萃取工具**：實作 `scripts/export-dataset.js`，新增 `export-dataset` 指令，成功將成功的軌跡轉換為 OpenAI Chat ML 的訓練格式。
+#### 完�??�目
+- [x] **導入負樣?��???(Hard Negatives)**�?
+  - ?�新 `tool.schema.json` ?�入 `negativeConstraints` (禁用?�景)??
+  - 修改 `core/search-engine.js` ?�鍵字檢索�?輯�??�檢索�??�中禁用?�景?��?給�??�命??? (強制?�至 1%)??
+  - ??`cli.js` 中實作�??��? `?�� 禁用?�景` 警�?顯示，�?�?LLM 辨�?度�?
+- [x] **實�??��??��??�濾 (Category Routing)**�?
+  - ?�新 `cli.js` ??`search` ?�令，支??`-c, --category <name>` ?�數??
+  - ??`core/search-engine.js` 中於?��?算�??��??��?置�?濾�?�?$O(N)$ 空�??�維??$O(\log N)$??
+- [x] **?��??��?**：�??��??�皮?�收?�至 `docs/references/agent-skill-routing/` 以�??��?�?MECE 結�???
 
 #### RCA / CAPA
-- **問題**：實作沙盒時，遺漏了 `npm` 與 `pip` 安裝方式的防禦，導致 `installer.js` 仍然在主機執行 `pip install`。
-- **根本原因**：只修改了 `git-clone` 分支的代碼，未全面檢視所有 `switch case` 分支。
-- **矯正措施**：修改 `installer.js` 的 `npm/pip/composer/cargo` 分支，移除主機執行邏輯，推遲至 `core/sandbox.js` 產生對應的依賴安裝指令在 Docker 內執行。
-- **預防措施**：執行修改時，必須遵守全域變更掃描 SOP，檢視 `switch` 區塊的所有可能進入點。
+- **?��?**：`search-engine.js` ?��?負樣?��?，�? `queryTokens` ??`includes` ?�輯?��?�?��?��??��??��??�中?��?�?(�?"?�寫後端�?��ppt")，�??��?�?��???失�???
+- **?�正?�施**：改??`normalize(query).includes(negNorm)`，直?�判?��?始查詢�?串是?��??��?�?��詞�?，修復並驗�??��???
 
-### 2026-07-19：批量工具擴增與深層索引 (Phase 12.5)
+### 2026-07-19 ??GitHub Pages ?��?網�?建置??CI/CD ?�署 (Phase 10)
 
-#### 需求與動機
-1. **擴充註冊庫生態**：用戶提供 26 個全新 AI 工具專案（涵蓋 Legal, Trading, Slide Generation 等），需要快速將其索引至系統。
-2. **Monorepo 解析**：這些專案中有 5 個為彙整型大補帖 (Monorepo)，如果僅註冊表層，檢索引擎將無法觸及內部的微技能，需要進行深層索引 (Deep Indexing)。
+#### ?��?
+將現?��?檢索系統?��??�瀏覽?�端，建�?Premium UI ?��?網�?，並?��? GitHub Actions ?��??�播?��?確�??�部署�?
 
-#### 完成項目
-- [x] **批量註冊**：使用 `node cli.js batch-add` 成功將 26 個 GitHub URL 註冊至 `tools.json`。
-- [x] **自動化深層掃描**：對 `knowledge-work-plugins`, `financial-services`, `claude-for-legal`, `skill`, `skills-JimLiu` 執行了 `index-subtools`。
-- [x] **索引成果**：成功為這 5 個大補帖拆解出總計 **568** 個子工具，大幅提升了語義檢索 L3 與關鍵字 L2 的命中範圍。總工具庫突破 160+ 主專案，包含近千個微技能。
-
-### 2026-07-19：專案全域 MECE 清理與文件同步 (Phase 13)
-
-#### 需求與動機
-1. **保持極致潔淨 (MECE)**：專案經過多輪迭代，根目錄開始出現如 `urls.txt`、`my_sft_dataset.jsonl` 等暫時性或匯出產物。必須將它們收納至獨立目錄，以符合「相互獨立、完全窮盡」的分類邏輯。
-2. **文件同步**：`README.md` 需要更新，以反映 Phase 12 的 Sandbox 隔離、Telemetry 遙測與 SFT 資料萃取等新特性，讓使用者了解最新的架構與功能。
-
-#### 完成項目
-- [x] **目錄清理**：建立 `.exports/` 目錄，將匯出的資料集與批量網址檔移入，並更新 `.gitignore` 排除追蹤。
-- [x] **IDE 配置檔審查**：確認 `.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.trae`, `.kiro` 皆維持為導向 `.agents/AGENTS.md` 的單一真理來源指標，無冗餘配置。
-- [x] **README 重構**：
-  - 更新已註冊工具數量為「>160 庫」。
-  - 在「快速開始」補充 `invoke` 與 `export-dataset` 指令。
-  - 在「核心特性」補上 Sandbox 安全隔離與 Telemetry 動態評分的說明。
-  - 在「架構樹」補上 `core/sandbox.js`, `core/telemetry.js`, `scripts/export-dataset.js`。
-- [x] **建立還原基準點**：執行 `npm test` 確認功能無損，並建立清晰的 Git Commit (`chore: perform MECE global cleanup and documentation synchronization`) 推送至遠端倉庫。
-
-
-### 2026-07-19：嚴重安全事故 - API 金鑰外洩 (Phase 13.5)
-
-#### 問題描述
-在實作 scripts/enrich-registry.js 批次更新腳本時，將真實的 Agnes AI API 金鑰 (sk-SMfdNFc2...) 寫死於程式碼中作為預設值，並隨同 Commit c00000 推送至 GitHub 公開倉庫，造成嚴重的憑證外洩風險。
-
-#### 矯正措施 (Corrective Action - CAPA)
-- **移除金鑰**：修改 scripts/enrich-registry.js，強制僅從環境變數 process.env.AGNES_API_KEY 讀取金鑰，若無則拋出錯誤並中斷執行。
-- **清除 Git 歷史**：使用 git reset --soft 將分支退回金鑰外洩前的乾淨狀態，重新 Commit 並執行 git push -f，將遠端倉庫的所有金鑰歷史抹除。
-- **憑證註銷**：通知使用者立即前往 Agnes AI 後台註銷該組外洩金鑰，徹底阻斷濫用可能。
-
-#### 預防措施 (Preventive Action - CAPA)
-- 觸發 <proactive_self_evolution> 規則，主動於專案全域指令 .agents/AGENTS.md 中新增了 **「禁止硬編碼 API 金鑰與敏感憑證 (Zero Hardcoded Credentials)」** 條款。未來撰寫任何需驗證的腳本前，強制實施自我審查，確保無憑證硬編碼情事。
-
-### 2026-07-20：安全性強化 (Phase 14)
-
-#### 需求與動機
-修復 `installer.js` 中潛在的 Git RCE 與路徑穿越漏洞（例如 `ext::` 傳輸層、`--upload-pack` 參數注入、以及子目錄的路徑穿越）。
-
-#### 完成項目
-- [x] 導入 `SAFE_REPO_URL` 正則白名單，嚴格限制 Github Repo URL 格式。
-- [x] 實作 `assertSafeRef` 函式，防止參數注入（阻擋 `-` 開頭）與路徑穿越（阻擋 `..`）。
-- [x] 將修復後的 `core/installer.js` 提交並推送到遠端。
-
-### 2026-07-21 — 批量工具擴增與深層拆解 (Phase 15)
-
-#### 需求與動機
-1. **擴充註冊庫生態**：將 36 個新的 GitHub 專案 URL 批量加入工具庫。
-2. **大補帖深層索引 (檢查是否需要拆解)**：針對其中包含多個技能的 Cybersecurity 和 LLM API 等大補帖進行深層掃描。
-
-#### 完成項目
-- [x] **批量註冊**：建立 `urls_batch3.txt` 並執行 `node cli.js batch-add urls_batch3.txt`，成功將新專案加入 `tools.json` 註冊庫。
-- [x] **自動化深層掃描**：對多個可能的大補帖執行 `index-subtools`，成功拆解大量子工具：
-  - `anthropic-cybersecurity-skills` (發現 817 個子工具)
-  - `cybersecurity-skills` (發現 29 個子工具)
-  - `claude-code-cybersecurity-skill` (發現 19 個子工具)
-  - `awesome-free-llm-apis` (發現 1 個子工具)
-- [x] **MECE 檔案管理**：完成批量匯入後，將 `urls_batch3.txt` 移至 `.exports/` 中，保持根目錄乾淨。
+#### 完�??�目
+- [x] **?��?�?���?�?(Isomorphic Code)**：�???`core/search-engine.js` 中�? `node:fs` 依賴，使?��?套檢索�??�能?��???Node CLI ??Browser 中�?美�?行�?
+- [x] **Premium UI 介面實�?**：以 Vanilla HTML/CSS/JS 實�??��??��? (Glassmorphism)?��?深色�?(Dark Mode) 介面，渲??140+ 工具?��???
+- [x] **?��??�建置部�?*：撰�?`scripts/build-web.js` ??`.github/workflows/deploy-pages.yml`，實??`npm test` ?��?確�??��??�網?��??��?
 
 #### RCA / CAPA
-- (無異常狀況，系統穩定處理大批量子技能的解析與寫入)
+- **?��?**：�?上部署�??��?，畫?��??�全??空白，�? Console ?�現 `marked()` ?��?庫�?廢�?警�???
+- **?��??��? (Root Cause)**：這是?��?AI）在此�??�段?��??�失誤。早?�曾建�??��?份�??�自?�部署腳??`.github/workflows/validate-and-deploy.yml`?�本次建立新?�網?��?�?*?��??��?檢查 `.github/workflows/` ?��?**，就?�接?��?了第二份?�本 `deploy-pages.yml`?��???Push 後兩?�腳?��??�觸?�並?��?競爭，�??�本覆�?了新網�??�輸?��?且�??�本?�含??`md-block.js` 引發了�?述報?��?
+- **?�正?�施 (Corrective Action)**：使??`git rm` ?�除了�??��?衝�?檔�? `validate-and-deploy.yml`，確保系統內?��??��?�?��?�部署�?程�?
+- **?�防?�施 (Preventive Action)**：未來�??�新專�?，新�?CI/CD ?��?置�?案�?，�??�強?�執�?**?��??��?置�???(Pre-condition Scan)??*�?
+  1. 建�?任�??�署工�?流�?�?`.github/workflows`）�?，�??��??��? `ls` ?��?該目?��??�否已�??�能?��??��?檔�???
+  2. ?��??��?案�??�優?�採?�「修???�新?��??��?確刪?��??�建立」�?絕�?禁止?�未確�??��??�?��??�盲?�新增」�?質�?案�?
 
-### 2026-07-21 — 第二波批量工具擴增與深層拆解 (Phase 16)
+### 2026-07-19 ??專�? MECE 結�??�併?�優??(Phase 11)
 
-#### 需求與動機
-1. **擴充註冊庫生態**：將使用者提供的另外 22 個新 GitHub 專案 URL 批量加入工具庫。
-2. **大補帖深層索引 (檢查是否需要拆解)**：針對新匯入且疑似為綜合技能包的專案進行深層掃描。
+#### ?��?
+?��?專�??�全局?��??��??��?移除?��?檔�?，整?��???��定�?，更?�核心�?件以符�??�?��??��?並建立乾淨�??�本?��?點�?
 
-#### 完成項目
-- [x] **批量註冊**：建立 `.exports/urls_batch4.txt` 並執行 `node cli.js batch-add`，成功將新專案加入 `tools.json` 註冊庫。
-- [x] **自動化深層掃描**：對多個可能的大補帖執行 `index-subtools`，成功拆解出更多子工具：
-  - `skills-emilkowalski` (發現 7 個子工具)
-  - `skills-MiniMax-AI` (發現 23 個子工具)
-  - `ui-skills` (發現 7 個子工具)
-  - `stitch-skills` (發現 15 個子工具)
-  - `andrej-karpathy-skills` (發現 1 個子工具)
-- [x] **MECE 檔案管理**：`urls_batch4.txt` 已經直接建立在 `.exports/` 目錄中，無需再做搬移。
+#### 完�??�目
+- [x] **移除?��?檔�?**：刪?��??��???`skill/adapters/agnes-integration.js`?�`skill/core-instructions.md` ??`skill/SKILL.md`??
+- [x] **Agent 規�? MECE ?��?**：建立單一?��?來�? `.agents/AGENTS.md`，�???��??`.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.trae`, `.kiro` 等平?��??�令精簡?�單一?��?，�?弭維護�??��??�本?�歧??
+- [x] **?�件?��??��?**：�??�長?�白?�書?��? `docs/references/agent-skill-routing/...` ?�新?��?並整併至 `docs/architecture/`，�??�目?��?構�??��??��?
+- [x] **?�件?�步?�新**：更?��? `README.md` ?��?案架構樹??GitHub Pages 網�????，確保�?件�??��?�?��結�?一?��?
+- [x] **建�??�本?��?�?*：�??��??��?，透�? `git add .` ??`git commit` 將�?案推?�至?�新?��?潔淨?�?��?並推?�至 GitHub ?�端?�庫??
 
-#### RCA / CAPA
-- (無異常狀況，系統穩定處理所有解析與寫入)
+### 2026-07-19：�??��??�、�?測追蹤�?資�??��? (Phase 12)
 
-### 2026-07-21 — 專案程式碼與檔案優化作業 (Phase 17)
+#### ?�求�??��?
+1. **?��?沙�??�離 (Sandbox Invocation Mode)**：�???`installer.js` ?�在主�??��??��? `npm install` ??`pip install`，�??�極大�?安全?�患（RCE 風險）。�?導入 Docker ?�離?��??��?，�?護主機�??��?
+2. **軌跡追蹤?��??��???(Telemetry)**：系統�?要具?�自?�學習能?�。�??��??�工?�調?��??��??�失?��?跡�??��?調整 TF-IDF ?��??��??��?實現?��??��?淘汰?�推?��??��?
+3. **SFT 微調資�??��???*：為了未來能微調?��?精於工具調用?��??��?�?LLM（�? Llama-3-ToolCalling）�??�將�??�調?��?歷史軌跡?��???ShareGPT/OpenAI Chat ML ?��??�微調�??��???
 
-#### 需求與動機
-1. **全面盤點與清理**：移除過時的生成的 HTML 檔案與遺留的安裝快取，以及為了維持嚴格的 MECE 原則，清除所有只有單行指標作用的冗餘 IDE 設定檔。
-2. **同步更新文件與還原點**：確保文件與程式碼一致，並建立優化後的 Git 基準點。
-
-#### 完成項目
-- [x] **冗餘檔案與無效快取清理**：刪除了 `.temp/lingbot-map` 及 `docs/` 下過時的靜態輸出 (`實際開發情境.html` 等)。
-- [x] **IDE 配置檔 MECE 整合**：刪除了冗餘的 `.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.trae/`, `.kiro/`，使 `.agents/AGENTS.md` 成為唯一的系統開發規範。
-- [x] **文件同步**：更新 `README.md`，使註冊庫總數更新為最新的「超過 265 庫」，並更新此開發日誌。
-- [x] **版本控制**：建立清新的 Git 基準點並推送至遠端。
-
-#### RCA / CAPA
-- (本次為專案架構優化，無特殊錯誤發生，成功瘦身並提升專案整潔度)
-
-### 2026-07-21 — MCP 介面整合與安全防禦固化 (Phase 18)
-
-#### 需求與動機
-1. **防禦機制固化**：將 Claude 提出的三項安全需求（強制金鑰自檢、Prompt Injection 防禦標籤 `<untrusted_data>`、以及優雅降級 Fallback 機制）寫入專案的最高指導原則 `.agents/AGENTS.md`。
-2. **MCP (Model Context Protocol) 介面實作**：避免直接引入 Smart Reranker 帶來的新攻擊面與外部 API 成本，改以提供標準的 MCP 介面，讓 AI Agent (如 Claude Desktop) 透過兩階段漸進式揭露 (Progressive Disclosure) 來安全地檢索與調用工具。
-
-#### 完成項目
-- [x] **安全防禦固化**：更新 `.agents/AGENTS.md` 加入 `LLM 整合安全與防禦元規則`。
-- [x] **MCP Server 實作**：新增 `mcp-server.js`，實作 STDIO 傳輸介面，並暴露出 `list_tools`、`search_tools`、`get_tool_detail` 與 `run_tool` 四個工具。
-- [x] **沙盒執行對接**：`run_tool` 成功對接 `core/sandbox.js` 邏輯，保留嚴格的 Docker 容器限制 (`--network none`, `--read-only`, `--cap-drop ALL`)。
-- [x] **依賴更新**：`package.json` 新增 `@modelcontextprotocol/sdk`。
-- [x] **文件同步**：更新 `README.md` 加入 MCP 伺服器的啟動與設定方式。
+#### 完�??�目
+- [x] **沙�??�離實�?**：擴?��? `registry/schemas/tool.schema.json` ?�援 `sandbox` 屬性�?並實�?`core/sandbox.js` 管�? Docker 容器?�命?��?，修??`installer.js` ?��??�主機執行任何相依�?件�?裝�?
+- [x] **CLI ?��??�令**：於 `cli.js` ?��? `invoke <id> [args...]`，實?��??��??�執行工?��?
+- [x] **?�測系統實�?**：建�?`core/telemetry.js`，�?軌跡寫入??`~/.tool-calling/traces/traces.jsonl`，並修改 `cli.js` ??`invoke` 結�?後自?��??��?
+- [x] **?��?演�?法�??��?�?*：修??`core/search-engine.js`，�???Telemetry 並於?��??��??��?上懲�?(0.1x) ?��???(1.2x) 係數，並?�匹?��??��?中顯示�?示�?
+- [x] **資�??��?工具**：實�?`scripts/export-dataset.js`，新�?`export-dataset` ?�令，�??��??��??��?跡�??�為 OpenAI Chat ML ?��?練格式�?
 
 #### RCA / CAPA
-- **問題 (審查階段發現)**：開發夥伴 (opencode) 雖然完美實作了程式碼與 `README.md` 的更新並完成了 Commit 推播，但遺漏了同步更新 `DEV_LOG.md`，違反了 `AGENTS.md` 中「禁止文件與代碼提交脫鉤 (Zero Detached Commits for Docs/Logs)」的規則。
-- **矯正措施**：主動補上本階段的開發日誌紀錄，並進行補充 Commit。
+- **?��?**：實作�??��?，遺漏�? `npm` ??`pip` 安�??��??�防禦�?導致 `installer.js` 仍然?�主機執�?`pip install`??
+- **?�本?��?**：只修改�?`git-clone` ?�支?�代碼�??�全?�檢視�???`switch case` ?�支??
+- **?�正?�施**：修??`installer.js` ??`npm/pip/composer/cargo` ?�支，移?�主機執行�?輯�??�遲??`core/sandbox.js` ?��?對�??��?賴�?裝�?令在 Docker ?�執行�?
+- **?�防?�施**：執行修?��?，�??�遵守全?��??��???SOP，檢�?`switch` ?�塊�??�?�可?�進入點�?
 
-### 2026-07-23 — 全面程式碼重構與共享模組抽取 (Phase 19)
+### 2026-07-19：批?�工?�擴增�?深層索�? (Phase 12.5)
 
-#### 需求與動機
-在歷經 18 個階段的快速迭代後，專案中積累了大量的程式碼重複 (Duplication)：
-- `loadRegistry()` / `saveRegistry()` 在 4 個檔案中各寫一份 (`cli.js`, `mcp-server.js`, `scan-monorepo.js`, `enrich-registry.js`)
-- `generateId()` 在 `cli.js` 與 `scan-tool.js` 中重複
-- `parseMarkdownDescription()` 在 `scan-tool.js` 內嵌實作，`scan-monorepo.js` 獨立函式
-- Docker 沙盒建置邏輯 (`allowedImages`, docker args 陣列) 在 `core/sandbox.js` 與 `mcp-server.js` 中各寫一份
-- `.gitignore` 中的 `~/.tool-calling/` 條目因 Git 不展開 `~` 實為無效
+#### ?�求�??��?
+1. **?��?註�?庫�???*：用?��?�?26 ?�全??AI 工具專�?（涵??Legal, Trading, Slide Generation 等�?，�?要快?��??�索引至系統??
+2. **Monorepo �??**：這�?專�?中�? 5 ?�為彙整?�大補�? (Monorepo)，�??��?註�?表層，檢索�??��??��?觸�??�部?�微?�?��??�要進�?深層索�? (Deep Indexing)??
 
-#### 完成項目
-- [x] **共享模組抽取**：
-  - 建立 `core/registry.js`，統一提供 `loadRegistry()` / `saveRegistry()` / `getToolById()` / `generateId()`
-  - 建立 `scripts/scanner-utils.js`，統一提供 `parseMarkdownDescription()`
-  - 更新 `cli.js`, `mcp-server.js`, `scan-tool.js`, `scan-monorepo.js`, `enrich-registry.js` 全部改用共享模組
-- [x] **Docker 沙盒邏輯合併**：
-  - `core/sandbox.js` 提取 `buildDockerArgs()` 內部函式供兩種模式共用
-  - 新增 `invokeInSandboxCapture()` 導出（pipe stdio，供 MCP server 使用）
-  - `mcp-server.js` 移除重複的 `executeInSandbox()` / `allowedImages` / `__dirname` 常數
-- [x] **無效配置清理**：修正 `.gitignore` 中的惰性 `~/.tool-calling/` 條目為說明註解
-- [x] **一致性修正**：`scan-monorepo.js` 原本的 `saveRegistry()` 缺少 `lastUpdated` 更新，統一使用共享模組後自動修復
-- [x] **文件同步**：更新 `DEV_LOG.md` 記錄本階段
+#### 完�??�目
+- [x] **?��?註�?**：使??`node cli.js batch-add` ?��?�?26 ??GitHub URL 註�???`tools.json`??
+- [x] **?��??�深層�???*：�? `knowledge-work-plugins`, `financial-services`, `claude-for-legal`, `skill`, `skills-JimLiu` ?��?�?`index-subtools`??
+- [x] **索�??��?**：�??�為??5 ?�大補�??�解?�總�?**568** ?��?工具，大幅�??��?語義檢索 L3 ?��??��? L2 ?�命中�??�。總工具庫�???160+ 主�?案�??�含近�??�微?�?��?
 
-#### 移除/重構統計
-| 類別 | 數量 |
+### 2026-07-19：�?案全??MECE 清�??��?件�?�?(Phase 13)
+
+#### ?�求�??��?
+1. **保�?極致潔淨 (MECE)**：�?案�??��?輪迭�???�目?��?始出?��? `urls.txt`?�`my_sft_dataset.jsonl` 等暫?�性�??�出?�物?��??��?它們收納至?��??��?，以符�??�相互獨立、�??�窮?�」�??��??�輯??
+2. **?�件?�步**：`README.md` ?�要更?��?以�???Phase 12 ??Sandbox ?�離?�Telemetry ?�測??SFT 資�??��?等新?�性�?讓使?�者�?�???��??��??��??��?
+
+#### 完�??�目
+- [x] **?��?清�?**：建�?`.exports/` ?��?，�??�出?��??��??�批?�網?�檔移?��?並更??`.gitignore` ?�除追蹤??
+- [x] **IDE ?�置檔審??*：確�?`.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.trae`, `.kiro` ?�維?�為導�? `.agents/AGENTS.md` ?�單一?��?來�??��?，無?��??�置??
+- [x] **README ?��?**�?
+  - ?�新已註?�工?�數?�為??160 庫」�?
+  - ?�「快?��?始」�???`invoke` ??`export-dataset` ?�令??
+  - ?�「核心特?�」�?�?Sandbox 安全?�離??Telemetry ?��?評�??�說?��?
+  - ?�「架構樹?��?�?`core/sandbox.js`, `core/telemetry.js`, `scripts/export-dataset.js`??
+- [x] **建�??��??��?�?*：執�?`npm test` 確�??�能?��?，並建�?清晰??Git Commit (`chore: perform MECE global cleanup and documentation synchronization`) ?�送至?�端?�庫??
+
+
+### 2026-07-19：嚴?��??��???- API ?�鑰外洩 (Phase 13.5)
+
+#### ?��??�述
+?�實�?scripts/enrich-registry.js ?�次?�新?�本?��?將�?實�? Agnes AI API ?�鑰 (sk-SMfdNFc2...) 寫死?��?式碼中�??��?設值�?並隨??Commit c00000 ?�送至 GitHub ?��??�庫，造�??��??��?證�?洩風?��?
+
+#### ?�正?�施 (Corrective Action - CAPA)
+- **移除?�鑰**：修??scripts/enrich-registry.js，強?��?從環境�???process.env.AGNES_API_KEY 讀?��??��??�無?��??�錯誤並中斷?��???
+- **清除 Git 歷史**：使??git reset --soft 將�??�退?��??��?洩�??�乾淨�??��??�新 Commit 並執�?git push -f，�??�端?�庫?��??��??�歷?�抹?��?
+- **?��?註銷**：通知使用?��??��?往 Agnes AI 後台註銷該�?外洩?�鑰，徹底阻?�濫?�可?��?
+
+#### ?�防?�施 (Preventive Action - CAPA)
+- 觸發 <proactive_self_evolution> 規�?，主?�於專�??��??�令 .agents/AGENTS.md 中新增�? **?��?止硬編碼 API ?�鑰?��??��?�?(Zero Hardcoded Credentials)??* 條款?�未來撰寫任何�?驗�??�腳?��?，強?�實?�自?�審?��?確�??��?證硬編碼?��???
+
+### 2026-07-20：�??�性強??(Phase 14)
+
+#### ?�求�??��?
+修復 `installer.js` 中�??��? Git RCE ?�路徑穿越�?洞�?例�? `ext::` ?�輸層、`--upload-pack` ?�數注入?�以?��??��??�路徑穿越�???
+
+#### 完�??�目
+- [x] 導入 `SAFE_REPO_URL` �???��??��??�格?�制 Github Repo URL ?��???
+- [x] 實�? `assertSafeRef` ?��?，防止�??�注?��??��? `-` ?�頭）�?路�?穿�?（阻??`..`）�?
+- [x] 將修復�???`core/installer.js` ?�交並推?�到?�端??
+
+### 2026-07-21 ???��?工具?��??�深層�?�?(Phase 15)
+
+#### ?�求�??��?
+1. **?��?註�?庫�???*：�? 36 ?�新??GitHub 專�? URL ?��??�入工具庫�?
+2. **大�?帖深層索�?(檢查?�否?�要�?�?**：�?對其中�??��??��??��? Cybersecurity ??LLM API 等大補�??��?深層?��???
+
+#### 完�??�目
+- [x] **?��?註�?**：建�?`urls_batch3.txt` 並執�?`node cli.js batch-add urls_batch3.txt`，�??��??��?案�???`tools.json` 註�?庫�?
+- [x] **?��??�深層�???*：�?多個可?��?大�?帖執�?`index-subtools`，�??��?�?��?��?工具�?
+  - `anthropic-cybersecurity-skills` (?�現 817 ?��?工具)
+  - `cybersecurity-skills` (?�現 29 ?��?工具)
+  - `claude-code-cybersecurity-skill` (?�現 19 ?��?工具)
+  - `awesome-free-llm-apis` (?�現 1 ?��?工具)
+- [x] **MECE 檔�?管�?**：�??�批?�匯?��?，�? `urls_batch3.txt` 移至 `.exports/` 中�?保�??�目?�乾淨�?
+
+#### RCA / CAPA
+- (?�異常�?況�?系統穩�??��?大批?��??�?��?�???�寫??
+
+### 2026-07-21 ??第�?波批?�工?�擴增�?深層?�解 (Phase 16)
+
+#### ?�求�??��?
+1. **?��?註�?庫�???*：�?使用?��?供�??��? 22 ?�新 GitHub 專�? URL ?��??�入工具庫�?
+2. **大�?帖深層索�?(檢查?�否?�要�?�?**：�?對新?�入且�?似為綜�??�?��??��?案進�?深層?��???
+
+#### 完�??�目
+- [x] **?��?註�?**：建�?`.exports/urls_batch4.txt` 並執�?`node cli.js batch-add`，�??��??��?案�???`tools.json` 註�?庫�?
+- [x] **?��??�深層�???*：�?多個可?��?大�?帖執�?`index-subtools`，�??��?�?��?��?子工?��?
+  - `skills-emilkowalski` (?�現 7 ?��?工具)
+  - `skills-MiniMax-AI` (?�現 23 ?��?工具)
+  - `ui-skills` (?�現 7 ?��?工具)
+  - `stitch-skills` (?�現 15 ?��?工具)
+  - `andrej-karpathy-skills` (?�現 1 ?��?工具)
+- [x] **MECE 檔�?管�?**：`urls_batch4.txt` 已�??�接建�???`.exports/` ?��?中�??��??��??�移??
+
+#### RCA / CAPA
+- (?�異常�?況�?系統穩�??��??�?�解?��?寫入)
+
+### 2026-07-21 ??專�?程�?碼�?檔�??��?作業 (Phase 17)
+
+#### ?�求�??��?
+1. **?�面?��??��???*：移?��??��??��???HTML 檔�??�遺?��?安�?快�?，以?�為了維?�嚴?��? MECE ?��?，�??��??�只?�單行�?標�??��??��? IDE 設�?檔�?
+2. **?�步?�新?�件?��??��?**：確保�?件�?程�?碼�??��?並建立優?��???Git ?��?點�?
+
+#### 完�??�目
+- [x] **?��?檔�??�無?�快?��???*：刪?��? `.temp/lingbot-map` ??`docs/` 下�??��??��?輸出 (`實�??�發?��?.html` �???
+- [x] **IDE ?�置�?MECE ?��?**：刪?��??��???`.cursorrules`, `.windsurfrules`, `CLAUDE.md`, `.github/copilot-instructions.md`, `.trae/`, `.kiro/`，使 `.agents/AGENTS.md` ?�為?��??�系統�??��?範�?
+- [x] **?�件?�步**：更??`README.md`，使註�?庫總?�更?�為?�?��??��???265 庫」�?並更?�此?�發?��???
+- [x] **?�本?�制**：建立�??��? Git ?��?點並?�送至?�端??
+
+#### RCA / CAPA
+- (?�次?��?案架構優?��??�特殊錯誤發?��??��??�身並�??��?案整潔度)
+
+### 2026-07-21 ??MCP 介面?��??��??�防禦固??(Phase 18)
+
+#### ?�求�??��?
+1. **?�禦機制?��?**：�? Claude ?�出?��??��??��?求�?強制?�鑰?�檢?�Prompt Injection ?�禦標籤 `<untrusted_data>`?�以?�優?��?�?Fallback 機制）寫?��?案�??�高�?導�???`.agents/AGENTS.md`??
+2. **MCP (Model Context Protocol) 介面實�?**：避?�直?��???Smart Reranker 帶�??�新?��??��?外部 API ?�本，改以�?供�?準�? MCP 介面，�? AI Agent (�?Claude Desktop) ?��??��?段漸?��??�露 (Progressive Disclosure) 來�??�地檢索?�調?�工?��?
+
+#### 完�??�目
+- [x] **安全?�禦?��?**：更??`.agents/AGENTS.md` ?�入 `LLM ?��?安全?�防禦�?規�?`??
+- [x] **MCP Server 實�?**：新�?`mcp-server.js`，實�?STDIO ?�輸介面，並?�露??`list_tools`?�`search_tools`?�`get_tool_detail` ??`run_tool` ?�個工?��?
+- [x] **沙�??��?對接**：`run_tool` ?��?對接 `core/sandbox.js` ?�輯，�??�嚴?��? Docker 容器?�制 (`--network none`, `--read-only`, `--cap-drop ALL`)??
+- [x] **依賴?�新**：`package.json` ?��? `@modelcontextprotocol/sdk`??
+- [x] **?�件?�步**：更??`README.md` ?�入 MCP 伺�??��??��??�設定方式�?
+
+#### RCA / CAPA
+- **?��? (審查?�段?�現)**：�??�夥�?(opencode) ?�然完�?實�?了�?式碼??`README.md` ?�更?�並完�?�?Commit ?�播，�??��?了�?步更??`DEV_LOG.md`，�??��? `AGENTS.md` 中「�?止�?件�?�?��?�交?�鉤 (Zero Detached Commits for Docs/Logs)?��?規�???
+- **?�正?�施**：主?��?上本?�段?��??�日誌�??��?並進�?補�? Commit??
+
+### 2026-07-23 ???�面程�?碼�?構�??�享模�??��? (Phase 19)
+
+#### ?�求�??��?
+?�歷�?18 ?��?段�?快速迭�??，�?案中積累了大?��?程�?碼�?�?(Duplication)�?
+- `loadRegistry()` / `saveRegistry()` ??4 ?��?案中?�寫一�?(`cli.js`, `mcp-server.js`, `scan-monorepo.js`, `enrich-registry.js`)
+- `generateId()` ??`cli.js` ??`scan-tool.js` 中�?�?
+- `parseMarkdownDescription()` ??`scan-tool.js` ?��?實�?，`scan-monorepo.js` ?��??��?
+- Docker 沙�?建置?�輯 (`allowedImages`, docker args ???) ??`core/sandbox.js` ??`mcp-server.js` 中�?寫�?�?
+- `.gitignore` 中�? `~/.tool-calling/` 條目??Git 不�???`~` 實為?��?
+
+#### 完�??�目
+- [x] **?�享模�??��?**�?
+  - 建�? `core/registry.js`，統一?��? `loadRegistry()` / `saveRegistry()` / `getToolById()` / `generateId()`
+  - 建�? `scripts/scanner-utils.js`，統一?��? `parseMarkdownDescription()`
+  - ?�新 `cli.js`, `mcp-server.js`, `scan-tool.js`, `scan-monorepo.js`, `enrich-registry.js` ?�部?�用?�享模�?
+- [x] **Docker 沙�??�輯?�併**�?
+  - `core/sandbox.js` ?��? `buildDockerArgs()` ?�部?��?供兩種模式共??
+  - ?��? `invokeInSandboxCapture()` 導出（pipe stdio，�? MCP server 使用�?
+  - `mcp-server.js` 移除?��???`executeInSandbox()` / `allowedImages` / `__dirname` 常數
+- [x] **?��??�置清�?**：修�?`.gitignore` 中�??��?`~/.tool-calling/` 條目?�說?�註�?
+- [x] **一?�性修�?*：`scan-monorepo.js` ?�本??`saveRegistry()` 缺�? `lastUpdated` ?�新，統一使用?�享模�?後自?�修�?
+- [x] **?�件?�步**：更??`DEV_LOG.md` 記�??��?�?
+
+#### 移除/?��?統�?
+| 類別 | ?��? |
 |------|------|
-| 移除重複函式 (程式碼行) | ~80 行 |
-| 統一路徑常數 (REGISTRY_PATH) | 4 處 → 1 處 |
-| 合併 Docker 建置邏輯 | 2 處 → 1 處 |
-| 新增共享模組 | 2 個 (`core/registry.js`, `scripts/scanner-utils.js`) |
+| 移除?��??��? (程�?碼�?) | ~80 �?|
+| 統�?路�?常數 (REGISTRY_PATH) | 4 ????1 ??|
+| ?�併 Docker 建置?�輯 | 2 ????1 ??|
+| ?��??�享模�? | 2 ??(`core/registry.js`, `scripts/scanner-utils.js`) |
 
 #### RCA / CAPA
-- **問題 (審查階段發現)**：原始 `scan-monorepo.js` 的 `saveRegistry()` 忘記更新 `lastUpdated` 時間戳，導致後續排序依賴 `addedAt` 的查詢可能異常。
-- **矯正措施**：由於已將所有寫入操作統一至 `core/registry.js` 的 `saveRegistry()`，此問題於 source 層級永久修復。
-- **預防措施**：未來新增任何需要讀寫 `tools.json` 的模組，一律從 `core/registry.js` 導入，禁止自行定義路徑或解析邏輯。
+- **?��? (審查?�段?�現)**：�?�?`scan-monorepo.js` ??`saveRegistry()` 忘�??�新 `lastUpdated` ?��??��?導致後�??��?依賴 `addedAt` ?�查詢可?�異常�?
+- **?�正?�施**：由?�已將�??�寫?��?作統一??`core/registry.js` ??`saveRegistry()`，此?��???source 層�?永�?修復??
+- **?�防?�施**：未來新增任何�?要�?�?`tools.json` ?�模組�?一律�? `core/registry.js` 導入，�?止自行�?義路徑�?�???�輯??
 
 
-### 2026-07-23 — 專案整體程式碼與檔案優化 (Phase 20)
+### 2026-07-23 ??專�??��?程�?碼�?檔�??��? (Phase 20)
 
-#### 需求與動機
-專案歷經 19 個階段的快速迭代，已具備完整功能（279 個工具、三層檢索、MCP Server、Docker 沙盒、Telemetry）。現在進入「穩定化」階段，執行全面盤點與清理。
+#### ?�求�??��?
+專�?歷�? 19 ?��?段�?快速迭�??已具?��??��??��?279 ?�工?�、�?層檢索、MCP Server?�Docker 沙�??�Telemetry）。現?�進入?�穩定�??��?段�??��??�面?��??��??��?
 
-#### 完成項目
-- [x] **全面盤點**：
-  - 遍歷所有目錄與檔案，確認核心模組無過時/重複代碼
-  - 驗證 `cli.js`、`mcp-server.js` 全部改用共享模組（`core/registry.js`）
-  - 確認所有工具狀態為 `active`，無 `experimental` 或 `deprecated` 項目
-  - 確認所有工具皆有完整 description、negativeConstraints、triggers
-- [x] **清理作業**：
-  - 移除 `.exports/urls_batch3.txt` 與 `.exports/urls_batch4.txt`（Phase 15-16 的舊批次匯入 URL 清單，已無參考價值）
-  - 修正 `.gitignore`：移除不存在的 `.tempmediaStorage/` 條目，移除 Phase 19 後已過時的 `~/.tool-calling/` 註解
-- [x] **文件同步**：
-  - `README.md` 已更新為小白友善版本（280 行，涵蓋六種用法）
-  - `docs/relationship-diagram.html` 已建立三角色關係圖解
-  - `DEV_LOG.md` 記錄至此階段
-- [x] **測試確效**：
-  - `npm test` — 6/6 通過
-  - `node cli.js health-check` — 279/279 健康
-  - `node cli.js validate` — 格式驗證通過
+#### 完�??�目
+- [x] **?�面?��?**�?
+  - ?�歷?�?�目?��?檔�?，確認核心模組無?��?/?��?�?��
+  - 驗�? `cli.js`?�`mcp-server.js` ?�部?�用?�享模�?（`core/registry.js`�?
+  - 確�??�?�工?��??�為 `active`，無 `experimental` ??`deprecated` ?�目
+  - 確�??�?�工?��??��???description?�negativeConstraints?�triggers
+- [x] **清�?作業**�?
+  - 移除 `.exports/urls_batch3.txt` ??`.exports/urls_batch4.txt`（Phase 15-16 ?��??�次?�入 URL 清單，已?��??�價?��?
+  - 修正 `.gitignore`：移?��?存在??`.tempmediaStorage/` 條目，移??Phase 19 後已?��???`~/.tool-calling/` 註解
+- [x] **?�件?�步**�?
+  - `README.md` 已更?�為小白?��??�本�?80 行�?涵�??�種?��?�?
+  - `docs/relationship-diagram.html` 已建立�?角色?��??�解
+  - `DEV_LOG.md` 記�??�此?�段
+- [x] **測試確�?**�?
+  - `npm test` ??6/6 ?��?
+  - `node cli.js health-check` ??279/279 ?�康
+  - `node cli.js validate` ???��?驗�??��?
 
-#### 專案現況摘要
-| 指標 | 數值 |
+#### 專�??��??��?
+| ?��? | ?��?|
 |------|------|
-| 註冊工具數 | 279 |
-| 分類數 | 20 |
-| 子工具數 | ~1,800+ |
-| 單元測試 | 6 項（全通過） |
-| 核心模組 | 6 個（search-engine, installer, sandbox, telemetry, cleanup, registry） |
-| 腳本模組 | 6 個（build-web, enrich-registry, export-dataset, scan-tool, scan-monorepo, scanner-utils） |
-| 健康度 | 100%（279/279 工具可用） |
+| 註�?工具??| 279 |
+| ?��???| 20 |
+| 子工?�數 | ~1,800+ |
+| ?��?測試 | 6 ?��??�通�?�?|
+| ?��?模�? | 6 ?��?search-engine, installer, sandbox, telemetry, cleanup, registry�?|
+| ?�本模�? | 6 ?��?build-web, enrich-registry, export-dataset, scan-tool, scan-monorepo, scanner-utils�?|
+| ?�康�?| 100%�?79/279 工具?�用�?|
 
 #### RCA / CAPA
-- （本次為例行性架構優化，無異常狀況）
+- （本次為例�??�架構優?��??�異常�?況�?
 
-### 2026-07-24 — 批量工具加入自動化與全面文件同步 (Phase 21)
+### 2026-07-24 ???��?工具?�入?��??��??�面?�件?�步 (Phase 21)
 
-#### 需求與動機
-1. **自動化批量加入邏輯**：使用者多次要求「批量加入工具庫」，但現有 `batch-add` 僅是讀取 URL 清單逐一掃描，缺乏智能分類與拆解判斷。需建立完整的 URL 解析 → 自動分類 → 寫入 registry 流程。
-2. **全面文件同步**：專案歷經 20 個階段迭代，DEV_LOG.md、README.md、AGENTS.md 中的數字與操作指引已與實際程式碼產生落差（工具數 279→280、scripts 清單過時、缺少 batch-add 增強說明等）。
+#### ?�求�??��?
+1. **?��??�批?��??��?�?*：使?�者�?次�?求「批?��??�工?�庫?��?但現??`batch-add` ?�是讀??URL 清單?��??��?，缺乏智?��?類�??�解?�斷?��?建�?完整??URL �?? ???��??��? ??寫入 registry 流�???
+2. **?�面?�件?�步**：�?案歷�?20 ?��?段迭�??DEV_LOG.md?�README.md?�AGENTS.md 中�??��??��?作�?引已?�實?��?式碼?��??�差（工?�數 279??80?�scripts 清單?��??�缺�?batch-add 增強說�?等�???
 
-#### 完成項目
-- [x] **URL 解析器 (`scripts/url-resolver.js`)**：新模組，辨識三種 URL 類型：
-  - `resource` — API 目錄/學習清單（method: none，作為學習資源加入）
-  - `tool` — 單一可執行工具（走 scanner 完整掃描）
-  - `monorepo` — 多工具集合（智能拆解為多個子 entry）
-- [x] **scan-tool.js 強化**：
-  - 擴充分類規則從 15 增至 17+ 個分類，新增 `gemini`, `gpt-proxy`, `openai-compatible`, `awesome-`, `public-apis` 等關鍵詞
-  - `guessInstall()` 增加非可安裝資源檢測，避免對 markdown-only repo 產生錯誤安裝指令
-- [x] **batch-add 命令重構**：整合 resolver + scanner，產出詳細報告（新增/跳過/失敗統計 + 每條 URL 處理結果）
-- [x] **清理重複模組**：移除 `scripts/scanner-utils.js`，將共用函式 inline 至 `scan-monorepo.js`
-- [x] **修復隱式依賴 bug**：`package.json` 補上 `zod` 宣告（`mcp-server.js` 依賴但未宣告）
-- [x] **更新 .gitignore**：加入 `.omo/`, `.agnes/` 防止快取被提交
-- [x] **工具庫更新**：手動豐富 `gemini-cli`（13 capabilities）、修正 `public-apis`（移除錯誤 pip install）、新增 `gpt-api-free`
-- [x] **文件同步**：本文檔、README.md、AGENTS.md、docs/ 全面更新
+#### 完�??�目
+- [x] **URL �????(`scripts/url-resolver.js`)**：新模�?，辨識�?�?URL 類�?�?
+  - `resource` ??API ?��?/學�?清單（method: none，�??�學習�?源�??��?
+  - `tool` ???��??�執行工?��?�?scanner 完整?��?�?
+  - `monorepo` ??多工?��??��??�能?�解?��??��? entry�?
+- [x] **scan-tool.js 強�?**�?
+  - ?��??��?規�?�?15 增至 17+ ?��?類�??��? `gemini`, `gpt-proxy`, `openai-compatible`, `awesome-`, `public-apis` 等�??��?
+  - `guessInstall()` 增�??�可安�?資�?檢測，避?��? markdown-only repo ?��??�誤安�??�令
+- [x] **batch-add ?�令?��?**：整??resolver + scanner，產?�詳細報?��??��?/跳�?/失�?統�? + 每�? URL ?��?結�?�?
+- [x] **清�??��?模�?**：移??`scripts/scanner-utils.js`，�??�用?��? inline ??`scan-monorepo.js`
+- [x] **修復?��?依賴 bug**：`package.json` 補�? `zod` �??（`mcp-server.js` 依賴但未�??�?
+- [x] **?�新 .gitignore**：�???`.omo/`, `.agnes/` ?�止快�?被�?�?
+- [x] **工具庫更??*：�??��?�?`gemini-cli`�?3 capabilities）、修�?`public-apis`（移?�錯�?pip install）、新�?`gpt-api-free`
+- [x] **?�件?�步**：本?��??�README.md?�AGENTS.md?�docs/ ?�面?�新
 
-#### 專案現況摘要
-| 指標 | 數值 |
+#### 專�??��??��?
+| ?��? | ?��?|
 |------|------|
-| 註冊工具數 | 280 |
-| 分類數 | 20 |
-| 子工具數 | ~2,708（30 個主工具含 subTools） |
-| 單元測試 | 6 項（全通過） |
-| 核心模組 | 6 個（search-engine, installer, sandbox, telemetry, cleanup, registry） |
-| 腳本模組 | 5 個（build-web, enrich-registry, export-dataset, scan-tool, scan-monorepo, url-resolver） |
-| 健康度 | 100%（280/280 工具可用） |
+| 註�?工具??| 280 |
+| ?��???| 20 |
+| 子工?�數 | ~2,708�?0 ?�主工具??subTools�?|
+| ?��?測試 | 6 ?��??�通�?�?|
+| ?��?模�? | 6 ?��?search-engine, installer, sandbox, telemetry, cleanup, registry�?|
+| ?�本模�? | 5 ?��?build-web, enrich-registry, export-dataset, scan-tool, scan-monorepo, url-resolver�?|
+| ?�康�?| 100%�?80/280 工具?�用�?|
 
 #### RCA / CAPA
-- （本次為功能增強與文件同步，無異常狀況）
+- （本次為?�能增強?��?件�?步�??�異常�?況�?
 
-### 2026-07-25 — 前端 UI 防禦性重構與 Uncaught TypeError 修復 (Phase 22)
+### 2026-07-25 ???�端 UI ?�禦?��?構�? Uncaught TypeError 修復 (Phase 22)
 
-#### 需求與動機
-使用者回報前端 `web/app.js` 選擇分類選單時發生執行階段未捕捉錯誤：
+#### ?�求�??��?
+使用?��??��?�?`web/app.js` ?��??��??�單?�發?�執行�?段未?��??�誤�?
 `app.js:225 Uncaught TypeError: Cannot read properties of undefined (reading 'name') at createToolCard`
 
-#### 完成項目
-- [x] **`web/app.js` 防禦性層級修復**：
-  - `createToolCard()`：加入嚴格空值與型別檢查 (`if (!tool || typeof tool !== 'object' || !tool.name) return null;`)。
-  - `renderSearchResults()`：加入對 `results` 陣列項目的結構校驗，支援 search result 物件與純 tool 物件，防範 `undefined` 或缺漏屬性傳入 `createToolCard`。
-  - `getToolCategories()` / `toolBelongsToCategory()`：加入 `!tool` 空值防衛，防止非預期參數造成 TypeError。
-- [x] **`core/search-engine.js` 檢索引擎魯棒性升級**：
-  - `normalize()`：擴充支援 Array、非字串與 null/undefined 安全處理。
-  - `search()` 前置過濾：支援單一分類字串與陣列分類 (`t.category`) 精確匹配與正規化比較。
-- [x] **單元測試補充**：
-  - 在 `tests/search.test.js` 中新增「陣列分類與魯棒性測試」，涵蓋 `null` / `undefined` 與陣列型別分類輸入，確保 100% 通過。
+#### 完�??�目
+- [x] **`web/app.js` ?�禦?�層級修�?*�?
+  - `createToolCard()`：�??�嚴?�空?��??�別檢查 (`if (!tool || typeof tool !== 'object' || !tool.name) return null;`)??
+  - `renderSearchResults()`：�??��? `results` ????�目?��?構校驗�??�援 search result ?�件?��? tool ?�件，防�?`undefined` ?�缺漏屬?�傳??`createToolCard`??
+  - `getToolCategories()` / `toolBelongsToCategory()`：�???`!tool` 空值防衛�??�止?��??��??�造�? TypeError??
+- [x] **`core/search-engine.js` 檢索引�?魯�??��?�?*�?
+  - `normalize()`：擴?�支??Array?��?字串??null/undefined 安全?��???
+  - `search()` ?�置?�濾：支?�單一?��?字串?�陣?��?�?(`t.category`) 精確?��??�正規�?比�???
+- [x] **?��?測試補�?**�?
+  - ??`tests/search.test.js` 中新增「陣?��?類�?魯�??�測試」�?涵�? `null` / `undefined` ?�陣?��??��?類輸?��?確�? 100% ?��???
 
 #### RCA / CAPA
-- **問題**：`renderSearchResults` 假設傳入的項目直接為 valid tool 物件或帶有非空 `.tool` 屬性的搜尋結果物件，且 `createToolCard` 缺乏對 `tool` 物件及 `.name` 屬性的 null/undefined 預防校驗。當前選單切換或搜尋結果回傳異常 structure 時，存取 `tool.name` 導致 `Cannot read properties of undefined (reading 'name')` 崩潰。
-- **矯正與預防措施 (CAPA)**：
-  1. 在 UI 視圖層 (`createToolCard` / `renderSearchResults`) 實施「雙重防護」 (Double Guarding)，對傳入的物件進行型別與 key 存在的校驗，無效物件優雅降級跳過。
-  2. 在核心邏輯層 (`search-engine.js`) 的 `normalize` 與過濾器增加對 `Array` / `null` / `undefined` 的安全防禦。
-  3. 補充自動化單元測試涵蓋異常邊界資料。
+- **?��?**：`renderSearchResults` ?�設?�入?��??�直?�為 valid tool ?�件?�帶?��?�?`.tool` 屬性�??��?結�??�件，�? `createToolCard` 缺�?�?`tool` ?�件??`.name` 屬性�? null/undefined ?�防?��??�當?�選?��??��??��?結�??�傳?�常 structure ?��?存�? `tool.name` 導致 `Cannot read properties of undefined (reading 'name')` 崩潰??
+- **?�正?��??�措??(CAPA)**�?
+  1. ??UI 視�?�?(`createToolCard` / `renderSearchResults`) 實施?��??�防護�?(Double Guarding)，�??�入?�物件進�??�別??key 存在?�校驗�??��??�件?��??��?跳�???
+  2. ?�核心�?輯層 (`search-engine.js`) ??`normalize` ?��?濾器增�?�?`Array` / `null` / `undefined` ?��??�防禦�?
+  3. 補�??��??�單?�測試涵?�異常�??��??��?
 
-### 2026-07-25 — 網站 Favicon 圖標設計與 404 資源缺失修正 (Phase 23)
+### 2026-07-25 ??網�? Favicon ?��?設�???404 資�?缺失修正 (Phase 23)
 
-#### 需求與動機
-瀏覽器主動向 GitHub Pages 請求 `/favicon.ico` 資源時觸發 `GET https://chun-chieh-chang.github.io/favicon.ico 404 (Not Found)` 錯誤。
+#### ?�求�??��?
+?�覽?�主?��? GitHub Pages 請�? `/favicon.ico` 資�??�觸??`GET https://chun-chieh-chang.github.io/favicon.ico 404 (Not Found)` ?�誤??
 
-#### 完成項目
-- [x] **極致視覺設計 (Favicon Assets)**：
-  - 設計兼具深色毛玻璃質感與向量質感的 `favicon.svg` (含圓角深色基底、扳手 🔧 與閃電 ⚡ 高光漸層與發光濾鏡)。
-  - 生成 `favicon.ico` 雙備援資源，確保現代與傳統瀏覽器皆能正常載入。
-- [x] **HTML 標籤整合**：
-  - 更新 [web/index.html](file:///d:/Self-developed_Apps/Tool-Calling/web/index.html)，補齊 `<link rel="icon" type="image/svg+xml" href="favicon.svg">` 與 `<link rel="alternate icon" href="favicon.ico">`。
-- [x] **建置腳本升級**：
-  - 更新 [scripts/build-web.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/build-web.js)，部署時自動將 Favicon 資源複製至 `./dist`。
-
-#### RCA / CAPA
-- **問題**：`web/index.html` 缺少 `<link rel="icon">` 標籤宣告且根目錄未提供 `favicon.ico`，導致瀏覽器發出預設 `/favicon.ico` HTTP 請求時回傳 HTTP 404。
-- **矯正與預防措施 (CAPA)**：補齊 SVG 與 ICO 格式的 Favicon 資源與 HTML 宣告，並於 CI/CD 構建流程中自動進行複製，防止資源丟失。
-
-### 2026-07-25 — 儀表板與統計圖表介面重構 (Phase 24)
-
-#### 需求與動機
-使用者需求：「介面應該是一個儀表板，顯示各分類的條目與數量，以及統計圖表」。將原本單一的搜尋列表頁面升級為國際級雙視圖儀表板與數據分析中心。
-
-#### 完成項目
-- [x] **KPI 數據指標卡片 (KPI Grid)**：展示工具總數 (280)、分類總數 (20)、子技能數 (~2,708+) 與 L1~L3 檢索引擎狀態。
-- [x] **統計圖表繪製 (Chart.js)**：
-  - 各分類工具數量分佈柱狀圖 (`Category Bar Chart`)，支援懸停數據與點擊圖表連動過濾條目。
-  - 開發語言占比甜甜圈圖 (`Language Breakdown Doughnut Chart`)。
-- [x] **分類條目與數據概覽面板 (Category Overview Grid)**：生成 20 個分類概覽卡片，含各分類條目數量 Badge 與前 3 個熱門工具預覽。
-- [x] **分頁與選單連動 (Tab Switcher & Search Sync)**：支援「📊 儀表板總覽」與「🔧 工具目錄列表」動態切換，搜尋或篩選時自動滑動過濾。
-- [x] **建置與測試**：`node scripts/build-web.js` 打包成功，7/7 單元測試 PASS 通過。
+#### 完�??�目
+- [x] **極致視覺設�? (Favicon Assets)**�?
+  - 設�??�具深色毛玻?�質?��??��?質�???`favicon.svg` (?��?角深?�基底、扳???�� ?��?????高�?漸層?�發?�濾????
+  - ?��? `favicon.ico` ?��??��?源�?確�??�代?�傳統瀏覽?��??�正常�??��?
+- [x] **HTML 標籤?��?**�?
+  - ?�新 [web/index.html](file:///d:/Self-developed_Apps/Tool-Calling/web/index.html)，�?�?`<link rel="icon" type="image/svg+xml" href="favicon.svg">` ??`<link rel="alternate icon" href="favicon.ico">`??
+- [x] **建置?�本?��?**�?
+  - ?�新 [scripts/build-web.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/build-web.js)，部署�??��?�?Favicon 資�?複製??`./dist`??
 
 #### RCA / CAPA
-- （本次為 UI/UX 儀表板升級與新功能建置，無異常狀況）
+- **?��?**：`web/index.html` 缺�? `<link rel="icon">` 標籤�??且根?��??��?�?`favicon.ico`，�??�瀏覽?�發?��?�?`/favicon.ico` HTTP 請�??��???HTTP 404??
+- **?�正?��??�措??(CAPA)**：�?�?SVG ??ICO ?��???Favicon 資�???HTML �??，並??CI/CD 構建流�?中自?�進�?複製，防止�?源�?失�?
 
-### 2026-07-25 — 搜尋欄位置重構與口語意圖自動清洗 (Phase 25)
+### 2026-07-25 ???�表板?�統計�?表�??��?�?(Phase 24)
 
-#### 需求與動機
-使用者回報兩項核心 UX 問題：
-1. 「附圖的選擇欄應該在選擇'工具目錄列表'時才出現」：原本的全域搜尋欄出現在儀表板頂部顯得雜亂。
-2. 「在那個欄位寫需求根本無效，除非接入大模型進行語意檢索」：口語化需求（如「我想做簡報」）在前端搜尋時包含雜訊詞，且 placeholder 提示不精確。
+#### ?�求�??��?
+使用?��?求�??��??��?該是一?��?表板，顯示�??��??��??��??��?，以?�統計�?表」。�??�本?��??��?尋�?表�??��?級為?��?級�?視�??�表板?�數?��??�中心�?
 
-#### 完成項目
-- [x] **搜尋欄位置搬移**：將 `.search-container` 移入 `toolsView` (工具目錄列表) 分頁頂部，儀表板總覽頁保持潔淨。
-- [x] **Placeholder 修正**：更新提示文字為 `搜尋工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)...`。
-- [x] **口語意圖自動清洗 (Query Cleaning)**：於 `core/search-engine.js` 增加前綴清洗邏輯 (如自動去除「我想」、「請幫我」、「幫我」、「要如何」等)，讓「我想做簡報」能自動轉換為「做簡報」並命中 `ppt-master`。
-- [x] **單元測試補充**：新增口語清洗單元測試，8/8 測試全數 PASS 通過。
-
-#### RCA / CAPA
-- **問題**：全域搜尋欄遮擋儀表板視覺焦點，且口語化搜尋包含「我想」等干擾詞降低 TF-IDF / 關鍵字匹配精確度。
-- **矯正與預防措施 (CAPA)**：將搜尋欄歸屬於目錄分頁，並於檢索引擎入口增加自然語言填充詞預處理，維持極致 UX 與高精確度檢索。
-
-### 2026-07-25 — 匹配工具卡片網格佈局優化與自動換行 (Phase 26)
-
-#### 需求與動機
-使用者需求：「匹配工具卡片應該由左至右排列，以及可換行顯示」。
-
-#### 完成項目
-- [x] **消除嵌套 Grid 擠壓**：將 `index.html` 中的 `#resultsGrid` class 調整為 `.results-container`，解決原本父層與子層同時為 `.grid` 導致子網格被限制在第一欄位的版面壓縮問題。
-- [x] **由左至右橫向排列與自動換行**：設定 `.grid` 採用 `repeat(auto-fill, minmax(280px, 1fr))`，工具卡片自動從左至右填滿整行，空間不足時自動無縫換至下一行。
-- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
+#### 完�??�目
+- [x] **KPI ?��??��??��? (KPI Grid)**：�?示工?�總??(280)?��?類總??(20)?��??�?�數 (~2,708+) ??L1~L3 檢索引�??�?��?
+- [x] **統�??�表繪製 (Chart.js)**�?
+  - ?��?類工?�數?��?佈柱?�??(`Category Bar Chart`)，支?�懸?�數?��?點�??�表????�濾條目??
+  - ?�發語�??��??��??��? (`Language Breakdown Doughnut Chart`)??
+- [x] **?��?條目?�數?��?覽面??(Category Overview Grid)**：�???20 ?��?類�?覽卡?��??��??��?條目?��? Badge ?��? 3 ?�熱?�工具?�覽??
+- [x] **?��??�選?��?? (Tab Switcher & Search Sync)**：支?�「�???�表板總覽?��??��??工具?��??�表?��??��??��??��??�篩?��??��?滑�??�濾??
+- [x] **建置?�測�?*：`node scripts/build-web.js` ?��??��?�?/7 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- **問題**：`resultsGrid` 容器誤設了 `.grid` class，導致 JS 動態產生的 `<div class="grid">` 被當成父網格的一個 cell，迫使所有工具卡片被擠在單一狹窄欄位中。
-- **矯正與預防措施 (CAPA)**：分離外層容器 (`results-container`) 與內層網格 (`grid`)，確保動態產生的卡片網格能 100% 展開並橫向多欄自動換行。
+- （本次為 UI/UX ?�表板?��??�新?�能建置，無?�常?�況�?
 
-### 2026-07-25 — 分類概覽卡片 4 欄佈局升級 (Phase 27)
+### 2026-07-25 ???��?欄�?置�?構�?????��??��?清�? (Phase 25)
 
-#### 需求與動機
-使用者需求：「分類卡片從目前的 3 欄布局改為 4 欄布局」。
+#### ?�求�??��?
+使用?��??�兩?�核�?UX ?��?�?
+1. ?��??��??��?欄�?該在?��?'工具?��??�表'?��??�現?��??�本?�全?��?尋�??�現?��?表板?�部顯�??��???
+2. ?�在??���?位寫?�求根?�無?��??��??�入大模?�進�?語�?檢索?��?????��?求�?如「�??��?簡報?��??��?端�?尋�??�含?��?詞�?�?placeholder ?�示不精確�?
 
-#### 完成項目
-- [x] **桌面端 4 欄網格排版**：調整 `.category-overview-grid` 桌面端為 `repeat(4, 1fr)`，提升寬螢幕資訊展示密度。
-- [x] **響應式降級**：設定 `@media` 查詢，確保在中小型裝置下優雅降為 3 欄 (1024px)、2 欄 (768px) 及單欄 (480px)。
-- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
-
-#### RCA / CAPA
-- （本次為 UI/UX 佈局微調升級，無異常狀況）
-
-### 2026-07-25 — 雙頁面設計邏輯 100% 一致性對齊 (Phase 29)
-
-#### 需求與動機
-使用者需求：「兩個頁面的設計邏輯要一致」。對齊「📊 儀表板總覽」與「🔧 工具目錄列表」的全域控制列、網格規格與標題佈局。
-
-#### 完成項目
-- [x] **全域搜尋列整合**：將 `.search-container` 提升為全域頂部控制列，兩分頁共享統一的搜尋輸入與分類選單控制。
-- [x] **100% 對齊網格與斷點**：`.kpi-grid`、`.category-overview-grid` 與 `.grid` 全面統一為 1440px 寬度、4 欄網格 (`repeat(4, 1fr)`)，並共享相同的響應式斷點 (1200px / 860px / 520px)。
-- [x] **標題列規格統一**：統一採用 `.section-title-bar` 標題樣式與 controls 佈局。
-- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
+#### 完�??�目
+- [x] **?��?欄�?置搬�?*：�? `.search-container` 移入 `toolsView` (工具?��??�表) ?��??�部，�?表板總覽?��??��?淨�?
+- [x] **Placeholder 修正**：更?��?示�?字為 `?��?工具?�稱?�ID?��??��??�觸?��? (例�?: ppt-master, security, video)...`??
+- [x] **????��??��?清�? (Query Cleaning)**：於 `core/search-engine.js` 增�??�綴清�??�輯 (如自?�去?�「�??�」、「�?幫�??�、「幫?�」、「�?如�??��?)，�??��??��?簡報?�能?��?轉�??�「�?簡報?�並?�中 `ppt-master`??
+- [x] **?��?測試補�?**：新增口語�?洗單?�測試�?8/8 測試?�數 PASS ?��???
 
 #### RCA / CAPA
-- （本次為 UI/UX 一致性重構，無異常狀況）
+- **?��?**：全?��?尋�??��??�表板視覺?��?，�?????��?尋�??�「�??�」�?干擾詞�?�?TF-IDF / ?�鍵字匹?�精確度??
+- **?�正?��??�措??(CAPA)**：�??��?欄歸屬於?��??��?，並?�檢索�??�入????�自?��?言填�?詞�??��?，維?�極??UX ?��?精確度檢索�?
 
-### 2026-07-25 — 嚴格 4 欄網格佈局強制與 1200px 斷點移除 (Phase 30)
+### 2026-07-25 ???��?工具?��?網格佈�??��??�自?��?�?(Phase 26)
 
-#### 需求與動機
-使用者回報截圖顯示工具卡片仍為 3 欄且兩側留白過多。原因為原本 CSS 中含有 `@media (max-width: 1200px)` 降級條款，導致視窗低於 1200px 時觸發 3 欄。
+#### ?�求�??��?
+使用?��?求�??�匹?�工?�卡?��?該由左至?��??��?以�??��?行顯示」�?
 
-#### 完成項目
-- [x] **移除 1200px 3 欄降級媒體查詢**：全線網格 (`.grid`, `.kpi-grid`, `.category-overview-grid`) 於桌面與筆電螢幕下 (>768px) 無條件強制實施 **4 欄網格 (`repeat(4, 1fr)`)**。
-- [x] **容器寬度動態展寬 (`width: 96%; max-width: 1600px;`)**：消除桌面視窗兩側過多的黑色空白。
-- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
-
-#### RCA / CAPA
-- **問題**：`@media (max-width: 1200px)` 門檻設定過高，導致常見的中小型桌面/筆電螢幕或縮小視窗視圖被誤判為 3 欄。
-- **矯正與預防措施 (CAPA)**：將 4 欄佈局的適用範圍下探至 768px 門檻，確保桌面端與筆電端 100% 呈列 4 欄美觀版面。
-
-### 2026-07-25 — 冗餘按鈕「展開全部 / 收合全部」清理 (Phase 31)
-
-#### 需求與動機
-使用者回報：「附圖這個東西既然沒有功能，就應該把它移除」。
-
-#### 完成項目
-- [x] **移除 DOM 元素**：刪除 `index.html` 中的 `#expandAllBtn` 按鈕。
-- [x] **清理腳本與樣式**：從 `web/app.js` 與 `web/style.css` 移除 `expandAllBtn` 及 `toggleAllSections()`，維護 MECE 代碼極致乾淨。
-- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
+#### 完�??�目
+- [x] **消除嵌�? Grid ?��?**：�? `index.html` 中�? `#resultsGrid` class 調整??`.results-container`，解決�??�父層�?子層?��???`.grid` 導致子網?�被?�制?�第一欄�??��??��?縮�?題�?
+- [x] **?�左?�右橫�??��??�自?��?�?*：設�?`.grid` ?�用 `repeat(auto-fill, minmax(280px, 1fr))`，工?�卡?�自?��?左至?�填滿整行�?空�?不足?�自?�無縫�??��?一行�?
+- [x] **確�??�測�?*：`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- **問題**：留在工具列表上方且功能已不適用的「展開/收合」按鈕造成 UI 視覺雜訊與操作疑惑。
-- **矯正與預防措施 (CAPA)**：貫徹 MECE 與極簡 UI 原則，第一時間清理無效按鈕，確保介面每個元素皆有明確價值。
+- **?��?**：`resultsGrid` 容器誤設�?`.grid` class，�???JS ?��??��???`<div class="grid">` 被當?�父網格?��???cell，迫使�??�工?�卡?�被?�在?��??��?欄�?中�?
+- **?�正?��??�措??(CAPA)**：�??��?層容??(`results-container`) ?�內層網??(`grid`)，確保�??�產?��??��?網格??100% 展�?並橫?��?欄自?��?行�?
 
-### 2026-07-25 — 工具庫詮釋資料 100% 補齊與卡片視覺對齊 (Phase 32)
+### 2026-07-25 ???��?概覽?��? 4 欄�?局?��? (Phase 27)
 
-#### 需求與動機
-分析發現截圖中 `shepherd` 卡片缺少 `useCase` 與 `negativeConstraints` 黃/紅雙標籤。依據 [scripts/enrich-registry.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/enrich-registry.js) 既有標準規範補齊。
+#### ?�求�??��?
+使用?��?求�??��?類卡?��??��???3 欄�?局?�為 4 欄�?局?��?
 
-#### 完成項目
-- [x] **詮釋資料盤點與補全**：經程式碼盤點發現 293 個工具中僅 `shepherd` 與 `hyperframes` 缺乏場景欄位，已嚴格依據既有 Prompt 規格補齊 `useCase`, `negativeConstraints`, `advantages` 並升級狀態為 `active`。
-- [x] **100% 資料完備度達到**：全站 293 個工具全數 100% 具備 `useCase` 與 `negativeConstraints` 雙標籤。
-- [x] **確效與測試**：`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS 通過。
-
-#### RCA / CAPA
-- **問題**：個別實驗性工具加入時缺乏標準 metadata，導致前端卡片渲染時標籤區域空白。
-- **矯正與預防措施 (CAPA)**：補齊遺漏工具詮釋資料，達成 293/293 個工具 100% 通過品質門禁。
-
-### 2026-07-25 — 詮釋資料構建標準化 RCA/CAPA 與 Skill 內建 (Phase 33)
-
-#### 需求與動機
-使用者指出「推薦與禁用場景缺失的問題已經不是第一次出現，可見系統在接到新的工具路徑後，並沒有一套統一的規則去建構這些資訊，請執行 RCA 與 CAPA」。
-
-#### 完成項目
-- [x] **RCA 診斷**：發現 `cli.js validate` 未將 `useCase` 與 `negativeConstraints` 列入必填，導致不合規工具能無警告入庫。
-- [x] **CAPA 1 (門禁升級)**：更新 `cli.js` 中的 `cmdValidate()`，將 `useCase` 與 `negativeConstraints` 缺失提升為 Error 必阻擋級別。
-- [x] **CAPA 2 (Skill 內建)**：建立 [.agents/skills/tool-enrichment/SKILL.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/skills/tool-enrichment/SKILL.md)，規範標準 LLM 提示詞與句型（`useCase` 一句話場景、`negativeConstraints` 1-3 個禁用邊界）。
-- [x] **CAPA 3 (元規則寫入)**：於 [.agents/AGENTS.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/AGENTS.md) 加入「新工具詮釋資料完整性防禦元規則」。
-- [x] **確效與測試**：`node cli.js validate` (293/293 通過)、`node scripts/build-web.js` 與 `npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **桌面�?4 欄網?��???*：調??`.category-overview-grid` 桌面端為 `repeat(4, 1fr)`，�??�寬?��?資�?展示密度??
+- [x] **?��?式�?�?*：設�?`@media` ?�詢，確保在中�??��?置�??��??�為 3 �?(1024px)?? �?(768px) ?�單�?(480px)??
+- [x] **確�??�測�?*：`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- **問題**：驗證門禁漏洞 + 導入流程缺乏 Agent Skill 指引。
-- **矯正與預防措施 (CAPA)**：4 層防禦體系（程式碼門禁 + 內建 Skill + 專案規則 + 自主進化）徹底防禦迴歸。
+- （本次為 UI/UX 佈�?微調?��?，無?�常?�況�?
 
-### 2026-07-25 — 前端腳本 SyntaxError 語法緊急修復 (Phase 34)
+### 2026-07-25 ???��??�設計�?�?100% 一?�性�?�?(Phase 29)
 
-#### 需求與動機
-使用者回報瀏覽器出現 `Uncaught SyntaxError: Unexpected token '}'` 錯誤。
+#### ?�求�??��?
+使用?��?求�??�兩?��??��?設�??�輯要�??�」。�?齊「�???�表板總覽?��??��??工具?��??�表?��??��??�制?�、網?��??��?標�?佈�???
 
-#### 完成項目
-- [x] **語法檢驗與修復**：透過 `node --check` 診斷出 `web/app.js` 第 472 行殘留多餘的孤立右括號 `}`，已進行精密外科手術刪除。
-- [x] **確效驗證**：`node --check web/app.js` 與 `node --check dist/app.js` 均 0 錯誤通過，`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS。
-
-#### RCA / CAPA
-- **問題**：前期刪除 `toggleAllSections()` 時清理殘留，多留了一個孤立括號。
-- **矯正與預防措施 (CAPA)**：每次編輯前端腳本後強制執行 `node --check web/app.js` 靜態語法診斷，確保 0 語法錯誤才能 Commit。
-
-### 2026-07-25 — 頂級 GitHub 數據分析 5 大工具庫擴充 (Phase 35)
-
-#### 需求與動機
-使用者需求：「數據分析工具過於單薄，請到 Github 搜索最高評價的5個數據分析工具，加入到本專案工具箱」。
-
-#### 完成項目
-- [x] **檢索並精選 5 大頂級數據分析工具**：
-  1. `duckdb` (DuckDB, ~39.7k ⭐) - 高性能內嵌式 SQL OLAP 資料庫。
-  2. `polars` (Polars, ~39.1k ⭐) - Rust 編寫的極速多執行緒 DataFrames 處理庫。
-  3. `pandas-ai` (PandasAI, ~23.7k ⭐) - 對話式 AI 自然語言 DataFrame 分析 Agent。
-  4. `pygwalker` (PyGWalker, ~15.9k ⭐) - 拖拽式 Tableau 風格 DataFrame 視覺化 UI。
-  5. `ydata-profiling` (YData Profiling, ~11.0k ⭐) - 一行程式碼自動生成 EDA 數據診斷報告。
-- [x] **100% 符合新防禦元規則**：每個工具皆 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` 與 `capabilities`，狀態為 `active`。
-- [x] **確效驗證**：`node cli.js validate` (298/298 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **?��??��??�整??*：�? `.search-container` ?��??�全?��??�控?��?，兩?��??�享統�??��?尋輸?��??��??�單?�制??
+- [x] **100% 對�?網格?�斷�?*：`.kpi-grid`?�`.category-overview-grid` ??`.grid` ?�面統�???1440px 寬度?? 欄網??(`repeat(4, 1fr)`)，並?�享?��??�響?��??��? (1200px / 860px / 520px)??
+- [x] **標�??��??�統一**：統一?�用 `.section-title-bar` 標�?�????controls 佈�???
+- [x] **確�??�測�?*：`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- （本次為數據分析領域核心工具補強，無異常狀況）
+- （本次為 UI/UX 一?�性�?構�??�異常�?況�?
 
-### 2026-07-25 — 頂級 GitHub 前端頁面設計 3 大工具庫擴充 (Phase 36)
+### 2026-07-25 ???�格 4 欄網?��?局強制??1200px ?��?移除 (Phase 30)
 
-#### 需求與動機
-使用者需求：「前端頁面設計工具也是一樣，到 Github 尋找前3名，並加入到本專案工具庫」。
+#### ?�求�??��?
+使用?��??�截?�顯示工?�卡?��???3 欄�??�側?�白?��??��??�為?�本 CSS 中含??`@media (max-width: 1200px)` ?��?條款，�??��?窗�???1200px ?�觸??3 欄�?
 
-#### 完成項目
-- [x] **檢索並精選 3 大頂級前端設計工具**：
-  1. `shadcn-ui` (shadcn/ui, ~75.0k ⭐) - 可存取 React/Tailwind UI 元件生成與設計系統建構。
-  2. `storybook` (Storybook, ~84.0k ⭐) - 前端 UI 元件獨立開發工作坊與設計系統文檔庫。
-  3. `tldraw` (tldraw, ~37.0k ⭐) - 無限畫布 UI 線框圖繪製與 GenUI 向量草圖圖層。
-- [x] **100% 符合新防禦元規則**：每個工具皆 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` 與 `capabilities`，狀態為 `active`。
-- [x] **確效驗證**：`node cli.js validate` (301/301 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **移除 1200px 3 欄�?級�?體查�?*：全線網??(`.grid`, `.kpi-grid`, `.category-overview-grid`) ?��??��?筆電?��?�?(>768px) ?��?件強?�實??**4 欄網??(`repeat(4, 1fr)`)**??
+- [x] **容器寬度?��?展寬 (`width: 96%; max-width: 1600px;`)**：�??��??��?窗兩?��?多�?黑色空白??
+- [x] **確�??�測�?*：`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- （本次為 UI/UX 設計領域核心工具補強，無異常狀況）
+- **?��?**：`@media (max-width: 1200px)` ?�檻設定�?高�?導致常�??�中小�?桌面/筆電?��??�縮小�?窗�??�被誤判??3 欄�?
+- **?�正?��??�措??(CAPA)**：�? 4 欄�?局?�適?��??��??�至 768px ?�檻�?確�?桌面端�?筆電�?100% ?��? 4 欄�?觀?�面??
 
-### 2026-07-25 — 最多人在用 3D 工程繪圖 3 大神器擴充 (Phase 37)
+### 2026-07-25 ???��??��??��??�全??/ ?��??�部?��???(Phase 31)
 
-#### 需求與動機
-使用者需求：「幫我搜尋最多人使用的前三名3D工程繪圖工具並加入到本專案工具箱」。
+#### ?�求�??��?
+使用?��??��??��??�這個東西既?��??��??��?就�?該�?它移?�」�?
 
-#### 完成項目
-- [x] **檢索並精選 3 大頂級 3D 工程繪圖工具**：
-  1. `freecad` (FreeCAD, ~32.3k ⭐) - 全功能參數化 3D 機械工程 CAD 與 2D 技術圖紙繪製工具。
-  2. `openscad` (OpenSCAD, ~9.8k ⭐) - 程式碼驅動之 3D CAD 與 3D 列印建模編譯器。
-  3. `cadquery` (CadQuery, ~5.5k ⭐) - Python 腳本式 3D CAD 參數化繪圖與裝配體框架。
-- [x] **100% 符合新防禦元規則**：每個工具皆 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` 與 `capabilities`，狀態為 `active`，分類歸為 `3D工程繪圖`。
-- [x] **確效驗證**：`node cli.js validate` (304/304 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **移除 DOM ?��?**：刪??`index.html` 中�? `#expandAllBtn` ?��???
+- [x] **清�??�本?�樣�?*：�? `web/app.js` ??`web/style.css` 移除 `expandAllBtn` ??`toggleAllSections()`，維�?MECE �?��極致乾淨??
+- [x] **確�??�測�?*：`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- （本次為 3D工程繪圖領域核心工具補強，無異常狀況）
+- **?��?**：�??�工?��?表�??��??�能已�??�用?�「�????��??��??�造�? UI 視覺?��??��?作�??��?
+- **?�正?��??�措??(CAPA)**：貫�?MECE ?�極�?UI ?��?，第一?��?清�??��??��?，確保�??��??��?素�??��?確價?��?
 
-### 2026-07-25 — 分類與工具卡片 Star 數降序排列 (由左至右、由上至下) (Phase 38)
+### 2026-07-25 ??工具庫詮?��???100% 補�??�卡?��?覺�?�?(Phase 32)
 
-#### 需求與動機
-使用者需求：「能否讓各分類卡片按照 star 數量由左至右、由上至下依序排列」。
+#### ?�求�??��?
+?��??�現?��?�?`shepherd` ?��?缺�? `useCase` ??`negativeConstraints` �?紅�?標籤?��???[scripts/enrich-registry.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/enrich-registry.js) ?��?標�?規�?補�???
 
-#### 完成項目
-- [x] **分類卡片 Star 降序排序**：更新 `renderCategoryOverview()` 與 `renderTools()`，分類一律依該分類下 tools 的 Star 總數由高到低（由左至右、由上至下）排列。
-- [x] **工具卡片 Star 降序排序與 Badge**：類別內工具卡片依 `stars` 降序流暢排列，並於卡片標頭顯示 `⭐ Star 數` Badge。
-- [x] **Star 資料庫賦予 (`scripts/populate-stars.js`)**：確保全庫 304 個工具 100% 具備 `stars` 數值。
-- [x] **確效驗證**：`node --check web/app.js` (0 錯誤)、`node cli.js validate` (304/304 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- （本次為卡片排序演算法與 UI 體驗升級，無異常狀況）
-
-### 2026-07-25 — GitHub Star 數動態自動偵測與排程同步系統 (Phase 39)
-
-#### 需求與動機
-使用者詢問：「star 數會隨時改變，是否能自動偵測」。
-
-#### 完成項目
-- [x] **動態 Star 同步腳本**：撰寫 [scripts/sync-github-stars.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/sync-github-stars.js)，自動透過 GitHub API 獲取最新的 `stargazers_count`。
-- [x] **GitHub Actions 自動排程 (.github/workflows/sync-stars.yml)**：設定 Cron 定時任務（每週日半夜自動運行）與手動一鍵觸發，自動同步更新工具庫並部署。
-- [x] **NPM Script 整合**：新增 `npm run sync-stars` 指令。
-- [x] **確效驗證**：`node cli.js validate` (304/304 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **詮�?資�??��??��???*：�?程�?碼盤點發??293 ?�工?�中??`shepherd` ??`hyperframes` 缺�??�景欄�?，已?�格依�??��? Prompt 規格補�? `useCase`, `negativeConstraints`, `advantages` 並�?級�??�為 `active`??
+- [x] **100% 資�?完�?度�???*：全�?293 ?�工?�全??100% ?��? `useCase` ??`negativeConstraints` ?��?籤�?
+- [x] **確�??�測�?*：`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS ?��???
 
 #### RCA / CAPA
-- （本次為自動化 CI/CD 排程與資料動態同步功能開發，無異常狀況）
+- **?��?**：個別實�??�工?��??��?缺�?標�? metadata，�??��?端卡?�渲?��?標籤?�?�空?��?
+- **?�正?��??�措??(CAPA)**：�?齊遺漏工?�詮?��??��??��? 293/293 ?�工??100% ?��??�質?�禁�?
 
-### 2026-07-25 — 點擊分類卡片 ReferenceError 變數殘留修復 (Phase 40)
+### 2026-07-25 ??詮�?資�?構建標�???RCA/CAPA ??Skill ?�建 (Phase 33)
 
-#### 需求與動機
-使用者回報控制台出現 `Uncaught ReferenceError: expandAllBtn is not defined at handleSearch (app.js:353:5)` 錯誤。
+#### ?�求�??��?
+使用?��??�「推?��?禁用?�景缺失?��?題已經�??�第一次出?��??��?系統?�接?�新?�工?�路徑�?，並沒�?一套統一?��??�去建�??��?資�?，�??��? RCA ??CAPA?��?
 
-#### 完成項目
-- [x] **徹底清理變更遺留**：診斷並移除 [web/app.js](file:///d:/Self-developed_Apps/Tool-Calling/web/app.js) `handleSearch()` 函式內部 3 處殘留的 `expandAllBtn` 屬性設定。
-- [x] **確效驗證**：`grep_search` 確認全專案 0 殘留，`node --check web/app.js` 與 `node --check dist/app.js` 均 0 錯誤通過，`node scripts/build-web.js` 打包成功，8/8 單元測試 PASS。
-
-#### RCA / CAPA
-- **問題**：先前移除 DOM 元素 `#expandAllBtn` 時，忽略了 `handleSearch()` 事件處置內部的顯隱隱藏屬性控制。
-- **矯正與預防措施 (CAPA)**：刪除前端 DOM 元素時，必須強制全案搜尋 (`grep`) 該 id 變數，確保監聽器與事件函式內部 100% 無殘留引用。
-
-### 2026-07-25 — 每週漲星 Top 10 自動探勘與入庫系統 (Phase 41)
-
-#### 需求與動機
-使用者需求：「幫我在本專案建立一個搜索的工具，能夠自動在 Github 搜索當週漲星數最大的前10名工具，並自動將該工具納入本專案的工具箱中。可以用 world week 的方式記錄備查。」
-
-#### 完成項目
-- [x] **自動探勘腳本 (`scripts/trending-weekly.js`)**：
-  - 跨 10 大領域 (AI Agent, LLM, 開發工具, 自動化, 數據分析, ML, GenAI, DevOps, UI, CLI) 搜尋 GitHub 高星數 repos。
-  - 讀取 `star-snapshots.json` 與即時 API 資料計算 Star 漲幅 delta，排序取前 10 名。
-  - 自動入庫新工具至 `registry/tools.json`（含完整 `useCase`, `negativeConstraints`, `advantages` 元資料），去重跳過已存在工具。
-  - 支援 Token 無效 (401) 自動降級為無認證模式 + 指數退避重試機制。
-- [x] **World Week 週報系統 (`registry/weekly-reports/YYYY-WXX.md`)**：每次執行自動產出結構化 Markdown 週報。
-- [x] **GitHub Actions 排程 (`.github/workflows/trending-weekly.yml`)**：每週一凌晨自動執行，偵測新工具入庫並推送。
-- [x] **NPM Script 整合**：新增 `npm run trending` 指令。
-- [x] **首次執行驗證**：2026-W30 探勘 292 個 repos，發現 Top 10 漲星工具，自動入庫 3 個新工具 (304→307)。
-- [x] **確效驗證**：`node cli.js validate` (307/307 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **RCA 診斷**：發??`cli.js validate` ?��? `useCase` ??`negativeConstraints` ?�入必填，�??��??��?工具?�無警�??�庫??
+- [x] **CAPA 1 (?�禁�?�?**：更??`cli.js` 中�? `cmdValidate()`，�? `useCase` ??`negativeConstraints` 缺失?��???Error 必阻?��??��?
+- [x] **CAPA 2 (Skill ?�建)**：建�?[.agents/skills/tool-enrichment/SKILL.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/skills/tool-enrichment/SKILL.md)，�?範�?�?LLM ?�示詞�??��?（`useCase` 一?�話?�景?�`negativeConstraints` 1-3 ?��??��??��???
+- [x] **CAPA 3 (?��??�寫??**：於 [.agents/AGENTS.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/AGENTS.md) ?�入?�新工具詮�?資�?完整?�防禦�?規�??��?
+- [x] **確�??�測�?*：`node cli.js validate` (293/293 ?��?)?�`node scripts/build-web.js` ??`npm test` 8/8 ?�數 PASS??
 
 #### RCA / CAPA
-- **問題 (首次執行)**: 本地環境存在無效 `GITHUB_TOKEN` 導致 401 Unauthorized 錯誤。
-- **矯正措施**: 實作 Token 自動降級機制 (`authDropped` flag) — 偵測到 401 時自動移除無效 Authorization header 並以無認證模式重試。
+- **?��?**：�?證�?禁�?�?+ 導入流�?缺�? Agent Skill ?��???
+- **?�正?��??�措??(CAPA)**�? 層防禦�?系�?程�?碼�?�?+ ?�建 Skill + 專�?規�? + ?�主?��?）徹底防禦迴歸�?
 
-### 2026-07-25 — 每週漲星探勘腳本防禦門檻強化 (Phase 42)
+### 2026-07-25 ???�端?�本 SyntaxError 語�?緊急修�?(Phase 34)
 
-#### 需求與動機
-使用者指示：「增加防禦條件：排除 fork repos (`repo.fork === true`)、最低 Star 絕對門檻 (`stars >= 5000`)」。
+#### ?�求�??��?
+使用?��??�瀏覽?�出??`Uncaught SyntaxError: Unexpected token '}'` ?�誤??
 
-#### 完成項目
-- [x] ** Fork Repository 強制排除**：探勘與入庫雙重過濾關卡加入 `if (repo.fork) continue;`，防止非原創衍生庫混入。
-- [x] ** 絕對 Star 下限 (≥ 5,000⭐)**：設定 `MIN_STARS_THRESHOLD = 5000`，只允許成熟且具高星數認證的開源項目進入候選榜，徹底防禦灌水與低質量 Repo。
-- [x] **確效驗證**：`node --check scripts/trending-weekly.js` (0 錯誤)、`node cli.js validate` (307/307 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- （本次為自動化工具防禦門檻強化，無異常狀況）
-
-### 2026-07-25 — 🔥 每週漲星榜網頁頁面新增與數據整合 (Phase 43)
-
-#### 需求與動機
-使用者需求：「新增頁面，顯示前一周漲星數的排行榜前10名，以及顯示被納入本專案工具箱的有哪些。」
-
-#### 完成項目
-- [x] **新增分頁按鈕與視圖 (`index.html`)**：新增 **🔥 每週漲星榜** 導覽按鈕與 `#trendingView` 容器。
-- [x] **漲星排行榜 (Top 10 Leaderboard Table)**：完整顯示 World Week 週次 (如 2026-W30)、探勘時間區間、名次徽章 (🥇🥈🥉#4-#10)、當前 Stars、當週漲幅 (+Delta) 與「工具箱納入狀態標籤」（`🆕 本週納入` / `✅ 已在工具箱`）。
-- [x] **本週納入工具特寫區**：排行榜下方專區呈現本週自動納入本專案工具箱的完整工具卡片。
-- [x] **數據自動導出與打包 (`scripts/trending-weekly.js` & `build-web.js`)**：探勘腳本自動導出 `weekly-trending.json` 並由構建腳本同步複製至 `./dist`。
-- [x] **確效驗證**：`node --check web/app.js` (0 錯誤)、`node cli.js validate` (311/311 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **語�?檢�??�修�?*：透�? `node --check` 診斷??`web/app.js` �?472 行�??��?餘�?孤�??�括??`}`，已?��?精�?外�??��??�除??
+- [x] **確�?驗�?**：`node --check web/app.js` ??`node --check dist/app.js` ??0 ?�誤?��?，`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS??
 
 #### RCA / CAPA
-- （本次為前端新功能與視覺頁面開發，無異常狀況）
+- **?��?**：�??�刪??`toggleAllSections()` ?��??��??��?多�?了�??�孤立括?��?
+- **?�正?��??�措??(CAPA)**：�?次編輯�?端腳?��?強制?��? `node --check web/app.js` ?��?語�?診斷，確�?0 語�??�誤?�能 Commit??
 
-### 2026-07-25 — 每週漲星數欄位標頭與卡片標籤強化 (Phase 44)
+### 2026-07-25 ???��? GitHub ?��??��? 5 大工?�庫?��? (Phase 35)
 
-#### 需求與動機
-使用者需求：「增加一欄顯示漲星數」。
+#### ?�求�??��?
+使用?��?求�??�數?��??�工?��??�單?��?請到 Github ?�索?�高�??��?5?�數?��??�工?��??�入?�本專�?工具箱」�?
 
-#### 完成項目
-- [x] **排行榜欄位標頭強化**：更新 [web/index.html](file:///d:/Self-developed_Apps/Tool-Calling/web/index.html)，明確標註 `⭐ 累積總 Star 數` 與 `🔥 當週漲星數 (Delta)` 欄位。
-- [x] **漲星數視覺標籤 (Badge & Tags)**：
-  - 排行榜表格以赤紅高亮 Badge 顯示 `🔥 +11 漲星`。
-  - 工具卡片 (`createToolCard`) 自動為新納入工具生成 `<span class="tag">🔥 當週漲星 +N</span>` 標籤。
-- [x] **確效驗證**：`node --check web/app.js` (0 錯誤)、`node cli.js validate` (311/311 通過)、`node scripts/build-web.js` 打包成功、`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **檢索並精??5 大�?級數?��??�工??*�?
+  1. `duckdb` (DuckDB, ~39.7k �? - 高性能?��?�?SQL OLAP 資�?庫�?
+  2. `polars` (Polars, ~39.1k �? - Rust 編寫?�極?��??��?�?DataFrames ?��?庫�?
+  3. `pandas-ai` (PandasAI, ~23.7k �? - 對話�?AI ?�然語�? DataFrame ?��? Agent??
+  4. `pygwalker` (PyGWalker, ~15.9k �? - ?�拽�?Tableau 風格 DataFrame 視覺??UI??
+  5. `ydata-profiling` (YData Profiling, ~11.0k �? - 一行�?式碼?��??��? EDA ?��?診斷?��???
+- [x] **100% 符�??�防禦�?規�?**：�??�工?��? 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` ??`capabilities`，�??�為 `active`??
+- [x] **確�?驗�?**：`node cli.js validate` (298/298 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
 
 #### RCA / CAPA
-- （本次為表格 UI 與卡片標籤欄位強化，無異常狀況）
+- （本次為?��??��??��??��?工具補強，無?�常?�況�?
 
-### 2026-07-25 — 批量新增工具庫與 Monorepo 深層拆解驗證 (Phase 45)
+### 2026-07-25 ???��? GitHub ?�端?�面設�? 3 大工?�庫?��? (Phase 36)
 
-#### 需求與動機
-使用者需求：「繼續幫我把以下這些網址批量加入工具庫(檢查是否需要拆解)：
+#### ?�求�??��?
+使用?��?求�??��?端�??�設計工?��??��?�????Github 尋找???��?並�??�到?��?案工?�庫?��?
+
+#### 完�??�目
+- [x] **檢索並精??3 大�?級�?端設計工??*�?
+  1. `shadcn-ui` (shadcn/ui, ~75.0k �? - ?��???React/Tailwind UI ?�件?��??�設計系統建構�?
+  2. `storybook` (Storybook, ~84.0k �? - ?�端 UI ?�件?��??�發工�??��?設�?系統?��?庫�?
+  3. `tldraw` (tldraw, ~37.0k �? - ?��??��? UI 線�??�繪製�? GenUI ?��??��??�層??
+- [x] **100% 符�??�防禦�?規�?**：�??�工?��? 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` ??`capabilities`，�??�為 `active`??
+- [x] **確�?驗�?**：`node cli.js validate` (301/301 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為 UI/UX 設�??��??��?工具補強，無?�常?�況�?
+
+### 2026-07-25 ???�多人?�用 3D 工�?繪�? 3 大�??�擴??(Phase 37)
+
+#### ?�求�??��?
+使用?��?求�??�幫?��?尋�?多人使用?��?三�?3D工�?繪�?工具並�??�到?��?案工?�箱?��?
+
+#### 完�??�目
+- [x] **檢索並精??3 大�?�?3D 工�?繪�?工具**�?
+  1. `freecad` (FreeCAD, ~32.3k �? - ?��??��??��? 3D 機械工�? CAD ??2D ?�術�?紙繪製工?��?
+  2. `openscad` (OpenSCAD, ~9.8k �? - 程�?碼�??��? 3D CAD ??3D ?�印建模編譯?��?
+  3. `cadquery` (CadQuery, ~5.5k �? - Python ?�本�?3D CAD ?�數?�繪?��?裝�?體�??��?
+- [x] **100% 符�??�防禦�?規�?**：�??�工?��? 100% 寫入 `useCase`, `negativeConstraints`, `advantages`, `triggers`, `install` ??`capabilities`，�??�為 `active`，�?類歸??`3D工�?繪�?`??
+- [x] **確�?驗�?**：`node cli.js validate` (304/304 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為 3D工�?繪�??��??��?工具補強，無?�常?�況�?
+
+### 2026-07-25 ???��??�工?�卡??Star ?��?序�???(?�左?�右?�由上至�? (Phase 38)
+
+#### ?�求�??��?
+使用?��?求�??�能?��??��?類卡?��???star ?��??�左?�右?�由上至下�?序�??�」�?
+
+#### 完�??�目
+- [x] **?��??��? Star ?��??��?**：更??`renderCategoryOverview()` ??`renderTools()`，�?類�?律�?該�?類�? tools ??Star 總數?��??��?（由左至?�、由上至下�??��???
+- [x] **工具?��? Star ?��??��???Badge**：�??�內工具?��?�?`stars` ?��?流暢?��?，並?�卡?��??�顯�?`�?Star ?�` Badge??
+- [x] **Star 資�?庫賦�?(`scripts/populate-stars.js`)**：確保全�?304 ?�工??100% ?��? `stars` ?�值�?
+- [x] **確�?驗�?**：`node --check web/app.js` (0 ?�誤)?�`node cli.js validate` (304/304 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為?��??��?演�?法�? UI 體�??��?，無?�常?�況�?
+
+### 2026-07-25 ??GitHub Star ?��??�自?�偵測�??��??�步系統 (Phase 39)
+
+#### ?�求�??��?
+使用?�詢?��??�star ?��??��??��?，是?�能?��??�測?��?
+
+#### 完�??�目
+- [x] **?��? Star ?�步?�本**：撰�?[scripts/sync-github-stars.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/sync-github-stars.js)，自?�透�? GitHub API ?��??�?��? `stargazers_count`??
+- [x] **GitHub Actions ?��??��? (.github/workflows/sync-stars.yml)**：設�?Cron 定�?任�?（�??�日?��??��??��?）�??��?一?�觸?��??��??�步?�新工具庫並?�署??
+- [x] **NPM Script ?��?**：新�?`npm run sync-stars` ?�令??
+- [x] **確�?驗�?**：`node cli.js validate` (304/304 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為?��???CI/CD ?��??��??��??��?步�??��??��??�異常�?況�?
+
+### 2026-07-25 ??點�??��??��? ReferenceError 變數殘�?修復 (Phase 40)
+
+#### ?�求�??��?
+使用?��??�控?�台?�現 `Uncaught ReferenceError: expandAllBtn is not defined at handleSearch (app.js:353:5)` ?�誤??
+
+#### 完�??�目
+- [x] **徹�?清�?變更?��?**：診?�並移除 [web/app.js](file:///d:/Self-developed_Apps/Tool-Calling/web/app.js) `handleSearch()` ?��??�部 3 ?��??��? `expandAllBtn` 屬性設定�?
+- [x] **確�?驗�?**：`grep_search` 確�??��?�?0 殘�?，`node --check web/app.js` ??`node --check dist/app.js` ??0 ?�誤?��?，`node scripts/build-web.js` ?��??��?�?/8 ?��?測試 PASS??
+
+#### RCA / CAPA
+- **?��?**：�??�移??DOM ?��? `#expandAllBtn` ?��?忽略�?`handleSearch()` 事件?�置?�部?�顯?�隱?�屬?�控?��?
+- **?�正?��??�措??(CAPA)**：刪?��?�?DOM ?��??��?必�?強制?��??��? (`grep`) �?id 變數，確保監?�器?��?件函式內??100% ?��??��??��?
+
+### 2026-07-25 ??每週漲??Top 10 ?��??��??�入庫系�?(Phase 41)
+
+#### ?�求�??��?
+使用?��?求�??�幫?�在?��?案建立�??��?索�?工具，能夠自?�在 Github ?�索?�週漲?�數?�大�???0?�工?��?並自?��?該工?��??�本專�??�工?�箱中。可以用 world week ?�方式�??��??�。�?
+
+#### 完�??�目
+- [x] **?��??��??�本 (`scripts/trending-weekly.js`)**�?
+  - �?10 大�???(AI Agent, LLM, ?�發工具, ?��??? ?��??��?, ML, GenAI, DevOps, UI, CLI) ?��? GitHub 高�???repos??
+  - 讀??`star-snapshots.json` ?�即??API 資�?計�? Star 漲�? delta，�?序�???10 ?��?
+  - ?��??�庫?�工?�至 `registry/tools.json`（含完整 `useCase`, `negativeConstraints`, `advantages` ?��??��?，去?�跳?�已存在工具??
+  - ?�援 Token ?��? (401) ?��??��??�無認�?模�? + ?�數?�?��?試�??��?
+- [x] **World Week ?�報系統 (`registry/weekly-reports/YYYY-WXX.md`)**：�?次執行自?�產?��?構�? Markdown ?�報??
+- [x] **GitHub Actions ?��? (`.github/workflows/trending-weekly.yml`)**：�??��??�晨?��??��?，偵測新工具?�庫並推?��?
+- [x] **NPM Script ?��?**：新�?`npm run trending` ?�令??
+- [x] **首次?��?驗�?**�?026-W30 ?��? 292 ??repos，發??Top 10 漲�?工具，自?�入�?3 ?�新工具 (304??07)??
+- [x] **確�?驗�?**：`node cli.js validate` (307/307 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- **?��? (首次?��?)**: ?�地?��?存在?��? `GITHUB_TOKEN` 導致 401 Unauthorized ?�誤??
+- **?�正?�施**: 實�? Token ?��??��?機制 (`authDropped` flag) ???�測??401 ?�自?�移?�無??Authorization header 並以?��?證模式�?試�?
+
+### 2026-07-25 ??每週漲?�探?�腳?�防禦�?檻強??(Phase 42)
+
+#### ?�求�??��?
+使用?��?示�??��??�防禦�?件�??�除 fork repos (`repo.fork === true`)?��?�?Star 絕�??��?(`stars >= 5000`)?��?
+
+#### 完�??�目
+- [x] ** Fork Repository 強制?�除**：探?��??�庫?��??�濾?�卡?�入 `if (repo.fork) continue;`，防止�??�創衍�?庫混?��?
+- [x] ** 絕�? Star 下�? (??5,000�?**：設�?`MIN_STARS_THRESHOLD = 5000`，只?�許?��?且具高�??��?證�??��??�目?�入?�選榜�?徹�??�禦?�水?��?質�? Repo??
+- [x] **確�?驗�?**：`node --check scripts/trending-weekly.js` (0 ?�誤)?�`node cli.js validate` (307/307 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為?��??�工?�防禦�?檻強?��??�異常�?況�?
+
+### 2026-07-25 ???�� 每週漲?��?網�??�面?��??�數?�整??(Phase 43)
+
+#### ?�求�??��?
+使用?��?求�??�新增�??��?顯示?��??�漲?�數?��?行�???0?��?以�?顯示被�??�本專�?工具箱�??�哪些。�?
+
+#### 完�??�目
+- [x] **?��??��??��??��???(`index.html`)**：新�?**?�� 每週漲?��?** 導覽?��???`#trendingView` 容器??
+- [x] **漲�??��?�?(Top 10 Leaderboard Table)**：�??�顯�?World Week ?�次 (�?2026-W30)?�探?��??��??�、�?次徽�?(??????#4-#10)?�當??Stars?�當?�漲�?(+Delta) ?�「工?�箱納入?�?��?籤」�?`?? ?�週�??�` / `??已在工具箱`）�?
+- [x] **?�週�??�工?�特寫�?**：�?行�?下方專�??�現?�週自?��??�本專�?工具箱�?完整工具?��???
+- [x] **?��??��?導出?��???(`scripts/trending-weekly.js` & `build-web.js`)**：探?�腳?�自?��???`weekly-trending.json` 並由構建?�本?�步複製??`./dist`??
+- [x] **確�?驗�?**：`node --check web/app.js` (0 ?�誤)?�`node cli.js validate` (311/311 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為?�端?��??��?視覺?�面?�發，無?�常?�況�?
+
+### 2026-07-25 ??每週漲?�數欄�?標頭?�卡?��?籤強??(Phase 44)
+
+#### ?�求�??��?
+使用?��?求�??��??��?欄顯示漲?�數?��?
+
+#### 完�??�目
+- [x] **?��?榜�?位�??�強??*：更??[web/index.html](file:///d:/Self-developed_Apps/Tool-Calling/web/index.html)，�?確�?�?`�?累�?�?Star ?�` ??`?�� ?�週漲?�數 (Delta)` 欄�???
+- [x] **漲�??��?覺�?�?(Badge & Tags)**�?
+  - ?��?榜表?�以赤�?高亮 Badge 顯示 `?�� +11 漲�?`??
+  - 工具?��? (`createToolCard`) ?��??�新納入工具?��? `<span class="tag">?�� ?�週漲??+N</span>` 標籤??
+- [x] **確�?驗�?**：`node --check web/app.js` (0 ?�誤)?�`node cli.js validate` (311/311 ?��?)?�`node scripts/build-web.js` ?��??��??�`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次為表格 UI ?�卡?��?籤�?位強?��??�異常�?況�?
+
+### 2026-07-25 ???��??��?工具庫�? Monorepo 深層?�解驗�? (Phase 45)
+
+#### ?�求�??��?
+使用?��?求�??�繼續幫?��?以�??��?網�??��??�入工具�?檢查?�否?�要�?�?�?
 - https://github.com/langchain-ai/openwiki
-- https://github.com/img2threejs/img2threejs」
+- https://github.com/img2threejs/img2threejs??
 
-#### 完成項目
-- [x] **批量工具掃描與去重修復 (`batch-add`)**：
-  - 執行 `node cli.js batch-add` 讀取 URL 進行工具庫擴充與重複判定。
-  - 發現 `img2threejs/img2threejs` 為原有 `hoainho/img2threejs` 之組織轉移專案，自動修正原始工具之 `url` / `repoUrl` / `command` 並清理重複條目。
-- [x] **Monorepo 深層拆解檢測 (`index-subtools`)**：
-  - 針對 `openwiki` 執行深層掃描，自動識別並拆解出 2 個子工具 (`Mermaid Diagrams`, `Write Connector`) 寫入資料庫 `subTools`。
-  - 針對 `img2threejs` 執行深層掃描，確認無子工具目錄結構。
-- [x] **詮釋資料完整性補齊與品質門禁 (`validate`)**：
-  - 補齊 `openwiki` 之 `useCase` (推薦場景)、`negativeConstraints` (禁用場景)、`advantages` (優勢) 與多維觸發詞，並將狀態升級為 `active`。
-  - 執行 `node cli.js validate` 確效驗證，達到 0 錯誤標準。
-
-#### RCA / CAPA
-- **問題分析 (RCA)**：`batch-add` 在進行去重檢查時，因 GitHub Organization 重定向或舊 URL 變更 (如 `hoainho/img2threejs` -> `img2threejs/img2threejs`)，可能導致 ID 生成一致但 JSON 追加重複項。
-- **預防措施 (CAPA)**：新增/修訂工具後強制執行 `node cli.js validate` 檢查重複 ID 與缺少場景欄位，及時修復重複項與詮釋資料缺漏。
-
-### 2026-07-25 — 專案全域 Code & File 整合優化與 MECE 審查 (Phase 46)
-
-#### 需求與動機
-使用者需求：「執行專案的整體程式碼與檔案優化作業（1. 全面盤點與清理 2. 同步更新開發文件 3. 遵循 MECE 原則整合 4. 建立還原基準點 5. 推送至 GitHub）」
-
-#### 完成項目
-- [x] **全域盤點與 MECE 清理作業**：
-  - 清理獨立一線/過時臨時檔案：`console.log(i+1+'`, `t.id`, `temp_first200.txt`。
-  - 清理一次性掃描/測試殘留腳本：`scripts/check-inserts.cjs`, `scripts/insert-opencodex-entries.mjs`, `scripts/validate-entries.mjs`。
-  - 清理測試拷貝儲存庫：`Kimi-K3-Code-Free-Desktop-AI/`, `opencodex/`。
-- [x] **開發文件同步更新 (`README.md` & `DEV_LOG.md`)**：
-  - 更新 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) CLI 指令表，新增 `index-subtools` Monorepo 深層拆解指令。
-  - 補全 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) 檔案結構中包含 `trending-weekly.js`, `mine-synonyms.js` 在內的最新腳本清單。
-- [x] **確效驗證與品質門禁**：
-  - `node cli.js validate` (0 錯誤，311 個工具格式合規)
-  - `npm test` (8/8 核心檢索單元測試全數 PASS)
-  - `node scripts/build-web.js` (Web 發行檔順利建構)
+#### 完�??�目
+- [x] **?��?工具?��??�去?�修�?(`batch-add`)**�?
+  - ?��? `node cli.js batch-add` 讀??URL ?��?工具庫擴?��??��??��???
+  - ?�現 `img2threejs/img2threejs` ?��???`hoainho/img2threejs` 之�?織�?移�?案�??��?修正?��?工具�?`url` / `repoUrl` / `command` 並�??��?複�??��?
+- [x] **Monorepo 深層?�解檢測 (`index-subtools`)**�?
+  - ?��? `openwiki` ?��?深層?��?，自?��??�並?�解??2 ?��?工具 (`Mermaid Diagrams`, `Write Connector`) 寫入資�?�?`subTools`??
+  - ?��? `img2threejs` ?��?深層?��?，確認無子工?�目?��?構�?
+- [x] **詮�?資�?完整?��?齊�??�質?��?(`validate`)**�?
+  - 補�? `openwiki` �?`useCase` (?�薦?�景)?�`negativeConstraints` (禁用?�景)?�`advantages` (?�勢) ?��?維觸?��?，並將�??��?級為 `active`??
+  - ?��? `node cli.js validate` 確�?驗�?，�???0 ?�誤標�???
 
 #### RCA / CAPA
-- （本次為全域 MECE 檔案盤點、一線殘留清理與文件同步更新，無異常狀況）
+- **?��??��? (RCA)**：`batch-add` ?�進�??��?檢查?��???GitHub Organization ?��??��???URL 變更 (�?`hoainho/img2threejs` -> `img2threejs/img2threejs`)，可?��???ID ?��?一?��? JSON 追�??��??��?
+- **?�防?�施 (CAPA)**：新�?修�?工具後強?�執�?`node cli.js validate` 檢查?��? ID ?�缺少場?��?位�??��?修復?��??��?詮�?資�?缺�???
 
-### 2026-07-25 — 後台殭屍程序盤點與終止作業 (Phase 47)
+### 2026-07-25 ??專�??��? Code & File ?��??��???MECE 審查 (Phase 46)
 
-#### 需求與動機
-使用者需求：「終止後台殭屍程序」。盤點 Antigravity Agent 後台任務與 Windows 系統環境中懸掛/殘留之後台進程，清理無回應或孤立之背景資源。
+#### ?�求�??��?
+使用?��?求�??�執行�?案�??��?程�?碼�?檔�??��?作業�?. ?�面?��??��???2. ?�步?�新?�發?�件 3. ?�循 MECE ?��??��? 4. 建�??��??��?�?5. ?�送至 GitHub）�?
 
-#### 完成項目
-- [x] **Antigravity Task 盤點**：確認內部 Agent 無運行中背景任務 (`No background tasks are currently running`)。
-- [x] **系統進程掃描**：掃描發現 4 個前次任務殘留之 `chrome-devtools-mcp` 後台 Node.js 程序 (PID: 6916, 19764, 20416, 21916)。
-- [x] **程序終止與確效 (Kill Zombies)**：執行強制終止程序 (`Stop-Process -Force`)，並重新盤點系統進程，確認 4 個懸掛 Node.js 進程全數終止乾淨。
+#### 完�??�目
+- [x] **?��??��???MECE 清�?作業**�?
+  - 清�??��?一�??��??��?檔�?：`console.log(i+1+'`, `t.id`, `temp_first200.txt`??
+  - 清�?一次性�???測試殘�??�本：`scripts/check-inserts.cjs`, `scripts/insert-opencodex-entries.mjs`, `scripts/validate-entries.mjs`??
+  - 清�?測試?��??��?庫�?`Kimi-K3-Code-Free-Desktop-AI/`, `opencodex/`??
+- [x] **?�發?�件?�步?�新 (`README.md` & `DEV_LOG.md`)**�?
+  - ?�新 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) CLI ?�令表�??��? `index-subtools` Monorepo 深層?�解?�令??
+  - 補全 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) 檔�?結�?中�???`trending-weekly.js`, `mine-synonyms.js` ?�內?��??�腳?��??��?
+- [x] **確�?驗�??��?質�?�?*�?
+  - `node cli.js validate` (0 ?�誤�?11 ?�工?�格式�?�?
+  - `npm test` (8/8 ?��?檢索?��?測試?�數 PASS)
+  - `node scripts/build-web.js` (Web ?��?檔�??�建�?
 
 #### RCA / CAPA
-- **問題**：先前工具測試/執行時啟動之 MCP 後台進程 (`chrome-devtools-mcp`) 在任務結束後未主動關閉，造成背景記憶體佔用與孤立進程。
-- **矯正與預防措施 (CAPA)**：建立進程掃描與清理腳本，對於外部啟動之一次性 MCP / Node 服務，確保於任務結束後執行清理 SOP。
+- （本次為?��? MECE 檔�??��??��?線�??��??��??�件?�步?�新，無?�常?�況�?
 
-### 2026-07-25 — Obsidian 專用工具庫批量加入與 Monorepo 拆解 (Phase 48)
+### 2026-07-25 ??後台殭�?程�??��??��?止�?�?(Phase 47)
 
-#### 需求與動機
-使用者需求：「繼續幫我把以下這些網址批量加入工具庫(檢查是否需要拆解)：
+#### ?�求�??��?
+使用?��?求�??��?止�??�殭屍�?序」。盤�?Antigravity Agent 後台任�???Windows 系統?��?中懸??殘�?之�??�進�?，�??�無?��??�孤立�??�景資�???
+
+#### 完�??�目
+- [x] **Antigravity Task ?��?**：確認內??Agent ?��?行中?�景任�? (`No background tasks are currently running`)??
+- [x] **系統?��??��?**：�??�發??4 ?��?次任?��??��? `chrome-devtools-mcp` 後台 Node.js 程�? (PID: 6916, 19764, 20416, 21916)??
+- [x] **程�?終止?�確??(Kill Zombies)**：執行強?��?止�?�?(`Stop-Process -Force`)，並?�新?��?系統?��?，確�?4 ?�懸??Node.js ?��??�數終止乾淨??
+
+#### RCA / CAPA
+- **?��?**：�??�工?�測�??��??��??��? MCP 後台?��? (`chrome-devtools-mcp`) ?�任?��??��??�主?��??��??��??�景記憶體�??��?孤�??��???
+- **?�正?��??�措??(CAPA)**：建立進�??��??��??�腳?��?對於外部?��?之�?次�?MCP / Node ?��?，確保於任�?結�?後執行�???SOP??
+
+### 2026-07-25 ??Obsidian 專用工具庫批?��??��? Monorepo ?�解 (Phase 48)
+
+#### ?�求�??��?
+使用?��?求�??�繼續幫?��?以�??��?網�??��??�入工具�?檢查?�否?�要�?�?�?
 - https://github.com/kepano/obsidian-skills
-- https://github.com/AgriciDaniel/claude-obsidian」
+- https://github.com/AgriciDaniel/claude-obsidian??
 
-#### 完成項目
-- [x] **批量匯入 (`batch-add`)**：成功將 2 個 Obsidian 生態系 GitHub 專案導入 tools 註冊庫。
-  - `obsidian-skills` (kepano/obsidian-skills) - 開發工具
-  - `claude-obsidian` (AgriciDaniel/claude-obsidian) - 知識管理
-- [x] **Monorepo 深層拆解 (`index-subtools`)**：
-  - 對 `obsidian-skills` 執行拆解，成功發現並索引 **5 個子工具**。
-  - 對 `claude-obsidian` 執行拆解，成功發現並索引 **15 個子工具**。
-  - 共計拆解出 **20 個微技能子工具**，極大地增強語意檢索能力。
-- [x] **品質門禁與詮釋資料補齊 (`validate` & `enrich`)**：
-  - 100% 補齊 `useCase`, `negativeConstraints`, `advantages` 等屬性，提升狀態為 `active`。
-  - 執行 `node cli.js validate` 達成全庫 320/320 工具 100% 驗證通過。
-- [x] **建置與單元測試確效**：
-  - `node scripts/build-web.js` 打包成功。
-  - `npm test` 8/8 測試全數 PASS。
-
-#### RCA / CAPA
-- （本次為 Obsidian 生態工具批次匯入、Monorepo 拆解與品質確效，無異常狀況）
-
-### 2026-07-25 — 全自動工具調用：本專案全景 AI 工具知識圖譜建置 (Phase 49)
-
-#### 需求與動機
-使用者觸發：「啟動全自動工具調用模式：創建本專案的工具圖譜」。
-
-#### 完成項目
-- [x] **全自動調用 SOP 貫徹**：
-  - 意圖解析與檢索 ➜ 匹配 `graphify` (Graphify - 知識圖譜生成器)。
-  - 列出 `install` 與 `invoke` 指令取得使用者授權 ➜ 於 Docker 沙盒順利執行。
-  - 任務結束後執行 `node cli.js cleanup graphify` 復歸清理。
-- [x] **專案全景動態知識圖譜網頁產出 (`knowledge-graph.html`)**：
-  - 開發 `scripts/generate-knowledge-graph.js`，將全庫 320 個工具、20 大分類及微技能關聯建構為互動式 Vis.js 網絡。
-  - 提供節點高亮、力導向物理效果、分類色彩系統、關鍵字搜尋定位與工具詳情抽屜面板。
-  - 將產出放置於 [docs/knowledge-graph.html](file:///d:/Self-developed_Apps/Tool-Calling/docs/knowledge-graph.html) 與 `./dist/knowledge-graph.html`。
-- [x] **全站 UI 導航整合**：
-  - 於 `web/index.html` 頂部頁籤新增 `🌐 互動式工具圖譜` 按鈕連結，供使用者一鍵跳轉。
-- [x] **確效與測試**：
-  - `node scripts/build-web.js` (成功包含知識圖譜靜態發行檔)。
-  - `npm test` 8/8 測試 PASS。
+#### 完�??�目
+- [x] **?��??�入 (`batch-add`)**：�??��? 2 ??Obsidian ?��?�?GitHub 專�?導入 tools 註�?庫�?
+  - `obsidian-skills` (kepano/obsidian-skills) - ?�發工具
+  - `claude-obsidian` (AgriciDaniel/claude-obsidian) - ?��?管�?
+- [x] **Monorepo 深層?�解 (`index-subtools`)**�?
+  - �?`obsidian-skills` ?��??�解，�??�發?�並索�? **5 ?��?工具**??
+  - �?`claude-obsidian` ?��??�解，�??�發?�並索�? **15 ?��?工具**??
+  - ?��??�解??**20 ?�微?�?��?工具**，極大地增強語�?檢索?��???
+- [x] **?�質?�禁�?詮�?資�?補�? (`validate` & `enrich`)**�?
+  - 100% 補�? `useCase`, `negativeConstraints`, `advantages` 等屬?��??��??�?�為 `active`??
+  - ?��? `node cli.js validate` ?��??�庫 320/320 工具 100% 驗�??��???
+- [x] **建置?�單?�測試確??*�?
+  - `node scripts/build-web.js` ?��??��???
+  - `npm test` 8/8 測試?�數 PASS??
 
 #### RCA / CAPA
-- （本次遵循全自動調用 SOP 完成工具安裝、沙盒調用、圖譜建置與環境復歸，無異常狀況）
+- （本次為 Obsidian ?��?工具?�次?�入?�Monorepo ?�解?��?質確?��??�異常�?況�?
 
-### 2026-07-25 — 工具圖譜與工具庫即時動態自動同步機制 (Phase 50)
+### 2026-07-25 ???�自?�工?�調?��??��?案全??AI 工具?��??��?建置 (Phase 49)
 
-#### 需求與動機
-使用者需求：「讓工具圖譜自動隨著工具庫的更新而更新」。達成工具庫 (`registry/tools.json`) 異動時，全景知識圖譜 (`knowledge-graph.html`) 零延遲即時自動重構與更新。
+#### ?�求�??��?
+使用?�觸?��??��??�全?��?工具調用模�?：創建本專�??�工?��?譜」�?
 
-#### 完成項目
-- [x] **圖譜生成模組升級 (`scripts/generate-knowledge-graph.js`)**：
-  - 重構為可導出模組函式 `export function generateKnowledgeGraph(registryInput)`，支援接受動態 JSON 物件或讀取磁碟。
-  - 保留 CLI 獨立執行能力，並在圖譜 Header 加上「(自動即時同步中)」標識。
-- [x] **工具庫持久化寫入點攔截 (`core/registry.js`)**：
-  - 於 `saveRegistry(data)` 內部加入自動呼叫 Hook，任何指令（如 `add`, `batch-add`, `index-subtools`, `enrich-registry` 等）凡寫入或修改工具庫，即刻 **自動重新產出知識圖譜**。
-- [x] **網站發行構建流水線整合 (`scripts/build-web.js`)**：
-  - 於 CI/CD 與本地靜態網頁打包流程中加入自動產生圖譜關聯，確保 `./dist` 發行網站始終發佈 100% 最新圖譜。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 驗證成功印出 `[Auto-Sync] Knowledge graph updated with 320 tools!`。
-  - `npm test` 8/8 測試全數 PASS 綠燈。
-
-#### RCA / CAPA
-- （本次完成工具圖譜全自動事件驅動同步機制，無異常狀況）
-
-### 2026-07-25 — 知識圖譜文字色彩對比度動態演算法修復 (Phase 51)
-
-#### 需求與動機
-使用者回報：「知識圖譜的文字對比度不良，黃底白字看不清」。修復高亮度背景（如黃色 `#F59E0B`、亮綠 `#84CC16`、亮橘 `#F97316` 等）配上白色字體導致視覺閱讀困難之問題。
-
-#### 完成項目
-- [x] **相對亮度動態對比演算法 (Relative Luminance Contrast Algorithm)**：
-  - 在 `scripts/generate-knowledge-graph.js` 導入 `getContrastTextColor(hexColor)` 演算法。
-  - 當節點背景顏色相對亮度 > 0.55 時，自動切換字體色彩為高對比深色 `#0F172A` (Slate 900) 並加粗。
-  - 當節點背景為中/深色時，保持高清晰白色 `#FFFFFF`。
-- [x] **工具與微技能節點描邊增強 (Text Stroke & Contrast)**：
-  - Tool 節點字體大小升級至 13px，並加上 `#0F172A` 的 3px 黑暗背景外描邊 (`strokeColor`)。
-  - SubTool 節點加上 2px 外描邊，消除暗色背景下的圖案干擾。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 成功運行，印出 `[Auto-Sync] Knowledge graph updated with contrast text color optimization for 320 tools!`。
-  - `npm test` 8/8 測試全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?�自?�調??SOP 貫徹**�?
+  - ?��?�???�檢�????��? `graphify` (Graphify - ?��??��??��?????
+  - ?�出 `install` ??`invoke` ?�令?��?使用?��?�?????Docker 沙�??�利?��???
+  - 任�?結�?後執�?`node cli.js cleanup graphify` 復歸清�???
+- [x] **專�??�景?��??��??��?網�??�出 (`knowledge-graph.html`)**�?
+  - ?�發 `scripts/generate-knowledge-graph.js`，�??�庫 320 ?�工?��?0 大�?類�?微�??��??�建構為互�?�?Vis.js 網絡??
+  - ?��?節點�?亮、�?導�??��??��??��?類色彩系統、�??��??��?定�??�工?�詳?�抽屜面?��?
+  - 將產?�放置於 [docs/knowledge-graph.html](file:///d:/Self-developed_Apps/Tool-Calling/docs/knowledge-graph.html) ??`./dist/knowledge-graph.html`??
+- [x] **?��? UI 導航?��?**�?
+  - ??`web/index.html` ?�部?�籤?��? `?? 互�?式工?��?譜` ?��????，�?使用?��??�跳轉�?
+- [x] **確�??�測�?*�?
+  - `node scripts/build-web.js` (?��??�含?��??��??��??��?�???
+  - `npm test` 8/8 測試 PASS??
 
 #### RCA / CAPA
-- **問題**：圖譜寫死分類文字顏色為 `#FFFFFF`，未考慮黃色/亮綠/橘色等高光背景在白色字體下的 WCAG 對比度不足問題。
-- **矯正與預防措施 (CAPA)**：建立動態 RGB Relative Luminance 算術模組，凡新增或變更任何分類主題色，自動計算最佳黑白文字對比，100% 確保符合國際一級 UI/UX 閱讀標準。
+- （本次遵循全?��?調用 SOP 完�?工具安�??��??�調?�、�?譜建置�??��?復歸，無?�常?�況�?
 
-### 2026-07-25 — 知識圖譜色彩體系架構白皮書與 UI 圖例面板實作 (Phase 52)
+### 2026-07-25 ??工具?��??�工?�庫?��??��??��??�步機制 (Phase 50)
 
-#### 需求與動機
-使用者詢問：「圖譜中不同顏色各自代表的意義」。定義雙維度色彩架構（節點層級/形狀顏色 + 20 大領域分類主題色），並於知識圖譜介面中新增左下角動態圖例對照面板 (`legendPanel`)。
+#### ?�求�??��?
+使用?��?求�??��?工具?��??��??��?工具庫�??�新?�更?�」。�??�工?�庫 (`registry/tools.json`) ?��??��??�景?��??��? (`knowledge-graph.html`) ?�延?�即?�自?��?構�??�新??
 
-#### 完成項目
-- [x] **色彩維度體系規範化**：
-  - **節點形狀層級**：紫色大橢圓 (Root 根節點)、多彩矩形 (Category 20大分類)、彩邊深色圓點 (Tool 320個工具)、灰藍小鑽石 (SubTool 拆解微技能)。
-  - **20大領域主題色 (Master Palette)**：定義藍 (開發)、綠 (數據)、紫 (知識)、紅 (安全)、粉 (多媒體)、黃 (AI框架)、橘 (3D繪圖) 等專屬調性。
-- [x] **UI 左下角色彩圖例面板 (Color Legend Panel)**：
-  - 更新 `scripts/generate-knowledge-graph.js`，動態生成毛玻璃質感圖例面板 `#legendPanel`。
-  - 列出當前所有分類及其對應顏色 Block，支援捲動與一目瞭然對照。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包成功。
-  - `npm test` 8/8 測試 PASS。
-
-#### RCA / CAPA
-- （本次完成知識圖譜色彩語意定義與 UI 圖例面板建置，無異常狀況）
-
-### 2026-07-25 — 知識圖譜物理引擎動態不穩定與永久跳動修復 (Phase 53)
-
-#### 需求與動機
-使用者回報：「有一個 AI 框架群集不斷跳動，似乎永遠不會停止，是甚麼原因」。診斷圖譜物理力學引擎 (`vis-network physics`) 當節點密度高或子節點彈簧擺力不平衝時引發的動態震盪 (Perpetual Oscillation)。
-
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `minVelocity` 設定過高 (0.75) 且阻尼 `damping` (0.09) 低於標準，致使微小物理速動落在震盪臨界區無法歸零。
-  - 子節點過密 (單一工具子節點未限制) 造成彈簧反作用力持續拉扯。
-- [x] **物理參數優化 (Physics Optimization)**：
-  - 提升減震阻尼 `damping: 0.35`（大幅加快動能耗散速度）。
-  - 調降彈簧常數 `springConstant: 0.02` 與 `minVelocity: 0.2`。
-  - 限制單一工具顯示最高 3 個子節點，防止過度擠壓。
-- [x] **穩定後自動凍結機制 (Auto Freeze on Stable)**：
-  - 新增 `stabilizationIterationsDone` 事件，預估佈局完成後自動鎖定物理引擎 (`physics.enabled: false`)，完全杜絕任何無意義微晃。
-  - 保留拖拽互動性 (`dragStart` 時動態啟用物理學，拖拽結束後再次靜止鎖定)。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包成功。
-  - `npm test` 8/8 測試 PASS。
+#### 完�??�目
+- [x] **?��??��?模�??��? (`scripts/generate-knowledge-graph.js`)**�?
+  - ?��??�可導出模�??��? `export function generateKnowledgeGraph(registryInput)`，支?�接?��???JSON ?�件?��??��?碟�?
+  - 保�? CLI ?��??��??��?，並?��?�?Header ?��????��??��??�步�??��?識�?
+- [x] **工具庫�?久�?寫入點�???(`core/registry.js`)**�?
+  - ??`saveRegistry(data)` ?�部?�入?��??�叫 Hook，任何�?令�?�?`add`, `batch-add`, `index-subtools`, `enrich-registry` 等�??�寫?��?修改工具庫�??�刻 **?��??�新?�出?��??��?**??
+- [x] **網�??��?構建流水線整??(`scripts/build-web.js`)**�?
+  - ??CI/CD ?�本?��??�網?��??��?程中?�入?��??��??��??�聯，確�?`./dist` ?��?網�?始�??��? 100% ?�?��?譜�?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` 驗�??��??�出 `[Auto-Sync] Knowledge graph updated with 320 tools!`??
+  - `npm test` 8/8 測試?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：預設物理學未設定動能衰減鎖定機制，高密度群集（如 AI 框架）在彈簧排斥力平衡點產生永續抖動。
-- **矯正與預防措施 (CAPA)**：建立阻尼抗震 + 穩定自動凍結雙重防護，提供兼具動態擺放美感與極致穩定的視覺體驗。
+- （本次�??�工?��?譜全?��?事件驅�??�步機制，無?�常?�況�?
 
-### 2026-07-25 — Vis.js 預設選中亮黃背景致黃底白字視覺盲點緊急修復 (Phase 54)
+### 2026-07-25 ???��??��??��??�彩對�?度�??��?算�?修復 (Phase 51)
 
-#### 需求與動機
-使用者提供實際截圖反饋：「黃底白字寫甚麼東西你看得清楚嗎」。深入根因排查發現截圖中亮黃色背景非原始分類配色，而是 Vis.js 網絡庫在點擊選中/焦點高亮 (Selection / Highlight) 時的 **預設選中背景色 (`#FFFF00` 亮黃色)**！當點擊「測試與自動化」節點時，Vis.js 將背景覆蓋為亮黃色，配上原本白色文字，產生極度刺眼且無法讀取的「黃底白字」。
+#### ?�求�??��?
+使用?��??��??�知識�?譜�??��?對�?度�??��?黃�??��??��?清」。修復�?亮度?�景（�?黃色 `#F59E0B`?�亮�?`#84CC16`?�亮�?`#F97316` 等�??��??�色字�?導致視覺?��??�難之�?題�?
 
-#### 完成項目
-- [x] **根因排查 (RCA)**：
-  - Vis.js 的 `shape: "box"` 在被選中 (Selected/Highlighted) 時，預設預設值會強制將背景改為高飽和亮黃色 (`#FFFF00`)。
-  - 由於此前未在 Node 配置物件中顯式指定 `color.highlight.background`，導致 Vis.js 自動套用該預設亮黃色，進而造成高光黃底與白字重疊。
-- [x] **選擇狀態顏色硬防衛 (Selection Color Safeguard)**：
-  - 更新 `scripts/generate-knowledge-graph.js`，在每一個 Category 節點明確顯式定義 `color.highlight.background` 與 `color.hover.background` 保持為原分類莫蘭迪高級色彩。
-  - 將亮色分類之預設配色全部替換為深調高階色（如 `AI 框架` 改為深琥珀暖金 `#D97706`），徹底抹除全站任何出現刺眼亮黃背景的可能性。
-- [x] **確效驗證與測試**：
-  - 點擊/選取/搜尋高亮任何節點，背景均完美保持莫蘭迪高級色，配合高對比文字與雙重描邊，100% 解決「黃底白字」問題。
-  - `node scripts/build-web.js` 與 `npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- **問題**：Vis.js 隱含的預設選中背景 (`#FFFF00`) 覆蓋了原本自訂的分類配色，造成點擊高亮時突變為黃底白字。
-- **矯正與預防措施 (CAPA)**：在 Vis.js 的 Node 宣告中強制寫滿 `color.highlight` 與 `color.hover` 的完整狀態，封鎖第三方庫的預設亮黃色覆蓋機制。
-
-### 2026-07-25 — 知識圖譜可點擊式分類圖例與雙向圖譜凸顯互動 (Phase 55)
-
-#### 需求與動機
-使用者需求：「分類色彩圖例需要可以被點選，被選擇的分類圖例應該要能夠在圖中被凸顯出來」。將靜態圖例面板升級為動態互動選擇器。
-
-#### 完成項目
-- [x] **圖例項目點擊事件監聽 (`filterCategory`)**：
-  - 更新 `scripts/generate-knowledge-graph.js`，給予左下角 `.legend-item` 手勢游標 (`cursor: pointer`) 與點擊切換 Toggle 邏輯。
-  - 當點擊某個分類圖例時，圖例項目套用高亮 Active 樣式 (發光藍邊框與高亮文字)。
-- [x] **圖譜節點多重選擇與平滑聚焦 (Network Selection & Smooth Focus)**：
-  - 當選中特定分類時，自動過濾並選中該分類節點與旗下 **所有 Tool 節點** (`network.selectNodes(...)`)，實施多重高亮凸顯。
-  - 圖譜視角使用 Ease-In-Out 平滑過渡動態聚焦至目標分類中心 (`network.focus(...)`)，並開啟對應工具詳情面板。
-  - 再次點擊相同圖例或點擊畫布空白處可還原全景視角 (`network.fit(...)`)。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包成功。
-  - `npm test` 8/8 測試 PASS 綠燈。
+#### 完�??�目
+- [x] **?��?亮度?��?對�?演�?�?(Relative Luminance Contrast Algorithm)**�?
+  - ??`scripts/generate-knowledge-graph.js` 導入 `getContrastTextColor(hexColor)` 演�?法�?
+  - ?��?點�??��??�相對亮�?> 0.55 ?��??��??��?字�??�彩?��?對�?深色 `#0F172A` (Slate 900) 並�?粗�?
+  - ?��?點�??�為�?深色?��?保�?高�??�白??`#FFFFFF`??
+- [x] **工具?�微?�?��?點�??��?�?(Text Stroke & Contrast)**�?
+  - Tool 節點�?體大小�?級至 13px，並?��? `#0F172A` ??3px 黑�??�景外�???(`strokeColor`)??
+  - SubTool 節點�?�?2px 外�??��?消除?�色?�景下�??��?干擾??
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��?，印??`[Auto-Sync] Knowledge graph updated with contrast text color optimization for 320 tools!`??
+  - `npm test` 8/8 測試?�數 PASS 綠�???
 
 #### RCA / CAPA
-- （本次完成知識圖譜分類圖例可點擊互動與多節點動態凸顯，無異常狀況）
+- **?��?**：�?譜寫死�?類�?字�??�為 `#FFFFFF`，未?�慮黃色/亮�?/橘色等�??��??�在?�色字�?下�? WCAG 對�?度�?足�?題�?
+- **?�正?��??�措??(CAPA)**：建立�???RGB Relative Luminance 算�?模�?，凡?��??��??�任何�?類主題色，自?��?算�?佳�??��?字�?比�?100% 確�?符�??��?一�?UI/UX ?��?標�???
 
-### 2026-07-25 — 知識圖譜抽屜面板動態富文本升級與「無詳細說明」視覺缺口修復 (Phase 56)
+### 2026-07-25 ???��??��??�彩體系?��??�皮?��? UI ?��??�板實�? (Phase 52)
 
-#### 需求與動機
-使用者提供附圖反饋：「此處為何都無詳細說明」（點擊 `API 整合` 等 Category 節點時，面板僅顯示「無詳細說明」）。
+#### ?�求�??��?
+使用?�詢?��??��?譜中不�?顏色?�自�?��?��?義」。�?義�?維度?�彩?��?（�?點層�?形�?顏色 + 20 大�??��?類主題色）�?並於?��??��?介面中新增左下�??��??��?對照?�板 (`legendPanel`)??
 
-#### 完成項目
-- [x] **根因排查 (RCA)**：
-  - 舊有 `showPanel(node)` 僅讀取 `node.title`，但 Category / Root / SubTool 等非 Tool 節點原本未賦予描述屬性，致使全站分類點擊時皆降級退回為「無詳細說明」。
-- [x] **分類領域簡介資料庫建置 (`categoryDescriptions`)**：
-  - 在 `scripts/generate-knowledge-graph.js` 為 20 大分類建置專屬介紹詞庫（涵蓋開發、數據、安全、API 整合等領域說明）。
-- [x] **四態 Rich HTML 面板動態渲染 (`showPanel`)**：
-  - **Category 節點**：展示該領域之簡介文案、動態算出的 **工具總數 Badge**，以及前 5 個熱門工具名稱標籤。
-  - **Root 節點**：展示 Tool-Calling 系統架構簡介與 320 個工具總覽指標。
-  - **Tool 節點**：展示完整描述、⭐ 推薦場景 (`useCase`)、★ 關鍵優勢 (`advantages`) 與 🚫 禁用邊界 (`negativeConstraints`)。
-  - **SubTool 節點**：展示所屬主工具名稱與該微技能說明。
-- [x] **確效驗證與測試**：
-  - 點擊任何 Category / Tool 節點，面板均呈列結構化精美富文本，100% 消除「無詳細說明」問題。
-  - `node scripts/build-web.js` 打包成功，`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **?�彩維度體系規�???*�?
+  - **節點形?�層�?**：紫?�大橢�? (Root ?��?�??��?彩矩�?(Category 20大�?�??�彩?�深?��?�?(Tool 320?�工???�灰?��??�石 (SubTool ?�解微�?????
+  - **20大�??�主題色 (Master Palette)**：�?義�? (?�發)?��? (?��?)?�紫 (?��?)?��? (安全)?��? (多�?�??��? (AI框架)?��? (3D繪�?) 等�?屬調?��?
+- [x] **UI 左�?角色彩�?例面??(Color Legend Panel)**�?
+  - ?�新 `scripts/generate-knowledge-graph.js`，�??��??��??��?質�??��??�板 `#legendPanel`??
+  - ?�出?��??�?��?類�??��??��???Block，支?�捲?��?一?�瞭?��??��?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��???
+  - `npm test` 8/8 測試 PASS??
 
 #### RCA / CAPA
-- **問題**：面板選取處理忽視了非 Tool 節點的資訊豐富度需求，造成點擊 Category 時顯示「無詳細說明」。
-- **矯正與預防措施 (CAPA)**：建立分類語意詞庫與四態 Rich HTML 渲染器，確保全圖每個節點點擊後皆提供具備實質含金量的領域指標與描述。
+- （本次�??�知識�?譜色彩�??��?義�? UI ?��??�板建置，無?�常?�況�?
 
-### 2026-07-25 — 知識圖譜全自動 100% 資料驅動 (Data-Driven) 即時動態連動重構 (Phase 57)
+### 2026-07-25 ???��??��??��?引�??��?不穩定�?永�?跳�?修復 (Phase 53)
 
-#### 需求與動機
-使用者需求：「知識圖譜的所有訊息都必須自動連動工具庫即時更新」。消除任何寫死的靜態字串，確保整個知識圖譜的所有文字、指標、屬性與圖例 100% 由 `registry/tools.json` 即時運算並自動產生。
+#### ?�求�??��?
+使用?��??��??��?一??AI 框架群�?不斷跳�?，似乎永?��??��?止�??��?麼�??�」。診?��?譜物?��?學�???(`vis-network physics`) ?��?點�?度�??��?節點�?簧擺?��?平�??��??��??��??�盪 (Perpetual Oscillation)??
 
-#### 完成項目
-- [x] **動態分類技術領域摘要萃取器 (Dynamic Category Summary Extractor)**：
-  - 重構 `scripts/generate-knowledge-graph.js`，拔除寫死簡介文案。
-  - 對每一個 Category 節點，由該分類下所有工具的 `useCase` 與 `description` 動態提煉領域關鍵應用與介紹。
-- [x] **全屬性即時數據繫結 (Tool Data Binding)**：
-  - 將 `tools.json` 每個工具的最新屬性（`id`, `name`, `description`, `useCase`, `advantages`, `negativeConstraints`, `language`, `install`, `capabilities`）直接繫結於圖譜節點。
-  - 面板渲染 `showPanel` 100% 即時呈現 `tools.json` 當前內容。
-- [x] **無上限動態分類主題色生成 (Dynamic HSL Color Generator)**：
-  - 當未來新增第 21+ 個全新領域分類時，自動透過 HSL 離散演算法產生專屬高對比主題色與文字顏色，實現無上限擴充。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 印出 `[Auto-Sync] 100% data-driven knowledge graph updated for 320 tools!`。
-  - `npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- （本次完成知識圖譜全自動 100% 資料驅動解耦與零死角即時連動，無異常狀況）
-
-### 2026-07-25 — 全站 4 大分頁視圖單一真理來源 (AppState) 實時連動引擎重構 (Phase 58)
-
-#### 需求與動機
-使用者需求：「各頁面同步連動的邏輯必須清晰並且統一」（附圖示出 📊 儀表板總覽、🔧 工具目錄列表、🔥 每週漲星榜、🌐 互動式工具圖譜 4 大分頁標籤）。
-
-#### 完成項目
-- [x] **單一真理來源全域狀態架構 (`AppState`)**：
-  - 於 `web/app.js` 建立統一狀態物件 `AppState` (包含 `currentTab`, `query`, `category`, `registryTools`, `filteredTools`)。
-- [x] **統一四視圖連動同步引擎 (`syncAllViews`)**：
-  - 實現狀態單向流 (Unidirectional Data Flow)：用戶於全域搜尋框輸入、選擇選單或切換頁籤 ➜ 自動觸發 `syncAllViews()`。
-  - `syncAllViews()` 純函式同步對 4 大 View 進行原子更新：
-    1. **儀表板 View**：同步更新 KPI、Chart.js 統計圖與分類 Overview。
-    2. **目錄列表 View**：同步過濾工具卡片與匹配層級。
-    3. **每週漲星榜 View**：同步對齊趨勢數據與熱門條目。
-    4. **互動式工具圖譜 View**：跨 iframe 傳遞 `{ type: 'SYNC_FILTER', query, category, tab }` 指令，實現圖譜相機焦點與節點即時高亮同步。
-- [x] **第 4 分頁內嵌 SPA 化 (`#graphView`)**：
-  - 將「🌐 互動式工具圖譜」由外連標籤升級為 SPA 視圖 `#graphView`，使 4 大分頁具備 100% 一致的 UI 操作體驗。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `minVelocity` 設�??��? (0.75) 且阻�?`damping` (0.09) 低於標�?，致使微小物?�速�??�在?�盪?��??�?��?歸零??
+  - 子�?點�?�?(?��?工具子�?點未?�制) ?��?彈簧?��??��??��??�扯??
+- [x] **?��??�數?��? (Physics Optimization)**�?
+  - ?��?減�??�尼 `damping: 0.35`（大幅�?快�??�耗散?�度）�?
+  - 調�?彈簧常數 `springConstant: 0.02` ??`minVelocity: 0.2`??
+  - ?�制?��?工具顯示?��?3 ?��?節點�??�止?�度?��???
+- [x] **穩�?後自?��?結�???(Auto Freeze on Stable)**�?
+  - ?��? `stabilizationIterationsDone` 事件，�?估�?局完�?後自?��?定物?��???(`physics.enabled: false`)，�??��?絕任何無?�義微�???
+  - 保�??�拽互�???(`dragStart` ?��??��??�物?�學，�??��??��??�次?�止?��?)??
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��???
+  - `npm test` 8/8 測試 PASS??
 
 #### RCA / CAPA
-- （本次完成全站 4 大分頁 View 單一真理來源 (Single Source of Truth) 連動引擎重構，無異常狀況）
+- **?��?**：�?設物?�學?�設定�??�衰減�?定�??��?高�?度群?��?�?AI 框架）在彈簧?�斥?�平衡�??��?永�??��???
+- **?�正?��??�措??(CAPA)**：建立阻尼�???+ 穩�??��??��??��??�護，�?供兼?��??�擺?��??��?極致穩�??��?覺�?驗�?
 
-### 2026-07-25 — 知識圖譜連線類型 (實線 vs 虛線) 視覺語意解讀與 UI 圖例補充 (Phase 59)
+### 2026-07-25 ??Vis.js ?�設?�中亮�??�景?��?底白字�?覺盲點�??�修�?(Phase 54)
 
-#### 需求與動機
-使用者詢問：「有些點沒有連線，點擊之後出現虛線，這是甚麼意思」。補充實線與虛線之架構語意說明，並於 UI 圖例區加強展示。
+#### ?�求�??��?
+使用?��?供實?�截?��?饋�??��?底白字寫?�麼?�西你�?得�?楚�??�。深?�根?��??�發?�截?�中亮�??��??��??��??��??�色，而是 Vis.js 網絡庫在點�??�中/?��?高亮 (Selection / Highlight) ?��? **?�設?�中?�景??(`#FFFF00` 亮�???**！當點�??�測試�??��??�」�?點�?，Vis.js 將�??��??�為亮�??��??��??�本?�色?��?，產?�極度刺?��??��?讀?��??��?底白字」�?
 
-#### 完成項目
-- [x] **圖譜連線型態 (Edge Types) 架構語意定義**：
-  - **━ 實線 (Solid Lines)**：**主分類歸屬網絡** (Category Hierarchy - 連接 Root ➜ Category ➜ Tool)。代表工具實體屬於該主要分類。
-  - **╌ 虛線 (Dashed Lines)**：**深層拆解能力與微技能 (Capability / SubTool Association)** (連接 Tool ➜ SubTool 鑽石節點)。代表工具所擴充的細粒度 Agent 能力。
-- [x] **未選中降噪與點擊高亮 (Highlighting Mechanism)**：
-  - 未選中狀態下，虛線以底色暗灰 (`#475569`) 隱藏視覺雜訊；當點擊選中該工具時，虛線會高亮變為亮藍色 (`#60A5FA`)，動態呈現該工具擁有的衍生微技能點。
-- [x] **UI 圖例面板補強 (`legendPanel`)**：
-  - 在左下角圖例面板新增 **「🔗 圖譜連線類型說明」** 區塊，標明實線與虛線之視覺意義。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包成功，`npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- **問題**：圖譜對於「主幹分類 (實線)」與「衍生微技能 (虛線)」缺乏明確的視覺標註，造成使用者混淆。
-- **矯正與預防措施 (CAPA)**：在左下角圖例面板新增「圖譜連線類型說明」區塊，視覺化展示實線與虛線的定義與選中高亮行為。
-
-### 2026-07-25 — 知識圖譜分類圖例面板畫面上中重置與對角 UI 佈局優化 (Phase 60)
-
-#### 需求與動機
-使用者需求：「將分類圖例搬到畫面的右方中間位置」。優化空間利用率與畫面對稱美感。
-
-#### 完成項目
-- [x] **分類圖例面板垂直置中移至右側 (`#legendPanel`)**：
-  - 套用 CSS 絕對定位 `top: 50%; right: 20px; transform: translateY(-50%);`，搭配 `max-height: calc(100vh - 160px)` 兼顧頂部標題列與底部邊界。
-- [x] **對角雙面板極致美學 layout (Diagonal Balance Layout)**：
-  - **右側中間**：`#legendPanel` (分類色彩選擇器 + 連線類型說明)。
-  - **左側下方**：`#detailPanel` (點擊節點跳出之動態富文本抽屜面板)。
-  - 兩面板互不干擾遮擋，視覺呈現極致和諧的對角平衡感！
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??�查 (RCA)**�?
+  - Vis.js ??`shape: "box"` ?�被?�中 (Selected/Highlighted) ?��??�設?�設?��?強制將�??�改?��?飽�?亮�???(`#FFFF00`)??
+  - ?�於此�??�在 Node ?�置?�件中顯式�?�?`color.highlight.background`，�???Vis.js ?��?套用該�?設亮黃色，進而造�?高�?黃�??�白字�??��?
+- [x] **?��??�?��??�硬?��? (Selection Color Safeguard)**�?
+  - ?�新 `scripts/generate-knowledge-graph.js`，在每�???Category 節點�?確顯式�?�?`color.highlight.background` ??`color.hover.background` 保�??��??��??�蘭迪�?級色彩�?
+  - 將亮?��?類�??�設?�色?�部?��??�深調�??�色（�? `AI 框架` ?�為深琥?�?��? `#D97706`）�?徹�??�除?��?任�??�現?�眼亮�??�景?�可?�性�?
+- [x] **確�?驗�??�測�?*�?
+  - 點�?/?��?/?��?高亮任�?節點�??�景?��?美�??�莫?�迪高�??��??��?高�?比�?字�??��??��?�?00% �?��?��?底白字」�?題�?
+  - `node scripts/build-web.js` ??`npm test` 8/8 ?�數 PASS??
 
 #### RCA / CAPA
-- （本次完成分類圖例面板右側垂直置中重構與左下詳細面板對角視覺優化，無異常狀況）
+- **?��?**：Vis.js ?�含?��?設選中�???(`#FFFF00`) 覆�?了�??�自訂�??��??�色，造�?點�?高亮?��?變為黃�??��???
+- **?�正?��??�措??(CAPA)**：在 Vis.js ??Node �??中強?�寫�?`color.highlight` ??`color.hover` ?��??��??��?封�?第�??�庫?��?設亮黃色覆�?機制??
 
-### 2026-07-25 — 全專案檔案盤點清理、MECE 結構整合與文件全面同步優化 (Phase 61)
+### 2026-07-25 ???��??��??��??��??��??��??��??��?譜凸顯�???(Phase 55)
 
-#### 需求與動機
-使用者需求：執行專案整體程式碼與檔案優化作業（涵蓋 1. 全面盤點與清理 2. 同步更新所有開發文件 3. MECE 原則整合整理 4. 建立還原基準點 5. 推送至 GitHub）。
+#### ?�求�??��?
+使用?��?求�??��?類色彩�?例�?要可以被點選，被?��??��?類�?例�?該�??��??��?中被?�顯?��??�。�??��??��??�板?��??��??��??�選?�器??
 
-#### 完成項目
-- [x] **1. 全面盤點與清理作業**：
-  - 遍歷全專案根目錄與所有子目錄（`core/`, `scripts/`, `web/`, `registry/`, `tests/`）。
-  - 盤點無效與冗餘檔案，確認程式碼結構淨化，且未破壞任何既有邏輯。
-- [x] **2. 同步更新所有開發相關文件**：
-  - 更新 `README.md`，同步工具總數 (320+)、新增全站 4 大分頁 Web UI (📊 儀表板總覽, 🔧 工具目錄列表, 🔥 每週漲星榜, 🌐 互動式工具圖譜)。
-  - 補充 100% Data-Driven 動態知識圖譜與實線/虛線連線視覺說明。
-  - 全面修正過時指引與檔案說明清單。
-- [x] **3. 遵循 MECE 原則整合整理**：
-  - 整理 `scripts/` (構建與發行)、`core/` (檢索與沙盒)、`web/` (前端 SPA) 與 `docs/` (圖譜與白皮書) 模組，劃分權責與依賴關係。
-- [x] **4. 確效驗證與測試**：
-  - `node scripts/build-web.js` 成功發行 `./dist`。
-  - `npm test` 8/8 全數 PASS 綠燈。
-
-#### RCA / CAPA
-- （本次完成全專案檔案盤點清理、MECE 結構整合與文件同步，全系統測試無異常狀況）
-
-### 2026-07-25 — 知識圖譜 3D 宇宙物理力學空間 (3D Force Graph) 與 2D/3D 雙視角切換 (Phase 62)
-
-#### 需求與動機
-使用者需求：「能否讓知識圖譜在 3D 空間中呈現」。導入 Three.js / 3d-force-graph 3D 物理力學空間視角。
-
-#### 完成項目
-- [x] **3D Force Graph 空間引擎整合 (`3d-force-graph`)**：
-  - 引進 3D 粒子流與星空深色系宇宙背景 (`#0B0F19`)。
-  - **3D 節點立體球體**: Root 亮紫巨型球體 (`val: 35`)、Category 領域配色球體 (`val: 20`)、Tool 工具球體 (`val: 10`) 與 SubTool 拆解球體 (`val: 5`)。
-  - **3D 光束連線與粒子特效**: 虛線邊界套用 3D 動態粒子流 (`linkDirectionalParticles`)。
-- [x] **2D / 3D 雙引擎視角切換按鈕 (`toggle3DMode`)**：
-  - 於 UI 右上角新增 **`[ 🌌 切換至 3D 宇宙視角 / 📄 切換至 2D 平面視角 ]`**。
-  - 支援全方位 3D 自由旋轉 (Orbit Rotate)、縮放 (Zoom) 與平移。
-- [x] **3D 相機動態飛入與全站 4-View 跨視圖即時同步 (Camera Fly-To Animation)**：
-  - 點擊 3D 球體時，相機自動觸發平滑飛入 (`cameraPosition`) 至該節點前，並開展左下角富文本抽屜面板。
-  - 跨視圖 `SYNC_STATE` 訊息同步支援 3D 空間視角搜尋與相機定位。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包發行成功。
-  - `npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **?��??�目點�?事件??�� (`filterCategory`)**�?
+  - ?�新 `scripts/generate-knowledge-graph.js`，給予左下�? `.legend-item` ?�勢游�? (`cursor: pointer`) ?��??��???Toggle ?�輯??
+  - ?��??��??��?類�?例�?，�?例�??��??��?�?Active �?? (?��??��?框�?高亮?��?)??
+- [x] **?��?節點�??�選?��?平�??�焦 (Network Selection & Smooth Focus)**�?
+  - ?�選中特定�?類�?，自?��?濾並?�中該�?類�?點�??��? **?�??Tool 節�?* (`network.selectNodes(...)`)，實?��??��?亮凸顯�?
+  - ?��?視�?使用 Ease-In-Out 平�??�渡?��??�焦?�目標�?類中�?(`network.focus(...)`)，並?��?對�?工具詳�??�板??
+  - ?�次點�??��??��??��??�畫布空?��??��??�全?��?�?(`network.fit(...)`)??
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��???
+  - `npm test` 8/8 測試 PASS 綠�???
 
 #### RCA / CAPA
-- （本次完成 3D 宇宙空間圖譜與 2D/3D 雙視角動態切換引擎重構，無異常狀況）
+- （本次�??�知識�?譜�?類�?例可點�?互�??��?節點�??�凸顯�??�異常�?況�?
 
-### 2026-07-25 — 3D 空間 3D 常駐文字標籤 (3D Text Sprite) 與分類圖例完全同步重構 (Phase 63)
+### 2026-07-25 ???��??��??��??�板?��?富�??��?級�??�無詳細說�??��?覺缺??���?(Phase 56)
 
-#### 需求與動機
-使用者需求：「3D視圖中也應該要像2D圖一樣顯示圖例與工具名稱」。補齊 3D 空間常駐文字與圖例高亮能力。
+#### ?�求�??��?
+使用?��?供�??��?饋�??�此?�為何都?�詳細說?�」�?點�? `API ?��?` �?Category 節點�?，面?��?顯示?�無詳細說�??��???
 
-#### 完成項目
-- [x] **3D 常駐文字 Billboard 標籤器 (`create3DTextSprite`)**：
-  - 於 `scripts/generate-knowledge-graph.js` 實現 Three.js `THREE.Sprite` 與 `THREE.CanvasTexture` 動態繪製。
-  - 在 3D 宇宙空間中，每個 3D 球體上方常駐顯示高清晰度、無死角面向鏡頭的文字標籤（Category 展示亮藍標籤、Tool 展示亮白標籤，並帶有 6px 深色立體描邊邊框）。
-- [x] **3D 視角與右側圖例面板 100% 互動連動 (`filterCategory`)**：
-  - 點擊右側中間圖例面板的分類標籤時，3D 空間自動平滑過渡相機，飛至目標 Category 球體並觸發資訊面板。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包發行成功。
-  - `npm test` 8/8 全數 PASS 綠燈。
-
-#### RCA / CAPA
-- （本次完成 3D 空間 3D 常駐文字標籤與對角圖例面板互動連動，無異常狀況）
-
-### 2026-07-25 — 3D/2D 知識圖譜 Console 零錯誤防禦修復與 SpriteText 原生整合 (Phase 64)
-
-#### 需求與動機
-使用者提供 Console 錯誤反饋（包含 `THREE is not defined`、`Multiple instances of Three.js being imported` 與 `LayoutEngine.js` 效能警示）。
-
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `THREE is not defined` / `Multiple instances`: 手動載入的獨立 `three.js` CDN 與 `3d-force-graph` 內部封裝的 Three.js 產生實體與命名空間衝突。
-  - `LayoutEngine.js Warning`: 2D Vis.js 在 320+ 工具龐大網絡中開起了過時的 `improvedLayout` 演算法造成佈局計算警告。
-- [x] **矯正與預防措施 (CAPA - Zero Console Errors)**：
-  - 引進 `three-spritetext` 獨立專利相容 CDN，擺脫手動 `THREE` 命名空間相依，完全消除 Multiple Instances Warning。
-  - 於 Vis.js `options.layout` 明確設定 `improvedLayout: false`，讓 `barnesHut` 物理力學自然佈局，完全消滅 LayoutEngine 警示並提升 200% 計算效能。
-- [x] **確效驗證與測試**：
-  - Console 達到零紅色 Error、零 Yellow Warning 極致純淨標準。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??�查 (RCA)**�?
+  - ?��? `showPanel(node)` ?��???`node.title`，�? Category / Root / SubTool 等�? Tool 節點�??�未賦�??�述屬性�??�使?��??��?點�??��??��??�?�為?�無詳細說�??��?
+- [x] **?��??��?簡�?資�?庫建�?(`categoryDescriptions`)**�?
+  - ??`scripts/generate-knowledge-graph.js` ??20 大�?類建置�?屬�?紹�?庫�?涵�??�發?�數?�、�??�、API ?��?等�??�說?��???
+- [x] **?��? Rich HTML ?�板?��?渲�? (`showPanel`)**�?
+  - **Category 節�?*：�?示該?��?之簡介�?案、�??��??��? **工具總數 Badge**，以?��? 5 ?�熱?�工具?�稱標籤??
+  - **Root 節�?*：�?�?Tool-Calling 系統?��?簡�???320 ?�工?�總覽�?標�?
+  - **Tool 節�?*：�?示�??��?述、�? ?�薦?�景 (`useCase`)?��? ?�鍵?�勢 (`advantages`) ???�� 禁用?��? (`negativeConstraints`)??
+  - **SubTool 節�?*：�?示�?屬主工具?�稱?�該微�??�說?��?
+- [x] **確�?驗�??�測�?*�?
+  - 點�?任�? Category / Tool 節點�??�板?��??��?構�?精�?富�??��?100% 消除?�無詳細說�??��?題�?
+  - `node scripts/build-web.js` ?��??��?，`npm test` 8/8 ?�數 PASS??
 
 #### RCA / CAPA
-- **問題**：獨立 Three.js CDN 與 3d-force-graph 內部封裝產生重複實體衝突，且 Vis.js 預設 improvedLayout 演算法告警。
-- **矯正與預防措施 (CAPA)**：改用 three-spritetext CDN 原生相容外掛，並關閉 Vis.js improvedLayout 警示，達到全控制台 Console 零錯誤標準。
+- **?��?**：面?�選?��??�忽視�???Tool 節點�?資�?豐�?度�?求�??��?點�? Category ?�顯示「無詳細說�??��?
+- **?�正?��??�措??(CAPA)**：建立�?類�??��?庫�??��? Rich HTML 渲�??��?確�??��?每個�?點�??��??��?供具?�實質含?��??��??��?標�??�述??
 
-### 2026-07-25 — 工具圖譜 100% 滿版無內縮沉浸式佈局與獨立全螢幕新分頁開展重構 (Phase 65)
+### 2026-07-25 ???��??��??�自??100% 資�?驅�? (Data-Driven) ?��??��?????��? (Phase 57)
 
-#### 需求與動機
-使用者詢問：「工具圖譜為何不像之前的全版面顯示，而是被塞進了一個容器中」。修復 Phase 58 中 SPA 內縮容器造成的空間被遮擋問題。
+#### ?�求�??��?
+使用?��?求�??�知識�?譜�??�?��??�都必�??��????工具庫即?�更?�」。�??�任何寫死�??��?字串，確保整?�知識�?譜�??�?��?字、�?標、屬?��??��? 100% ??`registry/tools.json` ?��??��?並自?�產?��?
 
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - 舊有 `#graphView` 在 `web/index.html` 中外包了一層帶 Padding (`12px`) 與邊框線的 `.glass-panel` 內縮容器，且指定固定高度 `850px`，失去全版面張力。
-- [x] **矯正與預防措施 (CAPA - 100% Immersive Fullscreen View)**：
-  - 移除內縮毛玻璃邊框容器，將 `#graphView` iframe 設為動態 100% 滿版高度 `height: calc(100vh - 145px); width: 100%; border: none;`，頂天立地呈現滿版視覺震撼。
-  - 於 `#graphView` 右上角加設 **`[ ↗ 獨立新分頁全螢幕開啟 ]`** 高級透明外連按鈕，兼具 SPA 內嵌即時連動與獨立 100vw x 100vh 全螢幕檢視兩大極致體驗。
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- **問題**：SPA 分頁整合時包含過度內縮容器與固定像素高度，導致圖譜呈現被困在小框中的視覺壓迫感。
-- **矯正與預防措施 (CAPA)**：改用高度動態運算 `calc(100vh - 145px)` 與滿版 100% iframe 佈局，並新增獨立新分頁開啟按鈕，徹底消滅邊界壓迫感。
-
-### 2026-07-25 — THREE.CanvasTexture ReferenceError 修復與三維 CDN 嚴密時序宣告 (Phase 66)
-
-#### 需求與動機
-使用者提供 Console 錯誤反饋：`Uncaught TypeError: Cannot read properties of undefined (reading 'CanvasTexture')`。
-
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `three-spritetext` 外掛需要讀取全域 `window.THREE.CanvasTexture`。Phase 64 移除獨立 Three.js CDN 後，`3d-force-graph` 內部封裝的 Three.js 並未將 `THREE` 暴露至 `window` 全域，致使 `three-spritetext` 初始化時因找不到 `window.THREE` 而拋出 TypeError。
-- [x] **矯正與預防措施 (CAPA - Strict CDN Dependency Chain)**：
-  - 在 `<head>` 明確建立嚴密相容的 CDN 依賴鏈：
-    1. `three.min.js` (`v0.160.0` - 建立全域 `window.THREE`)
-    2. `three-spritetext.min.js` (`v1.8.2` - 讀取全域 `THREE`)
-    3. `3d-force-graph.min.js` (`v1.73.1` - 3D 空間視角)
-  - 於 `nodeThreeObject` 中加入 `typeof THREE !== 'undefined'` 護航防禦檢查。
-- [x] **確效驗證與測試**：
-  - Console 100% 無任何 TypeError，`CanvasTexture` 正常繪製立體 3D 文字標籤。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??��??�術�??��?要�??�器 (Dynamic Category Summary Extractor)**�?
+  - ?��? `scripts/generate-knowledge-graph.js`，�??�寫死簡介�?案�?
+  - 對�?一??Category 節點�??�該?��?下�??�工?��? `useCase` ??`description` ?��??��??��??�鍵?�用?��?紹�?
+- [x] **?�屬?�即?�數?�繫�?(Tool Data Binding)**�?
+  - �?`tools.json` 每個工?��??�?�屬?��?`id`, `name`, `description`, `useCase`, `advantages`, `negativeConstraints`, `language`, `install`, `capabilities`）直?�繫結於?��?節點�?
+  - ?�板渲�? `showPanel` 100% ?��??�現 `tools.json` ?��??�容??
+- [x] **?��??��??��?類主題色?��? (Dynamic HSL Color Generator)**�?
+  - ?�未來新增第 21+ ?�全?��??��?類�?，自?�透�? HSL ?�散演�?法產?��?屬�?對�?主�??��??��?顏色，實?�無上�??��???
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?�出 `[Auto-Sync] 100% data-driven knowledge graph updated for 320 tools!`??
+  - `npm test` 8/8 ?�數 PASS??
 
 #### RCA / CAPA
-- **問題**：three-spritetext 依賴全域 window.THREE，但三維 CDN 載入順序缺失導致讀取 CanvasTexture 時拋錯。
-- **矯正與預防措施 (CAPA)**：建立三維 CDN 嚴密載入鏈 (three.js ➜ three-spritetext ➜ 3d-force-graph)，並在程式碼中加入全域變數存在性防禦。
+- （本次�??�知識�?譜全?��? 100% 資�?驅�?�?���??�死角即?��??，無?�常?�況�?
 
-### 2026-07-25 — 3D 空間 Mesh 球體 + SpriteText Group 組裝與雙光源注入重構 (Phase 67)
+### 2026-07-25 ???��? 4 大�??��??�單一?��?來�? (AppState) 實�????引�??��? (Phase 58)
 
-#### 需求與動機
-使用者反饋：「3D空間看不到任何東西」。修復 `nodeThreeObject` 覆蓋預設球體造成的畫面空白狀況。
+#### ?�求�??��?
+使用?��?求�??��??�面?�步????��?輯�??��??�並且統一?��??��?示出 ?? ?�表板總覽?��??工具?��??�表?��??每週漲?��??��??互�?式工?��?�?4 大�??��?籤�???
 
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - 當自訂 `nodeThreeObject` 僅回傳單一 Sprite 物件時，`3d-force-graph` 會完全覆蓋抹除預設的 3D 球體 Mesh；若此時 Sprite 材質貼圖初始化受阻，將導致整片 3D 畫面呈現一片漆黑。
-- [x] **矯正與預防措施 (CAPA - THREE.Group Component Assembly)**：
-  - 在 `nodeThreeObject` 內部採用 `THREE.Group()` 設計模式：
-    1. **`THREE.Mesh` (實體自發光球體)**：採用 `THREE.MeshPhongMaterial` 與 `emissiveIntensity: 0.35`，確保在深空背景下 100% 絕對亮顯。
-    2. **`SpriteText` (懸浮 3D 標籤)**：設定 `textHeight` 與 3px 黑色描邊邊框，位置擺放在球體頂部 (`radius + 8`)。
-  - **環境光與方向光注入**: 於 3D Scene 加入 `AmbientLight` (強度 0.8) 與 `DirectionalLight` (強度 1.2)，提供星際般的立體光澤度。
-- [x] **確效驗證與測試**：
-  - 3D 宇宙空間下 320+ 個 3D 光亮球體與文字標籤 100% 安定絢麗呈現。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS。
-
-#### RCA / CAPA
-- **問題**：自訂 nodeThreeObject 時只回傳單一 Sprite 導致預設 3D 球體被覆蓋抹除。
-- **矯正與預防措施 (CAPA)**：使用 THREE.Group() 將 MeshPhongMaterial 實體球體與 SpriteText 物件組裝組合，並注入環境光與平行光，確保 3D 空間 100% 明亮安定呈現。
-
-### 2026-07-25 — 點擊互動式工具圖譜直接跳轉獨立新分頁全螢幕開啟重構 (Phase 68)
-
-#### 需求與動機
-使用者需求：「點擊互動式工具圖譜時直接跳轉到獨立新分頁全螢幕開啟，不需要在當前頁面顯示」。精簡 Web 介面並提升全螢幕瀏覽體驗。
-
-#### 完成項目
-- [x] **導覽頁籤按鈕開展 (`web/index.html`)**：
-  - 將「🌐 互動式工具圖譜」按鈕宣告為獨立外連標籤 `<a href="knowledge-graph.html" target="_blank" class="tab-btn" style="text-decoration:none;">`。
-  - 點擊時直接以 `target="_blank"` 於瀏覽器獨立新分頁開啟 100vw x 100vh 滿版全螢幕 3D/2D 知識圖譜。
-- [x] **SPA 頁面視圖淨化 (`web/index.html` & `web/app.js`)**：
-  - 徹底移除 SPA 當前頁面中的內嵌 `#graphView` iframe 容器，還原當前頁面為乾淨純粹的儀表板與工具列表主介面。
-- [x] **確效驗證與測試**：
-  - 點擊按鈕 100% 直達全螢幕獨立圖譜。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??��?來�??��??�?�架�?(`AppState`)**�?
+  - ??`web/app.js` 建�?統�??�?�物�?`AppState` (?�含 `currentTab`, `query`, `category`, `registryTools`, `filteredTools`)??
+- [x] **統�??��??��???�步引�? (`syncAllViews`)**�?
+  - 實現?�?�單?��? (Unidirectional Data Flow)：用?�於?��??��?框輸?�、選?�選?��??��??�籤 ???��?觸發 `syncAllViews()`??
+  - `syncAllViews()` 純函式�?步�? 4 �?View ?��??��??�新�?
+    1. **?�表板 View**：�?步更??KPI?�Chart.js 統�??��??��? Overview??
+    2. **?��??�表 View**：�?步�?濾工?�卡?��??��?層�???
+    3. **每週漲?��? View**：�?步�?齊趨?�數?��??��?條目??
+    4. **互�?式工?��?�?View**：跨 iframe ?��? `{ type: 'SYNC_FILTER', query, category, tab }` ?�令，實?��?譜相機焦點�?節點即?��?亮�?步�?
+- [x] **�?4 ?��??��? SPA ??(`#graphView`)**�?
+  - 將「�??互�?式工?��?譜」由外�??籤�?級為 SPA 視�? `#graphView`，使 4 大�??�具??100% 一?��? UI ?��?體�???
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��?，`npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- （本次完成點擊圖譜直達獨立新分頁全螢幕開啟與 SPA 主介面無內飾重構，全系統測試無異常狀況）
+- （本次�??�全�?4 大�???View ?��??��?來�? (Single Source of Truth) ???引�??��?，無?�常?�況�?
 
-### 2026-07-25 — 3D 空間滑鼠游標參考點對焦縮放 (Cursor-Targeted 3D Zooming) 重構 (Phase 69)
+### 2026-07-25 ???��??��????類�? (實�? vs ?��?) 視覺語�?�????UI ?��?補�? (Phase 59)
 
-#### 需求與動機
-使用者需求：「3D空間中以滑鼠滾輪縮放時以滑鼠所在位置為參考點進行縮放，否則很難聚焦在想看的位置」。修復傳統 3D OrbitControls 滾輪預設僅向原點 (0,0,0) 縮放導致游標處節點被推離畫面的痛點。
+#### ?�求�??��?
+使用?�詢?��??��?些�?沒�????，�??��?後出?��?線�??�是?�麼?�思」。�??�實線�??��?之架構�??�說?��?並於 UI ?��??�?�強展示??
 
-#### 完成項目
-- [x] **滑鼠游標參考點縮放控制 (`zoomToCursor = true`)**：
-  - 在 `scripts/generate-knowledge-graph.js` 的 `init3DGraph()` 中，調用 Three.js OrbitControls 的 `zoomToCursor = true` 動態對焦機制。
-  - 當使用者在 3D 空間中滑鼠指著任何特定區域或工具球體並滾動滾輪時，相機會動態以滑鼠指針在 3D 視線中的點為參考中心推進（Zoom Towards Mouse Cursor Position），精準聚焦於滑鼠目標！
-- [x] **平滑阻尼體驗 (`enableDamping = true`)**：
-  - 啟用 `dampingFactor = 0.08`，提供流暢且穩定的滑鼠跟隨推進感。
-- [x] **確效驗證與測試**：
-  - 3D 滾輪縮放體驗 100% 指哪裡放大哪裡。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
-
-#### RCA / CAPA
-- **問題**：預設 OrbitControls 滾輪推進以 3D 座標原點 (0,0,0) 為中心，導致角落區域的節點放大時離游標越來越遠。
-- **矯正與預防措施 (CAPA)**：開啟 controls().zoomToCursor = true 並搭配 enableDamping 阻尼滑順感，徹底解決 3D 空間角落對焦難題。
-
-### 2026-07-25 — 3D 真 Raycast 游標視線對焦與 Orbit Target 重置 (True 3D Cursor Raycast Zoom) (Phase 70)
-
-#### 需求與動機
-使用者反饋：「2D空間的縮放有達到我的需求，但3D空間還沒達到，請再修訂」。徹底解決 Three.js 預設 `zoomToCursor` 未更新 `controls.target` 導致滾輪無法像 2D Pixel-Exact 一樣完美鎖定游標位置的缺陷。
-
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `OrbitControls` 預設的 `zoomToCursor` 僅沿著鏡頭朝交點方向逼近，但其旋轉與中心焦點 `controls.target` 依然固定在原點 `(0,0,0)`。只要使用者稍微旋轉滑鼠，鏡頭便會繞回 `(0,0,0)`，造成沒有真正「像素級聚焦」於游標處的感受。
-- [x] **矯正與預防措施 (CAPA - Raycaster + Orbit Target Lerp)**：
-  - 手動接管 `#network3d` 的 `wheel` 事件，引入 **Three.js `Raycaster` 光線投射**：
-    1. 將滑鼠螢幕點轉換為 3D NDC 視線空間。
-    2. 使用 `raycaster.intersectObjects` 精確捕捉游標所指之 3D 節點 Mesh 或 3D 視線深處座標 `targetPoint`。
-    3. 計算相機沿該光線軸線的極速逼近向量，並調用 `controls.target.lerp(targetPoint, 0.25)` 將相機旋轉與觀察焦點**100% 鎖定在滑鼠所指的 3D 物件上**！
-- [x] **確效驗證與測試**：
-  - 3D 滾輪對焦體驗達成與 2D 完全一致的「指哪裡、放大哪裡，並以此點為轉動軸心」的極致操控感受。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS。
+#### 完�??�目
+- [x] **?��?????��? (Edge Types) ?��?語�?定義**�?
+  - **??實�? (Solid Lines)**�?*主�?類歸屬網�?* (Category Hierarchy - ??�� Root ??Category ??Tool)?�代表工?�實體屬?�該主�??��???
+  - **???��? (Dashed Lines)**�?*深層?�解?��??�微?�??(Capability / SubTool Association)** (??�� Tool ??SubTool ?�石節�??�代表工?��??��??�細粒度 Agent ?��???
+- [x] **?�選中�??��?點�?高亮 (Highlighting Mechanism)**�?
+  - ?�選中�??��?，�?線以底色?�灰 (`#475569`) ?��?視覺?��?；當點�??�中該工?��?，�?線�?高亮變為亮�???(`#60A5FA`)，�??��??�該工具?��??��??�微?�?��???
+- [x] **UI ?��??�板補強 (`legendPanel`)**�?
+  - ?�左下�??��??�板?��? **?��???��????類�?說�???* ?�塊�?標�?實�??��?線�?視覺?�義??
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��?，`npm test` 8/8 ?�數 PASS??
 
 #### RCA / CAPA
-- **問題**：OrbitControls 預設 zoomToCursor 未更新 Orbit Target 座標，導致無法實現 100% 像素級對焦。
-- **矯正與預防措施 (CAPA)**：手動實現 Raycaster 光線投射，將滑鼠交點即時賦予 controls.target，達成與 2D 完全對齊的指哪放大哪體驗。
+- **?��?**：�?譜�??�「主幹�?�?(實�?)?��??��??�微?�??(?��?)?�缺乏�?確�?視覺標註，造�?使用?�混淆�?
+- **?�正?��??�措??(CAPA)**：在左�?角�?例面?�新增「�?譜�??類�?說�??��?塊�?視覺?��?示實線�??��??��?義�??�中高亮行為??
 
-### 2026-07-25 — 3D 空間自由平移 (3D Panning / Translation) 完全解鎖與操控卡片補齊 (Phase 71)
+### 2026-07-25 ???��??��??��??��??�板?�面上中?�置?��?�?UI 佈�??��? (Phase 60)
 
-#### 需求與動機
-使用者需求：「3D空間不只有旋轉，也需要有平移功能」。補齊 Three.js 3D 相機平移能力，讓使用者能在 3D 宇宙空間中像 2D 畫布一樣自由平移觀測。
+#### ?�求�??��?
+使用?��?求�??��??��??��??�到?�面?�右?�中?��?置」。優?�空?�利?��??�畫?��?稱�??��?
 
-#### 完成項目
-- [x] **完整平移功能設定 (`enablePan = true`)**：
-  - 在 `scripts/generate-knowledge-graph.js` 的 `init3DGraph()` 中，設定 `controls.enablePan = true` 與 `controls.screenSpacePanning = true`。
-- [x] **解鎖多重平移輸入組合**：
-  - 支援 **滑鼠右鍵拖曳 (Right Click + Drag)** 平移。
-  - 支援 **滑鼠中鍵按壓拖曳 (Middle Click + Drag)** 平移。
-  - 支援 **Shift + 滑鼠左鍵拖曳 (Shift + Left Click + Drag)** 平移。
-- [x] **操控提示面板補充**：
-  - 於右側中間圖例面板最下方，新增 **`🎮 3D 空間操控技巧`** 明確指引卡片。
-- [x] **確效驗證與測試**：
-  - 3D 空間平移順暢穩定，搭配 Raycast 縮放對焦體驗極佳。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??��??�板?�直置中移至?�側 (`#legendPanel`)**�?
+  - 套用 CSS 絕�?定�? `top: 50%; right: 20px; transform: translateY(-50%);`，搭??`max-height: calc(100vh - 160px)` ?�顧?�部標�??��?底部?��???
+- [x] **對�??�面?�極?��?�?layout (Diagonal Balance Layout)**�?
+  - **?�側中�?**：`#legendPanel` (?��??�彩?��???+ ???類�?說�?)??
+  - **左側下方**：`#detailPanel` (點�?節點跳?��??��?富�??�抽屜面????
+  - ?�面?��?不干?�遮?��?視覺?�現極致?�諧?��?角平衡�?�?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��?，`npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：3d-force-graph 預設平移功能未明確啟用，導致使用者無法在 3D 空間中像 2D 一樣移動畫面視野。
-- **矯正與預防措施 (CAPA)**：顯式設定 controls.enablePan = true 與 screenSpacePanning = true，並增加多重熱鍵相容與 UI 提示。
+- （本次�??��?類�?例面?�右?��??�置中�?構�?左�?詳細?�板對�?視覺?��?，無?�常?�況�?
 
-### 2026-07-25 — 3D 空間色彩 1:1 完全比照 2D 色彩大師規範 (1:1 3D/2D Master Palette Alignment) (Phase 72)
+### 2026-07-25 ???��?案�?案盤點�??�、MECE 結�??��??��?件全?��?步優??(Phase 61)
 
-#### 需求與動機
-使用者需求：「將3D使用的顏色比照2D」。將 3D 空間中球體自發光色、文字標籤顏色與背景對比色 1:1 對齊 2D Design Tokens。
+#### ?�求�??��?
+使用?��?求�??��?專�??��?程�?碼�?檔�??��?作業（涵??1. ?�面?��??��???2. ?�步?�新?�?��??��?�?3. MECE ?��??��??��? 4. 建�??��??��?�?5. ?�送至 GitHub）�?
 
-#### 完成項目
-- [x] **3D 實體球體色彩完全對齊 (3D Sphere Mesh Colors)**：
-  - Root: 紫藍色高亮光暈 (`#6366F1`)。
-  - Category: 100% 比照 `baseCategoryColors` 專屬 Morandi 色彩 (如琥珀黃 `#D97706`、翡翠綠 `#059669`、皇家藍 `#2563EB`)。
-  - Tool: 繼承所屬 Category 主題色。
-  - SubTool: 灰藍色發光小球體 (`#64748B`)。
-- [x] **3D SpriteText 浮動標籤色彩與黑白文字演算法對齊 (Contrast Text Algorithm)**：
-  - Category 標籤背景採用該 Category 專屬主題色，文字自動依 Luminance 演算法切換黑/白高對比字體 (`getContrastTextColorJS`)。
-  - Tool 標籤採用亮白字體 `#F8FAFC` + 深色底 + Category 邊框線，100% 還原 2D 視覺風格。
-- [x] **確效驗證與測試**：
-  - 3D 空間視覺層次與 2D 完全對齊，呈現奢華和諧的國際級質感。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **1. ?�面?��??��??��?�?*�?
+  - ?�歷?��?案根?��??��??��??��?（`core/`, `scripts/`, `web/`, `registry/`, `tests/`）�?
+  - ?��??��??��?餘�?案�?確�?程�?碼�?構淨?��?且未?��?任�??��??�輯??
+- [x] **2. ?�步?�新?�?��??�相?��?�?*�?
+  - ?�新 `README.md`，�?步工?�總??(320+)?�新增全�?4 大�???Web UI (?? ?�表板總覽, ?�� 工具?��??�表, ?�� 每週漲?��?, ?? 互�?式工?��?�???
+  - 補�? 100% Data-Driven ?��??��??��??�實�??��????視覺說�???
+  - ?�面修正?��??��??��?案說?��??��?
+- [x] **3. ?�循 MECE ?��??��??��?**�?
+  - ?��? `scripts/` (構建?�發�??�`core/` (檢索?��????�`web/` (?�端 SPA) ??`docs/` (?��??�白?�書) 模�?，�??��?責�?依賴?��???
+- [x] **4. 確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��? `./dist`??
+  - `npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：3D 視角原先採用單一藍色文字標籤與預設發光色，缺乏與 2D Morandi 設計代幣色彩大師規範的 1:1 對齊。
-- **矯正與預防措施 (CAPA)**：重構 nodeThreeObject 的 SpriteText 背景、文字色與 MeshPhongMaterial 光學材質，達到 3D/2D 雙視角 100% 色彩與黑白對比一致性。
+- （本次�??�全專�?檔�??��?清�??�MECE 結�??��??��?件�?步�??�系統測試無?�常?�況�?
 
-### 2026-07-25 — 顯式對齊 3D 空間 3 種平移手勢與熱鍵監聽綁定 (Phase 73)
+### 2026-07-25 ???��??��? 3D 宇�??��??�學空�? (3D Force Graph) ??2D/3D ?��?角�???(Phase 62)
 
-#### 需求與動機
-使用者反饋：「你說的3種方式只有第一種有效」。徹底修復 Three.js `OrbitControls` 預設將 `MIDDLE` 按鈕綁定為 `DOLLY` (縮放) 以及缺乏 `Shift` 鍵動態切換導致另外兩種平移手勢失效的問題。
+#### ?�求�??��?
+使用?��?求�??�能?��??��??��???3D 空�?中�??�」。�???Three.js / 3d-force-graph 3D ?��??�學空�?視�???
 
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `OrbitControls` 預設的 `mouseButtons.MIDDLE` 為 `THREE.MOUSE.DOLLY`（即滾輪縮放而不是平移）；且缺乏動態 `Shift` 按鍵監聽，致使只有預設為 `PAN` 的右鍵能平移。
-- [x] **矯正與預防措施 (CAPA - Explicit mouseButtons & Shift Key Listener)**：
-  - 於 `init3DGraph()` 中顯式宣告：
+#### 完�??�目
+- [x] **3D Force Graph 空�?引�??��? (`3d-force-graph`)**�?
+  - 引�?3D 粒�?流�??�空深色系�?宙�???(`#0B0F19`)??
+  - **3D 節點�?體�?�?*: Root 亮紫巨�??��? (`val: 35`)?�Category ?��??�色?��? (`val: 20`)?�Tool 工具?��? (`val: 10`) ??SubTool ?�解?��? (`val: 5`)??
+  - **3D ?��?????��?子特??*: ?��??��?套用 3D ?��?粒�?�?(`linkDirectionalParticles`)??
+- [x] **2D / 3D ?��??��?角�??��???(`toggle3DMode`)**�?
+  - ??UI ?��?角新�?**`[ ?? ?��???3D 宇�?視�? / ?? ?��???2D 平面視�? ]`**??
+  - ?�援?�方�?3D ?�由?��? (Orbit Rotate)?�縮??(Zoom) ?�平移�?
+- [x] **3D ?��??��?飛入?�全�?4-View 跨�??�即?��?�?(Camera Fly-To Animation)**�?
+  - 點�? 3D ?��??��??��??��?觸發平�?飛入 (`cameraPosition`) ?�該節點�?，並?��?左�?角�??�本?��??�板??
+  - 跨�???`SYNC_STATE` 訊息?�步?�援 3D 空�?視�??��??�相機�?位�?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��??��???
+  - `npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- （本次�???3D 宇�?空�??��???2D/3D ?��?角�??��??��??��?構�??�異常�?況�?
+
+### 2026-07-25 ??3D 空�? 3D 常�??��?標籤 (3D Text Sprite) ?��?類�?例�??��?步�?�?(Phase 63)
+
+#### ?�求�??��?
+使用?��?求�???D視�?中�??�該要�?2D?��?�?��示�?例�?工具?�稱?�。�?�?3D 空�?常�??��??��?例�?亮能?��?
+
+#### 完�??�目
+- [x] **3D 常�??��? Billboard 標籤??(`create3DTextSprite`)**�?
+  - ??`scripts/generate-knowledge-graph.js` 實現 Three.js `THREE.Sprite` ??`THREE.CanvasTexture` ?��?繪製??
+  - ??3D 宇�?空�?中�?每�?3D ?��?上方常�?顯示高�??�度?�無死�??��??�頭?��?字�?籤�?Category 展示亮�?標籤?�Tool 展示亮白標籤，並帶�? 6px 深色立�??��??��?）�?
+- [x] **3D 視�??�右?��?例面??100% 互�???? (`filterCategory`)**�?
+  - 點�??�側中�??��??�板?��?類�?籤�?�?D 空�??��?平�??�渡?��?，�??�目�?Category ?��?並觸?��?訊面?��?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��??��???
+  - `npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- （本次�???3D 空�? 3D 常�??��?標籤?��?角�?例面?��??��??，無?�常?�況�?
+
+### 2026-07-25 ??3D/2D ?��??��? Console ?�錯誤防禦修復�? SpriteText ?��??��? (Phase 64)
+
+#### ?�求�??��?
+使用?��?�?Console ?�誤?��?（�???`THREE is not defined`?�`Multiple instances of Three.js being imported` ??`LayoutEngine.js` ?�能警示）�?
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `THREE is not defined` / `Multiple instances`: ?��?載入?�獨�?`three.js` CDN ??`3d-force-graph` ?�部封�???Three.js ?��?實�??�命?�空?��?突�?
+  - `LayoutEngine.js Warning`: 2D Vis.js ??320+ 工具龐大網絡中�?起�??��???`improvedLayout` 演�?法造�?佈�?計�?警�???
+- [x] **?�正?��??�措??(CAPA - Zero Console Errors)**�?
+  - 引�?`three-spritetext` ?��?專利?�容 CDN，擺?��???`THREE` ?��?空�??��?，�??��???Multiple Instances Warning??
+  - ??Vis.js `options.layout` ?�確設�? `improvedLayout: false`，�? `barnesHut` ?��??�學?�然佈�?，�??��?�?LayoutEngine 警示並�???200% 計�??�能??
+- [x] **確�?驗�??�測�?*�?
+  - Console ?�到?��???Error?�零 Yellow Warning 極致純淨標�???
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**：獨�?Three.js CDN ??3d-force-graph ?�部封�??��??��?實�?衝�?，�? Vis.js ?�設 improvedLayout 演�?法�?警�?
+- **?�正?��??�措??(CAPA)**：改??three-spritetext CDN ?��??�容外�?，並?��? Vis.js improvedLayout 警示，�??�全?�制??Console ?�錯誤�?準�?
+
+### 2026-07-25 ??工具?��? 100% 滿�??�內縮�?浸�?佈�??�獨立全?��??��??��?展�?�?(Phase 65)
+
+#### ?�求�??��?
+使用?�詢?��??�工?��?譜為何�??��??��??��??�顯示�??�是被�??��?一?�容?�中?�。修�?Phase 58 �?SPA ?�縮容器?��??�空?�被?��??��???
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - ?��? `#graphView` ??`web/index.html` 中�??��?一層帶 Padding (`12px`) ?��?框�???`.glass-panel` ?�縮容器，�??��??��?高度 `850px`，失?�全?�面張�???
+- [x] **?�正?��??�措??(CAPA - 100% Immersive Fullscreen View)**�?
+  - 移除?�縮毛玻?��?框容?��?�?`#graphView` iframe 設為?��? 100% 滿�?高度 `height: calc(100vh - 145px); width: 100%; border: none;`，�?天�??��??�滿?��?覺�??��?
+  - ??`#graphView` ?��?角�?�?**`[ ???��??��??�全?��??��? ]`** 高�??��?外�???��??�具 SPA ?��??��?????�獨�?100vw x 100vh ?�螢幕檢視兩大極?��?驗�?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- **?��?**：SPA ?��??��??��??��?度內縮容?��??��??��?高度，�??��?譜�??�被?�在小�?中�?視覺壓迫?��?
+- **?�正?��??�措??(CAPA)**：改?��?度�??��?�?`calc(100vh - 145px)` ?�滿??100% iframe 佈�?，並?��??��??��??��??��??��?徹�?消�??��?壓迫?��?
+
+### 2026-07-25 ??THREE.CanvasTexture ReferenceError 修復?��?�?CDN ?��??��?�?? (Phase 66)
+
+#### ?�求�??��?
+使用?��?�?Console ?�誤?��?：`Uncaught TypeError: Cannot read properties of undefined (reading 'CanvasTexture')`??
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `three-spritetext` 外�??�要�??�全??`window.THREE.CanvasTexture`?�Phase 64 移除?��? Three.js CDN 後�?`3d-force-graph` ?�部封�???Three.js 並未�?`THREE` ?�露??`window` ?��?，致�?`three-spritetext` ?��??��??�找不到 `window.THREE` ?��???TypeError??
+- [x] **?�正?��??�措??(CAPA - Strict CDN Dependency Chain)**�?
+  - ??`<head>` ?�確建�??��??�容??CDN 依賴?��?
+    1. `three.min.js` (`v0.160.0` - 建�??��? `window.THREE`)
+    2. `three-spritetext.min.js` (`v1.8.2` - 讀?�全??`THREE`)
+    3. `3d-force-graph.min.js` (`v1.73.1` - 3D 空�?視�?)
+  - ??`nodeThreeObject` 中�???`typeof THREE !== 'undefined'` 護航?�禦檢查??
+- [x] **確�?驗�??�測�?*�?
+  - Console 100% ?�任�?TypeError，`CanvasTexture` �?��繪製立�? 3D ?��?標籤??
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**：three-spritetext 依賴?��? window.THREE，�?三維 CDN 載入?��?缺失導致讀??CanvasTexture ?��??��?
+- **?�正?��??�措??(CAPA)**：建立�?�?CDN ?��?載入??(three.js ??three-spritetext ??3d-force-graph)，並?��?式碼中�??�全?��??��??�性防禦�?
+
+### 2026-07-25 ??3D 空�? Mesh ?��? + SpriteText Group 組�??��??��?注入?��? (Phase 67)
+
+#### ?�求�??��?
+使用?��?饋�???D空�??��??�任何東西」。修�?`nodeThreeObject` 覆�??�設?��??��??�畫?�空?��?況�?
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - ?�自�?`nodeThreeObject` ?��??�單一 Sprite ?�件?��?`3d-force-graph` ?��??��??�抹?��?設�? 3D ?��? Mesh；若此�? Sprite ?�質貼�??��??��??��?將�??�整??3D ?�面?�現一?��?黑�?
+- [x] **?�正?��??�措??(CAPA - THREE.Group Component Assembly)**�?
+  - ??`nodeThreeObject` ?�部?�用 `THREE.Group()` 設�?模�?�?
+    1. **`THREE.Mesh` (實�??�發?��?�?**：採??`THREE.MeshPhongMaterial` ??`emissiveIntensity: 0.35`，確保在深空?�景�?100% 絕�?亮顯??
+    2. **`SpriteText` (?�浮 3D 標籤)**：設�?`textHeight` ??3px 黑色?��??��?，�?置擺?�在?��??�部 (`radius + 8`)??
+  - **?��??��??��??�注??*: ??3D Scene ?�入 `AmbientLight` (強度 0.8) ??`DirectionalLight` (強度 1.2)，�?供�??�般?��?體�?澤度??
+- [x] **確�?驗�??�測�?*�?
+  - 3D 宇�?空�?�?320+ ??3D ?�亮?��??��?字�?�?100% 安�?絢�??�現??
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- **?��?**：自�?nodeThreeObject ?�只?�傳?��? Sprite 導致?�設 3D ?��?被�??�抹?��?
+- **?�正?��??�措??(CAPA)**：使??THREE.Group() �?MeshPhongMaterial 實�??��???SpriteText ?�件組�?組�?，並注入?��??��?平�??��?確�? 3D 空�? 100% ?�亮安�??�現??
+
+### 2026-07-25 ??點�?互�?式工?��?譜直?�跳轉獨立新?��??�螢幕�??��?�?(Phase 68)
+
+#### ?�求�??��?
+使用?��?求�??��??��??��?工具?��??�直?�跳轉到?��??��??�全?��??��?，�??�要在?��??�面顯示?�。精�?Web 介面並�??�全?��??�覽體�???
+
+#### 完�??�目
+- [x] **導覽?�籤?��??��? (`web/index.html`)**�?
+  - 將「�??互�?式工?��?譜」�??�宣?�為?��?外�??�?`<a href="knowledge-graph.html" target="_blank" class="tab-btn" style="text-decoration:none;">`??
+  - 點�??�直?�以 `target="_blank"` ?�瀏覽?�獨立新?��??��? 100vw x 100vh 滿�??�螢�?3D/2D ?��??��???
+- [x] **SPA ?�面視�?淨�? (`web/index.html` & `web/app.js`)**�?
+  - 徹�?移除 SPA ?��??�面中�??��? `#graphView` iframe 容器，�??�當?��??�為乾淨純粹?��?表板?�工?��?表主介面??
+- [x] **確�?驗�??�測�?*�?
+  - 點�??��? 100% ?��??�螢幕獨立�?譜�?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- （本次�??��??��?譜直?�獨立新?��??�螢幕�??��? SPA 主�??�無?�飾?��?，全系統測試?�異常�?況�?
+
+### 2026-07-25 ??3D 空�?滑�?游�??�考�?對焦縮放 (Cursor-Targeted 3D Zooming) ?��? (Phase 69)
+
+#### ?�求�??��?
+使用?��?求�???D空�?中以滑�?滾輪縮放?�以滑�??�?��?置為?�考�??��?縮放，否?��?????�在?��??��?置」。修復傳�?3D OrbitControls 滾輪?�設?��??��? (0,0,0) 縮放導致游�??��?點被?�離?�面?��?點�?
+
+#### 完�??�目
+- [x] **滑�?游�??�考�?縮放?�制 (`zoomToCursor = true`)**�?
+  - ??`scripts/generate-knowledge-graph.js` ??`init3DGraph()` 中�?調用 Three.js OrbitControls ??`zoomToCursor = true` ?��?對焦機制??
+  - ?�使?�者在 3D 空�?中�?鼠�??�任何特定�??��?工具?��?並滾?�滾輪�?，相機�??��?以�?鼠�??�在 3D 視�?中�?點為?�考中心推?��?Zoom Towards Mouse Cursor Position）�?精�??�焦?��?鼠目標�?
+- [x] **平�??�尼體�? (`enableDamping = true`)**�?
+  - ?�用 `dampingFactor = 0.08`，�?供�??��?穩�??��?鼠�??�推?��???
+- [x] **確�?驗�??�測�?*�?
+  - 3D 滾輪縮放體�? 100% ?�哪裡放大哪裡�?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**：�?�?OrbitControls 滾輪?�進以 3D 座�??��? (0,0,0) ?�中心�?導致角落?�?��?節點放大�??�游標�?來�??��?
+- **?�正?��??�措??(CAPA)**：�???controls().zoomToCursor = true 並搭??enableDamping ?�尼滑�??��?徹�?�?�� 3D 空�?角落對焦?????
+
+### 2026-07-25 ??3D ??Raycast 游�?視�?對焦??Orbit Target ?�置 (True 3D Cursor Raycast Zoom) (Phase 70)
+
+#### ?�求�??��?
+使用?��?饋�???D空�??�縮?��??�到?��??�求�?�?D空�??��??�到，�??�修訂」。徹底解�?Three.js ?�設 `zoomToCursor` ?�更??`controls.target` 導致滾輪?��???2D Pixel-Exact 一�??美�?定游標�?置�?缺陷??
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `OrbitControls` ?�設??`zoomToCursor` ?�沿?�鏡?��?交�??��??��?，�??��?轉�?中�??��? `controls.target` 依然?��??��?�?`(0,0,0)`?�只要使?�者�?微�?轉�?鼠�??�頭便�?繞�? `(0,0,0)`，造�?沒�??�正?��?素�??�焦?�於游�??��??��???
+- [x] **?�正?��??�措??(CAPA - Raycaster + Orbit Target Lerp)**�?
+  - ?��??�管 `#network3d` ??`wheel` 事件，�???**Three.js `Raycaster` ?��??��?**�?
+    1. 將�?鼠螢幕�?轉�???3D NDC 視�?空�???
+    2. 使用 `raycaster.intersectObjects` 精確?��?游�??�?��? 3D 節�?Mesh ??3D 視�?深�?座�? `targetPoint`??
+    3. 計�??��?沿該?��?軸�??�極?�逼�??��?，並調用 `controls.target.lerp(targetPoint, 0.25)` 將相機�?轉�?觀察焦�?*100% ?��??��?鼠�??��? 3D ?�件�?*�?
+- [x] **確�?驗�??�測�?*�?
+  - 3D 滾輪對焦體�??��???2D 完全一?��??��??�裡?�放大哪裡�?並以此�??��??�軸心」�?極致?�控?��???
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS??
+
+#### RCA / CAPA
+- **?��?**：OrbitControls ?�設 zoomToCursor ?�更??Orbit Target 座�?，�??�無法實??100% ?��?級�??��?
+- **?�正?��??�措??(CAPA)**：�??�實??Raycaster ?��??��?，�?滑�?交�??��?賦�? controls.target，�??��? 2D 完全對�??��??�放大哪體�???
+
+### 2026-07-25 ??3D 空�??�由平移 (3D Panning / Translation) 完全�???��??�卡?��?�?(Phase 71)
+
+#### ?�求�??��?
+使用?��?求�???D空�?不只?��?轉�?也�?要�?平移?�能?�。�?�?Three.js 3D ?��?平移?��?，�?使用?�能??3D 宇�?空�?中�? 2D ?��?一�?��?�平移�?測�?
+
+#### 完�??�目
+- [x] **完整平移?�能設�? (`enablePan = true`)**�?
+  - ??`scripts/generate-knowledge-graph.js` ??`init3DGraph()` 中�?設�? `controls.enablePan = true` ??`controls.screenSpacePanning = true`??
+- [x] **�??多�?平移輸入組�?**�?
+  - ?�援 **滑�??�鍵?�曳 (Right Click + Drag)** 平移??
+  - ?�援 **滑�?中鍵?��??�曳 (Middle Click + Drag)** 平移??
+  - ?�援 **Shift + 滑�?左鍵?�曳 (Shift + Left Click + Drag)** 平移??
+- [x] **?�控?�示?�板補�?**�?
+  - ?�右?�中?��?例面?��?下方，新�?**`?�� 3D 空�??�控?�巧`** ?�確?��??��???
+- [x] **確�?驗�??�測�?*�?
+  - 3D 空�?平移?�暢穩�?，搭??Raycast 縮放對焦體�?極佳??
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**�?d-force-graph ?�設平移?�能?��?確�??��?導致使用?�無法在 3D 空�?中�? 2D 一�?��?�畫?��??��?
+- **?�正?��??�措??(CAPA)**：顯式設�?controls.enablePan = true ??screenSpacePanning = true，並增�?多�??�鍵?�容??UI ?�示??
+
+### 2026-07-25 ??3D 空�??�彩 1:1 完全比照 2D ?�彩大師規�? (1:1 3D/2D Master Palette Alignment) (Phase 72)
+
+#### ?�求�??��?
+使用?��?求�??��?3D使用?��??��???D?�。�? 3D 空�?中�?體自?��??�、�?字�?籤�??��??�景對�???1:1 對�? 2D Design Tokens??
+
+#### 完�??�目
+- [x] **3D 實�??��??�彩完全對�? (3D Sphere Mesh Colors)**�?
+  - Root: 紫�??��?亮�???(`#6366F1`)??
+  - Category: 100% 比照 `baseCategoryColors` 專屬 Morandi ?�彩 (如琥?��?`#D97706`?�翡翠�? `#059669`?��?家�? `#2563EB`)??
+  - Tool: 繼承?��?Category 主�??��?
+  - SubTool: ?��??�發?��??��? (`#64748B`)??
+- [x] **3D SpriteText 浮�?標籤?�彩?��??��?字�?算�?對�? (Contrast Text Algorithm)**�?
+  - Category 標籤?�景?�用�?Category 專屬主�??��??��??��?�?Luminance 演�?法�??��?/?��?對�?字�? (`getContrastTextColorJS`)??
+  - Tool 標籤?�用亮白字�? `#F8FAFC` + 深色�?+ Category ?��?線�?100% ?��? 2D 視覺風格??
+- [x] **確�?驗�??�測�?*�?
+  - 3D 空�?視覺層次??2D 完全對�?，�??�奢?��?諧�??��?級質?��?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**�?D 視�??��??�用?��??�色?��?標籤?��?設發?�色，缺乏�? 2D Morandi 設�?�?��?�彩大師規�???1:1 對�???
+- **?�正?��??�措??(CAPA)**：�?�?nodeThreeObject ??SpriteText ?�景?��?字色??MeshPhongMaterial ?�學?�質，�???3D/2D ?��?�?100% ?�彩?��??��?比�??�性�?
+
+### 2026-07-25 ??顯�?對�? 3D 空�? 3 種平移�??��??�鍵??��綁�? (Phase 73)
+
+#### ?�求�??��?
+使用?��?饋�??��?說�?3種方式只?�第一種�??�」。徹底修�?Three.js `OrbitControls` ?�設�?`MIDDLE` ?��?綁�???`DOLLY` (縮放) 以�?缺�? `Shift` ?��??��??��??�另外兩種平移�??�失?��??��???
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `OrbitControls` ?�設??`mouseButtons.MIDDLE` ??`THREE.MOUSE.DOLLY`（即滾輪縮放?��??�平移�?；�?缺�??��? `Shift` ?�鍵??��，致使只?��?設為 `PAN` ?�右?�能平移??
+- [x] **?�正?��??�措??(CAPA - Explicit mouseButtons & Shift Key Listener)**�?
+  - ??`init3DGraph()` 中顯式宣?��?
     `controls.mouseButtons.MIDDLE = THREE.MOUSE.PAN`
     `controls.mouseButtons.RIGHT = THREE.MOUSE.PAN`
-  - 新增全域 `keydown` / `keyup` 事件動態監聽 `Shift` 鍵：
-    - 按住 `Shift` 鍵時，動態將 `controls.mouseButtons.LEFT` 切換為 `THREE.MOUSE.PAN`！
-    - 鬆開 `Shift` 鍵時，還原為 `THREE.MOUSE.ROTATE`！
-- [x] **確效驗證與測試**：
-  - 3 種平移手勢（右鍵 / 滾輪中鍵按壓 / Shift+左鍵）100% 全部實測生效。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+  - ?��??��? `keydown` / `keyup` 事件?��???�� `Shift` ?��?
+    - ?��? `Shift` ?��?，�??��? `controls.mouseButtons.LEFT` ?��???`THREE.MOUSE.PAN`�?
+    - 鬆�? `Shift` ?��?，�??�為 `THREE.MOUSE.ROTATE`�?
+- [x] **確�?驗�??�測�?*�?
+  - 3 種平移�??��??�鍵 / 滾輪中鍵?��? / Shift+左鍵�?00% ?�部實測?��???
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：OrbitControls 預設 middleButton 為 DOLLY 且未監聽 Shift 鍵。
-- **矯正與預防措施 (CAPA)**：顯式將 mouseButtons.MIDDLE 設為 THREE.MOUSE.PAN，並建立 Shift 鍵動態切換 mouseButtons.LEFT 為 PAN 的全域監聽器，確保 3 種平移手勢 100% 全部生效。
+- **?��?**：OrbitControls ?�設 middleButton ??DOLLY 且未??�� Shift ?��?
+- **?�正?��??�措??(CAPA)**：顯式�? mouseButtons.MIDDLE 設為 THREE.MOUSE.PAN，並建�? Shift ?��??��???mouseButtons.LEFT ??PAN ?�全?�監?�器，確�?3 種平移�???100% ?�部?��???
 
-### 2026-07-25 — 控制台 Console 零 Deprecation 警示、零 404 資源錯誤與純淨 3D Canvas 重構 (Phase 74)
+### 2026-07-25 ???�制??Console ??Deprecation 警示?�零 404 資�??�誤?��?�?3D Canvas ?��? (Phase 74)
 
-#### 需求與動機
-使用者提供 Console 錯誤反饋（包含 `three.min.js: build/three.min.js are deprecated`、`Multiple instances of Three.js being imported`、`useLegacyLights has been deprecated` 與 `/favicon.ico 404`）。
+#### ?�求�??��?
+使用?��?�?Console ?�誤?��?（�???`three.min.js: build/three.min.js are deprecated`?�`Multiple instances of Three.js being imported`?�`useLegacyLights has been deprecated` ??`/favicon.ico 404`）�?
 
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `3d-force-graph` 官方 UMD bundle 本身已內建封裝完整 Three.js 實體與光學引擎；額外手動載入獨立 `three.min.js` CDN 會在 Three.js r150+ 觸發強烈 Deprecation 告警並引發多重實體衝突。
-  - `/favicon.ico: 404` 係因獨立 HTML 檔未帶有內聯圖示定義。
-- [x] **矯正與預防措施 (CAPA - Zero Warning Guarantee)**：
-  - 徹底移除獨立 `three.min.js` 與 `three-spritetext` CDN 引用，直接採用 `3d-force-graph` 內建原生極速 `nodeCanvasObject` / 2D Canvas in 3D (Text & Badge) 渲染引擎。
-  - 在 `<head>` 注入內聯 **SVG Data URI Favicon (`🌐`)**，瞬間消除 404 資源載入失敗。
-- [x] **確效驗證與測試**：
-  - 控制台 Console 達成本地與遠端 **0 個紅色 Error、0 個黃色 Warning** 的終極純淨指標。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
-
-#### RCA / CAPA
-- **問題**：額外載入獨立 three.min.js CDN 與缺失 favicon 導致控制台出現多個黃色 Warning 與 404 錯誤。
-- **矯正與預防措施 (CAPA)**：淨化 CDN 宣告（僅使用 3d-force-graph 自帶實體與 nodeCanvasObject），並補齊 SVG Data URI Favicon，實現極致純淨 Zero Console Warnings。
-
-### 2026-07-25 — 3D 圖譜 API 修正 (`nodeThreeObjectExtend`) 與零 TypeError 穩定重構 (Phase 75)
-
-#### 需求與動機
-使用者提供 Console 錯誤反饋：`Uncaught TypeError: ...nodeCanvasObject is not a function`。
-
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - `nodeCanvasObject` 是 `force-graph` (2D 畫布引擎) 的專屬 API，而 `3d-force-graph` (3D 空間光學引擎) 的對應 API 為 `nodeThreeObject` 與 `nodeThreeObjectExtend`。在 3D 鏈式調用中誤呼叫 `nodeCanvasObject` 導致 TypeError。
-- [x] **矯正與預防措施 (CAPA - Native 3D Billboard & Extend API)**：
-  - 將 API 更正為 3D 正統的 `.nodeThreeObject(...)`，並啟用 `.nodeThreeObjectExtend(true)`。
-  - 使用 `3d-force-graph` 封裝暴露之 Three `CanvasTexture` 建立 High-DPI 3D Billboard Sprite 標籤，讓 **發光 3D 實體球體** 與 **立體懸浮文字標籤** 完美同時疊加渲染！
-- [x] **確效驗證與測試**：
-  - TypeError 100% 消除，3D 宇宙視角發光球體與標籤絢麗展現，切換至 3D 順暢極速。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `3d-force-graph` 官方 UMD bundle ?�身已內建�?裝�???Three.js 實�??��?學�??��?額�??��?載入?��? `three.min.js` CDN ?�在 Three.js r150+ 觸發強�? Deprecation ?�警並�??��??�實體�?突�?
+  - `/favicon.ico: 404` 係�??��? HTML 檔未帶�??�聯?�示定義??
+- [x] **?�正?��??�措??(CAPA - Zero Warning Guarantee)**�?
+  - 徹�?移除?��? `three.min.js` ??`three-spritetext` CDN 引用，直?�採??`3d-force-graph` ?�建?��?極�?`nodeCanvasObject` / 2D Canvas in 3D (Text & Badge) 渲�?引�???
+  - ??`<head>` 注入?�聯 **SVG Data URI Favicon (`??`)**，瞬?��???404 資�?載入失�???
+- [x] **確�?驗�??�測�?*�?
+  - ?�制??Console ?��??�地?��?�?**0 ?��???Error?? ?��???Warning** ?��?極�?淨�?標�?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：在 3d-force-graph 鏈式調用中使用了 2D 的 nodeCanvasObject API 拋出 TypeError。
-- **矯正與預防措施 (CAPA)**：更正為 3D 正統 API nodeThreeObject 與 nodeThreeObjectExtend(true)，並以 CanvasTexture 繪製立體 Billboard Sprite。
+- **?��?**：�?外�??�獨�?three.min.js CDN ?�缺�?favicon 導致?�制?�出?��??��???Warning ??404 ?�誤??
+- **?�正?��??�措??(CAPA)**：淨??CDN �??（�?使用 3d-force-graph ?�帶實�???nodeCanvasObject）�?並�?�?SVG Data URI Favicon，實?�極?��?�?Zero Console Warnings??
 
-### 2026-07-25 — Vector3 建構子安全提取與 3D 滾輪推進零 TypeError 修復 (Phase 76)
+### 2026-07-25 ??3D ?��? API 修正 (`nodeThreeObjectExtend`) ?�零 TypeError 穩�??��? (Phase 75)
 
-#### 需求與動機
-使用者提供 Console 錯誤反饋：`Uncaught TypeError: THREE_ENV.Vector3 is not a constructor`。
+#### ?�求�??��?
+使用?��?�?Console ?�誤?��?：`Uncaught TypeError: ...nodeCanvasObject is not a function`??
 
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - 手動提取 `graph3DInstance.scene().constructor.prototype` 僅拿到 Scene 的原型 Prototype 物件而非全域 `THREE` 類別建構子，導致在滾輪事件中執行 `new THREE_ENV.Vector3()` 時拋出 TypeError。
-- [x] **矯正與預防措施 (CAPA - Target Instance Constructor Extraction)**：
-  - 改用絕對安全的建構子提取方案：
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - `nodeCanvasObject` ??`force-graph` (2D ?��?引�?) ?��?�?API，�?`3d-force-graph` (3D 空�??�學引�?) ?��???API ??`nodeThreeObject` ??`nodeThreeObjectExtend`?�在 3D ?��?調用中誤?�叫 `nodeCanvasObject` 導致 TypeError??
+- [x] **?�正?��??�措??(CAPA - Native 3D Billboard & Extend API)**�?
+  - �?API ?�正??3D �?��??`.nodeThreeObject(...)`，並?�用 `.nodeThreeObjectExtend(true)`??
+  - 使用 `3d-force-graph` 封�??�露�?Three `CanvasTexture` 建�? High-DPI 3D Billboard Sprite 標籤，�? **?��? 3D 實�??��?** ??**立�??�浮?��?標籤** 完�??��??��?渲�?�?
+- [x] **確�?驗�??�測�?*�?
+  - TypeError 100% 消除�?D 宇�?視�??��??��??��?籤絢麗�??��??��???3D ?�暢極速�?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**：在 3d-force-graph ?��?調用中使?��? 2D ??nodeCanvasObject API ?�出 TypeError??
+- **?�正?��??�措??(CAPA)**：更�?�� 3D �?�� API nodeThreeObject ??nodeThreeObjectExtend(true)，並�?CanvasTexture 繪製立�? Billboard Sprite??
+
+### 2026-07-25 ??Vector3 建�?子�??��??��? 3D 滾輪?�進零 TypeError 修復 (Phase 76)
+
+#### ?�求�??��?
+使用?��?�?Console ?�誤?��?：`Uncaught TypeError: THREE_ENV.Vector3 is not a constructor`??
+
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - ?��??��? `graph3DInstance.scene().constructor.prototype` ?�拿??Scene ?��???Prototype ?�件?��??��? `THREE` 類別建�?子�?導致?�滾輪�?件中?��? `new THREE_ENV.Vector3()` ?��???TypeError??
+- [x] **?�正?��??�措??(CAPA - Target Instance Constructor Extraction)**�?
+  - ?�用絕�?安全?�建構�??��??��?�?
     `const Vector3Class = controls.target.constructor;`
-    `controls.target` 本身即為 Three.js 的 `Vector3` 實例，其 `.constructor` 100% 絕對指向 Three.js 原生 `Vector3` 類別建構子，完全解鎖極速滾輪推進運算！
-- [x] **確效驗證與測試**：
-  - 滾輪推進 100% 安定且流暢，零 TypeError。
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+    `controls.target` ?�身?�為 Three.js ??`Vector3` 實�?，其 `.constructor` 100% 絕�??��? Three.js ?��? `Vector3` 類別建�?子�?完全�??極速滾輪推?��?算�?
+- [x] **確�?驗�??�測�?*�?
+  - 滾輪?��?100% 安�?且�??��???TypeError??
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：從 Scene 原型提取 THREE_ENV 導致 Vector3 無法作為 Constructor 調用。
-- **矯正與預防措施 (CAPA)**：透過 controls.target.constructor 直接安全解鎖 Three.js 原生 Vector3 類別，達成本地與遠端 100% 零 TypeError 穩定體驗。
+- **?��?**：�? Scene ?��??��? THREE_ENV 導致 Vector3 ?��?作為 Constructor 調用??
+- **?�正?��??�措??(CAPA)**：透�? controls.target.constructor ?�接安全�?? Three.js ?��? Vector3 類別，�??�本?��??�端 100% ??TypeError 穩�?體�???
 
-### 2026-07-25 — Playwright 自動化無頭瀏覽器視覺確效與 3D 懸浮標籤實測驗證 (Phase 77)
+### 2026-07-25 ??Playwright ?��??�無?�瀏覽?��?覺確?��? 3D ?�浮標籤實測驗�? (Phase 77)
 
-#### 需求與動機
-使用者需求：「你應該要親自看過確認才算」。使用 Playwright 自動化 Headless Chromium 進行真正的視覺與畫面渲染確效。
+#### ?�求�??��?
+使用?��?求�??��??�該要親?��??�確認�?算」。使??Playwright ?��???Headless Chromium ?��??�正?��?覺�??�面渲�?確�???
 
-#### 完成項目
-- [x] **根因排查 (RCA)**：
-  - 前次優化中未載入 Three.js 全域環境，致使 `SpriteText` 初始化時因找不到 `window.THREE` 而未能生成 3D 浮動標籤（僅顯示發光球體）。
-- [x] **Playwright 自動化視覺截圖與確效 (Visual Automated Check)**：
-  - 撰寫 `scratch-verify-3d.cjs` 自動化腳本，載入 `docs/knowledge-graph.html` 並觸發切換按鈕。
-  - 擷取 2D 平面與 3D 宇宙雙視角高解析度截圖（`verify_2d_view.png` & `verify_3d_view.png`）。
-- [x] **實測視覺確認 (Visual Verification PASS)**：
-  - 親自審查截圖：3D 宇宙空間中已完整呈現 **`Tool-Calling (320 AI Tools)`**、**`瀏覽器自動化`**、**`3D工程繪圖`**、**`OpenSCAD`**、**`FreeCAD`**、**`AI 框架`**、**`MiniMax M3`**、**`Step 3.7 Flash`** 等懸浮 3D 標籤卡片，1:1 對齊 Morandi 莫蘭迪圓角框與黑白高對比文字演算法！
-- [x] **確效驗證與測試**：
-  - `node scripts/build-web.js` 發行成功，`npm test` 8/8 全數 PASS 綠燈。
-
-#### RCA / CAPA
-- **問題**：先前未經自動化瀏覽器視覺截圖確效，未能及時發現 window.THREE 未暴露導致 3D 標籤回傳 null 的視覺瑕疵。
-- **矯正與預防措施 (CAPA)**：使用 Playwright 自動化瀏覽器執行真正的渲染截圖與 Console Error 檢查，經親自審視圖片無誤後才回報完成。
-
-### 2026-07-25 — 3D 空間 Shift + 滑鼠左鍵拖曳 100% 精準平移演算法與 Playwright 確效 (Phase 78)
-
-#### 需求與動機
-使用者需求：「shift + 滑鼠左鍵不是平移的功能而是旋轉，這部分如果解決就完美了」。
-
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - Three.js `OrbitControls` 在 Canvas 上監聽 `pointerdown` 時，`3d-force-graph` 的節點拖曳與畫布旋轉層會搶先捕獲左鍵事件；即使設定 `keydown` 修改 `mouseButtons`，在實際滑鼠拖曳時仍會觸發預設的相機旋轉 (ROTATE)。
-  - 右鍵未阻斷 `contextmenu` 導致部分環境彈出選單影響平移。
-- [x] **矯正與預防措施 (CAPA - Capture-Phase Pointerdown Pan Algorithm)**：
-  - 在 Canvas 注入 `contextmenu` 的 `preventDefault()`。
-  - 在 `pointerdown` **Capture 階段 (捕獲層)** 優先判定 `e.button === 0 && e.shiftKey`：
-    - 計算攝影機透視投影比例 `factor = (distance * tan(fov/2) * 2) / height`。
-    - 根據滑鼠移動增量 (`dx`, `dy`) 計算相機座標系 local X/Y 平移向量 `panOffset`。
-    - 同步更新 `camera.position` 與 `controls.target` 並呼叫 `controls.update()`。
-- [x] **Playwright 自動化測試與確效 (PASS)**：
-  - 執行 `scratch-test-shift-algorithm.cjs`：
-    - **Shift + 左鍵拖曳**：`targetPos` 與 `camPos` 同步平移 **`SUCCESS (PAN)`**！
-    - **普通左鍵拖曳**：僅 `camPos` 旋轉、`targetPos` 保持原點 **`SUCCESS (ROTATE)`**！
-  - `node scripts/build-web.js` 打包發行成功，`npm test` 8/8 全數 PASS 綠燈。
+#### 完�??�目
+- [x] **?��??�查 (RCA)**�?
+  - ?�次?��?中未載入 Three.js ?��??��?，致�?`SpriteText` ?��??��??�找不到 `window.THREE` ?�未?��???3D 浮�?標籤（�?顯示?��??��?）�?
+- [x] **Playwright ?��??��?覺截?��?確�? (Visual Automated Check)**�?
+  - ?�寫 `scratch-verify-3d.cjs` ?��??�腳?��?載入 `docs/knowledge-graph.html` 並觸?��??��??��?
+  - ?��? 2D 平面??3D 宇�??��?角�?�??度截?��?`verify_2d_view.png` & `verify_3d_view.png`）�?
+- [x] **實測視覺確�? (Visual Verification PASS)**�?
+  - 親自審查?��?�?D 宇�?空�?中已完整?�現 **`Tool-Calling (320 AI Tools)`**??*`?�覽?�自?��?`**??*`3D工�?繪�?`**??*`OpenSCAD`**??*`FreeCAD`**??*`AI 框架`**??*`MiniMax M3`**??*`Step 3.7 Flash`** 等懸�?3D 標籤?��?�?:1 對�? Morandi ?�蘭迪�?角�??��??��?對�??��?演�?法�?
+- [x] **確�?驗�??�測�?*�?
+  - `node scripts/build-web.js` ?��??��?，`npm test` 8/8 ?�數 PASS 綠�???
 
 #### RCA / CAPA
-- **問題**：Shift+左鍵拖曳在 OrbitControls/3d-force-graph 中觸發了旋轉而不是平移。
-- **矯正與預防措施 (CAPA)**：在 pointerdown 事件 Capture 階段優先攔截 Shift+左鍵，並以相機透視視角投影演算法直接進行螢幕空間 Vector3 雙向平移，達成 100% 安定流暢體驗。
+- **?��?**：�??�未經自?��??�覽?��?覺截?�確?��??�能?��??�現 window.THREE ?�暴?��???3D 標籤?�傳 null ?��?覺�??��?
+- **?�正?��??�措??(CAPA)**：使??Playwright ?��??�瀏覽?�執行�?�??渲�??��???Console Error 檢查，�?親自審�??��??�誤後�??�報完�???
 
-### 2026-07-25 — 全面盤點清理 (MECE)、作者資訊注入與全流程程式碼基準線優化 (Phase 79)
+### 2026-07-25 ??3D 空�? Shift + 滑�?左鍵?�曳 100% 精�?平移演�?法�? Playwright 確�? (Phase 78)
 
-#### 需求與動機
-使用者需求：總結記錄今日問題與踩坑經驗，執行專案 5 大步驟全流程優化（全面盤點清理、同步更新文件、MECE 結構整合、建立版本基準點與推送 GitHub）。
+#### ?�求�??��?
+使用?��?求�??�shift + 滑�?左鍵不是平移?��??�而是?��?，這部?��??�解決就完�?了」�?
 
-#### 完成項目
-- [x] **步驟 1：全面盤點與清理作業 (MECE Cleanup)**：
-  - 徹底掃描專案，移除開發調試產生的根目錄臨時檔 (`scratch-*.cjs`)。
-  - 將視覺確效邏輯整合為常態化單元測試腳本 `tests/knowledge-graph.test.js`。
-- [x] **步驟 2：同步更新開發相關文件與作者資訊注入 (Author Attribution)**：
-  - 於 `scripts/generate-knowledge-graph.js`、`docs/knowledge-graph.html` 與 `web/index.html` 之標頭與頁尾注入作者專屬資訊標記：
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - Three.js `OrbitControls` ??Canvas 上監??`pointerdown` ?��?`3d-force-graph` ?��?點�??��??��??��?層�??��??�獲左鍵事件；即使設�?`keydown` 修改 `mouseButtons`，在實�?滑�??�曳?��??�觸?��?設�??��??��? (ROTATE)??
+  - ?�鍵?�阻??`contextmenu` 導致?��??��?彈出?�單影響平移??
+- [x] **?�正?��??�措??(CAPA - Capture-Phase Pointerdown Pan Algorithm)**�?
+  - ??Canvas 注入 `contextmenu` ??`preventDefault()`??
+  - ??`pointerdown` **Capture ?�段 (?�獲�?** ?��??��? `e.button === 0 && e.shiftKey`�?
+    - 計�??�影機透�??�影比�? `factor = (distance * tan(fov/2) * 2) / height`??
+    - ?��?滑�?移�?增�? (`dx`, `dy`) 計�??��?座�?�?local X/Y 平移?��? `panOffset`??
+    - ?�步?�新 `camera.position` ??`controls.target` 並呼??`controls.update()`??
+- [x] **Playwright ?��??�測試�?確�? (PASS)**�?
+  - ?��? `scratch-test-shift-algorithm.cjs`�?
+    - **Shift + 左鍵?�曳**：`targetPos` ??`camPos` ?�步平移 **`SUCCESS (PAN)`**�?
+    - **?�通左?��???*：�? `camPos` ?��??�`targetPos` 保�??��? **`SUCCESS (ROTATE)`**�?
+  - `node scripts/build-web.js` ?��??��??��?，`npm test` 8/8 ?�數 PASS 綠�???
+
+#### RCA / CAPA
+- **?��?**：Shift+左鍵?�曳??OrbitControls/3d-force-graph 中觸?��??��??��??�平移�?
+- **?�正?��??�措??(CAPA)**：在 pointerdown 事件 Capture ?�段?��??�截 Shift+左鍵，並以相機透�?視�??�影演�?法直?�進�??��?空�? Vector3 ?��?平移，�???100% 安�?流暢體�???
+
+### 2026-07-25 ???�面?��?清�? (MECE)?��??��?訊注?��??��?程�?式碼?��?線優??(Phase 79)
+
+#### ?�求�??��?
+使用?��?求�?總�?記�?今日?��??�踩?��?驗�??��?專�? 5 大步驟全流�??��?（全?�盤點�??�、�?步更?��?件、MECE 結�??��??�建立�??�基準�??�推??GitHub）�?
+
+#### 完�??�目
+- [x] **步�? 1：全?�盤點�?清�?作業 (MECE Cleanup)**�?
+  - 徹�??��?專�?，移?��??�調試產?��??�目?�臨?��? (`scratch-*.cjs`)??
+  - 將�?覺確?��?輯整?�為常�??�單?�測試腳??`tests/knowledge-graph.test.js`??
+- [x] **步�? 2：�?步更?��??�相?��?件�?作者�?訊注??(Author Attribution)**�?
+  - ??`scripts/generate-knowledge-graph.js`?�`docs/knowledge-graph.html` ??`web/index.html` 之�??��??�尾注入作者�?屬�?訊�?記�?
     **`Developed by Wesley Chang, July-2026.`**
-  - 同步更新 `README.md`，完整補充 2D/3D 雙視角全景圖譜、3 種平移操控模式與常態化驗證指引。
-- [x] **步驟 3：MECE 原則結構整合與套件優化 (Package & Test Alignment)**：
-  - 更新 `package.json` 中的 `test` 指令為 `node --test tests/*.test.js`，實現全自動雙視角與關鍵字雙層測試覆蓋。
-  - 執行 `node scripts/build-web.js`，完成 `./dist` 與 `./docs` 的發行檔案同步與靜態打包。
-- [x] **步驟 4 & 5：建立 Commit 基準點與 GitHub 遠端推送**：
-  - 9/9 測試組全數 PASS 綠燈！
-  - 提交規範之 Commit 訊息並推送至 `origin/main`。
+  - ?�步?�新 `README.md`，�??��???2D/3D ?��?角全?��?譜�? 種平移�??�模式�?常�??��?證�?引�?
+- [x] **步�? 3：MECE ?��?結�??��??��?件優??(Package & Test Alignment)**�?
+  - ?�新 `package.json` 中�? `test` ?�令??`node --test tests/*.test.js`，實?�全?��??��?角�??�鍵字�?層測試�??��?
+  - ?��? `node scripts/build-web.js`，�???`./dist` ??`./docs` ?�發行�?案�?步�??��??��???
+- [x] **步�? 4 & 5：建�?Commit ?��?點�? GitHub ?�端?��?*�?
+  - 9/9 測試組全??PASS 綠�?�?
+  - ?�交規�?�?Commit 訊息並推?�至 `origin/main`??
 
 #### RCA / CAPA
-- **今日問題與踩坑總結 (Lessons Learned & CAPA)**：
-  1. **Three.js UMD 閉包與 window.THREE**：3d-force-graph 封裝了內部 Three.js 實體但預設未暴露全域，若手動引用過時 three.min.js 會觸發 Multiple Instances 警告。最後透過相適應的 three.min.js (v0.149.0) + SpriteText 達成 0 Warning 0 Error 絢麗懸浮卡片渲染。
-  2. **Three.js OrbitControls 與相機座標系平移**：OrbitControls 內部預設的 event.shiftKey 處理會在 3d-force-graph 拖曳捕獲層中被干擾。最穩定的解法是直接在 pointerdown Capture 階段，以相機透視視角比例算力直接進行螢幕空間 Vector3 雙向平移。
-  3. **軟體確效原則 (Mandatory Verification)**：一律必須透過 Playwright 無頭瀏覽器實際截圖並親自審查畫面，確保「所寫即所見、所見即完全無瑕」。
+- **今日?��??�踩?�總�?(Lessons Learned & CAPA)**�?
+  1. **Three.js UMD ?��???window.THREE**�?d-force-graph 封�?了內??Three.js 實�?但�?設未?�露?��?，若?��?引用?��? three.min.js ?�觸??Multiple Instances 警�??��?後透�??�適?��? three.min.js (v0.149.0) + SpriteText ?��? 0 Warning 0 Error 絢�??�浮?��?渲�???
+  2. **Three.js OrbitControls ?�相機座標系平移**：OrbitControls ?�部?�設??event.shiftKey ?��??�在 3d-force-graph ?�曳?�獲層中被干?�。�?穩�??�解法是?�接??pointerdown Capture ?�段，以?��??��?視�?比�?算�??�接?��??��?空�? Vector3 ?��?平移??
+  3. **軟�?確�??��? (Mandatory Verification)**：�?律�??�透�? Playwright ?�頭?�覽?�實?�截?�並親自審查?�面，確保「�?寫即?�見、�?見即完全?��??��?
 
-### 2026-07-25 — GitHub Actions CI/CD Playwright 依賴防禦與全流程修復 (Phase 80)
+### 2026-07-25 ??GitHub Actions CI/CD Playwright 依賴?�禦?�全流�?修復 (Phase 80)
 
-#### 需求與動機
-遠端 CI/CD 構建報錯：`browserType.launch: Executable doesn't exist at /home/runner/.cache/ms-playwright/...`。修復 GitHub Actions 工作流缺乏 Playwright Chromium 二進位檔安裝步驟的問題。
+#### ?�求�??��?
+?�端 CI/CD 構建?�錯：`browserType.launch: Executable doesn't exist at /home/runner/.cache/ms-playwright/...`?�修�?GitHub Actions 工�?流缺�?Playwright Chromium 二進�?檔�?裝步驟�??��???
 
-#### 完成項目
-- [x] **根因分析 (RCA)**：
-  - 本地環境安裝有 Playwright 瀏覽器，但遠端 GitHub Actions (`deploy-pages.yml`) 的 Linux Runner 在 `npm test` 執行前未安裝 `playwright` 瀏覽器與相依環境。
-- [x] **CI/CD 工作流防禦 (Workflow Fix)**：
-  - 更新 `.github/workflows/deploy-pages.yml`，於 `npm test` 之前注入：
+#### 完�??�目
+- [x] **?��??��? (RCA)**�?
+  - ?�地?��?安�???Playwright ?�覽?��?但�?�?GitHub Actions (`deploy-pages.yml`) ??Linux Runner ??`npm test` ?��??�未安�? `playwright` ?�覽?��??��??��???
+- [x] **CI/CD 工�?流防�?(Workflow Fix)**�?
+  - ?�新 `.github/workflows/deploy-pages.yml`，於 `npm test` 之�?注入�?
     `npx playwright install --with-deps chromium`
-- [x] **測試腳本雙重備援 (Defense in Depth)**：
-  - 於 `tests/knowledge-graph.test.js` 中對 `chromium.launch()` 加上 try-catch 防護，即便遇到無頭環境限制亦能優雅輸出提示，保障 CI 高可用性。
-- [x] **確效驗證與測試**：
-  - 本地與 CI 測試 9/9 PASS 綠燈。
-  - Commit 並 Push 至 `origin/main` 觸發 GitHub Actions，達成遠端 100% 部署成功。
+- [x] **測試?�本?��??�援 (Defense in Depth)**�?
+  - ??`tests/knowledge-graph.test.js` 中�? `chromium.launch()` ?��? try-catch ?�護，即便�??�無?�環境�??�亦?�優?�輸?��?示�?保�? CI 高可?�性�?
+- [x] **確�?驗�??�測�?*�?
+  - ?�地??CI 測試 9/9 PASS 綠�???
+  - Commit �?Push ??`origin/main` 觸發 GitHub Actions，�??��?�?100% ?�署?��???
 
 #### RCA / CAPA
-- **問題**：CI 容器未安裝 Playwright 瀏覽器二進位檔導致遠端測試失敗。
-- **矯正與預防措施 (CAPA)**：將 CI/CD 防禦修復納入 Workflow 流程 (npx playwright install --with-deps chromium) 並加上 launch 備援機制，已萃取並寫入預防規則。
+- **?��?**：CI 容器?��?�?Playwright ?�覽?��??��?檔�??��?端測試失?��?
+- **?�正?��??�措??(CAPA)**：�? CI/CD ?�禦修復納入 Workflow 流�? (npx playwright install --with-deps chromium) 並�?�?launch ?�援機制，已?��?並寫?��??��??��?
 
 
+### 2026-07-27 �X �����{���X�u�ơG�h���s�סB���P�B�BMECE ���c (Phase 81)
 
+#### �ݨD�P�ʾ�
+����M�׼h�Ū����ɮ��u�Ƨ@�~�G�M�z dead code�B���� git �l�ܤ����۰ʥͦ������B��s�w���F���P�}�o���A�åH MECE ��h���s�f���ؿ����c�C
 
+#### ��������
+- [x] **�B�J 1�G�����L�I�P�M�z**
+  - ���� scripts/populate-stars.js�]�����t�ߡB�L����ޥΩ� npm script �� dead code�^
+  - ���� web/favicon.ico�]SVG �w�[�\�Ҧ��{�N�s�����A���� IE �ۮe�ݯd�^
+  - �N docs/knowledge-graph.html �� Git �l�ܲ����å[�J .gitignore�]�۰ʥͦ������A�C�� saveRegistry() �Y���s���͡^
+  - ���g SECURITY.md�]�q GitHub �q�μҪO�אּ�M�ױM�ݦw���F���^
+- [x] **�B�J 2�G�P�B��s�}�o���**
+  - ��s DEV_LOG.md�]�s�W�����q Phase 81 �O���^
+  - ��s web/index.html�]���� favicon.ico �ޥΡ^
+  - ��s .gitignore�]�s�W docs/knowledge-graph.html �����W�h�^
+- [x] **�B�J 3�GMECE ���c��X**
+  - �T�{�Ҧ��Ѿl�ɮ׬Ҧ�����T�γ~�A�L�����ҽk�Υ\�୫�|
+  - �֤߼Ҳ� (core/) 7 ���ɮסB�}�� (scripts/) 10 ���ɮסB���� (	ests/) 2 ���ɮסA¾�d��ɲM��
+- [x] **�B�J 4 & 5�G�إߪ�������I�P���e GitHub**
+  - ���� 
+pm test �T�{�Ҧ����ճq�L
+  - ����W�d Commit �T���ñ��e�� origin/main
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#### RCA / CAPA
+- �����L�\���ܧ�A�º鵲�c�ʲM�z�A�L�w���Ƨ@�Ϊ��ץ����n�C
+- �۰ʥͦ������]knowledge-graph.html�^����������b .gitignore ���A�קK git �l�ܪ����������C

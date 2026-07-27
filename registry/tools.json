@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-26T13:13:24.093Z",
+  "lastUpdated": "2026-07-27T03:02:28.195Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26819,6 +26819,199 @@
       ],
       "addedAt": "2026-07-26T13:13:18.811Z",
       "status": "experimental"
+    },
+    {
+      "id": "opencode-acp",
+      "name": "Opencode Acp",
+      "url": "https://github.com/ranxianglei/opencode-acp",
+      "description": "Active Context Pruning — model-driven context management for OpenCode ，200K tokens is enough. ，主动压缩上下文，20w token足以",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "opencode-acp",
+        "opencode",
+        "acp"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx opencode-acp",
+        "repoUrl": "https://github.com/ranxianglei/opencode-acp"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-27T02:37:10.312Z",
+      "status": "experimental"
+    },
+    {
+      "id": "claude-opus-5md",
+      "name": "Claude Opus 5.Md",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/claude-opus-5.md",
+      "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT GPT-5.6, Codex GPT-5.6, GPT-5.5. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "claude-opus-5.md",
+        "claude",
+        "opus",
+        "5.md",
+        "ai",
+        "ai-agents",
+        "ai-prompts",
+        "anthropic"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx system_prompts_leaks",
+        "repoUrl": "https://github.com/asgeirtj/system_prompts_leaks",
+        "branch": "main",
+        "subpath": "Anthropic/claude-opus-5.md"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "ai-prompts",
+        "anthropic",
+        "chatbot"
+      ],
+      "addedAt": "2026-07-27T02:50:02.550Z",
+      "status": "active",
+      "useCase": "研究 Claude Opus 5 的系統提示詞結構與安全限制設計"
+    },
+    {
+      "id": "opus-5md",
+      "name": "Opus 5.Md",
+      "url": "https://github.com/Eversmile12/leaked-llm-prompts/blob/main/Anthropic/opus-5.md",
+      "description": "collections-of-leaked-prompts",
+      "category": "AI 代理",
+      "language": "other",
+      "triggers": [
+        "opus-5.md",
+        "opus",
+        "5.md"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "git clone https://github.com/Eversmile12/leaked-llm-prompts.git",
+        "repoUrl": "https://github.com/Eversmile12/leaked-llm-prompts",
+        "branch": "main",
+        "subpath": "Anthropic/opus-5.md"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-27T02:50:36.637Z",
+      "status": "active",
+      "useCase": "取得 Anthropic Opus 5 洩漏的系統提示詞作為提示工程參考"
+    },
+    {
+      "id": "systempromptsleaks",
+      "name": "System_prompts_leaks",
+      "url": "https://github.com/asgeirtj/system_prompts_leaks",
+      "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-5.6-Sol, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "system_prompts_leaks",
+        "ai",
+        "ai-agents",
+        "ai-prompts",
+        "anthropic",
+        "chatbot",
+        "chatgpt",
+        "claude"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx system_prompts_leaks",
+        "repoUrl": "https://github.com/asgeirtj/system_prompts_leaks"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "ai-prompts",
+        "anthropic",
+        "chatbot"
+      ],
+      "addedAt": "2026-07-27T02:52:58.049Z",
+      "status": "active",
+      "useCase": "取得各大 AI 模型（Claude、ChatGPT、Gemini 等）的系統提示詞，用於研究、逆向工程或優化自訂提示",
+      "subTools": [
+        {
+          "name": "Claude Api",
+          "description": "|-",
+          "subpath": "Anthropic/Claude Code/bundled-skills/claude-api"
+        },
+        {
+          "name": "Claude Code Docs",
+          "description": "Answer questions about Claude Code features and settings",
+          "subpath": "Anthropic/Claude Code/bundled-skills/claude-code-docs"
+        },
+        {
+          "name": "Code Review",
+          "description": "Review the current diff for correctness bugs and reuse/simplification/efficiency cleanups at the given effort level (low/medium: fewer, high-confidence findings; high→max: broader coverage, may include uncertain findings; ultra: deep multi-agent review in the cloud). Pass --comment to post findings as inline PR comments, or --fix to apply the findings to the working tree after the review.",
+          "subpath": "Anthropic/Claude Code/bundled-skills/code-review"
+        },
+        {
+          "name": "Dataviz",
+          "description": ">",
+          "subpath": "Anthropic/Claude Code/bundled-skills/dataviz"
+        },
+        {
+          "name": "Deep Research",
+          "description": "Deep research harness — fan-out web searches, fetch sources, adversarially verify claims, synthesize a cited report.",
+          "subpath": "Anthropic/Claude Code/bundled-skills/deep-research"
+        },
+        {
+          "name": "Design Sync",
+          "description": "Push a React design system to claude.ai/design. This runs a converter that bundles the real component code (from Storybook or a bare package) and uploads it. Use when the user runs /design-sync or says \"sync my design system to Claude Design\".",
+          "subpath": "Anthropic/Claude Code/bundled-skills/design-sync"
+        },
+        {
+          "name": "Run Skill Generator",
+          "description": "Author or improve the run-<unit> skill — a per-project skill that tells agents how to build, launch, and drive this project's app. Use when the user asks to set up the project, get it running, write run instructions, or verify build/run steps work from a clean environment.",
+          "subpath": "Anthropic/Claude Code/bundled-skills/run-skill-generator"
+        },
+        {
+          "name": "GLM",
+          "description": "The GLM models via chat.z.ai have no system prompt. The GLM models also get no system prompt injected behind the scenes via the API.",
+          "subpath": "GLM"
+        },
+        {
+          "name": "API",
+          "description": "System Message Injected behind scenes for all API calls to o3/o4-mini\r \r ```You are ChatGPT, a large language model trained by OpenAI.\r Knowledge cutoff: 2024-06\r \r You are an AI assistant accessed vi",
+          "subpath": "OpenAI/API"
+        }
+      ]
+    },
+    {
+      "id": "claude-system-prompt",
+      "name": "Claude System Prompt",
+      "url": "https://github.com/zep-us/claude-system-prompt",
+      "description": "Reverse-engineered system prompts from Claude (claude.ai) and Claude Code CLI, validated against Anthropic's officially published prompts. ",
+      "category": "安全性",
+      "language": "html",
+      "triggers": [
+        "claude-system-prompt",
+        "claude",
+        "system",
+        "prompt",
+        "ai-security",
+        "anthropic",
+        "claude-code",
+        "llm"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/zep-us/claude-system-prompt.git",
+        "repoUrl": "https://github.com/zep-us/claude-system-prompt"
+      },
+      "capabilities": [
+        "ai-security",
+        "anthropic",
+        "claude",
+        "claude-code",
+        "llm"
+      ],
+      "addedAt": "2026-07-27T02:53:12.917Z",
+      "status": "active",
+      "useCase": "逆向工程 Claude 官網與 CLI 的系統提示詞，了解安全對齊機制"
     }
   ]
 }
