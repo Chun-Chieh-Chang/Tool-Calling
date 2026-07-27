@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T03:36:06.722Z",
+  "lastUpdated": "2026-07-27T03:36:41.539Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26552,7 +26552,18 @@
         "custom-agents"
       ],
       "addedAt": "2026-07-26T13:09:23.245Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "提供高級前端 UI 元件技能，適合快速建構 Morandi 風格的現代化網頁介面",
+      "advantages": [
+        "內建 Morandi 色票與圓角卡片設計",
+        "響應式佈局支援",
+        "元件化設計便於客製"
+      ],
+      "negativeConstraints": [
+        "不適合後端 API 開發",
+        "不適合資料視覺化儀表板",
+        "避免與其他 UI 框架混用造成樣式衝突"
+      ]
     },
     {
       "id": "seedance-20",
@@ -26573,7 +26584,18 @@
       },
       "capabilities": [],
       "addedAt": "2026-07-26T13:09:25.556Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "AI 影片生成模型，適合文字轉影片、動畫創作與概念視覺化",
+      "advantages": [
+        "高品質文字到影片生成",
+        "支援多種風格與長度控制",
+        "基於擴散模型的穩定輸出"
+      ],
+      "negativeConstraints": [
+        "不適合即時串流渲染",
+        "不適合精確的逐幀控制",
+        "不適合商業級影片後製編輯"
+      ]
     },
     {
       "id": "seedance2-skill",
@@ -26603,7 +26625,18 @@
         "video-prompt"
       ],
       "addedAt": "2026-07-26T13:09:26.579Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Seedance 2 模型的技能封裝，提供結構化的影片生成提示模板與參數配置",
+      "advantages": [
+        "封裝複雜 API 為可複用技能",
+        "預設最佳參數降低試錯成本",
+        "與 Tool-Calling 生態無縫整合"
+      ],
+      "negativeConstraints": [
+        "不支援 Seedance 1 代舊模型",
+        "不適合非影片生成的通用任務",
+        "不適合無 LLM 代理的直接呼叫"
+      ]
     },
     {
       "id": "remotion",
@@ -26755,7 +26788,18 @@
         "hevc"
       ],
       "addedAt": "2026-07-26T13:09:31.888Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "萬用多媒體命令列工具，適合影片轉檔、音訊萃取、串流處理與格式轉換",
+      "advantages": [
+        "支援數百種多媒體格式",
+        "豐富的濾鏡鏈與編碼器選項",
+        "跨平台且輕量無依賴"
+      ],
+      "negativeConstraints": [
+        "不適合圖形化操作（應使用 GUI 前端）",
+        "不適合即時直播串流（需搭配其他串流伺服器）",
+        "不適合非技術用戶的直覺操作"
+      ]
     },
     {
       "id": "pdf2md-agent-skill",
@@ -26787,7 +26831,18 @@
         "latex"
       ],
       "addedAt": "2026-07-26T13:09:32.510Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "將 PDF 文件自動轉換為 Markdown 格式，適合文件數位化與知識庫匯入",
+      "advantages": [
+        "保留原始排版與章節結構",
+        "支援表格與圖片萃取",
+        "可整合至自動化文件處理流程"
+      ],
+      "negativeConstraints": [
+        "不適合掃描檔 PDF（需 OCR 預處理）",
+        "不適合加密或權限受限的 PDF",
+        "不適合複雜浮動版面報告的精確還原"
+      ]
     },
     {
       "id": "exercises-dataset",
@@ -26862,7 +26917,18 @@
         "coding-agent"
       ],
       "addedAt": "2026-07-26T13:13:18.811Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "系統性學習 AI Agent 開發的書籍資源，適合從理論到實作的全方位參考",
+      "advantages": [
+        "涵蓋 Agent 架構設計與實作",
+        "附有程式碼範例與專案練習",
+        "適合初中階開發者循序漸進"
+      ],
+      "negativeConstraints": [
+        "不適合即時 API 參考查詢",
+        "不適合已熟悉 Agent 開發的高階工程師",
+        "內容可能隨框架版本演進而過時"
+      ]
     },
     {
       "id": "opencode-acp",
@@ -26929,7 +26995,17 @@
       ],
       "addedAt": "2026-07-27T02:50:02.550Z",
       "status": "active",
-      "useCase": "研究 Claude Opus 5 的系統提示詞結構與安全限制設計"
+      "useCase": "研究 Claude Opus 5 的系統提示詞結構與安全限制設計",
+      "advantages": [
+        "完整收錄 Claude Opus 5 系統提示詞原文",
+        "涵蓋安全限制、行為規範與產品資訊",
+        "可作為提示工程逆向分析素材"
+      ],
+      "negativeConstraints": [
+        "提示詞可能隨版本更新而變動",
+        "不應視為官方文件",
+        "僅供研究參考，不得用於規避安全限制"
+      ]
     },
     {
       "id": "opus-5md",
@@ -26953,7 +27029,17 @@
       "capabilities": [],
       "addedAt": "2026-07-27T02:50:36.637Z",
       "status": "active",
-      "useCase": "取得 Anthropic Opus 5 洩漏的系統提示詞作為提示工程參考"
+      "useCase": "取得 Anthropic Opus 5 洩漏的系統提示詞作為提示工程參考",
+      "advantages": [
+        "提供 Anthropic Opus 5 的洩漏提示詞快照",
+        "可對比官方行為理解安全對齊機制",
+        "適合提示工程與模型行為研究"
+      ],
+      "negativeConstraints": [
+        "來源為第三方洩漏，準確性不保證",
+        "不應用於生產級系統提示設計",
+        "僅供學術研究與教育目的"
+      ]
     },
     {
       "id": "systempromptsleaks",
@@ -27033,6 +27119,16 @@
           "description": "System Message Injected behind scenes for all API calls to o3/o4-mini\r \r ```You are ChatGPT, a large language model trained by OpenAI.\r Knowledge cutoff: 2024-06\r \r You are an AI assistant accessed vi",
           "subpath": "OpenAI/API"
         }
+      ],
+      "advantages": [
+        "收錄多個主流 AI 模型的系統提示詞（Claude/ChatGPT/Gemini/Grok）",
+        "持續更新追蹤最新版本",
+        "一次性取得跨模型提示詞比較素材"
+      ],
+      "negativeConstraints": [
+        "提示詞可能與實際版本有出入",
+        "不應作為官方 API 行為的唯一依據",
+        "僅供研究參考，不得用於逆向工程規避限制"
       ]
     },
     {
@@ -27066,7 +27162,17 @@
       ],
       "addedAt": "2026-07-27T02:53:12.917Z",
       "status": "active",
-      "useCase": "逆向工程 Claude 官網與 CLI 的系統提示詞，了解安全對齊機制"
+      "useCase": "逆向工程 Claude 官網與 CLI 的系統提示詞，了解安全對齊機制",
+      "advantages": [
+        "經逆向工程驗證的 Claude 系統提示詞",
+        "涵蓋 claude.ai 與 Claude Code CLI",
+        "與 Anthropic 官方公佈版本比對確認"
+      ],
+      "negativeConstraints": [
+        "逆向工程結果可能不完全精確",
+        "不應用於攻擊或繞過安全機制",
+        "提示詞會隨產品更新而變動"
+      ]
     }
   ]
 }
