@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T03:36:41.539Z",
+  "lastUpdated": "2026-07-27T03:49:18.342Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26719,7 +26719,7 @@
       "id": "frame",
       "name": "Frame",
       "url": "https://github.com/66HEX/frame",
-      "description": "FFmpeg GUI",
+      "description": "FFmpeg GUI 圖形化介面，提供影片轉檔、剪輯與參數設定的視覺化操作，無需記憶指令",
       "category": "影片",
       "language": "rust",
       "triggers": [

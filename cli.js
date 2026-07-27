@@ -179,7 +179,18 @@ async function cmdAdd(url, isBatch = false) {
     success(`已新增工具: ${c.bold}${newTool.name}${c.reset} (${newTool.id})`);
     console.log(`  ${c.blue}${url}${c.reset}`);
     console.log(`  ${c.dim}描述: ${newTool.description.slice(0, 60)}${c.reset}`);
-    console.log(`  ${c.dim}分類: ${newTool.category} | 語言: ${newTool.language}${c.reset}\n`);
+    console.log(`  ${c.dim}分類: ${newTool.category} | 語言: ${newTool.language}${c.reset}`);
+
+    // 檢查是否缺少推薦/禁用場景與優勢說明
+    const missingFields = [];
+    if (!newTool.useCase) missingFields.push('useCase (推薦場景)');
+    if (!newTool.negativeConstraints?.length) missingFields.push('negativeConstraints (禁用場景)');
+    if (!newTool.advantages?.length) missingFields.push('advantages (優勢說明)');
+    if (missingFields.length) {
+      console.log(`  ${c.yellow}⚠ 缺少 ${missingFields.join(', ')}${c.reset}`);
+      console.log(`  ${c.dim}建議執行 ${c.cyan}npm run enrich${c.dim} 以 AI 自動補完，或手動編輯 registry/tools.json${c.reset}`);
+    }
+    console.log();
   } catch (err) {
     error(`新增失敗: ${err.message}`);
     console.log(`${c.yellow}提示: 若因網路問題掃描失敗，您可以手動編輯 registry/tools.json 進行新增。${c.reset}\n`);
