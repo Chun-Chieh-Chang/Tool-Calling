@@ -190,23 +190,12 @@ async function main() {
 
   console.log(`\n  📦 共探勘到 ${allRepos.size} 個符合防禦門檻 (非 Fork 且 Stars ≥ ${MIN_STARS_THRESHOLD}) 的 repos (已過濾: ${skippedForkCount} 個 Fork, ${skippedLowStarCount} 個低於 ${MIN_STARS_THRESHOLD}⭐)`);
 
-  // 3. 計算每個 repo 的 star delta（優先使用 registry 內 stars 欄位做為基準）
-  const registryStars = {};
-  try {
-    const regData = JSON.parse(readFileSync(REGISTRY_PATH, 'utf-8'));
-    for (const t of regData.tools) {
-      if (t.stars && t.url) {
-        const m = t.url.match(/github\.com\/([^\/]+)\/([^\/]+)/i);
-        if (m) registryStars[`${m[1]}/${m[2].replace(/\.git$/i, '')}`] = t.stars;
-      }
-    }
-  } catch { /* ignore */ }
-
+  // 3. 計算每個 repo 的 star delta（僅以 star-snapshots.json 作為上週基準線，
+  //    不在快照內的 repo 設 delta=0，下週自動累積）
   const rankedRepos = [];
   for (const [fullName, repo] of allRepos) {
     const currentStars = repo.stargazers_count || 0;
-    // 優先順序：快照 > registry.stars > 0
-    const prevStars = prevSnapshot[fullName] || registryStars[fullName] || 0;
+    const prevStars = prevSnapshot[fullName] || 0;
     const delta = prevStars > 0 ? (currentStars - prevStars) : 0;
     rankedRepos.push({ ...repo, currentStars, prevStars, delta });
   }
