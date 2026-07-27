@@ -176,6 +176,26 @@ async function cmdAdd(url, isBatch = false) {
     registry.tools.push(newTool);
     saveRegistry(registry);
 
+    // 即時取得該工具的 GitHub Stars 並寫入快照（供下週 trending 計算 delta）
+    try {
+      const { loadSnapshot, saveSnapshot, parseOwnerRepo } = await import('./core/snapshot.js');
+      const snap = loadSnapshot();
+      const parsed = parseOwnerRepo(url);
+      if (parsed) {
+        const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}`;
+        const res = await fetch(apiUrl, { headers: { 'User-Agent': 'Tool-Calling-Add-Agent' }, signal: AbortSignal.timeout(5000) });
+        if (res.ok) {
+          const data = await res.json();
+          if (typeof data.stargazers_count === 'number') {
+            const fullName = `${parsed.owner}/${parsed.repo}`;
+            snap[fullName] = data.stargazers_count;
+            newTool.stars = data.stargazers_count;
+            saveSnapshot(snap);
+          }
+        }
+      }
+    } catch { /* snapshot 非必要，失敗不影響主要流程 */ }
+
     success(`已新增工具: ${c.bold}${newTool.name}${c.reset} (${newTool.id})`);
     console.log(`  ${c.blue}${url}${c.reset}`);
     console.log(`  ${c.dim}描述: ${newTool.description.slice(0, 60)}${c.reset}`);

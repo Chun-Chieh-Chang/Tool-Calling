@@ -150,14 +150,23 @@ async function main() {
   console.log(`\n\x1b[36m🔍 GitHub 每週漲星探勘 — ${worldWeek}\x1b[0m`);
   console.log(`   時間範圍：${weekAgoStr} ~ ${now.toISOString().slice(0, 10)}\n`);
 
-  // 1. 讀取上週快照
+  // 1. 讀取上週快照（含過期檢查）
   let prevSnapshot = {};
+  let snapshotAgeDays = Infinity;
   if (existsSync(SNAPSHOTS_PATH)) {
     try {
       prevSnapshot = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf-8'));
+      const st = (await import('node:fs')).statSync(SNAPSHOTS_PATH);
+      snapshotAgeDays = (Date.now() - st.mtimeMs) / 86400000;
     } catch { /* ignore */ }
   }
   const hasPrevData = Object.keys(prevSnapshot).length > 0;
+  if (hasPrevData && snapshotAgeDays > 8) {
+    console.warn(`  ⚠ 快照已 ${Math.round(snapshotAgeDays)} 天未更新（>8 天），delta 可能不準確。建議先執行 npm run sync-stars 更新星數後再執行本腳本。`);
+  }
+  if (!hasPrevData) {
+    console.warn(`  ⚠ 無歷史快照，本次僅建立基準線，所有 delta=0，下週才會產出週漲幅排名。`);
+  }
 
   // 2. 搜尋多領域熱門 repos（應用防禦門檻：排除 fork 與 stars < 500）
   const MIN_STARS_THRESHOLD = 500;
