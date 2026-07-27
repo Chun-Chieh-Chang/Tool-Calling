@@ -19,7 +19,10 @@
     "enrich": "node scripts/enrich-registry.js",
     "sync-stars": "node scripts/sync-github-stars.js",
     "trending": "node scripts/trending-weekly.js",
-    "mcp": "node mcp-server.js"
+    "mcp": "node mcp-server.js",
+    "daemon": "node scripts/sync-daemon.js",
+    "daemon:start": "powershell -Command \"Start-Job -Name ToolCallingDaemon -ScriptBlock { node D:\\Self-developed_Apps\\Tool-Calling\\scripts\\sync-daemon.js }\"",
+    "daemon:stop": "powershell -Command \"Stop-Job -Name ToolCallingDaemon -ErrorAction SilentlyContinue; Remove-Job -Name ToolCallingDaemon -ErrorAction SilentlyContinue\""
   },
   "keywords": [
     "tool-calling",
