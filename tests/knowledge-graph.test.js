@@ -2,12 +2,22 @@ import { test, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { loadRegistry } from '../core/registry.js';
+import { generateKnowledgeGraph } from '../scripts/generate-knowledge-graph.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 describe('知識圖譜 2D/3D 雙視角與平移驗證', () => {
   it('應能正確載入 HTML 並切換至 3D 視角且無 Console Error', async () => {
+    // 若 HTML 不存在（CI 環境因 .gitignore 未追蹤），先即時生成
+    const htmlPath = path.resolve(__dirname, '../docs/knowledge-graph.html');
+    if (!fs.existsSync(htmlPath)) {
+      const registry = loadRegistry();
+      generateKnowledgeGraph(registry);
+    }
+
     let browser;
     try {
       browser = await chromium.launch({ headless: true });
@@ -26,7 +36,6 @@ describe('知識圖譜 2D/3D 雙視角與平移驗證', () => {
       });
       page.on('pageerror', err => consoleErrors.push(err.message));
 
-      const htmlPath = path.resolve(__dirname, '../docs/knowledge-graph.html');
       const fileUrl = 'file:///' + htmlPath.replace(/\\/g, '/');
       await page.goto(fileUrl, { waitUntil: 'networkidle' });
 
