@@ -58,16 +58,16 @@ function getISOWeekString(date = new Date()) {
 // ─── 搜尋主題清單（覆蓋本工具庫的全部領域） ──────────────────────────
 
 const SEARCH_QUERIES = [
-  'ai agent stars:>500 created:>2026-01-01',
-  'llm framework stars:>500 created:>2026-01-01',
-  'developer tool stars:>1000 created:>2026-01-01',
-  'automation workflow stars:>500 created:>2026-01-01',
-  'data analysis stars:>500 created:>2026-01-01',
-  'machine learning stars:>1000 created:>2026-01-01',
-  'generative ai stars:>500 created:>2026-01-01',
-  'devops infrastructure stars:>1000 created:>2026-01-01',
-  'ui component design stars:>500 created:>2026-01-01',
-  'cli tool stars:>500 created:>2026-01-01',
+  'ai agent stars:>500 pushed:>2026-01-01',
+  'llm framework stars:>500 pushed:>2026-01-01',
+  'developer tool stars:>1000 pushed:>2026-01-01',
+  'automation workflow stars:>500 pushed:>2026-01-01',
+  'data analysis stars:>500 pushed:>2026-01-01',
+  'machine learning stars:>1000 pushed:>2026-01-01',
+  'generative ai stars:>500 pushed:>2026-01-01',
+  'devops infrastructure stars:>1000 pushed:>2026-01-01',
+  'ui component design stars:>500 pushed:>2026-01-01',
+  'cli tool stars:>500 pushed:>2026-01-01',
 ];
 
 // ─── 分類推斷（基於 topics / language / 描述進行規則推導） ────────────
