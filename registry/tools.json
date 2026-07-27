@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T04:38:55.138Z",
+  "lastUpdated": "2026-07-27T04:50:12.723Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -27806,6 +27806,427 @@
         "尺寸固定不適合大圖展示",
         "圖示數量較少",
         "不適合一般用途的圖示需求"
+      ]
+    },
+    {
+      "id": "ant-design-icons",
+      "name": "Ant Design Icons",
+      "url": "https://github.com/ant-design/ant-design-icons",
+      "description": "⭐ Ant Design SVG Icons",
+      "category": "設計",
+      "language": "typescript",
+      "triggers": [
+        "ant-design-icons",
+        "ant",
+        "design",
+        "icons",
+        "angular",
+        "ant-design",
+        "antd",
+        "react"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx ant-design-icons",
+        "repoUrl": "https://github.com/ant-design/ant-design-icons"
+      },
+      "capabilities": [
+        "angular",
+        "ant-design",
+        "antd",
+        "icons",
+        "react"
+      ],
+      "addedAt": "2026-07-27T04:49:13.056Z",
+      "status": "active",
+      "useCase": "Ant Design 官方 SVG 圖示集，適合 Ant Design React/Vue 專案的 UI 開發",
+      "advantages": [
+        "Ant Design 生態原生支援",
+        "SVG 格式彈性使用",
+        "一致的設計語言"
+      ],
+      "negativeConstraints": [
+        "非 Ant Design 專案需額外適配",
+        "風格偏企業級應用",
+        "不適合非網頁環境"
+      ]
+    },
+    {
+      "id": "polybar-themes",
+      "name": "Polybar Themes",
+      "url": "https://github.com/adi1090x/polybar-themes",
+      "description": "A huge collection of polybar themes with different styles, colors and variants.",
+      "category": "其他",
+      "language": "shell",
+      "triggers": [
+        "polybar-themes",
+        "polybar",
+        "themes",
+        "adi1090x",
+        "archcraft",
+        "archlinux",
+        "debian",
+        "desktop-environment"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/adi1090x/polybar-themes.git",
+        "repoUrl": "https://github.com/adi1090x/polybar-themes"
+      },
+      "capabilities": [
+        "adi1090x",
+        "archcraft",
+        "archlinux",
+        "debian",
+        "desktop-environment"
+      ],
+      "addedAt": "2026-07-27T04:49:13.728Z",
+      "status": "active",
+      "useCase": "Polybar 狀態列主題大全，適合 Linux 桌面環境的客製化美化",
+      "advantages": [
+        "數百種主題風格",
+        "社群持續貢獻",
+        "安裝簡單即套即用"
+      ],
+      "negativeConstraints": [
+        "僅支援 Linux Polybar",
+        "不適合 Windows/macOS",
+        "需手動調整以配合個人配置"
+      ]
+    },
+    {
+      "id": "welovesvg",
+      "name": "Welovesvg",
+      "url": "https://github.com/icons8/welovesvg",
+      "description": "SVG sets compilation for popular iconic projects ",
+      "category": "其他",
+      "language": "other",
+      "triggers": [
+        "welovesvg",
+        "icon-management",
+        "icon-packs",
+        "icons"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/icons8/welovesvg.git",
+        "repoUrl": "https://github.com/icons8/welovesvg"
+      },
+      "capabilities": [
+        "icon-management",
+        "icon-packs",
+        "icons"
+      ],
+      "addedAt": "2026-07-27T04:49:14.603Z",
+      "status": "active",
+      "useCase": "知名圖示專案的 SVG 集合編譯，適合需要跨圖示集資源的設計與開發",
+      "advantages": [
+        "多圖示集合集",
+        "SVG 原生格式",
+        "方便批次下載與管理"
+      ],
+      "negativeConstraints": [
+        "非原始創作者",
+        "圖示品質不一",
+        "更新頻率不固定"
+      ]
+    },
+    {
+      "id": "polaris-react",
+      "name": "Polaris React",
+      "url": "https://github.com/shopify/polaris-react",
+      "description": "Shopify's Polaris Design System - React implementation (Deprecated)",
+      "category": "設計",
+      "language": "typescript",
+      "triggers": [
+        "polaris-react",
+        "polaris",
+        "react",
+        "component-library",
+        "design-system",
+        "design-systems",
+        "design-tokens",
+        "figma-plugin"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx polaris-react",
+        "repoUrl": "https://github.com/shopify/polaris-react"
+      },
+      "capabilities": [
+        "component-library",
+        "design-system",
+        "design-systems",
+        "design-tokens",
+        "figma-plugin"
+      ],
+      "addedAt": "2026-07-27T04:49:43.366Z",
+      "status": "active",
+      "useCase": "Shopify Polaris 設計系統的 React 實作，適合 Shopify App 與電商後台開發",
+      "advantages": [
+        "Shopify 官方設計系統",
+        "完整的 React 元件庫",
+        "與 Shopify 生態無縫整合"
+      ],
+      "negativeConstraints": [
+        "僅適合 Shopify 相關專案",
+        "非 Shopify 專案使用成本高",
+        "需熟悉 React"
+      ]
+    },
+    {
+      "id": "iconify",
+      "name": "Iconify",
+      "url": "https://github.com/iconify/iconify",
+      "description": "Universal icon framework. One syntax for FontAwesome, Material Design Icons, DashIcons, Feather Icons, EmojiOne, Noto Emoji and many other open source icon sets (over 200 icon sets and ~300k icons). SVG framework, React, Vue and Svelte components!",
+      "category": "設計",
+      "language": "typescript",
+      "triggers": [
+        "iconify",
+        "emoji",
+        "glyph-fonts",
+        "icons",
+        "svg",
+        "svg-framework",
+        "vector-icons"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx iconify",
+        "repoUrl": "https://github.com/iconify/iconify"
+      },
+      "capabilities": [
+        "emoji",
+        "glyph-fonts",
+        "icons",
+        "svg",
+        "svg-framework"
+      ],
+      "addedAt": "2026-07-27T04:49:43.813Z",
+      "status": "active",
+      "useCase": "通用圖示框架，統一 API 存取 FontAwesome/Material/Phosphor 等 100+ 圖示集",
+      "advantages": [
+        "統一語法存取多個圖示集",
+        "支援 Tree Shaking 最佳化",
+        "支援 React/Vue/Svelte 等框架"
+      ],
+      "negativeConstraints": [
+        "需網路載入或建置時打包",
+        "不適合離線靜態網站",
+        "依賴較多需評估 bundle 大小"
+      ]
+    },
+    {
+      "id": "font-awesome",
+      "name": "Font Awesome",
+      "url": "https://github.com/FortAwesome/Font-Awesome",
+      "description": "The iconic SVG, font, and CSS toolkit",
+      "category": "設計",
+      "language": "javascript",
+      "triggers": [
+        "font-awesome",
+        "font",
+        "awesome",
+        "css",
+        "fontawesome",
+        "icons",
+        "svg-icons",
+        "svg-sprites"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx Font-Awesome",
+        "repoUrl": "https://github.com/FortAwesome/Font-Awesome"
+      },
+      "capabilities": [
+        "css",
+        "font",
+        "fontawesome",
+        "icons",
+        "svg-icons"
+      ],
+      "addedAt": "2026-07-27T04:49:44.234Z",
+      "status": "active",
+      "useCase": "最具代表性的網頁圖示工具包，適合各類網站與應用的 UI 圖示需求",
+      "advantages": [
+        "業界標準廣泛使用",
+        "Font 與 SVG 雙模式",
+        "豐富的圖示庫涵蓋各領域"
+      ],
+      "negativeConstraints": [
+        "Pro 版本需付費",
+        "Font 模式在 Retina 顯示略模糊",
+        "bundle 體積較大需按需載入"
+      ]
+    },
+    {
+      "id": "material-design-icons",
+      "name": "Material Design Icons",
+      "url": "https://github.com/google/material-design-icons",
+      "description": "Material Design icons by Google (Material Symbols)",
+      "category": "設計",
+      "language": "other",
+      "triggers": [
+        "material-design-icons",
+        "material",
+        "design",
+        "icons",
+        "android",
+        "ios",
+        "material-design",
+        "sprites"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/google/material-design-icons.git",
+        "repoUrl": "https://github.com/google/material-design-icons"
+      },
+      "capabilities": [
+        "android",
+        "icons",
+        "ios",
+        "material",
+        "material-design"
+      ],
+      "addedAt": "2026-07-27T04:50:12.596Z",
+      "status": "active",
+      "useCase": "Google Material Symbols 圖示庫，適合 Material 設計風格的 Android/Web/Flutter 應用",
+      "advantages": [
+        "Google 官方維護",
+        "Material Design 3 完整支援",
+        "Variable font 與 SVG 雙格式"
+      ],
+      "negativeConstraints": [
+        "不適合非 Material 設計風格的專案",
+        "圖示風格偏現代簡約",
+        "不適合真實感圖形"
+      ]
+    },
+    {
+      "id": "fluentui-system-icons",
+      "name": "Fluentui System Icons",
+      "url": "https://github.com/microsoft/fluentui-system-icons",
+      "description": "Fluent System Icons are a collection of familiar, friendly and modern icons from Microsoft.",
+      "category": "設計",
+      "language": "html",
+      "triggers": [
+        "fluentui-system-icons",
+        "fluentui",
+        "system",
+        "icons",
+        "android",
+        "design",
+        "fluent",
+        "flutter"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/microsoft/fluentui-system-icons.git",
+        "repoUrl": "https://github.com/microsoft/fluentui-system-icons"
+      },
+      "capabilities": [
+        "android",
+        "design",
+        "fluent",
+        "flutter",
+        "icons"
+      ],
+      "addedAt": "2026-07-27T04:50:12.638Z",
+      "status": "active",
+      "useCase": "Microsoft Fluent UI 系統圖示集，適合 Windows 與 Microsoft 生態應用開發",
+      "advantages": [
+        "Microsoft 官方設計語言",
+        "熟悉友善的視覺風格",
+        "多尺寸與權重支援"
+      ],
+      "negativeConstraints": [
+        "風格與 Fluent Design 深度綁定",
+        "不適合非 Microsoft 生態",
+        "部分圖示較為特定"
+      ]
+    },
+    {
+      "id": "sfsafesymbols",
+      "name": "SFSafeSymbols",
+      "url": "https://github.com/SFSafeSymbols/SFSafeSymbols",
+      "description": "Safely access Apple's SF Symbols using static typing",
+      "category": "其他",
+      "language": "swift",
+      "triggers": [
+        "sfsafesymbols",
+        "icons",
+        "ios",
+        "sfsymbols",
+        "swift",
+        "symbols"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/SFSafeSymbols/SFSafeSymbols.git",
+        "repoUrl": "https://github.com/SFSafeSymbols/SFSafeSymbols"
+      },
+      "capabilities": [
+        "icons",
+        "ios",
+        "sfsymbols",
+        "swift",
+        "symbols"
+      ],
+      "addedAt": "2026-07-27T04:50:12.680Z",
+      "status": "active",
+      "useCase": "以靜態型別安全存取 Apple SF Symbols，適合 iOS/macOS/watchOS 開發",
+      "advantages": [
+        "編譯期型別檢查",
+        "避免字串拼寫錯誤",
+        "Xcode 自動補全支援"
+      ],
+      "negativeConstraints": [
+        "僅 Apple 平台適用",
+        "需 Swift 開發環境",
+        "不包含自訂圖示"
+      ]
+    },
+    {
+      "id": "simple-icons",
+      "name": "Simple Icons",
+      "url": "https://github.com/simple-icons/simple-icons",
+      "description": "SVG icons for popular brands",
+      "category": "設計",
+      "language": "javascript",
+      "triggers": [
+        "simple-icons",
+        "simple",
+        "icons",
+        "brand",
+        "brand-assets",
+        "brand-colors",
+        "branding",
+        "branding-assets"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx simple-icons",
+        "repoUrl": "https://github.com/simple-icons/simple-icons"
+      },
+      "capabilities": [
+        "brand",
+        "brand-assets",
+        "brand-colors",
+        "branding",
+        "branding-assets"
+      ],
+      "addedAt": "2026-07-27T04:50:12.722Z",
+      "status": "active",
+      "useCase": "知名品牌的 SVG 圖示集，適合網站與應用中顯示品牌標誌",
+      "advantages": [
+        "專注品牌圖示",
+        "定期更新標誌",
+        "SVG 輕量乾淨"
+      ],
+      "negativeConstraints": [
+        "僅限品牌圖示",
+        "不適合一般 UI 需求",
+        "商標使用需注意授權"
       ]
     }
   ]
