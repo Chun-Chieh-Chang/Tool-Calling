@@ -728,7 +728,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       }, true);
 
-      // 安全 3D 滾輪推進演算法
+      // 以鼠標位置為原點的 3D 滾輪縮放演算法（Pivot Zoom）
       container3d.addEventListener('wheel', function (event) {
         if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
@@ -741,18 +741,45 @@ export function generateKnowledgeGraph(registryInput = null) {
         const Vector3Class = controls.target.constructor;
         if (!Vector3Class) return;
 
+        // 取得鼠標在 canvas 上的正規化座標 (-1 ~ 1)
+        const rect = container3d.getBoundingClientRect();
+        const ndcX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        const ndcY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+        // 從相機位置射出射線通過鼠標位置
+        const dir = new Vector3Class(ndcX, ndcY, -1).unproject(camera);
+        dir.sub(camera.position).normalize();
+
+        // 計算射線與垂直於視線、通過 targetPoint 的平面之交點（pivot）
         const targetPoint = controls.target.clone();
+        const lookDir = new Vector3Class().subVectors(targetPoint, camera.position).normalize();
+        const d = targetPoint.dot(lookDir);
+        const t = (d - camera.position.dot(lookDir)) / dir.dot(lookDir);
+        const pivot = new Vector3Class().copy(camera.position).addScaledVector(dir, t);
+
+        // 縮放係數
         const zoomStep = event.deltaY < 0 ? 0.84 : 1.19;
 
-        const camToTarget = new Vector3Class().subVectors(camera.position, targetPoint);
-        const currentDistance = camToTarget.length();
-        const newDistance = Math.max(currentDistance * zoomStep, 10);
+        // 將 camera.position 朝向 pivot 縮放
+        const camToPivot = new Vector3Class().subVectors(camera.position, pivot);
+        const currentDist = camToPivot.length();
+        const newDist = Math.max(currentDist * zoomStep, 5);
+        camToPivot.normalize().multiplyScalar(newDist);
+        const newCamPos = new Vector3Class().addVectors(pivot, camToPivot);
 
-        camToTarget.normalize().multiplyScalar(newDistance);
-        const newCamPos = new Vector3Class().addVectors(targetPoint, camToTarget);
+        // 同步移動 controls.target 以 pivot 為基準同比例位移
+        const targetToPivot = new Vector3Class().subVectors(targetPoint, pivot);
+        const targetDist = targetToPivot.length();
+        const newTargetDist = targetDist * zoomStep;
+        targetToPivot.normalize().multiplyScalar(newTargetDist);
+        const newTarget = new Vector3Class().addVectors(pivot, targetToPivot);
 
-        controls.target.lerp(targetPoint, 0.25);
+        // 限制最小/最大距離避免失焦
+        const finalDist = new Vector3Class().subVectors(newCamPos, newTarget).length();
+        if (finalDist < 5 || finalDist > 5000) return;
+
         camera.position.copy(newCamPos);
+        controls.target.copy(newTarget);
         controls.update();
       }, { passive: false });
 
