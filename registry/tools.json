@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T03:02:28.195Z",
+  "lastUpdated": "2026-07-27T03:35:18.255Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26610,7 +26610,7 @@
       "name": "Remotion",
       "url": "https://github.com/remotion-dev/remotion",
       "description": "🎥      Make videos programmatically with React",
-      "category": "其他",
+      "category": "多媒體生成",
       "language": "typescript",
       "triggers": [
         "remotion",
@@ -26629,14 +26629,25 @@
         "video"
       ],
       "addedAt": "2026-07-26T13:09:27.187Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "使用 React 程式化生成影片，適合自動化影片製作、動態影像渲染與社群媒體內容量產",
+      "advantages": [
+        "React 元件化開發，適合前端團隊快速上手",
+        "支援 MP4/WebM 輸出及多種編碼格式",
+        "內建 Compositions 與序列幀管理"
+      ],
+      "negativeConstraints": [
+        "不適合即時串流直播場景",
+        "不適合非程式設計師的純 GUI 影片編輯",
+        "不適合需要 GPU 硬體加速渲染的 4K/8K 長片"
+      ]
     },
     {
       "id": "opencv",
       "name": "Opencv",
       "url": "https://github.com/opencv/opencv",
       "description": "Open Source Computer Vision Library",
-      "category": "其他",
+      "category": "AI 框架",
       "language": "c++",
       "triggers": [
         "opencv",
@@ -26658,7 +26669,18 @@
         "opencv"
       ],
       "addedAt": "2026-07-26T13:09:27.686Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "提供電腦視覺與影像處理的基礎函式庫，適合人臉辨識、物件追蹤、影像前處理等應用",
+      "advantages": [
+        "跨平台支援（Windows/Linux/macOS/Android）",
+        "豐富的預訓練模型與演算法實作",
+        "C++/Python/Java 等多語言 API"
+      ],
+      "negativeConstraints": [
+        "不適合深度學習端到端訓練（應使用 PyTorch/TensorFlow）",
+        "不適合即時高畫質影片串流處理",
+        "不適合需要 GPU 大規模平行計算的場景"
+      ]
     },
     {
       "id": "frame",
@@ -26825,7 +26847,7 @@
       "name": "Opencode Acp",
       "url": "https://github.com/ranxianglei/opencode-acp",
       "description": "Active Context Pruning — model-driven context management for OpenCode ，200K tokens is enough. ，主动压缩上下文，20w token足以",
-      "category": "其他",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "opencode-acp",
@@ -26839,7 +26861,18 @@
       },
       "capabilities": [],
       "addedAt": "2026-07-27T02:37:10.312Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "針對 OpenCode 的模型驅動上下文管理，透過 Active Context Pruning 壓縮對話歷史以節省 Token",
+      "advantages": [
+        "主動剪枝無關上下文，減少 Token 消耗",
+        "模型驅動的智能保留策略",
+        "專為 OpenCode 開發流程最佳化"
+      ],
+      "negativeConstraints": [
+        "不適合非 OpenCode 的通用對話場景",
+        "不適合需要完整無損對話歷史的稽核用途",
+        "避免與其他上下文管理工具同時啟用造成衝突"
+      ]
     },
     {
       "id": "claude-opus-5md",
