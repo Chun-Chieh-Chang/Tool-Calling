@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T03:35:46.331Z",
+  "lastUpdated": "2026-07-27T03:36:06.722Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -26712,7 +26712,18 @@
         "linux"
       ],
       "addedAt": "2026-07-26T13:09:29.473Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "提供 FFmpeg 的圖形化介面（GUI），讓非指令行使用者也能進行影片轉檔、剪輯與參數設定",
+      "advantages": [
+        "圖形化操作，無需記憶 FFmpeg 指令參數",
+        "跨平台支援（Linux 為主）",
+        "基於 GPUI 框架，介面反應迅速"
+      ],
+      "negativeConstraints": [
+        "不適合自動化批次處理（應直接使用 FFmpeg CLI）",
+        "不適合伺服器端無頭環境",
+        "不適合需要自訂複雜濾鏡鏈（filter graph）的高階用戶"
+      ]
     },
     {
       "id": "ffmpeg",
