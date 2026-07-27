@@ -58,16 +58,16 @@ function getISOWeekString(date = new Date()) {
 // ─── 搜尋主題清單（覆蓋本工具庫的全部領域） ──────────────────────────
 
 const SEARCH_QUERIES = [
-  'ai agent stars:>1000 pushed:>WEEK_AGO',
-  'llm framework stars:>1000 pushed:>WEEK_AGO',
-  'developer tool stars:>2000 pushed:>WEEK_AGO',
-  'automation workflow stars:>2000 pushed:>WEEK_AGO',
-  'data analysis stars:>1000 pushed:>WEEK_AGO',
-  'machine learning stars:>5000 pushed:>WEEK_AGO',
-  'generative ai stars:>1000 pushed:>WEEK_AGO',
-  'devops infrastructure stars:>3000 pushed:>WEEK_AGO',
-  'ui component design stars:>3000 pushed:>WEEK_AGO',
-  'cli tool stars:>2000 pushed:>WEEK_AGO',
+  'ai agent stars:>500 created:>2026-01-01',
+  'llm framework stars:>500 created:>2026-01-01',
+  'developer tool stars:>1000 created:>2026-01-01',
+  'automation workflow stars:>500 created:>2026-01-01',
+  'data analysis stars:>500 created:>2026-01-01',
+  'machine learning stars:>1000 created:>2026-01-01',
+  'generative ai stars:>500 created:>2026-01-01',
+  'devops infrastructure stars:>1000 created:>2026-01-01',
+  'ui component design stars:>500 created:>2026-01-01',
+  'cli tool stars:>500 created:>2026-01-01',
 ];
 
 // ─── 分類推斷（基於 topics / language / 描述進行規則推導） ────────────
@@ -159,8 +159,8 @@ async function main() {
   }
   const hasPrevData = Object.keys(prevSnapshot).length > 0;
 
-  // 2. 搜尋多領域熱門 repos（應用防禦門檻：排除 fork 與 stars < 5000）
-  const MIN_STARS_THRESHOLD = 5000;
+  // 2. 搜尋多領域熱門 repos（應用防禦門檻：排除 fork 與 stars < 500）
+  const MIN_STARS_THRESHOLD = 500;
   const allRepos = new Map(); // fullName -> repo object
   let skippedForkCount = 0;
   let skippedLowStarCount = 0;
@@ -188,14 +188,26 @@ async function main() {
     if (i < SEARCH_QUERIES.length - 1) await delay(GITHUB_TOKEN ? 2000 : 6000);
   }
 
-  console.log(`\n  📦 共探勘到 ${allRepos.size} 個符合防禦門檻 (非 Fork 且 Stars ≥ 5,000) 的 repos (已過濾: ${skippedForkCount} 個 Fork, ${skippedLowStarCount} 個低於 5,000⭐)`);
+  console.log(`\n  📦 共探勘到 ${allRepos.size} 個符合防禦門檻 (非 Fork 且 Stars ≥ ${MIN_STARS_THRESHOLD}) 的 repos (已過濾: ${skippedForkCount} 個 Fork, ${skippedLowStarCount} 個低於 ${MIN_STARS_THRESHOLD}⭐)`);
 
-  // 3. 計算每個 repo 的 star delta
+  // 3. 計算每個 repo 的 star delta（優先使用 registry 內 stars 欄位做為基準）
+  const registryStars = {};
+  try {
+    const regData = JSON.parse(readFileSync(REGISTRY_PATH, 'utf-8'));
+    for (const t of regData.tools) {
+      if (t.stars && t.url) {
+        const m = t.url.match(/github\.com\/([^\/]+)\/([^\/]+)/i);
+        if (m) registryStars[`${m[1]}/${m[2].replace(/\.git$/i, '')}`] = t.stars;
+      }
+    }
+  } catch { /* ignore */ }
+
   const rankedRepos = [];
   for (const [fullName, repo] of allRepos) {
     const currentStars = repo.stargazers_count || 0;
-    const prevStars = prevSnapshot[fullName] || 0;
-    const delta = hasPrevData ? (currentStars - prevStars) : currentStars;
+    // 優先順序：快照 > registry.stars > 0
+    const prevStars = prevSnapshot[fullName] || registryStars[fullName] || 0;
+    const delta = prevStars > 0 ? (currentStars - prevStars) : 0;
     rankedRepos.push({ ...repo, currentStars, prevStars, delta });
   }
 
@@ -205,7 +217,7 @@ async function main() {
 
   console.log(`\n  🏆 本週漲星前 10 名：`);
   top10.forEach((r, i) => {
-    const deltaStr = hasPrevData ? `+${r.delta.toLocaleString()}` : `${r.currentStars.toLocaleString()} (首次快照)`;
+    const deltaStr = r.delta > 0 ? `+${r.delta.toLocaleString()}` : `${r.currentStars.toLocaleString()} (待下週比對)`;
     console.log(`     ${i + 1}. ${r.full_name} — ⭐ ${r.currentStars.toLocaleString()} (${deltaStr})`);
   });
 
@@ -222,7 +234,7 @@ async function main() {
     if (existingUrls.has(repoUrl?.toLowerCase())) continue;
 
     // 二次硬防禦確認
-    if (repo.fork || (repo.stargazers_count || 0) < MIN_STARS_THRESHOLD) continue;
+    if (repo.fork || !repo.stargazers_count) continue;
 
     // 產生唯一 ID
     let toolId = repo.name.toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-');

@@ -1,12 +1,19 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const registryPath = join(__dirname, '..', 'registry', 'tools.json');
+const ROOT = join(__dirname, '..');
+const registryPath = join(ROOT, 'registry', 'tools.json');
+const SNAPSHOTS_PATH = join(ROOT, 'registry', 'star-snapshots.json');
 
 const registry = JSON.parse(readFileSync(registryPath, 'utf-8'));
+// Also load star-snapshots for weekly delta tracking
+let starSnapshots = {};
+if (existsSync(SNAPSHOTS_PATH)) {
+  try { starSnapshots = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf-8')); } catch { }
+}
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const headers = {
@@ -87,7 +94,17 @@ async function main() {
 
   registry.lastUpdated = new Date().toISOString();
   writeFileSync(registryPath, JSON.stringify(registry, null, 2), 'utf-8');
-  console.log(`\n\x1b[32m[同步完成] 成功更新 ${updatedCount} 個工具的 Star 數！\x1b[0m`);
+
+  // 同步更新 star-snapshots.json，供 trending-weekly.js 計算週 delta
+  for (const tool of registry.tools) {
+    if (tool.stars && tool.url) {
+      const match = tool.url.match(/github\.com\/([^\/]+)\/([^\/]+)/i);
+      if (match) starSnapshots[`${match[1]}/${match[2].replace(/\.git$/i, '')}`] = tool.stars;
+    }
+  }
+  writeFileSync(SNAPSHOTS_PATH, JSON.stringify(starSnapshots, null, 2), 'utf-8');
+
+  console.log(`\n\x1b[32m[同步完成] 成功更新 ${updatedCount} 個工具的 Star 數，快照已同步！\x1b[0m`);
 }
 
 main().catch((err) => {
