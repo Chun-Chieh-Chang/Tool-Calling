@@ -1,9 +1,120 @@
 {
-  "worldWeek": "2026-W30",
-  "lastUpdated": "2026-07-27T05:17:51.650Z",
-  "note": "Snapshot recalibrated. Accurate weekly deltas begin from next run (2026-W31).",
-  "scannedReposCount": 0,
+  "worldWeek": "2026-W31",
+  "lastUpdated": "2026-07-27T05:34:34.775Z",
+  "dateRange": "2026-07-20 ~ 2026-07-27",
+  "scannedReposCount": 459,
   "newlyAddedCount": 0,
-  "top10": [],
+  "top10": [
+    {
+      "rank": 1,
+      "name": "superpowers",
+      "fullName": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "currentStars": 261692,
+      "delta": 256759,
+      "category": "開發工具",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 2,
+      "name": "hermes-agent",
+      "fullName": "NousResearch/hermes-agent",
+      "url": "https://github.com/NousResearch/hermes-agent",
+      "currentStars": 221044,
+      "delta": 211259,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 3,
+      "name": "n8n",
+      "fullName": "n8n-io/n8n",
+      "url": "https://github.com/n8n-io/n8n",
+      "currentStars": 198150,
+      "delta": 184782,
+      "category": "基礎設施",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 4,
+      "name": "transformers",
+      "fullName": "huggingface/transformers",
+      "url": "https://github.com/huggingface/transformers",
+      "currentStars": 163019,
+      "delta": 154345,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 5,
+      "name": "langflow",
+      "fullName": "langflow-ai/langflow",
+      "url": "https://github.com/langflow-ai/langflow",
+      "currentStars": 152453,
+      "delta": 147059,
+      "category": "UI/UX設計",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 6,
+      "name": "dify",
+      "fullName": "langgenius/dify",
+      "url": "https://github.com/langgenius/dify",
+      "currentStars": 150353,
+      "delta": 146949,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 7,
+      "name": "agency-agents",
+      "fullName": "msitarzewski/agency-agents",
+      "url": "https://github.com/msitarzewski/agency-agents",
+      "currentStars": 136941,
+      "delta": 128267,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 8,
+      "name": "awesome-llm-apps",
+      "fullName": "Shubhamsaboo/awesome-llm-apps",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
+      "currentStars": 127945,
+      "delta": 123473,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 9,
+      "name": "gemini-cli",
+      "fullName": "google-gemini/gemini-cli",
+      "url": "https://github.com/google-gemini/gemini-cli",
+      "currentStars": 106204,
+      "delta": 95134,
+      "category": "AI 代理",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    },
+    {
+      "rank": 10,
+      "name": "autoresearch",
+      "fullName": "karpathy/autoresearch",
+      "url": "https://github.com/karpathy/autoresearch",
+      "currentStars": 92117,
+      "delta": 84819,
+      "category": "研究",
+      "isNewlyAdded": false,
+      "statusText": "✅ 已在工具箱"
+    }
+  ],
   "addedTools": []
 }

@@ -25,12 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/sync-github-stars.js
 
-      - name: Validate Registry & Build Web
-        run: |
-          npm run validate
-          node scripts/build-web.js
-
-      - name: Commit and Push if updated
+      - name: Commit Star Updates (save before validate in case of failure)
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -44,3 +39,8 @@ jobs:
             git commit -m "chore(cron): auto-sync live GitHub star counts [skip ci]"
             git push
           fi
+
+      - name: Validate Registry & Build Web
+        run: |
+          npm run validate
+          node scripts/build-web.js

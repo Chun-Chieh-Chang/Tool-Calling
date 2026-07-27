@@ -25,15 +25,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/trending-weekly.js
 
-      - name: Validate Registry
-        run: |
-          npm install || true
-          npm run validate
-
-      - name: Build Web
-        run: node scripts/build-web.js
-
-      - name: Commit and Push if updated
+      - name: Commit Trending Data (save before validate in case of failure)
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
@@ -48,3 +40,11 @@ jobs:
             git commit -m "feat(trending): auto-discover top GitHub trending tools for $WEEK [skip ci]"
             git push
           fi
+
+      - name: Validate Registry
+        run: |
+          npm install || true
+          npm run validate
+
+      - name: Build Web
+        run: node scripts/build-web.js
