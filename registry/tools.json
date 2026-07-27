@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T03:49:18.342Z",
+  "lastUpdated": "2026-07-27T04:38:55.138Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -27172,6 +27172,640 @@
         "逆向工程結果可能不完全精確",
         "不應用於攻擊或繞過安全機制",
         "提示詞會隨產品更新而變動"
+      ]
+    },
+    {
+      "id": "i-have-adhd",
+      "name": "I Have Adhd",
+      "url": "https://github.com/ayghri/i-have-adhd",
+      "description": "A skill for your coding agent to stop it from burying the answer. ADHD-friendly output.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "i-have-adhd",
+        "have",
+        "adhd",
+        "claude-",
+        "claude-code-plugin",
+        "claude-skills",
+        "developer-tools",
+        "productivity"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/ayghri/i-have-adhd.git",
+        "repoUrl": "https://github.com/ayghri/i-have-adhd"
+      },
+      "capabilities": [
+        "adhd",
+        "claude-",
+        "claude-code-plugin",
+        "claude-skills",
+        "developer-tools"
+      ],
+      "addedAt": "2026-07-27T04:35:58.388Z",
+      "status": "active",
+      "useCase": "防止 Coding Agent 在大量文件專案中埋沒答案，提升開發效率",
+      "advantages": [
+        "改善 Agent 的回覆精準度",
+        "輕量級技能插入",
+        "專為大型專案設計"
+      ],
+      "negativeConstraints": [
+        "僅適用於支援 skills 的 Agent",
+        "非 ADHD 醫療相關工具",
+        "效果依賴底層 Agent 能力"
+      ]
+    },
+    {
+      "id": "pi-web",
+      "name": "Pi Web",
+      "url": "https://github.com/jmfederico/pi-web",
+      "description": "Web UI for Pi Coding Agent that keeps sessions alive in real workspaces.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "pi-web",
+        "web",
+        "agentic-development",
+        "ai-coding-agent",
+        "coding-agent",
+        "developer-tools",
+        "persistent-sessions",
+        "pi-coding-agent"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx pi-web",
+        "repoUrl": "https://github.com/jmfederico/pi-web"
+      },
+      "capabilities": [
+        "agentic-development",
+        "ai-coding-agent",
+        "coding-agent",
+        "developer-tools",
+        "persistent-sessions"
+      ],
+      "addedAt": "2026-07-27T04:35:59.332Z",
+      "status": "active",
+      "useCase": "Pi Coding Agent 的 Web UI，提供即時 session 管理與可視化操作介面",
+      "advantages": [
+        "即時 session 保持連線",
+        "Web 圖形化操作",
+        "專為 Pi Agent 最佳化"
+      ],
+      "negativeConstraints": [
+        "僅支援 Pi Coding Agent",
+        "不適合 CLI 環境",
+        "需 Node.js 執行環境"
+      ]
+    },
+    {
+      "id": "phosphor-icons",
+      "name": "Homepage",
+      "url": "https://github.com/phosphor-icons/homepage",
+      "description": "The homepage of Phosphor Icons, a flexible icon family for everyone",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "homepage",
+        "icon-font",
+        "icon-pack",
+        "icons",
+        "phosphor",
+        "svgs"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx homepage",
+        "repoUrl": "https://github.com/phosphor-icons/homepage"
+      },
+      "capabilities": [
+        "icon-font",
+        "icon-pack",
+        "icons",
+        "phosphor",
+        "svgs"
+      ],
+      "addedAt": "2026-07-27T04:36:00.143Z",
+      "status": "active",
+      "useCase": "彈性圖示家族，提供多種權重變體（Light/Regular/Bold/Fill），適合多元 UI 場景",
+      "advantages": [
+        "多種權重變體彈性高",
+        "設計現代化",
+        "活躍社羣維護"
+      ],
+      "negativeConstraints": [
+        "選擇較多需設計決策",
+        "檔案大小依導入方式而異",
+        "不適合非 SVG 環境"
+      ]
+    },
+    {
+      "id": "remixicon",
+      "name": "Remixicon",
+      "url": "https://github.com/Remix-Design/remixicon",
+      "description": "Open source neutral style icon system",
+      "category": "其他",
+      "language": "less",
+      "triggers": [
+        "remixicon",
+        "icon",
+        "icon-font",
+        "icon-pack",
+        "svg"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Remix-Design/remixicon.git",
+        "repoUrl": "https://github.com/Remix-Design/remixicon"
+      },
+      "capabilities": [
+        "icon",
+        "icon-font",
+        "icon-pack",
+        "svg"
+      ],
+      "addedAt": "2026-07-27T04:36:00.938Z",
+      "status": "active",
+      "useCase": "開源中性風格的圖示系統，適合追求設計中立的商業專案",
+      "advantages": [
+        "中性設計風格",
+        "完整覆蓋常見圖示需求",
+        "持續更新維護"
+      ],
+      "negativeConstraints": [
+        "風格較統一缺乏特色",
+        "不適合品牌客製化需求",
+        "部分圖示語意模糊"
+      ]
+    },
+    {
+      "id": "iconoir",
+      "name": "Iconoir",
+      "url": "https://github.com/iconoir-icons/iconoir",
+      "description": "An open source icons library with 1600+ icons, supporting React, React Native, Flutter, Vue, Figma, and Framer.",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "iconoir",
+        "figma",
+        "flutter",
+        "framer",
+        "icon",
+        "icons",
+        "react",
+        "react-native"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx iconoir",
+        "repoUrl": "https://github.com/iconoir-icons/iconoir"
+      },
+      "capabilities": [
+        "figma",
+        "flutter",
+        "framer",
+        "icon",
+        "icons"
+      ],
+      "addedAt": "2026-07-27T04:36:01.657Z",
+      "status": "active",
+      "useCase": "1600+ 開源圖示庫，支援 React/Native/Vue 等多種框架匯出",
+      "advantages": [
+        "1600+ 圖示豐富",
+        "多框架支援",
+        "一致線條設計"
+      ],
+      "negativeConstraints": [
+        "圖示風格較單一",
+        "不適合填色插圖",
+        "部分框架整合需手動配置"
+      ]
+    },
+    {
+      "id": "pi-web-agegr",
+      "name": "Pi Web",
+      "url": "https://github.com/agegr/pi-web",
+      "description": "Web UI for the pi coding agent",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "pi-web",
+        "web"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx pi-web",
+        "repoUrl": "https://github.com/agegr/pi-web"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-27T04:36:48.623Z",
+      "status": "active",
+      "useCase": "Pi Coding Agent 的輕量 Web UI，提供程式碼代理的基本網頁操作介面",
+      "advantages": [
+        "輕量化設計",
+        "快速部署",
+        "專為 Pi Agent 設計"
+      ],
+      "negativeConstraints": [
+        "功能較精簡",
+        "僅支援 Pi Agent",
+        "不適合大型專案管理"
+      ]
+    },
+    {
+      "id": "hugging-multi-agent",
+      "name": "Hugging Multi Agent",
+      "url": "https://github.com/datawhalechina/hugging-multi-agent",
+      "description": "A tutorial based on MetaGPT to quickly help you understand the concept of agent and muti-agent and get started with coding development. 基于MetaGPT的多智能体入门与开发教程",
+      "category": "學習資源",
+      "language": "css",
+      "triggers": [
+        "hugging-multi-agent",
+        "hugging",
+        "multi",
+        "agent"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/datawhalechina/hugging-multi-agent",
+        "repoUrl": "https://github.com/datawhalechina/hugging-multi-agent"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-27T04:36:49.489Z",
+      "status": "active",
+      "useCase": "基於 MetaGPT 的多智能體教學，適合快速理解多 Agent 協作架構",
+      "advantages": [
+        "以 MetaGPT 為基礎的實戰教程",
+        "中文教學資源",
+        "從入門到進階涵蓋完整"
+      ],
+      "negativeConstraints": [
+        "不適合生產級部署",
+        "需先了解 MetaGPT 基礎",
+        "不適合單 Agent 場景"
+      ]
+    },
+    {
+      "id": "lucide",
+      "name": "Lucide",
+      "url": "https://github.com/lucide-icons/lucide",
+      "description": "Beautiful & consistent icon toolkit made by the community. Open-source project and a fork of Feather Icons.",
+      "category": "設計",
+      "language": "typescript",
+      "triggers": [
+        "lucide",
+        "feather-icons",
+        "figma",
+        "icons",
+        "react",
+        "svg",
+        "svg-icons",
+        "svgs"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx lucide",
+        "repoUrl": "https://github.com/lucide-icons/lucide"
+      },
+      "capabilities": [
+        "feather-icons",
+        "figma",
+        "icons",
+        "react",
+        "svg"
+      ],
+      "addedAt": "2026-07-27T04:36:56.973Z",
+      "status": "active",
+      "useCase": "提供美麗且一致的開源圖示集，適合網頁與應用程式的 UI 元件開發",
+      "advantages": [
+        "社羣驅動持續更新",
+        "一致的設計風格",
+        "支援 Tree Shaking 最佳化"
+      ],
+      "negativeConstraints": [
+        "不適合照片級真實感圖形",
+        "僅提供 SVG 格式",
+        "不具備動畫功能"
+      ]
+    },
+    {
+      "id": "text-to-cad",
+      "name": "Text To Cad",
+      "url": "https://github.com/earthtojake/text-to-cad",
+      "description": "A collection of agent skills for CAD, robotics and hardware design",
+      "category": "設計",
+      "language": "javascript",
+      "triggers": [
+        "text-to-cad",
+        "text",
+        "cad",
+        "3mf",
+        "agents",
+        "ai-agents",
+        "build123d",
+        "dxf"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx text-to-cad",
+        "repoUrl": "https://github.com/earthtojake/text-to-cad"
+      },
+      "capabilities": [
+        "3mf",
+        "agents",
+        "ai-agents",
+        "build123d",
+        "cad"
+      ],
+      "addedAt": "2026-07-27T04:36:57.609Z",
+      "status": "active",
+      "useCase": "提供 CAD、機器人與硬體設計的 Agent Skills 集合，適合文字轉 3D 模型與工程設計自動化",
+      "advantages": [
+        "涵蓋 CAD 與機器人領域",
+        "Skills 模組化設計",
+        "支援多種工程格式"
+      ],
+      "negativeConstraints": [
+        "需 CAD 基礎知識",
+        "不適合藝術類 3D 建模",
+        "生成結果需人工驗證"
+      ]
+    },
+    {
+      "id": "bootstrap-icons",
+      "name": "Bootstrap Icons",
+      "url": "https://github.com/uiwjs/bootstrap-icons",
+      "description": "Official open source SVG icon library for Bootstrap.",
+      "category": "設計",
+      "language": "other",
+      "triggers": [
+        "bootstrap-icons",
+        "bootstrap",
+        "icons",
+        "css",
+        "font",
+        "icon-classname",
+        "svg-icons"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/uiwjs/bootstrap-icons.git",
+        "repoUrl": "https://github.com/uiwjs/bootstrap-icons"
+      },
+      "capabilities": [
+        "bootstrap",
+        "bootstrap-icons",
+        "css",
+        "font",
+        "icon-classname"
+      ],
+      "addedAt": "2026-07-27T04:37:05.425Z",
+      "status": "active",
+      "useCase": "Bootstrap 官方 SVG 圖示庫，適合 Bootstrap 框架專案的 UI 開發",
+      "advantages": [
+        "Bootstrap 官方維護",
+        "與 Bootstrap 框架無縫整合",
+        "SVG 格式彈性使用"
+      ],
+      "negativeConstraints": [
+        "非 Bootstrap 專案需額外整合",
+        "設計風格偏中性",
+        "不適合非網頁的桌面應用"
+      ]
+    },
+    {
+      "id": "tabler-icons",
+      "name": "Tabler Icons",
+      "url": "https://github.com/tabler/tabler-icons",
+      "description": "A set of over 6000 free MIT-licensed high-quality SVG icons for you to use in your web projects.",
+      "category": "設計",
+      "language": "javascript",
+      "triggers": [
+        "tabler-icons",
+        "tabler",
+        "icons",
+        "bootstrap-icons",
+        "components",
+        "css",
+        "icon",
+        "icon-pack"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx tabler-icons",
+        "repoUrl": "https://github.com/tabler/tabler-icons"
+      },
+      "capabilities": [
+        "bootstrap-icons",
+        "components",
+        "css",
+        "icon",
+        "icon-pack"
+      ],
+      "addedAt": "2026-07-27T04:37:32.207Z",
+      "status": "active",
+      "useCase": "超過 6000 個免費 MIT 授權 SVG 圖示，適合大規模 UI 系統的圖示需求",
+      "advantages": [
+        "6000+ 圖示數量豐富",
+        "MIT 授權無限制",
+        "一致線條風格"
+      ],
+      "negativeConstraints": [
+        "檔案體積較大",
+        "需按需載入避免效能問題",
+        "不適合填色風格設計"
+      ]
+    },
+    {
+      "id": "agents-course",
+      "name": "Agents Course",
+      "url": "https://github.com/huggingface/agents-course",
+      "description": "This repository contains the Hugging Face Agents Course. ",
+      "category": "AI 代理",
+      "language": "mdx",
+      "triggers": [
+        "agents-course",
+        "agents",
+        "course",
+        "agentic-ai",
+        "huggingface",
+        "langchain",
+        "llamaindex",
+        "smolagents"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/huggingface/agents-course.git",
+        "repoUrl": "https://github.com/huggingface/agents-course"
+      },
+      "capabilities": [
+        "agentic-ai",
+        "agents",
+        "course",
+        "huggingface",
+        "langchain"
+      ],
+      "addedAt": "2026-07-27T04:38:13.664Z",
+      "status": "active",
+      "useCase": "系統性學習 Hugging Face Agent 框架與工具鏈，適合 AI Agent 開發入門與進階",
+      "advantages": [
+        "Hugging Face 官方課程",
+        "涵蓋架構設計與實作",
+        "附程式碼範例"
+      ],
+      "negativeConstraints": [
+        "不適合非 Agent 的通用 ML 學習",
+        "內容以英文為主",
+        "需具備基礎 Python 知識"
+      ]
+    },
+    {
+      "id": "hugagentos",
+      "name": "HugAgentOS",
+      "url": "https://github.com/ZJU-REAL/HugAgentOS",
+      "description": "HugAgentOS: The Enterprise AgentOS for Ontology-Grounded Trustworthy Reasoning",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "hugagentos",
+        "agent-os",
+        "ontology"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/ZJU-REAL/HugAgentOS.git",
+        "repoUrl": "https://github.com/ZJU-REAL/HugAgentOS"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-27T04:38:13.927Z",
+      "status": "active",
+      "useCase": "企業級本體論驅動的 Agent 作業系統，適合大型組織的 AI Agent 部署與治理",
+      "advantages": [
+        "本體論驅動的語意精確度",
+        "企業級架構設計",
+        "支援複雜 Agent 協作"
+      ],
+      "negativeConstraints": [
+        "不適合小型專案或個人使用",
+        "部署門檻較高",
+        "不適合非本體論的簡單任務"
+      ]
+    },
+    {
+      "id": "adhd",
+      "name": "Adhd",
+      "url": "https://github.com/uditakhourii/adhd",
+      "description": "ADHD — a skill for coding agents. Tree-of-thought with pruning, built on the Claude & Codex Agent SDK. Fans out parallel divergent thoughts under different cognitive frames, scores, prunes traps, deepens the survivors. The no-brainer skill for creative and interdisciplinary work.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "adhd",
+        "agents",
+        "ai",
+        "ai-agents",
+        "brainstorm",
+        "chain-of-thought",
+        "claude",
+        "claude-agent-sdk"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx adhd",
+        "repoUrl": "https://github.com/uditakhourii/adhd"
+      },
+      "capabilities": [
+        "adhd",
+        "agents",
+        "ai",
+        "ai-agents",
+        "brainstorm"
+      ],
+      "addedAt": "2026-07-27T04:38:14.190Z",
+      "status": "active",
+      "useCase": "為 Coding Agent 提供思維樹（Tree-of-Thoughts）搭配剪枝策略，提升程式碼生成品質",
+      "advantages": [
+        "Tree-of-Thoughts 推理增強",
+        "內建剪枝減少無效路徑",
+        "提升程式碼生成準確率"
+      ],
+      "negativeConstraints": [
+        "不適合非程式設計的通用推理",
+        "需支援 ToT 的 Agent 環境",
+        "非醫療相關 ADHD 工具"
+      ]
+    },
+    {
+      "id": "heroicons",
+      "name": "Heroicons",
+      "url": "https://github.com/tailwindlabs/heroicons",
+      "description": "A set of free MIT-licensed high-quality SVG icons for UI development.",
+      "category": "設計",
+      "language": "javascript",
+      "triggers": [
+        "heroicons",
+        "tailwind",
+        "svg-icons"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx heroicons",
+        "repoUrl": "https://github.com/tailwindlabs/heroicons"
+      },
+      "capabilities": [],
+      "addedAt": "2026-07-27T04:38:14.452Z",
+      "status": "active",
+      "useCase": "Tailwind Labs 出品的高品質 SVG 圖示集，適合 Tailwind CSS 專案的 UI 開發",
+      "advantages": [
+        "Tailwind 官方維護",
+        "MIT 授權免費使用",
+        "設計簡潔適合現代 UI"
+      ],
+      "negativeConstraints": [
+        "需 Tailwind CSS 環境最佳體驗",
+        "圖示風格較簡約",
+        "不適合複雜圖形示意"
+      ]
+    },
+    {
+      "id": "radix-ui-icons",
+      "name": "Icons",
+      "url": "https://github.com/radix-ui/icons",
+      "description": "A crisp set of 15×15 icons designed by the @workos team.",
+      "category": "其他",
+      "language": "typescript",
+      "triggers": [
+        "icons",
+        "design",
+        "iconset",
+        "react",
+        "svg"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx icons",
+        "repoUrl": "https://github.com/radix-ui/icons"
+      },
+      "capabilities": [
+        "design",
+        "icons",
+        "iconset",
+        "react",
+        "svg"
+      ],
+      "addedAt": "2026-07-27T04:38:14.724Z",
+      "status": "active",
+      "useCase": "Radix UI 出品的 15×15 精簡圖示集，適合緊湊型 UI 與按鈕級別使用",
+      "advantages": [
+        "極小尺寸 15×15",
+        "專為 UI 元件設計",
+        "WorkOS 團隊設計品質"
+      ],
+      "negativeConstraints": [
+        "尺寸固定不適合大圖展示",
+        "圖示數量較少",
+        "不適合一般用途的圖示需求"
       ]
     }
   ]
