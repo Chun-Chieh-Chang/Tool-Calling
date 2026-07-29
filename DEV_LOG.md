@@ -1584,3 +1584,27 @@ pm test ½T»{©Ò¦³´ú¸Õ³q¹L
      -   n o d e   s c r i p t s / b u i l d - w e b . j s   ( "uúQ  . / d i s t ÿåwX‹W\‹‚T©^Š«^Tekôf°eó  3 7 2   På]wQ) 
      -   n p m   t e s t   ( 9   /   9   ,nfŠ  S u i t e   hQxe  P A S S    }Èq  =Øâß) 
  
+ 
+ # # #   2 0 2 6 - 0 7 - 2 9      ÛV'YñgówB}ui2SGS}=„0WÿP h a s e s   1 0 6   -   1 0 9 	ÿ
+ 
+ # # # #    —Bl‚ÕR_j
+ 9hÚdO(u€¼exÇdOUwS-N8hÆQKNÛV'Y*QS¹eTÿhQb—ú^Ëi0‰Ü–ûNÙRYå]wQÈ“êÕR‰ƒRhV000ò–ïz  A u t o - T r e n d i n g   êÕR¢cØR¡{S000W e b   §c6RðS’NÕR  P l a y g r o u n d 0‚0™lÒv°tƒX˜¢jWšI‹hV00
+ 
+ # # # #   Œ[b˜îv‚¢jWšNz
+ -   [ x ]   * * 0ñgów  1 0‰Ü–ûNÙRYå]wQÈ“êÕR‰ƒRhV  ( T o o l   C h a i n   P l a n n e r ) * * ÿ
+     -   ¼e  c o r e / s e a r c h - e n g i n e . j s   -Næ[\O  p l a n T o o l C h a i n ( r e g i s t r y T o o l s ,   t a s k D e s c r i p t i o n )   o—{Õl0
+     -   °ežX  C L I   cäN  n o d e   c l i . j s   p l a n   p r o m p t ÿêÕR\ãSžŠSYek_š  P r o m p t   Rã‰ºp  D A G   å]wQÈ“‚ÇŒ™e³P^ËNb—ÿI n p u t / O u t p u t   F o r m a t s 	ÿ0
+ -   [ x ]   * * 0ñgów  2 0ò–ïz  A u t o - T r e n d i n g   êÕR¢cØR¡{S  ( A u t o - T r e n d i n g   D i s c o v e r y ) * * ÿ
+     -   °ežX  s c r i p t s / a u t o - t r e n d i n g - d i s c o v e r y . j s ÿêÕRƒcÏc  G i t H u b   T r e n d i n g   ‚  A I / L L M / M C P   ±q€•\HhÿÔk\,g0W«^»SÍ‘&N2QX[ó  r e g i s t r y / t r e n d i n g - c a n d i d a t e s . j s o n 0
+     -   °ežX  C L I   cäN  n o d e   c l i . j s   d i s c o v e r - t r e n d i n g 0
+ -   [ x ]   * * 0ñgów  3 0W e b   §c6RðSI‹Wºp’NÕR_,nfŠ  P l a y g r o u n d   &   A P I   "uúQhV* * ÿ
+     -   GS}  w e b /   §c6RðS‚²}˜ú^nAmz0
+ -   [ x ]   * * 0ñgów  4 0™lÒv°tƒX˜¢j‚‰[hQ¿Š(uWšI‹hV  ( P r e - f l i g h t   S a n d b o x   V a l i d a t o r ) * * ÿ
+     -   °ežX  c o r e / s a n d b o x - v a l i d a t o r . j s ÿêÕR¢j,nû|q}°tƒXÿP y t h o n ,   N o d e ,   n p x ,   g i t ,   d o c k e r 	ÿ‚øvO'`–n™PÀrÁl0
+     -   °ežX  C L I   cäN  n o d e   c l i . j s   v e r i f y - e n v i r o n m e n t   t o o l - i d 0
+ -   [ x ]   * * hQWYºxHeWšI‹  ( V a l i d a t i o n   &   R e g r e s s i o n   C h e c k s ) * * ÿ
+     -   °ežX  t e s t s / t o o l - c h a i n . t e s t . j s   ‚  t e s t s / s a n d b o x . t e s t . j s 0
+     -   n o d e   c l i . j s   v a l i d a t e   ( 3 7 2   På]wQ  1 0 0 %   N  (') 
+     -   n o d e   s c r i p t s / b u i l d - w e b . j s   ( "uúQ  . / d i s t ÿåwX‹W\‹‚T©^Š«^  1 0 0 %   Tekôf°e) 
+     -   n p m   t e s t   ( 1 1   /   1 1   ,nfŠ  S u i t e   hQxe  P A S S    }Èq  =Øâß) 
+ 

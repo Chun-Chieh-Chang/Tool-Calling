@@ -27,10 +27,20 @@ function normalize(text) {
  */
 function tokenize(text) {
   const normalized = normalize(text);
-  // 按空白、逗號、句號、頓號切分
-  return normalized
+  const rawTokens = normalized
     .split(/[\s,，。、；;：:!！?？\-_/\\]+/)
     .filter(t => t.length > 0);
+
+  const finalTokens = new Set(rawTokens);
+  const subKeywords = ['網頁', '爬蟲', '動態', '簡報', '股票', '語音', '影片', '圖片', '文件', '測試', '數據', '資料', '自動化', '量化', '視覺'];
+  for (const token of rawTokens) {
+    for (const kw of subKeywords) {
+      if (token.includes(kw)) {
+        finalTokens.add(kw);
+      }
+    }
+  }
+  return Array.from(finalTokens);
 }
 
 // 子工具（subTool）正規化字串快取。部分「monorepo / skills 合集」工具帶有
@@ -649,4 +659,84 @@ export function listAll(registryTools) {
  */
 export function getById(registryTools, id) {
   return registryTools.find(t => t.id === id) || null;
+}
+
+/**
+ * 複雜任務多工具鏈自動規劃器 (Tool Chain Planner)
+ * 剖析長任務 Prompt，拆解步驟並為每個步驟配對最適工具與資料傳遞介面
+ * @param {object[]} registryTools 
+ * @param {string} taskDescription 
+ * @returns {object} 包含 steps, asciiPipeline, summary
+ */
+export function planToolChain(registryTools, taskDescription) {
+  if (!taskDescription || typeof taskDescription !== 'string') {
+    return { steps: [], asciiPipeline: '', summary: '無效的任務描述' };
+  }
+
+  // 按常見連接詞/標點切分多步驟子任務
+  const rawSegments = taskDescription
+    .split(/(?:然後|接著|轉成|發送|生成|產出|步驟\d+[:：]?|->|=>|；|;|\n|與此同時|，|,)+/i)
+    .map(s => s.trim().replace(/^[\s,，。、；;：:!！?？\-_/\\]+/g, '').replace(/[\s,，。、；;：:!！?？\-_/\\]+$/g, '').replace(/^(並|並且|且|與|或|接著|然後)+/g, '').replace(/(並|並且|且|與|或)+$/g, '').trim())
+    .filter(s => s.length > 0);
+
+  const segments = rawSegments.length > 0 ? rawSegments : [taskDescription];
+  const steps = [];
+
+  segments.forEach((seg, idx) => {
+    // 扣除常見動詞前綴以提升關鍵字命中率
+    const cleanedSeg = seg.replace(/^(抓取|爬取|下載|解析|提取|生成|製作|發送|處理|分析|建立)\s*/i, '').trim();
+    let matches = search(registryTools, cleanedSeg.length > 0 ? cleanedSeg : seg, { topK: 3 });
+    if (matches.length === 0) {
+      matches = search(registryTools, seg, { topK: 3 });
+    }
+    const primary = matches[0] ? matches[0].tool : null;
+    const alternatives = matches.slice(1).map(m => m.tool);
+
+    let inputFormat = '原始數據 / 指令 Prompt';
+    let outputFormat = '結構化資料 / 檔案';
+
+    if (primary) {
+      const cat = (primary.category || '').toLowerCase();
+      if (cat.includes('瀏覽器') || cat.includes('爬蟲')) {
+        inputFormat = 'URL / 網址清單';
+        outputFormat = 'HTML / Markdown / Cleaned Text';
+      } else if (cat.includes('ai 代理') || cat.includes('框架')) {
+        inputFormat = 'Markdown / Context Prompt';
+        outputFormat = 'LLM 回應 / 結構化 JSON';
+      } else if (cat.includes('文件') || cat.includes('簡報') || cat.includes('多媒體')) {
+        inputFormat = 'Markdown / JSON Data';
+        outputFormat = 'PPTX / PDF / 多媒體檔案';
+      } else if (cat.includes('測試') || cat.includes('自動化')) {
+        inputFormat = '測試腳本 / 自動化指令';
+        outputFormat = '測試報告 / Console Log';
+      }
+    }
+
+    steps.push({
+      stepIndex: idx + 1,
+      action: seg,
+      recommendedTool: primary ? {
+        id: primary.id,
+        name: primary.name,
+        category: primary.category,
+        install: primary.install,
+        useCase: primary.useCase || primary.description
+      } : null,
+      inputFormat,
+      outputFormat,
+      alternatives: alternatives.map(a => ({ id: a.id, name: a.name }))
+    });
+  });
+
+  // 建構 ASCII 流程圖
+  const flowNodes = steps.map(s => `[Step ${s.stepIndex}: ${s.recommendedTool ? s.recommendedTool.name : '未知工具'}]`);
+  const asciiPipeline = flowNodes.join(' ──(Data Flow)──> ');
+
+  return {
+    task: taskDescription,
+    totalSteps: steps.length,
+    steps,
+    asciiPipeline,
+    summary: `成功為任務「${taskDescription}」規劃 ${steps.length} 步驟工具鏈`
+  };
 }

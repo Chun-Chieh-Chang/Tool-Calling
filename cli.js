@@ -8,7 +8,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { search, listAll, listByCategory, getById } from './core/search-engine.js';
+import { search, listAll, listByCategory, getById, planToolChain } from './core/search-engine.js';
 import { scanMonorepo } from './scripts/scan-monorepo.js';
 import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
 
@@ -680,6 +680,42 @@ ${c.bold}觸發咒語:${c.reset}
 `);
 }
 
+function cmdPlan(taskDescription) {
+  if (!taskDescription) {
+    error('請提供任務描述。用法: node cli.js plan "<長任務描述>"');
+    process.exit(1);
+  }
+
+  header('🤖 多工具鏈自動規劃 (Tool Chain Planner)');
+  const registry = loadRegistry();
+  const plan = planToolChain(registry.tools, taskDescription);
+
+  console.log(`${c.cyan}${c.bold}原始長任務:${c.reset} ${plan.task}\n`);
+  console.log(`${c.yellow}${c.bold}🗺️ 執行流程圖:${c.reset}`);
+  console.log(`  ${c.green}${plan.asciiPipeline}${c.reset}\n`);
+
+  console.log(`${c.blue}${c.bold}📋 步驟詳細指引:${c.reset}`);
+  plan.steps.forEach(s => {
+    console.log(`\n  ${c.bold}【步驟 ${s.stepIndex}】${c.reset} ${c.cyan}${s.action}${c.reset}`);
+    if (s.recommendedTool) {
+      console.log(`    ⭐ 首選工具: ${c.green}${c.bold}${s.recommendedTool.name}${c.reset} (${s.recommendedTool.id}) — ${c.dim}${s.recommendedTool.category}${c.reset}`);
+      console.log(`    📥 輸入格式: ${s.inputFormat}`);
+      console.log(`    📤 輸出格式: ${s.outputFormat}`);
+      if (s.recommendedTool.install && s.recommendedTool.install.command) {
+        console.log(`    💻 安裝/調用: ${c.dim}${s.recommendedTool.install.command}${c.reset}`);
+      }
+    } else {
+      console.log(`    ⚠️ 尚無完全符合之工具`);
+    }
+    if (s.alternatives && s.alternatives.length > 0) {
+      console.log(`    💡 備選工具: ${s.alternatives.map(a => `${a.name} (${a.id})`).join(', ')}`);
+    }
+  });
+
+  console.log(`\n${c.dim}─────────────────────────────────────────${c.reset}`);
+  console.log(`${c.green}✓ ${plan.summary}${c.reset}\n`);
+}
+
 // ─── 主程式 ─────────────────────────────────────────────────────────────────
 
 const [,, command, ...args] = process.argv;
@@ -687,6 +723,9 @@ const [,, command, ...args] = process.argv;
 switch (command) {
   case 'list':
     cmdList();
+    break;
+  case 'plan':
+    cmdPlan(args.join(' '));
     break;
   case 'search': {
     const searchArgs = [];
@@ -735,6 +774,37 @@ switch (command) {
   case 'validate':
     cmdValidate();
     break;
+  case 'discover-trending': {
+    const { discoverTrendingTools } = await import('./scripts/auto-trending-discovery.js');
+    await discoverTrendingTools();
+    break;
+  }
+  case 'verify-environment': {
+    const toolId = args[0];
+    if (!toolId) {
+      error('請提供工具 ID。用法: node cli.js verify-environment <tool-id>');
+      process.exit(1);
+    }
+    const registry = loadRegistry();
+    const tool = getById(registry.tools, toolId);
+    if (!tool) {
+      error(`找不到工具: ${toolId}`);
+      process.exit(1);
+    }
+    const { verifyToolEnvironment } = await import('./core/sandbox-validator.js');
+    const report = verifyToolEnvironment(tool);
+    header(`🛡️ 沙盒環境預檢報告: ${tool.name}`);
+    console.log(`  工具 ID: ${c.cyan}${report.toolId}${c.reset}`);
+    console.log(`  安裝方式: ${c.yellow}${report.installMethod}${c.reset}`);
+    console.log(`  調用指令: ${c.dim}${report.command}${c.reset}\n`);
+    if (report.isEnvironmentReady) {
+      success('相依執行環境已準備就緒，可順暢安裝與調用！✨');
+    } else {
+      warn('環境未完全就緒:');
+      report.issues.forEach(iss => console.log(`  - ${c.red}${iss}${c.reset}`));
+    }
+    break;
+  }
   case 'health-check':
     await cmdHealthCheck();
     break;
