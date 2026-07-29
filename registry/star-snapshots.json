@@ -711,5 +711,7 @@
   "tldraw/tldraw": 37000,
   "FreeCAD/FreeCAD": 32300,
   "openscad/openscad": 9800,
-  "CadQuery/cadquery": 5500
+  "CadQuery/cadquery": 5500,
+  "AgnesAI-Labs/AgnesCode": 21,
+  "ViviQuan/agnescode": 6
 }

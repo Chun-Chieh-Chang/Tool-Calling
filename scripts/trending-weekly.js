@@ -55,6 +55,22 @@ function getISOWeekString(date = new Date()) {
   return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
 }
 
+/**
+ * 回傳「最近一個完整的 ISO 週」（Mon 00:00 ~ Sun 23:59 UTC）
+ * 例如：週一 → 上週；週三 → 上上週日結束的那週
+ */
+function getTargetWeek(now = new Date()) {
+  const d = new Date(now);
+  const isoDay = d.getUTCDay() || 7; // Mon=1 … Sun=7
+  d.setUTCDate(d.getUTCDate() - (isoDay + 6)); // 回到上週一
+  d.setUTCHours(0, 0, 0, 0);
+  const monday = d;
+  const sunday = new Date(monday);
+  sunday.setUTCDate(sunday.getUTCDate() + 6);
+  const isoWeek = getISOWeekString(monday);
+  return { monday, sunday, isoWeek };
+}
+
 // ─── 搜尋主題清單（覆蓋本工具庫的全部領域） ──────────────────────────
 
 const SEARCH_QUERIES = [
@@ -139,16 +155,55 @@ async function searchGitHub(query, retries = 3) {
   return [];
 }
 
+// ─── 快取提供（當目標週已有資料時直接顯示） ────────────────────────
+
+function serveCachedData(targetWeek) {
+  const jsonPath = join(ROOT, 'registry', 'weekly-trending.json');
+  if (!existsSync(jsonPath)) {
+    console.log(`  ℹ 目標週 ${targetWeek} 已有週報但無 JSON 快取，將重新計算。\n`);
+    return false;
+  }
+  try {
+    const cached = JSON.parse(readFileSync(jsonPath, 'utf-8'));
+    if (cached.worldWeek !== targetWeek) {
+      console.log(`  ℹ 快取為 ${cached.worldWeek}，非目標 ${targetWeek}，將重新計算。\n`);
+      return false;
+    }
+    console.log(`\n\x1b[36m📊 載入 ${targetWeek} 快取資料\x1b[0m`);
+    console.log(`   時間範圍：${cached.dateRange}\n`);
+    console.log(`  📦 掃描 repos 數：${cached.scannedReposCount}`);
+    console.log(`  🆕 新增入庫：${cached.newlyAddedCount}\n`);
+    console.log(`  🏆 漲星前 10 名：`);
+    cached.top10.forEach((r, i) => {
+      const deltaStr = r.delta > 0 ? `+${r.delta.toLocaleString()}` : `${r.currentStars.toLocaleString()}`;
+      console.log(`     ${i + 1}. ${r.fullName} — ⭐ ${r.currentStars.toLocaleString()} (${deltaStr})`);
+    });
+    console.log(`\n  📝 週報：registry/weekly-reports/${targetWeek}.md`);
+    console.log(`\n\x1b[32m[快取] ${targetWeek} 載入完成（無需重新計算）\x1b[0m\n`);
+    return true;
+  } catch {
+    console.log(`  ℹ 快取解析失敗，將重新計算。\n`);
+    return false;
+  }
+}
+
 // ─── 主程式 ───────────────────────────────────────────────────────────
 
 async function main() {
   const now = new Date();
-  const worldWeek = getISOWeekString(now);
-  const weekAgo = new Date(now.getTime() - 7 * 86400000);
-  const weekAgoStr = weekAgo.toISOString().slice(0, 10);
+
+  // 鎖定目標週：最近一個完整的 ISO 週（Mon 00:00 ~ Sun 23:59 UTC）
+  const { monday: targetMonday, sunday: targetSunday, isoWeek: targetWeek } = getTargetWeek(now);
+
+  // 若該週資料已存在則直接載入快取，不重複計算
+  if (existsSync(join(REPORTS_DIR, `${targetWeek}.md`)) && serveCachedData(targetWeek)) return;
+
+  const worldWeek = targetWeek;
+  const targetMondayStr = targetMonday.toISOString().slice(0, 10);
+  const targetSundayStr = targetSunday.toISOString().slice(0, 10);
 
   console.log(`\n\x1b[36m🔍 GitHub 每週漲星探勘 — ${worldWeek}\x1b[0m`);
-  console.log(`   時間範圍：${weekAgoStr} ~ ${now.toISOString().slice(0, 10)}\n`);
+  console.log(`   時間範圍：${targetMondayStr} ~ ${targetSundayStr}\n`);
 
   // 1. 讀取上週快照（含過期檢查）
   let prevSnapshot = {};
@@ -175,7 +230,7 @@ async function main() {
   let skippedLowStarCount = 0;
 
   for (let i = 0; i < SEARCH_QUERIES.length; i++) {
-    const q = SEARCH_QUERIES[i].replace(/WEEK_AGO/g, weekAgoStr);
+    const q = SEARCH_QUERIES[i].replace(/WEEK_AGO/g, targetMondayStr);
     console.log(`  [${i + 1}/${SEARCH_QUERIES.length}] 搜尋：${q.slice(0, 60)}...`);
     const items = await searchGitHub(q);
     for (const repo of items) {
@@ -305,7 +360,7 @@ async function main() {
     `# 🏆 GitHub 每週漲星探勘報告 — ${worldWeek}`,
     '',
     `> 探勘時間：${now.toISOString()}`,
-    `> 搜尋範圍：${weekAgoStr} ~ ${now.toISOString().slice(0, 10)}`,
+    `> 搜尋範圍：${targetMondayStr} ~ ${targetSundayStr}`,
     `> 探勘 repos 數量：${allRepos.size}`,
     `> 新增入庫數量：${addedCount}`,
     '',
@@ -352,7 +407,7 @@ async function main() {
   const trendingData = {
     worldWeek,
     lastUpdated: now.toISOString(),
-    dateRange: `${weekAgoStr} ~ ${now.toISOString().slice(0, 10)}`,
+    dateRange: `${targetMondayStr} ~ ${targetSundayStr}`,
     scannedReposCount: allRepos.size,
     newlyAddedCount: addedCount,
     top10: top10.map((r, i) => {
