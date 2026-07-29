@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-27T05:34:34.775Z",
+  "lastUpdated": "2026-07-29T04:30:00+08:00",
   "tools": [
     {
       "id": "ppt-master",
@@ -28227,6 +28227,96 @@
         "僅限品牌圖示",
         "不適合一般 UI 需求",
         "商標使用需注意授權"
+      ]
+    },
+    {
+      "id": "agnescode",
+      "name": "AgnesCode (AgnesAI-Labs)",
+      "url": "https://github.com/AgnesAI-Labs/AgnesCode",
+      "description": "An open-source AI coding agent framework designed to assist developers with intelligent code generation, debugging, and project management through AI-driven tools.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "agnescode",
+        "ai-coding-agent",
+        "code-generation",
+        "ai-development",
+        "open-source-ai",
+        "terminal-coding",
+        "coding-assistant"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/AgnesAI-Labs/AgnesCode.git && cd AgnesCode && npm install && npm run start",
+        "repoUrl": "https://github.com/AgnesAI-Labs/AgnesCode"
+      },
+      "capabilities": [
+        "ai-coding",
+        "code-generation",
+        "debugging-assistance",
+        "project-management",
+        "terminal-interface",
+        "developer-toolkit"
+      ],
+      "addedAt": "2026-07-29T04:02:23.293Z",
+      "status": "experimental",
+      "useCase": "Developers seeking an open-source AI-powered coding assistant for intelligent code generation, debugging, and streamlined development workflows.",
+      "advantages": [
+        "Open-source framework allowing customization and modification",
+        "Terminal-native interface for seamless workflow integration",
+        "AI-driven code generation that understands context and patterns",
+        "Supports multiple programming languages and frameworks"
+      ],
+      "negativeConstraints": [
+        "Requires Node.js and npm environment to operate",
+        "May have learning curve for users unfamiliar with terminal-based AI tools",
+        "Performance depends on available hardware resources and AI model capabilities"
+      ]
+    },
+    {
+      "id": "agnescode-ViviQuan",
+      "name": "Agnescode (ViviQuan)",
+      "url": "https://github.com/ViviQuan/agnescode",
+      "description": "Terminal-native AI coding agent with built-in Agnes AI (free multimodal API) — a developer-focused AI assistant for intelligent code writing and debugging directly in your terminal.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "agnescode",
+        "agnes-ai",
+        "ai-coding",
+        "terminal-coding",
+        "coding-agent",
+        "npm-tool",
+        "cli-development",
+        "ai-assistant",
+        "multimodal-api"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx agnescode",
+        "repoUrl": "https://github.com/ViviQuan/agnescode"
+      },
+      "capabilities": [
+        "ai-coding",
+        "code-generation",
+        "debugging-assistance",
+        "terminal-interface",
+        "multimodal-api",
+        "open-source-tool"
+      ],
+      "addedAt": "2026-07-29T04:02:27.920Z",
+      "status": "experimental",
+      "useCase": "Developers seeking an AI-powered terminal-based coding assistant with built-in Agnes AI for faster, smarter code development directly in their command line.",
+      "advantages": [
+        "Terminal-native experience for seamless workflow integration",
+        "Built-in Agnes AI with free multimodal API support",
+        "npm-based installation makes setup quick and easy",
+        "Designed for productive AI-assisted coding workflows"
+      ],
+      "negativeConstraints": [
+        "Requires npm and Node.js environment to operate",
+        "Depends on internet connection for API calls during development",
+        "May have usage limits on the free tier of the Agnes AI API"
       ]
     }
   ]
