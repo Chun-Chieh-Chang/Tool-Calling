@@ -155,17 +155,17 @@ export function generateKnowledgeGraph(registryInput = null) {
           capabilities: tool.capabilities || []
         },
         shape: "dot",
-        size: 12,
+        size: 10,
         color: {
-          background: "#1E293B",
-          border: colorHex,
-          highlight: { background: colorHex, border: "#FFFFFF" },
-          hover: { background: colorHex, border: "#FFFFFF" }
+          background: colorHex,
+          border: "#0F172A",
+          highlight: { background: "#FFFFFF", border: colorHex },
+          hover: { background: "#FFFFFF", border: colorHex }
         },
         colorHex: colorHex,
-        font: { color: "#F8FAFC", size: 13, face: "Inter", strokeWidth: 3, strokeColor: "#0F172A" },
-        title: `<b>${tool.name}</b><br/>ID: ${tool.id}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 12
+        font: { color: "#F8FAFC", size: 12, face: "Inter", strokeWidth: 3, strokeColor: "#0F172A" },
+        title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
+        val: 10
       });
 
       edges.push({
@@ -173,9 +173,10 @@ export function generateKnowledgeGraph(registryInput = null) {
         to: toolNodeId,
         source: catId,
         target: toolNodeId,
-        color: { color: "#334155", highlight: colorHex },
+        color: { color: colorHex, highlight: "#FFFFFF", opacity: 0.6 },
         colorHex: colorHex,
-        width: 1,
+        width: 1.5,
+        length: 90,
         isDashed: false
       });
 
@@ -193,11 +194,11 @@ export function generateKnowledgeGraph(registryInput = null) {
             shape: "diamond",
             size: 6,
             color: {
-              background: "#334155",
-              border: "#64748B",
-              highlight: { background: "#60A5FA", border: "#FFFFFF" }
+              background: "#1E293B",
+              border: colorHex,
+              highlight: { background: colorHex, border: "#FFFFFF" }
             },
-            colorHex: "#64748B",
+            colorHex: colorHex,
             font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" },
             val: 6
           });
@@ -207,9 +208,10 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: "#475569", highlight: "#60A5FA" },
-            colorHex: "#475569",
+            color: { color: colorHex, highlight: "#FFFFFF", opacity: 0.4 },
+            colorHex: colorHex,
             width: 1,
+            length: 40,
             dashes: true,
             isDashed: true
           });
@@ -546,24 +548,34 @@ export function generateKnowledgeGraph(registryInput = null) {
     };
 
     const options2d = {
-      nodes: { font: { face: 'Inter' } },
+      nodes: {
+        font: { face: 'Inter' },
+        borderWidth: 1.5,
+        shadow: true
+      },
+      edges: {
+        smooth: {
+          type: 'continuous',
+          roundness: 0.2
+        }
+      },
       layout: { improvedLayout: false },
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -4500,
-          centralGravity: 0.25,
-          springLength: 120,
-          springConstant: 0.02,
-          damping: 0.35,
-          avoidOverlap: 0.6
+          gravitationalConstant: -7000,
+          centralGravity: 0.1,
+          springLength: 80,
+          springConstant: 0.04,
+          damping: 0.4,
+          avoidOverlap: 0.8
         },
-        maxVelocity: 35,
+        maxVelocity: 45,
         minVelocity: 0.2,
         solver: 'barnesHut',
-        stabilization: { enabled: true, iterations: 250 }
+        stabilization: { enabled: true, iterations: 350 }
       },
-      interaction: { hover: true, tooltipDelay: 200, zoomView: true }
+      interaction: { hover: true, tooltipDelay: 150, zoomView: true }
     };
 
     const network2d = new vis.Network(container2d, data2d, options2d);
