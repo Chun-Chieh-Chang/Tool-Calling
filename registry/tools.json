@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-29T04:45:00+08:00",
+  "lastUpdated": "2026-07-29T13:59:36.253Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -28318,6 +28318,344 @@
         "Depends on internet connection for API calls during development",
         "May have usage limits on the free tier of the Agnes AI API"
       ]
+    },
+    {
+      "id": "firecrawl-cli-skills",
+      "name": "Firecrawl Cli Skills",
+      "url": "https://github.com/firecrawl/firecrawl/tree/main/firecrawl-cli-skills",
+      "description": "Firecrawl CLI Skills 擴充套件，支援 AI 代理整合 Firecrawl 網頁抓取能力",
+      "category": "瀏覽器自動化",
+      "language": "typescript",
+      "triggers": [
+        "firecrawl-cli-skills",
+        "firecrawl-cli",
+        "firecrawl",
+        "cli-skills"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx firecrawl",
+        "repoUrl": "https://github.com/firecrawl/firecrawl",
+        "branch": "main",
+        "subpath": "firecrawl-cli-skills"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "ai-crawler",
+        "ai-scraping",
+        "ai-search"
+      ],
+      "useCase": "適用於 AI Agent 需要透過 Firecrawl CLI 進行網頁內容提取與自動化檢索的場景。",
+      "advantages": [
+        "支援 Firecrawl CLI 整合",
+        "專為 AI Agent 設計的技能組",
+        "結構化網頁資料擷取"
+      ],
+      "negativeConstraints": [
+        "不適用於非 Firecrawl 環境或無 CLI 權限的系統",
+        "不適合簡單的 static HTML 解析"
+      ],
+      "addedAt": "2026-07-29T13:59:28.615Z",
+      "status": "active"
+    },
+    {
+      "id": "firecrawl-skills",
+      "name": "Firecrawl Skills",
+      "url": "https://github.com/firecrawl/firecrawl/tree/main/firecrawl-skills",
+      "description": "Firecrawl AI Web Scraping Skills 集合，提供 LLM 友善的網頁擷取與轉 Markdown 技能",
+      "category": "瀏覽器自動化",
+      "language": "typescript",
+      "triggers": [
+        "firecrawl-skills",
+        "firecrawl",
+        "web-scraping-skills",
+        "rag-scraper"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx firecrawl",
+        "repoUrl": "https://github.com/firecrawl/firecrawl",
+        "branch": "main",
+        "subpath": "firecrawl-skills"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "ai-crawler",
+        "ai-scraping",
+        "ai-search"
+      ],
+      "useCase": "適用於建構 LLM/RAG 系統時需要將複雜動態網頁轉為乾淨 Markdown 的自動化流程。",
+      "advantages": [
+        "原生支援 LLM / RAG 資料清洗",
+        "動態網頁轉 Markdown 效率高",
+        "整合 AI Agent 技能機制"
+      ],
+      "negativeConstraints": [
+        "不適用於純靜態無 JavaScript 的輕量解析",
+        "不支援過度頻繁的本地即時影音串流處理"
+      ],
+      "addedAt": "2026-07-29T13:59:28.791Z",
+      "status": "active"
+    },
+    {
+      "id": "crawl4ai",
+      "name": "Crawl4AI",
+      "url": "https://github.com/unclecode/crawl4AI",
+      "description": "開源 LLM 友善之網頁爬蟲與資料擷取框架，支援 RAG 與 AI Agent",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "crawl4ai",
+        "llm-crawler",
+        "ai-scraper",
+        "crawl4ai-python"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/unclecode/crawl4AI.git",
+        "repoUrl": "https://github.com/unclecode/crawl4AI"
+      },
+      "capabilities": [
+        "llm-crawler",
+        "ai-scraper",
+        "web-scraping"
+      ],
+      "useCase": "適用於需要高速抓取動態網頁並直接輸出高品質 Markdown / JSON 給 LLM 處理的場景。",
+      "advantages": [
+        "專利級 LLM 友善 Markdown 提取",
+        "支援 Playwright 頁面渲染與非同步抓取",
+        "完全開源且高度可修飾擴充"
+      ],
+      "negativeConstraints": [
+        "不適用於無 Python 環境或不需 AI/LLM 輸出的傳統爬蟲",
+        "不適合極簡單的 REST API 呼叫"
+      ],
+      "addedAt": "2026-07-29T13:59:30.232Z",
+      "status": "active"
+    },
+    {
+      "id": "selenium",
+      "name": "Selenium",
+      "url": "https://github.com/seleniumhq/selenium",
+      "description": "跨平台與多語言支援的瀏覽器自動化與 UI 端對端測試框架",
+      "category": "測試與自動化",
+      "language": "java",
+      "triggers": [
+        "selenium",
+        "webdriver",
+        "browser-automation",
+        "e2e-testing"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/seleniumhq/selenium.git",
+        "repoUrl": "https://github.com/seleniumhq/selenium"
+      },
+      "capabilities": [
+        "dotnet",
+        "java",
+        "javascript",
+        "python",
+        "ruby"
+      ],
+      "useCase": "適用於跨瀏覽器 (Chrome/Firefox/Edge) 之端對端自動化測試與複雜使用者互動模擬。",
+      "advantages": [
+        "支援 Java, Python, C#, JS, Ruby 等多語言",
+        "業界標準之 W3C WebDriver 協議",
+        "成熟生態系與廣泛社群資源"
+      ],
+      "negativeConstraints": [
+        "不適合追求極致輕量與無頭執行速度之單純資料抓取",
+        "不適合無 WebDriver 相容瀏覽器的受限環境"
+      ],
+      "addedAt": "2026-07-29T13:59:31.978Z",
+      "status": "active"
+    },
+    {
+      "id": "crawlee",
+      "name": "Crawlee",
+      "url": "https://github.com/apify/crawlee",
+      "description": "Node.js 高可靠度網頁爬蟲與瀏覽器自動化庫，支援 Puppeteer, Playwright 與 HTTP",
+      "category": "瀏覽器自動化",
+      "language": "typescript",
+      "triggers": [
+        "crawlee",
+        "apify-crawlee",
+        "node-crawler",
+        "playwright-crawlee"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx crawlee",
+        "repoUrl": "https://github.com/apify/crawlee"
+      },
+      "capabilities": [
+        "apify",
+        "automation",
+        "crawler",
+        "crawling",
+        "headless"
+      ],
+      "useCase": "適用於 Node.js / TypeScript 生態下需要自動代理輪換、佇列管理與防封鎖機制的爬蟲。",
+      "advantages": [
+        "內建代理 IP 輪換與 Header 偽裝防封鎖",
+        "無縫切換 HTTP (Cheerio) 與 Headless Browser (Playwright)",
+        "高效率的 URL 佇列與併發控制器"
+      ],
+      "negativeConstraints": [
+        "不適用於 Python 專案或非 Node.js/TypeScript 環境",
+        "不適合單次一次性的簡單 HTTP GET 請求"
+      ],
+      "addedAt": "2026-07-29T13:59:32.851Z",
+      "status": "active"
+    },
+    {
+      "id": "scrapy",
+      "name": "Scrapy",
+      "url": "https://github.com/scrapy/scrapy",
+      "description": "Python 高效能非同步網頁爬蟲與資料擷取框架",
+      "category": "瀏覽器自動化",
+      "language": "python",
+      "triggers": [
+        "scrapy",
+        "scrapy-framework",
+        "python-scraper",
+        "async-crawler"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/scrapy/scrapy.git",
+        "repoUrl": "https://github.com/scrapy/scrapy"
+      },
+      "capabilities": [
+        "crawler",
+        "crawling",
+        "framework",
+        "hacktoberfest",
+        "python"
+      ],
+      "useCase": "適用於大規模、高併發之結構化網頁資料抓取與 Pipeline 資料處理鏈。",
+      "advantages": [
+        "基於 Twisted 之極高併發非同步架構",
+        "強大之 Item Pipeline 與 Spider 中間件系統",
+        "豐富之擴充套件與生態系"
+      ],
+      "negativeConstraints": [
+        "不適合單頁重度渲染且未搭配 Headless Browser 的 SPA 頁面",
+        "不適合無 Python 環境的系統"
+      ],
+      "addedAt": "2026-07-29T13:59:33.747Z",
+      "status": "active"
+    },
+    {
+      "id": "llmsherpa",
+      "name": "Llmsherpa",
+      "url": "https://github.com/nlmatics/llmsherpa",
+      "description": "LLM Sherpa 研發者 API，提供 Layout-aware 複雜 PDF / 文檔結構化解析",
+      "category": "AI 代理",
+      "language": "jupyter notebook",
+      "triggers": [
+        "llmsherpa",
+        "layout-pdf-parser",
+        "rag-parser",
+        "smart-chunking"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/nlmatics/llmsherpa.git",
+        "repoUrl": "https://github.com/nlmatics/llmsherpa"
+      },
+      "capabilities": [
+        "pdf-parser",
+        "rag-chunking",
+        "document-parsing"
+      ],
+      "useCase": "適用於 RAG 系統解析含有複雜表格、標題階層之 PDF / HTML 文檔並進行段落分塊。",
+      "advantages": [
+        "Layout-Aware Smart Chunking (版面感知智慧切片)",
+        "精準表格與段落階層提取",
+        "大幅提升 RAG 檢索精準度"
+      ],
+      "negativeConstraints": [
+        "不適合純文字或無結構之簡單 TXT 檔案解析",
+        "不適用於非文檔類的傳統網頁爬蟲"
+      ],
+      "addedAt": "2026-07-29T13:59:34.604Z",
+      "status": "active"
+    },
+    {
+      "id": "beautifulsoup4",
+      "name": "BeautifulSoup4",
+      "url": "https://github.com/wention/BeautifulSoup4",
+      "description": "Python 經典 HTML / XML 標籤解析與 DOM 樹導航函式庫",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "beautifulsoup4",
+        "bs4",
+        "html-parser",
+        "python-bs4"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/wention/BeautifulSoup4.git",
+        "repoUrl": "https://github.com/wention/BeautifulSoup4"
+      },
+      "capabilities": [
+        "html-parser",
+        "xml-parser",
+        "scraping"
+      ],
+      "useCase": "適用於 Python 中對已有 HTML 原始碼進行靈活之 DOM 節點搜尋與屬性提取。",
+      "advantages": [
+        "語法極度直覺易用 (find / find_all)",
+        "容錯率高，可輕鬆解析不規範之 HTML",
+        "輕量級且無複雜外部依賴"
+      ],
+      "negativeConstraints": [
+        "不支援動態 JavaScript 渲染頁面 (需搭配 Selenium/Playwright)",
+        "不內建 HTTP 網路請求功能 (需搭配 requests)"
+      ],
+      "addedAt": "2026-07-29T13:59:35.380Z",
+      "status": "active"
+    },
+    {
+      "id": "splash",
+      "name": "Splash",
+      "url": "https://github.com/scrapinghub/splash",
+      "description": "基於 WebKit 之輕量級腳本化 Headless 瀏覽器服務，提供 HTTP API",
+      "category": "其他",
+      "language": "python",
+      "triggers": [
+        "splash",
+        "scrapinghub-splash",
+        "splash-headless",
+        "lua-browser-service"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/scrapinghub/splash.git",
+        "repoUrl": "https://github.com/scrapinghub/splash"
+      },
+      "capabilities": [
+        "headless-browser",
+        "http-api",
+        "lua-scripting"
+      ],
+      "useCase": "適用於 Scrapy 爬蟲透過 HTTP API 渲染動態 JavaScript 頁面。",
+      "advantages": [
+        "提供乾淨之 HTTP REST API 與 Lua 腳本支援",
+        "與 Scrapy (scrapy-splash) 無縫整合",
+        "獨立 Docker 容器部署，開箱即用"
+      ],
+      "negativeConstraints": [
+        "相比現代 Playwright/Puppeteer，Chromium 特性支援較慢",
+        "需要額外啟動 Docker 容器服務"
+      ],
+      "addedAt": "2026-07-29T13:59:36.252Z",
+      "status": "active"
     }
   ]
 }

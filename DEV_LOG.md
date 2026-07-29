@@ -1561,3 +1561,26 @@ pm test ½T»{©Ò¦³´ú¸Õ³q¹L
 #### RCA / CAPA
 - ¥»¦¸µL¥\¯àÅÜ§ó¡A¯Âºéµ²ºc©Ê²M²z¡AµL¹w´Á°Æ§@¥Îªº­×¥¿¥²­n¡C
 - ¦Û°Ê¥Í¦¨²£ª«¡]knowledge-graph.html¡^À³«ùÄòºû«ù¦b .gitignore ¤¤¡AÁ×§K git °lÂÜªºª©¥»¾¸­µ¡C
+
+ 
+ # # #   2 0 2 6 - 0 7 - 2 9      ybÏ‘å]wQ«^ôdEQ‚  M o n o r e p o   êÕRÆbã‰ÿO f f i c e C L I ,   F i r e c r a w l ,   C r a w l 4 A I ,   S e l e n i u m ,   C r a w l e e ,   S c r a p y ,   L l m s h e r p a ,   B e a u t i f u l S o u p 4 ,   S p l a s h 	ÿ  ( P h a s e   1 0 5 ) 
+ 
+ # # # #    —Bl‚ÕR_j
+ O(u€c:y\  1 0   P  G i t H u b   \Hh²}@W ReQå]wQ«^ÿ&N¢jWš/f&T —‰Æbã‰ÿS+T  O f f i c e C L I ,   F i r e c r a w l ,   C r a w l 4 A I ,   P l a y w r i g h t ,   S e l e n i u m ,   C r a w l e e ,   S c r a p y ,   L l m s h e r p a ,   B e a u t i f u l S o u p 4 ,   S p l a s h 	ÿ0
+ 
+ # # # #   Œ[b˜îv‚¢jWšNz
+ -   [ x ]   * * ybÏ‘;ŠŠQ‚  M o n o r e p o   Æbã‰  ( B a t c h   A d d   &   M o n o r e p o   D i s a s s e m b l y ) * * ÿ
+     -   ÷WLˆ  n o d e   c l i . j s   b a t c h - a d d   u r l s . t x t 0
+     -   h t t p s : / / g i t h u b . c o m / f i r e c r a w l / f i r e c r a w l   bŸRêÕRX‹%Rºp  M o n o r e p o   &NÆbã‰ºp  2   P\(uP[å]wQÿ
+         1 .   F i r e c r a w l   C l i   S k i l l s   ( f i r e c r a w l - c l i - s k i l l s ) 
+         2 .   F i r e c r a w l   S k i l l s   ( f i r e c r a w l - s k i l l s ) 
+     -   2   Pâe	g\Hh  ( O f f i c e C L I ,   P l a y w r i g h t )   êÕR2Lˆø‰|v^Š‚¢j"}0}À{Í‘°eUŠ0O0
+     -   7   PhQ°e\Hh  ( C r a w l 4 A I ,   S e l e n i u m ,   C r a w l e e ,   S c r a p y ,   L l m s h e r p a ,   B e a u t i f u l S o u p 4 ,   S p l a s h )   bŸRƒcÏceQ«^0
+ -   [ x ]   * * nŠË‘ÇŒ™eØš‰<hÜˆJŸ‚ÁTêŒ€•y  ( M e t a d a t a   E n r i c h m e n t   &   Q u a l i t y   G a t e ) * * ÿ
+     -   ºp  9   P°eX/ Æbã‰P[å]wQhQb—ÜˆJŸj–n  u s e C a s e   ( ¨c¦…4Xof) 0a d v a n t a g e s   ( €bSˆ*QâR) 0n e g a t i v e C o n s t r a i n t s   ( y(u4Xof)   ‚  t r i g g e r s   ( ø‰|v^Šc–R) ÿÀrKa1u  e x p e r i m e n t a l   GS}ºp  a c t i v e 0
+     -   hQ\Hh6e“å]wQ=~xeĞcGSó  3 7 2   P0
+ -   [ x ]   * * hQWYºxHeWšI‹  ( V a l i d a t i o n   &   R e g r e s s i o n   C h e c k s ) * * ÿ
+     -   n o d e   c l i . j s   v a l i d a t e   ( 3 7 2   På]wQ  1 0 0 %   WšI‹Nÿ0   P/“¤Š) 
+     -   n o d e   s c r i p t s / b u i l d - w e b . j s   ( "uúQ  . / d i s t ÿåwX‹W\‹‚T©^Š«^Tekôf°eó  3 7 2   På]wQ) 
+     -   n p m   t e s t   ( 9   /   9   ,nfŠ  S u i t e   hQxe  P A S S    }Èq  =Øâß) 
+ 
