@@ -1629,3 +1629,19 @@ k0
      -   n o d e   s c r i p t s / b u i l d - w e b . j s   ( "uúQ  . / d i s t ÿåwX‹W\‹‚T©^Š«^  1 0 0 %   Tekôf°e) 
      -   n p m   t e s t   ( 1 1   /   1 1   ,nfŠ  S u i t e   hQxe  P A S S    }Èq  =Øâß) 
  
+ 
+ # # #   2 0 2 6 - 0 7 - 2 9      hQêÕRå]wQ¿Š(u‚Yå]wQTST‹•|v  S O P   ‰Ä{ºxËzÿP h a s e   1 1 1 	ÿ
+ 
+ # # # #    —Bl‚ÕR_j
+ O(u€fºx‰Ä{vu(WvQÖN\HhO(ušU’‘’TžŠ0_UÕRhQêÕRå]wQ¿Š(u!j_ÿ[ ûNÙRÏcð] 0Bf„vÛVŽ–µk  S O P ÿS+T!jÊ| —Bl}vqŠÐ‘n0Yå]wQTSTé{x‚È“_‰ƒR0H_'`TS\O‹•|vÿteT2°e\HhbhsËzgÙRKLˆ	ÿåNÊSûNÙRŒ[bŒ_„vêÕRã‰&€‚ö– ŒÔdnt0
+ 
+ # # # #   Œ[b˜îv‚¢jWšNz
+ -   [ x ]   * * S k i l l   ‰Ä{
+kZ\JŸ  ( . a g e n t s / s k i l l s / t o o l - c a l l i n g / S K I L L . m d ) * * ÿ
+     -   Œ[te	eQÛVŽ–µk  S O P ÿŽ–µk  1 :   }vqŠ —BlÐ‘n0Ž–µk  2 :   Yå]wQÈ“x‹W‚  D A G   ‰ƒR0Ž–µk  3 :   H_'`TST‹•|v‚°tƒX˜¢j0Ž–µk  4 :   êÕRã‰&€‚ö– ŒÔdnt	ÿ0
+ -   [ x ]   * * û|q}}  P r o m p t   ‰GRTek  ( . a g e n t s / A G E N T S . m d ) * * ÿ
+     -   ôf°eû|q}}‰GR-N„v0hQêÕR¿Š(u‚Yå]wQTST  S O P 0ÿŒ[hQµmË„šU’‘’TžŠ³PÃS0Yå]wQTSTÈ“‚  c l e a n u p   ö– ŒÔd_j6R0
+ -   [ x ]   * * hQWYºxHeWšI‹  ( V a l i d a t i o n   &   R e g r e s s i o n   C h e c k s ) * * ÿ
+     -   n o d e   c l i . j s   v a l i d a t e   ( 3 7 2   På]wQ  1 0 0 %   N  (') 
+     -   n p m   t e s t   ( 1 1   /   1 1   ,nfŠ  S u i t e   hQxe  P A S S    }Èq  =Øâß) 
+ 
