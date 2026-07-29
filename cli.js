@@ -8,7 +8,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { search, listAll, listByCategory, getById, planToolChain } from './core/search-engine.js';
+import { search, listAll, listByCategory, getById, planToolChain, extractQueryContext } from './core/search-engine.js';
 import { scanMonorepo } from './scripts/scan-monorepo.js';
 import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
 
@@ -716,108 +716,165 @@ function cmdPlan(taskDescription) {
   console.log(`${c.green}✓ ${plan.summary}${c.reset}\n`);
 }
 
+function cmdCompare(query) {
+  if (!query) {
+    error('請提供比較需求。用法: node cli.js compare "<需求描述>"');
+    process.exit(1);
+  }
+
+  header(`📊 相似工具競品選型對比報告: "${query}"`);
+  const registry = loadRegistry();
+  const context = extractQueryContext(query);
+
+  console.log(`${c.cyan}${c.bold}Parsed Intent:${c.reset} 語言偏好: ${context.targetLang || '未指定'} | 下游場景: ${context.scenarios.join(', ') || '通用'} | 特性需求: ${context.features.join(', ') || '無'}\n`);
+
+  const results = search(registry.tools, query, { topK: 5 });
+
+  if (results.length === 0) {
+    warn('未找到相符工具');
+    return;
+  }
+
+  console.log(`${c.yellow}${c.bold}🏆 競品工具五維度比對矩陣 (Disambiguation Matrix):${c.reset}\n`);
+
+  results.forEach((res, idx) => {
+    const t = res.tool;
+    const isBest = idx === 0;
+    const prefix = isBest ? `${c.green}${c.bold}🥇 [首選最佳匹配]${c.reset}` : `${c.blue}🥈 [候選競品 #${idx + 1}]${c.reset}`;
+    console.log(`${prefix} ${c.bold}${t.name}${c.reset} (${t.id}) — ${c.dim}${t.category}${c.reset} | Match Score: ${c.bold}${Math.round(res.score * 100)}%${c.reset}`);
+    console.log(`   🌐 專案網址: ${t.url}`);
+    console.log(`   💻 程式語言: ${t.language || 'Unspecified'} | ⭐ Stars: ${t.stars || 'N/A'}`);
+    console.log(`   🎯 推薦場景: ${t.useCase || t.description}`);
+    if (t.advantages && t.advantages.length > 0) {
+      console.log(`   ✨ 技術優勢: ${t.advantages.join('; ')}`);
+    }
+    if (t.negativeConstraints && t.negativeConstraints.length > 0) {
+      console.log(`   🚫 禁用限制: ${c.red}${t.negativeConstraints.join('; ')}${c.reset}`);
+    }
+    if (res.disambiguationReasons && res.disambiguationReasons.length > 0) {
+      console.log(`   🔍 競品適配特徵: ${c.cyan}${res.disambiguationReasons.join(' | ')}${c.reset}`);
+    }
+    console.log('');
+  });
+}
+
 // ─── 主程式 ─────────────────────────────────────────────────────────────────
 
-const [,, command, ...args] = process.argv;
+async function main() {
+  const [,, command, ...args] = process.argv;
 
-switch (command) {
-  case 'list':
-    cmdList();
-    break;
-  case 'plan':
-    cmdPlan(args.join(' '));
-    break;
-  case 'search': {
-    const searchArgs = [];
-    let searchCat = undefined;
-    for (let i = 0; i < args.length; i++) {
-      if (args[i] === '-c' || args[i] === '--category') {
-        searchCat = args[i + 1];
-        i++;
-      } else {
-        searchArgs.push(args[i]);
+  switch (command) {
+    case 'list':
+      cmdList();
+      break;
+    case 'plan':
+      cmdPlan(args.join(' '));
+      break;
+    case 'search': {
+      const searchArgs = [];
+      let searchCat = undefined;
+      for (let i = 0; i < args.length; i++) {
+        if (args[i] === '-c' || args[i] === '--category') {
+          searchCat = args[i + 1];
+          i++;
+        } else {
+          searchArgs.push(args[i]);
+        }
       }
+      await cmdSearch(searchArgs.join(' '), { category: searchCat });
+      break;
     }
-    await cmdSearch(searchArgs.join(' '), { category: searchCat });
-    break;
-  }
-  case 'info':
-    cmdInfo(args[0]);
-    break;
-  case 'install':
-    await cmdInstall(args[0]);
-    break;
-  case 'invoke':
-    await cmdInvoke(args[0], args.slice(1));
-    break;
-  case 'export-dataset': {
-    const registry = loadRegistry();
-    const { exportDataset } = await import('./scripts/export-dataset.js');
-    exportDataset(registry.tools, args[0] || 'dataset.jsonl');
-    break;
-  }
-  case 'cleanup':
-    await cmdCleanup(args[0]);
-    break;
-  case 'add':
-    await cmdAdd(args[0]);
-    break;
-  case 'batch-add':
-    await cmdBatchAdd(args[0]);
-    break;
-  case 'remove':
-    cmdRemove(args[0]);
-    break;
-  case 'index-subtools':
-    cmdIndexSubtools(args[0]);
-    break;
-  case 'validate':
-    cmdValidate();
-    break;
-  case 'discover-trending': {
-    const { discoverTrendingTools } = await import('./scripts/auto-trending-discovery.js');
-    await discoverTrendingTools();
-    break;
-  }
-  case 'verify-environment': {
-    const toolId = args[0];
-    if (!toolId) {
-      error('請提供工具 ID。用法: node cli.js verify-environment <tool-id>');
-      process.exit(1);
+    case 'info':
+      cmdInfo(args[0]);
+      break;
+    case 'install':
+      await cmdInstall(args[0]);
+      break;
+    case 'invoke':
+      await cmdInvoke(args[0], args.slice(1));
+      break;
+    case 'export-dataset': {
+      const registry = loadRegistry();
+      const { exportDataset } = await import('./scripts/export-dataset.js');
+      exportDataset(registry.tools, args[0] || 'dataset.jsonl');
+      break;
     }
-    const registry = loadRegistry();
-    const tool = getById(registry.tools, toolId);
-    if (!tool) {
-      error(`找不到工具: ${toolId}`);
-      process.exit(1);
+    case 'cleanup':
+      await cmdCleanup(args[0]);
+      break;
+    case 'add':
+      await cmdAdd(args[0]);
+      break;
+    case 'batch-add':
+      await cmdBatchAdd(args[0]);
+      break;
+    case 'remove':
+      cmdRemove(args[0]);
+      break;
+    case 'index-subtools':
+      cmdIndexSubtools(args[0]);
+      break;
+    case 'validate':
+      cmdValidate();
+      break;
+    case 'discover-trending': {
+      const { discoverTrendingTools } = await import('./scripts/auto-trending-discovery.js');
+      await discoverTrendingTools();
+      break;
     }
-    const { verifyToolEnvironment } = await import('./core/sandbox-validator.js');
-    const report = verifyToolEnvironment(tool);
-    header(`🛡️ 沙盒環境預檢報告: ${tool.name}`);
-    console.log(`  工具 ID: ${c.cyan}${report.toolId}${c.reset}`);
-    console.log(`  安裝方式: ${c.yellow}${report.installMethod}${c.reset}`);
-    console.log(`  調用指令: ${c.dim}${report.command}${c.reset}\n`);
-    if (report.isEnvironmentReady) {
-      success('相依執行環境已準備就緒，可順暢安裝與調用！✨');
-    } else {
-      warn('環境未完全就緒:');
-      report.issues.forEach(iss => console.log(`  - ${c.red}${iss}${c.reset}`));
+    case 'verify-environment': {
+      const toolId = args[0];
+      if (!toolId) {
+        error('請提供工具 ID。用法: node cli.js verify-environment <tool-id>');
+        process.exit(1);
+      }
+      const registry = loadRegistry();
+      const tool = getById(registry.tools, toolId);
+      if (!tool) {
+        error(`找不到工具: ${toolId}`);
+        process.exit(1);
+      }
+      const { verifyToolEnvironment } = await import('./core/sandbox-validator.js');
+      const report = verifyToolEnvironment(tool);
+      header(`🛡️ 沙盒環境預檢報告: ${tool.name}`);
+      console.log(`  工具 ID: ${c.cyan}${report.toolId}${c.reset}`);
+      console.log(`  安裝方式: ${c.yellow}${report.installMethod}${c.reset}`);
+      console.log(`  調用指令: ${c.dim}${report.command}${c.reset}\n`);
+      if (report.isEnvironmentReady) {
+        success('相依執行環境已準備就緒，可順暢安裝與調用！✨');
+      } else {
+        warn('環境未完全就緒:');
+        report.issues.forEach(iss => console.log(`  - ${c.red}${iss}${c.reset}`));
+      }
+      break;
     }
-    break;
-  }
-  case 'health-check':
-    await cmdHealthCheck();
-    break;
-  case 'help':
-  case '--help':
-  case '-h':
-    showHelp();
-    break;
-  default:
-    if (!command) {
+    case 'compare':
+      cmdCompare(args.join(' '));
+      break;
+    case 'interview': {
+      const { runInteractiveInterview } = await import('./core/interactive-approximator.js');
+      await runInteractiveInterview(args.join(' '));
+      break;
+    }
+    case 'health-check':
+      await cmdHealthCheck();
+      break;
+    case 'help':
+    case '--help':
+    case '-h':
       showHelp();
-    } else {
-      error(`未知命令: ${command}`);
-      showHelp();
-    }
+      break;
+    default:
+      if (!command) {
+        showHelp();
+      } else {
+        error(`未知命令: ${command}`);
+        showHelp();
+      }
+  }
 }
+
+main().catch(err => {
+  error(`執行錯誤: ${err.message}`);
+  process.exit(1);
+});

@@ -621,7 +621,127 @@ export function search(registryTools, query, options = {}) {
   }
 
   merged.sort((a, b) => b.score - a.score);
-  return merged.slice(0, topK);
+  
+  // 套用五維度競品重排矩陣 (5D Disambiguation Reranker)
+  const context = extractQueryContext(targetQuery);
+  const reranked = rerankCandidates(merged, context, options);
+  
+  return reranked.slice(0, topK);
+}
+
+/**
+ * 提取查詢意圖與上下文特徵 (Language, Scenario, Feature Requirements)
+ * @param {string} query 
+ * @returns {object}
+ */
+export function extractQueryContext(query) {
+  const norm = normalize(query);
+  
+  // 1. 程式語言偏好
+  let targetLang = null;
+  if (/\b(python|py)\b/i.test(norm)) targetLang = 'python';
+  else if (/\b(typescript|ts)\b/i.test(norm)) targetLang = 'typescript';
+  else if (/\b(javascript|js|node|nodejs)\b/i.test(norm)) targetLang = 'javascript';
+  else if (/\b(java)\b/i.test(norm)) targetLang = 'java';
+  else if (/\b(golang|go)\b/i.test(norm)) targetLang = 'go';
+  else if (/\b(rust)\b/i.test(norm)) targetLang = 'rust';
+
+  // 2. 下游場景意圖
+  const scenarios = [];
+  if (/rag|llm|markdown|知識庫|向量/i.test(norm)) scenarios.push('rag');
+  if (/testing|test|e2e|單元測試|端對端/i.test(norm)) scenarios.push('testing');
+  if (/pipeline|大數據|併發|批量|高併發/i.test(norm)) scenarios.push('pipeline');
+  if (/dom|xml|標籤/i.test(norm)) scenarios.push('dom');
+  if (/ppt|簡報|powerpoint|slide/i.test(norm)) scenarios.push('presentation');
+
+  // 3. 特性/約束需求
+  const features = [];
+  if (/動態|spa|js|javascript|渲染/i.test(norm)) features.push('dynamic_rendering');
+  if (/防封鎖|代理|proxy|header|輪換/i.test(norm)) features.push('anti_blocking');
+
+  return {
+    originalQuery: query,
+    targetLang,
+    scenarios,
+    features
+  };
+}
+
+/**
+ * 五維度競品重排矩陣 (5D Disambiguation Reranker)
+ * 對初篩候選工具進行語言匹配、下游意圖適配、禁用場景強硬扣分與健康度重排
+ * @param {object[]} candidates - [{ tool, score, ... }]
+ * @param {object} context - extractQueryContext() 的回傳值
+ * @param {object} [options] - 其他選項 (如 telemetryStats)
+ * @returns {object[]} 重排後帶有 disambiguationReasons 的候選工具清單
+ */
+export function rerankCandidates(candidates, context, options = {}) {
+  if (!candidates || candidates.length === 0) return [];
+
+  const { targetLang, scenarios, features } = context;
+
+  const reranked = candidates.map(item => {
+    const tool = item.tool;
+    let newScore = item.score;
+    const reasons = [];
+
+    // 維度 A: 語言偏好對齊
+    if (targetLang && tool.language) {
+      const toolLang = normalize(tool.language);
+      if (toolLang.includes(targetLang) || (targetLang === 'javascript' && toolLang.includes('typescript'))) {
+        newScore += 0.25;
+        reasons.push(`💡 程式語言強吻合 (${tool.language})`);
+      } else {
+        newScore -= 0.35;
+        reasons.push(`⚠️ 程式語言不匹配 (${tool.language} vs 需要 ${targetLang})`);
+      }
+    }
+
+    // 維度 B: 下游場景意圖匹配
+    if (scenarios.length > 0) {
+      const toolUseCase = (tool.useCase || '').toLowerCase();
+      const toolDesc = (tool.description || '').toLowerCase();
+      const toolCategory = (tool.category || '').toLowerCase();
+
+      for (const sc of scenarios) {
+        if (sc === 'rag' && (toolUseCase.includes('rag') || toolUseCase.includes('markdown') || toolDesc.includes('llm'))) {
+          newScore += 0.30;
+          reasons.push('🌟 原生支援 LLM / RAG 資料清洗與 Markdown 轉譯');
+        } else if (sc === 'testing' && (toolCategory.includes('測試') || toolUseCase.includes('測試') || toolUseCase.includes('e2e'))) {
+          newScore += 0.30;
+          reasons.push('🌟 原生專注端對端 (E2E) UI 自動化測試');
+        } else if (sc === 'pipeline' && (toolUseCase.includes('併發') || toolUseCase.includes('管道') || toolDesc.includes('async'))) {
+          newScore += 0.25;
+          reasons.push('🌟 支援大數據非同步 Pipeline 與高併發處理');
+        }
+      }
+    }
+
+    // 維度 C: 禁用場景強硬扣分 (Negative Constraints Filter)
+    if (features.includes('dynamic_rendering') && tool.negativeConstraints) {
+      const hasNegative = tool.negativeConstraints.some(c => 
+        /不支援動態|不支援 javascript|需搭配|不內建/i.test(c)
+      );
+      if (hasNegative) {
+        newScore -= 0.60; // 重罰
+        reasons.push('🚫 觸發禁用場景門禁: 缺少動態 JavaScript 渲染能力');
+      }
+    }
+
+    // 維度 D: GitHub Stars 加權
+    if (tool.stars && tool.stars > 1000) {
+      const starBonus = Math.min(Math.log10(tool.stars) * 0.05, 0.20);
+      newScore += starBonus;
+    }
+
+    return {
+      ...item,
+      score: Math.max(0.01, Math.round(newScore * 100) / 100),
+      disambiguationReasons: reasons
+    };
+  });
+
+  return reranked.sort((a, b) => b.score - a.score);
 }
 
 /**
