@@ -1680,3 +1680,38 @@ kZ\J�  ( . a g e n t s / s k i l l s / t o o l - c a l l i n g / S K I L L . m
  -   [ x ]   * * ek_�  5 ��c����f�  G i t H u b   `��z	P�^* * �
      -   �c� g�e�c�N�  o r i g i n / m a i n   R/e0
  
+
+## 2026-07-30 批量新增 7 個工具與詮釋資料完整性確效
+
+### 需求內容
+將用戶指定之 7 個 GitHub 專案網址（DeepSpec, openworker, aisuite, context-hub, context-hub-skill, translation-agent, OptMem）新增至 Tool-Calling 工具庫，並檢查是否需要拆解（Monorepo 檢測）及補齊詮釋資料。
+
+### 問題與原因分析 (RCA)
+- **Monorepo 拆解檢測**：掃描結果顯示 7 個專案均為獨立工具/套件，無須拆解成子工具庫。
+- **詮釋資料完整性驗證**：初始批次匯入後，執行 node cli.js validate 發現該 7 個工具缺乏 useCase（推薦場景）與 negativeConstraints（禁用場景）等關鍵欄位，違反「新工具詮釋資料完整性防禦元規則 (Tool Metadata Completeness Meta-Rule)」。
+
+### 矯正與預防措施 (CAPA)
+- **矯正措施 (CAPA)**：
+  - 手動/精確補齊 7 個工具之 useCase、advantages、negativeConstraints、擴充 triggers 關鍵字、專業中文描述，並將狀態升級為 active。
+  - 重新執行 node cli.js validate，確認全庫 379 個工具 100% 通過驗證（0 錯誤, 0 警告）。
+  - 執行 node scripts/generate-knowledge-graph.js 更新全庫 379 個工具之知識圖譜。
+- **預防措施**：
+  - 在所有批量/單一工具新增流程後，強制執行 node cli.js validate 自動確效門禁，防止缺失 metadata 之工具被推送至遠端倉庫。
+
+
+## 2026-07-30 批量新增 codex-security 與 langgraph 雙工具
+
+### 需求內容
+將用戶新增之 2 個 GitHub 專案網址（openai/codex-security, langchain-ai/langgraph）匯入 Tool-Calling 工具庫，並檢視 Monorepo 拆解需求與補齊詮釋資料。
+
+### 問題與原因分析 (RCA)
+- **Monorepo 拆解檢測**：掃描結果顯示 2 個專案均為獨立工具庫/套件，無須拆解成子工具。
+- **詮釋資料完整性驗證**：初次新增後執行 node cli.js validate 偵測到 4 個錯誤，主因為新工具缺少 useCase 與 negativeConstraints 等必要欄位。
+
+### 矯正與預防措施 (CAPA)
+- **矯正措施 (CAPA)**：
+  - 補齊 codex-security 與 langgraph 之 useCase、advantages、negativeConstraints，強化 triggers 標籤與中文說明，並將 status 設定為 active。
+  - 執行 node cli.js validate，全庫 381 個工具 100% 通過確效驗證（0 錯誤, 0 警告）。
+  - 執行 node scripts/generate-knowledge-graph.js 自動同步全庫 381 個工具之 2D/3D 知識圖譜。
+- **預防措施**：
+  - 遵循 Git 提交原子性防偽報元規則，確保代碼變更與開發日誌在同一 commit 內提交。

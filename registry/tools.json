@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-29T13:59:36.253Z",
+  "lastUpdated": "2026-07-30T13:42:44.934Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -28655,6 +28655,309 @@
         "需要額外啟動 Docker 容器服務"
       ],
       "addedAt": "2026-07-29T13:59:36.252Z",
+      "status": "active"
+    },
+    {
+      "id": "deepspec",
+      "name": "DeepSpec",
+      "url": "https://github.com/deepseek-ai/DeepSpec",
+      "description": "DeepSeek 開源的全棧推測解碼（Speculative Decoding）演算法訓練與評估框架",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "deepspec",
+        "speculative-decoding",
+        "llm-acceleration",
+        "推測解碼"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/deepseek-ai/DeepSpec.git",
+        "repoUrl": "https://github.com/deepseek-ai/DeepSpec"
+      },
+      "capabilities": [],
+      "useCase": "當需要訓練與評估 LLM 推測解碼（Speculative Decoding）模型以提升大模型推理速度與降低延遲時使用。",
+      "advantages": [
+        "提供完整的 LLM 推測解碼草稿模型訓練與推理評估全流程",
+        "針對 DeepSeek 系列模型優化推測解碼效能與加速比",
+        "支援靈活的草稿模型架構與自訂解碼策略"
+      ],
+      "negativeConstraints": [
+        "僅適用於 LLM 推理加速與模型訓練研究，不適合一般端到端 Agent 應用",
+        "需要較高的 GPU 顯存與 PyTorch/CUDA 深度學習環境"
+      ],
+      "addedAt": "2026-07-30T13:36:55.529Z",
+      "status": "active"
+    },
+    {
+      "id": "openworker",
+      "name": "Openworker",
+      "url": "https://github.com/andrewyng/openworker",
+      "description": "Andrew Ng 開源的輕量級分佈式 Agent Worker 執行框架與任務排程器",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "openworker",
+        "agent-worker",
+        "distributed-worker",
+        "任務執行器"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/andrewyng/openworker.git",
+        "repoUrl": "https://github.com/andrewyng/openworker"
+      },
+      "capabilities": [],
+      "useCase": "當需要將 AI Agent 任務分發至多個獨立運行的 Worker 節點並管理非同步任務流時使用。",
+      "advantages": [
+        "簡潔直覺的 Python 異步 Worker 架構，適合構建分佈式 Agent 系統",
+        "易於與主流 LLM API 及 Agent 工作流框架整合",
+        "極低的啟動與配置開銷"
+      ],
+      "negativeConstraints": [
+        "適合中小型分佈式任務，尚不具備企業級 Kubernetes 規模的複雜調度功能",
+        "核心仍處於早期開源階段，高並發極限測試需手動評估"
+      ],
+      "addedAt": "2026-07-30T13:36:56.365Z",
+      "status": "active"
+    },
+    {
+      "id": "aisuite",
+      "name": "Aisuite",
+      "url": "https://github.com/andrewyng/aisuite",
+      "description": "Andrew Ng 團隊開發的統一跨供應商（OpenAI, Anthropic, Gemini 等）生成式 AI 調用 SDK",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "aisuite",
+        "multi-llm",
+        "unified-llm-sdk",
+        "多模型調用"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/andrewyng/aisuite.git",
+        "repoUrl": "https://github.com/andrewyng/aisuite"
+      },
+      "capabilities": [],
+      "useCase": "當需要在 Python 應用中以統一 API 無縫切換 OpenAI、Anthropic、Google Gemini、Ollama 等不同 LLM 供應商時使用。",
+      "advantages": [
+        "統一的介面格式，切換不同模型供應商只需修改模型名稱字串",
+        "無需改寫代碼邏輯即可進行多模型對比與基準測試",
+        "輕量無冗餘，專注於 LLM Chat Completion 基礎調用"
+      ],
+      "negativeConstraints": [
+        "僅專注於模型基礎調用介面，不包含 LangChain 式的複雜 RAG 或向量資料庫管理",
+        "高階專有參數可能受限於統一抽象介面"
+      ],
+      "addedAt": "2026-07-30T13:36:57.618Z",
+      "status": "active"
+    },
+    {
+      "id": "context-hub",
+      "name": "Context Hub",
+      "url": "https://github.com/andrewyng/context-hub",
+      "description": "Andrew Ng 團隊打造的 AI Agent 上下文與文檔/程式碼庫動態打包與檢索 Hub (chub)",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "context-hub",
+        "chub",
+        "context-packer",
+        "上下文管理",
+        "prompt-context"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx context-hub",
+        "repoUrl": "https://github.com/andrewyng/context-hub"
+      },
+      "capabilities": [],
+      "useCase": "當需要迅速將專案原始碼、文檔或線上資源封裝成適合 LLM 閱讀的最佳化 Prompt 上下文時使用。",
+      "advantages": [
+        "命令列工具 chub 可快速提取與組織專案檔案架構與關鍵內容",
+        "可與各類 Agent 框架及開發者工作流高度整合",
+        "支援動態過濾與 Token 預估，防止 Prompt 溢出"
+      ],
+      "negativeConstraints": [
+        "主要為 Prompt 上下文準備與 CLI 輔助工具，而非獨立的向量資料庫或檢索服務",
+        "超大型 Monorepo 處理時需設定正確的 ignore 規則"
+      ],
+      "addedAt": "2026-07-30T13:36:58.434Z",
+      "status": "active"
+    },
+    {
+      "id": "context-hub-skill",
+      "name": "Context Hub Skill",
+      "url": "https://github.com/andrewyng/context-hub-skill",
+      "description": "專為 AI Agent 設計的 Context Hub (chub) 整合技能外掛",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "context-hub-skill",
+        "chub-skill",
+        "agent-context-skill",
+        "上下文技能"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/andrewyng/context-hub-skill.git",
+        "repoUrl": "https://github.com/andrewyng/context-hub-skill"
+      },
+      "capabilities": [],
+      "useCase": "當賦予 Agent 自主檢索並利用 Context Hub 讀取與分析外部 context/skills 時使用。",
+      "advantages": [
+        "標準化 Agent 技能介面，讓 AI 助手能直接操作 Context Hub 讀取相關內容",
+        "無縫對接 Claude Desktop, Antigravity 等支援 Agent Skill 規範的平台",
+        "模組化封裝，簡化 Agent 與 Context Hub 的溝通成本"
+      ],
+      "negativeConstraints": [
+        "需配合系統安裝的 Context Hub CLI (chub) 才能發揮完全功能",
+        "不適合無 CLI 執行權限的封閉式沙盒環境"
+      ],
+      "addedAt": "2026-07-30T13:36:59.085Z",
+      "status": "active"
+    },
+    {
+      "id": "translation-agent",
+      "name": "Translation Agent",
+      "url": "https://github.com/andrewyng/translation-agent",
+      "description": "Andrew Ng 提出基於 LLM 反思機制（Reflection Workflow）的高品質多語言翻譯 Agent",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "translation-agent",
+        "reflection-translation",
+        "llm-translator",
+        "反思翻譯"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/andrewyng/translation-agent.git",
+        "repoUrl": "https://github.com/andrewyng/translation-agent"
+      },
+      "capabilities": [],
+      "useCase": "當需要進行長篇大論、高專業度或跨文化語境的長文字高精度翻譯時使用。",
+      "advantages": [
+        "採用初譯 -> 反思修訂 -> 最終優化的 Reflection 流程，翻譯品質高於單次 Prompt 直出",
+        "支援專有詞彙表與專業領域風格設定",
+        "支援長文本自動切分與上下文保持一致性"
+      ],
+      "negativeConstraints": [
+        "因包含多次 LLM 反思輪次，Token 消耗與響應時間高於傳統 API 翻譯",
+        "不適合毫秒級即時對話翻譯情境"
+      ],
+      "addedAt": "2026-07-30T13:36:59.992Z",
+      "status": "active"
+    },
+    {
+      "id": "optmem",
+      "name": "OptMem",
+      "url": "https://github.com/VictorTaelin/OptMem",
+      "description": "Victor Taelin 開源的 AI Agent 永續記憶體（Permanent Memory）輕量外掛機制",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "optmem",
+        "agent-memory",
+        "permanent-memory",
+        "永續記憶"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/VictorTaelin/OptMem.git",
+        "repoUrl": "https://github.com/VictorTaelin/OptMem"
+      },
+      "capabilities": [],
+      "useCase": "當需要為 AI Agent 增加極低 Token 開銷（426-token Prompt）且即插即用的跨對話長效記憶體時使用。",
+      "advantages": [
+        "僅需 426 Token 的系統 Prompt 與輕量腳本即可賦予 Agent 記憶功能",
+        "即插即用，無須配置龐大的外部向量資料庫或複雜基礎設施",
+        "顯著降低 Agent 上下文維護成本與 LLM Token 開銷"
+      ],
+      "negativeConstraints": [
+        "適合中短期的結構化記憶與偏好記誦，不替代 PB 級的海量數據庫檢索 (RAG)",
+        "記憶檢索精度依賴於 LLM 對 426-token Prompt 指令的遵循能力"
+      ],
+      "addedAt": "2026-07-30T13:37:00.791Z",
+      "status": "active"
+    },
+    {
+      "id": "codex-security",
+      "name": "Codex Security",
+      "url": "https://github.com/openai/codex-security",
+      "description": "OpenAI 開源的 AI 程式碼安全性掃描、漏洞檢測與修復 CLI 及 TypeScript SDK",
+      "category": "安全性",
+      "language": "typescript",
+      "triggers": [
+        "codex-security",
+        "ai-code-security",
+        "security-scanner",
+        "程式碼安全掃描",
+        "vulnerability-repair"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx codex-security",
+        "repoUrl": "https://github.com/openai/codex-security"
+      },
+      "capabilities": [
+        "ai-security",
+        "application-security",
+        "cli",
+        "code-scanning",
+        "codex"
+      ],
+      "useCase": "當需要在開發流程或 CI/CD 中自動掃描程式碼漏洞並利用 OpenAI Codex 建議安全性修復時使用。",
+      "advantages": [
+        "結合 OpenAI 程式碼模型能力，自動識別潛在安全性漏洞並提供修復建議",
+        "提供 CLI 工具與 TypeScript SDK，便於整合進 CI/CD 與自動化開發工作流",
+        "支援精準的漏洞確效與自動化重構補丁"
+      ],
+      "negativeConstraints": [
+        "需要 OpenAI API 金鑰存取權限與適當的網路連線",
+        "不完全替代傳統 SAST/DAST 工具，建議作為防護深度補充"
+      ],
+      "addedAt": "2026-07-30T13:42:44.151Z",
+      "status": "active"
+    },
+    {
+      "id": "langgraph",
+      "name": "LangGraph",
+      "url": "https://github.com/langchain-ai/langgraph",
+      "description": "LangChain 團隊開發的圖狀（Graph-based）狀態化多 Agent 協同與循環工作流框架",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "langgraph",
+        "stateful-agent",
+        "agent-workflow",
+        "multi-agent-graph",
+        "循環 Agent"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/langchain-ai/langgraph.git",
+        "repoUrl": "https://github.com/langchain-ai/langgraph"
+      },
+      "capabilities": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "chatgpt",
+        "deepagents"
+      ],
+      "useCase": "當需要構建具備循環控制（Cycles）、持續性狀態記憶（Time Travel/Checkpointing）及多 Agent 協同之複雜 LLM 系統時使用。",
+      "advantages": [
+        "支援 Graph 狀態機架構，可精確控制 Agent 之間的跳轉、循環與條件判斷",
+        "原生支援 Checkpointing 與 Time Travel，具備故障恢復與人工介入能力",
+        "無縫整合 LangChain 生態系中的 Tools、VectorStores 與 Prompts"
+      ],
+      "negativeConstraints": [
+        "對於極簡單的 Single-prompt 或單次工具調用任務，Graph 架構可能帶來額外的抽象與學習成本",
+        "大型複雜 State Graph 的除錯需適應其專屬的狀態流轉機制"
+      ],
+      "addedAt": "2026-07-30T13:42:44.933Z",
       "status": "active"
     }
   ]

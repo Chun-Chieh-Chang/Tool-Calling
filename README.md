@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **372+ 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **381+ 個頂尖開源 AI 工具與 Agent 技能**：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與文件生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -134,7 +134,7 @@ Tool-Calling/
 ├── cli.js              ← CLI 命令列控制端（支援 search, plan, compare, interview, verify-environment, cleanup 等）
 ├── mcp-server.js       ← MCP 通訊伺服器（適配 Claude Desktop / Cursor）
 ├── registry/
-│   ├── tools.json      ← 工具庫單一真理來源（目前 372 個 AI 工具）
+│   ├── tools.json      ← 工具庫單一真理來源（目前 381 個 AI 工具）
 │   └── trending-candidates.json ← 自動探勘熱門候選佇列
 ├── core/
 │   ├── search-engine.js        ← 三層檢索 + 5D 競品適配重排 + 多工具鏈規劃器
