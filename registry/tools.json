@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-07-30T13:42:44.934Z",
+  "lastUpdated": "2026-08-01T04:39:24.648Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -28959,6 +28959,630 @@
       ],
       "addedAt": "2026-07-30T13:42:44.933Z",
       "status": "active"
+    },
+    {
+      "id": "buzz",
+      "name": "Buzz",
+      "url": "https://github.com/chidiwilliams/buzz",
+      "description": "Offline audio transcription and translation desktop app powered by OpenAI Whisper, supporting speaker identification and 1000+ languages.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "transcription",
+        "audio",
+        "whisper",
+        "speech-to-text",
+        "語音轉文字",
+        "offline-transcription",
+        "translation",
+        "buzz"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install buzz-captions",
+        "requirements": [
+          "python>=3.9"
+        ]
+      },
+      "capabilities": [
+        "offline-transcription",
+        "translation",
+        "speaker-identification",
+        "live-recording",
+        "1000-languages"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當需要在無網路環境下將會議錄音或影片轉為文字稿，並支援多語言翻譯時使用。",
+      "advantages": [
+        "完全離線運行，無需上傳音訊至雲端，保護隱私",
+        "支援超過 1000 種語言的語音識別，由 Whisper 模型驅動",
+        "提供說話者識別與即時錄音轉錄功能"
+      ],
+      "negativeConstraints": [
+        "不適合需要即時低延遲語音識別的生產系統（如電話客服）",
+        "不適用於需要雲端服務水平協議保證的企業部署",
+        "不適合處理超長時間音訊串流的自動化管道"
+      ],
+      "stars": 12800
+    },
+    {
+      "id": "ego-lite",
+      "name": "Ego Lite",
+      "url": "https://github.com/citrolabs/ego-lite",
+      "description": "Chromium-based browser for AI agents to run web automation in isolated spaces, sharing logged-in browser state without disturbing the user.",
+      "category": "瀏覽器自動化",
+      "language": "typescript",
+      "triggers": [
+        "browser automation",
+        "agent browser",
+        "ego-lite",
+        "web automation",
+        "logged-in state",
+        "chromium",
+        "ai agent browser",
+        "瀏覽器自動化"
+      ],
+      "install": {
+        "method": "manual",
+        "command": "Download installer from https://lite.ego.app",
+        "requirements": []
+      },
+      "capabilities": [
+        "parallel-browsing",
+        "session-sharing",
+        "agent-isolation",
+        "zero-config",
+        "chromium-based"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "讓 Claude Code、Codex 等 AI Agent 在獨立瀏覽器空間內執行網頁自動化任務，同時與使用者共享登入狀態，不干擾日常瀏覽。",
+      "advantages": [
+        "AI Agent 在獨立 Space 執行，人類瀏覽不受干擾",
+        "直接共享已登入的帳號狀態，無需重新設定認證",
+        "零成本、零設定，開箱即用"
+      ],
+      "negativeConstraints": [
+        "不適合需要完全隔離環境的安全性敏感自動化任務",
+        "不適用於無頭伺服器環境或 CI/CD 管道中的純 CLI 測試",
+        "不適合需要精確控制瀏覽器版本的自動化測試場景"
+      ],
+      "stars": 2100
+    },
+    {
+      "id": "open-code-review",
+      "name": "Open Code Review",
+      "url": "https://github.com/alibaba/open-code-review",
+      "description": "Alibaba's open-source AI code review CLI (ocr) combining deterministic pipelines and LLM agents for precise line-level comments, battle-tested at scale.",
+      "category": "測試與自動化",
+      "language": "go",
+      "triggers": [
+        "code review",
+        "ai code review",
+        "ocr",
+        "open-code-review",
+        "alibaba",
+        "pull request review",
+        "程式碼審查",
+        "line-level comments",
+        "ci-cd-review"
+      ],
+      "install": {
+        "method": "manual",
+        "command": "go install github.com/alibaba/open-code-review/cmd/ocr@latest",
+        "requirements": [
+          "go>=1.21"
+        ]
+      },
+      "capabilities": [
+        "line-level-comments",
+        "npe-detection",
+        "thread-safety",
+        "xss-detection",
+        "sql-injection-detection",
+        "llm-agent",
+        "deterministic-pipeline"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "在 CI/CD 流程中自動執行 AI 程式碼審查，對 Git diff 產生精確的行級評論，檢測 NPE、執行緒安全、XSS 與 SQL 注入等問題。",
+      "advantages": [
+        "結合確定性管道與 LLM Agent 的混合架構，降低誤報率",
+        "阿里巴巴內部兩年實戰驗證，服務數萬開發者並識別數百萬缺陷",
+        "相容 OpenAI 與 Anthropic API，支援多種 LLM 後端"
+      ],
+      "negativeConstraints": [
+        "不適合替代人工安全審計或需要業務邏輯深度理解的架構審查",
+        "不適合用於非 Git 版本控制系統的程式碼審查",
+        "不適合在離線環境或無法呼叫 LLM API 的受限網路中使用"
+      ],
+      "stars": 6100
+    },
+    {
+      "id": "ai-agents-for-beginners",
+      "name": "AI Agents for Beginners",
+      "url": "https://github.com/microsoft/ai-agents-for-beginners",
+      "description": "Microsoft's 18-lesson open-source course covering AI agent fundamentals, design patterns, frameworks, and production deployment.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "ai agents",
+        "beginners",
+        "microsoft",
+        "agent course",
+        "ai agent tutorial",
+        "agent design patterns",
+        "agent framework learning",
+        "ai-agents-for-beginners"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/microsoft/ai-agents-for-beginners.git",
+        "requirements": [
+          "python>=3.10"
+        ]
+      },
+      "capabilities": [
+        "agent-fundamentals",
+        "design-patterns",
+        "multi-language",
+        "hands-on-lessons",
+        "production-deployment"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "適合開發者系統性學習 AI Agent 設計模式、主流框架與生產部署最佳實踐的入門課程。",
+      "advantages": [
+        "Microsoft 官方出品，18 課涵蓋從基礎到生產部署的完整知識體系",
+        "支援 50+ 語言翻譯，適合全球開發者",
+        "提供實際可執行的範例程式碼與動手實作練習"
+      ],
+      "negativeConstraints": [
+        "不適合尋找即插即用工具的開發者，本質是學習課程而非可安裝套件",
+        "不適合需要深入研究特定框架原始碼的進階開發者",
+        "不適合非 Python 開發者，大部分範例以 Python 為主"
+      ],
+      "stars": 38000
+    },
+    {
+      "id": "awesome-claude-code-subagents",
+      "name": "Awesome Claude Code Subagents",
+      "url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
+      "description": "A curated collection of 100+ specialized Claude Code subagents covering backend, frontend, security, data, research, and more development tasks.",
+      "category": "AI 代理",
+      "language": "markdown",
+      "triggers": [
+        "claude code",
+        "subagents",
+        "claude subagent",
+        "specialized agents",
+        "awesome-claude-code-subagents",
+        "VoltAgent",
+        "agent collection",
+        "custom agents"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/VoltAgent/awesome-claude-code-subagents.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "subagent-definitions",
+        "backend-dev",
+        "frontend-dev",
+        "security-review",
+        "data-analysis",
+        "research"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "快速為 Claude Code 找到並部署特定領域的專業子代理，如後端開發者、安全審計員或資料分析師。",
+      "advantages": [
+        "100+ 預建子代理涵蓋全端開發、安全、資料、研究等多個領域",
+        "每個子代理均為 Markdown 格式，可直接複製到 Claude Code 使用",
+        "由 VoltAgent 社群維護，持續更新新增子代理"
+      ],
+      "negativeConstraints": [
+        "不適合需要執行程式碼的場景，本質為 Markdown 指令定義檔",
+        "不適用於非 Claude Code 或不支援子代理的 AI 工具",
+        "不適合需要即插即用 npm/pip 套件的工具鏈整合"
+      ],
+      "stars": 3200
+    },
+    {
+      "id": "claude-code-debug-mode",
+      "name": "Claude Code Debug Mode",
+      "url": "https://github.com/doraemonkeys/claude-code-debug-mode",
+      "description": "Hypothesis-driven debugging skill for Claude Code, Codex, and Gemini CLI that instruments runtime logs and iteratively narrows root causes.",
+      "category": "測試與自動化",
+      "language": "markdown",
+      "triggers": [
+        "debug",
+        "debugging",
+        "hypothesis",
+        "runtime logs",
+        "claude code debug",
+        "debug mode",
+        "root cause analysis",
+        "除錯"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/doraemonkeys/claude-code-debug-mode.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "hypothesis-testing",
+        "runtime-instrumentation",
+        "root-cause-analysis",
+        "human-in-the-loop",
+        "iterative-debugging"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當遇到難以復現的 race condition 或複雜狀態管理問題時，使用此 Skill 指導 AI Agent 系統性地植入日誌並逐步驗證假設。",
+      "advantages": [
+        "假設驅動方法避免 AI 盲目猜測修復，提升除錯效率",
+        "支援 Claude Code、Codex、Gemini CLI 等主流編碼代理",
+        "人機協作設計，確保開發者全程了解除錯進展"
+      ],
+      "negativeConstraints": [
+        "不適合簡單的語法錯誤或有明確錯誤訊息的問題",
+        "不適合生產環境的緊急熱修復，因流程較為繁瑣",
+        "不適合無法執行程式碼的純靜態分析場景"
+      ],
+      "stars": 420
+    },
+    {
+      "id": "claude-plugins-official",
+      "name": "Claude Plugins Official",
+      "url": "https://github.com/anthropics/claude-plugins-official",
+      "description": "Anthropic-managed official directory of high-quality Claude Code plugins including skills, commands, agents, hooks, and MCP servers.",
+      "category": "AI 代理",
+      "language": "markdown",
+      "triggers": [
+        "claude plugins",
+        "anthropic plugins",
+        "claude code plugins",
+        "official plugins",
+        "mcp plugins",
+        "claude-plugins-official",
+        "agent plugins"
+      ],
+      "install": {
+        "method": "none",
+        "command": "Browse and install individual plugins from https://github.com/anthropics/claude-plugins-official",
+        "requirements": []
+      },
+      "capabilities": [
+        "plugin-directory",
+        "skills",
+        "commands",
+        "agents",
+        "hooks",
+        "mcp-servers"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當需要為 Claude Code 快速找到官方認可的高品質插件（包含技能、命令、代理與 MCP 伺服器）時瀏覽此目錄。",
+      "advantages": [
+        "Anthropic 官方維護，品質有保證",
+        "涵蓋技能、命令、代理、hooks 與 MCP 伺服器等多種插件類型",
+        "提供官方認可的插件生態系統，降低尋找可信插件的成本"
+      ],
+      "negativeConstraints": [
+        "不適合直接安裝使用，需瀏覽後選擇個別插件安裝",
+        "不適合非 Claude Code 環境的插件需求",
+        "不適合需要自訂或修改官方插件行為的進階用例"
+      ],
+      "stars": 1800
+    },
+    {
+      "id": "executor",
+      "name": "Executor",
+      "url": "https://github.com/UsefulSoftwareCo/executor",
+      "description": "Missing integration layer for AI agents to call any OpenAPI, MCP, GraphQL, or custom JS functions in a secure, unified environment.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "executor",
+        "openapi",
+        "mcp gateway",
+        "graphql",
+        "api gateway",
+        "agent integration",
+        "tool gateway",
+        "mcp server"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx executor-sh",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "openapi-integration",
+        "mcp-gateway",
+        "graphql-support",
+        "custom-js-functions",
+        "secure-sandbox",
+        "unified-catalog"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當需要讓多個 AI Agent 共用同一套工具目錄（OpenAPI / MCP / GraphQL）並統一管理認證與安全規則時使用。",
+      "advantages": [
+        "統一工具目錄，一次配置所有代理共用，無需重複設定",
+        "支援 OpenAPI、MCP、GraphQL 與自訂 JS 函數等多種整合方式",
+        "內建安全沙盒環境，保護敏感 API 憑證"
+      ],
+      "negativeConstraints": [
+        "不適合只有單一代理且工具需求簡單的小型專案",
+        "不適合需要極低延遲的即時系統，因多了一層 gateway 開銷",
+        "不適合需要離線運行或無法部署額外服務的受限環境"
+      ],
+      "stars": 950
+    },
+    {
+      "id": "howtheytest",
+      "name": "How They Test",
+      "url": "https://github.com/abhivaikar/howtheytest",
+      "description": "Curated collection of public resources on how leading software companies like Amazon, Airbnb, and Apple test their software and build quality culture.",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "testing",
+        "quality engineering",
+        "how they test",
+        "qa",
+        "test practices",
+        "company testing",
+        "software quality",
+        "測試實踐",
+        "howtheytest"
+      ],
+      "install": {
+        "method": "none",
+        "command": "Browse at https://github.com/abhivaikar/howtheytest",
+        "requirements": []
+      },
+      "capabilities": [
+        "resource-collection",
+        "testing-practices",
+        "qa-knowledge",
+        "company-case-studies"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當工程師或 QA 想了解 Amazon、Google、Airbnb 等頂尖科技公司如何建立測試文化與品質工程實踐時參考。",
+      "advantages": [
+        "收錄來自全球頂尖科技公司的公開測試文章、影片與部落格",
+        "涵蓋功能測試、CI/CD、混沌工程、生產監控等多個面向",
+        "持續更新的社群貢獻資源庫"
+      ],
+      "negativeConstraints": [
+        "不適合作為可執行的測試框架或工具使用",
+        "不適合尋找特定程式語言測試套件教學的開發者",
+        "不提供互動式練習或認證課程"
+      ],
+      "stars": 5400
+    },
+    {
+      "id": "code-review-skill",
+      "name": "Code Review Skill",
+      "url": "https://github.com/awesome-skills/code-review-skill",
+      "description": "Production-ready Agent Skill for structured, expert-level code review covering React 19, Vue 3, Rust, TypeScript, TanStack Query v5, and more.",
+      "category": "測試與自動化",
+      "language": "markdown",
+      "triggers": [
+        "code review",
+        "pr review",
+        "code quality",
+        "code-review-skill",
+        "agent skill",
+        "react review",
+        "typescript review",
+        "程式碼審查"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/awesome-skills/code-review-skill.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "structured-review",
+        "multi-framework",
+        "security-check",
+        "performance-review",
+        "accessibility-check"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "在合併 PR 前，使用此 Skill 讓 AI Agent 對 React、Vue、TypeScript 等現代框架程式碼執行結構化、專家級的多維度審查。",
+      "advantages": [
+        "涵蓋 React 19、Vue 3、Rust、TypeScript、TanStack Query v5 等現代技術棧",
+        "將 AI 輔助程式碼審查從模糊建議提升為結構化、一致的流程",
+        "開箱即用，相容 Claude Code、Codex 等主流代理環境"
+      ],
+      "negativeConstraints": [
+        "不適合作為替代人工安全審計的唯一安全把關手段",
+        "不適合非前端或不使用所列技術棧的後端專案",
+        "不適合需要即插即用 npm/pip 套件的自動化管道整合"
+      ],
+      "stars": 680
+    },
+    {
+      "id": "first-principles-skill",
+      "name": "First Principles Skill",
+      "url": "https://github.com/awesome-skills/first-principles-skill",
+      "description": "Claude Code Agent Skill for systematic first principles thinking: decompose complex problems to fundamental truths and avoid analogical reasoning traps.",
+      "category": "AI 代理",
+      "language": "markdown",
+      "triggers": [
+        "first principles",
+        "problem decomposition",
+        "critical thinking",
+        "first-principles-skill",
+        "reasoning",
+        "assumptions",
+        "第一性原理"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/awesome-skills/first-principles-skill.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "first-principles-thinking",
+        "assumption-challenge",
+        "problem-decomposition",
+        "systematic-reasoning"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當面對複雜技術決策或需要挑戰既有設計假設時，使用此 Skill 引導 AI Agent 從基本原理出發重新評估方案。",
+      "advantages": [
+        "系統化的第一性原理方法論，避免類比推理陷阱",
+        "幫助 AI Agent 在架構設計與技術選型時挑戰隱性假設",
+        "輕量 Markdown Skill，相容所有支援 Agent Skills 標準的工具"
+      ],
+      "negativeConstraints": [
+        "不適合需要快速決策的緊急修復場景",
+        "不適合已有明確最佳實踐的標準化問題",
+        "不提供可執行程式碼，純為推理方法論引導"
+      ],
+      "stars": 320
+    },
+    {
+      "id": "5-whys-skill",
+      "name": "5 Whys Skill",
+      "url": "https://github.com/awesome-skills/5-whys-skill",
+      "description": "Agent Skill implementing the 5 Whys root cause analysis methodology to systematically uncover the underlying cause of bugs and system failures.",
+      "category": "AI 代理",
+      "language": "markdown",
+      "triggers": [
+        "5 whys",
+        "root cause",
+        "root cause analysis",
+        "5-whys-skill",
+        "debugging methodology",
+        "rca",
+        "根因分析"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/awesome-skills/5-whys-skill.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "root-cause-analysis",
+        "5-whys-methodology",
+        "systematic-debugging",
+        "failure-analysis"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當遇到反覆出現的 Bug 或系統故障時，使用此 Skill 引導 AI Agent 透過連續追問 「為什麼」找到真正的根本原因。",
+      "advantages": [
+        "將豐田 5 Whys 方法論系統化地應用於軟體問題診斷",
+        "防止 AI Agent 停留在症狀層面，迫使深入挖掘根本原因",
+        "輕量 Skill 格式，可快速部署至任何支援 Agent Skills 的環境"
+      ],
+      "negativeConstraints": [
+        "不適合需要立即修復的生產緊急事件，分析流程較耗時",
+        "不適合隨機性故障或硬體問題，5 Whys 更適合流程與邏輯性問題",
+        "不提供程式碼修復能力，僅提供根因分析方法論"
+      ],
+      "stars": 210
+    },
+    {
+      "id": "mermaid-syntax-skill",
+      "name": "Mermaid Syntax Skill",
+      "url": "https://github.com/awesome-skills/mermaid-syntax-skill",
+      "description": "Claude Code Agent Skill for generating error-free Mermaid v11 diagrams, preventing common syntax errors with special characters, reserved words, and escaping rules.",
+      "category": "AI 代理",
+      "language": "markdown",
+      "triggers": [
+        "mermaid",
+        "diagram",
+        "flowchart",
+        "mermaid syntax",
+        "mermaid-syntax-skill",
+        "sequence diagram",
+        "er diagram",
+        "流程圖"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/awesome-skills/mermaid-syntax-skill.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "mermaid-generation",
+        "syntax-validation",
+        "error-prevention",
+        "v11-support",
+        "multiple-diagram-types"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當需要讓 AI Agent 產生 Mermaid 流程圖、時序圖或 ER 圖時，使用此 Skill 確保輸出語法正確、無特殊字元錯誤。",
+      "advantages": [
+        "專為避免 Mermaid 常見語法錯誤設計，包含特殊字元與保留字處理",
+        "支援 Mermaid v11 的最新功能與圖表類型",
+        "作為 Agent Skill 按需載入，不增加常駐上下文負擔"
+      ],
+      "negativeConstraints": [
+        "不適合生成 PlantUML、Draw.io 等非 Mermaid 格式的圖表",
+        "不適合需要匯出為 PNG/SVG 等圖片格式的場景（需搭配渲染工具）",
+        "不提供互動式圖表編輯功能"
+      ],
+      "stars": 450
+    },
+    {
+      "id": "agent-skills-manager",
+      "name": "Agent Skills Manager",
+      "url": "https://github.com/awesome-skills/agent-skills-manager",
+      "description": "Agent Skill for managing a unified skills directory across multiple AI coding agents (Claude Code, Codex, Pi, OpenCode, Hermes) via symlinks.",
+      "category": "AI 代理",
+      "language": "shell",
+      "triggers": [
+        "skills manager",
+        "agent skills manager",
+        "symlink skills",
+        "unified skills",
+        "multi-agent skills",
+        "agent-skills-manager",
+        "skills sync"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/awesome-skills/agent-skills-manager.git",
+        "requirements": []
+      },
+      "capabilities": [
+        "symlink-management",
+        "multi-agent-sync",
+        "skills-migration",
+        "hermes-rsync",
+        "unified-directory"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當同時使用 Claude Code、Codex、Pi、OpenCode 等多個 AI 編碼代理時，用此 Skill 建立統一技能目錄，一處修改全體生效。",
+      "advantages": [
+        "透過軟連結實現一份原件、多代理同步，零維護成本",
+        "支援 Claude Code、Codex、Pi、OpenCode、Hermes 等主流代理",
+        "自動處理不支援軟連結的 Hermes，透過 rsync 保持同步"
+      ],
+      "negativeConstraints": [
+        "不適合只使用單一 AI 編碼代理的用戶",
+        "需要 Linux/macOS 環境，Windows 的軟連結支援有限制",
+        "不適合需要為不同代理維護差異化技能集的進階用例"
+      ],
+      "stars": 3
     }
   ]
 }

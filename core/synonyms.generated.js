@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-07-29T14:33:44.000Z
+ * 產生時間：2026-08-01T04:39:39.057Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -322,6 +322,7 @@ export const SYNONYM_MAP = {
     "browser automation",
     "自動化測試",
     "網頁爬蟲",
+    "瀏覽器自動化",
     "測試"
   ],
   "playwright": [
@@ -330,6 +331,7 @@ export const SYNONYM_MAP = {
     "網頁爬蟲",
     "e2e-testing",
     "browser automation",
+    "瀏覽器自動化",
     "測試"
   ],
   "e2e-testing": [
@@ -338,12 +340,14 @@ export const SYNONYM_MAP = {
     "網頁爬蟲",
     "playwright",
     "browser automation",
+    "瀏覽器自動化",
     "測試"
   ],
   "browser automation": [
     "跨瀏覽器測試",
     "自動化測試",
     "網頁爬蟲",
+    "瀏覽器自動化",
     "playwright",
     "e2e-testing",
     "測試"
@@ -354,6 +358,7 @@ export const SYNONYM_MAP = {
     "browser automation",
     "跨瀏覽器測試",
     "網頁爬蟲",
+    "瀏覽器自動化",
     "測試"
   ],
   "網頁爬蟲": [
@@ -362,6 +367,7 @@ export const SYNONYM_MAP = {
     "browser automation",
     "跨瀏覽器測試",
     "自動化測試",
+    "瀏覽器自動化",
     "測試"
   ],
   "檔案系統": [
@@ -501,6 +507,692 @@ export const SYNONYM_MAP = {
     "gpt-proxy",
     "claude-api"
   ],
+  "推測解碼": [
+    "deepspec",
+    "speculative-decoding",
+    "llm-acceleration"
+  ],
+  "deepspec": [
+    "推測解碼",
+    "speculative-decoding",
+    "llm-acceleration"
+  ],
+  "speculative-decoding": [
+    "推測解碼",
+    "deepspec",
+    "llm-acceleration"
+  ],
+  "llm-acceleration": [
+    "推測解碼",
+    "deepspec",
+    "speculative-decoding"
+  ],
+  "任務執行器": [
+    "openworker",
+    "agent-worker",
+    "distributed-worker"
+  ],
+  "openworker": [
+    "任務執行器",
+    "agent-worker",
+    "distributed-worker"
+  ],
+  "agent-worker": [
+    "任務執行器",
+    "openworker",
+    "distributed-worker"
+  ],
+  "distributed-worker": [
+    "任務執行器",
+    "openworker",
+    "agent-worker"
+  ],
+  "多模型調用": [
+    "aisuite",
+    "multi-llm",
+    "unified-llm-sdk"
+  ],
+  "aisuite": [
+    "多模型調用",
+    "multi-llm",
+    "unified-llm-sdk"
+  ],
+  "multi-llm": [
+    "多模型調用",
+    "aisuite",
+    "unified-llm-sdk"
+  ],
+  "unified-llm-sdk": [
+    "多模型調用",
+    "aisuite",
+    "multi-llm"
+  ],
+  "上下文管理": [
+    "context-hub",
+    "chub",
+    "context-packer",
+    "prompt-context"
+  ],
+  "context-hub": [
+    "上下文管理",
+    "chub",
+    "context-packer",
+    "prompt-context"
+  ],
+  "chub": [
+    "上下文管理",
+    "context-hub",
+    "context-packer",
+    "prompt-context"
+  ],
+  "context-packer": [
+    "上下文管理",
+    "context-hub",
+    "chub",
+    "prompt-context"
+  ],
+  "prompt-context": [
+    "上下文管理",
+    "context-hub",
+    "chub",
+    "context-packer"
+  ],
+  "上下文技能": [
+    "context-hub-skill",
+    "chub-skill",
+    "agent-context-skill"
+  ],
+  "context-hub-skill": [
+    "上下文技能",
+    "chub-skill",
+    "agent-context-skill"
+  ],
+  "chub-skill": [
+    "上下文技能",
+    "context-hub-skill",
+    "agent-context-skill"
+  ],
+  "agent-context-skill": [
+    "上下文技能",
+    "context-hub-skill",
+    "chub-skill"
+  ],
+  "反思翻譯": [
+    "translation-agent",
+    "reflection-translation",
+    "llm-translator"
+  ],
+  "translation-agent": [
+    "反思翻譯",
+    "reflection-translation",
+    "llm-translator"
+  ],
+  "reflection-translation": [
+    "反思翻譯",
+    "translation-agent",
+    "llm-translator"
+  ],
+  "llm-translator": [
+    "反思翻譯",
+    "translation-agent",
+    "reflection-translation"
+  ],
+  "永續記憶": [
+    "optmem",
+    "agent-memory",
+    "permanent-memory"
+  ],
+  "optmem": [
+    "永續記憶",
+    "agent-memory",
+    "permanent-memory"
+  ],
+  "agent-memory": [
+    "永續記憶",
+    "optmem",
+    "permanent-memory"
+  ],
+  "permanent-memory": [
+    "永續記憶",
+    "optmem",
+    "agent-memory"
+  ],
+  "程式碼安全掃描": [
+    "codex-security",
+    "ai-code-security",
+    "security-scanner",
+    "vulnerability-repair"
+  ],
+  "codex-security": [
+    "程式碼安全掃描",
+    "ai-code-security",
+    "security-scanner",
+    "vulnerability-repair"
+  ],
+  "ai-code-security": [
+    "程式碼安全掃描",
+    "codex-security",
+    "security-scanner",
+    "vulnerability-repair"
+  ],
+  "security-scanner": [
+    "程式碼安全掃描",
+    "codex-security",
+    "ai-code-security",
+    "vulnerability-repair"
+  ],
+  "vulnerability-repair": [
+    "程式碼安全掃描",
+    "codex-security",
+    "ai-code-security",
+    "security-scanner"
+  ],
+  "循環 agent": [
+    "langgraph",
+    "stateful-agent",
+    "agent-workflow",
+    "multi-agent-graph"
+  ],
+  "langgraph": [
+    "循環 agent",
+    "stateful-agent",
+    "agent-workflow",
+    "multi-agent-graph"
+  ],
+  "stateful-agent": [
+    "循環 agent",
+    "langgraph",
+    "agent-workflow",
+    "multi-agent-graph"
+  ],
+  "agent-workflow": [
+    "循環 agent",
+    "langgraph",
+    "stateful-agent",
+    "multi-agent-graph"
+  ],
+  "multi-agent-graph": [
+    "循環 agent",
+    "langgraph",
+    "stateful-agent",
+    "agent-workflow"
+  ],
+  "語音轉文字": [
+    "transcription",
+    "audio",
+    "whisper",
+    "speech-to-text",
+    "offline-transcription",
+    "translation",
+    "buzz"
+  ],
+  "transcription": [
+    "語音轉文字",
+    "audio",
+    "whisper",
+    "speech-to-text",
+    "offline-transcription",
+    "translation",
+    "buzz"
+  ],
+  "audio": [
+    "語音轉文字",
+    "transcription",
+    "whisper",
+    "speech-to-text",
+    "offline-transcription",
+    "translation",
+    "buzz"
+  ],
+  "whisper": [
+    "語音轉文字",
+    "transcription",
+    "audio",
+    "speech-to-text",
+    "offline-transcription",
+    "translation",
+    "buzz"
+  ],
+  "speech-to-text": [
+    "語音轉文字",
+    "transcription",
+    "audio",
+    "whisper",
+    "offline-transcription",
+    "translation",
+    "buzz"
+  ],
+  "offline-transcription": [
+    "語音轉文字",
+    "transcription",
+    "audio",
+    "whisper",
+    "speech-to-text",
+    "translation",
+    "buzz"
+  ],
+  "translation": [
+    "語音轉文字",
+    "transcription",
+    "audio",
+    "whisper",
+    "speech-to-text",
+    "offline-transcription",
+    "buzz",
+    "翻譯"
+  ],
+  "buzz": [
+    "語音轉文字",
+    "transcription",
+    "audio",
+    "whisper",
+    "speech-to-text",
+    "offline-transcription",
+    "translation"
+  ],
+  "瀏覽器自動化": [
+    "browser automation",
+    "agent browser",
+    "ego-lite",
+    "web automation",
+    "logged-in state",
+    "chromium",
+    "ai agent browser",
+    "跨瀏覽器測試"
+  ],
+  "agent browser": [
+    "瀏覽器自動化"
+  ],
+  "ego-lite": [
+    "瀏覽器自動化"
+  ],
+  "web automation": [
+    "瀏覽器自動化"
+  ],
+  "logged-in state": [
+    "瀏覽器自動化"
+  ],
+  "chromium": [
+    "瀏覽器自動化"
+  ],
+  "ai agent browser": [
+    "瀏覽器自動化"
+  ],
+  "程式碼審查": [
+    "code review",
+    "ai code review",
+    "ocr",
+    "open-code-review",
+    "alibaba",
+    "pull request review",
+    "line-level comments",
+    "ci-cd-review"
+  ],
+  "code review": [
+    "程式碼審查"
+  ],
+  "ai code review": [
+    "程式碼審查"
+  ],
+  "ocr": [
+    "程式碼審查"
+  ],
+  "open-code-review": [
+    "程式碼審查"
+  ],
+  "alibaba": [
+    "程式碼審查"
+  ],
+  "pull request review": [
+    "程式碼審查"
+  ],
+  "line-level comments": [
+    "程式碼審查"
+  ],
+  "ci-cd-review": [
+    "程式碼審查"
+  ],
+  "除錯": [
+    "debug",
+    "debugging",
+    "hypothesis",
+    "runtime logs",
+    "claude code debug",
+    "debug mode",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "debug": [
+    "除錯",
+    "debugging",
+    "hypothesis",
+    "runtime logs",
+    "claude code debug",
+    "debug mode",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "debugging": [
+    "除錯",
+    "debug",
+    "hypothesis",
+    "runtime logs",
+    "claude code debug",
+    "debug mode",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "hypothesis": [
+    "除錯",
+    "debug",
+    "debugging",
+    "runtime logs",
+    "claude code debug",
+    "debug mode",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "runtime logs": [
+    "除錯",
+    "debug",
+    "debugging",
+    "hypothesis",
+    "claude code debug",
+    "debug mode",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "claude code debug": [
+    "除錯",
+    "debug",
+    "debugging",
+    "hypothesis",
+    "runtime logs",
+    "debug mode",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "debug mode": [
+    "除錯",
+    "debug",
+    "debugging",
+    "hypothesis",
+    "runtime logs",
+    "claude code debug",
+    "root cause analysis",
+    "根因分析"
+  ],
+  "root cause analysis": [
+    "除錯",
+    "根因分析",
+    "debug",
+    "debugging",
+    "hypothesis",
+    "runtime logs",
+    "claude code debug",
+    "debug mode"
+  ],
+  "測試實踐": [
+    "testing",
+    "quality engineering",
+    "how they test",
+    "qa",
+    "test practices",
+    "company testing",
+    "software quality",
+    "howtheytest"
+  ],
+  "testing": [
+    "測試實踐",
+    "quality engineering",
+    "how they test",
+    "qa",
+    "test practices",
+    "company testing",
+    "software quality",
+    "howtheytest"
+  ],
+  "quality engineering": [
+    "測試實踐",
+    "testing",
+    "how they test",
+    "qa",
+    "test practices",
+    "company testing",
+    "software quality",
+    "howtheytest"
+  ],
+  "how they test": [
+    "測試實踐",
+    "testing",
+    "quality engineering",
+    "qa",
+    "test practices",
+    "company testing",
+    "software quality",
+    "howtheytest"
+  ],
+  "qa": [
+    "測試實踐",
+    "testing",
+    "quality engineering",
+    "how they test",
+    "test practices",
+    "company testing",
+    "software quality",
+    "howtheytest"
+  ],
+  "test practices": [
+    "測試實踐",
+    "testing",
+    "quality engineering",
+    "how they test",
+    "qa",
+    "company testing",
+    "software quality",
+    "howtheytest"
+  ],
+  "company testing": [
+    "測試實踐",
+    "testing",
+    "quality engineering",
+    "how they test",
+    "qa",
+    "test practices",
+    "software quality",
+    "howtheytest"
+  ],
+  "software quality": [
+    "測試實踐",
+    "testing",
+    "quality engineering",
+    "how they test",
+    "qa",
+    "test practices",
+    "company testing",
+    "howtheytest"
+  ],
+  "howtheytest": [
+    "測試實踐",
+    "testing",
+    "quality engineering",
+    "how they test",
+    "qa",
+    "test practices",
+    "company testing",
+    "software quality"
+  ],
+  "pr review": [
+    "程式碼審查"
+  ],
+  "code quality": [
+    "程式碼審查"
+  ],
+  "code-review-skill": [
+    "程式碼審查"
+  ],
+  "agent skill": [
+    "程式碼審查"
+  ],
+  "react review": [
+    "程式碼審查"
+  ],
+  "typescript review": [
+    "程式碼審查"
+  ],
+  "第一性原理": [
+    "first principles",
+    "problem decomposition",
+    "critical thinking",
+    "first-principles-skill",
+    "reasoning",
+    "assumptions"
+  ],
+  "first principles": [
+    "第一性原理",
+    "problem decomposition",
+    "critical thinking",
+    "first-principles-skill",
+    "reasoning",
+    "assumptions"
+  ],
+  "problem decomposition": [
+    "第一性原理",
+    "first principles",
+    "critical thinking",
+    "first-principles-skill",
+    "reasoning",
+    "assumptions"
+  ],
+  "critical thinking": [
+    "第一性原理",
+    "first principles",
+    "problem decomposition",
+    "first-principles-skill",
+    "reasoning",
+    "assumptions"
+  ],
+  "first-principles-skill": [
+    "第一性原理",
+    "first principles",
+    "problem decomposition",
+    "critical thinking",
+    "reasoning",
+    "assumptions"
+  ],
+  "reasoning": [
+    "第一性原理",
+    "first principles",
+    "problem decomposition",
+    "critical thinking",
+    "first-principles-skill",
+    "assumptions"
+  ],
+  "assumptions": [
+    "第一性原理",
+    "first principles",
+    "problem decomposition",
+    "critical thinking",
+    "first-principles-skill",
+    "reasoning"
+  ],
+  "根因分析": [
+    "5 whys",
+    "root cause",
+    "root cause analysis",
+    "5-whys-skill",
+    "debugging methodology",
+    "rca",
+    "除錯",
+    "debug"
+  ],
+  "5 whys": [
+    "根因分析"
+  ],
+  "root cause": [
+    "根因分析"
+  ],
+  "5-whys-skill": [
+    "根因分析"
+  ],
+  "debugging methodology": [
+    "根因分析"
+  ],
+  "rca": [
+    "根因分析"
+  ],
+  "流程圖": [
+    "mermaid",
+    "diagram",
+    "flowchart",
+    "mermaid syntax",
+    "mermaid-syntax-skill",
+    "sequence diagram",
+    "er diagram"
+  ],
+  "mermaid": [
+    "流程圖",
+    "diagram",
+    "flowchart",
+    "mermaid syntax",
+    "mermaid-syntax-skill",
+    "sequence diagram",
+    "er diagram"
+  ],
+  "diagram": [
+    "流程圖",
+    "mermaid",
+    "flowchart",
+    "mermaid syntax",
+    "mermaid-syntax-skill",
+    "sequence diagram",
+    "er diagram"
+  ],
+  "flowchart": [
+    "流程圖",
+    "mermaid",
+    "diagram",
+    "mermaid syntax",
+    "mermaid-syntax-skill",
+    "sequence diagram",
+    "er diagram"
+  ],
+  "mermaid syntax": [
+    "流程圖",
+    "mermaid",
+    "diagram",
+    "flowchart",
+    "mermaid-syntax-skill",
+    "sequence diagram",
+    "er diagram"
+  ],
+  "mermaid-syntax-skill": [
+    "流程圖",
+    "mermaid",
+    "diagram",
+    "flowchart",
+    "mermaid syntax",
+    "sequence diagram",
+    "er diagram"
+  ],
+  "sequence diagram": [
+    "流程圖",
+    "mermaid",
+    "diagram",
+    "flowchart",
+    "mermaid syntax",
+    "mermaid-syntax-skill",
+    "er diagram"
+  ],
+  "er diagram": [
+    "流程圖",
+    "mermaid",
+    "diagram",
+    "flowchart",
+    "mermaid syntax",
+    "mermaid-syntax-skill",
+    "sequence diagram"
+  ],
   "翻譯": [
     "translate",
     "translation",
@@ -514,18 +1206,14 @@ export const SYNONYM_MAP = {
     "localization",
     "在地化"
   ],
-  "translation": [
-    "翻譯",
-    "translate",
-    "localization"
-  ],
   "測試": [
     "自動化測試",
     "playwright",
     "e2e-testing",
     "browser automation",
     "跨瀏覽器測試",
-    "網頁爬蟲"
+    "網頁爬蟲",
+    "瀏覽器自動化"
   ],
   "檔案": [
     "檔案系統",
