@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-01T04:39:24.648Z",
+  "lastUpdated": "2026-08-01T04:42:05.678Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -29583,6 +29583,102 @@
         "不適合需要為不同代理維護差異化技能集的進階用例"
       ],
       "stars": 3
+    },
+    {
+      "id": "reactphp-filesystem",
+      "name": "ReactPHP Filesystem",
+      "url": "https://github.com/reactphp/filesystem",
+      "description": "Evented, non-blocking filesystem access for PHP built on ReactPHP event loop, enabling async file read/write/stat operations.",
+      "category": "基礎設施",
+      "language": "php",
+      "triggers": [
+        "reactphp",
+        "async filesystem",
+        "non-blocking",
+        "evented filesystem",
+        "php async",
+        "filesystem php",
+        "async file",
+        "reactphp-filesystem"
+      ],
+      "install": {
+        "method": "composer",
+        "command": "composer require react/filesystem",
+        "requirements": [
+          "php>=7.4"
+        ]
+      },
+      "capabilities": [
+        "non-blocking-io",
+        "async-file-read",
+        "async-file-write",
+        "event-driven",
+        "stream-based",
+        "directory-operations"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "在 ReactPHP 應用中以非阻塞方式讀寫大量檔案，避免 I/O 操作阻斷事件迴圈，適合高並發的 PHP 非同步服務。",
+      "advantages": [
+        "完全非阻塞設計，與 ReactPHP 事件迴圈深度整合，不影響並發效能",
+        "支援 Promise 鏈式呼叫，讓非同步檔案操作程式碼可讀性佳",
+        "官方 ReactPHP 生態系元件，維護積極且與其他 react/* 套件相容"
+      ],
+      "negativeConstraints": [
+        "不適合傳統同步 PHP 應用，需整合 ReactPHP 事件迴圈才能使用",
+        "不適合需要精確 POSIX 低階呼叫或檔案鎖定的場景",
+        "不適合 Laravel、Symfony 等傳統框架的標準請求-回應週期"
+      ],
+      "stars": 640
+    },
+    {
+      "id": "sequential-thinking-skill",
+      "name": "Sequential Thinking Skill",
+      "url": "https://github.com/thedotmack/sequential-thinking-skill",
+      "description": "Claude Code skill replicating the Sequential Thinking MCP server with branching, revision, dynamic depth, and persistent disk state — no MCP server required.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "sequential thinking",
+        "chain of thought",
+        "structured reasoning",
+        "sequential-thinking-skill",
+        "branching thoughts",
+        "think step by step",
+        "reasoning skill",
+        "no-mcp reasoning",
+        "hypothesis verification"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "npx skills add https://github.com/thedotmack/sequential-thinking-skill --skill sequential-thinking",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "sequential-thoughts",
+        "branching",
+        "revision",
+        "dynamic-depth",
+        "persistent-state",
+        "hypothesis-verification",
+        "no-mcp-required"
+      ],
+      "addedAt": "2026-08-01T00:00:00+08:00",
+      "status": "active",
+      "useCase": "當 Claude Code 需要對複雜問題進行多步驟、可修訂的結構化推理，且不想架設 MCP 伺服器時，使用此 Skill 以純本地 TypeScript 狀態機實現同等功能。",
+      "advantages": [
+        "與官方 Sequential Thinking MCP 功能完全對等，但無需額外配置 MCP 伺服器",
+        "思考歷程持久化至磁碟 JSON，跨次對話不遺失推理脈絡",
+        "支援分支探索、修訂前次思考與動態調整推理深度"
+      ],
+      "negativeConstraints": [
+        "不適合非 Claude Code 環境，依賴 Claude Code Skill 協議",
+        "需要 tsx 執行環境，不適合完全無 Node.js 的部署場景",
+        "不適合簡單單步問題，引入狀態機會增加不必要的複雜度"
+      ],
+      "stars": 33
     }
   ]
 }
