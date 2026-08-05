@@ -78,7 +78,7 @@
   "VoltAgent/voltagent": 10185,
   "aliasrobotics/cai": 9549,
   "kyrolabs/awesome-langchain": 9465,
-  "TencentCloud/TencentDB-Agent-Memory": 9304,
+  "TencentCloud/TencentDB-Agent-Memory": 14644,
   "OpenSPG/KAG": 8933,
   "MervinPraison/PraisonAI": 8519,
   "omnigent-ai/omnigent": 7788,
@@ -713,5 +713,10 @@
   "openscad/openscad": 9800,
   "CadQuery/cadquery": 5500,
   "AgnesAI-Labs/AgnesCode": 21,
-  "ViviQuan/agnescode": 6
+  "ViviQuan/agnescode": 6,
+  "reown-com/appkit": 5435,
+  "bkrem/react-d3-tree": 1197,
+  "bkrem/awesome-solidity": 7037,
+  "usekaneo/kaneo": 7446,
+  "microsoft/ai-for-beginners": 61939
 }
