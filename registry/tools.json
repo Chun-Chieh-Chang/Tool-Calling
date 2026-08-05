@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T13:11:27.842Z",
+  "lastUpdated": "2026-08-05T13:21:30.915Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -30493,55 +30493,97 @@
       "id": "computer",
       "name": "Computer (Cloudflare)",
       "url": "https://github.com/cloudflare/computer",
-      "description": "AI agent framework for browser automation and task execution",
+      "description": "Open-source AI agent framework by Cloudflare for autonomous browser automation and task execution.",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "computer",
         "browser-automation",
         "ai-agent",
-        "task-execution"
+        "task-execution",
+        "cloudflare",
+        "web-automation",
+        "agent-framework"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Automating repetitive web workflows such as form filling, data scraping, and multi-step web navigation without manual intervention.",
+      "advantages": [
+        "Built on Cloudflare's global edge infrastructure for low-latency, high-availability execution",
+        "Provides a programmatic API for AI agents to control browsers and interact with web pages autonomously",
+        "Open-source with extensible architecture supporting custom actions and integrations"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time, sub-millisecond latency-critical applications requiring direct system-level access",
+        "Avoid for tasks involving sensitive credential handling or PII processing without additional security layers",
+        "Not ideal for offline or air-gapped environments since it relies on cloud-connected browser infrastructure"
+      ]
     },
     {
       "id": "loopx",
       "name": "LoopX",
       "url": "https://github.com/huangruiteng/loopx",
-      "description": "LoopX - A powerful loop-based automation tool",
+      "description": "LoopX automates repetitive tasks through configurable loop workflows with flexible trigger and action chaining.",
       "category": "開發工具",
       "language": "python",
       "triggers": [
         "loopx",
         "automation",
         "loop",
-        "workflow"
+        "workflow",
+        "task automation",
+        "iterative processing",
+        "batch processing"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Automating daily data sync tasks across multiple APIs by defining loop conditions and retry logic without writing custom scripts.",
+      "advantages": [
+        "Supports nested loop structures for complex multi-step automation workflows",
+        "Configurable retry and error-handling policies within loop iterations",
+        "Declarative workflow definition enables quick setup without deep programming knowledge"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time, low-latency processing where loop overhead is unacceptable",
+        "Avoid for one-off tasks that do not benefit from iterative or repeated execution",
+        "Not ideal for stateful applications requiring persistent session management across loops"
+      ]
     },
     {
       "id": "pdf-inspector",
       "name": "PDF Inspector",
       "url": "https://github.com/firecrawl/pdf-inspector",
-      "description": "PDF inspection and analysis tool with AI capabilities",
+      "description": "AI-powered PDF analysis tool for extracting text, tables, and insights from documents.",
       "category": "文件生產力",
       "language": "python",
       "triggers": [
         "pdf",
         "inspection",
         "analysis",
-        "firecrawl"
+        "firecrawl",
+        "extraction",
+        "ocr",
+        "document"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Extract and analyze structured data from large PDF reports or research papers automatically.",
+      "advantages": [
+        "Leverages AI for accurate text and table extraction from complex PDF layouts",
+        "Supports batch processing of multiple PDF documents",
+        "Integrates with Firecrawl ecosystem for seamless web-to-PDF workflows"
+      ],
+      "negativeConstraints": [
+        "Not suitable for editing or modifying PDF content",
+        "Ineffective for scanned images without OCR preprocessing",
+        "May struggle with highly encrypted or password-protected PDFs"
+      ]
     },
     {
       "id": "deepseek-reasonix",
       "name": "DeepSeek Reasonix",
       "url": "https://github.com/esengine/DeepSeek-Reasonix",
-      "description": "DeepSeek Reasoning Engine - LLM reasoning optimization framework",
+      "description": "LLM reasoning optimization framework for DeepSeek models, enhancing inference efficiency and output quality.",
       "category": "AI 框架",
       "language": "python",
       "triggers": [
@@ -30549,16 +30591,30 @@
         "reasoning",
         "llm",
         "inference",
-        "optimize"
+        "optimize",
+        "optimization",
+        "latency",
+        "reasoning engine"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Optimizing DeepSeek model inference pipelines for production applications requiring fast, accurate reasoning outputs.",
+      "advantages": [
+        "Reduces inference latency through optimized reasoning pathways",
+        "Improves output quality via structured reasoning optimization",
+        "Seamlessly integrates with existing DeepSeek model deployments"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-DeepSeek LLM architectures",
+        "Avoid for simple classification or non-reasoning tasks",
+        "Not recommended for real-time applications with strict sub-100ms latency requirements"
+      ]
     },
     {
       "id": "supervision",
       "name": "Supervision",
       "url": "https://github.com/roboflow/supervision",
-      "description": "Roboflow Supervision - A new Python package that blurs the line between a utility package and a research repo",
+      "description": "Python utility package for computer vision tasks including detection, tracking, and visualization.",
       "category": "AI 代理",
       "language": "python",
       "triggers": [
@@ -30566,16 +30622,30 @@
         "roboflow",
         "computer-vision",
         "detection",
-        "tracking"
+        "tracking",
+        "object-detection",
+        "visualization",
+        "bounding-box"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Rapidly prototyping and visualizing object detection and tracking results during model development and evaluation.",
+      "advantages": [
+        "Provides ready-to-use visualization utilities for bounding boxes, masks, and tracking results",
+        "Seamlessly integrates with popular CV frameworks and model outputs",
+        "Lightweight and focused, avoiding the overhead of full ML pipelines"
+      ],
+      "negativeConstraints": [
+        "Not suitable for production inference serving or deployment pipelines",
+        "Not designed for model training or fine-tuning workflows",
+        "Not appropriate for real-time video processing requiring custom optimization"
+      ]
     },
     {
       "id": "next.js",
       "name": "Next.js",
       "url": "https://github.com/vercel/next.js",
-      "description": "The React Framework for the Web",
+      "description": "React framework for building server-rendered and static web applications with built-in routing and API support.",
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
@@ -30583,10 +30653,24 @@
         "react",
         "framework",
         "ssr",
-        "server-components"
+        "server-components",
+        "static-site",
+        "fullstack",
+        "vercel"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Building a production-ready e-commerce storefront with server-side rendered product pages and dynamic API routes for checkout.",
+      "advantages": [
+        "Built-in server-side rendering and static site generation for optimal performance and SEO",
+        "File-system based routing eliminates manual route configuration",
+        "Integrated API routes enable full-stack development within a single project"
+      ],
+      "negativeConstraints": [
+        "Simple static websites with no interactivity or dynamic content",
+        "Native mobile application development requiring iOS/Android-specific features",
+        "Real-time collaborative applications requiring persistent WebSocket connections"
+      ]
     },
     {
       "id": "tailwindcss",
@@ -30600,16 +30684,29 @@
         "css",
         "utility",
         "styling",
-        "responsive"
+        "responsive",
+        "framework",
+        "ui"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Building responsive web interfaces quickly with predefined utility classes instead of writing custom CSS",
+      "advantages": [
+        "Rapid prototyping with extensive pre-built utility classes",
+        "Highly customizable through configuration file",
+        "Small bundle size with tree-shaking support"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects requiring extensive custom CSS animations",
+        "Overkill for simple static pages with minimal styling needs",
+        "Not ideal when developers prefer semantic CSS class naming"
+      ]
     },
     {
       "id": "karpathy-llm-wiki",
       "name": "Karpathy LLM Wiki",
       "url": "https://github.com/Astro-Han/karpathy-llm-wiki",
-      "description": "Andrej Karpathy's LLM Wiki - Comprehensive resource for large language models",
+      "description": "Curated collection of LLM resources, tutorials, and research papers organized by Andrej Karpathy.",
       "category": "學習資源",
       "language": "markdown",
       "triggers": [
@@ -30617,16 +30714,30 @@
         "llm",
         "wiki",
         "tutorial",
-        "learning"
+        "learning",
+        "language model",
+        "research paper",
+        "NLP"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A developer or student looking to systematically learn about large language models can use this wiki as a structured starting point to explore key papers, tutorials, and foundational concepts.",
+      "advantages": [
+        "Curated and organized by Andrej Karpathy, a well-known AI educator and researcher",
+        "Covers a broad range of LLM topics from foundational concepts to cutting-edge research",
+        "Provides a structured learning path suitable for both beginners and advanced practitioners"
+      ],
+      "negativeConstraints": [
+        "Not suitable for hands-on implementation or code execution tasks",
+        "Not a substitute for official documentation or up-to-date model papers",
+        "Not ideal for users seeking real-time or interactive LLM experimentation"
+      ]
     },
     {
       "id": "jetbrains-cc-gui",
       "name": "JetBrains CC GUI",
       "url": "https://github.com/zhukunpenglinyutong/jetbrains-cc-gui",
-      "description": "JetBrains Code Competency GUI - AI-powered code review and analysis tool",
+      "description": "AI-powered code review and analysis tool for JetBrains IDEs",
       "category": "開發工具",
       "language": "java",
       "triggers": [
@@ -30637,7 +30748,51 @@
         "analysis"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Developers can use this tool to perform automated code reviews and receive AI-generated suggestions for improving code quality directly within their JetBrains IDE.",
+      "advantages": [
+        "Integrates seamlessly with JetBrains IDEs for in-editor code analysis",
+        "Provides AI-powered suggestions for code improvement and best practices",
+        "Supports automated code review workflows to enhance team code quality"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-JetBrains IDE environments like VS Code or Eclipse",
+        "Not ideal for real-time collaborative editing sessions requiring instant feedback",
+        "Not designed for static code analysis without AI interpretation capabilities"
+      ]
+    },
+    {
+      "id": "crm",
+      "name": "Crm",
+      "url": "https://github.com/trycompai/crm",
+      "description": "Open-source agentic-first CRM for AI-driven customer relationship management.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "crm",
+        "customer management",
+        "agent automation",
+        "sales pipeline"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx crm",
+        "repoUrl": "https://github.com/trycompai/crm"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-05T13:21:18.863Z",
+      "status": "active",
+      "useCase": "Ideal for teams building AI agents that need to autonomously manage customer data, track interactions, and automate follow-ups.",
+      "advantages": [
+        "Agentic-first architecture enables AI agents to natively interact with customer records",
+        "Open-source allows full customization and self-hosting without vendor lock-in",
+        "Built-in automation capabilities reduce manual CRM data entry and follow-up tasks"
+      ],
+      "negativeConstraints": [
+        "Not suitable for organizations requiring enterprise-grade compliance features like HIPAA or SOC 2 out of the box",
+        "Avoid for simple contact management needs where a lightweight spreadsheet or basic tool suffices",
+        "Not ideal for teams needing extensive third-party integrations without custom development"
+      ]
     }
   ]
 }
