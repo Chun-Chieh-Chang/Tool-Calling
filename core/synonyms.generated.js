@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-01T04:42:12.564Z
+ * 產生時間：2026-08-05T14:30:06.557Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -151,30 +151,20 @@ export const SYNONYM_MAP = {
     "compliance-check"
   ],
   "卡通": [
-    "animation",
     "video",
     "animate",
     "cartoon",
     "ai animation",
     "動畫",
     "影片生成",
-    "影片"
-  ],
-  "animation": [
-    "卡通",
-    "動畫",
-    "影片生成",
-    "video",
-    "animate",
-    "cartoon",
-    "ai animation",
+    "生成",
     "影片"
   ],
   "video": [
     "卡通",
     "動畫",
     "影片生成",
-    "animation",
+    "生成",
     "animate",
     "cartoon",
     "ai animation",
@@ -184,50 +174,50 @@ export const SYNONYM_MAP = {
     "卡通",
     "動畫",
     "影片生成",
-    "animation",
     "video",
     "cartoon",
     "ai animation",
+    "生成",
     "影片"
   ],
   "cartoon": [
     "卡通",
     "動畫",
     "影片生成",
-    "animation",
     "video",
     "animate",
     "ai animation",
+    "生成",
     "影片"
   ],
   "ai animation": [
     "卡通",
     "動畫",
     "影片生成",
-    "animation",
     "video",
     "animate",
     "cartoon",
+    "生成",
     "影片"
   ],
   "動畫": [
-    "animation",
     "video",
     "animate",
     "cartoon",
     "ai animation",
     "卡通",
     "影片生成",
+    "生成",
     "影片"
   ],
   "影片生成": [
-    "animation",
     "video",
     "animate",
     "cartoon",
     "ai animation",
     "卡通",
     "動畫",
+    "生成",
     "影片"
   ],
   "圖片": [
@@ -1193,6 +1183,126 @@ export const SYNONYM_MAP = {
     "mermaid-syntax-skill",
     "sequence diagram"
   ],
+  "agent工程师": [
+    "ai-engineering-from-scratch-zh",
+    "ai-engineering",
+    "engineering",
+    "from",
+    "scratch",
+    "ai学习路径"
+  ],
+  "ai-engineering-from-scratch-zh": [
+    "agent工程师",
+    "ai学习路径",
+    "ai-engineering",
+    "engineering",
+    "from",
+    "scratch"
+  ],
+  "ai-engineering": [
+    "agent工程师",
+    "ai学习路径",
+    "ai-engineering-from-scratch-zh",
+    "engineering",
+    "from",
+    "scratch"
+  ],
+  "engineering": [
+    "agent工程师",
+    "ai学习路径",
+    "ai-engineering-from-scratch-zh",
+    "ai-engineering",
+    "from",
+    "scratch"
+  ],
+  "from": [
+    "agent工程师",
+    "ai学习路径",
+    "ai-engineering-from-scratch-zh",
+    "ai-engineering",
+    "engineering",
+    "scratch"
+  ],
+  "scratch": [
+    "agent工程师",
+    "ai学习路径",
+    "ai-engineering-from-scratch-zh",
+    "ai-engineering",
+    "engineering",
+    "from"
+  ],
+  "ai学习路径": [
+    "ai-engineering-from-scratch-zh",
+    "ai-engineering",
+    "engineering",
+    "from",
+    "scratch",
+    "agent工程师"
+  ],
+  "ai设计": [
+    "ui-ux-pro-max-skill-cn",
+    "pro",
+    "max",
+    "ui/ux",
+    "中文教程"
+  ],
+  "ui-ux-pro-max-skill-cn": [
+    "ai设计",
+    "中文教程",
+    "pro",
+    "max",
+    "ui/ux"
+  ],
+  "pro": [
+    "ai设计",
+    "中文教程",
+    "ui-ux-pro-max-skill-cn",
+    "max",
+    "ui/ux"
+  ],
+  "max": [
+    "ai设计",
+    "中文教程",
+    "ui-ux-pro-max-skill-cn",
+    "pro",
+    "ui/ux"
+  ],
+  "ui/ux": [
+    "ai设计",
+    "中文教程",
+    "ui-ux-pro-max-skill-cn",
+    "pro",
+    "max"
+  ],
+  "中文教程": [
+    "ui-ux-pro-max-skill-cn",
+    "pro",
+    "max",
+    "ui/ux",
+    "ai设计"
+  ],
+  "生成": [
+    "video",
+    "text2video",
+    "text to video",
+    "ai video",
+    "video generation",
+    "卡通",
+    "動畫",
+    "影片生成"
+  ],
+  "text2video": [
+    "生成"
+  ],
+  "text to video": [
+    "生成"
+  ],
+  "ai video": [
+    "生成"
+  ],
+  "video generation": [
+    "生成"
+  ],
   "翻譯": [
     "translate",
     "translation",
@@ -1227,12 +1337,12 @@ export const SYNONYM_MAP = {
   ],
   "影片": [
     "影片生成",
-    "animation",
     "video",
     "animate",
     "cartoon",
     "ai animation",
     "卡通",
-    "動畫"
+    "動畫",
+    "生成"
   ]
 };

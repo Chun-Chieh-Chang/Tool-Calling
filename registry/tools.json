@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T13:21:30.915Z",
+  "lastUpdated": "2026-08-05T14:28:15.296Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -30793,6 +30793,87 @@
         "Avoid for simple contact management needs where a lightweight spreadsheet or basic tool suffices",
         "Not ideal for teams needing extensive third-party integrations without custom development"
       ]
+    },
+    {
+      "id": "generative-ai-for-beginners",
+      "name": "generative-ai-for-beginners",
+      "url": "https://github.com/microsoft/generative-ai-for-beginners",
+      "description": "21 Lessons, Get Started Building with Generative AI ",
+      "category": "AI 代理",
+      "language": "jupyter notebook",
+      "triggers": [
+        "generative-ai-for-beginners",
+        "azure",
+        "chatgpt",
+        "dall-e",
+        "generative-ai"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/microsoft/generative-ai-for-beginners"
+      },
+      "capabilities": [
+        "ai",
+        "azure",
+        "chatgpt",
+        "dall-e",
+        "generative-ai",
+        "generativeai"
+      ],
+      "useCase": "21 Lessons, Get Started Building with Generative AI  — 本週漲星 +3057 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 116,598 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-04)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 116598,
+      "addedAt": "2026-08-05T14:02:32.814Z",
+      "status": "active"
+    },
+    {
+      "id": "cherry-studio",
+      "name": "cherry-studio",
+      "url": "https://github.com/CherryHQ/cherry-studio",
+      "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "cherry-studio",
+        "agent-skills",
+        "ai-agent",
+        "awesome-skills",
+        "claude-code",
+        "codex"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/CherryHQ/cherry-studio"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-agent",
+        "awesome-skills",
+        "claude-code",
+        "codex",
+        "deepseek"
+      ],
+      "useCase": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs — 本週漲星 +13 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 49,565 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-05)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 49565,
+      "addedAt": "2026-08-05T14:28:15.296Z",
+      "status": "active"
     }
   ]
 }
