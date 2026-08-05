@@ -215,16 +215,17 @@ async function main() {
   
   if (existsSync(SNAPSHOTS_PATH)) {
     try {
-      const snapshotData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf-8'));
-      // 新版結構：包含多個週次的快照
+      const snapshotData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf8'));
+      
+      // 新版結構：包含多個週次的快照（陣列格式）
       if (Array.isArray(snapshotData.snapshots)) {
         // 找上週的快照
         const lastWeekSnapshot = snapshotData.snapshots.find(s => s.week === getISOWeekString(lastWeekRange.monday));
         if (lastWeekSnapshot) {
           prevSnapshot = lastWeekSnapshot.repos;
-          // 使用上週結束時間作為起點時間
+          // 使用上週結束時間作為起點時間（而非執行時間）
           prevSnapshotTimestamp = lastWeekRange.sunday.toISOString();
-          console.log(`  📊 找到上週 (${getISOWeekString(lastWeekRange.monday)}) 快照：${Object.keys(prevSnapshot).length} 個 repos (起點時間: ${formatDate(lastWeekRange.sunday)})\n`);
+          console.log(`  📊 找到上週 (${getISOWeekString(lastWeekRange.monday)}) 快照：${Object.keys(prevSnapshot).length} 個 repos (起點時間: ${formatDate(new Date(prevSnapshotTimestamp))})\n`);
         } else {
           // fallback: 使用最新的快照
           const latestSnapshot = snapshotData.snapshots[snapshotData.snapshots.length - 1];
@@ -394,11 +395,11 @@ async function main() {
     } catch { /* ignore */ }
   }
   
-  // 追加本週快照
+  // 追加本週快照 - 使用統計區間結束時間作為 timestamp
   snapshotFileData.snapshots.push({
     week: worldWeek,
     dateRange: `${targetMondayStr} ~ ${targetSundayStr}`,
-    // 使用本週結束時間作為此快照的時間戳
+    // 關鍵修正：使用本週結束時間作為此快照的時間戳
     timestamp: targetSunday.toISOString(),
     repos: newReposSnapshot
   });
