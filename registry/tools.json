@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T12:14:24.953Z",
+  "lastUpdated": "2026-08-05T12:24:56.434Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -25164,7 +25164,7 @@
       "id": "ppt-agent-skills",
       "name": "PPT Agent Skills",
       "url": "https://github.com/sunbigfly/ppt-agent-skills",
-      "description": "A code-driven presentation generation framework. Build presentations like software engineering — using multi-agent collaboration to generate HTML-to-PPTX content programmatically.",
+      "description": "Multi-agent framework for code-driven PPTX generation from HTML, enabling programmatic slide creation.",
       "category": "文件生產力",
       "language": "python",
       "triggers": [
@@ -25175,7 +25175,9 @@
         "pitch-deck",
         "presentation-generation",
         "code-driven-slides",
-        "agent-skills"
+        "agent-skills",
+        "programmatic-slides",
+        "code-driven-presentation"
       ],
       "install": {
         "method": "pip",
@@ -25190,17 +25192,17 @@
         "programmatic-slides"
       ],
       "addedAt": "2026-07-24T01:04:09.760Z",
-      "status": "experimental",
-      "useCase": "Generating professional PowerPoint presentations through code-driven workflows with multi-agent collaboration — ideal for pitch decks and structured presentations.",
+      "status": "active",
+      "useCase": "Engineering teams can generate investor pitch decks or technical documentation programmatically using version-controlled code instead of manual slide design.",
       "advantages": [
-        "Code-driven approach ensures reproducible and version-controlled presentations",
-        "Multi-agent collaboration for content quality",
-        "HTML-to-PPTX pipeline for web-native slide design",
-        "Software engineering methodology applied to presentation creation"
+        "Generates PPTX directly from HTML, enabling version-controlled and reproducible presentation workflows",
+        "Leverages multi-agent collaboration to handle complex, structured content generation across slides",
+        "Supports code-driven iteration for rapid prototyping and automated presentation updates"
       ],
       "negativeConstraints": [
-        "Requires Python environment with pip",
-        "Not suitable for quick manual slide editing — designed for programmatic generation"
+        "Not suitable for visually-heavy presentations requiring custom graphics, animations, or freeform design",
+        "Not ideal for non-technical users who prefer GUI-based slide editors like PowerPoint or Google Slides",
+        "Not appropriate for one-off presentations where programmatic automation adds unnecessary complexity"
       ],
       "stars": 4945
     },
@@ -26002,7 +26004,7 @@
       "id": "opencodex",
       "name": "OpenCodex",
       "url": "https://github.com/lidge-jun/opencodex",
-      "description": "Universal Provider Proxy for OpenAI Codex & Claude Code — route any LLM provider through a local gateway with 60+ Management APIs, web search, image generation, multi-agent support, and OAuth/Key pooling for 40+ providers.",
+      "description": "Local gateway proxying 40+ LLM providers with unified APIs, OAuth pooling, and multi-agent support.",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
@@ -26013,7 +26015,9 @@
         "provider routing",
         "claude code proxy",
         "web search sidecar",
-        "multi-agent routing"
+        "multi-agent routing",
+        "oauth pooling",
+        "model switching"
       ],
       "install": {
         "method": "npm",
@@ -26039,19 +26043,17 @@
         "shadow-calls"
       ],
       "addedAt": "2026-07-25T06:10:17.562Z",
-      "status": "experimental",
-      "useCase": "Let you use Claude, Gemini, Grok, Kimi, DeepSeek, Ollama, etc. with OpenAI Codex CLI/App/SDK or Claude Code by running a local proxy on localhost:10100.",
+      "status": "active",
+      "useCase": "A development team needs to switch between GPT-4, Claude, and open-source models across projects without managing separate API keys or authentication flows.",
       "advantages": [
-        "Supports 40+ LLM providers through 8 protocol adapters with automatic model discovery.",
-        "Full Management API (60+ endpoints) for programmatic provider, model, OAuth account, and agent configuration.",
-        "Built-in web search and vision sidecars via ChatGPT forward or Anthropic credentials.",
-        "Pooling + auto-failover for ChatGPT accounts; quota tracking and rate-limit-aware rotation.",
-        "Auto-start service integration (launchd/systemd/Task Scheduler), model sync to Codex, and hot-reload config."
+        "Centralized OAuth and API key pooling across 40+ providers eliminates per-service credential management",
+        "Built-in web search sidecar and image generation extend LLM capabilities without external integrations",
+        "Combo aliases and shadow calls enable A/B testing multiple models against the same prompt simultaneously"
       ],
       "negativeConstraints": [
-        "Management API requires auth token; external clients must obtain one via /api/keys.",
-        "Web search and image generation require OpenAI upstream (ChatGPT login or API key).",
-        "Provider base URLs are filtered through SSRF/DNS safety checks; non-public domains may be blocked."
+        "Not suitable for production environments requiring guaranteed SLA uptime from a single vendor",
+        "Avoid for latency-critical applications where local gateway overhead introduces unacceptable delay",
+        "Not ideal for users who need direct vendor support channels or compliance certifications tied to a specific provider"
       ],
       "subTools": [
         {
@@ -28247,17 +28249,16 @@
       "id": "agnescode",
       "name": "AgnesCode (AgnesAI-Labs)",
       "url": "https://github.com/AgnesAI-Labs/AgnesCode",
-      "description": "An open-source AI coding agent framework designed to assist developers with intelligent code generation, debugging, and project management through AI-driven tools.",
+      "description": "Open-source AI coding agent for code generation, debugging, and project management via terminal.",
       "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "agnescode",
         "ai-coding-agent",
         "code-generation",
-        "ai-development",
-        "open-source-ai",
         "terminal-coding",
-        "coding-assistant"
+        "debugging-assistance",
+        "open-source-ai"
       ],
       "install": {
         "method": "git-clone",
@@ -28273,37 +28274,34 @@
         "developer-toolkit"
       ],
       "addedAt": "2026-07-29T04:02:23.293Z",
-      "status": "experimental",
-      "useCase": "Developers seeking an open-source AI-powered coding assistant for intelligent code generation, debugging, and streamlined development workflows.",
+      "status": "active",
+      "useCase": "A developer debugging a complex Python project can use AgnesCode to analyze errors, suggest fixes, and manage the project workflow directly from the terminal.",
       "advantages": [
-        "Open-source framework allowing customization and modification",
-        "Terminal-native interface for seamless workflow integration",
-        "AI-driven code generation that understands context and patterns",
-        "Supports multiple programming languages and frameworks"
+        "Terminal-native interface for seamless integration into existing developer workflows",
+        "Combines code generation, debugging, and project management in a single AI-driven framework",
+        "Open-source with extensible architecture for custom tooling and integrations"
       ],
       "negativeConstraints": [
-        "Requires Node.js and npm environment to operate",
-        "May have learning curve for users unfamiliar with terminal-based AI tools",
-        "Performance depends on available hardware resources and AI model capabilities"
+        "Not suitable for non-technical users who lack command-line experience",
+        "Avoid for production deployment automation where dedicated CI/CD tools are required",
+        "Not ideal for real-time collaborative coding sessions requiring multi-user IDE features"
       ]
     },
     {
       "id": "agnescode-ViviQuan",
       "name": "Agnescode (ViviQuan)",
       "url": "https://github.com/ViviQuan/agnescode",
-      "description": "Terminal-native AI coding agent with built-in Agnes AI (free multimodal API) — a developer-focused AI assistant for intelligent code writing and debugging directly in your terminal.",
+      "description": "Terminal AI coding agent with free multimodal API for code writing and debugging.",
       "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "agnescode",
-        "agnes-ai",
         "ai-coding",
         "terminal-coding",
-        "coding-agent",
-        "npm-tool",
-        "cli-development",
-        "ai-assistant",
-        "multimodal-api"
+        "code-generation",
+        "debugging-assistance",
+        "multimodal-api",
+        "cli-development"
       ],
       "install": {
         "method": "npm",
@@ -28319,18 +28317,17 @@
         "open-source-tool"
       ],
       "addedAt": "2026-07-29T04:02:27.920Z",
-      "status": "experimental",
-      "useCase": "Developers seeking an AI-powered terminal-based coding assistant with built-in Agnes AI for faster, smarter code development directly in their command line.",
+      "status": "active",
+      "useCase": "Developers can use it to generate, review, and debug code directly in the terminal using natural language prompts.",
       "advantages": [
-        "Terminal-native experience for seamless workflow integration",
-        "Built-in Agnes AI with free multimodal API support",
-        "npm-based installation makes setup quick and easy",
-        "Designed for productive AI-assisted coding workflows"
+        "Built-in free multimodal API eliminates external API key setup",
+        "Terminal-native interface integrates seamlessly into existing CLI workflows",
+        "Open-source with active GitHub repository for community contributions"
       ],
       "negativeConstraints": [
-        "Requires npm and Node.js environment to operate",
-        "Depends on internet connection for API calls during development",
-        "May have usage limits on the free tier of the Agnes AI API"
+        "Not suitable for GUI-based development or visual design workflows",
+        "Requires terminal environment and may not work in restricted shell environments",
+        "Limited to AI-assisted coding tasks rather than full project management"
       ]
     },
     {
@@ -29698,18 +29695,18 @@
       "id": "appkit",
       "name": "Appkit",
       "url": "https://github.com/reown-com/appkit",
-      "description": "The full stack toolkit to build onchain app UX",
+      "description": "Open-source toolkit for integrating wallet connectivity and on-chain UX into web and mobile applications.",
       "category": "API 整合",
       "language": "typescript",
       "triggers": [
         "appkit",
         "dapps",
         "ethereum",
-        "integration",
-        "plugin",
-        "prod",
+        "wallet-connect",
+        "web3",
         "react",
-        "team-appkit"
+        "integration",
+        "onchain"
       ],
       "install": {
         "method": "npm",
@@ -29724,7 +29721,18 @@
         "prod"
       ],
       "addedAt": "2026-08-05T12:11:56.157Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A developer building a DeFi dashboard needs to connect multiple wallets (MetaMask, WalletConnect, Coinbase Wallet) across React and Vue projects with a single unified integration.",
+      "advantages": [
+        "Supports 200+ wallets and multiple blockchains out of the box with a single SDK",
+        "Framework-agnostic with first-class support for React, Vue, Svelte, and Angular",
+        "Provides ready-made UI components for wallet connection, network switching, and transaction signing"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects requiring a fully custom wallet implementation without using the SDK",
+        "Not ideal for simple static websites that do not require any blockchain or wallet interaction",
+        "Not recommended for native mobile apps without a web view layer, as it is primarily web-focused"
+      ]
     },
     {
       "id": "tencentdb-agent-memory",
@@ -29823,38 +29831,6 @@
       "status": "experimental"
     },
     {
-      "id": "kaneo",
-      "name": "Kaneo",
-      "url": "https://github.com/usekaneo/kaneo",
-      "description": "🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.",
-      "category": "AI 代理",
-      "language": "typescript",
-      "triggers": [
-        "kaneo",
-        "hacktoberfest",
-        "hono",
-        "issue-management",
-        "issue-tracker",
-        "jira-alternative",
-        "kanban",
-        "linear-alternative"
-      ],
-      "install": {
-        "method": "npm",
-        "command": "npx kaneo",
-        "repoUrl": "https://github.com/usekaneo/kaneo"
-      },
-      "capabilities": [
-        "hacktoberfest",
-        "hono",
-        "issue-management",
-        "issue-tracker",
-        "jira-alternative"
-      ],
-      "addedAt": "2026-08-05T12:14:10.766Z",
-      "status": "experimental"
-    },
-    {
       "id": "awesome-solidity",
       "name": "Awesome Solidity",
       "url": "https://github.com/bkrem/awesome-solidity",
@@ -29883,7 +29859,7 @@
         "dapps",
         "ethereum"
       ],
-      "addedAt": "2026-08-05T12:14:21.178Z",
+      "addedAt": "2026-08-05T12:24:28.385Z",
       "status": "experimental"
     },
     {
@@ -29915,7 +29891,39 @@
         "computer-vision",
         "deep-learning"
       ],
-      "addedAt": "2026-08-05T12:14:24.952Z",
+      "addedAt": "2026-08-05T12:24:53.358Z",
+      "status": "experimental"
+    },
+    {
+      "id": "kaneo",
+      "name": "Kaneo",
+      "url": "https://github.com/usekaneo/kaneo",
+      "description": "🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "kaneo",
+        "hacktoberfest",
+        "hono",
+        "issue-management",
+        "issue-tracker",
+        "jira-alternative",
+        "kanban",
+        "linear-alternative"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx kaneo",
+        "repoUrl": "https://github.com/usekaneo/kaneo"
+      },
+      "capabilities": [
+        "hacktoberfest",
+        "hono",
+        "issue-management",
+        "issue-tracker",
+        "jira-alternative"
+      ],
+      "addedAt": "2026-08-05T12:24:56.433Z",
       "status": "experimental"
     }
   ]
