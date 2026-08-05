@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T14:28:15.296Z",
+  "lastUpdated": "2026-08-05T14:52:41.045Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -25455,7 +25455,7 @@
       "name": "shadcn/ui",
       "url": "https://github.com/shadcn-ui/ui",
       "description": "Beautifully designed accessible UI component system copied directly into React and Tailwind codebases.",
-      "category": "UI/UX設計",
+      "category": "設計",
       "language": "typescript",
       "triggers": [
         "shadcn-ui",
@@ -25495,7 +25495,7 @@
       "name": "Storybook",
       "url": "https://github.com/storybookjs/storybook",
       "description": "Frontend workshop environment for building, testing, and documenting isolated UI components.",
-      "category": "UI/UX設計",
+      "category": "設計",
       "language": "typescript",
       "triggers": [
         "storybook",
@@ -25534,7 +25534,7 @@
       "name": "tldraw",
       "url": "https://github.com/tldraw/tldraw",
       "description": "Infinite canvas graphics library for visual UI wireframing, web design sketching, and Generative UI.",
-      "category": "UI/UX設計",
+      "category": "設計",
       "language": "typescript",
       "triggers": [
         "tldraw",
@@ -30873,6 +30873,206 @@
       ],
       "stars": 49565,
       "addedAt": "2026-08-05T14:28:15.296Z",
+      "status": "active"
+    },
+    {
+      "id": "goose",
+      "name": "goose",
+      "url": "https://github.com/aaif-goose/goose",
+      "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "goose",
+        "acp",
+        "ai-agents",
+        "mcp"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/aaif-goose/goose"
+      },
+      "capabilities": [
+        "acp",
+        "ai",
+        "ai-agents",
+        "mcp"
+      ],
+      "useCase": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM — 本週漲星 +3 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 52,344 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-05)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 52344,
+      "addedAt": "2026-08-05T14:34:01.174Z",
+      "status": "active"
+    },
+    {
+      "id": "sglang",
+      "name": "sglang",
+      "url": "https://github.com/sgl-project/sglang",
+      "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "sglang",
+        "attention",
+        "blackwell",
+        "cuda",
+        "deepseek",
+        "diffusion"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/sgl-project/sglang"
+      },
+      "capabilities": [
+        "attention",
+        "blackwell",
+        "cuda",
+        "deepseek",
+        "diffusion",
+        "glm"
+      ],
+      "useCase": "SGLang is a high-performance serving framework for large language models and multimodal models. — 本週漲星 +2 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 31,343 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-05)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 31343,
+      "addedAt": "2026-08-05T14:34:01.174Z",
+      "status": "active"
+    },
+    {
+      "id": "llamafactory",
+      "name": "LlamaFactory",
+      "url": "https://github.com/hiyouga/LlamaFactory",
+      "description": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "llamafactory",
+        "agent",
+        "deepseek",
+        "fine-tuning",
+        "gemma"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/hiyouga/LlamaFactory"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "deepseek",
+        "fine-tuning",
+        "gemma",
+        "gpt"
+      ],
+      "useCase": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) — 本週漲星 +2 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 73,790 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-04)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 73790,
+      "addedAt": "2026-08-05T14:38:23.090Z",
+      "status": "active"
+    },
+    {
+      "id": "qlib",
+      "name": "qlib",
+      "url": "https://github.com/microsoft/qlib",
+      "description": "Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, incl",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "qlib",
+        "algorithmic-trading",
+        "auto-quant",
+        "deep-learning",
+        "finance",
+        "fintech"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/microsoft/qlib"
+      },
+      "capabilities": [
+        "algorithmic-trading",
+        "auto-quant",
+        "deep-learning",
+        "finance",
+        "fintech",
+        "investment"
+      ],
+      "useCase": "Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, including supervised learning, market dynamics modeling, and RL, and is now equipped with https://github.com/microsoft/RD-Agent to automate R&D process. — 本週漲星 +360 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 47,057 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-23)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 47057,
+      "addedAt": "2026-08-05T14:41:05.240Z",
+      "status": "active"
+    },
+    {
+      "id": "awesome-n8n-templates",
+      "name": "awesome-n8n-templates",
+      "url": "https://github.com/enescingoz/awesome-n8n-templates",
+      "description": "280+ free n8n automation templates — ready-to-use workflows for Gmail, Telegram, Slack, Discord, WhatsApp, Google Drive, Notion, OpenAI, and more. AI agents, RAG   chatbots, email automation, social m",
+      "category": "AI 代理",
+      "language": "unknown",
+      "triggers": [
+        "awesome-n8n-templates",
+        "ai-agents",
+        "ai-automation",
+        "automation",
+        "automation-templates",
+        "awesome"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/enescingoz/awesome-n8n-templates"
+      },
+      "capabilities": [
+        "ai-agents",
+        "ai-automation",
+        "automation",
+        "automation-templates",
+        "awesome",
+        "awesome-list"
+      ],
+      "useCase": "280+ free n8n automation templates — ready-to-use workflows for Gmail, Telegram, Slack, Discord, WhatsApp, Google Drive, Notion, OpenAI, and more. AI agents, RAG   chatbots, email automation, social media, DevOps, and document processing. The largest open-source n8n template collection. — 本週漲星 +290 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 24,458 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-07-23)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 24458,
+      "addedAt": "2026-08-05T14:41:05.240Z",
       "status": "active"
     }
   ]
