@@ -17,7 +17,6 @@
     "health-check": "node cli.js health-check",
     "validate": "node cli.js validate",
     "enrich": "node scripts/enrich-registry.js",
-    "sync-stars": "node scripts/sync-github-stars.js",
     "trending": "node scripts/trending-weekly.js",
     "mcp": "node mcp-server.js",
     "daemon": "node scripts/sync-daemon.js",

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T15:05:50.058Z",
+  "lastUpdated": "2026-08-05T15:58:37.088Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -31073,6 +31073,128 @@
       ],
       "stars": 24458,
       "addedAt": "2026-08-05T14:41:05.240Z",
+      "status": "active"
+    },
+    {
+      "id": "qwenpaw",
+      "name": "QwenPaw",
+      "url": "https://github.com/agentscope-ai/QwenPaw",
+      "description": "Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "qwenpaw",
+        "agent",
+        "agent-harness",
+        "agentscope",
+        "ai-agent",
+        "ai-agents"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/agentscope-ai/QwenPaw"
+      },
+      "capabilities": [
+        "agent",
+        "agent-harness",
+        "agentscope",
+        "ai-agent",
+        "ai-agents",
+        "chatbot"
+      ],
+      "useCase": "Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities. — 本週漲星 +19 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 33,463 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-05)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 33463,
+      "addedAt": "2026-08-05T15:17:05.289Z",
+      "status": "active"
+    },
+    {
+      "id": "kimi-k3-in-c",
+      "name": "kimi-k3-in-c",
+      "url": "https://github.com/FareedKhan-dev/kimi-k3-in-c",
+      "description": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU.",
+      "category": "AI 框架",
+      "language": "c",
+      "triggers": [
+        "kimi-k3-in-c",
+        "avx2",
+        "c99",
+        "cpu-inference",
+        "deep-learning",
+        "from-scratch"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/FareedKhan-dev/kimi-k3-in-c"
+      },
+      "capabilities": [
+        "avx2",
+        "c99",
+        "cpu-inference",
+        "deep-learning",
+        "from-scratch",
+        "inference-engine"
+      ],
+      "useCase": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU. — 本週漲星 +15 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 2,415 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-01)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 2415,
+      "addedAt": "2026-08-05T15:17:05.289Z",
+      "status": "active"
+    },
+    {
+      "id": "khoj",
+      "name": "khoj",
+      "url": "https://github.com/khoj-ai/khoj",
+      "description": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI ",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "khoj",
+        "agent",
+        "assistant",
+        "chat",
+        "chatgpt"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/khoj-ai/khoj"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "assistant",
+        "chat",
+        "chatgpt",
+        "emacs"
+      ],
+      "useCase": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free. — 本週漲星 +7 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 36,263 星，社群高度活躍",
+        "近期頻繁更新維護 (最後推送 2026-08-02)",
+        "2026-W31 漲星探勘自動入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 36263,
+      "addedAt": "2026-08-05T15:30:57.061Z",
       "status": "active"
     }
   ]
