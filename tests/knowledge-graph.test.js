@@ -37,7 +37,21 @@ describe('知識圖譜 2D/3D 雙視角與平移驗證', () => {
       page.on('pageerror', err => consoleErrors.push(err.message));
 
       const fileUrl = 'file:///' + htmlPath.replace(/\\/g, '/');
-      await page.goto(fileUrl, { waitUntil: 'networkidle' });
+      
+      // 等待頁面載入完成
+      await page.goto(fileUrl, { waitUntil: 'load' });
+      
+      // 等待 graph3DInstance 與 camera/controls 初始化（最多等 10s）
+      await page.waitForFunction(() => {
+        // 一定要通過 window 取得
+        const g = window.graph3DInstance;
+        if (!g) return false;
+        // camera 可能是 function 返回相機或直接是物件，兩種情況都判斷
+        const cam = (typeof g.camera === 'function') ? g.camera() : g.camera;
+        const controls = g.controls;
+        const target = controls && controls.target;
+        return !!cam && !!controls && !!target;
+      }, { timeout: 10000 });
 
       // 驗證 2D 視角按鈕存在
       const btn = await page.$('#viewToggleBtn');
@@ -45,17 +59,28 @@ describe('知識圖譜 2D/3D 雙視角與平移驗證', () => {
 
       // 點擊切換 3D
       await btn.click();
-      await page.waitForTimeout(3000);
+      
+      // 等待 graph3DInstance 初始化
+      await page.waitForFunction(() => {
+        const g = window.graph3DInstance;
+        if (!g) return false;
+        const cam = (typeof g.camera === 'function') ? g.camera() : g.camera;
+        const controls = g.controls;
+        const target = controls && controls.target;
+        return !!cam && !!controls && !!target;
+      }, { timeout: 10000 });
 
       // 檢查 3D 相機與 Target
       const cameraState = await page.evaluate(() => {
-        if (typeof graph3DInstance === 'undefined') return null;
-        const c = graph3DInstance.camera();
-        const t = graph3DInstance.controls().target;
+        const g = window.graph3DInstance;
+        if (!g) return null;
+        const c = (typeof g.camera === 'function') ? g.camera() : g.camera;
+        const controls = g.controls;
+        const t = controls ? controls.target : null;
         return {
           hasCamera: !!c,
           hasTarget: !!t,
-          targetPos: { x: t.x, y: t.y, z: t.z }
+          targetPos: t ? { x: t.x, y: t.y, z: t.z } : null
         };
       });
 

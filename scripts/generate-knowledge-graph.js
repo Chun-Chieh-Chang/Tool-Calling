@@ -901,7 +901,9 @@ network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics
         controls.update();
       }, { passive: false });
 
-      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
+            // 暴露到全域供測試與外部腳本存取
+      window.graph3DInstance = graph3DInstance;
+graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
     }
 
     // 切換 2D / 3D 視角
