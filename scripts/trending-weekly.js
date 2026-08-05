@@ -254,7 +254,7 @@ async function main() {
       prevStars, 
       delta,
       // 附加時間戳
-      snapshotDate: snapshotDate,
+      snapshotDate: snapshotDate || null,
       currentSnapshotDate: now.toISOString()
     });
   }
