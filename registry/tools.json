@@ -30128,7 +30128,7 @@
       ]
     },
     {
-      "id": "ontology",
+      "id": "ontology-ontio",
       "name": "Ontology",
       "url": "https://github.com/ontio/ontology",
       "description": "Official Go implementation of the Ontology blockchain protocol, enabling high-performance distributed ledger development.",
@@ -30202,7 +30202,7 @@
       ]
     },
     {
-      "id": "oh-my-hermes",
+      "id": "oh-my-hermes-salomondiei08",
       "name": "Oh My Hermes",
       "url": "https://github.com/Salomondiei08/oh-my-hermes",
       "description": "Opinionated workflow framework for building, deploying, and managing applications with Hermes Agent.",
