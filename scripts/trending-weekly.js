@@ -1,33 +1,18 @@
 /**
  * trending-weekly.js — GitHub 每週漲星數 Top 10 自動探勘與入庫腳本
  *
- * 運作流程：
- *   1. 從 star-snapshots.json 讀取「上週結束時」的快照
- *   2. 搜尋過去 30 天內活躍的高星 repos
- *   3. 計算本週（W31）相對於上週（W30）的 star 漲幅
- *   4. 篩選前 10 名漲幅最大的工具
- *   5. 自動入庫至 registry/tools.json（去重）
- *   6. 寫入 registry/weekly-reports/YYYY-WXX.md 作為週報存查
- *   7. 更新 star-snapshots.json 供下次比對
- *
- * 使用：npm run trending   或   node scripts/trending-weekly.js
- * 環境變數：GITHUB_TOKEN（可選但強烈推薦，提升 API 限額至 30 req/min）
+ * 修正版：擴大搜尋範圍，確保更準確的星數變化統計
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
-// ─── 路徑常量 ──────────────────────────────────────────────────────────
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 const REGISTRY_PATH = join(ROOT, 'registry', 'tools.json');
 const SNAPSHOTS_PATH = join(ROOT, 'registry', 'star-snapshots.json');
 const REPORTS_DIR = join(ROOT, 'registry', 'weekly-reports');
-
-// ─── GitHub API 設定 ───────────────────────────────────────────────────
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 let authDropped = false;
@@ -45,11 +30,6 @@ function buildHeaders() {
 
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// ─── ISO 週次工具函式 (World Week: YYYY-WXX) ──────────────────────────
-
-/**
- * 根據 ISO 8601 標準計算 ISO 週
- */
 function getISOWeekString(date = new Date()) {
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
   d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
@@ -58,29 +38,21 @@ function getISOWeekString(date = new Date()) {
   return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
 }
 
-/**
- * 回傳「最近一個完整的 ISO 週」（Mon 00:00 ~ Sun 23:59 UTC）
- * 例如：週二 → 上週一~上週日
- */
 function getTargetWeek(now = new Date()) {
   const d = new Date(now);
-  const isoDay = d.getUTCDay() || 7; // Mon=1 … Sun=7
-  d.setUTCDate(d.getUTCDate() - (isoDay + 5)); // 回到上週一
+  const isoDay = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() - (isoDay + 5));
   d.setUTCHours(0, 0, 0, 0);
   const monday = d;
   const sunday = new Date(monday);
-  sunday.setUTCDate(sunday.getUTCDate() + 6); // 上週日
+  sunday.setUTCDate(sunday.getUTCDate() + 6);
   const isoWeek = getISOWeekString(monday);
   return { monday, sunday, isoWeek };
 }
 
-/**
- * 回傳「上上週的日期範圍」（用於搜尋近期活躍 repo）
- */
 function getLastWeekRange(now = new Date()) {
   const d = new Date(now);
   const isoDay = d.getUTCDay() || 7;
-  // 回到上上週一
   d.setUTCDate(d.getUTCDate() - (isoDay + 12));
   d.setUTCHours(0, 0, 0, 0);
   const lastMonday = d;
@@ -94,27 +66,25 @@ function getLastWeekRange(now = new Date()) {
   };
 }
 
-// ─── 搜尋主題清單 ─────────────────────────────────────────────────────
-
+// 修正：使用更寬鬆的搜尋條件
 function getSearchQueries(targetMondayStr) {
   return [
-    `ai agent stars:>1000 pushed:>${targetMondayStr}`,
-    `llm framework stars:>1000 pushed:>${targetMondayStr}`,
-    `developer tool stars:>2000 pushed:>${targetMondayStr}`,
-    `automation workflow stars:>500 pushed:>${targetMondayStr}`,
-    `data analysis stars:>1000 pushed:>${targetMondayStr}`,
-    `machine learning stars:>2000 pushed:>${targetMondayStr}`,
-    `generative ai stars:>1000 pushed:>${targetMondayStr}`,
-    `devops infrastructure stars:>2000 pushed:>${targetMondayStr}`,
-    `ui component design stars:>1000 pushed:>${targetMondayStr}`,
-    `cli tool stars:>1000 pushed:>${targetMondayStr}`,
-    `agent framework stars:>1000 pushed:>${targetMondayStr}`,
-    `ai tool stars:>1000 pushed:>${targetMondayStr}`,
-    `productivity tool stars:>1000 pushed:>${targetMondayStr}`,
+    // 改為搜尋最近 30 天有活動的 repos
+    `stars:>500 pushed:>${targetMondayStr}`,
+    `stars:>1000 pushed:>${targetMondayStr}`,
+    `stars:>500 updated:>=${targetMondayStr}`,
+    `stars:>1000 updated:>=${targetMondayStr}`,
+    // 添加更多領域
+    `topic:ai stars:>500`,
+    `topic:llm stars:>500`,
+    `topic:agent stars:>500`,
+    `topic:machine-learning stars:>500`,
+    `topic:generative-ai stars:>500`,
+    `topic:developer-tools stars:>500`,
+    `topic:automation stars:>500`,
+    `topic:data-science stars:>500`,
   ];
 }
-
-// ─── 分類推斷 ─────────────────────────────────────────────────────────
 
 const CATEGORY_RULES = [
   { match: /\b(llm|gpt|openai|gemini|claude|transformer|language.model)\b/i, cat: 'AI 框架' },
@@ -145,8 +115,6 @@ function inferCategory(repo) {
   }
   return '開發工具';
 }
-
-// ─── GitHub Search API ────────────────────────────────────────────────
 
 async function searchGitHub(query, retries = 3) {
   const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(query)}&sort=stars&order=desc&per_page=100`;
@@ -183,15 +151,10 @@ async function searchGitHub(query, retries = 3) {
   return [];
 }
 
-// ─── 主程式 ───────────────────────────────────────────────────────────
-
 async function main() {
   const now = new Date();
 
-  // 1. 計算目標週次（最近一個完整的 ISO 週）
   const { monday: targetMonday, sunday: targetSunday, isoWeek: targetWeek } = getTargetWeek(now);
-  
-  // 計算上週的範圍（用於比對歷史快照）
   const lastWeekRange = getLastWeekRange(now);
 
   const worldWeek = targetWeek;
@@ -200,16 +163,14 @@ async function main() {
   const lastMondayStr = lastWeekRange.monday.toISOString().slice(0, 10);
   const lastSundayStr = lastWeekRange.sunday.toISOString().slice(0, 10);
 
-  // 格式化時間顯示
   const formatDate = (date) => date.toISOString().slice(0, 10);
   const formatDateTime = (date) => date.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
 
   console.log(`\n\x1b[36m🔍 GitHub 每週漲星探勘 — ${worldWeek}\x1b[0m`);
   console.log(`   統計區間：${formatDate(targetMonday)} ~ ${formatDate(targetSunday)}`);
-  console.log(`   統計時間：${formatDateTime(targetMonday)} ~ ${formatDateTime(targetSunday)}`);
   console.log(`   上週範圍：${lastMondayStr} ~ ${lastSundayStr}\n`);
 
-  // 2. 讀取現有快照（上週結束時的星數）
+  // 讀取現有快照
   let prevSnapshot = {};
   let prevSnapshotTimestamp = null;
   
@@ -217,48 +178,40 @@ async function main() {
     try {
       const snapshotData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf8'));
       
-      // 新版結構：包含多個週次的快照（陣列格式）
       if (Array.isArray(snapshotData.snapshots)) {
-        // 找上週的快照
         const lastWeekSnapshot = snapshotData.snapshots.find(s => s.week === getISOWeekString(lastWeekRange.monday));
         if (lastWeekSnapshot) {
           prevSnapshot = lastWeekSnapshot.repos;
-          // 使用上週結束時間作為起點時間（而非執行時間）
           prevSnapshotTimestamp = lastWeekRange.sunday.toISOString();
-          console.log(`  📊 找到上週 (${getISOWeekString(lastWeekRange.monday)}) 快照：${Object.keys(prevSnapshot).length} 個 repos (起點時間: ${formatDate(new Date(prevSnapshotTimestamp))})\n`);
+          console.log(`  📊 找到上週 (${getISOWeekString(lastWeekRange.monday)}) 快照：${Object.keys(prevSnapshot).length} 個 repos\n`);
         } else {
-          // fallback: 使用最新的快照
           const latestSnapshot = snapshotData.snapshots[snapshotData.snapshots.length - 1];
           if (latestSnapshot) {
             prevSnapshot = latestSnapshot.repos;
             prevSnapshotTimestamp = latestSnapshot.timestamp;
-            console.log(`  ⚠ 未找到上週快照，使用最新快照：${formatDate(new Date(latestSnapshot.timestamp))}\n`);
+            console.log(`  ⚠ 使用最新快照：${formatDate(new Date(latestSnapshot.timestamp))}\n`);
           }
         }
       } else {
-        // 舊版結構（單一物件）
         prevSnapshot = snapshotData.snapshots || snapshotData;
         prevSnapshotTimestamp = snapshotData.lastUpdated || null;
-        console.log(`  📊 歷史快照：${Object.keys(prevSnapshot).length} 個 repos (最後更新: ${prevSnapshotTimestamp ? formatDate(new Date(prevSnapshotTimestamp)) : '未知'})\n`);
       }
     } catch (err) {
       console.warn(`  ⚠ 讀取快照失敗：${err.message}`);
     }
-  } else {
-    console.log(`  ⚠ 找不到歷史快照檔案，將建立基準線\n`);
   }
 
-  // 3. 搜尋多領域熱門 repos
-  const MIN_STARS_THRESHOLD = 500;
-  const SEARCH_QUERIES = getSearchQueries(lastMondayStr); // 使用上週一開始的日期
+  // 搜尋多領域熱門 repos（修正：擴大搜尋範圍）
+  const MIN_STARS_THRESHOLD = 100; // 降低門檻以捕捉更多 repos
+  const SEARCH_QUERIES = getSearchQueries(lastMondayStr);
   const allRepos = new Map();
   let skippedForkCount = 0;
   let skippedLowStarCount = 0;
 
-  console.log(`  🔎 開始搜尋活躍 repos...`);
+  console.log(`  🔎 開始搜尋活躍 repos（使用更寬鬆條件）...`);
   for (let i = 0; i < SEARCH_QUERIES.length; i++) {
     const q = SEARCH_QUERIES[i];
-    console.log(`  [${i + 1}/${SEARCH_QUERIES.length}] ${q.slice(0, 50)}...`);
+    console.log(`  [${i + 1}/${SEARCH_QUERIES.length}] ${q.slice(0, 60)}...`);
     const items = await searchGitHub(q);
     for (const repo of items) {
       if (!repo.full_name) continue;
@@ -277,14 +230,12 @@ async function main() {
     if (i < SEARCH_QUERIES.length - 1) await delay(GITHUB_TOKEN ? 1000 : 3000);
   }
 
-  console.log(`\n  📦 共探勘到 ${allRepos.size} 個符合門檻的 repos (已過濾: ${skippedForkCount} Fork, ${skippedLowStarCount} 低星)`);
+  console.log(`\n  📦 共探勘到 ${allRepos.size} 個符合門檻的 repos`);
 
-  // 4. 計算每個 repo 的 star delta
-  // 關鍵：delta = 本週結束星數 - 上週結束星數
+  // 計算每個 repo 的 star delta
   const rankedRepos = [];
   for (const [fullName, repo] of allRepos) {
     const currentStars = repo.stargazers_count || 0;
-    // 上週結束時的星數（從歷史快照取得）
     const prevStars = prevSnapshot[fullName] || 0;
     const delta = prevStars > 0 ? (currentStars - prevStars) : 0;
     
@@ -293,13 +244,11 @@ async function main() {
       currentStars, 
       prevStars, 
       delta,
-      // 附加時間戳 - 對應統計區間的起訖時間
       startStarsAt: prevSnapshotTimestamp || lastWeekRange.sunday.toISOString(),
       endStarsAt: targetSunday.toISOString()
     });
   }
 
-  // 5. 依 delta 降序排列，取前 10
   rankedRepos.sort((a, b) => b.delta - a.delta);
   const top10 = rankedRepos.slice(0, 10);
 
@@ -314,7 +263,7 @@ async function main() {
     console.log(`        ⭐ ${currDisplay} (起: ${prevDisplay}@${startTime}, 終: ${currDisplay}@${endTime}, 漲: ${deltaStr})`);
   });
 
-  // 6. 讀取現有 registry，自動入庫
+  // 讀取現有 registry，自動入庫
   const registry = JSON.parse(readFileSync(REGISTRY_PATH, 'utf8'));
   const existingUrls = new Set(registry.tools.map(t => t.url?.toLowerCase()));
   const existingIds = new Set(registry.tools.map(t => t.id));
@@ -367,24 +316,21 @@ async function main() {
     addedTools.push({ rank: addedTools.length + 1, ...newTool, delta: repo.delta });
   }
 
-  // 7. 更新 registry
   registry.lastUpdated = now.toISOString();
   writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
   console.log(`\n  ✅ 新增 ${addedCount} 個工具入庫（現有庫存：${registry.tools.length} 個）`);
 
-  // 8. 更新快照（追加新週次的快照，保留歷史記錄）
+  // 更新快照
   const newReposSnapshot = {};
   for (const [fullName, repo] of allRepos) {
     newReposSnapshot[fullName] = repo.stargazers_count || 0;
   }
   
-  // 讀取現有快照檔案
   let snapshotFileData = { snapshots: [], lastUpdated: now.toISOString() };
   if (existsSync(SNAPSHOTS_PATH)) {
     try {
       snapshotFileData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf8'));
       if (!Array.isArray(snapshotFileData.snapshots)) {
-        // 轉換舊格式為新格式
         snapshotFileData.snapshots = [{
           week: getISOWeekString(lastWeekRange.monday),
           dateRange: `${lastMondayStr} ~ ${lastSundayStr}`,
@@ -395,11 +341,9 @@ async function main() {
     } catch { /* ignore */ }
   }
   
-  // 追加本週快照 - 使用統計區間結束時間作為 timestamp
   snapshotFileData.snapshots.push({
     week: worldWeek,
     dateRange: `${targetMondayStr} ~ ${targetSundayStr}`,
-    // 關鍵修正：使用本週結束時間作為此快照的時間戳
     timestamp: targetSunday.toISOString(),
     repos: newReposSnapshot
   });
@@ -408,7 +352,7 @@ async function main() {
   writeFileSync(SNAPSHOTS_PATH, JSON.stringify(snapshotFileData, null, 2), 'utf8');
   console.log(`  📸 已更新歷史快照檔案：${SNAPSHOTS_PATH}`);
 
-  // 9. 生成週報
+  // 生成週報
   mkdirSync(REPORTS_DIR, { recursive: true });
   const reportPath = join(REPORTS_DIR, `${worldWeek}.md`);
 
@@ -463,7 +407,7 @@ async function main() {
   writeFileSync(reportPath, reportLines.join('\n'), 'utf8');
   console.log(`  📝 週報已寫入：${reportPath}`);
 
-  // 10. 生成 JSON 數據檔
+  // 生成 JSON 數據檔
   const jsonPath = join(ROOT, 'registry', 'weekly-trending.json');
   const trendingData = {
     worldWeek,
@@ -489,7 +433,6 @@ async function main() {
         category: inferCategory(r),
         isNewlyAdded: wasAdded,
         statusText: wasAdded ? '🆕 本週納入' : '✅ 已在工具箱',
-        // 詳細時間戳記 - 對應統計區間的起訖時間
         startStarsAt: r.startStarsAt,
         endStarsAt: r.endStarsAt,
         startTime: formatDate(new Date(r.startStarsAt)),
