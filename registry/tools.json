@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T14:52:41.045Z",
+  "lastUpdated": "2026-08-05T15:03:02.544Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -94,7 +94,7 @@
       "name": "Strix",
       "url": "https://github.com/usestrix/strix",
       "description": "開源 AI 滲透測試工具，自動掃描並修復應用程式安全漏洞。",
-      "category": "安全性",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "pentest",
@@ -233,7 +233,7 @@
       "name": "ImaginAIry",
       "url": "https://github.com/brycedrennan/imaginAIry",
       "description": "Pythonic AI 影像生成與編輯套件，支援文字轉圖、圖生圖及影片建立。",
-      "category": "影片",
+      "category": "API 整合",
       "language": "python",
       "triggers": [
         "imagine",
@@ -278,7 +278,7 @@
       "name": "Vercel AI SDK Skills",
       "url": "https://github.com/vercel-labs/skills",
       "description": "Composable tool-calling skills for Vercel AI SDK to extend AI chatbots and agents.",
-      "category": "API 整合",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "vercel",
@@ -321,7 +321,7 @@
       "name": "Total TypeScript Skills",
       "url": "https://github.com/mattpocock/skills",
       "description": "Matt Pocock 的 TypeScript 進階型別與技能參考資源，涵蓋型別體操與實戰技巧。",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "typescript",
@@ -363,7 +363,7 @@
       "name": "Playwright",
       "url": "https://github.com/microsoft/playwright",
       "description": "微軟開發的跨瀏覽器 E2E 測試與自動化框架，支援截圖、PDF 及網頁爬取。",
-      "category": "瀏覽器自動化",
+      "category": "測試與自動化",
       "language": "typescript",
       "triggers": [
         "playwright",
@@ -457,7 +457,7 @@
       "name": "Tdd",
       "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/tdd",
       "description": "Guides test-driven development workflows using red-green-refactor cycles for robust code.",
-      "category": "測試與自動化",
+      "category": "開發工具",
       "language": "shell",
       "triggers": [
         "tdd",
@@ -494,7 +494,7 @@
       "name": "Postgres Mcp",
       "url": "https://github.com/crystaldba/postgres-mcp",
       "description": "PostgreSQL MCP server enabling AI agents to execute queries and analyze database performance.",
-      "category": "資料庫",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "postgres",
@@ -529,7 +529,7 @@
       "name": "Github Mcp Server",
       "url": "https://github.com/github/github-mcp-server",
       "description": "Official MCP server enabling AI agents to manage GitHub repositories, issues, and pull requests.",
-      "category": "API 整合",
+      "category": "UI/UX設計",
       "language": "go",
       "triggers": [
         "github",
@@ -572,7 +572,7 @@
       "name": "Context7",
       "url": "https://github.com/upstash/context7",
       "description": "Provides up-to-date code documentation for LLMs and AI code editors via MCP.",
-      "category": "API 整合",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "context7",
@@ -611,7 +611,7 @@
       "name": "Sequentialthinking",
       "url": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
       "description": "Enables step-by-step reflective reasoning and structured problem decomposition via MCP.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "sequentialthinking",
@@ -647,7 +647,7 @@
       "name": "Mcp Sequential Thinking",
       "url": "https://github.com/arben-adm/mcp-sequential-thinking",
       "description": "MCP server enabling step-by-step reasoning and structured planning for LLMs.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "mcp",
@@ -683,7 +683,7 @@
       "name": "Memmy Agent",
       "url": "https://github.com/MemTensor/memmy-agent",
       "description": "A unified memory system enabling persistent, cross-agent knowledge sharing for AI assistants.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "memmy-agent",
@@ -764,7 +764,7 @@
       "name": "Posthog",
       "url": "https://github.com/posthog/posthog",
       "description": "Open-source product analytics, session replay, feature flags, and A/B testing platform.",
-      "category": "測試與自動化",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "posthog",
@@ -805,7 +805,7 @@
       "name": "Hallmark",
       "url": "https://github.com/nutlope/hallmark",
       "description": "Prevents AI-generated code bloat by enforcing clean, concise coding standards across IDEs.",
-      "category": "測試與自動化",
+      "category": "開發工具",
       "language": "css",
       "triggers": [
         "hallmark",
@@ -838,7 +838,7 @@
       "name": "Code Review Graph",
       "url": "https://github.com/tirth8205/code-review-graph",
       "description": "Persistent codebase map for MCP/CLI that reduces AI context usage during code reviews.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "code-review",
@@ -880,7 +880,7 @@
       "name": "OfficeCLI",
       "url": "https://github.com/iOfficeAI/OfficeCLI",
       "description": "Open-source CLI enabling AI agents to automate Word, Excel, and PowerPoint without Office installed.",
-      "category": "文件生產力",
+      "category": "UI/UX設計",
       "language": "c#",
       "triggers": [
         "officecli",
@@ -923,7 +923,7 @@
       "name": "Orca (Stably AI)",
       "url": "https://github.com/stablyai/orca",
       "description": "Desktop/mobile ADE for orchestrating parallel coding agents with your own subscriptions.",
-      "category": "開發工具",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "orca",
@@ -969,7 +969,7 @@
       "name": "Herdr",
       "url": "https://github.com/ogulcancelik/herdr",
       "description": "Rust-based terminal multiplexer for managing multiple AI coding agents via tmux.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "rust",
       "triggers": [
         "herdr",
@@ -1011,7 +1011,7 @@
       "name": "Impeccable",
       "url": "https://github.com/pbakaus/impeccable",
       "description": "CSS design system that helps AI generate polished, consistent user interfaces.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "impeccable",
@@ -1044,7 +1044,7 @@
       "name": "Slides_maker",
       "url": "https://github.com/addsumtech/slides_maker",
       "description": "Create editable PPTX decks from docs and code with native charts, equations, and animations.",
-      "category": "文件生產力",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "slides_maker",
@@ -1085,7 +1085,7 @@
       "name": "Lean Ctx",
       "url": "https://github.com/yvgude/lean-ctx",
       "description": "Local Rust context layer for AI agents reducing token usage by 60-90%.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "rust",
       "triggers": [
         "lean-ctx",
@@ -1168,7 +1168,7 @@
       "name": "Loop Engineering Orange Book",
       "url": "https://github.com/alchaincyf/loop-engineering-orange-book",
       "description": "Concise bilingual guide clarifying loop engineering principles for developers and architects.",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "loop-engineering",
@@ -1244,7 +1244,7 @@
       "name": "Open Slide",
       "url": "https://github.com/1weiho/open-slide",
       "description": "React-based slide framework enabling agent-driven presentation creation.",
-      "category": "文件生產力",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "open-slide",
@@ -1283,7 +1283,7 @@
       "name": "Html Ppt Skill",
       "url": "https://github.com/lewislulu/html-ppt-skill",
       "description": "Create professional HTML presentations with themes, layouts, and animations.",
-      "category": "開發工具",
+      "category": "文件生產力",
       "language": "html",
       "triggers": [
         "html-ppt-skill",
@@ -1321,7 +1321,7 @@
       "name": "Awesome Llm Apps",
       "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
       "description": "Curated collection of ready-to-run Python AI agent and RAG applications.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "awesome-llm-apps",
@@ -1413,7 +1413,7 @@
       "name": "DesktopCommanderMCP",
       "url": "https://github.com/wonderwhy-er/DesktopCommanderMCP",
       "description": "Terminal control and file editing MCP server for AI coding agents.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "desktopcommandermcp",
@@ -1455,7 +1455,7 @@
       "name": "Stitch Skills",
       "url": "https://github.com/google-labs-code/stitch-skills",
       "description": "Open-standard Agent Skills for Stitch MCP, enabling interoperability across coding agents.",
-      "category": "API 整合",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "stitch",
@@ -1566,7 +1566,7 @@
       "name": "Design.Md",
       "url": "https://github.com/google-labs-code/design.md",
       "description": "Structured markdown spec for defining visual identities and design systems for AI coding agents.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "design.md",
@@ -1599,7 +1599,7 @@
       "name": "Rag Anything",
       "url": "https://github.com/hkuds/rag-anything",
       "description": "All-in-one multimodal RAG framework supporting text, image, video, and audio retrieval.",
-      "category": "音訊",
+      "category": "影片",
       "language": "python",
       "triggers": [
         "rag",
@@ -1672,7 +1672,7 @@
       "name": "Agent Skills (Addy Osmani)",
       "url": "https://github.com/addyosmani/agent-skills",
       "description": "Curated prompt skills for AI coding agents to standardize and improve engineering workflows.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "cursor",
@@ -1846,7 +1846,7 @@
       "name": "Awesome Agent Skills (Heilcheng)",
       "url": "https://github.com/heilcheng/awesome-agent-skills",
       "description": "Curated directory of tutorials, guides, and skills for building AI agents and automations.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "awesome-agent-skills",
@@ -1886,7 +1886,7 @@
       "name": "Directus",
       "url": "https://github.com/directus/directus",
       "description": "Open-source headless CMS providing instant APIs and customizable admin panels.",
-      "category": "API 整合",
+      "category": "瀏覽器自動化",
       "language": "typescript",
       "triggers": [
         "directus",
@@ -1929,7 +1929,7 @@
       "name": "Ui Ux Pro Max Skill",
       "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
       "description": "AI skill for cross-platform UI/UX design guidance and React component generation.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "react",
@@ -1970,7 +1970,7 @@
       "name": "Lanshu Animated Architecture Diagram",
       "url": "https://github.com/cclank/lanshu-animated-architecture-diagram",
       "description": "Create premium hand-drawn animated architecture diagrams via AI coding skills.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "lanshu",
@@ -2006,7 +2006,7 @@
       "name": "Agency Agents",
       "url": "https://github.com/msitarzewski/agency-agents",
       "description": "Specialized AI agents for web, marketing, and strategy tasks with structured workflows.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "shell",
       "triggers": [
         "agency-agents",
@@ -2221,7 +2221,7 @@
       "name": "OpenMontage",
       "url": "https://github.com/calesthio/OpenMontage",
       "description": "Open-source agentic video production system featuring 12 pipelines and 500+ agent skills.",
-      "category": "音訊",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "openmontage",
@@ -2267,7 +2267,7 @@
       "name": "Video Use",
       "url": "https://github.com/browser-use/video-use",
       "description": "Automate video editing workflows using AI coding agents.",
-      "category": "影片",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "video",
@@ -2302,7 +2302,7 @@
       "name": "Cognee",
       "url": "https://github.com/topoteretes/cognee",
       "description": "Self-hosted AI memory platform using knowledge graphs for persistent agent context.",
-      "category": "知識管理",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "cognee",
@@ -2343,7 +2343,7 @@
       "name": "Caveman",
       "url": "https://github.com/juliusbrussee/caveman",
       "description": "Claude Code skill minimizing token usage through simplified communication.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "caveman",
@@ -2421,7 +2421,7 @@
       "name": "Codex Plugin Cc",
       "url": "https://github.com/openai/codex-plugin-cc",
       "description": "Integrates OpenAI Codex into Claude Code for automated code review and task delegation.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "codex-plugin-cc",
@@ -2488,7 +2488,7 @@
       "name": "Openai Agents Js",
       "url": "https://github.com/openai/openai-agents-js",
       "description": "TypeScript SDK for building multi-agent workflows and voice agents using the OpenAI API.",
-      "category": "API 整合",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "openai-agents-js",
@@ -2529,7 +2529,7 @@
       "name": "Skills (OpenAI Codex)",
       "url": "https://github.com/openai/skills",
       "description": "A curated catalog of reusable skills to enhance OpenAI Codex coding agent capabilities.",
-      "category": "學習資源",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "openai-skills",
@@ -2787,7 +2787,7 @@
       "name": "Openai Mcpkit",
       "url": "https://github.com/openai/openai-mcpkit",
       "description": "OpenAI toolkit for building Model Context Protocol (MCP) servers and clients.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "openai-mcpkit",
@@ -2822,7 +2822,7 @@
       "name": "Html Deck Editor",
       "url": "https://github.com/wengzige/html-deck-editor",
       "description": "Local-first HTML deck editor for converting AI slides into editable presentations.",
-      "category": "AI 代理",
+      "category": "文件生產力",
       "language": "javascript",
       "triggers": [
         "html",
@@ -2864,7 +2864,7 @@
       "name": "Superpowers",
       "url": "https://github.com/obra/superpowers",
       "description": "Agentic AI skills framework and structured methodology for software development workflows.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "shell",
       "triggers": [
         "superpowers",
@@ -2908,7 +2908,7 @@
       "name": "Claude Mem",
       "url": "https://github.com/thedotmack/claude-mem",
       "description": "Persistent AI session memory using SQLite and embeddings for cross-session context.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "claude-mem",
@@ -2949,7 +2949,7 @@
       "name": "Agent Reach",
       "url": "https://github.com/Panniantong/agent-reach",
       "description": "CLI tool for AI agents to scrape and search major social platforms without API fees.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "agent-reach",
@@ -2988,7 +2988,7 @@
       "name": "GitNexus",
       "url": "https://github.com/abhigyanpatwari/GitNexus",
       "description": "Zero-server code intelligence engine generating interactive knowledge graphs and RAG agents in-browser.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "gitnexus",
@@ -3022,7 +3022,7 @@
       "name": "Humanizer Zh",
       "url": "https://github.com/op7418/humanizer-zh",
       "description": "A Claude Code skill that rewrites AI-generated text to sound more natural and reduce detection signals.",
-      "category": "音訊",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "humanizer",
@@ -3057,7 +3057,7 @@
       "name": "Mini Agent",
       "url": "https://github.com/MiniMax-AI/Mini-Agent",
       "description": "Minimal production-ready single agent framework showcasing core LLM execution pipelines.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "mini-agent",
@@ -3095,7 +3095,7 @@
       "name": "Terax Ai",
       "url": "https://github.com/crynta/terax-ai",
       "description": "Terminal-first AI-native dev workspace built in Rust, weighing only 7MB.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "terax-ai",
@@ -3178,7 +3178,7 @@
       "name": "Frontend Design",
       "url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
       "description": "Guidance for distinctive visual design, typography, and intentional UI aesthetics.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "frontend-design",
@@ -3218,7 +3218,7 @@
       "name": "Open Design",
       "url": "https://github.com/nexu-io/open-design",
       "description": "Open-source local-first design tool for creating prototypes, pages, and exports.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "open-design",
@@ -3259,7 +3259,7 @@
       "name": "React Best Practices",
       "url": "https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices",
       "description": "Optimize React and Next.js apps with Vercel's engineering best practices.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "react",
@@ -3296,7 +3296,7 @@
       "name": "Playwright Skill",
       "url": "https://github.com/lackeyjb/playwright-skill",
       "description": "Claude Code skill enabling autonomous browser automation and web testing via Playwright.",
-      "category": "瀏覽器自動化",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "playwright",
@@ -3337,7 +3337,7 @@
       "name": "Awesome Copilot",
       "url": "https://github.com/github/awesome-copilot",
       "description": "Curated collection of prompts, agents, and configs to optimize GitHub Copilot workflows.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "github-copilot",
@@ -3377,7 +3377,7 @@
       "name": "Kane Cli",
       "url": "https://github.com/LambdaTest/kane-cli",
       "description": "AI-powered CLI for generating and executing automated tests via natural language.",
-      "category": "測試與自動化",
+      "category": "開發工具",
       "language": "javascript",
       "triggers": [
         "kane-cli",
@@ -3417,7 +3417,7 @@
       "name": "Gh Fix Ci",
       "url": "https://github.com/openai/skills/tree/main/skills/.curated/gh-fix-ci",
       "description": "Debugs failing GitHub Actions PR checks via gh CLI, summarizes errors, and drafts fix plans.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "gh-fix-ci",
@@ -3491,7 +3491,7 @@
       "name": "Figma Generate Library",
       "url": "https://github.com/openai/skills/tree/main/skills/.curated/figma-generate-library",
       "description": "Build and sync Figma design systems from codebases, managing tokens, components, and themes.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "figma-generate-library",
@@ -3527,7 +3527,7 @@
       "name": "Awesome Notebooklm Workflows",
       "url": "https://github.com/notebooklmremover/awesome-notebooklm-workflows",
       "description": "Curated list of free NotebookLM scripts and tools for watermark removal, audio processing, and prompts.",
-      "category": "學習資源",
+      "category": "文件生產力",
       "language": "python",
       "triggers": [
         "notebooklm",
@@ -3568,7 +3568,7 @@
       "name": "Notebooklm Obsidian Pipeline",
       "url": "https://github.com/Floucs/notebooklm-obsidian-pipeline",
       "description": "Automates the transfer of NotebookLM notes and sources into an Obsidian markdown vault.",
-      "category": "知識管理",
+      "category": "文件生產力",
       "language": "python",
       "triggers": [
         "notebooklm-obsidian-pipeline",
@@ -3646,7 +3646,7 @@
       "name": "Awesome NotebookLM Prompts",
       "url": "https://github.com/serenakeyitan/awesome-notebookLM-prompts",
       "description": "Curated collection of high-quality NotebookLM slide prompts for fast AI presentation creation.",
-      "category": "文件生產力",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "notebooklm",
@@ -3729,7 +3729,7 @@
       "name": "NotebookLM Skill (Claude World)",
       "url": "https://github.com/claude-world/notebooklm-skill",
       "description": "Automate research-to-content workflows using NotebookLM and Claude Code via MCP.",
-      "category": "音訊",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "notebooklm",
@@ -3770,7 +3770,7 @@
       "name": "NBLM2PPTX",
       "url": "https://github.com/laihenyi/NBLM2PPTX",
       "description": "Transform NotebookLM PDFs into editable PPTX slides with separated backgrounds via Gemini AI.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "html",
       "triggers": [
         "nblm2pptx",
@@ -3811,7 +3811,7 @@
       "name": "AI Short Video Engine",
       "url": "https://github.com/chenwr727/AI-Short-Video-Engine",
       "description": "AI tool converting articles into viral short videos for Douyin, TikTok, and Reels.",
-      "category": "影片",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "ai-short-video-engine",
@@ -3931,7 +3931,7 @@
       "name": "Ontology Playground",
       "url": "https://github.com/microsoft/Ontology-Playground",
       "description": "Visual ontology builder with pre-built catalogs, RDF/XML export, and zero-backend static hosting.",
-      "category": "知識管理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "ontology-playground",
@@ -3966,7 +3966,7 @@
       "name": "Ontology",
       "url": "https://github.com/openenergyplatform/ontology",
       "description": "Repository hosting the Open Energy Ontology (OEO) for standardized energy data modeling.",
-      "category": "基礎設施",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "ontology",
@@ -4040,7 +4040,7 @@
       "name": "Animejs V4 Ai Guidelines",
       "url": "https://github.com/Makio64/animejs-v4-ai-guidelines",
       "description": "AI guidelines and GSAP-to-Anime.js v4 migration reference for developers.",
-      "category": "影片",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "animejs",
@@ -4074,7 +4074,7 @@
       "name": "Book To Skill (Virgilio)",
       "url": "https://github.com/virgiliojr94/book-to-skill",
       "description": "Converts technical PDF books into Claude Code skills for instant study and workflow integration.",
-      "category": "文件生產力",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "book-to-skill",
@@ -4109,7 +4109,7 @@
       "name": "Book2skills",
       "url": "https://github.com/simbajigege/book2skills",
       "description": "Converts top books into actionable AI skills for investing and stock analysis.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "book2skills",
@@ -4153,7 +4153,7 @@
       "name": "Book Skill Generator",
       "url": "https://github.com/CymChad/book-skill-generator",
       "description": "Extracts core methodologies from book content and automatically generates executable Agent Skills.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "other",
       "triggers": [
         "book-to-agent-skill",
@@ -4195,7 +4195,7 @@
       "name": "Markitdown",
       "url": "https://github.com/microsoft/markitdown",
       "description": "Converts PDFs, Office docs, and web pages to Markdown for LLM ingestion.",
-      "category": "文件生產力",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "markitdown",
@@ -4273,7 +4273,7 @@
       "name": "Anthropic Claude Skills",
       "url": "https://github.com/anthropics/skills",
       "description": "Anthropic's public repository for discovering and implementing AI agent skills.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "anthropic-skills",
@@ -4402,7 +4402,7 @@
       "name": "SKILL.Md (OpenAI Figma Implement)",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-implement-design/SKILL.md",
       "description": "Codex skill guiding implementation of Figma designs into production code.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "skill.md",
@@ -4439,7 +4439,7 @@
       "name": "SKILL.Md (Vercel Web Design)",
       "url": "https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md",
       "description": "Guidelines for AI agents to implement professional web design and UI/UX standards.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "skill.md",
@@ -4475,7 +4475,7 @@
       "name": "SKILL.Md (Nexu Prototype)",
       "url": "https://github.com/nexu-io/open-design/blob/main/skills/web-design-guidelines/SKILL.md",
       "description": "Open-source design tool enabling AI agents to generate prototypes and export real files.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "prototyping",
@@ -4517,7 +4517,7 @@
       "name": "Agent Skills (Vercel)",
       "url": "https://github.com/vercel-labs/agent-skills",
       "description": "Vercel's curated library of reusable skills to enhance AI agent capabilities.",
-      "category": "學習資源",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "vercel-agent-skills",
@@ -4552,7 +4552,7 @@
       "name": "SKILL.Md (Microsoft Playwright CLI)",
       "url": "https://github.com/microsoft/playwright-cli/blob/main/skills/playwright-cli/SKILL.md",
       "description": "CLI for Playwright actions, recording, code generation, selector inspection, and screenshots.",
-      "category": "瀏覽器自動化",
+      "category": "測試與自動化",
       "language": "javascript",
       "triggers": [
         "playwright",
@@ -4590,7 +4590,7 @@
       "name": "SKILL.Md (OpenAI Playwright)",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/playwright-interactive/SKILL.md",
       "description": "Markdown-based guide for automating Playwright browser interactions within AI coding assistants.",
-      "category": "瀏覽器自動化",
+      "category": "測試與自動化",
       "language": "python",
       "triggers": [
         "skill.md",
@@ -4625,7 +4625,7 @@
       "name": "SKILL.Md (GitHub Copilot Test)",
       "url": "https://github.com/github/awesome-copilot/blob/main/skills/playwright-generate-test/SKILL.md",
       "description": "Curated community skills and configurations to optimize GitHub Copilot workflows.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "github-copilot",
@@ -4667,7 +4667,7 @@
       "name": "SKILL.Md (OpenAI Figma Generate)",
       "url": "https://github.com/openai/skills/blob/main/skills/.curated/figma-generate-design/SKILL.md",
       "description": "Curated instruction files guiding AI coding agents through specialized workflows.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "skill.md",
@@ -4736,7 +4736,7 @@
       "name": "Anthropic PDF Analysis Skill",
       "url": "https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md",
       "description": "Curated collection of SKILL.md files defining AI agent behaviors and workflows.",
-      "category": "學習資源",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "skill.md",
@@ -4774,7 +4774,7 @@
       "name": "Browser Use",
       "url": "https://github.com/browser-use/browser-use",
       "description": "Automate web interactions and scrape data using AI-driven browser control via Playwright.",
-      "category": "瀏覽器自動化",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "browser-automation",
@@ -4814,7 +4814,7 @@
       "name": "Browserbase Agent Skills",
       "url": "https://github.com/browserbase/skills",
       "description": "Reusable agent skills for reliable web automation and browser interaction via Browserbase.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "browserbase-skills",
@@ -4931,7 +4931,7 @@
       "name": "Autogen",
       "url": "https://github.com/microsoft/autogen",
       "description": "Microsoft framework for building and orchestrating multi-agent LLM applications.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "autogen",
@@ -4973,7 +4973,7 @@
       "name": "Metagpt",
       "url": "https://github.com/foundationagents/metagpt",
       "description": "Multi-agent framework automating software engineering workflows using LLM-powered roles.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "metagpt",
@@ -5014,7 +5014,7 @@
       "name": "Lobehub",
       "url": "https://github.com/lobehub/lobehub",
       "description": "Orchestrate, schedule, and monitor autonomous AI agents for continuous 24/7 workflow operations.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "lobehub",
@@ -5055,7 +5055,7 @@
       "name": "Transformers",
       "url": "https://github.com/huggingface/transformers",
       "description": "Open-source library for state-of-the-art NLP, vision, and audio model training and inference.",
-      "category": "音訊",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "transformers",
@@ -5098,7 +5098,7 @@
       "name": "Cocoindex",
       "url": "https://github.com/cocoindex-io/cocoindex",
       "description": "Incremental indexing engine for maintaining persistent context in long-horizon AI agents.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "rust",
       "triggers": [
         "incremental-indexing",
@@ -5141,7 +5141,7 @@
       "name": "Stable Diffusion Webui",
       "url": "https://github.com/automatic1111/stable-diffusion-webui",
       "description": "Open-source GUI for Stable Diffusion, supporting text-to-image, inpainting, and extensions.",
-      "category": "多媒體生成",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "stable-diffusion-webui",
@@ -5183,7 +5183,7 @@
       "name": "Stable Diffusion Webui Localization Zh_TW",
       "url": "https://github.com/benlisquare/stable-diffusion-webui-localization-zh_TW",
       "description": "Traditional Chinese localization extension for AUTOMATIC1111's Stable Diffusion WebUI.",
-      "category": "設計",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "stable-diffusion-webui",
@@ -5219,7 +5219,7 @@
       "name": "Langflow",
       "url": "https://github.com/langflow-ai/langflow",
       "description": "Visual platform for building and deploying LLM-powered agents and workflows.",
-      "category": "多媒體生成",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "langflow",
@@ -5260,7 +5260,7 @@
       "name": "Mem0",
       "url": "https://github.com/mem0ai/mem0",
       "description": "Open-source memory layer enabling AI agents to learn and remember across sessions.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "mem0",
@@ -5301,7 +5301,7 @@
       "name": "Ruflo",
       "url": "https://github.com/ruvnet/ruflo",
       "description": "TypeScript framework for orchestrating multi-agent swarms with memory, RAG, and adaptive learning.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "ruflo",
@@ -5344,7 +5344,7 @@
       "name": "Crewai",
       "url": "https://github.com/crewaiinc/crewai",
       "description": "Framework for orchestrating role-playing AI agents to tackle complex tasks.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "crewai",
@@ -5384,7 +5384,7 @@
       "name": "Hermes Agent (Nous Research Coding)",
       "url": "https://github.com/nousresearch/hermes-agent",
       "description": "Open-source AI coding agent by Nous Research for intelligent software development automation.",
-      "category": "研究",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "nousresearch-hermes-coding-agent",
@@ -5429,7 +5429,7 @@
       "name": "Maigret",
       "url": "https://github.com/soxoj/maigret",
       "description": "OSINT tool for gathering public data on usernames across thousands of websites.",
-      "category": "安全性",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "osint",
@@ -5470,7 +5470,7 @@
       "name": "Open Webui",
       "url": "https://github.com/open-webui/open-webui",
       "description": "Self-hosted web interface for managing and interacting with multiple AI models and LLM providers.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "open-webui",
@@ -5510,7 +5510,7 @@
       "name": "Aider",
       "url": "https://github.com/Aider-AI/aider",
       "description": "AI-powered CLI tool for pair programming with LLMs directly in your terminal.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "aider",
@@ -5554,7 +5554,7 @@
       "name": "Tech Interview Handbook (Yang Shun)",
       "url": "https://github.com/yangshun/tech-interview-handbook",
       "description": "Curated coding interview prep for engineers covering algorithms and system design.",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "yangshun-tech-interview-handbook",
@@ -5595,7 +5595,7 @@
       "name": "Tech Interview Handbook",
       "url": "https://github.com/Avishkar201/tech-interview-handbook",
       "description": "Curated resource hub for mastering technical interviews, coding challenges, and system design.",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "javascript",
       "triggers": [
         "tech-interview-handbook-Avishkar201",
@@ -5672,7 +5672,7 @@
       "name": "Javascript Algorithms",
       "url": "https://github.com/trekhleb/javascript-algorithms",
       "description": "JavaScript algorithms and data structures reference with explanations for learning and interviews.",
-      "category": "學習資源",
+      "category": "研究",
       "language": "javascript",
       "triggers": [
         "javascript",
@@ -5712,7 +5712,7 @@
       "name": "30 Seconds Of Code",
       "url": "https://github.com/Chalarangelo/30-seconds-of-code",
       "description": "Curated collection of concise coding articles and snippets for web and backend developers.",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "javascript",
       "triggers": [
         "30-seconds-of-code",
@@ -5794,7 +5794,7 @@
       "name": "Langchain",
       "url": "https://github.com/langchain-ai/langchain",
       "description": "Open-source framework for building LLM-powered applications, agents, and RAG pipelines.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "langchain",
@@ -5842,7 +5842,7 @@
       "name": "N8n",
       "url": "https://github.com/n8n-io/n8n",
       "description": "Fair-code workflow automation platform with native AI, 400+ integrations, and hybrid deployment.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "workflow automation",
@@ -5922,7 +5922,7 @@
       "name": "Dify",
       "url": "https://github.com/langgenius/dify",
       "description": "Open-source platform for building AI agents, workflows, and LLM apps with visual orchestration.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "dify",
@@ -5967,7 +5967,7 @@
       "name": "Public Apis",
       "url": "https://github.com/public-apis/public-apis",
       "description": "Curated directory of free APIs for developers.",
-      "category": "學習資源",
+      "category": "API 整合",
       "language": "python",
       "triggers": [
         "public-apis",
@@ -6014,7 +6014,7 @@
       "name": "Developer Roadmap",
       "url": "https://github.com/nilbuild/developer-roadmap",
       "description": "Curated interactive roadmaps and guides to help developers plan learning paths and upskill.",
-      "category": "基礎設施",
+      "category": "學習資源",
       "language": "typescript",
       "triggers": [
         "developer-roadmap",
@@ -6058,7 +6058,7 @@
       "name": "The Evolution Of A Go Programmer",
       "url": "https://github.com/SuperPaintman/the-evolution-of-a-go-programmer",
       "description": "Visual roadmap guiding Go developers from basics to advanced concurrency and system design.",
-      "category": "開發工具",
+      "category": "學習資源",
       "language": "go",
       "triggers": [
         "go-roadmap",
@@ -6180,7 +6180,7 @@
       "name": "System Design Primer",
       "url": "https://github.com/donnemartin/system-design-primer",
       "description": "Open-source guide to designing large-scale systems and preparing for technical interviews.",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "system-design-primer",
@@ -6268,7 +6268,7 @@
       "name": "The Art Of Command Line",
       "url": "https://github.com/jlevy/the-art-of-command-line",
       "description": "Curated reference of essential Unix shell commands and best practices.",
-      "category": "學習資源",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "bash",
@@ -6397,7 +6397,7 @@
       "name": "The Book Of Secret Knowledge",
       "url": "https://github.com/trimstray/the-book-of-secret-knowledge",
       "description": "Curated repository of Linux, DevOps, security, and developer cheatsheets, guides, and CLI tools.",
-      "category": "學習資源",
+      "category": "知識管理",
       "language": "other",
       "triggers": [
         "linux",
@@ -6438,7 +6438,7 @@
       "name": "Cc Switch",
       "url": "https://github.com/farion1231/cc-switch",
       "description": "Cross-platform desktop hub for managing multiple AI coding assistants like Claude Code, Gemini CLI, and more.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "rust",
       "triggers": [
         "cc-switch",
@@ -6517,7 +6517,7 @@
       "name": "CLAUDE.Md",
       "url": "https://github.com/multica-ai/andrej-karpathy-skills/blob/main/CLAUDE.md",
       "description": "A CLAUDE.md file optimizing Claude Code behavior by addressing common LLM coding pitfalls.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "claude.md",
@@ -6553,7 +6553,7 @@
       "name": "Agentic Awesome Skills",
       "url": "https://github.com/sickn33/agentic-awesome-skills",
       "description": "Local control plane for discovering and planning 1,965+ agentic skills via CLI and MCP.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "agentic-awesome-skills",
@@ -6595,7 +6595,7 @@
       "name": "Claude Code Best Practice",
       "url": "https://github.com/shanraisshan/claude-code-best-practice",
       "description": "Curated guidelines and workflows for optimizing Claude Code usage in AI development.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "html",
       "triggers": [
         "claude-code",
@@ -6635,7 +6635,7 @@
       "name": "Awesome Agent Skills",
       "url": "https://github.com/VoltAgent/awesome-agent-skills",
       "description": "Curated repository of 1000+ AI agent skills for Claude, Cursor, Gemini, and other coding tools.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "other",
       "triggers": [
         "voltagent-awesome-agent-skills",
@@ -6676,7 +6676,7 @@
       "name": "Claude Skills",
       "url": "https://github.com/alirezarezvani/claude-skills",
       "description": "345 skills, agents, and plugins for Claude Code, Codex, Gemini CLI, and Cursor.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "claude-skills",
@@ -10710,7 +10710,7 @@
       "name": "Claude Code Guide",
       "url": "https://github.com/zebbern/claude-code-guide",
       "description": "Master Claude Code with setup, commands, workflows, and tips for beginners to power users.",
-      "category": "學習資源",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "claude-code",
@@ -10752,7 +10752,7 @@
       "name": "Continuous Claude V3",
       "url": "https://github.com/parcadei/Continuous-Claude-v3",
       "description": "Context management for Claude Code using hooks, ledgers, and isolated windows for MCP and agents.",
-      "category": "開發工具",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "continuous-claude-v3",
@@ -10792,7 +10792,7 @@
       "name": "Generative Media Skills",
       "url": "https://github.com/SamurAIGPT/Generative-Media-Skills",
       "description": "AI agent skills for generating images, videos, and audio using muapi.ai.",
-      "category": "影片",
+      "category": "AI 代理",
       "language": "shell",
       "triggers": [
         "image-generation",
@@ -11284,7 +11284,7 @@
       "name": "Andrej Karpathy Skills",
       "url": "https://github.com/multica-ai/andrej-karpathy-skills",
       "description": "Claude Code configuration based on Karpathy's LLM coding best practices to reduce common pitfalls.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "andrej-karpathy-skills",
@@ -11328,7 +11328,7 @@
       "name": "Eigenflux Arena",
       "url": "https://github.com/thunguo/eigenflux-arena",
       "description": "Framework for multi-agent communication and broadcasting within a shared network environment.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "go",
       "triggers": [
         "eigenflux-arena",
@@ -11364,7 +11364,7 @@
       "name": "Council of High Intelligence",
       "url": "https://github.com/0xNyk/council-of-high-intelligence",
       "description": "Structured multi-perspective deliberation framework. Assigns hard questions to deliberately different analytical personas, forces direct disagreement, and returns a verdict preserving unresolved questions, dissent, kill criteria, and next concrete action.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "shell",
       "triggers": [
         "council-of-high-intelligence",
@@ -11461,7 +11461,7 @@
       "name": "Codex Dream Skin",
       "url": "https://github.com/Fei-Away/Codex-Dream-Skin",
       "description": "Visual theme for coding environments with dream-inspired aesthetics.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "javascript",
       "triggers": [
         "codex-dream-skin",
@@ -11660,7 +11660,7 @@
       "name": "Memos",
       "url": "https://github.com/usememos/memos",
       "description": "Self-hosted, lightweight note-taking app with Markdown support and real-time sync.",
-      "category": "基礎設施",
+      "category": "文件生產力",
       "language": "go",
       "triggers": [
         "memos",
@@ -11702,7 +11702,7 @@
       "name": "Memos (MemTensor)",
       "url": "https://github.com/MemTensor/MemOS",
       "description": "Self-evolving memory OS for AI agents with persistent storage and skill reuse.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "memory",
@@ -11859,7 +11859,7 @@
       "name": "Self Harness",
       "url": "https://github.com/datawhalechina/self-harness",
       "description": "Open-source guide for building robust runtime architectures for long-running AI agents.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "self-harness",
@@ -11893,7 +11893,7 @@
       "name": "Browser Harness",
       "url": "https://github.com/browser-use/browser-harness",
       "description": "Autonomous self-healing browser automation framework for LLM-driven web task execution.",
-      "category": "瀏覽器自動化",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "browser-automation",
@@ -11932,7 +11932,7 @@
       "name": "OpenHarness",
       "url": "https://github.com/HKUDS/OpenHarness",
       "description": "Open-source framework for building, running, and benchmarking autonomous LLM agents with personalization.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "openharness",
@@ -11966,7 +11966,7 @@
       "name": "Humanizer",
       "url": "https://github.com/blader/humanizer",
       "description": "Text processing skill to remove AI writing patterns and make content sound natural.",
-      "category": "音訊",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "humanizer",
@@ -12000,7 +12000,7 @@
       "name": "Humanizer Zh TW",
       "url": "https://github.com/kevintsai1202/Humanizer-zh-TW",
       "description": "Traditional Chinese AI text humanizer that optimizes natural flow and removes machine-generated traces.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "humanizer-zh-tw",
@@ -12034,7 +12034,7 @@
       "name": "Stop Slop",
       "url": "https://github.com/hardikpandya/stop-slop",
       "description": "Detects and removes AI-generated phrasing and stylistic tells from written text.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "stop-slop",
@@ -12069,7 +12069,7 @@
       "name": "Ai Flavor Remover",
       "url": "https://github.com/hylarucoder/ai-flavor-remover",
       "description": "Strips AI-generated writing patterns to make text sound more natural and human-like.",
-      "category": "音訊",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "ai-flavor-remover",
@@ -12104,7 +12104,7 @@
       "name": "Remove Ai Flavor Writing Skill",
       "url": "https://github.com/B1lli/remove-ai-flavor-writing-skill",
       "description": "Claude Code skill to humanize Chinese AI text by removing template patterns and robotic phrasing.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "remove-ai-flavor",
@@ -12145,7 +12145,7 @@
       "name": "Shuorenhua",
       "url": "https://github.com/MrGeDiao/shuorenhua",
       "description": "Chinese-first rewrite skill removing AI tone from text while preserving facts for developer tools.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "shuorenhua",
@@ -12186,7 +12186,7 @@
       "name": "De AI Prompt Enhancer Writer Booster SKILL",
       "url": "https://github.com/OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
       "description": "Refines AI-generated text to eliminate robotic patterns and improve natural, human-like writing flow.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "javascript",
       "triggers": [
         "de-ai-prompt-enhancer-writer-booster-skill",
@@ -12298,7 +12298,7 @@
       "name": "MathModelAgent",
       "url": "https://github.com/zhangchenhaobest/MathModelAgent",
       "description": "Agent for mathematical modeling that auto-generates complete, submission-ready research papers.",
-      "category": "研究",
+      "category": "AI 代理",
       "language": "vue",
       "triggers": [
         "mathmodelagent",
@@ -12379,7 +12379,7 @@
       "name": "Vibe Trading (HKUDS Research)",
       "url": "https://github.com/HKUDS/Vibe-Trading",
       "description": "Multi-agent LLM trading system using MCP for automated financial strategy execution.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "hkuds-vibe-trading",
@@ -12423,7 +12423,7 @@
       "name": "OmniRoute",
       "url": "https://github.com/diegosouzapw/OmniRoute",
       "description": "Unified AI gateway for 231+ providers with token compression and smart fallbacks.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "omniroute",
@@ -12469,7 +12469,7 @@
       "name": "OpenThoughts Agent",
       "url": "https://github.com/open-thoughts/OpenThoughts-Agent",
       "description": "Open-source infrastructure and data recipes for training robust AI agents.",
-      "category": "基礎設施",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "openthoughts-agent",
@@ -12504,7 +12504,7 @@
       "name": "Financial Services",
       "url": "https://github.com/anthropics/financial-services",
       "description": "Specialized AI tool for financial analysis, compliance checks, and risk management.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "financial-services",
@@ -13125,7 +13125,7 @@
       "name": "Knowledge Work Plugins",
       "url": "https://github.com/anthropics/knowledge-work-plugins",
       "description": "Open-source plugins for knowledge workers using Claude Cowork.",
-      "category": "研究",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "knowledge-work-plugins",
@@ -14222,7 +14222,7 @@
       "name": "Claude For Legal",
       "url": "https://github.com/anthropics/claude-for-legal",
       "description": "Curated prompts and workflows for legal professionals using Claude.",
-      "category": "研究",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "claude-for-legal",
@@ -15014,7 +15014,7 @@
       "name": "Claude Legal Skill",
       "url": "https://github.com/evolsb/claude-legal-skill",
       "description": "Automated contract review, risk detection, and redlining across Claude Code, Cursor, and more.",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "claude-legal-skill",
@@ -15058,7 +15058,7 @@
       "name": "Taiwan Claude Legal",
       "url": "https://github.com/tern/taiwan-claude-legal",
       "description": "Taiwan-focused Claude for Legal with auto civil code updates, contract review, and legal playbooks.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "taiwan-claude-legal",
@@ -15103,7 +15103,7 @@
       "name": "Claude For Legal ZH",
       "url": "https://github.com/CSlawyer1985/claude-for-legal-ZH",
       "description": "Reference framework for Claude Code legal Agent and MCP connector for Chinese law practice.",
-      "category": "API 整合",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "claude-for-legal-zh",
@@ -15145,7 +15145,7 @@
       "name": "Open LLM VTuber",
       "url": "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber",
       "description": "Voice-controlled LLM interface with Live2D avatars running locally across platforms.",
-      "category": "音訊",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "open-llm-vtuber",
@@ -15228,7 +15228,7 @@
       "name": "Last30days Skill Cn",
       "url": "https://github.com/Jesseovo/last30days-skill-cn",
       "description": "Searches 8 major Chinese platforms for the last 30 days and generates cited research reports.",
-      "category": "研究",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "last30days",
@@ -15271,7 +15271,7 @@
       "name": "Skill",
       "url": "https://github.com/anbeime/skill",
       "description": "Centralized hub for 72+ AI skills, auto-synced from GitHub, categorized by stars and update time.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "skill",
@@ -15644,7 +15644,7 @@
       "name": "Tradingagents",
       "url": "https://github.com/tauricresearch/tradingagents",
       "description": "Multi-agent LLM framework for collaborative financial trading and market analysis.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "tradingagents",
@@ -15722,7 +15722,7 @@
       "name": "Vibe Trading (Personal)",
       "url": "https://github.com/agent-vibe-trading/vibe-trading",
       "description": "Automated personal trading agent for market analysis and execution.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "agent-vibe-trading-personal",
@@ -15763,7 +15763,7 @@
       "name": "Frontend Slides (Generator)",
       "url": "https://github.com/zarazhangrui/frontend-slides",
       "description": "Generate interactive web slide decks using AI coding agents and frontend code.",
-      "category": "文件生產力",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "zarazhangrui-frontend-slides",
@@ -15843,7 +15843,7 @@
       "name": "ECC",
       "url": "https://github.com/affaan-m/ECC",
       "description": "Performance optimization system for AI coding agents featuring memory, skills, and security.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "ecc",
@@ -15974,7 +15974,7 @@
       "name": "Skills (Baoyu Creative)",
       "url": "https://github.com/JimLiu/baoyu-skills/tree/main/skills",
       "description": "Reusable AI agent skill templates for Claude, Codex, and OpenClaw coding assistants.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "baoyu-skills",
@@ -16130,7 +16130,7 @@
       "name": "Autoresearch",
       "url": "https://github.com/karpathy/autoresearch",
       "description": "Automated research agent for single-GPU nanochat training and experimentation.",
-      "category": "研究",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "autoresearch",
@@ -16163,7 +16163,7 @@
       "name": "Llm Council",
       "url": "https://github.com/karpathy/llm-council",
       "description": "Multi-model LLM debate system that collaboratively solves complex questions using diverse AI agents.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "llm-council",
@@ -16199,7 +16199,7 @@
       "name": "Reader3",
       "url": "https://github.com/karpathy/reader3",
       "description": "Read books interactively with LLMs using retrieval-augmented generation.",
-      "category": "文件生產力",
+      "category": "知識管理",
       "language": "python",
       "triggers": [
         "reader3",
@@ -16268,7 +16268,7 @@
       "name": "Clodex Ide",
       "url": "https://github.com/mereyabdenbekuly-ctrl/clodex-ide",
       "description": "Local-first IDE for secure, verifiable autonomous software development using AI agents.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "clodex-ide",
@@ -16309,7 +16309,7 @@
       "name": "Speak Human Tw",
       "url": "https://github.com/Raymondhou0917/speak-human-tw",
       "description": "繁體中文 AI 去味改寫工具，偵測 38 種 AI 痕跡並校正用語與標點",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "speak-human-tw",
@@ -16350,7 +16350,7 @@
       "name": "Codegraph",
       "url": "https://github.com/colbymchenry/codegraph",
       "description": "Local code knowledge graph for AI coding agents, syncing automatically with changes.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "c",
       "triggers": [
         "codegraph",
@@ -16384,7 +16384,7 @@
       "name": "Taste Skill",
       "url": "https://github.com/leonxlnx/taste-skill",
       "description": "Enhances AI output quality by eliminating generic content and improving aesthetic taste.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "taste-skill",
@@ -16424,7 +16424,7 @@
       "name": "Anthropic Cybersecurity Skills",
       "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills",
       "description": "Structured cybersecurity skills for AI agents mapped to major frameworks.",
-      "category": "基礎設施",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "anthropic-cybersecurity-skills",
@@ -20551,7 +20551,7 @@
       "name": "Cybersecurity Skills",
       "url": "https://github.com/briiirussell/cybersecurity-skills",
       "description": "Cybersecurity skills for AI coding agents like Claude Code, Cursor, and Codex.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "cybersecurity-skills",
@@ -20733,7 +20733,7 @@
       "name": "Claude Code CyberSecurity Skill",
       "url": "https://github.com/Masriyan/Claude-Code-CyberSecurity-Skill",
       "description": "15 Claude Code skills for offensive security, defense, and threat hunting.",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "claude-code-cybersecurity-skill",
@@ -20867,7 +20867,7 @@
       "name": "Cybersecurity Skills (Hi-FullHouse)",
       "url": "https://github.com/Hi-FullHouse/CyberSecurity-Skills",
       "description": "Cybersecurity skill knowledge base for AI-driven operations, providing professional security knowledge and practice guidelines.",
-      "category": "AI 代理",
+      "category": "知識管理",
       "language": "python",
       "triggers": [
         "cybersecurity-skills",
@@ -20907,7 +20907,7 @@
       "name": "PADDLEOCR",
       "url": "https://github.com/PADDLEPADDLE/PADDLEOCR",
       "description": "Lightweight OCR toolkit converting PDFs/images to structured data for AI.",
-      "category": "文件生產力",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "ocr",
@@ -20947,7 +20947,7 @@
       "name": "Open Notebook",
       "url": "https://github.com/lfnovo/open-notebook",
       "description": "Open-source Notebook LM alternative with enhanced flexibility and features.",
-      "category": "知識管理",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "open-notebook",
@@ -20987,7 +20987,7 @@
       "name": "ECC (Affaan M)",
       "url": "https://github.com/affaan-m/ecc",
       "description": "Performance optimization system for AI agents with memory and security features.",
-      "category": "研究",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "ecc",
@@ -21027,7 +21027,7 @@
       "name": "Hermes Agent",
       "url": "https://github.com/NousResearch/hermes-agent",
       "description": "Open-source AI agent framework for building autonomous assistants with tool use.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "hermes-agent-NousResearch",
@@ -21069,7 +21069,7 @@
       "name": "Gemini Cli",
       "url": "https://github.com/google-gemini/gemini-cli",
       "description": "Open-source CLI agent integrating Gemini AI directly into your terminal for enhanced productivity.",
-      "category": "API 整合",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "gemini-cli",
@@ -21149,7 +21149,7 @@
       "name": "RuView",
       "url": "https://github.com/ruvnet/RuView",
       "description": "WiFi-based spatial intelligence and vital sign monitoring without video.",
-      "category": "測試與自動化",
+      "category": "AI 框架",
       "language": "rust",
       "triggers": [
         "wifi-sensing",
@@ -21190,7 +21190,7 @@
       "name": "Ai Engineering From Scratch",
       "url": "https://github.com/rohitg00/ai-engineering-from-scratch",
       "description": "Comprehensive guide to building AI agents and CV systems from scratch.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "ai-engineering",
@@ -21230,7 +21230,7 @@
       "name": "Oh My Pi",
       "url": "https://github.com/can1357/oh-my-pi",
       "description": "Terminal AI coding agent with hash-anchored edits, LSP, and multi-agent support.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "oh-my-pi",
@@ -21270,7 +21270,7 @@
       "name": "Awesome Free Llm Apis",
       "url": "https://github.com/mnfst/awesome-free-llm-apis",
       "description": "Curated list of permanent free LLM API keys for developers.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "free-llm",
@@ -21317,7 +21317,7 @@
       "name": "Free Llm Api Resources",
       "url": "https://github.com/cheahjs/free-llm-api-resources",
       "description": "Curated list of free LLM API resources for AI development.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "free-llm-api-resources",
@@ -21363,7 +21363,7 @@
       "name": "Beautiful Html Templates",
       "url": "https://github.com/zarazhangrui/beautiful-html-templates",
       "description": "HTML slide templates for automated, beautiful deck generation by coding agents.",
-      "category": "開發工具",
+      "category": "UI/UX設計",
       "language": "html",
       "triggers": [
         "html",
@@ -21439,7 +21439,7 @@
       "name": "Hermes Studio",
       "url": "https://github.com/EKKOLearnAI/hermes-studio",
       "description": "Web dashboard for Hermes Agent managing AI chats, sessions, and analytics.",
-      "category": "數據分析",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "hermes-studio-EKKOLearnAI",
@@ -21481,7 +21481,7 @@
       "name": "Harness",
       "url": "https://github.com/harness/harness",
       "description": "Open-source CI/CD platform with SCM, dev environments, and artifact registries.",
-      "category": "API 整合",
+      "category": "開發工具",
       "language": "go",
       "triggers": [
         "ci-cd",
@@ -21522,7 +21522,7 @@
       "name": "Learn Claude Code",
       "url": "https://github.com/shareAI-lab/learn-claude-code",
       "description": "A lightweight, zero-dependency agent harness mimicking Claude Code's behavior for local development.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "claude-code",
@@ -21562,7 +21562,7 @@
       "name": "Hermes Webui",
       "url": "https://github.com/nesquena/hermes-webui",
       "description": "Web interface for Hermes Agent, enabling access via browser or mobile device.",
-      "category": "研究",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "hermes-webui",
@@ -21602,7 +21602,7 @@
       "name": "Headroom",
       "url": "https://github.com/headroomlabs-ai/headroom",
       "description": "Compresses tool outputs and logs to reduce token usage for LLMs.",
-      "category": "知識管理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "headroom",
@@ -21643,7 +21643,7 @@
       "name": "Compound Engineering Plugin",
       "url": "https://github.com/everyinc/compound-engineering-plugin",
       "description": "Official plugin for Compound Engineering across Claude, Codex, and Cursor.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "compound-engineering-plugin",
@@ -21682,7 +21682,7 @@
       "name": "MoneyPrinterTurbo",
       "url": "https://github.com/harry0703/MoneyPrinterTurbo",
       "description": "AI tool generating HD short videos from keywords via automated workflows.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "ai-video-generator",
@@ -21723,7 +21723,7 @@
       "name": "Supermemory",
       "url": "https://github.com/supermemoryai/supermemory",
       "description": "Fast, scalable local memory engine for AI agents with Cloudflare support.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "supermemory",
@@ -21764,7 +21764,7 @@
       "name": "Trivy",
       "url": "https://github.com/aquasecurity/trivy",
       "description": "Security scanner for containers, Kubernetes, and IaC.",
-      "category": "基礎設施",
+      "category": "安全性",
       "language": "go",
       "triggers": [
         "trivy",
@@ -21805,7 +21805,7 @@
       "name": "Fff",
       "url": "https://github.com/dmtrKovalenko/fff",
       "description": "Ultra-fast file search SDK for AI agents and editors like Neovim.",
-      "category": "API 整合",
+      "category": "UI/UX設計",
       "language": "rust",
       "triggers": [
         "fff",
@@ -21846,7 +21846,7 @@
       "name": "Codex",
       "url": "https://github.com/openai/codex",
       "description": "Terminal-based AI coding agent for automated code generation and debugging.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "rust",
       "triggers": [
         "codex",
@@ -21880,7 +21880,7 @@
       "name": "Awesome Codex Subagents",
       "url": "https://github.com/VoltAgent/awesome-codex-subagents",
       "description": "Curated list of 130+ specialized Codex subagents for diverse development tasks.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "other",
       "triggers": [
         "awesome-codex-subagents",
@@ -21920,7 +21920,7 @@
       "name": "Ponytail",
       "url": "https://github.com/DietrichGebert/ponytail",
       "description": "Claude Code plugin that enforces minimalism by encouraging developers to write less code.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "ponytail",
@@ -21960,7 +21960,7 @@
       "name": "OfficeCLI (GitHub)",
       "url": "https://github.com/officecli/officecli",
       "description": "CLI tool to generate editable Office files from prompts.",
-      "category": "文件生產力",
+      "category": "UI/UX設計",
       "language": "shell",
       "triggers": [
         "officecli",
@@ -22000,7 +22000,7 @@
       "name": "Skills (Emil Design Eng)",
       "url": "https://github.com/emilkowalski/skills",
       "description": "Curated skills for Design Engineers to enhance productivity and workflow efficiency.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "emil-design-skills",
@@ -22071,7 +22071,7 @@
       "name": "Codex Ppt Skill",
       "url": "https://github.com/ningzimu/codex-ppt-skill",
       "description": "Generates image-based PPTs via GPT-4o in Codex.",
-      "category": "文件生產力",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "ppt-generator",
@@ -22261,7 +22261,7 @@
       "name": "Gstack",
       "url": "https://github.com/garrytan/gstack",
       "description": "Garry Tan's curated Claude Code setup with 23 opinionated tools for full-stack dev roles.",
-      "category": "測試與自動化",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "gstack",
@@ -22295,7 +22295,7 @@
       "name": "Presentation Report Preflight",
       "url": "https://github.com/archlizheng/presentation-report-preflight",
       "description": "Generates a Presentation Strategy Brief before creating PPTs or HTML decks.",
-      "category": "文件生產力",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "presentation-report-preflight",
@@ -22336,7 +22336,7 @@
       "name": "Huashu Design",
       "url": "https://github.com/alchaincyf/huashu-design",
       "description": "HTML-native design skill for generating high-fidelity prototypes, slides, and animations.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "html",
       "triggers": [
         "huashu-design",
@@ -22370,7 +22370,7 @@
       "name": "Archify",
       "url": "https://github.com/tt-a1i/archify",
       "description": "Generate beautiful architecture diagrams with theme toggle and multi-format export.",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "html",
       "triggers": [
         "architecture-diagram",
@@ -22410,7 +22410,7 @@
       "name": "Claude Code Infrastructure Showcase",
       "url": "https://github.com/diet103/claude-code-infrastructure-showcase",
       "description": "Showcases Claude Code infrastructure with auto-activation, hooks, and agents.",
-      "category": "基礎設施",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "claude-code",
@@ -22445,7 +22445,7 @@
       "name": "Airllm",
       "url": "https://github.com/lyogavin/airllm",
       "description": "Inference large LLMs on low-VRAM GPUs via CPU offloading.",
-      "category": "多媒體生成",
+      "category": "AI 框架",
       "language": "jupyter notebook",
       "triggers": [
         "airllm",
@@ -22485,7 +22485,7 @@
       "name": "Ui Skills",
       "url": "https://github.com/ibelick/ui-skills",
       "description": "UI component library for Design Engineers to build consistent interfaces.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "ui-skills",
@@ -22559,7 +22559,7 @@
       "name": "Ossie",
       "url": "https://github.com/apache/ossie",
       "description": "Apache OSSIE standardizes semantic metadata exchange across analytics and AI platforms.",
-      "category": "AI 代理",
+      "category": "行銷",
       "language": "python",
       "triggers": [
         "ossie",
@@ -22597,7 +22597,7 @@
       "name": "Skill Creator",
       "url": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
       "description": "Create, edit, and benchmark agent skills with variance analysis.",
-      "category": "測試與自動化",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "skill-creator",
@@ -22635,7 +22635,7 @@
       "name": "WorkBuddyGuide",
       "url": "https://github.com/AlephAITech/WorkBuddyGuide",
       "description": "Open-source guide for WorkBuddy workflows, Skills, MCP, and multi-agent automation.",
-      "category": "學習資源",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "workbuddyguide",
@@ -22674,7 +22674,7 @@
       "name": "Destructive_command_guard",
       "url": "https://github.com/Dicklesworthstone/destructive_command_guard",
       "description": "Blocks dangerous git and shell commands for AI agents.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "rust",
       "triggers": [
         "destructive_command_guard",
@@ -22714,7 +22714,7 @@
       "name": "Orca (GNOME Screen Reader)",
       "url": "https://github.com/GNOME/orca",
       "description": "Screen reader for GNOME desktop, enabling accessibility for visually impaired users.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "orca",
@@ -22747,7 +22747,7 @@
       "name": "Ds4",
       "url": "https://github.com/antirez/ds4",
       "description": "Local LLM inference engine for DeepSeek models on Metal, CUDA, and ROCm.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "c",
       "triggers": [
         "ds4",
@@ -22781,7 +22781,7 @@
       "name": "Ai Job Search",
       "url": "https://github.com/MadsLorentzen/ai-job-search",
       "description": "AI job application framework on Claude Code for tailoring CVs and cover letters.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "ai-job-search",
@@ -22822,7 +22822,7 @@
       "name": "Colibri",
       "url": "https://github.com/JustVugg/colibri",
       "description": "Run GLM-5.2 on low-RAM devices via pure C engine with disk-streamed experts.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "c",
       "triggers": [
         "colibri",
@@ -22856,7 +22856,7 @@
       "name": "Openhands",
       "url": "https://github.com/OpenHands/openhands",
       "description": "Autonomous AI coding agent that writes, debugs, and executes code via natural language.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "openhands",
@@ -22931,7 +22931,7 @@
       "name": "Khunotebooklmmcp",
       "url": "https://github.com/drtagkim/khunotebooklmmcp",
       "description": "MCP server for NotebookLM, enabling AI-powered note-taking and knowledge management via API.",
-      "category": "知識管理",
+      "category": "API 整合",
       "language": "typescript",
       "triggers": [
         "khunotebooklmmcp",
@@ -22965,7 +22965,7 @@
       "name": "Pi",
       "url": "https://github.com/earendil-works/pi",
       "description": "Unified AI agent toolkit with LLM API, agent loop, TUI, and coding CLI.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "pi",
@@ -23151,7 +23151,7 @@
       "name": "Notebooklm Skill",
       "url": "https://github.com/PleasePrompto/notebooklm-skill",
       "description": "Connect Claude Code to NotebookLM for grounded, citation-backed answers from your documents.",
-      "category": "知識管理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "notebooklm-skill-PleasePrompto",
@@ -23366,7 +23366,7 @@
       "name": "Agent Pulse Skills",
       "url": "https://github.com/jane-o-o-o-o/agent-pulse-skills",
       "description": "Agent Pulse Skills: A modular toolkit for enhancing AI agent capabilities with specialized skills and pulse monitoring.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "agent-pulse-skills",
@@ -23401,7 +23401,7 @@
       "name": "Tapestry Skills For Claude Code",
       "url": "https://github.com/michalparkola/tapestry-skills-for-claude-code",
       "description": "Claude Code skills for downloading articles, PDFs, and YouTube transcripts.",
-      "category": "影片",
+      "category": "AI 框架",
       "language": "shell",
       "triggers": [
         "tapestry-skills-for-claude-code",
@@ -23472,7 +23472,7 @@
       "name": "Marketingskills",
       "url": "https://github.com/coreyhaines31/marketingskills",
       "description": "Marketing toolkit for AI agents covering CRO, SEO, copywriting, and analytics.",
-      "category": "行銷",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "marketing",
@@ -23511,7 +23511,7 @@
       "name": "Agent Toolkit",
       "url": "https://github.com/softaworks/agent-toolkit",
       "description": "Curated skills for AI coding agents to extend dev, docs, and planning workflows.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "agent-skills",
@@ -23983,7 +23983,7 @@
       "name": "Agents",
       "url": "https://github.com/elevenlabs/agents",
       "description": "ElevenLabs UI for building multimodal AI agents with shadcn/ui components.",
-      "category": "音訊",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "agents",
@@ -24027,7 +24027,7 @@
       "name": "Rigorpilot Skills",
       "url": "https://github.com/lllllllama/rigorpilot-skills",
       "description": "RigorPilot Skills: specialized AI agent capabilities for rigorous task execution and workflow automation.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "rigorpilot-skills",
@@ -24062,7 +24062,7 @@
       "name": "Skills (Qu Integration)",
       "url": "https://github.com/qu-skills/skills",
       "description": "Enables agents to access hundreds of apps and services via API skills.",
-      "category": "開發工具",
+      "category": "UI/UX設計",
       "language": "shell",
       "triggers": [
         "qu-integration-skills",
@@ -24096,7 +24096,7 @@
       "name": "Web Quality Skills",
       "url": "https://github.com/addyosmani/web-quality-skills",
       "description": "Optimize web quality using Lighthouse and Core Web Vitals via agent skills.",
-      "category": "測試與自動化",
+      "category": "AI 框架",
       "language": "shell",
       "triggers": [
         "web-quality-skills",
@@ -24137,7 +24137,7 @@
       "name": "Agent Skills (Convex)",
       "url": "https://github.com/get-convex/agent-skills",
       "description": "Convex skills library for building AI agents with reusable capabilities.",
-      "category": "資料庫",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "convex-agent-skills",
@@ -24172,7 +24172,7 @@
       "name": "Skills (Agentspace Manager)",
       "url": "https://github.com/agentspace-so/skills",
       "description": "Manage and organize agent skills for enhanced capability.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "shell",
       "triggers": [
         "agentspace-skill-manager",
@@ -24218,7 +24218,7 @@
       "name": "GitHub Copilot For Azure",
       "url": "https://github.com/microsoft/GitHub-Copilot-for-Azure",
       "description": "AI-powered coding assistant for Azure development, enabling intelligent code completion and generation.",
-      "category": "基礎設施",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "github-copilot-for-azure",
@@ -24467,7 +24467,7 @@
       "name": "Skills (ElevenLabs Voice)",
       "url": "https://github.com/elevenlabs/skills",
       "description": "Open-source skills for integrating ElevenLabs voice AI into agents.",
-      "category": "音訊",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "elevenlabs",
@@ -24508,7 +24508,7 @@
       "name": "Skills (Browser Act)",
       "url": "https://github.com/browser-act/skills",
       "description": "Browser automation CLI for AI agents with anti-bot bypass and parallel execution.",
-      "category": "基礎設施",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "browser-automation",
@@ -24582,7 +24582,7 @@
       "name": "Skills (DoAny ComfyUI)",
       "url": "https://github.com/doany-ai/skills",
       "description": "Mirror of RunComfy agent skills for ComfyUI workflow automation.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "other",
       "triggers": [
         "doany-comfyui-skills",
@@ -24616,7 +24616,7 @@
       "name": "NotebookLM Antigravity Skill",
       "url": "https://github.com/JunSuzuki1973/notebooklm-antigravity-skill",
       "description": "Agent skill integrating Google NotebookLM via CLI for notebooks, podcasts, research, and queries.",
-      "category": "知識管理",
+      "category": "AI 代理",
       "language": "shell",
       "triggers": [
         "notebooklm-antigravity-skill",
@@ -24670,7 +24670,7 @@
       "name": "Img2threejs",
       "url": "https://github.com/img2threejs/img2threejs",
       "description": "Convert reference images into procedural, animation-ready Three.js 3D models with quality gating.",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "python",
       "triggers": [
         "img2threejs",
@@ -24716,7 +24716,7 @@
       "name": "Wayfinder",
       "url": "https://github.com/mattpocock/skills/blob/main/skills/engineering/wayfinder/SKILL.md",
       "description": "Plan large-scale work as investigation tickets on your issue tracker, mapping the path from idea to execution.",
-      "category": "AI 代理",
+      "category": "研究",
       "language": "shell",
       "triggers": [
         "wayfinder",
@@ -24813,7 +24813,7 @@
       "name": "Open Higgsfield AI",
       "url": "https://github.com/Autom8AI/Open-Higgsfield-AI",
       "description": "Self-hosted open-source AI image & video generation platform with 20+ models including Flux and SDXL.",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "python",
       "triggers": [
         "open-higgsfield-ai",
@@ -24860,7 +24860,7 @@
       "name": "Shepherd",
       "url": "https://github.com/shepherd-agents/shepherd",
       "description": "Reversible execution substrate enabling meta-agents to observe, fork, replay, and train LLM agents.",
-      "category": "基礎設施",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "shepherd",
@@ -24945,7 +24945,7 @@
       "name": "Hy3",
       "url": "https://github.com/Tencent-Hunyuan/Hy3",
       "description": "Tencent Hunyuan's 295B MoE reasoning model with strong agentic capabilities and cost-efficient inference.",
-      "category": "AI 框架",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "hy3",
@@ -25080,7 +25080,7 @@
       "name": "GLM 5",
       "url": "https://github.com/zai-org/GLM-5",
       "description": "Z.ai's agentic coding model for autonomous multi-step development workflows.",
-      "category": "AI 框架",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "glm-5",
@@ -25125,7 +25125,7 @@
       "name": "Step 3.7 Flash",
       "url": "https://github.com/stepfun-ai/Step-3.7-Flash",
       "description": "High-efficiency Flash model optimized for fast, cost-effective production agentic workflows.",
-      "category": "AI 框架",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "step-3.7-flash",
@@ -25165,7 +25165,7 @@
       "name": "PPT Agent Skills",
       "url": "https://github.com/sunbigfly/ppt-agent-skills",
       "description": "Multi-agent framework for code-driven PPTX generation from HTML, enabling programmatic slide creation.",
-      "category": "文件生產力",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "ppt-agent-skills",
@@ -25211,7 +25211,7 @@
       "name": "GPT API Free",
       "url": "https://github.com/chatanywhere/GPT_API_free",
       "description": "Free and paid access to GPT, DeepSeek, Claude, and more via OpenAI-compatible API endpoints. No SDK installation required — simply configure your app's API base URL and key.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "gpt-api-free",
@@ -25255,7 +25255,7 @@
       "name": "PandasAI",
       "url": "https://github.com/sinaptik-ai/pandas-ai",
       "description": "Conversational AI agent interface for pandas and polars dataframes using natural language.",
-      "category": "數據分析",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "pandas-ai",
@@ -25295,7 +25295,7 @@
       "name": "DuckDB",
       "url": "https://github.com/duckdb/duckdb",
       "description": "High-performance in-process SQL OLAP database management system for analytical queries.",
-      "category": "數據分析",
+      "category": "資料庫",
       "language": "python",
       "triggers": [
         "duckdb",
@@ -25455,7 +25455,7 @@
       "name": "shadcn/ui",
       "url": "https://github.com/shadcn-ui/ui",
       "description": "Beautifully designed accessible UI component system copied directly into React and Tailwind codebases.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "shadcn-ui",
@@ -25495,7 +25495,7 @@
       "name": "Storybook",
       "url": "https://github.com/storybookjs/storybook",
       "description": "Frontend workshop environment for building, testing, and documenting isolated UI components.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "storybook",
@@ -25534,7 +25534,7 @@
       "name": "tldraw",
       "url": "https://github.com/tldraw/tldraw",
       "description": "Infinite canvas graphics library for visual UI wireframing, web design sketching, and Generative UI.",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "tldraw",
@@ -25615,7 +25615,7 @@
       "name": "OpenSCAD",
       "url": "https://github.com/openscad/openscad",
       "description": "Programmatic script-based 3D CAD modeler for parametric mechanical parts and 3D printing.",
-      "category": "3D工程繪圖",
+      "category": "瀏覽器自動化",
       "language": "c++",
       "triggers": [
         "openscad",
@@ -25857,7 +25857,7 @@
       "name": "awesome-claude-skills",
       "url": "https://github.com/ComposioHQ/awesome-claude-skills",
       "description": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "awesome-claude-skills",
@@ -25898,7 +25898,7 @@
       "name": "ktransformers",
       "url": "https://github.com/kvcache-ai/ktransformers",
       "description": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "ktransformers",
@@ -25930,7 +25930,7 @@
       "name": "daily_stock_analysis",
       "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
       "description": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-f",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "daily-stock-analysis",
@@ -25971,7 +25971,7 @@
       "name": "Kimi K3 Code Free Desktop AI",
       "url": "https://github.com/kimik3free/Kimi-K3-Code-Free-Desktop-AI",
       "description": "Incomplete frontend demo; README claims desktop AI client but actual code lacks backend, desktop shell, sandbox, and working API. Not suitable for agent tool library.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "kimi k3",
@@ -26005,7 +26005,7 @@
       "name": "OpenCodex",
       "url": "https://github.com/lidge-jun/opencodex",
       "description": "Local gateway proxying 40+ LLM providers with unified APIs, OAuth pooling, and multi-agent support.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "opencodex",
@@ -26213,7 +26213,7 @@
       "name": "Data To Html",
       "url": "https://github.com/eriksvedang/data-to-html",
       "description": "Convert clojure data to html",
-      "category": "其他",
+      "category": "開發工具",
       "language": "clojure",
       "triggers": [
         "data-to-html",
@@ -26243,7 +26243,7 @@
       "name": "ExcelToHtml",
       "url": "https://github.com/kotynia/ExcelToHtml",
       "description": "Excel To HTML Library and Console Application",
-      "category": "文件生產力",
+      "category": "開發工具",
       "language": "c#",
       "triggers": [
         "exceltohtml",
@@ -26282,7 +26282,7 @@
       "name": "Excel To Html",
       "url": "https://github.com/shseam13/excel-to-html",
       "description": "This software can take input from raw excel file and c generate custom html document.",
-      "category": "文件生產力",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "excel-to-html",
@@ -26312,7 +26312,7 @@
       "name": "XlsxToHtmlConverter",
       "url": "https://github.com/Fei-Sheng-Wu/XlsxToHtmlConverter",
       "description": "A fast, versatile, and powerful XLSX to HTML converter. Support an extensive scope of cell stylings and additional elements. Empower the efficient transformation of spreadsheets into well-structured web documents. Provide the ability to easily customize every aspect of the conversion process with progress callbacks. Only depend on the Open XML SDK.",
-      "category": "文件生產力",
+      "category": "API 整合",
       "language": "c#",
       "triggers": [
         "xlsxtohtmlconverter",
@@ -26353,7 +26353,7 @@
       "name": "Obsidian Skills",
       "url": "https://github.com/kepano/obsidian-skills",
       "description": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
-      "category": "開發工具",
+      "category": "UI/UX設計",
       "language": "other",
       "triggers": [
         "obsidian-skills",
@@ -26422,7 +26422,7 @@
       "name": "Claude Obsidian",
       "url": "https://github.com/AgriciDaniel/claude-obsidian",
       "description": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
-      "category": "知識管理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "claude-obsidian",
@@ -26541,7 +26541,7 @@
       "name": "Premium Frontend UI Skill",
       "url": "https://github.com/github/awesome-copilot/blob/main/skills/premium-frontend-ui/SKILL.md",
       "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "skill.md",
@@ -26586,7 +26586,7 @@
       "name": "Seedance 2.0",
       "url": "https://github.com/Emily2040/seedance-2.0",
       "description": "Comprehensive production pipeline for quad-modal AI filmmaking with Seedance 2.0",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "seedance-2.0",
@@ -26618,7 +26618,7 @@
       "name": "Seedance2 Skill",
       "url": "https://github.com/dexhunter/seedance2-skill",
       "description": "skill to create best prompts for generating videos with seedance2.0",
-      "category": "開發工具",
+      "category": "影片",
       "language": "other",
       "triggers": [
         "seedance2-skill",
@@ -26659,7 +26659,7 @@
       "name": "Remotion",
       "url": "https://github.com/remotion-dev/remotion",
       "description": "🎥      Make videos programmatically with React",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "typescript",
       "triggers": [
         "remotion",
@@ -26696,7 +26696,7 @@
       "name": "Opencv",
       "url": "https://github.com/opencv/opencv",
       "description": "Open Source Computer Vision Library",
-      "category": "AI 框架",
+      "category": "開發工具",
       "language": "c++",
       "triggers": [
         "opencv",
@@ -26779,7 +26779,7 @@
       "name": "Ffmpeg",
       "url": "https://github.com/ffmpeg/ffmpeg",
       "description": "Mirror of https://git.ffmpeg.org/ffmpeg.git",
-      "category": "音訊",
+      "category": "影片",
       "language": "c",
       "triggers": [
         "ffmpeg",
@@ -26822,7 +26822,7 @@
       "name": "Pdf2md Agent Skill",
       "url": "https://github.com/taotaoboom/pdf2md-agent-skill",
       "description": "让 LLM agent 高效读懂任何文档：PDF/Word/PPT/Excel 转 Markdown，PDF 智能分流（文本页 PyMuPDF + 公式页/扫描页视觉 OCR）",
-      "category": "文件生產力",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "pdf2md-agent-skill",
@@ -26865,7 +26865,7 @@
       "name": "Exercises Dataset",
       "url": "https://github.com/hasaneyldrm/exercises-dataset",
       "description": "1,324-exercise fitness dataset — animation GIFs, 180×180 thumbnails, muscle-group & equipment data, and step-by-step instructions in 6 languages. The exercise data layer behind the LogPress app.",
-      "category": "資料庫",
+      "category": "影片",
       "language": "html",
       "triggers": [
         "exercises-dataset",
@@ -26908,7 +26908,7 @@
       "name": "Ai Agent Book",
       "url": "https://github.com/bojieli/ai-agent-book",
       "description": "《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码",
-      "category": "文件生產力",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "ai-agent-book",
@@ -26983,7 +26983,7 @@
       "name": "Claude Opus 5.Md",
       "url": "https://github.com/asgeirtj/system_prompts_leaks/blob/main/Anthropic/claude-opus-5.md",
       "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 4.8, Claude Code, Claude Design. OpenAI - ChatGPT GPT-5.6, Codex GPT-5.6, GPT-5.5. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "claude-opus-5.md",
@@ -27028,7 +27028,7 @@
       "name": "Opus 5.Md",
       "url": "https://github.com/Eversmile12/leaked-llm-prompts/blob/main/Anthropic/opus-5.md",
       "description": "collections-of-leaked-prompts",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "other",
       "triggers": [
         "opus-5.md",
@@ -27062,7 +27062,7 @@
       "name": "System_prompts_leaks",
       "url": "https://github.com/asgeirtj/system_prompts_leaks",
       "description": "Extracted system prompts from Anthropic - Claude Fable 5, Opus 5, Claude Design, Claude Code. OpenAI - ChatGPT GPT-5.6-Sol, Codex. Google - Gemini 3.5 Flash, 3.1 Pro, Antigravity. xAI - Grok, Cursor, Copilot, VS Code, Perplexity, and more. Updated regularly.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "system_prompts_leaks",
@@ -27152,7 +27152,7 @@
       "name": "Claude System Prompt",
       "url": "https://github.com/zep-us/claude-system-prompt",
       "description": "Reverse-engineered system prompts from Claude (claude.ai) and Claude Code CLI, validated against Anthropic's officially published prompts. ",
-      "category": "安全性",
+      "category": "AI 框架",
       "language": "html",
       "triggers": [
         "claude-system-prompt",
@@ -27195,7 +27195,7 @@
       "name": "I Have Adhd",
       "url": "https://github.com/ayghri/i-have-adhd",
       "description": "A skill for your coding agent to stop it from burying the answer. ADHD-friendly output.",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "i-have-adhd",
@@ -27281,7 +27281,7 @@
       "name": "Homepage",
       "url": "https://github.com/phosphor-icons/homepage",
       "description": "The homepage of Phosphor Icons, a flexible icon family for everyone",
-      "category": "其他",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "homepage",
@@ -27322,7 +27322,7 @@
       "name": "Remixicon",
       "url": "https://github.com/Remix-Design/remixicon",
       "description": "Open source neutral style icon system",
-      "category": "其他",
+      "category": "開發工具",
       "language": "less",
       "triggers": [
         "remixicon",
@@ -27361,7 +27361,7 @@
       "name": "Iconoir",
       "url": "https://github.com/iconoir-icons/iconoir",
       "description": "An open source icons library with 1600+ icons, supporting React, React Native, Flutter, Vue, Figma, and Framer.",
-      "category": "其他",
+      "category": "圖標與視覺資源",
       "language": "typescript",
       "triggers": [
         "iconoir",
@@ -27404,7 +27404,7 @@
       "name": "Pi Web",
       "url": "https://github.com/agegr/pi-web",
       "description": "Web UI for the pi coding agent",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "pi-web",
@@ -27435,7 +27435,7 @@
       "name": "Hugging Multi Agent",
       "url": "https://github.com/datawhalechina/hugging-multi-agent",
       "description": "A tutorial based on MetaGPT to quickly help you understand the concept of agent and muti-agent and get started with coding development. 基于MetaGPT的多智能体入门与开发教程",
-      "category": "學習資源",
+      "category": "AI 代理",
       "language": "css",
       "triggers": [
         "hugging-multi-agent",
@@ -27468,7 +27468,7 @@
       "name": "Lucide",
       "url": "https://github.com/lucide-icons/lucide",
       "description": "Beautiful & consistent icon toolkit made by the community. Open-source project and a fork of Feather Icons.",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "typescript",
       "triggers": [
         "lucide",
@@ -27511,7 +27511,7 @@
       "name": "Text To Cad",
       "url": "https://github.com/earthtojake/text-to-cad",
       "description": "A collection of agent skills for CAD, robotics and hardware design",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "text-to-cad",
@@ -27554,7 +27554,7 @@
       "name": "Bootstrap Icons",
       "url": "https://github.com/uiwjs/bootstrap-icons",
       "description": "Official open source SVG icon library for Bootstrap.",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "other",
       "triggers": [
         "bootstrap-icons",
@@ -27596,7 +27596,7 @@
       "name": "Tabler Icons",
       "url": "https://github.com/tabler/tabler-icons",
       "description": "A set of over 6000 free MIT-licensed high-quality SVG icons for you to use in your web projects.",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "javascript",
       "triggers": [
         "tabler-icons",
@@ -27639,7 +27639,7 @@
       "name": "Agents Course",
       "url": "https://github.com/huggingface/agents-course",
       "description": "This repository contains the Hugging Face Agents Course. ",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "mdx",
       "triggers": [
         "agents-course",
@@ -27714,7 +27714,7 @@
       "name": "Adhd",
       "url": "https://github.com/uditakhourii/adhd",
       "description": "ADHD — a skill for coding agents. Tree-of-thought with pruning, built on the Claude & Codex Agent SDK. Fans out parallel divergent thoughts under different cognitive frames, scores, prunes traps, deepens the survivors. The no-brainer skill for creative and interdisciplinary work.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "adhd",
@@ -27757,7 +27757,7 @@
       "name": "Heroicons",
       "url": "https://github.com/tailwindlabs/heroicons",
       "description": "A set of free MIT-licensed high-quality SVG icons for UI development.",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "javascript",
       "triggers": [
         "heroicons",
@@ -27789,7 +27789,7 @@
       "name": "Icons",
       "url": "https://github.com/radix-ui/icons",
       "description": "A crisp set of 15×15 icons designed by the @workos team.",
-      "category": "其他",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "icons",
@@ -27829,7 +27829,7 @@
       "name": "Ant Design Icons",
       "url": "https://github.com/ant-design/ant-design-icons",
       "description": "⭐ Ant Design SVG Icons",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "ant-design-icons",
@@ -27872,7 +27872,7 @@
       "name": "Polybar Themes",
       "url": "https://github.com/adi1090x/polybar-themes",
       "description": "A huge collection of polybar themes with different styles, colors and variants.",
-      "category": "其他",
+      "category": "開發工具",
       "language": "shell",
       "triggers": [
         "polybar-themes",
@@ -27915,7 +27915,7 @@
       "name": "Welovesvg",
       "url": "https://github.com/icons8/welovesvg",
       "description": "SVG sets compilation for popular iconic projects ",
-      "category": "其他",
+      "category": "圖標與視覺資源",
       "language": "other",
       "triggers": [
         "welovesvg",
@@ -27952,7 +27952,7 @@
       "name": "Polaris React",
       "url": "https://github.com/shopify/polaris-react",
       "description": "Shopify's Polaris Design System - React implementation (Deprecated)",
-      "category": "設計",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "polaris-react",
@@ -27995,7 +27995,7 @@
       "name": "Iconify",
       "url": "https://github.com/iconify/iconify",
       "description": "Universal icon framework. One syntax for FontAwesome, Material Design Icons, DashIcons, Feather Icons, EmojiOne, Noto Emoji and many other open source icon sets (over 200 icon sets and ~300k icons). SVG framework, React, Vue and Svelte components!",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "typescript",
       "triggers": [
         "iconify",
@@ -28037,7 +28037,7 @@
       "name": "Font Awesome",
       "url": "https://github.com/FortAwesome/Font-Awesome",
       "description": "The iconic SVG, font, and CSS toolkit",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "javascript",
       "triggers": [
         "font-awesome",
@@ -28080,7 +28080,7 @@
       "name": "Material Design Icons",
       "url": "https://github.com/google/material-design-icons",
       "description": "Material Design icons by Google (Material Symbols)",
-      "category": "設計",
+      "category": "開發工具",
       "language": "other",
       "triggers": [
         "material-design-icons",
@@ -28123,7 +28123,7 @@
       "name": "Fluentui System Icons",
       "url": "https://github.com/microsoft/fluentui-system-icons",
       "description": "Fluent System Icons are a collection of familiar, friendly and modern icons from Microsoft.",
-      "category": "設計",
+      "category": "開發工具",
       "language": "html",
       "triggers": [
         "fluentui-system-icons",
@@ -28166,7 +28166,7 @@
       "name": "SFSafeSymbols",
       "url": "https://github.com/SFSafeSymbols/SFSafeSymbols",
       "description": "Safely access Apple's SF Symbols using static typing",
-      "category": "其他",
+      "category": "圖標與視覺資源",
       "language": "swift",
       "triggers": [
         "sfsafesymbols",
@@ -28207,7 +28207,7 @@
       "name": "Simple Icons",
       "url": "https://github.com/simple-icons/simple-icons",
       "description": "SVG icons for popular brands",
-      "category": "設計",
+      "category": "圖標與視覺資源",
       "language": "javascript",
       "triggers": [
         "simple-icons",
@@ -28250,7 +28250,7 @@
       "name": "AgnesCode (AgnesAI-Labs)",
       "url": "https://github.com/AgnesAI-Labs/AgnesCode",
       "description": "Open-source AI coding agent for code generation, debugging, and project management via terminal.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "agnescode",
@@ -28292,7 +28292,7 @@
       "name": "Agnescode (ViviQuan)",
       "url": "https://github.com/ViviQuan/agnescode",
       "description": "Terminal AI coding agent with free multimodal API for code writing and debugging.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "agnescode",
@@ -28335,7 +28335,7 @@
       "name": "Firecrawl Cli Skills",
       "url": "https://github.com/firecrawl/firecrawl/tree/main/firecrawl-cli-skills",
       "description": "Firecrawl CLI Skills 擴充套件，支援 AI 代理整合 Firecrawl 網頁抓取能力",
-      "category": "瀏覽器自動化",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "firecrawl-cli-skills",
@@ -28375,7 +28375,7 @@
       "name": "Firecrawl Skills",
       "url": "https://github.com/firecrawl/firecrawl/tree/main/firecrawl-skills",
       "description": "Firecrawl AI Web Scraping Skills 集合，提供 LLM 友善的網頁擷取與轉 Markdown 技能",
-      "category": "瀏覽器自動化",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "firecrawl-skills",
@@ -28415,7 +28415,7 @@
       "name": "Crawl4AI",
       "url": "https://github.com/unclecode/crawl4AI",
       "description": "開源 LLM 友善之網頁爬蟲與資料擷取框架，支援 RAG 與 AI Agent",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "crawl4ai",
@@ -28489,7 +28489,7 @@
       "name": "Crawlee",
       "url": "https://github.com/apify/crawlee",
       "description": "Node.js 高可靠度網頁爬蟲與瀏覽器自動化庫，支援 Puppeteer, Playwright 與 HTTP",
-      "category": "瀏覽器自動化",
+      "category": "測試與自動化",
       "language": "typescript",
       "triggers": [
         "crawlee",
@@ -28527,7 +28527,7 @@
       "name": "Scrapy",
       "url": "https://github.com/scrapy/scrapy",
       "description": "Python 高效能非同步網頁爬蟲與資料擷取框架",
-      "category": "瀏覽器自動化",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "scrapy",
@@ -28565,7 +28565,7 @@
       "name": "Llmsherpa",
       "url": "https://github.com/nlmatics/llmsherpa",
       "description": "LLM Sherpa 研發者 API，提供 Layout-aware 複雜 PDF / 文檔結構化解析",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "jupyter notebook",
       "triggers": [
         "llmsherpa",
@@ -28601,7 +28601,7 @@
       "name": "BeautifulSoup4",
       "url": "https://github.com/wention/BeautifulSoup4",
       "description": "Python 經典 HTML / XML 標籤解析與 DOM 樹導航函式庫",
-      "category": "其他",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "beautifulsoup4",
@@ -28637,7 +28637,7 @@
       "name": "Splash",
       "url": "https://github.com/scrapinghub/splash",
       "description": "基於 WebKit 之輕量級腳本化 Headless 瀏覽器服務，提供 HTTP API",
-      "category": "其他",
+      "category": "瀏覽器自動化",
       "language": "python",
       "triggers": [
         "splash",
@@ -28673,7 +28673,7 @@
       "name": "DeepSpec",
       "url": "https://github.com/deepseek-ai/DeepSpec",
       "description": "DeepSeek 開源的全棧推測解碼（Speculative Decoding）演算法訓練與評估框架",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "deepspec",
@@ -28737,7 +28737,7 @@
       "name": "Aisuite",
       "url": "https://github.com/andrewyng/aisuite",
       "description": "Andrew Ng 團隊開發的統一跨供應商（OpenAI, Anthropic, Gemini 等）生成式 AI 調用 SDK",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "aisuite",
@@ -28769,7 +28769,7 @@
       "name": "Context Hub",
       "url": "https://github.com/andrewyng/context-hub",
       "description": "Andrew Ng 團隊打造的 AI Agent 上下文與文檔/程式碼庫動態打包與檢索 Hub (chub)",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "context-hub",
@@ -28802,7 +28802,7 @@
       "name": "Context Hub Skill",
       "url": "https://github.com/andrewyng/context-hub-skill",
       "description": "專為 AI Agent 設計的 Context Hub (chub) 整合技能外掛",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "other",
       "triggers": [
         "context-hub-skill",
@@ -28834,7 +28834,7 @@
       "name": "Translation Agent",
       "url": "https://github.com/andrewyng/translation-agent",
       "description": "Andrew Ng 提出基於 LLM 反思機制（Reflection Workflow）的高品質多語言翻譯 Agent",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "translation-agent",
@@ -28866,7 +28866,7 @@
       "name": "OptMem",
       "url": "https://github.com/VictorTaelin/OptMem",
       "description": "Victor Taelin 開源的 AI Agent 永續記憶體（Permanent Memory）輕量外掛機制",
-      "category": "知識管理",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "optmem",
@@ -28898,7 +28898,7 @@
       "name": "Codex Security",
       "url": "https://github.com/openai/codex-security",
       "description": "OpenAI 開源的 AI 程式碼安全性掃描、漏洞檢測與修復 CLI 及 TypeScript SDK",
-      "category": "安全性",
+      "category": "API 整合",
       "language": "typescript",
       "triggers": [
         "codex-security",
@@ -28937,7 +28937,7 @@
       "name": "LangGraph",
       "url": "https://github.com/langchain-ai/langgraph",
       "description": "LangChain 團隊開發的圖狀（Graph-based）狀態化多 Agent 協同與循環工作流框架",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "langgraph",
@@ -28976,7 +28976,7 @@
       "name": "Buzz",
       "url": "https://github.com/chidiwilliams/buzz",
       "description": "Offline audio transcription and translation desktop app powered by OpenAI Whisper, supporting speaker identification and 1000+ languages.",
-      "category": "多媒體生成",
+      "category": "音訊",
       "language": "python",
       "triggers": [
         "transcription",
@@ -29022,7 +29022,7 @@
       "name": "Ego Lite",
       "url": "https://github.com/citrolabs/ego-lite",
       "description": "Chromium-based browser for AI agents to run web automation in isolated spaces, sharing logged-in browser state without disturbing the user.",
-      "category": "瀏覽器自動化",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "browser automation",
@@ -29066,7 +29066,7 @@
       "name": "Open Code Review",
       "url": "https://github.com/alibaba/open-code-review",
       "description": "Alibaba's open-source AI code review CLI (ocr) combining deterministic pipelines and LLM agents for precise line-level comments, battle-tested at scale.",
-      "category": "測試與自動化",
+      "category": "UI/UX設計",
       "language": "go",
       "triggers": [
         "code review",
@@ -29115,7 +29115,7 @@
       "name": "AI Agents for Beginners",
       "url": "https://github.com/microsoft/ai-agents-for-beginners",
       "description": "Microsoft's 18-lesson open-source course covering AI agent fundamentals, design patterns, frameworks, and production deployment.",
-      "category": "學習資源",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "ai agents",
@@ -29161,7 +29161,7 @@
       "name": "Awesome Claude Code Subagents",
       "url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
       "description": "A curated collection of 100+ specialized Claude Code subagents covering backend, frontend, security, data, research, and more development tasks.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "markdown",
       "triggers": [
         "claude code",
@@ -29206,7 +29206,7 @@
       "name": "Claude Code Debug Mode",
       "url": "https://github.com/doraemonkeys/claude-code-debug-mode",
       "description": "Hypothesis-driven debugging skill for Claude Code, Codex, and Gemini CLI that instruments runtime logs and iteratively narrows root causes.",
-      "category": "測試與自動化",
+      "category": "AI 框架",
       "language": "markdown",
       "triggers": [
         "debug",
@@ -29250,7 +29250,7 @@
       "name": "Claude Plugins Official",
       "url": "https://github.com/anthropics/claude-plugins-official",
       "description": "Anthropic-managed official directory of high-quality Claude Code plugins including skills, commands, agents, hooks, and MCP servers.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "markdown",
       "triggers": [
         "claude plugins",
@@ -29294,7 +29294,7 @@
       "name": "Executor",
       "url": "https://github.com/UsefulSoftwareCo/executor",
       "description": "Missing integration layer for AI agents to call any OpenAPI, MCP, GraphQL, or custom JS functions in a secure, unified environment.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "executor",
@@ -29341,7 +29341,7 @@
       "name": "How They Test",
       "url": "https://github.com/abhivaikar/howtheytest",
       "description": "Curated collection of public resources on how leading software companies like Amazon, Airbnb, and Apple test their software and build quality culture.",
-      "category": "學習資源",
+      "category": "知識管理",
       "language": "markdown",
       "triggers": [
         "testing",
@@ -29385,7 +29385,7 @@
       "name": "Code Review Skill",
       "url": "https://github.com/awesome-skills/code-review-skill",
       "description": "Production-ready Agent Skill for structured, expert-level code review covering React 19, Vue 3, Rust, TypeScript, TanStack Query v5, and more.",
-      "category": "測試與自動化",
+      "category": "AI 代理",
       "language": "markdown",
       "triggers": [
         "code review",
@@ -29429,7 +29429,7 @@
       "name": "First Principles Skill",
       "url": "https://github.com/awesome-skills/first-principles-skill",
       "description": "Claude Code Agent Skill for systematic first principles thinking: decompose complex problems to fundamental truths and avoid analogical reasoning traps.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "markdown",
       "triggers": [
         "first principles",
@@ -29513,7 +29513,7 @@
       "name": "Mermaid Syntax Skill",
       "url": "https://github.com/awesome-skills/mermaid-syntax-skill",
       "description": "Claude Code Agent Skill for generating error-free Mermaid v11 diagrams, preventing common syntax errors with special characters, reserved words, and escaping rules.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "markdown",
       "triggers": [
         "mermaid",
@@ -29557,7 +29557,7 @@
       "name": "Agent Skills Manager",
       "url": "https://github.com/awesome-skills/agent-skills-manager",
       "description": "Agent Skill for managing a unified skills directory across multiple AI coding agents (Claude Code, Codex, Pi, OpenCode, Hermes) via symlinks.",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "shell",
       "triggers": [
         "skills manager",
@@ -29600,7 +29600,7 @@
       "name": "ReactPHP Filesystem",
       "url": "https://github.com/reactphp/filesystem",
       "description": "Evented, non-blocking filesystem access for PHP built on ReactPHP event loop, enabling async file read/write/stat operations.",
-      "category": "基礎設施",
+      "category": "開發工具",
       "language": "php",
       "triggers": [
         "reactphp",
@@ -29647,7 +29647,7 @@
       "name": "Sequential Thinking Skill",
       "url": "https://github.com/thedotmack/sequential-thinking-skill",
       "description": "Claude Code skill replicating the Sequential Thinking MCP server with branching, revision, dynamic depth, and persistent disk state — no MCP server required.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "sequential thinking",
@@ -29696,7 +29696,7 @@
       "name": "Appkit",
       "url": "https://github.com/reown-com/appkit",
       "description": "Open-source toolkit for integrating wallet connectivity and on-chain UX into web and mobile applications.",
-      "category": "API 整合",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "appkit",
@@ -29739,7 +29739,7 @@
       "name": "TencentDB Agent Memory",
       "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
       "description": "Team-level memory hub for AI agents, converting conversations, docs, and code into reusable memory assets.",
-      "category": "知識管理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "tencentdb-agent-memory",
@@ -29784,7 +29784,7 @@
       "name": "React D3 Tree",
       "url": "https://github.com/bkrem/react-d3-tree",
       "description": "React component for building interactive D3-powered tree and hierarchy visualizations with customizable layouts.",
-      "category": "其他",
+      "category": "開發工具",
       "language": "javascript",
       "triggers": [
         "react-d3-tree",
@@ -29830,7 +29830,7 @@
       "name": "Awesome Systematic Trading",
       "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
       "description": "Curated GitHub list of libraries, strategies, books, and tutorials for systematic and algorithmic trading.",
-      "category": "研究",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "awesome-systematic-trading",
@@ -29913,7 +29913,7 @@
       "name": "Ai For Beginners",
       "url": "https://github.com/microsoft/ai-for-beginners",
       "description": "Free 12-week AI course with 24 lessons covering fundamentals to deep learning and computer vision.",
-      "category": "基礎設施",
+      "category": "學習資源",
       "language": "jupyter notebook",
       "triggers": [
         "ai-for-beginners",
@@ -29956,7 +29956,7 @@
       "name": "Kaneo",
       "url": "https://github.com/usekaneo/kaneo",
       "description": "Open source project management and issue tracker — a lightweight, self-hosted Jira alternative for agile teams.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "kaneo",
@@ -30002,7 +30002,7 @@
       "name": "Jcode",
       "url": "https://github.com/1jehuang/jcode",
       "description": "Lightweight AI coding agent harness optimized for minimal RAM usage with Claude and LLM support.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "rust",
       "triggers": [
         "jcode",
@@ -30046,7 +30046,7 @@
       "name": "Evolver",
       "url": "https://github.com/EvoMap/evolver",
       "description": "Self-evolving AI agent framework with auditable evolution via genes, capsules, and events.",
-      "category": "知識管理",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "evolver",
@@ -30087,7 +30087,7 @@
       "name": "Ai Engineering From Scratch Zh",
       "url": "https://github.com/fancyboi999/ai-engineering-from-scratch-zh",
       "description": "Comprehensive Chinese-language AI engineering course covering 20 stages and 503 lessons with animated video explanations.",
-      "category": "多媒體生成",
+      "category": "UI/UX設計",
       "language": "python",
       "triggers": [
         "ai-engineering-from-scratch-zh",
@@ -30132,7 +30132,7 @@
       "name": "Ontology",
       "url": "https://github.com/ontio/ontology",
       "description": "Official Go implementation of the Ontology blockchain protocol, enabling high-performance distributed ledger development.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "go",
       "triggers": [
         "ontology",
@@ -30172,7 +30172,7 @@
       "name": "Oh My Hermes",
       "url": "https://github.com/witt3rd/oh-my-hermes",
       "description": "Multi-agent orchestration framework for Hermes Agent, enabling collaborative AI workflows and skill management.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "oh-my-hermes",
@@ -30206,7 +30206,7 @@
       "name": "Oh My Hermes",
       "url": "https://github.com/Salomondiei08/oh-my-hermes",
       "description": "Opinionated workflow framework for building, deploying, and managing applications with Hermes Agent.",
-      "category": "開發工具",
+      "category": "AI 代理",
       "language": "shell",
       "triggers": [
         "oh-my-hermes",
@@ -30240,7 +30240,7 @@
       "name": "Ui Ux Pro Max Skill Cn",
       "url": "https://github.com/bbylw/ui-ux-pro-max-skill-cn",
       "description": "中文本地化的 UI/UX Pro Max AI 设计技能库教程，帮助中文开发者快速掌握 AI 辅助设计能力。",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "html",
       "triggers": [
         "ui-ux-pro-max-skill-cn",
@@ -30312,7 +30312,7 @@
       "name": "Design Md Chrome",
       "url": "https://github.com/bergside/design-md-chrome",
       "description": "Chrome extension extracting website styles into DESIGN.md files for AI design workflows.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "design-md-chrome",
@@ -30357,7 +30357,7 @@
       "name": "Edge Tts",
       "url": "https://github.com/rany2/edge-tts",
       "description": "Python library for Microsoft Edge online text-to-speech without requiring Edge, Windows, or an API key.",
-      "category": "音訊",
+      "category": "API 整合",
       "language": "python",
       "triggers": [
         "edge-tts",
@@ -30436,7 +30436,7 @@
       "name": "OpenAI Edge TTS",
       "url": "https://github.com/travisvn/openai-edge-tts",
       "description": "OpenAI-compatible TTS service bridging Edge TTS with OpenAI API standards.",
-      "category": "AI 代理",
+      "category": "API 整合",
       "language": "python",
       "triggers": [
         "tts",
@@ -30465,7 +30465,7 @@
       "name": "Text2Video",
       "url": "https://github.com/bravekingzhang/text2video",
       "description": "AI-powered text-to-video generation tool that creates videos from textual descriptions.",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "python",
       "triggers": [
         "video",
@@ -30615,7 +30615,7 @@
       "name": "Supervision",
       "url": "https://github.com/roboflow/supervision",
       "description": "Python utility package for computer vision tasks including detection, tracking, and visualization.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "supervision",
@@ -30646,7 +30646,7 @@
       "name": "Next.js",
       "url": "https://github.com/vercel/next.js",
       "description": "React framework for building server-rendered and static web applications with built-in routing and API support.",
-      "category": "開發工具",
+      "category": "API 整合",
       "language": "typescript",
       "triggers": [
         "next",
@@ -30677,7 +30677,7 @@
       "name": "Tailwind CSS",
       "url": "https://github.com/tailwindlabs/tailwindcss",
       "description": "A utility-first CSS framework for rapid UI development",
-      "category": "設計",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "tailwind",
@@ -30707,7 +30707,7 @@
       "name": "Karpathy LLM Wiki",
       "url": "https://github.com/Astro-Han/karpathy-llm-wiki",
       "description": "Curated collection of LLM resources, tutorials, and research papers organized by Andrej Karpathy.",
-      "category": "學習資源",
+      "category": "AI 框架",
       "language": "markdown",
       "triggers": [
         "karpathy",
@@ -30766,7 +30766,7 @@
       "name": "Crm",
       "url": "https://github.com/trycompai/crm",
       "description": "Open-source agentic-first CRM for AI-driven customer relationship management.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "crm",
@@ -30799,7 +30799,7 @@
       "name": "generative-ai-for-beginners",
       "url": "https://github.com/microsoft/generative-ai-for-beginners",
       "description": "21 Lessons, Get Started Building with Generative AI ",
-      "category": "AI 代理",
+      "category": "多媒體生成",
       "language": "jupyter notebook",
       "triggers": [
         "generative-ai-for-beginners",
@@ -30839,7 +30839,7 @@
       "name": "cherry-studio",
       "url": "https://github.com/CherryHQ/cherry-studio",
       "description": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "cherry-studio",
@@ -30880,7 +30880,7 @@
       "name": "goose",
       "url": "https://github.com/aaif-goose/goose",
       "description": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "rust",
       "triggers": [
         "goose",
@@ -30917,7 +30917,7 @@
       "name": "sglang",
       "url": "https://github.com/sgl-project/sglang",
       "description": "SGLang is a high-performance serving framework for large language models and multimodal models.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "sglang",
@@ -30958,7 +30958,7 @@
       "name": "LlamaFactory",
       "url": "https://github.com/hiyouga/LlamaFactory",
       "description": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "llamafactory",
@@ -30998,7 +30998,7 @@
       "name": "qlib",
       "url": "https://github.com/microsoft/qlib",
       "description": "Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, incl",
-      "category": "AI 代理",
+      "category": "研究",
       "language": "python",
       "triggers": [
         "qlib",
@@ -31039,7 +31039,7 @@
       "name": "awesome-n8n-templates",
       "url": "https://github.com/enescingoz/awesome-n8n-templates",
       "description": "280+ free n8n automation templates — ready-to-use workflows for Gmail, Telegram, Slack, Discord, WhatsApp, Google Drive, Notion, OpenAI, and more. AI agents, RAG   chatbots, email automation, social m",
-      "category": "AI 代理",
+      "category": "UI/UX設計",
       "language": "unknown",
       "triggers": [
         "awesome-n8n-templates",
