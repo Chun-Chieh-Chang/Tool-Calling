@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T13:05:19.294Z",
+  "lastUpdated": "2026-08-05T13:11:27.842Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -30430,6 +30430,214 @@
         "Requires internet connection; cannot operate in offline or air-gapped environments",
         "Should not be used for generating copyrighted voice clones or impersonating specific individuals"
       ]
+    },
+    {
+      "id": "openai-edge-tts",
+      "name": "OpenAI Edge TTS",
+      "url": "https://github.com/travisvn/openai-edge-tts",
+      "description": "OpenAI-compatible TTS service bridging Edge TTS with OpenAI API standards.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "tts",
+        "text-to-speech",
+        "edge",
+        "openai",
+        "voice",
+        "audio-generation"
+      ],
+      "addedAt": "2026-08-05T13:07:13.958Z",
+      "status": "active",
+      "useCase": "Integrating text-to-speech into OpenAI-compatible applications without modifying existing API client code.",
+      "advantages": [
+        "Provides OpenAI API compatibility for Edge TTS voices",
+        "Enables access to Microsoft Edge's neural TTS voices",
+        "Maintains consistent API patterns with OpenAI's TTS endpoints"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time streaming TTS applications",
+        "Avoid for production systems requiring guaranteed SLA uptime",
+        "Not ideal for voice cloning or custom voice training needs"
+      ]
+    },
+    {
+      "id": "text2video",
+      "name": "Text2Video",
+      "url": "https://github.com/bravekingzhang/text2video",
+      "description": "AI-powered text-to-video generation tool that creates videos from textual descriptions.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "video",
+        "text2video",
+        "生成",
+        "text to video",
+        "AI video",
+        "video generation"
+      ],
+      "addedAt": "2026-08-05T13:07:13.958Z",
+      "status": "active",
+      "useCase": "A marketing team generates a product demo video from a written script without needing professional video production equipment.",
+      "advantages": [
+        "Generates video content directly from natural language descriptions",
+        "Reduces production time and cost compared to traditional video creation",
+        "Supports diverse visual styles and scene compositions"
+      ],
+      "negativeConstraints": [
+        "Not suitable for generating videos requiring precise real-world accuracy",
+        "Avoid for content needing frame-by-frame manual control",
+        "Not ideal for producing videos with specific licensed footage or copyrighted material"
+      ]
+    },
+    {
+      "id": "computer",
+      "name": "Computer (Cloudflare)",
+      "url": "https://github.com/cloudflare/computer",
+      "description": "AI agent framework for browser automation and task execution",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "computer",
+        "browser-automation",
+        "ai-agent",
+        "task-execution"
+      ],
+      "addedAt": "2026-08-05T13:11:36.234Z",
+      "status": "experimental"
+    },
+    {
+      "id": "loopx",
+      "name": "LoopX",
+      "url": "https://github.com/huangruiteng/loopx",
+      "description": "LoopX - A powerful loop-based automation tool",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "loopx",
+        "automation",
+        "loop",
+        "workflow"
+      ],
+      "addedAt": "2026-08-05T13:11:36.234Z",
+      "status": "experimental"
+    },
+    {
+      "id": "pdf-inspector",
+      "name": "PDF Inspector",
+      "url": "https://github.com/firecrawl/pdf-inspector",
+      "description": "PDF inspection and analysis tool with AI capabilities",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "pdf",
+        "inspection",
+        "analysis",
+        "firecrawl"
+      ],
+      "addedAt": "2026-08-05T13:11:36.234Z",
+      "status": "experimental"
+    },
+    {
+      "id": "deepseek-reasonix",
+      "name": "DeepSeek Reasonix",
+      "url": "https://github.com/esengine/DeepSeek-Reasonix",
+      "description": "DeepSeek Reasoning Engine - LLM reasoning optimization framework",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "deepseek",
+        "reasoning",
+        "llm",
+        "inference",
+        "optimize"
+      ],
+      "addedAt": "2026-08-05T13:11:46.668Z",
+      "status": "experimental"
+    },
+    {
+      "id": "supervision",
+      "name": "Supervision",
+      "url": "https://github.com/roboflow/supervision",
+      "description": "Roboflow Supervision - A new Python package that blurs the line between a utility package and a research repo",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "supervision",
+        "roboflow",
+        "computer-vision",
+        "detection",
+        "tracking"
+      ],
+      "addedAt": "2026-08-05T13:11:46.668Z",
+      "status": "experimental"
+    },
+    {
+      "id": "next.js",
+      "name": "Next.js",
+      "url": "https://github.com/vercel/next.js",
+      "description": "The React Framework for the Web",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "next",
+        "react",
+        "framework",
+        "ssr",
+        "server-components"
+      ],
+      "addedAt": "2026-08-05T13:11:46.668Z",
+      "status": "experimental"
+    },
+    {
+      "id": "tailwindcss",
+      "name": "Tailwind CSS",
+      "url": "https://github.com/tailwindlabs/tailwindcss",
+      "description": "A utility-first CSS framework for rapid UI development",
+      "category": "設計",
+      "language": "typescript",
+      "triggers": [
+        "tailwind",
+        "css",
+        "utility",
+        "styling",
+        "responsive"
+      ],
+      "addedAt": "2026-08-05T13:11:46.668Z",
+      "status": "experimental"
+    },
+    {
+      "id": "karpathy-llm-wiki",
+      "name": "Karpathy LLM Wiki",
+      "url": "https://github.com/Astro-Han/karpathy-llm-wiki",
+      "description": "Andrej Karpathy's LLM Wiki - Comprehensive resource for large language models",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "karpathy",
+        "llm",
+        "wiki",
+        "tutorial",
+        "learning"
+      ],
+      "addedAt": "2026-08-05T13:11:46.668Z",
+      "status": "experimental"
+    },
+    {
+      "id": "jetbrains-cc-gui",
+      "name": "JetBrains CC GUI",
+      "url": "https://github.com/zhukunpenglinyutong/jetbrains-cc-gui",
+      "description": "JetBrains Code Competency GUI - AI-powered code review and analysis tool",
+      "category": "開發工具",
+      "language": "java",
+      "triggers": [
+        "jetbrains",
+        "code-review",
+        "gui",
+        "ide",
+        "analysis"
+      ],
+      "addedAt": "2026-08-05T13:11:46.668Z",
+      "status": "experimental"
     }
   ]
 }
