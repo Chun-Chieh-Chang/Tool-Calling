@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T12:28:00.545Z",
+  "lastUpdated": "2026-08-05T13:04:40.504Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -29995,6 +29995,442 @@
         "Not suitable for enterprise-scale project management requiring complex workflow automation and deep integrations",
         "Not ideal for teams that require a fully managed SaaS solution without self-hosting overhead",
         "May lack advanced reporting and resource management features found in tools like Jira or Linear"
+      ]
+    },
+    {
+      "id": "jcode",
+      "name": "Jcode",
+      "url": "https://github.com/1jehuang/jcode",
+      "description": "Lightweight AI coding agent harness optimized for minimal RAM usage with Claude and LLM support.",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "jcode",
+        "ai-agent",
+        "ai-coding-agent",
+        "claude",
+        "cli",
+        "llm",
+        "coding-agent",
+        "ram-efficient",
+        "lightweight-ai"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/1jehuang/jcode",
+        "repoUrl": "https://github.com/1jehuang/jcode"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agent",
+        "ai-coding-agent",
+        "claude",
+        "cli"
+      ],
+      "addedAt": "2026-08-05T12:59:47.780Z",
+      "status": "active",
+      "useCase": "Running AI-assisted coding agents on resource-constrained machines or CI/CD pipelines where memory footprint matters.",
+      "advantages": [
+        "Minimal RAM consumption compared to other AI coding agent frameworks",
+        "CLI-native interface for seamless integration into terminal workflows",
+        "Supports Claude and other LLM backends for flexible AI coding assistance"
+      ],
+      "negativeConstraints": [
+        "Not suitable for GPU-accelerated or heavy model inference workloads",
+        "Avoid for production-grade multi-agent systems requiring complex orchestration",
+        "Not ideal for users who need a GUI-based IDE integration"
+      ]
+    },
+    {
+      "id": "evolver",
+      "name": "Evolver",
+      "url": "https://github.com/EvoMap/evolver",
+      "description": "Self-evolving AI agent framework with auditable evolution via genes, capsules, and events.",
+      "category": "知識管理",
+      "language": "javascript",
+      "triggers": [
+        "evolver",
+        "agent-evolution",
+        "ai-agent",
+        "auditable-ai",
+        "autonomous-agent",
+        "a2a"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx evolver",
+        "repoUrl": "https://github.com/EvoMap/evolver"
+      },
+      "capabilities": [
+        "a2a",
+        "agent-evolution",
+        "agent-framework",
+        "agent-protocol",
+        "ai-agent"
+      ],
+      "addedAt": "2026-08-05T12:59:48.595Z",
+      "status": "active",
+      "useCase": "Use when building AI agents that need to autonomously improve their capabilities over time while maintaining full auditability of evolutionary changes.",
+      "advantages": [
+        "Auditable evolution tracking via genes, capsules, and events",
+        "GEP-powered self-improvement for AI agents",
+        "Supports A2A protocol for agent interoperability"
+      ],
+      "negativeConstraints": [
+        "Not suitable for simple one-shot tasks without evolution needs",
+        "Avoid when full auditability of agent changes is not required",
+        "Not ideal for static agent deployments without self-improvement goals"
+      ]
+    },
+    {
+      "id": "ai-engineering-from-scratch-zh",
+      "name": "Ai Engineering From Scratch Zh",
+      "url": "https://github.com/fancyboi999/ai-engineering-from-scratch-zh",
+      "description": "Comprehensive Chinese-language AI engineering course covering 20 stages and 503 lessons with animated video explanations.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "ai-engineering-from-scratch-zh",
+        "agents",
+        "ai-agents",
+        "ai-engineering",
+        "ai",
+        "engineering",
+        "from",
+        "scratch",
+        "agent工程师",
+        "ai学习路径"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/fancyboi999/ai-engineering-from-scratch-zh",
+        "repoUrl": "https://github.com/fancyboi999/ai-engineering-from-scratch-zh"
+      },
+      "capabilities": [
+        "agents",
+        "ai",
+        "ai-agents",
+        "ai-engineering",
+        "chinese"
+      ],
+      "addedAt": "2026-08-05T12:59:49.443Z",
+      "status": "active",
+      "useCase": "A Chinese-speaking developer starting from zero who wants a structured, complete learning path to become an AI Agent engineer.",
+      "advantages": [
+        "Complete 20-stage curriculum with 503 lessons covering the full AI engineering learning path",
+        "Animated video explanations make complex concepts easier to understand",
+        "Full Chinese translation with a dedicated companion website for self-paced learning"
+      ],
+      "negativeConstraints": [
+        "Not suitable for users who prefer English-language learning materials",
+        "Not ideal for advanced practitioners seeking only cutting-edge research topics",
+        "Not appropriate for those looking for hands-on project-based tutorials rather than structured courses"
+      ]
+    },
+    {
+      "id": "ontology",
+      "name": "Ontology",
+      "url": "https://github.com/ontio/ontology",
+      "description": "Official Go implementation of the Ontology blockchain protocol, enabling high-performance distributed ledger development.",
+      "category": "AI 代理",
+      "language": "go",
+      "triggers": [
+        "ontology",
+        "blockchain",
+        "distributed-ledger",
+        "golang",
+        "high-performance"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/ontio/ontology.git",
+        "repoUrl": "https://github.com/ontio/ontology"
+      },
+      "capabilities": [
+        "blockchain",
+        "distributed-ledger",
+        "golang",
+        "high-performance",
+        "ontology"
+      ],
+      "addedAt": "2026-08-05T12:59:50.122Z",
+      "status": "active",
+      "useCase": "Building high-throughput enterprise blockchain applications requiring customizable consensus and smart contract functionality.",
+      "advantages": [
+        "High-performance consensus mechanisms supporting thousands of TPS",
+        "Native Go implementation for seamless integration with Go-based systems",
+        "Supports multiple consensus algorithms including PBFT and Raft"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects requiring EVM compatibility or Ethereum smart contract portability",
+        "Avoid for simple use cases where lightweight blockchains like Hyperledger Fabric suffice",
+        "Not ideal for low-resource environments due to infrastructure and node requirements"
+      ]
+    },
+    {
+      "id": "oh-my-hermes",
+      "name": "Oh My Hermes",
+      "url": "https://github.com/witt3rd/oh-my-hermes",
+      "description": "Multi-agent orchestration framework for Hermes Agent, enabling collaborative AI workflows and skill management.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "oh-my-hermes",
+        "hermes",
+        "multi-agent",
+        "orchestration",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/witt3rd/oh-my-hermes.git",
+        "repoUrl": "https://github.com/witt3rd/oh-my-hermes"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-05T12:59:50.625Z",
+      "status": "active",
+      "useCase": "When coordinating multiple AI agents to handle complex, multi-step tasks requiring parallel processing and inter-agent communication.",
+      "advantages": [
+        "Enables modular skill composition for complex agent workflows",
+        "Native Hermes primitives ensure seamless integration and performance",
+        "Proven orchestration patterns adapted from oh-my-claudecode for Hermes"
+      ],
+      "negativeConstraints": [
+        "Simple single-agent tasks that don't require orchestration overhead",
+        "Projects using non-Hermes agent frameworks or incompatible systems",
+        "Real-time systems requiring deterministic single-threaded execution"
+      ]
+    },
+    {
+      "id": "oh-my-hermes",
+      "name": "Oh My Hermes",
+      "url": "https://github.com/Salomondiei08/oh-my-hermes",
+      "description": "Opinionated workflow layer for building, shipping, and operating apps with Hermes Agent.",
+      "category": "開發工具",
+      "language": "shell",
+      "triggers": [
+        "oh-my-hermes",
+        "hermes",
+        "agent workflow",
+        "app deployment",
+        "hermes agent"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Salomondiei08/oh-my-hermes.git",
+        "repoUrl": "https://github.com/Salomondiei08/oh-my-hermes"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-05T12:59:52.854Z",
+      "status": "active",
+      "useCase": "A team building Hermes-based AI agent applications can use this to streamline their development pipeline from local setup through deployment and monitoring.",
+      "advantages": [
+        "Provides an opinionated structure that reduces boilerplate and speeds up app development",
+        "Integrates build, shipping, and operational workflows into a single cohesive layer",
+        "Simplifies Hermes Agent integration with ready-made conventions and patterns"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects that require a fully custom, non-opinionated workflow",
+        "Avoid if you are not using Hermes Agent as your core framework",
+        "Not ideal for simple one-off scripts that do not need a full operational pipeline"
+      ]
+    },
+    {
+      "id": "ui-ux-pro-max-skill-cn",
+      "name": "Ui Ux Pro Max Skill Cn",
+      "url": "https://github.com/bbylw/ui-ux-pro-max-skill-cn",
+      "description": "中文本地化的 UI/UX Pro Max AI 设计技能库教程，帮助中文开发者快速掌握 AI 辅助设计能力。",
+      "category": "AI 代理",
+      "language": "html",
+      "triggers": [
+        "ui-ux-pro-max-skill-cn",
+        "pro",
+        "max",
+        "skill",
+        "ui/ux",
+        "ai设计",
+        "中文教程"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/bbylw/ui-ux-pro-max-skill-cn.git",
+        "repoUrl": "https://github.com/bbylw/ui-ux-pro-max-skill-cn"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-05T12:59:53.828Z",
+      "status": "active",
+      "useCase": "中文开发者需要快速学习并集成 UI/UX Pro Max AI 设计技能到工作流中时，该工具提供完整的中文教程和参考。",
+      "advantages": [
+        "完整翻译并本地化原始 README，消除语言障碍",
+        "针对中文开发者优化，降低上手门槛",
+        "涵盖 UI/UX Pro Max 全部技能，内容全面"
+      ],
+      "negativeConstraints": [
+        "不适合需要英文原版文档或最新英文更新的用户",
+        "不适合非 UI/UX 设计领域的开发者",
+        "不适合需要直接英文社区支持的用户"
+      ]
+    },
+    {
+      "id": "gsap-skills",
+      "name": "Gsap Skills",
+      "url": "https://github.com/greensock/gsap-skills",
+      "description": "AI coding skills for GSAP animation library, covering best practices, patterns, and plugin usage.",
+      "category": "影片",
+      "language": "other",
+      "triggers": [
+        "gsap-skills",
+        "gsap",
+        "skills",
+        "greensock",
+        "animation",
+        "tween",
+        "timeline"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/greensock/gsap-skills.git",
+        "repoUrl": "https://github.com/greensock/gsap-skills"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-05T12:59:54.369Z",
+      "status": "active",
+      "useCase": "When building complex web animations with GSAP, this skill helps AI agents generate correct tweening code, handle timelines, and integrate plugins properly.",
+      "advantages": [
+        "Ensures AI-generated GSAP code follows official best practices and avoids common pitfalls",
+        "Covers advanced patterns like timeline sequencing, stagger animations, and plugin integration",
+        "Reduces debugging time by providing proven animation patterns directly to coding agents"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects that do not use GSAP or the GreenSock animation platform",
+        "Should not be used when simple CSS transitions or native Web Animations API suffice",
+        "Not applicable for non-animation tasks such as data fetching or state management"
+      ]
+    },
+    {
+      "id": "design-md-chrome",
+      "name": "Design Md Chrome",
+      "url": "https://github.com/bergside/design-md-chrome",
+      "description": "Chrome extension that extracts website styles and generates DESIGN.md files with AI design skills based on TypeUI.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "design-md-chrome",
+        "design",
+        "chrome",
+        "ai",
+        "chrome-extension",
+        "claude",
+        "claude-design",
+        "codex",
+        "typeui",
+        "design-tokens",
+        "css-extraction",
+        "design-system"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx design-md-chrome",
+        "repoUrl": "https://github.com/bergside/design-md-chrome"
+      },
+      "capabilities": [
+        "ai",
+        "chrome",
+        "chrome-extension",
+        "claude",
+        "claude-design"
+      ],
+      "addedAt": "2026-08-05T12:59:55.293Z",
+      "status": "active",
+      "useCase": "When building a design system or onboarding AI coding assistants, extract styles from an existing website to generate structured DESIGN.md files that capture the visual language.",
+      "advantages": [
+        "Automatically extracts CSS styles, colors, typography, and spacing from any live website",
+        "Generates structured DESIGN.md files compatible with AI coding assistants like Claude and Codex",
+        "Based on TypeUI framework for consistent and reusable design token extraction"
+      ],
+      "negativeConstraints": [
+        "Not suitable for extracting styles from websites with heavy dynamic or JavaScript-rendered CSS",
+        "Not designed for generating production-ready design systems without manual review",
+        "Not applicable for non-Chrome browsers or headless environments without extension support"
+      ]
+    },
+    {
+      "id": "edge-tts",
+      "name": "Edge Tts",
+      "url": "https://github.com/rany2/edge-tts",
+      "description": "Free Python TTS library using Microsoft Edge's online neural voices, no API key or Windows required.",
+      "category": "音訊",
+      "language": "python",
+      "triggers": [
+        "edge-tts",
+        "edge",
+        "tts",
+        "speech-synthesis",
+        "text-to-speech",
+        "microsoft-voices",
+        "neural-tts"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/rany2/edge-tts.git",
+        "repoUrl": "https://github.com/rany2/edge-tts"
+      },
+      "capabilities": [
+        "speech-synthesis",
+        "text-to-speech",
+        "tts"
+      ],
+      "addedAt": "2026-08-05T12:59:56.151Z",
+      "status": "active",
+      "useCase": "Generating natural-sounding speech audio from text for podcast intros, audiobook narration, or accessibility features without managing API credentials.",
+      "advantages": [
+        "No API key or account required — uses Edge's free online TTS service directly",
+        "Cross-platform support; works on Linux, macOS, and Windows without Edge installed",
+        "Access to high-quality neural voices in multiple languages and variants"
+      ],
+      "negativeConstraints": [
+        "Not suitable for offline or air-gapped environments since it requires an internet connection",
+        "Avoid for production systems requiring guaranteed SLA or rate-limit control",
+        "Not ideal when strict data privacy compliance is needed, as text is sent to Microsoft's servers"
+      ]
+    },
+    {
+      "id": "easyvoice",
+      "name": "EasyVoice",
+      "url": "https://github.com/cosin2077/easyVoice",
+      "description": "Open-source TTS tool using edge-tts, supporting ultra-long texts and multi-character voiceover.",
+      "category": "音訊",
+      "language": "typescript",
+      "triggers": [
+        "easyvoice",
+        "edge-tts",
+        "tts",
+        "tts-engines",
+        "text-to-speech",
+        "voiceover"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx easyVoice",
+        "repoUrl": "https://github.com/cosin2077/easyVoice"
+      },
+      "capabilities": [
+        "edge-tts",
+        "tts",
+        "tts-engines"
+      ],
+      "addedAt": "2026-08-05T12:59:57.017Z",
+      "status": "active",
+      "useCase": "Generate audiobooks or long-form narration from extended text documents with multiple character voices.",
+      "advantages": [
+        "Leverages Microsoft Edge's free neural TTS engine with high-quality natural voices",
+        "Handles ultra-long text input without character limits or segmentation issues",
+        "Supports multi-character voiceover with distinct voice assignments per role"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time voice synthesis requiring sub-second latency",
+        "Requires internet connection; cannot operate in offline or air-gapped environments",
+        "Should not be used for generating copyrighted voice clones or impersonating specific individuals"
       ]
     }
   ]
