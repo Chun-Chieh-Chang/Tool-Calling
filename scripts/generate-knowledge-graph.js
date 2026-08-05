@@ -575,7 +575,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         solver: 'barnesHut',
         stabilization: { enabled: true, iterations: 350 }
       },
-      interaction: { hover: true, tooltipDelay: 150, zoomView: true }
+      interaction: { hover: true, tooltip: false, zoomView: true }
     };
 
     const network2d = new vis.Network(container2d, data2d, options2d);
