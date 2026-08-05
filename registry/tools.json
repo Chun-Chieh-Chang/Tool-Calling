@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T13:04:40.504Z",
+  "lastUpdated": "2026-08-05T13:05:19.294Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -30205,15 +30205,15 @@
       "id": "oh-my-hermes",
       "name": "Oh My Hermes",
       "url": "https://github.com/Salomondiei08/oh-my-hermes",
-      "description": "Opinionated workflow layer for building, shipping, and operating apps with Hermes Agent.",
+      "description": "Opinionated workflow framework for building, deploying, and managing applications with Hermes Agent.",
       "category": "開發工具",
       "language": "shell",
       "triggers": [
         "oh-my-hermes",
         "hermes",
-        "agent workflow",
-        "app deployment",
-        "hermes agent"
+        "workflow",
+        "deployment",
+        "ci-cd"
       ],
       "install": {
         "method": "git-clone",
@@ -30223,16 +30223,16 @@
       "capabilities": [],
       "addedAt": "2026-08-05T12:59:52.854Z",
       "status": "active",
-      "useCase": "A team building Hermes-based AI agent applications can use this to streamline their development pipeline from local setup through deployment and monitoring.",
+      "useCase": "Streamlining CI/CD pipelines for Hermes-based applications with pre-configured deployment workflows.",
       "advantages": [
-        "Provides an opinionated structure that reduces boilerplate and speeds up app development",
-        "Integrates build, shipping, and operational workflows into a single cohesive layer",
-        "Simplifies Hermes Agent integration with ready-made conventions and patterns"
+        "Pre-configured workflows reduce setup time for Hermes agent projects",
+        "Opinionated structure enforces best practices across development lifecycle",
+        "Integrated build, ship, and operate stages in a unified pipeline"
       ],
       "negativeConstraints": [
-        "Not suitable for projects that require a fully custom, non-opinionated workflow",
-        "Avoid if you are not using Hermes Agent as your core framework",
-        "Not ideal for simple one-off scripts that do not need a full operational pipeline"
+        "Not suitable for projects requiring highly customized or non-standard deployment workflows",
+        "Avoid using when Hermes Agent is not part of the technology stack",
+        "Not ideal for simple scripts or one-off automation tasks without Hermes integration"
       ]
     },
     {
@@ -30259,16 +30259,16 @@
       "capabilities": [],
       "addedAt": "2026-08-05T12:59:53.828Z",
       "status": "active",
-      "useCase": "中文开发者需要快速学习并集成 UI/UX Pro Max AI 设计技能到工作流中时，该工具提供完整的中文教程和参考。",
+      "useCase": "中文开发者需要快速上手 AI 辅助 UI/UX 设计工作流时，使用本技能库获取完整中文教程和最佳实践。",
       "advantages": [
-        "完整翻译并本地化原始 README，消除语言障碍",
-        "针对中文开发者优化，降低上手门槛",
-        "涵盖 UI/UX Pro Max 全部技能，内容全面"
+        "完整翻译并本地化原始 README，消除中文开发者的语言障碍",
+        "覆盖 UI/UX Pro Max 全部技能，提供系统化的 AI 设计学习路径",
+        "针对中文开发者优化，降低上手门槛，提升学习效率"
       ],
       "negativeConstraints": [
-        "不适合需要英文原版文档或最新英文更新的用户",
-        "不适合非 UI/UX 设计领域的开发者",
-        "不适合需要直接英文社区支持的用户"
+        "不适合需要英文原版或最新未翻译内容的开发者",
+        "不适合非 UI/UX 设计领域的 AI 技能需求",
+        "不适合不需要中文本地化、直接使用英文资源的开发者"
       ]
     },
     {
@@ -30295,23 +30295,23 @@
       "capabilities": [],
       "addedAt": "2026-08-05T12:59:54.369Z",
       "status": "active",
-      "useCase": "When building complex web animations with GSAP, this skill helps AI agents generate correct tweening code, handle timelines, and integrate plugins properly.",
+      "useCase": "When building complex web animations with GSAP, this tool helps AI agents generate correct tweening code, handle timelines, and avoid common pitfalls.",
       "advantages": [
-        "Ensures AI-generated GSAP code follows official best practices and avoids common pitfalls",
-        "Covers advanced patterns like timeline sequencing, stagger animations, and plugin integration",
-        "Reduces debugging time by providing proven animation patterns directly to coding agents"
+        "Provides battle-tested GSAP patterns that reduce animation bugs and improve performance",
+        "Covers plugin usage (ScrollTrigger, Draggable, etc.) so agents can leverage the full GSAP ecosystem",
+        "Enforces GSAP best practices like using gsap.timeline() for sequenced animations and avoiding CSS transform conflicts"
       ],
       "negativeConstraints": [
-        "Not suitable for projects that do not use GSAP or the GreenSock animation platform",
-        "Should not be used when simple CSS transitions or native Web Animations API suffice",
-        "Not applicable for non-animation tasks such as data fetching or state management"
+        "Not suitable for simple CSS-only animations that do not require JavaScript-driven control",
+        "Avoid using when the project does not include GSAP as a dependency to prevent unnecessary overhead",
+        "Not ideal for non-browser environments such as Node.js server-side rendering without a DOM"
       ]
     },
     {
       "id": "design-md-chrome",
       "name": "Design Md Chrome",
       "url": "https://github.com/bergside/design-md-chrome",
-      "description": "Chrome extension that extracts website styles and generates DESIGN.md files with AI design skills based on TypeUI.",
+      "description": "Chrome extension extracting website styles into DESIGN.md files for AI design workflows.",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -30322,11 +30322,9 @@
         "chrome-extension",
         "claude",
         "claude-design",
-        "codex",
-        "typeui",
-        "design-tokens",
-        "css-extraction",
-        "design-system"
+        "design-system",
+        "style-extraction",
+        "typeui"
       ],
       "install": {
         "method": "npm",
@@ -30342,23 +30340,23 @@
       ],
       "addedAt": "2026-08-05T12:59:55.293Z",
       "status": "active",
-      "useCase": "When building a design system or onboarding AI coding assistants, extract styles from an existing website to generate structured DESIGN.md files that capture the visual language.",
+      "useCase": "When a developer needs to capture and document a website's design system to feed into AI coding assistants like Claude or Codex.",
       "advantages": [
-        "Automatically extracts CSS styles, colors, typography, and spacing from any live website",
-        "Generates structured DESIGN.md files compatible with AI coding assistants like Claude and Codex",
-        "Based on TypeUI framework for consistent and reusable design token extraction"
+        "Generates structured DESIGN.md files that AI tools can directly consume for consistent design implementation",
+        "Extracts styles automatically from any live website without manual inspection",
+        "Integrates with popular AI coding assistants like Claude and Codex for design-aware code generation"
       ],
       "negativeConstraints": [
-        "Not suitable for extracting styles from websites with heavy dynamic or JavaScript-rendered CSS",
-        "Not designed for generating production-ready design systems without manual review",
-        "Not applicable for non-Chrome browsers or headless environments without extension support"
+        "Not suitable for generating design assets like images, icons, or illustrations",
+        "Does not replace professional design tools like Figma or Sketch for visual design work",
+        "Not applicable for mobile app design systems outside of web contexts"
       ]
     },
     {
       "id": "edge-tts",
       "name": "Edge Tts",
       "url": "https://github.com/rany2/edge-tts",
-      "description": "Free Python TTS library using Microsoft Edge's online neural voices, no API key or Windows required.",
+      "description": "Python library for Microsoft Edge online text-to-speech without requiring Edge, Windows, or an API key.",
       "category": "音訊",
       "language": "python",
       "triggers": [
@@ -30367,8 +30365,8 @@
         "tts",
         "speech-synthesis",
         "text-to-speech",
-        "microsoft-voices",
-        "neural-tts"
+        "microsoft-tts",
+        "voice-generation"
       ],
       "install": {
         "method": "pip",
@@ -30382,16 +30380,16 @@
       ],
       "addedAt": "2026-08-05T12:59:56.151Z",
       "status": "active",
-      "useCase": "Generating natural-sounding speech audio from text for podcast intros, audiobook narration, or accessibility features without managing API credentials.",
+      "useCase": "Generating natural-sounding speech from text for podcasts, audiobooks, or accessibility features without cloud API costs.",
       "advantages": [
-        "No API key or account required — uses Edge's free online TTS service directly",
-        "Cross-platform support; works on Linux, macOS, and Windows without Edge installed",
-        "Access to high-quality neural voices in multiple languages and variants"
+        "No API key or account required; uses Edge's built-in TTS service directly",
+        "Supports a wide range of voices and languages across multiple regions",
+        "Works on any platform with Python, no Windows or Edge installation needed"
       ],
       "negativeConstraints": [
-        "Not suitable for offline or air-gapped environments since it requires an internet connection",
-        "Avoid for production systems requiring guaranteed SLA or rate-limit control",
-        "Not ideal when strict data privacy compliance is needed, as text is sent to Microsoft's servers"
+        "Not suitable for production systems requiring guaranteed SLA or offline usage",
+        "Avoid for real-time streaming applications due to HTTP-based request latency",
+        "Not ideal when strict data privacy compliance is required since audio is generated via Microsoft's online service"
       ]
     },
     {
