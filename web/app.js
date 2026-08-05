@@ -337,7 +337,7 @@ async function loadWeeklyTrending() {
     const data = await res.json();
 
     if (trendingWorldWeek) trendingWorldWeek.textContent = `🏆 GitHub 每週漲星排行榜 (${data.worldWeek || '2026-W30'})`;
-    if (trendingDateRange) trendingDateRange.textContent = `探勘區間：${data.dateRange || '近 7 天'}`;
+    if (trendingDateRange) trendingDateRange.textContent = `統計區間：${data.dateRange || '近 7 天'}`;
     if (trendingScannedCount) trendingScannedCount.textContent = data.scannedReposCount ? data.scannedReposCount.toLocaleString() : '--';
     if (trendingAddedCount) trendingAddedCount.textContent = `${data.newlyAddedCount || 0} 個工具`;
 
@@ -351,12 +351,25 @@ async function loadWeeklyTrending() {
       const rankEmoji = item.rank === 1 ? '🥇' : item.rank === 2 ? '🥈' : item.rank === 3 ? '🥉' : item.rank;
       const statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
 
+      // 格式化時間顯示
+      const startTime = item.startTime || item.startStarsAt ? new Date(item.startStarsAt).toISOString().slice(0, 10) : '-';
+      const endTime = item.endTime || item.endStarsAt ? new Date(item.endStarsAt).toISOString().slice(0, 10) : '-';
+      const prevDisplay = item.prevStars > 0 ? item.prevStars.toLocaleString() : '首次';
+      const currDisplay = item.currentStars.toLocaleString();
+      const deltaStr = item.delta > 0 ? `+${item.delta.toLocaleString()}` : `${item.currentStars.toLocaleString()} (待比對)`;
+
       tr.innerHTML = `
         <td style="text-align: center;"><span class="rank-badge ${rankClass}">${rankEmoji}</span></td>
         <td><strong>${item.name}</strong></td>
         <td><a href="${item.url}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${item.fullName} ↗</a></td>
-        <td>⭐ ${formatStarCount(item.currentStars)}</td>
-        <td><span class="delta-badge">🔥 +${formatStarCount(item.delta)} 漲星</span></td>
+        <td>
+          <div style="font-size: 14px; font-weight: bold;">⭐ ${currDisplay}</div>
+          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+            起: ${prevDisplay} (${startTime})<br>
+            終: ${currDisplay} (${endTime})
+          </div>
+        </td>
+        <td><span class="delta-badge">🔥 ${deltaStr}</span></td>
         <td><span class="category-tag">${item.category}</span></td>
         <td style="text-align: center;"><span class="status-badge ${statusClass}">${item.statusText}</span></td>
       `;
