@@ -469,7 +469,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       font-size: 18px;
       cursor: pointer;
     }
-  </style>
+  \n    /* 禁用 vis.js 原生 tooltip */\n    .vis-tooltip { display: none !important; }\n</style>
 </head>
 <body>
   <div id="header">
