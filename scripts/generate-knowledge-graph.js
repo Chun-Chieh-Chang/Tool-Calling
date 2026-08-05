@@ -579,7 +579,85 @@ export function generateKnowledgeGraph(registryInput = null) {
     };
 
     const network2d = new vis.Network(container2d, data2d, options2d);
-    network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
+    
+    // -- 2D Hover Tooltip --
+    function updateTooltip2d(node) {
+      let tooltipEl = document.getElementById('graph-tooltip-2d');
+      if (!tooltipEl) {
+        tooltipEl = document.createElement('div');
+        tooltipEl.id = 'graph-tooltip-2d';
+        tooltipEl.style.cssText = 'position:absolute; pointer-events:none; z-index:1000; transition: opacity 0.15s;';
+        document.body.appendChild(tooltipEl);
+      }
+      
+      if (!node) {
+        tooltipEl.style.opacity = '0';
+        setTimeout(() => tooltipEl.remove(), 200);
+        return;
+      }
+      
+      let html = '<div style="background:rgba(30,41,59,0.98); padding:10px 14px; border-radius:10px; border:1px solid #334155; color:#F1F5F9; font-family:Inter,sans-serif; font-size:12px; min-width:200px; max-width:320px; box-shadow:0 8px 24px rgba(0,0,0,0.5);">';
+      html += '<div style="font-weight:bold; font-size:14px; color:#60A5FA; margin-bottom:6px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
+      
+      if (node.categoryName) {
+        html += '<div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">' + node.categoryName + '</div>';
+      }
+      
+      if (node.toolData && node.group === 'tool') {
+        const t = node.toolData;
+        if (t.description) {
+          html += '<div style="color:#CBD5E1; font-size:11px; line-height:1.5; margin-bottom:6px;">' + t.description.slice(0, 80) + (t.description.length > 80 ? '...' : '') + '</div>';
+        }
+        if (t.useCase) {
+          html += '<div style="color:#34D399; font-size:11px; margin-bottom:4px;"><b>\u2605 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
+        }
+        if (t.advantages && t.advantages.length > 0) {
+          html += '<div style="color:#60A5FA; font-size:11px;"><b>\u25B2 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
+        }
+        if (t.language) {
+          html += '<div style="color:#94A3B8; font-size:10px; margin-top:4px;">Language: ' + t.language + '</div>';
+        }
+      } else if (node.group === 'category') {
+        html += '<div style="color:#CBD5E1; font-size:11px;">Contains <b>' + (node.toolCount || 0) + '</b> tools</div>';
+      } else if (node.group === 'root') {
+        html += '<div style="color:#CBD5E1; font-size:11px;">Total <b>' + (node.totalTools || 0) + '</b> AI Tools</div>';
+      }
+      
+      html += '<div style="color:#64748B; font-size:10px; margin-top:6px; text-transform:uppercase;">' + node.group + '</div>';
+      html += '</div>';
+      
+      tooltipEl.innerHTML = html;
+      tooltipEl.style.opacity = '1';
+    }
+
+    network2d.on('hoverNode', function(params) {
+      const nodeId = params.node;
+      const node = data2d.nodes.get(nodeId);
+      updateTooltip2d(node);
+    });
+
+    network2d.on('blurNode', function() {
+      const tooltipEl = document.getElementById('graph-tooltip-2d');
+      if (tooltipEl) {
+        tooltipEl.style.opacity = '0';
+        setTimeout(() => tooltipEl.remove(), 200);
+      }
+    });
+
+    container2d.addEventListener('mousemove', function(e) {
+      const tooltipEl = document.getElementById('graph-tooltip-2d');
+      if (tooltipEl) {
+        let x = e.clientX + 15;
+        let y = e.clientY - 10;
+        const rect = tooltipEl.getBoundingClientRect();
+        if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 15;
+        if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 10;
+        tooltipEl.style.left = x + 'px';
+        tooltipEl.style.top = y + 'px';
+      }
+    });
+
+network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
 
     // Helper: 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
     function getContrastTextColorJS(hexColor) {
@@ -646,7 +724,35 @@ export function generateKnowledgeGraph(registryInput = null) {
           return sprite;
         })
         .nodeThreeObjectExtend(true)
-        .nodeLabel(node => \`<div style="background:rgba(30,41,59,0.95); padding:8px 12px; border-radius:8px; border:1px solid #334155; color:#F1F5F9;"><b>\${node.label.replace('\\n', ' ')}</b><br/><span style="font-size:11px; color:#94A3B8;">\${node.group.toUpperCase()}</span></div>\`)
+        ..nodeLabel(node => {
+  const name = node.label.replace('\\n', ' ');
+  let html = '<div style="background:rgba(30,41,59,0.96); padding:10px 14px; border-radius:8px; border:1px solid #334155; color:#F1F5F9; font-family:Inter,sans-serif; font-size:12px; min-width:180px; box-shadow:0 4px 12px rgba(0,0,0,0.4);">';
+  html += '<div style="font-weight:bold; font-size:13px; color:#60A5FA; margin-bottom:4px;">' + name + '</div>';
+  
+  if (node.group === 'tool' && node.toolData) {
+    const t = node.toolData;
+    if (t.description) {
+      html += '<div style="color:#94A3B8; font-size:11px; margin-bottom:4px;">' + t.description.slice(0, 60) + (t.description.length > 60 ? '...' : '') + '</div>';
+    }
+    if (t.useCase) {
+      html += '<div style="color:#34D399; font-size:11px; margin-bottom:2px;">\u2605 ' + t.useCase + '</div>';
+    }
+    if (t.advantages && t.advantages.length > 0) {
+      html += '<div style="color:#60A5FA; font-size:11px;">\u25B2 ' + t.advantages[0] + '</div>';
+    }
+    if (t.negativeConstraints && t.negativeConstraints.length > 0) {
+      html += '<div style="color:#F87171; font-size:11px;">\u2717 ' + t.negativeConstraints[0] + '</div>';
+    }
+  } else if (node.group === 'category') {
+    html += '<div style="color:#CBD5E1; font-size:11px;">' + (node.toolCount || 0) + ' tools</div>';
+  } else if (node.group === 'subtool') {
+    html += '<div style="color:#94A3B8; font-size:11px;">' + (node.subDesc || '') + '</div>';
+  }
+  
+  html += '<div style="color:#64748B; font-size:10px; margin-top:4px; text-transform:uppercase;">' + node.group + '</div>';
+  html += '</div>';
+  return html;
+})
         .linkColor(link => link.colorHex || '#334155')
         .linkWidth(link => link.width || 1)
         .linkDirectionalParticles(link => link.isDashed ? 3 : 0)
