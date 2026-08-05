@@ -2,7 +2,7 @@
  * trending-weekly.js — GitHub 每週漲星數 Top 10 自動探勘與入庫腳本
  *
  * 運作流程：
- *   1. 從 star-snapshots.json 讀取上週快照（7天前）
+ *   1. 從 star-snapshots.json 讀取上週快照（統計起點）
  *   2. 搜尋過去 30 天內活躍的高星 repos
  *   3. 計算本週（最近 7 天）star 漲幅
  *   4. 篩選前 10 名漲幅最大的工具
@@ -100,23 +100,23 @@ function getSearchQueries(targetMondayStr) {
 // ─── 分類推斷（基於 topics / language / 描述進行規則推導）───────────
 
 const CATEGORY_RULES = [
-  { match: /\b(llm|gpt|openai|gemini|claude|transformer|language.model)\b/i, cat: 'AI 代理' },
-  { match: /\b(agent|autonomous|assistant|copilot|auto.gpt)\b/i, cat: 'AI 代理' },
+  { match: /\b(llm|gpt|openai|gemini|claude|transformer|language.model)\b/i, cat: 'AI 框架' },
+  { match: /\b(agent|autonomous|assistant|copilot|auto\.?gpt)\b/i, cat: 'AI 代理' },
   { match: /\b(data.analy|pandas|polars|duckdb|dataframe|eda|profil)\b/i, cat: '數據分析' },
-  { match: /\b(frontend|ui|ux|component|design.system|tailwind|react)\b/i, cat: 'UI/UX設計' },
+  { match: /\b(frontend|ui|ux|component|design\.?system|tailwind|react)\b/i, cat: 'UI/UX設計' },
   { match: /\b(3d|cad|mesh|render|three\.?js|blender|opengl)\b/i, cat: '3D工程繪圖' },
-  { match: /\b(test|cypress|playwright|selenium|e2e|ci.cd)\b/i, cat: '測試與自動化' },
+  { match: /\b(test|cypress|playwright|selenium|e2e|ci\.?cd|tdd)\b/i, cat: '測試與自動化' },
   { match: /\b(browser|puppeteer|crawl|scrape|headless)\b/i, cat: '瀏覽器自動化' },
   { match: /\b(video|ffmpeg|stream|animation|movie)\b/i, cat: '影片' },
-  { match: /\b(audio|music|tts|stt|speech|voice)\b/i, cat: '音訊' },
-  { match: /\b(security|vuln|pentest|hack|owasp)\b/i, cat: '安全性' },
+  { match: /\b(audio|music|tts|stt|speech|voice|whisper)\b/i, cat: '音訊' },
+  { match: /\b(security|vuln|pentest|hack|owasp|cryptography)\b/i, cat: '安全性' },
   { match: /\b(infra|docker|k8s|kubernetes|terraform|cloud)\b/i, cat: '基礎設施' },
   { match: /\b(api|rest|graphql|grpc|sdk|integration)\b/i, cat: 'API 整合' },
   { match: /\b(database|sql|nosql|postgres|mongo|redis)\b/i, cat: '資料庫' },
-  { match: /\b(doc|pdf|markdown|notes|wiki|obsidian)\b/i, cat: '文件生產力' },
+  { match: /\b(doc|pdf|markdown|notes|wiki|obsidian|ppt|office)\b/i, cat: '文件生產力' },
   { match: /\b(knowledge|graph|rag|retrieval|embedding)\b/i, cat: '知識管理' },
-  { match: /\b(learn|tutorial|course|education|bootcamp)\b/i, cat: '學習資源' },
-  { match: /\b(research|paper|arxiv|science|survey)\b/i, cat: '研究' },
+  { match: /\b(learn|tutorial|course|education|bootcamp|roadmap)\b/i, cat: '學習資源' },
+  { match: /\b(research|paper|arxiv|science|survey|awesome)\b/i, cat: '研究' },
   { match: /\b(image|diffusion|stablediffusion|midjourney|dalle|generation)\b/i, cat: '多媒體生成' },
   { match: /\b(market|seo|analytics|adverti)\b/i, cat: '行銷' },
 ];
@@ -183,23 +183,36 @@ async function main() {
   lastWeekStart.setUTCDate(lastWeekStart.getUTCDate() - 7); // 上週一
   const lastWeekStartStr = lastWeekStart.toISOString().slice(0, 10);
 
-  console.log(`\n\x1b[36m🔍 GitHub 每週漲星探勘 — ${worldWeek}\x1b[0m`);
-  console.log(`   本週範圍：${targetMondayStr} ~ ${targetSundayStr}`);
-  console.log(`   搜尋基準：${lastWeekStartStr} ~ ${targetMondayStr}（上週至今）\n`);
+  // 記錄統計區間的時間戳
+  const snapshotTime = now.toISOString();
+  const startDateObj = lastWeekStart; // 統計起點（上週一）
+  const endDateObj = targetSunday;    // 統計終點（本週日）
+  
+  // 格式化時間顯示
+  const formatDate = (date) => date.toISOString().slice(0, 10);
+  const formatDateTime = (date) => date.toISOString().replace('T', ' ').slice(0, 19) + ' UTC';
 
-  // 1. 讀取現有快照
+  console.log(`\n\x1b[36m🔍 GitHub 每週漲星探勘 — ${worldWeek}\x1b[0m`);
+  console.log(`   統計區間：${formatDate(startDateObj)} ~ ${formatDate(endDateObj)}`);
+  console.log(`   統計時間：${formatDateTime(startDateObj)} ~ ${formatDateTime(endDateObj)}`);
+  console.log(`   搜尋基準：${lastWeekStartStr} ~ ${targetMondayStr}\n`);
+
+  // 1. 讀取現有快照（上週統計時的星數）
   let prevSnapshot = {};
+  let snapshotDate = null;
   if (existsSync(SNAPSHOTS_PATH)) {
     try {
-      prevSnapshot = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf-8'));
-      console.log(`  📊 已有歷史快照：${Object.keys(prevSnapshot).length} 個 repos\n`);
+      const snapshotData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf-8'));
+      prevSnapshot = snapshotData.snapshots || snapshotData;
+      snapshotDate = snapshotData.lastUpdated || null;
+      console.log(`  📊 歷史快照：${Object.keys(prevSnapshot).length} 個 repos (最後更新: ${snapshotDate || '未知'})\n`);
     } catch { /* ignore */ }
   }
 
-  // 2. 搜尋多領域熱門 repos（使用較寬鬆的日期範圍）
+  // 2. 搜尋多領域熱門 repos
   const MIN_STARS_THRESHOLD = 500;
-  const SEARCH_QUERIES = getSearchQueries(lastWeekStartStr); // 使用上週開始日期
-  const allRepos = new Map(); // fullName -> repo object
+  const SEARCH_QUERIES = getSearchQueries(lastWeekStartStr);
+  const allRepos = new Map();
   let skippedForkCount = 0;
   let skippedLowStarCount = 0;
 
@@ -235,7 +248,15 @@ async function main() {
     // 優先使用上週快照，若沒有則設為 0
     const prevStars = prevSnapshot[fullName] || 0;
     const delta = prevStars > 0 ? (currentStars - prevStars) : 0;
-    rankedRepos.push({ ...repo, currentStars, prevStars, delta });
+    rankedRepos.push({ 
+      ...repo, 
+      currentStars, 
+      prevStars, 
+      delta,
+      // 附加時間戳
+      snapshotDate: snapshotDate,
+      currentSnapshotDate: now.toISOString()
+    });
   }
 
   // 4. 依 delta 降序排列，取前 10
@@ -244,12 +265,15 @@ async function main() {
 
   console.log(`\n  🏆 本週漲星前 10 名：`);
   top10.forEach((r, i) => {
+    const prevDisplay = r.prevStars > 0 ? r.prevStars.toLocaleString() : '-';
+    const currDisplay = r.currentStars.toLocaleString();
     const deltaStr = r.delta > 0 ? `+${r.delta.toLocaleString()}` : `${r.currentStars.toLocaleString()} (待比對)`;
-    console.log(`     ${i + 1}. ${r.full_name} — ⭐ ${r.currentStars.toLocaleString()} (${deltaStr})`);
+    console.log(`     ${i + 1}. ${r.full_name}`);
+    console.log(`        ⭐ ${currDisplay} (起: ${prevDisplay}, 終: ${currDisplay}, 漲: ${deltaStr})`);
   });
 
   // 5. 讀取現有 registry，自動入庫
-  const registry = JSON.parse(readFileSync(REGISTRY_PATH, 'utf-8'));
+  const registry = JSON.parse(readFileSync(REGISTRY_PATH, 'utf8'));
   const existingUrls = new Set(registry.tools.map(t => t.url?.toLowerCase()));
   const existingIds = new Set(registry.tools.map(t => t.id));
 
@@ -303,7 +327,7 @@ async function main() {
 
   // 6. 更新 registry
   registry.lastUpdated = now.toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf-8');
+  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
   console.log(`\n  ✅ 新增 ${addedCount} 個工具入庫（現有庫存：${registry.tools.length} 個）`);
 
   // 7. 更新快照供下週比對
@@ -315,7 +339,13 @@ async function main() {
   for (const [k, v] of Object.entries(prevSnapshot)) {
     if (!newSnapshot[k]) newSnapshot[k] = v;
   }
-  writeFileSync(SNAPSHOTS_PATH, JSON.stringify(newSnapshot, null, 2), 'utf-8');
+  // 保存快照及時間戳
+  const snapshotData = {
+    snapshots: newSnapshot,
+    lastUpdated: now.toISOString(),
+    weekRange: `${formatDate(startDateObj)} ~ ${formatDate(endDateObj)}`
+  };
+  writeFileSync(SNAPSHOTS_PATH, JSON.stringify(snapshotData, null, 2), 'utf8');
 
   // 8. 生成週報
   mkdirSync(REPORTS_DIR, { recursive: true });
@@ -324,25 +354,28 @@ async function main() {
   const reportLines = [
     `# 🏆 GitHub 每週漲星探勘報告 — ${worldWeek}`,
     '',
-    `> 探勘時間：${now.toISOString()}`,
-    `> 本週範圍：${targetMondayStr} ~ ${targetSundayStr}`,
-    `> 搜尋基準：${lastWeekStartStr} ~ ${targetMondayStr}`,
-    `> 探勘 repos 數量：${allRepos.size}`,
-    `> 新增入庫數量：${addedCount}`,
+    `> **統計區間**：${formatDate(startDateObj)} ~ ${formatDate(endDateObj)}`,
+    `> **統計時間**：${formatDateTime(startDateObj)} ~ ${formatDateTime(endDateObj)}`,
+    `> **探勘時間**：${now.toISOString()}`,
+    `> **搜尋基準**：${lastWeekStartStr} ~ ${targetMondayStr}`,
+    `> **探勘 repos 數量**：${allRepos.size}`,
+    `> **新增入庫數量**：${addedCount}`,
     '',
     '## 🔥 本週漲星前 10 名',
     '',
-    '| 排名 | 工具名稱 | GitHub Repo | 當前 Stars | 漲幅 | 分類 | 入庫狀態 |',
-    '| :---: | :--- | :--- | ---: | ---: | :--- | :---: |',
+    '| 排名 | 工具名稱 | GitHub Repo | 起點 Stars | 終點 Stars | 漲幅 | 分類 | 入庫狀態 |',
+    '| :---: | :--- | :--- | ---: | ---: | ---: | :--- | :---: |',
   ];
 
   top10.forEach((r, i) => {
-    const deltaStr = r.prevStars > 0 ? `+${r.delta.toLocaleString()}` : `首次快照`;
+    const prevDisplay = r.prevStars > 0 ? r.prevStars.toLocaleString() : '首次';
+    const currDisplay = r.currentStars.toLocaleString();
+    const deltaStr = r.delta > 0 ? `+${r.delta.toLocaleString()}` : '首次快照';
     const inRegistry = existingUrls.has(r.html_url?.toLowerCase()) ? '✅ 已入庫' : '⏭ 已存在';
     const wasAdded = addedTools.some(at => at.url === r.html_url);
     const status = wasAdded ? '🆕 本週新增' : inRegistry;
     reportLines.push(
-      `| ${i + 1} | **${r.name}** | [${r.full_name}](${r.html_url}) | ${r.currentStars.toLocaleString()} | ${deltaStr} | ${inferCategory(r)} | ${status} |`
+      `| ${i + 1} | **${r.name}** | [${r.full_name}](${r.html_url}) | ${prevDisplay} | ${currDisplay} | ${deltaStr} | ${inferCategory(r)} | ${status} |`
     );
   });
 
@@ -373,7 +406,7 @@ async function main() {
   const trendingData = {
     worldWeek,
     lastUpdated: now.toISOString(),
-    dateRange: `${targetMondayStr} ~ ${targetSundayStr}`,
+    dateRange: `${formatDate(startDateObj)} ~ ${formatDate(endDateObj)}`,
     searchBaseline: `${lastWeekStartStr} ~ ${targetMondayStr}`,
     scannedReposCount: allRepos.size,
     newlyAddedCount: addedCount,
@@ -389,7 +422,10 @@ async function main() {
         delta: r.delta,
         category: inferCategory(r),
         isNewlyAdded: wasAdded,
-        statusText: wasAdded ? '🆕 本週納入' : '✅ 已在工具箱'
+        statusText: wasAdded ? '🆕 本週納入' : '✅ 已在工具箱',
+        // 新增時間戳資訊
+        snapshotDate: r.snapshotDate,
+        currentSnapshotDate: r.currentSnapshotDate
       };
     }),
     addedTools: addedTools.map(t => ({
@@ -407,7 +443,7 @@ async function main() {
     }))
   };
 
-  writeFileSync(jsonPath, JSON.stringify(trendingData, null, 2), 'utf-8');
+  writeFileSync(jsonPath, JSON.stringify(trendingData, null, 2), 'utf8');
   console.log(`  📊 JSON 數據已寫入：${jsonPath}`);
 
   console.log(`\n\x1b[32m[完成] ${worldWeek} 每週漲星探勘作業結束！\x1b[0m\n`);
