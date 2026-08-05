@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T12:24:56.434Z",
+  "lastUpdated": "2026-08-05T12:28:00.545Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -29738,7 +29738,7 @@
       "id": "tencentdb-agent-memory",
       "name": "TencentDB Agent Memory",
       "url": "https://github.com/TencentCloud/TencentDB-Agent-Memory",
-      "description": "TencentDB Agent Memory is a team-level memory hub for AI Agents — turning conversations, docs, and code into four reusable memory assets (Chat Memory, Skill, LLM-Wiki, Code-Graph) that are governed, shared, and equipped across agents and frameworks.",
+      "description": "Team-level memory hub for AI agents, converting conversations, docs, and code into reusable memory assets.",
       "category": "知識管理",
       "language": "typescript",
       "triggers": [
@@ -29749,7 +29749,9 @@
         "ai-agent",
         "embedding",
         "llm",
-        "local-first"
+        "local-first",
+        "knowledge-reuse",
+        "multi-agent"
       ],
       "install": {
         "method": "npm",
@@ -29764,13 +29766,24 @@
         "local-first"
       ],
       "addedAt": "2026-08-05T12:12:00.057Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A development team building multiple AI agents that need to share context, skills, and knowledge across sessions without reprocessing conversations or documents.",
+      "advantages": [
+        "Four distinct memory asset types (Chat Memory, Skill, LLM-Wiki, Code-Graph) cover diverse knowledge reuse scenarios",
+        "Local-first architecture ensures data privacy and reduces dependency on external cloud services",
+        "Governed and shared memory assets enable consistent knowledge across agents and frameworks"
+      ],
+      "negativeConstraints": [
+        "Not suitable for single-user personal note-taking or simple Q&A without multi-agent collaboration needs",
+        "Not ideal for real-time streaming applications requiring sub-second memory retrieval latency",
+        "Not recommended when agents do not need to share or reuse knowledge across sessions or frameworks"
+      ]
     },
     {
       "id": "react-d3-tree",
       "name": "React D3 Tree",
       "url": "https://github.com/bkrem/react-d3-tree",
-      "description": ":deciduous_tree: React component to create interactive D3 tree graphs",
+      "description": "React component for building interactive D3-powered tree and hierarchy visualizations with customizable layouts.",
       "category": "其他",
       "language": "javascript",
       "triggers": [
@@ -29781,7 +29794,10 @@
         "d3",
         "d3-hierarchy",
         "d3-tree",
-        "d3-visualization"
+        "d3-visualization",
+        "hierarchy",
+        "organizational chart",
+        "interactive tree"
       ],
       "install": {
         "method": "npm",
@@ -29796,24 +29812,34 @@
         "d3-visualization"
       ],
       "addedAt": "2026-08-05T12:12:40.232Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "Visualizing organizational charts, file system hierarchies, or decision trees in React applications with interactive zoom and pan.",
+      "advantages": [
+        "Built on D3 v7 with modern React patterns for seamless integration into existing React projects",
+        "Supports multiple layout types including radial, horizontal, and vertical tree arrangements",
+        "Provides interactive features such as zoom, pan, and collapsible nodes out of the box"
+      ],
+      "negativeConstraints": [
+        "Not suitable for large-scale graph visualizations with hundreds of nodes due to performance limitations",
+        "Avoid for non-hierarchical data like networks, flow diagrams, or force-directed layouts",
+        "Not ideal for static, non-interactive tree displays where a simpler SVG solution would suffice"
+      ]
     },
     {
       "id": "awesome-systematic-trading",
       "name": "Awesome Systematic Trading",
       "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
-      "description": "A curated list of awesome libraries, packages, strategies, books, blogs, tutorials for systematic trading.",
+      "description": "Curated GitHub list of libraries, strategies, books, and tutorials for systematic and algorithmic trading.",
       "category": "研究",
       "language": "python",
       "triggers": [
         "awesome-systematic-trading",
-        "awesome",
-        "systematic",
-        "trading",
         "algorithmic-trading",
-        "algotrading",
-        "alpha",
-        "arbitrage-bot"
+        "systematic-trading",
+        "backtesting",
+        "quantitative-finance",
+        "alpha-research",
+        "trading-strategies"
       ],
       "install": {
         "method": "none",
@@ -29828,24 +29854,33 @@
         "awesome"
       ],
       "addedAt": "2026-08-05T12:12:44.585Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A quantitative researcher building a systematic trading pipeline can use this list to discover battle-tested open-source libraries and proven strategies instead of starting from scratch.",
+      "advantages": [
+        "Comprehensive curated collection covering the full stack from data sources to backtesting frameworks to live execution",
+        "Community-maintained with regular updates, ensuring tools stay relevant to current market conditions",
+        "Categorizes resources by topic (alpha research, execution, risk management) for quick discovery"
+      ],
+      "negativeConstraints": [
+        "Not suitable for traders seeking ready-to-deploy turnkey trading systems without customization",
+        "Not a live trading platform or execution engine — it is a resource directory, not an operational tool",
+        "Not appropriate for users who need guaranteed performance or backtested results for specific strategies"
+      ]
     },
     {
       "id": "awesome-solidity",
       "name": "Awesome Solidity",
       "url": "https://github.com/bkrem/awesome-solidity",
-      "description": "⟠ A curated list of awesome Solidity resources, libraries, tools and more",
+      "description": "Curated collection of Solidity resources, libraries, tools, and tutorials for Ethereum smart contract development.",
       "category": "學習資源",
       "language": "other",
       "triggers": [
         "awesome-solidity",
-        "awesome",
         "solidity",
-        "awesome-list",
-        "contract-solidity",
-        "dapps",
         "ethereum",
-        "linter-solidity"
+        "smart-contracts",
+        "dapps",
+        "awesome-list"
       ],
       "install": {
         "method": "none",
@@ -29860,24 +29895,35 @@
         "ethereum"
       ],
       "addedAt": "2026-08-05T12:24:28.385Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A developer building an Ethereum dApp needs to discover battle-tested Solidity libraries and best-practice resources to accelerate their smart contract development.",
+      "advantages": [
+        "Comprehensive curated list covering libraries, tools, tutorials, and security resources for Solidity development",
+        "Community-maintained and regularly updated with the latest Solidity ecosystem resources",
+        "Categorized organization makes it easy to find specific types of Solidity development resources"
+      ],
+      "negativeConstraints": [
+        "Not suitable for executing or deploying smart contracts directly",
+        "Not a replacement for official Solidity documentation or compiler tools",
+        "Not appropriate for finding real-time on-chain data or blockchain analytics"
+      ]
     },
     {
       "id": "ai-for-beginners",
       "name": "Ai For Beginners",
       "url": "https://github.com/microsoft/ai-for-beginners",
-      "description": "12 Weeks, 24 Lessons, AI for All!",
+      "description": "Free 12-week AI course with 24 lessons covering fundamentals to deep learning and computer vision.",
       "category": "基礎設施",
       "language": "jupyter notebook",
       "triggers": [
         "ai-for-beginners",
-        "for",
-        "beginners",
-        "ai",
         "artificial-intelligence",
-        "cnn",
+        "deep-learning",
         "computer-vision",
-        "deep-learning"
+        "cnn",
+        "machine-learning",
+        "beginner",
+        "microsoft-ai"
       ],
       "install": {
         "method": "git-clone",
@@ -29892,13 +29938,24 @@
         "deep-learning"
       ],
       "addedAt": "2026-08-05T12:24:53.358Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A complete beginner wants to learn AI from scratch through structured, self-paced lessons with hands-on projects.",
+      "advantages": [
+        "Free and open-source curriculum maintained by Microsoft",
+        "Covers full learning path from AI basics to CNNs and deep learning",
+        "Includes hands-on labs and projects for practical skill building"
+      ],
+      "negativeConstraints": [
+        "Not suitable for advanced researchers seeking cutting-edge paper implementations",
+        "Not ideal for users who need production-grade deployment guidance",
+        "Not appropriate for those seeking specialized domains like NLP or reinforcement learning"
+      ]
     },
     {
       "id": "kaneo",
       "name": "Kaneo",
       "url": "https://github.com/usekaneo/kaneo",
-      "description": "🎯 All you need. Nothing you don't. Open source project management that works for you, not against you.",
+      "description": "Open source project management and issue tracker — a lightweight, self-hosted Jira alternative for agile teams.",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
@@ -29909,7 +29966,10 @@
         "issue-tracker",
         "jira-alternative",
         "kanban",
-        "linear-alternative"
+        "linear-alternative",
+        "open-source",
+        "self-hosted",
+        "project-management"
       ],
       "install": {
         "method": "npm",
@@ -29924,7 +29984,18 @@
         "jira-alternative"
       ],
       "addedAt": "2026-08-05T12:24:56.433Z",
-      "status": "experimental"
+      "status": "active",
+      "useCase": "A small to mid-size software team migrating from Jira to a self-hosted, cost-effective solution with kanban boards and issue tracking.",
+      "advantages": [
+        "Self-hosted and open source, giving full control over data and customization",
+        "Lightweight design focuses on essential project management features without bloat",
+        "Built with Hono, offering a modern, fast, and extensible API layer"
+      ],
+      "negativeConstraints": [
+        "Not suitable for enterprise-scale project management requiring complex workflow automation and deep integrations",
+        "Not ideal for teams that require a fully managed SaaS solution without self-hosting overhead",
+        "May lack advanced reporting and resource management features found in tools like Jira or Linear"
+      ]
     }
   ]
 }
