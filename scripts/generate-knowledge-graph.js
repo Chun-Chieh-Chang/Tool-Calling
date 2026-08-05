@@ -724,7 +724,7 @@ network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics
           return sprite;
         })
         .nodeThreeObjectExtend(true)
-        ..nodeLabel(node => {
+        .nodeLabel(node => {
   const name = node.label.replace('\\n', ' ');
   let html = '<div style="background:rgba(30,41,59,0.96); padding:10px 14px; border-radius:8px; border:1px solid #334155; color:#F1F5F9; font-family:Inter,sans-serif; font-size:12px; min-width:180px; box-shadow:0 4px 12px rgba(0,0,0,0.4);">';
   html += '<div style="font-weight:bold; font-size:13px; color:#60A5FA; margin-bottom:4px;">' + name + '</div>';
