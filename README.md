@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **381+ 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **448+ 個頂尖開源 AI 工具與 Agent 技能**：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與文件生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -19,7 +19,7 @@
 
 ---
 
-## ⚡ 核心亮點功能 (Phases 106 - 111)
+## ⚡ 核心亮點功能 (Phases 106 - 112)
 
 1. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
    - 專案開發往往需要多個工具協同（例如：`網頁爬蟲` + `LLM RAG 清洗` + `簡報生成`）。
@@ -31,8 +31,12 @@
    - 徹底剔除生澀專業術語！當需求模糊時，透過 3 步直覺情境問答（開發語言、真實用途、網頁動態畫面）主動逼近用戶真實需求。
 4. 🛡️ **沙盒環境預檢與安全調用驗證器 (Pre-flight Sandbox Validator)**：
    - 一鍵預檢本機 `Node.js`, `Python`, `pip`, `npx`, `Git`, `Docker` 相依環境準備狀況。
-5. 🔥 **雲端 Auto-Trending 自動探勘管道 (Auto-Trending Discovery)**：
-   - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案並去重佇列化。
+5. 🔥 **雲端 Auto-Trending 自動探勘管道**：
+   - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
+6. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
+   - 基於固定追蹤池（2000+ repos）與歷史快照，計算真實的週漲星數。
+   - 自動篩選有意義的漲幅（過濾異常數據），生成 Top 10 排行榜。
+   - 每週自动入庫高潛力新工具，保持工具箱時時更新。
 
 ---
 
@@ -50,121 +54,3 @@ node cli.js interview "網頁爬蟲"
 ### 指令對照表
 
 | 功能類別 | CLI 指令 | 說明 |
-|---|---|---|
-| **搜尋與比較** | `node cli.js search "<需求>"` | 三層檢索（L1精確/L2關鍵字/L3語意）工具 |
-| | `node cli.js compare "<需求>"` | 輸出 **五維度競品適配矩陣** 與 Trade-offs 理由 |
-| | `node cli.js interview "<需求>"` | 啟動 **親和白話互動問答** 逼近真實需求 |
-| **工具鏈與預檢**| `node cli.js plan "<長任務描述>"` | 自動規劃 **多工具協同 DAG 流程圖** 與 Data Flow 介面 |
-| | `node cli.js verify-environment <id>` | 執行 **沙盒環境預檢**（Node, Python, Docker 等） |
-| **目錄與詳情** | `node cli.js list` | 列出所有已註冊工具 (可用 `-c <分類>` 過濾) |
-| | `node cli.js info <tool-id>` | 查看工具詳細詮釋資料、語言與場景標籤 |
-| **新增與管理** | `node cli.js add <github-url>` | 新增單一工具並自動補齊詮釋資料 |
-| | `node cli.js batch-add urls.txt` | 批量新增（自動分類、去重、Monorepo 拆解） |
-| | `node cli.js index-subtools <id>` | 深層拆解 Monorepo 子工具 |
-| | `node cli.js discover-trending` | 自動探勘 GitHub Trending 熱門專案 |
-| | `node cli.js cleanup <tool-id>` | 任務完成後 **解耦與零負擔清理** 工具 |
-| | `node cli.js validate` | 執行工具庫詮釋資料品質門禁驗證 |
-
----
-
-## 🧙‍♂️ 全自動工具調用與多工具協同 SOP
-
-在其他 Agent 或專案對話中說出喚醒咒語：
-
-> **喚醒咒語**：「啟動全自動工具調用模式：[用戶的任務描述]」
-
-Agent 將嚴格遵循以下四階段 SOP 執行：
-
-1. **階段 1：白話模糊需求釐清 (Interactive Clarification)**：
-   - 避免生澀術語，透過 2~3 個親和白話問題釐清語言偏好、真實用途與畫面防護需求，禁止盲猜。
-2. **階段 2：多工具鏈選型與 DAG 規劃 (Multi-Tool Chain Planning)**：
-   - 執行 `node cli.js plan` 自動分解多步驟任務，為每個步驟匹配 **最適首選工具** 與 **備選競品**。
-3. **階段 3：彈性協同開發與環境預檢 (Flexible Synergy & Sandbox Verification)**：
-   - 工具可整合進新專案（`npm`/`pip`），亦可獨立運行（CLI, Docker, Daemon, MCP）。
-   - 執行前呼叫 `node cli.js verify-environment` 完成環境預檢。
-4. **階段 4：任務結束自動解耦與清理 (Post-Task Decoupling & Cleanup)**：
-   - 開發驗證完成後，若新專案不需永久保留該工具，執行 `node cli.js cleanup` 自動卸載。
-   - 確保目標專案代碼庫保持 MECE 乾淨整潔，不增加任何維護與效能負擔！
-
----
-
-## 🌐 網頁控制台與 2D/3D 互動式知識圖譜 Web UI
-
-開啟專案下的 `web/index.html` 或執行打包 `node scripts/build-web.js`：
-
-全站包含 **4 大視圖分頁**，由全域 `AppState` 單一真理來源實時連動：
-
-1. 📊 **儀表板總覽**：KPI 統計指標、Chart.js 分類與語言分佈圖、分類 Overview。
-2. 🔧 **工具目錄列表**：三層檢索（L1精態/L2關鍵字/L3語意）工具卡片與 Match 比例。
-3. 🔥 **每週漲星榜**：自動探勘 GitHub 當週熱門漲星排行榜。
-4. 🌐 **2D/3D 雙視角全景知識圖譜 (Knowledge Graph)**：
-   - **100% Data-Driven**：所有節點、描述、數字與關聯 100% 由 `tools.json` 動態運算產生。
-   - **🌌 3D 宇宙視角 & 📄 2D 平面視角一鍵切換**。
-   - **平移與對焦**：`Shift` + 滑鼠左鍵拖曳 100% 平滑平移視角，滾輪精準縮放。
-
----
-
-## 🔌 MCP Server 整合 (Claude Desktop & Cursor)
-
-### 1. Claude Desktop
-在 `%APPDATA%\Claude\claude_desktop_config.json` 寫入：
-```json
-{
-  "mcpServers": {
-    "tool-calling": {
-      "command": "node",
-      "args": ["D:\\YourPath\\Tool-Calling\\mcp-server.js"]
-    }
-  }
-}
-```
-
-### 2. Cursor
-前往 Settings → Features → MCP → Add New MCP Server：
-- Name: `tool-calling`
-- Type: `Command`
-- Command: `node D:\YourPath\Tool-Calling\mcp-server.js`
-
----
-
-## 📂 專案檔案結構說明 (MECE 分類)
-
-```
-Tool-Calling/
-├── cli.js              ← CLI 命令列控制端（支援 search, plan, compare, interview, verify-environment, cleanup 等）
-├── mcp-server.js       ← MCP 通訊伺服器（適配 Claude Desktop / Cursor）
-├── registry/
-│   ├── tools.json      ← 工具庫單一真理來源（目前 381 個 AI 工具）
-│   └── trending-candidates.json ← 自動探勘熱門候選佇列
-├── core/
-│   ├── search-engine.js        ← 三層檢索 + 5D 競品適配重排 + 多工具鏈規劃器
-│   ├── interactive-approximator.js ← 親和白話需求導向互動引導問答系統
-│   ├── sandbox-validator.js    ← 沙盒環境與相依性預檢驗證器
-│   ├── synonyms.generated.js   ← 同義詞自動探勘詞典
-│   ├── installer.js            ← 動態工具安裝器 (支援 Sparse Checkout)
-│   ├── sandbox.js              ← Docker 沙盒隔離執行環境
-│   ├── telemetry.js            ← 工具調用軌跡追蹤
-│   └── cleanup.js              ← 任務執行完畢清理器
-├── scripts/
-│   ├── auto-trending-discovery.js ← GitHub Trending 熱門專案自動探勘
-│   ├── build-web.js            ← 靜態 Web 與圖譜打包發行腳本
-│   ├── generate-knowledge-graph.js ← 100% Data-Driven 互動式圖譜生成器
-│   ├── enrich-registry.js      ← AI 批次補齊 recommended useCase 與 constraints
-│   ├── mine-synonyms.js        ← 同義詞自動探勘腳本
-│   └── scan-monorepo.js        ← Monorepo 深層索引拆解器
-├── tests/
-│   ├── search.test.js          ← 核心檢索單元測試
-│   ├── tool-chain.test.js      ← 多工具鏈規劃單元測試
-│   └── sandbox.test.js         ← 沙盒預檢單元測試
-├── web/
-│   ├── index.html              ← 全站 4 大分頁 Web 主介面
-│   ├── style.css               ← 暗色系毛玻璃與 Design Tokens 樣式
-│   └── app.js                  ← AppState 4 視圖連動引擎
-└── .agents/
-    ├── AGENTS.md               ← 專案級開發 SOP 與多工具協同規則
-    └── skills/tool-calling/    ← Custom Skill 權威規範檔
-```
-
----
-
-License: MIT

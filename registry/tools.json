@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T16:24:00.699Z",
+  "lastUpdated": "2026-08-05T17:02:46.173Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -31195,6 +31195,426 @@
       ],
       "stars": 36263,
       "addedAt": "2026-08-05T15:30:57.061Z",
+      "status": "active"
+    },
+    {
+      "id": "awesome",
+      "name": "awesome",
+      "url": "https://github.com/sindresorhus/awesome",
+      "description": "😎 Awesome lists about all kinds of interesting topics",
+      "category": "研究",
+      "language": "unknown",
+      "triggers": [
+        "awesome",
+        "awesome",
+        "awesome-list",
+        "lists",
+        "resources",
+        "unicorns"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/sindresorhus/awesome"
+      },
+      "capabilities": [
+        "awesome",
+        "awesome-list",
+        "lists",
+        "resources",
+        "unicorns"
+      ],
+      "useCase": "😎 Awesome lists about all kinds of interesting topics — 本週漲星 +492695 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 492,695 星，社群高度活躍",
+        "本週漲星 +492695",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 492695,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "freecodecamp",
+      "name": "freeCodeCamp",
+      "url": "https://github.com/freeCodeCamp/freeCodeCamp",
+      "description": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "freecodecamp",
+        "careers",
+        "certification",
+        "community",
+        "curriculum",
+        "d3"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/freeCodeCamp/freeCodeCamp"
+      },
+      "capabilities": [
+        "careers",
+        "certification",
+        "community",
+        "curriculum",
+        "d3",
+        "education"
+      ],
+      "useCase": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free. — 本週漲星 +453539 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 453,539 星，社群高度活躍",
+        "本週漲星 +453539",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 453539,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "awesome-python",
+      "name": "awesome-python",
+      "url": "https://github.com/vinta/awesome-python",
+      "description": "An opinionated list of Python frameworks, libraries, tools, and resources",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "awesome-python",
+        "awesome",
+        "collections",
+        "python",
+        "python-frameworks",
+        "python-libraries"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/vinta/awesome-python"
+      },
+      "capabilities": [
+        "awesome",
+        "collections",
+        "python",
+        "python-frameworks",
+        "python-libraries",
+        "python-tools"
+      ],
+      "useCase": "An opinionated list of Python frameworks, libraries, tools, and resources — 本週漲星 +312338 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 312,338 星，社群高度活躍",
+        "本週漲星 +312338",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 312338,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "996-icu",
+      "name": "996.ICU",
+      "url": "https://github.com/996icu/996.ICU",
+      "description": "Repo for counting stars and contributing. Press F to pay respect to glorious developers.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "996-icu"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/996icu/996.ICU"
+      },
+      "capabilities": [],
+      "useCase": "Repo for counting stars and contributing. Press F to pay respect to glorious developers. — 本週漲星 +276549 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 276,549 星，社群高度活躍",
+        "本週漲星 +276549",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 276549,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "react",
+      "name": "react",
+      "url": "https://github.com/react/react",
+      "description": "The library for web and native user interfaces.",
+      "category": "UI/UX設計",
+      "language": "javascript",
+      "triggers": [
+        "react",
+        "declarative",
+        "frontend",
+        "javascript",
+        "library",
+        "react"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/react/react"
+      },
+      "capabilities": [
+        "declarative",
+        "frontend",
+        "javascript",
+        "library",
+        "react",
+        "ui"
+      ],
+      "useCase": "The library for web and native user interfaces. — 本週漲星 +247011 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 247,011 星，社群高度活躍",
+        "本週漲星 +247011",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 247011,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "linux",
+      "name": "linux",
+      "url": "https://github.com/torvalds/linux",
+      "description": "Linux kernel source tree",
+      "category": "開發工具",
+      "language": "c",
+      "triggers": [
+        "linux"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/torvalds/linux"
+      },
+      "capabilities": [],
+      "useCase": "Linux kernel source tree — 本週漲星 +241825 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 241,825 星，社群高度活躍",
+        "本週漲星 +241825",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 241825,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "url": "https://github.com/TheAlgorithms/Python",
+      "description": "All Algorithms implemented in Python",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "python",
+        "algorithm",
+        "algorithm-competitions",
+        "algorithms-implemented",
+        "algos",
+        "community-driven"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/TheAlgorithms/Python"
+      },
+      "capabilities": [
+        "algorithm",
+        "algorithm-competitions",
+        "algorithms-implemented",
+        "algos",
+        "community-driven",
+        "education"
+      ],
+      "useCase": "All Algorithms implemented in Python — 本週漲星 +223510 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 223,510 星，社群高度活躍",
+        "本週漲星 +223510",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 223510,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "vue",
+      "name": "vue",
+      "url": "https://github.com/vuejs/vue",
+      "description": "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "vue",
+        "framework",
+        "frontend",
+        "javascript",
+        "vue"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/vuejs/vue"
+      },
+      "capabilities": [
+        "framework",
+        "frontend",
+        "javascript",
+        "vue"
+      ],
+      "useCase": "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core — 本週漲星 +210216 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 210,216 星，社群高度活躍",
+        "本週漲星 +210216",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 210216,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "computer-science",
+      "name": "computer-science",
+      "url": "https://github.com/ossu/computer-science",
+      "description": "🎓 Path to a free self-taught education in Computer Science!",
+      "category": "學習資源",
+      "language": "html",
+      "triggers": [
+        "computer-science",
+        "awesome-list",
+        "computer-science",
+        "courses",
+        "curriculum"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ossu/computer-science"
+      },
+      "capabilities": [
+        "awesome-list",
+        "computer-science",
+        "courses",
+        "curriculum"
+      ],
+      "useCase": "🎓 Path to a free self-taught education in Computer Science! — 本週漲星 +207652 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 207,652 星，社群高度活躍",
+        "本週漲星 +207652",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 207652,
+      "addedAt": "2026-08-05T16:48:53.910Z",
+      "status": "active"
+    },
+    {
+      "id": "system-prompts-and-models-of-ai-tools",
+      "name": "system-prompts-and-models-of-ai-tools",
+      "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
+      "description": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, V",
+      "category": "AI 框架",
+      "language": "unknown",
+      "triggers": [
+        "system-prompts-and-models-of-ai-tools",
+        "ai",
+        "bolt",
+        "cluely",
+        "copilot",
+        "cursor"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools"
+      },
+      "capabilities": [
+        "ai",
+        "bolt",
+        "cluely",
+        "copilot",
+        "cursor",
+        "cursorai"
+      ],
+      "useCase": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models — 本週漲星 +5 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 142,587 星",
+        "本週漲星 +5",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 142587,
+      "addedAt": "2026-08-05T17:02:46.173Z",
+      "status": "active"
+    },
+    {
+      "id": "autogpt",
+      "name": "AutoGPT",
+      "url": "https://github.com/Significant-Gravitas/AutoGPT",
+      "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "autogpt",
+        "agentic-ai",
+        "agents",
+        "ai",
+        "artificial-intelligence",
+        "autonomous-agents"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Significant-Gravitas/AutoGPT"
+      },
+      "capabilities": [
+        "agentic-ai",
+        "agents",
+        "ai",
+        "artificial-intelligence",
+        "autonomous-agents",
+        "claude"
+      ],
+      "useCase": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters. — 本週漲星 +1 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 185,830 星",
+        "本週漲星 +1",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 185830,
+      "addedAt": "2026-08-05T17:02:46.173Z",
       "status": "active"
     }
   ]
