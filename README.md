@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **448+ 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **464+ 個頂尖開源 AI 工具與 Agent 技能**：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與文件生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master

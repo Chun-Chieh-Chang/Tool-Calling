@@ -1,3 +1,29 @@
+# Tool-Calling 開發日誌
+
+## 2026-08-08 專案整體程式碼與檔案全流程優化與重構作業
+
+### 需求
+依據 `project-refactor-cleanup` SOP 規範，執行專案全量盤點、死碼/無效資產清理、MECE 分類架構對齊、文件同步更新與安全確效。
+
+### 處理結果
+- **階段一：盤點與清理**:
+  - 掃描全專案目錄結構，移除無意間建立的空遺留目錄 `-p`。
+  - 清理全站 464 個工具庫條目與快照檔。
+- **階段二：文件同步 (Documentation Alignment)**:
+  - 更新 [README.md](file:///d:/Self-developed_Apps/Tool-Calling/README.md) 工具庫數值，將 448+ 修正為最新實際數量 **464+** 個工具。
+  - 更新 [docs/CATEGORY-SYSTEM.md](file:///d:/Self-developed_Apps/Tool-Calling/docs/CATEGORY-SYSTEM.md) MECE 統計表格，反映最新 21 大分類數值。
+- **階段三：MECE 架構整合**:
+  - 執行 `node scripts/check-mece.js`，確認全站 464 個工具 100% 歸入明確分類，無未分類/其他類殘留。
+- **階段四：沙盒確效測試 (Runtime Check)**:
+  - 執行 `node cli.js validate`：全站 464 個工具 100% 通過品質門禁。
+  - 執行 `npm test`：11 個自動化測試單元（含 2D/3D 知識圖譜渲染、環境預檢、L1/L2 搜尋與語義重排）**100% 全部 Pass (0 Fail)**。
+- **階段五：資安審查與基準點建立**:
+  - 執行全站 API 金鑰掃描（grep 檢測 `sk-`），確認無硬編碼敏感憑證。
+
+### RCA & CAPA
+- **RCA**: 隨著庫存擴充與腳本演進，部分文件 (README.md, CATEGORY-SYSTEM.md) 描述之工具數量與 MECE 分類統計出現過時偏差。
+- **CAPA**: 依 SOP 執行全量清理與文件 100% 對齊，測試通過後合拍 Commit 建立安全基準點。
+
 ## 2026-08-08 每週漲星探勘腳本重構與前端 UI 排行榜相容性修復
 
 ### 需求
