@@ -468,6 +468,7 @@ async function main() {
   
   const formattedItems = top20.map((r, i) => {
     const wasAdded = addedTools.some(at => at.url === r.html_url);
+    const inRegistry = existingUrls.has(r.html_url?.toLowerCase());
     return {
       rank: i + 1,
       name: r.name,
@@ -478,7 +479,7 @@ async function main() {
       delta: r.delta,
       category: r.category,
       isNewlyAdded: wasAdded,
-      statusText: wasAdded ? '🆕 本週納入' : (r.prevStars > 0 ? '✅ 已在工具箱' : '⏭ 首次記錄'),
+      statusText: wasAdded ? '🆕 本週納入' : (inRegistry ? '✅ 已在工具箱' : '⏭ 首次記錄'),
       startStarsAt: r.startStarsAt,
       endStarsAt: r.endStarsAt
     };
