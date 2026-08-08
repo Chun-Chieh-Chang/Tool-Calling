@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-05T17:02:46.173Z",
+  "lastUpdated": "2026-08-08T15:24:20.541Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -31323,26 +31323,30 @@
       "id": "996-icu",
       "name": "996.ICU",
       "url": "https://github.com/996icu/996.ICU",
-      "description": "Repo for counting stars and contributing. Press F to pay respect to glorious developers.",
+      "description": "Repository documenting the 996 work schedule in tech companies, advocating for workers' rights and labor awareness.",
       "category": "開發工具",
       "language": "unknown",
       "triggers": [
-        "996-icu"
+        "996-icu",
+        "996 work schedule",
+        "labor rights",
+        "tech worker advocacy"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/996icu/996.ICU"
       },
       "capabilities": [],
-      "useCase": "Repo for counting stars and contributing. Press F to pay respect to glorious developers. — 本週漲星 +276549 (2026-W31 自動探勘入庫)。",
+      "useCase": "A developer researching labor conditions in the Chinese tech industry or seeking community resources on workplace rights.",
       "advantages": [
-        "GitHub ⭐ 276,549 星，社群高度活躍",
-        "本週漲星 +276549",
-        "2026-W31 自動探勘入庫"
+        "Comprehensive documentation of 996 work culture with real-world contributor stories and legal references",
+        "Actively maintained community repository with star count reflecting widespread developer solidarity",
+        "Provides actionable resources including legal guidance and international labor law comparisons"
       ],
       "negativeConstraints": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "Not suitable for general programming or software development tasks",
+        "Should not be used as a legal reference for employment disputes without professional consultation",
+        "Not applicable for companies or regions outside the Chinese tech ecosystem context"
       ],
       "stars": 276549,
       "addedAt": "2026-08-05T16:48:53.910Z",
@@ -31393,26 +31397,31 @@
       "id": "linux",
       "name": "linux",
       "url": "https://github.com/torvalds/linux",
-      "description": "Linux kernel source tree",
+      "description": "The official Linux kernel source tree maintained by Linus Torvalds and the open-source community.",
       "category": "開發工具",
       "language": "c",
       "triggers": [
-        "linux"
+        "linux",
+        "kernel",
+        "driver",
+        "patch",
+        "embedded"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/torvalds/linux"
       },
       "capabilities": [],
-      "useCase": "Linux kernel source tree — 本週漲星 +241825 (2026-W31 自動探勘入庫)。",
+      "useCase": "System developers and embedded engineers use it to build custom kernels, write device drivers, and apply security patches to Linux-based systems.",
       "advantages": [
-        "GitHub ⭐ 241,825 星，社群高度活躍",
-        "本週漲星 +241825",
-        "2026-W31 自動探勘入庫"
+        "Authoritative upstream source with direct access to the latest kernel features, bug fixes, and security patches",
+        "Fully open-source under GPL, enabling deep customization, auditing, and redistribution",
+        "Massive community and extensive documentation support for kernel development and troubleshooting"
       ],
       "negativeConstraints": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "Not suitable for end-user application development or high-level software engineering tasks",
+        "Not appropriate for users seeking a ready-to-use operating system without compilation and configuration",
+        "Not designed for Windows or macOS native development environments"
       ],
       "stars": 241825,
       "addedAt": "2026-08-05T16:48:53.910Z",
@@ -31616,6 +31625,75 @@
       "stars": 185830,
       "addedAt": "2026-08-05T17:02:46.173Z",
       "status": "active"
+    },
+    {
+      "id": "minimax-h3",
+      "name": "MiniMax H3",
+      "url": "https://github.com/MiniMax-AI/MiniMax-H3",
+      "description": "MiniMax H3 is a large language model with advanced reasoning and multilingual capabilities.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "minimax-h3",
+        "minimax",
+        "h3",
+        "large language model",
+        "reasoning"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/MiniMax-AI/MiniMax-H3.git",
+        "repoUrl": "https://github.com/MiniMax-AI/MiniMax-H3"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-08T15:23:56.522Z",
+      "status": "active",
+      "useCase": "Ideal for complex reasoning tasks, code generation, and multilingual content creation requiring high accuracy.",
+      "advantages": [
+        "Strong reasoning and problem-solving capabilities across diverse domains",
+        "Supports multilingual understanding and generation with high quality",
+        "Optimized for both efficiency and performance in production environments"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time low-latency applications requiring sub-second responses",
+        "Avoid for highly specialized domain tasks requiring expert-level precision without fine-tuning",
+        "Not recommended for use cases requiring strict compliance with regulated industry standards"
+      ]
+    },
+    {
+      "id": "prime-agent",
+      "name": "Prime Agent",
+      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
+      "description": "Self-improving RLM agent for autonomous coding workflows and long-running tasks.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "prime-agent",
+        "prime",
+        "agent",
+        "autonomous coding",
+        "RLM",
+        "self-improving agent"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx prime-agent",
+        "repoUrl": "https://github.com/PrimeIntellect-ai/prime-agent"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-08T15:24:04.446Z",
+      "status": "active",
+      "useCase": "A developer delegates a multi-step feature implementation to Prime Agent, which autonomously plans, writes, tests, and iterates on code until the task is complete.",
+      "advantages": [
+        "Self-improving RLM loop enables continuous learning and performance refinement across sessions",
+        "Designed for long-running autonomous tasks with minimal human intervention",
+        "Specialized for coding workflows with built-in iteration and self-correction"
+      ],
+      "negativeConstraints": [
+        "Not suitable for one-off simple queries that require instant responses",
+        "Avoid for tasks requiring strict deterministic output without room for iteration",
+        "Not ideal for real-time systems where latency must be minimized"
+      ]
     }
   ]
 }
