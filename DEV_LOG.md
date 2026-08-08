@@ -1,3 +1,33 @@
+## 2026-08-08 每週漲星探勘腳本重構與前端 UI 排行榜相容性修復
+
+### 需求
+修復前端排行榜 UI「無人上榜」相容性 Bug，並重構後端探勘腳本 `scripts/trending-weekly.js`，使其能精準捕捉近期的爆發黑馬專案。
+
+### 處理結果
+- **前端修復 (`web/app.js`)**:
+  - `loadWeeklyTrending` 支援向下相容讀取 `top20` 並精確截取前 10 名。
+  - 修復數據掃描總數 `scannedReposCount` / `activeReposCount` 之讀取。
+  - 動態過濾 `isNewlyAdded === true` 之工具並渲染特寫卡片。
+- **後端重構 (`scripts/trending-weekly.js`)**:
+  - 引入 `created:>${date}` 近期新建專案與 `pushed:>${date}` 活躍專案搜尋。
+  - 重構基線演算法：對 30 天內新建之黑馬專案允許起點星數記為 0 星計算完整增量。
+  - 加入 401 Unauthorized 無效 Token 自動切換至公開模式之安全降級機制。
+  - 單週漲星第一名成功由原先 +54 星大幅提升至 **+13,753 星** (`andrewyng/openworker`)。
+  - 自動新增 14 個爆發工具入庫，庫存數提升至 **464 個**。
+- **門禁測試**:
+  - 執行 `node scripts/enrich-registry.js` 自動補齊新增工具欄位。
+  - 執行 `node cli.js validate`，全站 464 個工具 100% 通過驗證。
+
+### RCA & CAPA
+- **RCA**: 
+  1. API 查詢誤用 `sort=stars&order=desc` 按總星數排序，導致抓到的全是增長平緩的老牌巨無霸。
+  2. `prevStars === 0` 強制 continue 跳過，導致無歷史快照的新黑馬專案被抹煞。
+  3. 前端代碼寫死 `data.top10`，與 JSON 欄位 `data.top20` 脫節。
+- **CAPA**:
+  1. 重構搜尋條件矩陣與基線估算邏輯。
+  2. 前端改用向上相容陣列切割，JSON 端並存 `top10` 與 `top20`。
+  3. 門禁確效 464 個工具 100% 通過。
+
 ## 2026-08-08 批量新增 AI 工具與詮釋資料補齊確效
 
 ### 需求

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-08T15:24:20.541Z",
+  "lastUpdated": "2026-08-08T15:35:08.765Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -31694,6 +31694,494 @@
         "Avoid for tasks requiring strict deterministic output without room for iteration",
         "Not ideal for real-time systems where latency must be minimized"
       ]
+    },
+    {
+      "id": "qm",
+      "name": "qm",
+      "url": "https://github.com/yc-software/qm",
+      "description": "Multiplayer agent harness for collaborative work and orchestration.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "qm",
+        "multiplayer",
+        "agent",
+        "harness",
+        "collaboration"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/yc-software/qm"
+      },
+      "capabilities": [],
+      "useCase": "Coordinating multiple AI agents in a shared workspace for complex team tasks.",
+      "advantages": [
+        "Enables simultaneous multi-agent collaboration",
+        "Provides a structured harness for agent orchestration",
+        "Supports integration with existing development workflows"
+      ],
+      "negativeConstraints": [
+        "Single-user tasks without collaboration needs",
+        "Real-time high-frequency trading systems",
+        "Non-agent-based automation requirements"
+      ],
+      "stars": 12470,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "anydoc",
+      "name": "anydoc",
+      "url": "https://github.com/firecrawl/anydoc",
+      "description": "Convert various document formats to clean Markdown using Rust-based parsing with Node.js and Python bindings.",
+      "category": "文件生產力",
+      "language": "rust",
+      "triggers": [
+        "anydoc",
+        "markdown conversion",
+        "document to markdown",
+        "file format converter"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/firecrawl/anydoc"
+      },
+      "capabilities": [],
+      "useCase": "A technical writer needs to convert a batch of Word, PowerPoint, and PDF files into Markdown for documentation publishing.",
+      "advantages": [
+        "Built in Rust for high performance and low memory usage during conversion",
+        "Supports Node.js and Python bindings for easy integration into existing workflows",
+        "Handles a wide range of input formats including Word, PowerPoint, Excel, EPUB, RTF, CSV, and PDF"
+      ],
+      "negativeConstraints": [
+        "Not suitable for converting images or audio/video files to Markdown",
+        "Avoid using when preserving complex layout or visual formatting is required",
+        "Not ideal for large-scale batch processing where a dedicated document pipeline is already in place"
+      ],
+      "stars": 11899,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "aos-ce",
+      "name": "aos-ce",
+      "url": "https://github.com/unicity-aos/aos-ce",
+      "description": "Open-source agent operating system for building, deploying, and managing autonomous AI agents.",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "aos-ce",
+        "agent operating system",
+        "multi-agent orchestration",
+        "autonomous AI agents",
+        "open agent framework"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/unicity-aos/aos-ce"
+      },
+      "capabilities": [],
+      "useCase": "A development team uses AOS Community Edition to orchestrate multiple AI agents that collaboratively handle code review, documentation generation, and deployment tasks in a CI/CD pipeline.",
+      "advantages": [
+        "Fully open-source with a transparent, community-driven development model",
+        "Provides a modular agent operating system architecture for flexible agent composition",
+        "Supports multi-agent coordination and autonomous task execution out of the box"
+      ],
+      "negativeConstraints": [
+        "Not suitable for production environments requiring enterprise-grade support and SLA guarantees",
+        "Not ideal for single-purpose, non-agent workflows where a lightweight script would suffice",
+        "Not recommended when proprietary or closed-source agent frameworks are mandated by compliance requirements"
+      ],
+      "stars": 8574,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi-K3",
+      "url": "https://github.com/MoonshotAI/Kimi-K3",
+      "description": "Advanced AI model for frontier research and complex reasoning tasks.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "kimi-k3",
+        "moonshot-ai",
+        "frontier-model",
+        "reasoning-agent"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/MoonshotAI/Kimi-K3"
+      },
+      "capabilities": [],
+      "useCase": "Ideal for developing sophisticated AI agents that require deep reasoning and multi-step problem solving.",
+      "advantages": [
+        "State-of-the-art reasoning performance",
+        "Open-source for customization and research",
+        "Optimized for complex multi-step tasks"
+      ],
+      "negativeConstraints": [
+        "Not suitable for simple, low-complexity tasks",
+        "Avoid for real-time applications with strict latency constraints",
+        "Not recommended for highly specialized domains requiring niche expertise"
+      ],
+      "stars": 8232,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "x4g",
+      "name": "X4G",
+      "url": "https://github.com/x4gKing/X4G",
+      "description": "X4G is a development tool for automating code generation and project scaffolding.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "x4g",
+        "code generation",
+        "project scaffolding",
+        "automation"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/x4gKing/X4G"
+      },
+      "capabilities": [],
+      "useCase": "Use X4G to quickly scaffold a new microservice project with predefined templates and configurations.",
+      "advantages": [
+        "Reduces boilerplate code generation time",
+        "Ensures consistent project structure across teams",
+        "Integrates with popular CI/CD pipelines"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time data processing tasks",
+        "Avoid using for simple one-off scripts",
+        "Not recommended for legacy systems without modern dependencies"
+      ],
+      "stars": 8155,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "scroll-world",
+      "name": "scroll-world",
+      "url": "https://github.com/oso95/scroll-world",
+      "description": "Transform any brand into an immersive scrollable 3D world landing page with interactive navigation.",
+      "category": "3D工程繪圖",
+      "language": "javascript",
+      "triggers": [
+        "scroll-world",
+        "3D landing page",
+        "immersive brand experience",
+        "scroll-driven animation"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/oso95/scroll-world"
+      },
+      "capabilities": [],
+      "useCase": "A marketing team creates an interactive 3D brand experience for a product launch, letting visitors explore features by scrolling through a virtual world.",
+      "advantages": [
+        "Converts standard brand content into an engaging scroll-driven 3D experience without requiring native 3D development skills",
+        "Provides interactive spatial navigation that increases user engagement and time-on-page compared to traditional landing pages",
+        "Framework-agnostic approach allows integration with existing web projects and brand assets"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects requiring real-time multiplayer or live collaborative 3D environments",
+        "Avoid using for simple informational pages that do not benefit from immersive storytelling or spatial navigation",
+        "Not ideal for mobile-first experiences where scroll-based 3D rendering may cause performance issues on low-end devices"
+      ],
+      "stars": 7786,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "turbo-fieldfare",
+      "name": "turbo-fieldfare",
+      "url": "https://github.com/drumih/turbo-fieldfare",
+      "description": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook",
+      "category": "AI 框架",
+      "language": "swift",
+      "triggers": [
+        "turbo-fieldfare",
+        "apple-silicon",
+        "gemma",
+        "gemma4",
+        "gemma4-26b-a4b",
+        "gpgpu"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/drumih/turbo-fieldfare"
+      },
+      "capabilities": [
+        "apple-silicon",
+        "gemma",
+        "gemma4",
+        "gemma4-26b-a4b",
+        "gpgpu",
+        "llm"
+      ],
+      "useCase": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook — 本週漲星 +5403 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 5,403 星",
+        "本週漲星 +5403",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 5403,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "decimen-optical-transfer",
+      "name": "decimen-optical-transfer",
+      "url": "https://github.com/bashalarmistalt/decimen-optical-transfer",
+      "description": "Tool for optical transfer function analysis and simulation in imaging systems.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "optical-transfer-function",
+        "imaging-system-analysis",
+        "lens-performance",
+        "mtf-calculation"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/bashalarmistalt/decimen-optical-transfer"
+      },
+      "capabilities": [],
+      "useCase": "Optical engineers use this tool to evaluate lens performance and predict imaging system quality before physical prototyping.",
+      "advantages": [
+        "Computes optical transfer functions with high precision across multiple wavelengths",
+        "Supports customizable optical system configurations and parameter sweeps",
+        "Provides visual output for quick interpretation of transfer characteristics"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time or embedded deployment due to computational overhead",
+        "Should not be used for non-optical signal processing tasks",
+        "Requires well-defined input parameters; unreliable with incomplete optical specifications"
+      ],
+      "stars": 5288,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "gpt-5-6-instruct",
+      "name": "gpt-5.6-instruct",
+      "url": "https://github.com/MDX-Tom/gpt-5.6-instruct",
+      "description": "Codex jailbreak prompts and test pack for GPT-5.6 series models.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "gpt-5-6-instruct",
+        "jailbreak",
+        "prompt injection",
+        "red team",
+        "safety testing"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/MDX-Tom/gpt-5.6-instruct"
+      },
+      "capabilities": [],
+      "useCase": "Security researchers and red teamers testing GPT-5.6 model robustness against prompt injection and jailbreak attacks.",
+      "advantages": [
+        "Comprehensive jailbreak prompt collection targeting GPT-5.6 series",
+        "Structured test cases for evaluating model safety boundaries",
+        "Bilingual documentation supporting both English and Chinese users"
+      ],
+      "negativeConstraints": [
+        "Do not use for malicious purposes or to bypass legitimate safety measures",
+        "Not suitable for production deployment or real-world application development",
+        "Avoid using on models outside the GPT-5.6 series without validation"
+      ],
+      "stars": 4994,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "gc-minimal-zine-poster",
+      "name": "gc-minimal-zine-poster",
+      "url": "https://github.com/LiamGvchi/gc-minimal-zine-poster",
+      "description": "Generates minimal zine-style editorial poster prompts and images with a quiet aesthetic.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "gc-minimal-zine-poster",
+        "minimalist poster",
+        "zine design",
+        "editorial poster"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/LiamGvchi/gc-minimal-zine-poster"
+      },
+      "capabilities": [],
+      "useCase": "A designer creating a minimalist poster for an independent art exhibition or cultural event.",
+      "advantages": [
+        "Specializes in quiet, minimal aesthetic suitable for editorial and zine-style design",
+        "Generates both prompts and images for streamlined creative workflow",
+        "Tailored for poster and print-oriented visual output"
+      ],
+      "negativeConstraints": [
+        "Not suitable for photorealistic or highly detailed illustration work",
+        "Avoid for corporate branding or commercial advertising campaigns requiring bold visuals",
+        "Not ideal for generating complex layouts or multi-element compositions"
+      ],
+      "stars": 4661,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "no-ai-slop",
+      "name": "no-ai-slop",
+      "url": "https://github.com/petergyang/no-ai-slop",
+      "description": "Detects and removes common AI-generated writing patterns to improve text authenticity.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "no-ai-slop",
+        "ai-slop",
+        "humanize-text",
+        "ai-patterns"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/petergyang/no-ai-slop"
+      },
+      "capabilities": [],
+      "useCase": "When editing blog posts or marketing copy to ensure human-like tone and avoid robotic phrasing.",
+      "advantages": [
+        "Identifies overused AI phrases like 'delve', 'tapestry', and 'testament'.",
+        "Provides immediate text replacement suggestions.",
+        "Works with any writing format including essays, articles, and social media posts."
+      ],
+      "negativeConstraints": [
+        "When preserving original AI-generated content for analysis.",
+        "When editing technical documentation that requires precise terminology."
+      ],
+      "stars": 4540,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "video-shotcraft",
+      "name": "video-shotcraft",
+      "url": "https://github.com/Vincentwei1021/video-shotcraft",
+      "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 106 shot recipe cards, 161 motion previews, a production-ready template",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "video-shotcraft",
+        "agent-skills",
+        "ai-agents",
+        "ai-video",
+        "claude-code",
+        "claude-code-skills"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Vincentwei1021/video-shotcraft"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-agents",
+        "ai-video",
+        "claude-code",
+        "claude-code-skills",
+        "claude-skills"
+      ],
+      "useCase": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 106 shot recipe cards, 161 motion previews, a production-ready template — 本週漲星 +4153 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 4,153 星",
+        "本週漲星 +4153",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 4153,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "os-taxonomy",
+      "name": "os-taxonomy",
+      "url": "https://github.com/withmarbleapp/os-taxonomy",
+      "description": "A taxonomy classification system for organizing operating systems and related software categories.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "os-taxonomy",
+        "operating system classification",
+        "OS categorization",
+        "system taxonomy"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/withmarbleapp/os-taxonomy"
+      },
+      "capabilities": [],
+      "useCase": "Use when categorizing and standardizing OS names across multiple software inventories or documentation systems.",
+      "advantages": [
+        "Provides standardized naming conventions for operating systems",
+        "Enables consistent categorization across different platforms",
+        "Supports hierarchical classification of OS variants and versions"
+      ],
+      "negativeConstraints": [
+        "Do not use for real-time OS detection or system monitoring",
+        "Avoid for hardware specification management",
+        "Not suitable for license compliance tracking"
+      ],
+      "stars": 3927,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
+    },
+    {
+      "id": "bento",
+      "name": "bento",
+      "url": "https://github.com/nyblnet/bento",
+      "description": "Bento, the office suite that fits in a file",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "bento",
+        "mit-license",
+        "office",
+        "office-365",
+        "office-suite",
+        "office-tools"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/nyblnet/bento"
+      },
+      "capabilities": [
+        "mit-license",
+        "office",
+        "office-365",
+        "office-suite",
+        "office-tools",
+        "office365"
+      ],
+      "useCase": "Bento, the office suite that fits in a file — 本週漲星 +3827 (2026-W31 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 3,827 星",
+        "本週漲星 +3827",
+        "2026-W31 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3827,
+      "addedAt": "2026-08-08T15:34:11.530Z",
+      "status": "active"
     }
   ]
 }

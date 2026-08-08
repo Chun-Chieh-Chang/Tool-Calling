@@ -3347,12 +3347,9 @@
     "fullName": "x1xhlol/system-prompts-and-models-of-ai-tools",
     "owner": "x1xhlol",
     "repo": "system-prompts-and-models-of-ai-tools",
-    "initialStars": 142582,
-    "discoveredAt": "2026-07-27T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
+    "category": "AI 框架",
     "addedAt": "2026-08-05T17:02:46.173Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "infiniflow/ragflow": {
     "fullName": "infiniflow/ragflow",
@@ -8990,12 +8987,9 @@
     "fullName": "Significant-Gravitas/AutoGPT",
     "owner": "Significant-Gravitas",
     "repo": "AutoGPT",
-    "initialStars": 185829,
-    "discoveredAt": "2026-07-27T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
+    "category": "AI 框架",
     "addedAt": "2026-08-05T17:02:46.173Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "zylon-ai/private-gpt": {
     "fullName": "zylon-ai/private-gpt",
@@ -20216,7 +20210,7 @@
     "fullName": "DigitalPlatDev/FreeDomain",
     "owner": "DigitalPlatDev",
     "repo": "FreeDomain",
-    "initialStars": 191053,
+    "initialStars": 191054,
     "discoveredAt": "2026-08-03T00:00:00.000Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
@@ -20293,7 +20287,7 @@
     "fullName": "avelino/awesome-go",
     "owner": "avelino",
     "repo": "awesome-go",
-    "initialStars": 180200,
+    "initialStars": 180201,
     "discoveredAt": "2026-08-03T00:00:00.000Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
@@ -20656,7 +20650,7 @@
     "fullName": "axios/axios",
     "owner": "axios",
     "repo": "axios",
-    "initialStars": 109188,
+    "initialStars": 109189,
     "discoveredAt": "2026-08-03T00:00:00.000Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
@@ -20795,11 +20789,27 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2007,
-    "inRegistry": 427,
-    "trackedOnly": 1580,
-    "lastGenerated": "2026-08-05T17:02:46.192Z"
+  "MiniMax-AI/MiniMax-H3": {
+    "fullName": "MiniMax-AI/MiniMax-H3",
+    "owner": "MiniMax-AI",
+    "repo": "MiniMax-H3",
+    "category": "AI 代理",
+    "addedAt": "2026-08-08T15:23:56.522Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-08-05T17:02:46.173Z"
+  "PrimeIntellect-ai/prime-agent": {
+    "fullName": "PrimeIntellect-ai/prime-agent",
+    "owner": "PrimeIntellect-ai",
+    "repo": "prime-agent",
+    "category": "開發工具",
+    "addedAt": "2026-08-08T15:24:04.446Z",
+    "status": "tracking"
+  },
+  "_meta": {
+    "total": 2009,
+    "inRegistry": 431,
+    "trackedOnly": 1578,
+    "lastGenerated": "2026-08-08T15:34:11.548Z"
+  },
+  "lastGenerated": "2026-08-08T15:34:11.530Z"
 }

@@ -338,12 +338,14 @@ async function loadWeeklyTrending() {
 
     if (trendingWorldWeek) trendingWorldWeek.textContent = `🏆 GitHub 每週漲星排行榜 (${data.worldWeek || '2026-W30'})`;
     if (trendingDateRange) trendingDateRange.textContent = `統計區間：${data.dateRange || '近 7 天'}`;
-    if (trendingScannedCount) trendingScannedCount.textContent = data.scannedReposCount ? data.scannedReposCount.toLocaleString() : '--';
+    const scannedCount = data.activeReposCount || data.scannedReposCount || data.trackedPoolSize || 0;
+    if (trendingScannedCount) trendingScannedCount.textContent = scannedCount ? scannedCount.toLocaleString() : '--';
     if (trendingAddedCount) trendingAddedCount.textContent = `${data.newlyAddedCount || 0} 個工具`;
 
     // 1. 渲染排行榜表格 (Top 10 Leaderboard)
     leaderboardBody.innerHTML = '';
-    const top10 = Array.isArray(data.top10) ? data.top10 : [];
+    const rawList = Array.isArray(data.top10) ? data.top10 : (Array.isArray(data.top20) ? data.top20 : []);
+    const top10 = rawList.slice(0, 10);
 
     top10.forEach(item => {
       const tr = document.createElement('tr');
@@ -379,7 +381,7 @@ async function loadWeeklyTrending() {
     // 2. 渲染本週新納入本專案工具箱的工具特寫 (Newly Added Tools Highlight)
     if (newlyAddedGrid) {
       newlyAddedGrid.innerHTML = '';
-      const addedTools = Array.isArray(data.addedTools) ? data.addedTools : [];
+      const addedTools = Array.isArray(data.addedTools) ? data.addedTools : rawList.filter(item => item.isNewlyAdded);
       if (addedTools.length === 0) {
         newlyAddedGrid.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-secondary); text-align: center; padding: 24px;">本週探勘之 Top 10 工具皆已在庫存中，暫無新增入庫工具。</div>';
       } else {
