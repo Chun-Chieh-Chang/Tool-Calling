@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-09T08:12:42.470Z",
+  "lastUpdated": "2026-08-09T10:25:53.762Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32778,6 +32778,42 @@
         "Should not be used in jurisdictions where bypassing censorship is illegal",
         "Not suitable for enterprise or production network environments requiring compliance",
         "Avoid using on public or shared computers due to privacy and security risks"
+      ]
+    },
+    {
+      "id": "reverse-skill",
+      "name": "Reverse Skill",
+      "url": "https://github.com/zhaoxuya520/reverse-skill",
+      "description": "AI-powered reverse engineering and penetration testing skill router with on-demand toolchain bootstrapping and self-evolving knowledge base.",
+      "category": "安全性",
+      "language": "powershell",
+      "triggers": [
+        "reverse-skill",
+        "reverse",
+        "skill",
+        "reverse-engineering",
+        "penetration-testing",
+        "binary-analysis",
+        "security-research"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/zhaoxuya520/reverse-skill.git",
+        "repoUrl": "https://github.com/zhaoxuya520/reverse-skill"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-09T10:25:24.444Z",
+      "status": "active",
+      "useCase": "A security researcher analyzing a suspicious binary can invoke this tool to automatically route to the appropriate reverse engineering tools and frameworks based on the target's architecture and format.",
+      "advantages": [
+        "AI-powered automatic routing to the most relevant reverse engineering or penetration testing tools based on task context",
+        "On-demand toolchain bootstrapping eliminates manual setup by provisioning only the tools needed for each specific task",
+        "Self-evolving knowledge base accumulates and improves expertise over time across supported AI coding clients"
+      ],
+      "negativeConstraints": [
+        "Not suitable for general-purpose software development tasks unrelated to security research or reverse engineering",
+        "Should not be used on systems or binaries without explicit authorization, as it is designed for authorized penetration testing only",
+        "Not appropriate for real-time incident response scenarios requiring immediate manual intervention without AI assistance"
       ]
     }
   ]

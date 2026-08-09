@@ -1,5 +1,23 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-09 批量新增 2 個網址至工具庫（含拆解檢查與分類修正）
+
+### 需求
+將 2 個 GitHub 網址批量加入工具庫，檢查是否需要 monorepo 拆解。
+
+### 處理結果
+- **新增 1 / 跳過 1 / 失敗 0**：
+  - 新增：`reverse-skill`（zhaoxuya520/reverse-skill）
+  - 跳過（已存在）：TencentDB-Agent-Memory
+- **拆解判定**：無 monorepo 拆解需求，兩者皆為單一專案。
+- **分類修正（1 筆）**：`reverse-skill` 研究→安全性（逆向/滲透/安全技能路由包，與 cybersecurity-skills-Hi-FullHouse 同先例）。
+- **詮釋資料補齊**：`node scripts/enrich-registry.js` 成功補齊 1/1（場景/禁用場景/優勢）。
+- **門禁確效**：`node cli.js validate` 479 工具 0 錯誤；`npm run check-mece` 全數通過；`npm test` 11/11 PASS；知識圖譜同步 479 工具。
+
+### RCA & CAPA
+- **RCA**: batch-add 掃描將安全研究類技能路由包歸類為「研究」，與分類體系中「安全性」（滲透測試/漏洞掃描）語義重疊。
+- **CAPA**: 依工具實際用途（授權滲透測試/逆向工程）人工審核分類，並以 check-mece 驗證無重疊殘留。
+
 ## 2026-08-09 批量新增 11 個網址至工具庫（含拆解檢查與分類修正）
 
 ### 需求
