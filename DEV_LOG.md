@@ -1,5 +1,32 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-09 專案整體程式碼與檔案優化作業（全域咒語五階段・第二輪）
+
+### 需求
+執行「全域咒語」五階段優化：死碼清理 → 文件同步 → MECE 整合 → 確效基準點 → 資安審查。
+
+### 處理結果
+- **預備步**：將 steipete 4 URL 批次成果獨立 commit（`5326025`），作為優化前基準。
+- **階段一：盤點與清理**:
+  - .gitignore 完整（node_modules/.temp/.exports/.omo/.agnes/dist/strix_runs/knowledge-graph.html 皆已忽略），無追蹤異常（git ls-files 驗證 strix_runs 已解除追蹤）。
+  - scripts/ 14 支腳本全數有引用（cli.js/package.json/workflows/web），**無死碼**。
+  - docs/ 檔案單一歸屬確認（REPORT=歷史紀錄、ANALYSIS=分析、RULES=規範），無重疊。
+- **階段二：文件同步**:
+  - README.md：474+ → **483+**。
+  - docs/CATEGORY-SYSTEM.md：分類表對齊實測（AI 框架 148 / AI 代理 95 / 開發工具 59 / 學習資源 33 / 文件生產力 25 / 安全性 7 / 基礎設施 4，其餘不變），合計 483 工具 / 21 類。
+  - WORKFLOW.md、SECURITY.md：無過時數字。
+- **階段三：MECE 整合**:
+  - `npm run check-mece` 全數通過，21 類無「其他」殘留。
+- **階段四：沙盒確效（全綠）**:
+  - `node cli.js validate`：483 工具 0 錯誤。
+  - `node scripts/build-web.js`：知識圖譜 483 工具、同義詞 202 詞彙、dist 建置成功。
+  - `npm test`：11/11 PASS。
+- **階段五：資安審查**：待 push 許可前執行（見下方 Commit）。
+
+### RCA & CAPA
+- **RCA**: 批次新增（3 輪共 +19 工具）後，README/CATEGORY-SYSTEM 工具數量與分類統計脫節。
+- **CAPA**: 文件數量一律以 `node cli.js validate` + registry 實測統計為準；commit 前強制四重門禁（validate + check-mece + build-web + test）。
+
 ## 2026-08-09 批量新增 4 個網址至工具庫（steipete 系列，含拆解檢查與分類修正）
 
 ### 需求

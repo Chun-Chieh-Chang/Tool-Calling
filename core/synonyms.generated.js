@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-09T04:40:20.050Z
+ * 產生時間：2026-08-09T12:07:38.298Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -277,32 +277,22 @@ export const SYNONYM_MAP = {
     "圖片"
   ],
   "型別體操": [
-    "typescript",
-    "type gymnastics",
-    "advanced types",
-    "ts skills"
-  ],
-  "typescript": [
-    "型別體操",
     "type gymnastics",
     "advanced types",
     "ts skills"
   ],
   "type gymnastics": [
     "型別體操",
-    "typescript",
     "advanced types",
     "ts skills"
   ],
   "advanced types": [
     "型別體操",
-    "typescript",
     "type gymnastics",
     "ts skills"
   ],
   "ts skills": [
     "型別體操",
-    "typescript",
     "type gymnastics",
     "advanced types"
   ],
