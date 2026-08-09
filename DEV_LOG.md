@@ -1,5 +1,21 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-09 批量新增 4 個網址至工具庫（steipete 系列，含拆解檢查與分類修正）
+
+### 需求
+將 steipete 的 4 個 GitHub 網址批量加入工具庫，檢查是否需要 monorepo 拆解。
+
+### 處理結果
+- **新增 4 / 跳過 0 / 失敗 0**：`codexbar`、`agent-scripts`、`summarize`、`repobar`
+- **拆解判定**：無 monorepo 拆解需求，皆為單一專案。
+- **分類修正（2 筆）**：`codexbar` AI 代理→開發工具（macOS 選單列 Codex/Claude Code 用量統計工具，非 agent 本體）；`summarize` AI 代理→文件生產力（URL/YouTube/Podcast 摘要 CLI+擴充功能）。
+- **詮釋資料補齊**：`node scripts/enrich-registry.js` 成功補齊 4/4（場景/禁用場景/優勢）。
+- **門禁確效**：`node cli.js validate` 483 工具 0 錯誤；`npm run check-mece` 全數通過；`npm test` 11/11 PASS；知識圖譜同步 483 工具。
+
+### RCA & CAPA
+- **RCA**: batch-add 依 README 關鍵字（ai、claude-code）將輔助型工具誤歸「AI 代理」，未區分「agent 本體」與「agent 輔助工具」。
+- **CAPA**: 人工審核工具實際用途（統計顯示/摘要工具非 agent），依功能本質分類，並以 check-mece 驗證。
+
 ## 2026-08-09 批量新增 2 個網址至工具庫（含拆解檢查與分類修正）
 
 ### 需求

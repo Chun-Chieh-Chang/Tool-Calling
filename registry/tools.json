@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-09T10:25:53.762Z",
+  "lastUpdated": "2026-08-09T12:04:01.893Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32814,6 +32814,165 @@
         "Not suitable for general-purpose software development tasks unrelated to security research or reverse engineering",
         "Should not be used on systems or binaries without explicit authorization, as it is designed for authorized penetration testing only",
         "Not appropriate for real-time incident response scenarios requiring immediate manual intervention without AI assistance"
+      ]
+    },
+    {
+      "id": "codexbar",
+      "name": "CodexBar",
+      "url": "https://github.com/steipete/CodexBar",
+      "description": "Track usage stats for OpenAI Codex and Claude Code without logging in.",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "codexbar",
+        "ai",
+        "claude-code",
+        "codex",
+        "swift",
+        "usage-tracking",
+        "macos"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/steipete/CodexBar.git",
+        "repoUrl": "https://github.com/steipete/CodexBar"
+      },
+      "capabilities": [
+        "ai",
+        "claude-code",
+        "codex",
+        "swift"
+      ],
+      "addedAt": "2026-08-09T12:03:25.460Z",
+      "status": "active",
+      "useCase": "Developers who want to monitor their AI coding assistant usage across Codex and Claude Code without signing into each platform separately.",
+      "advantages": [
+        "No login required — works without authenticating to OpenAI or Anthropic accounts",
+        "Unified dashboard for tracking usage across multiple AI coding tools",
+        "Lightweight macOS menu bar app built with Swift for minimal resource usage"
+      ],
+      "negativeConstraints": [
+        "Not suitable when detailed API-level analytics or billing reports are needed",
+        "Avoid if you require cross-platform support beyond macOS",
+        "Do not use when real-time usage monitoring with historical data trends is required"
+      ]
+    },
+    {
+      "id": "agent-scripts",
+      "name": "Agent Scripts",
+      "url": "https://github.com/steipete/agent-scripts",
+      "description": "Reusable automation scripts for AI agents, shared across repositories.",
+      "category": "AI 代理",
+      "language": "shell",
+      "triggers": [
+        "agent-scripts",
+        "agent",
+        "scripts",
+        "ai-agents",
+        "automation",
+        "reusable-scripts"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/steipete/agent-scripts.git",
+        "repoUrl": "https://github.com/steipete/agent-scripts"
+      },
+      "capabilities": [
+        "ai-agents"
+      ],
+      "addedAt": "2026-08-09T12:03:25.968Z",
+      "status": "active",
+      "useCase": "A developer building multiple AI agent projects can pull shared scripts from this repo to standardize agent initialization, logging, and task execution across all projects.",
+      "advantages": [
+        "Promotes code reuse and consistency across multiple AI agent repositories",
+        "Provides pre-built, tested scripts that reduce boilerplate for common agent tasks",
+        "Centralized maintenance allows updates to propagate across all dependent projects"
+      ],
+      "negativeConstraints": [
+        "Not suitable for standalone applications that do not involve AI agents",
+        "Avoid using if you need fully self-contained scripts without external dependencies",
+        "Not ideal for production systems requiring enterprise-grade support and SLAs"
+      ]
+    },
+    {
+      "id": "summarize",
+      "name": "Summarize",
+      "url": "https://github.com/steipete/summarize",
+      "description": "CLI and Chrome extension to summarize any URL, YouTube video, podcast, or file in seconds.",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "summarize",
+        "ai",
+        "cli",
+        "typescript",
+        "youtube",
+        "podcast",
+        "url"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx summarize",
+        "repoUrl": "https://github.com/steipete/summarize"
+      },
+      "capabilities": [
+        "ai",
+        "cli",
+        "summarize",
+        "typescript"
+      ],
+      "addedAt": "2026-08-09T12:03:26.599Z",
+      "status": "active",
+      "useCase": "Quickly extract key insights from a long YouTube tutorial or podcast episode without watching/listening to the entire content.",
+      "advantages": [
+        "Supports multiple input types including URLs, YouTube videos, podcasts, and local files",
+        "Available as both a CLI tool and Chrome extension for flexible usage across workflows",
+        "Built with TypeScript for reliable, type-safe execution"
+      ],
+      "negativeConstraints": [
+        "Not suitable for generating original content or creative writing",
+        "May lose nuance or detailed context when summarizing highly technical or specialized documents",
+        "Requires internet access for URL-based summarization; offline file processing may have limited capabilities"
+      ]
+    },
+    {
+      "id": "repobar",
+      "name": "RepoBar",
+      "url": "https://github.com/steipete/RepoBar",
+      "description": "Menu bar and terminal GitHub repo status monitor for CI, issues, PRs, and releases.",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "repobar",
+        "github",
+        "macos",
+        "statistics",
+        "menu bar",
+        "ci monitor",
+        "pull request tracker"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/steipete/RepoBar.git",
+        "repoUrl": "https://github.com/steipete/RepoBar"
+      },
+      "capabilities": [
+        "github",
+        "macos",
+        "statistics"
+      ],
+      "addedAt": "2026-08-09T12:03:27.623Z",
+      "status": "active",
+      "useCase": "Mac users managing multiple GitHub repositories who want at-a-glance visibility into CI status, open issues, and pull requests without switching apps.",
+      "advantages": [
+        "Displays GitHub repo metrics directly in the macOS menu bar for constant visibility",
+        "Tracks CI pipelines, issues, pull requests, and latest releases in a single lightweight tool",
+        "Terminal-compatible output enables integration into shell workflows and scripts"
+      ],
+      "negativeConstraints": [
+        "Not suitable for Windows or Linux users as it is macOS menu bar–specific",
+        "Not appropriate for enterprise CI/CD dashboards requiring team-wide collaboration features",
+        "Not designed for non-GitHub platforms such as GitLab, Bitbucket, or Azure DevOps"
       ]
     }
   ]
