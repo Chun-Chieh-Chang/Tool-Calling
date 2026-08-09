@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **464+ 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **474+ 個頂尖開源 AI 工具與 Agent 技能**：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與文件生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -54,3 +54,31 @@ node cli.js interview "網頁爬蟲"
 ### 指令對照表
 
 | 功能類別 | CLI 指令 | 說明 |
+|---------|----------|------|
+| 核心命令 | `node cli.js search "<查詢>" [-c 分類]` | 搜尋最適工具（支援自然語言與分類過濾） |
+| 核心命令 | `node cli.js invoke <id> [args...]` | 在 Docker 沙盒中安全執行工具（自動安裝） |
+| 核心命令 | `node cli.js install <id>` | 獲取工具原始碼到 `.temp/` 臨時目錄 |
+| 核心命令 | `node cli.js cleanup` | 移除所有臨時工具，復歸系統 |
+| 核心命令 | `node cli.js export-dataset [path]` | 匯出 Telemetry 作為 LLM 微調資料集 |
+| 管理命令 | `node cli.js list [-c 分類]` | 列出所有已註冊工具（可依分類過濾） |
+| 管理命令 | `node cli.js info <id>` | 查看工具詳細資訊 |
+| 管理命令 | `node cli.js add <github-url>` | 新增工具（自動解析類型：tool/resource/monorepo） |
+| 管理命令 | `node cli.js batch-add <file>` | 從檔案批量新增（多行 URL，自動分類與去重） |
+| 管理命令 | `node cli.js remove <id\|url>` | 移除工具 |
+| 管理命令 | `node cli.js index-subtools <id>` | 深層掃描並索引大補帖內部的子工具 |
+| 管理命令 | `node cli.js validate` | 驗證註冊庫格式（0 錯誤才可提交） |
+| 管理命令 | `node cli.js health-check` | 檢查所有工具 URL 可用性 |
+
+### npm scripts 對照表
+
+| npm script | 指令 | 說明 |
+|-----------|------|------|
+| `npm run validate` | `node cli.js validate` | 註冊庫完整性驗證 |
+| `npm run check-mece` | `node scripts/check-mece.js` | MECE 分類原則檢查 |
+| `npm run enrich` | `node scripts/enrich-registry.js` | 補齊工具詮釋資料 |
+| `npm run reclassify` | `node scripts/hook-reclassify.js` | 全盤分類重構 |
+| `npm run trending` | `node scripts/trending-weekly.js` | 每週漲星探勘 |
+| `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精靈 |
+| `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同義詞詞典 |
+| `npm test` | `node --test tests/*.test.js` | 執行 11 項測試 |
+| `npm run mcp` | `node mcp-server.js` | 啟動 MCP 伺服器 |

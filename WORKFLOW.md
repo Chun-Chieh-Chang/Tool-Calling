@@ -125,28 +125,18 @@ node scripts/enrich-registry.js
 
 ---
 
-## 六、本次新增工具的處理記錄
+## 六、品質門禁（提交前必過）
 
-| 工具 | 狀態 | 分類 | 處理方式 |
-|------|------|------|----------|
-| `react-d3-tree` | ✓ 新增 | 其他 | scan → enrich |
-| `awesome-solidity` | ✓ 新增 | 學習資源 | scan → enrich（resourceSignals 檢測） |
-| `appkit` | ✓ 已存在 | API 整合 | re-scan |
-| `hermes-agent` | ✓ 已存在 | AI 代理 | 已存在（ID: hermes-agent-NousResearch） |
-| `tencentdb-agent-memory` | ✓ 新增 | 知識管理 | scan → enrich |
-| `ai-for-beginners` | ✓ 新增 | 基礎設施 | scan → enrich |
-| `awesome-systematic-trading` | ✓ 已存在 | 研究 | re-scan |
-| `kaneo` | ✓ 新增 | AI 代理 | scan → enrich |
+新增或修改工具後，必須依序通過以下三項檢查才能提交 Git：
 
-**Git Commits：**
-- `27601e3` - feat: add 7 new tools
-- `47a73eb` - feat: add 4 new tools (re-scan)
-- `4bb0deb` - chore(enrich): supplement fields
+```bash
+node cli.js validate        # 1. 全庫 0 錯誤 0 警告
+npm run check-mece          # 2. MECE 分類檢查（無「其他」殘留）
+npm test                    # 3. 11/11 測試全數 PASS
+```
+
+批次新增後另需執行 `node scripts/build-web.js` 更新知識圖譜與前端。
 
 ---
 
-## 七、分析結論
-
-**無 monorepo 拆解需求** - 全部 8 個網址均為單一倉庫：
-- `awesome-solidity`、`awesome-systematic-trading` 為 Awesome List 類，自動歸類為「學習資源」
-- `ai-for-beginners` 為 Microsoft 官方課程，自動歸類為「基礎設施」
+> 📌 過往批次的新增紀錄與 Git commit 對照請見 `DEV_LOG.md`（單一數據源），本文件僅保留可重複執行的流程規範。

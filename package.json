@@ -17,6 +17,8 @@
     "health-check": "node cli.js health-check",
     "validate": "node cli.js validate",
     "enrich": "node scripts/enrich-registry.js",
+    "check-mece": "node scripts/check-mece.js",
+    "reclassify": "node scripts/hook-reclassify.js",
     "trending": "node scripts/trending-weekly.js",
     "tracked-repos": "node scripts/tracked-repos.js --force",
     "mcp": "node mcp-server.js",

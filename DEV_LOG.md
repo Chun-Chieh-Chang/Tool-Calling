@@ -1,6 +1,39 @@
 # Tool-Calling 開發日誌
 
-## 2026-08-08 專案整體程式碼與檔案全流程優化與重構作業
+## 2026-08-09 專案整體程式碼與檔案優化作業（全域咒語五階段）
+
+### 需求
+執行「全域咒語」五階段優化：死碼清理 → 文件同步 → MECE 整合 → 確效基準點 → 資安審查。
+
+### 處理結果
+- **預備步**：將前一輪「批量新增 14 個網址」成果獨立 commit（`e59c39b`），作為優化前基準。
+- **階段一：盤點與清理**:
+  - 修復 CI 壞引用：`.github/workflows/sync-stars.yml` 原引用不存在的 `scripts/sync-github-stars.js` → 改 `node scripts/sync-daemon.js --once`；同步為 `sync-daemon.js` 新增 `--once` 旗標與 `GITHUB_TOKEN` 支援（冒煙測試：exit 0，30s 內更新 17/474 顆星）。
+  - 修復 cli.js 壞引用：`discover-trending` 原指向不存在的 `scripts/auto-trending-discovery.js` → 改 `scripts/trending-weekly.js`；該腳本重構為匯出 `discoverTrendingTools()`（ESM direct-run guard 雙路徑驗證通過）。
+  - `strix_runs/` 已進 .gitignore 卻仍被 git 追蹤 → `git rm -r --cached` 解除追蹤（12 檔案，本機保留）。
+  - 移除 `TOOLS-ADDED-REPORT.md`（428 工具過時、全專案零引用）；`OPTIMIZATION_ANALYSIS.md` 歸位至 `docs/`（根目錄瘦身，MECE）。
+  - `scripts/scan-tool.js` fallback 分類「其他」違反 MECE → 改回傳「開發工具」。
+  - `web/index.html` 過時註解修正（favicon.ico 保留聲明，DEV_LOG 記載刪除會致 GitHub Pages 404）。
+- **階段二：文件同步**:
+  - README.md：464+ → **474+**；重建被截斷的「指令對照表」（13 指令，對齊 `cli.js --help` 權威來源）；新增「npm scripts 對照表」（9 項）。
+  - docs/CATEGORY-SYSTEM.md：分類統計對齊實際（21 類 / 474 工具，含統計時間戳）。
+  - WORKFLOW.md：移除第六/七節一次性批次紀錄，改為「品質門禁」規範（validate + check-mece + test），並宣告 DEV_LOG.md 為單一數據源。
+  - docs/MECE-RULES.md：移除不存在的 `scripts/check-uncategorized.js` 引用（由 check-mece.js 涵蓋）；check-mece 標記已完成並接線。
+- **階段三：MECE 整合**:
+  - 分類數量實測（node 統計 registry）：AI 框架 147 / AI 代理 94 / 開發工具 56 / 學習資源 32 / UI/UX設計 29 / 文件生產力 24 / 影片 15 / API 整合 9 / 音訊 9 / 研究 9 / 圖標與視覺資源 9 / 安全性 6 / 測試與自動化 6 / 知識管理 6 / 多媒體生成 5 / 資料庫 4 / 3D工程繪圖 4 / 瀏覽器自動化 3 / 基礎設施 3 / 數據分析 3 / 行銷 1。**21 類、無「其他」殘留**。
+  - 驗證 `web/app.js` 分類為資料驅動動態渲染（無硬編碼舊分類）。
+- **階段四：沙盒確效（全綠）**:
+  - `node cli.js validate`：474 工具 0 錯誤。
+  - `npm run check-mece`：全數通過。
+  - `node scripts/build-web.js`：知識圖譜 474 工具、同義詞 203 詞彙、dist 建置成功。
+  - `npm test`：11/11 PASS。
+- **階段五：資安審查**：待 push 許可前執行（見下方 Commit）。
+
+### RCA & CAPA
+- **RCA**: 1. CI 與 CLI 引用已刪除/改名腳本未同步（sync-github-stars.js、auto-trending-discovery.js）；2. 批次新增後過時報告與根目錄文件堆疊未即時清理；3. 分類數量因 block-buzz 改類（其他→基礎設施）與 14 工具入庫而與文件脫節。
+- **CAPA**: 壞引用一律以實際存在腳本接線並冒煙測試；零引用報告移除或歸位 docs/；文件數量一律以 `node cli.js validate` + registry 實測統計為準；commit 前強制四重門禁（validate + check-mece + build-web + test）。
+
+
 
 ### 需求
 依據 `project-refactor-cleanup` SOP 規範，執行專案全量盤點、死碼/無效資產清理、MECE 分類架構對齊、文件同步更新與安全確效。

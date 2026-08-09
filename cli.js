@@ -818,7 +818,7 @@ async function main() {
       cmdValidate();
       break;
     case 'discover-trending': {
-      const { discoverTrendingTools } = await import('./scripts/auto-trending-discovery.js');
+      const { discoverTrendingTools } = await import('./scripts/trending-weekly.js');
       await discoverTrendingTools();
       break;
     }

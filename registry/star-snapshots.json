@@ -2409,5 +2409,21 @@
   "lastUpdated": "2026-08-08T15:41:04.853Z",
   "weekRange": "2026-07-20 ~ 2026-08-02",
   "startDate": "2026-07-20T00:00:00.000Z",
-  "endDate": "2026-08-02T00:00:00.000Z"
+  "endDate": "2026-08-02T00:00:00.000Z",
+  "hugohe3/ppt-master": 43972,
+  "Graphify-Labs/graphify": 104395,
+  "usestrix/strix": 50020,
+  "Anil-matcha/Open-Generative-AI": 25892,
+  "brycedrennan/imaginAIry": 8176,
+  "vercel-labs/skills": 28383,
+  "mattpocock/skills": 210176,
+  "microsoft/playwright": 94218,
+  "thephpleague/flysystem": 13583,
+  "crystaldba/postgres-mcp": 3173,
+  "github/github-mcp-server": 32070,
+  "upstash/context7": 60452,
+  "modelcontextprotocol/servers": 89354,
+  "arben-adm/mcp-sequential-thinking": 941,
+  "MemTensor/memmy-agent": 619,
+  "codecrafters-io/build-your-own-x": 537879
 }

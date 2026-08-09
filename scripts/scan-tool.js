@@ -95,7 +95,8 @@ function guessCategory(desc, topics) {
   if (text.includes('agent') || text.includes('skill')) return '開發工具';
   if (text.includes('cli') || text.includes('command')) return '開發工具';
   if (text.includes('automation')) return '測試與自動化';
-  return '其他';
+  // MECE 原則：禁止產生「其他」殘留分類（docs/CATEGORY-SYSTEM.md 預設規則）
+  return '開發工具';
 }
 
 /**

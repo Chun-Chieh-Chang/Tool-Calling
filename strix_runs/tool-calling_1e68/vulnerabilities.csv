@@ -1,4 +1,0 @@
-id,title,severity,timestamp,file
-vuln-0001,Command Injection in Docker Sandbox via CLI/MCP arguments,HIGH,2026-07-26 03:34:48 UTC,vulnerabilities/vuln-0001.md
-vuln-0002,Regex Injection and ReDoS in scan-tool.js description processing,MEDIUM,2026-07-26 03:36:34 UTC,vulnerabilities/vuln-0002.md
-vuln-0003,Mutable GitHub Actions references in workflow files,MEDIUM,2026-07-26 03:37:45 UTC,vulnerabilities/vuln-0003.md

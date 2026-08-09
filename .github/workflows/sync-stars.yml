@@ -23,7 +23,7 @@ jobs:
       - name: Sync Live GitHub Stars
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/sync-github-stars.js
+        run: node scripts/sync-daemon.js --once
 
       - name: Commit Star Updates (save before validate in case of failure)
         run: |

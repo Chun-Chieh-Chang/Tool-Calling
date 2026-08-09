@@ -198,11 +198,8 @@ assert(!anyUncategorized, '發現未分類或「其他」類別的工具！');
 # 執行完整性檢查
 npm run validate
 
-# 檢查分類一致性
+# 檢查分類一致性與「其他」殘留（含未分類偵測）
 node scripts/check-mece.js
-
-# 檢查是否有未分類工具
-node scripts/check-uncategorized.js
 ```
 
 ### 7.2 常見的 MECE 違反模式
@@ -224,11 +221,10 @@ node scripts/check-uncategorized.js
 - [x] 拆分「圖標與視覺資源」
 - [x] 添加分類重構脚本 (`scripts/reclassify-tools.js`)
 - [x] 添加時間戳記到漲星榜數據
+- [x] 創建 `scripts/check-mece.js` 自動檢查腳本（並接線 `npm run check-mece`）
 
 ### 8.2 待完成
-- [ ] 創建 `scripts/check-mece.js` 自動檢查腳本
 - [ ] 將此規則整合到 `.git/hooks/pre-commit` 中
-- [ ] 更新 `web/app.js` 以正確顯示新的分類結構
 - [ ] 文檔化完整的分類邊界定義
 
 ---

@@ -11,7 +11,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildTrackedRepos, getTrackedRepos } from './tracked-repos.js';
 
@@ -178,7 +178,7 @@ function getLatestSnapshot(snapshotData) {
 // 主流程
 // ──────────────────────────────────────────────
 
-async function main() {
+export async function discoverTrendingTools() {
   const now = new Date();
   const { monday: targetMonday, sunday: targetSunday, isoWeek: targetWeek } = getTargetWeek(now);
   const lastWeekRange = getLastWeekRange(now);
@@ -506,7 +506,11 @@ async function main() {
   console.log(`✅ [完成] ${targetWeek} 每週漲星探勘作業結束！（僅使用 ${SEARCH_QUERIES.length} 次 Search API 請求）\n`);
 }
 
-main().catch((err) => {
-  console.error('[Error] Trending weekly scan failed:', err);
-  process.exit(1);
-});
+// 直接執行時自動啟動；被 cli.js 動態 import（discover-trending 命令）時僅提供函式，不觸發掃描
+const isDirectRun = typeof process.argv[1] === 'string' && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isDirectRun) {
+  discoverTrendingTools().catch((err) => {
+    console.error('[Error] Trending weekly scan failed:', err);
+    process.exit(1);
+  });
+}

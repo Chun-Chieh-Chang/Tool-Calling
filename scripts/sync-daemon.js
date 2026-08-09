@@ -22,6 +22,11 @@ async function syncOnce() {
   const snap = loadSnapshot();
   let updated = 0;
 
+  // 支援 CI 環境：提供 GITHUB_TOKEN 可突破匿名 API 60 次/小時速率限制
+  const token = process.env.GITHUB_TOKEN;
+  const headers = { 'User-Agent': 'Tool-Calling-Daemon' };
+  if (token && token.length > 10) headers['Authorization'] = `token ${token}`;
+
   for (const tool of registry.tools) {
     if (!tool.url) continue;
     const parsed = parseOwnerRepo(tool.url);
@@ -29,7 +34,7 @@ async function syncOnce() {
     const fullName = `${parsed.owner}/${parsed.repo}`;
     try {
       const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}`;
-      const res = await fetch(apiUrl, { headers: { 'User-Agent': 'Tool-Calling-Daemon' }, signal: AbortSignal.timeout(6000) });
+      const res = await fetch(apiUrl, { headers, signal: AbortSignal.timeout(6000) });
       if (!res.ok) continue;
       const data = await res.json();
       if (typeof data.stargazers_count === 'number') {
@@ -54,11 +59,19 @@ async function syncOnce() {
 }
 
 async function main() {
-  console.log(`🧠 Tool-Calling 背景同步精靈啟動`);
-  console.log(`   輪詢間隔：${INTERVAL_MS / 3600000} 小時`);
-  console.log(`   首次同步：立即執行\n`);
+  // 一次性模式：供 CI/CD（.github/workflows/sync-stars.yml）呼叫，同步完即退出
+  const once = process.argv.includes('--once');
+  if (!once) {
+    console.log(`🧠 Tool-Calling 背景同步精靈啟動`);
+    console.log(`   輪詢間隔：${INTERVAL_MS / 3600000} 小時`);
+    console.log(`   首次同步：立即執行\n`);
+  }
 
   await syncOnce();
+
+  if (once) {
+    process.exit(0);
+  }
 
   setInterval(syncOnce, INTERVAL_MS);
 }
