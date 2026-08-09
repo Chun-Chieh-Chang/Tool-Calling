@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-09T04:08:49.223Z",
+  "lastUpdated": "2026-08-09T08:12:42.470Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32624,6 +32624,160 @@
         "僅適用於 hermes-agent 生態系，無法用於其他代理框架",
         "避免與 witt3rd / Salomondiei08 版本的 oh-my-hermes 同時安裝（功能重疊可能衝突）",
         "一鍵安裝腳本會變更代理設定，請在乾淨環境或備份後執行"
+      ]
+    },
+    {
+      "id": "skills",
+      "name": "Skills",
+      "url": "https://github.com/google/skills",
+      "description": "Agent skills for Google products and technologies",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "skills",
+        "google",
+        "googlecloud",
+        "agent",
+        "integration"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/google/skills.git",
+        "repoUrl": "https://github.com/google/skills"
+      },
+      "capabilities": [
+        "google",
+        "googlecloud",
+        "skills"
+      ],
+      "addedAt": "2026-08-09T08:10:58.055Z",
+      "status": "active",
+      "useCase": "Enabling AI agents to interact with Google Cloud services and APIs",
+      "advantages": [
+        "Seamless integration with Google Cloud ecosystem",
+        "Pre-built skills for common Google services",
+        "Extensible framework for custom skill development"
+      ],
+      "negativeConstraints": [
+        "When working with non-Google cloud providers",
+        "For offline or local-only applications without internet",
+        "When real-time API access is not required"
+      ]
+    },
+    {
+      "id": "ladybird",
+      "name": "Ladybird",
+      "url": "https://github.com/LadybirdBrowser/ladybird",
+      "description": "A modern, independently developed web browser and browser engine built from scratch with Rust.",
+      "category": "開發工具",
+      "language": "c++",
+      "triggers": [
+        "ladybird",
+        "browser",
+        "browser-engine",
+        "rust",
+        "web-browser",
+        "web-engine"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/LadybirdBrowser/ladybird.git",
+        "repoUrl": "https://github.com/LadybirdBrowser/ladybird"
+      },
+      "capabilities": [
+        "browser",
+        "browser-engine"
+      ],
+      "addedAt": "2026-08-09T08:10:58.982Z",
+      "status": "active",
+      "useCase": "Developers and researchers who need a lightweight, transparent browser engine for testing web standards or building custom browsing experiences.",
+      "advantages": [
+        "Built entirely from scratch in Rust, offering memory safety and high performance",
+        "Fully independent browser engine without reliance on Chromium or Gecko codebases",
+        "Modern architecture with clean codebase ideal for learning and customization"
+      ],
+      "negativeConstraints": [
+        "Not suitable for production daily browsing yet as it is still under active development",
+        "Not ideal for users requiring full compatibility with all modern web applications and extensions",
+        "Not recommended for enterprise deployments needing long-term stability guarantees"
+      ]
+    },
+    {
+      "id": "celld",
+      "name": "Celld",
+      "url": "https://github.com/denoland/celld",
+      "description": "Self-hosted distributed Durable Objects for Deno, enabling stateful edge computing.",
+      "category": "基礎設施",
+      "language": "rust",
+      "triggers": [
+        "celld",
+        "durable-objects",
+        "deno",
+        "distributed-state"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/denoland/celld",
+        "repoUrl": "https://github.com/denoland/celld"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-09T08:10:59.836Z",
+      "status": "active",
+      "useCase": "Deploying stateful microservices that require consistent, globally distributed state management without relying on Cloudflare's infrastructure.",
+      "advantages": [
+        "Self-hosted architecture provides full control over infrastructure and data sovereignty",
+        "Native Deno runtime compatibility for modern TypeScript/JavaScript development",
+        "Distributed state management with strong consistency guarantees across nodes"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects requiring Cloudflare-specific edge network integrations",
+        "Unsuitable for teams without Deno expertise or self-hosting infrastructure",
+        "Not ideal for simple stateless applications that don't need distributed state"
+      ]
+    },
+    {
+      "id": "fanqiang",
+      "name": "Fanqiang",
+      "url": "https://github.com/bannedbook/fanqiang",
+      "description": "Aggregates open-source proxy tools (Brook, Daze, Shadowsocks, etc.) for bypassing internet censorship.",
+      "category": "學習資源",
+      "language": "kotlin",
+      "triggers": [
+        "fanqiang",
+        "brook",
+        "daze",
+        "shadowsocks",
+        "proxy",
+        "lightsocks",
+        "goflyway",
+        "psiphon",
+        "censorship",
+        "vpn"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/bannedbook/fanqiang.git",
+        "repoUrl": "https://github.com/bannedbook/fanqiang"
+      },
+      "capabilities": [
+        "brook",
+        "daze",
+        "fanqiang",
+        "goflyway",
+        "lightsocks"
+      ],
+      "addedAt": "2026-08-09T08:11:00.618Z",
+      "status": "active",
+      "useCase": "A user in a restricted network environment needs a curated collection of working proxy tools to restore unrestricted internet access.",
+      "advantages": [
+        "Centralized repository of multiple proven proxy tools in one place",
+        "Regularly updated with working links and installation guides",
+        "Supports diverse protocols (Brook, Daze, Shadowsocks, Lightsocks) for flexibility"
+      ],
+      "negativeConstraints": [
+        "Should not be used in jurisdictions where bypassing censorship is illegal",
+        "Not suitable for enterprise or production network environments requiring compliance",
+        "Avoid using on public or shared computers due to privacy and security risks"
       ]
     }
   ]

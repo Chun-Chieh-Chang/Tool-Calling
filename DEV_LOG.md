@@ -1,5 +1,24 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-09 批量新增 11 個網址至工具庫（含拆解檢查與分類修正）
+
+### 需求
+將 11 個 GitHub 網址批量加入工具庫，檢查是否需要 monorepo 拆解。
+
+### 處理結果
+- **新增 5 / 跳過 6 / 失敗 0**：
+  - 新增：`tradingagents`、`skills`（google/skills）、`ladybird`、`celld`、`fanqiang`
+  - 跳過（已存在）：prime-agent、addyosmani/agent-skills、opencodex、DeepSeek-Reasonix、codegraph、codebase-memory-mcp
+- **拆解判定**：無 monorepo 拆解需求。`google/skills` 為 Agent Skills 集合，與先例 `addyosmani-agent-skills` 一致不拆解；其餘皆單一專案。
+- **分類修正（3 筆）**：`skills` 開發工具→AI 框架（與 anthropics/skills 同類先例）；`celld` 開發工具→基礎設施（self-hosted distributed Durable Objects）；`fanqiang` 開發工具→學習資源（翻牆工具/教程合集）。
+- **詮釋資料補齊**：`node scripts/enrich-registry.js` 成功補齊 5/5（場景/禁用場景/優勢）。
+- **重複 ID 修正**：batch-add 因 URL 大小寫不同（`TauricResearch` vs `tauricresearch`）未判重，重複新增 `tradingagents` → 以 URL 移除今日新增筆，保留 2026-07-19 既有筆。
+- **門禁確效**：`node cli.js validate` 478 工具 0 錯誤；`npm run check-mece` 全數通過；`npm test` 11/11 PASS；知識圖譜同步 478 工具。
+
+### RCA & CAPA
+- **RCA**: batch-add 的 URL 去重檢查區分大小寫，`TauricResearch/TradingAgents` 與既有 `tauricresearch/tradingagents` 被視為不同倉庫。
+- **CAPA**: 移除重複筆並以 validate 門禁攔截；後續批次新增後一律跑 validate 確認無重複 ID。
+
 ## 2026-08-09 專案整體程式碼與檔案優化作業（全域咒語五階段）
 
 ### 需求
