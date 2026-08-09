@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-05T16:11:24.407Z
+ * 產生時間：2026-08-09T04:01:38.510Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -773,12 +773,13 @@ export const SYNONYM_MAP = {
   ],
   "buzz": [
     "語音轉文字",
+    "群體智慧",
+    "去中心化溝通",
     "transcription",
     "audio",
     "whisper",
     "speech-to-text",
-    "offline-transcription",
-    "translation"
+    "offline-transcription"
   ],
   "瀏覽器自動化": [
     "browser automation",
@@ -1035,7 +1036,6 @@ export const SYNONYM_MAP = {
     "problem decomposition",
     "critical thinking",
     "first-principles-skill",
-    "reasoning",
     "assumptions"
   ],
   "first principles": [
@@ -1043,7 +1043,6 @@ export const SYNONYM_MAP = {
     "problem decomposition",
     "critical thinking",
     "first-principles-skill",
-    "reasoning",
     "assumptions"
   ],
   "problem decomposition": [
@@ -1051,7 +1050,6 @@ export const SYNONYM_MAP = {
     "first principles",
     "critical thinking",
     "first-principles-skill",
-    "reasoning",
     "assumptions"
   ],
   "critical thinking": [
@@ -1059,7 +1057,6 @@ export const SYNONYM_MAP = {
     "first principles",
     "problem decomposition",
     "first-principles-skill",
-    "reasoning",
     "assumptions"
   ],
   "first-principles-skill": [
@@ -1067,15 +1064,6 @@ export const SYNONYM_MAP = {
     "first principles",
     "problem decomposition",
     "critical thinking",
-    "reasoning",
-    "assumptions"
-  ],
-  "reasoning": [
-    "第一性原理",
-    "first principles",
-    "problem decomposition",
-    "critical thinking",
-    "first-principles-skill",
     "assumptions"
   ],
   "assumptions": [
@@ -1083,8 +1071,7 @@ export const SYNONYM_MAP = {
     "first principles",
     "problem decomposition",
     "critical thinking",
-    "first-principles-skill",
-    "reasoning"
+    "first-principles-skill"
   ],
   "根因分析": [
     "5 whys",
@@ -1302,6 +1289,69 @@ export const SYNONYM_MAP = {
   ],
   "video generation": [
     "生成"
+  ],
+  "群體智慧": [
+    "buzz",
+    "block-buzz",
+    "hive-mind",
+    "decentralized",
+    "communication",
+    "p2p-messaging",
+    "去中心化溝通"
+  ],
+  "block-buzz": [
+    "群體智慧",
+    "去中心化溝通",
+    "buzz",
+    "hive-mind",
+    "decentralized",
+    "communication",
+    "p2p-messaging"
+  ],
+  "hive-mind": [
+    "群體智慧",
+    "去中心化溝通",
+    "buzz",
+    "block-buzz",
+    "decentralized",
+    "communication",
+    "p2p-messaging"
+  ],
+  "decentralized": [
+    "群體智慧",
+    "去中心化溝通",
+    "buzz",
+    "block-buzz",
+    "hive-mind",
+    "communication",
+    "p2p-messaging"
+  ],
+  "communication": [
+    "群體智慧",
+    "去中心化溝通",
+    "buzz",
+    "block-buzz",
+    "hive-mind",
+    "decentralized",
+    "p2p-messaging"
+  ],
+  "p2p-messaging": [
+    "群體智慧",
+    "去中心化溝通",
+    "buzz",
+    "block-buzz",
+    "hive-mind",
+    "decentralized",
+    "communication"
+  ],
+  "去中心化溝通": [
+    "buzz",
+    "block-buzz",
+    "hive-mind",
+    "decentralized",
+    "communication",
+    "p2p-messaging",
+    "群體智慧"
   ],
   "翻譯": [
     "translate",

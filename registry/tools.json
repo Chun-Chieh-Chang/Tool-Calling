@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-08T15:41:04.853Z",
+  "lastUpdated": "2026-08-09T12:00:58.282Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32182,6 +32182,449 @@
       "stars": 3827,
       "addedAt": "2026-08-08T15:34:11.530Z",
       "status": "active"
+    },
+    {
+      "id": "geolibre",
+      "name": "GeoLibre",
+      "url": "https://github.com/opengeos/GeoLibre",
+      "description": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks.",
+      "category": "基礎設施",
+      "language": "typescript",
+      "triggers": [
+        "geolibre",
+        "data-science",
+        "duckdb",
+        "geospatial",
+        "gis",
+        "maplibre",
+        "maplibre-gl-js",
+        "tauri-app"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx GeoLibre",
+        "repoUrl": "https://github.com/opengeos/GeoLibre"
+      },
+      "capabilities": [
+        "data-science",
+        "duckdb",
+        "geolibre",
+        "geospatial",
+        "gis"
+      ],
+      "addedAt": "2026-08-09T03:57:36.431Z",
+      "status": "active",
+      "useCase": "當需要在瀏覽器、桌面、行動裝置或 Jupyter Notebook 中快速視覺化、探索與分析地理空間資料（GeoJSON、Shapefile、DuckDB 資料）時使用。",
+      "advantages": [
+        "雲端原生輕量架構，支援 Web、桌面（Tauri）、行動與 Jupyter 多種運行環境",
+        "整合 MapLibre GL JS 與 DuckDB，可直接在瀏覽器中執行地理空間 SQL 分析",
+        "無需架設重型的 GIS 伺服器即可完成地圖視覺化與空間資料探索"
+      ],
+      "negativeConstraints": [
+        "不適合需要完整桌面級 GIS 製圖出版（如 ArcGIS/QGIS 專業製圖）的場景",
+        "避免用於大型企業級空間資料庫的正式部署與權限控管需求",
+        "不適用於需要即時 GPS 追蹤或高精度測繪的嵌入式系統"
+      ]
+    },
+    {
+      "id": "t3code",
+      "name": "T3 Code",
+      "url": "https://github.com/pingdotgg/t3code",
+      "description": "Open-source agent harness control surface by t3.gg — 用手機、Web 或桌面 App 遠端控制本機的 Claude Code、Codex、Cursor、Grok Build 與 OpenCode 等 AI 編程代理。",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "t3code",
+        "t3-code",
+        "agent-harness",
+        "agent-control",
+        "claude-code",
+        "codex",
+        "cursor",
+        "grok-build",
+        "opencode",
+        "remote-agent",
+        "mobile-agent-control"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx t3code",
+        "repoUrl": "https://github.com/pingdotgg/t3code"
+      },
+      "capabilities": [
+        "agent-harness",
+        "remote-control",
+        "multi-agent-management"
+      ],
+      "addedAt": "2026-08-09T03:57:37.039Z",
+      "status": "active",
+      "useCase": "當開發者想從手機或任何裝置遠端監看、暫停、指揮本機執行的 AI 編程代理（Claude Code、Codex、Cursor 等）時使用。",
+      "advantages": [
+        "支援 iOS / Android / Web / Electron 桌面四種控制端，隨時隨地掌握代理執行狀態",
+        "直接掛載使用者既有的 Claude Code、Codex、Cursor、Grok Build 與 OpenCode 訂閱，無需額外付費",
+        "開源、效能導向，可自行 fork 打造個人化的代理控制介面"
+      ],
+      "negativeConstraints": [
+        "不適合沒有安裝任何受支援 AI 編程代理 CLI 的環境（無代理可控制）",
+        "避免用於需要直接改寫代理本身推理邏輯或模型參數的場景",
+        "不適用於離線環境——控制端與本機代理需要網路連線"
+      ]
+    },
+    {
+      "id": "cadam",
+      "name": "CADAM",
+      "url": "https://github.com/Adam-CAD/CADAM",
+      "description": "Open-source text-to-CAD web application：以自然語言描述直接生成可下載的 CAD / STL / OpenSCAD 模型，專為機械工程與 3D 列印設計。",
+      "category": "3D工程繪圖",
+      "language": "typescript",
+      "triggers": [
+        "cadam",
+        "text-to-cad",
+        "cad",
+        "3d-model",
+        "stl",
+        "openscad",
+        "3d-printing",
+        "mechanical-engineering",
+        "text-to-3d",
+        "cad-generation"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx CADAM",
+        "repoUrl": "https://github.com/Adam-CAD/CADAM"
+      },
+      "capabilities": [
+        "text-to-cad",
+        "stl-generation",
+        "openscad-generation",
+        "web-application"
+      ],
+      "addedAt": "2026-08-09T03:57:38.312Z",
+      "status": "active",
+      "useCase": "當機械工程師或 Maker 想要用一句自然語言描述（如「一個 M8 螺栓的螺帽」）快速產生可 3D 列印的 CAD / STL 模型時使用。",
+      "advantages": [
+        "支援 WebAssembly 於瀏覽器內直接運行，無需安裝重型 CAD 軟體",
+        "結合 LLM 代理生成 OpenSCAD 參數化模型，可產出 STL 供 3D 列印",
+        "開源且提供完整 Web 應用，方便嵌入現有設計工作流程"
+      ],
+      "negativeConstraints": [
+        "不適合需要精密公差、工程圖面或有限元素分析（FEA）的專業製造級設計",
+        "避免用於複雜曲面造型或有機自由形式建模（改用 Blender / Rhino）",
+        "不適用於離線環境——文字轉 CAD 依賴 LLM API 服務"
+      ]
+    },
+    {
+      "id": "trellis2",
+      "name": "TRELLIS.2",
+      "url": "https://github.com/microsoft/TRELLIS.2",
+      "description": "Microsoft 開源的 3D 生成框架：以「原生且緊湊的結構化潛變數（Structured Latents）」從文字或圖片生成高品質 3D 資產，可輸出 GLB 等格式。",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "trellis",
+        "3d-generation",
+        "image-to-3d",
+        "text-to-3d",
+        "structured-latents",
+        "3d-asset",
+        "glb",
+        "3d-modeling",
+        "neural-3d"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/microsoft/TRELLIS.2.git",
+        "repoUrl": "https://github.com/microsoft/TRELLIS.2"
+      },
+      "capabilities": [
+        "image-to-3d",
+        "text-to-3d",
+        "structured-latents-generation",
+        "3d-asset-export"
+      ],
+      "addedAt": "2026-08-09T03:57:39.158Z",
+      "status": "active",
+      "useCase": "當遊戲、動畫或 XR 開發者需要從單張圖片或文字描述快速生成可用的 3D 資產（GLB）時使用。",
+      "advantages": [
+        "由 Microsoft 研究團隊開發，採用原生結構化潛變數，3D 生成品質與可控性領先",
+        "支援文字與圖片雙模態輸入生成 3D 資產，輸出可直接用於遊戲與渲染管線",
+        "為大規模 3D 資料集的生成與編輯提供統一框架"
+      ],
+      "negativeConstraints": [
+        "不適合需要工程級精確尺寸與公差（如 CNC 加工）的 CAD 場景",
+        "避免用於即時渲染或低 GPU 記憶體的嵌入式部署（模型推理需求較高）",
+        "不適用於需要拓撲潔淨、可直接用於動畫綁定（rigging）的遊戲級模型"
+      ]
+    },
+    {
+      "id": "block-buzz",
+      "name": "Buzz (Block)",
+      "url": "https://github.com/block/buzz",
+      "description": "Block 開源的「蜂巢思維（hive mind）」去中心化溝通平台，以 Rust 打造，聚焦於群體智慧協作與分散式訊息交換。",
+      "category": "其他",
+      "language": "rust",
+      "triggers": [
+        "buzz",
+        "block-buzz",
+        "hive-mind",
+        "decentralized",
+        "communication",
+        "群體智慧",
+        "去中心化溝通",
+        "p2p-messaging"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/block/buzz",
+        "repoUrl": "https://github.com/block/buzz"
+      },
+      "capabilities": [
+        "decentralized-communication",
+        "hive-mind-collaboration",
+        "p2p-messaging"
+      ],
+      "addedAt": "2026-08-09T03:57:39.684Z",
+      "status": "active",
+      "useCase": "當需要研究或部署去中心化、以群體智慧為核心的開放溝通/協作平台原型時使用。",
+      "advantages": [
+        "由 Block（Square 母公司）開源，具備企業級代碼品質與社群背書",
+        "以 Rust 實作，效能與記憶體安全俱佳，適合分散式節點部署",
+        "作為「蜂巢思維」通訊架構的參考實作，具學術與研究價值"
+      ],
+      "negativeConstraints": [
+        "不適用於需要集中式審計、法規合規與身分 KYC 的正式企業通訊",
+        "避免用於成熟的團隊協作需求——此專案偏向實驗性/研究性，非生產級通訊軟體",
+        "不適合需要端到端加密保障的機密商業溝通（請改用 Signal / Matrix 等成熟方案）"
+      ]
+    },
+    {
+      "id": "hermes-plugins",
+      "name": "Hermes Plugins (evey)",
+      "url": "https://github.com/42-evey/hermes-plugins",
+      "description": "hermes-agent 的 33 個自訂 plugin 集合（evey 系列）：目標管理、跨代理橋接、模型選擇、成本控管、記憶整合、RAG、研究、排程器、Telegram UX 與守衛等。",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "hermes-plugins",
+        "hermes",
+        "plugins",
+        "ai-agent",
+        "autonomous-agent",
+        "hermes-agent",
+        "evey",
+        "goal-management",
+        "inter-agent-bridge",
+        "cost-guard",
+        "model-selection",
+        "memory-consolidation",
+        "agent-rag",
+        "agent-scheduler",
+        "telegram-ux",
+        "agent-watchdog",
+        "open-source"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/42-evey/hermes-plugins.git",
+        "repoUrl": "https://github.com/42-evey/hermes-plugins"
+      },
+      "capabilities": [
+        "goal-management",
+        "inter-agent-bridge",
+        "cost-control",
+        "model-selection",
+        "adaptive-memory",
+        "agent-rag",
+        "task-scheduling",
+        "agent-telemetry",
+        "watchdog-guard"
+      ],
+      "addedAt": "2026-08-09T03:57:40.633Z",
+      "status": "active",
+      "useCase": "當使用 hermes-agent 且需要擴充目標管理、跨代理橋接、成本控管、記憶整合或 RAG 等 33 種即插即用外掛能力時使用。",
+      "advantages": [
+        "33 個模組化 plugin 涵蓋自主代理完整生命週期：目標、記憶、研究、排程、守衛",
+        "包含 evey-cost-guard 成本控管與 evey-delegate-model 模型選擇等企業級治理能力",
+        "提供 evey-telegram-ux、evey-mqtt、evey-email-guard 等多通道整合"
+      ],
+      "negativeConstraints": [
+        "僅適用於 hermes-agent 生態系，不支援其他代理框架",
+        "避免一次安裝全部 33 個 plugin——應按需求選擇，避免功能重疊與資源浪費",
+        "不適合對穩定性要求極高的生產環境（多為社群維護的實驗性 plugin）"
+      ]
+    },
+    {
+      "id": "hermes-skill-factory",
+      "name": "Hermes Skill Factory",
+      "url": "https://github.com/Romanescu11/hermes-skill-factory",
+      "description": "Nous Research Hermes AI agent 的 meta-skill 外掛：觀察使用者工作流程，自動將重複執行的任務（專案設定、除錯、開 PR）轉化為可重複使用的 skill。",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "hermes-skill-factory",
+        "hermes",
+        "skill",
+        "factory",
+        "meta-skill",
+        "workflow-capture",
+        "skill-generation",
+        "automation",
+        "skill-automation"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Romanescu11/hermes-skill-factory.git",
+        "repoUrl": "https://github.com/Romanescu11/hermes-skill-factory"
+      },
+      "capabilities": [
+        "workflow-capture",
+        "skill-generation",
+        "automation"
+      ],
+      "addedAt": "2026-08-09T03:57:42.859Z",
+      "status": "active",
+      "useCase": "當使用 Hermes Agent 且希望把每次手動操作（設定專案、除錯、建立 PR）自動沉澱為可重用的 skill、避免下次重複說明時使用。",
+      "advantages": [
+        "自動觀察並捕捉工作流程，無需手動撰寫 skill 定義",
+        "讓代理從「一次性執行」進化為「可重複調用的技能庫」",
+        "專為 Nous Research Hermes 生態系深度整合設計"
+      ],
+      "negativeConstraints": [
+        "僅支援 Hermes Agent 生態系，無法用於 Claude Code、Codex 等其他代理",
+        "避免用於一次性、不會重複執行的任務——自動化成本高於手動執行",
+        "依賴工作流程觀測的準確性，複雜多步驟流程可能產生品質不佳的 skill"
+      ]
+    },
+    {
+      "id": "hermesskill",
+      "name": "Hermesskill",
+      "url": "https://github.com/jungmokk/hermesskill",
+      "description": "為 Hermes Agent 設計的 skill 套件（含 devops 目錄），提供代理可重用的操作技能定義。",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "hermesskill",
+        "hermes",
+        "skill",
+        "agent-skill",
+        "devops"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/jungmokk/hermesskill.git",
+        "repoUrl": "https://github.com/jungmokk/hermesskill"
+      },
+      "capabilities": [
+        "agent-skill",
+        "devops-automation"
+      ],
+      "addedAt": "2026-08-09T03:57:43.849Z",
+      "status": "active",
+      "useCase": "當使用 Hermes Agent 並需要安裝現成的 devops 相關 skill 來擴充代理操作能力時使用。",
+      "advantages": [
+        "以 git clone 即可快速安裝，無需建置環境",
+        "專注 devops 領域，可補足 Hermes 代理的維運操作技能"
+      ],
+      "negativeConstraints": [
+        "專案活躍度極低（0 stars），功能與維護狀態未經驗證，勿用於關鍵生產流程",
+        "僅支援 Hermes Agent 生態系",
+        "skill 內容有限，複雜自動化需求請改用更成熟的 hermes-plugins 或 oh-my-hermes"
+      ]
+    },
+    {
+      "id": "youtube-skills",
+      "name": "Youtube Skills",
+      "url": "https://github.com/ZeroPointRepo/youtube-skills",
+      "description": "12 個 YouTube 技能集合（transcript、captions、搜尋、頻道、播放清單、資料 API）：為 AI 代理提供 YouTube Transcript API、影片搜尋與頻道瀏覽能力，相容 OpenClaw、Hermes-Agent、Claude Code、Cursor、Windsurf。",
+      "category": "影片",
+      "language": "other",
+      "triggers": [
+        "youtube-skills",
+        "youtube",
+        "skills",
+        "agent-skills",
+        "clawdbot",
+        "hermes-agent",
+        "openclaw",
+        "youtube-search",
+        "youtube-transcript",
+        "captions",
+        "subtitles",
+        "youtube-playlist",
+        "youtube-channel",
+        "youtube-api"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/ZeroPointRepo/youtube-skills.git",
+        "repoUrl": "https://github.com/ZeroPointRepo/youtube-skills"
+      },
+      "capabilities": [
+        "youtube-transcript",
+        "youtube-captions",
+        "youtube-search",
+        "channel-browsing",
+        "playlist-handling",
+        "youtube-data-api"
+      ],
+      "addedAt": "2026-08-09T03:57:44.440Z",
+      "status": "active",
+      "useCase": "當 AI 代理需要讀取 YouTube 影片逐字稿、搜尋影片、瀏覽頻道或抓取播放清單作為研究/摘要輸入時使用。",
+      "advantages": [
+        "一次安裝即獲得 12 個互相搭配的 YouTube 技能，涵蓋逐字稿、搜尋、頻道與播放清單",
+        "跨代理相容：OpenClaw、Hermes-Agent、Claude Code、Cursor、Windsurf 皆可掛載",
+        "基於 YouTube Transcript API 與官方 Data API，免自建爬蟲"
+      ],
+      "negativeConstraints": [
+        "不適合需要下載或儲存實際影片檔案的場景（僅提供後設資料與逐字稿）",
+        "避免用於大量批次抓取——需遵守 YouTube API 配額與服務條款",
+        "不適用於需要即時直播串流內容處理的系統"
+      ]
+    },
+    {
+      "id": "oh-my-hermes-rlaope",
+      "name": "Oh My Hermes (rlaope)",
+      "url": "https://github.com/rlaope/oh-my-hermes",
+      "description": "一鍵安裝即可專業化使用 hermes-agent 的整合套件：提供強大的智慧與記憶系統（含 skills、roles、omh 模組、多國語言文件與安裝腳本）。",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "oh-my-hermes",
+        "hermes",
+        "agent",
+        "ai",
+        "ai-agent",
+        "ai-tools",
+        "claude-code",
+        "codex",
+        "memory-system",
+        "agent-setup"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/rlaope/oh-my-hermes.git",
+        "repoUrl": "https://github.com/rlaope/oh-my-hermes"
+      },
+      "capabilities": [
+        "agent-memory",
+        "skill-management",
+        "role-definition",
+        "one-click-setup"
+      ],
+      "addedAt": "2026-08-09T03:57:45.126Z",
+      "status": "active",
+      "useCase": "當使用者想以「安裝一次即專業化」的方式快速部署 hermes-agent，並獲得記憶系統、技能庫與角色定義等完整配套時使用。",
+      "advantages": [
+        "提供 install.sh / install.ps1 一鍵安裝腳本，Windows 與 Unix 皆可快速部署",
+        "內建記憶、skills、roles 與 omh 模組，開箱即用的專業代理配置",
+        "支援中/英/日/韓多語言文件，降低上手門檻"
+      ],
+      "negativeConstraints": [
+        "僅適用於 hermes-agent 生態系，無法用於其他代理框架",
+        "避免與 witt3rd / Salomondiei08 版本的 oh-my-hermes 同時安裝（功能重疊可能衝突）",
+        "一鍵安裝腳本會變更代理設定，請在乾淨環境或備份後執行"
+      ]
     }
   ]
 }

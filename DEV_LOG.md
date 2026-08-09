@@ -1785,3 +1785,29 @@ kZ\J�  ( . a g e n t s / s k i l l s / t o o l - c a l l i n g / S K I L L .
   - 執行 node scripts/generate-knowledge-graph.js 自動同步全庫 381 個工具之 2D/3D 知識圖譜。
 - **預防措施**：
   - 遵循 Git 提交原子性防偽報元規則，確保代碼變更與開發日誌在同一 commit 內提交。
+
+
+## 2026-08-09 批量新增 14 個網址至工具庫（含拆解檢查與詮釋資料補齊）
+
+### 需求內容
+將用戶指定之 14 個 GitHub 專案網址批量加入工具庫，並檢查是否需要拆解（Monorepo 檢測）。
+
+### 執行結果
+- 批量新增：**新增 10 | 跳過 4（已存在）| 失敗 0**。
+- 已存在跳過：andrewyng/aisuite、earthtojake/text-to-cad、witt3rd/oh-my-hermes、Salomondiei08/oh-my-hermes。
+- 新增工具：GeoLibre、T3 Code、CADAM、TRELLIS.2、Buzz (Block)、Hermes Plugins (evey)、Hermes Skill Factory、Hermesskill、Youtube Skills、Oh My Hermes (rlaope)。
+
+### 拆解檢查判定（RCA）
+- **42-evey/hermes-plugins**：根目錄含 33 個 evey-* plugin，符合拆解門檻但因 plugin 位於根目錄（非 skills/ 等信號目錄），自動拆解器未觸發。**依先例（oh-my-hermes 系列以單一工具入庫）不拆解**，改於描述與 capabilities 中註明為 33-plugin 集合，避免 registry 過度碎片化。
+- **ZeroPointRepo/youtube-skills**：skills/ 內含 12 個 YouTube 技能（transcript/captions/subtitles 等高度同質），**不拆解**，以單一工具入庫並完整列出能力。
+- 其餘 8 個專案均為單一工具/框架（T3 Code 為代理控制面、TRELLIS.2 為 3D 生成框架等），無須拆解。
+
+### 問題與修正（CAPA）
+- **ID 衝突**：block/buzz 與既有 chidiwilliams/buzz（音訊轉錄）撞 ID；rlaope/oh-my-hermes 與既有 witt3rd/oh-my-hermes 撞 ID。依 `oh-my-hermes-salomondiei08` 先例，分別更名為 `block-buzz` 與 `oh-my-hermes-rlaope`。
+- **分類修正**：T3 Code 其他→**AI 代理**；CADAM 其他→**3D工程繪圖**；TRELLIS.2 其他→**多媒體生成**。
+- **詮釋資料完整性**：初始 validate 22 錯誤/15 警告 → 手動補齊 10 個新工具之 useCase、negativeConstraints、advantages，擴充 triggers、修正描述與 install，status 全數升級為 active。
+
+### 確效驗證
+- `node cli.js validate`：全庫 **474 個工具 100% 通過（0 錯誤, 0 警告）**。
+- `node scripts/build-web.js`：打包成功，知識圖譜自動同步 474 工具，同義詞詞典 203 詞彙。
+- `npm test`：**11/11 全數 PASS**。
