@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-10T03:53:59.933Z",
+  "lastUpdated": "2026-08-10T12:53:11.981Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -33432,6 +33432,404 @@
       "stars": 164289,
       "addedAt": "2026-08-10T03:53:59.933Z",
       "status": "active"
+    },
+    {
+      "id": "diagram-design",
+      "name": "Diagram Design",
+      "url": "https://github.com/cathrynlavery/diagram-design",
+      "description": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.",
+      "category": "AI 代理",
+      "language": "html",
+      "triggers": [
+        "diagram-design",
+        "diagram",
+        "design"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/cathrynlavery/diagram-design.git",
+        "repoUrl": "https://github.com/cathrynlavery/diagram-design"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-10T12:52:44.272Z",
+      "status": "experimental"
+    },
+    {
+      "id": "semantica",
+      "name": "Semantica",
+      "url": "https://github.com/semantica-agi/semantica",
+      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "semantica",
+        "agent-memory",
+        "ai",
+        "ai-governance",
+        "ai-infrastructure",
+        "artificial-intelligence",
+        "context-engineering",
+        "context-graphs"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/semantica-agi/semantica.git",
+        "repoUrl": "https://github.com/semantica-agi/semantica"
+      },
+      "capabilities": [
+        "agent-memory",
+        "ai",
+        "ai-governance",
+        "ai-infrastructure",
+        "artificial-intelligence"
+      ],
+      "addedAt": "2026-08-10T12:52:44.815Z",
+      "status": "experimental"
+    },
+    {
+      "id": "mediacrawler",
+      "name": "MediaCrawler",
+      "url": "https://github.com/NanmiCoder/MediaCrawler",
+      "description": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫  | 知乎问答文章｜评论爬虫",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "mediacrawler"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/NanmiCoder/MediaCrawler.git",
+        "repoUrl": "https://github.com/NanmiCoder/MediaCrawler"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-10T12:52:46.312Z",
+      "status": "experimental"
+    },
+    {
+      "id": "paperclip",
+      "name": "Paperclip",
+      "url": "https://github.com/paperclipai/paperclip",
+      "description": "The open-source app everyone uses to manage agents at work",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "paperclip"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx paperclip",
+        "repoUrl": "https://github.com/paperclipai/paperclip"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-10T12:52:51.875Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lifeos",
+      "name": "LifeOS",
+      "url": "https://github.com/danielmiessler/LifeOS",
+      "description": "⛰️A General Hill-climbing AI harness that helps you move from Current State to Ideal State in both Life and Work.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "lifeos",
+        "ai",
+        "ai-harness",
+        "augmentation",
+        "coding",
+        "humans",
+        "intent-engineering",
+        "personal-ai"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx LifeOS",
+        "repoUrl": "https://github.com/danielmiessler/LifeOS"
+      },
+      "capabilities": [
+        "ai",
+        "ai-harness",
+        "augmentation",
+        "coding",
+        "humans"
+      ],
+      "addedAt": "2026-08-10T12:52:59.259Z",
+      "status": "experimental"
+    },
+    {
+      "id": "weathernext",
+      "name": "Weathernext",
+      "url": "https://github.com/google-deepmind/weathernext",
+      "description": "google-deepmind/weathernext - 待補充描述",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "weathernext",
+        "weather",
+        "weather-forecast"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/google-deepmind/weathernext.git",
+        "repoUrl": "https://github.com/google-deepmind/weathernext"
+      },
+      "capabilities": [
+        "weather",
+        "weather-forecast"
+      ],
+      "addedAt": "2026-08-10T12:53:01.912Z",
+      "status": "experimental"
+    },
+    {
+      "id": "code-graph-rag",
+      "name": "Code Graph Rag",
+      "url": "https://github.com/vitali87/code-graph-rag",
+      "description": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs",
+      "category": "資料庫",
+      "language": "python",
+      "triggers": [
+        "code-graph-rag",
+        "code",
+        "graph",
+        "rag",
+        "ai",
+        "ast",
+        "claude-code",
+        "code-analysis"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/vitali87/code-graph-rag.git",
+        "repoUrl": "https://github.com/vitali87/code-graph-rag"
+      },
+      "capabilities": [
+        "ai",
+        "ast",
+        "claude-code",
+        "code-analysis",
+        "code-understanding"
+      ],
+      "addedAt": "2026-08-10T12:53:02.806Z",
+      "status": "experimental"
+    },
+    {
+      "id": "dopamine",
+      "name": "Dopamine",
+      "url": "https://github.com/opa334/Dopamine",
+      "description": "Dopamine is a semi-untethered jailbreak for iOS 15 to 26(.0.1)",
+      "category": "AI 代理",
+      "language": "c",
+      "triggers": [
+        "dopamine"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/opa334/Dopamine.git",
+        "repoUrl": "https://github.com/opa334/Dopamine"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-10T12:53:03.622Z",
+      "status": "experimental"
+    },
+    {
+      "id": "comfyui-mcp",
+      "name": "Comfyui Mcp",
+      "url": "https://github.com/artokun/comfyui-mcp",
+      "description": "Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.",
+      "category": "影片",
+      "language": "typescript",
+      "triggers": [
+        "comfyui-mcp",
+        "comfyui",
+        "mcp",
+        "agent-skills",
+        "ai-agent",
+        "claude-code",
+        "claude-plugin",
+        "comfyui-extension"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx comfyui-mcp",
+        "repoUrl": "https://github.com/artokun/comfyui-mcp"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-agent",
+        "claude-code",
+        "claude-plugin",
+        "comfyui"
+      ],
+      "addedAt": "2026-08-10T12:53:05.506Z",
+      "status": "experimental"
+    },
+    {
+      "id": "codex-autorunner",
+      "name": "Codex Autorunner",
+      "url": "https://github.com/Git-on-my-level/codex-autorunner",
+      "description": "Git-on-my-level/codex-autorunner - 待補充描述",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "codex-autorunner",
+        "codex",
+        "autorunner"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Git-on-my-level/codex-autorunner.git",
+        "repoUrl": "https://github.com/Git-on-my-level/codex-autorunner"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-10T12:53:06.937Z",
+      "status": "experimental"
+    },
+    {
+      "id": "plannotator",
+      "name": "Plannotator",
+      "url": "https://github.com/backnotprop/plannotator",
+      "description": "Annotate and review coding agent plans and code diffs visually, share with your team, send feedback to agents with one click.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "plannotator",
+        "agents",
+        "claude-code",
+        "code-review",
+        "codex",
+        "obsidian",
+        "opencode",
+        "pi-mono"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx plannotator",
+        "repoUrl": "https://github.com/backnotprop/plannotator"
+      },
+      "capabilities": [
+        "agents",
+        "claude-code",
+        "code-review",
+        "codex",
+        "obsidian"
+      ],
+      "addedAt": "2026-08-10T12:53:07.591Z",
+      "status": "experimental"
+    },
+    {
+      "id": "firstmate",
+      "name": "Firstmate",
+      "url": "https://github.com/kunchenguid/firstmate",
+      "description": "Talk to one agent. Ship with a crew.",
+      "category": "開發工具",
+      "language": "shell",
+      "triggers": [
+        "firstmate"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/kunchenguid/firstmate.git",
+        "repoUrl": "https://github.com/kunchenguid/firstmate"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-10T12:53:09.601Z",
+      "status": "experimental"
+    },
+    {
+      "id": "delegate-skills",
+      "name": "Delegate Skills",
+      "url": "https://github.com/amElnagdy/delegate-skills",
+      "description": "Delegate a coding task to a separate coding agent CLI, review the diff, land the commit yourself — one per implementer.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "delegate-skills",
+        "delegate",
+        "skills",
+        "agent-skills",
+        "ai-coding-agent",
+        "antigravity",
+        "claude-code",
+        "claude-code-skills"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx delegate-skills",
+        "repoUrl": "https://github.com/amElnagdy/delegate-skills"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-coding-agent",
+        "antigravity",
+        "claude-code",
+        "claude-code-skills"
+      ],
+      "addedAt": "2026-08-10T12:53:10.162Z",
+      "status": "experimental"
+    },
+    {
+      "id": "rapid-mlx",
+      "name": "Rapid MLX",
+      "url": "https://github.com/raullenchai/Rapid-MLX",
+      "description": "The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama, 0.08s cached TTFT, 100% tool calling. 17 tool parsers, prompt cache, reasoning separation, cloud routing. Drop-in OpenAI replacement. Works with Claude Code, Cursor, Aider.",
+      "category": "基礎設施",
+      "language": "python",
+      "triggers": [
+        "rapid-mlx",
+        "rapid",
+        "mlx",
+        "apple-silicon",
+        "claude-code",
+        "cursor",
+        "deepseek",
+        "fastapi"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/raullenchai/Rapid-MLX.git",
+        "repoUrl": "https://github.com/raullenchai/Rapid-MLX"
+      },
+      "capabilities": [
+        "apple-silicon",
+        "claude-code",
+        "cursor",
+        "deepseek",
+        "fastapi"
+      ],
+      "addedAt": "2026-08-10T12:53:11.073Z",
+      "status": "experimental"
+    },
+    {
+      "id": "yfinance",
+      "name": "Yfinance",
+      "url": "https://github.com/ranaroussi/yfinance",
+      "description": "Download market data from Yahoo! Finance's API",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "yfinance",
+        "financial-data",
+        "fix-yahoo-finance",
+        "market-data",
+        "pandas",
+        "python",
+        "stock-data",
+        "yahoo-finance"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/ranaroussi/yfinance.git",
+        "repoUrl": "https://github.com/ranaroussi/yfinance"
+      },
+      "capabilities": [
+        "financial-data",
+        "fix-yahoo-finance",
+        "market-data",
+        "pandas",
+        "python"
+      ],
+      "addedAt": "2026-08-10T12:53:11.980Z",
+      "status": "experimental"
     }
   ]
 }
