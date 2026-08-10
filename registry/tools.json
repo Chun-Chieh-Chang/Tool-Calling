@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-09T12:04:01.893Z",
+  "lastUpdated": "2026-08-10T03:53:59.933Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32974,6 +32974,464 @@
         "Not appropriate for enterprise CI/CD dashboards requiring team-wide collaboration features",
         "Not designed for non-GitHub platforms such as GitLab, Bitbucket, or Azure DevOps"
       ]
+    },
+    {
+      "id": "labs-oo-agents",
+      "name": "labs-OO-Agents",
+      "url": "https://github.com/NVIDIA-NeMo/labs-OO-Agents",
+      "description": "NVIDIA Object Oriented Agents: the Pythonic way to build AI Agents.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "labs-oo-agents"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/NVIDIA-NeMo/labs-OO-Agents"
+      },
+      "capabilities": [],
+      "useCase": "NVIDIA Object Oriented Agents: the Pythonic way to build AI Agents. — 本週漲星 +1340 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,340 星",
+        "本週漲星 +1340",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1340,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "dashi-taskboard",
+      "name": "dashi-taskboard",
+      "url": "https://github.com/chuspeeism/dashi-taskboard",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "dashi-taskboard"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/chuspeeism/dashi-taskboard"
+      },
+      "capabilities": [],
+      "useCase": "dashi-taskboard — 本週漲星 +1298 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,298 星",
+        "本週漲星 +1298",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1298,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "conversation-steganography",
+      "name": "conversation-steganography",
+      "url": "https://github.com/nethical6/conversation-steganography",
+      "description": "Use LLMs to hide messages inside normal looking conversations",
+      "category": "AI 框架",
+      "language": "go",
+      "triggers": [
+        "conversation-steganography",
+        "llm-tools",
+        "steganography"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/nethical6/conversation-steganography"
+      },
+      "capabilities": [
+        "llm-tools",
+        "steganography"
+      ],
+      "useCase": "Use LLMs to hide messages inside normal looking conversations — 本週漲星 +1208 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,208 星",
+        "本週漲星 +1208",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1208,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "nativ",
+      "name": "nativ",
+      "url": "https://github.com/Blaizzy/nativ",
+      "description": "Local AI, native to your Mac. Chat, serve, monitor, and connect MLX models from one macOS app.",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "nativ"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Blaizzy/nativ"
+      },
+      "capabilities": [],
+      "useCase": "Local AI, native to your Mac. Chat, serve, monitor, and connect MLX models from one macOS app. — 本週漲星 +1177 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,177 星",
+        "本週漲星 +1177",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1177,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "codex-router",
+      "name": "codex-router",
+      "url": "https://github.com/duolahypercho/codex-router",
+      "description": "External-model router for Codex with guided Kimi OAuth/API, DeepSeek, safe migration, and rollback.",
+      "category": "API 整合",
+      "language": "javascript",
+      "triggers": [
+        "codex-router",
+        "codex",
+        "deepseek",
+        "kimi",
+        "litellm",
+        "model-router"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/duolahypercho/codex-router"
+      },
+      "capabilities": [
+        "codex",
+        "deepseek",
+        "kimi",
+        "litellm",
+        "model-router"
+      ],
+      "useCase": "External-model router for Codex with guided Kimi OAuth/API, DeepSeek, safe migration, and rollback. — 本週漲星 +1176 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,176 星",
+        "本週漲星 +1176",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1176,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "story-to-handdrawn-video",
+      "name": "story-to-handdrawn-video",
+      "url": "https://github.com/gnipbao/story-to-handdrawn-video",
+      "description": "Agent skill: convert Chinese story copy or ordered images into a hand-drawn diary-comic animation (silent MP4 picture track).",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "story-to-handdrawn-video"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/gnipbao/story-to-handdrawn-video"
+      },
+      "capabilities": [],
+      "useCase": "Agent skill: convert Chinese story copy or ordered images into a hand-drawn diary-comic animation (silent MP4 picture track). — 本週漲星 +1166 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,166 星",
+        "本週漲星 +1166",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1166,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "findphone",
+      "name": "findphone",
+      "url": "https://github.com/ben-z/findphone",
+      "description": "Locate a nearby Bluetooth device by signal strength, from the macOS command line — for when Find My isn't available",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "findphone"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ben-z/findphone"
+      },
+      "capabilities": [],
+      "useCase": "Locate a nearby Bluetooth device by signal strength, from the macOS command line — for when Find My isn't available — 本週漲星 +1125 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,125 星",
+        "本週漲星 +1125",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1125,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "openreply",
+      "name": "openreply",
+      "url": "https://github.com/diwenne/openreply",
+      "description": "Open-source ManyChat alternative: comment-dm automation + account analytics. NOTE: the link below will not allow you to OAuth; you must self-host with your own API keys.",
+      "category": "API 整合",
+      "language": "typescript",
+      "triggers": [
+        "openreply"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/diwenne/openreply"
+      },
+      "capabilities": [],
+      "useCase": "Open-source ManyChat alternative: comment-dm automation + account analytics. NOTE: the link below will not allow you to OAuth; you must self-host with your own API keys. — 本週漲星 +1122 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,122 星",
+        "本週漲星 +1122",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1122,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "openmouse",
+      "name": "openmouse",
+      "url": "https://github.com/OpenMouse-Project/openmouse",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "openmouse"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/OpenMouse-Project/openmouse"
+      },
+      "capabilities": [],
+      "useCase": "openmouse — 本週漲星 +1112 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,112 星",
+        "本週漲星 +1112",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1112,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "axisagentic",
+      "name": "AxisAgentic",
+      "url": "https://github.com/XYZ-AI-Lab/AxisAgentic",
+      "description": "AxisAgentic: An Extensible Runtime and Trajectory-Collection Framework for Long-Horizon Agents.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "axisagentic"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/XYZ-AI-Lab/AxisAgentic"
+      },
+      "capabilities": [],
+      "useCase": "AxisAgentic: An Extensible Runtime and Trajectory-Collection Framework for Long-Horizon Agents. — 本週漲星 +1103 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,103 星",
+        "本週漲星 +1103",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1103,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "moviebox-tui",
+      "name": "MovieBox-Tui",
+      "url": "https://github.com/mesamirh/MovieBox-Tui",
+      "description": "A modern Rust based terminal user interface for streaming. Fast, lightweight, keyboard first, and cross-platform.",
+      "category": "API 整合",
+      "language": "rust",
+      "triggers": [
+        "moviebox-tui",
+        "anime",
+        "moviebox",
+        "moviebox-api",
+        "movies-streaming",
+        "series"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/mesamirh/MovieBox-Tui"
+      },
+      "capabilities": [
+        "anime",
+        "moviebox",
+        "moviebox-api",
+        "movies-streaming",
+        "series",
+        "streaming"
+      ],
+      "useCase": "A modern Rust based terminal user interface for streaming. Fast, lightweight, keyboard first, and cross-platform. — 本週漲星 +1100 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,100 星",
+        "本週漲星 +1100",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1100,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "penguin-harness",
+      "name": "penguin-harness",
+      "url": "https://github.com/Prism-Shadow/penguin-harness",
+      "description": "🐧 Automated Agent Builder. Create Self-Evolving Agents in One Click (DeepSeek/Kimi/GPT/Claude/Gemini)",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "penguin-harness",
+        "agent",
+        "agentic-ai",
+        "ai",
+        "ai-product",
+        "build-tool"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Prism-Shadow/penguin-harness"
+      },
+      "capabilities": [
+        "agent",
+        "agentic-ai",
+        "ai",
+        "ai-product",
+        "build-tool",
+        "claude-code"
+      ],
+      "useCase": "🐧 Automated Agent Builder. Create Self-Evolving Agents in One Click (DeepSeek/Kimi/GPT/Claude/Gemini) — 本週漲星 +1099 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,099 星",
+        "本週漲星 +1099",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1099,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "cue",
+      "name": "cue",
+      "url": "https://github.com/Blueturboguy07/cue",
+      "description": "Open-source macOS AI copilot that floats over your screen, sees/hears your meetings, and stays hidden from screen shares. Cluely alternative, bring-your-own-key.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "cue"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Blueturboguy07/cue"
+      },
+      "capabilities": [],
+      "useCase": "Open-source macOS AI copilot that floats over your screen, sees/hears your meetings, and stays hidden from screen shares. Cluely alternative, bring-your-own-key. — 本週漲星 +1076 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,076 星",
+        "本週漲星 +1076",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1076,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
+    },
+    {
+      "id": "firecrawl",
+      "name": "firecrawl",
+      "url": "https://github.com/firecrawl/firecrawl",
+      "description": "The context API to search, scrape, and interact with the web at scale. 🔥",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "firecrawl",
+        "ai",
+        "ai-agents",
+        "ai-crawler",
+        "ai-scraping",
+        "ai-search"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/firecrawl/firecrawl"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agents",
+        "ai-crawler",
+        "ai-scraping",
+        "ai-search",
+        "crawler"
+      ],
+      "useCase": "The context API to search, scrape, and interact with the web at scale. 🔥 — 本週漲星 +1062 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 164,289 星",
+        "本週漲星 +1062",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 164289,
+      "addedAt": "2026-08-10T03:53:59.933Z",
+      "status": "active"
     }
   ]
 }
