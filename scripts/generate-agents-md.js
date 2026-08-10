@@ -1,4 +1,64 @@
-# AGENTS.md — Tool-Calling 全域行為協議
+#!/usr/bin/env node
+/**
+ * AGENTS.md Generator Script
+ * 從工具庫自動生成/驗證 AGENTS.md 內容
+ */
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const ROOT = join(__dirname, '..');
+
+// 載入工具庫
+function loadRegistry() {
+  const path = join(ROOT, 'registry', 'tools.json');
+  return JSON.parse(readFileSync(path, 'utf8'));
+}
+
+// 載入追蹤池
+function loadTrackedRepos() {
+  const path = join(ROOT, 'registry', 'tracked-repos.json');
+  if (!existsSync(path)) return null;
+  return JSON.parse(readFileSync(path, 'utf8'));
+}
+
+// 生成 AGENTS.md
+function generateAgentsMd(registry, trackedRepos) {
+  const tools = registry.tools;
+  const totalTools = tools.length;
+  const lastUpdated = registry.lastUpdated || new Date().toISOString();
+  
+  // 統計分類
+  const categoryStats = {};
+  tools.forEach(t => {
+    categoryStats[t.category] = (categoryStats[t.category] || 0) + 1;
+  });
+  const topCategories = Object.entries(categoryStats)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+  
+  // 技術棧統計
+  const langStats = {};
+  tools.forEach(t => {
+    if (t.language) {
+      langStats[t.language] = (langStats[t.language] || 0) + 1;
+    }
+  });
+  const topLangs = Object.entries(langStats)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 5);
+  
+  // 計算總 star 數
+  const totalStars = tools.reduce((sum, t) => sum + (t.stars || 0), 0);
+  const avgStars = Math.round(totalStars / totalTools);
+  
+  // 追蹤池資訊
+  const trackedCount = trackedRepos ? 
+    Object.keys(trackedRepos).filter(k => !k.startsWith('_')).length : 0;
+  
+  return `# AGENTS.md — ${registry.name || 'Tool-Calling'} 全域行為協議
 
 > **身份**：AI 開發協作代理 (AgnesCode × Antigravity IDE 統一協議)
 > **版本**：2026.08.10 v1.0
@@ -31,27 +91,19 @@
 
 ## Project Stats — 專案統計
 
-```yaml
-工具庫規模: 497 個工具
-追蹤 repos: 2119 個
-總 star 數: 9,258,500 ⭐
-平均 star 數: 18,629 ⭐
-最後更新: 2026/8/10
-```
+\`\`\`yaml
+工具庫規模: ${totalTools} 個工具
+追蹤 repos: ${trackedCount} 個
+總 star 數: ${totalStars.toLocaleString()} ⭐
+平均 star 數: ${avgStars.toLocaleString()} ⭐
+最後更新: ${new Date(lastUpdated).toLocaleDateString('zh-TW')}
+\`\`\`
 
 ### Top 5 分類
-- `AI 框架`: 151 個工具
-- `AI 代理`: 97 個工具
-- `開發工具`: 65 個工具
-- `學習資源`: 33 個工具
-- `UI/UX設計`: 29 個工具
+${topCategories.map(([cat, count]) => `- \`${cat}\`: ${count} 個工具`).join('\n')}
 
 ### Top 5 語言
-- `python`: 181 個工具
-- `typescript`: 109 個工具
-- `javascript`: 51 個工具
-- `other`: 41 個工具
-- `rust`: 19 個工具
+${topLangs.map(([lang, count]) => `- \`${lang}\`: ${count} 個工具`).join('\n')}
 
 ---
 
@@ -66,13 +118,13 @@
    - MECE 整理術
 
 2. **Skill 模組** (按需載入)
-   - `agnes-aigc` - AI 媒體生成
-   - `agnes-sheet-author` - 數據分析與報表
-   - `deep-search` - 深度研究與引用
-   - `slide` - PPT 簡報生成
+   - \`agnes-aigc\` - AI 媒體生成
+   - \`agnes-sheet-author\` - 數據分析與報表
+   - \`deep-search\` - 深度研究與引用
+   - \`slide\` - PPT 簡報生成
 
 3. **外部 MCP Servers** (配置化)
-   - `tool-calling` - 工具庫檢索與建議
+   - \`tool-calling\` - 工具庫檢索與建議
 
 ### 能力邊界聲明
 - ❌ 禁止編造未驗證的技術事實
@@ -85,10 +137,10 @@
 ## Commands — 執行命令規範
 
 ### 專案命令 (npm scripts)
-```bash
+\`\`\`bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2119 repos)
+npm run tracked-repos     # 重建追蹤池 (${trackedCount} repos)
 npm test                  # 執行所有測試 (11/11 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -99,11 +151,11 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (497+)
-```
+node cli.js list                      # 列出所有工具 (${totalTools}+)
+\`\`\`
 
 ### Git 工作流
-```bash
+\`\`\`bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
 npm test           # 確保 11/11 測試通過
@@ -113,14 +165,14 @@ git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
 
 # 推送流程
 git push origin main  # 僅在測試通過且獲得許可後執行
-```
+\`\`\`
 
 ---
 
 ## Build/Test/Verify — 建構與驗證
 
 ### 本地驗證流程 (Mandatory)
-```bash
+\`\`\`bash
 # Phase 1: 單元測試
 npm test  # 目標：11/11 pass, 0 fail
 
@@ -129,11 +181,11 @@ node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
 
 # Phase 3: MECE 檢查
 node scripts/check-mece.js  # 目標：無「其他」殘留分類
-```
+\`\`\`
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (11/11)
-- [ ] 工具庫驗證通過 (497+ 工具)
+- [ ] 工具庫驗證通過 (${totalTools}+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -143,17 +195,17 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ## Coding Conventions — 程式碼規範
 
 ### 程式語言策略
-```yaml
+\`\`\`yaml
 語言優先級:
   TypeScript > JavaScript  # 新模組優先 TS
   Python    > Node.js      # 數據處理偏好
   HTML/CSS  > Framework    # 簡單 UI 無需框架
-```
+\`\`\`
 
 ### 代碼風格
 - **命名**：kebab-case for files, camelCase for variables
 - **類型**：TypeScript strict mode enabled
-- **導入**：ES modules only (`import/export`)
+- **導入**：ES modules only (\`import/export\`)
 - **日誌**：使用 emoji 分隔符 (🔍 📊 🏆 ✅ ⚠️ ❌)
 
 ### 拒絕的樣式
@@ -166,14 +218,14 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ## Security — 安全與防迴歸
 
 ### 命令安全協議
-```markdown
+\`\`\`markdown
 ## Shell 命令安全清單
 允許:
   ✅ node *.js, npm run *, git, curl, mkdir, rm (檔案)
 禁止:
   ❌ sh -c, eval, bash -c (除非經過 shellEscape() 處理)
   ❌ sudo, chmod 777, apt-get install (需人工確認)
-```
+\`\`\`
 
 ### 副作用防禦掃描 (Regression Prevention)
 修改任何程式碼前，必須執行：
@@ -187,14 +239,14 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 當模型 token 剩餘 < 20% 時：
 1. 立即停止新功能開發
 2. 完整記錄當前目標、進度與下一步
-3. 儲存至 `docs/tokens-reminder.md`
+3. 儲存至 \`docs/tokens-reminder.md\`
 
 ---
 
 ## Git Workflow — 版本控制規範
 
 ### Commit 訊息格式 (Conventional Commits)
-```
+\`\`\`
 type(scope): description
 
 Types:
@@ -206,22 +258,22 @@ Types:
   test:     測試相關
   style:    代碼格式 (不影響邏輯)
   perf:     效能優化
-```
+\`\`\`
 
 ### 範例
-```
+\`\`\`
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 497 and add new features
+fix(README): update tool count from 381 to ${totalTools} and add new features
 chore: merge origin/main fast-forward (83aa1ec)
-```
+\`\`\`
 
 ---
 
 ## Project Overview — 專案概覽
 
 ### 這是什麼？
-Tool-Calling — 全自動工具調用效能外掛系統
+${registry.description || 'Tool-Calling — 全自動工具調用效能外掛系統'}
 
 ### 核心功能
 1. **三層檢索引擎** (L1精確/L2關鍵字/L3語義)
@@ -238,20 +290,20 @@ Tool-Calling — 全自動工具調用效能外掛系統
 - **包管理器**：npm
 
 ### 目錄結構
-```
+\`\`\`
 Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 497+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2119 追蹤 repos
+│   ├── tools.json      # ${totalTools}+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # ${trackedCount} 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
 ├── scripts/            # 自動化腳本
 ├── web/                # 前端 UI
 └── docs/               # 文檔與比較報告
-```
+\`\`\`
 
 ---
 
@@ -264,13 +316,13 @@ Tool-Calling/
 - **禁止殘留**：不得有「其他」「未分類」類別
 
 ### 單一真理來源 (Single Source of Truth)
-- 工具庫：**`registry/tools.json`**
-- 追蹤池：**`registry/tracked-repos.json`**
-- 歷史快照：**`registry/star-snapshots.json`**
+- 工具庫：**\`registry/tools.json\`**
+- 追蹤池：**\`registry/tracked-repos.json\`**
+- 歷史快照：**\`registry/star-snapshots.json\`**
 - 知識圖譜：**網頁端動態生成** (不自存)
 
 ### 模組依賴關係
-```
+\`\`\`
 cli.js → core/search-engine.js → registry/tools.json
             ↓
        core/synonyms.generated.js
@@ -280,16 +332,16 @@ cli.js → core/search-engine.js → registry/tools.json
        scripts/reclassify-tools.js (MECE 驗證)
             ↓
        scripts/trending-weekly.js (GitHub API v4)
-```
+\`\`\`
 
 ---
 
 ## Testing Strategy — 測試策略
 
 ### 單元測試 (11 tests)
-```bash
+\`\`\`bash
 npm test
-```
+\`\`\`
 
 測試覆蓋範圍：
 - ✅ 知識圖譜 2D/3D 雙視角與平移
@@ -306,9 +358,9 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (11/11 pass)
-2. `node cli.js validate` (100% 工具通過)
-3. `node scripts/check-mece.js` (無殘留分類)
+1. \`npm test\` (11/11 pass)
+2. \`node cli.js validate\` (100% 工具通過)
+3. \`node scripts/check-mece.js\` (無殘留分類)
 
 ---
 
@@ -355,7 +407,7 @@ PDCA 循環：
 - Act: 記錄 DEV_LOG, 請求 Push 許可
 
 ### 協議四：核心承諾 (品質守則)
-```markdown
+\`\`\`markdown
 ## 絕對原則
 準確性 > 讓用戶滿意
 - 不要無腦誇讚
@@ -367,7 +419,7 @@ PDCA 循環：
 - 禁止在缺乏證據的情況下做出高置信度斷言
 - 禁止急於輸出未驗證的結果
 - 禁止隱藏前置假設
-```
+\`\`\`
 
 ---
 
@@ -396,20 +448,20 @@ PDCA 循環：
 ## Protected Paths — 受保護路徑
 
 以下路徑禁止 AI 直接修改，需經人工確認：
-```
+\`\`\`
 ❌ ~/.gemini/GEMINI.md    (Antigravity 全域規則)
 ❌ .git/                 (版本控制核心)
 ❌ package-lock.json     (依賴鎖定)
 ❌ .github/workflows/*.yml (CI/CD 配置)
-```
+\`\`\`
 
 允許自動修改的路徑：
-```
+\`\`\`
 ✅ registry/*.json       (工具庫數據)
 ✅ scripts/*.js          (自動化腳本)
 ✅ docs/*.md             (文檔)
 ✅ web/*                 (前端資源)
-```
+\`\`\`
 
 ---
 
@@ -418,10 +470,73 @@ PDCA 循環：
 - **AGENTS.md Spec**: https://agents.md/
 - **Agentic AI Foundation**: https://aaif.io/
 - **Linux Foundation**: https://linuxfoundation.org/
-- **本專案文檔**: `docs/agnes-vs-antigravity-comparison.md`
+- **本專案文檔**: \`docs/agnes-vs-antigravity-comparison.md\`
 
 ---
 
 > **協議版本**：2026.08.10 v1.0 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-08-10T12:17:21.198Z
+> **最後更新**：${new Date().toISOString()}
+`;
+}
+
+// 主函數
+async function main() {
+  console.log('🤖 AGENTS.md Generator\n');
+  
+  // 載入資料
+  const registry = loadRegistry();
+  const trackedRepos = loadTrackedRepos();
+  
+  // 生成內容
+  const content = generateAgentsMd(registry, trackedRepos);
+  
+  // 寫入檔案
+  const outputPath = join(ROOT, 'AGENTS.md');
+  writeFileSync(outputPath, content, 'utf8');
+  
+  console.log('✅ AGENTS.md 已生成');
+  console.log(`   位置: ${outputPath}`);
+  console.log(`   行數: ${(content.split('\n').length)}`);
+  console.log(`   字節: ${Buffer.byteLength(content)} bytes\n`);
+  
+  // 驗證基本結構
+  const requiredSections = [
+    '# AGENTS.md',
+    '## Identity',
+    '## Project Stats',
+    '## Capabilities',
+    '## Commands',
+    '## Build/Test/Verify',
+    '## Coding Conventions',
+    '## Security',
+    '## Git Workflow',
+    '## Project Overview',
+    '## Architecture Guidelines',
+    '## Testing Strategy',
+    '## AI Behavior Protocols',
+    '## Document Conventions',
+    '## Protected Paths',
+    '## References'
+  ];
+  
+  let allPresent = true;
+  for (const section of requiredSections) {
+    if (!content.includes(section)) {
+      console.warn(`⚠️ 缺少 section: ${section}`);
+      allPresent = false;
+    }
+  }
+  
+  if (allPresent) {
+    console.log('✅ 所有必要 section 已存在');
+  }
+  
+  return 0;
+}
+
+// 執行
+main().then(process.exit).catch(err => {
+  console.error('❌ Error:', err.message);
+  process.exit(1);
+});
