@@ -1,6 +1,9 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-09T12:07:38.298Z
+ * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
+ *   node scripts/mine-synonyms.js
+ *
+ * 產生時間：2026-08-10T13:25:18.612Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -348,7 +351,8 @@ export const SYNONYM_MAP = {
     "跨瀏覽器測試",
     "自動化測試",
     "瀏覽器自動化",
-    "測試"
+    "web scraping",
+    "crawler"
   ],
   "檔案系統": [
     "filesystem",
@@ -1355,6 +1359,193 @@ export const SYNONYM_MAP = {
     "translation",
     "localization",
     "在地化"
+  ],
+  "資料分析": [
+    "data analysis",
+    "analytics",
+    "dashboard"
+  ],
+  "data analysis": [
+    "資料分析",
+    "analytics",
+    "dashboard"
+  ],
+  "analytics": [
+    "資料分析",
+    "data analysis",
+    "dashboard"
+  ],
+  "dashboard": [
+    "資料分析",
+    "data analysis",
+    "analytics"
+  ],
+  "知識庫": [
+    "knowledge base",
+    "rag",
+    "vector db"
+  ],
+  "knowledge base": [
+    "知識庫",
+    "rag",
+    "vector db"
+  ],
+  "rag": [
+    "知識庫",
+    "knowledge base",
+    "vector db"
+  ],
+  "vector db": [
+    "知識庫",
+    "knowledge base",
+    "rag"
+  ],
+  "API 呼叫": [
+    "api call",
+    "rest",
+    "graphql",
+    "webhook"
+  ],
+  "api call": [
+    "API 呼叫",
+    "rest",
+    "graphql",
+    "webhook"
+  ],
+  "rest": [
+    "api",
+    "api call",
+    "graphql",
+    "webhook"
+  ],
+  "graphql": [
+    "api",
+    "api call",
+    "rest",
+    "webhook"
+  ],
+  "webhook": [
+    "api",
+    "api call",
+    "rest",
+    "graphql"
+  ],
+  "自動化腳本": [
+    "automation script",
+    "workflow automation"
+  ],
+  "automation script": [
+    "自動化腳本",
+    "workflow automation"
+  ],
+  "workflow automation": [
+    "自動化腳本",
+    "automation script"
+  ],
+  "程式碼生成": [
+    "code generation",
+    "codegen",
+    "scaffold"
+  ],
+  "code generation": [
+    "程式碼生成",
+    "codegen",
+    "scaffold"
+  ],
+  "codegen": [
+    "程式碼生成",
+    "code generation",
+    "scaffold"
+  ],
+  "scaffold": [
+    "程式碼生成",
+    "code generation",
+    "codegen"
+  ],
+  "文件轉換": [
+    "document conversion",
+    "docx",
+    "pdf generation"
+  ],
+  "document conversion": [
+    "文件轉換",
+    "docx",
+    "pdf generation"
+  ],
+  "pdf generation": [
+    "文件轉換",
+    "docx",
+    "document conversion"
+  ],
+  "web scraping": [
+    "網頁爬蟲",
+    "crawler",
+    "browser automation"
+  ],
+  "crawler": [
+    "網頁爬蟲",
+    "web scraping",
+    "browser automation"
+  ],
+  "JSON": [
+    "json",
+    "格式轉換",
+    "data format"
+  ],
+  "json": [
+    "JSON",
+    "格式轉換",
+    "data format"
+  ],
+  "XML": [
+    "xml",
+    "格式轉換",
+    "markup"
+  ],
+  "xml": [
+    "XML",
+    "格式轉換",
+    "markup"
+  ],
+  "資料庫": [
+    "database",
+    "sql",
+    "db"
+  ],
+  "database": [
+    "資料庫",
+    "sql",
+    "db"
+  ],
+  "sql": [
+    "資料庫",
+    "database",
+    "db"
+  ],
+  "db": [
+    "資料庫",
+    "database",
+    "sql"
+  ],
+  "命令列": [
+    "cli",
+    "command line",
+    "terminal"
+  ],
+  "cli": [
+    "命令列",
+    "command line",
+    "terminal"
+  ],
+  "command line": [
+    "命令列",
+    "cli",
+    "terminal"
+  ],
+  "terminal": [
+    "命令列",
+    "cli",
+    "command line"
   ],
   "測試": [
     "自動化測試",

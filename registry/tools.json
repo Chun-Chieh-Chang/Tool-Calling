@@ -33452,7 +33452,11 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:52:44.272Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "流程圖設計與視覺化",
+      "negativeConstraints": [
+        "不支援複雜業務邏輯自動化"
+      ]
     },
     {
       "id": "semantica",
@@ -33484,7 +33488,11 @@
         "artificial-intelligence"
       ],
       "addedAt": "2026-08-10T12:52:44.815Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "語義搜尋與知識圖譜",
+      "negativeConstraints": [
+        "不適合純結構化數據庫查詢"
+      ]
     },
     {
       "id": "mediacrawler",
@@ -33503,7 +33511,12 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:52:46.312Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "多平台媒體內容爬取",
+      "negativeConstraints": [
+        "需遵守各平台 robots.txt",
+        "需處理驗證機制"
+      ]
     },
     {
       "id": "paperclip",
@@ -33522,7 +33535,12 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:52:51.875Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "AI 驅動的項目管理助手",
+      "negativeConstraints": [
+        "僅支援 GitHub 生態",
+        "需要付費 API Key"
+      ]
     },
     {
       "id": "lifeos",
@@ -33554,7 +33572,12 @@
         "humans"
       ],
       "addedAt": "2026-08-10T12:52:59.259Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "個人生活操作系統與任務管理",
+      "negativeConstraints": [
+        "需要手動配置日誌格式",
+        "初學者上手較慢"
+      ]
     },
     {
       "id": "weathernext",
@@ -33578,7 +33601,12 @@
         "weather-forecast"
       ],
       "addedAt": "2026-08-10T12:53:01.912Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "天氣預報與氣象數據分析",
+      "negativeConstraints": [
+        "需網路連線",
+        "僅支援部分地區"
+      ]
     },
     {
       "id": "code-graph-rag",
@@ -33610,7 +33638,12 @@
         "code-understanding"
       ],
       "addedAt": "2026-08-10T12:53:02.806Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "程式碼知識圖譜與 RAG 檢索",
+      "negativeConstraints": [
+        "需要大型語言模型後端",
+        "支援 Python/JavaScript"
+      ]
     },
     {
       "id": "dopamine",
@@ -33629,7 +33662,12 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:53:03.622Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "強化學習實驗框架",
+      "negativeConstraints": [
+        "需要 GPU 支援",
+        "僅支援特定環境"
+      ]
     },
     {
       "id": "comfyui-mcp",
@@ -33661,7 +33699,12 @@
         "comfyui"
       ],
       "addedAt": "2026-08-10T12:53:05.506Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "ComfyUI Stable Diffusion MCP 伺服器",
+      "negativeConstraints": [
+        "需要 ComfyUI 運行中",
+        "需大量記憶體"
+      ]
     },
     {
       "id": "codex-autorunner",
@@ -33682,7 +33725,12 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:53:06.937Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "OpenAI Codex 自動執行工具",
+      "negativeConstraints": [
+        "需 OpenAI API Key",
+        "需網路連線"
+      ]
     },
     {
       "id": "plannotator",
@@ -33714,7 +33762,12 @@
         "obsidian"
       ],
       "addedAt": "2026-08-10T12:53:07.591Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "專案計畫與排程管理",
+      "negativeConstraints": [
+        "僅支援桌面瀏覽器",
+        "需手動匯入資料"
+      ]
     },
     {
       "id": "firstmate",
@@ -33733,7 +33786,12 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:53:09.601Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "AI 助手與開發協作工具",
+      "negativeConstraints": [
+        "需要 API Key",
+        "僅支援英文界面"
+      ]
     },
     {
       "id": "delegate-skills",
@@ -33765,7 +33823,12 @@
         "claude-code-skills"
       ],
       "addedAt": "2026-08-10T12:53:10.162Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "AI 代理委派技能與工作負載分配",
+      "negativeConstraints": [
+        "需要 Claude API Key",
+        "支援單一大模型"
+      ]
     },
     {
       "id": "rapid-mlx",
@@ -33797,7 +33860,12 @@
         "fastapi"
       ],
       "addedAt": "2026-08-10T12:53:11.073Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "快速 ML 模型訓練與部署",
+      "negativeConstraints": [
+        "需要 Python 環境",
+        "需 GPU 支援"
+      ]
     },
     {
       "id": "yfinance",
@@ -33829,7 +33897,57 @@
         "python"
       ],
       "addedAt": "2026-08-10T12:53:11.980Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase": "Yahoo Finance 金融數據擷取",
+      "negativeConstraints": [
+        "非官方 API",
+        "可能觸發 rate limiting"
+      ]
+    },
+    {
+      "id": "grill-with-docs",
+      "name": "Grill With Docs",
+      "url": "https://github.com/mattpocock/skills/tree/main/skills/engineering/grill-with-docs",
+      "description": "A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go. Run a /grilling session using the /domain-modeling skill.",
+      "category": "研究",
+      "language": "markdown",
+      "triggers": [
+        "/grill-with-docs",
+        "grill-with-docs",
+        "grill me",
+        "stress-test",
+        "design interview",
+        "plan review"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx skills@latest add mattpocock/skills --skill grill-with-docs",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "adversarial-interview",
+        "adr-generation",
+        "glossary-building",
+        "plan-sharpening",
+        "decision-documentation"
+      ],
+      "useCase": "When you need to rigorously test a technical plan or design before implementation, creating documentation artifacts (ADRs and glossary) during the process.",
+      "advantages": [
+        "Forces clarity through adversarial questioning",
+        "Creates living documentation (ADRs + glossary) inline with the interview",
+        "Prevents ambiguous requirements from slipping through",
+        "Builds shared understanding before coding begins"
+      ],
+      "negativeConstraints": [
+        "Not for implementation work - use only for planning/design phases",
+        "Does not write code - focuses on decision clarification",
+        "Requires existing project context to be effective"
+      ],
+      "stars": 212012,
+      "addedAt": "2026-08-10T13:11:06.970Z",
+      "status": "active"
     }
   ]
 }

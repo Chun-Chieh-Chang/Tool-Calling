@@ -1,84 +1,168 @@
 # Tool-Calling 🔧⚡
 
-> 一個幫你自動找工具、裝工具、用工具的全自動 AI 助手、多工具協同與知識圖譜系統
+> 一個帮你自动找工具、装工具、用工具的全自动 AI 助手、多工具协同与知识图谱系统
 
-## 這是什麼？
+## 这是什么？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **483+ 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **513+ 个顶尖开源 AI 工具与 Agent 技能**：
 
-- 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
-- 📄 **簡報與文件生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
-- 🧠 **知識管理與圖譜**：Graphify、Ontology、RAGFlow、Awesome LLM Apps
-- 🤖 **AI 框架與 MCP**：LangChain、Dify、CrewAI、AutoGen、Langflow
-- 🕷️ **網頁爬蟲與擷取**：Crawl4AI、Firecrawl、Crawlee、Scrapy、Selenium、Playwright、BeautifulSoup4
-- 🧪 **測試與自動化**：Playwright、n8n、Browser-Use
-- 🎨 **多媒體與設計**：Stable Diffusion、ComfyUI、Canvas
-- 還有更多……
+- 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
+- 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
+- 🧠 **知识管理与图谱**：Graphify、Ontology、RAGFlow、Awesome LLM Apps
+- 🤖 **AI 框架与 MCP**：LangChain、Dify、CrewAI、AutoGen、Langflow
+- 🕷️ **网页爬虫与撷取**：Crawl4AI、Firecrawl、Crawlee、Scrapy、Selenium、Playwright、BeautifulSoup4
+- 🧪 **测试与自动化**：Playwright、n8n、Browser-Use
+- 🎨 **多媒体与设计**：Stable Diffusion、ComfyUI、Canvas
+- 还有更多……
 
-**這個專案的作用就是：** 當你需要完成某項任務時，它能透過 **五維度競品重排矩陣** 自動為你篩選最適工具，透過 **多工具鏈規劃器** 組合多個工具協同運作，透過 **白話互動問答** 逼近真實需求，並且在執行驗證完成後 **自動解耦清理**，不為你的新專案增加任何維護負擔！
+**这个专案的作用就是：** 当你需要完成某项任务时，它能透过 **五维度竞品重排矩阵** 自动为你筛选最适工具，透过 **多工具链规划器** 组合多个工具协同运作，透过 **白话互动问答** 逼近真实需求，并且在执行验证完成后 **自动解耦清理**，不为你的新专案增加任何维护负担！
 
 ---
 
-## ⚡ 核心亮點功能 (Phases 106 - 112)
+## 🔥 检索引擎优化 (Phase 1-3, 2026-08-10)
 
-1. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
-   - 專案開發往往需要多個工具協同（例如：`網頁爬蟲` + `LLM RAG 清洗` + `簡報生成`）。
-   - 自動將長任務 Prompt 拆解為 DAG 執行流程圖，定義輸入/輸出 Data Flow 介面與備選競品。
-2. 🏆 **五維度競品適配重排矩陣 (5D Disambiguation Matrix)**：
-   - 解決同類工具混淆問題（如 6 大網頁爬蟲工具之選擇）。
-   - 計算程式語言對齊 (+30%/-35%)、下游場景匹配 (RAG/E2E/Pipeline)、禁用場景硬性門禁 (Negative Constraints -60%) 與 GitHub Stars 加權。
-3. 💬 **親和白話需求導向互動引導問答 (Jargon-Free Interactive Interview)**：
-   - 徹底剔除生澀專業術語！當需求模糊時，透過 3 步直覺情境問答（開發語言、真實用途、網頁動態畫面）主動逼近用戶真實需求。
-4. 🛡️ **沙盒環境預檢與安全調用驗證器 (Pre-flight Sandbox Validator)**：
-   - 一鍵預檢本機 `Node.js`, `Python`, `pip`, `npx`, `Git`, `Docker` 相依環境準備狀況。
-5. 🔥 **雲端 Auto-Trending 自動探勘管道**：
-   - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
-6. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
-   - 基於固定追蹤池（2000+ repos）與歷史快照，計算真實的週漲星數。
-   - 自動篩選有意義的漲幅（過濾異常數據），生成 Top 10 排行榜。
-   - 每週自动入庫高潛力新工具，保持工具箱時時更新。
+本次更新对搜寻引擎进行了全面优化，主要成果：
+
+| 优化项目 | 效能提升 | 说明 |
+|---------|---------|------|
+| triggerNormCache | +40-60% L2速度 | 触发词规范化快取 |
+| 搜索结果快取 | -90% 延迟 | 5分钟TTL记忆体快取 |
+| Web Worker | UI流畅度↑ | 离线TF-IDF计算 |
+| IndexedDB | 冷启动<100ms | 跨页面持久化快取 |
+| Fuzzy Matching | +15% 容错率 | Levenshtein距离模糊匹配 |
+| 同义词扩充 | 239词汇 | 41个种子词自动挖掘 |
+
+详细报告请见 [docs/OPTIMIZATION-REPORT.md](./docs/OPTIMIZATION-REPORT.md)
+
+---
+
+## ⚡ 核心亮点功能 (Phases 106 - 112)
+
+1. 🗺️ **复杂任务多工具链自动规划 (Tool Chain Planner)**：
+   - 专案开发往往需要多个工具协同（例如：`网页爬虫` + `LLM RAG 清洗` + `简报生成`）。
+   - 自动将长任务 Prompt 拆解为 DAG 执行流程图，定义输入/输出 Data Flow 介面与备选竞品。
+2. 🏆 **五维度竞品适配重排矩阵 (5D Disambiguation Matrix)**：
+   - 解决同类工具混淆问题（如 6 大网页爬虫工具之选择）。
+   - 计算程式语言对齐 (+30%/-35%)、下游场景匹配 (RAG/E2E/Pipeline)、禁用场景硬性门禁 (Negative Constraints -60%) 与 GitHub Stars 加权。
+3. 💬 **亲和白话需求导向互动引导问答 (Jargon-Free Interactive Interview)**：
+   - 彻底剔除生涩专业术语！当需求模糊时，透过 3 步直觉情境问答（开发语言、真实用途、网页动态画面）主动逼近用户真实需求。
+4. 🛡️ **沙盒环境预检与安全调用验证器 (Pre-flight Sandbox Validator)**：
+   - 一键预检本机 `Node.js`, `Python`, `pip`, `npx`, `Git`, `Docker` 相依环境准备状况。
+5. 🔥 **云端 Auto-Trending 自动探勘管道**：
+   - 连线 GitHub Search API 自动探勘新涨星热门 AI Agent 与 MCP 专案。
+6. 📈 **每週涨星排行榜 (Weekly Star Trending)**：
+   - 基于固定追踪池（2000+ repos）与历史快照，计算真实的週涨星数。
+   - 自动筛选有意义的涨幅（过滤异常数据），生成 Top 10 排行榜。
+   - 每週自动入库高潜力新工具，保持工具箱时时更新。
 
 ---
 
 ## 🚀 CLI 完整指令指南
 
-打開心命令提示字元（CMD / PowerShell），即可調用全功能 CLI：
+打开命令提示字元（CMD / PowerShell），即可调用全功能 CLI：
 
 ```bash
-# 最常見用法
-node cli.js search "Python RAG 網頁爬蟲"
-node cli.js plan "抓取動態網頁內容，並轉成簡報"
-node cli.js interview "網頁爬蟲"
+# 最常见用法
+node cli.js search "Python RAG 网页爬虫"
+node cli.js plan "抓取动态网页内容，并转成简报"
+node cli.js interview "网页爬虫"
 ```
 
-### 指令對照表
+### 指令对照表
 
-| 功能類別 | CLI 指令 | 說明 |
+| 功能类别 | CLI 指令 | 说明 |
 |---------|----------|------|
-| 核心命令 | `node cli.js search "<查詢>" [-c 分類]` | 搜尋最適工具（支援自然語言與分類過濾） |
-| 核心命令 | `node cli.js invoke <id> [args...]` | 在 Docker 沙盒中安全執行工具（自動安裝） |
-| 核心命令 | `node cli.js install <id>` | 獲取工具原始碼到 `.temp/` 臨時目錄 |
-| 核心命令 | `node cli.js cleanup` | 移除所有臨時工具，復歸系統 |
-| 核心命令 | `node cli.js export-dataset [path]` | 匯出 Telemetry 作為 LLM 微調資料集 |
-| 管理命令 | `node cli.js list [-c 分類]` | 列出所有已註冊工具（可依分類過濾） |
-| 管理命令 | `node cli.js info <id>` | 查看工具詳細資訊 |
-| 管理命令 | `node cli.js add <github-url>` | 新增工具（自動解析類型：tool/resource/monorepo） |
-| 管理命令 | `node cli.js batch-add <file>` | 從檔案批量新增（多行 URL，自動分類與去重） |
-| 管理命令 | `node cli.js remove <id\|url>` | 移除工具 |
-| 管理命令 | `node cli.js index-subtools <id>` | 深層掃描並索引大補帖內部的子工具 |
-| 管理命令 | `node cli.js validate` | 驗證註冊庫格式（0 錯誤才可提交） |
-| 管理命令 | `node cli.js health-check` | 檢查所有工具 URL 可用性 |
+| 核心命令 | `node cli.js search "<查询>" [-c 分类]` | 搜寻最适工具（支援自然语言与分类过滤） |
+| 核心命令 | `node cli.js invoke <id> [args...]` | 在 Docker 沙盒中安全执行工具（自动安装） |
+| 核心命令 | `node cli.js install <id>` | 获取工具原始码到 `.temp/` 临时目录 |
+| 核心命令 | `node cli.js cleanup` | 移除所有临时工具，复归系统 |
+| 核心命令 | `node cli.js export-dataset [path]` | 汇出 Telemetry 作为 LLM 微调资料集 |
+| 管理命令 | `node cli.js list [-c 分类]` | 列出所有已注册工具（可依分类过滤） |
+| 管理命令 | `node cli.js info <id>` | 查看工具详细资讯 |
+| 管理命令 | `node cli.js add <github-url>` | 新增工具（自动解析类型：tool/resource/monorepo） |
+| 管理命令 | `node cli.js batch-add <file>` | 从档案批量新增（多行 URL，自动分类与去重） |
+| 管理命令 | `node cli.js remove <id|url>` | 移除工具 |
+| 管理命令 | `node cli.js index-subtools <id>` | 深层扫描并索引大补帖内部的子工具 |
+| 管理命令 | `node cli.js validate` | 验证注册库格式（0 错误才可提交） |
+| 管理命令 | `node cli.js health-check` | 检查所有工具 URL 可用性 |
 
-### npm scripts 對照表
+### npm scripts 对照表
 
-| npm script | 指令 | 說明 |
+| npm script | 指令 | 说明 |
 |-----------|------|------|
-| `npm run validate` | `node cli.js validate` | 註冊庫完整性驗證 |
-| `npm run check-mece` | `node scripts/check-mece.js` | MECE 分類原則檢查 |
-| `npm run enrich` | `node scripts/enrich-registry.js` | 補齊工具詮釋資料 |
-| `npm run reclassify` | `node scripts/hook-reclassify.js` | 全盤分類重構 |
-| `npm run trending` | `node scripts/trending-weekly.js` | 每週漲星探勘 |
-| `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精靈 |
-| `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同義詞詞典 |
-| `npm test` | `node --test tests/*.test.js` | 執行 11 項測試 |
-| `npm run mcp` | `node mcp-server.js` | 啟動 MCP 伺服器 |
+| `npm run validate` | `node cli.js validate` | 注册库完整性验证 |
+| `npm run check-mece` | `node scripts/check-mece.js` | MECE 分类原则检查 |
+| `npm run enrich` | `node scripts/enrich-registry.js` | 补齐工具诠释资料 |
+| `npm run reclassify` | `node scripts/hook-reclassify.js` | 全盘分类重构 |
+| `npm run trending` | `node scripts/trending-weekly.js` | 每週涨星探勘 |
+| `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精灵 |
+| `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同义词词典 |
+| `npm test` | `node --test tests/*.test.js` | 执行 11 项测试 |
+| `npm run mcp` | `node mcp-server.js` | 启动 MCP 伺服器 |
+
+---
+
+## 🌐 网页版 UI
+
+启动网页介面：
+
+```bash
+# 方式一：使用 Python HTTP Server
+python -m http.server 3000
+
+# 方式二：使用 Node http-server
+npx http-server -p 3000
+
+# 然后开启浏览器访问 http://localhost:3000
+```
+
+网页版提供：
+- 📊 **仪表板总览** - 统计图表与分类概览
+- 🔧 **工具目录列表** - 完整的工具浏览与搜尋
+- 🔥 **每週涨星榜** - GitHub 热门 AI 工具排行
+- 🌐 **互动式知识图谱** - 3D 可视化工具关系网络
+
+---
+
+## 📁 档案结构
+
+```
+Tool-Calling/
+├── core/               # 核心模组
+│   ├── search-engine.js     # 三层检索引擎 (L1-L3)
+│   ├── synonyms.generated.js # 同义词词典 (239词汇)
+│   ├── telemetry.js         # 使用统计
+│   └── ...
+├── web/                # 前端应用
+│   ├── app.js              # 主应用 (集成Worker+快取)
+│   ├── search-worker.js    # Web Worker (离线计算)
+│   ├── persist-cache.js    # IndexedDB 持久化快取
+│   ├── behavior-tracker.js # 使用者行为追踪
+│   └── index.html          # UI 介面
+├── scripts/            # 自动化脚本
+│   └── mine-synonyms.js    # 同义词挖掘
+├── registry/           # 工具库
+│   └── tools.json        # 513+ 工具 (单一真理来源)
+├── docs/               # 文档
+│   ├── OPTIMIZATION-REPORT.md  # 优化报告
+│   └── PROJECT-OPTIMIZATION-SUMMARY.md # 总览
+└── tests/              # 测试
+    └── *.test.js       # 11 项单元测试
+```
+
+---
+
+## ✅ 质量门禁
+
+提交前必须通过：
+
+```bash
+npm test                    # 11/11 测试通过
+node cli.js validate        # 0 错误
+node scripts/check-mece.js  # 无残留分类
+```
+
+---
+
+> Developed by Wesley Chang, July-2026.  
+> Tool-Calling v1.1 - 513+ Tools, 239 Synonyms

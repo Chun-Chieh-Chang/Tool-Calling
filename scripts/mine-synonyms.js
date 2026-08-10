@@ -77,6 +77,53 @@ const SEED_SYNONYMS = {
   '翻譯': ['translate', 'translation', 'localization', '在地化', '本地化'],
   'translate': ['翻譯', 'translation', 'localization', '在地化'],
   'translation': ['翻譯', 'translate', 'localization'],
+  // 資料分析與知識庫
+  '資料分析': ['data analysis', 'analytics', 'dashboard'],
+  'data analysis': ['資料分析', 'analytics', 'dashboard'],
+  'analytics': ['資料分析', 'data analysis', 'dashboard'],
+  'dashboard': ['資料分析', 'data analysis', 'analytics'],
+  '知識庫': ['knowledge base', 'rag', 'vector db'],
+  'knowledge base': ['知識庫', 'rag', 'vector db'],
+  'rag': ['知識庫', 'knowledge base', 'vector db'],
+  'vector db': ['知識庫', 'knowledge base', 'rag'],
+  // API 呼叫
+  'API 呼叫': ['api call', 'rest', 'graphql', 'webhook'],
+  'api call': ['API 呼叫', 'rest', 'graphql', 'webhook'],
+  'rest': ['api', 'api call', 'graphql', 'webhook'],
+  'graphql': ['api', 'api call', 'rest', 'webhook'],
+  'webhook': ['api', 'api call', 'rest', 'graphql'],
+  // 自動化與腳本
+  '自動化腳本': ['automation script', 'workflow automation'],
+  'automation script': ['自動化腳本', 'workflow automation'],
+  'workflow automation': ['自動化腳本', 'automation script'],
+  // 程式碼生成
+  '程式碼生成': ['code generation', 'codegen', 'scaffold'],
+  'code generation': ['程式碼生成', 'codegen', 'scaffold'],
+  'codegen': ['程式碼生成', 'code generation', 'scaffold'],
+  'scaffold': ['程式碼生成', 'code generation', 'codegen'],
+  // 文件處理
+  '文件轉換': ['document conversion', 'docx', 'pdf generation'],
+  'document conversion': ['文件轉換', 'docx', 'pdf generation'],
+  'pdf generation': ['文件轉換', 'docx', 'document conversion'],
+  // 網頁爬蟲
+  '網頁爬蟲': ['web scraping', 'crawler', 'browser automation'],
+  'web scraping': ['網頁爬蟲', 'crawler', 'browser automation'],
+  'crawler': ['網頁爬蟲', 'web scraping', 'browser automation'],
+  // 資料格式
+  'JSON': ['json', '格式轉換', 'data format'],
+  'json': ['JSON', '格式轉換', 'data format'],
+  'XML': ['xml', '格式轉換', 'markup'],
+  'xml': ['XML', '格式轉換', 'markup'],
+  // 資料庫
+  '資料庫': ['database', 'sql', 'db'],
+  'database': ['資料庫', 'sql', 'db'],
+  'sql': ['資料庫', 'database', 'db'],
+  'db': ['資料庫', 'database', 'sql'],
+  // CLI 工具
+  '命令列': ['cli', 'command line', 'terminal'],
+  'cli': ['命令列', 'command line', 'terminal'],
+  'command line': ['命令列', 'cli', 'terminal'],
+  'terminal': ['命令列', 'cli', 'command line'],
 };
 
 // 別名種子：registry 裡的中文 triggers 多半是「安全測試」「跨瀏覽器測試」
@@ -208,7 +255,7 @@ function toGeneratedSource(map) {
 }
 
 // CLI 入口：直接執行此檔案時才會寫檔，被其他模組 import mineSynonyms 時不會
-if (import.meta.url === `file://${process.argv[1]}`) {
+async function main() {
   const registryPath = path.join(rootDir, 'registry', 'tools.json');
   const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
   const { map, stats } = mineSynonyms(registry.tools);
@@ -223,3 +270,5 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`  最終詞典詞彙數：${stats.totalTerms}`);
   console.log(`  已寫入：${path.relative(rootDir, outPath)}`);
 }
+
+main();

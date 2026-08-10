@@ -1,4 +1,6 @@
-import { search, listAll, listByCategory, warmSearchIndex } from './core/search-engine.js';
+import { search, listAll, listByCategory, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache } from './core/search-engine.js';
+import { persistCache } from './persist-cache.js';
+import { behaviorTracker, installAutoTracking } from './behavior-tracker.js';
 
 let registryTools = [];
 let categoryChartInstance = null;
@@ -44,13 +46,23 @@ async function init() {
     renderDashboard();
     renderTools(registryTools);
 
-    // 預熱搜尋索引
+    // 預熱搜尋索引（主線程）
     const warm = () => warmSearchIndex(registryTools);
     if (typeof requestIdleCallback === 'function') {
       requestIdleCallback(warm);
     } else {
       setTimeout(warm, 0);
     }
+    
+    // 初始化 Web Worker（離線計算）
+    initWorker();
+    
+    // 初始化持久化快取
+    persistCache.init().then(() => {
+      console.log('[Cache] IndexedDB initialized');
+    }).catch(err => {
+      console.warn('[Cache] IndexedDB init failed:', err.message);
+    });
 
     // 事件監聽
     searchInput.addEventListener('input', debounce(handleSearch, 300));
@@ -442,7 +454,105 @@ function populateCategories() {
 // ─── 統一四視圖連動同步引擎 (Unified 4-View Sync Engine) ────────────────────
 
 function handleSearch() {
+  const startTime = Date.now();
   syncAllViews();
+  const duration = Date.now() - startTime;
+  
+  // 記錄搜尋行為
+  const query = searchInput ? searchInput.value.trim() : '';
+  if (query.length > 0) {
+    behaviorTracker.recordSearch(query, [], duration);
+  }
+}
+
+// ─── Web Worker 搜尋引擎 ─────────────────────────────────────────────
+let searchWorker = null;
+let workerReady = false;
+let pendingWorkerSearch = null;
+
+function initWorker() {
+  if (typeof Worker === 'undefined') {
+    console.warn('[Search] Web Worker not supported, using main thread');
+    return;
+  }
+  
+  try {
+    searchWorker = new Worker('./search-worker.js');
+    
+    searchWorker.addEventListener('message', (e) => {
+      const { type, stats, results, timestamp } = e.data;
+      
+      switch (type) {
+        case 'ready':
+          workerReady = true;
+          console.log('[Search] Worker ready');
+          // 觸發待處理的搜尋
+          if (pendingWorkerSearch) {
+            const p = pendingWorkerSearch;
+            pendingWorkerSearch = null;
+            performWorkerSearch(p.query, p.options);
+          }
+          break;
+          
+        case 'warmup-complete':
+          console.log(`[Search] Worker warmup complete: ${stats.toolCount} tools indexed`);
+          break;
+          
+        case 'search-result':
+          // 記錄搜尋行為
+          const workerQuery = pendingWorkerSearch?.query || '';
+          if (workerQuery) {
+            behaviorTracker.recordSearch(workerQuery, results, 0);
+          }
+          
+          // 存入 IndexedDB
+          persistCache.set(buildWorkerCacheKey(workerQuery), results);
+          
+          // 渲染結果
+          const mappedResults = results.map(r => ({
+            tool: registryTools.find(t => t?.id === r.id) || { id: r.id, name: r.name },
+            score: r.score,
+            matchLevel: 'L3-worker',
+            matchedKeywords: []
+          }));
+          renderSearchResults(mappedResults);
+          break;
+          
+        case 'error':
+          console.error('[Search] Worker error:', e.data.message);
+          break;
+      }
+    });
+    
+    // 啟動時預熱索引
+    setTimeout(() => {
+      searchWorker.postMessage({
+        type: 'warmup',
+        tools: registryTools
+      });
+    }, 500);
+    
+  } catch (err) {
+    console.warn('[Search] Failed to init Worker:', err.message);
+  }
+}
+
+/**
+ * 執行 Worker 搜尋
+ */
+function performWorkerSearch(query, options) {
+  if (!searchWorker || !workerReady) {
+    pendingWorkerSearch = { query, options };
+    return;
+  }
+  
+  searchWorker.postMessage({
+    type: 'search',
+    payload: {
+      query,
+      threshold: 0.03
+    }
+  });
 }
 
 function syncAllViews() {
@@ -462,9 +572,52 @@ function syncAllViews() {
   } else {
     const options = { topK: 100 };
     if (category) options.category = category;
-    const results = search(registryTools || [], query, options);
-    renderSearchResults(results);
+    
+    // 先檢查持久化快取
+    const cachedKey = `${query}|${category}`;
+    persistCache.get(cachedKey).then(cached => {
+      if (cached && cached.length > 0) {
+        console.log('[Search] Cache hit from IndexedDB');
+        renderSearchResults(cached);
+        return;
+      }
+      
+      // 檢查記憶體快取
+      const memoryCached = getInMemoryCache(query, category, undefined);
+      if (memoryCached && memoryCached.length > 0) {
+        console.log('[Search] Cache hit from memory');
+        renderSearchResults(memoryCached);
+        return;
+      }
+      
+      // 嘗試使用 Worker（如果就緒）
+      if (searchWorker && workerReady) {
+        console.log('[Search] Using Worker for semantic search');
+        performWorkerSearch(query, options);
+        return;
+      }
+      
+      // 回退到主線程搜尋
+      console.log('[Search] Using main thread search');
+      const results = search(registryTools || [], query, options);
+      setInMemoryCache(query, category, undefined, results);
+      renderSearchResults(results);
+    }).catch(err => {
+      console.error('[Search] Cache lookup failed:', err);
+      // 出錯時回退到主線程
+      const options = { topK: 100 };
+      if (category) options.category = category;
+      const results = search(registryTools || [], query, options);
+      renderSearchResults(results);
+    });
   }
+}
+
+/**
+ * 建構 Worker 快取鍵
+ */
+function buildWorkerCacheKey(query) {
+  return `worker|${query}|${categorySelect?.value || ''}`;
 }
 
 // ─── 渲染：分類折疊 (Accordion) 模式 ──────────────────────────────────
@@ -649,6 +802,12 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
       tagsContainer.appendChild(tag);
     }
   }
+
+  // 記錄工具點擊行為
+  article.addEventListener('click', (e) => {
+    const query = searchInput ? searchInput.value.trim() : '';
+    behaviorTracker.recordClick(tool.id, query, 0);
+  });
 
   return clone;
 }
