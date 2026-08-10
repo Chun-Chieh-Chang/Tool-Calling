@@ -21,6 +21,7 @@
     "reclassify": "node scripts/hook-reclassify.js",
     "trending": "node scripts/trending-weekly.js",
     "tracked-repos": "node scripts/tracked-repos.js --force",
+    "agents:init": "node scripts/init-agents-md.js",
     "mcp": "node mcp-server.js",
     "daemon": "node scripts/sync-daemon.js",
     "daemon:start": "powershell -Command \"Start-Job -Name ToolCallingDaemon -ScriptBlock { node D:\\Self-developed_Apps\\Tool-Calling\\scripts\\sync-daemon.js }\"",
