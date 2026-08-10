@@ -6,8 +6,8 @@
  * 
  * 使用方式：
  *   const worker = new Worker('./search-worker.js');
- *   worker.postMessage({ type: 'warmup', tools: [...] });
- *   worker.postMessage({ type: 'search', query: '...' });
+ *   worker.postMessage({ type: 'warmup', payload: { tools: [...] } });
+ *   worker.postMessage({ type: 'search', payload: { query: '...' } });
  */
 
 // ─── 必要函數（自包含，不依賴外部模組）───────────────────────────────
@@ -244,6 +244,9 @@ self.addEventListener('message', (e) => {
   switch (type) {
     case 'warmup':
       try {
+        if (!payload || !Array.isArray(payload.tools)) {
+          throw new Error('Invalid payload: missing tools array');
+        }
         const stats = buildToolIndex(payload.tools);
         self.postMessage({ 
           type: 'warmup-complete', 
@@ -251,12 +254,16 @@ self.addEventListener('message', (e) => {
           timestamp: Date.now() 
         });
       } catch (err) {
+        console.error('[Worker] Warmup failed:', err.message);
         self.postMessage({ type: 'error', message: err.message });
       }
       break;
       
     case 'search':
       try {
+        if (!payload || typeof payload.query !== 'string') {
+          throw new Error('Invalid payload: missing query string');
+        }
         const results = semanticSearchWorker(
           payload.query, 
           payload.threshold || 0.03
@@ -267,6 +274,7 @@ self.addEventListener('message', (e) => {
           timestamp: Date.now()
         });
       } catch (err) {
+        console.error('[Worker] Search failed:', err.message);
         self.postMessage({ type: 'error', message: err.message });
       }
       break;

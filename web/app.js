@@ -519,7 +519,15 @@ function initWorker() {
           break;
           
         case 'error':
-          console.error('[Search] Worker error:', e.data.message);
+          const errMsg = e.data?.message || 'Unknown worker error';
+          console.error('[Search] Worker error:', errMsg);
+          // 回退到主线程搜索
+          const fallbackQuery = pendingWorkerSearch?.query || '';
+          if (fallbackQuery) {
+            const options = { topK: 100 };
+            const results = search(registryTools || [], fallbackQuery, options);
+            renderSearchResults(results);
+          }
           break;
       }
     });
@@ -528,7 +536,7 @@ function initWorker() {
     setTimeout(() => {
       searchWorker.postMessage({
         type: 'warmup',
-        tools: registryTools
+        payload: { tools: registryTools }
       });
     }, 500);
     
