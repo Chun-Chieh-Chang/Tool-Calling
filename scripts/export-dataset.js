@@ -59,6 +59,7 @@ export function exportDataset(tools, outputPath) {
     return;
   }
 
-  writeFileSync(outputPath, dataset.join('\n'), 'utf-8');
+  // 以 0o600 權限寫入匯出檔（含隱私資料，僅擁有者可讀）
+  writeFileSync(outputPath, dataset.join('\n'), { encoding: 'utf-8', mode: 0o600 });
   console.log(`\x1b[32m✓ 成功萃取 ${dataset.length} 筆資料至 ${outputPath}\x1b[0m`);
 }

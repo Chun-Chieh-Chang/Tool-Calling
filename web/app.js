@@ -269,6 +269,38 @@ function getCategoryStarScore(catTools) {
   return catTools.reduce((sum, t) => sum + (t ? (t.stars || 0) : 0), 0);
 }
 
+// ─── HTML 轉義工具函式 (XSS 防護) ──────────────────────────────────────────
+
+/**
+ * 轉義 HTML 特殊字元，防止動態資料注入 (Stored XSS 修復)
+ * @param {*} value - 要轉義的值
+ * @returns {string} 轉義後的字串
+ */
+function escapeHtml(value) {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/**
+ * 驗證並清洗 URL：僅允許 http/https 協議，防止 javascript: 等偽協議注入
+ * @param {*} url - 原始 URL
+ * @returns {string} 安全 URL 或 '#' 
+ */
+function safeUrl(url) {
+  if (typeof url !== 'string' || !url || url === '#') return '#';
+  try {
+    const parsed = new URL(url, window.location.href);
+    return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.href : '#';
+  } catch (e) {
+    return '#';
+  }
+}
+
 function formatStarCount(num) {
   if (!num || isNaN(num)) return '0';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
@@ -306,12 +338,12 @@ function renderCategoryOverview(categoryCounts) {
     const card = document.createElement('div');
     card.className = 'cat-card glass-panel';
 
-    const topToolsList = catTools.slice(0, 3).map(t => `<li>${t.name} ${t.stars ? `<span style="opacity:0.6;font-size:0.75rem;">(⭐${formatStarCount(t.stars)})</span>` : ''}</li>`).join('');
+    const topToolsList = catTools.slice(0, 3).map(t => `<li>${escapeHtml(t.name)} ${t.stars ? `<span style="opacity:0.6;font-size:0.75rem;">(⭐${formatStarCount(t.stars)})</span>` : ''}</li>`).join('');
 
     card.innerHTML = `
       <div>
         <div class="cat-card-header">
-          <span class="cat-name">${cat}</span>
+          <span class="cat-name">${escapeHtml(cat)}</span>
           <span class="cat-badge">⭐ ${formatStarCount(totalStars)} • ${catTools.length} 個條目</span>
         </div>
         <ul class="cat-preview-list">
@@ -374,8 +406,8 @@ async function loadWeeklyTrending() {
 
       tr.innerHTML = `
         <td style="text-align: center;"><span class="rank-badge ${rankClass}">${rankEmoji}</span></td>
-        <td><strong>${item.name}</strong></td>
-        <td><a href="${item.url}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${item.fullName} ↗</a></td>
+        <td><strong>${escapeHtml(item.name)}</strong></td>
+        <td><a href="${safeUrl(item.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${escapeHtml(item.fullName)} ↗</a></td>
         <td>
           <div style="font-size: 14px; font-weight: bold;">⭐ ${currDisplay}</div>
           <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
@@ -384,8 +416,8 @@ async function loadWeeklyTrending() {
           </div>
         </td>
         <td><span class="delta-badge">🔥 ${deltaStr}</span></td>
-        <td><span class="category-tag">${item.category}</span></td>
-        <td style="text-align: center;"><span class="status-badge ${statusClass}">${item.statusText}</span></td>
+        <td><span class="category-tag">${escapeHtml(item.category)}</span></td>
+        <td style="text-align: center;"><span class="status-badge ${statusClass}">${escapeHtml(item.statusText)}</span></td>
       `;
       leaderboardBody.appendChild(tr);
     });
@@ -683,7 +715,7 @@ function renderTools(tools) {
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </span>
-        <span class="accordion-title">${cat}</span>
+        <span class="accordion-title">${escapeHtml(cat)}</span>
         <span class="accordion-count">${catTools.length}</span>
       </div>
     `;
@@ -758,7 +790,7 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
   // 若卡片屬於多分類 section，顯示當前 section 的分類；否則顯示工具的分類
   const displayCat = currentCategory || getToolCategories(tool).join(' / ');
   clone.querySelector('.category-tag').textContent = displayCat;
-  clone.querySelector('.github-link').href = tool.url || '#';
+  clone.querySelector('.github-link').href = safeUrl(tool.url);
 
   const badge = clone.querySelector('.match-badge');
   if (score !== null) {

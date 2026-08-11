@@ -1,4 +1,4 @@
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { appendFileSync, existsSync, mkdirSync, readFileSync, chmodSync } from 'node:fs';
 import { join } from 'node:path';
 import { homedir } from 'node:os';
 
@@ -6,11 +6,11 @@ const TRACES_DIR = join(homedir(), '.tool-calling', 'traces');
 const TRACES_FILE = join(TRACES_DIR, 'traces.jsonl');
 
 /**
- * 確保目錄存在
+ * 確保目錄存在（僅擁有者可存取 0o700）
  */
 function ensureDir() {
   if (!existsSync(TRACES_DIR)) {
-    mkdirSync(TRACES_DIR, { recursive: true });
+    mkdirSync(TRACES_DIR, { recursive: true, mode: 0o700 });
   }
 }
 
@@ -30,7 +30,10 @@ export function recordTrace(toolId, args, exitCode, duration, errorMessage = nul
     error: errorMessage
   };
 
-  appendFileSync(TRACES_FILE, JSON.stringify(trace) + '\n', 'utf-8');
+  // 以 0o600 權限寫入（僅擁有者可讀寫），避免明文軌跡被其他使用者讀取
+  appendFileSync(TRACES_FILE, JSON.stringify(trace) + '\n', { encoding: 'utf-8', mode: 0o600 });
+  // 既有檔案若曾被以寬鬆權限建立，於此補正
+  try { chmodSync(TRACES_FILE, 0o600); } catch (e) { /* 檔案可能不存在，忽略 */ }
 }
 
 /**
