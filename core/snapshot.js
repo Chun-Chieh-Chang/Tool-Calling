@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -20,11 +20,4 @@ export function parseOwnerRepo(url) {
   const m = url.match(/github\.com\/([^\/]+)\/([^\/]+)/i);
   if (!m) return null;
   return { owner: m[1], repo: m[2].replace(/\.git$/i, '') };
-}
-
-/** 檢查快照是否過期（預設 14 天未更新視為過期） */
-export function isSnapshotStale(maxAgeDays = 14) {
-  if (!existsSync(SNAPSHOTS_PATH)) return true;
-  const st = statSync(SNAPSHOTS_PATH);
-  return Date.now() - st.mtimeMs > maxAgeDays * 86400000;
 }

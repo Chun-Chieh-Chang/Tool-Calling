@@ -183,5 +183,3 @@ export const persistCache = new IndexedDBCACHE();
 // 匯出便捷函數
 export const getCachedSearch = persistCache.get.bind(persistCache);
 export const cacheSearchResults = persistCache.set.bind(persistCache);
-export const clearPersistCache = persistCache.clear.bind(persistCache);
-export const cleanupPersistCache = persistCache.cleanupExpired.bind(persistCache);

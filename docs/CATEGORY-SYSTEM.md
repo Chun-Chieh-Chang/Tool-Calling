@@ -10,33 +10,33 @@
 
 ## 當前分類架構
 
-> 統計時間：2026-08-09（`node cli.js validate` + `npm run check-mece` 確認）
+> 統計時間：2026-08-11（`node cli.js validate` + `npm run check-mece` 確認）
 
 | 分類 | 數量 | 說明 |
 |------|------|------|
-| AI 框架 | 148 | LLM/Transformer/Generative AI 框架與 SDK |
-| AI 代理 | 95 | Agent/Assistant/Copilot 系統 |
-| 開發工具 | 59 | CLI、IDE、編程語言相關工具 |
+| AI 框架 | 151 | LLM/Transformer/Generative AI 框架與 SDK |
+| AI 代理 | 101 | Agent/Assistant/Copilot 系統 |
+| 開發工具 | 72 | CLI、IDE、編程語言相關工具 |
 | 學習資源 | 33 | 教程、課程、Roadmap、Awesome Lists |
 | UI/UX設計 | 29 | 前端框架、設計系統、Figma 插件 |
 | 文件生產力 | 25 | PPT、PDF、Markdown、Office 工具 |
-| 影片 | 15 | 視頻編輯、動畫、直播工具 |
-| API 整合 | 9 | REST/GraphQL SDK、集成工具 |
+| 影片 | 16 | 視頻編輯、動畫、直播工具 |
+| API 整合 | 12 | REST/GraphQL SDK、集成工具 |
+| 研究 | 10 | 學術論文、研究文獻 |
 | 音訊 | 9 | TTS/STT、音頻處理工具 |
 | 圖標與視覺資源 | 9 | 圖標庫、SVG、矢量圖形資源 |
-| 研究 | 9 | 學術論文、研究文獻 |
 | 安全性 | 7 | 滲透測試、漏洞掃描 |
+| 知識管理 | 7 | RAG、Embedding、知識圖譜 |
 | 測試與自動化 | 6 | Test Runner、E2E 測試框架 |
-| 知識管理 | 6 | RAG、Embedding、知識圖譜 |
+| 資料庫 | 5 | SQL/NoSQL 數據庫工具 |
 | 多媒體生成 | 5 | AI 圖像/視頻生成工具 |
-| 資料庫 | 4 | SQL/NoSQL 數據庫工具 |
+| 基礎設施 | 5 | Docker/K8s/Terraform 等 |
 | 3D工程繪圖 | 4 | CAD/3D建模工具 |
-| 基礎設施 | 4 | Docker/K8s/Terraform 等 |
 | 瀏覽器自動化 | 3 | Crawl/Scrape/Headless 工具 |
 | 數據分析 | 3 | Pandas/Polars/DuckDB 等 |
 | 行銷 | 1 | SEO/Analytics 工具 |
 
-**合計**：483 個工具，21 個分類，無「其他」殘留（MECE 強制）。
+**合計**：513 個工具，21 個分類，無「其他」殘留（MECE 強制）。
 
 ---
 

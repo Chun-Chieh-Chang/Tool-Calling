@@ -73,6 +73,9 @@ node cli.js interview "网页爬虫"
 | 功能类别 | CLI 指令 | 说明 |
 |---------|----------|------|
 | 核心命令 | `node cli.js search "<查询>" [-c 分类]` | 搜寻最适工具（支援自然语言与分类过滤） |
+| 核心命令 | `node cli.js plan "<长任务>"` | 多工具链 DAG 规划 |
+| 核心命令 | `node cli.js interview "<需求>"` | 白话互动问答 |
+| 核心命令 | `node cli.js compare <id1> <id2>` | 工具比较 |
 | 核心命令 | `node cli.js invoke <id> [args...]` | 在 Docker 沙盒中安全执行工具（自动安装） |
 | 核心命令 | `node cli.js install <id>` | 获取工具原始码到 `.temp/` 临时目录 |
 | 核心命令 | `node cli.js cleanup` | 移除所有临时工具，复归系统 |
@@ -85,6 +88,8 @@ node cli.js interview "网页爬虫"
 | 管理命令 | `node cli.js index-subtools <id>` | 深层扫描并索引大补帖内部的子工具 |
 | 管理命令 | `node cli.js validate` | 验证注册库格式（0 错误才可提交） |
 | 管理命令 | `node cli.js health-check` | 检查所有工具 URL 可用性 |
+| 探勘命令 | `node cli.js discover-trending` | 云端 Auto-Trending 自动探勘热门工具 |
+| 环境命令 | `node cli.js verify-environment` | 沙盒环境预检（Node/Python/Docker 等） |
 
 ### npm scripts 对照表
 
@@ -102,26 +107,6 @@ node cli.js interview "网页爬虫"
 
 ---
 
-## 🌐 网页版 UI
-
-启动网页介面：
-
-```bash
-# 方式一：使用 Python HTTP Server
-python -m http.server 3000
-
-# 方式二：使用 Node http-server
-npx http-server -p 3000
-
-# 然后开启浏览器访问 http://localhost:3000
-```
-
-网页版提供：
-- 📊 **仪表板总览** - 统计图表与分类概览
-- 🔧 **工具目录列表** - 完整的工具浏览与搜尋
-- 🔥 **每週涨星榜** - GitHub 热门 AI 工具排行
-- 🌐 **互动式知识图谱** - 3D 可视化工具关系网络
-
 ---
 
 ## 📁 档案结构
@@ -138,9 +123,13 @@ Tool-Calling/
 │   ├── search-worker.js    # Web Worker (离线计算)
 │   ├── persist-cache.js    # IndexedDB 持久化快取
 │   ├── behavior-tracker.js # 使用者行为追踪
+│   ├── fonts.css           # 自托管 Inter 字型 (SRI 安全)
+│   ├── fonts/              # 字型檔案 (woff2)
 │   └── index.html          # UI 介面
 ├── scripts/            # 自动化脚本
-│   └── mine-synonyms.js    # 同义词挖掘
+│   ├── mine-synonyms.js    # 同义词挖掘
+│   ├── build-web.js        # 构建 dist (同步字型)
+│   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
 │   └── tools.json        # 513+ 工具 (单一真理来源)
 ├── docs/               # 文档

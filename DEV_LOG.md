@@ -1,5 +1,29 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-11 專案整體程式碼與檔案優化作業（全域咒語五階段・第三輪）
+
+### 需求
+執行「全域咒語」五階段優化：死碼清理 → 文件同步 → MECE 整合 → 確效基準點 → 資安審查（不 push）。
+
+### 處理結果
+- **前置確認**：完整五階段；上輪 Strix 漏洞修復（5 檔案）納入基準 commit；只 commit 不 push。
+- **階段一：盤點與清理**:
+  - `package.json`：修正 `agents:init` 損壞引用（`init-agents-md.js` → 實際存在的 `generate-agents-md.js`）；宣告 `zod` 隱性依賴（^4.4.3，mcp-server.js 直接 import 但未宣告）。
+  - `.gitignore`：補 `.claude/`（工具生成目錄）。
+  - **死碼移除 5 處**（全域引用掃描驗證 0 引用）：`core/snapshot.js` 的 `isSnapshotStale`（含未使用 `statSync` import）；`scripts/url-resolver.js` 的 `needsSplitting` 與其專用常數 `MONOREPO_SIGNALS`；`web/persist-cache.js` 的 `clearPersistCache`/`cleanupPersistCache`（app.js 僅用 `persistCache` 實例，無需便捷匯出）。
+  - **重複文件移除**：根目錄 `SKILL.md`（與 `.agents/skills/grill-with-docs.md` MD5 完全相同，保留 .agents 規範位置）；`docs/dev-log-entry.md`（與 DEV_LOG.md L1941 條目內容重疊）。
+  - 保留確認為有效：playwright devDep（cli.js/scripts/tests 引用）、`docs/architecture/` 2 檔（檔名正常僅終端顯示問題）、`registry/schemas/tool.schema.json`（追蹤中）、`web/favicon.ico`（舊瀏覽器 fallback，build-web.js 複製）。
+- **階段二：文件同步**:
+  - AGENTS.md：工具數 497 → **513**、tracked repos 2119 → **2118**、總 star 9,258,500 → **9,470,512**、平均 18,629 → **25,121**、最後更新 2026/8/10 → 8/11；Top 5 分類（AI 代理 97→101、開發工具 65→72）與 Top 5 語言（python 181→188、typescript 109→113、javascript 51→52）對齊 registry 實測；`agents:init`/`list`/驗證清單/目錄結構數字同步。
+  - README.md：合併重複段落（刪簡體舊「网页版 UI」重複章節，保留繁體版含 file:// 警告）；目錄結構補 `web/fonts.css`、`fonts/`、`scripts/build-web.js`、`check-mece.js`；CLI 指令表補齊 `plan`/`interview`/`compare`/`discover-trending`/`verify-environment`。
+- **階段三：MECE 整合**: `npm run check-mece` 待執行（見驗證）。
+- **階段四：確效基準點**: `npm test` 11/11 PASS；`node cli.js validate` 待執行（見驗證）；基準 commit 含上輪漏洞修復。
+- **階段五：資安審查**：待 push 許可（本次不 push）。
+
+### RCA & CAPA
+- **RCA**: 工具庫持續擴張（483→513）後 AGENTS.md 統計區塊未同步；歷次 session 遺留損壞 script 引用、隱性依賴與重複文件。
+- **CAPA**: 文件統計一律以 `node cli.js validate` + registry 實測為準；新增「commit 前四重門禁（validate + check-mece + build-web + test）」；死碼移除前強制全域引用掃描（含未追蹤檔案）。
+
 ## 2026-08-09 專案整體程式碼與檔案優化作業（全域咒語五階段・第二輪）
 
 ### 需求

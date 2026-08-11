@@ -13,11 +13,6 @@ const RESOURCE_SIGNALS = [
   'handbook', 'reference-guide', 'catalog', 'directory'
 ];
 
-const MONOREPO_SIGNALS = [
-  'skills-builder', 'agent-skills', 'claude-skills', 'prompt-library',
-  'toolkit', 'collection', 'monorepo', 'awesome-', 'list-of'
-];
-
 /**
  * 解析 GitHub monorepo URL，回傳子模組列表
  * 只有當子目錄符合「工具集合」模式時才拆解：
@@ -125,14 +120,6 @@ export async function resolveMonorepo(url, options = {}) {
 export function isResourceUrl(url, description = '', topics = []) {
   const text = ((description || '') + ' ' + (topics || []).join(' ') + ' ' + url).toLowerCase();
   return RESOURCE_SIGNALS.some(s => text.includes(s));
-}
-
-/**
- * 判斷 URL 是否屬於「需要拆解的 monorepo」
- */
-export function needsSplitting(url, description = '', topics = []) {
-  const text = ((description || '') + ' ' + (topics || []).join(' ') + ' ' + url).toLowerCase();
-  return MONOREPO_SIGNALS.some(s => text.includes(s));
 }
 
 /**

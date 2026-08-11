@@ -32,24 +32,24 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 497 個工具
-追蹤 repos: 2119 個
-總 star 數: 9,258,500 ⭐
-平均 star 數: 18,629 ⭐
-最後更新: 2026/8/10
+工具庫規模: 513 個工具
+追蹤 repos: 2118 個
+總 star 數: 9,470,512 ⭐
+平均 star 數: 25,121 ⭐
+最後更新: 2026/8/11
 ```
 
 ### Top 5 分類
 - `AI 框架`: 151 個工具
-- `AI 代理`: 97 個工具
-- `開發工具`: 65 個工具
+- `AI 代理`: 101 個工具
+- `開發工具`: 72 個工具
 - `學習資源`: 33 個工具
 - `UI/UX設計`: 29 個工具
 
 ### Top 5 語言
-- `python`: 181 個工具
-- `typescript`: 109 個工具
-- `javascript`: 51 個工具
+- `python`: 188 個工具
+- `typescript`: 113 個工具
+- `javascript`: 52 個工具
 - `other`: 41 個工具
 - `rust`: 19 個工具
 
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2119 repos)
+npm run tracked-repos     # 重建追蹤池 (2118 repos)
 npm test                  # 執行所有測試 (11/11 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -99,7 +99,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (497+)
+node cli.js list                      # 列出所有工具 (513+)
 ```
 
 ### Git 工作流
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (11/11)
-- [ ] 工具庫驗證通過 (497+ 工具)
+- [ ] 工具庫驗證通過 (513+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -243,8 +243,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 497+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2119 追蹤 repos
+│   ├── tools.json      # 513+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2118 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組

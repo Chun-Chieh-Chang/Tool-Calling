@@ -3,6 +3,7 @@ node_modules/
 .exports/
 .omo/
 .agnes/
+.claude/
 .DS_Store
 *.log
 dist/
