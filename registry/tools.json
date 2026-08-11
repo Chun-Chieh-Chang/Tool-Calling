@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-10T12:53:11.981Z",
+  "lastUpdated": "2026-08-11T14:44:22.828Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -33479,32 +33479,32 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:52:44.272Z",
-      "status": "experimental",
-      "useCase": "流程圖設計與視覺化",
+      "status": "active",
+      "useCase": "Creating clean, publication-ready editorial diagrams for articles, reports, or documentation without relying on Mermaid or external dependencies.",
       "negativeConstraints": [
-        "不支援複雜業務邏輯自動化"
+        "Not suitable for interactive or animated diagrams requiring user input.",
+        "Not ideal for large-scale data visualization or real-time dashboards.",
+        "Not appropriate for 3D or immersive graphical experiences."
       ],
       "advantages": [
-        "Professional diagramming tool",
-        "Support for flowcharts, wireframes, and architecture diagrams"
+        "Self-contained HTML+SVG output ensures portability and easy embedding.",
+        "Clean design without shadows or Mermaid artifacts produces professional, publication-quality diagrams.",
+        "Supports 29 editorial diagram types covering diverse visualization needs."
       ]
     },
     {
       "id": "semantica",
       "name": "Semantica",
       "url": "https://github.com/semantica-agi/semantica",
-      "description": "Graph-Native Infrastructure for Context and Accountable AI Systems",
+      "description": "Graph-native infrastructure for context-aware, accountable AI systems with persistent memory and governance.",
       "category": "知識管理",
       "language": "python",
       "triggers": [
         "semantica",
         "agent-memory",
-        "ai",
         "ai-governance",
-        "ai-infrastructure",
-        "artificial-intelligence",
-        "context-engineering",
-        "context-graphs"
+        "context-graphs",
+        "ai-infrastructure"
       ],
       "install": {
         "method": "pip",
@@ -33519,21 +33519,24 @@
         "artificial-intelligence"
       ],
       "addedAt": "2026-08-10T12:52:44.815Z",
-      "status": "experimental",
-      "useCase": "語義搜尋與知識圖譜",
+      "status": "active",
+      "useCase": "Enabling multi-agent AI systems to maintain persistent, queryable context across sessions for compliant and auditable decision-making.",
       "negativeConstraints": [
-        "不適合純結構化數據庫查詢"
+        "Not suitable for simple, stateless applications that don't require persistent context or memory",
+        "Avoid for real-time low-latency systems where graph traversal overhead is prohibitive",
+        "Not ideal for projects without governance or compliance requirements"
       ],
       "advantages": [
-        "Semantic search engine",
-        "Vector-based similarity search with embeddings"
+        "Persistent context graphs enable AI agents to maintain long-term memory and reasoning continuity across interactions",
+        "Built-in governance frameworks ensure auditability and accountability for AI decisions",
+        "Graph-native architecture allows efficient relationship-based querying of complex AI context"
       ]
     },
     {
       "id": "mediacrawler",
       "name": "MediaCrawler",
       "url": "https://github.com/NanmiCoder/MediaCrawler",
-      "description": "小红书笔记 | 评论爬虫、抖音视频 | 评论爬虫、快手视频 | 评论爬虫、B 站视频 ｜ 评论爬虫、微博帖子 ｜ 评论爬虫、百度贴吧帖子 ｜ 百度贴吧评论回复爬虫  | 知乎问答文章｜评论爬虫",
+      "description": "Multi-platform social media scraper for Xiaohongshu, Douyin, Bilibili, Weibo, Tieba, and Zhihu content and comments.",
       "category": "開發工具",
       "language": "python",
       "triggers": [
@@ -33541,7 +33544,11 @@
         "xiaohongshu scraper",
         "douyin crawler",
         "bilibili scraper",
-        "weibo crawler"
+        "weibo crawler",
+        "zhihu scraper",
+        "tieba crawler",
+        "social media data collection",
+        "comment extraction"
       ],
       "install": {
         "method": "pip",
@@ -33550,29 +33557,33 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:52:46.312Z",
-      "status": "experimental",
-      "useCase": "多平台媒體內容爬取",
+      "status": "active",
+      "useCase": "Market researchers can collect competitor product reviews and user sentiment across multiple Chinese social platforms for competitive analysis.",
       "negativeConstraints": [
-        "需遵守各平台 robots.txt",
-        "需處理驗證機制"
+        "Do not use for scraping personal private data without consent",
+        "Avoid for real-time monitoring or high-frequency crawling that may overload servers",
+        "Not suitable for commercial data resale without platform permission"
       ],
       "advantages": [
-        "Multi-platform social media crawler",
-        "Supports Xiaohongshu, Douyin, Kuaishou, Bilibili, Weibo, Tieba"
+        "Supports 7 major Chinese social media platforms in a single tool",
+        "Extracts both posts and comments with structured data output",
+        "Open-source with active GitHub community and regular updates"
       ]
     },
     {
       "id": "paperclip",
       "name": "Paperclip",
       "url": "https://github.com/paperclipai/paperclip",
-      "description": "The open-source app everyone uses to manage agents at work",
+      "description": "Open-source platform for managing and orchestrating AI agents in collaborative workspaces.",
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "paperclip",
         "agent management",
         "workspace agent",
-        "ai workspace"
+        "ai workspace",
+        "multi-agent orchestration",
+        "agent coordination"
       ],
       "install": {
         "method": "npm",
@@ -33581,33 +33592,31 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:52:51.875Z",
-      "status": "experimental",
-      "useCase": "AI 驅動的項目管理助手",
+      "status": "active",
+      "useCase": "Teams managing multiple AI agents for automated workflows can centralize control, monitor performance, and coordinate agent interactions through a unified interface.",
       "negativeConstraints": [
-        "僅支援 GitHub 生態",
-        "需要付費 API Key"
+        "Not suitable for single-agent personal productivity tasks",
+        "Overkill for simple automation without multi-agent coordination needs",
+        "Requires technical setup and maintenance expertise"
       ],
       "advantages": [
-        "Open-source agent management app",
-        "Manage multiple AI agents in one workspace"
+        "Open-source with transparent codebase for customization and auditability",
+        "Centralized workspace management for multiple AI agents",
+        "Built-in collaboration features for team-based agent orchestration"
       ]
     },
     {
       "id": "lifeos",
       "name": "LifeOS",
       "url": "https://github.com/danielmiessler/LifeOS",
-      "description": "⛰️A General Hill-climbing AI harness that helps you move from Current State to Ideal State in both Life and Work.",
+      "description": "AI harness for iterative improvement in life and work using hill-climbing methodology.",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "lifeos",
-        "ai",
         "ai-harness",
-        "augmentation",
-        "coding",
-        "humans",
-        "intent-engineering",
-        "personal-ai"
+        "personal-ai",
+        "intent-engineering"
       ],
       "install": {
         "method": "npm",
@@ -33622,28 +33631,32 @@
         "humans"
       ],
       "addedAt": "2026-08-10T12:52:59.259Z",
-      "status": "experimental",
-      "useCase": "個人生活操作系統與任務管理",
+      "status": "active",
+      "useCase": "Use LifeOS to systematically improve daily productivity by setting incremental goals and tracking progress.",
       "negativeConstraints": [
-        "需要手動配置日誌格式",
-        "初學者上手較慢"
+        "Not suitable for real-time critical decision-making",
+        "Avoid for tasks requiring immediate, non-iterative solutions"
       ],
       "advantages": [
-        "Personal OS for life management",
-        "Track habits, goals, and daily metrics"
+        "Iterative goal-setting with AI feedback",
+        "Adaptable to personal and professional contexts",
+        "Automated progress tracking and adjustment"
       ]
     },
     {
       "id": "weathernext",
       "name": "Weathernext",
       "url": "https://github.com/google-deepmind/weathernext",
-      "description": "google-deepmind/weathernext - 待補充描述",
+      "description": "Google DeepMind's weather forecasting model for accurate short-to-medium range predictions.",
       "category": "開發工具",
       "language": "python",
       "triggers": [
         "weathernext",
         "weather",
-        "weather-forecast"
+        "weather-forecast",
+        "forecast",
+        "precipitation",
+        "temperature prediction"
       ],
       "install": {
         "method": "pip",
@@ -33655,22 +33668,24 @@
         "weather-forecast"
       ],
       "addedAt": "2026-08-10T12:53:01.912Z",
-      "status": "experimental",
-      "useCase": "天氣預報與氣象數據分析",
+      "status": "active",
+      "useCase": "Emergency response teams use it to predict severe weather events hours in advance for evacuation planning.",
       "negativeConstraints": [
-        "需網路連線",
-        "僅支援部分地區"
+        "Not suitable for long-range seasonal climate projections beyond its forecast horizon",
+        "Avoid for hyperlocal microclimate predictions requiring sub-kilometer resolution",
+        "Not designed for real-time radar or satellite data assimilation"
       ],
       "advantages": [
-        "Accurate weather forecasting API",
-        "Real-time weather data with detailed forecasts"
+        "High-resolution global weather predictions with deep learning accuracy",
+        "Fast inference compared to traditional numerical weather prediction models",
+        "Trained on ERA5 reanalysis data for reliable historical pattern matching"
       ]
     },
     {
       "id": "code-graph-rag",
       "name": "Code Graph Rag",
       "url": "https://github.com/vitali87/code-graph-rag",
-      "description": "The ultimate RAG for your monorepo. Query, understand, and edit multi-language codebases with the power of AI and knowledge graphs",
+      "description": "AI-powered RAG for querying, understanding, and editing multi-language codebases using knowledge graphs",
       "category": "資料庫",
       "language": "python",
       "triggers": [
@@ -33681,7 +33696,9 @@
         "ai",
         "ast",
         "claude-code",
-        "code-analysis"
+        "code-analysis",
+        "monorepo",
+        "dependency-tracing"
       ],
       "install": {
         "method": "pip",
@@ -33696,29 +33713,34 @@
         "code-understanding"
       ],
       "addedAt": "2026-08-10T12:53:02.806Z",
-      "status": "experimental",
-      "useCase": "程式碼知識圖譜與 RAG 檢索",
+      "status": "active",
+      "useCase": "When onboarding to a new monorepo, quickly trace dependencies and understand cross-language interactions across the entire codebase.",
       "negativeConstraints": [
-        "需要大型語言模型後端",
-        "支援 Python/JavaScript"
+        "Not suitable for single-file or trivial codebases where graph construction overhead outweighs benefits",
+        "Avoid for real-time execution or runtime debugging scenarios requiring live state inspection",
+        "Not ideal for non-code knowledge bases like documentation or unstructured text without code context"
       ],
       "advantages": [
-        "RAG system for codebases",
-        "Knowledge graph + retrieval for code understanding"
+        "Builds AST-based knowledge graphs for precise code relationship mapping across multiple languages",
+        "Enables both read (query/understand) and write (edit) operations on codebases via natural language",
+        "Optimized for monorepo-scale projects with complex inter-module dependencies"
       ]
     },
     {
       "id": "dopamine",
       "name": "Dopamine",
       "url": "https://github.com/opa334/Dopamine",
-      "description": "Dopamine is a semi-untethered jailbreak for iOS 15 to 26(.0.1)",
+      "description": "Semi-untethered jailbreak for iOS 15–26.0.1, enabling custom tweaks without a computer after each reboot.",
       "category": "AI 代理",
       "language": "c",
       "triggers": [
         "dopamine",
         "ios jailbreak",
+        "semi-untethered",
+        "ipa jailbreak",
         "unc0ver alternative",
-        "semi-tethered jailbreak"
+        "ios 15 jailbreak",
+        "tweak installation"
       ],
       "install": {
         "method": "git-clone",
@@ -33727,33 +33749,33 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:53:03.622Z",
-      "status": "experimental",
-      "useCase": "強化學習實驗框架",
+      "status": "active",
+      "useCase": "Users who want to install Cydia or Sileo and run custom tweaks on iOS 15+ without needing to reconnect to a computer after every reboot.",
       "negativeConstraints": [
-        "需要 GPU 支援",
-        "僅支援特定環境"
+        "Not suitable for users who require a fully untethered jailbreak with zero re-jailbreaking after reboots",
+        "Should not be used on iOS versions outside the supported range (below 15 or above 26.0.1)",
+        "Avoid using on devices with critical data you cannot afford to lose, as jailbreaking carries inherent risks"
       ],
       "advantages": [
-        "Semi-untethered jailbreak for iOS 15-26",
-        "Alternative to unc0ver and checkm8 tools"
+        "Semi-untethered: no computer required after each reboot, unlike fully untethered solutions",
+        "Supports iOS 15 through 26.0.1, covering a wide range of recent iOS versions",
+        "Open-source and actively maintained by opa334 with regular updates"
       ]
     },
     {
       "id": "comfyui-mcp",
       "name": "Comfyui Mcp",
       "url": "https://github.com/artokun/comfyui-mcp",
-      "description": "Local-first, agent-native control plane for ComfyUI — MCP server + sidebar agent that generates images, video & audio, authors and runs workflows, and edits your live graph in natural language on ANY LLM (Claude, ChatGPT, Gemini, offline Ollama, or any hosted model). 178 tools, 36 AI skills, 55 installer packs. Local, LAN, VPS, or Comfy Cloud.",
+      "description": "Local AI control plane for ComfyUI with MCP server and sidebar agent for natural language workflow control.",
       "category": "影片",
       "language": "typescript",
       "triggers": [
-        "comfyui-mcp",
         "comfyui",
         "mcp",
-        "agent-skills",
-        "ai-agent",
-        "claude-code",
-        "claude-plugin",
-        "comfyui-extension"
+        "agent",
+        "workflow",
+        "local-ai",
+        "image-generation"
       ],
       "install": {
         "method": "npm",
@@ -33768,28 +33790,32 @@
         "comfyui"
       ],
       "addedAt": "2026-08-10T12:53:05.506Z",
-      "status": "experimental",
-      "useCase": "ComfyUI Stable Diffusion MCP 伺服器",
+      "status": "active",
+      "useCase": "A creative professional uses natural language to generate and edit image workflows in ComfyUI without manual node configuration.",
       "negativeConstraints": [
-        "需要 ComfyUI 運行中",
-        "需大量記憶體"
+        "Not suitable for cloud-only deployments requiring centralized model hosting",
+        "Inappropriate for non-ComfyUI image generation workflows",
+        "Not ideal for users who prefer purely visual node-based interfaces without AI assistance"
       ],
       "advantages": [
-        "MCP server for ComfyUI",
-        "Control Stable Diffusion workflows via MCP protocol"
+        "Local-first operation ensures privacy and works offline without cloud dependencies",
+        "Supports any LLM including Claude, ChatGPT, Gemini, and offline Ollama models",
+        "Provides 178 tools, 36 AI skills, and 55 installer packs for comprehensive workflow automation"
       ]
     },
     {
       "id": "codex-autorunner",
       "name": "Codex Autorunner",
       "url": "https://github.com/Git-on-my-level/codex-autorunner",
-      "description": "Git-on-my-level/codex-autorunner - 待補充描述",
+      "description": "Automated Codex execution tool for batch processing and workflow automation.",
       "category": "開發工具",
       "language": "python",
       "triggers": [
         "codex-autorunner",
         "codex",
-        "autorunner"
+        "autorunner",
+        "batch-codex",
+        "automated-coding"
       ],
       "install": {
         "method": "pip",
@@ -33798,22 +33824,24 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:53:06.937Z",
-      "status": "experimental",
-      "useCase": "OpenAI Codex 自動執行工具",
+      "status": "active",
+      "useCase": "Batch processing multiple code generation prompts through Codex without manual intervention.",
       "negativeConstraints": [
-        "需 OpenAI API Key",
-        "需網路連線"
+        "Not suitable for interactive real-time coding assistance",
+        "Avoid for one-off simple queries requiring immediate feedback",
+        "Not recommended for manual code review workflows"
       ],
       "advantages": [
-        "Auto-run Codex CLI tasks",
-        "Streamline AI-assisted development workflows"
+        "Enables fully automated Codex runs for repetitive coding tasks",
+        "Supports batch processing of multiple prompts in sequence",
+        "Integrates with Git workflows for version-controlled automation"
       ]
     },
     {
       "id": "plannotator",
       "name": "Plannotator",
       "url": "https://github.com/backnotprop/plannotator",
-      "description": "Annotate and review coding agent plans and code diffs visually, share with your team, send feedback to agents with one click.",
+      "description": "Visual annotation tool for reviewing coding agent plans and code diffs with team collaboration and one-click feedback.",
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
@@ -33839,29 +33867,33 @@
         "obsidian"
       ],
       "addedAt": "2026-08-10T12:53:07.591Z",
-      "status": "experimental",
-      "useCase": "專案計畫與排程管理",
+      "status": "active",
+      "useCase": "A developer reviews a Claude Code or Codex agent's generated plan and code diffs, highlights specific concerns, and sends structured feedback back to the agent with one click.",
       "negativeConstraints": [
-        "僅支援桌面瀏覽器",
-        "需手動匯入資料"
+        "Not suitable for real-time pair programming sessions requiring instant collaborative editing",
+        "Not ideal for simple single-file changes that do not involve coding agent plans or complex diffs",
+        "Not appropriate for non-code artifacts such as design docs or project management tasks"
       ],
       "advantages": [
-        "AI-powered project planner",
-        "Generate roadmaps and task plans automatically"
+        "Visual diff and plan annotation enables precise, contextual feedback on agent-generated code",
+        "One-click feedback loop integrates directly with coding agents like Claude Code and Codex",
+        "Team sharing and Obsidian compatibility support collaborative code review workflows"
       ]
     },
     {
       "id": "firstmate",
       "name": "Firstmate",
       "url": "https://github.com/kunchenguid/firstmate",
-      "description": "Talk to one agent. Ship with a crew.",
+      "description": "Coordinate multiple AI agents as a crew to accelerate project delivery and collaboration.",
       "category": "開發工具",
       "language": "shell",
       "triggers": [
         "firstmate",
         "crew agents",
         "ship faster",
-        "team ai"
+        "team ai",
+        "multi-agent",
+        "agent orchestration"
       ],
       "install": {
         "method": "git-clone",
@@ -33870,33 +33902,35 @@
       },
       "capabilities": [],
       "addedAt": "2026-08-10T12:53:09.601Z",
-      "status": "experimental",
-      "useCase": "AI 助手與開發協作工具",
+      "status": "active",
+      "useCase": "A startup team uses Firstmate to assign specialized AI agents to parallel tasks like coding, testing, and documentation, shipping features faster than a single agent could.",
       "negativeConstraints": [
-        "需要 API Key",
-        "僅支援英文界面"
+        "Not suitable for single-task workflows where a single agent suffices",
+        "Avoid for projects requiring strict sequential dependencies between tasks",
+        "Not ideal for environments with limited compute resources for running multiple agents"
       ],
       "advantages": [
-        "Talk to one agent, ship with a crew",
-        "Multi-agent collaboration for faster shipping"
+        "Enables multi-agent orchestration for parallel task execution",
+        "Reduces development time by delegating work across specialized AI crew members",
+        "Provides a unified interface to manage and communicate with multiple agents"
       ]
     },
     {
       "id": "delegate-skills",
       "name": "Delegate Skills",
       "url": "https://github.com/amElnagdy/delegate-skills",
-      "description": "Delegate a coding task to a separate coding agent CLI, review the diff, land the commit yourself — one per implementer.",
+      "description": "Delegate coding tasks to a separate AI agent CLI, review the diff, and land commits yourself.",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "delegate-skills",
         "delegate",
-        "skills",
         "agent-skills",
         "ai-coding-agent",
-        "antigravity",
         "claude-code",
-        "claude-code-skills"
+        "claude-code-skills",
+        "antigravity",
+        "skills"
       ],
       "install": {
         "method": "npm",
@@ -33911,33 +33945,36 @@
         "claude-code-skills"
       ],
       "addedAt": "2026-08-10T12:53:10.162Z",
-      "status": "experimental",
-      "useCase": "AI 代理委派技能與工作負載分配",
+      "status": "active",
+      "useCase": "When working on a complex feature, delegate the implementation to an AI coding agent while you review and commit the changes yourself.",
       "negativeConstraints": [
-        "需要 Claude API Key",
-        "支援單一大模型"
+        "Not suitable for quick one-line fixes where delegation overhead is unnecessary",
+        "Avoid using when you need fully autonomous commits without manual review",
+        "Not ideal for real-time collaborative sessions requiring immediate feedback"
       ],
       "advantages": [
-        "Skill delegation framework",
-        "Delegate tasks to sub-agents with specialized skills"
+        "Maintains human oversight by reviewing diffs before committing",
+        "Enables parallel task delegation to multiple agents for different implementers",
+        "Integrates with Claude Code and agent-skill ecosystems for seamless workflow"
       ]
     },
     {
       "id": "rapid-mlx",
       "name": "Rapid MLX",
       "url": "https://github.com/raullenchai/Rapid-MLX",
-      "description": "The fastest local AI engine for Apple Silicon. 4.2x faster than Ollama, 0.08s cached TTFT, 100% tool calling. 17 tool parsers, prompt cache, reasoning separation, cloud routing. Drop-in OpenAI replacement. Works with Claude Code, Cursor, Aider.",
+      "description": "Ultra-fast local AI inference engine for Apple Silicon with OpenAI-compatible API and full tool calling support.",
       "category": "基礎設施",
       "language": "python",
       "triggers": [
         "rapid-mlx",
-        "rapid",
         "mlx",
         "apple-silicon",
         "claude-code",
         "cursor",
-        "deepseek",
-        "fastapi"
+        "fastapi",
+        "local-llm",
+        "tool-calling",
+        "openai-compatible"
       ],
       "install": {
         "method": "pip",
@@ -33952,33 +33989,36 @@
         "fastapi"
       ],
       "addedAt": "2026-08-10T12:53:11.073Z",
-      "status": "experimental",
-      "useCase": "快速 ML 模型訓練與部署",
+      "status": "active",
+      "useCase": "Developers running local LLM inference on Mac with Apple Silicon who need OpenAI-compatible API responses with tool calling for AI coding assistants like Claude Code, Cursor, or Aider.",
       "negativeConstraints": [
-        "需要 Python 環境",
-        "需 GPU 支援"
+        "Not suitable for non-Apple Silicon hardware (Linux, Windows, Intel Macs without Metal support)",
+        "Not ideal for production cloud deployments requiring horizontal scaling across multiple nodes",
+        "Not appropriate for models requiring GPU compute beyond Apple Silicon's capabilities (very large models >70B parameters)"
       ],
       "advantages": [
-        "Fast MLX inference toolkit",
-        "Optimized for Apple Silicon performance"
+        "Up to 4.2x faster than Ollama on Apple Silicon with 0.08s cached time-to-first-token",
+        "Drop-in OpenAI API replacement with 100% tool calling support and 17 built-in tool parsers",
+        "Built-in prompt caching, reasoning separation, and cloud routing for hybrid local-cloud workflows"
       ]
     },
     {
       "id": "yfinance",
       "name": "Yfinance",
       "url": "https://github.com/ranaroussi/yfinance",
-      "description": "Download market data from Yahoo! Finance's API",
+      "description": "Python library to download historical and real-time market data from Yahoo Finance with pandas integration.",
       "category": "開發工具",
       "language": "python",
       "triggers": [
         "yfinance",
         "financial-data",
-        "fix-yahoo-finance",
         "market-data",
+        "stock-data",
+        "yahoo-finance",
         "pandas",
         "python",
-        "stock-data",
-        "yahoo-finance"
+        "historical-prices",
+        "ticker-data"
       ],
       "install": {
         "method": "pip",
@@ -33993,15 +34033,17 @@
         "python"
       ],
       "addedAt": "2026-08-10T12:53:11.980Z",
-      "status": "experimental",
-      "useCase": "Yahoo Finance 金融數據擷取",
+      "status": "active",
+      "useCase": "Fetching historical stock prices and dividend data to backtest a quantitative trading strategy in Python.",
       "negativeConstraints": [
-        "非官方 API",
-        "可能觸發 rate limiting"
+        "Not suitable for real-time or intraday tick-level data requiring sub-second latency",
+        "Avoid for production-grade financial applications needing guaranteed uptime and SLAs",
+        "Not appropriate when accessing non-Yahoo data sources or proprietary market feeds"
       ],
       "advantages": [
-        "Unofficial Yahoo Finance API",
-        "Download historical stock market data"
+        "No API key required; free access to Yahoo Finance data with minimal setup",
+        "Seamless pandas DataFrame integration for direct data analysis and visualization",
+        "Supports multiple timeframes, dividends, splits, and pre/post-market data"
       ]
     },
     {
@@ -34048,6 +34090,690 @@
       "stars": 212012,
       "addedAt": "2026-08-10T13:11:06.970Z",
       "status": "active"
+    },
+    {
+      "id": "moonshine",
+      "name": "Moonshine",
+      "url": "https://github.com/moonshine-ai/moonshine",
+      "description": "Low-latency STT, intent recognition, and TTS for building voice agents and interfaces.",
+      "category": "音訊",
+      "language": "c++",
+      "triggers": [
+        "moonshine",
+        "intent-recognition",
+        "stt",
+        "tts",
+        "voice",
+        "voice-recognition",
+        "speech-to-text",
+        "text-to-speech",
+        "voice-agent",
+        "real-time-voice"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/moonshine-ai/moonshine.git",
+        "repoUrl": "https://github.com/moonshine-ai/moonshine"
+      },
+      "capabilities": [
+        "intent-recognition",
+        "stt",
+        "tts",
+        "voice",
+        "voice-recognition"
+      ],
+      "addedAt": "2026-08-11T14:40:03.797Z",
+      "status": "active",
+      "useCase": "A customer support voice agent that transcribes user speech, detects intent, and generates natural spoken responses in real time.",
+      "advantages": [
+        "Very low latency inference suitable for real-time voice interactions",
+        "Runs locally without requiring cloud API dependencies",
+        "Unified pipeline combining STT, intent recognition, and TTS"
+      ],
+      "negativeConstraints": [
+        "Not suitable for high-accuracy transcription in noisy or multi-speaker environments",
+        "Avoid for production systems requiring guaranteed SLA or enterprise support",
+        "Not ideal for multilingual voice applications without additional model support"
+      ]
+    },
+    {
+      "id": "harness-sdk",
+      "name": "Harness Sdk",
+      "url": "https://github.com/strands-agents/harness-sdk",
+      "description": "Open-source SDK for building and controlling production AI agents in Python & TypeScript.",
+      "category": "API 整合",
+      "language": "python",
+      "triggers": [
+        "harness-sdk",
+        "agent-framework",
+        "agentic-ai",
+        "ai-agents",
+        "production-ai"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/strands-agents/harness-sdk.git",
+        "repoUrl": "https://github.com/strands-agents/harness-sdk"
+      },
+      "capabilities": [
+        "agent-framework",
+        "agentic",
+        "agentic-ai",
+        "agents",
+        "ai"
+      ],
+      "addedAt": "2026-08-11T14:40:16.667Z",
+      "status": "active",
+      "useCase": "Build and deploy multi-agent AI systems that can interact with external tools and APIs across different cloud providers.",
+      "advantages": [
+        "Cross-language support with Python and TypeScript SDKs",
+        "Model-agnostic design works with any LLM provider",
+        "Cloud-agnostic deployment across any infrastructure"
+      ],
+      "negativeConstraints": [
+        "Not suitable for simple single-turn chatbots without agent orchestration needs",
+        "Avoid for projects requiring only basic API integration without agentic workflows",
+        "Not ideal for resource-constrained environments without agent management overhead"
+      ]
+    },
+    {
+      "id": "smolagents",
+      "name": "Smolagents",
+      "url": "https://github.com/huggingface/smolagents",
+      "description": "A lightweight library for building code-based AI agents with minimal overhead.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "smolagents",
+        "code agent",
+        "Hugging Face",
+        "Python automation"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/huggingface/smolagents.git",
+        "repoUrl": "https://github.com/huggingface/smolagents"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-11T14:40:19.363Z",
+      "status": "active",
+      "useCase": "Automating repetitive coding tasks by generating and executing Python scripts from natural language instructions.",
+      "advantages": [
+        "Lightweight with minimal dependencies",
+        "Seamless integration with Hugging Face models and datasets",
+        "Transparent agent reasoning via executable code"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time systems requiring low-latency responses",
+        "Inappropriate for non-Python environments or non-code-based agent tasks",
+        "Avoid for complex GUI applications requiring visual interfaces"
+      ]
+    },
+    {
+      "id": "cockpit-tools",
+      "name": "Cockpit Tools",
+      "url": "https://github.com/jlcodes99/cockpit-tools",
+      "description": "Universal AI IDE account manager with multi-account switching, quota monitoring, and automation.",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "cockpit-tools",
+        "account-manager",
+        "ai",
+        "quota-monitoring",
+        "multi-ide"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/jlcodes99/cockpit-tools",
+        "repoUrl": "https://github.com/jlcodes99/cockpit-tools"
+      },
+      "capabilities": [
+        "account-manager",
+        "ai",
+        "antigravity",
+        "codebuddy",
+        "codex"
+      ],
+      "addedAt": "2026-08-11T14:40:22.895Z",
+      "status": "active",
+      "useCase": "A developer managing multiple AI IDE subscriptions across platforms like Cursor, Copilot, and Windsurf can switch accounts and monitor usage quotas from a single interface.",
+      "advantages": [
+        "Supports 8+ AI IDE platforms with unified account management",
+        "Automated quota monitoring and idle instance wake-up",
+        "Multi-instance management for parallel workflow sessions"
+      ],
+      "negativeConstraints": [
+        "Single-account users who don't need multi-platform switching",
+        "Users requiring deep IDE-native integration beyond account management",
+        "Enterprise environments needing strict compliance and audit logging"
+      ]
+    },
+    {
+      "id": "hello-agents",
+      "name": "Hello Agents",
+      "url": "https://github.com/datawhalechina/hello-agents",
+      "description": "A comprehensive tutorial on building AI agents from scratch, covering LLMs, RAG, and practical agent development.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "hello-agents",
+        "agent",
+        "llm",
+        "rag",
+        "tutorial",
+        "ai-agent",
+        "intelligent-agent",
+        "datawhale"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/datawhalechina/hello-agents",
+        "repoUrl": "https://github.com/datawhalechina/hello-agents"
+      },
+      "capabilities": [
+        "agent",
+        "llm",
+        "rag",
+        "tutorial"
+      ],
+      "addedAt": "2026-08-11T14:40:23.730Z",
+      "status": "active",
+      "useCase": "Ideal for developers and researchers who want to learn how to design, build, and deploy intelligent agents using LLMs and RAG techniques.",
+      "advantages": [
+        "Covers end-to-end agent development from foundational concepts to practical implementation",
+        "Integrates LLM and RAG knowledge into a unified learning path",
+        "Open-source and community-driven, with hands-on examples and clear explanations"
+      ],
+      "negativeConstraints": [
+        "Not suitable for users seeking production-ready agent frameworks or deployment tooling",
+        "Not ideal for advanced researchers looking for cutting-edge agent architecture papers",
+        "Not appropriate for users who already have deep expertise in agent systems and need only quick references"
+      ]
+    },
+    {
+      "id": "500-ai-agents-projects",
+      "name": "500 AI Agents Projects",
+      "url": "https://github.com/ashishpatel26/500-AI-Agents-Projects",
+      "description": "Curated GitHub collection of 500+ AI agent use cases with open-source implementations across industries.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "500-ai-agents-projects",
+        "ai-agents",
+        "genai",
+        "open-source-agents",
+        "agent-projects",
+        "ai-use-cases"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/ashishpatel26/500-AI-Agents-Projects",
+        "repoUrl": "https://github.com/ashishpatel26/500-AI-Agents-Projects"
+      },
+      "capabilities": [
+        "ai-agents",
+        "genai"
+      ],
+      "addedAt": "2026-08-11T14:40:24.613Z",
+      "status": "active",
+      "useCase": "A developer exploring AI agent architectures can browse this repository to find ready-to-use open-source projects for building agents in healthcare, finance, or education.",
+      "advantages": [
+        "Provides a broad, curated catalog of real-world AI agent implementations across multiple industries",
+        "All projects are open-source, enabling direct cloning and customization for production use",
+        "Serves as a practical reference for understanding diverse agent patterns and integration approaches"
+      ],
+      "negativeConstraints": [
+        "Not suitable for users seeking a managed or hosted AI agent platform with built-in deployment",
+        "Not ideal for beginners without programming experience, as projects require coding and setup",
+        "Not appropriate when needing real-time support, SLAs, or enterprise-grade managed services"
+      ]
+    },
+    {
+      "id": "tree-sitter",
+      "name": "Tree Sitter",
+      "url": "https://github.com/tree-sitter/tree-sitter",
+      "description": "Incremental parser generator for programming languages, enabling fast syntax analysis and code navigation tools.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "tree-sitter",
+        "parser",
+        "parsing",
+        "syntax-highlighting",
+        "incremental-parser",
+        "ast",
+        "grammar",
+        "rust",
+        "c",
+        "code-navigation"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/tree-sitter/tree-sitter",
+        "repoUrl": "https://github.com/tree-sitter/tree-sitter"
+      },
+      "capabilities": [
+        "c",
+        "incremental",
+        "parser",
+        "parsing",
+        "rust"
+      ],
+      "addedAt": "2026-08-11T14:40:27.755Z",
+      "status": "active",
+      "useCase": "Powering syntax highlighting, code folding, and navigation features in editors like Neovim and Zed across dozens of programming languages.",
+      "advantages": [
+        "Incremental parsing efficiently updates ASTs on partial file edits without full re-parsing",
+        "Multi-language support with grammar definitions in a simple DSL, generating parsers in C or Rust",
+        "Fast and memory-efficient implementation suitable for real-time IDE integration"
+      ],
+      "negativeConstraints": [
+        "Not suitable for full compiler pipelines requiring semantic analysis, type checking, or code generation",
+        "Overkill for simple one-off text parsing tasks where regex or standard libraries suffice",
+        "Requires upfront grammar authoring effort, making it impractical for ad-hoc or rarely-used languages"
+      ]
+    },
+    {
+      "id": "sqlite",
+      "name": "Sqlite",
+      "url": "https://github.com/sqlite/sqlite",
+      "description": "Self-contained, serverless SQL database engine with full ACID compliance and zero configuration.",
+      "category": "資料庫",
+      "language": "c",
+      "triggers": [
+        "sqlite",
+        "sql",
+        "database",
+        "embedded",
+        "relational"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/sqlite/sqlite.git",
+        "repoUrl": "https://github.com/sqlite/sqlite"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-11T14:40:28.712Z",
+      "status": "active",
+      "useCase": "Ideal for embedded applications, mobile apps, and prototyping where a lightweight, file-based database is needed.",
+      "advantages": [
+        "Zero-configuration and serverless deployment",
+        "Full ACID compliance with standard SQL support",
+        "Single-file database storage for easy portability"
+      ],
+      "negativeConstraints": [
+        "High-concurrency web applications requiring concurrent write operations",
+        "Distributed systems needing network-accessible database servers",
+        "Applications requiring advanced features like stored procedures or triggers"
+      ]
+    },
+    {
+      "id": "rtk",
+      "name": "Rtk",
+      "url": "https://github.com/rtk-ai/rtk",
+      "description": "CLI proxy that cuts LLM token usage by 60-90% for dev commands. Single Rust binary, zero dependencies.",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "rtk",
+        "cost-reduction",
+        "token-optimization",
+        "cli-proxy",
+        "llm-cost"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/rtk-ai/rtk",
+        "repoUrl": "https://github.com/rtk-ai/rtk"
+      },
+      "capabilities": [
+        "agentic-coding",
+        "ai-coding",
+        "anthropic",
+        "claude-code",
+        "cli"
+      ],
+      "addedAt": "2026-08-11T14:40:29.535Z",
+      "status": "active",
+      "useCase": "When running frequent Claude Code or similar LLM-powered dev commands, Rtk significantly reduces API costs by compressing context before sending to the model.",
+      "advantages": [
+        "Reduces LLM token consumption by 60-90% on common development commands",
+        "Single Rust binary with zero external dependencies for easy deployment",
+        "Transparent proxy integration with existing CLI workflows"
+      ],
+      "negativeConstraints": [
+        "Not suitable when full uncompressed context is required for complex reasoning tasks",
+        "Avoid when debugging token-level LLM behavior or prompt engineering",
+        "Not ideal for commands that already have minimal token usage"
+      ]
+    },
+    {
+      "id": "threejs",
+      "name": "Three.Js",
+      "url": "https://github.com/mrdoob/three.js",
+      "description": "JavaScript library for creating and displaying animated 3D computer graphics in a web browser using WebGL.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "three.js",
+        "3d",
+        "augmented-reality",
+        "canvas",
+        "html5",
+        "javascript",
+        "svg",
+        "virtual-reality"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx three.js",
+        "repoUrl": "https://github.com/mrdoob/three.js"
+      },
+      "capabilities": [
+        "3d",
+        "augmented-reality",
+        "canvas",
+        "html5",
+        "javascript"
+      ],
+      "addedAt": "2026-08-11T14:40:32.376Z",
+      "status": "active",
+      "useCase": "Building interactive 3D product visualizers or immersive web-based augmented reality experiences without requiring native applications.",
+      "advantages": [
+        "Abstraction layer over WebGL simplifies complex 3D rendering with a high-level, intuitive API",
+        "Massive ecosystem with extensive documentation, examples, and community plugins",
+        "Cross-browser compatibility with automatic fallback to Canvas 2D when WebGL is unavailable"
+      ],
+      "negativeConstraints": [
+        "Not suitable for simple 2D graphics where lightweight libraries like Canvas API or SVG are more appropriate",
+        "Not ideal for server-side rendering or non-browser environments",
+        "Overkill for basic visualizations that do not require real-time 3D rendering"
+      ]
+    },
+    {
+      "id": "imgtothree",
+      "name": "Imgtothree",
+      "url": "https://github.com/Volkanmolla42/imgtothree",
+      "description": "Converts 2D images into 3D models using AI.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "imgtothree",
+        "3d conversion",
+        "image to 3d",
+        "model generation"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/Volkanmolla42/imgtothree.git",
+        "repoUrl": "https://github.com/Volkanmolla42/imgtothree"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-11T14:40:33.163Z",
+      "status": "active",
+      "useCase": "Useful for creating 3D assets from product photos for e-commerce.",
+      "advantages": [
+        "Fast AI-powered conversion",
+        "Supports multiple input image formats",
+        "Generates textured 3D meshes"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time rendering applications",
+        "Avoid for highly detailed architectural models",
+        "Not recommended for medical or scientific imaging"
+      ]
+    },
+    {
+      "id": "ghost",
+      "name": "Ghost",
+      "url": "https://github.com/TryGhost/Ghost",
+      "description": "Open-source publishing platform for blogs, newsletters, and memberships.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "ghost",
+        "blogging",
+        "cms",
+        "newsletter",
+        "javascript",
+        "nodejs",
+        "publishing",
+        "membership",
+        "web-application"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx Ghost",
+        "repoUrl": "https://github.com/TryGhost/Ghost"
+      },
+      "capabilities": [
+        "blogging",
+        "cms",
+        "ghost",
+        "javascript",
+        "journalism"
+      ],
+      "addedAt": "2026-08-11T14:40:33.979Z",
+      "status": "active",
+      "useCase": "A writer launching a paid subscription newsletter with integrated blog and membership features.",
+      "advantages": [
+        "Built-in membership and subscription management",
+        "Modern headless CMS architecture with REST and GraphQL APIs",
+        "Clean, fast publishing experience with minimal configuration"
+      ],
+      "negativeConstraints": [
+        "Not suitable for complex e-commerce or product sales",
+        "Avoid for large-scale multi-author enterprise portals with heavy customization needs",
+        "Not ideal for real-time collaborative editing workflows"
+      ]
+    },
+    {
+      "id": "moneyprinterv2",
+      "name": "MoneyPrinterV2",
+      "url": "https://github.com/FujiwaraChoki/MoneyPrinterV2",
+      "description": "CLI tool for automating Twitter video content creation and posting.",
+      "category": "影片",
+      "language": "python",
+      "triggers": [
+        "moneyprinterv2",
+        "automation",
+        "cli",
+        "json",
+        "money",
+        "outreach",
+        "python",
+        "twitter",
+        "video",
+        "content",
+        "social",
+        "media"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/FujiwaraChoki/MoneyPrinterV2.git",
+        "repoUrl": "https://github.com/FujiwaraChoki/MoneyPrinterV2"
+      },
+      "capabilities": [
+        "automation",
+        "cli",
+        "json",
+        "money",
+        "outreach"
+      ],
+      "addedAt": "2026-08-11T14:40:37.271Z",
+      "status": "active",
+      "useCase": "Automating daily Twitter posts with AI-generated videos from trending topics.",
+      "advantages": [
+        "CLI-driven automation for hands-free content pipelines",
+        "JSON-based configuration for flexible workflow customization",
+        "Integrates with Twitter API for direct posting and outreach"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-video or text-only content strategies",
+        "Avoid if manual creative control over each video is required",
+        "Not ideal for platforms without API access or video support"
+      ]
+    },
+    {
+      "id": "open-saas",
+      "name": "Open Saas",
+      "url": "https://github.com/wasp-lang/open-saas",
+      "description": "Free SaaS boilerplate with auth, payments, AI, and one-command deployment via Wasp framework.",
+      "category": "基礎設施",
+      "language": "mdx",
+      "triggers": [
+        "saas",
+        "boilerplate",
+        "authentication",
+        "payments",
+        "ai",
+        "wasp",
+        "stripe",
+        "react",
+        "deployment"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/wasp-lang/open-saas.git",
+        "repoUrl": "https://github.com/wasp-lang/open-saas"
+      },
+      "capabilities": [
+        "ai",
+        "authentication",
+        "aws-s3",
+        "boilerplate",
+        "chatgpt"
+      ],
+      "addedAt": "2026-08-11T14:40:38.090Z",
+      "status": "active",
+      "useCase": "A solo developer wants to quickly launch a subscription-based SaaS product with authentication, Stripe payments, and AI features without building infrastructure from scratch.",
+      "advantages": [
+        "One-command deployment with Wasp full-stack framework eliminates complex DevOps setup",
+        "AI-ready out of the box with tailored AGENTS.md, skills, and Claude Code plugin integration",
+        "Comprehensive built-in features including multi-provider auth, background jobs, email, and S3 uploads"
+      ],
+      "negativeConstraints": [
+        "Not suitable for projects requiring a different frontend framework such as Vue or Angular",
+        "Not ideal for applications that do not follow a SaaS or subscription business model",
+        "Avoid if you need full control over infrastructure without a managed framework layer"
+      ]
+    },
+    {
+      "id": "theremotefreelancer",
+      "name": "TheRemoteFreelancer",
+      "url": "https://github.com/engineerapart/TheRemoteFreelancer",
+      "description": "Curated list of remote freelance and contract job resources for developers and designers.",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "theremotefreelancer",
+        "freelance-talent",
+        "freelancer",
+        "jobs",
+        "remote-work",
+        "upwork"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/engineerapart/TheRemoteFreelancer",
+        "repoUrl": "https://github.com/engineerapart/TheRemoteFreelancer"
+      },
+      "capabilities": [
+        "freelance-talent",
+        "freelancer",
+        "jobs",
+        "remote-work",
+        "upwork"
+      ],
+      "addedAt": "2026-08-11T14:40:38.875Z",
+      "status": "active",
+      "useCase": "A software developer seeking remote contract work can browse this curated list to discover relevant freelance platforms and job boards.",
+      "advantages": [
+        "Community-curated with up-to-date resources",
+        "Covers multiple freelance platforms and job boards",
+        "Focused on tech roles like software development and web design"
+      ],
+      "negativeConstraints": [
+        "When seeking full-time employment rather than freelance or contract work",
+        "When looking for non-technical job opportunities",
+        "When needing direct job applications instead of resource listings"
+      ]
+    },
+    {
+      "id": "awesome-remote-job",
+      "name": "Awesome Remote Job",
+      "url": "https://github.com/lukasz-madon/awesome-remote-job",
+      "description": "Curated collection of remote job listings and resources for job seekers.",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "awesome-remote-job",
+        "remote",
+        "job",
+        "awesome-list",
+        "list"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/lukasz-madon/awesome-remote-job",
+        "repoUrl": "https://github.com/lukasz-madon/awesome-remote-job"
+      },
+      "capabilities": [
+        "awesome",
+        "awesome-list",
+        "list"
+      ],
+      "addedAt": "2026-08-11T14:40:42.557Z",
+      "status": "active",
+      "useCase": "Ideal for professionals seeking remote work opportunities across various industries.",
+      "advantages": [
+        "Aggregates remote job listings from multiple sources",
+        "Provides categorized resources for different professions",
+        "Regularly updated to reflect current opportunities"
+      ],
+      "negativeConstraints": [
+        "Not for locating on-site or hybrid positions",
+        "Inadequate for highly specialized or niche roles",
+        "Does not offer real-time job alert notifications"
+      ]
+    },
+    {
+      "id": "best-deals-bot",
+      "name": "Best Deals Bot",
+      "url": "https://github.com/223egoist/best-deals-bot",
+      "description": "Automated deal-scraping bot that publishes daily e-commerce bargains with affiliate tags via GitHub Actions.",
+      "category": "基礎設施",
+      "language": "python",
+      "triggers": [
+        "best-deals-bot",
+        "best",
+        "deals",
+        "bot",
+        "affiliate",
+        "passive income",
+        "deal scraper",
+        "GitHub Actions"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/223egoist/best-deals-bot.git",
+        "repoUrl": "https://github.com/223egoist/best-deals-bot"
+      },
+      "capabilities": [],
+      "addedAt": "2026-08-11T14:40:43.375Z",
+      "status": "active",
+      "useCase": "A content creator wants to generate passive affiliate income by automatically publishing curated daily deals without manual effort.",
+      "advantages": [
+        "Zero hosting costs by leveraging GitHub Pages and GitHub Actions for free deployment",
+        "Fully automated pipeline with affiliate tag embedding, eliminating manual curation and posting",
+        "Simple repository-based setup requiring no server maintenance or complex infrastructure"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time or flash sale monitoring that requires sub-hourly updates",
+        "Not ideal for niche or non-English e-commerce platforms outside major retailers",
+        "Not appropriate for users who need custom hosting, private content, or brand-controlled domains"
+      ]
     }
   ]
 }
