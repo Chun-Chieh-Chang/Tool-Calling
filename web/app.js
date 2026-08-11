@@ -1,4 +1,4 @@
-import { search, listAll, listByCategory, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache } from './core/search-engine.js';
+import { search, listAll, listByCategory, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache, getRegistryCacheFingerprint } from './core/search-engine.js';
 import { persistCache } from './persist-cache.js';
 import { behaviorTracker, installAutoTracking } from './behavior-tracker.js';
 
@@ -623,7 +623,8 @@ function syncAllViews() {
       }
       
       // 檢查記憶體快取
-      const memoryCached = getInMemoryCache(query, category, undefined);
+      const registryVersion = getRegistryCacheFingerprint(registryTools || []);
+      const memoryCached = getInMemoryCache(query, category, undefined, registryVersion);
       if (memoryCached && memoryCached.length > 0) {
         console.log('[Search] Cache hit from memory');
         renderSearchResults(memoryCached);
@@ -640,7 +641,7 @@ function syncAllViews() {
       // 回退到主線程搜尋
       console.log('[Search] Using main thread search');
       const results = search(registryTools || [], query, options);
-      setInMemoryCache(query, category, undefined, results);
+      setInMemoryCache(query, category, undefined, results, registryVersion);
       renderSearchResults(results);
     }).catch(err => {
       console.error('[Search] Cache lookup failed:', err);

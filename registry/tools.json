@@ -32983,7 +32983,10 @@
       "category": "開發工具",
       "language": "python",
       "triggers": [
-        "labs-oo-agents"
+        "labs-oo-agents",
+        "nvidia agents",
+        "pythonic agents",
+        "ai agent framework"
       ],
       "install": {
         "method": "none",
@@ -33012,7 +33015,10 @@
       "category": "開發工具",
       "language": "javascript",
       "triggers": [
-        "dashi-taskboard"
+        "dashi-taskboard",
+        "task board",
+        "project management",
+        "kanban board"
       ],
       "install": {
         "method": "none",
@@ -33075,7 +33081,10 @@
       "category": "開發工具",
       "language": "swift",
       "triggers": [
-        "nativ"
+        "nativ",
+        "mlx models",
+        "macos ai",
+        "local llm"
       ],
       "install": {
         "method": "none",
@@ -33144,7 +33153,10 @@
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
-        "story-to-handdrawn-video"
+        "story-to-handdrawn-video",
+        "handdrawn video",
+        "animation",
+        "story to video"
       ],
       "install": {
         "method": "none",
@@ -33173,7 +33185,10 @@
       "category": "開發工具",
       "language": "swift",
       "triggers": [
-        "findphone"
+        "findphone",
+        "bluetooth tracker",
+        "locate device",
+        "macos bluetooth"
       ],
       "install": {
         "method": "none",
@@ -33202,7 +33217,10 @@
       "category": "API 整合",
       "language": "typescript",
       "triggers": [
-        "openreply"
+        "openreply",
+        "manychat alternative",
+        "instagram automation",
+        "dm automation"
       ],
       "install": {
         "method": "none",
@@ -33231,7 +33249,10 @@
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
-        "openmouse"
+        "openmouse",
+        "automation",
+        "rpa",
+        "ui automation"
       ],
       "install": {
         "method": "none",
@@ -33260,7 +33281,10 @@
       "category": "開發工具",
       "language": "python",
       "triggers": [
-        "axisagentic"
+        "axisagentic",
+        "agent trajectory",
+        "rlhf",
+        "data collection"
       ],
       "install": {
         "method": "none",
@@ -33371,7 +33395,10 @@
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
-        "cue"
+        "cue",
+        "macos copilot",
+        "ai overlay",
+        "meeting assistant"
       ],
       "install": {
         "method": "none",
@@ -33456,6 +33483,10 @@
       "useCase": "流程圖設計與視覺化",
       "negativeConstraints": [
         "不支援複雜業務邏輯自動化"
+      ],
+      "advantages": [
+        "Professional diagramming tool",
+        "Support for flowcharts, wireframes, and architecture diagrams"
       ]
     },
     {
@@ -33492,6 +33523,10 @@
       "useCase": "語義搜尋與知識圖譜",
       "negativeConstraints": [
         "不適合純結構化數據庫查詢"
+      ],
+      "advantages": [
+        "Semantic search engine",
+        "Vector-based similarity search with embeddings"
       ]
     },
     {
@@ -33502,7 +33537,11 @@
       "category": "開發工具",
       "language": "python",
       "triggers": [
-        "mediacrawler"
+        "mediacrawler",
+        "xiaohongshu scraper",
+        "douyin crawler",
+        "bilibili scraper",
+        "weibo crawler"
       ],
       "install": {
         "method": "pip",
@@ -33516,6 +33555,10 @@
       "negativeConstraints": [
         "需遵守各平台 robots.txt",
         "需處理驗證機制"
+      ],
+      "advantages": [
+        "Multi-platform social media crawler",
+        "Supports Xiaohongshu, Douyin, Kuaishou, Bilibili, Weibo, Tieba"
       ]
     },
     {
@@ -33526,7 +33569,10 @@
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
-        "paperclip"
+        "paperclip",
+        "agent management",
+        "workspace agent",
+        "ai workspace"
       ],
       "install": {
         "method": "npm",
@@ -33540,6 +33586,10 @@
       "negativeConstraints": [
         "僅支援 GitHub 生態",
         "需要付費 API Key"
+      ],
+      "advantages": [
+        "Open-source agent management app",
+        "Manage multiple AI agents in one workspace"
       ]
     },
     {
@@ -33577,6 +33627,10 @@
       "negativeConstraints": [
         "需要手動配置日誌格式",
         "初學者上手較慢"
+      ],
+      "advantages": [
+        "Personal OS for life management",
+        "Track habits, goals, and daily metrics"
       ]
     },
     {
@@ -33606,6 +33660,10 @@
       "negativeConstraints": [
         "需網路連線",
         "僅支援部分地區"
+      ],
+      "advantages": [
+        "Accurate weather forecasting API",
+        "Real-time weather data with detailed forecasts"
       ]
     },
     {
@@ -33643,6 +33701,10 @@
       "negativeConstraints": [
         "需要大型語言模型後端",
         "支援 Python/JavaScript"
+      ],
+      "advantages": [
+        "RAG system for codebases",
+        "Knowledge graph + retrieval for code understanding"
       ]
     },
     {
@@ -33653,7 +33715,10 @@
       "category": "AI 代理",
       "language": "c",
       "triggers": [
-        "dopamine"
+        "dopamine",
+        "ios jailbreak",
+        "unc0ver alternative",
+        "semi-tethered jailbreak"
       ],
       "install": {
         "method": "git-clone",
@@ -33667,6 +33732,10 @@
       "negativeConstraints": [
         "需要 GPU 支援",
         "僅支援特定環境"
+      ],
+      "advantages": [
+        "Semi-untethered jailbreak for iOS 15-26",
+        "Alternative to unc0ver and checkm8 tools"
       ]
     },
     {
@@ -33704,6 +33773,10 @@
       "negativeConstraints": [
         "需要 ComfyUI 運行中",
         "需大量記憶體"
+      ],
+      "advantages": [
+        "MCP server for ComfyUI",
+        "Control Stable Diffusion workflows via MCP protocol"
       ]
     },
     {
@@ -33730,6 +33803,10 @@
       "negativeConstraints": [
         "需 OpenAI API Key",
         "需網路連線"
+      ],
+      "advantages": [
+        "Auto-run Codex CLI tasks",
+        "Streamline AI-assisted development workflows"
       ]
     },
     {
@@ -33767,6 +33844,10 @@
       "negativeConstraints": [
         "僅支援桌面瀏覽器",
         "需手動匯入資料"
+      ],
+      "advantages": [
+        "AI-powered project planner",
+        "Generate roadmaps and task plans automatically"
       ]
     },
     {
@@ -33777,7 +33858,10 @@
       "category": "開發工具",
       "language": "shell",
       "triggers": [
-        "firstmate"
+        "firstmate",
+        "crew agents",
+        "ship faster",
+        "team ai"
       ],
       "install": {
         "method": "git-clone",
@@ -33791,6 +33875,10 @@
       "negativeConstraints": [
         "需要 API Key",
         "僅支援英文界面"
+      ],
+      "advantages": [
+        "Talk to one agent, ship with a crew",
+        "Multi-agent collaboration for faster shipping"
       ]
     },
     {
@@ -33828,6 +33916,10 @@
       "negativeConstraints": [
         "需要 Claude API Key",
         "支援單一大模型"
+      ],
+      "advantages": [
+        "Skill delegation framework",
+        "Delegate tasks to sub-agents with specialized skills"
       ]
     },
     {
@@ -33865,6 +33957,10 @@
       "negativeConstraints": [
         "需要 Python 環境",
         "需 GPU 支援"
+      ],
+      "advantages": [
+        "Fast MLX inference toolkit",
+        "Optimized for Apple Silicon performance"
       ]
     },
     {
@@ -33902,6 +33998,10 @@
       "negativeConstraints": [
         "非官方 API",
         "可能觸發 rate limiting"
+      ],
+      "advantages": [
+        "Unofficial Yahoo Finance API",
+        "Download historical stock market data"
       ]
     },
     {

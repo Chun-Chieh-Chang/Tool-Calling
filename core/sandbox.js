@@ -128,6 +128,24 @@ const allowedImages = [
   'ubuntu:22.04'
 ];
 
+const SANDBOX_PROFILES = {
+  'safe-offline': {
+    name: 'safe-offline',
+    dockerNetwork: 'none',
+    allowsNetwork: false
+  },
+  'networked-runtime': {
+    name: 'networked-runtime',
+    dockerNetwork: 'bridge',
+    allowsNetwork: true
+  }
+};
+
+export function resolveSandboxProfile(tool = {}) {
+  const requestedProfile = tool.sandbox?.profile || 'safe-offline';
+  return SANDBOX_PROFILES[requestedProfile] || SANDBOX_PROFILES['safe-offline'];
+}
+
 function resolveImage(tool) {
   let image = tool.sandbox?.image || getDefaultImage(tool.language);
   if (!allowedImages.includes(image)) {
@@ -137,8 +155,9 @@ function resolveImage(tool) {
   return image;
 }
 
-function buildDockerArgs(tool, targetDir, args) {
+export function buildDockerArgs(tool, targetDir, args) {
   const image = resolveImage(tool);
+  const profile = resolveSandboxProfile(tool);
   const setupCmd = getSetupCommand(targetDir, tool);
   const userCmd = args.length > 0 ? args.map(shellEscape).join(' ') : '';
   const finalCmd = `${setupCmd}${userCmd || 'echo "No command provided"'}`;
@@ -148,7 +167,7 @@ function buildDockerArgs(tool, targetDir, args) {
     'run', '--rm',
     '-v', `${mountPath}:/workspace`,
     '-w', '/workspace',
-    '--network', 'none',
+    '--network', profile.dockerNetwork,
     '--read-only',
     '--tmpfs', '/tmp',
     '--env', 'HOME=/tmp',

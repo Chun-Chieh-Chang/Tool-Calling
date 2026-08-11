@@ -81,18 +81,43 @@ function getSubToolNorm(subTool) {
 const searchResultCache = new Map();
 const CACHE_TTL = 5 * 60 * 1000; // 5 分鐘
 
+export function getRegistryCacheFingerprint(tools = []) {
+  if (!Array.isArray(tools)) return 'invalid-registry';
+
+  let hash = 2166136261;
+  for (const tool of tools) {
+    const text = [
+      tool?.id,
+      tool?.name,
+      tool?.status,
+      tool?.category,
+      tool?.language,
+      tool?.description,
+      Array.isArray(tool?.triggers) ? tool.triggers.join(',') : tool?.triggers,
+      tool?.useCase
+    ].join('|');
+
+    for (let i = 0; i < text.length; i++) {
+      hash ^= text.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+  }
+
+  return `${tools.length}:${(hash >>> 0).toString(36)}`;
+}
+
 /**
  * 產生查詢快取鍵
  */
-function buildCacheKey(query, category, language) {
-  return `${query}|${category || ''}|${language || ''}`;
+function buildCacheKey(query, category, language, registryVersion = 'default-registry') {
+  return `${registryVersion}|${query}|${category || ''}|${language || ''}`;
 }
 
 /**
  * 取得快取結果（若存在且未過期）
  */
-export function getCachedSearch(query, category, language) {
-  const key = buildCacheKey(query, category, language);
+export function getCachedSearch(query, category, language, registryVersion) {
+  const key = buildCacheKey(query, category, language, registryVersion);
   const cached = searchResultCache.get(key);
   if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
     return cached.results;
@@ -103,8 +128,8 @@ export function getCachedSearch(query, category, language) {
 /**
  * 儲存搜尋結果到快取
  */
-export function cacheSearchResults(query, category, language, results) {
-  const key = buildCacheKey(query, category, language);
+export function cacheSearchResults(query, category, language, results, registryVersion) {
+  const key = buildCacheKey(query, category, language, registryVersion);
   searchResultCache.set(key, {
     results,
     timestamp: Date.now()
@@ -663,9 +688,10 @@ export function semanticSearch(tools, query, threshold = 0.03) {
  */
 export function search(registryTools, query, options = {}) {
   const { topK = 5, category, language } = options;
+  const registryVersion = options.registryVersion || getRegistryCacheFingerprint(registryTools);
   
   // 檢查快取
-  const cached = getCachedSearch(query, category, language);
+  const cached = getCachedSearch(query, category, language, registryVersion);
   if (cached) {
     return cached;
   }
@@ -718,7 +744,7 @@ export function search(registryTools, query, options = {}) {
       finalL1.sort((a, b) => b.score - a.score);
     }
     
-    cacheSearchResults(query, category, language, finalL1);
+    cacheSearchResults(query, category, language, finalL1, registryVersion);
     return finalL1;
   }
 
@@ -773,7 +799,7 @@ export function search(registryTools, query, options = {}) {
   const finalResults = reranked.slice(0, topK);
   
   // 儲存到快取
-  cacheSearchResults(query, category, language, finalResults);
+  cacheSearchResults(query, category, language, finalResults, registryVersion);
   
   return finalResults;
 }

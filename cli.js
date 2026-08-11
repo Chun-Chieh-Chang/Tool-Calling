@@ -11,6 +11,7 @@ import { dirname, join } from 'node:path';
 import { search, listAll, listByCategory, getById, planToolChain, extractQueryContext } from './core/search-engine.js';
 import { scanMonorepo } from './scripts/scan-monorepo.js';
 import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
+import { assessRegistryContract } from './core/registry-contract.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -317,6 +318,16 @@ function cmdValidate() {
     success(`所有 ${registry.tools.length} 個工具通過驗證 ✨`);
   } else {
     console.log(`${errors > 0 ? c.red : c.green}${errors} 個錯誤${c.reset}, ${warnings > 0 ? c.yellow : c.green}${warnings} 個警告${c.reset}`);
+  }
+  const contract = assessRegistryContract(registry);
+  const lowQualityPreview = contract.lowQualityTools.slice(0, 5);
+  console.log();
+  console.log(`${c.bold}Registry Contract v2${c.reset}`);
+  console.log(`Average metadata quality: ${contract.averageQualityScore}/100`);
+  console.log(`Contract issues: ${contract.errorCount} errors, ${contract.warningCount} warnings`);
+  console.log(`Low quality tools: ${contract.lowQualityTools.length}`);
+  for (const tool of lowQualityPreview) {
+    console.log(`  - ${tool.id}: ${tool.qualityScore}/100 (${tool.grade}) [${tool.warnings.join(', ')}]`);
   }
   console.log();
 
