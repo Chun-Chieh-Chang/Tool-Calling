@@ -31630,7 +31630,7 @@
       "id": "minimax-h3",
       "name": "MiniMax H3",
       "url": "https://github.com/MiniMax-AI/MiniMax-H3",
-      "description": "MiniMax H3 is a large language model with advanced reasoning and multilingual capabilities.",
+      "description": "MiniMax H3 is a general-purpose, omni-modal generative AI model supporting unified understanding of multimodal contexts (text, images, video, audio) with native stereo audio video generation up to 2K resolution.",
       "category": "AI 代理",
       "language": "python",
       "triggers": [
