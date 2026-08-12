@@ -187,7 +187,7 @@
       "name": "Open Generative AI",
       "url": "https://github.com/Anil-matcha/Open-Generative-AI",
       "description": "Self-hosted AI image and video generator integrating 200+ models with no content filtering.",
-      "category": "AI 框架",
+      "category": "多媒體生成",
       "language": "python",
       "triggers": [
         "image generation",
@@ -1011,7 +1011,7 @@
       "name": "Impeccable",
       "url": "https://github.com/pbakaus/impeccable",
       "description": "CSS design system that helps AI generate polished, consistent user interfaces.",
-      "category": "UI/UX設計",
+      "category": "圖標與視覺資源",
       "language": "javascript",
       "triggers": [
         "impeccable",
@@ -1566,7 +1566,7 @@
       "name": "Design.Md",
       "url": "https://github.com/google-labs-code/design.md",
       "description": "Structured markdown spec for defining visual identities and design systems for AI coding agents.",
-      "category": "文件生產力",
+      "category": "圖標與視覺資源",
       "language": "typescript",
       "triggers": [
         "design.md",
@@ -3491,7 +3491,7 @@
       "name": "Figma Generate Library",
       "url": "https://github.com/openai/skills/tree/main/skills/.curated/figma-generate-library",
       "description": "Build and sync Figma design systems from codebases, managing tokens, components, and themes.",
-      "category": "AI 代理",
+      "category": "圖標與視覺資源",
       "language": "python",
       "triggers": [
         "figma-generate-library",
@@ -11572,7 +11572,7 @@
       "name": "Voicebox",
       "url": "https://github.com/jamiepine/voicebox",
       "description": "Open-source AI voice studio for local voice cloning, transcription, and speech synthesis.",
-      "category": "音訊",
+      "category": "多媒體生成",
       "language": "typescript",
       "triggers": [
         "voicebox",
@@ -24728,7 +24728,7 @@
       "name": "Open Higgsfield AI",
       "url": "https://github.com/Autom8AI/Open-Higgsfield-AI",
       "description": "Self-hosted open-source AI image & video generation platform with 20+ models including Flux and SDXL.",
-      "category": "AI 框架",
+      "category": "多媒體生成",
       "language": "python",
       "triggers": [
         "open-higgsfield-ai",
@@ -29754,7 +29754,7 @@
       "name": "Awesome Systematic Trading",
       "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
       "description": "Curated GitHub list of libraries, strategies, books, and tutorials for systematic and algorithmic trading.",
-      "category": "研究",
+      "category": "金融與投資",
       "language": "python",
       "triggers": [
         "awesome-systematic-trading",
@@ -30321,7 +30321,7 @@
       "name": "EasyVoice",
       "url": "https://github.com/cosin2077/easyVoice",
       "description": "Open-source TTS tool using edge-tts, supporting ultra-long texts and multi-character voiceover.",
-      "category": "音訊",
+      "category": "多媒體生成",
       "language": "typescript",
       "triggers": [
         "easyvoice",
@@ -30389,7 +30389,7 @@
       "name": "Text2Video",
       "url": "https://github.com/bravekingzhang/text2video",
       "description": "AI-powered text-to-video generation tool that creates videos from textual descriptions.",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "python",
       "triggers": [
         "video",
@@ -31555,7 +31555,7 @@
       "name": "MiniMax H3",
       "url": "https://github.com/MiniMax-AI/MiniMax-H3",
       "description": "MiniMax H3 is a general-purpose, omni-modal generative AI model supporting unified understanding of multimodal contexts (text, images, video, audio) with native stereo audio video generation up to 2K resolution.",
-      "category": "AI 代理",
+      "category": "多媒體生成",
       "language": "python",
       "triggers": [
         "minimax-h3",
@@ -31997,7 +31997,7 @@
       "name": "video-shotcraft",
       "url": "https://github.com/Vincentwei1021/video-shotcraft",
       "description": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 106 shot recipe cards, 161 motion previews, a production-ready template",
-      "category": "AI 框架",
+      "category": "影片",
       "language": "typescript",
       "triggers": [
         "video-shotcraft",

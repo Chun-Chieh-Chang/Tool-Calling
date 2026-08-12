@@ -1,9 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
- *   node scripts/mine-synonyms.js
- *
- * 產生時間：2026-08-10T13:25:18.612Z
+ * 產生時間：2026-08-12T14:25:35.758Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -1279,10 +1276,20 @@ export const SYNONYM_MAP = {
     "生成"
   ],
   "ai video": [
-    "生成"
+    "生成",
+    "影像生成",
+    "oil-motion",
+    "video generation",
+    "motion",
+    "video ai"
   ],
   "video generation": [
-    "生成"
+    "生成",
+    "影像生成",
+    "oil-motion",
+    "motion",
+    "ai video",
+    "video ai"
   ],
   "群體智慧": [
     "buzz",
@@ -1346,6 +1353,237 @@ export const SYNONYM_MAP = {
     "communication",
     "p2p-messaging",
     "群體智慧"
+  ],
+  "阿里通義": [
+    "qwen-mm-plugins",
+    "qwen",
+    "multimodal",
+    "ai plugins",
+    "llm plugins",
+    "multimodal ai"
+  ],
+  "qwen-mm-plugins": [
+    "阿里通義",
+    "qwen",
+    "multimodal",
+    "ai plugins",
+    "llm plugins",
+    "multimodal ai"
+  ],
+  "qwen": [
+    "阿里通義",
+    "qwen-mm-plugins",
+    "multimodal",
+    "ai plugins",
+    "llm plugins",
+    "multimodal ai"
+  ],
+  "multimodal": [
+    "阿里通義",
+    "qwen-mm-plugins",
+    "qwen",
+    "ai plugins",
+    "llm plugins",
+    "multimodal ai"
+  ],
+  "ai plugins": [
+    "阿里通義",
+    "qwen-mm-plugins",
+    "qwen",
+    "multimodal",
+    "llm plugins",
+    "multimodal ai"
+  ],
+  "llm plugins": [
+    "阿里通義",
+    "qwen-mm-plugins",
+    "qwen",
+    "multimodal",
+    "ai plugins",
+    "multimodal ai"
+  ],
+  "multimodal ai": [
+    "阿里通義",
+    "qwen-mm-plugins",
+    "qwen",
+    "multimodal",
+    "ai plugins",
+    "llm plugins"
+  ],
+  "向量資料庫": [
+    "warp",
+    "sqlite",
+    "vector database",
+    "embeddings",
+    "database"
+  ],
+  "warp": [
+    "向量資料庫",
+    "sqlite",
+    "vector database",
+    "embeddings",
+    "database"
+  ],
+  "sqlite": [
+    "向量資料庫",
+    "warp",
+    "vector database",
+    "embeddings",
+    "database"
+  ],
+  "vector database": [
+    "向量資料庫",
+    "warp",
+    "sqlite",
+    "embeddings",
+    "database"
+  ],
+  "embeddings": [
+    "向量資料庫",
+    "warp",
+    "sqlite",
+    "vector database",
+    "database"
+  ],
+  "database": [
+    "向量資料庫",
+    "warp",
+    "sqlite",
+    "vector database",
+    "embeddings",
+    "資料庫",
+    "sql",
+    "db"
+  ],
+  "影像生成": [
+    "oil-motion",
+    "video generation",
+    "motion",
+    "ai video",
+    "video ai",
+    "生成"
+  ],
+  "oil-motion": [
+    "影像生成",
+    "video generation",
+    "motion",
+    "ai video",
+    "video ai",
+    "生成"
+  ],
+  "motion": [
+    "影像生成",
+    "oil-motion",
+    "video generation",
+    "ai video",
+    "video ai",
+    "生成"
+  ],
+  "video ai": [
+    "影像生成",
+    "oil-motion",
+    "video generation",
+    "motion",
+    "ai video",
+    "生成"
+  ],
+  "微信": [
+    "wechat-ai",
+    "wechat",
+    "chatbot",
+    "ai chat",
+    "通訊機器人"
+  ],
+  "wechat-ai": [
+    "微信",
+    "通訊機器人",
+    "wechat",
+    "chatbot",
+    "ai chat"
+  ],
+  "wechat": [
+    "微信",
+    "通訊機器人",
+    "wechat-ai",
+    "chatbot",
+    "ai chat"
+  ],
+  "chatbot": [
+    "微信",
+    "通訊機器人",
+    "wechat-ai",
+    "wechat",
+    "ai chat"
+  ],
+  "ai chat": [
+    "微信",
+    "通訊機器人",
+    "wechat-ai",
+    "wechat",
+    "chatbot"
+  ],
+  "通訊機器人": [
+    "wechat-ai",
+    "wechat",
+    "chatbot",
+    "ai chat",
+    "微信"
+  ],
+  "編譯器": [
+    "h3-c",
+    "h3.c",
+    "antirez",
+    "redis",
+    "c",
+    "system programming"
+  ],
+  "h3-c": [
+    "編譯器",
+    "h3.c",
+    "antirez",
+    "redis",
+    "c",
+    "system programming"
+  ],
+  "h3.c": [
+    "編譯器",
+    "h3-c",
+    "antirez",
+    "redis",
+    "c",
+    "system programming"
+  ],
+  "antirez": [
+    "編譯器",
+    "h3-c",
+    "h3.c",
+    "redis",
+    "c",
+    "system programming"
+  ],
+  "redis": [
+    "編譯器",
+    "h3-c",
+    "h3.c",
+    "antirez",
+    "c",
+    "system programming"
+  ],
+  "c": [
+    "編譯器",
+    "h3-c",
+    "h3.c",
+    "antirez",
+    "redis",
+    "system programming"
+  ],
+  "system programming": [
+    "編譯器",
+    "h3-c",
+    "h3.c",
+    "antirez",
+    "redis",
+    "c"
   ],
   "翻譯": [
     "translate",
@@ -1509,11 +1747,6 @@ export const SYNONYM_MAP = {
   ],
   "資料庫": [
     "database",
-    "sql",
-    "db"
-  ],
-  "database": [
-    "資料庫",
     "sql",
     "db"
   ],

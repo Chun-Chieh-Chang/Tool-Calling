@@ -1,49 +1,38 @@
 {
   "name": "tool-calling",
   "version": "1.0.0",
-  "description": "全自動工具調用效能外掛系統 — AI Agent 工具發現、檢索、調用、清理的基礎設施",
-  "type": "module",
+  "description": "全自動工具調用效能外掛系統 - 擁有 563+ 頂尖開源 AI 代理技能與工具的檢索庫與儀表板",
   "main": "cli.js",
+  "type": "module",
   "bin": {
     "tool-calling": "./cli.js"
   },
   "scripts": {
-    "start": "node cli.js",
+    "start": "node web/server.js",
+    "dev": "node web/server.js --dev",
+    "build": "node scripts/build-web.js",
     "test": "node --test tests/*.test.js",
-    "mine-synonyms": "node scripts/mine-synonyms.js",
-    "add": "node cli.js add",
-    "list": "node cli.js list",
-    "search": "node cli.js search",
-    "health-check": "node cli.js health-check",
     "validate": "node cli.js validate",
-    "enrich": "node scripts/enrich-registry.js",
     "check-mece": "node scripts/check-mece.js",
+    "enrich": "node scripts/enrich-registry.js",
     "reclassify": "node scripts/hook-reclassify.js",
     "trending": "node scripts/trending-weekly.js",
-    "tracked-repos": "node scripts/tracked-repos.js --force",
-    "agents:init": "node scripts/generate-agents-md.js",
-    "mcp": "node mcp-server.js",
     "daemon": "node scripts/sync-daemon.js",
-    "daemon:start": "powershell -Command \"Start-Job -Name ToolCallingDaemon -ScriptBlock { node D:\\Self-developed_Apps\\Tool-Calling\\scripts\\sync-daemon.js }\"",
-    "daemon:stop": "powershell -Command \"Stop-Job -Name ToolCallingDaemon -ErrorAction SilentlyContinue; Remove-Job -Name ToolCallingDaemon -ErrorAction SilentlyContinue\""
+    "mine-synonyms": "node scripts/mine-synonyms.js",
+    "mcp": "node mcp-server.js"
   },
   "keywords": [
-    "tool-calling",
-    "ai-agent",
-    "tool-registry",
-    "auto-invoke",
-    "plugin-system"
+    "ai", "agent", "tool-calling", "claude-code", "cursor", "mcp",
+    "llm", "gpt", "openai", "anthropic", "gemini", "autogpt",
+    "skills", "toolkit", "automation", "workflow"
   ],
-  "author": "",
+  "author": "chun-chieh-chang",
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.30.0",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "playwright": "^1.62.0"
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
   }
 }
