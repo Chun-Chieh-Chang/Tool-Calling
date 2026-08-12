@@ -474,6 +474,7 @@ export async function discoverTrendingTools() {
       name: r.name,
       fullName: r.fullName,
       url: r.html_url,
+      description: r.description || '',
       currentStars: r.currentStars,
       prevStars: r.prevStars,
       delta: r.delta,

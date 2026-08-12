@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-11T14:44:22.828Z",
+  "lastUpdated": "2026-08-12T13:04:24.020Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -34774,6 +34774,259 @@
         "Not ideal for niche or non-English e-commerce platforms outside major retailers",
         "Not appropriate for users who need custom hosting, private content, or brand-controlled domains"
       ]
+    },
+    {
+      "id": "qwen-mm-plugins",
+      "name": "Qwen-MM-Plugins",
+      "url": "https://github.com/QwenLM/Qwen-MM-Plugins",
+      "description": "Make any agent harness multimodal-native.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "qwen-mm-plugins"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/QwenLM/Qwen-MM-Plugins"
+      },
+      "capabilities": [],
+      "useCase": "Make any agent harness multimodal-native. — 本週漲星 +2185 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 2,185 星",
+        "本週漲星 +2185",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 2185,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "comfyui",
+      "name": "ComfyUI",
+      "url": "https://github.com/Comfy-Org/ComfyUI",
+      "description": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
+      "category": "API 整合",
+      "language": "python",
+      "triggers": [
+        "comfyui",
+        "ai",
+        "comfy",
+        "comfyui",
+        "python",
+        "pytorch"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Comfy-Org/ComfyUI"
+      },
+      "capabilities": [
+        "ai",
+        "comfy",
+        "comfyui",
+        "python",
+        "pytorch",
+        "stable-diffusion"
+      ],
+      "useCase": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. — 本週漲星 +2182 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 126,992 星",
+        "本週漲星 +2182",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 126992,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "warp",
+      "name": "warp",
+      "url": "https://github.com/sqliteai/warp",
+      "description": "Run the full 2.78-trillion-parameter Kimi K3 model beyond available RAM by streaming activated weights directly from NVMe. A dependency-free, embeddable C inference engine.",
+      "category": "開發工具",
+      "language": "c",
+      "triggers": [
+        "warp"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/sqliteai/warp"
+      },
+      "capabilities": [],
+      "useCase": "Run the full 2.78-trillion-parameter Kimi K3 model beyond available RAM by streaming activated weights directly from NVMe. A dependency-free, embeddable C inference engine. — 本週漲星 +2086 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 2,086 星",
+        "本週漲星 +2086",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 2086,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "gathered-scenes-zine-skill",
+      "name": "gathered-scenes-zine-skill",
+      "url": "https://github.com/Zeejay0/gathered-scenes-zine-skill",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "gathered-scenes-zine-skill"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Zeejay0/gathered-scenes-zine-skill"
+      },
+      "capabilities": [],
+      "useCase": "gathered-scenes-zine-skill — 本週漲星 +1692 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 2,974 星",
+        "本週漲星 +1692",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 2974,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "phone-harness",
+      "name": "phone-harness",
+      "url": "https://github.com/ShawnPana/phone-harness",
+      "description": "let your agent control your phone",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "phone-harness",
+        "agent",
+        "ai",
+        "automation",
+        "developer-tools"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ShawnPana/phone-harness"
+      },
+      "capabilities": [
+        "agent",
+        "ai",
+        "automation",
+        "developer-tools"
+      ],
+      "useCase": "let your agent control your phone — 本週漲星 +1580 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,580 星",
+        "本週漲星 +1580",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1580,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "oil-motion",
+      "name": "oil-motion",
+      "url": "https://github.com/oil-oil/oil-motion",
+      "description": "Create smooth, responsive interactive web animations.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "oil-motion"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/oil-oil/oil-motion"
+      },
+      "capabilities": [],
+      "useCase": "Create smooth, responsive interactive web animations. — 本週漲星 +1556 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,556 星",
+        "本週漲星 +1556",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1556,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "wechat-ai",
+      "name": "WeChat-AI",
+      "url": "https://github.com/SMNETSTUDIO/WeChat-AI",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "wechat-ai"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/SMNETSTUDIO/WeChat-AI"
+      },
+      "capabilities": [],
+      "useCase": "WeChat-AI — 本週漲星 +1507 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,507 星",
+        "本週漲星 +1507",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1507,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
+    },
+    {
+      "id": "h3-c",
+      "name": "h3.c",
+      "url": "https://github.com/antirez/h3.c",
+      "description": "MiniMax H3 inference engine for Mac computers",
+      "category": "開發工具",
+      "language": "c",
+      "triggers": [
+        "h3-c"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/antirez/h3.c"
+      },
+      "capabilities": [],
+      "useCase": "MiniMax H3 inference engine for Mac computers — 本週漲星 +1499 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,499 星",
+        "本週漲星 +1499",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1499,
+      "addedAt": "2026-08-12T13:04:24.020Z",
+      "status": "active"
     }
   ]
 }

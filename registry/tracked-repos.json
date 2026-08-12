@@ -2764,8 +2764,8 @@
     "owner": "firecrawl",
     "repo": "firecrawl",
     "category": "AI 框架",
-    "addedAt": "2026-08-10T03:53:59.933Z",
-    "status": "in_registry"
+    "addedAt": "2026-07-29T13:59:28.615Z",
+    "status": "tracking"
   },
   "unclecode/crawl4AI": {
     "fullName": "unclecode/crawl4AI",
@@ -3619,12 +3619,9 @@
     "fullName": "ashishpatel26/500-AI-Agents-Projects",
     "owner": "ashishpatel26",
     "repo": "500-AI-Agents-Projects",
-    "initialStars": 35827,
-    "discoveredAt": "2026-07-27T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "AI 代理",
+    "addedAt": "2026-08-11T14:40:24.613Z",
+    "status": "tracking"
   },
   "continuedev/continue": {
     "fullName": "continuedev/continue",
@@ -7623,12 +7620,9 @@
     "fullName": "jlcodes99/cockpit-tools",
     "owner": "jlcodes99",
     "repo": "cockpit-tools",
-    "initialStars": 15182,
-    "discoveredAt": "2026-07-27T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "AI 代理",
+    "addedAt": "2026-08-11T14:40:22.895Z",
+    "status": "tracking"
   },
   "kopia/kopia": {
     "fullName": "kopia/kopia",
@@ -9534,12 +9528,9 @@
     "fullName": "raullenchai/Rapid-MLX",
     "owner": "raullenchai",
     "repo": "Rapid-MLX",
-    "initialStars": 3402,
-    "discoveredAt": "2026-07-27T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "基礎設施",
+    "addedAt": "2026-08-10T12:53:11.073Z",
+    "status": "tracking"
   },
   "AvdLee/SwiftUI-Agent-Skill": {
     "fullName": "AvdLee/SwiftUI-Agent-Skill",
@@ -12328,23 +12319,17 @@
     "fullName": "rtk-ai/rtk",
     "owner": "rtk-ai",
     "repo": "rtk",
-    "initialStars": 74871,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "AI 代理",
+    "addedAt": "2026-08-11T14:40:29.535Z",
+    "status": "tracking"
   },
   "datawhalechina/hello-agents": {
     "fullName": "datawhalechina/hello-agents",
     "owner": "datawhalechina",
     "repo": "hello-agents",
-    "initialStars": 71035,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "學習資源",
+    "addedAt": "2026-08-11T14:40:23.730Z",
+    "status": "tracking"
   },
   "unslothai/unsloth": {
     "fullName": "unslothai/unsloth",
@@ -14961,8 +14946,8 @@
     "discoveredAt": "2026-08-03T00:00:00.000Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-12T13:04:24.020Z",
+    "status": "in_registry"
   },
   "supabase/supabase": {
     "fullName": "supabase/supabase",
@@ -17520,12 +17505,9 @@
     "fullName": "strands-agents/harness-sdk",
     "owner": "strands-agents",
     "repo": "harness-sdk",
-    "initialStars": 6807,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "API 整合",
+    "addedAt": "2026-08-11T14:40:16.667Z",
+    "status": "tracking"
   },
   "GoogleCloudPlatform/agent-starter-pack": {
     "fullName": "GoogleCloudPlatform/agent-starter-pack",
@@ -19049,12 +19031,9 @@
     "fullName": "FujiwaraChoki/MoneyPrinterV2",
     "owner": "FujiwaraChoki",
     "repo": "MoneyPrinterV2",
-    "initialStars": 31516,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "影片",
+    "addedAt": "2026-08-11T14:40:37.271Z",
+    "status": "tracking"
   },
   "ariya/phantomjs": {
     "fullName": "ariya/phantomjs",
@@ -20573,12 +20552,9 @@
     "fullName": "mrdoob/three.js",
     "owner": "mrdoob",
     "repo": "three.js",
-    "initialStars": 114361,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "開發工具",
+    "addedAt": "2026-08-11T14:40:32.376Z",
+    "status": "tracking"
   },
   "d3/d3": {
     "fullName": "d3/d3",
@@ -21717,8 +21693,8 @@
     "discoveredAt": "2026-08-03T00:00:00.000Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-12T13:04:24.020Z",
+    "status": "in_registry"
   },
   "x4gKing/Marzban-Node": {
     "fullName": "x4gKing/Marzban-Node",
@@ -21905,11 +21881,494 @@
     "addedAt": "2026-08-09T12:03:27.623Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2118,
-    "inRegistry": 464,
-    "trackedOnly": 1654,
-    "lastGenerated": "2026-08-10T03:53:59.960Z"
+  "NVIDIA-NeMo/labs-OO-Agents": {
+    "fullName": "NVIDIA-NeMo/labs-OO-Agents",
+    "owner": "NVIDIA-NeMo",
+    "repo": "labs-OO-Agents",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-08-10T03:53:59.933Z"
+  "chuspeeism/dashi-taskboard": {
+    "fullName": "chuspeeism/dashi-taskboard",
+    "owner": "chuspeeism",
+    "repo": "dashi-taskboard",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "nethical6/conversation-steganography": {
+    "fullName": "nethical6/conversation-steganography",
+    "owner": "nethical6",
+    "repo": "conversation-steganography",
+    "category": "AI 框架",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "Blaizzy/nativ": {
+    "fullName": "Blaizzy/nativ",
+    "owner": "Blaizzy",
+    "repo": "nativ",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "duolahypercho/codex-router": {
+    "fullName": "duolahypercho/codex-router",
+    "owner": "duolahypercho",
+    "repo": "codex-router",
+    "category": "API 整合",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "gnipbao/story-to-handdrawn-video": {
+    "fullName": "gnipbao/story-to-handdrawn-video",
+    "owner": "gnipbao",
+    "repo": "story-to-handdrawn-video",
+    "category": "AI 代理",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "ben-z/findphone": {
+    "fullName": "ben-z/findphone",
+    "owner": "ben-z",
+    "repo": "findphone",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "diwenne/openreply": {
+    "fullName": "diwenne/openreply",
+    "owner": "diwenne",
+    "repo": "openreply",
+    "category": "API 整合",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "OpenMouse-Project/openmouse": {
+    "fullName": "OpenMouse-Project/openmouse",
+    "owner": "OpenMouse-Project",
+    "repo": "openmouse",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "XYZ-AI-Lab/AxisAgentic": {
+    "fullName": "XYZ-AI-Lab/AxisAgentic",
+    "owner": "XYZ-AI-Lab",
+    "repo": "AxisAgentic",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "mesamirh/MovieBox-Tui": {
+    "fullName": "mesamirh/MovieBox-Tui",
+    "owner": "mesamirh",
+    "repo": "MovieBox-Tui",
+    "category": "API 整合",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "Prism-Shadow/penguin-harness": {
+    "fullName": "Prism-Shadow/penguin-harness",
+    "owner": "Prism-Shadow",
+    "repo": "penguin-harness",
+    "category": "AI 框架",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "Blueturboguy07/cue": {
+    "fullName": "Blueturboguy07/cue",
+    "owner": "Blueturboguy07",
+    "repo": "cue",
+    "category": "AI 代理",
+    "addedAt": "2026-08-10T03:53:59.933Z",
+    "status": "tracking"
+  },
+  "cathrynlavery/diagram-design": {
+    "fullName": "cathrynlavery/diagram-design",
+    "owner": "cathrynlavery",
+    "repo": "diagram-design",
+    "category": "AI 代理",
+    "addedAt": "2026-08-10T12:52:44.272Z",
+    "status": "tracking"
+  },
+  "semantica-agi/semantica": {
+    "fullName": "semantica-agi/semantica",
+    "owner": "semantica-agi",
+    "repo": "semantica",
+    "category": "知識管理",
+    "addedAt": "2026-08-10T12:52:44.815Z",
+    "status": "tracking"
+  },
+  "NanmiCoder/MediaCrawler": {
+    "fullName": "NanmiCoder/MediaCrawler",
+    "owner": "NanmiCoder",
+    "repo": "MediaCrawler",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:52:46.312Z",
+    "status": "tracking"
+  },
+  "paperclipai/paperclip": {
+    "fullName": "paperclipai/paperclip",
+    "owner": "paperclipai",
+    "repo": "paperclip",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:52:51.875Z",
+    "status": "tracking"
+  },
+  "danielmiessler/LifeOS": {
+    "fullName": "danielmiessler/LifeOS",
+    "owner": "danielmiessler",
+    "repo": "LifeOS",
+    "category": "AI 代理",
+    "addedAt": "2026-08-10T12:52:59.259Z",
+    "status": "tracking"
+  },
+  "google-deepmind/weathernext": {
+    "fullName": "google-deepmind/weathernext",
+    "owner": "google-deepmind",
+    "repo": "weathernext",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:53:01.912Z",
+    "status": "tracking"
+  },
+  "vitali87/code-graph-rag": {
+    "fullName": "vitali87/code-graph-rag",
+    "owner": "vitali87",
+    "repo": "code-graph-rag",
+    "category": "資料庫",
+    "addedAt": "2026-08-10T12:53:02.806Z",
+    "status": "tracking"
+  },
+  "opa334/Dopamine": {
+    "fullName": "opa334/Dopamine",
+    "owner": "opa334",
+    "repo": "Dopamine",
+    "category": "AI 代理",
+    "addedAt": "2026-08-10T12:53:03.622Z",
+    "status": "tracking"
+  },
+  "artokun/comfyui-mcp": {
+    "fullName": "artokun/comfyui-mcp",
+    "owner": "artokun",
+    "repo": "comfyui-mcp",
+    "category": "影片",
+    "addedAt": "2026-08-10T12:53:05.506Z",
+    "status": "tracking"
+  },
+  "Git-on-my-level/codex-autorunner": {
+    "fullName": "Git-on-my-level/codex-autorunner",
+    "owner": "Git-on-my-level",
+    "repo": "codex-autorunner",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:53:06.937Z",
+    "status": "tracking"
+  },
+  "backnotprop/plannotator": {
+    "fullName": "backnotprop/plannotator",
+    "owner": "backnotprop",
+    "repo": "plannotator",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:53:07.591Z",
+    "status": "tracking"
+  },
+  "kunchenguid/firstmate": {
+    "fullName": "kunchenguid/firstmate",
+    "owner": "kunchenguid",
+    "repo": "firstmate",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:53:09.601Z",
+    "status": "tracking"
+  },
+  "amElnagdy/delegate-skills": {
+    "fullName": "amElnagdy/delegate-skills",
+    "owner": "amElnagdy",
+    "repo": "delegate-skills",
+    "category": "AI 代理",
+    "addedAt": "2026-08-10T12:53:10.162Z",
+    "status": "tracking"
+  },
+  "ranaroussi/yfinance": {
+    "fullName": "ranaroussi/yfinance",
+    "owner": "ranaroussi",
+    "repo": "yfinance",
+    "category": "開發工具",
+    "addedAt": "2026-08-10T12:53:11.980Z",
+    "status": "tracking"
+  },
+  "moonshine-ai/moonshine": {
+    "fullName": "moonshine-ai/moonshine",
+    "owner": "moonshine-ai",
+    "repo": "moonshine",
+    "category": "音訊",
+    "addedAt": "2026-08-11T14:40:03.797Z",
+    "status": "tracking"
+  },
+  "huggingface/smolagents": {
+    "fullName": "huggingface/smolagents",
+    "owner": "huggingface",
+    "repo": "smolagents",
+    "category": "開發工具",
+    "addedAt": "2026-08-11T14:40:19.363Z",
+    "status": "tracking"
+  },
+  "tree-sitter/tree-sitter": {
+    "fullName": "tree-sitter/tree-sitter",
+    "owner": "tree-sitter",
+    "repo": "tree-sitter",
+    "category": "開發工具",
+    "addedAt": "2026-08-11T14:40:27.755Z",
+    "status": "tracking"
+  },
+  "sqlite/sqlite": {
+    "fullName": "sqlite/sqlite",
+    "owner": "sqlite",
+    "repo": "sqlite",
+    "category": "資料庫",
+    "addedAt": "2026-08-11T14:40:28.712Z",
+    "status": "tracking"
+  },
+  "Volkanmolla42/imgtothree": {
+    "fullName": "Volkanmolla42/imgtothree",
+    "owner": "Volkanmolla42",
+    "repo": "imgtothree",
+    "category": "開發工具",
+    "addedAt": "2026-08-11T14:40:33.163Z",
+    "status": "tracking"
+  },
+  "TryGhost/Ghost": {
+    "fullName": "TryGhost/Ghost",
+    "owner": "TryGhost",
+    "repo": "Ghost",
+    "category": "開發工具",
+    "addedAt": "2026-08-11T14:40:33.979Z",
+    "status": "tracking"
+  },
+  "wasp-lang/open-saas": {
+    "fullName": "wasp-lang/open-saas",
+    "owner": "wasp-lang",
+    "repo": "open-saas",
+    "category": "基礎設施",
+    "addedAt": "2026-08-11T14:40:38.090Z",
+    "status": "tracking"
+  },
+  "engineerapart/TheRemoteFreelancer": {
+    "fullName": "engineerapart/TheRemoteFreelancer",
+    "owner": "engineerapart",
+    "repo": "TheRemoteFreelancer",
+    "category": "開發工具",
+    "addedAt": "2026-08-11T14:40:38.875Z",
+    "status": "tracking"
+  },
+  "lukasz-madon/awesome-remote-job": {
+    "fullName": "lukasz-madon/awesome-remote-job",
+    "owner": "lukasz-madon",
+    "repo": "awesome-remote-job",
+    "category": "學習資源",
+    "addedAt": "2026-08-11T14:40:42.557Z",
+    "status": "tracking"
+  },
+  "223egoist/best-deals-bot": {
+    "fullName": "223egoist/best-deals-bot",
+    "owner": "223egoist",
+    "repo": "best-deals-bot",
+    "category": "基礎設施",
+    "addedAt": "2026-08-11T14:40:43.375Z",
+    "status": "tracking"
+  },
+  "Alisa0808/vox-director": {
+    "fullName": "Alisa0808/vox-director",
+    "owner": "Alisa0808",
+    "repo": "vox-director",
+    "initialStars": 1220,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "cosmtrek/mindwalk": {
+    "fullName": "cosmtrek/mindwalk",
+    "owner": "cosmtrek",
+    "repo": "mindwalk",
+    "initialStars": 1158,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "osama-fawad/Pekingman": {
+    "fullName": "osama-fawad/Pekingman",
+    "owner": "osama-fawad",
+    "repo": "Pekingman",
+    "initialStars": 1147,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "daimon3332/address": {
+    "fullName": "daimon3332/address",
+    "owner": "daimon3332",
+    "repo": "address",
+    "initialStars": 1055,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "MoonshotAI/MoonEP": {
+    "fullName": "MoonshotAI/MoonEP",
+    "owner": "MoonshotAI",
+    "repo": "MoonEP",
+    "initialStars": 1055,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "agiwhitelist/auteur": {
+    "fullName": "agiwhitelist/auteur",
+    "owner": "agiwhitelist",
+    "repo": "auteur",
+    "initialStars": 1049,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Accio-org/RealReplicaBench": {
+    "fullName": "Accio-org/RealReplicaBench",
+    "owner": "Accio-org",
+    "repo": "RealReplicaBench",
+    "initialStars": 1042,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "XYZ-AI-Lab/axrl": {
+    "fullName": "XYZ-AI-Lab/axrl",
+    "owner": "XYZ-AI-Lab",
+    "repo": "axrl",
+    "initialStars": 1038,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pyang5166/gbro-collage-broll": {
+    "fullName": "pyang5166/gbro-collage-broll",
+    "owner": "pyang5166",
+    "repo": "gbro-collage-broll",
+    "initialStars": 1029,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "SeanJ1ang/design-judge-skills": {
+    "fullName": "SeanJ1ang/design-judge-skills",
+    "owner": "SeanJ1ang",
+    "repo": "design-judge-skills",
+    "initialStars": 1025,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "TencentCloud/Octop": {
+    "fullName": "TencentCloud/Octop",
+    "owner": "TencentCloud",
+    "repo": "Octop",
+    "initialStars": 1022,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "daimon3332/OutlookRegister": {
+    "fullName": "daimon3332/OutlookRegister",
+    "owner": "daimon3332",
+    "repo": "OutlookRegister",
+    "initialStars": 1022,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "onetoken-oss/K3Flight": {
+    "fullName": "onetoken-oss/K3Flight",
+    "owner": "onetoken-oss",
+    "repo": "K3Flight",
+    "initialStars": 1009,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Anduin2017/HowToCook": {
+    "fullName": "Anduin2017/HowToCook",
+    "owner": "Anduin2017",
+    "repo": "HowToCook",
+    "initialStars": 101657,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "louislam/uptime-kuma": {
+    "fullName": "louislam/uptime-kuma",
+    "owner": "louislam",
+    "repo": "uptime-kuma",
+    "initialStars": 90035,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "bitcoin/bitcoin": {
+    "fullName": "bitcoin/bitcoin",
+    "owner": "bitcoin",
+    "repo": "bitcoin",
+    "initialStars": 89837,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "home-assistant/core": {
+    "fullName": "home-assistant/core",
+    "owner": "home-assistant",
+    "repo": "core",
+    "initialStars": 89819,
+    "discoveredAt": "2026-08-10T00:00:00.000Z",
+    "sourceSnapshotWeek": "2026-W32",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2172,
+    "inRegistry": 509,
+    "trackedOnly": 1663,
+    "lastGenerated": "2026-08-12T13:04:24.039Z"
+  },
+  "lastGenerated": "2026-08-12T13:04:24.020Z"
 }
