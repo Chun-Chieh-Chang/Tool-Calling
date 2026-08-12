@@ -12,6 +12,13 @@ import { search, listAll, listByCategory, getById, planToolChain, extractQueryCo
 import { scanMonorepo } from './scripts/scan-monorepo.js';
 import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
 import { assessRegistryContract } from './core/registry-contract.js';
+import { 
+  searchSkills, 
+  installSkill, 
+  listSkills, 
+  isSkillCliAvailable,
+  searchAllSkills
+} from './core/skill-discovery.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -39,6 +46,10 @@ function header(text) {
 
 function success(text) {
   console.log(`${c.green}✓${c.reset} ${text}`);
+}
+
+function info(text) {
+  console.log(`${c.cyan}ℹ${c.reset} ${text}`);
 }
 
 function warn(text) {
@@ -125,6 +136,85 @@ async function cmdSearch(query, options = {}) {
     console.log(`   ${c.blue}${tool.url}${c.reset}`);
     console.log();
   }
+}
+
+// ─── 命令：find-skill ───────────────────────────────────────────────────────
+
+async function cmdFindSkill(query, options = {}) {
+  if (!query) {
+    error('請提供搜尋關鍵字。用法: node cli.js find-skill "pdf"');
+    process.exit(1);
+  }
+
+  header(`🔍 搜尋 Skills: "${query}"`);
+
+  // Check if skills CLI is available
+  if (!isSkillCliAvailable()) {
+    warn('npx skills CLI 暫時不可用');
+    console.log(`${c.dim}提示: 建議直接訪問 https://skills.sh 搜尋 Skills${c.reset}\n`);
+    console.log(`${c.cyan}或者手動執行:${c.reset}`);
+    console.log(`  ${c.yellow}npx skills find "${query}"${c.reset}`);
+    return;
+  }
+
+  // Use multi-source search
+  const results = await searchAllSkills(query, options.limit || 10);
+
+  if (results.length === 0) {
+    warn(`找不到與 "${query}" 相關的 Skills`);
+    console.log(`${c.dim}提示: 嘗試其他關鍵字或直接在 https://skills.sh 瀏覽${c.reset}\n`);
+    return;
+  }
+
+  console.log(`\n找到 ${results.length} 個結果:\n`);
+  results.forEach((skill, i) => {
+    console.log(`${c.bold}#${i + 1} ${c.cyan}${skill.name}${c.reset}`);
+    console.log(`   ID: ${skill.id}`);
+    console.log(`   URL: ${c.blue}${skill.url}${c.reset}`);
+    console.log(`   來源: ${skill.source}`);
+    console.log(`   安裝數: ${skill.installs > 0 ? skill.installs.toLocaleString() : 'N/A'}`);
+    console.log('');
+  });
+
+  console.log(`${c.dim}使用以下方式安裝:${c.reset}`);
+  console.log(`  ${c.green}node cli.js install-skill ${results[0].id}${c.reset}`);
+}
+
+// ─── 命令：install-skill ────────────────────────────────────────────────────
+
+function cmdInstallSkill(skillId, options = {}) {
+  if (!skillId) {
+    error('請提供要安裝的 Skill ID。用法: node cli.js install-skill owner/repo@skill-name');
+    process.exit(1);
+  }
+
+  header(`📦 安裝 Skill: ${skillId}`);
+  const result = installSkill(skillId, options);
+  
+  if (result.success) {
+    success(result.message);
+  } else {
+    error(`安裝失敗: ${result.message}`);
+    console.log(`${c.dim}提示: 檢查 Skill ID 是否正確，或稍後再試${c.reset}`);
+  }
+}
+
+// ─── 命令：list-skills ──────────────────────────────────────────────────────
+
+function cmdListSkills() {
+  header('📋 已安裝的 Skills');
+  const skills = listSkills();
+
+  if (skills.length === 0) {
+    info('目前沒有安裝任何 Skills');
+    console.log(`${c.dim}使用 ${c.green}find-skill <關鍵字>${c.reset} ${c.dim}來發現新技能${c.reset}\n`);
+    return;
+  }
+
+  console.log(`\n共 ${skills.length} 個已安裝 Skills:\n`);
+  skills.forEach(s => {
+    console.log(`  ${c.green}✓${c.reset} ${s}`);
+  });
 }
 
 // ─── 命令：add ──────────────────────────────────────────────────────────────
@@ -218,7 +308,7 @@ async function cmdAdd(url, isBatch = false) {
   }
 }
 
-// ─── 命令：remove ────────────────────────────────────────────────────────
+// ─── 命令：remove ───────────────────────────────────────────────────────────
 
 function cmdRemove(idOrUrl) {
   if (!idOrUrl) {
@@ -241,7 +331,7 @@ function cmdRemove(idOrUrl) {
   success(`已移除工具: ${c.bold}${removed.name}${c.reset} (${removed.id})`);
 }
 
-// ─── 命令：validate ──────────────────────────────────────────────────────
+// ─── 命令：validate ─────────────────────────────────────────────────────────
 
 function cmdValidate() {
   header('驗證 tools.json');
@@ -334,7 +424,7 @@ function cmdValidate() {
   return errors === 0;
 }
 
-// ─── 命令：health-check ──────────────────────────────────────────────────
+// ─── 命令：health-check ─────────────────────────────────────────────────────
 
 async function cmdHealthCheck() {
   header('工具可用性健康檢查');
@@ -364,7 +454,7 @@ async function cmdHealthCheck() {
   console.log(`${c.green}${healthy} 健康${c.reset} / ${c.red}${failed} 異常${c.reset} / 共 ${tools.length} 個工具\n`);
 }
 
-// ─── 命令：info ──────────────────────────────────────────────────────────
+// ─── 命令：info ─────────────────────────────────────────────────────────────
 
 function cmdInfo(id) {
   if (!id) {
@@ -414,7 +504,7 @@ function cmdInfo(id) {
   console.log();
 }
 
-// ─── 命令：index-subtools ──────────────────────────────────────────────────
+// ─── 命令：index-subtools ───────────────────────────────────────────────────
 
 function cmdIndexSubtools(id) {
   if (!id) {
@@ -428,7 +518,7 @@ function cmdIndexSubtools(id) {
   }
 }
 
-// ─── 命令：batch-add ─────────────────────────────────────────────────────
+// ─── 命令：batch-add ────────────────────────────────────────────────────────
 
 async function cmdBatchAdd(filePath) {
   if (!filePath) {
@@ -575,7 +665,7 @@ async function cmdBatchAdd(filePath) {
   }
 }
 
-// ─── 命令：install ────────────────────────────────────────────────────────
+// ─── 命令：install ──────────────────────────────────────────────────────────
 
 async function cmdInstall(id) {
   if (!id) {
@@ -604,7 +694,7 @@ async function cmdInstall(id) {
   }
 }
 
-// ─── 命令：invoke ────────────────────────────────────────────────────────
+// ─── 命令：invoke ───────────────────────────────────────────────────────────
 
 async function cmdInvoke(id, invokeArgs) {
   if (!id) {
@@ -647,7 +737,7 @@ async function cmdInvoke(id, invokeArgs) {
   }
 }
 
-// ─── 命令：cleanup ────────────────────────────────────────────────────────
+// ─── 命令：cleanup ──────────────────────────────────────────────────────────
 
 async function cmdCleanup(id) {
   const { cleanup } = await import('./core/cleanup.js');
@@ -660,7 +750,7 @@ async function cmdCleanup(id) {
   }
 }
 
-// ─── 幫助訊息 ─────────────────────────────────────────────────────────────
+// ─── 幫助訊息 ───────────────────────────────────────────────────────────────
 
 function showHelp() {
   console.log(`
@@ -669,22 +759,31 @@ ${c.bgBlue}${c.white}${c.bold} Tool-Calling CLI ${c.reset}  ${c.dim}全自動工
 ${c.bold}用法:${c.reset}
   node cli.js <command> [args]
 
-${c.bold}核心命令:${c.reset}
-  ${c.cyan}search${c.reset} <query> [-c category] 搜尋最適工具（支援自然語言與分類過濾）
-  ${c.cyan}invoke${c.reset} <id> [args...]      在 Docker 沙盒中安全執行工具（自動安裝）
-  ${c.cyan}install${c.reset} <id>             獲取工具原始碼到 .temp/ 臨時目錄
-  ${c.cyan}cleanup${c.reset}                  移除所有臨時工具，復歸系統
-  ${c.cyan}export-dataset${c.reset} [path]    匯出 Telemetry 作為 LLM 微調資料集
-
-${c.bold}管理命令:${c.reset}
+${c.bold}工具管理命令:${c.reset}
   ${c.cyan}list${c.reset}                    列出所有已註冊工具
+  ${c.cyan}search${c.reset} <query> [-c category]  搜尋最適工具（支援自然語言與分類過濾）
   ${c.cyan}info${c.reset} <id>                查看工具詳細資訊
   ${c.cyan}add${c.reset} <github-url>         新增工具（自動解析類型：tool/resource/monorepo）
-  ${c.cyan}batch-add${c.reset} <file>         從檔案批量新增（支援多行 URL，自動分類與去重）
+  ${c.cyan}batch-add${c.reset} <file>         從檔案批量新增
   ${c.cyan}remove${c.reset} <id|url>          移除工具
-  ${c.cyan}index-subtools${c.reset} <id>      深層掃描並索引大補帖內部的子工具
   ${c.cyan}validate${c.reset}                 驗證註冊庫格式
   ${c.cyan}health-check${c.reset}             檢查所有工具 URL
+
+${c.bold}技能搜尋命令:${c.reset}  ${c.dim}// skills.sh 生態系${c.reset}
+  ${c.cyan}find-skill${c.reset} <query> [-n limit]  搜尋 Agent Skills（支援多來源聚合）
+  ${c.cyan}install-skill${c.reset} <id>             安裝 Agent Skill
+  ${c.cyan}list-skills${c.reset}                   列出已安裝的 Skills
+
+${c.bold}執行命令:${c.reset}
+  ${c.cyan}install${c.reset} <id>             獲取工具原始碼到 .temp/ 臨時目錄
+  ${c.cyan}invoke${c.reset} <id> [args...]      在 Docker 沙盒中安全執行工具
+  ${c.cyan}cleanup${c.reset}                  移除所有臨時工具，復歸系統
+
+${c.bold}分析命令:${c.reset}
+  ${c.cyan}plan${c.reset} "<任務描述>"           多工具鏈自動規劃
+  ${c.cyan}compare${c.reset} "<需求>"            相似工具競品選型對比
+  ${c.cyan}interview${c.reset} "<需求>"           互動式需求釐清問答
+  ${c.cyan}verify-environment${c.reset} <id>     沙盒環境預檢報告
 
 ${c.bold}觸發咒語:${c.reset}
   ${c.magenta}「啟動全自動工具調用模式」${c.reset} — AI Agent 自動識別 + 選擇 + 調用工具
@@ -870,6 +969,35 @@ async function main() {
     case 'health-check':
       await cmdHealthCheck();
       break;
+    
+    // ─── 技能相關命令 ───────────────────────────────────────────────────
+    case 'find-skill': {
+      const query = args.find(a => !a.startsWith('-')) || '';
+      const limitMatch = args.find(a => a === '-n' || a === '--limit');
+      let limit = 10;
+      if (limitMatch) {
+        const idx = args.indexOf(limitMatch);
+        limit = parseInt(args[idx + 1]) || 10;
+      }
+      await cmdFindSkill(query, { limit });
+      break;
+    }
+    case 'install-skill': {
+      const skillId = args[0];
+      const globalFlag = args.includes('-g') || args.includes('--global');
+      const agentArg = args.find(a => a === '-a' || a === '--agent');
+      let agent = null;
+      if (agentArg) {
+        const idx = args.indexOf(agentArg);
+        agent = args[idx + 1];
+      }
+      cmdInstallSkill(skillId, { global: globalFlag, agent });
+      break;
+    }
+    case 'list-skills':
+      cmdListSkills();
+      break;
+    
     case 'help':
     case '--help':
     case '-h':

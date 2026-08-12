@@ -78,6 +78,9 @@ node cli.js interview "网页爬虫"
 | 核心命令 | `node cli.js compare <id1> <id2>` | 工具比较 |
 | 核心命令 | `node cli.js invoke <id> [args...]` | 在 Docker 沙盒中安全执行工具（自动安装） |
 | 核心命令 | `node cli.js install <id>` | 获取工具原始码到 `.temp/` 临时目录 |
+| 技能管理 | `node cli.js find-skill "<关键词>" [-n 数量]` | 搜寻 Agent Skills（支援 skills.sh 与 GitHub 多来源聚合） |
+| 技能管理 | `node cli.js install-skill <skill-id>` | 安装 Agent Skill |
+| 技能管理 | `node cli.js list-skills` | 列出已安装的 Skills |
 | 核心命令 | `node cli.js cleanup` | 移除所有临时工具，复归系统 |
 | 核心命令 | `node cli.js export-dataset [path]` | 汇出 Telemetry 作为 LLM 微调资料集 |
 | 管理命令 | `node cli.js list [-c 分类]` | 列出所有已注册工具（可依分类过滤） |
