@@ -22,9 +22,22 @@
     "mcp": "node mcp-server.js"
   },
   "keywords": [
-    "ai", "agent", "tool-calling", "claude-code", "cursor", "mcp",
-    "llm", "gpt", "openai", "anthropic", "gemini", "autogpt",
-    "skills", "toolkit", "automation", "workflow"
+    "ai",
+    "agent",
+    "tool-calling",
+    "claude-code",
+    "cursor",
+    "mcp",
+    "llm",
+    "gpt",
+    "openai",
+    "anthropic",
+    "gemini",
+    "autogpt",
+    "skills",
+    "toolkit",
+    "automation",
+    "workflow"
   ],
   "author": "chun-chieh-chang",
   "license": "MIT",
@@ -34,5 +47,8 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1"
   }
 }
