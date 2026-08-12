@@ -1,4 +1,4 @@
-# GitHub Actions  CI/CD Pipeline
+# GitHub Actions CI/CD Pipeline
 # 自動測試與部署腳本
 
 name: CI/CD Pipeline
@@ -28,6 +28,9 @@ jobs:
     
     - name: Install dependencies
       run: npm ci
+    
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps chromium
     
     - name: Run linter
       run: npm run lint || echo "Linting optional, continuing..."
