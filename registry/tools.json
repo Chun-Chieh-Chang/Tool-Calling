@@ -35858,6 +35858,164 @@
         "官方",
         "DL領域"
       ]
+    },
+    {
+      "id": "3b1b-manim",
+      "name": "Manim",
+      "url": "https://github.com/3b1b/manim",
+      "description": "Animation engine for explanatory math videos — 由 3Blue1Brown 創作者 Grant Sanderson 開發的原始版本",
+      "category": "多媒體生成",
+      "language": "Python",
+      "triggers": [
+        "3b1b-manim",
+        "manim",
+        "manim",
+        "math-animation",
+        "python",
+        "visualization"
+      ],
+      "stars": 88782,
+      "addedAt": "2026-08-12T14:09:05.851Z",
+      "status": "active",
+      "install": {
+        "method": "pip",
+        "command": "pip install manim"
+      },
+      "capabilities": [
+        "manim",
+        "math-animation",
+        "python",
+        "visualization"
+      ],
+      "useCase": "適合需要製作數學教學動畫、科學視覺化內容的場景",
+      "negativeConstraints": [
+        "僅供教育用途，不建議用於商業影片製作",
+        "需要 Python 3.9+ 環境"
+      ],
+      "advantages": [
+        "原始版本，官方維護",
+        "88K+ 星數認可度最高",
+        "用於 3Blue1Brown 所有YouTube影片"
+      ]
+    },
+    {
+      "id": "manim-community",
+      "name": "Manim Community",
+      "url": "https://github.com/ManimCommunity/manim",
+      "description": "A community-maintained Python framework for creating mathematical animations — 社群維護版，功能更豐富",
+      "category": "多媒體生成",
+      "language": "Python",
+      "triggers": [
+        "manim-community",
+        "manim community",
+        "manim",
+        "animation",
+        "mathematics",
+        "python",
+        "education"
+      ],
+      "stars": 39905,
+      "addedAt": "2026-08-12T14:09:05.851Z",
+      "status": "active",
+      "install": {
+        "method": "pip",
+        "command": "pip install manim"
+      },
+      "capabilities": [
+        "manim",
+        "animation",
+        "mathematics",
+        "python",
+        "education"
+      ],
+      "useCase": "適合需要最新功能、bug修復和額外渲染後期的數學動畫製作場景",
+      "negativeConstraints": [
+        "API與原始版略有差異，需遷移成本",
+        "需要較新的 Python 版本"
+      ],
+      "advantages": [
+        "社群活躍維護（600+ contributors）",
+        "持續更新新功能",
+        "相容於原始版大部分功能"
+      ]
+    },
+    {
+      "id": "manim-ml",
+      "name": "ManimML",
+      "url": "https://github.com/helblazer811/ManimML",
+      "description": "Animations and visualizations of common machine learning concepts with the Manim Community Library",
+      "category": "AI框架",
+      "language": "Python",
+      "triggers": [
+        "manim-ml",
+        "manimml",
+        "machine-learning",
+        "manim",
+        "visualization",
+        "deep-learning",
+        "neural-networks"
+      ],
+      "stars": 3469,
+      "addedAt": "2026-08-12T14:09:05.851Z",
+      "status": "active",
+      "install": {
+        "method": "pip",
+        "command": "pip install manim"
+      },
+      "capabilities": [
+        "machine-learning",
+        "manim",
+        "visualization",
+        "deep-learning",
+        "neural-networks"
+      ],
+      "useCase": "適合需要視覺化展示機器學習概念（如神經網絡、梯度下降、聚類等）的教學與演示場景",
+      "negativeConstraints": [
+        "專注於ML領域，通用性較低",
+        "依賴 Manim Community 庫"
+      ],
+      "advantages": [
+        "專注於ML概念視覺化",
+        "適合 AI/ML 課程教學",
+        "開源且易用"
+      ]
+    },
+    {
+      "id": "3b1b-videos",
+      "name": "Videos (3b1b)",
+      "url": "https://github.com/3b1b/videos",
+      "description": "Code for the manim-generated scenes used in 3blue1brown videos — 10K+ 星數，包含所有 YouTube 影片的動畫腳本",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "3b1b",
+        "videos",
+        "math animation",
+        "youtube",
+        "3blue1brown"
+      ],
+      "stars": 10499,
+      "addedAt": "2026-08-12T14:10:28.612Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/3b1b/videos"
+      },
+      "capabilities": [
+        "reference",
+        "examples",
+        "education"
+      ],
+      "useCase": "適合需要參考或學習 3Blue1Brown YouTube 影片動畫腳本的場景",
+      "negativeConstraints": [
+        "僅供學習參考，不建議直接用於商業專案",
+        "需要 Git 環境才能克隆"
+      ],
+      "advantages": [
+        "官方維護的原始動畫腳本",
+        "包含所有 3Blue1Brown 影片的完整代碼",
+        "學習數學視覺化的最佳範例"
+      ]
     }
   ]
 }
