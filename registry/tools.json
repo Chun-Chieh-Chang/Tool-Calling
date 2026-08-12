@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-12T13:04:24.020Z",
+  "lastUpdated": "2026-08-12T13:32:39.748Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -45,7 +45,7 @@
         "Supports custom templates, transition animations, and audio narration.",
         "Directly converts text documents or topics into structured presentation outlines."
       ],
-      "stars": 43972
+      "stars": 45225
     },
     {
       "id": "graphify",
@@ -87,7 +87,7 @@
         "不適用於單純的文字搜尋或檔案瀏覽需求",
         "無法直接生成新的程式碼或執行腳本"
       ],
-      "stars": 104395
+      "stars": 105542
     },
     {
       "id": "strix",
@@ -136,7 +136,7 @@
         "不適合用於即時高併發生產環境的直接壓力測試",
         "無法替代專業安全顧問的深度威脅建模與人工驗證"
       ],
-      "stars": 50020
+      "stars": 51409
     },
     {
       "id": "ai-animation-video-generator",
@@ -226,7 +226,7 @@
         "Avoid for enterprise public services that require strict content moderation and compliance.",
         "Incompatible with hardware lacking sufficient GPU memory for large model inference."
       ],
-      "stars": 25892
+      "stars": 26165
     },
     {
       "id": "imaginairy",
@@ -271,7 +271,7 @@
         "不適用於依賴純雲端託管且無本地 GPU 資源的輕量 Web 服務。",
         "無法滿足精確向量圖形或 3D 建模需求。"
       ],
-      "stars": 8176
+      "stars": 8175
     },
     {
       "id": "vercel-ai-skills",
@@ -314,7 +314,7 @@
         "Avoid for non-AI workflows or traditional CRUD APIs without conversational interfaces.",
         "Does not replace backend infrastructure for high-throughput batch processing tasks."
       ],
-      "stars": 28383
+      "stars": 28734
     },
     {
       "id": "total-typescript-skills",
@@ -356,7 +356,7 @@
         "不適用於需要執行程式碼或互動式練習的環境",
         "不適合尋找 React、Vue 等前端框架特定教學的使用者"
       ],
-      "stars": 210176
+      "stars": 214647
     },
     {
       "id": "playwright",
@@ -401,7 +401,7 @@
         "不適用於需要模擬非瀏覽器環境，例如 IoT 裝置或桌面原生應用程式的場景。",
         "不建議用於高頻率的即時交易系統監控，因瀏覽器自動化延遲較高。"
       ],
-      "stars": 94218
+      "stars": 94403
     },
     {
       "id": "flysystem",
@@ -487,7 +487,7 @@
         "Do not use for one-off scripts or throwaway code without long-term maintenance needs.",
         "Not suitable when requirements are completely undefined and require discovery before implementation."
       ],
-      "stars": 210176
+      "stars": 214647
     },
     {
       "id": "postgres-mcp",
@@ -522,7 +522,7 @@
         "Avoid using directly for untrusted user inputs without implementing additional input validation layers.",
         "Not suitable for managing non-relational data structures or document-based storage systems."
       ],
-      "stars": 3173
+      "stars": 3184
     },
     {
       "id": "github-mcp-server",
@@ -565,7 +565,7 @@
         "Avoid for high-frequency trading or real-time low-latency system operations.",
         "Not suitable for offline repository management without network connectivity."
       ],
-      "stars": 32070
+      "stars": 32175
     },
     {
       "id": "context7",
@@ -604,7 +604,7 @@
         "Avoid for proprietary or internal documentation not hosted on public repositories.",
         "Inappropriate for real-time system monitoring or hardware control tasks."
       ],
-      "stars": 60452
+      "stars": 60642
     },
     {
       "id": "sequentialthinking",
@@ -640,7 +640,7 @@
         "Not suitable for real-time streaming data processing.",
         "Do not use when immediate binary decisions are required without context."
       ],
-      "stars": 89354
+      "stars": 89480
     },
     {
       "id": "mcp-sequential-thinking",
@@ -676,7 +676,7 @@
         "Real-time latency-critical applications needing sub-second responses.",
         "Creative brainstorming sessions favoring non-linear associative ideas."
       ],
-      "stars": 941
+      "stars": 943
     },
     {
       "id": "memmy-agent",
@@ -716,7 +716,7 @@
         "Highly sensitive data environments lacking robust encryption or access controls.",
         "Single-session tasks that do not benefit from persistent state or historical context."
       ],
-      "stars": 619
+      "stars": 655
     },
     {
       "id": "build-your-own-x",
@@ -757,7 +757,7 @@
         "Inappropriate for beginners lacking basic programming fundamentals",
         "Does not provide ready-to-use commercial software solutions"
       ],
-      "stars": 537879
+      "stars": 538980
     },
     {
       "id": "posthog",
@@ -798,7 +798,7 @@
         "Avoid for simple static websites that do not require user interaction tracking.",
         "Not ideal for enterprise environments requiring strict compliance without self-hosting infrastructure."
       ],
-      "stars": 1696
+      "stars": 37630
     },
     {
       "id": "hallmark",
@@ -831,7 +831,7 @@
         "Avoid using when generating complex, highly documented enterprise applications requiring extensive comments.",
         "Inappropriate for creative writing or non-technical content generation tasks."
       ],
-      "stars": 4792
+      "stars": 24287
     },
     {
       "id": "code-review-graph",
@@ -873,7 +873,7 @@
         "Overkill for very small repositories where full context fits easily within token limits.",
         "Requires Python environment and does not support non-code data types."
       ],
-      "stars": 8127
+      "stars": 29882
     },
     {
       "id": "officecli",
@@ -916,7 +916,7 @@
         "Executing complex VBA macros or custom add-ins requiring a full Office GUI.",
         "Interactive WYSIWYG document previewing or graphical editing."
       ],
-      "stars": 8576
+      "stars": 27874
     },
     {
       "id": "stablyai-orca",
@@ -962,7 +962,7 @@
         "Avoid if you need a managed cloud subscription rather than bringing your own API keys",
         "Not designed for non-coding workflows like data analysis or design"
       ],
-      "stars": 8889
+      "stars": 43443
     },
     {
       "id": "herdr",
@@ -1004,7 +1004,7 @@
         "Avoid for simple single-agent tasks where standard tmux or shell scripts suffice.",
         "Requires a Unix-like environment with tmux installed to function properly."
       ],
-      "stars": 7919
+      "stars": 28052
     },
     {
       "id": "impeccable",
@@ -1037,7 +1037,7 @@
         "Avoid for projects requiring highly custom, brand-specific design systems from scratch.",
         "Not ideal for static content sites where minimal CSS is preferred."
       ],
-      "stars": 12747
+      "stars": 58458
     },
     {
       "id": "slidesmaker",
@@ -1078,7 +1078,7 @@
         "Avoid for simple text-only documents that do not need visual data representation.",
         "Not suitable for real-time collaborative editing sessions directly within the tool."
       ],
-      "stars": 2396
+      "stars": 417
     },
     {
       "id": "lean-ctx",
@@ -1120,7 +1120,7 @@
         "Users preferring a fully managed SaaS over self-hosted solutions",
         "General-purpose unstructured data analysis outside code contexts"
       ],
-      "stars": 2728
+      "stars": 3570
     },
     {
       "id": "loop-engineering",
@@ -1161,7 +1161,7 @@
         "Does not replace standard IDE features or general project scaffolding.",
         "Avoid if you do not use AI coding agents like Grok or Codex."
       ],
-      "stars": 6450
+      "stars": 10269
     },
     {
       "id": "loop-engineering-orange-book",
@@ -1194,7 +1194,7 @@
         "Inappropriate for deep mathematical modeling or formal verification tasks.",
         "Does not replace comprehensive software documentation or API references."
       ],
-      "stars": 6529
+      "stars": 1081
     },
     {
       "id": "guizang-ppt-skill",
@@ -1237,7 +1237,7 @@
         "Avoid for offline-only environments requiring no internet access.",
         "Not ideal for complex data dashboards or heavy interactive animations."
       ],
-      "stars": 9890
+      "stars": 23831
     },
     {
       "id": "open-slide",
@@ -1276,7 +1276,7 @@
         "Avoid for generating static PDF documents without interactivity.",
         "Not suitable for video production or audio editing."
       ],
-      "stars": 11844
+      "stars": 6135
     },
     {
       "id": "html-ppt-skill",
@@ -1314,7 +1314,7 @@
         "Generating video recordings or screen-captured presentations.",
         "Building complex data dashboards requiring real-time database connections."
       ],
-      "stars": 12630
+      "stars": 7819
     },
     {
       "id": "awesome-llm-apps",
@@ -1406,7 +1406,7 @@
         "Avoid for real-time high-frequency inference serving",
         "Do not use directly in compliance-heavy environments without thorough security audits"
       ],
-      "stars": 4472
+      "stars": 132276
     },
     {
       "id": "desktopcommandermcp",
@@ -1448,7 +1448,7 @@
         "Avoid using for high-risk production database modifications without human approval.",
         "Not ideal for simple text replacements that can be handled by standard IDE features alone."
       ],
-      "stars": 6376
+      "stars": 9302
     },
     {
       "id": "stitch-skills",
@@ -1559,7 +1559,7 @@
           "subpath": "plugins/stitch-utilities/skills/taste-design"
         }
       ],
-      "stars": 10394
+      "stars": 8025
     },
     {
       "id": "designmd",
@@ -1592,7 +1592,7 @@
         "Avoid using for purely backend or non-visual project configurations.",
         "Ineffective for projects without dedicated AI coding assistants or automated generation workflows."
       ],
-      "stars": 4749
+      "stars": 27182
     },
     {
       "id": "rag-anything",
@@ -1630,7 +1630,7 @@
         "Real-time control systems requiring deterministic, sub-millisecond response times.",
         "Scenarios where a fully managed commercial SaaS is required instead of self-hosted infrastructure."
       ],
-      "stars": 4675
+      "stars": 22879
     },
     {
       "id": "cli-anything",
@@ -1665,7 +1665,7 @@
         "Avoid for basic shell scripting where no AI agent is involved.",
         "Do not use for high-latency environments requiring instant human-in-the-loop responses."
       ],
-      "stars": 4589
+      "stars": 46933
     },
     {
       "id": "addyosmani-agent-skills",
@@ -1839,7 +1839,7 @@
         "Avoid for non-coding tasks like data analysis or creative writing where these engineering prompts are irrelevant.",
         "Not suitable if you prefer fully autonomous agents without curated behavioral guidelines."
       ],
-      "stars": 3120
+      "stars": 86468
     },
     {
       "id": "heilcheng-awesome-agent-skills",
@@ -1879,7 +1879,7 @@
         "Inappropriate for non-AI or traditional software development tasks.",
         "Unsuitable for users requiring offline-only resources without internet access."
       ],
-      "stars": 15344
+      "stars": 6084
     },
     {
       "id": "directus",
@@ -1922,7 +1922,7 @@
         "Avoid for simple static websites that do not require dynamic content management",
         "Not ideal for embedded systems or low-level hardware control"
       ],
-      "stars": 5781
+      "stars": 37308
     },
     {
       "id": "ui-ux-pro-max-skill",
@@ -1963,7 +1963,7 @@
         "Avoid for non-visual tasks such as data analysis, NLP, or system administration.",
         "Not intended for creating raster graphics, logos, or photo editing workflows."
       ],
-      "stars": 14835
+      "stars": 115997
     },
     {
       "id": "lanshu-animated-architecture-diagram",
@@ -1999,7 +1999,7 @@
         "Avoid for production infrastructure code or automated deployment pipelines.",
         "Not intended for real-time monitoring dashboards or live metric visualization."
       ],
-      "stars": 9047
+      "stars": 882
     },
     {
       "id": "agency-agents",
@@ -2133,7 +2133,7 @@
         "Avoid for projects requiring strict real-time human approval at every stage.",
         "Not ideal for highly regulated compliance workflows needing immediate audit trails."
       ],
-      "stars": 8674
+      "stars": 144268
     },
     {
       "id": "codebase-memory-mcp",
@@ -2176,7 +2176,7 @@
         "Avoid for real-time collaborative editing workflows requiring immediate file system write-backs.",
         "Does not replace a full IDE for interactive debugging or complex refactoring operations."
       ],
-      "stars": 17071
+      "stars": 38664
     },
     {
       "id": "codebase-memory-mcp-pro",
@@ -2214,7 +2214,7 @@
         "Requires an MCP-compatible client environment to connect and utilize the knowledge graph.",
         "Designed for static code analysis rather than real-time collaborative editing workflows."
       ],
-      "stars": 16997
+      "stars": 216
     },
     {
       "id": "openmontage",
@@ -2260,7 +2260,7 @@
         "Not appropriate for real-time live streaming or instant video rendering needs due to pipeline processing overhead.",
         "Inefficient for single-frame image manipulation tasks better handled by dedicated photo editing software."
       ],
-      "stars": 2783
+      "stars": 47708
     },
     {
       "id": "video-use",
@@ -27397,7 +27397,8 @@
         "圖示風格較單一",
         "不適合填色插圖",
         "部分框架整合需手動配置"
-      ]
+      ],
+      "stars": 4512
     },
     {
       "id": "pi-web-agegr",
@@ -27504,7 +27505,8 @@
         "不適合照片級真實感圖形",
         "僅提供 SVG 格式",
         "不具備動畫功能"
-      ]
+      ],
+      "stars": 23812
     },
     {
       "id": "text-to-cad",
@@ -27632,7 +27634,8 @@
         "檔案體積較大",
         "需按需載入避免效能問題",
         "不適合填色風格設計"
-      ]
+      ],
+      "stars": 21055
     },
     {
       "id": "agents-course",
@@ -27782,7 +27785,8 @@
         "需 Tailwind CSS 環境最佳體驗",
         "圖示風格較簡約",
         "不適合複雜圖形示意"
-      ]
+      ],
+      "stars": 23612
     },
     {
       "id": "radix-ui-icons",
@@ -27945,7 +27949,8 @@
         "非原始創作者",
         "圖示品質不一",
         "更新頻率不固定"
-      ]
+      ],
+      "stars": 5500
     },
     {
       "id": "polaris-react",
@@ -28030,7 +28035,8 @@
         "需網路載入或建置時打包",
         "不適合離線靜態網站",
         "依賴較多需評估 bundle 大小"
-      ]
+      ],
+      "stars": 6200
     },
     {
       "id": "font-awesome",
@@ -28073,7 +28079,8 @@
         "Pro 版本需付費",
         "Font 模式在 Retina 顯示略模糊",
         "bundle 體積較大需按需載入"
-      ]
+      ],
+      "stars": 76821
     },
     {
       "id": "material-design-icons",
@@ -28200,7 +28207,8 @@
         "僅 Apple 平台適用",
         "需 Swift 開發環境",
         "不包含自訂圖示"
-      ]
+      ],
+      "stars": 450
     },
     {
       "id": "simple-icons",
@@ -28243,7 +28251,8 @@
         "僅限品牌圖示",
         "不適合一般 UI 需求",
         "商標使用需注意授權"
-      ]
+      ],
+      "stars": 25597
     },
     {
       "id": "agnescode",
