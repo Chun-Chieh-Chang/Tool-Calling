@@ -11310,12 +11310,12 @@
           "subpath": "skills/karpathy-guidelines"
         }
       ],
-      "useCase": "Karpathy 風格的 AI 訓練 skills",
+      "useCase": "Karpathy風格的AI訓練skills",
       "advantages": [
         "頂尖專家"
       ],
       "negativeConstraints": [
-        "需要 GPU",
+        "需要GPU",
         "研究級"
       ],
       "stars": 15492
@@ -25867,10 +25867,10 @@
         "quant",
         "quantitative-finance"
       ],
-      "useCase": "適合需要 LLM 驅動的多市場股票分析、實時新聞監控與自動推送的場景",
+      "useCase": "適合需要LLM驅動的多市場股票分析、實時新聞監控與自動推送的場景",
       "advantages": [
-        "LLM 驅動的智能分析",
-        "多市場支援 (台股、美股等)",
+        "LLM驅動的智能分析",
+        "多市場支援（台股、美股等）",
         "零成本定時執行"
       ],
       "negativeConstraints": [
@@ -30944,11 +30944,11 @@
         "fintech",
         "investment"
       ],
-      "useCase": "適合需要 AI 赋能量化研究的場景，包括因子挖掘、模型訓練到回測的全流程",
+      "useCase": "適合需要AI賦能量化研究的場景，包括因子挖掘、模型訓練到回測的全流程",
       "advantages": [
-        "Microsoft 官方維護",
+        "Microsoft官方維護",
         "支援監督學習、市場動態建模、強化學習",
-        "內建 RD-Agent 自動化研究"
+        "內建RD-Agent自動化研究"
       ],
       "negativeConstraints": [
         "學習曲線較陡峭",
@@ -35013,15 +35013,15 @@
         "quant",
         "ai"
       ],
-      "useCase": "適合需要金融數據整合、量化分析、AI 驅動的投研報告生成的場景",
+      "useCase": "適合需要金融數據整合、量化分析、AI驅動的投研報告生成的場景",
       "negativeConstraints": [
         "不適合需要即時交易執行的生產環境",
         "資料可能有延遲，不適用於高頻交易"
       ],
       "advantages": [
-        "OpenBB 官方維護，社群活躍 (71K⭐)",
+        "OpenBB官方維護，社群活躍（71K+星）",
         "支援多種資料來源整合",
-        "內建 AI Agent 整合能力"
+        "內建AI Agent整合能力"
       ]
     },
     {
@@ -35053,15 +35053,15 @@
         "trading",
         "quant"
       ],
-      "useCase": "適合學習和研究 AI 如何模擬對沖基金團隊進行交易決策的場景",
+      "useCase": "適合學習和研究AI如何模擬對沖基金團隊進行交易決策的場景",
       "negativeConstraints": [
         "僅供教育研究用途，不建議用於真實交易",
         "需要強大的計算資源"
       ],
       "advantages": [
         "完整的前後端架構",
-        "AI 驱动的投研流程模拟",
-        "多模型协作模式"
+        "AI驅動的交易流程模擬",
+        "多模型協作模式"
       ]
     },
     {
@@ -35095,13 +35095,13 @@
       ],
       "useCase": "適合需要開源量化交易平台開發框架的場景，支援多市場交易",
       "negativeConstraints": [
-        "主要支援 Python 生態",
+        "主要支援Python生態",
         "需要自行部署和維護"
       ],
       "advantages": [
         "國內最流行的開源量化平台",
         "支援期貨、股票、加密貨幣",
-        "MIT 授權，商業可用"
+        "MIT授權，商業可用"
       ]
     },
     {
@@ -35135,11 +35135,11 @@
       ],
       "useCase": "適合需要專業級金融分析終端的場景，支援市場分析與投資研究",
       "negativeConstraints": [
-        "需要 C++ 編譯環境",
+        "需要C++編譯環境",
         "更新頻率已降低至每月一次"
       ],
       "advantages": [
-        "原生 C++20 + Qt6 高性能",
+        "原生C++20+Qt6高性能",
         "支援多資產類別",
         "免費開源的終端替代方案"
       ]
@@ -35173,7 +35173,7 @@
         "quant",
         "strategy"
       ],
-      "useCase": "適合需要 Python 回測框架進行策略測試的場景",
+      "useCase": "適合需要Python回測框架進行策略測試的場景",
       "negativeConstraints": [
         "停更專案，不再有新版本",
         "不適合高頻交易回測"
@@ -35215,11 +35215,11 @@
       ],
       "useCase": "適合需要機構級演算法交易引擎的場景，支援回測與實盤交易",
       "negativeConstraints": [
-        "主要使用 C# 開發",
+        "主要使用C#開發",
         "設定較為複雜"
       ],
       "advantages": [
-        "QuantConnect 官方維護",
+        "QuantConnect官方維護",
         "支援多市場多資產",
         "完整的回測到實盤流程"
       ]
@@ -35255,12 +35255,12 @@
       ],
       "useCase": "適合需要金融領域大語言模型的場景，如情緒分析、預測等",
       "negativeConstraints": [
-        "模型需要自行微调",
+        "模型需要自行微調",
         "金融數據需自備"
       ],
       "advantages": [
-        "AI4Finance Foundation 維護",
-        "開源的金融 LLM",
+        "AI4Finance Foundation官方維護",
+        "開源的金融LLM",
         "支援多種下游任務"
       ]
     },
@@ -35293,15 +35293,15 @@
         "trading",
         "llm"
       ],
-      "useCase": "適合需要 AI Agent 平台的金融應用場景，統合 LLM、強化學習與量化分析",
+      "useCase": "適合需要AI Agent平台的金融應用場景，統合LLM、強化學習與量化分析",
       "negativeConstraints": [
         "功能較新，穩定性待驗證",
-        "需要 AI 相關背景知識"
+        "需要AI相關背景知識"
       ],
       "advantages": [
-        "全方位金融 AI Agent 平台",
-        "統合多種 AI 技術",
-        "学术研究基礎"
+        "全方位金融AI Agent平台",
+        "統合多種AI技術",
+        "學術研究基礎"
       ]
     },
     {
@@ -35333,13 +35333,13 @@
         "ai",
         "bot"
       ],
-      "useCase": "適合需要 AI 驅動的美股期貨交易終端的場景",
+      "useCase": "適合需要AI驅動的美股期貨交易終端的場景",
       "negativeConstraints": [
-        "需要配置 API key",
+        "需要配置API key",
         "有實際交易風險"
       ],
       "advantages": [
-        "Go 語言高性能",
+        "Go語言高性能",
         "支援9大交易所",
         "硬風險限制保護"
       ]
@@ -35373,14 +35373,14 @@
         "buffett",
         "ai"
       ],
-      "useCase": "適合需要價投研究框架的場景，整合巴菲特、芒格等方法論",
+      "useCase": "適合需要價值投資研究框架的場景，整合巴菲特、芒格等方法論",
       "negativeConstraints": [
-        "需要 Claude Code / Codex",
+        "需要Claude Code/Codex",
         "僅限價值投資研究"
       ],
       "advantages": [
         "4位大師方法論系統化",
-        "AI Agent 辅助研究",
+        "AI Agent輔助研究",
         "適合個人投資者"
       ]
     },
@@ -35413,9 +35413,9 @@
         "china",
         "ai"
       ],
-      "useCase": "適合需要 A股 trading agent 的場景",
+      "useCase": "適合需要A股交易代理的場景",
       "negativeConstraints": [
-        "僅支援 A股",
+        "僅支援A股",
         "地區性限制"
       ],
       "advantages": [
@@ -35452,10 +35452,10 @@
         "china",
         "stock"
       ],
-      "useCase": "適合需要 A股 trading agent 的場景（簡化版）",
+      "useCase": "適合需要A股交易代理的場景（簡化版）",
       "negativeConstraints": [
         "功能較少",
-        "僅基礎 A股支援"
+        "僅基礎A股支援"
       ],
       "advantages": [
         "輕量級",
@@ -35493,13 +35493,13 @@
       ],
       "useCase": "適合需要現代化股票分析平台的場景",
       "negativeConstraints": [
-        "Go 語言需編譯",
+        "Go語言需編譯",
         "社群較小"
       ],
       "advantages": [
-        "現代化 UI",
+        "現代化UI",
         "高性能",
-        "跨平台]"
+        "跨平台"
       ]
     },
     {
@@ -35531,13 +35531,13 @@
         "research",
         "ml"
       ],
-      "useCase": "適合 Microsoft Research 金融 AI 研究場景",
+      "useCase": "適合Microsoft Research金融AI研究場景",
       "negativeConstraints": [
         "研究性質專案",
         "非生產級工具"
       ],
       "advantages": [
-        "Microsoft 官方",
+        "Microsoft官方",
         "先進研究技術"
       ]
     },
@@ -35568,14 +35568,14 @@
         "network",
         "agents"
       ],
-      "useCase": "適合需要 AI Agent 網絡化運作的場景",
+      "useCase": "適合需要AI Agent網絡化運作的場景",
       "negativeConstraints": [
         "概念驗證階段",
         "尚不成熟"
       ],
       "advantages": [
         "創新架構",
-        "開源]"
+        "開源"
       ]
     },
     {
@@ -35607,15 +35607,15 @@
         "tutor",
         "learning"
       ],
-      "useCase": "適合需要 AI 輔助個人化學習的場景",
+      "useCase": "適合需要AI輔助個人化學習的場景",
       "negativeConstraints": [
         "教育用途為主",
         "學術導向"
       ],
       "advantages": [
-        "HKU 學術研究",
-        "AI 驅動教學",
-        "多語言支援]"
+        "HKU學術研究",
+        "AI驅動教學",
+        "多語言支援"
       ]
     },
     {
@@ -35643,9 +35643,9 @@
         "skills",
         "ai"
       ],
-      "useCase": "Slavingia 的 openclaw skills",
+      "useCase": "Slavingia的openclaw skills集合",
       "negativeConstraints": [
-        "小众項目"
+        "小眾項目"
       ],
       "advantages": [
         "特色內容"
@@ -35676,7 +35676,7 @@
         "skills",
         "openclaw"
       ],
-      "useCase": "Awesome OpenClaw skills 收藏",
+      "useCase": "Awesome OpenClaw skills收藏",
       "negativeConstraints": [
         "第三方可選包"
       ],
@@ -35711,13 +35711,13 @@
         "skills",
         "ai"
       ],
-      "useCase": "Hugging Face 相關的 AI skills",
+      "useCase": "Hugging Face相關的AI skills集合",
       "negativeConstraints": [
-        "HF 生態"
+        "HF生態"
       ],
       "advantages": [
         "官方",
-        "ML 豐富]"
+        "ML豐富"
       ]
     },
     {
@@ -35747,7 +35747,7 @@
         "skills",
         "crypto"
       ],
-      "useCase": "Trail of Bits 的安全相關 skills",
+      "useCase": "Trail of Bits的安全相關skills",
       "negativeConstraints": [
         "安全專家級"
       ],
@@ -35778,7 +35778,7 @@
       "capabilities": [
         "skills"
       ],
-      "useCase": "MengTo 的 UI/design skills",
+      "useCase": "MengTo的UI/design skills集合",
       "negativeConstraints": [
         "UI設計專用"
       ],
@@ -35813,9 +35813,9 @@
         "skills",
         "ai"
       ],
-      "useCase": "Microsoft 官方的 skills 集合",
+      "useCase": "Microsoft官方的skills集合",
       "negativeConstraints": [
-        "MS 生態"
+        "MS生態"
       ],
       "advantages": [
         "官方"
@@ -35850,13 +35850,13 @@
         "gpu",
         "skills"
       ],
-      "useCase": "NVIDIA 的 AI/GPU 相關 skills",
+      "useCase": "NVIDIA的AI/GPU相關skills",
       "negativeConstraints": [
-        "GPU 生态"
+        "GPU生態"
       ],
       "advantages": [
         "官方",
-        "DL 領域"
+        "DL領域"
       ]
     }
   ]
