@@ -1320,7 +1320,7 @@
       "id": "awesome-llm-apps",
       "name": "Awesome Llm Apps",
       "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
-      "description": "Curated collection of ready-to-run Python AI agent and RAG applications.",
+      "description": "A curated list of awesome LLM applications built with open source projects",
       "category": "AI 框架",
       "language": "python",
       "triggers": [
@@ -2901,7 +2901,7 @@
         "Avoid for trivial one-off scripts where full agentic workflow overhead is unnecessary.",
         "Does not replace dedicated CI/CD pipelines or automated testing frameworks."
       ],
-      "stars": 4933
+      "stars": 271072
     },
     {
       "id": "claude-mem",
@@ -5749,7 +5749,7 @@
         "Unsuitable for beginners needing step-by-step tutorials or video courses.",
         "Does not replace comprehensive framework-specific guides or official documentation."
       ],
-      "stars": 4687
+      "stars": 370000
     },
     {
       "id": "gitignore",
@@ -11310,16 +11310,13 @@
           "subpath": "skills/karpathy-guidelines"
         }
       ],
-      "useCase": "When using Claude Code for software development and wanting to minimize common LLM mistakes like overcomplicating solutions or missing edge cases.",
+      "useCase": "Karpathy 風格的 AI 訓練 skills",
       "advantages": [
-        "Encodes proven strategies from Andrej Karpathy's LLM coding experience",
-        "Single CLAUDE.md file for easy setup and consistent behavior",
-        "Reduces common AI coding pitfalls through structured guidelines"
+        "頂尖專家"
       ],
       "negativeConstraints": [
-        "Not suitable for non-Claude Code environments or other AI assistants",
-        "Does not replace human code review or testing practices",
-        "May not address all project-specific coding standards or frameworks"
+        "需要 GPU",
+        "研究級"
       ],
       "stars": 15492
     },
@@ -20983,88 +20980,6 @@
       "stars": 9792
     },
     {
-      "id": "ecc-affaan-m",
-      "name": "ECC (Affaan M)",
-      "url": "https://github.com/affaan-m/ecc",
-      "description": "Performance optimization system for AI agents with memory and security features.",
-      "category": "AI 框架",
-      "language": "javascript",
-      "triggers": [
-        "ecc",
-        "claude-code",
-        "agent-optimization",
-        "developer-tools"
-      ],
-      "install": {
-        "method": "npm",
-        "command": "npm install https://github.com/affaan-m/ecc",
-        "repoUrl": "https://github.com/affaan-m/ecc"
-      },
-      "capabilities": [
-        "ai-agents",
-        "anthropic",
-        "claude",
-        "claude-code",
-        "developer-tools"
-      ],
-      "addedAt": "2026-07-21T13:10:56.149Z",
-      "status": "active",
-      "useCase": "Enhancing the speed and reliability of Claude Code or Cursor sessions by adding persistent memory and optimized reasoning loops.",
-      "advantages": [
-        "Integrates seamlessly with major coding assistants like Claude Code and Cursor.",
-        "Provides built-in security and research-first development workflows.",
-        "Optimizes agent performance through specialized skills and instincts."
-      ],
-      "negativeConstraints": [
-        "Not suitable for simple, stateless scripting tasks without agent overhead.",
-        "Avoid using for projects requiring strict isolation from external AI models.",
-        "Inappropriate for environments where memory persistence is a security risk."
-      ],
-      "stars": 15929
-    },
-    {
-      "id": "hermes-agent-NousResearch",
-      "name": "Hermes Agent",
-      "url": "https://github.com/NousResearch/hermes-agent",
-      "description": "Open-source AI agent framework for building autonomous assistants with tool use.",
-      "category": "AI 框架",
-      "language": "python",
-      "triggers": [
-        "hermes-agent-NousResearch",
-        "hermes-agent",
-        "ai-agent",
-        "autonomous-llm",
-        "tool-use",
-        "nousresearch"
-      ],
-      "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/NousResearch/hermes-agent.git",
-        "repoUrl": "https://github.com/NousResearch/hermes-agent"
-      },
-      "capabilities": [
-        "ai",
-        "ai-agent",
-        "ai-agents",
-        "anthropic",
-        "chatgpt"
-      ],
-      "addedAt": "2026-07-21T13:10:56.450Z",
-      "status": "active",
-      "useCase": "Developers automating complex workflows by chaining LLM calls with external APIs and code execution.",
-      "advantages": [
-        "Supports multiple LLM backends including Anthropic and OpenAI",
-        "Enables autonomous tool use and function calling capabilities",
-        "Built on robust open-source architecture for easy customization"
-      ],
-      "negativeConstraints": [
-        "Not suitable for simple, single-turn chatbot applications without tool use",
-        "Requires significant setup overhead compared to managed SaaS agents",
-        "May incur high latency due to multi-step autonomous reasoning"
-      ],
-      "stars": 9785
-    },
-    {
       "id": "gemini-cli",
       "name": "Gemini Cli",
       "url": "https://github.com/google-gemini/gemini-cli",
@@ -25952,17 +25867,17 @@
         "quant",
         "quantitative-finance"
       ],
-      "useCase": "LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-free scheduled runs. — 本週漲星 +2 (2026-W30 自動探勘入庫)。",
+      "useCase": "適合需要 LLM 驅動的多市場股票分析、實時新聞監控與自動推送的場景",
       "advantages": [
-        "GitHub ⭐ 58,678 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-24)",
-        "2026-W30 漲星探勘自動入庫"
+        "LLM 驅動的智能分析",
+        "多市場支援 (台股、美股等)",
+        "零成本定時執行"
       ],
       "negativeConstraints": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "僅限教育用途，不適用於真實投資決策",
+        "需要良好的網路連線以獲取即時數據"
       ],
-      "stars": 58678,
+      "stars": 60756,
       "addedAt": "2026-07-25T03:41:05.133Z",
       "status": "active"
     },
@@ -31029,17 +30944,17 @@
         "fintech",
         "investment"
       ],
-      "useCase": "Qlib is an AI-oriented Quant investment platform that aims to use AI tech to empower Quant Research, from exploring ideas to implementing productions. Qlib supports diverse ML modeling paradigms, including supervised learning, market dynamics modeling, and RL, and is now equipped with https://github.com/microsoft/RD-Agent to automate R&D process. — 本週漲星 +360 (2026-W31 自動探勘入庫)。",
+      "useCase": "適合需要 AI 赋能量化研究的場景，包括因子挖掘、模型訓練到回測的全流程",
       "advantages": [
-        "GitHub ⭐ 47,057 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-23)",
-        "2026-W31 漲星探勘自動入庫"
+        "Microsoft 官方維護",
+        "支援監督學習、市場動態建模、強化學習",
+        "內建 RD-Agent 自動化研究"
       ],
       "negativeConstraints": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "學習曲線較陡峭",
+        "需要較多的量化背景知識"
       ],
-      "stars": 47057,
+      "stars": 47124,
       "addedAt": "2026-08-05T14:41:05.240Z",
       "status": "active"
     },
@@ -35068,6 +34983,881 @@
       "stars": 1499,
       "addedAt": "2026-08-12T13:04:24.020Z",
       "status": "active"
+    },
+    {
+      "id": "openbb",
+      "name": "OpenBB",
+      "url": "https://github.com/OpenBB-finance/OpenBB",
+      "description": "Open Data Platform for analysts, quants and AI agents",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "openbb",
+        "openbb",
+        "finance",
+        "data",
+        "quant",
+        "ai"
+      ],
+      "stars": 71754,
+      "forks": 7384,
+      "addedAt": "2026-08-12T13:58:40.430Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/OpenBB-finance/OpenBB"
+      },
+      "capabilities": [
+        "finance",
+        "data",
+        "quant",
+        "ai"
+      ],
+      "useCase": "適合需要金融數據整合、量化分析、AI 驅動的投研報告生成的場景",
+      "negativeConstraints": [
+        "不適合需要即時交易執行的生產環境",
+        "資料可能有延遲，不適用於高頻交易"
+      ],
+      "advantages": [
+        "OpenBB 官方維護，社群活躍 (71K⭐)",
+        "支援多種資料來源整合",
+        "內建 AI Agent 整合能力"
+      ]
+    },
+    {
+      "id": "ai-hedge-fund",
+      "name": "ai-hedge-fund",
+      "url": "https://github.com/virattt/ai-hedge-fund",
+      "description": "An AI Hedge Fund Team - proof of concept for AI-powered hedge fund trading system",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "ai-hedge-fund",
+        "ai-hedge-fund",
+        "hedge-fund",
+        "ai",
+        "trading",
+        "quant"
+      ],
+      "stars": 62754,
+      "forks": 11049,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/virattt/ai-hedge-fund"
+      },
+      "capabilities": [
+        "hedge-fund",
+        "ai",
+        "trading",
+        "quant"
+      ],
+      "useCase": "適合學習和研究 AI 如何模擬對沖基金團隊進行交易決策的場景",
+      "negativeConstraints": [
+        "僅供教育研究用途，不建議用於真實交易",
+        "需要強大的計算資源"
+      ],
+      "advantages": [
+        "完整的前後端架構",
+        "AI 驱动的投研流程模拟",
+        "多模型协作模式"
+      ]
+    },
+    {
+      "id": "vnpy",
+      "name": "VN.py",
+      "url": "https://github.com/vnpy/vnpy",
+      "description": "基于Python的开源量化交易平台开发框架",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "vnpy",
+        "vn.py",
+        "quant",
+        "trading",
+        "finance",
+        "python"
+      ],
+      "stars": 43365,
+      "forks": 12160,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/vnpy/vnpy"
+      },
+      "capabilities": [
+        "quant",
+        "trading",
+        "finance",
+        "python"
+      ],
+      "useCase": "適合需要開源量化交易平台開發框架的場景，支援多市場交易",
+      "negativeConstraints": [
+        "主要支援 Python 生態",
+        "需要自行部署和維護"
+      ],
+      "advantages": [
+        "國內最流行的開源量化平台",
+        "支援期貨、股票、加密貨幣",
+        "MIT 授權，商業可用"
+      ]
+    },
+    {
+      "id": "fincept-terminal",
+      "name": "FinceptTerminal",
+      "url": "https://github.com/Fincept-Corporation/FinceptTerminal",
+      "description": "Open-source financial analysis platform - modern finance application with advanced market analytics",
+      "category": "金融與投資",
+      "language": "C++",
+      "triggers": [
+        "fincept-terminal",
+        "finceptterminal",
+        "finance",
+        "terminal",
+        "analytics",
+        "qt"
+      ],
+      "stars": 29286,
+      "forks": 4105,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/Fincept-Corporation/FinceptTerminal"
+      },
+      "capabilities": [
+        "finance",
+        "terminal",
+        "analytics",
+        "qt"
+      ],
+      "useCase": "適合需要專業級金融分析終端的場景，支援市場分析與投資研究",
+      "negativeConstraints": [
+        "需要 C++ 編譯環境",
+        "更新頻率已降低至每月一次"
+      ],
+      "advantages": [
+        "原生 C++20 + Qt6 高性能",
+        "支援多資產類別",
+        "免費開源的終端替代方案"
+      ]
+    },
+    {
+      "id": "backtrader",
+      "name": "Backtrader",
+      "url": "https://github.com/mementum/backtrader",
+      "description": "Python Backtesting library for trading strategies",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "backtrader",
+        "backtrader",
+        "backtest",
+        "trading",
+        "quant",
+        "strategy"
+      ],
+      "stars": 22702,
+      "forks": 5226,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/mementum/backtrader"
+      },
+      "capabilities": [
+        "backtest",
+        "trading",
+        "quant",
+        "strategy"
+      ],
+      "useCase": "適合需要 Python 回測框架進行策略測試的場景",
+      "negativeConstraints": [
+        "停更專案，不再有新版本",
+        "不適合高頻交易回測"
+      ],
+      "advantages": [
+        "經典回測框架",
+        "廣泛的社群支援",
+        "多資料來源支援"
+      ]
+    },
+    {
+      "id": "lean",
+      "name": "Lean",
+      "url": "https://github.com/QuantConnect/Lean",
+      "description": "Lean Algorithmic Trading Engine by QuantConnect - Open, Institutional Calibre Engine Multi-asset",
+      "category": "金融與投資",
+      "language": "C#",
+      "triggers": [
+        "lean",
+        "lean",
+        "trading",
+        "algorithmic",
+        "quant",
+        "csharp"
+      ],
+      "stars": 20590,
+      "forks": 5051,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/QuantConnect/Lean"
+      },
+      "capabilities": [
+        "trading",
+        "algorithmic",
+        "quant",
+        "csharp"
+      ],
+      "useCase": "適合需要機構級演算法交易引擎的場景，支援回測與實盤交易",
+      "negativeConstraints": [
+        "主要使用 C# 開發",
+        "設定較為複雜"
+      ],
+      "advantages": [
+        "QuantConnect 官方維護",
+        "支援多市場多資產",
+        "完整的回測到實盤流程"
+      ]
+    },
+    {
+      "id": "fingpt",
+      "name": "FinGPT",
+      "url": "https://github.com/AI4Finance-Foundation/FinGPT",
+      "description": "FinGPT: Open-Source Financial Large Language Models for sentiment analysis, forecasting, and more",
+      "category": "金融與投資",
+      "language": "Jupyter Notebook",
+      "triggers": [
+        "fingpt",
+        "fingpt",
+        "fintech",
+        "llm",
+        "finance",
+        "nlp"
+      ],
+      "stars": 21014,
+      "forks": 2979,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/AI4Finance-Foundation/FinGPT"
+      },
+      "capabilities": [
+        "fintech",
+        "llm",
+        "finance",
+        "nlp"
+      ],
+      "useCase": "適合需要金融領域大語言模型的場景，如情緒分析、預測等",
+      "negativeConstraints": [
+        "模型需要自行微调",
+        "金融數據需自備"
+      ],
+      "advantages": [
+        "AI4Finance Foundation 維護",
+        "開源的金融 LLM",
+        "支援多種下游任務"
+      ]
+    },
+    {
+      "id": "finrobot",
+      "name": "FinRobot",
+      "url": "https://github.com/AI4Finance-Foundation/FinRobot",
+      "description": "FinRobot: An Open-Source AI Agent Platform for Financial Applications",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "finrobot",
+        "finrobot",
+        "ai-agent",
+        "finance",
+        "trading",
+        "llm"
+      ],
+      "stars": 8500,
+      "forks": 1200,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/AI4Finance-Foundation/FinRobot"
+      },
+      "capabilities": [
+        "ai-agent",
+        "finance",
+        "trading",
+        "llm"
+      ],
+      "useCase": "適合需要 AI Agent 平台的金融應用場景，統合 LLM、強化學習與量化分析",
+      "negativeConstraints": [
+        "功能較新，穩定性待驗證",
+        "需要 AI 相關背景知識"
+      ],
+      "advantages": [
+        "全方位金融 AI Agent 平台",
+        "統合多種 AI 技術",
+        "学术研究基礎"
+      ]
+    },
+    {
+      "id": "nofx",
+      "name": "NOFX",
+      "url": "https://github.com/NoFxAiOS/nofx",
+      "description": "Your AI trading terminal assistant for US markets - open-source trading terminal where strategy is a language model",
+      "category": "金融與投資",
+      "language": "Go",
+      "triggers": [
+        "nofx",
+        "nofx",
+        "trading",
+        "crypto",
+        "ai",
+        "bot"
+      ],
+      "stars": 12658,
+      "forks": 3023,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/NoFxAiOS/nofx"
+      },
+      "capabilities": [
+        "trading",
+        "crypto",
+        "ai",
+        "bot"
+      ],
+      "useCase": "適合需要 AI 驅動的美股期貨交易終端的場景",
+      "negativeConstraints": [
+        "需要配置 API key",
+        "有實際交易風險"
+      ],
+      "advantages": [
+        "Go 語言高性能",
+        "支援9大交易所",
+        "硬風險限制保護"
+      ]
+    },
+    {
+      "id": "ai-berkshire",
+      "name": "AI Berkshire",
+      "url": "https://github.com/xbtlin/ai-berkshire",
+      "description": "AI 时代的伯克希尔：基于 Claude Code/Codex 的价值投资研究 Skill 合集",
+      "category": "開發工具",
+      "language": "Python",
+      "triggers": [
+        "ai-berkshire",
+        "ai berkshire",
+        "investing",
+        "value-investing",
+        "buffett",
+        "ai"
+      ],
+      "stars": 15000,
+      "forks": 2000,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/xbtlin/ai-berkshire"
+      },
+      "capabilities": [
+        "investing",
+        "value-investing",
+        "buffett",
+        "ai"
+      ],
+      "useCase": "適合需要價投研究框架的場景，整合巴菲特、芒格等方法論",
+      "negativeConstraints": [
+        "需要 Claude Code / Codex",
+        "僅限價值投資研究"
+      ],
+      "advantages": [
+        "4位大師方法論系統化",
+        "AI Agent 辅助研究",
+        "適合個人投資者"
+      ]
+    },
+    {
+      "id": "tradingagents-cn",
+      "name": "TradingAgents-CN",
+      "url": "https://github.com/hsliuping/TradingAgents-CN",
+      "description": "Chinese stock trading agents with A-share support",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "tradingagents-cn",
+        "tradingagents-cn",
+        "trading",
+        "a-stock",
+        "china",
+        "ai"
+      ],
+      "stars": 3500,
+      "forks": 600,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/hsliuping/TradingAgents-CN"
+      },
+      "capabilities": [
+        "trading",
+        "a-stock",
+        "china",
+        "ai"
+      ],
+      "useCase": "適合需要 A股 trading agent 的場景",
+      "negativeConstraints": [
+        "僅支援 A股",
+        "地區性限制"
+      ],
+      "advantages": [
+        "A股專為優化",
+        "中文支援完善"
+      ]
+    },
+    {
+      "id": "tradingagents-astock",
+      "name": "TradingAgents-astock",
+      "url": "https://github.com/simonlin1212/TradingAgents-astock",
+      "description": "A-stock focused trading agents",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "tradingagents-astock",
+        "tradingagents-astock",
+        "trading",
+        "astock",
+        "china",
+        "stock"
+      ],
+      "stars": 2800,
+      "forks": 450,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/simonlin1212/TradingAgents-astock"
+      },
+      "capabilities": [
+        "trading",
+        "astock",
+        "china",
+        "stock"
+      ],
+      "useCase": "適合需要 A股 trading agent 的場景（簡化版）",
+      "negativeConstraints": [
+        "功能較少",
+        "僅基礎 A股支援"
+      ],
+      "advantages": [
+        "輕量級",
+        "易於上手"
+      ]
+    },
+    {
+      "id": "go-stock",
+      "name": "go-stock",
+      "url": "https://github.com/ArvinLovegood/go-stock",
+      "description": "Modern stock analysis and trading platform",
+      "category": "金融與投資",
+      "language": "Go",
+      "triggers": [
+        "go-stock",
+        "go-stock",
+        "stock",
+        "trading",
+        "go",
+        "finance"
+      ],
+      "stars": 18500,
+      "forks": 2100,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/ArvinLovegood/go-stock"
+      },
+      "capabilities": [
+        "stock",
+        "trading",
+        "go",
+        "finance"
+      ],
+      "useCase": "適合需要現代化股票分析平台的場景",
+      "negativeConstraints": [
+        "Go 語言需編譯",
+        "社群較小"
+      ],
+      "advantages": [
+        "現代化 UI",
+        "高性能",
+        "跨平台]"
+      ]
+    },
+    {
+      "id": "mars",
+      "name": "MarS",
+      "url": "https://github.com/microsoft/MarS",
+      "description": "Microsoft Research platform for financial AI",
+      "category": "金融與投資",
+      "language": "Python",
+      "triggers": [
+        "mars",
+        "mars",
+        "finance",
+        "ai",
+        "research",
+        "ml"
+      ],
+      "stars": 4200,
+      "forks": 580,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/microsoft/MarS"
+      },
+      "capabilities": [
+        "finance",
+        "ai",
+        "research",
+        "ml"
+      ],
+      "useCase": "適合 Microsoft Research 金融 AI 研究場景",
+      "negativeConstraints": [
+        "研究性質專案",
+        "非生產級工具"
+      ],
+      "advantages": [
+        "Microsoft 官方",
+        "先進研究技術"
+      ]
+    },
+    {
+      "id": "avernet",
+      "name": "Avernet",
+      "url": "https://github.com/inclusionAI/Avernet",
+      "description": "AI agent networking framework",
+      "category": "開發工具",
+      "language": "Python",
+      "triggers": [
+        "avernet",
+        "avernet",
+        "ai",
+        "network",
+        "agents"
+      ],
+      "stars": 1200,
+      "forks": 180,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/inclusionAI/Avernet"
+      },
+      "capabilities": [
+        "ai",
+        "network",
+        "agents"
+      ],
+      "useCase": "適合需要 AI Agent 網絡化運作的場景",
+      "negativeConstraints": [
+        "概念驗證階段",
+        "尚不成熟"
+      ],
+      "advantages": [
+        "創新架構",
+        "開源]"
+      ]
+    },
+    {
+      "id": "deeptutor",
+      "name": "DeepTutor",
+      "url": "https://github.com/HKUDS/DeepTutor",
+      "description": "AI-powered personalized learning tutor",
+      "category": "開發工具",
+      "language": "Python",
+      "triggers": [
+        "deeptutor",
+        "deeptutor",
+        "education",
+        "ai",
+        "tutor",
+        "learning"
+      ],
+      "stars": 8500,
+      "forks": 1100,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/HKUDS/DeepTutor"
+      },
+      "capabilities": [
+        "education",
+        "ai",
+        "tutor",
+        "learning"
+      ],
+      "useCase": "適合需要 AI 輔助個人化學習的場景",
+      "negativeConstraints": [
+        "教育用途為主",
+        "學術導向"
+      ],
+      "advantages": [
+        "HKU 學術研究",
+        "AI 驅動教學",
+        "多語言支援]"
+      ]
+    },
+    {
+      "id": "slavingia-skills",
+      "name": "Skills",
+      "url": "https://github.com/slavingia/skills",
+      "description": "Slavingia skills collection",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "slavingia-skills",
+        "skills",
+        "skills",
+        "ai"
+      ],
+      "stars": 3200,
+      "forks": 420,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/slavingia/skills"
+      },
+      "capabilities": [
+        "skills",
+        "ai"
+      ],
+      "useCase": "Slavingia 的 openclaw skills",
+      "negativeConstraints": [
+        "小众項目"
+      ],
+      "advantages": [
+        "特色內容"
+      ]
+    },
+    {
+      "id": "awesome-openclaw-skills",
+      "name": "awesome-openclaw-skills",
+      "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+      "description": "Awesome OpenClaw skills",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "awesome-openclaw-skills",
+        "awesome-openclaw-skills",
+        "skills",
+        "openclaw"
+      ],
+      "stars": 2800,
+      "forks": 380,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/VoltAgent/awesome-openclaw-skills"
+      },
+      "capabilities": [
+        "skills",
+        "openclaw"
+      ],
+      "useCase": "Awesome OpenClaw skills 收藏",
+      "negativeConstraints": [
+        "第三方可選包"
+      ],
+      "advantages": [
+        "精選合集"
+      ]
+    },
+    {
+      "id": "huggingface-skills",
+      "name": "Skills",
+      "url": "https://github.com/huggingface/skills",
+      "description": "Hugging Face skills",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "huggingface-skills",
+        "skills",
+        "huggingface",
+        "skills",
+        "ai"
+      ],
+      "stars": 9500,
+      "forks": 1200,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/huggingface/skills"
+      },
+      "capabilities": [
+        "huggingface",
+        "skills",
+        "ai"
+      ],
+      "useCase": "Hugging Face 相關的 AI skills",
+      "negativeConstraints": [
+        "HF 生態"
+      ],
+      "advantages": [
+        "官方",
+        "ML 豐富]"
+      ]
+    },
+    {
+      "id": "trailofbits-skills",
+      "name": "skills",
+      "url": "https://github.com/trailofbits/skills",
+      "description": "Trail of Bits security-focused skills",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "trailofbits-skills",
+        "skills",
+        "security",
+        "skills",
+        "crypto"
+      ],
+      "stars": 2100,
+      "forks": 320,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/trailofbits/skills"
+      },
+      "capabilities": [
+        "security",
+        "skills",
+        "crypto"
+      ],
+      "useCase": "Trail of Bits 的安全相關 skills",
+      "negativeConstraints": [
+        "安全專家級"
+      ],
+      "advantages": [
+        "安全領域專業"
+      ]
+    },
+    {
+      "id": "mengto-skills",
+      "name": "Skills",
+      "url": "https://github.com/MengTo/Skills",
+      "description": "MengTo skills",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "mengto-skills",
+        "skills",
+        "skills"
+      ],
+      "stars": 1800,
+      "forks": 280,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/MengTo/Skills"
+      },
+      "capabilities": [
+        "skills"
+      ],
+      "useCase": "MengTo 的 UI/design skills",
+      "negativeConstraints": [
+        "UI設計專用"
+      ],
+      "advantages": [
+        "視覺設計"
+      ]
+    },
+    {
+      "id": "microsoft-official-skills",
+      "name": "skills",
+      "url": "https://github.com/microsoft/skills",
+      "description": "Microsoft official skills repository",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "microsoft-official-skills",
+        "skills",
+        "microsoft",
+        "skills",
+        "ai"
+      ],
+      "stars": 8500,
+      "forks": 1100,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/microsoft/skills"
+      },
+      "capabilities": [
+        "microsoft",
+        "skills",
+        "ai"
+      ],
+      "useCase": "Microsoft 官方的 skills 集合",
+      "negativeConstraints": [
+        "MS 生態"
+      ],
+      "advantages": [
+        "官方"
+      ]
+    },
+    {
+      "id": "nvidia-skills",
+      "name": "skills",
+      "url": "https://github.com/NVIDIA/skills",
+      "description": "NVIDIA AI skills",
+      "category": "開發工具",
+      "language": "Markdown",
+      "triggers": [
+        "nvidia-skills",
+        "skills",
+        "nvidia",
+        "ai",
+        "gpu",
+        "skills"
+      ],
+      "stars": 3500,
+      "forks": 480,
+      "addedAt": "2026-08-12T13:58:40.431Z",
+      "status": "active",
+      "install": {
+        "method": "git-clone",
+        "repoUrl": "https://github.com/NVIDIA/skills"
+      },
+      "capabilities": [
+        "nvidia",
+        "ai",
+        "gpu",
+        "skills"
+      ],
+      "useCase": "NVIDIA 的 AI/GPU 相關 skills",
+      "negativeConstraints": [
+        "GPU 生态"
+      ],
+      "advantages": [
+        "官方",
+        "DL 領域"
+      ]
     }
   ]
 }
