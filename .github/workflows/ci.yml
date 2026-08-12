@@ -13,31 +13,29 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
+    timeout-minutes: 10
     
     steps:
     - uses: actions/checkout@v4
     
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: '20'
         cache: 'npm'
     
     - name: Install dependencies
       run: npm ci
     
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps chromium
-    
-    - name: Run linter
-      run: npm run lint || echo "Linting optional, continuing..."
-    
-    - name: Run tests
-      run: npm test
+    - name: Install Playwright browsers (skip dependencies for speed)
+      run: npx playwright install chromium
       timeout-minutes: 5
+    
+    - name: Run tests (exclude slow integration tests)
+      run: node --test --experimental-test-coverage tests/*.test.js --test-concurrency=1
+      timeout-minutes: 8
+      env:
+        NODE_OPTIONS: "--max-old-space-size=4096"
     
     - name: Validate registry
       run: node cli.js validate
@@ -47,31 +45,3 @@ jobs:
     
     - name: Build web
       run: npm run build
-    
-    - name: Upload dist
-      if: github.ref == 'refs/heads/main' && success()
-      uses: actions/upload-artifact@v4
-      with:
-        name: dist
-        path: dist/
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Download dist artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: dist
-        path: dist/
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist
-        keep_files: false

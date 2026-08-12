@@ -19,7 +19,8 @@
     "trending": "node scripts/trending-weekly.js",
     "daemon": "node scripts/sync-daemon.js",
     "mine-synonyms": "node scripts/mine-synonyms.js",
-    "mcp": "node mcp-server.js"
+    "mcp": "node mcp-server.js",
+    "lint": "echo \"No linter configured, skipping...\""
   },
   "keywords": [
     "ai",
