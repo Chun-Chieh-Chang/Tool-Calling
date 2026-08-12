@@ -1,4 +1,4 @@
-# Find Skill 整合指南 - 技術詳細說明
+﻿# Find Skill 整合指南 - 技術詳細說明
 
 本文檔提供 Find Skill 功能的完整技術分析與整合方案。
 

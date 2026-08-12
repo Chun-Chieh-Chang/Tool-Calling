@@ -34783,7 +34783,13 @@
       "category": "AI 代理",
       "language": "python",
       "triggers": [
-        "qwen-mm-plugins"
+        "qwen-mm-plugins",
+        "qwen",
+        "multimodal",
+        "ai plugins",
+        "llm plugins",
+        "multimodal ai",
+        "阿里通義"
       ],
       "install": {
         "method": "none",
@@ -34853,7 +34859,12 @@
       "category": "開發工具",
       "language": "c",
       "triggers": [
-        "warp"
+        "warp",
+        "sqlite",
+        "vector database",
+        "embeddings",
+        "database",
+        "向量資料庫"
       ],
       "install": {
         "method": "none",
@@ -34882,7 +34893,12 @@
       "category": "開發工具",
       "language": "unknown",
       "triggers": [
-        "gathered-scenes-zine-skill"
+        "gathered-scenes-zine-skill",
+        "zine",
+        "skill",
+        "ai agent skill",
+        "claude skill",
+        "agent tool"
       ],
       "install": {
         "method": "none",
@@ -34949,7 +34965,12 @@
       "category": "開發工具",
       "language": "python",
       "triggers": [
-        "oil-motion"
+        "oil-motion",
+        "video generation",
+        "motion",
+        "ai video",
+        "video ai",
+        "影像生成"
       ],
       "install": {
         "method": "none",
@@ -34978,7 +34999,12 @@
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
-        "wechat-ai"
+        "wechat-ai",
+        "wechat",
+        "微信",
+        "chatbot",
+        "ai chat",
+        "通訊機器人"
       ],
       "install": {
         "method": "none",
@@ -35007,7 +35033,13 @@
       "category": "開發工具",
       "language": "c",
       "triggers": [
-        "h3-c"
+        "h3-c",
+        "h3.c",
+        "antirez",
+        "redis",
+        "c",
+        "system programming",
+        "編譯器"
       ],
       "install": {
         "method": "none",

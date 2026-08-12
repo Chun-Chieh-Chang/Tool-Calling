@@ -1,4 +1,4 @@
-# AgnesCode vs Antigravity IDE 全域規則比較報告
+﻿# AgnesCode vs Antigravity IDE 全域規則比較報告
 
 ## 一、規則存放位置
 

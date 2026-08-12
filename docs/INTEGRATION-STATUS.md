@@ -1,4 +1,4 @@
-# Find Skill 整合完成確認
+﻿# Find Skill 整合完成確認
 
 ## ✅ 已完成的核心功能
 

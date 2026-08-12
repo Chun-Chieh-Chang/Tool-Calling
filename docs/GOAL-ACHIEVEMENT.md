@@ -1,4 +1,4 @@
-# ✅ GOAL ACHIEVED: 推動兩者直達 AGENTS.md 統一標準
+﻿# ✅ GOAL ACHIEVED: 推動兩者直達 AGENTS.md 統一標準
 
 ## 📊 最終驗證報告
 

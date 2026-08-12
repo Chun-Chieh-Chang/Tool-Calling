@@ -4,7 +4,7 @@
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **513+ 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **538 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -134,7 +134,7 @@ Tool-Calling/
 │   ├── build-web.js        # 构建 dist (同步字型)
 │   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
-│   └── tools.json        # 513+ 工具 (单一真理来源)
+│   └── tools.json        # 538 工具 (单一真理来源)
 ├── docs/               # 文档
 │   ├── OPTIMIZATION-REPORT.md  # 优化报告
 │   └── PROJECT-OPTIMIZATION-SUMMARY.md # 总览
@@ -157,7 +157,7 @@ node scripts/check-mece.js  # 无残留分类
 ---
 
 > Developed by Wesley Chang, July-2026.  
-> Tool-Calling v1.1 - 513+ Tools, 239 Synonyms
+> Tool-Calling v1.1 - 538 Tools, 239 Synonyms
 ---
 
 ## 🌐 網頁版 UI

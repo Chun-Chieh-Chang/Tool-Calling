@@ -1,4 +1,4 @@
-# AGENTS.md 整合指南 — AgnesCode × Antigravity IDE
+﻿# AGENTS.md 整合指南 — AgnesCode × Antigravity IDE
 
 > 本文檔說明如何將本專案的 AGENTS.md 與本機 Antigravity IDE 全域規則整合。
 

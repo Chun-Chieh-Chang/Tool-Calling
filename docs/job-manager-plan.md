@@ -1,4 +1,4 @@
-# Job Manager — Async Tool Execution System
+﻿# Job Manager — Async Tool Execution System
 
 **Created**: 2026-08-10
 **Purpose**: Transform sync `run_tool` into async job-based execution

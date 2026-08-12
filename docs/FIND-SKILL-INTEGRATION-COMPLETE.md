@@ -1,4 +1,4 @@
-# Find Skill 整合完成報告
+﻿# Find Skill 整合完成報告
 
 ## 🎉 整合成功完成！
 
