@@ -35864,7 +35864,7 @@
       "name": "Manim",
       "url": "https://github.com/3b1b/manim",
       "description": "Animation engine for explanatory math videos — 由 3Blue1Brown 創作者 Grant Sanderson 開發的原始版本",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "Python",
       "triggers": [
         "3b1b-manim",
@@ -35903,7 +35903,7 @@
       "name": "Manim Community",
       "url": "https://github.com/ManimCommunity/manim",
       "description": "A community-maintained Python framework for creating mathematical animations — 社群維護版，功能更豐富",
-      "category": "多媒體生成",
+      "category": "影片",
       "language": "Python",
       "triggers": [
         "manim-community",
@@ -35944,7 +35944,7 @@
       "name": "ManimML",
       "url": "https://github.com/helblazer811/ManimML",
       "description": "Animations and visualizations of common machine learning concepts with the Manim Community Library",
-      "category": "AI框架",
+      "category": "影片",
       "language": "Python",
       "triggers": [
         "manim-ml",
@@ -35985,7 +35985,7 @@
       "name": "Videos (3b1b)",
       "url": "https://github.com/3b1b/videos",
       "description": "Code for the manim-generated scenes used in 3blue1brown videos — 10K+ 星數，包含所有 YouTube 影片的動畫腳本",
-      "category": "學習資源",
+      "category": "影片",
       "language": "python",
       "triggers": [
         "3b1b",
