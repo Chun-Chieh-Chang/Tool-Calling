@@ -1,5 +1,45 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-13 批量網址處理與重複工具優化取代
+
+### 需求
+批量處理 8 個 GitHub URL 加入工具庫，檢查拆解需求，若與既有工具重複則進行重新解析與比較，並以優化後條目取代舊條目。
+
+網址清單：
+1. `https://github.com/cathrynlavery/diagram-design`
+2. `https://github.com/semantica-agi/semantica`
+3. `https://github.com/msitarzewski/agency-agents`
+4. `https://github.com/shiyu-coder/Kronos`
+5. `https://github.com/NanmiCoder/MediaCrawler`
+6. `https://github.com/hugohe3/ppt-master`
+7. `https://github.com/infiniflow/ragflow`
+8. `https://github.com/ZuodaoTech/everyone-can-use-english`
+
+### 處理結果
+- **解析與拆解審查**：
+  - 8 個專案均已進行構造與 GitHub API 掃描檢視。
+  - `diagram-design` (Claude/Codex SVG 繪圖外掛庫)、`agency-agents` (全功能 AI Agency 提示庫) 作為整體整合式工具入庫與優化。
+- **重複工具重新解析與優化取代 (5 個)**：
+  - `diagram-design`：分類由原本模糊的 `AI 代理` 重構優化為 `UI/UX設計`，補齊 29 種 SVG 繪圖模板描述、useCase, advantages, negativeConstraints 與觸發詞。
+  - `semantica`：分類維持 `知識管理`，補齊 Graph-native context engineering, provenance 與 `graph-rag` 觸發詞。
+  - `agency-agents`：分類由錯誤歸類的 `UI/UX設計` 修正為 `AI 代理`，充實工程/設計/行銷跨領域代理人描述與負面約束。
+  - `mediacrawler`：分類由寬泛的 `開發工具` 精準調整為 `瀏覽器自動化`，強化 7 大社群平台自動化與資料合規邊界。
+  - `ppt-master`：分類維持 `文件生產力`，強化原生 PPTX 生成、圖表與語音講稿 capabilities。
+- **全新工具掃描與入庫 (3 個)**：
+  - `kronos` (ID: `kronos`, 分類: `數據分析`)：金融市場基礎模型。
+  - `ragflow` (ID: `ragflow`, 分類: `知識管理`)：開源 RAG 引擎與上下文代理層。
+  - `everyone-can-use-english` (ID: `everyone-can-use-english`, 分類: `學習資源`)：英語學習開源教材 (method: `none`)。
+- **圖譜與品質確效 (Quality Control)**：
+  - 知識圖譜自動增量同步更新 (總工具數達到 566 個)。
+  - `node cli.js validate`：0 錯誤，Contract v2 平均品質評分 100/100。
+  - `node scripts/check-mece.js`：566 工具、22 分類，100% 無「其他」殘留，無孤立分類。
+
+### RCA & CAPA
+- **RCA**：過去 `batch-add` 在碰觸既有 URL/ID 時預設跳過 (`skipped`)，無法主動升級過時或低品質的詮釋資料；早期部分工具分類不夠精準。
+- **CAPA**：導入重解析與新舊條目詮釋資料比較替換機制，在保留優質內容的前提下，確保所有修改與新增皆通過 Contract 門禁驗證與 MECE 原則測試。
+
+
+
 ## 2026-08-11 專案整體程式碼與檔案優化作業（全域咒語五階段・第三輪）
 
 ### 需求

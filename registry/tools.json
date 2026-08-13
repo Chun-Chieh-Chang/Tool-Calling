@@ -1,51 +1,44 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-12T13:32:39.748Z",
+  "lastUpdated": "2026-08-13T13:46:10.059Z",
   "tools": [
     {
       "id": "ppt-master",
       "name": "PPT Master",
       "url": "https://github.com/hugohe3/ppt-master",
-      "description": "AI tool converting docs or topics into native PowerPoint decks with animations, charts, and audio.",
+      "description": "AI 簡報生成工具：AI turns documents or topics into native PowerPoint decks with animations, charts, and narrations.",
       "category": "文件生產力",
       "language": "python",
       "triggers": [
+        "ppt-master",
         "ppt",
-        "powerpoint",
         "簡報",
-        "slides",
-        "presentation",
-        "deck",
-        "slide-deck",
-        "presentation-generator"
+        "做簡報",
+        "powerpoint",
+        "slides"
+      ],
+      "capabilities": [
+        "ppt",
+        "簡報",
+        "powerpoint"
       ],
       "install": {
         "method": "pip",
-        "command": "pip install ppt-master",
-        "requirements": [
-          "python>=3.8"
-        ]
+        "command": "pip install git+https://github.com/hugohe3/ppt-master.git",
+        "repoUrl": "https://github.com/hugohe3/ppt-master"
       },
-      "capabilities": [
-        "document-to-ppt",
-        "template-support",
-        "audio-narration",
-        "chart-generation",
-        "transition-animation"
-      ],
-      "addedAt": "2026-07-19T10:33:00+08:00",
-      "status": "active",
-      "negativeConstraints": [
-        "Do not use for creating video content or interactive web-based slideshows.",
-        "Avoid for highly complex data visualizations requiring specialized statistical software."
-      ],
-      "useCase": "Transforms meeting notes or research reports into polished slide decks for business pitches.",
+      "useCase": "Automatically generating professional PowerPoint decks with native vector shapes and speaker notes from raw markdown reports.",
       "advantages": [
-        "Generates fully editable native .pptx files with shapes, tables, and charts.",
-        "Supports custom templates, transition animations, and audio narration.",
-        "Directly converts text documents or topics into structured presentation outlines."
+        "Generates native editable PPTX shapes instead of rasterized images",
+        "Supports custom template files and data-driven chart embedding",
+        "Adds voice narration directly into slide speaker notes"
       ],
-      "stars": 45225
+      "negativeConstraints": [
+        "Not designed for building web-based interactive slideshows",
+        "Avoid using for vector graphic illustration drawing"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.058Z"
     },
     {
       "id": "graphify",
@@ -2005,135 +1998,35 @@
       "id": "agency-agents",
       "name": "Agency Agents",
       "url": "https://github.com/msitarzewski/agency-agents",
-      "description": "Specialized AI agents for web, marketing, and strategy tasks with structured workflows.",
-      "category": "UI/UX設計",
+      "description": "Specialized AI agency toolkit containing expert persona prompts and workflows for engineering, design, marketing, and sales.",
+      "category": "AI 代理",
       "language": "shell",
       "triggers": [
         "agency-agents",
         "agency",
         "agents",
         "ai-agents",
-        "automation",
-        "frontend",
-        "marketing"
+        "specialized-agents",
+        "multi-agent-framework",
+        "ai-agency"
       ],
       "install": {
         "method": "git-clone",
         "command": "git clone https://github.com/msitarzewski/agency-agents.git",
         "repoUrl": "https://github.com/msitarzewski/agency-agents"
       },
-      "capabilities": [],
-      "addedAt": "2026-07-19T07:10:00.080Z",
-      "status": "active",
-      "subTools": [
-        {
-          "name": "Examples",
-          "description": "This directory contains example outputs demonstrating how the agency's agents can be orchestrated together to tackle real-world tasks.",
-          "subpath": "examples"
-        },
-        {
-          "name": "Integrations",
-          "description": "This directory contains The Agency integrations and converted formats for supported agentic coding tools.",
-          "subpath": "integrations"
-        },
-        {
-          "name": "Aider",
-          "description": "The full Agency roster is consolidated into a single `CONVENTIONS.md` file. Aider reads this file automatically when it's present in your project root.",
-          "subpath": "integrations/aider"
-        },
-        {
-          "name": "Antigravity",
-          "description": "Installs the full Agency roster as Antigravity skills. Each agent is prefixed with `agency-` to avoid conflicts with existing skills.",
-          "subpath": "integrations/antigravity"
-        },
-        {
-          "name": "Claude Code",
-          "description": "The Agency was built for Claude Code. No conversion needed — agents work natively with the existing `.md` + YAML frontmatter format.",
-          "subpath": "integrations/claude-code"
-        },
-        {
-          "name": "Codex",
-          "description": "Converts all Agency agents into Codex custom agent TOML files. Each source agent becomes one standalone `.toml` file containing the minimal Codex-required fields: `name`, `description`, and `developer",
-          "subpath": "integrations/codex"
-        },
-        {
-          "name": "Cursor",
-          "description": "Converts the full Agency roster into Cursor `.mdc` rule files. Rules are **project-scoped** — install them from your project root.",
-          "subpath": "integrations/cursor"
-        },
-        {
-          "name": "Gemini Cli",
-          "description": "Packages all Agency agents as Gemini CLI subagents. These agents install to `~/.gemini/agents/`.",
-          "subpath": "integrations/gemini-cli"
-        },
-        {
-          "name": "Github Copilot",
-          "description": "The Agency works with GitHub Copilot out of the box. No conversion needed — agents use the existing `.md` + YAML frontmatter format.",
-          "subpath": "integrations/github-copilot"
-        },
-        {
-          "name": "Hermes",
-          "description": "Generated by `scripts/convert.sh --tool hermes`.",
-          "subpath": "integrations/hermes"
-        },
-        {
-          "name": "Kimi",
-          "description": "Converts all Agency agents into Kimi Code CLI agent specifications. Each agent becomes a directory containing `agent.yaml` (agent spec) and `system.md` (system prompt).",
-          "subpath": "integrations/kimi"
-        },
-        {
-          "name": "Mcp Memory",
-          "description": "> Give any agent persistent memory across sessions using the Model Context Protocol (MCP).",
-          "subpath": "integrations/mcp-memory"
-        },
-        {
-          "name": "Openclaw",
-          "description": "OpenClaw agents are installed as workspaces containing `SOUL.md`, `AGENTS.md`, and `IDENTITY.md` files. The installer copies each workspace into `~/.openclaw/agency-agents/` and registers it when the ",
-          "subpath": "integrations/openclaw"
-        },
-        {
-          "name": "Opencode",
-          "description": "OpenCode agents are `.md` files with YAML frontmatter stored in `.opencode/agents/`. The converter maps named colors to hex codes and adds `mode: subagent` so agents are invoked on-demand via `@agent-",
-          "subpath": "integrations/opencode"
-        },
-        {
-          "name": "Qwen",
-          "description": "Qwen Code uses project-scoped `.md` SubAgent files in `.qwen/agents/`.",
-          "subpath": "integrations/qwen"
-        },
-        {
-          "name": "Vibe",
-          "description": "Mistral Vibe uses two files per agent: - A TOML configuration file (`~/.vibe/agents/<slug>.toml`) - A Markdown prompt file (`~/.vibe/prompts/<slug>.md`)",
-          "subpath": "integrations/vibe"
-        },
-        {
-          "name": "Windsurf",
-          "description": "The full Agency roster is consolidated into a single `.windsurfrules` file. Rules are **project-scoped** — install them from your project root.",
-          "subpath": "integrations/windsurf"
-        },
-        {
-          "name": "Zcode",
-          "description": "[ZCode](https://z.ai) is Z.ai's GLM-based coding agent harness. Each agency agent is rendered as a standalone Markdown agent file with `name` and `description` frontmatter, which ZCode discovers from ",
-          "subpath": "integrations/zcode"
-        },
-        {
-          "name": "I18n",
-          "description": "Localize agent `name` and `description` fields in YAML frontmatter to Simplified Chinese. This makes agent names readable in Copilot Chat's agent picker for Chinese-speaking users.",
-          "subpath": "scripts/i18n"
-        }
-      ],
-      "useCase": "Launch a product campaign by coordinating agents for frontend design, Reddit marketing, and strategic reviews.",
+      "useCase": "Orchestrating end-to-end product launches by delegating subtasks to specialized personas (frontend, copywriter, growth hacker).",
       "advantages": [
-        "Covers diverse roles including frontend development, community management, and reality checking.",
-        "Agents feature distinct personalities and predefined deliverables for consistent results.",
-        "Structured processes guide each agent through proven workflows for reliable output."
+        "Comprehensive collection of 50+ specialized expert agent personas",
+        "Structured operational processes and proven deliverable templates",
+        "Easy to drop into any LLM harness or prompt runner"
       ],
       "negativeConstraints": [
-        "Not suitable for simple, single-step tasks that do not benefit from a multi-agent setup.",
-        "Avoid for projects requiring strict real-time human approval at every stage.",
-        "Not ideal for highly regulated compliance workflows needing immediate audit trails."
+        "Not designed as a standalone standalone executable binary; requires an LLM runtime",
+        "Avoid for single simple prompts that do not require multi-role collaboration"
       ],
-      "stars": 144268
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.058Z"
     },
     {
       "id": "codebase-memory-mcp",
@@ -33388,33 +33281,35 @@
       "id": "diagram-design",
       "name": "Diagram Design",
       "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "29 editorial diagram types for Claude Code. Self-contained HTML + SVG. No shadows, no Mermaid-slop.",
-      "category": "AI 代理",
+      "description": "29 editorial diagram types for Claude Code & Codex using self-contained HTML + SVG without Mermaid limitations.",
+      "category": "UI/UX設計",
       "language": "html",
       "triggers": [
         "diagram-design",
         "diagram",
-        "design"
+        "design",
+        "claude-diagram",
+        "svg-diagram",
+        "editorial-diagram",
+        "chart-design"
       ],
       "install": {
         "method": "git-clone",
         "command": "git clone https://github.com/cathrynlavery/diagram-design.git",
         "repoUrl": "https://github.com/cathrynlavery/diagram-design"
       },
-      "capabilities": [],
-      "addedAt": "2026-08-10T12:52:44.272Z",
-      "status": "active",
-      "useCase": "Creating clean, publication-ready editorial diagrams for articles, reports, or documentation without relying on Mermaid or external dependencies.",
-      "negativeConstraints": [
-        "Not suitable for interactive or animated diagrams requiring user input.",
-        "Not ideal for large-scale data visualization or real-time dashboards.",
-        "Not appropriate for 3D or immersive graphical experiences."
-      ],
+      "useCase": "Creating clean, publication-ready editorial SVG diagrams directly inside Claude Code or Codex for technical documentation and reports.",
       "advantages": [
-        "Self-contained HTML+SVG output ensures portability and easy embedding.",
-        "Clean design without shadows or Mermaid artifacts produces professional, publication-quality diagrams.",
-        "Supports 29 editorial diagram types covering diverse visualization needs."
-      ]
+        "Provides 29 pre-designed editorial diagram templates",
+        "Uses clean, self-contained HTML + SVG rendering without external chart dependencies",
+        "Integrates seamlessly as a plugin/skill for Claude Code and Codex"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time interactive dashboards or data stream visualizers",
+        "Not designed for complex 3D graphic rendering"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.057Z"
     },
     {
       "id": "semantica",
@@ -33428,71 +33323,61 @@
         "agent-memory",
         "ai-governance",
         "context-graphs",
-        "ai-infrastructure"
+        "ai-infrastructure",
+        "graph-rag",
+        "knowledge-graph"
       ],
       "install": {
         "method": "pip",
         "command": "pip install git+https://github.com/semantica-agi/semantica.git",
         "repoUrl": "https://github.com/semantica-agi/semantica"
       },
-      "capabilities": [
-        "agent-memory",
-        "ai",
-        "ai-governance",
-        "ai-infrastructure",
-        "artificial-intelligence"
-      ],
-      "addedAt": "2026-08-10T12:52:44.815Z",
-      "status": "active",
-      "useCase": "Enabling multi-agent AI systems to maintain persistent, queryable context across sessions for compliant and auditable decision-making.",
-      "negativeConstraints": [
-        "Not suitable for simple, stateless applications that don't require persistent context or memory",
-        "Avoid for real-time low-latency systems where graph traversal overhead is prohibitive",
-        "Not ideal for projects without governance or compliance requirements"
-      ],
+      "useCase": "Enabling multi-agent AI systems to maintain persistent, queryable context and decision provenance across sessions.",
       "advantages": [
-        "Persistent context graphs enable AI agents to maintain long-term memory and reasoning continuity across interactions",
-        "Built-in governance frameworks ensure auditability and accountability for AI decisions",
-        "Graph-native architecture allows efficient relationship-based querying of complex AI context"
-      ]
+        "Graph-native architecture for explicit context representation",
+        "Built-in governance and decision auditability for enterprise AI",
+        "Native integration with multi-agent memory frameworks"
+      ],
+      "negativeConstraints": [
+        "Not suitable for stateless single-turn LLM applications",
+        "Avoid for latency-critical micro-tasks where graph traversal overhead is unnecessary"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.058Z"
     },
     {
       "id": "mediacrawler",
       "name": "MediaCrawler",
       "url": "https://github.com/NanmiCoder/MediaCrawler",
-      "description": "Multi-platform social media scraper for Xiaohongshu, Douyin, Bilibili, Weibo, Tieba, and Zhihu content and comments.",
-      "category": "開發工具",
+      "description": "Multi-platform social media scraper for Xiaohongshu, Douyin, Kuaishou, Bilibili, Weibo, Tieba, and Zhihu.",
+      "category": "瀏覽器自動化",
       "language": "python",
       "triggers": [
         "mediacrawler",
-        "xiaohongshu scraper",
-        "douyin crawler",
-        "bilibili scraper",
-        "weibo crawler",
-        "zhihu scraper",
-        "tieba crawler",
-        "social media data collection",
-        "comment extraction"
+        "xiaohongshu-scraper",
+        "douyin-crawler",
+        "bilibili-scraper",
+        "weibo-crawler",
+        "social-media-scraper",
+        "zhihu-scraper"
       ],
       "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/NanmiCoder/MediaCrawler.git",
+        "method": "git-clone",
+        "command": "git clone https://github.com/NanmiCoder/MediaCrawler.git",
         "repoUrl": "https://github.com/NanmiCoder/MediaCrawler"
       },
-      "capabilities": [],
-      "addedAt": "2026-08-10T12:52:46.312Z",
-      "status": "active",
-      "useCase": "Market researchers can collect competitor product reviews and user sentiment across multiple Chinese social platforms for competitive analysis.",
-      "negativeConstraints": [
-        "Do not use for scraping personal private data without consent",
-        "Avoid for real-time monitoring or high-frequency crawling that may overload servers",
-        "Not suitable for commercial data resale without platform permission"
-      ],
+      "useCase": "Collecting public posts, video metrics, and user comments from major Chinese social media platforms for market analysis.",
       "advantages": [
-        "Supports 7 major Chinese social media platforms in a single tool",
-        "Extracts both posts and comments with structured data output",
-        "Open-source with active GitHub community and regular updates"
-      ]
+        "Supports 7 major Chinese social media platforms in a single codebase",
+        "Built-in anti-scraping mechanisms and login session storage",
+        "Exports clean structured data to MySQL, Postgres, CSV, or JSON"
+      ],
+      "negativeConstraints": [
+        "Do not use for scraping personal private data without user consent",
+        "Avoid high-frequency scraping that violates platform Terms of Service"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.058Z"
     },
     {
       "id": "paperclip",
@@ -36016,6 +35901,104 @@
         "包含所有 3Blue1Brown 影片的完整代碼",
         "學習數學視覺化的最佳範例"
       ]
+    },
+    {
+      "id": "kronos",
+      "name": "Kronos",
+      "url": "https://github.com/shiyu-coder/Kronos",
+      "description": "Foundation model for the language of financial markets, supporting financial time series forecasting and quantitative analysis.",
+      "category": "數據分析",
+      "language": "python",
+      "triggers": [
+        "kronos",
+        "financial-ai",
+        "market-foundation-model",
+        "quant-analysis",
+        "financial-forecasting",
+        "time-series"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/shiyu-coder/Kronos.git",
+        "repoUrl": "https://github.com/shiyu-coder/Kronos"
+      },
+      "useCase": "Predicting financial time series data and analyzing market trends using a specialized domain-trained foundation model.",
+      "advantages": [
+        "Pre-trained specifically on large-scale financial market data",
+        "Supports fine-tuning on custom CSV financial datasets",
+        "Includes WebUI and quantitative evaluation scripts"
+      ],
+      "negativeConstraints": [
+        "Not suitable for general non-financial natural language processing tasks",
+        "Do not rely solely on predictions for real-money automated trading without risk guardrails"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.058Z"
+    },
+    {
+      "id": "ragflow",
+      "name": "RAGFlow",
+      "url": "https://github.com/infiniflow/ragflow",
+      "description": "Open-source Retrieval-Augmented Generation (RAG) engine fusing advanced RAG with Agent capabilities for LLM context management.",
+      "category": "知識管理",
+      "language": "go",
+      "triggers": [
+        "ragflow",
+        "rag-engine",
+        "retrieval-augmented-generation",
+        "context-engine",
+        "agentic-rag",
+        "knowledge-base"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/infiniflow/ragflow.git",
+        "repoUrl": "https://github.com/infiniflow/ragflow"
+      },
+      "useCase": "Deploying an enterprise-grade RAG pipeline with deep document parsing and multi-agent workflow orchestrations.",
+      "advantages": [
+        "Deep document understanding for complex layout PDFs, tables, and images",
+        "Combines traditional RAG with agentic retrieval workflows",
+        "Out-of-the-box support for hybrid search and multi-tenant access control"
+      ],
+      "negativeConstraints": [
+        "Requires substantial system resources (Docker / Vector DB) for full deployment",
+        "Not recommended for lightweight browser-only environments"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.058Z"
+    },
+    {
+      "id": "everyone-can-use-english",
+      "name": "Everyone Can Use English",
+      "url": "https://github.com/ZuodaoTech/everyone-can-use-english",
+      "description": "Open-source English learning curriculum and methodology handbook for self-learners.",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "everyone-can-use-english",
+        "english-learning",
+        "learning-resource",
+        "language-curriculum",
+        "education"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/ZuodaoTech/everyone-can-use-english",
+        "repoUrl": "https://github.com/ZuodaoTech/everyone-can-use-english"
+      },
+      "useCase": "Guiding self-learners through a structured 1,000-hour English proficiency learning roadmap.",
+      "advantages": [
+        "Systematic curriculum covering pronunciation, reading, and active usage",
+        "100% open-source content with interactive web portal tools",
+        "Proven self-study methodology with community study tracking"
+      ],
+      "negativeConstraints": [
+        "Not an automated software library or API service",
+        "Requires active human study rather than automated execution"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-13T13:46:10.059Z"
     }
   ]
 }
