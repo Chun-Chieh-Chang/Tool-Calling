@@ -1,5 +1,20 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-13 專案整體程式碼、檔案與文件之全流程優化與重構作業
+
+### 需求
+執行專案全量 Code cleanup、死碼與臨時檔清理、文件同構同步、物理雙重門禁提升（UTF-8 & Unique ID）與 Git 還原基準點建立。
+
+### 處理結果
+- **死碼與過時暫存檔清理**：剔除 `scripts/temp-batch-add.txt` 廢棄暫存檔與根目錄臨時圖檔；清理 `scratch/` 目錄。
+- **門禁腳本升級**：將 `check-duplicate-ids.js` 正式升格為 `scripts/check-duplicate-ids.js` 實體門禁腳本，並寫入 `package.json` 的 `npm test` 中（實現 UTF-8 + Unique ID 雙重實體測試門禁）。
+- **文件全量 100% 同步**：同步 [`README.md`](file:///d:/Self-developed_Apps/Tool-Calling/README.md) 與 [`AGENTS.md`](file:///d:/Self-developed_Apps/Tool-Calling/AGENTS.md) 的最新工具總數 (566 個)、同義詞詞彙數 (267 個) 與 71/71 單元與 Playwright 視覺測試門禁。
+- **MECE 架構鞏固**：執行 `node scripts/check-mece.js` 驗證全站 566 個工具分類 100% 窮盡且無殘留。
+
+### RCA & CAPA
+- **RCA**: 開發過程中產生的暫存檔需要 MECE 定期清理；新增的 HTML ID 檢查工具需要提升為常駐實體門禁。
+- **CAPA**: 遵循 project-refactor-cleanup Skill SOP 執行 5 大階段全流程優化。
+
 ## 2026-08-13 2D 知識圖譜全景 Auto-Fit 對焦居中與適中推斥力優化
 
 ### 需求

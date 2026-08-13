@@ -121,19 +121,21 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 
 ### 本地驗證流程 (Mandatory)
 ```bash
-# Phase 1: 單元測試
-npm test  # 目標：11/11 pass, 0 fail
+# Phase 1: 全套單元與 Playwright 視覺測試
+npm test  # 目標：71/71 pass, 0 fail (自動執行 check-utf8.js 與 check-duplicate-ids.js 門禁)
 
 # Phase 2: 工具庫驗證
-node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
+node cli.js validate  # 目標：100% 工具通過詮釋資料品質門禁 (100/100)
 
 # Phase 3: MECE 檢查
 node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (11/11)
-- [ ] 工具庫驗證通過 (566+ 工具)
+- [ ] 所有測試通過 (71/71 PASS)
+- [ ] UTF-8 編碼門禁通過 (0 個 U+FFFD 亂碼字元)
+- [ ] HTML ID 唯一性門禁通過 (0 個重複 ID)
+- [ ] 工具庫驗證通過 (566+ 工具, 100/100 分)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）

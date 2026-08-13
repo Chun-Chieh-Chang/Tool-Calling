@@ -1,10 +1,10 @@
-﻿# Tool-Calling 🔧⚡
+# Tool-Calling 🔧⚡
 
 > 一個帮你自动找工具、装工具、用工具的全自动 AI 助手、多工具协同与知识图谱系统
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **538 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **566 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -149,15 +149,17 @@ Tool-Calling/
 提交前必须通过：
 
 ```bash
-npm test                    # 11/11 测试通过
-node cli.js validate        # 0 错误
-node scripts/check-mece.js  # 无残留分类
+npm test                          # 全套單元與 Playwright 視覺測試 (100% PASS)
+node scripts/check-utf8.js        # UTF-8 編碼物理防護門禁 (0 個 U+FFFD)
+node scripts/check-duplicate-ids.js # 全站 HTML ID 唯一性門禁 (0 個重複)
+node cli.js validate              # 工具庫 100/100 詮釋資料品質門禁
+node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ```
 
 ---
 
 > Developed by Wesley Chang, July-2026.  
-> Tool-Calling v1.1 - 538 Tools, 239 Synonyms
+> Tool-Calling v1.2 - 566 Tools, 267 Synonyms
 ---
 
 ## 🌐 網頁版 UI

@@ -11,7 +11,7 @@
     "start": "node web/server.js",
     "dev": "node web/server.js --dev",
     "build": "node scripts/build-web.js",
-    "test": "node scripts/check-utf8.js && node --test tests/*.test.js",
+    "test": "node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test tests/*.test.js",
     "validate": "node cli.js validate",
     "check-mece": "node scripts/check-mece.js",
     "enrich": "node scripts/enrich-registry.js",
