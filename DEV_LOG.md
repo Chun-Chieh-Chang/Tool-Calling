@@ -1,5 +1,15 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-13 知識圖譜 HTML 頁面上方多餘裸露代碼清理
+
+### 需求
+修復知識圖譜頁面上方露出裸露 JavaScript / CSS 文字代碼之視覺顯示異常。
+
+### 處理結果
+- **RCA**: 在腳本生成 HTML 模板時，先前的取代動作在 HTML Body `<!-- 2D 平面網絡容器 -->` 後方誤留了一段未被 `<script>` / `<style>` 包覆的重覆裸代碼塊。
+- **CAPA**: 剔除 [`scripts/generate-knowledge-graph.js`](file:///d:/Self-developed_Apps/Tool-Calling/scripts/generate-knowledge-graph.js) 第 541-730 行的多餘重覆段落。
+- **確效**: `dist/knowledge-graph.html` Body 中裸露文字長度由原本毀損狀態降至純 HTML 標籤內文，Playwright 無頭測試 100% PASS。
+
 ## 2026-08-13 2D 知識圖譜分組解耦防重疊與安全的 JSON 注入架構優化
 
 ### 需求

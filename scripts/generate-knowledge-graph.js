@@ -510,48 +510,61 @@ export function generateKnowledgeGraph(registryInput = null) {
       <span>🔗 圖譜連線類型說明</span>
     </div>
     <div class="legend-grid">
-      <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:16px; height:2px; background:#60A5FA;"></span>
-        <span><b>實線</b>：主分類歸屬網絡</span>
-      </div>
-      <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #94A3B8;"></span>
-        <span><b>虛線</b>：拆解微技能/能力 (點擊亮顯)</span>
-      </div>
-    </div>
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-    <!-- 🎮 3D 操控技巧說明 -->
-    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
-      <span>🎮 3D 空間操控技巧</span>
-    </div>
-    <div style="font-size: 11px; color: #94A3B8; line-height: 1.5; padding: 4px;">
-      • <b>旋轉 (Rotate)</b>: 滑鼠左鍵拖曳<br/>
-      • <b>平移 (Pan)</b>: 右鍵 / 中鍵 / Shift+左鍵拖曳<br/>
-      • <b>對焦縮放 (Zoom)</b>: 滾輪指哪裡放大哪裡
-    </div>
-  </div>
+    .mode-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    }
 
-  <!-- 左下角：詳細抽屜面板 -->
-  <div id="detailPanel">
-    <button class="close-btn" onclick="closePanel()">×</button>
-    <div id="panelContent"></div>
-  </div>
+    .mode-btn * {
+      pointer-events: none;
+    }
 
-  <!-- 2D 平面網絡容器 -->
-    const container2d = document.getElementById('network2d');
-    const data2d = {
-      nodes: new vis.DataSet(nodesData),
-      edges: new vis.DataSet(edgesData)
-    };
+    .search-box {
+      background: rgba(30, 41, 59, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 16px;
+      color: var(--text-primary);
+      font-size: 14px;
+      outline: none;
+      width: 260px;
+      transition: all 0.3s ease;
+    }
 
-    const options2d = {
-      nodes: {
-        font: { face: 'Inter' },
-        borderWidth: 1.5,
-        shadow: true
-      },
-      edges: {
-        smooth: {
+    .search-box:focus {
+      border-color: var(--accent-brand);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+
+    #network2d, #network3d {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #network3d {
+      display: none;
+    }
+
+    /* 右側中間：分類色彩與連線圖例面板 */
+    #legendPanel {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      z-index: 15;
+      background: rgba(30, 41, 59, 0.92);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
       border-radius: 14px;
       padding: 14px 18px;
       max-height: calc(100vh - 160px);
