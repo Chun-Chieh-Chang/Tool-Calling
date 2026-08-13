@@ -452,64 +452,64 @@ export function generateKnowledgeGraph(registryInput = null) {
       transform: translateY(0);
     }
 
-    .panel-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #60A5FA;
-      margin-bottom: 8px;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
     }
 
-    .panel-tag {
-      display: inline-block;
-      padding: 3px 8px;
-      background: rgba(59, 130, 246, 0.2);
-      color: #93C5FD;
-      border-radius: 6px;
-      font-size: 11px;
-      margin-bottom: 12px;
-    }
-
-    .close-btn {
+    #header {
       position: absolute;
-      top: 12px;
-      right: 14px;
-      background: none;
-      border: none;
-      color: var(--text-secondary);
-      font-size: 18px;
-      cursor: pointer;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(30, 41, 59, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
     }
-  \n    /* 禁用 vis.js 原生 tooltip */\n    .vis-tooltip { display: none !important; }\n</style>
-</head>
-<body>
-  <div id="header">
-    <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (零 Console 警示 | 左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
-    <p style="font-size: 11px; color: #60A5FA; margin-top: 4px; font-weight: 500;">Developed by Wesley Chang, July-2026.</p>
-  </div>
 
-  <div id="controls">
-    <button id="viewToggleBtn" class="mode-btn" onclick="toggle3DMode()">
-      <span>🌌 切換至 3D 宇宙視角</span>
-    </button>
-    <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
-  </div>
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #60A5FA 0%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
 
-  <!-- 右側中間：分類色彩與連線型態圖例面板 -->
-  <div id="legendPanel">
-    <div class="legend-header">
-      <span>🎨 點擊分類圖例高亮圖譜</span>
-      <span style="font-size:11px; color:#94A3B8;">(${categories.length} 類)</span>
-    </div>
-    <div class="legend-grid">
-      ${legendItemsHtml}
-    </div>
+    p.subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
 
-    <!-- 🔗 連線型態圖例說明 -->
-    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
-      <span>🔗 圖譜連線類型說明</span>
-    </div>
-    <div class="legend-grid">
+    #controls {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .mode-btn {
+      background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+      border: none;
+      border-radius: 10px;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
@@ -774,17 +774,17 @@ export function generateKnowledgeGraph(registryInput = null) {
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -45000,
-          centralGravity: 0.008,
-          springLength: 160,
-          springConstant: 0.015,
-          damping: 0.45,
-          avoidOverlap: 1.0
+          gravitationalConstant: -18000,
+          centralGravity: 0.03,
+          springLength: 110,
+          springConstant: 0.02,
+          damping: 0.4,
+          avoidOverlap: 0.9
         },
-        maxVelocity: 50,
-        minVelocity: 0.3,
+        maxVelocity: 45,
+        minVelocity: 0.2,
         solver: 'barnesHut',
-        stabilization: { enabled: true, iterations: 400 }
+        stabilization: { enabled: true, iterations: 300 }
       },
       interaction: { hover: true, zoomView: true }
     };
@@ -868,7 +868,11 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-network2d.on('stabilizationIterationsDone', () => network2d.setOptions({ physics: { enabled: false } }));
+    network2d.once('stabilizationIterationsDone', function() {
+      network2d.setOptions({ physics: { enabled: false } });
+      network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+    });
+    setTimeout(function() { network2d.fit(); }, 300);
 
     // Helper: 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
     function getContrastTextColorJS(hexColor) {

@@ -1,5 +1,15 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-13 2D 知識圖譜全景 Auto-Fit 對焦居中與適中推斥力優化
+
+### 需求
+解決 2D 知識圖譜初次開啟時因極座標推斥力過大導致節點飛離視窗中央、呈現黑背景空域之體驗問題。
+
+### 處理結果
+- **Auto-Fit 居中對焦機制**：在 `network2d` 初始化與 `stabilizationIterationsDone` 模擬完成後，自動觸發 `network2d.fit({ animation: { duration: 600 } })` 全景平滑自適應居中對焦。
+- **物理推斥力動態調優**：將 `barnesHut` 物理推斥力調整為 `-18000`（原 `-45000`），`centralGravity: 0.03`，兼具分組邊界清晰與可視區域最佳密度。
+- **確效**：Playwright 雙視角無頭測試 PASS，全站 Unique ID 門禁與 UTF-8 Guard 100% 綠燈通過。
+
 ## 2026-08-13 知識圖譜 HTML 頁面上方多餘裸露代碼清理
 
 ### 需求
