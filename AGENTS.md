@@ -182,6 +182,8 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - [ ] **邊際效應分析**：修改 A 問題是否可能導致 B 問題？
 - [ ] **UI 權限對齊**：前端按鈕可見性需與後端權限一致
 - [ ] **型別衝突檢查**：新引入的類型名稱是否與既有衝突？
+- [ ] **UTF-8 編碼防禦**：Windows CLI 禁止直接 `>>` 重定向追加 UTF-8 Markdown，必須使用 `node -e "fs.appendFileSync(..., 'utf8')"` 或指定 `Out-File -Encoding utf8`；所有 Node.js I/O 必須顯式指定 `'utf8'`。
+
 
 ### Token 管理
 當模型 token 剩餘 < 20% 時：

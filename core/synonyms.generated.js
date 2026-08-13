@@ -1,49 +1,37 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-12T15:04:34.841Z
+ * 產生時間：2026-08-13T14:11:54.693Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
+    "ppt-master",
     "ppt",
     "powerpoint",
-    "deck",
-    "slide-deck",
-    "presentation-generator"
+    "做簡報"
+  ],
+  "ppt-master": [
+    "簡報",
+    "做簡報",
+    "ppt",
+    "powerpoint"
   ],
   "ppt": [
     "簡報",
-    "powerpoint",
-    "deck",
-    "slide-deck",
-    "presentation-generator"
+    "做簡報",
+    "ppt-master",
+    "powerpoint"
   ],
   "powerpoint": [
     "簡報",
-    "ppt",
-    "deck",
-    "slide-deck",
-    "presentation-generator"
+    "做簡報",
+    "ppt-master",
+    "ppt"
   ],
-  "deck": [
-    "簡報",
+  "做簡報": [
+    "ppt-master",
     "ppt",
     "powerpoint",
-    "slide-deck",
-    "presentation-generator"
-  ],
-  "slide-deck": [
-    "簡報",
-    "ppt",
-    "powerpoint",
-    "deck",
-    "presentation-generator"
-  ],
-  "presentation-generator": [
-    "簡報",
-    "ppt",
-    "powerpoint",
-    "deck",
-    "slide-deck"
+    "簡報"
   ],
   "架構分析": [
     "knowledge graph",

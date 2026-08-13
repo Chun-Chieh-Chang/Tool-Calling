@@ -97,7 +97,7 @@ describe('知識圖譜 2D/3D 雙視角與平移驗證', () => {
       assert.ok(btn, '應存在 3D/2D 切換按鈕');
 
       // 點擊切換 3D
-      await btn.click();
+      await btn.click({ force: true });
 
       // 等待 5 秒讓 3D 圖初始化
       await page.waitForTimeout(5000);

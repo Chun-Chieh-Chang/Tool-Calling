@@ -326,6 +326,10 @@ export function generateKnowledgeGraph(registryInput = null) {
       box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
     }
 
+    .mode-btn * {
+      pointer-events: none;
+    }
+
     .search-box {
       background: rgba(30, 41, 59, 0.88);
       backdrop-filter: blur(12px);
@@ -534,14 +538,202 @@ export function generateKnowledgeGraph(registryInput = null) {
   </div>
 
   <!-- 2D 平面網絡容器 -->
+    const container2d = document.getElementById('network2d');
+    const data2d = {
+      nodes: new vis.DataSet(nodesData),
+      edges: new vis.DataSet(edgesData)
+    };
+
+    const options2d = {
+      nodes: {
+        font: { face: 'Inter' },
+        borderWidth: 1.5,
+        shadow: true
+      },
+      edges: {
+        smooth: {
+      border-radius: 14px;
+      padding: 14px 18px;
+      max-height: calc(100vh - 160px);
+      width: 270px;
+      overflow-y: auto;
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    .legend-header {
+      font-size: 13px;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legend-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-primary);
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+      border: 1px solid transparent;
+    }
+
+    .legend-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(3px);
+    }
+
+    .legend-item.active {
+      background: rgba(59, 130, 246, 0.25);
+      border-color: rgba(96, 165, 250, 0.6);
+      color: #60A5FA;
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+    }
+
+    .legend-badge {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* 左下角：富文本詳細抽屜面板 */
+    #detailPanel {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      z-index: 20;
+      width: 360px;
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      display: none;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    #detailPanel.active {
+      display: block;
+      transform: translateY(0);
+    }
+
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #60A5FA;
+      margin-bottom: 8px;
+    }
+
+    .panel-tag {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #93C5FD;
+      border-radius: 6px;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 18px;
+      cursor: pointer;
+    }
+  
+    /* 禁用 vis.js 原生 tooltip */
+    .vis-tooltip { display: none !important; }
+</style>
+</head>
+<body>
+  <div id="header">
+    <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (零 Console 警示 | 左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
+    <p style="font-size: 11px; color: #60A5FA; margin-top: 4px; font-weight: 500;">Developed by Wesley Chang, July-2026.</p>
+  </div>
+
+  <div id="controls">
+    <button id="viewToggleBtn" class="mode-btn" onclick="toggle3DMode()">
+      <span>🌌 切換至 3D 宇宙視角</span>
+    </button>
+    <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
+  </div>
+
+  <!-- 右側中間：分類色彩與連線型態圖例面板 -->
+  <div id="legendPanel">
+    <div class="legend-header">
+      <span>🎨 點擊分類圖例高亮圖譜</span>
+      <span style="font-size:11px; color:#94A3B8;">(${categories.length} 類)</span>
+    </div>
+    <div class="legend-grid">
+      ${legendItemsHtml}
+    </div>
+
+    <!-- 🔗 連線型態圖例說明 -->
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+      <span>🔗 連線類型說明</span>
+    </div>
+    <div class="legend-grid">
+      <div class="legend-item" style="cursor:default;">
+        <span style="display:inline-block; width:16px; height:2px; background:#60A5FA;"></span>
+        <span><b>實線</b>：主分類歸屬網絡</span>
+      </div>
+      <div class="legend-item" style="cursor:default;">
+        <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #94A3B8;"></span>
+        <span><b>虛線</b>：拆解微技能/能力 (點擊亮顯)</span>
+      </div>
+    </div>
+
+    <!-- 🎮 3D 操控技巧說明 -->
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+      <span>🎮 3D 空間操控技巧</span>
+    </div>
+    <div style="font-size: 11px; color: #94A3B8; line-height: 1.5; padding: 4px;">
+      • <b>旋轉 (Rotate)</b>: 滑鼠左鍵拖曳<br/>
+      • <b>平移 (Pan)</b>: 右鍵 / 中鍵 / Shift+左鍵拖曳<br/>
+      • <b>對焦縮放 (Zoom)</b>: 滾輪指哪裡放大哪裡
+    </div>
+  </div>
+
+  <!-- 左下角：詳細抽屜面板 -->
+  <div id="detailPanel">
+    <button class="close-btn" onclick="closePanel()">×</button>
+    <div id="panelContent"></div>
+  </div>
+
+  <!-- 2D 平面網絡容器 -->
   <div id="network2d"></div>
 
   <!-- 3D 宇宙空間網絡容器 -->
   <div id="network3d"></div>
 
+  <script id="nodes-data" type="application/json">${JSON.stringify(nodes)}</script>
+  <script id="edges-data" type="application/json">${JSON.stringify(edges)}</script>
+
   <script>
-    const nodesData = ${JSON.stringify(nodes)};
-    const edgesData = ${JSON.stringify(edges)};
+    const nodesData = JSON.parse(document.getElementById('nodes-data').textContent);
+    const edgesData = JSON.parse(document.getElementById('edges-data').textContent);
 
     let is3DMode = false;
     let graph3DInstance = null;
@@ -569,17 +761,17 @@ export function generateKnowledgeGraph(registryInput = null) {
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -7000,
-          centralGravity: 0.1,
-          springLength: 80,
-          springConstant: 0.04,
-          damping: 0.4,
-          avoidOverlap: 0.8
+          gravitationalConstant: -45000,
+          centralGravity: 0.008,
+          springLength: 160,
+          springConstant: 0.015,
+          damping: 0.45,
+          avoidOverlap: 1.0
         },
-        maxVelocity: 45,
-        minVelocity: 0.2,
+        maxVelocity: 50,
+        minVelocity: 0.3,
         solver: 'barnesHut',
-        stabilization: { enabled: true, iterations: 350 }
+        stabilization: { enabled: true, iterations: 400 }
       },
       interaction: { hover: true, zoomView: true }
     };
