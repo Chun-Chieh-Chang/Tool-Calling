@@ -32,26 +32,26 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 566 個工具
+工具庫規模: 578 個工具
 追蹤 repos: 2173 個
-總 star 數: 11,545,148 ⭐
-平均 star 數: 20,398 ⭐
-最後更新: 2026/8/13
+總 star 數: 12,030,628 ⭐
+平均 star 數: 28,175 ⭐
+最後更新: 2026/8/15
 ```
 
 ### Top 5 分類
-- `AI 框架`: 146 個工具
-- `AI 代理`: 104 個工具
-- `開發工具`: 92 個工具
-- `學習資源`: 36 個工具
+- `AI 框架`: 148 個工具
+- `AI 代理`: 106 個工具
+- `開發工具`: 94 個工具
+- `學習資源`: 38 個工具
 - `UI/UX設計`: 28 個工具
 
 ### Top 5 語言
-- `python`: 200 個工具
-- `typescript`: 115 個工具
+- `python`: 205 個工具
+- `typescript`: 118 個工具
 - `javascript`: 53 個工具
-- `other`: 43 個工具
-- `rust`: 22 個工具
+- `other`: 44 個工具
+- `rust`: 24 個工具
 
 ---
 
@@ -97,9 +97,9 @@ npm run agents:init       # 生成/驗證 AGENTS.md
 node cli.js search "<需求>"           # 三層檢索工具
 node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
+node cli.js list                      # 列出所有工具 (578+)
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (566+)
 ```
 
 ### Git 工作流
@@ -135,7 +135,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - [ ] 所有測試通過 (71/71 PASS)
 - [ ] UTF-8 編碼門禁通過 (0 個 U+FFFD 亂碼字元)
 - [ ] HTML ID 唯一性門禁通過 (0 個重複 ID)
-- [ ] 工具庫驗證通過 (566+ 工具, 100/100 分)
+- [ ] 工具庫驗證通過 (578+ 工具, 100/100 分)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -247,7 +247,7 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 566+ 工具 (單一真理來源)
+│   ├── tools.json      # 578+ 工具 (單一真理來源)
 │   ├── tracked-repos.json  # 2173 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告

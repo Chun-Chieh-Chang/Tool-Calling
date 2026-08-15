@@ -1,5 +1,59 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-15 專案整體程式碼、檔案與文件之全流程優化與重構作業
+
+### 需求
+執行專案全量 Code cleanup、死碼與暫存檔清理、同義詞重新探勘挖掘、前端知識圖譜重新編譯打包、全量開發文件同構同步（README.md, AGENTS.md, package.json 等）與建立自動化驗證基準點。
+
+### 處理結果
+- **同義詞重新挖掘與建構同步**：
+  - 執行 `npm run mine-synonyms`，基於最新 578 個工具的 triggers 與 metadata 重新挖掘出 386 組候選配對與 334 個最終詞彙，寫入 `core/synonyms.generated.js`。
+  - 執行 `npm run build`，將 578 個工具與關聯節點完整編譯打包至 `dist/` 與 `docs/` 靜態知識圖譜中。
+- **全量文件同構同步 (100% 同步)**：
+  - `package.json`：同步更新 description 為 578+ 頂尖開源 AI 工具。
+  - `README.md`：同步最新工具總數 (578 個)、同義詞詞彙數 (334 個)、檔案架構說明與頁尾版本日期。
+  - `AGENTS.md` 與 `.agents/AGENTS.md`：同步 Project Stats 規模（578 工具、2173 追蹤 repos、12,030,628 總 stars、平均 28,175 stars、Top 5 分類與語言分佈）。
+- **MECE 架構鞏固與死碼清理**：
+  - 執行 `node scripts/check-mece.js`，確認全站 578 個工具分類 100% 相互獨立且完全窮盡（0 個「其他」殘留分類）。
+  - 清理所有探針暫存檔 (`scripts/scratch-*.mjs`)，確保專案目錄乾淨無贅餘。
+- **全綠測試門禁**：
+  - `node scripts/check-utf8.js`：0 個亂碼字元，UTF-8 物理防護門禁通過。
+  - `node scripts/check-duplicate-ids.js`：全站 HTML ID 100% 唯一無重複。
+  - `node cli.js validate`：0 個錯誤、平均品質分數 100/100 (Grade A)。
+  - `npm test`：71/71 tests PASS, 0 fail。
+
+### RCA & CAPA
+- **RCA**: 每次批次新增工具後，同義詞詞庫、前端靜態打包資源與各文件中的統計數據容易產生局部的版本延遲。
+- **CAPA**: 依循 `project-refactor-cleanup` SOP 定期執行 5 大階段全流程優化，透過自動化腳本 (`mine-synonyms`, `build-web`, `check-mece`, `npm test`) 強制確保程式碼、數據與文檔的三位一體 100% 同構。
+
+## 2026-08-15 工具庫第五輪批次新增、拆解與詮釋資料優化 (cc-switch 重構升級 / dsh-desktop 雙版本 / kilocode 平台與子模組拆解)
+
+### 需求
+批次新增/處理 4 個 GitHub 網址：檢查是否需要拆解（Monorepo / subTools）；若遇到與既有工具重複時重新解析，比較後以優化之新條目取代舊條目；依據 tool-enrichment 規範補齊完整詮釋資料。
+
+### 處理結果
+- **重複性解析與優化取代**：
+  - `cc-switch` (https://github.com/farion1231/cc-switch)：既有條目星數過舊 (7,243 ⭐，現已成長至 127,345 ⭐)，功能描述原僅限 Claude Code 與 Gemini CLI。新版重新解析升級為多模型 Provider Desktop Hub，全面支援 Claude Code, Codex, OpenCode, OpenClaw, Grok Build, Hermes Agent、視覺化 Skills Management 與 WSL 支援，**全量以優化後新 metadata 取代舊條目**。
+- **同名不同倉庫解析與雙版本獨立入庫**：
+  - `dsh-desktop` (DataElement, https://github.com/dataelement/dsh-desktop, 214 ⭐)：主打支援多第三方模型 Provider (Ollama, SiliconFlow, OpenAI 等) 與本機 DeepSeek Harness。
+  - `dsh-desktop-bruc3van` (Bruc3van, https://github.com/bruc3van/dsh-desktop, 24 ⭐)：主打內建固定版本 `@deepseek-ai/dsh` 運行時，免裝 Node.js/pnpm，支援系統托盤常駐與運行緒守護。
+  - 兩者各有技術定位與優勢，分別以獨立 ID 註冊入庫。
+- **Monorepo 拆解與子工具整合**：
+  - `kilocode` (Kilo-Org/kilocode, 26,878 ⭐)：作為頂層全能開源 Agentic Engineering 平台入庫，並拆解整合 5 個核心子工具 (`subTools`)：
+    1. `Kilo VSCode Extension` (`packages/kilo-vscode`) — 程式碼生成、重構與自定義模式外掛。
+    2. `Kilo CLI` (`packages/opencode`) — 終端指令列 Coding Agent。
+    3. `Kilo Project Memory` (`packages/kilo-memory`) — 專案持久記憶、向量索引與上下文召回。
+    4. `Kilo Sandbox Profiles` (`packages/kilo-sandbox`) — 跨平台沙盒環境與隔離配置。
+    5. `Kilo JetBrains Plugin` (`packages/kilo-jetbrains`) — JetBrains 系列 IDE 整合套件。
+- **工具庫總數**：575 → 578（淨增 3 個工具，含 5 個子工具拆解）。
+- **全綠驗證**：
+  - `node cli.js validate`：0 個錯誤、平均品質分數 100/100。
+  - `npm test`：71/71 tests PASS, 0 fail (含 UTF-8 Guard 與 Unique ID 門禁)。
+
+### RCA & CAPA
+- **RCA**: 開源社群中同名專案（如 dsh-desktop）可能由不同組織或個人從不同切入點（多 Provider 封裝 vs 內建 Runtime 免配置）各自維護；且頂級 Coding Agent (如 kilocode) 常以大型 Monorepo 組織多端套件。
+- **CAPA**: 對同名專案採取細分 ID 與精確名稱區分（如標註組織名/作者），兼收並蓄；對大型 Monorepo 採取「主條目全平台覆蓋 + subTools 精準索引核心套件」雙軌架構，確保檢索精準度與架構 MECE。
+
 ## 2026-08-15 工具庫第四輪批次新增與詮釋資料補齊 (watermarks-remover / awesome-deepseek-agent / Janus / deepseek-harness 更新)
 
 ### 需求

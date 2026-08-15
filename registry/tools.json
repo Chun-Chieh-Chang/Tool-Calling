@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-15T08:00:45.622Z",
+  "lastUpdated": "2026-08-15T10:29:51.072Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -6328,22 +6328,22 @@
     },
     {
       "id": "cc-switch",
-      "name": "Cc Switch",
+      "name": "CC Switch",
       "url": "https://github.com/farion1231/cc-switch",
-      "description": "Cross-platform desktop hub for managing multiple AI coding assistants like Claude Code, Gemini CLI, and more.",
+      "description": "Cross-platform desktop hub & provider manager for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent with visual skills management and WSL support.",
       "category": "AI 框架",
       "language": "rust",
       "triggers": [
         "cc-switch",
-        "desktop-app",
-        "rust",
-        "open-source",
-        "typescript",
-        "skills",
-        "mcp",
-        "ai-coding",
         "claude-code",
-        "gemini-cli"
+        "codex",
+        "opencode",
+        "openclaw",
+        "grokbuild",
+        "hermes-agent",
+        "skills-management",
+        "desktop-hub",
+        "wsl-support"
       ],
       "install": {
         "method": "cargo",
@@ -6351,26 +6351,28 @@
         "repoUrl": "https://github.com/farion1231/cc-switch"
       },
       "capabilities": [
-        "desktop-app",
-        "rust",
-        "open-source",
-        "typescript",
-        "skills"
+        "claude-code",
+        "codex",
+        "opencode",
+        "openclaw",
+        "skills-management",
+        "wsl-support",
+        "mcp-support"
       ],
       "addedAt": "2026-07-19T09:25:53.713Z",
       "status": "active",
-      "useCase": "Switch between different AI coding agents from a single desktop interface without losing context or configuration.",
+      "useCase": "適用於在單一跨平台桌面介面中統一管理、切換多個 AI 程式設計助理（如 Claude Code, Codex, OpenCode, OpenClaw, Grok Build, Hermes Agent）及擴充技能與環境配置的場景。",
       "advantages": [
-        "Unified desktop UI for managing multiple AI CLI tools",
-        "Built with Rust and TypeScript for performance and reliability",
-        "Open-source with extensible skill-based architecture"
+        "統一管理 6+ 種主流 AI Coding Agent 與 CLI 工具，避免重複設定與環境衝突",
+        "採用 Rust + Tauri 與 TypeScript 打造，效能輕量且原生支援 WSL 環境",
+        "內建視覺化 Skills 管理與 MCP 整合能力，支援一鍵切換模型 Provider"
       ],
       "negativeConstraints": [
-        "Not suitable for server-side or headless CI/CD workflows",
-        "Avoid for users who only need a single specific AI agent",
-        "Not designed for mobile or web-based usage"
+        "不適用於無圖形介面的純伺服器端或 Headless CI/CD 自動化流程",
+        "若僅使用單一特定 AI 工具且不需要多 Provider 切換則效益較低",
+        "不適用於行動端或純瀏覽器 Web 環境"
       ],
-      "stars": 7243
+      "stars": 127345
     },
     {
       "id": "codexplusplus",
@@ -36480,6 +36482,166 @@
         "模型授權為 DeepSeek Model License（非純 MIT），商用需確認授權條款"
       ],
       "stars": 17753
+    },
+    {
+      "id": "dsh-desktop",
+      "name": "DSH Desktop (DataElement)",
+      "url": "https://github.com/dataelement/dsh-desktop",
+      "description": "Local-first, cross-platform desktop shell for DeepSeek Harness supporting official DeepSeek instances and third-party model providers.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "dsh-desktop",
+        "deepseek-harness",
+        "deepseek-desktop",
+        "dsh",
+        "local-first",
+        "ai-agents",
+        "electron",
+        "model-providers"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx @dataelement/dsh-desktop",
+        "repoUrl": "https://github.com/dataelement/dsh-desktop"
+      },
+      "capabilities": [
+        "deepseek-harness",
+        "desktop-shell",
+        "multi-provider-support",
+        "local-first",
+        "ai-agent-client"
+      ],
+      "addedAt": "2026-08-15T10:29:51.060Z",
+      "status": "active",
+      "useCase": "適用於將 DeepSeek Harness 封裝為本機獨立桌面應用，並連接 DeepSeek 官方模型或主流第三方模型 Provider 進行 AI Agent 任務執行的場景。",
+      "advantages": [
+        "提供專注的獨立本機桌面應用環境，擺脫瀏覽器分頁干擾",
+        "支援官方 DeepSeek 實例及多種第三方主流 Model Provider 配置",
+        "跨平台支援 macOS (Apple Silicon / Intel) 與 Windows"
+      ],
+      "negativeConstraints": [
+        "不適用於不需要 DeepSeek Harness 運行時的通用文字對話場景",
+        "不適用於行動端環境或純終端 CLI 工作流",
+        "依賴本機或遠端 Harness 服務的連線狀態"
+      ],
+      "stars": 214
+    },
+    {
+      "id": "dsh-desktop-bruc3van",
+      "name": "DeepSeek Harness Desktop (Bruc3van)",
+      "url": "https://github.com/bruc3van/dsh-desktop",
+      "description": "Third-party Electron desktop client for DeepSeek Harness with embedded dsh runtime, smart connection, system tray, and auto-recovery.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "dsh-desktop-embedded",
+        "deepseek-harness-desktop",
+        "dsh-runtime",
+        "system-tray",
+        "electron-client",
+        "zero-config-dsh"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/bruc3van/dsh-desktop.git",
+        "repoUrl": "https://github.com/bruc3van/dsh-desktop"
+      },
+      "capabilities": [
+        "embedded-dsh-runtime",
+        "system-tray",
+        "smart-connection",
+        "runtime-guardian",
+        "auto-recovery"
+      ],
+      "addedAt": "2026-08-15T10:29:51.061Z",
+      "status": "active",
+      "useCase": "適用於免安裝 Node.js 或 pnpm，開箱即用原汁原味 DeepSeek Harness 官方 Web UI 並享有系統托盤常駐與執行緒守護的桌面工作場景。",
+      "advantages": [
+        "內建固定版本官方 @deepseek-ai/dsh 運行時，雙擊即可直接運行",
+        "具備系統托盤常駐、智慧重連、運行時監護與異常自動恢復機制",
+        "完全呈現官方原生 Web UI，保持官方最新功能與體驗一致性"
+      ],
+      "negativeConstraints": [
+        "非 DeepSeek 官方出品，遇到運行時核心 Bug 需回報官方而非客戶端倉庫",
+        "不適用於需自定義大幅修改 Web UI 前端介面的情境",
+        "不適用於純無頭伺服器（Headless Server）部署"
+      ],
+      "stars": 24
+    },
+    {
+      "id": "kilocode",
+      "name": "Kilo Code",
+      "url": "https://github.com/kilo-org/kilocode",
+      "description": "All-in-one open source agentic engineering platform and AI coding agent supporting VS Code, JetBrains, CLI, 500+ models, terminal automation, and memory indexing.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "kilocode",
+        "kilo-code",
+        "coding-agent",
+        "agentic-engineering",
+        "vscode-extension",
+        "jetbrains",
+        "cli-agent",
+        "code-automation",
+        "project-memory"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx @kilocode/cli",
+        "repoUrl": "https://github.com/kilo-org/kilocode"
+      },
+      "capabilities": [
+        "ai-coding-agent",
+        "terminal-automation",
+        "browser-automation",
+        "project-memory",
+        "multi-model-support",
+        "vscode-extension",
+        "cli"
+      ],
+      "addedAt": "2026-08-15T10:29:51.061Z",
+      "status": "active",
+      "useCase": "適用於在 VS Code、JetBrains 或終端 CLI 中使用開源 AI 代理自動編寫程式碼、重構、執行終端指令、專案記憶索引與瀏覽器自動化的全方位開發場景。",
+      "advantages": [
+        "全功能開源 Agentic 平台，支援 500+ 種 AI 模型（Claude, Gemini, Grok, GPT, GLM 等）",
+        "涵蓋 VS Code 外掛、CLI、沙盒執行、專案記憶（Memory Indexing）與 JetBrains 支援",
+        "內建 Plan、Code、Debug 多種工作模式，支援自然語言驅動終端與瀏覽器自動化"
+      ],
+      "negativeConstraints": [
+        "不適用於完全無 AI 模型 API Key 或離線無可用 LLM 的純靜態環境",
+        "避免在未配置沙盒防護的情況下直接給予生產伺服器最高執行權限",
+        "不適合僅需簡單語法高亮的純輕量文字編輯器"
+      ],
+      "subTools": [
+        {
+          "name": "Kilo VSCode Extension",
+          "description": "Open Source AI coding agent for VS Code with inline autocomplete, terminal automation, automated refactoring, and custom modes for planning, coding, and debugging.",
+          "subpath": "packages/kilo-vscode"
+        },
+        {
+          "name": "Kilo CLI",
+          "description": "Command line coding agent for autonomous task execution and terminal automation.",
+          "subpath": "packages/opencode"
+        },
+        {
+          "name": "Kilo Project Memory",
+          "description": "Project memory storage, indexing, recall, and contextual command helpers for Kilo Code.",
+          "subpath": "packages/kilo-memory"
+        },
+        {
+          "name": "Kilo Sandbox Profiles",
+          "description": "OS-neutral sandbox profiles and launch preparation for secure agent execution.",
+          "subpath": "packages/kilo-sandbox"
+        },
+        {
+          "name": "Kilo JetBrains Plugin",
+          "description": "JetBrains IDE integration and editor hooks for Kilo Code agent workflows.",
+          "subpath": "packages/kilo-jetbrains"
+        }
+      ],
+      "stars": 26878
     }
   ]
 }

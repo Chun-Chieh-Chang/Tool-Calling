@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-13T14:44:04.001Z
+ * 產生時間：2026-08-15T10:33:55.909Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -265,22 +265,32 @@ export const SYNONYM_MAP = {
     "圖片"
   ],
   "型別體操": [
+    "typescript",
+    "type gymnastics",
+    "advanced types",
+    "ts skills"
+  ],
+  "typescript": [
+    "型別體操",
     "type gymnastics",
     "advanced types",
     "ts skills"
   ],
   "type gymnastics": [
     "型別體操",
+    "typescript",
     "advanced types",
     "ts skills"
   ],
   "advanced types": [
     "型別體操",
+    "typescript",
     "type gymnastics",
     "ts skills"
   ],
   "ts skills": [
     "型別體操",
+    "typescript",
     "type gymnastics",
     "advanced types"
   ],
@@ -1084,10 +1094,12 @@ export const SYNONYM_MAP = {
     "mermaid syntax",
     "mermaid-syntax-skill",
     "sequence diagram",
-    "er diagram"
+    "er diagram",
+    "圖表設計"
   ],
   "mermaid": [
     "流程圖",
+    "圖表設計",
     "diagram",
     "flowchart",
     "mermaid syntax",
@@ -1097,6 +1109,7 @@ export const SYNONYM_MAP = {
   ],
   "diagram": [
     "流程圖",
+    "圖表設計",
     "mermaid",
     "flowchart",
     "mermaid syntax",
@@ -1106,6 +1119,7 @@ export const SYNONYM_MAP = {
   ],
   "flowchart": [
     "流程圖",
+    "圖表設計",
     "mermaid",
     "diagram",
     "mermaid syntax",
@@ -1120,7 +1134,8 @@ export const SYNONYM_MAP = {
     "flowchart",
     "mermaid-syntax-skill",
     "sequence diagram",
-    "er diagram"
+    "er diagram",
+    "圖表設計"
   ],
   "mermaid-syntax-skill": [
     "流程圖",
@@ -1129,7 +1144,8 @@ export const SYNONYM_MAP = {
     "flowchart",
     "mermaid syntax",
     "sequence diagram",
-    "er diagram"
+    "er diagram",
+    "圖表設計"
   ],
   "sequence diagram": [
     "流程圖",
@@ -1138,7 +1154,8 @@ export const SYNONYM_MAP = {
     "flowchart",
     "mermaid syntax",
     "mermaid-syntax-skill",
-    "er diagram"
+    "er diagram",
+    "圖表設計"
   ],
   "er diagram": [
     "流程圖",
@@ -1147,7 +1164,8 @@ export const SYNONYM_MAP = {
     "flowchart",
     "mermaid syntax",
     "mermaid-syntax-skill",
-    "sequence diagram"
+    "sequence diagram",
+    "圖表設計"
   ],
   "agent工程师": [
     "ai-engineering-from-scratch-zh",
@@ -1279,6 +1297,103 @@ export const SYNONYM_MAP = {
     "ai video",
     "video ai"
   ],
+  "pdf 分類": [
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf",
+    "ocr routing",
+    "pdf classification"
+  ],
+  "pdf-inspector": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf",
+    "ocr routing"
+  ],
+  "pdf2md": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf-inspector",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf",
+    "ocr routing"
+  ],
+  "detect-pdf": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf-inspector",
+    "pdf2md",
+    "pdf extraction",
+    "scanned pdf",
+    "ocr routing"
+  ],
+  "pdf extraction": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "scanned pdf",
+    "ocr routing"
+  ],
+  "scanned pdf": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "ocr routing"
+  ],
+  "ocr routing": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf"
+  ],
+  "pdf classification": [
+    "pdf 分類",
+    "pdf 解析",
+    "pdf 轉 markdown",
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf"
+  ],
+  "pdf 解析": [
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf",
+    "ocr routing",
+    "pdf classification"
+  ],
+  "pdf 轉 markdown": [
+    "pdf-inspector",
+    "pdf2md",
+    "detect-pdf",
+    "pdf extraction",
+    "scanned pdf",
+    "ocr routing",
+    "pdf classification"
+  ],
   "群體智慧": [
     "buzz",
     "block-buzz",
@@ -1341,6 +1456,43 @@ export const SYNONYM_MAP = {
     "communication",
     "p2p-messaging",
     "群體智慧"
+  ],
+  "圖表設計": [
+    "diagram-design",
+    "diagram",
+    "claude-diagram",
+    "svg-diagram",
+    "editorial-diagram",
+    "chart-design",
+    "mermaid",
+    "drawio"
+  ],
+  "diagram-design": [
+    "圖表設計"
+  ],
+  "claude-diagram": [
+    "圖表設計"
+  ],
+  "svg-diagram": [
+    "圖表設計"
+  ],
+  "editorial-diagram": [
+    "圖表設計"
+  ],
+  "chart-design": [
+    "圖表設計"
+  ],
+  "drawio": [
+    "圖表設計"
+  ],
+  "import-mermaid": [
+    "圖表設計"
+  ],
+  "import-drawio": [
+    "圖表設計"
+  ],
+  "architecture diagram": [
+    "圖表設計"
   ],
   "阿里通義": [
     "qwen-mm-plugins",
@@ -1572,6 +1724,338 @@ export const SYNONYM_MAP = {
     "antirez",
     "redis",
     "c"
+  ],
+  "sdk 版本管理": [
+    "sdkmate",
+    "sdkm",
+    "sdk manager",
+    "version manager",
+    "nvm",
+    "pyenv",
+    "sdkman",
+    "environment"
+  ],
+  "sdkmate": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkm",
+    "sdk manager"
+  ],
+  "sdkm": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdk manager"
+  ],
+  "sdk manager": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdkm"
+  ],
+  "version manager": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdkm"
+  ],
+  "nvm": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdkm"
+  ],
+  "pyenv": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdkm"
+  ],
+  "sdkman": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdkm"
+  ],
+  "environment": [
+    "sdk 版本管理",
+    "版本切換",
+    "安裝 java",
+    "切換 node",
+    "java 版本",
+    "node 版本",
+    "sdkmate",
+    "sdkm"
+  ],
+  "版本切換": [
+    "sdkmate",
+    "sdkm",
+    "sdk manager",
+    "version manager",
+    "nvm",
+    "pyenv",
+    "sdkman",
+    "environment"
+  ],
+  "安裝 java": [
+    "sdkmate",
+    "sdkm",
+    "sdk manager",
+    "version manager",
+    "nvm",
+    "pyenv",
+    "sdkman",
+    "environment"
+  ],
+  "切換 node": [
+    "sdkmate",
+    "sdkm",
+    "sdk manager",
+    "version manager",
+    "nvm",
+    "pyenv",
+    "sdkman",
+    "environment"
+  ],
+  "java 版本": [
+    "sdkmate",
+    "sdkm",
+    "sdk manager",
+    "version manager",
+    "nvm",
+    "pyenv",
+    "sdkman",
+    "environment"
+  ],
+  "node 版本": [
+    "sdkmate",
+    "sdkm",
+    "sdk manager",
+    "version manager",
+    "nvm",
+    "pyenv",
+    "sdkman",
+    "environment"
+  ],
+  "ai agent 框架": [
+    "deepseek-harness",
+    "dsh",
+    "harness",
+    "agent harness",
+    "cordis",
+    "dsh-plugin",
+    "agent 執行環境"
+  ],
+  "deepseek-harness": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "dsh",
+    "harness",
+    "agent harness",
+    "cordis",
+    "dsh-plugin"
+  ],
+  "dsh": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "deepseek-harness",
+    "harness",
+    "agent harness",
+    "cordis",
+    "dsh-plugin"
+  ],
+  "harness": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "deepseek-harness",
+    "dsh",
+    "agent harness",
+    "cordis",
+    "dsh-plugin"
+  ],
+  "agent harness": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "deepseek-harness",
+    "dsh",
+    "harness",
+    "cordis",
+    "dsh-plugin"
+  ],
+  "cordis": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "deepseek-harness",
+    "dsh",
+    "harness",
+    "agent harness",
+    "dsh-plugin"
+  ],
+  "dsh-plugin": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "deepseek-harness",
+    "dsh",
+    "harness",
+    "agent harness",
+    "cordis"
+  ],
+  "agent 執行環境": [
+    "deepseek-harness",
+    "dsh",
+    "harness",
+    "agent harness",
+    "cordis",
+    "dsh-plugin",
+    "ai agent 框架"
+  ],
+  "程式碼文件": [
+    "codewiki",
+    "code documentation",
+    "repository documentation",
+    "codebase documentation",
+    "deepwiki",
+    "documentation generator",
+    "code-understanding",
+    "mermaid-diagrams"
+  ],
+  "codewiki": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "code documentation": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "repository documentation": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "codebase documentation": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "deepwiki": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "documentation generator": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "code-understanding": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "mermaid-diagrams": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "agent-docs": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "auto-doc-generator": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "openwiki": [
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "自動文件生成": [
+    "codewiki",
+    "code documentation",
+    "repository documentation",
+    "codebase documentation",
+    "deepwiki",
+    "documentation generator",
+    "code-understanding",
+    "mermaid-diagrams"
+  ],
+  "教材": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "chinatextbook": [
+    "教材",
+    "教科書",
+    "小學課本",
+    "初中課本",
+    "高中課本",
+    "大學教材",
+    "課本 pdf",
+    "義務教育"
+  ],
+  "textbook": [
+    "教材",
+    "教科書",
+    "小學課本",
+    "初中課本",
+    "高中課本",
+    "大學教材",
+    "課本 pdf",
+    "義務教育"
+  ],
+  "教科書": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "小學課本": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "初中課本": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "高中課本": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "大學教材": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "課本 pdf": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "義務教育": [
+    "chinatextbook",
+    "textbook"
+  ],
+  "人教版": [
+    "chinatextbook",
+    "textbook"
   ],
   "翻譯": [
     "translate",

@@ -4,7 +4,7 @@
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **566 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **578 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -118,7 +118,7 @@ node cli.js interview "网页爬虫"
 Tool-Calling/
 ├── core/               # 核心模组
 │   ├── search-engine.js     # 三层检索引擎 (L1-L3)
-│   ├── synonyms.generated.js # 同义词词典 (239词汇)
+│   ├── synonyms.generated.js # 同义词词典 (334词汇)
 │   ├── telemetry.js         # 使用统计
 │   └── ...
 ├── web/                # 前端应用
@@ -134,7 +134,7 @@ Tool-Calling/
 │   ├── build-web.js        # 构建 dist (同步字型)
 │   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
-│   └── tools.json        # 538 工具 (单一真理来源)
+│   └── tools.json        # 578 工具 (单一真理来源)
 ├── docs/               # 文档
 │   ├── OPTIMIZATION-REPORT.md  # 优化报告
 │   └── PROJECT-OPTIMIZATION-SUMMARY.md # 总览
@@ -158,8 +158,8 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 
 ---
 
-> Developed by Wesley Chang, July-2026.  
-> Tool-Calling v1.2 - 566 Tools, 267 Synonyms
+> Developed by Wesley Chang, August-2026.  
+> Tool-Calling v1.2 - 578 Tools, 334 Synonyms
 ---
 
 ## 🌐 網頁版 UI
