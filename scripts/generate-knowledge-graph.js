@@ -5,52 +5,52 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 預設 20 大領域高級主題色對照 (Master Palette)
+// 16 世紀文藝復興古典礦物與植物色階 (Renaissance Classical Mineral & Botanical Palette)
 const baseCategoryColors = {
-  "文件生產力": "#2563EB",
-  "資料庫": "#059669",
-  "安全性": "#7C3AED",
-  "影片": "#EF4444",
-  "AI 框架": "#EC4899",
-  "學習資源": "#D97706",
-  "測試與自動化": "#4F46E5",
-  "API 整合": "#0D9488",
-  "AI 代理": "#475569",
-  "開發工具": "#0891B2",
-  "UI/UX設計": "#9333EA",
-  "多媒體生成": "#EA580C",
-  "知識管理": "#0284C7",
-  "音訊": "#65A30D",
-  "瀏覽器自動化": "#C026D3",
-  "研究": "#DC2626",
-  "基礎設施": "#7C3AED",
-  "行銷": "#0284C7",
-  "數據分析": "#059669",
-  "3D工程繪圖": "#D97706",
-  "圖標與視覺資源": "#2563EB"
-};;
+  "AI 框架": "#B45309",        // 古典黃銅金 (Antique Brass)
+  "AI 代理": "#A16207",        // 琥珀赭黃 (Raw Sienna)
+  "開發工具": "#92400E",      // 溫潤古銅 (Warm Copper)
+  "UI/UX設計": "#581C87",     // 文藝復興皇家紫晶 (Tyrian Purple)
+  "多媒體生成": "#991B1B",    // 封蠟赭紅 (Wax Seal Crimson)
+  "影片": "#B91C1C",          // 硃砂深紅 (Cinnabar Red)
+  "音訊": "#3F6212",          // 古木橄欖綠 (Olive Atelier)
+  "瀏覽器自動化": "#1E3A8A",  // 深邃群青 (Lapis Lazuli)
+  "安全性": "#78350F",        // 深褐焦赭 (Burnt Umber)
+  "測試與自動化": "#1D4ED8",  // 大航海深海藍 (Ocean Indigo)
+  "API 整合": "#0F766E",      // 松石青綠 (Verdigris Teal)
+  "學習資源": "#CA8A04",      // 古羊皮金 (Ochre Gold)
+  "文件生產力": "#15803D",    // 草本墨綠 (Herbal Sage)
+  "資料庫": "#065F46",        // 孔雀石綠 (Malachite Green)
+  "知識管理": "#0369A1",      // 古典天青 (Cerulean Azure)
+  "研究": "#831843",          // 古籍精裝絳紫 (Deep Claret)
+  "基礎設施": "#44403C",      // 鐵膽墨岩黑 (Iron Gall Slate)
+  "行銷": "#C2410C",          // 文藝復興陶土橙 (Terracotta)
+  "數據分析": "#047857",      // 翡翠秘藥綠 (Emerald Green)
+  "3D工程繪圖": "#D97706",    // 星盤黃銅金 (Astrolabe Gold)
+  "圖標與視覺資源": "#6D28D9" // 威尼斯紫羅蘭 (Venetian Violet)
+};
 
 // 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
 function getContrastTextColor(hexColor) {
-  if (!hexColor) return "#FFFFFF";
+  if (!hexColor) return "#F5EFEB";
   const hex = hexColor.replace('#', '');
-  if (hex.length !== 6) return "#FFFFFF";
+  if (hex.length !== 6) return "#F5EFEB";
   const r = parseInt(hex.substring(0, 2), 16);
   const g = parseInt(hex.substring(2, 4), 16);
   const b = parseInt(hex.substring(4, 6), 16);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
+  return luminance > 0.55 ? "#1C1917" : "#F5EFEB";
 }
 
-// 若遇動態新增之未知分類，自動透過 HSL 演算法生成和諧高對比色
+// 若遇動態新增之未知分類，自動透過古典色相演算法生成
 function getCategoryColor(catName, index) {
   if (baseCategoryColors[catName]) return baseCategoryColors[catName];
-  const hue = (index * 137.5) % 360;
-  return `hsl(${Math.floor(hue)}, 65%, 45%)`;
+  const hue = (index * 137.5 + 35) % 360;
+  return `hsl(${Math.floor(hue)}, 55%, 38%)`;
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (SpriteText 3D 懸浮標籤 1:1 色彩對齊)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (16th-Century Renaissance Theme)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -62,7 +62,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   const nodes = [];
   const edges = [];
 
-  // 1. Root Node
+  // 1. Root Node (文藝復興黃銅金核心星盤)
   nodes.push({
     id: "root",
     label: `Tool-Calling\n(${registry.tools.length} AI Tools)`,
@@ -71,13 +71,13 @@ export function generateKnowledgeGraph(registryInput = null) {
     totalTools: registry.tools.length,
     shape: "ellipse",
     color: {
-      background: "#4F46E5",
-      border: "#6366F1",
-      highlight: { background: "#6366F1", border: "#FFFFFF" },
-      hover: { background: "#6366F1", border: "#FFFFFF" }
+      background: "#92400E",
+      border: "#F59E0B",
+      highlight: { background: "#B45309", border: "#FDE68A" },
+      hover: { background: "#B45309", border: "#FDE68A" }
     },
-    colorHex: "#6366F1",
-    font: { color: "#FFFFFF", size: 22, face: "Inter", bold: true },
+    colorHex: "#B45309",
+    font: { color: "#F5EFEB", size: 22, face: "Cinzel, serif", bold: true },
     val: 40
   });
 
@@ -111,19 +111,19 @@ export function generateKnowledgeGraph(registryInput = null) {
       margin: 14,
       color: {
         background: colorHex,
-        border: colorHex,
-        highlight: { background: colorHex, border: "#FFFFFF" },
-        hover: { background: colorHex, border: "#93C5FD" }
+        border: "#B45309",
+        highlight: { background: colorHex, border: "#FDE68A" },
+        hover: { background: colorHex, border: "#F59E0B" }
       },
       colorHex: colorHex,
       textColor: textColor,
       font: {
         color: textColor,
         size: 16,
-        face: "Inter",
+        face: "Cinzel, serif",
         bold: true,
-        strokeWidth: textColor === '#FFFFFF' ? 2 : 0,
-        strokeColor: '#0F172A'
+        strokeWidth: textColor === '#F5EFEB' ? 2 : 0,
+        strokeColor: '#12100E'
       },
       val: 24
     });
@@ -133,9 +133,9 @@ export function generateKnowledgeGraph(registryInput = null) {
       to: catId,
       source: "root",
       target: catId,
-      color: { color: "#334155", highlight: "#60A5FA" },
-      colorHex: "#334155",
-      width: 3,
+      color: { color: "#78350F", highlight: "#F59E0B" },
+      colorHex: "#78350F",
+      width: 2.5,
       isDashed: false
     });
 
@@ -164,12 +164,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         size: 10,
         color: {
           background: colorHex,
-          border: "#0F172A",
-          highlight: { background: "#FFFFFF", border: colorHex },
-          hover: { background: "#FFFFFF", border: colorHex }
+          border: "#12100E",
+          highlight: { background: "#F5EFEB", border: colorHex },
+          hover: { background: "#F5EFEB", border: colorHex }
         },
         colorHex: colorHex,
-        font: { color: "#F8FAFC", size: 12, face: "Inter", strokeWidth: 3, strokeColor: "#0F172A" },
+        font: { color: "#F5EFEB", size: 13, face: "EB Garamond, Georgia, serif", strokeWidth: 3, strokeColor: "#12100E" },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
         val: 10
       });
@@ -179,10 +179,10 @@ export function generateKnowledgeGraph(registryInput = null) {
         to: toolNodeId,
         source: catId,
         target: toolNodeId,
-        color: { color: colorHex, highlight: "#FFFFFF", opacity: 0.6 },
+        color: { color: colorHex, highlight: "#FDE68A", opacity: 0.5 },
         colorHex: colorHex,
         width: 1.5,
-        length: 90,
+        length: 95,
         isDashed: false
       });
 
@@ -200,12 +200,12 @@ export function generateKnowledgeGraph(registryInput = null) {
             shape: "diamond",
             size: 6,
             color: {
-              background: "#1E293B",
+              background: "#1A1713",
               border: colorHex,
-              highlight: { background: colorHex, border: "#FFFFFF" }
+              highlight: { background: colorHex, border: "#F5EFEB" }
             },
             colorHex: colorHex,
-            font: { color: "#CBD5E1", size: 11, face: "Inter", strokeWidth: 2, strokeColor: "#0F172A" },
+            font: { color: "#D6C7B2", size: 11, face: "EB Garamond, Georgia, serif", strokeWidth: 2, strokeColor: "#12100E" },
             val: 6
           });
 
@@ -214,10 +214,10 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: colorHex, highlight: "#FFFFFF", opacity: 0.4 },
+            color: { color: colorHex, highlight: "#FDE68A", opacity: 0.35 },
             colorHex: colorHex,
             width: 1,
-            length: 40,
+            length: 45,
             dashes: true,
             isDashed: true
           });
@@ -242,22 +242,27 @@ export function generateKnowledgeGraph(registryInput = null) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph@1.73.1/dist/3d-force-graph.min.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-base: #12100E;
       --surface-card: #1A1713;
+      --surface-inset: #110F0D;
       --text-primary: #F5EFEB;
       --text-secondary: #A8A29E;
+      --text-muted: #78716C;
       --accent-brand: #D97706;
+      --brand-gradient: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
       --border-color: #362E25;
       --border-gold: #B45309;
+      --success-color: #34D399;
+      --warning-color: #F87171;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -276,8 +281,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       top: 20px;
       left: 20px;
       z-index: 10;
-      background: rgba(26, 23, 19, 0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(26, 23, 19, 0.94);
+      backdrop-filter: blur(16px);
       border: 1px solid var(--border-gold);
       border-radius: 8px;
       padding: 16px 24px;
@@ -289,7 +294,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.03em;
-      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      background: var(--brand-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 6px;
@@ -313,7 +318,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .mode-btn {
-      background: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
+      background: var(--brand-gradient);
       border: 1px solid #78350F;
       border-radius: 6px;
       color: #FFFFFF;
@@ -341,7 +346,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .search-box {
-      background: rgba(26, 23, 19, 0.92);
+      background: rgba(26, 23, 19, 0.94);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border-gold);
       border-radius: 6px;
@@ -365,6 +370,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       position: absolute;
       top: 0;
       left: 0;
+      background-color: var(--bg-base);
     }
 
     #network3d {
@@ -411,10 +417,10 @@ export function generateKnowledgeGraph(registryInput = null) {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-primary);
       padding: 5px 8px;
-      border-radius: 6px;
+      border-radius: 4px;
       cursor: pointer;
       transition: all 0.2s ease;
       user-select: none;
@@ -422,22 +428,23 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .legend-item:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(180, 83, 9, 0.15);
+      border-color: var(--border-color);
       transform: translateX(3px);
     }
 
     .legend-item.active {
-      background: rgba(59, 130, 246, 0.25);
-      border-color: rgba(96, 165, 250, 0.6);
-      color: #60A5FA;
-      font-weight: 600;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+      background: rgba(180, 83, 9, 0.25);
+      border-color: var(--border-gold);
+      color: #F59E0B;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
     }
 
     .legend-badge {
       width: 12px;
       height: 12px;
-      border-radius: 3px;
+      border-radius: 2px;
       display: inline-block;
       flex-shrink: 0;
     }
@@ -448,7 +455,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       bottom: 20px;
       left: 20px;
       z-index: 20;
-      width: 360px;
+      width: 380px;
       background: rgba(26, 23, 19, 0.96);
       backdrop-filter: blur(16px);
       border: 1px solid var(--border-gold);
@@ -465,215 +472,25 @@ export function generateKnowledgeGraph(registryInput = null) {
       transform: translateY(0);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-base);
-      color: var(--text-primary);
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    #header {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-      background: rgba(30, 41, 59, 0.88);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      padding: 16px 24px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-    }
-
-    h1 {
-      font-size: 20px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #60A5FA 0%, #A855F7 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-    }
-
-    p.subtitle {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    #controls {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 10;
-      display: flex;
-      gap: 12px;
-      align-items: center;
-    }
-
-    .mode-btn {
-      background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-      border: none;
-      border-radius: 10px;
-      color: #FFFFFF;
-      padding: 10px 18px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .mode-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
-    }
-
-    .mode-btn * {
-      pointer-events: none;
-    }
-
-    .search-box {
-      background: rgba(30, 41, 59, 0.88);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 10px 16px;
-      color: var(--text-primary);
-      font-size: 14px;
-      outline: none;
-      width: 260px;
-      transition: all 0.3s ease;
-    }
-
-    .search-box:focus {
-      border-color: var(--accent-brand);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-    }
-
-    #network2d, #network3d {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    #network3d {
-      display: none;
-    }
-
-    /* 右側中間：分類色彩與連線圖例面板 */
-    #legendPanel {
-      position: absolute;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      z-index: 15;
-      background: rgba(30, 41, 59, 0.92);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 14px 18px;
-      max-height: calc(100vh - 160px);
-      width: 270px;
-      overflow-y: auto;
-      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
-    }
-
-    .legend-header {
-      font-size: 13px;
-      font-weight: 700;
-      color: #60A5FA;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .legend-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-primary);
-      padding: 5px 8px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      user-select: none;
-      border: 1px solid transparent;
-    }
-
-    .legend-item:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateX(3px);
-    }
-
-    .legend-item.active {
-      background: rgba(59, 130, 246, 0.25);
-      border-color: rgba(96, 165, 250, 0.6);
-      color: #60A5FA;
-      font-weight: 600;
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
-    }
-
-    .legend-badge {
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    /* 左下角：富文本詳細抽屜面板 */
-    #detailPanel {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      z-index: 20;
-      width: 360px;
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
-      padding: 20px;
-      display: none;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
-      transform: translateY(10px);
-      transition: all 0.3s ease;
-    }
-
-    #detailPanel.active {
-      display: block;
-      transform: translateY(0);
-    }
-
     .panel-title {
-      font-size: 16px;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 17px;
       font-weight: 700;
-      color: #60A5FA;
+      letter-spacing: 0.02em;
+      color: #F59E0B;
       margin-bottom: 8px;
     }
 
     .panel-tag {
       display: inline-block;
-      padding: 3px 8px;
-      background: rgba(59, 130, 246, 0.2);
-      color: #93C5FD;
-      border-radius: 6px;
+      padding: 2px 8px;
+      background: rgba(180, 83, 9, 0.15);
+      color: #FBBF24;
+      border: 1px solid var(--border-gold);
+      border-radius: 4px;
+      font-family: 'Cinzel', Georgia, serif;
       font-size: 11px;
+      font-weight: 700;
       margin-bottom: 12px;
     }
 
@@ -684,19 +501,24 @@ export function generateKnowledgeGraph(registryInput = null) {
       background: none;
       border: none;
       color: var(--text-secondary);
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
+      line-height: 1;
+    }
+
+    .close-btn:hover {
+      color: var(--text-primary);
     }
   
     /* 禁用 vis.js 原生 tooltip */
     .vis-tooltip { display: none !important; }
-</style>
+  </style>
 </head>
 <body>
   <div id="header">
     <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
     <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (零 Console 警示 | 左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
-    <p style="font-size: 11px; color: #60A5FA; margin-top: 4px; font-weight: 500;">Developed by Wesley Chang, July-2026.</p>
+    <p style="font-size: 12px; color: var(--accent-brand); margin-top: 4px; font-weight: 600; font-family: 'Cinzel', Georgia, serif;">Developed by Wesley Chang, July-2026.</p>
   </div>
 
   <div id="controls">
@@ -710,7 +532,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   <div id="legendPanel">
     <div class="legend-header">
       <span>🎨 點擊分類圖例高亮圖譜</span>
-      <span style="font-size:11px; color:#94A3B8;">(${categories.length} 類)</span>
+      <span style="font-size:11px; color:#A8A29E;">(${categories.length} 類)</span>
     </div>
     <div class="legend-grid">
       ${legendItemsHtml}
@@ -722,12 +544,12 @@ export function generateKnowledgeGraph(registryInput = null) {
     </div>
     <div class="legend-grid">
       <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:16px; height:2px; background:#60A5FA;"></span>
+        <span style="display:inline-block; width:16px; height:2px; background:#D97706;"></span>
         <span><b>實線</b>：主分類歸屬網絡</span>
       </div>
       <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #94A3B8;"></span>
-        <span><b>虛線</b>：拆解微技能/能力 (點擊亮顯)</span>
+        <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #A8A29E;"></span>
+        <span><b>虛線</b>：拆解微技能/能力</span>
       </div>
     </div>
 
@@ -735,7 +557,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
       <span>🎮 3D 空間操控技巧</span>
     </div>
-    <div style="font-size: 11px; color: #94A3B8; line-height: 1.5; padding: 4px;">
+    <div style="font-size: 12px; color: #A8A29E; line-height: 1.5; padding: 4px; font-style: italic;">
       • <b>旋轉 (Rotate)</b>: 滑鼠左鍵拖曳<br/>
       • <b>平移 (Pan)</b>: 右鍵 / 中鍵 / Shift+左鍵拖曳<br/>
       • <b>對焦縮放 (Zoom)</b>: 滾輪指哪裡放大哪裡
@@ -773,7 +595,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const options2d = {
       nodes: {
-        font: { face: 'Inter' },
+        font: { face: 'EB Garamond, Georgia, serif' },
         borderWidth: 1.5,
         shadow: true
       },
@@ -804,7 +626,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const network2d = new vis.Network(container2d, data2d, options2d);
     
-    // -- 2D Hover Tooltip --
+    // -- 2D Hover Tooltip (文藝復興羊皮紙夜空黑曜石樣式) --
     function updateTooltip2d(node) {
       let tooltipEl = document.getElementById('graph-tooltip-2d');
       if (!tooltipEl) {
@@ -820,34 +642,34 @@ export function generateKnowledgeGraph(registryInput = null) {
         return;
       }
       
-      let html = '<div style="background:rgba(30,41,59,0.98); padding:10px 14px; border-radius:10px; border:1px solid #334155; color:#F1F5F9; font-family:Inter,sans-serif; font-size:12px; min-width:200px; max-width:320px; box-shadow:0 8px 24px rgba(0,0,0,0.5);">';
-      html += '<div style="font-weight:bold; font-size:14px; color:#60A5FA; margin-bottom:6px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
+      let html = '<div style="background:rgba(26,23,19,0.98); padding:10px 14px; border-radius:6px; border:1px solid #B45309; color:#F5EFEB; font-family:EB Garamond,Georgia,serif; font-size:13px; min-width:200px; max-width:320px; box-shadow:0 8px 24px rgba(0,0,0,0.7);">';
+      html += '<div style="font-family:Cinzel,serif; font-weight:bold; font-size:14px; color:#F59E0B; margin-bottom:4px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
       
       if (node.categoryName) {
-        html += '<div style="color:#94A3B8; font-size:11px; margin-bottom:8px;">' + node.categoryName + '</div>';
+        html += '<div style="color:#A8A29E; font-size:11px; margin-bottom:6px; font-style:italic;">' + node.categoryName + '</div>';
       }
       
       if (node.toolData && node.group === 'tool') {
         const t = node.toolData;
         if (t.description) {
-          html += '<div style="color:#CBD5E1; font-size:11px; line-height:1.5; margin-bottom:6px;">' + t.description.slice(0, 80) + (t.description.length > 80 ? '...' : '') + '</div>';
+          html += '<div style="color:#D6C7B2; font-size:12px; line-height:1.5; margin-bottom:6px;">' + t.description.slice(0, 80) + (t.description.length > 80 ? '...' : '') + '</div>';
         }
         if (t.useCase) {
-          html += '<div style="color:#34D399; font-size:11px; margin-bottom:4px;"><b>\u2605 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
+          html += '<div style="color:#34D399; font-size:12px; margin-bottom:4px;"><b>★ 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
         }
         if (t.advantages && t.advantages.length > 0) {
-          html += '<div style="color:#60A5FA; font-size:11px;"><b>\u25B2 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
+          html += '<div style="color:#F59E0B; font-size:12px;"><b>◆ 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
         }
         if (t.language) {
-          html += '<div style="color:#94A3B8; font-size:10px; margin-top:4px;">Language: ' + t.language + '</div>';
+          html += '<div style="color:#A8A29E; font-size:11px; margin-top:4px;">Language: ' + t.language + '</div>';
         }
       } else if (node.group === 'category') {
-        html += '<div style="color:#CBD5E1; font-size:11px;">Contains <b>' + (node.toolCount || 0) + '</b> tools</div>';
+        html += '<div style="color:#D6C7B2; font-size:12px;">Contains <b>' + (node.toolCount || 0) + '</b> tools</div>';
       } else if (node.group === 'root') {
-        html += '<div style="color:#CBD5E1; font-size:11px;">Total <b>' + (node.totalTools || 0) + '</b> AI Tools</div>';
+        html += '<div style="color:#D6C7B2; font-size:12px;">Total <b>' + (node.totalTools || 0) + '</b> AI Tools</div>';
       }
       
-      html += '<div style="color:#64748B; font-size:10px; margin-top:6px; text-transform:uppercase;">' + node.group + '</div>';
+      html += '<div style="color:#78716C; font-size:10px; margin-top:6px; text-transform:uppercase; font-family:Cinzel,serif;">' + node.group + '</div>';
       html += '</div>';
       
       tooltipEl.innerHTML = html;
@@ -889,14 +711,14 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     // Helper: 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
     function getContrastTextColorJS(hexColor) {
-      if (!hexColor) return "#FFFFFF";
+      if (!hexColor) return "#F5EFEB";
       const hex = hexColor.replace('#', '');
-      if (hex.length !== 6) return "#FFFFFF";
+      if (hex.length !== 6) return "#F5EFEB";
       const r = parseInt(hex.substring(0, 2), 16);
       const g = parseInt(hex.substring(2, 4), 16);
       const b = parseInt(hex.substring(4, 6), 16);
       const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-      return luminance > 0.55 ? "#0F172A" : "#FFFFFF";
+      return luminance > 0.55 ? "#1C1917" : "#F5EFEB";
     }
 
     // ─── 2. 初始化 3D Force-Directed Graph ──
@@ -913,75 +735,77 @@ export function generateKnowledgeGraph(registryInput = null) {
         controlType: 'orbit'
       })(container3d)
         .graphData(gData)
-        .backgroundColor('#0B0F19')
-        .nodeColor(node => node.colorHex || '#3B82F6')
+        .backgroundColor('#12100E')
+        .nodeColor(node => node.colorHex || '#B45309')
         .nodeVal(node => node.val || 10)
         .nodeThreeObject(node => {
           if (typeof SpriteText === 'undefined') return null;
           const label = node.label.replace('\\n', ' ');
-          const bgHex = node.colorHex || '#2563EB';
-          const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#F1F5F9';
+          const bgHex = node.colorHex || '#B45309';
+          const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#F5EFEB';
 
           const sprite = new SpriteText(label);
-          sprite.fontFace = 'Inter, sans-serif';
+          sprite.fontFace = node.group === 'category' || node.group === 'root' ? 'Cinzel, Georgia, serif' : 'EB Garamond, Georgia, serif';
           sprite.fontWeight = 'bold';
 
           if (node.group === 'root') {
             sprite.textHeight = 10;
-            sprite.backgroundColor = 'rgba(79, 70, 229, 0.92)';
-            sprite.textColor = '#FFFFFF';
+            sprite.backgroundColor = 'rgba(146, 64, 14, 0.92)';
+            sprite.textColor = '#F5EFEB';
+            sprite.strokeColor = '#F59E0B';
+            sprite.strokeWidth = 1.5;
           } else if (node.group === 'category') {
             sprite.textHeight = 8;
             sprite.backgroundColor = bgHex;
             sprite.textColor = txtColor;
           } else if (node.group === 'tool') {
             sprite.textHeight = 5;
-            sprite.backgroundColor = 'rgba(30, 41, 59, 0.90)';
+            sprite.backgroundColor = 'rgba(26, 23, 19, 0.92)';
             sprite.strokeColor = bgHex;
-            sprite.strokeWidth = 1.5;
-            sprite.textColor = '#F8FAFC';
+            sprite.strokeWidth = 1.2;
+            sprite.textColor = '#F5EFEB';
           } else {
             sprite.textHeight = 3.5;
-            sprite.backgroundColor = 'rgba(51, 65, 85, 0.85)';
-            sprite.textColor = '#CBD5E1';
+            sprite.backgroundColor = 'rgba(38, 32, 26, 0.85)';
+            sprite.textColor = '#D6C7B2';
           }
 
           sprite.padding = 3;
-          sprite.borderRadius = 4;
+          sprite.borderRadius = 3;
           sprite.position.set(0, (node.val || 10) / 3 + 8, 0);
           return sprite;
         })
         .nodeThreeObjectExtend(true)
         .nodeLabel(node => {
-  const name = node.label.replace('\\n', ' ');
-  let html = '<div style="background:rgba(30,41,59,0.96); padding:10px 14px; border-radius:8px; border:1px solid #334155; color:#F1F5F9; font-family:Inter,sans-serif; font-size:12px; min-width:180px; box-shadow:0 4px 12px rgba(0,0,0,0.4);">';
-  html += '<div style="font-weight:bold; font-size:13px; color:#60A5FA; margin-bottom:4px;">' + name + '</div>';
-  
-  if (node.group === 'tool' && node.toolData) {
-    const t = node.toolData;
-    if (t.description) {
-      html += '<div style="color:#94A3B8; font-size:11px; margin-bottom:4px;">' + t.description.slice(0, 60) + (t.description.length > 60 ? '...' : '') + '</div>';
-    }
-    if (t.useCase) {
-      html += '<div style="color:#34D399; font-size:11px; margin-bottom:2px;">\u2605 ' + t.useCase + '</div>';
-    }
-    if (t.advantages && t.advantages.length > 0) {
-      html += '<div style="color:#60A5FA; font-size:11px;">\u25B2 ' + t.advantages[0] + '</div>';
-    }
-    if (t.negativeConstraints && t.negativeConstraints.length > 0) {
-      html += '<div style="color:#F87171; font-size:11px;">\u2717 ' + t.negativeConstraints[0] + '</div>';
-    }
-  } else if (node.group === 'category') {
-    html += '<div style="color:#CBD5E1; font-size:11px;">' + (node.toolCount || 0) + ' tools</div>';
-  } else if (node.group === 'subtool') {
-    html += '<div style="color:#94A3B8; font-size:11px;">' + (node.subDesc || '') + '</div>';
-  }
-  
-  html += '<div style="color:#64748B; font-size:10px; margin-top:4px; text-transform:uppercase;">' + node.group + '</div>';
-  html += '</div>';
-  return html;
-})
-        .linkColor(link => link.colorHex || '#334155')
+          const name = node.label.replace('\\n', ' ');
+          let html = '<div style="background:rgba(26,23,19,0.96); padding:10px 14px; border-radius:6px; border:1px solid #B45309; color:#F5EFEB; font-family:EB Garamond,Georgia,serif; font-size:13px; min-width:180px; box-shadow:0 6px 16px rgba(0,0,0,0.7);">';
+          html += '<div style="font-family:Cinzel,serif; font-weight:bold; font-size:13px; color:#F59E0B; margin-bottom:4px;">' + name + '</div>';
+          
+          if (node.group === 'tool' && node.toolData) {
+            const t = node.toolData;
+            if (t.description) {
+              html += '<div style="color:#D6C7B2; font-size:12px; margin-bottom:4px;">' + t.description.slice(0, 60) + (t.description.length > 60 ? '...' : '') + '</div>';
+            }
+            if (t.useCase) {
+              html += '<div style="color:#34D399; font-size:12px; margin-bottom:2px;">★ ' + t.useCase + '</div>';
+            }
+            if (t.advantages && t.advantages.length > 0) {
+              html += '<div style="color:#F59E0B; font-size:12px;">◆ ' + t.advantages[0] + '</div>';
+            }
+            if (t.negativeConstraints && t.negativeConstraints.length > 0) {
+              html += '<div style="color:#F87171; font-size:12px;">✕ ' + t.negativeConstraints[0] + '</div>';
+            }
+          } else if (node.group === 'category') {
+            html += '<div style="color:#D6C7B2; font-size:12px;">' + (node.toolCount || 0) + ' tools</div>';
+          } else if (node.group === 'subtool') {
+            html += '<div style="color:#A8A29E; font-size:12px;">' + (node.subDesc || '') + '</div>';
+          }
+          
+          html += '<div style="color:#78716C; font-size:10px; margin-top:4px; text-transform:uppercase; font-family:Cinzel,serif;">' + node.group + '</div>';
+          html += '</div>';
+          return html;
+        })
+        .linkColor(link => link.colorHex || '#78350F')
         .linkWidth(link => link.width || 1)
         .linkDirectionalParticles(link => link.isDashed ? 3 : 0)
         .linkDirectionalParticleSpeed(0.007)
@@ -1087,40 +911,33 @@ export function generateKnowledgeGraph(registryInput = null) {
         const Vector3Class = controls.target.constructor;
         if (!Vector3Class) return;
 
-        // 取得鼠標在 canvas 上的正規化座標 (-1 ~ 1)
         const rect = container3d.getBoundingClientRect();
         const ndcX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         const ndcY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-        // 從相機位置射出射線通過鼠標位置
         const dir = new Vector3Class(ndcX, ndcY, -1).unproject(camera);
         dir.sub(camera.position).normalize();
 
-        // 計算射線與垂直於視線、通過 targetPoint 的平面之交點（pivot）
         const targetPoint = controls.target.clone();
         const lookDir = new Vector3Class().subVectors(targetPoint, camera.position).normalize();
         const d = targetPoint.dot(lookDir);
         const t = (d - camera.position.dot(lookDir)) / dir.dot(lookDir);
         const pivot = new Vector3Class().copy(camera.position).addScaledVector(dir, t);
 
-        // 縮放係數
         const zoomStep = event.deltaY < 0 ? 0.84 : 1.19;
 
-        // 將 camera.position 朝向 pivot 縮放
         const camToPivot = new Vector3Class().subVectors(camera.position, pivot);
         const currentDist = camToPivot.length();
         const newDist = Math.max(currentDist * zoomStep, 5);
         camToPivot.normalize().multiplyScalar(newDist);
         const newCamPos = new Vector3Class().addVectors(pivot, camToPivot);
 
-        // 同步移動 controls.target 以 pivot 為基準同比例位移
         const targetToPivot = new Vector3Class().subVectors(targetPoint, pivot);
         const targetDist = targetToPivot.length();
         const newTargetDist = targetDist * zoomStep;
         targetToPivot.normalize().multiplyScalar(newTargetDist);
         const newTarget = new Vector3Class().addVectors(pivot, targetToPivot);
 
-        // 限制最小/最大距離避免失焦
         const finalDist = new Vector3Class().subVectors(newCamPos, newTarget).length();
         if (finalDist < 5 || finalDist > 5000) return;
 
@@ -1129,9 +946,8 @@ export function generateKnowledgeGraph(registryInput = null) {
         controls.update();
       }, { passive: false });
 
-            // 暴露到全域供測試與外部腳本存取
       window.graph3DInstance = graph3DInstance;
-graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
+      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
     }
 
     // 切換 2D / 3D 視角
@@ -1210,7 +1026,7 @@ graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
       }
     });
 
-    // 動態富文本面板渲染
+    // 動態富文本面板渲染 (文藝復興古典星象抽屜)
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
@@ -1218,60 +1034,50 @@ graph3DInstance.cameraPosition({ x: 0, y: 0, z: 480 });
       let descHtml = '';
       
       if (node.group === 'root') {
-        descHtml = \`
-          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:10px;">
-            <b>Tool-Calling</b> 是全自動 AI Agent 工具調用基礎設施，全庫包含 <b>\${node.totalTools}</b> 個 AI 工具與 <b>${categories.length}</b> 大分類，支援三層（L1/L2/L3）精態與語意檢索。
-          </div>
-          <div style="font-size:11px; color:#94A3B8;">
-            🕒 資料庫最後更新時間: \${new Date(node.lastUpdated).toLocaleString()}
-          </div>
-        \`;
+        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:10px;">' +
+          '<b>Tool-Calling</b> 是全自動 AI Agent 工具調用基礎設施，全庫包含 <b>' + node.totalTools + '</b> 個 AI 工具與 <b>' + categories.length + '</b> 大分類，支援三層（L1/L2/L3）精態與語意檢索。' +
+          '</div>' +
+          '<div style="font-size:12px; color:#A8A29E; font-style:italic;">' +
+          '🕒 資料庫最後更新時間: ' + new Date(node.lastUpdated).toLocaleString() +
+          '</div>';
       } else if (node.group === 'category') {
         const catTools = nodesData.filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
-        const sampleTools = node.topTools ? node.topTools.map(t => \`<span style="display:inline-block; padding:3px 8px; background:rgba(59, 130, 246, 0.15); border:1px solid rgba(96, 165, 250, 0.3); color:#93C5FD; border-radius:4px; font-size:11px; margin:2px;">\${t}</span>\`).join(' ') : '';
+        const sampleTools = node.topTools ? node.topTools.map(t => '<span style="display:inline-block; padding:2px 8px; background:rgba(180, 83, 9, 0.15); border:1px solid #B45309; color:#FDE68A; border-radius:4px; font-size:12px; margin:2px;">' + t + '</span>').join(' ') : '';
         const langs = node.languages && node.languages.length ? node.languages.join(', ') : '無特定語言標示';
 
-        descHtml = \`
-          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:10px;">
-            \${node.description}
-          </div>
-          <div style="font-size:12px; color:#60A5FA; margin-top:8px; margin-bottom:4px;">
-            📊 分類包含工具總數: <b>\${node.toolCount || catTools.length}</b> 個
-          </div>
-          <div style="font-size:12px; color:#94A3B8; margin-bottom:8px;">
-            💻 主要開發語言: <b>\${langs}</b>
-          </div>
-          <div style="margin-top:6px;">
-            \${sampleTools}
-          </div>
-        \`;
+        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:10px;">' +
+          (node.description || '') +
+          '</div>' +
+          '<div style="font-size:13px; color:#F59E0B; margin-top:8px; margin-bottom:4px; font-weight:600;">' +
+          '📊 分類包含工具總數: <b>' + (node.toolCount || catTools.length) + '</b> 個' +
+          '</div>' +
+          '<div style="font-size:13px; color:#A8A29E; margin-bottom:8px;">' +
+          '💻 主要開發語言: <b>' + langs + '</b>' +
+          '</div>' +
+          '<div style="margin-top:6px;">' +
+          sampleTools +
+          '</div>';
       } else if (node.group === 'tool') {
         const t = node.toolData || {};
-        descHtml = \`
-          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:10px;">
-            \${t.description || '無詳細描述'}
-          </div>
-          \${t.useCase ? \`<div style="font-size:12px; color:#34D399; margin-bottom:6px; line-height:1.5;"><b>⭐ 推薦場景:</b> \${t.useCase}</div>\` : ''}
-          \${t.advantages && t.advantages.length ? \`<div style="font-size:12px; color:#60A5FA; margin-bottom:6px; line-height:1.5;"><b>★ 關鍵優勢:</b> \${t.advantages.join(', ')}</div>\` : ''}
-          \${t.negativeConstraints && t.negativeConstraints.length ? \`<div style="font-size:12px; color:#F87171; margin-bottom:6px; line-height:1.5;"><b>🚫 禁用場景:</b> \${t.negativeConstraints.join(', ')}</div>\` : ''}
-          \${t.language ? \`<div style="font-size:11px; color:#94A3B8; margin-top:8px;">開發語言: \${t.language}</div>\` : ''}
-        \`;
+        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:10px;">' +
+          (t.description || '無詳細描述') +
+          '</div>' +
+          (t.useCase ? '<div style="font-size:13px; color:#34D399; margin-bottom:6px; line-height:1.5;"><b>⭐ 推薦場景:</b> ' + t.useCase + '</div>' : '') +
+          (t.advantages && t.advantages.length ? '<div style="font-size:13px; color:#F59E0B; margin-bottom:6px; line-height:1.5;"><b>◆ 關鍵優勢:</b> ' + t.advantages.join(', ') + '</div>' : '') +
+          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:13px; color:#F87171; margin-bottom:6px; line-height:1.5;"><b>✕ 禁用場景:</b> ' + t.negativeConstraints.join(', ') + '</div>' : '') +
+          (t.language ? '<div style="font-size:12px; color:#A8A29E; margin-top:8px; font-style:italic;">開發語言: ' + t.language + '</div>' : '');
       } else if (node.group === 'subtool') {
-        descHtml = \`
-          <div style="font-size:13px; line-height:1.6; color:#CBD5E1; margin-bottom:8px;">
-            所屬工具: <b style="color:#60A5FA;">\${node.parentToolName || '主工具'}</b>
-          </div>
-          <div style="font-size:12px; color:#94A3B8; line-height:1.5;">
-            微技能描述: \${node.subDesc}
-          </div>
-        \`;
+        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:8px;">' +
+          '所屬工具: <b style="color:#F59E0B;">' + (node.parentToolName || '主工具') + '</b>' +
+          '</div>' +
+          '<div style="font-size:13px; color:#A8A29E; line-height:1.5;">' +
+          '微技能描述: ' + node.subDesc +
+          '</div>';
       }
 
-      content.innerHTML = \`
-        <div class="panel-title">\${node.label.replace('\\n', ' ')}</div>
-        <div class="panel-tag">\${node.group.toUpperCase()}</div>
-        \${descHtml}
-      \`;
+      content.innerHTML = '<div class="panel-title">' + node.label.replace(/\\n/g, ' ') + '</div>' +
+        '<div class="panel-tag">' + node.group.toUpperCase() + '</div>' +
+        descHtml;
       panel.classList.add('active');
     }
 
