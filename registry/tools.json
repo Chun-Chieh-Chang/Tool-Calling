@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-15T03:47:05.182Z",
+  "lastUpdated": "2026-08-15T08:00:45.622Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -36082,13 +36082,14 @@
       "useCase": "當需要以插件化架構快速建置、運行並透過 Web UI 管理 AI Agent 執行環境時使用",
       "advantages": [
         "『萬物皆插件』架構，基於 Cordis 的時空可組合性程式設計範式，擴充性極高",
-        "DeepSeek 官方出品 (96.4k+ stars)，一鍵 npx 啟動 Web UI (http://127.0.0.1:3080)",
+        "DeepSeek 官方出品 (103.5k+ stars)，一鍵 npx 啟動 Web UI (http://127.0.0.1:3080)",
         "活躍的 dsh-plugin 插件生態系，插件以 GitHub topic 標記可被發現與分享"
       ],
       "negativeConstraints": [
         "目前為 developer preview，API 可能隨時破壞性變更，不適合生產環境依賴",
         "需要 Node.js 環境，不適用於非 JS 生態的部署場景"
-      ]
+      ],
+      "stars": 103548
     },
     {
       "id": "codewiki",
@@ -36335,6 +36336,150 @@
         "主要面向 GitHub Copilot 生態系，其他 IDE 支援有限"
       ],
       "stars": 128000
+    },
+    {
+      "id": "watermarks-remover",
+      "name": "Watermarks Remover",
+      "url": "https://github.com/guillaumemeyer/watermarks-remover",
+      "description": "移除多廠商 AI 溯源標記的 Agent Skill + Python 服務：Unicode 文字衛生、統計重寫鉤子，及 PNG/JPEG/SVG/PDF/DOCX/HTML/MD 的 C2PA/metadata 清理",
+      "category": "安全性",
+      "language": "python",
+      "triggers": [
+        "watermarks-remover",
+        "watermarks",
+        "remover",
+        "agent-skill",
+        "ai",
+        "c2pa",
+        "claude",
+        "provenance",
+        "synthid",
+        "watermark",
+        "remove-ai-marks",
+        "ai-content-hygiene"
+      ],
+      "install": {
+        "method": "manual",
+        "command": "git clone https://github.com/guillaumemeyer/watermarks-remover.git && cp -r watermarks-remover/skills/remove-ai-marks ~/.claude/skills/remove-ai-marks",
+        "requirements": []
+      },
+      "capabilities": [
+        "agent-skill",
+        "ai",
+        "c2pa",
+        "claude",
+        "provenance",
+        "synthid",
+        "metadata-stripping"
+      ],
+      "addedAt": "2026-08-15T08:00:38.809Z",
+      "status": "active",
+      "useCase": "當需要清理自己擁有的 AI 生成內容（文字與檔案）中殘留的多廠商溯源標記，以保護隱私或進行內容衛生處理時使用",
+      "advantages": [
+        "覆蓋多層級標記：Unicode 隱形字元、統計式文字浮水印（Claude/Gemini/SynthID/OpenAI）與 C2PA/EXIF/XMP 檔案 metadata",
+        "Agent Skill 為輕量 HTTP 客戶端，宿主環境無需 Python 即可驅動服務",
+        "支援 PNG/JPEG/WebP/SVG/PDF/DOCX/ODT/HTML/Markdown 多種檔案格式"
+      ],
+      "negativeConstraints": [
+        "僅適用於處理使用者自己擁有或已獲授權的內容，不得用於規避他人版權保護",
+        "不適用於移除可見的浮水印圖片（非溯源標記）或 DRM 保護內容",
+        "統計式文字浮水印需依賴 Agent 重寫或 rewrite_text.py 鉤子，無法保證 100% 清除"
+      ],
+      "stars": 8763
+    },
+    {
+      "id": "awesome-deepseek-agent",
+      "name": "Awesome Deepseek Agent",
+      "url": "https://github.com/deepseek-ai/awesome-deepseek-agent",
+      "description": "DeepSeek 官方精選指南清單：整合 DeepSeek 模型至 AstrBot、Claude Code、Codex、Cline、GitHub Copilot 等熱門 AI Agent 工具的安裝設定教學",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "awesome-deepseek-agent",
+        "awesome",
+        "deepseek",
+        "agent",
+        "deepseek-v4",
+        "deepseek-v4-pro",
+        "deepseek-v4-flash",
+        "integration-guide",
+        "copilot",
+        "claude-code",
+        "codex",
+        "cline"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/deepseek-ai/awesome-deepseek-agent"
+      },
+      "capabilities": [
+        "integration-guide",
+        "deepseek",
+        "ai-agent"
+      ],
+      "addedAt": "2026-08-15T08:00:42.947Z",
+      "status": "active",
+      "useCase": "當需要將 DeepSeek-V4 系列模型快速整合至 AstrBot、Cherry Studio、Claude Code、Cline、Codex、GitHub Copilot 等 AI Agent 工具時，查閱官方安裝與設定指南",
+      "advantages": [
+        "DeepSeek 官方維護的整合指南清單，涵蓋 20+ 熱門 Agent 與 Coding Assistant 工具",
+        "每份指南均包含安裝、設定與首次執行的完整步驟，數分鐘內即可上手",
+        "同時提供英文與簡體中文版本"
+      ],
+      "negativeConstraints": [
+        "為文件型資源而非可安裝工具，不提供程式化 API",
+        "指南僅涵蓋 DeepSeek 系列模型，不適用於其他 LLM 提供商的整合需求",
+        "部分第三方工具（如 AstrBot、Crush）的設定可能隨版本演進而過時"
+      ],
+      "stars": 5813
+    },
+    {
+      "id": "janus",
+      "name": "Janus",
+      "url": "https://github.com/deepseek-ai/Janus",
+      "description": "DeepSeek 官方 Janus-Series 統一多模態理解與生成模型（Janus-Pro / JanusFlow），單一框架同時支援視覺問答與影像生成",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "janus",
+        "any-to-any",
+        "foundation-models",
+        "llm",
+        "multimodal",
+        "unified-model",
+        "vision-language-pretraining",
+        "janus-pro",
+        "janusflow",
+        "image-generation",
+        "visual-question-answering"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install -e .",
+        "repoUrl": "https://github.com/deepseek-ai/Janus"
+      },
+      "capabilities": [
+        "any-to-any",
+        "foundation-models",
+        "llm",
+        "multimodal",
+        "unified-model",
+        "image-generation",
+        "vqa"
+      ],
+      "addedAt": "2026-08-15T08:00:45.620Z",
+      "status": "active",
+      "useCase": "當需要以單一模型同時進行多模態理解（視覺問答）與視覺生成（影像生成），或研究統一多模態架構（Janus-Pro/JanusFlow）時使用",
+      "advantages": [
+        "統一多模態架構：單一模型同時支援理解與生成，Janus-Pro 於 2025.01 發布並顯著提升兩者效能",
+        "提供 1.3B / 7B 多種規模模型，Hugging Face 線上 Demo 可直接體驗",
+        "基於 transformers 標準介面，pip install -e . 後即可快速推理"
+      ],
+      "negativeConstraints": [
+        "模型權重需另行從 Hugging Face 下載（deepseek-ai/Janus-Pro-7B 等），需 GPU 環境運行",
+        "不適用於純文字 LLM 任務，文字能力非其主要設計目標",
+        "模型授權為 DeepSeek Model License（非純 MIT），商用需確認授權條款"
+      ],
+      "stars": 17753
     }
   ]
 }

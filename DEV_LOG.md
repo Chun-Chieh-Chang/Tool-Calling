@@ -1,5 +1,23 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-15 工具庫第四輪批次新增與詮釋資料補齊 (watermarks-remover / awesome-deepseek-agent / Janus / deepseek-harness 更新)
+
+### 需求
+批次新增 4 個 GitHub 網址至工具庫，檢查是否需要拆解，並依 tool-enrichment Skill 補齊完整詮釋資料；重複工具重新解析比較，有優化則以新取代舊。
+
+### 處理結果
+- **拆解判定**：4 個 repo 皆為單一功能單元，無需拆解（watermarks-remover 的 skill 與 service 為同一產品的前後端、awesome-deepseek-agent 為純文件清單、Janus 為單一模型框架）。
+- **重複性解析**：`deepseek-harness` 與 Round 2 既有條目重複 → 重新比較後判定既有條目 metadata 更完整（npm install、useCase/advantages/negativeConstraints 齊全）→ **保留既有條目**，僅更新過時星數（96.4k → 103.5k，新增 stars 欄位 103,548）。
+- **3 條目新增**（工具總數 572 → 575）：
+  - `watermarks-remover`：分類由「AI 代理」校正為「安全性」，install 由 pip 改為 manual（skill 複製至 ~/.claude/skills/），補齊 multi-vendor AI 溯源標記移除（Unicode/C2PA/SynthID）metadata，stars 8,763。
+  - `awesome-deepseek-agent`：分類校正為「學習資源」，install 改為 none（文件型資源），補齊 DeepSeek-V4 整合指南清單 metadata，stars 5,813。
+  - `janus`：分類校正為「多媒體生成」，install 改為 `pip install -e .`，補齊 Janus-Pro/JanusFlow 統一多模態理解與生成 metadata，stars 17,753。
+- **全綠驗證**：`node cli.js validate` 0 錯誤 / 100 分、`npm test` 71/71 PASS、`node scripts/check-mece.js` 全數通過（僅 1 個既有 `mengto-skills` 描述過短警告，與本次變更無關）。
+
+### RCA & CAPA
+- **RCA**: `cli.js add` 自動分類器對隱私/文件/模型類 repo 傾向誤判為「AI 代理」，且 install method 預設不適用於 skill 複製與純文件資源。
+- **CAPA**: 新增後一律人工核對分類（安全性/學習資源/多媒體生成）與上游 README 安裝說明，再補齊 metadata；重複工具以「既有條目完整性 vs 新資訊增量」比較後決定保留或取代。
+
 ## 2026-08-15 工具庫第三輪批次新增與詮釋資料補齊 (scrapling / claude-code-skill-scrapling / spec-kit)
 
 ### 需求
