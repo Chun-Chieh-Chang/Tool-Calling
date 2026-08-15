@@ -1,5 +1,22 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-15 工具庫第三輪批次新增與詮釋資料補齊 (scrapling / claude-code-skill-scrapling / spec-kit)
+
+### 需求
+批次新增 3 個 GitHub 工具至工具庫，並依 tool-enrichment Skill 補齊完整詮釋資料（useCase / advantages / negativeConstraints），同時處理與既有工具的潛在重複。
+
+### 處理結果
+- **重複性解析**：`semantica` 與既有條目描述一致且 metadata 完整 → 保留既有條目不新增；`Scrapling`、`claude-code-skill-scrapling`、`spec-kit` 與既有工具無重疊 → 全部新增（工具總數 569 → 572）。
+- **3 條目詮釋資料補齊**（皆由 experimental → active）：
+  - `scrapling`：修正 install 為 `pip install "scrapling[fetchers]" && scrapling install`（官方推薦），補齊 StealthyFetcher 反偵測 / Adaptive Selectors / MCP Server 優勢與 Python ≥3.10 等限制，stars 74,000。
+  - `claude-code-skill-scrapling`：install method 由 pip 改為 manual（`git clone` + `cp -r` 至 `~/.claude/skills/`），補齊 Fetcher Decision Tree / Cloudflare bypass / Cookie Vault 優勢，stars 385。
+  - `spec-kit`：修正 install 為 `pip install specify-cli`（PyPI 發行，非 git 安裝），分類由「AI 代理」校正為「開發工具」，補齊 Spec-Driven Development 工作流優勢，stars 128,000。
+- **全綠驗證**：`node cli.js validate` 0 錯誤 / 100 分、`npm test` 71/71 PASS、`node scripts/check-mece.js` 全數通過（僅 1 個既有 `mengto-skills` 描述過短警告，與本次變更無關）。
+
+### RCA & CAPA
+- **RCA**: `cli.js add` 自動建條目時 install method 會預設為 pip，導致以 skill 資料夾複製安裝（claude-code-skill-scrapling）與 PyPI CLI 發行（spec-kit）的條目安裝方式錯誤。
+- **CAPA**: 新增後一律人工核對上游 README 安裝說明，並以 PyPI / GitHub API 驗證版本與 stars 後再補齊 metadata。
+
 ## 2026-08-13 專案整體程式碼、檔案與文件之全流程優化與重構作業
 
 ### 需求

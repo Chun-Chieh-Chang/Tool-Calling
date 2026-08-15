@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-13T13:46:10.059Z",
+  "lastUpdated": "2026-08-15T03:47:05.182Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -25967,56 +25967,6 @@
       ]
     },
     {
-      "id": "openwiki",
-      "name": "Openwiki",
-      "url": "https://github.com/langchain-ai/openwiki",
-      "description": "OpenWiki is a CLI that writes and maintains agent documentation for your codebase.",
-      "category": "AI 代理",
-      "language": "typescript",
-      "triggers": [
-        "openwiki",
-        "agent-docs",
-        "codebase-documentation",
-        "langchain-wiki",
-        "auto-doc-generator"
-      ],
-      "install": {
-        "method": "npm",
-        "command": "npx openwiki",
-        "repoUrl": "https://github.com/langchain-ai/openwiki"
-      },
-      "capabilities": [
-        "agent-docs",
-        "codebase-wiki",
-        "documentation-generator",
-        "mermaid-diagrams"
-      ],
-      "addedAt": "2026-07-25T07:58:11.855Z",
-      "status": "active",
-      "useCase": "Automatically generating and maintaining comprehensive agent-focused documentation and knowledge bases for software codebases.",
-      "advantages": [
-        "CLI tool designed specifically for AI agent codebase documentation",
-        "Supports automated maintenance and updates of architectural docs",
-        "Integrates Mermaid diagram generation and custom source connectors"
-      ],
-      "negativeConstraints": [
-        "Not intended for non-codebase general end-user documentation or static blog rendering",
-        "Avoid using when only inline code comments or simple JSDoc comments are needed"
-      ],
-      "subTools": [
-        {
-          "name": "Mermaid Diagrams",
-          "description": "Embed Mermaid diagrams in generated wiki pages. Use whenever documenting a runtime or request flow, a call sequence, a state machine or lifecycle, a data model or entity relationships, or non-trivial control flow, since these are clearer as a diagram than as prose. Also use when an update run touches a page that already contains a mermaid fence, or a page that contains a text fence a previous run degraded.",
-          "subpath": "skills/mermaid-diagrams"
-        },
-        {
-          "name": "Write Connector",
-          "description": "Add a new built-in OpenWiki source connector. Use when a user asks to create or implement an OpenWiki connector.",
-          "subpath": "skills/write-connector"
-        }
-      ]
-    },
-    {
       "id": "data-to-html",
       "name": "Data To Html",
       "url": "https://github.com/eriksvedang/data-to-html",
@@ -30308,32 +30258,48 @@
     },
     {
       "id": "computer",
-      "name": "Computer (Cloudflare)",
+      "name": "Cloudflare Computer",
       "url": "https://github.com/cloudflare/computer",
-      "description": "Open-source AI agent framework by Cloudflare for autonomous browser automation and task execution.",
-      "category": "瀏覽器自動化",
+      "description": "Cloudflare 官方『給你的 Agent 一台電腦』：Durable Object 內的 SQLite 虛擬檔案系統，透過可插拔執行後端（Container FUSE / Isolate Shell / Isolate JS）執行 Agent 工作",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "computer",
-        "browser-automation",
-        "ai-agent",
-        "task-execution",
-        "cloudflare",
-        "web-automation",
-        "agent-framework"
+        "cloudflare computer",
+        "agent workspace",
+        "virtual filesystem",
+        "durable object",
+        "agent runtime",
+        "workspace.runtime",
+        "computerd",
+        "dofs",
+        "sandbox"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install @cloudflare/computer",
+        "repoUrl": "https://github.com/cloudflare/computer"
+      },
+      "capabilities": [
+        "virtual-filesystem",
+        "agent-runtime",
+        "durable-object",
+        "sandbox-execution",
+        "container",
+        "worker-isolate"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
-      "status": "active",
-      "useCase": "Automating repetitive web workflows such as form filling, data scraping, and multi-step web navigation without manual intervention.",
+      "status": "experimental",
+      "useCase": "當需要為 AI Agent 提供具備持久化虛擬檔案系統與多種可插拔執行後端（容器/Shell/JS isolate）的運算工作區時使用",
       "advantages": [
-        "Built on Cloudflare's global edge infrastructure for low-latency, high-availability execution",
-        "Provides a programmatic API for AI agents to control browsers and interact with web pages autonomously",
-        "Open-source with extensible architecture supporting custom actions and integrations"
+        "SQLite 權威狀態 + 單一執行入口 workspace.runtime.exec，多後端可並存並延遲連接",
+        "Container 後端以 FUSE mount 投影真實 Linux userland，可執行真實二進位與完整網路",
+        "Cloudflare 官方出品 (8.1k+ stars)，含 MCP 範例與完整設計規格文件"
       ],
       "negativeConstraints": [
-        "Not suitable for real-time, sub-millisecond latency-critical applications requiring direct system-level access",
-        "Avoid for tasks involving sensitive credential handling or PII processing without additional security layers",
-        "Not ideal for offline or air-gapped environments since it relies on cloud-connected browser infrastructure"
+        "PREVIEW ONLY：API 不穩定且設計可能變更，不適合生產環境",
+        "依賴 Cloudflare Workers / Durable Objects 生態，不適用於非 Cloudflare 部署",
+        "非瀏覽器自動化工具，網頁操作請改用 Browser Use / Playwright"
       ]
     },
     {
@@ -30370,30 +30336,49 @@
       "id": "pdf-inspector",
       "name": "PDF Inspector",
       "url": "https://github.com/firecrawl/pdf-inspector",
-      "description": "AI-powered PDF analysis tool for extracting text, tables, and insights from documents.",
+      "description": "Firecrawl 出品的快速 Rust PDF 檢查/分類/文字擷取庫：10-50ms 偵測掃描 vs 文字型 PDF，轉換為結構化 Markdown，無需 OCR",
       "category": "文件生產力",
-      "language": "python",
+      "language": "rust",
       "triggers": [
-        "pdf",
-        "inspection",
-        "analysis",
-        "firecrawl",
-        "extraction",
-        "ocr",
-        "document"
+        "pdf-inspector",
+        "pdf2md",
+        "detect-pdf",
+        "pdf 分類",
+        "pdf 解析",
+        "pdf 轉 markdown",
+        "pdf extraction",
+        "scanned pdf",
+        "ocr routing",
+        "pdf classification"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install pdf-inspector（Python）／ npm install @firecrawl/pdf-inspector（Node）／ cargo install pdf-inspector（CLI: pdf2md）",
+        "repoUrl": "https://github.com/firecrawl/pdf-inspector"
+      },
+      "capabilities": [
+        "pdf-classification",
+        "text-extraction",
+        "markdown-conversion",
+        "table-detection",
+        "ocr-routing",
+        "cid-fonts",
+        "multi-column",
+        "webassembly"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
       "status": "active",
-      "useCase": "Extract and analyze structured data from large PDF reports or research papers automatically.",
+      "useCase": "當需要在大規模 PDF 管線中快速判斷 PDF 為文字型或掃描型（10-50ms、含信心分數與逐頁 OCR 路由），並將文字型 PDF 轉為結構化 Markdown（表格/標題/程式碼區塊）時使用",
       "advantages": [
-        "Leverages AI for accurate text and table extraction from complex PDF layouts",
-        "Supports batch processing of multiple PDF documents",
-        "Integrates with Firecrawl ecosystem for seamless web-to-PDF workflows"
+        "純 Rust 無 ML 模型，200 份文件僅 0.47s，opendataloader-bench 總分 0.875 勝過 PyMuPDF4LLM (0.735) 與 MarkItDown (0.589)",
+        "智慧分類：TextBased/Scanned/ImageBased/Mixed + 信心分數 + pages_needing_ocr 逐頁路由，省下約 54% 不必要 OCR 成本",
+        "位置感知擷取：多欄閱讀順序、RTL、CID 字型 (ToUnicode CMap)、表格雙模式偵測、Markdown 結構化輸出",
+        "提供 Python / Node.js / 瀏覽器 WebAssembly / Rust / CLI (pdf2md, detect-pdf) 多種介面"
       ],
       "negativeConstraints": [
-        "Not suitable for editing or modifying PDF content",
-        "Ineffective for scanned images without OCR preprocessing",
-        "May struggle with highly encrypted or password-protected PDFs"
+        "不做 OCR：掃描型 PDF 需路由至外部 OCR 服務",
+        "不適用於 PDF 編輯、簽名或內容修改",
+        "高度加密或損毀的 PDF 可能無法解析"
       ]
     },
     {
@@ -33281,7 +33266,7 @@
       "id": "diagram-design",
       "name": "Diagram Design",
       "url": "https://github.com/cathrynlavery/diagram-design",
-      "description": "29 editorial diagram types for Claude Code & Codex using self-contained HTML + SVG without Mermaid limitations.",
+      "description": "27 種編輯級圖表類型的 Agent Skill/Plugin（Claude Code/Codex/Pi）：自包含 HTML+SVG，支援品牌 onboarding、draw.io/Mermaid 匯入重繪、PNG/SVG 匯出",
       "category": "UI/UX設計",
       "language": "html",
       "triggers": [
@@ -33291,22 +33276,31 @@
         "claude-diagram",
         "svg-diagram",
         "editorial-diagram",
-        "chart-design"
+        "chart-design",
+        "mermaid",
+        "drawio",
+        "import-mermaid",
+        "import-drawio",
+        "flowchart",
+        "architecture diagram",
+        "圖表設計"
       ],
       "install": {
-        "method": "git-clone",
-        "command": "git clone https://github.com/cathrynlavery/diagram-design.git",
+        "method": "plugin-marketplace",
+        "command": "Claude Code: /plugin marketplace add cathrynlavery/diagram-design；Codex: codex plugin marketplace add cathrynlavery/diagram-design；Pi: pi install https://github.com/cathrynlavery/diagram-design",
         "repoUrl": "https://github.com/cathrynlavery/diagram-design"
       },
-      "useCase": "Creating clean, publication-ready editorial SVG diagrams directly inside Claude Code or Codex for technical documentation and reports.",
+      "useCase": "當需要生成品牌一致的編輯級圖表（架構圖/流程圖/序列圖/象限圖等 27 種），或將既有 draw.io/Mermaid 圖表重繪為高品質 HTML/SVG/PNG 時使用",
       "advantages": [
-        "Provides 29 pre-designed editorial diagram templates",
-        "Uses clean, self-contained HTML + SVG rendering without external chart dependencies",
-        "Integrates seamlessly as a plugin/skill for Claude Code and Codex"
+        "27 種視覺類型 × 3 種變體（淺色/深色/完整編輯風），自包含 HTML 無建置步驟、無外部依賴",
+        "60 秒品牌 onboarding：自動從網站抓取色票與字型，WCAG AA 對比度自動檢查",
+        "可匯入 .drawio/.mmd/Mermaid 區塊，以格式/尺寸/細節/受眾 4 維度重繪並輸出忠實度清單",
+        "支援 Claude Code / Codex / Pi 三種 Agent 用戶端，可匯出 SVG/PNG"
       ],
       "negativeConstraints": [
-        "Not suitable for real-time interactive dashboards or data stream visualizers",
-        "Not designed for complex 3D graphic rendering"
+        "不適用於即時互動儀表板或資料串流視覺化",
+        "非通用繪圖工具，複雜 3D 渲染與照片編輯請用專用工具",
+        "需 Agent 用戶端（Claude Code/Codex/Pi）才能發揮完整功能"
       ],
       "status": "active",
       "addedAt": "2026-08-13T13:46:10.057Z"
@@ -35999,6 +35993,348 @@
       ],
       "status": "active",
       "addedAt": "2026-08-13T13:46:10.059Z"
+    },
+    {
+      "id": "sdkmate",
+      "name": "SDK Mate",
+      "url": "https://github.com/borenchan/sdkmate",
+      "description": "跨平台 SDK 版本管理器：單一二進位管理 Java/Node.js/Python/Maven/Go 版本，比 nvm/pyenv/sdkman 更快更安全，AI Agent 友善",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "sdkmate",
+        "sdkm",
+        "sdk 版本管理",
+        "版本切換",
+        "sdk manager",
+        "version manager",
+        "nvm",
+        "pyenv",
+        "sdkman",
+        "安裝 java",
+        "切換 node",
+        "java 版本",
+        "node 版本",
+        "environment"
+      ],
+      "install": {
+        "method": "binary",
+        "command": "從 Releases 下載預編譯二進位，解壓後執行 .sdkm/sdkm init（Windows 需管理員權限）",
+        "repoUrl": "https://github.com/borenchan/sdkmate"
+      },
+      "capabilities": [
+        "sdk-version-management",
+        "java",
+        "nodejs",
+        "python",
+        "maven",
+        "go",
+        "version-switching",
+        "environment-management"
+      ],
+      "addedAt": "2026-08-15T01:31:50.585Z",
+      "status": "active",
+      "useCase": "當 AI Agent 或開發者需要跨平台一鍵安裝、切換 Java/Node.js/Python/Maven/Go 等多種 SDK 版本，且要求全局持久生效與失敗自動回滾時使用",
+      "advantages": [
+        "單一二進位 (~4MB) 零依賴，可攜帶至 U 盤/任意目錄，一套工具取代 nvm+pyenv+jenv+sdkman",
+        "符號連結 + PATH + 環境變數廣播三件套切換，Windows 原生一等公民且已開程序可感知",
+        "內建 agent skill 文件，退出碼語義清晰、失敗自動快照回滾，AI Agent 可直接調用"
+      ],
+      "negativeConstraints": [
+        "不適用於需要管理數百種工具鏈的場景（如 mise 支援的 terraform/cmake 等），此類需求建議使用 mise",
+        "避免在僅需單一語言版本管理的輕量場景使用，nvm 等單一工具更簡單",
+        "Windows 下 init/switch 需管理員權限，受限環境無法使用"
+      ]
+    },
+    {
+      "id": "deepseek-harness",
+      "name": "DeepSeek Harness",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "description": "DeepSeek 官方開源 Agent Harness：以 Cordis 插件架構打造『萬物皆插件』的 AI 代理執行環境，附 Web UI",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "deepseek-harness",
+        "dsh",
+        "deepseek",
+        "harness",
+        "agent harness",
+        "ai agent 框架",
+        "agent 執行環境",
+        "cordis",
+        "dsh-plugin",
+        "ai-agents"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx @deepseek-ai/dsh web",
+        "repoUrl": "https://github.com/deepseek-ai/deepseek-harness"
+      },
+      "capabilities": [
+        "agent-harness",
+        "plugin-architecture",
+        "cordis",
+        "web-ui",
+        "ai-agent-runtime"
+      ],
+      "addedAt": "2026-08-15T01:31:58.783Z",
+      "status": "active",
+      "useCase": "當需要以插件化架構快速建置、運行並透過 Web UI 管理 AI Agent 執行環境時使用",
+      "advantages": [
+        "『萬物皆插件』架構，基於 Cordis 的時空可組合性程式設計範式，擴充性極高",
+        "DeepSeek 官方出品 (96.4k+ stars)，一鍵 npx 啟動 Web UI (http://127.0.0.1:3080)",
+        "活躍的 dsh-plugin 插件生態系，插件以 GitHub topic 標記可被發現與分享"
+      ],
+      "negativeConstraints": [
+        "目前為 developer preview，API 可能隨時破壞性變更，不適合生產環境依賴",
+        "需要 Node.js 環境，不適用於非 JS 生態的部署場景"
+      ]
+    },
+    {
+      "id": "codewiki",
+      "name": "CodeWiki",
+      "url": "https://github.com/FSoft-AI4Code/CodeWiki",
+      "description": "ACL 2026 開源框架：自動生成大型多語言程式庫的整體結構化文件（架構圖、資料流、序列圖與跨模組互動分析）",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "codewiki",
+        "code documentation",
+        "repository documentation",
+        "程式碼文件",
+        "自動文件生成",
+        "codebase documentation",
+        "deepwiki",
+        "documentation generator",
+        "code-understanding",
+        "mermaid-diagrams",
+        "agent-docs",
+        "auto-doc-generator",
+        "openwiki"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/FSoft-AI4Code/CodeWiki.git",
+        "repoUrl": "https://github.com/FSoft-AI4Code/CodeWiki"
+      },
+      "capabilities": [
+        "documentation-generator",
+        "code-documentation",
+        "repository-documentation",
+        "mermaid-diagrams",
+        "architecture-diagrams",
+        "multi-language",
+        "incremental-update"
+      ],
+      "addedAt": "2026-08-15T01:32:07.572Z",
+      "status": "active",
+      "useCase": "當需要為大型多語言程式庫自動生成整體結構化文件（含架構圖、資料流、序列圖與跨模組互動分析）時使用",
+      "advantages": [
+        "階層式分解演算法可處理 86K-1.4M LOC 的大型程式庫，保留架構脈絡",
+        "多模態產出：文字文件 + Mermaid 架構圖/資料流/序列圖 + 互動式 HTML viewer (GitHub Pages)",
+        "支援 9 種語言 (Python/Java/JS/TS/C/C++/C#/Kotlin/PHP)，CodeWikiBench 評測 68.79% 勝過 DeepWiki 64.06%",
+        "支援增量更新 (--update/--compare-to) 與多種 LLM Provider（含 Claude Code/Codex 訂閱模式免 API Key）"
+      ],
+      "negativeConstraints": [
+        "需要 LLM API 存取或 Claude Code/Codex 訂閱，無 AI 服務時無法生成",
+        "不適用於單一檔案的簡短註解生成，此類需求用 JSDoc/docstring 即可",
+        "Mermaid 圖表驗證需要 Node.js 環境"
+      ]
+    },
+    {
+      "id": "chinatextbook",
+      "name": "ChinaTextbook",
+      "url": "https://github.com/TapXWorld/ChinaTextbook",
+      "description": "中國小學/初中/高中/大學 PDF 教材開放資源庫（人教版等，79.6k stars），含 >50MB 檔案合併工具支援",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "chinatextbook",
+        "教材",
+        "教科書",
+        "小學課本",
+        "初中課本",
+        "高中課本",
+        "大學教材",
+        "課本 pdf",
+        "textbook",
+        "義務教育",
+        "人教版"
+      ],
+      "install": {
+        "method": "none",
+        "command": "直接瀏覽 GitHub 目錄下載 PDF；>50MB 檔案以 .1/.2 拆分，需 mergePDFs 工具合併 (https://github.com/TapXWorld/ChinaTextbook-tools/releases)",
+        "repoUrl": "https://github.com/TapXWorld/ChinaTextbook"
+      },
+      "capabilities": [
+        "chinese-textbooks",
+        "k12-education",
+        "university-textbooks",
+        "pdf-resources",
+        "open-education"
+      ],
+      "addedAt": "2026-08-15T01:36:42.143Z",
+      "status": "active",
+      "useCase": "當需要取得中國小學/初中/高中/大學（人教版等）教材 PDF 進行教育研究、課程設計或自學時使用",
+      "advantages": [
+        "79.6k+ stars 的大型開放教育資源庫，涵蓋小學到大學各學段與主要出版社",
+        "提供 mergePDFs 合併工具處理 GitHub 50MB 拆分限制的大檔案",
+        "促進義務教育資源普及，海外華人亦可取得國內教材"
+      ],
+      "negativeConstraints": [
+        "資源為 PDF 教材檔案而非可執行工具，不適用於程式化任務",
+        "部分 >50MB 檔案被拆分，需先以 mergePDFs 合併才能使用",
+        "內容可能涉及版權教材，僅建議用於個人學習與教育研究"
+      ]
+    },
+    {
+      "id": "scrapling",
+      "name": "Scrapling",
+      "url": "https://github.com/D4Vinci/Scrapling",
+      "description": "🕷️ 自適應網頁爬蟲框架，從單一請求到全站規模爬取，支援 StealthyFetcher 反偵測、Adaptive Selectors 與 MCP Server",
+      "category": "瀏覽器自動化",
+      "language": "python",
+      "triggers": [
+        "scrapling",
+        "ai",
+        "ai-scraping",
+        "automation",
+        "crawler",
+        "crawling",
+        "crawling-python",
+        "data",
+        "stealth",
+        "stealthyfetcher",
+        "cloudflare-bypass",
+        "proxy",
+        "xpath",
+        "web-scraper",
+        "mcp"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install \"scrapling[fetchers]\" && scrapling install",
+        "repoUrl": "https://github.com/D4Vinci/Scrapling"
+      },
+      "capabilities": [
+        "ai",
+        "ai-scraping",
+        "automation",
+        "crawler",
+        "crawling",
+        "stealth",
+        "proxy",
+        "mcp"
+      ],
+      "addedAt": "2026-08-15T03:46:59.883Z",
+      "status": "active",
+      "useCase": "需要爬取動態網頁、繞過 Cloudflare 等反爬蟲保護，或從單一請求到全站規模爬取的資料收集任務",
+      "advantages": [
+        "StealthyFetcher (Camoufox) 可繞過 Cloudflare 等反偵測保護",
+        "Adaptive Selectors 自動適應網站結構變更，降低長期維護成本",
+        "內建 MCP Server 與 CLI，可整合 AI Agent 與自動化流程"
+      ],
+      "negativeConstraints": [
+        "需要 Python ≥3.10 環境，且 StealthyFetcher 首次使用需執行 scrapling install 下載瀏覽器依賴",
+        "不適用於需要嚴格遵循 robots.txt 或合規要求的網站抓取",
+        "高頻率大規模爬取需自行處理代理輪換與速率限制"
+      ],
+      "stars": 74000
+    },
+    {
+      "id": "claude-code-skill-scrapling",
+      "name": "Claude Code Skill Scrapling",
+      "url": "https://github.com/Cedriccmh/claude-code-skill-scrapling",
+      "description": "Claude Code 網頁爬蟲技能包 — 自動選擇 Fetcher、繞過 Cloudflare、內建網站模式庫與 Cookie Vault",
+      "category": "瀏覽器自動化",
+      "language": "python",
+      "triggers": [
+        "claude-code-skill-scrapling",
+        "claude",
+        "code",
+        "skill",
+        "scrapling",
+        "cloudflare-bypass",
+        "stealthyfetcher",
+        "web-scraping-skill",
+        "site-patterns",
+        "cookie-vault",
+        "scraping-skill"
+      ],
+      "install": {
+        "method": "manual",
+        "command": "git clone https://github.com/Cedriccmh/claude-code-skill-scrapling.git && cp -r claude-code-skill-scrapling ~/.claude/skills/scrapling",
+        "requirements": []
+      },
+      "capabilities": [
+        "ai-scraping",
+        "cloudflare-bypass",
+        "web-scraping",
+        "skill"
+      ],
+      "addedAt": "2026-08-15T03:47:02.681Z",
+      "status": "active",
+      "useCase": "在 Claude Code 中需要執行網頁爬蟲任務時，自動依網站特性選擇最適 Fetcher 並處理 Cloudflare 等反爬蟲保護",
+      "advantages": [
+        "Fetcher Decision Tree 自動選擇最適擷取策略，無需手動調參",
+        "內建 Site Pattern Library 與 Cookie Vault，支援登入後狀態爬取",
+        "提供安全護欄與疑難排解指南，降低爬蟲任務失敗率"
+      ],
+      "negativeConstraints": [
+        "僅適用於 Claude Code 環境，且需先安裝 Scrapling 套件",
+        "不適用於需要分散式大規模爬取的場景（應改用 Scrapling Spiders）",
+        "繞過 Cloudflare 的功能僅供合法授權的網站爬取使用"
+      ],
+      "stars": 385
+    },
+    {
+      "id": "spec-kit",
+      "name": "Spec Kit",
+      "url": "https://github.com/github/spec-kit",
+      "description": "💫 GitHub 官方 Spec-Driven Development 工具包，透過 specify CLI 與 /speckit 斜線指令建立規格驅動的 AI 開發工作流",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "spec-kit",
+        "spec",
+        "kit",
+        "ai",
+        "copilot",
+        "development",
+        "engineering",
+        "prd",
+        "spec-driven-development",
+        "specify",
+        "specify-cli",
+        "slash-command"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install specify-cli",
+        "repoUrl": "https://github.com/github/spec-kit"
+      },
+      "capabilities": [
+        "ai",
+        "copilot",
+        "development",
+        "engineering",
+        "prd",
+        "spec-driven-development"
+      ],
+      "addedAt": "2026-08-15T03:47:05.181Z",
+      "status": "active",
+      "useCase": "需要以規格（Spec）驅動 AI 開發流程時，將 PRD 轉化為可執行的任務清單與驗收標準",
+      "advantages": [
+        "GitHub 官方維護，與 Copilot 及 AI coding agent 深度整合",
+        "提供 constitution/specify/plan/tasks 斜線指令，標準化規格驅動流程",
+        "支援從既有 PRD 自動生成規格文件與任務拆解"
+      ],
+      "negativeConstraints": [
+        "需要 Python ≥3.11 環境",
+        "不適用於無規格需求的快速原型或一次性小型任務",
+        "主要面向 GitHub Copilot 生態系，其他 IDE 支援有限"
+      ],
+      "stars": 128000
     }
   ]
 }
