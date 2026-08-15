@@ -397,9 +397,9 @@ async function loadWeeklyTrending() {
       const rankEmoji = item.rank === 1 ? '🥇' : item.rank === 2 ? '🥈' : item.rank === 3 ? '🥉' : item.rank;
       const statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
 
-      // 格式化時間顯示
-      const startTime = item.startTime || item.startStarsAt ? new Date(item.startStarsAt).toISOString().slice(0, 10) : '-';
-      const endTime = item.endTime || item.endStarsAt ? new Date(item.endStarsAt).toISOString().slice(0, 10) : '-';
+      // 格式化時間顯示（直接使用標準 ISO World Week 日期字串，防止時區偏移）
+      const startTime = item.startStarsAt ? String(item.startStarsAt).slice(0, 10) : (item.startTime ? String(item.startTime).slice(0, 10) : '-');
+      const endTime = item.endStarsAt ? String(item.endStarsAt).slice(0, 10) : (item.endTime ? String(item.endTime).slice(0, 10) : '-');
       const prevDisplay = item.prevStars > 0 ? item.prevStars.toLocaleString() : '首次';
       const currDisplay = item.currentStars.toLocaleString();
       const deltaStr = item.delta > 0 ? `+${item.delta.toLocaleString()}` : `${item.currentStars.toLocaleString()} (待比對)`;

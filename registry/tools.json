@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-15T10:29:51.072Z",
+  "lastUpdated": "2026-08-15T10:49:50.633Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -5031,45 +5031,50 @@
     },
     {
       "id": "stable-diffusion-webui",
-      "name": "Stable Diffusion Webui",
-      "url": "https://github.com/automatic1111/stable-diffusion-webui",
-      "description": "Open-source GUI for Stable Diffusion, supporting text-to-image, inpainting, and extensions.",
-      "category": "AI 框架",
+      "name": "Stable Diffusion WebUI",
+      "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+      "description": "Feature-rich Gradio web interface for Stable Diffusion supporting txt2img, img2img, inpainting, ControlNet, LoRA, and a vast ecosystem of extensions.",
+      "category": "多媒體生成",
       "language": "python",
       "triggers": [
         "stable-diffusion-webui",
+        "sd-webui",
+        "automatic1111",
         "image-generation",
         "txt2img",
-        "automatic1111",
+        "img2img",
         "controlnet",
-        "deep-learning"
+        "lora",
+        "inpainting"
       ],
       "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/automatic1111/stable-diffusion-webui.git",
-        "repoUrl": "https://github.com/automatic1111/stable-diffusion-webui"
+        "method": "git-clone",
+        "command": "git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git && cd stable-diffusion-webui && ./webui-user.bat",
+        "repoUrl": "https://github.com/AUTOMATIC1111/stable-diffusion-webui"
       },
       "capabilities": [
-        "web",
-        "ai",
-        "deep-learning",
-        "torch",
-        "pytorch"
+        "txt2img",
+        "img2img",
+        "inpainting",
+        "outpainting",
+        "controlnet-support",
+        "lora-embeddings",
+        "upscaling"
       ],
       "addedAt": "2026-07-19T08:58:18.186Z",
       "status": "active",
-      "useCase": "Create photorealistic images from text prompts or refine existing artwork using inpainting and ControlNet.",
+      "useCase": "適用於在本機或伺服器透過直覺完整的網頁 GUI 介面進行高畫質 AI 影像生成、細節重繪 (Inpainting)、風格 LoRA 應用與 ControlNet 精確控制的視覺設計場景。",
       "advantages": [
-        "Comprehensive extension ecosystem for custom workflows",
-        "Native support for ControlNet, LoRA, and SDXL models",
-        "Intuitive interface simplifies complex diffusion parameters"
+        "全球最具統治力的開源擴散模型 Web GUI，支援幾乎所有主流擴展與 LoRA/Checkpoint 模型",
+        "內建強大的 ControlNet、Tile Upscale、Prompt Matrix、X/Y Plot 與批量生成工作流",
+        "一鍵開箱腳本支援 Windows / Linux / macOS，並支援豐富的社群 Extension"
       ],
       "negativeConstraints": [
-        "Unsuitable for environments without dedicated local GPUs",
-        "Not designed for serverless or managed cloud API delivery",
-        "Inefficient for batch processing at industrial scale"
+        "不適用於無獨立 GPU（NVIDIA/AMD/Apple Silicon）或 VRAM 極小（<4GB）的運算環境",
+        "不適合作為高並發、無頭（Headless）微服務 API 部署（建議使用 ComfyUI 或 SD API 專用伺服器）",
+        "初次安裝需下載數 GB 模型與 PyTorch 權重，需要充裕硬碟空間與網路頻寬"
       ],
-      "stars": 14976
+      "stars": 152000
     },
     {
       "id": "stable-diffusion-webui-localization-zhtw",
@@ -5684,51 +5689,65 @@
     },
     {
       "id": "langchain",
-      "name": "Langchain",
+      "name": "LangChain",
       "url": "https://github.com/langchain-ai/langchain",
-      "description": "Open-source framework for building LLM-powered applications, agents, and RAG pipelines.",
+      "description": "Comprehensive framework for developing context-aware, reasoning-driven LLM applications, retrieval-augmented generation (RAG), and composable agent workflows.",
       "category": "AI 框架",
       "language": "python",
       "triggers": [
         "langchain",
-        "python",
-        "open-source",
-        "enterprise",
-        "framework",
-        "typescript",
-        "ai",
-        "gemini",
-        "llm",
-        "rag",
-        "agents",
-        "machine-learning"
+        "lcel",
+        "rag-framework",
+        "prompt-engineering",
+        "vectorstores",
+        "llm-orchestration",
+        "chains",
+        "agent-tools"
       ],
       "install": {
         "method": "pip",
-        "command": "pip install git+https://github.com/langchain-ai/langchain.git",
+        "command": "pip install langchain langchain-community langchain-core",
         "repoUrl": "https://github.com/langchain-ai/langchain"
       },
       "capabilities": [
-        "python",
-        "open-source",
-        "enterprise",
-        "framework",
-        "typescript"
+        "lcel-expression-language",
+        "rag-pipeline",
+        "vectorstore-integrations",
+        "document-loaders",
+        "model-providers",
+        "agent-toolkits"
       ],
       "addedAt": "2026-07-19T09:12:07.059Z",
       "status": "active",
-      "useCase": "Ideal for rapidly prototyping and deploying AI chatbots or autonomous agents that retrieve data and call external APIs.",
+      "useCase": "適用於快速構建整合多種大型語言模型、向量資料庫、文檔檢索器 (RAG) 與外部 API 工具鏈的複雜企業級 AI 應用與 Chatbot 系統。",
       "advantages": [
-        "Modular chain and agent architecture for flexible workflow design",
-        "Broad ecosystem of integrations with LLMs, vector stores, and third-party tools",
-        "Built-in observability and production deployment utilities"
+        "擁有業界最廣泛的模型適配器、向量儲存庫與第三方工具生態（LangChain Community 700+ 整合）",
+        "提供宣告式 LCEL (LangChain Expression Language)，支援自動串流、非同步與重試",
+        "模組化分層架構（Core / Community / Text Splitters），支援極致靈活的管線組合"
       ],
       "negativeConstraints": [
-        "Avoid for simple rule-based tasks that do not require language model reasoning",
-        "Not recommended for ultra-low-latency deterministic systems",
-        "Overkill for small scripts or single-call API integrations"
+        "不適用於完全不需要 LLM 介入的純規則型確定性業務邏輯",
+        "對於僅呼叫單一 OpenAI/Anthropic API 的極簡腳本可能引入過多抽象封裝",
+        "不推薦在微秒級超低延遲系統中使用深層嵌套的 Chain 結構"
       ],
-      "stars": 92000
+      "stars": 110000,
+      "subTools": [
+        {
+          "name": "LangChain Core",
+          "description": "Base abstractions, LCEL runtime, interfaces for LLMs, vectorstores, and prompt templates.",
+          "subpath": "libs/core"
+        },
+        {
+          "name": "LangChain Community",
+          "description": "Third-party integrations with 700+ LLM providers, vector databases, and tools.",
+          "subpath": "libs/community"
+        },
+        {
+          "name": "LangChain Text Splitters",
+          "description": "Specialized tokenizers and text chunking strategies for optimized RAG ingestion.",
+          "subpath": "libs/text-splitters"
+        }
+      ]
     },
     {
       "id": "n8n",
@@ -31393,42 +31412,63 @@
       "id": "autogpt",
       "name": "AutoGPT",
       "url": "https://github.com/Significant-Gravitas/AutoGPT",
-      "description": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "category": "AI 框架",
+      "description": "Autonomous AI agent platform and ecosystem for creating, benchmarking, and deploying goal-driven multi-step AI agents with terminal and browser execution.",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "autogpt",
+        "autonomous-agent",
         "agentic-ai",
-        "agents",
-        "ai",
-        "artificial-intelligence",
-        "autonomous-agents"
+        "agent-platform",
+        "goal-driven-agent",
+        "ai-agents",
+        "agbenchmark",
+        "agent-forge"
       ],
       "install": {
-        "method": "none",
+        "method": "pip",
+        "command": "pip install autogpt",
         "repoUrl": "https://github.com/Significant-Gravitas/AutoGPT"
       },
       "capabilities": [
-        "agentic-ai",
-        "agents",
-        "ai",
-        "artificial-intelligence",
-        "autonomous-agents",
-        "claude"
+        "autonomous-execution",
+        "goal-decomposition",
+        "browser-automation",
+        "terminal-execution",
+        "agent-benchmarking",
+        "multi-agent-orchestration"
       ],
-      "useCase": "AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters. — 本週漲星 +1 (2026-W31 自動探勘入庫)。",
+      "useCase": "適用於給定複雜高階目標後，讓 AI 自主分解步驟、調用終端、網頁瀏覽與外部工具並自動閉環修正以完成端到端長任務的場景。",
       "advantages": [
-        "GitHub ⭐ 185,830 星",
-        "本週漲星 +1",
-        "2026-W31 自動探勘入庫"
+        "全球最具知名度的開源自主 AI Agent 鼻祖級生態，擁有極其豐富的社群社群與外掛",
+        "內建 AutoGPT Forge 開發套件與 AGBenchmark 標準化測試評測基準",
+        "支援圖形化 Builder 介面與伺服器端排程調度，兼具本機與雲端部署彈性"
       ],
       "negativeConstraints": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適用於需要確定性低延遲（<100ms）即時響應的線上 API 服務",
+        "未經沙盒隔離時避免直接賦予全權執行高風險系統或未受控之生產環境",
+        "對於單一問答或簡單文字分類任務顯得過度複雜且 Token 消耗較大"
       ],
-      "stars": 185830,
+      "stars": 186000,
       "addedAt": "2026-08-05T17:02:46.173Z",
-      "status": "active"
+      "status": "active",
+      "subTools": [
+        {
+          "name": "AutoGPT Forge",
+          "description": "Template framework and SDK for rapidly bootstrapping and customizing new autonomous agent architectures.",
+          "subpath": "autogpts/autogpt"
+        },
+        {
+          "name": "AutoGPT Benchmark (agbenchmark)",
+          "description": "Standardized benchmarking suite for rigorous evaluation and regression testing of AI agent performance.",
+          "subpath": "benchmark"
+        },
+        {
+          "name": "AutoGPT Server",
+          "description": "Backend orchestration server and execution engine for running and scheduling agent workflows.",
+          "subpath": "classic/original_autogpt"
+        }
+      ]
     },
     {
       "id": "minimax-h3",
@@ -36642,6 +36682,111 @@
         }
       ],
       "stars": 26878
+    },
+    {
+      "id": "llama-index",
+      "name": "LlamaIndex",
+      "url": "https://github.com/run-llama/llama_index",
+      "description": "Leading data framework for LLM applications to ingest, parse, structure, index, and query private or domain-specific enterprise knowledge bases.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "llama-index",
+        "llamaindex",
+        "rag-engine",
+        "knowledge-indexing",
+        "document-parsing",
+        "data-framework",
+        "vector-index",
+        "llamaparse"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install llama-index",
+        "repoUrl": "https://github.com/run-llama/llama_index"
+      },
+      "capabilities": [
+        "advanced-rag",
+        "multi-document-indexing",
+        "query-engines",
+        "data-connectors",
+        "llamaparse-integration",
+        "knowledge-graph-index"
+      ],
+      "addedAt": "2026-08-15T10:49:50.622Z",
+      "status": "active",
+      "useCase": "適用於將企業非結構化文件（PDF、Word、Notion、SQL等）進行深度解析、結構化多層次索引，並構建高精準度 RAG 檢索與問答系統的場景。",
+      "advantages": [
+        "在 RAG 與數據檢索領域具備頂尖的最佳實踐（包含 Tree Index、Keyword Index、HyDE、Router Query Engine）",
+        "與 LlamaHub 連接器生態無縫整合，支援 300+ 種資料來源一鍵載入",
+        "支援高度複雜的階層式文件解析（LlamaParse），在複雜表格與排版檢索上表現優異"
+      ],
+      "negativeConstraints": [
+        "不適用於不涉及專有資料檢索（RAG）或外部文檔讀取的通用對話場景",
+        "若只需單純字串替換或極輕量正則處理，無需引入完整數據索引框架",
+        "需配合適當的 Embedding 模型才能發揮最佳語義檢索效果"
+      ],
+      "subTools": [
+        {
+          "name": "LlamaIndex Core",
+          "description": "Core data structures, indexers, retrievers, query engines, and evaluation modules.",
+          "subpath": "llama-index-core"
+        },
+        {
+          "name": "LlamaIndex Readers & Connectors",
+          "description": "Data ingestion loaders for web, databases, cloud storage, and enterprise software.",
+          "subpath": "llama-index-integrations/readers"
+        },
+        {
+          "name": "LlamaIndex Query Engines",
+          "description": "Advanced query architectures including SubQuestionQueryEngine, Router, and MultiDocumentAgent.",
+          "subpath": "llama-index-core/llama_index/core/query_engine"
+        }
+      ],
+      "stars": 45000
+    },
+    {
+      "id": "stable-diffusion",
+      "name": "Stable Diffusion",
+      "url": "https://github.com/CompVis/stable-diffusion",
+      "description": "Original official open-source codebase for High-Resolution Image Synthesis with Latent Diffusion Models developed by CompVis, Stability AI, and Runway.",
+      "category": "多媒體生成",
+      "language": "python",
+      "triggers": [
+        "stable-diffusion",
+        "latent-diffusion",
+        "compvis",
+        "text-to-image",
+        "diffusion-models",
+        "generative-ai",
+        "image-synthesis"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/CompVis/stable-diffusion.git && cd stable-diffusion && conda env create -f environment.yaml",
+        "repoUrl": "https://github.com/CompVis/stable-diffusion"
+      },
+      "capabilities": [
+        "latent-diffusion",
+        "text-to-image-synthesis",
+        "image-modification",
+        "inpainting-baseline",
+        "deep-learning-research"
+      ],
+      "addedAt": "2026-08-15T10:49:50.623Z",
+      "status": "active",
+      "useCase": "適用於機器學習研究員與後端工程師直接使用原始潛在擴散模型 (Latent Diffusion Models) 程式碼庫進行演算法研究、權重調試與底層模型推論整合的場景。",
+      "advantages": [
+        "由 CompVis 與 Stability AI 官方維護的原汁原味潛在擴散模型參考實作",
+        "完整開源模型訓練配置、Autoencoder 與 UNet 結構定義，適合學術研究與客製化訓練",
+        "提供乾淨純粹的 Python CLI 腳本（txt2img.py, img2img.py）無多餘介面依賴"
+      ],
+      "negativeConstraints": [
+        "不提供圖形化使用者介面 (GUI)，普通非技術用戶建議使用 Stable Diffusion WebUI 或 ComfyUI",
+        "代碼庫著重於基準演算法，缺乏 WebUI 豐富的外掛生態與即時優化加速庫（如 TensorRT）",
+        "需要配置專屬 Conda 環境與 CUDA 加速支援"
+      ],
+      "stars": 68000
     }
   ]
 }

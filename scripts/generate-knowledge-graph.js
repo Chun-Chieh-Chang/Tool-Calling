@@ -246,21 +246,24 @@ export function generateKnowledgeGraph(registryInput = null) {
   <script type="text/javascript" src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph@1.73.1/dist/3d-force-graph.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-base: #0F172A;
-      --surface-card: #1E293B;
-      --text-primary: #F1F5F9;
-      --text-secondary: #94A3B8;
-      --accent-brand: #3B82F6;
-      --border-color: #334155;
+      --bg-base: #12100E;
+      --surface-card: #1A1713;
+      --text-primary: #F5EFEB;
+      --text-secondary: #A8A29E;
+      --accent-brand: #D97706;
+      --border-color: #362E25;
+      --border-gold: #B45309;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: 'EB Garamond', Georgia, serif;
       background-color: var(--bg-base);
       color: var(--text-primary);
       overflow: hidden;
@@ -273,25 +276,29 @@ export function generateKnowledgeGraph(registryInput = null) {
       top: 20px;
       left: 20px;
       z-index: 10;
-      background: rgba(30, 41, 59, 0.88);
+      background: rgba(26, 23, 19, 0.92);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
       padding: 16px 24px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
     }
 
     h1 {
+      font-family: 'Cinzel', Georgia, serif;
       font-size: 20px;
       font-weight: 700;
-      background: linear-gradient(135deg, #60A5FA 0%, #A855F7 100%);
+      letter-spacing: 0.03em;
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 6px;
     }
 
     p.subtitle {
-      font-size: 13px;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 14px;
       color: var(--text-secondary);
     }
 
@@ -306,15 +313,17 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .mode-btn {
-      background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
-      border: none;
-      border-radius: 10px;
+      background: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
+      border: 1px solid #78350F;
+      border-radius: 6px;
       color: #FFFFFF;
+      font-family: 'Cinzel', Georgia, serif;
       padding: 10px 18px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: 0.03em;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.4);
       transition: all 0.3s ease;
       display: flex;
       align-items: center;
@@ -323,7 +332,8 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     .mode-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.6);
+      border-color: #F59E0B;
     }
 
     .mode-btn * {
@@ -331,13 +341,14 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .search-box {
-      background: rgba(30, 41, 59, 0.88);
+      background: rgba(26, 23, 19, 0.92);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
       padding: 10px 16px;
       color: var(--text-primary);
-      font-size: 14px;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15px;
       outline: none;
       width: 260px;
       transition: all 0.3s ease;
@@ -345,7 +356,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     .search-box:focus {
       border-color: var(--accent-brand);
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.25);
     }
 
     #network2d, #network3d {
@@ -367,21 +378,23 @@ export function generateKnowledgeGraph(registryInput = null) {
       right: 20px;
       transform: translateY(-50%);
       z-index: 15;
-      background: rgba(30, 41, 59, 0.92);
+      background: rgba(26, 23, 19, 0.94);
       backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
       padding: 14px 18px;
       max-height: calc(100vh - 160px);
       width: 270px;
       overflow-y: auto;
-      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7);
     }
 
     .legend-header {
+      font-family: 'Cinzel', Georgia, serif;
       font-size: 13px;
       font-weight: 700;
-      color: #60A5FA;
+      letter-spacing: 0.03em;
+      color: #F59E0B;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
@@ -436,13 +449,13 @@ export function generateKnowledgeGraph(registryInput = null) {
       left: 20px;
       z-index: 20;
       width: 360px;
-      background: rgba(30, 41, 59, 0.95);
+      background: rgba(26, 23, 19, 0.96);
       backdrop-filter: blur(16px);
-      border: 1px solid var(--border-color);
-      border-radius: 14px;
+      border: 1px solid var(--border-gold);
+      border-radius: 8px;
       padding: 20px;
       display: none;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
       transform: translateY(10px);
       transition: all 0.3s ease;
     }

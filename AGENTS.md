@@ -32,22 +32,22 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 578 個工具
+工具庫規模: 580 個工具
 追蹤 repos: 2173 個
-總 star 數: 12,030,628 ⭐
-平均 star 數: 28,175 ⭐
+總 star 數: 12,298,822 ⭐
+平均 star 數: 28,669 ⭐
 最後更新: 2026/8/15
 ```
 
 ### Top 5 分類
-- `AI 框架`: 148 個工具
-- `AI 代理`: 106 個工具
+- `AI 框架`: 147 個工具
+- `AI 代理`: 107 個工具
 - `開發工具`: 94 個工具
 - `學習資源`: 38 個工具
 - `UI/UX設計`: 28 個工具
 
 ### Top 5 語言
-- `python`: 205 個工具
+- `python`: 207 個工具
 - `typescript`: 118 個工具
 - `javascript`: 53 個工具
 - `other`: 44 個工具
@@ -97,7 +97,7 @@ npm run agents:init       # 生成/驗證 AGENTS.md
 node cli.js search "<需求>"           # 三層檢索工具
 node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
-node cli.js list                      # 列出所有工具 (578+)
+node cli.js list                      # 列出所有工具 (580+)
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
 ```
@@ -122,7 +122,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 全套單元與 Playwright 視覺測試
-npm test  # 目標：71/71 pass, 0 fail (自動執行 check-utf8.js 與 check-duplicate-ids.js 門禁)
+npm test  # 目標：75/75 pass, 0 fail (自動執行 check-utf8.js 與 check-duplicate-ids.js 門禁)
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料品質門禁 (100/100)
@@ -132,10 +132,10 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (71/71 PASS)
+- [ ] 所有測試通過 (75/75 PASS)
 - [ ] UTF-8 編碼門禁通過 (0 個 U+FFFD 亂碼字元)
 - [ ] HTML ID 唯一性門禁通過 (0 個重複 ID)
-- [ ] 工具庫驗證通過 (578+ 工具, 100/100 分)
+- [ ] 工具庫驗證通過 (580+ 工具, 100/100 分)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -247,7 +247,7 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 578+ 工具 (單一真理來源)
+│   ├── tools.json      # 580+ 工具 (單一真理來源)
 │   ├── tracked-repos.json  # 2173 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告

@@ -1,5 +1,61 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-15 GitHub 每週漲星榜 World Week 國際標準世界週與單一事實來源全面重構
+
+### 需求
+用戶反饋 GitHub 每週漲星排行榜之統計區間存在混亂與日期偏移問題（例如 2026-W32 誤標為 2026-08-04 ~ 2026-08-10，且起訖日期跨越 8 天）。要求建立符合 ISO-8601 World Week 定義之時間計算機制，支援自動感知當前時間動態對齊真實數據，並遵循單一數據事實來源 (Single Source of Truth) 原則。
+
+### 處理結果
+1. **建立標準核心模組 `core/world-week.js`**：
+   - 嚴格落實 ISO-8601 國際標準週曆定義（每週固定以 Monday 00:00:00 UTC 起始，Sunday 23:59:59 UTC 結束）。
+   - 採嚴格 UTC 演算法，杜絕瀏覽器與伺服器本地時區跨日偏移 (Zero Timezone Drift)。
+   - 提供 `getISOWeekDetails()`, `getCurrentWorldWeek()`, `getPreviousWorldWeek()`, `getWeekRangeFromWeekStr()` 等單一事實來源函數。
+2. **重構 `scripts/trending-weekly.js` 探勘與週報引擎**：
+   - 全面替換舊有錯誤偏移演算法，統一調用 `core/world-week.js`。
+   - 動態感知當前世界週 (`getCurrentWorldWeek`) 與基準快照週 (`getPreviousWorldWeek`)，確保 delta 計算的起點日（上週結算/週一）與終點日（本週結算/週日）100% 準確。
+3. **淨化歷史快照 `registry/star-snapshots.json`**：
+   - 清理根層級污染之暫存鍵值，保留乾淨的 ISO-8601 快照陣列（2026-W30: 07-20~07-26, 2026-W31: 07-27~08-02, 2026-W32: 08-03~08-09）。
+4. **校正前端介面 `web/app.js` 與資料檔 `registry/weekly-trending.json`**：
+   - 2026-W32 統計區間校正為標準 `2026-08-03 ~ 2026-08-09`。
+   - 卡片時間顯示校正為起 `2026-08-03`，終 `2026-08-09`，並在前端以純字串解析防止本地時區轉換偏移。
+5. **新建自動化單元測試 `tests/world-week.test.js`**：
+   - 包含週一/週日邊界測試、跨週對齊測試與字串反解析雙向檢驗。
+
+### RCA & CAPA
+- **RCA**: 舊版時間輔助函數直接以 `d.getUTCDate() - (isoDay + 5)` 等魔術數字進行日期加減，加上未統一使用 UTC 函數，導致遭遇本地時區 (UTC+8) 與不同星期時產生 1~2 天的非標準漂移，破壞了 ISO-8601 週一至週日的定義。
+- **CAPA**: 將所有時間計算收斂至 `core/world-week.js` 作為唯一事實來源，強制使用 UTC 基礎運算，並加入自動化單元測試保護。
+
+## 2026-08-15 工具庫第六輪批次新增、拆解與旗艦框架升級 (AutoGPT / LangChain / LlamaIndex / SD-WebUI / CompVis-SD)
+
+### 需求
+批次新增/處理 5 個 AI 領域頂級開源專案網址：進行 Monorepo 模組拆解檢查（Forge, Benchmark, LCEL, LlamaHub, LlamaParse 等）；若遇到既有工具重複時重新深度解析，比較後以 100 分品質詮釋資料與子工具結構取代舊條目。
+
+### 處理結果
+- **既有條目深度重構與升級取代**：
+  - `autogpt` (Significant-Gravitas/AutoGPT, 186,000 ⭐)：舊條目為自動探勘產生的佔位字串與空白描述。新版全面重構為「AI 代理」分類，補齊自主目標分解與執行優勢，並拆解整合 3 個核心子工具：
+    1. `AutoGPT Forge` (`autogpts/autogpt`) — 自定義 Agent 模板與 SDK。
+    2. `AutoGPT Benchmark (agbenchmark)` (`benchmark`) — 標準化 Agent 評測套件。
+    3. `AutoGPT Server` (`classic/original_autogpt`) — 後端排程與執行引擎。
+  - `langchain` (langchain-ai/langchain, 110,000 ⭐)：舊條目星數過舊 (92k)，缺少 Monorepo 分層。新版更新至 110k+ 星數，修正安裝指令為 `pip install langchain langchain-community langchain-core`，並拆解 3 個核心模組：
+    1. `LangChain Core` (`libs/core`) — LCEL 執行時與基礎抽象。
+    2. `LangChain Community` (`libs/community`) — 700+ 第三方適配器生態。
+    3. `LangChain Text Splitters` (`libs/text-splitters`) — 專業 RAG 切塊工具。
+  - `stable-diffusion-webui` (AUTOMATIC1111/stable-diffusion-webui, 152,000 ⭐)：舊條目星數嚴重過期 (14,976 ⭐) 且分類誤標為「AI 框架」。新版校正分類為「多媒體生成」，更新星數至 152k+，安裝指令修正為 `git-clone` + 執行腳本，補齊 ControlNet/LoRA 視覺優勢。
+- **頂級新工具入庫**：
+  - `llama-index` (run-llama/llama_index, 45,000 ⭐)：新收錄至「AI 框架」，專精於企業數據解析、多層次結構化索引與高精準度 RAG，並拆解 3 個核心子工具：
+    1. `LlamaIndex Core` (`llama-index-core`) — 核心索引與查詢引擎。
+    2. `LlamaIndex Readers & Connectors` (`llama-index-integrations/readers`) — LlamaHub 資料連接器。
+    3. `LlamaIndex Query Engines` (`llama-index-core/llama_index/core/query_engine`) — 高級查詢架構。
+  - `stable-diffusion` (CompVis/stable-diffusion, 68,000 ⭐)：新收錄至「多媒體生成」，CompVis 與 Stability AI 官方原創潛在擴散模型演算法程式庫。
+- **工具庫總數**：578 → 580（淨增 2 個工具，含 9 個子工具模組拆解）。
+- **全綠測試門禁**：
+  - `node cli.js validate`：0 個錯誤、平均品質分數 100/100 (Grade A)。
+  - `npm test`：71/71 tests PASS, 0 fail (含 UTF-8 Guard 與 Unique ID 門禁)。
+
+### RCA & CAPA
+- **RCA**: 旗艦級大專案（如 LangChain、AutoGPT、LlamaIndex）均已演化為多套件 Monorepo 生態，若僅當作單體套件收錄會遺漏核心子模組之檢索可達性。
+- **CAPA**: 對具備豐富子生態的巨型專案，強制透過 `subTools` 定義核心套件與路徑，使檢索引擎能精準匹配使用者針對特定子模組（如 LlamaParse、Forge、Text Splitters）的需求。
+
 ## 2026-08-15 專案整體程式碼、檔案與文件之全流程優化與重構作業
 
 ### 需求
@@ -1932,3 +1988,27 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 #### RCA / CAPA
 - **問題**：CI 容器未安裝 Playwright 瀏覽器二進位檔導致遠端測試失敗。
 - **矯正與預防措施 (CAPA)**：將 CI/CD 防禦修復納入 Workflow 流程 (npx playwright install --with-deps chromium) 並加上 launch 備援機制，已萃取並寫入預防規則。
+
+## 2026-08-15 - 16世紀文藝復興羊皮紙與古典鐵膽墨水風格 UI/UX 全面重構
+### 需求內容
+啟動全自動工具調用模式，優化專案介面布局與漸層色調，去除AI味，打造專業的具有16世紀復古風格的頁面（文藝復興手稿、羊皮紙米白、古典鐵膽墨水黑、古銅金與封蠟紅點綴，EB Garamond / Cinzel 文藝復興襯線字體，兼具星象觀測室深色模式）。
+
+### 問題與原因分析 (RCA)
+1. 原介面採用現代常見的藍綠高飽和度霓虹漸層與模糊光球 (orb-1, orb-2)，帶有濃厚的模板化 AI 感。
+2. 預設字體缺少古典氣息，按鈕與卡片邊框缺乏手工藝雙線與古籍裝訂秩序。
+
+### 矯正與預防措施 (CAPA)
+1. **字體系統升級**：引入 Google Fonts Cinzel (大氣羅馬大寫銘刻) 與 EB Garamond (文藝復興古典襯線正文)，結合 JetBrains Mono 呈現古典與現代代碼之和諧結合。
+2. **微調高級復古色階**：
+   - Light Mode: #F5EFEB 羊皮紙基底、#FAF6F0 細膩紙張白卡片、#1C1917 鐵膽墨水黑、#854D0E 黃銅金與 #991B1B 封蠟赭紅。
+   - Dark Mode: #12100E 黑曜石星象夜空、#1A1713 深褐皮革封面、#F5EFEB 暖白字、#D97706 星象琥珀金。
+3. **古籍裝訂美學細節**：
+   - 移除所有廉價 AI 光球，加入溫潤羊皮紙漫射漸層與古典雙線飾邊 (Double Fillet Border)。
+   - 徽章與按鈕採用封蠟印章 (Wax Seal) 與金屬雕刻質感。
+   - 排行榜名次升級為古典金/銀/銅幣印章標章。
+4. **知識圖譜同步對齊**：scripts/generate-knowledge-graph.js 同步換裝為星象學者夜空與黃銅金飾邊樣式。
+
+### 確效結果
+- UTF-8 Guard 門禁：0 個 U+FFFD 亂碼字元
+- HTML ID 唯一性：100% 唯一
+- 全套單元與 Playwright 視覺測試：75 / 75 PASS (100% 通過，0 Fail)

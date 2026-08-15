@@ -1,19 +1,18 @@
 /**
- * trending-weekly.js — GitHub 每週漲星數 Top 10 自動探勘與入庫腳本（v4 正確版）
+ * trending-weekly.js — GitHub 每週漲星數 Top 10 自動探勘與入庫腳本（v5 World Week 正確版）
  * 
- * 核心修正：
- *   - 不再用 pushed: 過濾，確保每週搜尋相同的 repos 集合
- *   - 增加搜尋範圍（stars:>500, stars:>200）以匹配歷史快照的覆盖率
- *   - 合併多週快照數據計算準確 delta
- *   - 限制單次搜尋結果數量，避免 API 限流
- * 
- * API 用量預估：~6 次 search 請求/週，完全不會觸發限流
+ * 核心規範：
+ *   - 嚴格遵守 ISO-8601 World Week 國際標準（週一至週日），杜絕時區偏差
+ *   - 單一資料事實來源 (Single Source of Truth)，快照與每週排行榜時間對齊
+ *   - 自動感知當前時間 (Current World Week) 與基準快照比對 (Previous World Week)
+ *   - 限制搜尋請求頻率，支援匿名與 Token 自動切換
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildTrackedRepos, getTrackedRepos } from './tracked-repos.js';
+import { getCurrentWorldWeek, getPreviousWorldWeek, getWeekRangeFromWeekStr } from '../core/world-week.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -41,42 +40,6 @@ function buildHeaders() {
 
 const delay = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function getISOWeekString(date = new Date()) {
-  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
-  return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
-}
-
-function getTargetWeek(now = new Date()) {
-  const d = new Date(now);
-  const isoDay = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() - (isoDay + 5));
-  d.setUTCHours(0, 0, 0, 0);
-  const monday = d;
-  const sunday = new Date(monday);
-  sunday.setUTCDate(sunday.getUTCDate() + 6);
-  return { monday, sunday, isoWeek: getISOWeekString(monday) };
-}
-
-function getLastWeekRange(now = new Date()) {
-  const d = new Date(now);
-  const isoDay = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() - (isoDay + 12));
-  d.setUTCHours(0, 0, 0, 0);
-  const lastMonday = d;
-  const lastSunday = new Date(d);
-  lastSunday.setUTCDate(lastSunday.getUTCDate() + 6);
-  return {
-    monday: lastMonday,
-    sunday: lastSunday,
-    mondayStr: lastMonday.toISOString().slice(0, 10),
-    sundayStr: lastSunday.toISOString().slice(0, 10)
-  };
-}
-
-function formatDate(date) { return date.toISOString().slice(0, 10); }
 function formatDateTime(date) { return date.toISOString().replace('T', ' ').slice(0, 19) + ' UTC'; }
 
 // ──────────────────────────────────────────────
@@ -151,7 +114,6 @@ function loadAllSnapshotData() {
   if (!existsSync(SNAPSHOTS_PATH)) return { snapshots: [], lastUpdated: null, allRepos: {} };
   try {
     const snapshotData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf8'));
-    // 合併所有週的 repo 數據
     const allRepos = {};
     if (Array.isArray(snapshotData.snapshots)) {
       for (const snap of snapshotData.snapshots) {
@@ -180,18 +142,24 @@ function getLatestSnapshot(snapshotData) {
 
 export async function discoverTrendingTools() {
   const now = new Date();
-  const { monday: targetMonday, sunday: targetSunday, isoWeek: targetWeek } = getTargetWeek(now);
-  const lastWeekRange = getLastWeekRange(now);
-  const lastWeekStr = getISOWeekString(lastWeekRange.monday);
+  
+  // 嚴格依循 ISO-8601 World Week 計算目標週與前一週
+  const currentWeekInfo = getCurrentWorldWeek(now);
+  const prevWeekInfo = getPreviousWorldWeek(now);
 
-  const targetMondayStr = targetMonday.toISOString().slice(0, 10);
-  const targetSundayStr = targetSunday.toISOString().slice(0, 10);
-  const lastMondayStr = lastWeekRange.monday.toISOString().slice(0, 10);
-  const lastSundayStr = lastWeekRange.sunday.toISOString().slice(0, 10);
+  const targetWeek = currentWeekInfo.weekStr;
+  const targetDateRange = currentWeekInfo.dateRange;
+  const targetMondayStr = currentWeekInfo.mondayStr;
+  const targetSundayStr = currentWeekInfo.sundayStr;
 
-  console.log(`\n🔍 GitHub 每週漲星探勘 — ${targetWeek}`);
-  console.log(`   本週區間：${targetMondayStr} ~ ${targetSundayStr}`);
-  console.log(`   上週區間：${lastMondayStr} ~ ${lastSundayStr}\n`);
+  const prevWeekStr = prevWeekInfo.weekStr;
+  const prevDateRange = prevWeekInfo.dateRange;
+  const prevMondayStr = prevWeekInfo.mondayStr;
+  const prevSundayStr = prevWeekInfo.sundayStr;
+
+  console.log(`\n🔍 GitHub 每週漲星探勘 — ${targetWeek} (ISO-8601 World Week)`);
+  console.log(`   當前週區間：${targetDateRange}`);
+  console.log(`   上週基準日：${prevDateRange}\n`);
 
   // Step 1: 建立追蹤池
   console.log('📋 Step 1: 初始化追蹤池...');
@@ -203,24 +171,24 @@ export async function discoverTrendingTools() {
   console.log('📊 Step 2: 載入歷史快照...');
   const snapshotData = loadAllSnapshotData();
   const allHistoricalRepos = snapshotData.allRepos || {};
-  const lastWeekSnap = getSnapshotForWeek(lastWeekStr, snapshotData) || getLatestSnapshot(snapshotData);
+  const lastWeekSnap = getSnapshotForWeek(prevWeekStr, snapshotData) || getLatestSnapshot(snapshotData);
   
   if (lastWeekSnap) {
-    console.log(`   找到上週 (${lastWeekStr}) 快照，包含 ${Object.keys(lastWeekSnap.repos).length} 個 repos`);
+    console.log(`   找到基準快照 (${lastWeekSnap.week})，包含 ${Object.keys(lastWeekSnap.repos || {}).length} 個 repos`);
   } else {
-    console.log('   ⚠ 未找到上週快照，將使用最新可用快照');
+    console.log('   ⚠ 未找到上週快照，將使用歷史全量資料作為基準');
   }
   console.log(`   歷史總計 ${Object.keys(allHistoricalRepos).length} 個 unique repos\n`);
 
   // Step 3: 搜尋熱門 repos（包含近期新建專案與活躍專案）
   console.log('🔎 Step 3: 搜尋熱門與新銳暴漲 repos...');
   
-  const thirtyDaysAgo = new Date(targetMonday);
+  const thirtyDaysAgo = new Date(currentWeekInfo.monday);
   thirtyDaysAgo.setUTCDate(thirtyDaysAgo.getUTCDate() - 30);
   const thirtyDaysAgoStr = thirtyDaysAgo.toISOString().slice(0, 10);
 
   const SEARCH_QUERIES = [
-    `created:>${thirtyDaysAgoStr} stars:>20`, // 近 30 天內新建暴爆新星
+    `created:>${thirtyDaysAgoStr} stars:>20`, // 近 30 天內新建暴漲新星
     `pushed:>${targetMondayStr} stars:>500`,   // 當週高活躍專案
     'stars:>50000',                            // 超熱門基線
     'stars:>20000',                            // 熱門基線
@@ -249,11 +217,9 @@ export async function discoverTrendingTools() {
   console.log(`\n   本週搜尋到熱門 repos: ${thisWeekRepos.size} 個\n`);
 
   // Step 4: 計算 star delta
-  // 優先使用上週快照數據，若無則使用歷史數據
   console.log('📊 Step 4: 計算 star delta...');
   const prevSnapshot = lastWeekSnap?.repos || allHistoricalRepos;
   
-  // 驗證數據一致性
   const commonRepos = Object.keys(prevSnapshot).filter(k => thisWeekRepos.has(k));
   console.log(`   兩週共 ${commonRepos.length} 個重疊 repos`);
   
@@ -269,8 +235,8 @@ export async function discoverTrendingTools() {
     // 如果前週沒有數據，檢查是否為近 30 天內創立之專案
     if (prevStars === 0) {
       const createdAt = repo.created_at ? new Date(repo.created_at) : null;
-      if (createdAt && (targetSunday.getTime() - createdAt.getTime()) <= 30 * 86400 * 1000) {
-        prevStars = 0; // 近期新建專案起點記為 0 星，計算完整漲幅
+      if (createdAt && (currentWeekInfo.sunday.getTime() - createdAt.getTime()) <= 30 * 86400 * 1000) {
+        prevStars = 0; // 近期新建專案起點記為 0 星
       } else {
         continue; // 創立已久的舊專案若無基線紀錄則跳過
       }
@@ -302,7 +268,7 @@ export async function discoverTrendingTools() {
       pushedAt: repo.pushed_at,
       html_url: repo.html_url,
       category: inferCategory(repo),
-      startStarsAt: lastSundayStr,
+      startStarsAt: targetMondayStr,
       endStarsAt: targetSundayStr
     });
   }
@@ -333,7 +299,6 @@ export async function discoverTrendingTools() {
   let addedCount = 0;
   const addedTools = [];
 
-  // 優先入庫：top20中尚未入庫且delta>0的
   for (const repo of top20) {
     const repoUrl = repo.html_url;
     if (existingUrls.has(repoUrl?.toLowerCase())) continue;
@@ -392,12 +357,12 @@ export async function discoverTrendingTools() {
     currentSnapshot[fullName] = repo.stargazers_count || 0;
   }
   
-  let snapshotFileData = { snapshots: [], lastUpdated: now.toISOString() };
+  let snapshotFileData = { lastUpdated: now.toISOString(), snapshots: [] };
   if (existsSync(SNAPSHOTS_PATH)) {
     try {
-      snapshotFileData = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf8'));
-      if (!Array.isArray(snapshotFileData.snapshots)) {
-        snapshotFileData.snapshots = [];
+      const parsed = JSON.parse(readFileSync(SNAPSHOTS_PATH, 'utf8'));
+      if (Array.isArray(parsed.snapshots)) {
+        snapshotFileData.snapshots = parsed.snapshots;
       }
     } catch { /* ignore */ }
   }
@@ -410,8 +375,8 @@ export async function discoverTrendingTools() {
   
   snapshotFileData.snapshots.push({
     week: targetWeek,
-    dateRange: `${targetMondayStr} ~ ${targetSundayStr}`,
-    timestamp: targetSunday.toISOString(),
+    dateRange: targetDateRange,
+    timestamp: currentWeekInfo.sunday.toISOString(),
     repos: mergedSnapshot
   });
   
@@ -431,8 +396,8 @@ export async function discoverTrendingTools() {
   const reportLines = [
     `# 🏆 GitHub 每週漲星探勘報告 — ${targetWeek}`,
     '',
-    `> **統計區間**：${targetMondayStr} ~ ${targetSundayStr}`,
-    `> **統計時間**：${formatDateTime(targetMonday)} ~ ${formatDateTime(targetSunday)}`,
+    `> **統計區間**：${targetDateRange} (ISO-8601 World Week)`,
+    `> **統計時間**：${formatDateTime(currentWeekInfo.monday)} ~ ${formatDateTime(currentWeekInfo.sunday)}`,
     `> **探勘時間**：${now.toISOString()}`,
     `> **追蹤池大小**：${trackedCount}`,
     `> **本週搜尋 repos 數**：${thisWeekRepos.size}`,
@@ -457,7 +422,7 @@ export async function discoverTrendingTools() {
     );
   });
 
-  reportLines.push('', '---', `> 由 \`scripts/trending-weekly.js\` 自動生成（v5 重構版：涵蓋近期新建專案與動態熱度，並兼具雙欄位相容性）`);
+  reportLines.push('', '---', `> 由 \`scripts/trending-weekly.js\` 自動生成（遵循 ISO-8601 World Week 國際標準）`);
 
   writeFileSync(reportPath, reportLines.join('\n'), 'utf8');
   console.log(`   週報已寫入：${reportPath}\n`);
@@ -481,16 +446,16 @@ export async function discoverTrendingTools() {
       category: r.category,
       isNewlyAdded: wasAdded,
       statusText: wasAdded ? '🆕 本週納入' : (inRegistry ? '✅ 已在工具箱' : '⏭ 首次記錄'),
-      startStarsAt: r.startStarsAt,
-      endStarsAt: r.endStarsAt
+      startStarsAt: targetMondayStr,
+      endStarsAt: targetSundayStr
     };
   });
 
   const trendingData = {
     worldWeek: targetWeek,
     lastUpdated: now.toISOString(),
-    dateRange: `${targetMondayStr} ~ ${targetSundayStr}`,
-    statPeriod: { start: targetMonday.toISOString(), end: targetSunday.toISOString() },
+    dateRange: targetDateRange,
+    statPeriod: { start: currentWeekInfo.monday.toISOString(), end: currentWeekInfo.sunday.toISOString() },
     scanTime: now.toISOString(),
     trackedPoolSize: trackedCount,
     activeReposCount: thisWeekRepos.size,
