@@ -1,5 +1,25 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 3D 知識圖譜物理空間拉伸與相機向量推進對焦徹底修復 (3D Galaxy Physics & Vector Camera Focus)
+
+### 需求
+針對使用者指出「2D OK 但 3D 沒改善」，進行 3D 視圖之底層架構問題分析與修復：
+1. **3D 節點扎堆不散根因 (3D Space Bottleneck RCA)**：
+   - 根因：`3d-force-graph` 預設連線長度僅為 `30` 單位，且先前未明確覆寫 `d3Force('charge')` 斥力與 `d3Force('link')` 距離，導致 580 個節點在 3D 空間中全部擠在半徑約 80 的狹小球體內，造成嚴重疊合遮擋。
+   - 解決方案 (CAPA)：
+     - 注入 3D 物理場強化配置：將 `d3Force('charge').strength(-480)`（加強斥力），並動態分配連線長度（主幹 `320` 單位、工具分支 `140` 單位、微技能 `60` 單位）。
+     - 3D 節點空間體積擴大數十倍，各分類工具如宏偉星系般各自展開，杜絕球體碰撞與重疊。
+2. **3D 對焦推進演算法升級 (Vector Camera Zoom-In)**：
+   - 實作 `zoomTo3DNode(node, 28)`：點擊任意 3D 節點時，沿著當前視線向量將相機精準推進至節點前方 28 單位，並將 OrbitControls 旋轉與滾輪焦點鎖定在該節點上，實現流暢的微觀近距離檢視。
+   - OrbitControls 最小距離下修至 `0.02` 單位，徹底解除 3D 近距離縮放限制。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 知識圖譜星團拓撲間距拉伸與 100 倍極致深層細節對焦優化 (Expansive Galaxy Topology & 100x Deep Micro Detail)
 
 ### 需求

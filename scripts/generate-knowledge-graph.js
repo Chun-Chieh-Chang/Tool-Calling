@@ -964,17 +964,55 @@ export function generateKnowledgeGraph(registryInput = null) {
         .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
         .linkDirectionalParticleSpeed(0.004)
         .linkDirectionalParticleWidth(1.4)
+        .d3VelocityDecay(0.25)
+        .d3AlphaDecay(0.015)
+        .warmupTicks(60)
+        .cooldownTicks(300)
         .onNodeClick(node => {
-          // 點擊節點：極限近距離深入對焦 (Deep Zoom to distance 35)
-          const distance = 35;
-          const distRatio = 1 + distance / Math.hypot(node.x || 1, node.y || 1, node.z || 1);
-          graph3DInstance.cameraPosition(
-            { x: (node.x || 0) * distRatio, y: (node.y || 0) * distRatio, z: (node.z || 0) * distRatio },
-            node,
-            1000
-          );
+          // 點擊節點：極限深入對焦至節點正前方距離 28 單位
+          zoomTo3DNode(node, 28);
           showPanel(node);
         });
+
+      // 設定 3D 力導向物理場 (徹底拉開 580 個節點的 3D 星系空間)
+      setTimeout(() => {
+        if (graph3DInstance && graph3DInstance.d3Force) {
+          const chargeForce = graph3DInstance.d3Force('charge');
+          if (chargeForce) chargeForce.strength(-480); // 強大斥力，防止節點在 3D 空間扎堆
+
+          const linkForce = graph3DInstance.d3Force('link');
+          if (linkForce) {
+            linkForce.distance(link => {
+              const src = link.source && link.source.id ? link.source.id : link.source;
+              const tgt = link.target && link.target.id ? link.target.id : link.target;
+              if (src === 'root' || tgt === 'root') return 320; // 主幹廣闊半徑
+              if (link.isDashed) return 60;                    // 微技能子分支
+              return 140;                                      // 工具分支充裕間隔
+            });
+          }
+        }
+      }, 50);
+
+      // 3D 視角向量對焦推進函數
+      function zoomTo3DNode(node, targetDistance = 28) {
+        if (!graph3DInstance) return;
+        const currentCam = graph3DInstance.cameraPosition();
+        const nodePos = { x: node.x || 0, y: node.y || 0, z: node.z || 0 };
+        
+        let dirX = currentCam.x - nodePos.x;
+        let dirY = currentCam.y - nodePos.y;
+        let dirZ = currentCam.z - nodePos.z;
+        const len = Math.hypot(dirX, dirY, dirZ) || 1;
+        dirX /= len; dirY /= len; dirZ /= len;
+
+        const newCamPos = {
+          x: nodePos.x + dirX * targetDistance,
+          y: nodePos.y + dirY * targetDistance,
+          z: nodePos.z + dirZ * targetDistance
+        };
+
+        graph3DInstance.cameraPosition(newCamPos, nodePos, 1000);
+      }
 
       // 3D 空間操控配置 (啟用 OrbitControls 原生超深層無限制縮放與平移)
       setTimeout(() => {
@@ -983,7 +1021,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           if (controls) {
             controls.enableZoom = true;
             controls.zoomSpeed = 1.6;
-            controls.minDistance = 0.05; // 允許極限近距離 3D 放大 (Deep Zoom In)
+            controls.minDistance = 0.02; // 允許極限近距離 3D 放大 (Deep Zoom In)
             controls.maxDistance = 50000;
             controls.enablePan = true;
             controls.panSpeed = 1.2;
@@ -1057,7 +1095,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       }, true);
 
       window.graph3DInstance = graph3DInstance;
-      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 460 });
+      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 650 });
     }
 
     // 切換 2D / 3D 視角
