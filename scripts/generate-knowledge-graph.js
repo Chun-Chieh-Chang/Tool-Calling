@@ -834,23 +834,29 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 2D Pivot Zoom (縮放中心：滑鼠當前位置，縮小 1~1/20 即 0.05x，放大 1~20 即 20.0x)
+    // 2D Pivot Zoom (縮放中心：滑鼠當前位置 100% 絕對鎖定不動，縮小 1~1/20 即 0.05x，放大 1~20 即 20.0x)
     container2d.addEventListener('wheel', function(e) {
       e.preventDefault();
       e.stopPropagation();
       const currentScale = network2d.getScale();
       const zoomFactor = e.deltaY < 0 ? 1.15 : (1 / 1.15);
-      // 縮小時可從 1 到 1/20 (0.05)，放大時可從 1 到 20 (20.0)
       const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.05), 20.0);
 
       const rect = container2d.getBoundingClientRect();
-      const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
-      const domPos = network2d.DOMtoCanvas(pointer);
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+
+      // 取得滑鼠游標當前所指之世界畫布座標 (wx, wy)
+      const worldPos = network2d.DOMtoCanvas({ x: mx, y: my });
+
+      // 第一性原理精準推導：計算新縮放比下應移至之視圖中心 (vx_new, vy_new)
+      // 確保 worldPos 在新 scale 下反算回螢幕座標依然 100% 精準等於 (mx, my)，完全 0 位移！
+      const vx_new = worldPos.x - (mx - rect.width / 2) / newScale;
+      const vy_new = worldPos.y - (my - rect.height / 2) / newScale;
 
       network2d.moveTo({
-        position: domPos,
+        position: { x: vx_new, y: vy_new },
         scale: newScale,
-        offset: { x: (rect.width / 2) - pointer.x, y: (rect.height / 2) - pointer.y },
         animation: false
       });
     }, { passive: false });
@@ -1065,12 +1071,14 @@ export function generateKnowledgeGraph(registryInput = null) {
         raycaster.setFromCamera(mouseNDC, camera);
 
         const plane = new THREE.Plane();
-        const normal = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
-        plane.setFromNormalAndCoplanarPoint(normal, controls.target);
+        const cameraDir = new THREE.Vector3();
+        camera.getWorldDirection(cameraDir);
+        plane.setFromNormalAndCoplanarPoint(cameraDir.negate(), controls.target);
 
-        const pivot = new THREE.Vector3();
-        const hasIntersect = raycaster.ray.intersectPlane(plane, pivot);
-        const targetPoint = hasIntersect ? pivot : controls.target.clone();
+        const targetPoint = new THREE.Vector3();
+        if (!raycaster.ray.intersectPlane(plane, targetPoint)) {
+          targetPoint.copy(controls.target);
+        }
 
         const zoomRatio = e.deltaY < 0 ? 0.88 : (1 / 0.88);
 
@@ -1078,12 +1086,8 @@ export function generateKnowledgeGraph(registryInput = null) {
         const currentDist = camToPivot.length();
         const newDist = Math.min(Math.max(currentDist * zoomRatio, 15.0), 6000.0);
 
-        camToPivot.normalize().multiplyScalar(newDist);
-        camera.position.copy(targetPoint).add(camToPivot);
-        
-        if (hasIntersect && e.deltaY < 0) {
-          controls.target.lerp(targetPoint, 0.12);
-        }
+        camera.position.copy(targetPoint).addScaledVector(camToPivot.normalize(), newDist);
+        controls.target.copy(targetPoint);
         controls.update();
       }, { passive: false });
 

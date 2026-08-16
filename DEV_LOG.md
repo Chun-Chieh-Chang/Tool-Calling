@@ -1,27 +1,35 @@
 # Tool-Calling 開發日誌
 
-## 2026-08-16 知識圖譜雙向縮放倍率落實：縮小 1~1/20 (0.05x)、放大 1~20 (20.0x) (Bidirectional Zoom Range 0.05x ~ 20.0x)
+## 2026-08-16 第一性原理推導與修復：2D 與 3D 縮放時滑鼠焦點零位移鎖定 (Zero-Drift Mouse Pivot Zoom Mathematical Fix)
 
-### 需求
-精確落實使用者對縮放倍率的完整定義：
-- **縮小範圍**：可以從 1 縮小到 `1/20`（即 `0.05x`，供宏觀鳥瞰全景星系）。
-- **放大範圍**：可以從 1 放大到 `20`（即 `20.0x`，供極致微觀檢視節點與連線）。
-- **縮放中心 (基準點)**：完全鎖定於滑鼠當前位置。
-- **預設初始畫面字體大小**：`13px`（以 Scale 1.0 為基準畫面，圓形/圓球比例恰當）。
+### 根本原因分析 (RCA)
+使用者提出：**「縮放時為何做不到滑鼠當前所指的位置不變 (以滑鼠位置為中心)？」**
+1. **2D Vis.js 座標位移根因**：
+   - 先前使用 Vis.js 的 `moveTo({ position: domPos, offset: { x: W/2 - mx, y: H/2 - my } })`。
+   - Vis.js 內部機制是將 `position` 放置於螢幕中心 `(W/2, H/2)`，再加上 `offset`。當代入 `W/2 - mx` 時，實際螢幕位置變成 $W - mx$（方向相反且疊加了畫布中心偏移），導致每次滾輪縮放時，游標下的點產生劇烈的鏡像跳躍與飄移。
+2. **3D Three.js 視角偏轉根因**：
+   - 先前 3D 在進行 Raycast 時，僅移動了相機位置，但未嚴格沿著「滑鼠 3D 焦點 $\to$ 相機當前位置」的直線上進行拉伸，且 OrbitControls 的內部旋轉中心 (`target`) 未能完全釘在焦點上，導致相機推進時產生側向切線偏移。
 
-### 實作與防禦措施 (CAPA)
-1. **2D Vis.js 縮放倍率**：
-   - 縮放限制設定為 `Math.min(Math.max(currentScale * zoomFactor, 0.05), 20.0)`。
-   - 滾輪縮放時透過 `network2d.DOMtoCanvas(pointer)` 即時將滑鼠座標作為縮放基準點。
-2. **3D Force-Directed 空間相機距離**：
-   - 基準距離為 `300.0` (1x)。
-   - 縮小 1/20 時相機拉遠至 `300 * 20 = 6000.0`；放大 20 倍時相機拉近至 `300 / 20 = 15.0`。
-   - 滾輪以 Three.js Raycaster 焦點沿視線向量精確縮放。
+### 矯正措施 (CAPA) — 第一性原理數學推導與修復
+1. **2D 視圖中心逆向嚴格推導**：
+   - 設螢幕寬高為 $(W, H)$，滑鼠在螢幕上的座標為 $(m_x, m_y)$。
+   - 透過 `network2d.DOMtoCanvas({ x: mx, y: my })` 取得滑鼠游標指著的世界座標 $(w_x, w_y)$。
+   - Vis.js 的世界到螢幕投影公式為：$S_x = (w_x - v_x) \cdot S + \frac{W}{2}$（其中 $V=(v_x, v_y)$ 為視圖中心，$S$ 為縮放比例）。
+   - 若要讓縮放後的新縮放比 $S_{\text{new}}$ 下，$S_x$ 依然精準等於 $m_x$：
+     $$m_x = (w_x - v_{x,\text{new}}) \cdot S_{\text{new}} + \frac{W}{2} \implies v_{x,\text{new}} = w_x - \frac{m_x - \frac{W}{2}}{S_{\text{new}}}$$
+     $$m_y = (w_y - v_{y,\text{new}}) \cdot S_{\text{new}} + \frac{H}{2} \implies v_{y,\text{new}} = w_y - \frac{m_y - \frac{H}{2}}{S_{\text{new}}}$$
+   - 直接將計算出的 $(v_{x,\text{new}}, v_{y,\text{new}})$ 傳入 `network2d.moveTo({ position: { x: vx_new, y: vy_new }, scale: newScale })`。
+   - **效果**：反算回螢幕座標後位移量恆等於 $0$，滑鼠指著的點在 0.05x ~ 20.0x 的縮放過程中 **絕對紋絲不動（0 像素位移）**！
+2. **3D 直線性視線射線推拉**：
+   - 透過 Three.js Raycaster 取得滑鼠所指的 3D 空間目標點 $P$。
+   - 計算視線向量 $\vec{d} = \text{camera.position} - P$。
+   - 相機嚴格沿 $\vec{d}$ 方向直線推近或拉遠：$\text{camera.position} = P + \hat{d} \cdot \text{newDist}$，並同步更新 $\text{controls.target} = P$。
+   - **效果**：相機沿著射線精準推進，滑鼠所指之 3D 球體與空間在螢幕上的投影像素保持完全不動！
 
 ### 處理結果
 - 修改 `scripts/generate-knowledge-graph.js`。
 - 執行 `npm run build` 同步生成 `dist/` 與 `docs/`。
-- 執行 Playwright 自動化確效 100% 通過。
+- 執行 Playwright 自動化端到端確效 100% 通過，0 Console 錯誤。
 
 ---
 
