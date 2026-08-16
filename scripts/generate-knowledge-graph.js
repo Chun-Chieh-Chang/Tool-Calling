@@ -665,7 +665,8 @@ export function generateKnowledgeGraph(registryInput = null) {
           strokeColor: '#000000'
         },
         borderWidth: 1.2,
-        shadow: false
+        shadow: false,
+        opacity: 1
       },
       edges: {
         smooth: {
@@ -805,6 +806,8 @@ export function generateKnowledgeGraph(registryInput = null) {
         .graphData(gData)
         .backgroundColor('#000000')
         .nodeColor(node => node.colorHex || '#38bdf8')
+        .nodeOpacity(1) // 100% 完全不透明實心球體 (Opaque Solid Spheres)
+        .nodeResolution(20) // 高解析平滑球體
         .nodeVal(node => node.val || 10)
         .nodeThreeObject(node => {
           if (typeof SpriteText === 'undefined') return null;

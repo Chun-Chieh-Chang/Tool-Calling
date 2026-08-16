@@ -1,5 +1,19 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 知識圖譜節點圓球 100% 完全不透明實心球體優化 (100% Opaque Solid Spheres)
+
+### 需求
+根據使用者指示，將 3D ForceGraph 與 2D Vis.js 知識圖譜中所有節點圓球調整為 **100% 完全不透明實心球體 (Opaque Solid Spheres)**：
+1. **3D ForceGraph**：加入 `.nodeOpacity(1)`（覆蓋預設之 0.75 半透明值）與 `.nodeResolution(20)`，呈現極致飽和、實心、無透光的 3D 球體。
+2. **2D Vis.js**：在 `options2d.nodes` 中明確設定 `opacity: 1`。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 互動式知識圖譜文字外框線細化與字重標準化優化 (Refined Fine Outline & Regular Font Weight)
 
 ### 需求
