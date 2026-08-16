@@ -89,7 +89,7 @@
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
 npm run tracked-repos     # 重建追蹤池 (2219 repos)
-npm test                  # 執行所有測試 (75/75 pass)
+npm test                  # 執行所有測試 (57/57 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 
@@ -424,4 +424,4 @@ PDCA 循環：
 
 > **協議版本**：2026.08.10 v1.0 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-08-16T14:19:24.208Z
+> **最後更新**：2026-08-16T14:42:31.135Z

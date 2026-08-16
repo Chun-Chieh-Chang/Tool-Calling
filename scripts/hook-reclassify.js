@@ -57,9 +57,13 @@ async function main() {
   
   // 執行分類重構
   try {
-    // 動態載入分類腳本
+    // 動態載入分類腳本。
+    // 2026-08-16 起改為建議(dry-run)模式:registry 分類已人工稽核修正
+    // (見 docs/category-audit-2026-08-16.md),全量自動重排會覆蓋人工修正。
+    // 新工具初始分類由 scan-tool.guessCategory() 提供;本 hook 僅輸出差異建議,
+    // 確定採用時改跑 node scripts/reclassify-tools.js --apply(需人工覆核)。
     const { reclassifyAllTools } = await import('./reclassify-tools.js');
-    const result = await reclassifyAllTools();
+    const result = await reclassifyAllTools({ apply: false });
     
     // 記錄執行日誌
     const logEntry = {

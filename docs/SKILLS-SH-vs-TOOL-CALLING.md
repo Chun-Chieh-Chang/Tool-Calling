@@ -164,8 +164,7 @@
          ┌─────────────────┐
          │   Core Layer    │
          ├─────────────────┤
-         │ skill-aggregator│ ← 多來源聚合
-         │ skill-discovery │ ← 兼容性模組
+         │ skill-discovery │ ← 多來源聚合(skills.sh + GitHub)
          │ search-engine   │ ← 五維度搜尋
          │ registry        │ ← 工具註冊庫
          │ job-manager     │ ← 背景作業

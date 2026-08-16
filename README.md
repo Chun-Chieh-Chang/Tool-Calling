@@ -32,7 +32,7 @@
 | Fuzzy Matching | +15% 容错率 | Levenshtein距离模糊匹配 |
 | 同義詞擴充 | 351詞彙 | 41個種子詞 + 422組配對自動挖掘 |
 
-詳細報告請見 [docs/OPTIMIZATION-REPORT.md](./docs/OPTIMIZATION-REPORT.md)
+詳細報告請見 [docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md](./docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md)
 
 ---
 
@@ -143,10 +143,11 @@ Tool-Calling/
 ├── registry/           # 工具库
 │   └── tools.json        # 585 工具 (单一真理来源)
 ├── docs/               # 文档
-│   ├── OPTIMIZATION-REPORT.md  # 优化报告
-│   └── PROJECT-OPTIMIZATION-SUMMARY.md # 总览
+│   ├── SEARCH-ENGINE-OPTIMIZATION-REPORT.md  # 检索引擎优化报告
+│   ├── category-conventions.md    # 分類慣例(領域優先 + AI 框架/代理邊界)
+│   └── category-audit-2026-08-16.md # 分類全面稽核報告(255 項修正)
 └── tests/              # 测试
-    └── *.test.js       # 20 套件、75 項單元與端到端測試
+    └── *.test.js       # 13 套件、57 項單元與端到端測試
 ```
 
 ---
@@ -156,7 +157,7 @@ Tool-Calling/
 提交前必须通过：
 
 ```bash
-npm test                          # 全套單元與 Playwright 3D 視覺測試 (75/75 PASS)
+npm test                          # 全套單元與 Playwright 3D 視覺測試 (57/57 PASS)
 node scripts/check-utf8.js        # UTF-8 編碼物理防護門禁 (0 個 U+FFFD)
 node scripts/check-duplicate-ids.js # 全站 HTML ID 唯一性門禁 (0 個重複)
 node cli.js validate              # 工具庫 100/100 詮釋資料品質門禁 (0 錯誤 0 警告)

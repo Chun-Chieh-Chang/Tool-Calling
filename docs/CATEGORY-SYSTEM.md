@@ -10,86 +10,70 @@
 
 ## 當前分類架構
 
-> 統計時間：2026-08-11（`node cli.js validate` + `npm run check-mece` 確認）
+> 統計時間:2026-08-16(`node cli.js validate` + `npm run check-mece` 確認)
+> 分類慣例與兩大判定原則詳見 `docs/category-conventions.md`(領域優先 + AI 框架/代理邊界)
 
 | 分類 | 數量 | 說明 |
 |------|------|------|
-| AI 框架 | 151 | LLM/Transformer/Generative AI 框架與 SDK |
-| AI 代理 | 101 | Agent/Assistant/Copilot 系統 |
-| 開發工具 | 72 | CLI、IDE、編程語言相關工具 |
-| 學習資源 | 33 | 教程、課程、Roadmap、Awesome Lists |
-| UI/UX設計 | 29 | 前端框架、設計系統、Figma 插件 |
-| 文件生產力 | 25 | PPT、PDF、Markdown、Office 工具 |
-| 影片 | 16 | 視頻編輯、動畫、直播工具 |
-| API 整合 | 12 | REST/GraphQL SDK、集成工具 |
-| 研究 | 10 | 學術論文、研究文獻 |
-| 音訊 | 9 | TTS/STT、音頻處理工具 |
-| 圖標與視覺資源 | 9 | 圖標庫、SVG、矢量圖形資源 |
-| 安全性 | 7 | 滲透測試、漏洞掃描 |
-| 知識管理 | 7 | RAG、Embedding、知識圖譜 |
-| 測試與自動化 | 6 | Test Runner、E2E 測試框架 |
-| 資料庫 | 5 | SQL/NoSQL 數據庫工具 |
-| 多媒體生成 | 5 | AI 圖像/視頻生成工具 |
-| 基礎設施 | 5 | Docker/K8s/Terraform 等 |
-| 3D工程繪圖 | 4 | CAD/3D建模工具 |
-| 瀏覽器自動化 | 3 | Crawl/Scrape/Headless 工具 |
-| 數據分析 | 3 | Pandas/Polars/DuckDB 等 |
-| 行銷 | 1 | SEO/Analytics 工具 |
+| AI 代理 | 119 | 成品 agent、agent harness、skill/plugin 集合、agent 平台 |
+| AI 框架 | 77 | LLM SDK、模型本體、推論/訓練框架、agent 建構庫 |
+| 開發工具 | 54 | CLI、IDE、代碼審查、token 壓縮等泛用工具 |
+| 文件生產力 | 51 | 簡報/PPT、Office、PDF、文件轉換、寫作輔助 |
+| 學習資源 | 46 | 教程、課程、書籍、Awesome Lists |
+| UI/UX設計 | 35 | 前端框架、設計系統、網頁動畫、原型 |
+| 知識管理 | 31 | agent 記憶、RAG、知識圖譜、codebase 索引 |
+| 金融與投資 | 25 | 交易、量化、股票分析、投資研究 |
+| 影片 | 23 | 視頻編輯、視頻生成、串流 |
+| 瀏覽器自動化 | 16 | 爬蟲、Scraper、Headless、agent 瀏覽器 |
+| 圖標與視覺資源 | 16 | 圖標庫本體、SVG 矢量資源 |
+| 研究 | 14 | 學術研究、文獻、洩漏提示詞研究 |
+| 安全性 | 13 | 滲透測試、漏洞掃描、資安技能 |
+| 多媒體生成 | 13 | AI 圖像/視頻生成 |
+| 3D工程繪圖 | 10 | CAD、3D 建模、3D 資產生成 |
+| 音訊 | 9 | TTS/STT、音頻處理 |
+| 測試與自動化 | 8 | Test Runner、E2E 測試框架 |
+| API 整合 | 8 | API 閘道、整合工具 |
+| 數據分析 | 7 | Pandas/Polars、產品分析 |
+| 基礎設施 | 5 | Docker/K8s、網路代理、區塊鏈協議 |
+| 資料庫 | 3 | SQL/NoSQL 數據庫引擎 |
+| 行銷 | 2 | SEO、社群自動化、CRM |
 
-**合計**：538 個工具，21 個分類，無「其他」殘留（MECE 強制）。
-
----
-
-## 分類規則優先級
-
-當一個工具可能屬於多個類別時，按以下優先順序決定：
-
-1. **高優先級（100）**：明確匹配的關鍵字
-   - `llm`, `gpt`, `claude` → AI 框架
-   - `playwright`, `cypress` → 測試與自動化
-   - `lucide`, `heroicons` → 圖標與視覺資源
-
-2. **中優先級（90）**：主要功能匹配
-   - `agent`, `assistant` → AI 代理
-   - `ui`, `ux`, `design-system` → UI/UX設計
-
-3. **低優先級（80）**：次要特徵匹配
-   - `api`, `sdk` → API 整合
-   - `learn`, `tutorial` → 學習資源
-
-4. **預設（0）**：無法匹配時使用預設分類
-   - 包含 `skill` → AI 代理
-   - 包含 `awesome` → 學習資源
-   - 其他 → 開發工具
+**合計**:585 個工具,22 個分類,無「其他」殘留(MECE 強制)。
 
 ---
 
-## 自動重構機制
+## 分類判定原則(2026-08-16 稽核後確立)
 
-### Hook 觸發時機
+1. **領域優先**:屬於特定領域(金融/行銷/3D/研究)的工具,先歸領域分類,再考慮功能
+2. **AI 框架 vs AI 代理**:框架=建構積木(SDK/模型/推論引擎);代理=可直接使用的成品(agent 本體/skill 集合/平台)
+3. **規則引擎優先級**:明確名稱匹配(100)→ 語義短語(90-95)→ 功能特徵(80-85),並遵守排除條件
+4. **嚴禁關鍵字**(歷史教訓,详见 `category-conventions.md`):`agents`(UI/UX 誤判)、`/\b3d\b/`(3D 誤判)、語言名稱(學習資源誤判)、`analytics`(行銷誤判)
 
-1. **工具新增後**：執行 `node cli.js add <url>` 後
-2. **批量新增後**：執行 `node cli.js batch-add <file>` 後
-3. **手動觸發**：執行 `node scripts/hook-reclassify.js`
+---
+
+## 自動重構機制(2026-08-16 起為建議模式)
+
+> ⚠️ 行為變更:registry 分類已於 2026-08-16 完成人工稽核修正(255 項,見
+> `docs/category-audit-2026-08-16.md`)。規則引擎不再自動寫入,僅輸出差異建議。
+
+### 觸發時機
+
+1. **工具新增後**:`node cli.js add <url>` —— 新工具由 `scan-tool.guessCategory()` 給初始分類
+2. **建議檢查**:`node scripts/hook-reclassify.js`(dry-run,輸出建議不寫入)
+3. **確定採用**:`node scripts/reclassify-tools.js --apply`(寫入前必須人工覆核建議清單)
 
 ### 執行流程
 
 ```
 用戶執行 add/batch-add
         ↓
-    新增工具到 registry
+    新增工具到 registry(guessCategory 給初始分類)
         ↓
-    調用 hook-reclassify.js
+    hook-reclassify.js(dry-run)
         ↓
-    載入 reclassify-tools.js
+    reclassify-tools.js 規則引擎輸出差異建議
         ↓
-    掃描所有工具的元數據
-        ↓
-    應用分類規則
-        ↓
-    輸出變更報告
-        ↓
-    更新 registry/tools.json
+    人工覆核 → 確認後 --apply 寫入
         ↓
     記錄執行日誌到 .agnes/hooks/reclassify-log.json
 ```

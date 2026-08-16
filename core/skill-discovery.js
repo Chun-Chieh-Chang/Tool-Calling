@@ -1,10 +1,7 @@
 /**
  * @module skill-discovery
  * Search and install agent skills from multiple sources.
- * Wraps npx skills CLI with local caching and fallback.
- * 
- * This module provides backward-compatible interfaces while delegating
- * to the newer multi-source skill-aggregator module.
+ * Wraps npx skills CLI with local caching and GitHub API fallback.
  */
 
 import { execSync } from 'node:child_process';

@@ -9,9 +9,8 @@
 | 組件 | 路徑 | 狀態 | 可用性 |
 |------|------|------|--------|
 | 核心搜尋模組 | `core/skill-discovery.js` | ✅ 已完成 | 可正常匯入 |
-| CLI 包裝腳本 | `scripts/find-skill.js` | ✅ 已完成 | 獨立可用 |
+| CLI 命令入口 | `cli.js` (find-skill/install-skill) | ✅ 已完成 | 已整合 |
 | 環境檢查 | `npx skills --version` | ✅ v1.5.18 | Node v22.14.0 就緒 |
-| CLI 命令 | `cli.js` | ❌ 缺失 | 需整合 |
 | MCP 工具 | `mcp-server.js` | ❌ 缺失 | 需整合 |
 
 ### 1.2 環境驗證結果
@@ -52,18 +51,9 @@ export async function getSkillDetails(repo, skill) // GitHub SKILL.md 抓取
 - 容錯設計：JSON 解析失敗 → fallback 文字解析
 - 錯誤處理：API 超時返回空陣列而非拋出異常
 
-#### scripts/find-skill.js（208 行）
-
-**命令支援**:
-- `search <query>` - 搜尋並格式化輸出
-- `install <id>` - 安裝指定技能
-- `list` - 列出已安裝
-- `check` - 環境檢查
-
-**UI 特點**:
-- 完整 ANSI 顏色支援
-- 友好錯誤提示
-- 自動引導用戶使用技巧
+> 註:原獨立包裝腳本 `scripts/find-skill.js`(search/install/list/check)已於
+> 2026-08-16 v1.6 優化中移除,功能由 `cli.js` 的 `find-skill` / `install-skill`
+> 命令提供(`core/skill-discovery.js` 為唯一核心模組)。
 
 ### 2.2 CLI 結構映射
 

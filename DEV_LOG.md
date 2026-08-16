@@ -2498,3 +2498,27 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 - node cli.js validate:100/100 分,0 errors,0 warnings
 - node scripts/check-mece.js:通過,無殘留分類
 - 分類分布:AI 代理 119、AI 框架 77、開發工具 54、文件生產力 51、學習資源 46、其餘 16 類合計 238
+
+---
+
+## 2026-08-16 — 全域優化作業 v1.6:死碼清理、Hook 行為矯正與文件同步
+
+### 需求
+執行專案整體程式碼與檔案優化:全面盤點清理、開發文件 100% 同步、MECE 整合、原子化提交與推送。
+
+### 問題與原因分析(RCA)
+1. 死碼:core/skill-aggregator.js(已被 skill-discovery 取代,僅測試引用,頭註解錯稱委派關係)、core/telemetry-summary.js(無任何生產消費者)、scripts/find-skill.js(與 cli.js find-skill 命令重複的獨立 wrapper)。
+2. 潛在迴歸(本輪發現並矯正):hook-reclassify.js 以 apply 全量重排,會以粗粒度 regex 覆蓋人工稽核修正的 255 項分類——改為建議(dry-run)模式。
+3. 文件漂移:README 引用不存在的 PROJECT-OPTIMIZATION-SUMMARY.md;OPTIMIZATION-REPORT.md 實為檢索引擎專題報告(命名混淆);CATEGORY-SYSTEM.md 統計停留在 538 工具/21 分類;測試數 75 已因死碼測試移除變為 57。
+
+### 矯正與預防措施(CAPA)
+1. 刪除 4 檔:core/skill-aggregator.js、core/telemetry-summary.js、scripts/find-skill.js、tests/telemetry-summary.test.js;tests/find-skill.test.js 手術式移除 aggregator 區塊 150 行(保留 skill-discovery 20 項測試)。
+2. hook-reclassify.js 改 dry-run 並註明理由;新工具初始分類由 scan-tool.guessCategory() 提供。
+3. 文件同步:README(測試數 57、目錄樹、報告更名)、generate-agents-md.js(75→57)+ 重新生成 AGENTS.md、CATEGORY-SYSTEM.md(585 工具/22 分類/判定原則/hook 新行為)、find-skill-integration-guide.md(移除 wrapper 引用)、SKILLS-SH 圖表修正。
+4. MECE 文件整併:OPTIMIZATION-REPORT.md 更名 SEARCH-ENGINE-OPTIMIZATION-REPORT.md(名實相符);GRILL-WITH-DOCS-ADDITION.md 歸檔 docs/archive/。
+
+### 驗證結果
+- npm test:57/57 PASS(移除 18 項死碼測試後新基數)
+- node cli.js validate:100/100 分,0 errors,0 warnings
+- node scripts/check-mece.js:通過
+- UTF-8 門禁與 ID 唯一性門禁隨 npm test 自動執行通過
