@@ -70,7 +70,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     lastUpdated: registry.lastUpdated || new Date().toISOString(),
     totalTools: registry.tools.length,
     shape: "dot",
-    size: 16,
+    size: 26,
     borderWidth: 0,
     borderWidthSelected: 0,
     color: {
@@ -80,8 +80,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       hover: { background: "#38bdf8", border: "#38bdf8" }
     },
     colorHex: "#0284c7",
-    font: { color: "#ffffff", size: 15, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0, strokeColor: "transparent" },
-    val: 36
+    font: { color: "#ffffff", size: 18, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0, strokeColor: "transparent" },
+    val: 48
   });
 
   // 2. Category Nodes (Obsidian 分類星團節點 - 無外框圓形實心點)
@@ -110,7 +110,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       languages: languages,
       topTools: catTools.slice(0, 5).map(t => t.name),
       shape: "dot",
-      size: 11,
+      size: 18,
       borderWidth: 0,
       borderWidthSelected: 0,
       color: {
@@ -121,30 +121,30 @@ export function generateKnowledgeGraph(registryInput = null) {
       },
       colorHex: colorHex,
       font: {
-        color: "#e2e8f0",
-        size: 13,
+        color: "#f1f5f9",
+        size: 15,
         face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
         bold: false,
         strokeWidth: 0,
         strokeColor: 'transparent'
       },
-      val: 24
+      val: 32
     });
 
-    // Obsidian 主幹連線 (拉長間距 280px，營造宏大呼吸感)
+    // Obsidian 主幹連線 (適中呼吸間距 150px)
     edges.push({
       from: "root",
       to: catId,
       source: "root",
       target: catId,
-      color: { color: "rgba(2, 132, 199, 0.4)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.4 },
+      color: { color: "rgba(2, 132, 199, 0.45)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.45 },
       colorHex: "#0284c7",
-      width: 1.1,
-      length: 280,
+      width: 1.2,
+      length: 150,
       isDashed: false
     });
 
-    // 3. Tools in this Category (Obsidian 筆記節點 - 無外框圓形實心點)
+    // 3. Tools in this Category (Obsidian 筆記節點 - 加大尺寸與清晰字體)
     catTools.forEach(tool => {
       const toolNodeId = `tool_${tool.id}`;
       
@@ -170,7 +170,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           subTools: tool.subTools || []
         },
         shape: "dot",
-        size: 6.5,
+        size: 10,
         borderWidth: 0,
         borderWidthSelected: 0,
         color: {
@@ -181,31 +181,31 @@ export function generateKnowledgeGraph(registryInput = null) {
         },
         colorHex: colorHex,
         font: {
-          color: "#94a3b8",
-          size: 11.5,
+          color: "#e2e8f0",
+          size: 13.5,
           face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
           bold: false,
           strokeWidth: 0,
           strokeColor: "transparent"
         },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 10
+        val: 14
       });
 
-      // Obsidian 內容分支連線 (長度 140px，充分展開子節點空間)
+      // Obsidian 內容分支連線
       edges.push({
         from: catId,
         to: toolNodeId,
         source: catId,
         target: toolNodeId,
-        color: { color: "rgba(255, 255, 255, 0.12)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.2 },
+        color: { color: "rgba(255, 255, 255, 0.15)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.25 },
         colorHex: colorHex,
-        width: 0.7,
-        length: 140,
+        width: 0.8,
+        length: 80,
         isDashed: false
       });
 
-      // 4. SubTools / Capabilities (Obsidian 微原子節點 - 無外框微圓點)
+      // 4. SubTools / Capabilities (Obsidian 微原子節點)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -217,25 +217,25 @@ export function generateKnowledgeGraph(registryInput = null) {
             parentToolName: tool.name,
             subDesc: sub.description || '深層拆解之微技能',
             shape: "dot",
-            size: 3.8,
+            size: 5.5,
             borderWidth: 0,
             borderWidthSelected: 0,
             color: {
-              background: "#475569",
-              border: "#475569",
+              background: "#64748b",
+              border: "#64748b",
               highlight: { background: "#0284c7", border: "#0284c7" },
               hover: { background: "#0284c7", border: "#0284c7" }
             },
-            colorHex: "#475569",
+            colorHex: "#64748b",
             font: {
-              color: "#64748b",
-              size: 9.5,
+              color: "#94a3b8",
+              size: 10.5,
               face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
               bold: false,
               strokeWidth: 0,
               strokeColor: "transparent"
             },
-            val: 5
+            val: 7
           });
 
           edges.push({
@@ -243,10 +243,10 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: "rgba(255, 255, 255, 0.08)", highlight: "#0284c7", hover: "#0284c7", opacity: 0.18 },
-            colorHex: "#475569",
-            width: 0.5,
-            length: 65,
+            color: { color: "rgba(255, 255, 255, 0.1)", highlight: "#0284c7", hover: "#0284c7", opacity: 0.2 },
+            colorHex: "#64748b",
+            width: 0.6,
+            length: 38,
             dashes: [2, 4],
             isDashed: true
           });
@@ -733,12 +733,12 @@ export function generateKnowledgeGraph(registryInput = null) {
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -38000, // 強大星團斥力，徹底拉開 580 個節點間隔
-          centralGravity: 0.015,
-          springLength: 200,             // 廣闊彈簧長度，給予節點充足呼吸空間
-          springConstant: 0.02,
+          gravitationalConstant: -18000,
+          centralGravity: 0.025,
+          springLength: 95,
+          springConstant: 0.03,
           damping: 0.45,
-          avoidOverlap: 1.0              // 杜絕節點重疊擁擠
+          avoidOverlap: 0.95
         },
         maxVelocity: 40,
         minVelocity: 0.2,
@@ -891,10 +891,10 @@ export function generateKnowledgeGraph(registryInput = null) {
           const group = new THREE.Group();
           const bgHex = node.colorHex || '#0284c7';
 
-          let radius = 2.4;
-          if (node.group === 'root') radius = 6.5;
-          else if (node.group === 'category') radius = 4.5;
-          else if (node.group === 'subtool') radius = 1.3;
+          let radius = 5.2;
+          if (node.group === 'root') radius = 14.0;
+          else if (node.group === 'category') radius = 9.5;
+          else if (node.group === 'subtool') radius = 2.6;
 
           // 柔和霧面磨砂實心球體
           const sphereGeo = new THREE.SphereGeometry(radius, 16, 16);
@@ -908,7 +908,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
           group.add(sphereMesh);
 
-          // 建立純淨無背景透明 SpriteText
+          // 建立純淨無背景透明 SpriteText (清晰大字體)
           if (typeof SpriteText !== 'undefined') {
             const label = node.label.replace('\\n', ' ');
 
@@ -919,20 +919,20 @@ export function generateKnowledgeGraph(registryInput = null) {
             sprite.strokeWidth = 0;
 
             if (node.group === 'root') {
-              sprite.textHeight = 8.0;
+              sprite.textHeight = 18.0;
               sprite.textColor = '#ffffff';
             } else if (node.group === 'category') {
-              sprite.textHeight = 6.5;
-              sprite.textColor = '#e2e8f0';
+              sprite.textHeight = 13.5;
+              sprite.textColor = '#f1f5f9';
             } else if (node.group === 'tool') {
-              sprite.textHeight = 3.6;
-              sprite.textColor = '#94a3b8';
+              sprite.textHeight = 7.8;
+              sprite.textColor = '#e2e8f0';
             } else {
-              sprite.textHeight = 2.5;
-              sprite.textColor = '#64748b';
+              sprite.textHeight = 4.8;
+              sprite.textColor = '#94a3b8';
             }
 
-            sprite.position.set(0, radius + 3.5, 0);
+            sprite.position.set(0, radius + 4.5, 0);
             group.add(sprite);
           }
 
@@ -974,32 +974,32 @@ export function generateKnowledgeGraph(registryInput = null) {
         .warmupTicks(60)
         .cooldownTicks(300)
         .onNodeClick(node => {
-          // 點擊節點：極限深入對焦至節點正前方距離 28 單位
-          zoomTo3DNode(node, 28);
+          // 點擊節點：極限深入對焦至節點正前方距離 42 單位
+          zoomTo3DNode(node, 42);
           showPanel(node);
         });
 
-      // 設定 3D 力導向物理場 (徹底拉開 580 個節點的 3D 星系空間)
+      // 設定 3D 力導向物理場
       setTimeout(() => {
         if (graph3DInstance && graph3DInstance.d3Force) {
           const chargeForce = graph3DInstance.d3Force('charge');
-          if (chargeForce) chargeForce.strength(-480); // 強大斥力，防止節點在 3D 空間扎堆
+          if (chargeForce) chargeForce.strength(-260);
 
           const linkForce = graph3DInstance.d3Force('link');
           if (linkForce) {
             linkForce.distance(link => {
               const src = link.source && link.source.id ? link.source.id : link.source;
               const tgt = link.target && link.target.id ? link.target.id : link.target;
-              if (src === 'root' || tgt === 'root') return 320; // 主幹廣闊半徑
-              if (link.isDashed) return 60;                    // 微技能子分支
-              return 140;                                      // 工具分支充裕間隔
+              if (src === 'root' || tgt === 'root') return 180;
+              if (link.isDashed) return 38;
+              return 80;
             });
           }
         }
       }, 50);
 
       // 3D 視角向量對焦推進函數
-      function zoomTo3DNode(node, targetDistance = 28) {
+      function zoomTo3DNode(node, targetDistance = 42) {
         if (!graph3DInstance) return;
         const currentCam = graph3DInstance.cameraPosition();
         const nodePos = { x: node.x || 0, y: node.y || 0, z: node.z || 0 };

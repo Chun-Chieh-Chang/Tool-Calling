@@ -1,5 +1,26 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 知識圖譜節點與文字基底尺寸放大及縮放視覺效果全面優化 (Node & Typography Proportions & Zoom Visuals Upgrade)
+
+### 需求
+針對使用者指出「節點與文字變得很小，放大效果不好」，進行第一性原理排查與尺寸/拓撲重構：
+1. **過度分散導致初視圖縮放比過低根因 (RCA)**：
+   - 根因：先前將拓撲連線距離拉得過長（280px / 320px），導致全圖包圍盒擴展至 4000px+，初始 `network2d.fit()` 自動將縮放比例壓縮至 `0.25x`，使得原先 6.5px 的節點和 11.5px 的文字在螢幕上被壓縮為僅 1~2px 的極小黑點。
+2. **2D 尺寸與拓撲黃金比例重構 (CAPA)**：
+   - 全面放大節點與字體基底：Root 節點 `size: 26, font: 18px`、Category 分類 `size: 18, font: 15px`、Tool 工具 `size: 10, font: 13.5px`、SubTool 微技能 `size: 5.5, font: 10.5px`。
+   - 收斂連線間距至適中黃金比例（主幹 `150px`、分支 `80px`、微技能 `38px`，`barnesHut.springLength: 95`，`gravitationalConstant: -18000`），初始全景即享有約 `0.65x` 的飽滿視野，無需放大即可清晰閱讀各大分類與代表工具。
+3. **3D 球體與立體字體大氣升級 (CAPA)**：
+   - 3D 球體半徑放大（Root `14.0`、Category `9.5`、Tool `5.2`、SubTool `2.6`）。
+   - 3D SpriteText 文字高度大幅放大（Root `18.0`、Category `13.5`、Tool `7.8`、SubTool `4.8`）。
+   - 初始相機由 `z: 650` 拉近至 `z: 420`，點擊節點向量推進距離調整為 `distance: 42`，使節點與文字以充沛飽滿的視覺衝擊力呈現在視野中心。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node scripts/verify-graph-playwright.js` 視覺確效 100% 通過。
+
+---
+
 ## 2026-08-16 新增「🔄 重置全景視角」按鈕與全域狀態回歸功能 (Reset to Default View State)
 
 ### 需求
