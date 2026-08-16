@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-16T00:53:39.279Z",
+  "lastUpdated": "2026-08-16T10:34:57.861Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -36940,6 +36940,105 @@
         "需要配置專屬 Conda 環境與 CUDA 加速支援"
       ],
       "stars": 73296
+    },
+    {
+      "id": "opencode",
+      "name": "opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "description": "The open source coding agent.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "opencode"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/anomalyco/opencode"
+      },
+      "capabilities": [],
+      "useCase": "The open source coding agent. — 上週漲星 +1443 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 196,451 星",
+        "上週漲星 +1443",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 196451,
+      "addedAt": "2026-08-16T10:34:57.861Z",
+      "status": "active"
+    },
+    {
+      "id": "awesome-mac",
+      "name": "awesome-mac",
+      "url": "https://github.com/jaywcjlove/awesome-mac",
+      "description": " This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use.",
+      "category": "研究",
+      "language": "swift",
+      "triggers": [
+        "awesome-mac",
+        "app",
+        "apple",
+        "application",
+        "apps",
+        "awesome"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/jaywcjlove/awesome-mac"
+      },
+      "capabilities": [
+        "app",
+        "apple",
+        "application",
+        "apps",
+        "awesome",
+        "awesome-list"
+      ],
+      "useCase": " This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use. — 上週漲星 +1396 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 110,754 星",
+        "上週漲星 +1396",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 110754,
+      "addedAt": "2026-08-16T10:34:57.861Z",
+      "status": "active"
+    },
+    {
+      "id": "llms-from-scratch",
+      "name": "LLMs-from-scratch",
+      "url": "https://github.com/rasbt/LLMs-from-scratch",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "llms-from-scratch"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/rasbt/LLMs-from-scratch"
+      },
+      "capabilities": [],
+      "useCase": "LLMs-from-scratch — 上週漲星 +1227 (2026-W32 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 102,493 星",
+        "上週漲星 +1227",
+        "2026-W32 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 102493,
+      "addedAt": "2026-08-16T10:34:57.861Z",
+      "status": "active"
     }
   ]
 }
