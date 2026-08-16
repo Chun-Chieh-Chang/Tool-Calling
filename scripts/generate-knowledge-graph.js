@@ -851,40 +851,31 @@ export function generateKnowledgeGraph(registryInput = null) {
           const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
           group.add(sphereMesh);
 
-          // 建立輕量 SpriteText
+          // 建立輕量 SpriteText (比照 2D 圖譜，完全無背景底色)
           if (typeof SpriteText !== 'undefined') {
             const label = node.label.replace('\\n', ' ');
-            const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#ffffff';
 
             const sprite = new SpriteText(label);
             sprite.fontFace = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
             sprite.fontWeight = 'normal';
+            sprite.backgroundColor = false; // 無背景底色 (Transparent Background)
+            sprite.strokeWidth = 0;          // 無描邊
 
             if (node.group === 'root') {
-              sprite.textHeight = 8.5;
-              sprite.backgroundColor = '#0284c7';
+              sprite.textHeight = 7.5;
               sprite.textColor = '#ffffff';
-              sprite.strokeWidth = 0;
             } else if (node.group === 'category') {
-              sprite.textHeight = 7.0;
-              sprite.backgroundColor = bgHex;
-              sprite.textColor = txtColor;
-              sprite.strokeWidth = 0;
-            } else if (node.group === 'tool') {
-              sprite.textHeight = 3.8;
-              sprite.backgroundColor = 'rgba(10, 10, 10, 0.9)';
-              sprite.strokeWidth = 0;
+              sprite.textHeight = 6.0;
               sprite.textColor = '#e2e8f0';
-            } else {
-              sprite.textHeight = 2.8;
-              sprite.backgroundColor = 'rgba(10, 10, 10, 0.85)';
-              sprite.strokeWidth = 0;
+            } else if (node.group === 'tool') {
+              sprite.textHeight = 3.5;
               sprite.textColor = '#94a3b8';
+            } else {
+              sprite.textHeight = 2.4;
+              sprite.textColor = '#64748b';
             }
 
-            sprite.padding = 1.8;
-            sprite.borderRadius = 3;
-            sprite.position.set(0, radius + 4, 0);
+            sprite.position.set(0, radius + 3.2, 0);
             group.add(sprite);
           }
 

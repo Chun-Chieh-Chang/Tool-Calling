@@ -1,5 +1,24 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 3D 知識圖譜文字比照 2D 圖譜去除背景底色優化 (Transparent Background 3D SpriteText)
+
+### 需求
+根據使用者指示，將 3D 知識圖譜中所有節點之標籤文字比照 2D 圖譜，**全面去除文字矩形背景底色 (backgroundColor: false)**：
+1. **完全透明文字背景**：在 Three.js SpriteText 中設定 `sprite.backgroundColor = false`，移除任何彩色或深色背景卡片框。
+2. **純粹懸浮文字排版**：
+   - Root 核心文字：`#ffffff`（文字高度 7.5）
+   - Category 分類文字：`#e2e8f0`（文字高度 6.0）
+   - Tool 工具文字：`#94a3b8`（文字高度 3.5）
+   - SubTool 微技能文字：`#64748b`（文字高度 2.4）
+   - 保持文字與 2D Obsidian 風格同構，呈現輕盈通透的立體星系懸浮標籤。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 知識圖譜 2D 與 3D 超深層 Zoom In 放大能力優化 (Deep Zoom In & Unrestricted Scaling)
 
 ### 需求
