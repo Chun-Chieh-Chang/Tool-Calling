@@ -2437,3 +2437,17 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 ### 確效結果
 - npm test: 75/75 PASS (20 suites, 0 failures)
 - node scripts/build-web.js: dist/ 同步成功
+
+## [2026-08-16] 專案整體優化作業 (v1.4) — 583 工具庫數據同步與品質門禁滿分
+
+### 需求
+- 依據最新探勘入庫結果，將全庫統計數據同步至 583 個工具、2219 個追蹤 Repos、25.7M 總 Star 數
+- 完善 README.md、AGENTS.md、package.json 及 index.html 之架構描述與版本宣告 (v1.4)
+- 執行詮釋資料微調，修復 opencode 與 llms-from-scratch 之 triggers 警告，達成 Contract v2 滿分 100/100
+- 重新編譯 583 個工具之 3D/2D OLED 純黑動態知識圖譜與同義詞詞典
+
+### 確效結果
+- npm test: 75/75 PASS (20 suites, 0 failures, 0 warnings)
+- node cli.js validate: 583/583 工具 100/100 滿分通過，0 錯誤 0 警告
+- node scripts/check-mece.js: 22 分類 100% 互斥且窮盡
+- node scripts/build-web.js: dist/ 同步成功 (583 工具知識圖譜)

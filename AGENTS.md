@@ -1,7 +1,7 @@
 # AGENTS.md — Tool-Calling 全域行為協議
 
 > **身份**：AI 開發協作代理 (AgnesCode × Antigravity IDE 統一協議)
-> **版本**：2026.08.16 v1.1
+> **版本**：2026.08.16 v1.2
 > **維護者**：Agentic AI Foundation (Linux Foundation)
 > **相容工具**：AgnesCode, Antigravity IDE, Claude Code, Cursor, Codex, Gemini CLI
 
@@ -32,10 +32,10 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 580 個工具
-追蹤 repos: 2173 個
-總 star 數: 12,298,822 ⭐
-平均 star 數: 28,669 ⭐
+工具庫規模: 583 個工具
+追蹤 repos: 2219 個
+總 star 數: 25,798,256 ⭐
+平均 star 數: 44,251 ⭐
 最後更新: 2026/8/16
 ```
 
@@ -97,7 +97,7 @@ npm run agents:init       # 生成/驗證 AGENTS.md
 node cli.js search "<需求>"           # 三層檢索工具
 node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
-node cli.js list                      # 列出所有工具 (580+)
+node cli.js list                      # 列出所有工具 (583+)
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
 ```
@@ -106,7 +106,7 @@ node cli.js add <github-url>          # 新增單一工具
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 11/11 測試通過
+npm test           # 確保 75/75 測試通過
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -135,7 +135,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - [ ] 所有測試通過 (75/75 PASS)
 - [ ] UTF-8 編碼門禁通過 (0 個 U+FFFD 亂碼字元)
 - [ ] HTML ID 唯一性門禁通過 (0 個重複 ID)
-- [ ] 工具庫驗證通過 (580+ 工具, 100/100 分)
+- [ ] 工具庫驗證通過 (583+ 工具, 100/100 分)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
