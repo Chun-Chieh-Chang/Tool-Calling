@@ -834,13 +834,14 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 2D Pivot Zoom (縮放中心：滑鼠當前位置，縮放倍率：1~20)
+    // 2D Pivot Zoom (縮放中心：滑鼠當前位置，縮小 1~1/20 即 0.05x，放大 1~20 即 20.0x)
     container2d.addEventListener('wheel', function(e) {
       e.preventDefault();
       e.stopPropagation();
       const currentScale = network2d.getScale();
       const zoomFactor = e.deltaY < 0 ? 1.15 : (1 / 1.15);
-      const newScale = Math.min(Math.max(currentScale * zoomFactor, 1.0), 20.0);
+      // 縮小時可從 1 到 1/20 (0.05)，放大時可從 1 到 20 (20.0)
+      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.05), 20.0);
 
       const rect = container2d.getBoundingClientRect();
       const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -1019,7 +1020,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         graph3DInstance.cameraPosition(newCamPos, nodePos, 1000);
       }
 
-      // 3D 空間操控配置 (縮放倍率限制 1~20: 距離 15~300)
+      // 3D 空間操控配置 (縮小 1~1/20: 距離 300~6000，放大 1~20: 距離 300~15)
       setTimeout(() => {
         if (graph3DInstance.controls) {
           const controls = graph3DInstance.controls();
@@ -1030,8 +1031,8 @@ export function generateKnowledgeGraph(registryInput = null) {
             controls.screenSpacePanning = true;
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
-            controls.minDistance = 15.0;  // 縮放倍率 20x
-            controls.maxDistance = 300.0; // 縮放倍率 1x
+            controls.minDistance = 15.0;   // 放大 20x (距離 15)
+            controls.maxDistance = 6000.0; // 縮小 1/20 (距離 6000)
 
             controls.mouseButtons = {
               LEFT: 0,   // 左鍵: 旋轉 (ROTATE)
@@ -1044,7 +1045,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       container3d.addEventListener('contextmenu', e => e.preventDefault());
 
-      // 3D Pivot Zoom (縮放中心：滑鼠當前位置，縮放倍率：1~20)
+      // 3D Pivot Zoom (縮放中心：滑鼠當前位置，縮小 1~1/20，放大 1~20)
       container3d.addEventListener('wheel', function (e) {
         if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
@@ -1075,7 +1076,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
         const camToPivot = new THREE.Vector3().subVectors(camera.position, targetPoint);
         const currentDist = camToPivot.length();
-        const newDist = Math.min(Math.max(currentDist * zoomRatio, 15.0), 300.0);
+        const newDist = Math.min(Math.max(currentDist * zoomRatio, 15.0), 6000.0);
 
         camToPivot.normalize().multiplyScalar(newDist);
         camera.position.copy(targetPoint).add(camToPivot);
