@@ -643,6 +643,9 @@ export function generateKnowledgeGraph(registryInput = null) {
   </div>
 
   <div id="controls">
+    <button id="resetViewBtn" class="mode-btn" onclick="resetToDefaultState()" title="回歸全景初始狀態">
+      <span>🔄 重置全景視角</span>
+    </button>
     <button id="viewToggleBtn" class="mode-btn" onclick="toggle3DMode()">
       <span>🌌 切換至 3D 空間視角</span>
     </button>
@@ -1286,6 +1289,31 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       }
     });
+
+    // 回歸預設初始狀態 (Reset to Default View State)
+    function resetToDefaultState() {
+      // 1. 清空搜尋框與取消分類圖例選取
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = '';
+      document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+
+      // 2. 關閉詳細資訊抽屜
+      closePanel();
+
+      // 3. 視圖回歸全景居中
+      if (is3DMode && graph3DInstance) {
+        // 3D 視角重置回全景中心 (0, 0, 650)
+        graph3DInstance.cameraPosition(
+          { x: 0, y: 0, z: 650 },
+          { x: 0, y: 0, z: 0 },
+          1000
+        );
+      } else if (network2d) {
+        // 2D 視角取消選取節點並自動最適化縮放居中
+        network2d.unselectAll();
+        network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+      }
+    }
   </script>
 </body>
 </html>`;

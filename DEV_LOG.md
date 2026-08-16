@@ -1,5 +1,20 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 新增「🔄 重置全景視角」按鈕與全域狀態回歸功能 (Reset to Default View State)
+
+### 需求
+針對使用者指出「需要回歸預設初始狀態的按鈕」，於頂部控制列新增「🔄 重置全景視角」按鈕，並實作跨 2D/3D 的全域重置機制 `resetToDefaultState()`：
+1. **2D 全景重置**：取消所有選取節點（`network2d.unselectAll()`），並以平滑動畫最適化縮放至全圖居中（`network2d.fit()`）。
+2. **3D 全景重置**：將相機平滑飛回初始宏觀全景位置 `(0, 0, 650)`，並將 OrbitControls 旋轉中心焦點重置回宇宙原點 `(0, 0, 0)`。
+3. **介面狀態清理**：一鍵清空頂部搜尋框內容、取消右側分類圖例高亮狀態，並自動收合關閉左下角詳細資訊抽屜（`closePanel()`）。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 Playwright 測試與單元測試 100% 通過。
+
+---
+
 ## 2026-08-16 Playwright 2D / 3D 深度視覺與互動微觀對焦自動化確效 (Playwright Visual & Interaction Verification)
 
 ### 需求
