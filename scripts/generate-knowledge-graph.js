@@ -62,7 +62,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   const nodes = [];
   const edges = [];
 
-  // 1. Root Node (Obsidian 核心星系主節點 - 無外框圓形實心點)
+  // 1. Root Node (Obsidian 核心星系主節點 - 預設字體 16px、圓形比例恰當)
   nodes.push({
     id: "root",
     label: `Tool-Calling\n(${registry.tools.length} Tools)`,
@@ -70,7 +70,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     lastUpdated: registry.lastUpdated || new Date().toISOString(),
     totalTools: registry.tools.length,
     shape: "dot",
-    size: 26,
+    size: 16,
     borderWidth: 0,
     borderWidthSelected: 0,
     color: {
@@ -80,11 +80,11 @@ export function generateKnowledgeGraph(registryInput = null) {
       hover: { background: "#38bdf8", border: "#38bdf8" }
     },
     colorHex: "#0284c7",
-    font: { color: "#ffffff", size: 18, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0, strokeColor: "transparent" },
-    val: 48
+    font: { color: "#ffffff", size: 16, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0, strokeColor: "transparent" },
+    val: 36
   });
 
-  // 2. Category Nodes (Obsidian 分類星團節點 - 無外框圓形實心點)
+  // 2. Category Nodes (Obsidian 分類星團節點 - 預設字體 14px)
   const categories = [...new Set(registry.tools.map(t => t.category))].filter(Boolean);
   
   categories.forEach((cat, idx) => {
@@ -110,7 +110,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       languages: languages,
       topTools: catTools.slice(0, 5).map(t => t.name),
       shape: "dot",
-      size: 18,
+      size: 11,
       borderWidth: 0,
       borderWidthSelected: 0,
       color: {
@@ -122,16 +122,16 @@ export function generateKnowledgeGraph(registryInput = null) {
       colorHex: colorHex,
       font: {
         color: "#f1f5f9",
-        size: 15,
+        size: 14,
         face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
         bold: false,
         strokeWidth: 0,
         strokeColor: 'transparent'
       },
-      val: 32
+      val: 24
     });
 
-    // Obsidian 主幹連線 (適中呼吸間距 150px)
+    // Obsidian 主幹連線 (適中呼吸間距 130px)
     edges.push({
       from: "root",
       to: catId,
@@ -139,12 +139,12 @@ export function generateKnowledgeGraph(registryInput = null) {
       target: catId,
       color: { color: "rgba(2, 132, 199, 0.45)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.45 },
       colorHex: "#0284c7",
-      width: 1.2,
-      length: 150,
+      width: 1.1,
+      length: 130,
       isDashed: false
     });
 
-    // 3. Tools in this Category (Obsidian 筆記節點 - 加大尺寸與清晰字體)
+    // 3. Tools in this Category (Obsidian 筆記節點 - 預設初始畫面字體大小 13px，圓形比例 7.5px 恰當協調)
     catTools.forEach(tool => {
       const toolNodeId = `tool_${tool.id}`;
       
@@ -170,7 +170,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           subTools: tool.subTools || []
         },
         shape: "dot",
-        size: 10,
+        size: 7.5,
         borderWidth: 0,
         borderWidthSelected: 0,
         color: {
@@ -182,14 +182,14 @@ export function generateKnowledgeGraph(registryInput = null) {
         colorHex: colorHex,
         font: {
           color: "#e2e8f0",
-          size: 13.5,
+          size: 13, // 預設初始畫面字體大小：13px
           face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
           bold: false,
           strokeWidth: 0,
           strokeColor: "transparent"
         },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 14
+        val: 10
       });
 
       // Obsidian 內容分支連線
@@ -200,12 +200,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         target: toolNodeId,
         color: { color: "rgba(255, 255, 255, 0.15)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.25 },
         colorHex: colorHex,
-        width: 0.8,
-        length: 80,
+        width: 0.7,
+        length: 70,
         isDashed: false
       });
 
-      // 4. SubTools / Capabilities (Obsidian 微原子節點)
+      // 4. SubTools / Capabilities (Obsidian 微原子節點 - 預設字體 11px)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -217,7 +217,7 @@ export function generateKnowledgeGraph(registryInput = null) {
             parentToolName: tool.name,
             subDesc: sub.description || '深層拆解之微技能',
             shape: "dot",
-            size: 5.5,
+            size: 4.5,
             borderWidth: 0,
             borderWidthSelected: 0,
             color: {
@@ -229,13 +229,13 @@ export function generateKnowledgeGraph(registryInput = null) {
             colorHex: "#64748b",
             font: {
               color: "#94a3b8",
-              size: 10.5,
+              size: 11,
               face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
               bold: false,
               strokeWidth: 0,
               strokeColor: "transparent"
             },
-            val: 7
+            val: 5
           });
 
           edges.push({
@@ -245,8 +245,8 @@ export function generateKnowledgeGraph(registryInput = null) {
             target: subId,
             color: { color: "rgba(255, 255, 255, 0.1)", highlight: "#0284c7", hover: "#0284c7", opacity: 0.2 },
             colorHex: "#64748b",
-            width: 0.6,
-            length: 38,
+            width: 0.5,
+            length: 32,
             dashes: [2, 4],
             isDashed: true
           });
@@ -834,13 +834,13 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 2D Pivot Zoom (支援最高 100 倍極限深層放大)
+    // 2D Pivot Zoom (縮放中心：滑鼠當前位置，縮放倍率：1~20)
     container2d.addEventListener('wheel', function(e) {
       e.preventDefault();
       e.stopPropagation();
       const currentScale = network2d.getScale();
-      const zoomFactor = e.deltaY < 0 ? 1.25 : 0.8;
-      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.002), 100.0);
+      const zoomFactor = e.deltaY < 0 ? 1.15 : (1 / 1.15);
+      const newScale = Math.min(Math.max(currentScale * zoomFactor, 1.0), 20.0);
 
       const rect = container2d.getBoundingClientRect();
       const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -854,7 +854,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       });
     }, { passive: false });
 
-    // 2D 雙擊節點：極限深層推進對焦 (Deep Zoom In to Node)
+    // 2D 雙擊節點：深入推進對焦
     network2d.on('doubleClick', function(params) {
       if (params.nodes.length > 0) {
         const nodeId = params.nodes[0];
@@ -868,9 +868,9 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     network2d.once('stabilizationIterationsDone', function() {
       network2d.setOptions({ physics: { enabled: false } });
-      network2d.fit({ animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
+      network2d.moveTo({ position: { x: 0, y: 0 }, scale: 1.0, animation: false });
     });
-    setTimeout(function() { network2d.fit(); }, 300);
+    setTimeout(function() { network2d.moveTo({ position: { x: 0, y: 0 }, scale: 1.0, animation: false }); }, 300);
 
     // ─── 2. 初始化 3D Force-Directed Graph (Obsidian 廣闊宇宙空間) ─────────────
     function init3DGraph() {
@@ -891,12 +891,12 @@ export function generateKnowledgeGraph(registryInput = null) {
           const group = new THREE.Group();
           const bgHex = node.colorHex || '#0284c7';
 
-          let radius = 5.2;
-          if (node.group === 'root') radius = 14.0;
-          else if (node.group === 'category') radius = 9.5;
-          else if (node.group === 'subtool') radius = 2.6;
+          let radius = 3.5;
+          if (node.group === 'root') radius = 9.0;
+          else if (node.group === 'category') radius = 6.0;
+          else if (node.group === 'subtool') radius = 1.8;
 
-          // 柔和霧面磨砂實心球體
+          // 柔和霧面磨砂實心球體 (比例恰當協調)
           const sphereGeo = new THREE.SphereGeometry(radius, 16, 16);
           const sphereMat = new THREE.MeshStandardMaterial({
             color: bgHex,
@@ -908,7 +908,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
           group.add(sphereMesh);
 
-          // 建立純淨無背景透明 SpriteText (清晰大字體)
+          // 建立純淨無背景透明 SpriteText (對齊 13px 視覺比例)
           if (typeof SpriteText !== 'undefined') {
             const label = node.label.replace('\\n', ' ');
 
@@ -919,20 +919,20 @@ export function generateKnowledgeGraph(registryInput = null) {
             sprite.strokeWidth = 0;
 
             if (node.group === 'root') {
-              sprite.textHeight = 18.0;
+              sprite.textHeight = 12.0;
               sprite.textColor = '#ffffff';
             } else if (node.group === 'category') {
-              sprite.textHeight = 13.5;
+              sprite.textHeight = 9.0;
               sprite.textColor = '#f1f5f9';
             } else if (node.group === 'tool') {
-              sprite.textHeight = 7.8;
+              sprite.textHeight = 6.5; // 預設字體 13px 恰當視覺比例
               sprite.textColor = '#e2e8f0';
             } else {
-              sprite.textHeight = 4.8;
+              sprite.textHeight = 3.8;
               sprite.textColor = '#94a3b8';
             }
 
-            sprite.position.set(0, radius + 4.5, 0);
+            sprite.position.set(0, radius + 3.2, 0);
             group.add(sprite);
           }
 
@@ -974,8 +974,8 @@ export function generateKnowledgeGraph(registryInput = null) {
         .warmupTicks(60)
         .cooldownTicks(300)
         .onNodeClick(node => {
-          // 點擊節點：極限深入對焦至節點正前方距離 42 單位
-          zoomTo3DNode(node, 42);
+          // 點擊節點：深入對焦至節點正前方
+          zoomTo3DNode(node, 36);
           showPanel(node);
         });
 
@@ -983,23 +983,23 @@ export function generateKnowledgeGraph(registryInput = null) {
       setTimeout(() => {
         if (graph3DInstance && graph3DInstance.d3Force) {
           const chargeForce = graph3DInstance.d3Force('charge');
-          if (chargeForce) chargeForce.strength(-260);
+          if (chargeForce) chargeForce.strength(-220);
 
           const linkForce = graph3DInstance.d3Force('link');
           if (linkForce) {
             linkForce.distance(link => {
               const src = link.source && link.source.id ? link.source.id : link.source;
               const tgt = link.target && link.target.id ? link.target.id : link.target;
-              if (src === 'root' || tgt === 'root') return 180;
-              if (link.isDashed) return 38;
-              return 80;
+              if (src === 'root' || tgt === 'root') return 150;
+              if (link.isDashed) return 32;
+              return 70;
             });
           }
         }
       }, 50);
 
       // 3D 視角向量對焦推進函數
-      function zoomTo3DNode(node, targetDistance = 42) {
+      function zoomTo3DNode(node, targetDistance = 36) {
         if (!graph3DInstance) return;
         const currentCam = graph3DInstance.cameraPosition();
         const nodePos = { x: node.x || 0, y: node.y || 0, z: node.z || 0 };
@@ -1019,20 +1019,19 @@ export function generateKnowledgeGraph(registryInput = null) {
         graph3DInstance.cameraPosition(newCamPos, nodePos, 1000);
       }
 
-      // 3D 空間操控配置 (啟用 OrbitControls 原生超深層無限制縮放與平移)
+      // 3D 空間操控配置 (縮放倍率限制 1~20: 距離 15~300)
       setTimeout(() => {
         if (graph3DInstance.controls) {
           const controls = graph3DInstance.controls();
           if (controls) {
-            controls.enableZoom = true;
-            controls.zoomSpeed = 1.6;
-            controls.minDistance = 0.02; // 允許極限近距離 3D 放大 (Deep Zoom In)
-            controls.maxDistance = 50000;
+            controls.enableZoom = false; // 由自定義 3D Pivot Zoom 依滑鼠位置精確縮放
             controls.enablePan = true;
             controls.panSpeed = 1.2;
             controls.screenSpacePanning = true;
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
+            controls.minDistance = 15.0;  // 縮放倍率 20x
+            controls.maxDistance = 300.0; // 縮放倍率 1x
 
             controls.mouseButtons = {
               LEFT: 0,   // 左鍵: 旋轉 (ROTATE)
@@ -1044,6 +1043,48 @@ export function generateKnowledgeGraph(registryInput = null) {
       }, 100);
 
       container3d.addEventListener('contextmenu', e => e.preventDefault());
+
+      // 3D Pivot Zoom (縮放中心：滑鼠當前位置，縮放倍率：1~20)
+      container3d.addEventListener('wheel', function (e) {
+        if (!graph3DInstance) return;
+        const camera = graph3DInstance.camera();
+        const controls = graph3DInstance.controls();
+        if (!camera || !controls || !controls.target) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const rect = container3d.getBoundingClientRect();
+        const mouseNDC = new THREE.Vector2(
+          ((e.clientX - rect.left) / rect.width) * 2 - 1,
+          -((e.clientY - rect.top) / rect.height) * 2 + 1
+        );
+
+        const raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera(mouseNDC, camera);
+
+        const plane = new THREE.Plane();
+        const normal = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+        plane.setFromNormalAndCoplanarPoint(normal, controls.target);
+
+        const pivot = new THREE.Vector3();
+        const hasIntersect = raycaster.ray.intersectPlane(plane, pivot);
+        const targetPoint = hasIntersect ? pivot : controls.target.clone();
+
+        const zoomRatio = e.deltaY < 0 ? 0.88 : (1 / 0.88);
+
+        const camToPivot = new THREE.Vector3().subVectors(camera.position, targetPoint);
+        const currentDist = camToPivot.length();
+        const newDist = Math.min(Math.max(currentDist * zoomRatio, 15.0), 300.0);
+
+        camToPivot.normalize().multiplyScalar(newDist);
+        camera.position.copy(targetPoint).add(camToPivot);
+        
+        if (hasIntersect && e.deltaY < 0) {
+          controls.target.lerp(targetPoint, 0.12);
+        }
+        controls.update();
+      }, { passive: false });
 
       // Shift + 滑鼠左鍵拖曳 100% 視角平移
       let isShiftPanning = false;
@@ -1100,7 +1141,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       }, true);
 
       window.graph3DInstance = graph3DInstance;
-      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 650 });
+      // 預設 1:1 基準視野 (z: 300)
+      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 300 });
     }
 
     // 切換 2D / 3D 視角
@@ -1300,18 +1342,20 @@ export function generateKnowledgeGraph(registryInput = null) {
       // 2. 關閉詳細資訊抽屜
       closePanel();
 
-      // 3. 視圖回歸全景居中
+      // 3. 視圖回歸預設 1:1 基準視野 (Scale: 1.0 / Z: 300)
       if (is3DMode && graph3DInstance) {
-        // 3D 視角重置回全景中心 (0, 0, 650)
         graph3DInstance.cameraPosition(
-          { x: 0, y: 0, z: 650 },
+          { x: 0, y: 0, z: 300 },
           { x: 0, y: 0, z: 0 },
           1000
         );
       } else if (network2d) {
-        // 2D 視角取消選取節點並自動最適化縮放居中
         network2d.unselectAll();
-        network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+        network2d.moveTo({
+          position: { x: 0, y: 0 },
+          scale: 1.0,
+          animation: { duration: 600, easingFunction: 'easeInOutQuad' }
+        });
       }
     }
   </script>

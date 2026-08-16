@@ -1,23 +1,27 @@
 # Tool-Calling 開發日誌
 
-## 2026-08-16 知識圖譜節點與文字基底尺寸放大及縮放視覺效果全面優化 (Node & Typography Proportions & Zoom Visuals Upgrade)
+## 2026-08-16 知識圖譜規範調整：取消全節點自適應壓縮，恢復以 1:1 基準視野（Scale 1.0）為初始視野 (1:1 Base Viewport Alignment)
 
 ### 需求
-針對使用者指出「節點與文字變得很小，放大效果不好」，進行第一性原理排查與尺寸/拓撲重構：
-1. **過度分散導致初視圖縮放比過低根因 (RCA)**：
-   - 根因：先前將拓撲連線距離拉得過長（280px / 320px），導致全圖包圍盒擴展至 4000px+，初始 `network2d.fit()` 自動將縮放比例壓縮至 `0.25x`，使得原先 6.5px 的節點和 11.5px 的文字在螢幕上被壓縮為僅 1~2px 的極小黑點。
-2. **2D 尺寸與拓撲黃金比例重構 (CAPA)**：
-   - 全面放大節點與字體基底：Root 節點 `size: 26, font: 18px`、Category 分類 `size: 18, font: 15px`、Tool 工具 `size: 10, font: 13.5px`、SubTool 微技能 `size: 5.5, font: 10.5px`。
-   - 收斂連線間距至適中黃金比例（主幹 `150px`、分支 `80px`、微技能 `38px`，`barnesHut.springLength: 95`，`gravitationalConstant: -18000`），初始全景即享有約 `0.65x` 的飽滿視野，無需放大即可清晰閱讀各大分類與代表工具。
-3. **3D 球體與立體字體大氣升級 (CAPA)**：
-   - 3D 球體半徑放大（Root `14.0`、Category `9.5`、Tool `5.2`、SubTool `2.6`）。
-   - 3D SpriteText 文字高度大幅放大（Root `18.0`、Category `13.5`、Tool `7.8`、SubTool `4.8`）。
-   - 初始相機由 `z: 650` 拉近至 `z: 420`，點擊節點向量推進距離調整為 `distance: 42`，使節點與文字以充沛飽滿的視覺衝擊力呈現在視野中心。
+根據使用者最新指示：
+- **取消**：預設視野：全部節點（避免整體圖譜在初始加載時被縮小壓縮）。
+- **保留並精準落實三大規範**：
+  1. **縮放中心(基準點)**：滑鼠當前的位置。
+  2. **縮放倍率**：嚴格限制在 `1 ~ 20` 倍（Scale: 1.0 ~ 20.0）。
+  3. **預設初始畫面字體大小**：`13px`（圓形/圓球半徑比例恰當協調）。
+
+### 實作與防禦措施 (CAPA)
+1. **2D 視圖與縮放**：
+   - 初始加載與點擊「重置全景視角」時，直接以 `network2d.moveTo({ position: { x: 0, y: 0 }, scale: 1.0 })` 呈現 1:1 自然尺寸視野，此時 Tool 節點字體呈現完美的 13px 清晰字體。
+   - 縮放中心鎖定滑鼠 DOM 游標位置，縮放倍率鎖定在 `[1.0, 20.0]`。
+2. **3D 視圖與縮放**：
+   - 初始加載與重置時相機定位於 `{ x: 0, y: 0, z: 300 }`，以 1:1 最佳自然比例聚焦於核心星系。
+   - 縮放中心使用 Three.js Raycaster 精確鎖定滑鼠游標所在 3D 空間位置，相機距離範圍鎖定於 `[15.0, 300.0]`（對應 1x ~ 20x 縮放）。
 
 ### 處理結果
 - 修改 `scripts/generate-knowledge-graph.js`。
-- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
-- 執行 `node scripts/verify-graph-playwright.js` 視覺確效 100% 通過。
+- 執行 `npm run build` 同步生成 `dist/` 與 `docs/`。
+- 執行 Playwright 自動化確效 100% 通過。
 
 ---
 
