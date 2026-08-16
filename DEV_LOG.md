@@ -1,5 +1,26 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 知識圖譜 2D 節點無外框化與全圖比照 Obsidian Graph View 風格重構 (Obsidian Graph View Style & Zero Border Circles)
+
+### 需求
+依據使用者指示，將 2D 圓形節點全面去除外框線，並將全圖視覺元素完整比照 **Obsidian Graph View** 的極簡純粹星系美學風格：
+1. **2D 圓形節點無外框 (Zero Border)**：
+   - 全面設定 `borderWidth: 0`, `borderWidthSelected: 0`，消除所有圓形節點周邊的白色或彩色外框。
+   - 節點改為乾淨純粹的實心光點 (`shape: "dot"`，Root 14px、Category 9.5px、Tool 5.5px、Subtool 3.2px)。
+2. **Obsidian 連線美學 (Ethereal Subtle Links)**：
+   - 連線調為極細幽微的半透明光絲（主幹 `rgba(2, 132, 199, 0.4)`, 分支 `rgba(255, 255, 255, 0.12)`, 寬度 0.6px - 1.0px），徹底杜絕畫面凌亂。
+3. **Obsidian 懸浮文字 (Floating Unobtrusive Text)**：
+   - 文字取消任何描邊（`strokeWidth: 0`），字體顏色採用層次分明的銀灰/石板色階（`#e2e8f0` / `#94a3b8` / `#64748b`）。
+4. **Obsidian 引力物理場 (Organic Force Engine)**：
+   - 調校 Barnes-Hut 參數（`springLength: 85`, `avoidOverlap: 0.85`），使節點自然形成如同 Obsidian 知識星團般的有機拓撲。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 3D 知識圖譜圓球霧面磨砂與莫蘭迪降眩光舒適化優化 (Soft Matte Spheres & Morandi Industrial Palette)
 
 ### 需求
