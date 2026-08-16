@@ -50,7 +50,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (Obsidian Graph View Style + Zero Border + OLED Pure Black)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (Obsidian Expansive Graph + Deep Zoom + Zero Border)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -70,7 +70,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     lastUpdated: registry.lastUpdated || new Date().toISOString(),
     totalTools: registry.tools.length,
     shape: "dot",
-    size: 14,
+    size: 16,
     borderWidth: 0,
     borderWidthSelected: 0,
     color: {
@@ -80,8 +80,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       hover: { background: "#38bdf8", border: "#38bdf8" }
     },
     colorHex: "#0284c7",
-    font: { color: "#ffffff", size: 14, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0, strokeColor: "transparent" },
-    val: 32
+    font: { color: "#ffffff", size: 15, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0, strokeColor: "transparent" },
+    val: 36
   });
 
   // 2. Category Nodes (Obsidian 分類星團節點 - 無外框圓形實心點)
@@ -110,7 +110,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       languages: languages,
       topTools: catTools.slice(0, 5).map(t => t.name),
       shape: "dot",
-      size: 9.5,
+      size: 11,
       borderWidth: 0,
       borderWidthSelected: 0,
       color: {
@@ -122,16 +122,16 @@ export function generateKnowledgeGraph(registryInput = null) {
       colorHex: colorHex,
       font: {
         color: "#e2e8f0",
-        size: 12.5,
+        size: 13,
         face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
         bold: false,
         strokeWidth: 0,
         strokeColor: 'transparent'
       },
-      val: 20
+      val: 24
     });
 
-    // Obsidian 主幹連線 (幽微內斂細線)
+    // Obsidian 主幹連線 (拉長間距 280px，營造宏大呼吸感)
     edges.push({
       from: "root",
       to: catId,
@@ -139,7 +139,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       target: catId,
       color: { color: "rgba(2, 132, 199, 0.4)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.4 },
       colorHex: "#0284c7",
-      width: 1.0,
+      width: 1.1,
+      length: 280,
       isDashed: false
     });
 
@@ -155,17 +156,21 @@ export function generateKnowledgeGraph(registryInput = null) {
         toolData: {
           id: tool.id,
           name: tool.name,
+          url: tool.url,
           description: tool.description,
           category: tool.category,
           language: tool.language,
+          stars: tool.stars,
+          forks: tool.forks,
           useCase: tool.useCase,
           advantages: tool.advantages || [],
           negativeConstraints: tool.negativeConstraints || [],
           install: tool.install,
-          capabilities: tool.capabilities || []
+          capabilities: tool.capabilities || [],
+          subTools: tool.subTools || []
         },
         shape: "dot",
-        size: 5.5,
+        size: 6.5,
         borderWidth: 0,
         borderWidthSelected: 0,
         color: {
@@ -177,17 +182,17 @@ export function generateKnowledgeGraph(registryInput = null) {
         colorHex: colorHex,
         font: {
           color: "#94a3b8",
-          size: 11,
+          size: 11.5,
           face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
           bold: false,
           strokeWidth: 0,
           strokeColor: "transparent"
         },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 8
+        val: 10
       });
 
-      // Obsidian 內容分支連線 (超細極簡線條)
+      // Obsidian 內容分支連線 (長度 140px，充分展開子節點空間)
       edges.push({
         from: catId,
         to: toolNodeId,
@@ -195,12 +200,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         target: toolNodeId,
         color: { color: "rgba(255, 255, 255, 0.12)", highlight: "#38bdf8", hover: "#38bdf8", opacity: 0.2 },
         colorHex: colorHex,
-        width: 0.6,
-        length: 70,
+        width: 0.7,
+        length: 140,
         isDashed: false
       });
 
-      // 4. SubTools / Capabilities (Obsidian 微原子節點 - 無外框超微圓點)
+      // 4. SubTools / Capabilities (Obsidian 微原子節點 - 無外框微圓點)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -212,7 +217,7 @@ export function generateKnowledgeGraph(registryInput = null) {
             parentToolName: tool.name,
             subDesc: sub.description || '深層拆解之微技能',
             shape: "dot",
-            size: 3.2,
+            size: 3.8,
             borderWidth: 0,
             borderWidthSelected: 0,
             color: {
@@ -224,13 +229,13 @@ export function generateKnowledgeGraph(registryInput = null) {
             colorHex: "#475569",
             font: {
               color: "#64748b",
-              size: 9,
+              size: 9.5,
               face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
               bold: false,
               strokeWidth: 0,
               strokeColor: "transparent"
             },
-            val: 4
+            val: 5
           });
 
           edges.push({
@@ -238,10 +243,10 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: "rgba(255, 255, 255, 0.06)", highlight: "#0284c7", hover: "#0284c7", opacity: 0.15 },
+            color: { color: "rgba(255, 255, 255, 0.08)", highlight: "#0284c7", hover: "#0284c7", opacity: 0.18 },
             colorHex: "#475569",
-            width: 0.4,
-            length: 35,
+            width: 0.5,
+            length: 65,
             dashes: [2, 4],
             isDashed: true
           });
@@ -517,21 +522,23 @@ export function generateKnowledgeGraph(registryInput = null) {
       flex-shrink: 0;
     }
 
-    /* 左下角：富文本詳細抽屜面板 (Obsidian 純黑極簡面板) */
+    /* 左下角：Obsidian 富文本詳細抽屜面板 (極致細節呈現) */
     #detailPanel {
       position: absolute;
       bottom: 18px;
       left: 18px;
       z-index: 20;
-      width: 360px;
-      background: rgba(10, 10, 10, 0.96);
-      backdrop-filter: blur(20px);
+      width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      background: rgba(12, 12, 12, 0.98);
+      backdrop-filter: blur(24px);
       border: 1px solid #262626;
-      border-left: 3px solid var(--brand-cobalt);
-      border-radius: 6px;
-      padding: 16px;
+      border-left: 4px solid var(--brand-cobalt);
+      border-radius: 8px;
+      padding: 18px;
       display: none;
-      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.95);
       transform: translateY(6px);
       transition: var(--transition-fast);
     }
@@ -542,33 +549,75 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .panel-title {
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 4px;
+      color: #ffffff;
+      margin-bottom: 6px;
     }
 
     .panel-tag {
       display: inline-block;
-      padding: 2px 6px;
-      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 7px;
+      background: rgba(2, 132, 199, 0.2);
       color: var(--brand-cyan);
-      border-radius: 3px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 4px;
       font-family: "JetBrains Mono", Consolas, monospace;
       font-size: 10px;
       font-weight: 700;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       text-transform: uppercase;
+    }
+
+    .panel-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+
+    .panel-badge-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      color: #cbd5e1;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      margin: 2px 4px 2px 0;
+    }
+
+    .panel-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      background: #0284c7;
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .panel-link-btn:hover {
+      background: #0369a1;
     }
 
     .close-btn {
       position: absolute;
-      top: 10px;
-      right: 12px;
+      top: 12px;
+      right: 14px;
       background: none;
       border: none;
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       line-height: 1;
@@ -587,10 +636,10 @@ export function generateKnowledgeGraph(registryInput = null) {
   <div id="header">
     <div class="header-status-row">
       <span class="status-dot"></span>
-      <span class="status-text">OBSIDIAN GRAPH // ACTIVE</span>
+      <span class="status-text">OBSIDIAN UNIVERSE // DEEP ZOOM</span>
     </div>
     <h1>🌐 Tool-Calling 知識圖譜</h1>
-    <p class="subtitle">${registry.tools.length} 個 AI 工具星系 (滾輪縮放 | 拖曳平移 | 懸浮高亮)</p>
+    <p class="subtitle">${registry.tools.length} 個 AI 工具星系 (滾輪深層縮放 | 點擊/雙擊聚焦細節)</p>
   </div>
 
   <div id="controls">
@@ -632,7 +681,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     <div id="panelContent"></div>
   </div>
 
-  <!-- 2D 平面網絡容器 (Obsidian Graph) -->
+  <!-- 2D 平面網絡容器 (Obsidian Expansive Graph) -->
   <div id="network2d"></div>
 
   <!-- 3D 宇宙空間網絡容器 -->
@@ -648,7 +697,7 @@ export function generateKnowledgeGraph(registryInput = null) {
     let is3DMode = false;
     let graph3DInstance = null;
 
-    // ─── 1. 初始化 2D Vis.js Network (Obsidian Graph View: 無外框純淨圓球、極簡飄逸文字) ───────
+    // ─── 1. 初始化 2D Vis.js Network (Obsidian 廣闊深層拓撲星系) ───────────────────
     const container2d = document.getElementById('network2d');
     const data2d = {
       nodes: new vis.DataSet(nodesData),
@@ -681,12 +730,12 @@ export function generateKnowledgeGraph(registryInput = null) {
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -14000,
-          centralGravity: 0.05,
-          springLength: 85,
-          springConstant: 0.03,
-          damping: 0.42,
-          avoidOverlap: 0.85
+          gravitationalConstant: -38000, // 強大星團斥力，徹底拉開 580 個節點間隔
+          centralGravity: 0.015,
+          springLength: 200,             // 廣闊彈簧長度，給予節點充足呼吸空間
+          springConstant: 0.02,
+          damping: 0.45,
+          avoidOverlap: 1.0              // 杜絕節點重疊擁擠
         },
         maxVelocity: 40,
         minVelocity: 0.2,
@@ -695,7 +744,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       },
       interaction: {
         hover: true,
-        zoomView: false, // 由自定義 2D Pivot Zoom 引擎全權接管，打破縮放限制
+        zoomView: false, // 由自定義 2D Pivot Zoom 引擎接管，支援 100 倍極致深層放大
         dragView: true,
         hoverConnectedEdges: true
       }
@@ -719,7 +768,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         return;
       }
       
-      let html = '<div style="background:rgba(12,12,12,0.96); padding:10px 14px; border-radius:6px; border:1px solid #222222; border-left:3px solid ' + (node.colorHex || '#0284c7') + '; color:#f1f5f9; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:12px; min-width:180px; max-width:300px; box-shadow:0 8px 28px rgba(0,0,0,0.9);">';
+      let html = '<div style="background:rgba(12,12,12,0.96); padding:10px 14px; border-radius:6px; border:1px solid #222222; border-left:3px solid ' + (node.colorHex || '#0284c7') + '; color:#f1f5f9; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:12px; min-width:180px; max-width:320px; box-shadow:0 8px 28px rgba(0,0,0,0.9);">';
       html += '<div style="font-weight:700; font-size:13px; color:#ffffff; margin-bottom:3px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
       
       if (node.categoryName) {
@@ -729,7 +778,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       if (node.toolData && node.group === 'tool') {
         const t = node.toolData;
         if (t.description) {
-          html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; line-height:1.4; margin-bottom:5px;">' + t.description.slice(0, 80) + (t.description.length > 80 ? '...' : '') + '</div>';
+          html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; line-height:1.4; margin-bottom:5px;">' + t.description.slice(0, 90) + (t.description.length > 90 ? '...' : '') + '</div>';
         }
         if (t.useCase) {
           html += '<div style="color:#34d399; font-size:11px; font-weight:600; margin-bottom:3px;"><b>★ 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
@@ -737,13 +786,16 @@ export function generateKnowledgeGraph(registryInput = null) {
         if (t.advantages && t.advantages.length > 0) {
           html += '<div style="color:#38bdf8; font-size:11px; font-weight:600;"><b>◆ 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
         }
+        if (t.capabilities && t.capabilities.length > 0) {
+          html += '<div style="color:#a855f7; font-size:11px; font-weight:500; margin-top:3px;">⚡ 能力: ' + t.capabilities.slice(0, 3).join(', ') + '</div>';
+        }
       } else if (node.group === 'category') {
         html += '<div style="color:#cbd5e1; font-size:11px; font-weight:500;">收錄 <b>' + (node.toolCount || 0) + '</b> 個工具</div>';
       } else if (node.group === 'root') {
         html += '<div style="color:#cbd5e1; font-size:11px; font-weight:500;">共 <b>' + (node.totalTools || 0) + '</b> 個 AI 工具</div>';
       }
       
-      html += '<div style="color:#64748b; font-size:9px; margin-top:5px; text-transform:uppercase; font-family:monospace; font-weight:700;">' + node.group + '</div>';
+      html += '<div style="color:#64748b; font-size:9px; margin-top:5px; text-transform:uppercase; font-family:monospace; font-weight:700;">' + node.group + ' (雙擊可極限聚焦)</div>';
       html += '</div>';
       
       tooltipEl.innerHTML = html;
@@ -777,13 +829,13 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 2D Pivot Zoom (支援超深層放大檢視，突破 Vis.js 原生縮放上限，最高 60 倍放大)
+    // 2D Pivot Zoom (支援最高 100 倍極限深層放大)
     container2d.addEventListener('wheel', function(e) {
       e.preventDefault();
       e.stopPropagation();
       const currentScale = network2d.getScale();
       const zoomFactor = e.deltaY < 0 ? 1.25 : 0.8;
-      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.005), 60.0);
+      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.002), 100.0);
 
       const rect = container2d.getBoundingClientRect();
       const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -797,25 +849,25 @@ export function generateKnowledgeGraph(registryInput = null) {
       });
     }, { passive: false });
 
+    // 2D 雙擊節點：極限深層推進對焦 (Deep Zoom In to Node)
+    network2d.on('doubleClick', function(params) {
+      if (params.nodes.length > 0) {
+        const nodeId = params.nodes[0];
+        const node = data2d.nodes.get(nodeId);
+        if (node) {
+          network2d.focus(nodeId, { scale: 3.5, animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
+          showPanel(node);
+        }
+      }
+    });
+
     network2d.once('stabilizationIterationsDone', function() {
       network2d.setOptions({ physics: { enabled: false } });
       network2d.fit({ animation: { duration: 500, easingFunction: 'easeInOutQuad' } });
     });
     setTimeout(function() { network2d.fit(); }, 300);
 
-    // Helper: 根據背景 Hex 顏色計算最優文字對比色
-    function getContrastTextColorJS(hexColor) {
-      if (!hexColor) return "#ffffff";
-      const hex = hexColor.replace('#', '');
-      if (hex.length !== 6) return "#ffffff";
-      const r = parseInt(hex.substring(0, 2), 16);
-      const g = parseInt(hex.substring(2, 4), 16);
-      const b = parseInt(hex.substring(4, 6), 16);
-      const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-      return luminance > 0.6 ? "#000000" : "#ffffff";
-    }
-
-    // ─── 2. 初始化 3D Force-Directed Graph (Obsidian 柔和霧面磨砂實心球體) ──
+    // ─── 2. 初始化 3D Force-Directed Graph (Obsidian 廣闊宇宙空間) ─────────────
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -834,13 +886,12 @@ export function generateKnowledgeGraph(registryInput = null) {
           const group = new THREE.Group();
           const bgHex = node.colorHex || '#0284c7';
 
-          // 計算合適的球體半徑 (Obsidian 典雅星系比例)
-          let radius = 2.2;
-          if (node.group === 'root') radius = 6.0;
-          else if (node.group === 'category') radius = 4.2;
-          else if (node.group === 'subtool') radius = 1.2;
+          let radius = 2.4;
+          if (node.group === 'root') radius = 6.5;
+          else if (node.group === 'category') radius = 4.5;
+          else if (node.group === 'subtool') radius = 1.3;
 
-          // 柔和霧面磨砂實心球體 (高粗糙度，無刺眼反光)
+          // 柔和霧面磨砂實心球體
           const sphereGeo = new THREE.SphereGeometry(radius, 16, 16);
           const sphereMat = new THREE.MeshStandardMaterial({
             color: bgHex,
@@ -852,31 +903,31 @@ export function generateKnowledgeGraph(registryInput = null) {
           const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
           group.add(sphereMesh);
 
-          // 建立輕量 SpriteText (比照 2D 圖譜，完全無背景底色)
+          // 建立純淨無背景透明 SpriteText
           if (typeof SpriteText !== 'undefined') {
             const label = node.label.replace('\\n', ' ');
 
             const sprite = new SpriteText(label);
             sprite.fontFace = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
             sprite.fontWeight = 'normal';
-            sprite.backgroundColor = false; // 無背景底色 (Transparent Background)
-            sprite.strokeWidth = 0;          // 無描邊
+            sprite.backgroundColor = false;
+            sprite.strokeWidth = 0;
 
             if (node.group === 'root') {
-              sprite.textHeight = 7.5;
+              sprite.textHeight = 8.0;
               sprite.textColor = '#ffffff';
             } else if (node.group === 'category') {
-              sprite.textHeight = 6.0;
+              sprite.textHeight = 6.5;
               sprite.textColor = '#e2e8f0';
             } else if (node.group === 'tool') {
-              sprite.textHeight = 3.5;
+              sprite.textHeight = 3.6;
               sprite.textColor = '#94a3b8';
             } else {
-              sprite.textHeight = 2.4;
+              sprite.textHeight = 2.5;
               sprite.textColor = '#64748b';
             }
 
-            sprite.position.set(0, radius + 3.2, 0);
+            sprite.position.set(0, radius + 3.5, 0);
             group.add(sprite);
           }
 
@@ -891,7 +942,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           if (node.group === 'tool' && node.toolData) {
             const t = node.toolData;
             if (t.description) {
-              html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; margin-bottom:3px;">' + t.description.slice(0, 60) + (t.description.length > 60 ? '...' : '') + '</div>';
+              html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; margin-bottom:3px;">' + t.description.slice(0, 70) + (t.description.length > 70 ? '...' : '') + '</div>';
             }
             if (t.useCase) {
               html += '<div style="color:#34d399; font-size:11px; font-weight:600; margin-bottom:2px;">★ ' + t.useCase + '</div>';
@@ -903,7 +954,7 @@ export function generateKnowledgeGraph(registryInput = null) {
             html += '<div style="color:#cbd5e1; font-size:11px; font-weight:500;">' + (node.toolCount || 0) + ' tools</div>';
           }
           
-          html += '<div style="color:#64748b; font-size:9px; margin-top:4px; text-transform:uppercase; font-family:monospace; font-weight:700;">' + node.group + '</div>';
+          html += '<div style="color:#64748b; font-size:9px; margin-top:4px; text-transform:uppercase; font-family:monospace; font-weight:700;">' + node.group + ' (點擊深入檢視)</div>';
           html += '</div>';
           return html;
         })
@@ -914,7 +965,8 @@ export function generateKnowledgeGraph(registryInput = null) {
         .linkDirectionalParticleSpeed(0.004)
         .linkDirectionalParticleWidth(1.4)
         .onNodeClick(node => {
-          const distance = 130;
+          // 點擊節點：極限近距離深入對焦 (Deep Zoom to distance 35)
+          const distance = 35;
           const distRatio = 1 + distance / Math.hypot(node.x || 1, node.y || 1, node.z || 1);
           graph3DInstance.cameraPosition(
             { x: (node.x || 0) * distRatio, y: (node.y || 0) * distRatio, z: (node.z || 0) * distRatio },
@@ -931,7 +983,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           if (controls) {
             controls.enableZoom = true;
             controls.zoomSpeed = 1.6;
-            controls.minDistance = 0.1; // 允許極限近距離 3D 放大 (Deep Zoom In)
+            controls.minDistance = 0.05; // 允許極限近距離 3D 放大 (Deep Zoom In)
             controls.maxDistance = 50000;
             controls.enablePan = true;
             controls.panSpeed = 1.2;
@@ -1065,7 +1117,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         if (targetIds.length > 0) {
           network2d.selectNodes(targetIds);
           if (catNode) {
-            network2d.focus(catNode.id, { scale: 1.2, animation: { duration: 700 } });
+            network2d.focus(catNode.id, { scale: 1.4, animation: { duration: 700 } });
             showPanel(catNode);
           }
         }
@@ -1077,14 +1129,17 @@ export function generateKnowledgeGraph(registryInput = null) {
       if (params.nodes.length > 0) {
         const nodeId = params.nodes[0];
         const node = data2d.nodes.get(nodeId);
-        if (node) showPanel(node);
+        if (node) {
+          network2d.focus(nodeId, { scale: 2.2, animation: { duration: 500 } });
+          showPanel(node);
+        }
       } else {
         closePanel();
         document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
       }
     });
 
-    // 動態富文本面板渲染
+    // 動態富文本面板渲染 (Obsidian 深度資訊卡)
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
@@ -1092,44 +1147,68 @@ export function generateKnowledgeGraph(registryInput = null) {
       let descHtml = '';
       
       if (node.group === 'root') {
-        descHtml = '<div style="font-size:12px; line-height:1.5; color:#cbd5e1; font-weight:400; margin-bottom:6px;">' +
-          '<b>Tool-Calling</b> 全自動 AI Agent 工具調用基礎設施，收錄 <b>' + node.totalTools + '</b> 個 AI 工具。' +
+        descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:8px;">' +
+          '<b>Tool-Calling</b> 全自動 AI Agent 工具調用基礎設施，全庫包含 <b>' + node.totalTools + '</b> 個開源 AI 工具與 <b>' + categories.length + '</b> 大分類，支援三層（L1精確/L2關鍵字/L3語義）檢索。' +
           '</div>' +
           '<div style="font-size:11px; color:#64748b; font-family:monospace;">' +
-          '最後更新: ' + new Date(node.lastUpdated).toLocaleDateString() +
+          '🕒 最後更新: ' + new Date(node.lastUpdated).toLocaleString() +
           '</div>';
       } else if (node.group === 'category') {
         const catTools = nodesData.filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
-        const sampleTools = node.topTools ? node.topTools.map(t => '<span style="display:inline-block; padding:1px 5px; background:#161616; border:1px solid #262626; color:#94a3b8; font-weight:500; border-radius:3px; font-size:10px; margin:2px;">' + t + '</span>').join(' ') : '';
+        const sampleTools = node.topTools ? node.topTools.map(t => '<span class="panel-badge-pill">' + t + '</span>').join('') : '';
         const langs = node.languages && node.languages.length ? node.languages.join(', ') : '無特定語言標示';
 
-        descHtml = '<div style="font-size:12px; line-height:1.5; color:#cbd5e1; font-weight:400; margin-bottom:6px;">' +
+        descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:8px;">' +
           (node.description || '') +
           '</div>' +
-          '<div style="font-size:11px; color:#38bdf8; margin-top:4px; margin-bottom:3px; font-weight:600;">' +
-          '📊 包含工具: <b>' + (node.toolCount || catTools.length) + '</b> 個' +
+          '<div style="font-size:12px; color:#38bdf8; margin-top:6px; margin-bottom:4px; font-weight:600;">' +
+          '📊 收錄工具: <b>' + (node.toolCount || catTools.length) + '</b> 個' +
           '</div>' +
-          '<div style="font-size:11px; color:#64748b; margin-bottom:6px;">' +
-          '💻 語言: <b>' + langs + '</b>' +
+          '<div style="font-size:11px; color:#94a3b8; margin-bottom:6px;">' +
+          '💻 支援語言: <b>' + langs + '</b>' +
           '</div>' +
-          '<div style="margin-top:4px;">' +
-          sampleTools +
-          '</div>';
+          '<div class="panel-section-title">熱門代表工具</div>' +
+          '<div>' + sampleTools + '</div>';
       } else if (node.group === 'tool') {
         const t = node.toolData || {};
-        descHtml = '<div style="font-size:12px; line-height:1.5; color:#cbd5e1; font-weight:400; margin-bottom:6px;">' +
+        
+        let capsHtml = '';
+        if (t.capabilities && t.capabilities.length > 0) {
+          capsHtml = '<div class="panel-section-title">⚡ 支援能力 (Capabilities)</div><div>' +
+            t.capabilities.map(c => '<span class="panel-badge-pill" style="border-color:#38bdf8; color:#38bdf8;">' + c + '</span>').join('') +
+            '</div>';
+        }
+
+        let advHtml = '';
+        if (t.advantages && t.advantages.length > 0) {
+          advHtml = '<div class="panel-section-title">◆ 核心優勢</div><div>' +
+            t.advantages.map(a => '<span class="panel-badge-pill" style="border-color:#10b981; color:#34d399;">' + a + '</span>').join('') +
+            '</div>';
+        }
+
+        let subToolsHtml = '';
+        if (t.subTools && t.subTools.length > 0) {
+          subToolsHtml = '<div class="panel-section-title">🧩 微技能拆解</div><div>' +
+            t.subTools.map(s => '<span class="panel-badge-pill" style="border-color:#a855f7; color:#c084fc;">' + (s.name || s.id) + '</span>').join('') +
+            '</div>';
+        }
+
+        descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:8px;">' +
           (t.description || '無詳細描述') +
           '</div>' +
-          (t.useCase ? '<div style="font-size:11px; color:#34d399; margin-bottom:3px; line-height:1.4; font-weight:600;"><b>★ 推薦場景:</b> ' + t.useCase + '</div>' : '') +
-          (t.advantages && t.advantages.length ? '<div style="font-size:11px; color:#38bdf8; margin-bottom:3px; line-height:1.4; font-weight:600;"><b>◆ 關鍵優勢:</b> ' + t.advantages.join(', ') + '</div>' : '') +
-          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:11px; color:#f87171; margin-bottom:3px; line-height:1.4; font-weight:600;"><b>✕ 禁用場景:</b> ' + t.negativeConstraints.join(', ') + '</div>' : '') +
-          (t.language ? '<div style="font-size:10px; color:#64748b; margin-top:4px;">語言: ' + t.language + '</div>' : '');
+          (t.useCase ? '<div style="font-size:12px; color:#34d399; margin-bottom:4px; line-height:1.4; font-weight:600;"><b>★ 推薦場景:</b> ' + t.useCase + '</div>' : '') +
+          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:12px; color:#f87171; margin-bottom:4px; line-height:1.4; font-weight:600;"><b>✕ 禁用場景:</b> ' + t.negativeConstraints.join(', ') + '</div>' : '') +
+          (t.language ? '<div style="font-size:11px; color:#94a3b8; margin-top:4px;">開發語言: ' + t.language + (t.stars ? ' | ⭐ ' + t.stars.toLocaleString() : '') + '</div>' : '') +
+          capsHtml +
+          advHtml +
+          subToolsHtml +
+          (t.url ? '<a href="' + t.url + '" target="_blank" class="panel-link-btn">🔗 開啟 GitHub 倉庫</a>' : '');
       } else if (node.group === 'subtool') {
-        descHtml = '<div style="font-size:12px; line-height:1.5; color:#cbd5e1; font-weight:400; margin-bottom:4px;">' +
-          '主工具: <b style="color:#38bdf8;">' + (node.parentToolName || '主工具') + '</b>' +
+        descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:6px;">' +
+          '所屬主工具: <b style="color:#38bdf8;">' + (node.parentToolName || '主工具') + '</b>' +
           '</div>' +
-          '<div style="font-size:11px; color:#94a3b8; line-height:1.4;">' +
-          node.subDesc +
+          '<div style="font-size:11px; color:#94a3b8; line-height:1.5;">' +
+          '微技能說明: ' + node.subDesc +
           '</div>';
       }
 
@@ -1152,7 +1231,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         const found = graph3DInstance.graphData().nodes.find(n => n.label.toLowerCase().includes(term));
         if (found) {
           graph3DInstance.cameraPosition(
-            { x: (found.x || 0) + 70, y: (found.y || 0) + 70, z: (found.z || 0) + 70 },
+            { x: (found.x || 0) + 40, y: (found.y || 0) + 40, z: (found.z || 0) + 40 },
             found,
             1000
           );
@@ -1161,7 +1240,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       } else {
         const found = data2d.nodes.get().find(n => n.label.toLowerCase().includes(term));
         if (found) {
-          network2d.focus(found.id, { scale: 1.2, animation: { duration: 700 } });
+          network2d.focus(found.id, { scale: 2.5, animation: { duration: 600 } });
           network2d.selectNodes([found.id]);
           showPanel(found);
         }

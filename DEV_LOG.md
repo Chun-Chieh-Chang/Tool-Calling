@@ -1,5 +1,25 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 知識圖譜星團拓撲間距拉伸與 100 倍極致深層細節對焦優化 (Expansive Galaxy Topology & 100x Deep Micro Detail)
+
+### 需求
+針對使用者指出「仍沒辦法看到很細」，進行第一性原理深層問題排查與解決：
+1. **星團擁擠與疊合問題根因 (RCA)**：
+   - 根因：580 個節點在先前較小的彈簧長度 (`springLength: 85`) 與過密的物理斥力下，所有工具與微技能節點擠成密集的一團。即便放大視角，看到的也只是重疊疊合的光點，無法清晰區隔每一個工具的微技能與邊界。
+   - 解決措施 (CAPA)：
+     - 將連線長度與物理彈簧全面拉寬（主幹連線拉長至 `280px`、分支連線拉長至 `140px`、`springLength: 200`、斥力加強至 `-38000`、`avoidOverlap: 1.0`）。
+     - 580 個節點如同 Obsidian 廣袤星系般全面展開，每個工具與子技能皆享有充裕的呼吸空間與清晰的拓撲距離。
+2. **極致深層放大與微觀對焦 (100x Deep Zoom & Double-Click Focus)**：
+   - 2D 滾輪縮放範圍大幅放寬至 **`0.002x ~ 100.0x`**（支援最高 100 倍極致深層放大）。
+   - 支援 2D / 3D「**雙擊節點極限對焦**」：雙擊任意節點即可瞬間將視角深層推進至該節點正前方，並在懸浮浮窗與左下角 Obsidian 抽屜中同步展示完整工具描述、⭐推薦場景、⚡支援能力、◆核心優勢、微技能拆解與 GitHub 倉庫連結。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 知識圖譜 2D 與 3D 縮放引擎失效修復與極限放大升級 (Zoom In Engine RCA & CAPA)
 
 ### 需求
