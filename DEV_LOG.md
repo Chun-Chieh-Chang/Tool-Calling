@@ -2359,3 +2359,59 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 - UTF-8 Guard 門禁：0 個 U+FFFD 亂碼字元
 - HTML ID 唯一性：100% 唯一
 - 全套單元與 Playwright 視覺測試：75 / 75 PASS (100% 通過，0 Fail)
+
+## [2026-08-16] World Week 修正與雙週 UI 展示
+
+### 需求
+- World Week 起迌定義確認：ISO 8601，週一 00:00:00 UTC 至週日 23:59:59 UTC
+- 修正 trending-weekly.js 的計算語意問題（targetWeek 混用）
+- 新增 UI 雙週展示：上週完整數據（列入納入判斷）+ 本週迄今即時數據（不列入判斷）
+
+### 問題診斷 (RCA)
+| 項目 | 說明 |
+|------|------|
+| core/world-week.js | ✅ 計算邏輯完全正確，無需修改 |
+| trending-weekly.js | ⚠ 原本以 currentWeek (W33) 作為 targetWeek，但計算的是 prevWeek (W32) vs today 的 delta，語意混淡 |
+| weekly-trending.json | ❌ 缺少 currentWeekToDate 欄位，UI 無法展示本週即時數據 |
+| web/app.js + index.html | ❌ 完全缺少「本週迄今」展示區塊 |
+
+### 修正措施 (CAPA)
+1. trending-weekly.js v6: 重構 computeRanking()，雙路徑游算lastWeek + currentWeekToDate
+2. index.html: 新增 LAST WEEK / THIS WEEK 雙區塊 + wipNoticeBanner
+3. app.js: 新增 renderLeaderboardRows()，支援正式/WIP 雙模式渲染
+4. style.css: 新增 .section-badge-wip、.wip-notice-banner、.leaderboard-container-wip等樣式
+
+### 驗證結果
+- npm test: 75/75 PASS, 0 FAIL
+- UTF-8 門禁通過: 0 個亂碼字元
+- HTML ID 唯一性門禁通過: 27 個 ID 全 100% 唯一
+- World Week 週次計算正確: W33=08-10~08-16（本週）, W32=08-03~08-09（上週）
+
+## [2026-08-16] 專案整體程式碼、檔案與文件 MECE 全量優化作業
+
+### 需求
+- 執行全專案代碼、檔案與架構之全流程優化與重構 SOP
+- 清理死碼、冗餘檔案與未引用的重複文件，落實 MECE 分類架構整合
+- 確保文件（README.md, AGENTS.md, docs/）與實際代碼邏輯 100% 同步
+- 執行沙盒確效測試並建立 Git 版本基準點
+
+### 問題診斷 (RCA)
+| 項目 | 說明 |
+|------|------|
+| docs/ 檔案重疊 | docs/OPTIMIZATION_ANALYSIS.md 與 OPTIMIZATION-REPORT.md 內容高度重疊，違反 MECE 互斥原則 |
+| 計畫與報告混雜 | 歷史執行計畫 (find-skill-integration-plan.md, job-manager-plan.md) 與單次報告 (batch-add-report-20260810.md) 散落於 docs 根目錄 |
+| 文件版本與功能斷層 | README.md 尚遺漏每週漲星榜「雙週展示（上週正式 + 本週迄今）」功能更新說明，版本號停留在 v1.2 |
+| AGENTS.md 協議時間戳 | 根目錄 AGENTS.md 最後更新日期為 2026/8/15，需同步至 2026/8/16 v1.1 |
+
+### 矯正與預防措施 (CAPA)
+1. **死碼與冗餘清理 (MECE Audit)**：
+   - 刪除冗餘報告 docs/OPTIMIZATION_ANALYSIS.md
+   - 建立 docs/archive/ 與 docs/reports/ 子目錄，將已完工計畫與單次執行報告歸檔分類
+2. **文件同步 (Documentation Alignment)**：
+   - 更新 README.md：新增「雙週展示 (Dual-Week Trending)」特色功能說明，版本號正式升級至 v1.3
+   - 更新 AGENTS.md：同步協議版本至 2026.08.16 v1.1 與最新統計時間戳
+3. **全面確效與品質門禁 (Verification)**：
+   - npm test: 75/75 PASS (20 suites, 0 errors)
+   - cli.js validate: 580/580 工具通過 Contract v2 驗證 (品質 100/100)
+   - scripts/check-mece.js: 22 分類 100% 互斥且窮盡
+   - scripts/check-utf8.js & scripts/check-duplicate-ids.js: 100% 通過

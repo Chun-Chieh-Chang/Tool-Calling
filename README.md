@@ -56,6 +56,8 @@
    - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
 7. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
    - 基於固定追蹤池（2173 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
+   - **雙週展示**：同時展示「上週完整數據（LAST WEEK，列入工具箱納入判斷）」與「本週迄今即時數據（THIS WEEK，進行中，不列入判斷）」，清晰區隔正式與預覽數據。
+   - 嚴格遵守 ISO-8601 World Week 國際標準（週一 00:00:00 UTC → 週日 23:59:59 UTC）。
 
 ---
 
@@ -161,7 +163,7 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v1.2 - 580 Tools, 334 Synonyms
+> Tool-Calling v1.3 - 580 Tools, 334 Synonyms, Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI
@@ -182,6 +184,5 @@ npm start
 網頁版提供：
 - 📊 **精密儀表板總覽** - 高對比度統計圖表與分類概覽
 - 🔧 **工具目錄列表** - 完整的工具瀏覽與搜尋
-- 🔥 **每週涨星榜** - GitHub 熱門 AI 工具排行
+- 🔥 **每週漲星榜** - GitHub 熱門 AI 工具排行，雙週展示（上週完整 + 本週迄今）
 - 🌐 **互動式知識圖譜** - 100% OLED 純黑 3D/2D 可視化工具關係網絡
-

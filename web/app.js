@@ -33,6 +33,10 @@ const trendingScannedCount = document.getElementById('trendingScannedCount');
 const trendingAddedCount = document.getElementById('trendingAddedCount');
 const leaderboardBody = document.getElementById('leaderboardBody');
 const newlyAddedGrid = document.getElementById('newlyAddedGrid');
+// 新增 DOM refs for 雙週展示
+const lastWeekDateRangeLabel = document.getElementById('lastWeekDateRangeLabel');
+const currentWeekDateRangeLabel = document.getElementById('currentWeekDateRangeLabel');
+const currentWeekLeaderboardBody = document.getElementById('currentWeekLeaderboardBody');
 
 // 初始化
 async function init() {
@@ -371,6 +375,63 @@ function renderCategoryOverview(categoryCounts) {
 
 let weeklyTrendingLoaded = false;
 
+/**
+ * 共用排行榜列渲染函式
+ * @param {HTMLElement} tbody - 目標 tbody
+ * @param {Array} items - 排行榜資料
+ * @param {boolean} isWip - 是否為「進行中」（本週迄今）模式
+ */
+function renderLeaderboardRows(tbody, items, isWip = false) {
+  tbody.innerHTML = '';
+  if (!items || items.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-secondary); padding: 24px;">尚無資料</td></tr>`;
+    return;
+  }
+
+  const top10 = items.slice(0, 10);
+  top10.forEach(item => {
+    const tr = document.createElement('tr');
+    const rankClass = item.rank === 1 ? 'rank-1' : item.rank === 2 ? 'rank-2' : item.rank === 3 ? 'rank-3' : 'rank-other';
+    const rankEmoji = item.rank === 1 ? '🥇' : item.rank === 2 ? '🥈' : item.rank === 3 ? '🥉' : item.rank;
+
+    // 格式化時間顯示（直接使用標準 ISO World Week 日期字串，防止時區偏移）
+    const startTime = item.startStarsAt ? String(item.startStarsAt).slice(0, 10) : '-';
+    const endTime = item.endStarsAt ? String(item.endStarsAt).slice(0, 10) : '-';
+    const prevDisplay = item.prevStars > 0 ? item.prevStars.toLocaleString() : '首次';
+    const currDisplay = item.currentStars.toLocaleString();
+    const deltaStr = item.delta > 0 ? `+${item.delta.toLocaleString()}` : `${item.currentStars.toLocaleString()} (待比對)`;
+
+    // 正式模式：標準藍色 delta-badge；WIP 模式：琥珀色 delta-badge-wip
+    const deltaBadgeClass = isWip ? 'delta-badge-wip' : 'delta-badge';
+    // 狀態 badge 樣式
+    let statusClass = 'in-registry';
+    let statusText = item.statusText || '--';
+    if (!isWip) {
+      statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
+    } else {
+      statusClass = 'preview';
+      statusText = '⏳ 預覽中';
+    }
+
+    tr.innerHTML = `
+      <td style="text-align: center;"><span class="rank-badge ${rankClass}">${rankEmoji}</span></td>
+      <td><strong>${escapeHtml(item.name)}</strong></td>
+      <td><a href="${safeUrl(item.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${escapeHtml(item.fullName)} ↗</a></td>
+      <td>
+        <div style="font-size: 14px; font-weight: bold;">⭐ ${currDisplay}</div>
+        <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
+          起: ${prevDisplay} (${startTime})<br>
+          終: ${currDisplay} (${endTime})
+        </div>
+      </td>
+      <td><span class="${deltaBadgeClass}">🔥 ${deltaStr}</span></td>
+      <td><span class="category-tag">${escapeHtml(item.category)}</span></td>
+      <td style="text-align: center;"><span class="status-badge ${statusClass}">${escapeHtml(statusText)}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
 async function loadWeeklyTrending() {
   if (!leaderboardBody) return;
   if (weeklyTrendingLoaded) return;
@@ -380,54 +441,48 @@ async function loadWeeklyTrending() {
     if (!res.ok) throw new Error('Weekly trending data not found');
     const data = await res.json();
 
-    if (trendingWorldWeek) trendingWorldWeek.textContent = `🏆 GitHub 每週漲星排行榜 (${data.worldWeek || '2026-W30'})`;
-    if (trendingDateRange) trendingDateRange.textContent = `統計區間：${data.dateRange || '近 7 天'}`;
+    // ── 更新頂部 header 摘要（顯示上週正式資訊）──
+    const lastWeekData = data.lastWeek || {};
+    const currWeekData = data.currentWeekToDate || {};
+
+    if (trendingWorldWeek) {
+      trendingWorldWeek.textContent = `🏆 GitHub 每週漲星排行榜 (${lastWeekData.weekStr || data.worldWeek || '--'})`;
+    }
+    if (trendingDateRange) {
+      trendingDateRange.textContent = `上週統計區間：${lastWeekData.dateRange || data.dateRange || '近 7 天'}`;
+    }
     const scannedCount = data.activeReposCount || data.scannedReposCount || data.trackedPoolSize || 0;
     if (trendingScannedCount) trendingScannedCount.textContent = scannedCount ? scannedCount.toLocaleString() : '--';
-    if (trendingAddedCount) trendingAddedCount.textContent = `${data.newlyAddedCount || 0} 個工具`;
+    if (trendingAddedCount) trendingAddedCount.textContent = `${lastWeekData.newlyAddedCount ?? data.newlyAddedCount ?? 0} 個工具`;
 
-    // 1. 渲染排行榜表格 (Top 10 Leaderboard)
-    leaderboardBody.innerHTML = '';
-    const rawList = Array.isArray(data.top10) ? data.top10 : (Array.isArray(data.top20) ? data.top20 : []);
-    const top10 = rawList.slice(0, 10);
+    // ── 更新各 section 的日期範圍標籤 ──
+    if (lastWeekDateRangeLabel && lastWeekData.dateRange) {
+      lastWeekDateRangeLabel.textContent = `${lastWeekData.dateRange} · 已列入工具箱納入判斷`;
+    }
+    if (currentWeekDateRangeLabel) {
+      const toDateRange = currWeekData.dateRange || '--';
+      currentWeekDateRangeLabel.textContent = currWeekData.asOfDate
+        ? `${toDateRange}（截至 ${currWeekData.asOfDate}）· 統計進行中`
+        : toDateRange;
+    }
 
-    top10.forEach(item => {
-      const tr = document.createElement('tr');
-      const rankClass = item.rank === 1 ? 'rank-1' : item.rank === 2 ? 'rank-2' : item.rank === 3 ? 'rank-3' : 'rank-other';
-      const rankEmoji = item.rank === 1 ? '🥇' : item.rank === 2 ? '🥈' : item.rank === 3 ? '🥉' : item.rank;
-      const statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
+    // ── 1. 渲染上週正式排行榜 (lastWeek) ──
+    const lastWeekItems = (lastWeekData.top10 || data.top10 || []);
+    renderLeaderboardRows(leaderboardBody, lastWeekItems, false);
 
-      // 格式化時間顯示（直接使用標準 ISO World Week 日期字串，防止時區偏移）
-      const startTime = item.startStarsAt ? String(item.startStarsAt).slice(0, 10) : (item.startTime ? String(item.startTime).slice(0, 10) : '-');
-      const endTime = item.endStarsAt ? String(item.endStarsAt).slice(0, 10) : (item.endTime ? String(item.endTime).slice(0, 10) : '-');
-      const prevDisplay = item.prevStars > 0 ? item.prevStars.toLocaleString() : '首次';
-      const currDisplay = item.currentStars.toLocaleString();
-      const deltaStr = item.delta > 0 ? `+${item.delta.toLocaleString()}` : `${item.currentStars.toLocaleString()} (待比對)`;
+    // ── 2. 渲染本週迄今預覽排行榜 (currentWeekToDate) ──
+    const currentWeekItems = (currWeekData.top10 || []);
+    if (currentWeekLeaderboardBody) {
+      renderLeaderboardRows(currentWeekLeaderboardBody, currentWeekItems, true);
+    }
 
-      tr.innerHTML = `
-        <td style="text-align: center;"><span class="rank-badge ${rankClass}">${rankEmoji}</span></td>
-        <td><strong>${escapeHtml(item.name)}</strong></td>
-        <td><a href="${safeUrl(item.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--brand-color); text-decoration: none;">${escapeHtml(item.fullName)} ↗</a></td>
-        <td>
-          <div style="font-size: 14px; font-weight: bold;">⭐ ${currDisplay}</div>
-          <div style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">
-            起: ${prevDisplay} (${startTime})<br>
-            終: ${currDisplay} (${endTime})
-          </div>
-        </td>
-        <td><span class="delta-badge">🔥 ${deltaStr}</span></td>
-        <td><span class="category-tag">${escapeHtml(item.category)}</span></td>
-        <td style="text-align: center;"><span class="status-badge ${statusClass}">${escapeHtml(item.statusText)}</span></td>
-      `;
-      leaderboardBody.appendChild(tr);
-    });
-
-    // 2. 渲染本週新納入本專案工具箱的工具特寫 (Newly Added Tools Highlight)
+    // ── 3. 渲染上週新納入工具特寫 (Newly Added Tools Highlight) ──
     if (newlyAddedGrid) {
       newlyAddedGrid.innerHTML = '';
+      const rawList = lastWeekItems;
       const addedTools = Array.isArray(data.addedTools) ? data.addedTools : rawList.filter(item => item.isNewlyAdded);
       if (addedTools.length === 0) {
-        newlyAddedGrid.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-secondary); text-align: center; padding: 24px;">本週探勘之 Top 10 工具皆已在庫存中，暫無新增入庫工具。</div>';
+        newlyAddedGrid.innerHTML = '<div style="grid-column: 1 / -1; color: var(--text-secondary); text-align: center; padding: 24px;">上週探勘之 Top 10 工具皆已在庫存中，暫無新增入庫工具。</div>';
       } else {
         addedTools.forEach(tool => {
           const card = createToolCard(tool, null, null, [], tool.category);

@@ -1,7 +1,7 @@
 # AGENTS.md — Tool-Calling 全域行為協議
 
 > **身份**：AI 開發協作代理 (AgnesCode × Antigravity IDE 統一協議)
-> **版本**：2026.08.10 v1.0
+> **版本**：2026.08.16 v1.1
 > **維護者**：Agentic AI Foundation (Linux Foundation)
 > **相容工具**：AgnesCode, Antigravity IDE, Claude Code, Cursor, Codex, Gemini CLI
 
@@ -36,7 +36,7 @@
 追蹤 repos: 2173 個
 總 star 數: 12,298,822 ⭐
 平均 star 數: 28,669 ⭐
-最後更新: 2026/8/15
+最後更新: 2026/8/16
 ```
 
 ### Top 5 分類
@@ -426,6 +426,6 @@ PDCA 循環：
 
 ---
 
-> **協議版本**：2026.08.10 v1.0 (AgnesCode × Antigravity IDE 統一協議)
+> **協議版本**：2026.08.16 v1.1 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-08-13T13:46:13.641Z
+> **最後更新**：2026-08-16T10:25:00.000Z

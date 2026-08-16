@@ -1205,3 +1205,75 @@ select:focus {
 .footer-separator {
   color: #cbd5e1;
 }
+
+/* ─── WIP / Current-Week-To-Date Styles ─────────────────────────────────── */
+
+/* section-badge 的 WIP 變體（琥珀色，區分於正式版深藍色） */
+.section-badge-wip {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #f59e0b;
+  letter-spacing: 0.06em;
+}
+
+/* 帶動態脈動的 WIP 通知 banner */
+.wip-notice-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fffbeb;
+  border: 1px solid #f59e0b;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--radius-sm);
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #78350f;
+  line-height: 1.5;
+}
+
+.wip-notice-banner svg {
+  color: #d97706;
+  flex-shrink: 0;
+}
+
+.wip-notice-banner strong {
+  font-weight: 700;
+}
+
+/* 本週迄今的排行榜容器：灰階半透明，傳達「非正式」感 */
+.leaderboard-container-wip {
+  opacity: 0.85;
+  border-style: dashed;
+  border-color: #cbd5e1;
+}
+
+.leaderboard-container-wip .leaderboard-table th {
+  background: #f8fafc;
+  color: #94a3b8;
+}
+
+.leaderboard-container-wip .leaderboard-table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* 預覽狀態 badge（本週迄今專用，灰色） */
+.status-badge.preview {
+  background: #f8fafc;
+  color: #94a3b8;
+  border: 1px solid #cbd5e1;
+}
+
+/* delta-badge 的「進行中」變體（琥珀色） */
+.delta-badge-wip {
+  color: #92400e;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  background: #fef3c7;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #f59e0b;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}

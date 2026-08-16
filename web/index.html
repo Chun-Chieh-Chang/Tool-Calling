@@ -190,17 +190,18 @@
           </div>
           <div class="trending-stat-pill highlight">
             <span class="stat-num" id="trendingAddedCount">--</span>
-            <span class="stat-text">本週新納入工具箱</span>
+            <span class="stat-text">上週新納入工具箱</span>
           </div>
         </div>
       </div>
 
+      <!-- ── 上週完整數據（正式，列入入庫判斷）── -->
       <div class="section-title-bar">
         <h2>
-          <span class="section-badge">TOP 10</span>
-          本週漲星排行榜 (World Week)
+          <span class="section-badge">LAST WEEK</span>
+          上週漲星排行榜 (World Week · 已完結 · 正式)
         </h2>
-        <span class="chart-subtitle">依近一週 Star 增加量 (Delta) 精確排序</span>
+        <span class="chart-subtitle" id="lastWeekDateRangeLabel">依近一週 Star 增加量 (Delta) 精確排序 · 已列入工具箱納入判斷</span>
       </div>
 
       <div class="leaderboard-container">
@@ -222,14 +223,52 @@
         </table>
       </div>
 
+      <!-- ── 本週迄今數據（進行中，不列入判斷）── -->
+      <div class="section-title-bar current-week-title-bar" style="margin-top: 32px;">
+        <h2>
+          <span class="section-badge section-badge-wip">THIS WEEK</span>
+          本週迄今排行榜 (進行中 · 統計未完結)
+        </h2>
+        <span class="chart-subtitle" id="currentWeekDateRangeLabel">載入中...</span>
+      </div>
+
+      <!-- 不列入判斷的 banner 提示 -->
+      <div class="wip-notice-banner" id="wipNoticeBanner">
+        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" style="flex-shrink:0;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span>⏳ 本週統計仍在進行中 &mdash; 以下數據為即時預覽，<strong>不列入工具箱納入判斷</strong>，本週日結束後將更新為正式數據。</span>
+      </div>
+
+      <div class="leaderboard-container leaderboard-container-wip">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th style="width: 70px; text-align: center;">名次</th>
+              <th>工具專案名稱</th>
+              <th>GitHub Repository</th>
+              <th>⭐ 累積總 Star 數</th>
+              <th>🔥 本週迄今漲星數 (Delta)</th>
+              <th>領域分類</th>
+              <th style="text-align: center;">預覽狀態</th>
+            </tr>
+          </thead>
+          <tbody id="currentWeekLeaderboardBody">
+            <!-- 本週迄今數據由 JS 動態生成 -->
+          </tbody>
+        </table>
+      </div>
+
       <div class="section-title-bar" style="margin-top: 32px;">
         <h2>
           <span class="section-badge">NEW</span>
-          本週自動納入工具箱特寫
+          上週自動納入工具箱特寫
         </h2>
       </div>
       <div id="newlyAddedGrid" class="grid">
-        <!-- 本週新納入工具卡片將由 JS 動態生成 -->
+        <!-- 上週新納入工具卡片將由 JS 動態生成 -->
       </div>
     </div>
 
