@@ -1,5 +1,22 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 知識圖譜 2D 與 3D 縮放引擎失效修復與極限放大升級 (Zoom In Engine RCA & CAPA)
+
+### 需求
+針對使用者回報「前面修訂的 zoom in 的幅度又失效了」，進行底層根因分析 (RCA) 與徹底修復 (CAPA)：
+1. **3D 縮放失效根因分析 (3D RCA)**：
+   - 根因：先前在 `container3d` 上添加了自定義的平面射線投影縮放演算法（Pivot Zoom），但在 3D 空間中，當相機接近或穿過目標平面時，射線與視線夾角會趨近垂直（奇異點 Singularity），導致 `t` 參數發散或產生負值，進而強行阻斷了相機繼續向前推進，造成「放大卡死」的現象。
+   - 矯正預防 (CAPA)：移除有數學瑕疵的自定義 3D wheel 攔截器，全面啟用 Three.js `OrbitControls` 原生 Dolly Zoom，配置 `minDistance: 0.1`、`maxDistance: 50000` 與 `zoomSpeed: 1.6`，徹底消除奇異點，提供 100% 穩定且無限距離的 3D 深層放大。
+2. **2D 縮放強化 (2D CAPA)**：
+   - 強化自定義 2D Pivot Zoom 引擎之步長與邊界：縮放範圍設定為 `0.005x ~ 60.0x`，縮放比率調整為更靈敏的 `1.25`，確保滑鼠滾輪縮放迅速、流暢且能無限制深入放大至單一節點。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 3D 知識圖譜文字比照 2D 圖譜去除背景底色優化 (Transparent Background 3D SpriteText)
 
 ### 需求

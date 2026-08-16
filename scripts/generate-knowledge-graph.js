@@ -777,12 +777,13 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 2D Pivot Zoom (支援超深層放大檢視，突破 Vis.js 原生縮放上限)
+    // 2D Pivot Zoom (支援超深層放大檢視，突破 Vis.js 原生縮放上限，最高 60 倍放大)
     container2d.addEventListener('wheel', function(e) {
       e.preventDefault();
+      e.stopPropagation();
       const currentScale = network2d.getScale();
-      const zoomFactor = e.deltaY < 0 ? 1.18 : 0.85;
-      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.02), 35.0);
+      const zoomFactor = e.deltaY < 0 ? 1.25 : 0.8;
+      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.005), 60.0);
 
       const rect = container2d.getBoundingClientRect();
       const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
@@ -791,7 +792,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       network2d.moveTo({
         position: domPos,
         scale: newScale,
-        offset: { x: -pointer.x + rect.width / 2, y: -pointer.y + rect.height / 2 },
+        offset: { x: (rect.width / 2) - pointer.x, y: (rect.height / 2) - pointer.y },
         animation: false
       });
     }, { passive: false });
@@ -923,23 +924,25 @@ export function generateKnowledgeGraph(registryInput = null) {
           showPanel(node);
         });
 
-      // 3D 平移功能
+      // 3D 空間操控配置 (啟用 OrbitControls 原生超深層無限制縮放與平移)
       setTimeout(() => {
         if (graph3DInstance.controls) {
           const controls = graph3DInstance.controls();
           if (controls) {
+            controls.enableZoom = true;
+            controls.zoomSpeed = 1.6;
+            controls.minDistance = 0.1; // 允許極限近距離 3D 放大 (Deep Zoom In)
+            controls.maxDistance = 50000;
             controls.enablePan = true;
             controls.panSpeed = 1.2;
             controls.screenSpacePanning = true;
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
 
-            controls.minDistance = 0.5; // 支援超近距離 3D 放大 (Deep Zoom In)
-            controls.maxDistance = 20000;
             controls.mouseButtons = {
-              LEFT: 0,
-              MIDDLE: 2,
-              RIGHT: 2
+              LEFT: 0,   // 左鍵: 旋轉 (ROTATE)
+              MIDDLE: 2, // 中鍵: 平移 (PAN)
+              RIGHT: 2   // 右鍵: 平移 (PAN)
             };
           }
         }
@@ -947,6 +950,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       container3d.addEventListener('contextmenu', e => e.preventDefault());
 
+      // Shift + 滑鼠左鍵拖曳 100% 視角平移
       let isShiftPanning = false;
       let lastPanX = 0, lastPanY = 0;
 
@@ -999,54 +1003,6 @@ export function generateKnowledgeGraph(registryInput = null) {
           e.stopPropagation();
         }
       }, true);
-
-      // Pivot Zoom (支援超深層放大檢視)
-      container3d.addEventListener('wheel', function (event) {
-        if (!graph3DInstance) return;
-        const camera = graph3DInstance.camera();
-        const controls = graph3DInstance.controls();
-        if (!camera || !controls || !controls.target) return;
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        const Vector3Class = controls.target.constructor;
-        if (!Vector3Class) return;
-
-        const rect = container3d.getBoundingClientRect();
-        const ndcX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-        const ndcY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
-        const dir = new Vector3Class(ndcX, ndcY, -1).unproject(camera);
-        dir.sub(camera.position).normalize();
-
-        const targetPoint = controls.target.clone();
-        const lookDir = new Vector3Class().subVectors(targetPoint, camera.position).normalize();
-        const d = targetPoint.dot(lookDir);
-        const t = (d - camera.position.dot(lookDir)) / dir.dot(lookDir);
-        const pivot = new Vector3Class().copy(camera.position).addScaledVector(dir, t);
-
-        const zoomStep = event.deltaY < 0 ? 0.84 : 1.19;
-
-        const camToPivot = new Vector3Class().subVectors(camera.position, pivot);
-        const currentDist = camToPivot.length();
-        const newDist = Math.max(currentDist * zoomStep, 0.5);
-        camToPivot.normalize().multiplyScalar(newDist);
-        const newCamPos = new Vector3Class().addVectors(pivot, camToPivot);
-
-        const targetToPivot = new Vector3Class().subVectors(targetPoint, pivot);
-        const targetDist = targetToPivot.length();
-        const newTargetDist = targetDist * zoomStep;
-        targetToPivot.normalize().multiplyScalar(newTargetDist);
-        const newTarget = new Vector3Class().addVectors(pivot, targetToPivot);
-
-        const finalDist = new Vector3Class().subVectors(newCamPos, newTarget).length();
-        if (finalDist < 0.5 || finalDist > 20000) return;
-
-        camera.position.copy(newCamPos);
-        controls.target.copy(newTarget);
-        controls.update();
-      }, { passive: false });
 
       window.graph3DInstance = graph3DInstance;
       graph3DInstance.cameraPosition({ x: 0, y: 0, z: 460 });
