@@ -1,12 +1,13 @@
 /**
- * 工具分類重構腳本 - 基於 MECE 原則
- * 
- * 功能：
- * 1. 掃描所有工具的元數據（名稱、描述、URL、標籤）
- * 2. 應用精確的分類規則（優先順序關鍵）
- * 3. 處理「其他」類別的工具（強制歸類）
- * 4. 檢測並提示潛在的重疊類別
- * 5. 輸出詳細的變更報告
+ * 工具分類規則引擎 - 基於 MECE 原則
+ *
+ * ⚠️ 本腳本預設為 dry-run(僅輸出建議),需加上 --apply 才會寫入 registry,
+ *    避免粗粒度 regex 覆蓋人工修正後的分類。
+ *
+ * 分類慣例(詳見 docs/category-conventions.md):
+ * 1. 領域優先:金融/行銷/3D/研究等領域工具先歸領域分類
+ * 2. AI 框架 = 建構積木(SDK/模型/推論引擎/訓練框架)
+ *    AI 代理 = 成品(agent 本體/harness/skill 與 plugin 集合/平台)
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -55,37 +56,45 @@ const CATEGORY_RULES = [
   },
   
   // UI/UX 設計 - 前端框架與設計系統
-  { 
-    pattern: /\b(shadcn-ui|storybook|tldraw|chakra-ui|ant-design|material-ui|radix-ui)\b/i, 
+  // 注意:嚴禁加入 "agents" 等泛用字眼(曾導致 15 個非 UI 工具誤入)
+  {
+    pattern: /\b(shadcn-ui|storybook|tldraw|chakra-ui|ant-design|material-ui|radix-ui|tailwind|next\.?js)\b/i,
     cat: 'UI/UX設計',
     priority: 100
   },
-  { 
-    pattern: /\b(frontend-design|open-design|react-best-practices|huashu-design|ui-skills)\b/i, 
+  {
+    pattern: /\b(frontend-design|open-design|react-best-practices|huashu-design|ui-skills|web-design|figma|design-system|prototype)\b/i,
     cat: 'UI/UX設計',
     priority: 90
   },
-  { 
-    pattern: /\b(impeccable|agents|design-system|figma-plugin|web-design-guideline)\b/i, 
+  // 網頁動畫函式庫屬 UI/UX(非影片)
+  {
+    pattern: /\b(gsap|anime\.?js|web animation|css animation)\b/i,
     cat: 'UI/UX設計',
-    priority: 80
+    priority: 90
   },
   
   // 圖標與視覺資源 - 專門的圖標庫
-  { 
-    pattern: /\b(lucide|heroicons|font-awesome|tabler-icons|iconify)\b/i, 
+  {
+    pattern: /\b(lucide|heroicons|font-awesome|tabler-icons|iconify)\b/i,
     cat: '圖標與視覺資源',
     priority: 100
   },
-  { 
-    pattern: /\b(simple-icons|welovesvg|sfsafesymbols|remix-icon|iconoir)\b/i, 
+  {
+    pattern: /\b(simple-icons|welovesvg|sfsafesymbols|remix-icon|iconoir)\b/i,
     cat: '圖標與視覺資源',
     priority: 100
   },
-  { 
-    pattern: /\b(material-design-icon|fluentui-system-icon|ant-design-icon|polaris-icon|radix-icon)\b/i, 
+  {
+    pattern: /\b(material-design-icon|fluentui-system-icon|ant-design-icon|polaris-icon|radix-icon)\b/i,
     cat: '圖標與視覺資源',
     priority: 90
+  },
+  {
+    pattern: /\b(icon set|icon library|icon family|icon system|svg icons?)\b/i,
+    cat: '圖標與視覺資源',
+    priority: 90,
+    exclude: /\b(3d|model)\b/i
   },
   
   // 測試與自動化
@@ -95,19 +104,19 @@ const CATEGORY_RULES = [
     priority: 100
   },
   
-  // 瀏覽器自動化
-  { 
-    pattern: /\b(crawl|scrape|puppeteer|headless-browser|browser-automation)\b/i, 
+  // 瀏覽器自動化 - 含名詞形態(scraper/crawler 等)
+  {
+    pattern: /\b(crawl|scrape|scraper|crawler|spider|puppeteer|headless-browser|browser-automation|web scraping)\b/i,
     cat: '瀏覽器自動化',
     priority: 100
   },
   
-  // API 整合
-  { 
-    pattern: /\b(api|rest|graphql|grpc|sdk|integration)\b/i, 
+  // API 整合(過寬已收斂:排除測試/爬蟲/單純 SDK 庫)
+  {
+    pattern: /\b(api gateway|api integration|rest api|graphql api|openapi|mcp connector|integrations?\b)\b/i,
     cat: 'API 整合',
     priority: 80,
-    exclude: /\b(test|playwright)\b/i
+    exclude: /\b(test|playwright|scrape|crawl)\b/i
   },
   
   // 文件生產力
@@ -139,20 +148,16 @@ const CATEGORY_RULES = [
   },
   
   // 開發工具
-  { 
-    pattern: /\b(developer-tool|cli-tool|code-editor|ide)\b/i, 
+  {
+    pattern: /\b(developer-tool|cli-tool|code-editor|ide|dev.?workspace)\b/i,
     cat: '開發工具',
     priority: 90
   },
-  { 
-    pattern: /\b(typescript|javascript|python|rust|go)\b/i, 
-    cat: '學習資源',
-    priority: 80
-  },
-  
+
   // 學習資源
-  { 
-    pattern: /\b(learn|tutorial|course|education|bootcamp|roadmap|awesome-list)\b/i, 
+  // 注意:嚴禁以程式語言名稱作為關鍵字(曾導致 scrapy 等誤入)
+  {
+    pattern: /\b(learn|tutorial|course|education|bootcamp|roadmap|awesome-list|curriculum|handbook|interview|面試)\b/i,
     cat: '學習資源',
     priority: 90
   },
@@ -178,11 +183,11 @@ const CATEGORY_RULES = [
     priority: 80
   },
   
-  // 知識管理
-  { 
-    pattern: /\b(knowledge|rag|retrieval|embedding|memory|note-taking)\b/i, 
+  // 知識管理 - agent 記憶/RAG/知識圖譜(優先級高於 agent 規則)
+  {
+    pattern: /\b(rag|retrieval|embedding|knowledge.?graph|second.?brain|persistent.?memory|memory layer|note-taking|obsidian|notebooklm)\b/i,
     cat: '知識管理',
-    priority: 80
+    priority: 95
   },
   
   // 安全性
@@ -192,18 +197,28 @@ const CATEGORY_RULES = [
     priority: 90
   },
   
-  // 行銷
-  { 
-    pattern: /\b(marketing|seo|analytics|advertisement|social-media)\b/i, 
+  // 行銷(領域優先)
+  // 注意:嚴禁用 "analytics"(曾導致 Apache OSSIE 誤入)
+  {
+    pattern: /\b(marketing|seo|advertisement|social.?media|crm|copywriting)\b/i,
     cat: '行銷',
-    priority: 80
+    priority: 85
   },
-  
-  // 3D工程繪圖
-  { 
-    pattern: /\b(3d|cad|mesh|render|blender|opengl|geometry|freecad|openscad)\b/i, 
+
+  // 3D工程繪圖(領域優先)
+  // 注意:"3d" 單獨出現不足以判定(曾導致 scroll-world 誤入),需搭配工程/建模語境
+  {
+    pattern: /\b(cad|freecad|openscad|blender|bim|text-to-cad|cadquery|parametric 3d|3d model|3d modeling|3d asset|mesh|geometry|opengl)\b/i,
     cat: '3D工程繪圖',
-    priority: 80
+    priority: 85,
+    exclude: /\b(landing page|scroll)\b/i
+  },
+
+  // 金融與投資(領域優先)
+  {
+    pattern: /\b(trading|stock|quant|portfolio|backtest|hedge.?fund|financial market|finance)\b/i,
+    cat: '金融與投資',
+    priority: 85
   },
   
   // 基礎設施
@@ -372,11 +387,11 @@ function validateMECE(stats) {
 }
 
 /**
- * 執行全量重新分類
+ * 執行全量重新分類(預設 dry-run,僅輸出建議;--apply 才寫入)
  */
-export async function reclassifyAllTools() {
+export async function reclassifyAllTools({ apply = false } = {}) {
   console.log('\n' + '='.repeat(60));
-  console.log('  工具分類重構系統 - MECE 原則驗證');
+  console.log(`  工具分類規則引擎 - MECE 原則驗證 (${apply ? '★ APPLY 模式' : 'DRY-RUN 模式(僅建議,加 --apply 寫入)'})`);
   console.log('='.repeat(60) + '\n');
   
   // 讀取註冊表
@@ -419,9 +434,14 @@ export async function reclassifyAllTools() {
   
   // 更新時間戳
   registry.lastUpdated = new Date().toISOString();
-  
-  // 寫回檔案
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
+
+  if (apply) {
+    // 寫回檔案
+    writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
+    console.log(`\n📁 已更新:${REGISTRY_PATH}\n`);
+  } else {
+    console.log('\n📁 DRY-RUN:未寫入任何檔案(加上 --apply 參數才會寫入)\n');
+  }
   
   // 輸出結果
   console.log('\n【新分類分布】');
@@ -445,8 +465,6 @@ export async function reclassifyAllTools() {
   // MECE 驗證
   validateMECE(newStats);
   
-  console.log(`\n📁 已更新：${REGISTRY_PATH}\n`);
-  
   return {
     total: totalTools,
     changed: changes.length,
@@ -459,5 +477,6 @@ export async function reclassifyAllTools() {
 // ─── 直接執行 ─────────────────────────────────────────────────────────
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  reclassifyAllTools().catch(console.error);
+  const apply = process.argv.includes('--apply');
+  reclassifyAllTools({ apply }).catch(console.error);
 }

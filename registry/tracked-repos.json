@@ -11,7 +11,7 @@
     "fullName": "Graphify-Labs/graphify",
     "owner": "Graphify-Labs",
     "repo": "graphify",
-    "category": "資料庫",
+    "category": "知識管理",
     "addedAt": "2026-07-19T10:33:00+08:00",
     "status": "tracking"
   },
@@ -43,7 +43,7 @@
     "fullName": "brycedrennan/imaginAIry",
     "owner": "brycedrennan",
     "repo": "imaginAIry",
-    "category": "AI 框架",
+    "category": "多媒體生成",
     "addedAt": "2026-07-19T10:33:00+08:00",
     "status": "tracking"
   },
@@ -99,7 +99,7 @@
     "fullName": "upstash/context7",
     "owner": "upstash",
     "repo": "context7",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-07-19T05:17:04.440Z",
     "status": "tracking"
   },
@@ -123,7 +123,7 @@
     "fullName": "MemTensor/memmy-agent",
     "owner": "MemTensor",
     "repo": "memmy-agent",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-19T05:17:07.528Z",
     "status": "tracking"
   },
@@ -139,7 +139,7 @@
     "fullName": "posthog/posthog",
     "owner": "posthog",
     "repo": "posthog",
-    "category": "學習資源",
+    "category": "數據分析",
     "addedAt": "2026-07-19T05:17:08.839Z",
     "status": "tracking"
   },
@@ -155,7 +155,7 @@
     "fullName": "tirth8205/code-review-graph",
     "owner": "tirth8205",
     "repo": "code-review-graph",
-    "category": "學習資源",
+    "category": "開發工具",
     "addedAt": "2026-07-19T05:17:10.130Z",
     "status": "tracking"
   },
@@ -163,7 +163,7 @@
     "fullName": "iOfficeAI/OfficeCLI",
     "owner": "iOfficeAI",
     "repo": "OfficeCLI",
-    "category": "AI 代理",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T05:17:10.734Z",
     "status": "tracking"
   },
@@ -187,7 +187,7 @@
     "fullName": "pbakaus/impeccable",
     "owner": "pbakaus",
     "repo": "impeccable",
-    "category": "圖標與視覺資源",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T05:17:12.641Z",
     "status": "tracking"
   },
@@ -203,7 +203,7 @@
     "fullName": "yvgude/lean-ctx",
     "owner": "yvgude",
     "repo": "lean-ctx",
-    "category": "UI/UX設計",
+    "category": "開發工具",
     "addedAt": "2026-07-19T05:17:14.069Z",
     "status": "tracking"
   },
@@ -227,7 +227,7 @@
     "fullName": "op7418/guizang-ppt-skill",
     "owner": "op7418",
     "repo": "guizang-ppt-skill",
-    "category": "多媒體生成",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T05:17:15.937Z",
     "status": "tracking"
   },
@@ -275,7 +275,7 @@
     "fullName": "google-labs-code/design.md",
     "owner": "google-labs-code",
     "repo": "design.md",
-    "category": "圖標與視覺資源",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T05:26:15.280Z",
     "status": "tracking"
   },
@@ -283,7 +283,7 @@
     "fullName": "hkuds/rag-anything",
     "owner": "hkuds",
     "repo": "rag-anything",
-    "category": "影片",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:09:54.674Z",
     "status": "tracking"
   },
@@ -323,7 +323,7 @@
     "fullName": "nextlevelbuilder/ui-ux-pro-max-skill",
     "owner": "nextlevelbuilder",
     "repo": "ui-ux-pro-max-skill",
-    "category": "AI 代理",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T07:09:58.321Z",
     "status": "tracking"
   },
@@ -331,7 +331,7 @@
     "fullName": "cclank/lanshu-animated-architecture-diagram",
     "owner": "cclank",
     "repo": "lanshu-animated-architecture-diagram",
-    "category": "AI 代理",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T07:09:59.071Z",
     "status": "tracking"
   },
@@ -347,7 +347,7 @@
     "fullName": "DeusData/codebase-memory-mcp",
     "owner": "DeusData",
     "repo": "codebase-memory-mcp",
-    "category": "資料庫",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:10:00.827Z",
     "status": "tracking"
   },
@@ -363,7 +363,7 @@
     "fullName": "calesthio/OpenMontage",
     "owner": "calesthio",
     "repo": "OpenMontage",
-    "category": "AI 代理",
+    "category": "影片",
     "addedAt": "2026-07-19T07:10:02.795Z",
     "status": "tracking"
   },
@@ -371,7 +371,7 @@
     "fullName": "browser-use/video-use",
     "owner": "browser-use",
     "repo": "video-use",
-    "category": "AI 代理",
+    "category": "影片",
     "addedAt": "2026-07-19T07:10:03.456Z",
     "status": "tracking"
   },
@@ -379,7 +379,7 @@
     "fullName": "topoteretes/cognee",
     "owner": "topoteretes",
     "repo": "cognee",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:10:04.137Z",
     "status": "tracking"
   },
@@ -387,7 +387,7 @@
     "fullName": "juliusbrussee/caveman",
     "owner": "juliusbrussee",
     "repo": "caveman",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T07:10:04.731Z",
     "status": "tracking"
   },
@@ -403,7 +403,7 @@
     "fullName": "openai/codex-plugin-cc",
     "owner": "openai",
     "repo": "codex-plugin-cc",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T07:10:06.118Z",
     "status": "tracking"
   },
@@ -419,7 +419,7 @@
     "fullName": "openai/openai-agents-js",
     "owner": "openai",
     "repo": "openai-agents-js",
-    "category": "音訊",
+    "category": "AI 框架",
     "addedAt": "2026-07-19T07:10:07.314Z",
     "status": "tracking"
   },
@@ -459,7 +459,7 @@
     "fullName": "thedotmack/claude-mem",
     "owner": "thedotmack",
     "repo": "claude-mem",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:10:10.414Z",
     "status": "tracking"
   },
@@ -475,7 +475,7 @@
     "fullName": "abhigyanpatwari/GitNexus",
     "owner": "abhigyanpatwari",
     "repo": "GitNexus",
-    "category": "UI/UX設計",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:10:11.785Z",
     "status": "tracking"
   },
@@ -483,7 +483,7 @@
     "fullName": "op7418/humanizer-zh",
     "owner": "op7418",
     "repo": "humanizer-zh",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T07:10:12.455Z",
     "status": "tracking"
   },
@@ -499,7 +499,7 @@
     "fullName": "crynta/terax-ai",
     "owner": "crynta",
     "repo": "terax-ai",
-    "category": "學習資源",
+    "category": "開發工具",
     "addedAt": "2026-07-19T07:10:13.833Z",
     "status": "tracking"
   },
@@ -555,7 +555,7 @@
     "fullName": "LambdaTest/kane-cli",
     "owner": "LambdaTest",
     "repo": "kane-cli",
-    "category": "開發工具",
+    "category": "測試與自動化",
     "addedAt": "2026-07-19T07:55:25.297Z",
     "status": "tracking"
   },
@@ -579,7 +579,7 @@
     "fullName": "LRriver/AIPPT",
     "owner": "LRriver",
     "repo": "AIPPT",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T07:55:29.727Z",
     "status": "tracking"
   },
@@ -587,7 +587,7 @@
     "fullName": "serenakeyitan/awesome-notebookLM-prompts",
     "owner": "serenakeyitan",
     "repo": "awesome-notebookLM-prompts",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T07:55:30.346Z",
     "status": "tracking"
   },
@@ -603,7 +603,7 @@
     "fullName": "claude-world/notebooklm-skill",
     "owner": "claude-world",
     "repo": "notebooklm-skill",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T07:55:32.030Z",
     "status": "tracking"
   },
@@ -611,7 +611,7 @@
     "fullName": "laihenyi/NBLM2PPTX",
     "owner": "laihenyi",
     "repo": "NBLM2PPTX",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T07:55:32.685Z",
     "status": "tracking"
   },
@@ -619,7 +619,7 @@
     "fullName": "chenwr727/AI-Short-Video-Engine",
     "owner": "chenwr727",
     "repo": "AI-Short-Video-Engine",
-    "category": "AI 代理",
+    "category": "影片",
     "addedAt": "2026-07-19T07:55:33.363Z",
     "status": "tracking"
   },
@@ -643,7 +643,7 @@
     "fullName": "microsoft/Ontology-Playground",
     "owner": "microsoft",
     "repo": "Ontology-Playground",
-    "category": "開發工具",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:55:35.347Z",
     "status": "tracking"
   },
@@ -651,7 +651,7 @@
     "fullName": "openenergyplatform/ontology",
     "owner": "openenergyplatform",
     "repo": "ontology",
-    "category": "開發工具",
+    "category": "知識管理",
     "addedAt": "2026-07-19T07:55:36.119Z",
     "status": "tracking"
   },
@@ -667,7 +667,7 @@
     "fullName": "Makio64/animejs-v4-ai-guidelines",
     "owner": "Makio64",
     "repo": "animejs-v4-ai-guidelines",
-    "category": "影片",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T07:55:37.548Z",
     "status": "tracking"
   },
@@ -675,7 +675,7 @@
     "fullName": "virgiliojr94/book-to-skill",
     "owner": "virgiliojr94",
     "repo": "book-to-skill",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T07:55:38.182Z",
     "status": "tracking"
   },
@@ -683,7 +683,7 @@
     "fullName": "simbajigege/book2skills",
     "owner": "simbajigege",
     "repo": "book2skills",
-    "category": "AI 框架",
+    "category": "金融與投資",
     "addedAt": "2026-07-19T07:55:38.777Z",
     "status": "tracking"
   },
@@ -691,7 +691,7 @@
     "fullName": "CymChad/book-skill-generator",
     "owner": "CymChad",
     "repo": "book-skill-generator",
-    "category": "知識管理",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T07:55:39.450Z",
     "status": "tracking"
   },
@@ -699,7 +699,7 @@
     "fullName": "microsoft/markitdown",
     "owner": "microsoft",
     "repo": "markitdown",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T07:55:40.025Z",
     "status": "tracking"
   },
@@ -779,7 +779,7 @@
     "fullName": "cocoindex-io/cocoindex",
     "owner": "cocoindex-io",
     "repo": "cocoindex",
-    "category": "UI/UX設計",
+    "category": "知識管理",
     "addedAt": "2026-07-19T08:58:17.590Z",
     "status": "tracking"
   },
@@ -798,7 +798,7 @@
     "fullName": "benlisquare/stable-diffusion-webui-localization-zh_TW",
     "owner": "benlisquare",
     "repo": "stable-diffusion-webui-localization-zh_TW",
-    "category": "AI 框架",
+    "category": "多媒體生成",
     "addedAt": "2026-07-19T08:58:19.005Z",
     "status": "tracking"
   },
@@ -814,7 +814,7 @@
     "fullName": "mem0ai/mem0",
     "owner": "mem0ai",
     "repo": "mem0",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-07-19T08:58:20.408Z",
     "status": "tracking"
   },
@@ -822,7 +822,7 @@
     "fullName": "ruvnet/ruflo",
     "owner": "ruvnet",
     "repo": "ruflo",
-    "category": "UI/UX設計",
+    "category": "AI 框架",
     "addedAt": "2026-07-19T08:58:21.029Z",
     "status": "tracking"
   },
@@ -838,7 +838,7 @@
     "fullName": "nousresearch/hermes-agent",
     "owner": "nousresearch",
     "repo": "hermes-agent",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T08:58:22.309Z",
     "status": "tracking"
   },
@@ -846,7 +846,7 @@
     "fullName": "soxoj/maigret",
     "owner": "soxoj",
     "repo": "maigret",
-    "category": "開發工具",
+    "category": "安全性",
     "addedAt": "2026-07-19T08:58:22.865Z",
     "status": "tracking"
   },
@@ -862,7 +862,7 @@
     "fullName": "Aider-AI/aider",
     "owner": "Aider-AI",
     "repo": "aider",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T08:58:24.266Z",
     "status": "tracking"
   },
@@ -1038,7 +1038,7 @@
     "fullName": "farion1231/cc-switch",
     "owner": "farion1231",
     "repo": "cc-switch",
-    "category": "AI 框架",
+    "category": "開發工具",
     "addedAt": "2026-07-19T09:25:53.713Z",
     "status": "tracking"
   },
@@ -1062,7 +1062,7 @@
     "fullName": "sickn33/agentic-awesome-skills",
     "owner": "sickn33",
     "repo": "agentic-awesome-skills",
-    "category": "UI/UX設計",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T09:25:56.519Z",
     "status": "tracking"
   },
@@ -1070,7 +1070,7 @@
     "fullName": "shanraisshan/claude-code-best-practice",
     "owner": "shanraisshan",
     "repo": "claude-code-best-practice",
-    "category": "AI 框架",
+    "category": "學習資源",
     "addedAt": "2026-07-19T09:25:57.166Z",
     "status": "tracking"
   },
@@ -1078,7 +1078,7 @@
     "fullName": "VoltAgent/awesome-agent-skills",
     "owner": "VoltAgent",
     "repo": "awesome-agent-skills",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T09:25:58.394Z",
     "status": "tracking"
   },
@@ -1086,7 +1086,7 @@
     "fullName": "alirezarezvani/claude-skills",
     "owner": "alirezarezvani",
     "repo": "claude-skills",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T09:25:59.036Z",
     "status": "tracking"
   },
@@ -1094,7 +1094,7 @@
     "fullName": "zebbern/claude-code-guide",
     "owner": "zebbern",
     "repo": "claude-code-guide",
-    "category": "AI 框架",
+    "category": "學習資源",
     "addedAt": "2026-07-19T09:25:59.788Z",
     "status": "tracking"
   },
@@ -1118,7 +1118,7 @@
     "fullName": "juliangarnier/anime",
     "owner": "juliangarnier",
     "repo": "anime",
-    "category": "影片",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T09:26:01.863Z",
     "status": "tracking"
   },
@@ -1134,7 +1134,7 @@
     "fullName": "thunguo/eigenflux-arena",
     "owner": "thunguo",
     "repo": "eigenflux-arena",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-07-19T11:16:06.743Z",
     "status": "tracking"
   },
@@ -1158,7 +1158,7 @@
     "fullName": "Fei-Away/Codex-Dream-Skin",
     "owner": "Fei-Away",
     "repo": "Codex-Dream-Skin",
-    "category": "開發工具",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T11:16:08.706Z",
     "status": "tracking"
   },
@@ -1166,7 +1166,7 @@
     "fullName": "robbyant/lingbot-map",
     "owner": "robbyant",
     "repo": "lingbot-map",
-    "category": "影片",
+    "category": "AI 框架",
     "addedAt": "2026-07-19T11:16:09.457Z",
     "status": "tracking"
   },
@@ -1182,7 +1182,7 @@
     "fullName": "jamiepine/voicebox",
     "owner": "jamiepine",
     "repo": "voicebox",
-    "category": "多媒體生成",
+    "category": "音訊",
     "addedAt": "2026-07-19T11:16:10.553Z",
     "status": "tracking"
   },
@@ -1198,7 +1198,7 @@
     "fullName": "usememos/memos",
     "owner": "usememos",
     "repo": "memos",
-    "category": "文件生產力",
+    "category": "知識管理",
     "addedAt": "2026-07-19T11:47:44.700Z",
     "status": "tracking"
   },
@@ -1206,7 +1206,7 @@
     "fullName": "MemTensor/MemOS",
     "owner": "MemTensor",
     "repo": "MemOS",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-07-19T11:47:45.374Z",
     "status": "tracking"
   },
@@ -1230,7 +1230,7 @@
     "fullName": "browser-use/browser-harness",
     "owner": "browser-use",
     "repo": "browser-harness",
-    "category": "AI 框架",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-19T11:47:47.314Z",
     "status": "tracking"
   },
@@ -1246,7 +1246,7 @@
     "fullName": "blader/humanizer",
     "owner": "blader",
     "repo": "humanizer",
-    "category": "AI 代理",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:48.943Z",
     "status": "tracking"
   },
@@ -1254,7 +1254,7 @@
     "fullName": "kevintsai1202/Humanizer-zh-TW",
     "owner": "kevintsai1202",
     "repo": "Humanizer-zh-TW",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:49.708Z",
     "status": "tracking"
   },
@@ -1262,7 +1262,7 @@
     "fullName": "hardikpandya/stop-slop",
     "owner": "hardikpandya",
     "repo": "stop-slop",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:50.295Z",
     "status": "tracking"
   },
@@ -1270,7 +1270,7 @@
     "fullName": "hylarucoder/ai-flavor-remover",
     "owner": "hylarucoder",
     "repo": "ai-flavor-remover",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:51.033Z",
     "status": "tracking"
   },
@@ -1278,7 +1278,7 @@
     "fullName": "B1lli/remove-ai-flavor-writing-skill",
     "owner": "B1lli",
     "repo": "remove-ai-flavor-writing-skill",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:51.664Z",
     "status": "tracking"
   },
@@ -1286,7 +1286,7 @@
     "fullName": "MrGeDiao/shuorenhua",
     "owner": "MrGeDiao",
     "repo": "shuorenhua",
-    "category": "AI 代理",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:52.403Z",
     "status": "tracking"
   },
@@ -1294,7 +1294,7 @@
     "fullName": "OUBIGFA/De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
     "owner": "OUBIGFA",
     "repo": "De-AI-Prompt-Enhancer-Writer-Booster-SKILL",
-    "category": "AI 代理",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T11:47:53.118Z",
     "status": "tracking"
   },
@@ -1310,7 +1310,7 @@
     "fullName": "zhangchenhaobest/MathModelAgent",
     "owner": "zhangchenhaobest",
     "repo": "MathModelAgent",
-    "category": "AI 代理",
+    "category": "研究",
     "addedAt": "2026-07-19T11:47:54.586Z",
     "status": "tracking"
   },
@@ -1318,7 +1318,7 @@
     "fullName": "blender/blender",
     "owner": "blender",
     "repo": "blender",
-    "category": "影片",
+    "category": "3D工程繪圖",
     "addedAt": "2026-07-19T11:47:55.376Z",
     "status": "tracking"
   },
@@ -1326,7 +1326,7 @@
     "fullName": "HKUDS/Vibe-Trading",
     "owner": "HKUDS",
     "repo": "Vibe-Trading",
-    "category": "AI 框架",
+    "category": "金融與投資",
     "addedAt": "2026-07-19T11:47:56.328Z",
     "status": "tracking"
   },
@@ -1350,7 +1350,7 @@
     "fullName": "anthropics/financial-services",
     "owner": "anthropics",
     "repo": "financial-services",
-    "category": "開發工具",
+    "category": "金融與投資",
     "addedAt": "2026-07-19T12:33:19.902Z",
     "status": "tracking"
   },
@@ -1366,7 +1366,7 @@
     "fullName": "anthropics/claude-for-legal",
     "owner": "anthropics",
     "repo": "claude-for-legal",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T12:33:21.202Z",
     "status": "tracking"
   },
@@ -1374,7 +1374,7 @@
     "fullName": "evolsb/claude-legal-skill",
     "owner": "evolsb",
     "repo": "claude-legal-skill",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T12:33:21.788Z",
     "status": "tracking"
   },
@@ -1382,7 +1382,7 @@
     "fullName": "tern/taiwan-claude-legal",
     "owner": "tern",
     "repo": "taiwan-claude-legal",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T12:33:22.470Z",
     "status": "tracking"
   },
@@ -1390,7 +1390,7 @@
     "fullName": "CSlawyer1985/claude-for-legal-ZH",
     "owner": "CSlawyer1985",
     "repo": "claude-for-legal-ZH",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T12:33:23.312Z",
     "status": "tracking"
   },
@@ -1414,7 +1414,7 @@
     "fullName": "Jesseovo/last30days-skill-cn",
     "owner": "Jesseovo",
     "repo": "last30days-skill-cn",
-    "category": "AI 框架",
+    "category": "研究",
     "addedAt": "2026-07-19T12:33:25.207Z",
     "status": "tracking"
   },
@@ -1430,7 +1430,7 @@
     "fullName": "tauricresearch/tradingagents",
     "owner": "tauricresearch",
     "repo": "tradingagents",
-    "category": "AI 框架",
+    "category": "金融與投資",
     "addedAt": "2026-07-19T12:33:26.421Z",
     "status": "tracking"
   },
@@ -1438,7 +1438,7 @@
     "fullName": "HKUDS/AI-Trader",
     "owner": "HKUDS",
     "repo": "AI-Trader",
-    "category": "AI 框架",
+    "category": "金融與投資",
     "addedAt": "2026-07-19T12:33:27.102Z",
     "status": "tracking"
   },
@@ -1446,7 +1446,7 @@
     "fullName": "agent-vibe-trading/vibe-trading",
     "owner": "agent-vibe-trading",
     "repo": "vibe-trading",
-    "category": "AI 代理",
+    "category": "金融與投資",
     "addedAt": "2026-07-19T12:33:27.708Z",
     "status": "tracking"
   },
@@ -1454,7 +1454,7 @@
     "fullName": "zarazhangrui/frontend-slides",
     "owner": "zarazhangrui",
     "repo": "frontend-slides",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-19T12:33:28.388Z",
     "status": "tracking"
   },
@@ -1550,7 +1550,7 @@
     "fullName": "colbymchenry/codegraph",
     "owner": "colbymchenry",
     "repo": "codegraph",
-    "category": "UI/UX設計",
+    "category": "知識管理",
     "addedAt": "2026-07-21T13:10:53.788Z",
     "status": "tracking"
   },
@@ -1566,7 +1566,7 @@
     "fullName": "mukul975/Anthropic-Cybersecurity-Skills",
     "owner": "mukul975",
     "repo": "Anthropic-Cybersecurity-Skills",
-    "category": "AI 框架",
+    "category": "安全性",
     "addedAt": "2026-07-21T13:10:54.368Z",
     "status": "tracking"
   },
@@ -1574,7 +1574,7 @@
     "fullName": "briiirussell/cybersecurity-skills",
     "owner": "briiirussell",
     "repo": "cybersecurity-skills",
-    "category": "AI 框架",
+    "category": "安全性",
     "addedAt": "2026-07-21T13:10:54.679Z",
     "status": "tracking"
   },
@@ -1582,7 +1582,7 @@
     "fullName": "Masriyan/Claude-Code-CyberSecurity-Skill",
     "owner": "Masriyan",
     "repo": "Claude-Code-CyberSecurity-Skill",
-    "category": "AI 框架",
+    "category": "安全性",
     "addedAt": "2026-07-21T13:10:54.968Z",
     "status": "tracking"
   },
@@ -1636,7 +1636,7 @@
     "fullName": "google-gemini/gemini-cli",
     "owner": "google-gemini",
     "repo": "gemini-cli",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-21T13:10:56.753Z",
     "status": "tracking"
   },
@@ -1660,7 +1660,7 @@
     "fullName": "rohitg00/ai-engineering-from-scratch",
     "owner": "rohitg00",
     "repo": "ai-engineering-from-scratch",
-    "category": "UI/UX設計",
+    "category": "學習資源",
     "addedAt": "2026-07-21T13:10:57.654Z",
     "status": "tracking"
   },
@@ -1668,7 +1668,7 @@
     "fullName": "can1357/oh-my-pi",
     "owner": "can1357",
     "repo": "oh-my-pi",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-21T13:10:57.945Z",
     "status": "tracking"
   },
@@ -1740,7 +1740,7 @@
     "fullName": "headroomlabs-ai/headroom",
     "owner": "headroomlabs-ai",
     "repo": "headroom",
-    "category": "AI 框架",
+    "category": "開發工具",
     "addedAt": "2026-07-21T13:11:00.672Z",
     "status": "tracking"
   },
@@ -1756,7 +1756,7 @@
     "fullName": "harry0703/MoneyPrinterTurbo",
     "owner": "harry0703",
     "repo": "MoneyPrinterTurbo",
-    "category": "AI 框架",
+    "category": "影片",
     "addedAt": "2026-07-21T13:11:01.238Z",
     "status": "tracking"
   },
@@ -1764,7 +1764,7 @@
     "fullName": "supermemoryai/supermemory",
     "owner": "supermemoryai",
     "repo": "supermemory",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-21T13:11:01.543Z",
     "status": "tracking"
   },
@@ -1780,7 +1780,7 @@
     "fullName": "dmtrKovalenko/fff",
     "owner": "dmtrKovalenko",
     "repo": "fff",
-    "category": "UI/UX設計",
+    "category": "開發工具",
     "addedAt": "2026-07-21T13:11:02.180Z",
     "status": "tracking"
   },
@@ -1796,7 +1796,7 @@
     "fullName": "VoltAgent/awesome-codex-subagents",
     "owner": "VoltAgent",
     "repo": "awesome-codex-subagents",
-    "category": "學習資源",
+    "category": "AI 代理",
     "addedAt": "2026-07-21T13:11:02.770Z",
     "status": "tracking"
   },
@@ -1804,7 +1804,7 @@
     "fullName": "DietrichGebert/ponytail",
     "owner": "DietrichGebert",
     "repo": "ponytail",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-21T13:11:03.058Z",
     "status": "tracking"
   },
@@ -1812,7 +1812,7 @@
     "fullName": "officecli/officecli",
     "owner": "officecli",
     "repo": "officecli",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-21T13:11:03.440Z",
     "status": "tracking"
   },
@@ -1820,7 +1820,7 @@
     "fullName": "emilkowalski/skills",
     "owner": "emilkowalski",
     "repo": "skills",
-    "category": "AI 代理",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-21T13:46:05.179Z",
     "status": "tracking"
   },
@@ -1828,7 +1828,7 @@
     "fullName": "ningzimu/codex-ppt-skill",
     "owner": "ningzimu",
     "repo": "codex-ppt-skill",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-21T13:46:05.453Z",
     "status": "tracking"
   },
@@ -1844,7 +1844,7 @@
     "fullName": "garrytan/gstack",
     "owner": "garrytan",
     "repo": "gstack",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-21T13:46:06.050Z",
     "status": "tracking"
   },
@@ -1852,7 +1852,7 @@
     "fullName": "archlizheng/presentation-report-preflight",
     "owner": "archlizheng",
     "repo": "presentation-report-preflight",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-21T13:46:06.332Z",
     "status": "tracking"
   },
@@ -1868,7 +1868,7 @@
     "fullName": "tt-a1i/archify",
     "owner": "tt-a1i",
     "repo": "archify",
-    "category": "AI 框架",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-21T13:46:06.908Z",
     "status": "tracking"
   },
@@ -1900,7 +1900,7 @@
     "fullName": "apache/ossie",
     "owner": "apache",
     "repo": "ossie",
-    "category": "行銷",
+    "category": "數據分析",
     "addedAt": "2026-07-21T13:46:08.026Z",
     "status": "tracking"
   },
@@ -1908,7 +1908,7 @@
     "fullName": "AlephAITech/WorkBuddyGuide",
     "owner": "AlephAITech",
     "repo": "WorkBuddyGuide",
-    "category": "AI 框架",
+    "category": "學習資源",
     "addedAt": "2026-07-21T13:46:08.916Z",
     "status": "tracking"
   },
@@ -1916,7 +1916,7 @@
     "fullName": "Dicklesworthstone/destructive_command_guard",
     "owner": "Dicklesworthstone",
     "repo": "destructive_command_guard",
-    "category": "UI/UX設計",
+    "category": "開發工具",
     "addedAt": "2026-07-21T13:46:09.192Z",
     "status": "tracking"
   },
@@ -1956,7 +1956,7 @@
     "fullName": "OpenHands/openhands",
     "owner": "OpenHands",
     "repo": "openhands",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-21T13:46:10.654Z",
     "status": "tracking"
   },
@@ -1964,7 +1964,7 @@
     "fullName": "jackc1111/antigravity-notebooklm-mcp",
     "owner": "jackc1111",
     "repo": "antigravity-notebooklm-mcp",
-    "category": "API 整合",
+    "category": "知識管理",
     "addedAt": "2026-07-23T04:32:04.698Z",
     "status": "tracking"
   },
@@ -1972,7 +1972,7 @@
     "fullName": "drtagkim/khunotebooklmmcp",
     "owner": "drtagkim",
     "repo": "khunotebooklmmcp",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-23T04:34:37.814Z",
     "status": "tracking"
   },
@@ -1988,7 +1988,7 @@
     "fullName": "PleasePrompto/notebooklm-skill",
     "owner": "PleasePrompto",
     "repo": "notebooklm-skill",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-07-23T05:13:30.692Z",
     "status": "tracking"
   },
@@ -2012,7 +2012,7 @@
     "fullName": "michalparkola/tapestry-skills-for-claude-code",
     "owner": "michalparkola",
     "repo": "tapestry-skills-for-claude-code",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-23T05:14:23.121Z",
     "status": "tracking"
   },
@@ -2020,7 +2020,7 @@
     "fullName": "coreyhaines31/marketingskills",
     "owner": "coreyhaines31",
     "repo": "marketingskills",
-    "category": "AI 框架",
+    "category": "行銷",
     "addedAt": "2026-07-23T05:14:57.319Z",
     "status": "tracking"
   },
@@ -2028,7 +2028,7 @@
     "fullName": "softaworks/agent-toolkit",
     "owner": "softaworks",
     "repo": "agent-toolkit",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-23T05:15:12.930Z",
     "status": "tracking"
   },
@@ -2052,7 +2052,7 @@
     "fullName": "qu-skills/skills",
     "owner": "qu-skills",
     "repo": "skills",
-    "category": "UI/UX設計",
+    "category": "API 整合",
     "addedAt": "2026-07-23T05:16:22.489Z",
     "status": "tracking"
   },
@@ -2060,7 +2060,7 @@
     "fullName": "addyosmani/web-quality-skills",
     "owner": "addyosmani",
     "repo": "web-quality-skills",
-    "category": "AI 框架",
+    "category": "測試與自動化",
     "addedAt": "2026-07-23T05:16:45.439Z",
     "status": "tracking"
   },
@@ -2100,7 +2100,7 @@
     "fullName": "browser-act/skills",
     "owner": "browser-act",
     "repo": "skills",
-    "category": "AI 框架",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-23T05:17:34.821Z",
     "status": "tracking"
   },
@@ -2108,7 +2108,7 @@
     "fullName": "runcomfy-com/skills",
     "owner": "runcomfy-com",
     "repo": "skills",
-    "category": "API 整合",
+    "category": "多媒體生成",
     "addedAt": "2026-07-23T05:17:40.023Z",
     "status": "tracking"
   },
@@ -2116,7 +2116,7 @@
     "fullName": "doany-ai/skills",
     "owner": "doany-ai",
     "repo": "skills",
-    "category": "AI 代理",
+    "category": "多媒體生成",
     "addedAt": "2026-07-23T05:17:45.297Z",
     "status": "tracking"
   },
@@ -2132,7 +2132,7 @@
     "fullName": "img2threejs/img2threejs",
     "owner": "img2threejs",
     "repo": "img2threejs",
-    "category": "AI 框架",
+    "category": "3D工程繪圖",
     "addedAt": "2026-07-24T00:57:34.920Z",
     "status": "tracking"
   },
@@ -2196,7 +2196,7 @@
     "fullName": "zai-org/GLM-5",
     "owner": "zai-org",
     "repo": "GLM-5",
-    "category": "AI 代理",
+    "category": "AI 框架",
     "addedAt": "2026-07-24T00:58:37.703Z",
     "status": "tracking"
   },
@@ -2204,7 +2204,7 @@
     "fullName": "stepfun-ai/Step-3.7-Flash",
     "owner": "stepfun-ai",
     "repo": "Step-3.7-Flash",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-07-24T00:58:43.236Z",
     "status": "tracking"
   },
@@ -2228,7 +2228,7 @@
     "fullName": "sinaptik-ai/pandas-ai",
     "owner": "sinaptik-ai",
     "repo": "pandas-ai",
-    "category": "AI 代理",
+    "category": "數據分析",
     "addedAt": "2026-07-25T03:00:00.000Z",
     "status": "tracking"
   },
@@ -2308,7 +2308,7 @@
     "fullName": "CadQuery/cadquery",
     "owner": "CadQuery",
     "repo": "cadquery",
-    "category": "學習資源",
+    "category": "3D工程繪圖",
     "addedAt": "2026-07-25T03:08:00.000Z",
     "status": "tracking"
   },
@@ -2316,7 +2316,7 @@
     "fullName": "tensorflow/tensorflow",
     "owner": "tensorflow",
     "repo": "tensorflow",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-07-25T03:33:36.818Z",
     "status": "tracking"
   },
@@ -2324,7 +2324,7 @@
     "fullName": "ohmyzsh/ohmyzsh",
     "owner": "ohmyzsh",
     "repo": "ohmyzsh",
-    "category": "學習資源",
+    "category": "開發工具",
     "addedAt": "2026-07-25T03:33:36.818Z",
     "status": "tracking"
   },
@@ -2332,7 +2332,7 @@
     "fullName": "Snailclimb/JavaGuide",
     "owner": "Snailclimb",
     "repo": "JavaGuide",
-    "category": "AI 代理",
+    "category": "學習資源",
     "addedAt": "2026-07-25T03:33:36.818Z",
     "status": "tracking"
   },
@@ -2348,7 +2348,7 @@
     "fullName": "ComposioHQ/awesome-claude-skills",
     "owner": "ComposioHQ",
     "repo": "awesome-claude-skills",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-25T03:41:05.133Z",
     "status": "tracking"
   },
@@ -2364,7 +2364,7 @@
     "fullName": "ZhuLinsen/daily_stock_analysis",
     "owner": "ZhuLinsen",
     "repo": "daily_stock_analysis",
-    "category": "AI 框架",
+    "category": "金融與投資",
     "addedAt": "2026-07-25T03:41:05.133Z",
     "status": "tracking"
   },
@@ -2396,7 +2396,7 @@
     "fullName": "eriksvedang/data-to-html",
     "owner": "eriksvedang",
     "repo": "data-to-html",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-07-25T11:50:33.180Z",
     "status": "tracking"
   },
@@ -2404,7 +2404,7 @@
     "fullName": "kotynia/ExcelToHtml",
     "owner": "kotynia",
     "repo": "ExcelToHtml",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-07-25T11:50:34.098Z",
     "status": "tracking"
   },
@@ -2412,7 +2412,7 @@
     "fullName": "shseam13/excel-to-html",
     "owner": "shseam13",
     "repo": "excel-to-html",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-07-25T11:50:34.994Z",
     "status": "tracking"
   },
@@ -2420,7 +2420,7 @@
     "fullName": "Fei-Sheng-Wu/XlsxToHtmlConverter",
     "owner": "Fei-Sheng-Wu",
     "repo": "XlsxToHtmlConverter",
-    "category": "API 整合",
+    "category": "文件生產力",
     "addedAt": "2026-07-25T11:50:35.829Z",
     "status": "tracking"
   },
@@ -2428,7 +2428,7 @@
     "fullName": "kepano/obsidian-skills",
     "owner": "kepano",
     "repo": "obsidian-skills",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-25T11:58:37.746Z",
     "status": "tracking"
   },
@@ -2436,7 +2436,7 @@
     "fullName": "AgriciDaniel/claude-obsidian",
     "owner": "AgriciDaniel",
     "repo": "claude-obsidian",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-07-25T11:58:40.363Z",
     "status": "tracking"
   },
@@ -2444,7 +2444,7 @@
     "fullName": "Emily2040/seedance-2.0",
     "owner": "Emily2040",
     "repo": "seedance-2.0",
-    "category": "開發工具",
+    "category": "影片",
     "addedAt": "2026-07-26T13:09:25.556Z",
     "status": "tracking"
   },
@@ -2468,7 +2468,7 @@
     "fullName": "opencv/opencv",
     "owner": "opencv",
     "repo": "opencv",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-07-26T13:09:27.686Z",
     "status": "tracking"
   },
@@ -2492,7 +2492,7 @@
     "fullName": "taotaoboom/pdf2md-agent-skill",
     "owner": "taotaoboom",
     "repo": "pdf2md-agent-skill",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-26T13:09:32.510Z",
     "status": "tracking"
   },
@@ -2508,7 +2508,7 @@
     "fullName": "bojieli/ai-agent-book",
     "owner": "bojieli",
     "repo": "ai-agent-book",
-    "category": "AI 代理",
+    "category": "學習資源",
     "addedAt": "2026-07-26T13:13:18.811Z",
     "status": "tracking"
   },
@@ -2524,7 +2524,7 @@
     "fullName": "asgeirtj/system_prompts_leaks",
     "owner": "asgeirtj",
     "repo": "system_prompts_leaks",
-    "category": "AI 代理",
+    "category": "研究",
     "addedAt": "2026-07-27T02:50:02.550Z",
     "status": "tracking"
   },
@@ -2540,7 +2540,7 @@
     "fullName": "zep-us/claude-system-prompt",
     "owner": "zep-us",
     "repo": "claude-system-prompt",
-    "category": "AI 框架",
+    "category": "研究",
     "addedAt": "2026-07-27T02:53:12.917Z",
     "status": "tracking"
   },
@@ -2548,7 +2548,7 @@
     "fullName": "ayghri/i-have-adhd",
     "owner": "ayghri",
     "repo": "i-have-adhd",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-27T04:35:58.388Z",
     "status": "tracking"
   },
@@ -2564,7 +2564,7 @@
     "fullName": "phosphor-icons/homepage",
     "owner": "phosphor-icons",
     "repo": "homepage",
-    "category": "開發工具",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:36:00.143Z",
     "status": "tracking"
   },
@@ -2572,7 +2572,7 @@
     "fullName": "Remix-Design/remixicon",
     "owner": "Remix-Design",
     "repo": "remixicon",
-    "category": "開發工具",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:36:00.938Z",
     "status": "tracking"
   },
@@ -2596,7 +2596,7 @@
     "fullName": "datawhalechina/hugging-multi-agent",
     "owner": "datawhalechina",
     "repo": "hugging-multi-agent",
-    "category": "AI 代理",
+    "category": "學習資源",
     "addedAt": "2026-07-27T04:36:49.489Z",
     "status": "tracking"
   },
@@ -2612,7 +2612,7 @@
     "fullName": "earthtojake/text-to-cad",
     "owner": "earthtojake",
     "repo": "text-to-cad",
-    "category": "AI 代理",
+    "category": "3D工程繪圖",
     "addedAt": "2026-07-27T04:36:57.609Z",
     "status": "tracking"
   },
@@ -2620,7 +2620,7 @@
     "fullName": "uiwjs/bootstrap-icons",
     "owner": "uiwjs",
     "repo": "bootstrap-icons",
-    "category": "開發工具",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:37:05.425Z",
     "status": "tracking"
   },
@@ -2636,7 +2636,7 @@
     "fullName": "huggingface/agents-course",
     "owner": "huggingface",
     "repo": "agents-course",
-    "category": "AI 框架",
+    "category": "學習資源",
     "addedAt": "2026-07-27T04:38:13.664Z",
     "status": "tracking"
   },
@@ -2652,7 +2652,7 @@
     "fullName": "uditakhourii/adhd",
     "owner": "uditakhourii",
     "repo": "adhd",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-27T04:38:14.190Z",
     "status": "tracking"
   },
@@ -2668,7 +2668,7 @@
     "fullName": "radix-ui/icons",
     "owner": "radix-ui",
     "repo": "icons",
-    "category": "UI/UX設計",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:38:14.724Z",
     "status": "tracking"
   },
@@ -2676,7 +2676,7 @@
     "fullName": "ant-design/ant-design-icons",
     "owner": "ant-design",
     "repo": "ant-design-icons",
-    "category": "UI/UX設計",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:49:13.056Z",
     "status": "tracking"
   },
@@ -2724,7 +2724,7 @@
     "fullName": "google/material-design-icons",
     "owner": "google",
     "repo": "material-design-icons",
-    "category": "開發工具",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:50:12.596Z",
     "status": "tracking"
   },
@@ -2732,7 +2732,7 @@
     "fullName": "microsoft/fluentui-system-icons",
     "owner": "microsoft",
     "repo": "fluentui-system-icons",
-    "category": "開發工具",
+    "category": "圖標與視覺資源",
     "addedAt": "2026-07-27T04:50:12.638Z",
     "status": "tracking"
   },
@@ -2772,7 +2772,7 @@
     "fullName": "firecrawl/firecrawl",
     "owner": "firecrawl",
     "repo": "firecrawl",
-    "category": "AI 框架",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-29T13:59:28.615Z",
     "status": "tracking"
   },
@@ -2780,7 +2780,7 @@
     "fullName": "unclecode/crawl4AI",
     "owner": "unclecode",
     "repo": "crawl4AI",
-    "category": "AI 框架",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-29T13:59:30.232Z",
     "status": "tracking"
   },
@@ -2796,7 +2796,7 @@
     "fullName": "apify/crawlee",
     "owner": "apify",
     "repo": "crawlee",
-    "category": "測試與自動化",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-29T13:59:32.851Z",
     "status": "tracking"
   },
@@ -2804,7 +2804,7 @@
     "fullName": "scrapy/scrapy",
     "owner": "scrapy",
     "repo": "scrapy",
-    "category": "學習資源",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-29T13:59:33.747Z",
     "status": "tracking"
   },
@@ -2812,7 +2812,7 @@
     "fullName": "nlmatics/llmsherpa",
     "owner": "nlmatics",
     "repo": "llmsherpa",
-    "category": "AI 框架",
+    "category": "文件生產力",
     "addedAt": "2026-07-29T13:59:34.604Z",
     "status": "tracking"
   },
@@ -2820,7 +2820,7 @@
     "fullName": "wention/BeautifulSoup4",
     "owner": "wention",
     "repo": "BeautifulSoup4",
-    "category": "學習資源",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-07-29T13:59:35.380Z",
     "status": "tracking"
   },
@@ -2860,7 +2860,7 @@
     "fullName": "andrewyng/context-hub",
     "owner": "andrewyng",
     "repo": "context-hub",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-30T13:36:58.434Z",
     "status": "tracking"
   },
@@ -2868,7 +2868,7 @@
     "fullName": "andrewyng/context-hub-skill",
     "owner": "andrewyng",
     "repo": "context-hub-skill",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-30T13:36:59.085Z",
     "status": "tracking"
   },
@@ -2884,7 +2884,7 @@
     "fullName": "VictorTaelin/OptMem",
     "owner": "VictorTaelin",
     "repo": "OptMem",
-    "category": "AI 代理",
+    "category": "知識管理",
     "addedAt": "2026-07-30T13:37:00.791Z",
     "status": "tracking"
   },
@@ -2900,7 +2900,7 @@
     "fullName": "langchain-ai/langgraph",
     "owner": "langchain-ai",
     "repo": "langgraph",
-    "category": "AI 代理",
+    "category": "AI 框架",
     "addedAt": "2026-07-30T13:42:44.933Z",
     "status": "tracking"
   },
@@ -2916,7 +2916,7 @@
     "fullName": "citrolabs/ego-lite",
     "owner": "citrolabs",
     "repo": "ego-lite",
-    "category": "AI 代理",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2924,7 +2924,7 @@
     "fullName": "alibaba/open-code-review",
     "owner": "alibaba",
     "repo": "open-code-review",
-    "category": "AI 框架",
+    "category": "開發工具",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2940,7 +2940,7 @@
     "fullName": "VoltAgent/awesome-claude-code-subagents",
     "owner": "VoltAgent",
     "repo": "awesome-claude-code-subagents",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2948,7 +2948,7 @@
     "fullName": "doraemonkeys/claude-code-debug-mode",
     "owner": "doraemonkeys",
     "repo": "claude-code-debug-mode",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2956,7 +2956,7 @@
     "fullName": "anthropics/claude-plugins-official",
     "owner": "anthropics",
     "repo": "claude-plugins-official",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2964,7 +2964,7 @@
     "fullName": "UsefulSoftwareCo/executor",
     "owner": "UsefulSoftwareCo",
     "repo": "executor",
-    "category": "AI 代理",
+    "category": "API 整合",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2972,7 +2972,7 @@
     "fullName": "abhivaikar/howtheytest",
     "owner": "abhivaikar",
     "repo": "howtheytest",
-    "category": "知識管理",
+    "category": "學習資源",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2980,7 +2980,7 @@
     "fullName": "awesome-skills/code-review-skill",
     "owner": "awesome-skills",
     "repo": "code-review-skill",
-    "category": "安全性",
+    "category": "開發工具",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -2988,7 +2988,7 @@
     "fullName": "awesome-skills/first-principles-skill",
     "owner": "awesome-skills",
     "repo": "first-principles-skill",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -3004,7 +3004,7 @@
     "fullName": "awesome-skills/mermaid-syntax-skill",
     "owner": "awesome-skills",
     "repo": "mermaid-syntax-skill",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -3012,7 +3012,7 @@
     "fullName": "awesome-skills/agent-skills-manager",
     "owner": "awesome-skills",
     "repo": "agent-skills-manager",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -3028,7 +3028,7 @@
     "fullName": "thedotmack/sequential-thinking-skill",
     "owner": "thedotmack",
     "repo": "sequential-thinking-skill",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-01T00:00:00+08:00",
     "status": "tracking"
   },
@@ -3044,7 +3044,7 @@
     "fullName": "TencentCloud/TencentDB-Agent-Memory",
     "owner": "TencentCloud",
     "repo": "TencentDB-Agent-Memory",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-08-05T12:12:00.057Z",
     "status": "tracking"
   },
@@ -3092,7 +3092,7 @@
     "fullName": "1jehuang/jcode",
     "owner": "1jehuang",
     "repo": "jcode",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-05T12:59:47.780Z",
     "status": "tracking"
   },
@@ -3108,7 +3108,7 @@
     "fullName": "fancyboi999/ai-engineering-from-scratch-zh",
     "owner": "fancyboi999",
     "repo": "ai-engineering-from-scratch-zh",
-    "category": "AI 代理",
+    "category": "學習資源",
     "addedAt": "2026-08-05T12:59:49.443Z",
     "status": "tracking"
   },
@@ -3116,7 +3116,7 @@
     "fullName": "ontio/ontology",
     "owner": "ontio",
     "repo": "ontology",
-    "category": "學習資源",
+    "category": "基礎設施",
     "addedAt": "2026-08-05T12:59:50.122Z",
     "status": "tracking"
   },
@@ -3132,7 +3132,7 @@
     "fullName": "Salomondiei08/oh-my-hermes",
     "owner": "Salomondiei08",
     "repo": "oh-my-hermes",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-05T12:59:52.854Z",
     "status": "tracking"
   },
@@ -3140,7 +3140,7 @@
     "fullName": "bbylw/ui-ux-pro-max-skill-cn",
     "owner": "bbylw",
     "repo": "ui-ux-pro-max-skill-cn",
-    "category": "AI 代理",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-05T12:59:53.828Z",
     "status": "tracking"
   },
@@ -3148,7 +3148,7 @@
     "fullName": "greensock/gsap-skills",
     "owner": "greensock",
     "repo": "gsap-skills",
-    "category": "影片",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-05T12:59:54.369Z",
     "status": "tracking"
   },
@@ -3156,7 +3156,7 @@
     "fullName": "bergside/design-md-chrome",
     "owner": "bergside",
     "repo": "design-md-chrome",
-    "category": "AI 框架",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-05T12:59:55.293Z",
     "status": "tracking"
   },
@@ -3172,7 +3172,7 @@
     "fullName": "cosin2077/easyVoice",
     "owner": "cosin2077",
     "repo": "easyVoice",
-    "category": "多媒體生成",
+    "category": "音訊",
     "addedAt": "2026-08-05T12:59:57.017Z",
     "status": "tracking"
   },
@@ -3228,7 +3228,7 @@
     "fullName": "roboflow/supervision",
     "owner": "roboflow",
     "repo": "supervision",
-    "category": "學習資源",
+    "category": "AI 框架",
     "addedAt": "2026-08-05T13:11:46.668Z",
     "status": "tracking"
   },
@@ -3236,7 +3236,7 @@
     "fullName": "vercel/next.js",
     "owner": "vercel",
     "repo": "next.js",
-    "category": "API 整合",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-05T13:11:46.668Z",
     "status": "tracking"
   },
@@ -3244,7 +3244,7 @@
     "fullName": "tailwindlabs/tailwindcss",
     "owner": "tailwindlabs",
     "repo": "tailwindcss",
-    "category": "開發工具",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-05T13:11:46.668Z",
     "status": "tracking"
   },
@@ -3252,7 +3252,7 @@
     "fullName": "Astro-Han/karpathy-llm-wiki",
     "owner": "Astro-Han",
     "repo": "karpathy-llm-wiki",
-    "category": "AI 框架",
+    "category": "學習資源",
     "addedAt": "2026-08-05T13:11:46.668Z",
     "status": "tracking"
   },
@@ -3276,7 +3276,7 @@
     "fullName": "microsoft/generative-ai-for-beginners",
     "owner": "microsoft",
     "repo": "generative-ai-for-beginners",
-    "category": "多媒體生成",
+    "category": "學習資源",
     "addedAt": "2026-08-05T14:02:32.814Z",
     "status": "tracking"
   },
@@ -3292,7 +3292,7 @@
     "fullName": "aaif-goose/goose",
     "owner": "aaif-goose",
     "repo": "goose",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-05T14:34:01.174Z",
     "status": "tracking"
   },
@@ -3316,7 +3316,7 @@
     "fullName": "microsoft/qlib",
     "owner": "microsoft",
     "repo": "qlib",
-    "category": "研究",
+    "category": "金融與投資",
     "addedAt": "2026-08-05T14:41:05.240Z",
     "status": "tracking"
   },
@@ -3332,7 +3332,7 @@
     "fullName": "agentscope-ai/QwenPaw",
     "owner": "agentscope-ai",
     "repo": "QwenPaw",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-05T15:17:05.289Z",
     "status": "tracking"
   },
@@ -3348,7 +3348,7 @@
     "fullName": "khoj-ai/khoj",
     "owner": "khoj-ai",
     "repo": "khoj",
-    "category": "AI 框架",
+    "category": "知識管理",
     "addedAt": "2026-08-05T15:30:57.061Z",
     "status": "tracking"
   },
@@ -3356,7 +3356,7 @@
     "fullName": "x1xhlol/system-prompts-and-models-of-ai-tools",
     "owner": "x1xhlol",
     "repo": "system-prompts-and-models-of-ai-tools",
-    "category": "AI 框架",
+    "category": "研究",
     "addedAt": "2026-08-05T17:02:46.173Z",
     "status": "tracking"
   },
@@ -4056,7 +4056,7 @@
     "fullName": "xbtlin/ai-berkshire",
     "owner": "xbtlin",
     "repo": "ai-berkshire",
-    "category": "開發工具",
+    "category": "金融與投資",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -7614,7 +7614,7 @@
     "fullName": "jlcodes99/cockpit-tools",
     "owner": "jlcodes99",
     "repo": "cockpit-tools",
-    "category": "AI 代理",
+    "category": "開發工具",
     "addedAt": "2026-08-11T14:40:22.895Z",
     "status": "tracking"
   },
@@ -9522,7 +9522,7 @@
     "fullName": "raullenchai/Rapid-MLX",
     "owner": "raullenchai",
     "repo": "Rapid-MLX",
-    "category": "基礎設施",
+    "category": "AI 框架",
     "addedAt": "2026-08-10T12:53:11.073Z",
     "status": "tracking"
   },
@@ -12272,7 +12272,7 @@
     "initialStars": 101266,
     "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "學習資源",
     "addedAt": "2026-08-16T10:34:57.861Z",
     "status": "in_registry"
   },
@@ -12313,7 +12313,7 @@
     "fullName": "rtk-ai/rtk",
     "owner": "rtk-ai",
     "repo": "rtk",
-    "category": "AI 代理",
+    "category": "開發工具",
     "addedAt": "2026-08-11T14:40:29.535Z",
     "status": "tracking"
   },
@@ -14927,7 +14927,7 @@
     "fullName": "Comfy-Org/ComfyUI",
     "owner": "Comfy-Org",
     "repo": "ComfyUI",
-    "category": "API 整合",
+    "category": "多媒體生成",
     "addedAt": "2026-08-12T13:04:24.020Z",
     "status": "tracking"
   },
@@ -17481,7 +17481,7 @@
     "fullName": "strands-agents/harness-sdk",
     "owner": "strands-agents",
     "repo": "harness-sdk",
-    "category": "API 整合",
+    "category": "AI 框架",
     "addedAt": "2026-08-11T14:40:16.667Z",
     "status": "tracking"
   },
@@ -20060,7 +20060,7 @@
     "fullName": "sindresorhus/awesome",
     "owner": "sindresorhus",
     "repo": "awesome",
-    "category": "研究",
+    "category": "學習資源",
     "addedAt": "2026-08-05T16:48:53.910Z",
     "status": "tracking"
   },
@@ -20068,7 +20068,7 @@
     "fullName": "freeCodeCamp/freeCodeCamp",
     "owner": "freeCodeCamp",
     "repo": "freeCodeCamp",
-    "category": "UI/UX設計",
+    "category": "學習資源",
     "addedAt": "2026-08-05T16:48:53.910Z",
     "status": "tracking"
   },
@@ -20076,7 +20076,7 @@
     "fullName": "vinta/awesome-python",
     "owner": "vinta",
     "repo": "awesome-python",
-    "category": "研究",
+    "category": "學習資源",
     "addedAt": "2026-08-05T16:48:53.910Z",
     "status": "tracking"
   },
@@ -20528,7 +20528,7 @@
     "fullName": "mrdoob/three.js",
     "owner": "mrdoob",
     "repo": "three.js",
-    "category": "開發工具",
+    "category": "3D工程繪圖",
     "addedAt": "2026-08-11T14:40:32.376Z",
     "status": "tracking"
   },
@@ -20594,7 +20594,7 @@
     "initialStars": 109358,
     "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "學習資源",
     "addedAt": "2026-08-16T10:34:57.861Z",
     "status": "in_registry"
   },
@@ -20745,7 +20745,7 @@
     "fullName": "MiniMax-AI/MiniMax-H3",
     "owner": "MiniMax-AI",
     "repo": "MiniMax-H3",
-    "category": "多媒體生成",
+    "category": "AI 框架",
     "addedAt": "2026-08-08T15:23:56.522Z",
     "status": "tracking"
   },
@@ -20753,7 +20753,7 @@
     "fullName": "PrimeIntellect-ai/prime-agent",
     "owner": "PrimeIntellect-ai",
     "repo": "prime-agent",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-08T15:24:04.446Z",
     "status": "tracking"
   },
@@ -20785,7 +20785,7 @@
     "fullName": "MoonshotAI/Kimi-K3",
     "owner": "MoonshotAI",
     "repo": "Kimi-K3",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-08T15:34:11.530Z",
     "status": "tracking"
   },
@@ -20801,7 +20801,7 @@
     "fullName": "oso95/scroll-world",
     "owner": "oso95",
     "repo": "scroll-world",
-    "category": "3D工程繪圖",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-08T15:34:11.530Z",
     "status": "tracking"
   },
@@ -20833,7 +20833,7 @@
     "fullName": "LiamGvchi/gc-minimal-zine-poster",
     "owner": "LiamGvchi",
     "repo": "gc-minimal-zine-poster",
-    "category": "開發工具",
+    "category": "多媒體生成",
     "addedAt": "2026-08-08T15:34:11.530Z",
     "status": "tracking"
   },
@@ -20841,7 +20841,7 @@
     "fullName": "petergyang/no-ai-slop",
     "owner": "petergyang",
     "repo": "no-ai-slop",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-08-08T15:34:11.530Z",
     "status": "tracking"
   },
@@ -21706,7 +21706,7 @@
     "fullName": "opengeos/GeoLibre",
     "owner": "opengeos",
     "repo": "GeoLibre",
-    "category": "基礎設施",
+    "category": "數據分析",
     "addedAt": "2026-08-09T03:57:36.431Z",
     "status": "tracking"
   },
@@ -21730,7 +21730,7 @@
     "fullName": "microsoft/TRELLIS.2",
     "owner": "microsoft",
     "repo": "TRELLIS.2",
-    "category": "多媒體生成",
+    "category": "3D工程繪圖",
     "addedAt": "2026-08-09T03:57:39.158Z",
     "status": "tracking"
   },
@@ -21762,7 +21762,7 @@
     "fullName": "jungmokk/hermesskill",
     "owner": "jungmokk",
     "repo": "hermesskill",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-09T03:57:43.849Z",
     "status": "tracking"
   },
@@ -21778,7 +21778,7 @@
     "fullName": "rlaope/oh-my-hermes",
     "owner": "rlaope",
     "repo": "oh-my-hermes",
-    "category": "知識管理",
+    "category": "AI 代理",
     "addedAt": "2026-08-09T03:57:45.126Z",
     "status": "tracking"
   },
@@ -21786,7 +21786,7 @@
     "fullName": "google/skills",
     "owner": "google",
     "repo": "skills",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-09T08:10:58.055Z",
     "status": "tracking"
   },
@@ -21810,7 +21810,7 @@
     "fullName": "bannedbook/fanqiang",
     "owner": "bannedbook",
     "repo": "fanqiang",
-    "category": "學習資源",
+    "category": "基礎設施",
     "addedAt": "2026-08-09T08:11:00.618Z",
     "status": "tracking"
   },
@@ -21858,7 +21858,7 @@
     "fullName": "NVIDIA-NeMo/labs-OO-Agents",
     "owner": "NVIDIA-NeMo",
     "repo": "labs-OO-Agents",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-10T03:53:59.933Z",
     "status": "tracking"
   },
@@ -21898,7 +21898,7 @@
     "fullName": "gnipbao/story-to-handdrawn-video",
     "owner": "gnipbao",
     "repo": "story-to-handdrawn-video",
-    "category": "AI 代理",
+    "category": "影片",
     "addedAt": "2026-08-10T03:53:59.933Z",
     "status": "tracking"
   },
@@ -21914,7 +21914,7 @@
     "fullName": "diwenne/openreply",
     "owner": "diwenne",
     "repo": "openreply",
-    "category": "API 整合",
+    "category": "行銷",
     "addedAt": "2026-08-10T03:53:59.933Z",
     "status": "tracking"
   },
@@ -21930,7 +21930,7 @@
     "fullName": "XYZ-AI-Lab/AxisAgentic",
     "owner": "XYZ-AI-Lab",
     "repo": "AxisAgentic",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-10T03:53:59.933Z",
     "status": "tracking"
   },
@@ -21938,7 +21938,7 @@
     "fullName": "mesamirh/MovieBox-Tui",
     "owner": "mesamirh",
     "repo": "MovieBox-Tui",
-    "category": "API 整合",
+    "category": "影片",
     "addedAt": "2026-08-10T03:53:59.933Z",
     "status": "tracking"
   },
@@ -21986,7 +21986,7 @@
     "fullName": "paperclipai/paperclip",
     "owner": "paperclipai",
     "repo": "paperclip",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-10T12:52:51.875Z",
     "status": "tracking"
   },
@@ -22002,7 +22002,7 @@
     "fullName": "google-deepmind/weathernext",
     "owner": "google-deepmind",
     "repo": "weathernext",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-10T12:53:01.912Z",
     "status": "tracking"
   },
@@ -22010,7 +22010,7 @@
     "fullName": "vitali87/code-graph-rag",
     "owner": "vitali87",
     "repo": "code-graph-rag",
-    "category": "資料庫",
+    "category": "知識管理",
     "addedAt": "2026-08-10T12:53:02.806Z",
     "status": "tracking"
   },
@@ -22018,7 +22018,7 @@
     "fullName": "opa334/Dopamine",
     "owner": "opa334",
     "repo": "Dopamine",
-    "category": "AI 代理",
+    "category": "安全性",
     "addedAt": "2026-08-10T12:53:03.622Z",
     "status": "tracking"
   },
@@ -22026,7 +22026,7 @@
     "fullName": "artokun/comfyui-mcp",
     "owner": "artokun",
     "repo": "comfyui-mcp",
-    "category": "影片",
+    "category": "多媒體生成",
     "addedAt": "2026-08-10T12:53:05.506Z",
     "status": "tracking"
   },
@@ -22050,7 +22050,7 @@
     "fullName": "kunchenguid/firstmate",
     "owner": "kunchenguid",
     "repo": "firstmate",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-10T12:53:09.601Z",
     "status": "tracking"
   },
@@ -22066,7 +22066,7 @@
     "fullName": "ranaroussi/yfinance",
     "owner": "ranaroussi",
     "repo": "yfinance",
-    "category": "開發工具",
+    "category": "金融與投資",
     "addedAt": "2026-08-10T12:53:11.980Z",
     "status": "tracking"
   },
@@ -22082,7 +22082,7 @@
     "fullName": "huggingface/smolagents",
     "owner": "huggingface",
     "repo": "smolagents",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-11T14:40:19.363Z",
     "status": "tracking"
   },
@@ -22106,7 +22106,7 @@
     "fullName": "Volkanmolla42/imgtothree",
     "owner": "Volkanmolla42",
     "repo": "imgtothree",
-    "category": "開發工具",
+    "category": "3D工程繪圖",
     "addedAt": "2026-08-11T14:40:33.163Z",
     "status": "tracking"
   },
@@ -22114,7 +22114,7 @@
     "fullName": "TryGhost/Ghost",
     "owner": "TryGhost",
     "repo": "Ghost",
-    "category": "開發工具",
+    "category": "文件生產力",
     "addedAt": "2026-08-11T14:40:33.979Z",
     "status": "tracking"
   },
@@ -22122,7 +22122,7 @@
     "fullName": "wasp-lang/open-saas",
     "owner": "wasp-lang",
     "repo": "open-saas",
-    "category": "基礎設施",
+    "category": "開發工具",
     "addedAt": "2026-08-11T14:40:38.090Z",
     "status": "tracking"
   },
@@ -22130,7 +22130,7 @@
     "fullName": "engineerapart/TheRemoteFreelancer",
     "owner": "engineerapart",
     "repo": "TheRemoteFreelancer",
-    "category": "開發工具",
+    "category": "學習資源",
     "addedAt": "2026-08-11T14:40:38.875Z",
     "status": "tracking"
   },
@@ -22146,7 +22146,7 @@
     "fullName": "223egoist/best-deals-bot",
     "owner": "223egoist",
     "repo": "best-deals-bot",
-    "category": "基礎設施",
+    "category": "瀏覽器自動化",
     "addedAt": "2026-08-11T14:40:43.375Z",
     "status": "tracking"
   },
@@ -22349,7 +22349,7 @@
     "fullName": "sqliteai/warp",
     "owner": "sqliteai",
     "repo": "warp",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-12T13:04:24.020Z",
     "status": "tracking"
   },
@@ -22365,7 +22365,7 @@
     "fullName": "oil-oil/oil-motion",
     "owner": "oil-oil",
     "repo": "oil-motion",
-    "category": "開發工具",
+    "category": "UI/UX設計",
     "addedAt": "2026-08-12T13:04:24.020Z",
     "status": "tracking"
   },
@@ -22381,7 +22381,7 @@
     "fullName": "antirez/h3.c",
     "owner": "antirez",
     "repo": "h3.c",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-12T13:04:24.020Z",
     "status": "tracking"
   },
@@ -22461,7 +22461,7 @@
     "fullName": "inclusionAI/Avernet",
     "owner": "inclusionAI",
     "repo": "Avernet",
-    "category": "開發工具",
+    "category": "AI 框架",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22469,7 +22469,7 @@
     "fullName": "HKUDS/DeepTutor",
     "owner": "HKUDS",
     "repo": "DeepTutor",
-    "category": "開發工具",
+    "category": "學習資源",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22477,7 +22477,7 @@
     "fullName": "slavingia/skills",
     "owner": "slavingia",
     "repo": "skills",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22485,7 +22485,7 @@
     "fullName": "VoltAgent/awesome-openclaw-skills",
     "owner": "VoltAgent",
     "repo": "awesome-openclaw-skills",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22493,7 +22493,7 @@
     "fullName": "huggingface/skills",
     "owner": "huggingface",
     "repo": "skills",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22501,7 +22501,7 @@
     "fullName": "trailofbits/skills",
     "owner": "trailofbits",
     "repo": "skills",
-    "category": "開發工具",
+    "category": "安全性",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22517,7 +22517,7 @@
     "fullName": "microsoft/skills",
     "owner": "microsoft",
     "repo": "skills",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22525,7 +22525,7 @@
     "fullName": "NVIDIA/skills",
     "owner": "NVIDIA",
     "repo": "skills",
-    "category": "開發工具",
+    "category": "AI 代理",
     "addedAt": "2026-08-12T13:58:40.431Z",
     "status": "tracking"
   },
@@ -22565,7 +22565,7 @@
     "fullName": "shiyu-coder/Kronos",
     "owner": "shiyu-coder",
     "repo": "Kronos",
-    "category": "數據分析",
+    "category": "金融與投資",
     "addedAt": "2026-08-13T13:46:10.058Z",
     "status": "tracking"
   },
@@ -22589,7 +22589,7 @@
     "fullName": "deepseek-ai/deepseek-harness",
     "owner": "deepseek-ai",
     "repo": "deepseek-harness",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-08-15T01:31:58.783Z",
     "status": "tracking"
   },

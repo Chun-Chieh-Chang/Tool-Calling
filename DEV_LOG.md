@@ -2474,3 +2474,27 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 - node cli.js validate: 583/583 工具 100/100 滿分通過，0 錯誤 0 警告
 - node scripts/check-mece.js: 22 分類 100% 互斥且窮盡
 - node scripts/build-web.js: dist/ 同步成功 (583 工具知識圖譜)
+
+---
+
+## 2026-08-16 — 工具庫分類全面稽核與批次修正(255 項)
+
+### 需求
+用戶通報 scroll-world 誤入「3D工程繪圖」(實為品牌行銷 3D 落地頁工具),指示水平展開全面審查 585 個工具的分類與分類邏輯。
+
+### 問題與原因分析(RCA)
+1. 根因:scripts/reclassify-tools.js 的 regex 規則有 8 項系統性缺陷——UI/UX 規則含 "agents" 泛用字(15 個工具誤入)、/3d/ 過寬(scroll-world 誤入)、語言名稱→學習資源(scrapy 誤入)、analytics→行銷(ossie 誤入)等。
+2. 體系缺陷:分類軸混雜(領域軸 vs 功能軸)、AI 框架/AI 代理邊界未定義、開發工具淪為 fallback 垃圾桶(94 個)。
+3. 誤置規模:稽核發現 255 項(T1 明顯錯誤 91 + T2 一致性統一 164),另有 14 項 T3 低信心保留原狀。
+
+### 矯正與預防措施(CAPA)
+1. 修正 255 項:registry/tools.json + registry/tracked-repos.json 同步更新。
+2. 修正規則缺陷 8 項,並將 reclassify-tools.js 改為 dry-run 預設(--apply 才寫入),防止未來覆蓋人工修正。
+3. 新增 docs/category-conventions.md:確立「領域優先」與「AI 框架=積木/AI 代理=成品」兩項慣例,記錄嚴禁關鍵字清單。
+4. 完整稽核報告:docs/category-audit-2026-08-16.md;重新生成知識圖譜與 AGENTS.md 統計。
+
+### 驗證結果
+- npm test:75/75 PASS
+- node cli.js validate:100/100 分,0 errors,0 warnings
+- node scripts/check-mece.js:通過,無殘留分類
+- 分類分布:AI 代理 119、AI 框架 77、開發工具 54、文件生產力 51、學習資源 46、其餘 16 類合計 238

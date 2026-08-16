@@ -1,7 +1,7 @@
 # AGENTS.md — Tool-Calling 全域行為協議
 
 > **身份**：AI 開發協作代理 (AgnesCode × Antigravity IDE 統一協議)
-> **版本**：2026.08.16 v1.2
+> **版本**：2026.08.10 v1.0
 > **維護者**：Agentic AI Foundation (Linux Foundation)
 > **相容工具**：AgnesCode, Antigravity IDE, Claude Code, Cursor, Codex, Gemini CLI
 
@@ -33,18 +33,18 @@
 
 ```yaml
 工具庫規模: 585 個工具
-追蹤 repos: 2220 個
+追蹤 repos: 2219 個
 總 star 數: 25,801,749 ⭐
 平均 star 數: 44,106 ⭐
 最後更新: 2026/8/16
 ```
 
 ### Top 5 分類
-- `AI 框架`: 148 個工具
-- `AI 代理`: 108 個工具
-- `開發工具`: 94 個工具
-- `學習資源`: 38 個工具
-- `UI/UX設計`: 29 個工具
+- `AI 代理`: 119 個工具
+- `AI 框架`: 77 個工具
+- `開發工具`: 54 個工具
+- `文件生產力`: 51 個工具
+- `學習資源`: 46 個工具
 
 ### Top 5 語言
 - `python`: 208 個工具
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2220 repos)
+npm run tracked-repos     # 重建追蹤池 (2219 repos)
 npm test                  # 執行所有測試 (75/75 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -97,16 +97,16 @@ npm run agents:init       # 生成/驗證 AGENTS.md
 node cli.js search "<需求>"           # 三層檢索工具
 node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
-node cli.js list                      # 列出所有工具 (585+)
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
+node cli.js list                      # 列出所有工具 (585+)
 ```
 
 ### Git 工作流
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 75/75 測試通過
+npm test           # 確保 11/11 測試通過
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -121,21 +121,19 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 
 ### 本地驗證流程 (Mandatory)
 ```bash
-# Phase 1: 全套單元與 Playwright 視覺測試
-npm test  # 目標：75/75 pass, 0 fail (自動執行 check-utf8.js 與 check-duplicate-ids.js 門禁)
+# Phase 1: 單元測試
+npm test  # 目標：11/11 pass, 0 fail
 
 # Phase 2: 工具庫驗證
-node cli.js validate  # 目標：100% 工具通過詮釋資料品質門禁 (100/100)
+node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
 
 # Phase 3: MECE 檢查
 node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (75/75 PASS)
-- [ ] UTF-8 編碼門禁通過 (0 個 U+FFFD 亂碼字元)
-- [ ] HTML ID 唯一性門禁通過 (0 個重複 ID)
-- [ ] 工具庫驗證通過 (585+ 工具, 100/100 分)
+- [ ] 所有測試通過 (11/11)
+- [ ] 工具庫驗證通過 (585+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -184,8 +182,6 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - [ ] **邊際效應分析**：修改 A 問題是否可能導致 B 問題？
 - [ ] **UI 權限對齊**：前端按鈕可見性需與後端權限一致
 - [ ] **型別衝突檢查**：新引入的類型名稱是否與既有衝突？
-- [ ] **UTF-8 編碼防禦**：Windows CLI 禁止直接 `>>` 重定向追加 UTF-8 Markdown，必須使用 `node -e "fs.appendFileSync(..., 'utf8')"` 或指定 `Out-File -Encoding utf8`；所有 Node.js I/O 必須顯式指定 `'utf8'`。
-
 
 ### Token 管理
 當模型 token 剩餘 < 20% 時：
@@ -216,7 +212,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 566 and add new features
+fix(README): update tool count from 381 to 585 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -248,7 +244,7 @@ Tool-Calling/
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
 │   ├── tools.json      # 585+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2220 追蹤 repos
+│   ├── tracked-repos.json  # 2219 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -290,7 +286,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (75 tests)
+### 單元測試 (11 tests)
 ```bash
 npm test
 ```
@@ -310,7 +306,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (75/75 pass)
+1. `npm test` (11/11 pass)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -426,6 +422,6 @@ PDCA 循環：
 
 ---
 
-> **協議版本**：2026.08.16 v1.1 (AgnesCode × Antigravity IDE 統一協議)
+> **協議版本**：2026.08.10 v1.0 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-08-16T10:25:00.000Z
+> **最後更新**：2026-08-16T14:19:24.208Z
