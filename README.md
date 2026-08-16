@@ -105,10 +105,9 @@ node cli.js interview "网页爬虫"
 | `npm run trending` | `node scripts/trending-weekly.js` | 每週涨星探勘 |
 | `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精灵 |
 | `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同义词词典 |
-| `npm test` | `node --test tests/*.test.js` | 执行 11 项测试 |
+| `npm test` | `node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test tests/*.test.js` | 執行 75 項單元與 Playwright 3D 視覺測試 |
+| `npm start` | `node web/server.js` | 啟動精密儀表數據工作台 (http://localhost:3000) |
 | `npm run mcp` | `node mcp-server.js` | 启动 MCP 伺服器 |
-
----
 
 ---
 
@@ -121,17 +120,18 @@ Tool-Calling/
 │   ├── synonyms.generated.js # 同义词词典 (334词汇)
 │   ├── telemetry.js         # 使用统计
 │   └── ...
-├── web/                # 前端应用
+├── web/                # 前端精密儀表數據工作台
 │   ├── app.js              # 主应用 (集成Worker+快取)
 │   ├── search-worker.js    # Web Worker (离线计算)
 │   ├── persist-cache.js    # IndexedDB 持久化快取
 │   ├── behavior-tracker.js # 使用者行为追踪
-│   ├── fonts.css           # 自托管 Inter 字型 (SRI 安全)
-│   ├── fonts/              # 字型檔案 (woff2)
+│   ├── server.js           # 零相依本地 HTTP 伺服器
+│   ├── style.css           # 精密儀表板高對比樣式
 │   └── index.html          # UI 介面
 ├── scripts/            # 自动化脚本
 │   ├── mine-synonyms.js    # 同义词挖掘
-│   ├── build-web.js        # 构建 dist (同步字型)
+│   ├── build-web.js        # 构建 dist (同步知識圖譜與資產)
+│   ├── generate-knowledge-graph.js # 100% OLED 純黑實心知識圖譜生成器
 │   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
 │   └── tools.json        # 580 工具 (单一真理来源)
@@ -139,7 +139,7 @@ Tool-Calling/
 │   ├── OPTIMIZATION-REPORT.md  # 优化报告
 │   └── PROJECT-OPTIMIZATION-SUMMARY.md # 总览
 └── tests/              # 测试
-    └── *.test.js       # 11 项单元测试
+    └── *.test.js       # 20 套件、75 項單元與端到端測試
 ```
 
 ---
@@ -149,10 +149,10 @@ Tool-Calling/
 提交前必须通过：
 
 ```bash
-npm test                          # 全套單元與 Playwright 視覺測試 (100% PASS)
+npm test                          # 全套單元與 Playwright 3D 視覺測試 (75/75 PASS)
 node scripts/check-utf8.js        # UTF-8 編碼物理防護門禁 (0 個 U+FFFD)
 node scripts/check-duplicate-ids.js # 全站 HTML ID 唯一性門禁 (0 個重複)
-node cli.js validate              # 工具庫 100/100 詮釋資料品質門禁
+node cli.js validate              # 工具庫 100/100 詮釋資料品質門禁 (0 錯誤 0 警告)
 node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ```
 
@@ -164,22 +164,22 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 
 ## 🌐 網頁版 UI
 
-啟動網頁介面（**必須從專案根目錄執行**）：
+啟動本地數據工作台（**直接執行 npm start**）：
 
 ```bash
-# 方式一：Python HTTP Server
-python -m http.server 3000
+# 啟動零相依本地精密儀表伺服器
+npm start
 
-# 方式二：Node http-server
-npx http-server -p 3000
-
-# 然後開啟瀏覽器訪問 http://localhost:3000/web/
+# 開啟瀏覽器訪問
+# 主工作台：http://localhost:3000
+# 3D/2D 知識圖譜：http://localhost:3000/knowledge-graph.html
 ```
 
 > ⚠️ **重要**：不要直接打開 `web/index.html`（file:// 協議不支援 ES Module），必須透過 HTTP Server 才能正常載入！
 
 網頁版提供：
-- 📊 **儀表板總覽** - 統計圖表與分類概覽
+- 📊 **精密儀表板總覽** - 高對比度統計圖表與分類概覽
 - 🔧 **工具目錄列表** - 完整的工具瀏覽與搜尋
 - 🔥 **每週涨星榜** - GitHub 熱門 AI 工具排行
-- 🌐 **互動式知識圖譜** - 3D 可視化工具關係網絡
+- 🌐 **互動式知識圖譜** - 100% OLED 純黑 3D/2D 可視化工具關係網絡
+

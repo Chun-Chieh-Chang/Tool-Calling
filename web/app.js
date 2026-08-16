@@ -159,11 +159,11 @@ function renderCategoryChart(categoryCounts) {
       datasets: [{
         label: '工具數量',
         data: dataValues,
-        backgroundColor: 'rgba(96, 165, 250, 0.7)',
-        borderColor: '#60A5FA',
+        backgroundColor: 'rgba(2, 132, 199, 0.8)',
+        borderColor: '#0284c7',
         borderWidth: 1,
-        borderRadius: 6,
-        hoverBackgroundColor: 'rgba(59, 130, 246, 0.95)'
+        borderRadius: 4,
+        hoverBackgroundColor: '#0369a1'
       }]
     },
     options: {
@@ -172,9 +172,9 @@ function renderCategoryChart(categoryCounts) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#1E293B',
-          titleColor: '#F1F5F9',
-          bodyColor: '#94A3B8',
+          backgroundColor: '#0f172a',
+          titleColor: '#ffffff',
+          bodyColor: '#cbd5e1',
           borderColor: '#334155',
           borderWidth: 1,
           padding: 10,
@@ -183,12 +183,12 @@ function renderCategoryChart(categoryCounts) {
       },
       scales: {
         x: {
-          ticks: { color: '#94A3B8', font: { family: 'Inter', size: 11 } },
+          ticks: { color: '#475569', font: { size: 11, weight: '600' } },
           grid: { display: false }
         },
         y: {
-          ticks: { color: '#94A3B8', font: { family: 'Inter', size: 11 } },
-          grid: { color: 'rgba(51, 65, 85, 0.4)' }
+          ticks: { color: '#475569', font: { size: 11, weight: '600' } },
+          grid: { color: 'rgba(203, 213, 225, 0.6)' }
         }
       },
       onClick: (event, elements) => {
@@ -217,8 +217,8 @@ function renderLanguageChart(languageCounts) {
   const dataValues = sortedLangs.map(item => item[1]);
 
   const palette = [
-    '#60A5FA', '#34D399', '#FBBF24', '#F87171', 
-    '#A78BFA', '#F472B6', '#38BDF8', '#818CF8'
+    '#0284c7', '#06b6d4', '#0d9488', '#10b981', 
+    '#f59e0b', '#6366f1', '#8b5cf6', '#64748b'
   ];
 
   if (languageChartInstance) {
@@ -233,7 +233,7 @@ function renderLanguageChart(languageCounts) {
       datasets: [{
         data: dataValues,
         backgroundColor: palette.slice(0, labels.length),
-        borderColor: '#0F172A',
+        borderColor: '#ffffff',
         borderWidth: 2,
         hoverOffset: 6
       }]
@@ -245,16 +245,16 @@ function renderLanguageChart(languageCounts) {
         legend: {
           position: 'right',
           labels: {
-            color: '#94A3B8',
-            font: { family: 'Inter', size: 12 },
+            color: '#475569',
+            font: { size: 12, weight: '500' },
             boxWidth: 12,
-            padding: 12
+            padding: 10
           }
         },
         tooltip: {
-          backgroundColor: '#1E293B',
-          titleColor: '#F1F5F9',
-          bodyColor: '#94A3B8',
+          backgroundColor: '#0f172a',
+          titleColor: '#ffffff',
+          bodyColor: '#cbd5e1',
           borderColor: '#334155',
           borderWidth: 1,
           padding: 10

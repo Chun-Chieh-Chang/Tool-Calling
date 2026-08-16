@@ -1,68 +1,79 @@
 <!DOCTYPE html>
-<html lang="zh-TW" class="dark">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tool-Calling | AI Agent 工具檢索庫儀表板</title>
-  <meta name="description" content="全自動工具調用效能外掛系統 - 擁有 280+ 頂尖開源 AI 代理技能與工具的檢索庫與儀表板">
+  <title>Tool-Calling | 精密數據與工具檢索工作台</title>
+  <meta name="description" content="全自動工具調用效能外掛系統 - 擁有 580+ 頂尖開源 AI 代理技能與工具的精密檢索庫與工業級數據工作台">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- favicon.svg 為主要圖示；favicon.ico 保留以相容舊版瀏覽器自動請求（build-web.js 會一併複製至 dist） -->
-  <!-- Google Fonts: Cinzel (Roman Inscription) & EB Garamond (Classic Renaissance Serif) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="fonts.css">
   <link rel="stylesheet" href="style.css">
   <!-- Chart.js 統計圖表庫 (固定版本 + SRI 完整性校驗) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="background-effects">
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-  </div>
+  <div class="workbench-backdrop"></div>
 
   <main class="container">
-    <header class="header">
-      <div class="logo-area">
-        <h1>Tool-Calling <span>🔧⚡</span></h1>
-        <p class="subtitle">全自動工具調用效能外掛系統與數據儀表板</p>
-        <p style="font-size: 12px; color: var(--accent-brand); margin-top: 4px; font-weight: 500;">Developed by Wesley Chang, July-2026.</p>
+    <header class="header precision-header">
+      <!-- 頂部即時狀態指示條 -->
+      <div class="header-status-bar">
+        <div class="system-status">
+          <span class="status-indicator-dot pulse-green"></span>
+          <span class="status-indicator-text">SYSTEM ONLINE // PRECISION WORKBENCH</span>
+        </div>
+        <div class="header-telemetry-badge">
+          <span class="telemetry-label">STATUS:</span> <span class="telemetry-value">READY</span>
+        </div>
       </div>
 
-      <!-- 全域通用搜尋與分類過濾列 (兩頁面邏輯一致) -->
-      <div class="search-container glass-panel">
-        <input type="text" id="searchInput" placeholder="搜尋工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
+      <div class="logo-area">
+        <h1>Tool-Calling <span class="logo-badge">WORKBENCH</span></h1>
+        <p class="subtitle">全自動工具調用效能外掛系統 • 精密數據與工具檢索工作台</p>
+        <p class="author-tag">Developed by Wesley Chang, July-2026.</p>
+      </div>
+
+      <!-- 全域通用搜尋與分類過濾列 (語意階層：User 淺鈷藍底 + 鈷藍左邊框) -->
+      <div class="search-container user-semantic-panel">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="searchInput" placeholder="檢索工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
+        </div>
         <select id="categorySelect">
-          <option value="">所有分類</option>
+          <option value="">所有領域分類 (All Categories)</option>
         </select>
       </div>
     </header>
 
-    <!-- 視圖切換頁籤 (Segmented Tabs) -->
+    <!-- 視圖切換頁籤 (Segmented Precision Tabs) -->
     <div class="view-tabs-container">
-      <div class="view-tabs">
+      <nav class="view-tabs" aria-label="工作台視圖切換">
         <button id="dashboardTabBtn" class="tab-btn active">
-          <span>📊</span> 儀表板總覽
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+          <span>儀表板總覽</span>
         </button>
         <button id="toolsTabBtn" class="tab-btn">
-          <span>🔧</span> 工具目錄列表
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          <span>工具目錄列表</span>
         </button>
         <button id="trendingTabBtn" class="tab-btn">
-          <span>🔥</span> 每週漲星榜
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span>每週漲星榜</span>
         </button>
-        <a href="knowledge-graph.html" target="_blank" class="tab-btn" style="text-decoration: none;">
-          <span>🌐</span> 互動式工具圖譜
+        <a href="knowledge-graph.html" target="_blank" class="tab-btn external-link-tab" style="text-decoration: none;">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span>互動式工具圖譜</span>
         </a>
-      </div>
+      </nav>
     </div>
 
     <!-- 儀表板視圖 (Dashboard View) -->
     <div id="dashboardView">
       <!-- KPI 關鍵指標區塊 (4 欄) -->
       <div class="kpi-grid">
-        <div class="kpi-card glass-panel">
-          <div class="kpi-icon-wrapper">🛠️</div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          </div>
           <div class="kpi-content">
             <span class="kpi-value" id="kpiTotalTools">--</span>
             <span class="kpi-label">已註冊工具總數</span>
@@ -70,8 +81,10 @@
           </div>
         </div>
 
-        <div class="kpi-card glass-panel">
-          <div class="kpi-icon-wrapper">📁</div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          </div>
           <div class="kpi-content">
             <span class="kpi-value" id="kpiTotalCategories">--</span>
             <span class="kpi-label">領域分類總數</span>
@@ -79,8 +92,10 @@
           </div>
         </div>
 
-        <div class="kpi-card glass-panel">
-          <div class="kpi-icon-wrapper">⚡</div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
           <div class="kpi-content">
             <span class="kpi-value" id="kpiTotalSubtools">--</span>
             <span class="kpi-label">延伸子技能數</span>
@@ -88,8 +103,10 @@
           </div>
         </div>
 
-        <div class="kpi-card glass-panel">
-          <div class="kpi-icon-wrapper">🎯</div>
+        <div class="kpi-card">
+          <div class="kpi-icon-wrapper">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          </div>
           <div class="kpi-content">
             <span class="kpi-value">L1 ~ L3</span>
             <span class="kpi-label">三層檢索引擎</span>
@@ -100,9 +117,12 @@
 
       <!-- 統計圖表區塊 (Charts Layout) -->
       <div class="dashboard-charts-container">
-        <div class="chart-card glass-panel">
+        <div class="chart-card">
           <div class="chart-header">
-            <h3 class="chart-title">📊 各分類工具數量分佈</h3>
+            <h3 class="chart-title">
+              <span class="chart-icon-pill">DIST</span>
+              各分類工具數量分佈
+            </h3>
             <span class="chart-subtitle">點擊柱狀圖可直接篩選列表</span>
           </div>
           <div class="chart-wrapper">
@@ -110,9 +130,12 @@
           </div>
         </div>
 
-        <div class="chart-card glass-panel">
+        <div class="chart-card">
           <div class="chart-header">
-            <h3 class="chart-title">💻 工具開發語言占比</h3>
+            <h3 class="chart-title">
+              <span class="chart-icon-pill">LANG</span>
+              工具開發語言占比
+            </h3>
             <span class="chart-subtitle">Language Breakdown</span>
           </div>
           <div class="chart-wrapper">
@@ -123,7 +146,10 @@
 
       <!-- 各分類概覽條目面板 (4 欄) -->
       <div class="section-title-bar">
-        <h2>🗂️ 分類條目與數據概覽</h2>
+        <h2>
+          <span class="section-badge">INDEX</span>
+          分類條目與數據概覽
+        </h2>
       </div>
       <div id="categoryOverviewGrid" class="category-overview-grid">
         <!-- 分類卡片將由 JS 動態生成 -->
@@ -133,7 +159,10 @@
     <!-- 工具目錄視圖 (Tools List View) -->
     <div id="toolsView" style="display: none;">
       <div class="section-title-bar">
-        <h2>🛠️ 所有工具條目與檢索結果</h2>
+        <h2>
+          <span class="section-badge">REGISTRY</span>
+          所有工具條目與檢索結果
+        </h2>
         <div class="stats-bar-controls">
           <span id="resultCount">載入中...</span>
         </div>
@@ -146,7 +175,7 @@
 
     <!-- 每週漲星榜視圖 (Weekly Trending View) -->
     <div id="trendingView" style="display: none;">
-      <div class="trending-header-card glass-panel">
+      <div class="trending-header-card">
         <div class="trending-header-info">
           <div class="trending-title-group">
             <h2 id="trendingWorldWeek">🏆 GitHub 每週漲星排行榜</h2>
@@ -167,11 +196,14 @@
       </div>
 
       <div class="section-title-bar">
-        <h2>🔥 本週漲星 Top 10 排行榜 (World Week)</h2>
+        <h2>
+          <span class="section-badge">TOP 10</span>
+          本週漲星排行榜 (World Week)
+        </h2>
         <span class="chart-subtitle">依近一週 Star 增加量 (Delta) 精確排序</span>
       </div>
 
-      <div class="leaderboard-container glass-panel">
+      <div class="leaderboard-container">
         <table class="leaderboard-table">
           <thead>
             <tr>
@@ -190,21 +222,28 @@
         </table>
       </div>
 
-      <div class="section-title-bar" style="margin-top: calc(var(--spacing-base) * 10);">
-        <h2>🆕 本週自動納入本專案工具箱的工具特寫</h2>
+      <div class="section-title-bar" style="margin-top: 32px;">
+        <h2>
+          <span class="section-badge">NEW</span>
+          本週自動納入工具箱特寫
+        </h2>
       </div>
       <div id="newlyAddedGrid" class="grid">
         <!-- 本週新納入工具卡片將由 JS 動態生成 -->
       </div>
     </div>
 
-    <footer style="text-align: center; padding: 32px 0 16px 0; font-size: 13px; color: #94A3B8; border-top: 1px solid rgba(51, 65, 85, 0.5); margin-top: 48px; font-weight: 500;">
-      Developed by Wesley Chang, July-2026.
+    <footer class="precision-footer">
+      <div class="footer-content">
+        <span>Tool-Calling Precision Instrument & Modern Industrial Workbench</span>
+        <span class="footer-separator">•</span>
+        <span>Developed by Wesley Chang, July-2026.</span>
+      </div>
     </footer>
   </main>
 
   <template id="toolCardTemplate">
-    <article class="tool-card glass-panel">
+    <article class="tool-card assistant-semantic-card">
       <div class="card-header">
         <h2 class="tool-name"></h2>
         <span class="match-badge"></span>
@@ -216,7 +255,7 @@
       <div class="card-footer">
         <span class="category-tag"></span>
         <a class="github-link" href="#" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
           View Source
         </a>
       </div>

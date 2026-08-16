@@ -35824,13 +35824,13 @@
       "id": "mengto-skills",
       "name": "Skills",
       "url": "https://github.com/MengTo/Skills",
-      "description": "MengTo skills",
-      "category": "開發工具",
+      "description": "MengTo 開源之設計師專用 AI 輔助 UI/UX、動畫與視覺設計技能庫集合 (DesignCode 創辦人開源)",
+      "category": "UI/UX設計",
       "language": "Markdown",
       "triggers": [
         "mengto-skills",
         "skills",
-        "skills"
+        "ui-skills"
       ],
       "stars": 4800,
       "forks": 280,
@@ -35841,14 +35841,17 @@
         "repoUrl": "https://github.com/MengTo/Skills"
       },
       "capabilities": [
-        "skills"
+        "skills",
+        "ui-design",
+        "animations"
       ],
-      "useCase": "MengTo的UI/design skills集合",
+      "useCase": "MengTo 設計師專用 UI/UX 與視覺設計技能集合",
       "negativeConstraints": [
-        "UI設計專用"
+        "非純後端資料庫或系統運維工具"
       ],
       "advantages": [
-        "視覺設計"
+        "視覺設計",
+        "UI動畫與現代組件"
       ]
     },
     {

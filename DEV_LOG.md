@@ -1,5 +1,82 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 專案整體程式碼、檔案與文件優化重構作業 (Project Refactor & Cleanup SOP)
+
+### 需求與動機
+依據 `project-refactor-cleanup` SOP 執行全專案 5 大階段之整體優化作業：
+1. **全面盤點與清理作業 (MECE Audit & Cleanup)**：
+   - 盤點全量 580 個工具之詮釋資料，修復 `mengto-skills` 既有之描述過短警告，達成 `node cli.js validate` **100/100 滿分、0 錯誤、0 警告**。
+2. **同步更新所有開發相關文件 (Documentation Sync)**：
+   - 更新 `README.md`、`DEV_LOG.md` 等開發文件，同步最新之 `npm start` 零相依工作台伺服器指令、75 項測試清單與 100% OLED 純黑實心知識圖譜架構。
+3. **遵循 MECE 原則整合整理 (MECE Architecture Consolidation)**：
+   - 執行 `node scripts/check-mece.js` 確認 580 個工具分類無殘留、無缺失。
+   - 執行 `npm run build` 同步生成 `dist/` 與 `docs/` 產出物。
+4. **建立程式碼還原基準點 (Verification & Atomic Commit)**：
+   - 執行全套品質確效門禁（0 個 U+FFFD 亂碼字元、100% 唯一 HTML ID、75/75 tests PASS）。
+   - 建立原子化 Git 提交基準點。
+5. **資安審查與遠端推送 (Security Audit & Push)**：
+   - 執行 API Key 與機敏資訊過濾掃描，並向使用者請求遠端推送授權。
+
+### 根因分析 (RCA) 與 矯正預防措施 (CAPA)
+- **RCA 1**：`mengto-skills` 在導入時使用了過於簡短的 `"MengTo skills"` 描述（< 20 字元），導致雖然分數 100 但遺留 1 個警告。
+- **CAPA 1**：將其擴展為完整語意之結構化描述 `"MengTo 開源之設計師專用 AI 輔助 UI/UX、動畫與視覺設計技能庫集合 (DesignCode 創辦人開源)"`，並補齊 `negativeConstraints` 與 `advantages`，使品質門禁達到真正的 0 錯誤、0 警告。
+- **RCA 2**：`README.md` 中舊有的測試數量與網頁啟動指令未與新增之 `web/server.js` 與 Playwright 測試套件同步。
+- **CAPA 2**：全面校正 `README.md`，納入 `npm start` 本地精密儀表伺服器指令與 75 項完整測試矩陣。
+
+---
+
+## 2026-08-16 介面與互動式工具圖譜風格全面重構與全域高對比度優化 (Precision Instrument & 100% OLED Pure Black Graph + Solid Filled Nodes)
+
+### 需求
+依據「精密儀表與工業級數據工作台」規範，重構專案 Webview 介面與 2D/3D 互動式工具圖譜，落實單一視覺風格並全面提升視覺對比度（WCAG AAA / AA 國際標準）：
+1. 移除字體與文字強制覆蓋（保持原生 `var(--vscode-font-family)` 與彈性自適應行高，防止排版位移）。
+2. 導入 Precision Instrument Design Tokens：冰川工作台底色 (`#f1f5f9`)、純白面板卡片 (`#ffffff`)、`1px solid #cbd5e1` 精密線框、Header 頂部左側配置 `5px solid #0284c7` 鈷藍飾條，並加入硬體綠色脈衝呼吸燈（`pulseGreen`）指示系統狀態。
+3. 全面優化文字與階層對比度：
+   - 主要文字提升為深石板黑 `#0f172a`（對比度 > 14:1）。
+   - 次要說明提升為清晰石板灰 `#334155`（對比度 > 8.5:1）。
+   - 輔助說明/Placeholder 提升為 `#475569` / `#64748b`（對比度 > 6:1），徹底告別發虛。
+4. 強化標籤與徽章可讀性：
+   - 推薦場景標籤採用 `#e0f2fe` 底 + `#0369a1` 鈷藍字 + `#38bdf8` 邊框。
+   - 禁用場景標籤採用 `#fef2f2` 底 + `#991b1b` 深紅字 + `#f87171` 邊框。
+   - 精確/關鍵字/星數徽章提升文字與底色對比飽和度。
+5. 互動式工具圖譜（2D Vis.js / 3D ForceGraph3D）改為 **100% OLED 純黑背景 (`#000000`)**，並將全圖節點升級為**實心飽和色彩節點 (Solid Filled Nodes)**：
+   - Root 核心節點：實心鈷藍 (`#0284c7`) + 純白邊框。
+   - Category 分類節點：實心霓虹光譜底色 + 純白外框 + 高對比粗體字。
+   - Tool 工具節點：實心高飽和分類色彩 (`background: colorHex`) + 細白外框 (`#ffffff`)，在純黑底色下極為鮮明清晰。
+   - SubTool 微技能節點：實心石板銀灰 (`#94a3b8`) + 純白外框。
+   - 純黑控制面板（Header、Legend、Detail Panel、Tooltip）。
+6. 取消其他混雜色彩，清理所有主題切換與分散色調邏輯，統一作為專案唯一視覺風格。
+
+### 處理結果
+1. **重構 `web/index.html`**：
+   - 移除外部 Google Fonts 依賴與 `fonts.css` 連結，杜絕字型非同步加載導致的 Reflow 與位移。
+   - 移除 `class="dark"`，全面啟用單一高對比之精密儀表與工業級數據工作台架構。
+   - 於 Header 加入即時狀態列與 `pulseGreen` 硬體綠色脈衝呼吸燈指示系統狀態。
+   - 搜尋面板與工具卡片套用語意階層樣式 class（User 淺鈷藍、Assistant 青色框線）。
+2. **重構 `web/style.css`**：
+   - 建立高對比 Precision Instrument Design Tokens（`--text-primary: #0f172a`, `--text-secondary: #334155`, `--text-muted: #475569`）。
+   - 實施高對比語意訊息階層與各狀態 badge（exact, keyword, semantic, star, delta, status）。
+   - 實施 `0.12s cubic-bezier(0.16, 1, 0.3, 1)` 快速動效與按鈕點擊 feedback。
+   - 完善手風琴 (Accordion) 折疊樣式與每週漲星排行榜 (Leaderboard Table) 的高清晰度表格視覺。
+   - 嚴格落實 375px 手機版優先自適應，字體 ≥ 14px，點擊按鈕觸控區域 ≥ 44x44px。
+3. **重構 `scripts/generate-knowledge-graph.js`**：
+   - 互動式工具圖譜 2D/3D 同構全面導入「100% OLED 純黑 + 實心飽和節點 (Solid Filled Nodes)」高對比風格。
+   - 2D Vis.js 網絡採用純黑底色 `#000000`、實心飽和工具圓點、純白/亮白標籤文字搭配黑描邊（`#ffffff` + 3px 黑邊）、發光電光連線（`#38bdf8`）與高飽和霓虹分類色階。
+   - 3D ForceGraph3D 採用純黑底色 `#000000`、實心節點球體、發光 SpriteText、電光藍核心與流暢 3D 空間操控（旋轉/平移/對焦）。
+   - 圖譜 Header、Legend、Detail Panel 與 Hover Tooltip 全面套用純黑面板（`rgba(0, 0, 0, 0.95)`），搭配 `5px solid #0284c7` 鈷藍飾條與 `pulseGreen` 即時狀態呼吸燈。
+4. **優化 `web/app.js`**：
+   - 更新 Chart.js 長條圖與環狀圖之顏色為高飽和鈷藍 (`#0284c7`)、青色 (`#0891b2`) 與工業石板灰階層，移除舊有暗黑/古典色調。
+5. **重新編譯與打包**：
+   - 執行 `npm run build`，將全新樣式與知識圖譜同步輸出至 `dist/` 與 `docs/`。
+6. **品質與測試確效**：
+   - 執行 `node scripts/check-utf8.js`：0 個亂碼字元。
+   - 執行 `node scripts/check-duplicate-ids.js`：所有 HTML ID 100% 唯一。
+   - 執行 `npm test`：75/75 tests PASS（含 3D Headless Playwright 確效）。
+
+### RCA & CAPA
+- **RCA**: 先前版本在淺色主題下部分輔助文字（如次要標籤、搜尋提示、圖譜子節點）顏色偏淺（Slate 400~500），在明亮環境下辨識度不足。
+- **CAPA**: 依循 WCAG AAA/AA 國際對比標準，全面調升文字色階（主要文字 > 14:1，次要文字 > 8.5:1），強化標籤線框與底色飽和度，杜絕文字發虛。
+
 ## 2026-08-15 GitHub 每週漲星榜 World Week 國際標準世界週與單一事實來源全面重構
 
 ### 需求

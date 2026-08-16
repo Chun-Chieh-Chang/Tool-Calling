@@ -5,52 +5,52 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// 16 世紀文藝復興古典礦物與植物色階 (Renaissance Classical Mineral & Botanical Palette)
+// OLED 純黑與高對比霓虹實心調色盤 (True Pure OLED Black & Solid Neon Industrial Palette)
 const baseCategoryColors = {
-  "AI 框架": "#B45309",        // 古典黃銅金 (Antique Brass)
-  "AI 代理": "#A16207",        // 琥珀赭黃 (Raw Sienna)
-  "開發工具": "#92400E",      // 溫潤古銅 (Warm Copper)
-  "UI/UX設計": "#581C87",     // 文藝復興皇家紫晶 (Tyrian Purple)
-  "多媒體生成": "#991B1B",    // 封蠟赭紅 (Wax Seal Crimson)
-  "影片": "#B91C1C",          // 硃砂深紅 (Cinnabar Red)
-  "音訊": "#3F6212",          // 古木橄欖綠 (Olive Atelier)
-  "瀏覽器自動化": "#1E3A8A",  // 深邃群青 (Lapis Lazuli)
-  "安全性": "#78350F",        // 深褐焦赭 (Burnt Umber)
-  "測試與自動化": "#1D4ED8",  // 大航海深海藍 (Ocean Indigo)
-  "API 整合": "#0F766E",      // 松石青綠 (Verdigris Teal)
-  "學習資源": "#CA8A04",      // 古羊皮金 (Ochre Gold)
-  "文件生產力": "#15803D",    // 草本墨綠 (Herbal Sage)
-  "資料庫": "#065F46",        // 孔雀石綠 (Malachite Green)
-  "知識管理": "#0369A1",      // 古典天青 (Cerulean Azure)
-  "研究": "#831843",          // 古籍精裝絳紫 (Deep Claret)
-  "基礎設施": "#44403C",      // 鐵膽墨岩黑 (Iron Gall Slate)
-  "行銷": "#C2410C",          // 文藝復興陶土橙 (Terracotta)
-  "數據分析": "#047857",      // 翡翠秘藥綠 (Emerald Green)
-  "3D工程繪圖": "#D97706",    // 星盤黃銅金 (Astrolabe Gold)
-  "圖標與視覺資源": "#6D28D9" // 威尼斯紫羅蘭 (Venetian Violet)
+  "AI 框架": "#38bdf8",        // 電光天藍 (Sky 400)
+  "AI 代理": "#22d3ee",        // 精密青藍 (Cyan 400)
+  "開發工具": "#cbd5e1",      // 白銀石板 (Slate 300)
+  "UI/UX設計": "#c084fc",     // 霓虹紫羅蘭 (Purple 400)
+  "多媒體生成": "#f472b6",    // 賽博洋紅 (Pink 400)
+  "影片": "#f87171",          // 激光緋紅 (Red 400)
+  "音訊": "#a3e635",          // 聲譜萊姆綠 (Lime 400)
+  "瀏覽器自動化": "#60a5fa",  // 皇家寶藍 (Blue 400)
+  "安全性": "#ef4444",        // 安全警示紅 (Red 500)
+  "測試與自動化": "#38bdf8",  // 測試天青 (Sky 400)
+  "API 整合": "#2dd4bf",      // 介面松石綠 (Teal 400)
+  "學習資源": "#fbbf24",      // 知識金黃 (Amber 400)
+  "文件生產力": "#34d399",    // 生產力翡翠綠 (Emerald 400)
+  "資料庫": "#10b981",        // 資料庫綠 (Emerald 500)
+  "知識管理": "#0ea5e9",      // 知識天藍 (Sky 500)
+  "研究": "#a855f7",          // 深度研究紫 (Purple 500)
+  "基礎設施": "#94a3b8",      // 雲端白灰 (Slate 400)
+  "行銷": "#fb923c",          // 行銷光橙 (Orange 400)
+  "數據分析": "#14b8a6",      // 數據分析綠 (Teal 500)
+  "3D工程繪圖": "#818cf8",    // 3D 幾何靛藍 (Indigo 400)
+  "圖標與視覺資源": "#d8b4fe" // 視覺資源紫 (Purple 300)
 };
 
 // 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
 function getContrastTextColor(hexColor) {
-  if (!hexColor) return "#F5EFEB";
+  if (!hexColor) return "#ffffff";
   const hex = hexColor.replace('#', '');
-  if (hex.length !== 6) return "#F5EFEB";
+  if (hex.length !== 6) return "#ffffff";
   const r = parseInt(hex.substring(0, 2), 16);
   const g = parseInt(hex.substring(2, 4), 16);
   const b = parseInt(hex.substring(4, 6), 16);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.55 ? "#1C1917" : "#F5EFEB";
+  return luminance > 0.6 ? "#000000" : "#ffffff";
 }
 
-// 若遇動態新增之未知分類，自動透過古典色相演算法生成
+// 若遇動態新增之未知分類，自動透過色相演算法生成
 function getCategoryColor(catName, index) {
   if (baseCategoryColors[catName]) return baseCategoryColors[catName];
-  const hue = (index * 137.5 + 35) % 360;
-  return `hsl(${Math.floor(hue)}, 55%, 38%)`;
+  const hue = (index * 137.5 + 200) % 360;
+  return `hsl(${Math.floor(hue)}, 85%, 65%)`;
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (16th-Century Renaissance Theme)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (100% True Pure OLED Black + Solid Filled Nodes)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -62,7 +62,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   const nodes = [];
   const edges = [];
 
-  // 1. Root Node (文藝復興黃銅金核心星盤)
+  // 1. Root Node (品牌鈷藍實心核心節點)
   nodes.push({
     id: "root",
     label: `Tool-Calling\n(${registry.tools.length} AI Tools)`,
@@ -71,17 +71,17 @@ export function generateKnowledgeGraph(registryInput = null) {
     totalTools: registry.tools.length,
     shape: "ellipse",
     color: {
-      background: "#92400E",
-      border: "#F59E0B",
-      highlight: { background: "#B45309", border: "#FDE68A" },
-      hover: { background: "#B45309", border: "#FDE68A" }
+      background: "#0284c7",
+      border: "#ffffff",
+      highlight: { background: "#38bdf8", border: "#ffffff" },
+      hover: { background: "#38bdf8", border: "#ffffff" }
     },
-    colorHex: "#B45309",
-    font: { color: "#F5EFEB", size: 22, face: "Cinzel, serif", bold: true },
+    colorHex: "#0284c7",
+    font: { color: "#ffffff", size: 20, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: true },
     val: 40
   });
 
-  // 2. Category Nodes
+  // 2. Category Nodes (實心高飽和分類節點)
   const categories = [...new Set(registry.tools.map(t => t.category))].filter(Boolean);
   
   categories.forEach((cat, idx) => {
@@ -108,22 +108,22 @@ export function generateKnowledgeGraph(registryInput = null) {
       languages: languages,
       topTools: catTools.slice(0, 5).map(t => t.name),
       shape: "box",
-      margin: 14,
+      margin: 12,
       color: {
         background: colorHex,
-        border: "#B45309",
-        highlight: { background: colorHex, border: "#FDE68A" },
-        hover: { background: colorHex, border: "#F59E0B" }
+        border: "#ffffff",
+        highlight: { background: "#ffffff", border: colorHex },
+        hover: { background: "#ffffff", border: colorHex }
       },
       colorHex: colorHex,
       textColor: textColor,
       font: {
         color: textColor,
-        size: 16,
-        face: "Cinzel, serif",
+        size: 15,
+        face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
         bold: true,
-        strokeWidth: textColor === '#F5EFEB' ? 2 : 0,
-        strokeColor: '#12100E'
+        strokeWidth: 2,
+        strokeColor: '#000000'
       },
       val: 24
     });
@@ -133,13 +133,13 @@ export function generateKnowledgeGraph(registryInput = null) {
       to: catId,
       source: "root",
       target: catId,
-      color: { color: "#78350F", highlight: "#F59E0B" },
-      colorHex: "#78350F",
-      width: 2.5,
+      color: { color: "#38bdf8", highlight: "#ffffff", opacity: 0.85 },
+      colorHex: "#38bdf8",
+      width: 2.2,
       isDashed: false
     });
 
-    // 3. Tools in this Category
+    // 3. Tools in this Category (實心高飽和工具節點 Solid Nodes)
     catTools.forEach(tool => {
       const toolNodeId = `tool_${tool.id}`;
       
@@ -163,15 +163,15 @@ export function generateKnowledgeGraph(registryInput = null) {
         shape: "dot",
         size: 10,
         color: {
-          background: colorHex,
-          border: "#12100E",
-          highlight: { background: "#F5EFEB", border: colorHex },
-          hover: { background: "#F5EFEB", border: colorHex }
+          background: colorHex,          // 實心節點底色 (Solid filled)
+          border: "#ffffff",             // 純白細外框提升在黑底上的銳利度
+          highlight: { background: "#ffffff", border: colorHex },
+          hover: { background: "#ffffff", border: colorHex }
         },
         colorHex: colorHex,
-        font: { color: "#F5EFEB", size: 13, face: "EB Garamond, Georgia, serif", strokeWidth: 3, strokeColor: "#12100E" },
+        font: { color: "#ffffff", size: 12, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: true, strokeWidth: 3, strokeColor: "#000000" },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 10
+        val: 12
       });
 
       edges.push({
@@ -179,14 +179,14 @@ export function generateKnowledgeGraph(registryInput = null) {
         to: toolNodeId,
         source: catId,
         target: toolNodeId,
-        color: { color: colorHex, highlight: "#FDE68A", opacity: 0.5 },
+        color: { color: colorHex, highlight: "#ffffff", opacity: 0.75 },
         colorHex: colorHex,
-        width: 1.5,
-        length: 95,
+        width: 1.4,
+        length: 90,
         isDashed: false
       });
 
-      // 4. SubTools / Capabilities
+      // 4. SubTools / Capabilities (實心微技能節點)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -200,12 +200,13 @@ export function generateKnowledgeGraph(registryInput = null) {
             shape: "diamond",
             size: 6,
             color: {
-              background: "#1A1713",
-              border: colorHex,
-              highlight: { background: colorHex, border: "#F5EFEB" }
+              background: "#94a3b8",      // 實心石板銀灰 (Solid filled)
+              border: "#ffffff",
+              highlight: { background: "#38bdf8", border: "#ffffff" },
+              hover: { background: "#38bdf8", border: "#ffffff" }
             },
-            colorHex: colorHex,
-            font: { color: "#D6C7B2", size: 11, face: "EB Garamond, Georgia, serif", strokeWidth: 2, strokeColor: "#12100E" },
+            colorHex: "#94a3b8",
+            font: { color: "#cbd5e1", size: 10, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: true, strokeWidth: 2, strokeColor: "#000000" },
             val: 6
           });
 
@@ -214,10 +215,10 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: colorHex, highlight: "#FDE68A", opacity: 0.35 },
-            colorHex: colorHex,
-            width: 1,
-            length: 45,
+            color: { color: "#64748b", highlight: "#38bdf8", opacity: 0.7 },
+            colorHex: "#64748b",
+            width: 1.1,
+            length: 40,
             dashes: true,
             isDashed: true
           });
@@ -242,103 +243,143 @@ export function generateKnowledgeGraph(registryInput = null) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/three@0.149.0/build/three.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/three-spritetext@1.8.2/dist/three-spritetext.min.js"></script>
   <script type="text/javascript" src="https://unpkg.com/3d-force-graph@1.73.1/dist/3d-force-graph.min.js"></script>
   <style>
     :root {
-      --bg-base: #12100E;
-      --surface-card: #1A1713;
-      --surface-inset: #110F0D;
-      --text-primary: #F5EFEB;
-      --text-secondary: #A8A29E;
-      --text-muted: #78716C;
-      --accent-brand: #D97706;
-      --brand-gradient: linear-gradient(135deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
-      --border-color: #362E25;
-      --border-gold: #B45309;
-      --success-color: #34D399;
-      --warning-color: #F87171;
+      --bg-pure-black: #000000;
+      --bg-panel: rgba(0, 0, 0, 0.94);
+      --bg-panel-solid: #000000;
+      --surface-hover: rgba(56, 189, 248, 0.15);
+      --surface-inset: #111111;
+      --text-primary: #ffffff;
+      --text-secondary: #e2e8f0;
+      --text-muted: #94a3b8;
+      --brand-cobalt: #0284c7;
+      --brand-cobalt-hover: #0369a1;
+      --brand-cobalt-light: rgba(2, 132, 199, 0.25);
+      --brand-cyan: #38bdf8;
+      --border-precision: 1px solid #222222;
+      --border-subtle: 1px solid #1a1a1a;
+      --shadow-micro: 0 4px 20px rgba(0, 0, 0, 0.9);
+      --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.95);
+      --status-success: #10b981;
+      --status-error: #ef4444;
+      --transition-fast: all 0.12s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'EB Garamond', Georgia, serif;
-      background-color: var(--bg-base);
+      font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif);
+      background-color: var(--bg-pure-black);
       color: var(--text-primary);
       overflow: hidden;
       height: 100vh;
       width: 100vw;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
+    /* 頂部純黑 OLED 標頭 (品牌鈷藍 5px 飾條 + 脈衝呼吸燈) */
     #header {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 16px;
+      left: 16px;
       z-index: 10;
-      background: rgba(26, 23, 19, 0.94);
+      background: var(--bg-panel);
       backdrop-filter: blur(16px);
-      border: 1px solid var(--border-gold);
-      border-radius: 8px;
-      padding: 16px 24px;
-      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7);
+      border: 1px solid #262626;
+      border-left: 5px solid var(--brand-cobalt);
+      border-radius: 6px;
+      padding: 14px 20px;
+      box-shadow: var(--shadow-micro);
     }
 
-    h1 {
-      font-family: 'Cinzel', Georgia, serif;
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      background: var(--brand-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .header-status-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
       margin-bottom: 6px;
     }
 
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--status-success);
+      display: inline-block;
+      animation: pulseGreen 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    .status-text {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     p.subtitle {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-style: italic;
-      font-size: 14px;
+      font-size: 12px;
       color: var(--text-secondary);
+      font-weight: 500;
+      margin-top: 2px;
     }
 
     #controls {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: 16px;
+      right: 16px;
       z-index: 10;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
     }
 
     .mode-btn {
-      background: var(--brand-gradient);
-      border: 1px solid #78350F;
+      background: var(--brand-cobalt);
+      border: 1px solid var(--brand-cyan);
       border-radius: 6px;
-      color: #FFFFFF;
-      font-family: 'Cinzel', Georgia, serif;
-      padding: 10px 18px;
-      font-size: 14px;
+      color: #ffffff;
+      padding: 8px 16px;
+      font-size: 13px;
       font-weight: 700;
-      letter-spacing: 0.03em;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(180, 83, 9, 0.4);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 15px rgba(2, 132, 199, 0.4);
+      transition: var(--transition-fast);
       display: flex;
       align-items: center;
       gap: 6px;
+      min-height: 40px;
     }
 
     .mode-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.6);
-      border-color: #F59E0B;
+      background: var(--brand-cobalt-hover);
+      border-color: #ffffff;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    }
+
+    .mode-btn:active {
+      transform: scale(0.98);
     }
 
     .mode-btn * {
@@ -346,22 +387,26 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .search-box {
-      background: rgba(26, 23, 19, 0.94);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-gold);
+      background: #000000;
+      border: 1px solid #333333;
       border-radius: 6px;
-      padding: 10px 16px;
-      color: var(--text-primary);
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 15px;
+      padding: 8px 14px;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
       outline: none;
       width: 260px;
-      transition: all 0.3s ease;
+      min-height: 40px;
+      transition: var(--transition-fast);
+    }
+
+    .search-box::placeholder {
+      color: var(--text-muted);
     }
 
     .search-box:focus {
-      border-color: var(--accent-brand);
-      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.25);
+      border-color: var(--brand-cyan);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
     }
 
     #network2d, #network3d {
@@ -370,101 +415,102 @@ export function generateKnowledgeGraph(registryInput = null) {
       position: absolute;
       top: 0;
       left: 0;
-      background-color: var(--bg-base);
+      background-color: var(--bg-pure-black);
     }
 
     #network3d {
       display: none;
+      background-color: #000000;
     }
 
-    /* 右側中間：分類色彩與連線圖例面板 */
+    /* 右側中間：純黑 OLED 分類圖例面板 */
     #legendPanel {
       position: absolute;
       top: 50%;
-      right: 20px;
+      right: 16px;
       transform: translateY(-50%);
       z-index: 15;
-      background: rgba(26, 23, 19, 0.94);
+      background: var(--bg-panel);
       backdrop-filter: blur(16px);
-      border: 1px solid var(--border-gold);
-      border-radius: 8px;
-      padding: 14px 18px;
-      max-height: calc(100vh - 160px);
-      width: 270px;
+      border: 1px solid #262626;
+      border-radius: 6px;
+      padding: 14px 16px;
+      max-height: calc(100vh - 120px);
+      width: 250px;
       overflow-y: auto;
-      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.7);
+      box-shadow: var(--shadow-micro);
     }
 
     .legend-header {
-      font-family: 'Cinzel', Georgia, serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      color: #F59E0B;
-      margin-bottom: 10px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
     .legend-grid {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .legend-item {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 13px;
-      color: var(--text-primary);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
       padding: 5px 8px;
       border-radius: 4px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: var(--transition-fast);
       user-select: none;
       border: 1px solid transparent;
     }
 
     .legend-item:hover {
-      background: rgba(180, 83, 9, 0.15);
-      border-color: var(--border-color);
-      transform: translateX(3px);
+      background: var(--surface-hover);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: var(--text-primary);
     }
 
     .legend-item.active {
-      background: rgba(180, 83, 9, 0.25);
-      border-color: var(--border-gold);
-      color: #F59E0B;
-      font-weight: 700;
-      box-shadow: 0 0 10px rgba(180, 83, 9, 0.3);
+      background: var(--brand-cobalt-light);
+      border-color: var(--brand-cyan);
+      color: var(--brand-cyan);
+      font-weight: 800;
     }
 
     .legend-badge {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 2px;
       display: inline-block;
       flex-shrink: 0;
     }
 
-    /* 左下角：富文本詳細抽屜面板 */
+    /* 左下角：富文本詳細抽屜面板 (純黑高對比面板) */
     #detailPanel {
       position: absolute;
       bottom: 20px;
       left: 20px;
       z-index: 20;
       width: 380px;
-      background: rgba(26, 23, 19, 0.96);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border-gold);
-      border-radius: 8px;
-      padding: 20px;
+      background: rgba(0, 0, 0, 0.98);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--brand-cobalt);
+      border-radius: 6px;
+      padding: 18px;
       display: none;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.8);
-      transform: translateY(10px);
-      transition: all 0.3s ease;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.95);
+      transform: translateY(8px);
+      transition: var(--transition-fast);
     }
 
     #detailPanel.active {
@@ -473,25 +519,24 @@ export function generateKnowledgeGraph(registryInput = null) {
     }
 
     .panel-title {
-      font-family: 'Cinzel', Georgia, serif;
-      font-size: 17px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: #F59E0B;
-      margin-bottom: 8px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--brand-cyan);
+      margin-bottom: 6px;
     }
 
     .panel-tag {
       display: inline-block;
-      padding: 2px 8px;
-      background: rgba(180, 83, 9, 0.15);
-      color: #FBBF24;
-      border: 1px solid var(--border-gold);
+      padding: 2px 6px;
+      background: var(--brand-cobalt-light);
+      color: var(--brand-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.4);
       border-radius: 4px;
-      font-family: 'Cinzel', Georgia, serif;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 12px;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-transform: uppercase;
     }
 
     .close-btn {
@@ -500,10 +545,12 @@ export function generateKnowledgeGraph(registryInput = null) {
       right: 14px;
       background: none;
       border: none;
-      color: var(--text-secondary);
-      font-size: 20px;
+      color: var(--text-muted);
+      font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
       line-height: 1;
+      padding: 4px;
     }
 
     .close-btn:hover {
@@ -516,51 +563,54 @@ export function generateKnowledgeGraph(registryInput = null) {
 </head>
 <body>
   <div id="header">
-    <h1>🌐 Tool-Calling 全景 AI 工具 3D/2D 雙視角知識圖譜</h1>
-    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (零 Console 警示 | 左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
-    <p style="font-size: 12px; color: var(--accent-brand); margin-top: 4px; font-weight: 600; font-family: 'Cinzel', Georgia, serif;">Developed by Wesley Chang, July-2026.</p>
+    <div class="header-status-row">
+      <span class="status-dot"></span>
+      <span class="status-text">SYSTEM ONLINE // KNOWLEDGE GRAPH</span>
+    </div>
+    <h1>🌐 Tool-Calling 知識圖譜儀表板</h1>
+    <p class="subtitle">展示 ${registry.tools.length} 個 AI 工具 (左鍵旋轉 | 右鍵/中鍵/Shift+左鍵平移 | 滾輪對焦)</p>
   </div>
 
   <div id="controls">
     <button id="viewToggleBtn" class="mode-btn" onclick="toggle3DMode()">
-      <span>🌌 切換至 3D 宇宙視角</span>
+      <span>🌌 切換至 3D 空間視角</span>
     </button>
-    <input type="text" id="searchInput" class="search-box" placeholder="🔍 搜尋圖譜中的工具或分類..." />
+    <input type="text" id="searchInput" class="search-box" placeholder="🔍 檢索圖譜工具或領域分類..." />
   </div>
 
   <!-- 右側中間：分類色彩與連線型態圖例面板 -->
   <div id="legendPanel">
     <div class="legend-header">
-      <span>🎨 點擊分類圖例高亮圖譜</span>
-      <span style="font-size:11px; color:#A8A29E;">(${categories.length} 類)</span>
+      <span>領域分類圖例</span>
+      <span style="font-size:11px; color:var(--text-muted); font-weight:700;">(${categories.length} 類)</span>
     </div>
     <div class="legend-grid">
       ${legendItemsHtml}
     </div>
 
     <!-- 🔗 連線型態圖例說明 -->
-    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
-      <span>🔗 連線類型說明</span>
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid #1a1a1a; padding-top: 8px;">
+      <span>連線類型</span>
     </div>
     <div class="legend-grid">
       <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:16px; height:2px; background:#D97706;"></span>
+        <span style="display:inline-block; width:14px; height:2px; background:var(--brand-cyan);"></span>
         <span><b>實線</b>：主分類歸屬網絡</span>
       </div>
       <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:16px; height:0; border-top:2px dashed #A8A29E;"></span>
+        <span style="display:inline-block; width:14px; height:0; border-top:2px dashed #94a3b8;"></span>
         <span><b>虛線</b>：拆解微技能/能力</span>
       </div>
     </div>
 
     <!-- 🎮 3D 操控技巧說明 -->
-    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid var(--border-color); padding-top: 10px;">
-      <span>🎮 3D 空間操控技巧</span>
+    <div class="legend-header" style="margin-top: 12px; border-top: 1px solid #1a1a1a; padding-top: 8px;">
+      <span>空間操控</span>
     </div>
-    <div style="font-size: 12px; color: #A8A29E; line-height: 1.5; padding: 4px; font-style: italic;">
-      • <b>旋轉 (Rotate)</b>: 滑鼠左鍵拖曳<br/>
-      • <b>平移 (Pan)</b>: 右鍵 / 中鍵 / Shift+左鍵拖曳<br/>
-      • <b>對焦縮放 (Zoom)</b>: 滾輪指哪裡放大哪裡
+    <div style="font-size: 11px; color: var(--text-secondary); line-height: 1.4; padding: 2px; font-weight: 500;">
+      • <b>旋轉</b>: 左鍵拖曳<br/>
+      • <b>平移</b>: 右鍵 / 中鍵 / Shift+左鍵<br/>
+      • <b>縮放</b>: 滑鼠滾輪
     </div>
   </div>
 
@@ -595,9 +645,9 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const options2d = {
       nodes: {
-        font: { face: 'EB Garamond, Georgia, serif' },
+        font: { face: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif' },
         borderWidth: 1.5,
-        shadow: true
+        shadow: false
       },
       edges: {
         smooth: {
@@ -626,7 +676,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const network2d = new vis.Network(container2d, data2d, options2d);
     
-    // -- 2D Hover Tooltip (文藝復興羊皮紙夜空黑曜石樣式) --
+    // -- 2D Hover Tooltip (純黑微陰影樣式) --
     function updateTooltip2d(node) {
       let tooltipEl = document.getElementById('graph-tooltip-2d');
       if (!tooltipEl) {
@@ -642,34 +692,34 @@ export function generateKnowledgeGraph(registryInput = null) {
         return;
       }
       
-      let html = '<div style="background:rgba(26,23,19,0.98); padding:10px 14px; border-radius:6px; border:1px solid #B45309; color:#F5EFEB; font-family:EB Garamond,Georgia,serif; font-size:13px; min-width:200px; max-width:320px; box-shadow:0 8px 24px rgba(0,0,0,0.7);">';
-      html += '<div style="font-family:Cinzel,serif; font-weight:bold; font-size:14px; color:#F59E0B; margin-bottom:4px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
+      let html = '<div style="background:rgba(0,0,0,0.98); padding:10px 14px; border-radius:6px; border:1px solid #0284c7; color:#ffffff; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:13px; min-width:200px; max-width:320px; box-shadow:0 8px 30px rgba(0,0,0,0.95);">';
+      html += '<div style="font-weight:800; font-size:14px; color:#38bdf8; margin-bottom:4px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
       
       if (node.categoryName) {
-        html += '<div style="color:#A8A29E; font-size:11px; margin-bottom:6px; font-style:italic;">' + node.categoryName + '</div>';
+        html += '<div style="color:#94a3b8; font-size:11px; margin-bottom:6px; font-weight:700;">' + node.categoryName + '</div>';
       }
       
       if (node.toolData && node.group === 'tool') {
         const t = node.toolData;
         if (t.description) {
-          html += '<div style="color:#D6C7B2; font-size:12px; line-height:1.5; margin-bottom:6px;">' + t.description.slice(0, 80) + (t.description.length > 80 ? '...' : '') + '</div>';
+          html += '<div style="color:#cbd5e1; font-size:12px; font-weight:500; line-height:1.4; margin-bottom:6px;">' + t.description.slice(0, 80) + (t.description.length > 80 ? '...' : '') + '</div>';
         }
         if (t.useCase) {
-          html += '<div style="color:#34D399; font-size:12px; margin-bottom:4px;"><b>★ 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
+          html += '<div style="color:#34d399; font-size:12px; font-weight:700; margin-bottom:4px;"><b>★ 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
         }
         if (t.advantages && t.advantages.length > 0) {
-          html += '<div style="color:#F59E0B; font-size:12px;"><b>◆ 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
+          html += '<div style="color:#38bdf8; font-size:12px; font-weight:700;"><b>◆ 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
         }
         if (t.language) {
-          html += '<div style="color:#A8A29E; font-size:11px; margin-top:4px;">Language: ' + t.language + '</div>';
+          html += '<div style="color:#94a3b8; font-size:11px; font-weight:600; margin-top:4px;">Language: ' + t.language + '</div>';
         }
       } else if (node.group === 'category') {
-        html += '<div style="color:#D6C7B2; font-size:12px;">Contains <b>' + (node.toolCount || 0) + '</b> tools</div>';
+        html += '<div style="color:#cbd5e1; font-size:12px; font-weight:600;">收錄 <b>' + (node.toolCount || 0) + '</b> 個工具</div>';
       } else if (node.group === 'root') {
-        html += '<div style="color:#D6C7B2; font-size:12px;">Total <b>' + (node.totalTools || 0) + '</b> AI Tools</div>';
+        html += '<div style="color:#cbd5e1; font-size:12px; font-weight:600;">共 <b>' + (node.totalTools || 0) + '</b> 個 AI 工具</div>';
       }
       
-      html += '<div style="color:#78716C; font-size:10px; margin-top:6px; text-transform:uppercase; font-family:Cinzel,serif;">' + node.group + '</div>';
+      html += '<div style="color:#64748b; font-size:10px; margin-top:6px; text-transform:uppercase; font-family:monospace; font-weight:700;">' + node.group + '</div>';
       html += '</div>';
       
       tooltipEl.innerHTML = html;
@@ -709,16 +759,16 @@ export function generateKnowledgeGraph(registryInput = null) {
     });
     setTimeout(function() { network2d.fit(); }, 300);
 
-    // Helper: 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
+    // Helper: 根據背景 Hex 顏色計算最優文字對比色
     function getContrastTextColorJS(hexColor) {
-      if (!hexColor) return "#F5EFEB";
+      if (!hexColor) return "#ffffff";
       const hex = hexColor.replace('#', '');
-      if (hex.length !== 6) return "#F5EFEB";
+      if (hex.length !== 6) return "#ffffff";
       const r = parseInt(hex.substring(0, 2), 16);
       const g = parseInt(hex.substring(2, 4), 16);
       const b = parseInt(hex.substring(4, 6), 16);
       const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-      return luminance > 0.55 ? "#1C1917" : "#F5EFEB";
+      return luminance > 0.6 ? "#000000" : "#ffffff";
     }
 
     // ─── 2. 初始化 3D Force-Directed Graph ──
@@ -735,39 +785,43 @@ export function generateKnowledgeGraph(registryInput = null) {
         controlType: 'orbit'
       })(container3d)
         .graphData(gData)
-        .backgroundColor('#12100E')
-        .nodeColor(node => node.colorHex || '#B45309')
+        .backgroundColor('#000000')
+        .nodeColor(node => node.colorHex || '#38bdf8')
         .nodeVal(node => node.val || 10)
         .nodeThreeObject(node => {
           if (typeof SpriteText === 'undefined') return null;
           const label = node.label.replace('\\n', ' ');
-          const bgHex = node.colorHex || '#B45309';
-          const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#F5EFEB';
+          const bgHex = node.colorHex || '#38bdf8';
+          const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#ffffff';
 
           const sprite = new SpriteText(label);
-          sprite.fontFace = node.group === 'category' || node.group === 'root' ? 'Cinzel, Georgia, serif' : 'EB Garamond, Georgia, serif';
+          sprite.fontFace = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
           sprite.fontWeight = 'bold';
 
           if (node.group === 'root') {
             sprite.textHeight = 10;
-            sprite.backgroundColor = 'rgba(146, 64, 14, 0.92)';
-            sprite.textColor = '#F5EFEB';
-            sprite.strokeColor = '#F59E0B';
-            sprite.strokeWidth = 1.5;
+            sprite.backgroundColor = '#0284c7';
+            sprite.textColor = '#ffffff';
+            sprite.strokeColor = '#ffffff';
+            sprite.strokeWidth = 2;
           } else if (node.group === 'category') {
             sprite.textHeight = 8;
             sprite.backgroundColor = bgHex;
             sprite.textColor = txtColor;
+            sprite.strokeColor = '#000000';
+            sprite.strokeWidth = 2;
           } else if (node.group === 'tool') {
-            sprite.textHeight = 5;
-            sprite.backgroundColor = 'rgba(26, 23, 19, 0.92)';
+            sprite.textHeight = 4.8;
+            sprite.backgroundColor = 'rgba(0, 0, 0, 0.92)';
             sprite.strokeColor = bgHex;
-            sprite.strokeWidth = 1.2;
-            sprite.textColor = '#F5EFEB';
+            sprite.strokeWidth = 1.5;
+            sprite.textColor = '#ffffff';
           } else {
-            sprite.textHeight = 3.5;
-            sprite.backgroundColor = 'rgba(38, 32, 26, 0.85)';
-            sprite.textColor = '#D6C7B2';
+            sprite.textHeight = 3.4;
+            sprite.backgroundColor = 'rgba(0, 0, 0, 0.88)';
+            sprite.strokeColor = '#666666';
+            sprite.strokeWidth = 1;
+            sprite.textColor = '#cbd5e1';
           }
 
           sprite.padding = 3;
@@ -778,38 +832,38 @@ export function generateKnowledgeGraph(registryInput = null) {
         .nodeThreeObjectExtend(true)
         .nodeLabel(node => {
           const name = node.label.replace('\\n', ' ');
-          let html = '<div style="background:rgba(26,23,19,0.96); padding:10px 14px; border-radius:6px; border:1px solid #B45309; color:#F5EFEB; font-family:EB Garamond,Georgia,serif; font-size:13px; min-width:180px; box-shadow:0 6px 16px rgba(0,0,0,0.7);">';
-          html += '<div style="font-family:Cinzel,serif; font-weight:bold; font-size:13px; color:#F59E0B; margin-bottom:4px;">' + name + '</div>';
+          let html = '<div style="background:rgba(0,0,0,0.98); padding:10px 14px; border-radius:6px; border:1px solid #0284c7; color:#ffffff; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:13px; min-width:180px; box-shadow:0 8px 30px rgba(0,0,0,0.95);">';
+          html += '<div style="font-weight:800; font-size:13px; color:#38bdf8; margin-bottom:4px;">' + name + '</div>';
           
           if (node.group === 'tool' && node.toolData) {
             const t = node.toolData;
             if (t.description) {
-              html += '<div style="color:#D6C7B2; font-size:12px; margin-bottom:4px;">' + t.description.slice(0, 60) + (t.description.length > 60 ? '...' : '') + '</div>';
+              html += '<div style="color:#cbd5e1; font-size:12px; font-weight:500; margin-bottom:4px;">' + t.description.slice(0, 60) + (t.description.length > 60 ? '...' : '') + '</div>';
             }
             if (t.useCase) {
-              html += '<div style="color:#34D399; font-size:12px; margin-bottom:2px;">★ ' + t.useCase + '</div>';
+              html += '<div style="color:#34d399; font-size:12px; font-weight:700; margin-bottom:2px;">★ ' + t.useCase + '</div>';
             }
             if (t.advantages && t.advantages.length > 0) {
-              html += '<div style="color:#F59E0B; font-size:12px;">◆ ' + t.advantages[0] + '</div>';
+              html += '<div style="color:#38bdf8; font-size:12px; font-weight:700;">◆ ' + t.advantages[0] + '</div>';
             }
             if (t.negativeConstraints && t.negativeConstraints.length > 0) {
-              html += '<div style="color:#F87171; font-size:12px;">✕ ' + t.negativeConstraints[0] + '</div>';
+              html += '<div style="color:#f87171; font-size:12px; font-weight:700;">✕ ' + t.negativeConstraints[0] + '</div>';
             }
           } else if (node.group === 'category') {
-            html += '<div style="color:#D6C7B2; font-size:12px;">' + (node.toolCount || 0) + ' tools</div>';
+            html += '<div style="color:#cbd5e1; font-size:12px; font-weight:600;">' + (node.toolCount || 0) + ' tools</div>';
           } else if (node.group === 'subtool') {
-            html += '<div style="color:#A8A29E; font-size:12px;">' + (node.subDesc || '') + '</div>';
+            html += '<div style="color:#94a3b8; font-size:12px; font-weight:600;">' + (node.subDesc || '') + '</div>';
           }
           
-          html += '<div style="color:#78716C; font-size:10px; margin-top:4px; text-transform:uppercase; font-family:Cinzel,serif;">' + node.group + '</div>';
+          html += '<div style="color:#64748b; font-size:10px; margin-top:4px; text-transform:uppercase; font-family:monospace; font-weight:700;">' + node.group + '</div>';
           html += '</div>';
           return html;
         })
-        .linkColor(link => link.colorHex || '#78350F')
-        .linkWidth(link => link.width || 1)
-        .linkDirectionalParticles(link => link.isDashed ? 3 : 0)
-        .linkDirectionalParticleSpeed(0.007)
-        .linkDirectionalParticleWidth(2.5)
+        .linkColor(link => link.colorHex || '#38bdf8')
+        .linkWidth(link => link.width || 1.2)
+        .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
+        .linkDirectionalParticleSpeed(0.006)
+        .linkDirectionalParticleWidth(2)
         .onNodeClick(node => {
           const distance = 140;
           const distRatio = 1 + distance / Math.hypot(node.x || 1, node.y || 1, node.z || 1);
@@ -844,7 +898,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       // 防止右鍵跳出瀏覽器選單
       container3d.addEventListener('contextmenu', e => e.preventDefault());
 
-      // 完美解鎖 Shift + 滑鼠左鍵拖曳 100% 視角平移 (Capturing Pointerdown Shift-Pan Algorithm)
+      // Shift + 滑鼠左鍵拖曳 100% 視角平移
       let isShiftPanning = false;
       let lastPanX = 0, lastPanY = 0;
 
@@ -965,7 +1019,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       } else {
         c3d.style.display = 'none';
         c2d.style.display = 'block';
-        btn.innerHTML = '<span>🌌 切換至 3D 宇宙視角</span>';
+        btn.innerHTML = '<span>🌌 切換至 3D 空間視角</span>';
       }
     }
 
@@ -1026,7 +1080,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 動態富文本面板渲染 (文藝復興古典星象抽屜)
+    // 動態富文本面板渲染 (純黑 OLED 高對比面板)
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
@@ -1034,43 +1088,43 @@ export function generateKnowledgeGraph(registryInput = null) {
       let descHtml = '';
       
       if (node.group === 'root') {
-        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:10px;">' +
+        descHtml = '<div style="font-size:13px; line-height:1.5; color:#cbd5e1; font-weight:500; margin-bottom:8px;">' +
           '<b>Tool-Calling</b> 是全自動 AI Agent 工具調用基礎設施，全庫包含 <b>' + node.totalTools + '</b> 個 AI 工具與 <b>' + categories.length + '</b> 大分類，支援三層（L1/L2/L3）精態與語意檢索。' +
           '</div>' +
-          '<div style="font-size:12px; color:#A8A29E; font-style:italic;">' +
-          '🕒 資料庫最後更新時間: ' + new Date(node.lastUpdated).toLocaleString() +
+          '<div style="font-size:11px; color:#94a3b8; font-weight:600; font-family:monospace;">' +
+          '🕒 資料庫最後更新: ' + new Date(node.lastUpdated).toLocaleString() +
           '</div>';
       } else if (node.group === 'category') {
         const catTools = nodesData.filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
-        const sampleTools = node.topTools ? node.topTools.map(t => '<span style="display:inline-block; padding:2px 8px; background:rgba(180, 83, 9, 0.15); border:1px solid #B45309; color:#FDE68A; border-radius:4px; font-size:12px; margin:2px;">' + t + '</span>').join(' ') : '';
+        const sampleTools = node.topTools ? node.topTools.map(t => '<span style="display:inline-block; padding:2px 6px; background:#111111; border:1px solid #333333; color:#38bdf8; font-weight:600; border-radius:4px; font-size:11px; margin:2px;">' + t + '</span>').join(' ') : '';
         const langs = node.languages && node.languages.length ? node.languages.join(', ') : '無特定語言標示';
 
-        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:10px;">' +
+        descHtml = '<div style="font-size:13px; line-height:1.5; color:#cbd5e1; font-weight:500; margin-bottom:8px;">' +
           (node.description || '') +
           '</div>' +
-          '<div style="font-size:13px; color:#F59E0B; margin-top:8px; margin-bottom:4px; font-weight:600;">' +
-          '📊 分類包含工具總數: <b>' + (node.toolCount || catTools.length) + '</b> 個' +
+          '<div style="font-size:12px; color:#38bdf8; margin-top:6px; margin-bottom:4px; font-weight:700;">' +
+          '📊 包含工具總數: <b>' + (node.toolCount || catTools.length) + '</b> 個' +
           '</div>' +
-          '<div style="font-size:13px; color:#A8A29E; margin-bottom:8px;">' +
-          '💻 主要開發語言: <b>' + langs + '</b>' +
+          '<div style="font-size:12px; color:#94a3b8; font-weight:600; margin-bottom:6px;">' +
+          '💻 主要語言: <b>' + langs + '</b>' +
           '</div>' +
           '<div style="margin-top:6px;">' +
           sampleTools +
           '</div>';
       } else if (node.group === 'tool') {
         const t = node.toolData || {};
-        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:10px;">' +
+        descHtml = '<div style="font-size:13px; line-height:1.5; color:#cbd5e1; font-weight:500; margin-bottom:8px;">' +
           (t.description || '無詳細描述') +
           '</div>' +
-          (t.useCase ? '<div style="font-size:13px; color:#34D399; margin-bottom:6px; line-height:1.5;"><b>⭐ 推薦場景:</b> ' + t.useCase + '</div>' : '') +
-          (t.advantages && t.advantages.length ? '<div style="font-size:13px; color:#F59E0B; margin-bottom:6px; line-height:1.5;"><b>◆ 關鍵優勢:</b> ' + t.advantages.join(', ') + '</div>' : '') +
-          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:13px; color:#F87171; margin-bottom:6px; line-height:1.5;"><b>✕ 禁用場景:</b> ' + t.negativeConstraints.join(', ') + '</div>' : '') +
-          (t.language ? '<div style="font-size:12px; color:#A8A29E; margin-top:8px; font-style:italic;">開發語言: ' + t.language + '</div>' : '');
+          (t.useCase ? '<div style="font-size:12px; color:#34d399; margin-bottom:4px; line-height:1.4; font-weight:700;"><b>★ 推薦場景:</b> ' + t.useCase + '</div>' : '') +
+          (t.advantages && t.advantages.length ? '<div style="font-size:12px; color:#38bdf8; margin-bottom:4px; line-height:1.4; font-weight:700;"><b>◆ 關鍵優勢:</b> ' + t.advantages.join(', ') + '</div>' : '') +
+          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:12px; color:#f87171; margin-bottom:4px; line-height:1.4; font-weight:700;"><b>✕ 禁用場景:</b> ' + t.negativeConstraints.join(', ') + '</div>' : '') +
+          (t.language ? '<div style="font-size:11px; color:#94a3b8; font-weight:600; margin-top:6px;">開發語言: ' + t.language + '</div>' : '');
       } else if (node.group === 'subtool') {
-        descHtml = '<div style="font-size:14px; line-height:1.6; color:#D6C7B2; margin-bottom:8px;">' +
-          '所屬工具: <b style="color:#F59E0B;">' + (node.parentToolName || '主工具') + '</b>' +
+        descHtml = '<div style="font-size:13px; line-height:1.5; color:#cbd5e1; font-weight:500; margin-bottom:6px;">' +
+          '所屬工具: <b style="color:#38bdf8;">' + (node.parentToolName || '主工具') + '</b>' +
           '</div>' +
-          '<div style="font-size:13px; color:#A8A29E; line-height:1.5;">' +
+          '<div style="font-size:12px; color:#94a3b8; font-weight:600; line-height:1.4;">' +
           '微技能描述: ' + node.subDesc +
           '</div>';
       }
