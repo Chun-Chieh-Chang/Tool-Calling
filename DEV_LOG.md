@@ -1,5 +1,21 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 3D 知識圖譜圓球霧面磨砂與莫蘭迪降眩光舒適化優化 (Soft Matte Spheres & Morandi Industrial Palette)
+
+### 需求
+針對使用者回饋「3D圓球太刺眼」，從光學物理、視覺心理學與 3D 材質第一性原理進行降眩光改造：
+1. **霧面磨砂實心材質 (Roughness 0.75)**：使用 Three.js `MeshStandardMaterial`，將粗糙度提高至 `0.75`（漫反射材質），金屬度調降為 `0.05`，徹底消除預設高光鏡面反光與刺眼眩斑。
+2. **色調降飽和與適度莫蘭迪化 (Morandi Industrial Palette)**：告別高飽和度霓虹刺眼光譜，改採沉穩、內斂且兼具高辨識度的莫蘭迪/石板工業色階（如 `#0284c7` 沉穩天藍、`#0891b2` 深邃青藍、`#94a3b8` 柔和石板等）。
+3. **適度縮小 3D 球體半徑**：將工具節點半徑適度收斂至 `2.4`，微技能收斂至 `1.4`，比例精緻優雅，視野通透開闊。
+4. **連線柔化 (Link Opacity 0.5)**：連線透明度調為 `0.5`，寬度收斂至 `1.0`，降低視覺疲勞。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證。
+
+---
+
 ## 2026-08-16 知識圖譜節點圓球 100% 完全不透明實心球體優化 (100% Opaque Solid Spheres)
 
 ### 需求

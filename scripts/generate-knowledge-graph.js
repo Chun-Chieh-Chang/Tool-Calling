@@ -5,29 +5,29 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// OLED 純黑與高對比霓虹實心調色盤 (True Pure OLED Black & Solid Neon Industrial Palette)
+// OLED 純黑與沉穩莫蘭迪工業調色盤 (True Pure OLED Black & Refined Soft Matte Palette)
 const baseCategoryColors = {
-  "AI 框架": "#38bdf8",        // 電光天藍 (Sky 400)
-  "AI 代理": "#22d3ee",        // 精密青藍 (Cyan 400)
-  "開發工具": "#cbd5e1",      // 白銀石板 (Slate 300)
-  "UI/UX設計": "#c084fc",     // 霓虹紫羅蘭 (Purple 400)
-  "多媒體生成": "#f472b6",    // 賽博洋紅 (Pink 400)
-  "影片": "#f87171",          // 激光緋紅 (Red 400)
-  "音訊": "#a3e635",          // 聲譜萊姆綠 (Lime 400)
-  "瀏覽器自動化": "#60a5fa",  // 皇家寶藍 (Blue 400)
-  "安全性": "#ef4444",        // 安全警示紅 (Red 500)
-  "測試與自動化": "#38bdf8",  // 測試天青 (Sky 400)
-  "API 整合": "#2dd4bf",      // 介面松石綠 (Teal 400)
-  "學習資源": "#fbbf24",      // 知識金黃 (Amber 400)
-  "文件生產力": "#34d399",    // 生產力翡翠綠 (Emerald 400)
-  "資料庫": "#10b981",        // 資料庫綠 (Emerald 500)
-  "知識管理": "#0ea5e9",      // 知識天藍 (Sky 500)
-  "研究": "#a855f7",          // 深度研究紫 (Purple 500)
-  "基礎設施": "#94a3b8",      // 雲端白灰 (Slate 400)
-  "行銷": "#fb923c",          // 行銷光橙 (Orange 400)
-  "數據分析": "#14b8a6",      // 數據分析綠 (Teal 500)
-  "3D工程繪圖": "#818cf8",    // 3D 幾何靛藍 (Indigo 400)
-  "圖標與視覺資源": "#d8b4fe" // 視覺資源紫 (Purple 300)
+  "AI 框架": "#0284c7",        // 沉穩天藍 (Sky 600)
+  "AI 代理": "#0891b2",        // 深邃青藍 (Cyan 600)
+  "開發工具": "#94a3b8",      // 柔和石板 (Slate 400)
+  "UI/UX設計": "#9333ea",     // 雅致紫羅蘭 (Purple 600)
+  "多媒體生成": "#db2777",    // 典雅玫紅 (Pink 600)
+  "影片": "#e11d48",          // 復古磚紅 (Rose 600)
+  "音訊": "#65a30d",          // 自然苔綠 (Lime 600)
+  "瀏覽器自動化": "#2563eb",  // 皇家寶藍 (Blue 600)
+  "安全性": "#dc2626",        // 警示赤紅 (Red 600)
+  "測試與自動化": "#0369a1",  // 沉靜鈷藍 (Sky 700)
+  "API 整合": "#0d9488",      // 介面松石 (Teal 600)
+  "學習資源": "#d97706",      // 琥珀暖金 (Amber 600)
+  "文件生產力": "#059669",    // 墨綠翡翠 (Emerald 600)
+  "資料庫": "#16a34a",        // 穩固森林 (Green 600)
+  "知識管理": "#0284c7",      // 知識沉藍 (Sky 600)
+  "研究": "#7e22ce",          // 深度典雅紫 (Purple 700)
+  "基礎設施": "#64748b",      // 鋼鐵冷灰 (Slate 500)
+  "行銷": "#ea580c",          // 活力暖橙 (Orange 600)
+  "數據分析": "#0f766e",      // 深海暗綠 (Teal 700)
+  "3D工程繪圖": "#4f46e5",    // 幾何靛青 (Indigo 600)
+  "圖標與視覺資源": "#a855f7" // 柔和薰衣草 (Purple 500)
 };
 
 // 根據背景 Hex 顏色計算最優文字對比色 (黑白文字演算法)
@@ -42,15 +42,15 @@ function getContrastTextColor(hexColor) {
   return luminance > 0.6 ? "#000000" : "#ffffff";
 }
 
-// 若遇動態新增之未知分類，自動透過色相演算法生成
+// 若遇動態新增之未知分類，自動透過色相演算法生成柔和色調
 function getCategoryColor(catName, index) {
   if (baseCategoryColors[catName]) return baseCategoryColors[catName];
   const hue = (index * 137.5 + 200) % 360;
-  return `hsl(${Math.floor(hue)}, 85%, 65%)`;
+  return `hsl(${Math.floor(hue)}, 65%, 48%)`;
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (100% True Pure OLED Black + Solid Filled Nodes + Fine Regular Text)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (100% True Pure OLED Black + Soft Matte Opaque Nodes + Fine Regular Text)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -62,7 +62,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   const nodes = [];
   const edges = [];
 
-  // 1. Root Node (品牌鈷藍實心核心節點 - 細外框、標準字重)
+  // 1. Root Node (品牌鈷藍實心核心節點)
   nodes.push({
     id: "root",
     label: `Tool-Calling\n(${registry.tools.length} AI Tools)`,
@@ -73,15 +73,15 @@ export function generateKnowledgeGraph(registryInput = null) {
     color: {
       background: "#0284c7",
       border: "#ffffff",
-      highlight: { background: "#38bdf8", border: "#ffffff" },
-      hover: { background: "#38bdf8", border: "#ffffff" }
+      highlight: { background: "#0369a1", border: "#ffffff" },
+      hover: { background: "#0369a1", border: "#ffffff" }
     },
     colorHex: "#0284c7",
     font: { color: "#ffffff", size: 18, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0.5, strokeColor: "#000000" },
-    val: 40
+    val: 36
   });
 
-  // 2. Category Nodes (實心高飽和分類節點 - 細外框、標準字重)
+  // 2. Category Nodes (實心分類節點 - 柔和色調)
   const categories = [...new Set(registry.tools.map(t => t.category))].filter(Boolean);
   
   categories.forEach((cat, idx) => {
@@ -125,7 +125,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         strokeWidth: 0.5,
         strokeColor: '#000000'
       },
-      val: 24
+      val: 22
     });
 
     edges.push({
@@ -133,13 +133,13 @@ export function generateKnowledgeGraph(registryInput = null) {
       to: catId,
       source: "root",
       target: catId,
-      color: { color: "#38bdf8", highlight: "#ffffff", opacity: 0.85 },
-      colorHex: "#38bdf8",
-      width: 2,
+      color: { color: "#0284c7", highlight: "#ffffff", opacity: 0.75 },
+      colorHex: "#0284c7",
+      width: 1.8,
       isDashed: false
     });
 
-    // 3. Tools in this Category (實心工具節點 - 細微外框線、標準無加粗字體)
+    // 3. Tools in this Category (實心工具節點 - 柔和不刺眼)
     catTools.forEach(tool => {
       const toolNodeId = `tool_${tool.id}`;
       
@@ -161,24 +161,24 @@ export function generateKnowledgeGraph(registryInput = null) {
           capabilities: tool.capabilities || []
         },
         shape: "dot",
-        size: 9,
+        size: 8,
         color: {
-          background: colorHex,          // 實心節點底色 (Solid filled)
-          border: "#ffffff",             // 純白細外框
+          background: colorHex,
+          border: "#ffffff",
           highlight: { background: "#ffffff", border: colorHex },
           hover: { background: "#ffffff", border: colorHex }
         },
         colorHex: colorHex,
         font: {
-          color: "#f8fafc",
+          color: "#f1f5f9",
           size: 12,
           face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
-          bold: false,                   // 文字不加粗 (Regular weight)
-          strokeWidth: 0.6,              // 細化文字外框線 (Fine subtle outline)
+          bold: false,
+          strokeWidth: 0.5,
           strokeColor: "#000000"
         },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 11
+        val: 10
       });
 
       edges.push({
@@ -186,14 +186,14 @@ export function generateKnowledgeGraph(registryInput = null) {
         to: toolNodeId,
         source: catId,
         target: toolNodeId,
-        color: { color: colorHex, highlight: "#ffffff", opacity: 0.75 },
+        color: { color: colorHex, highlight: "#ffffff", opacity: 0.6 },
         colorHex: colorHex,
-        width: 1.2,
+        width: 1.1,
         length: 90,
         isDashed: false
       });
 
-      // 4. SubTools / Capabilities (實心微技能節點 - 細微外框線、標準字體)
+      // 4. SubTools / Capabilities (實心微技能節點)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -207,18 +207,18 @@ export function generateKnowledgeGraph(registryInput = null) {
             shape: "diamond",
             size: 5,
             color: {
-              background: "#94a3b8",      // 實心石板銀灰
+              background: "#64748b",
               border: "#ffffff",
-              highlight: { background: "#38bdf8", border: "#ffffff" },
-              hover: { background: "#38bdf8", border: "#ffffff" }
+              highlight: { background: "#0284c7", border: "#ffffff" },
+              hover: { background: "#0284c7", border: "#ffffff" }
             },
-            colorHex: "#94a3b8",
+            colorHex: "#64748b",
             font: {
               color: "#cbd5e1",
               size: 10,
               face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
-              bold: false,               // 文字不加粗
-              strokeWidth: 0.5,          // 細化文字外框線
+              bold: false,
+              strokeWidth: 0.5,
               strokeColor: "#000000"
             },
             val: 5
@@ -229,9 +229,9 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: "#64748b", highlight: "#38bdf8", opacity: 0.65 },
-            colorHex: "#64748b",
-            width: 1,
+            color: { color: "#475569", highlight: "#0284c7", opacity: 0.5 },
+            colorHex: "#475569",
+            width: 0.9,
             length: 40,
             dashes: true,
             isDashed: true
@@ -266,7 +266,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       --bg-pure-black: #000000;
       --bg-panel: rgba(0, 0, 0, 0.94);
       --bg-panel-solid: #000000;
-      --surface-hover: rgba(56, 189, 248, 0.15);
+      --surface-hover: rgba(2, 132, 199, 0.15);
       --surface-inset: #111111;
       --text-primary: #ffffff;
       --text-secondary: #e2e8f0;
@@ -490,7 +490,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     .legend-item:hover {
       background: var(--surface-hover);
-      border-color: rgba(56, 189, 248, 0.3);
+      border-color: rgba(2, 132, 199, 0.3);
       color: var(--text-primary);
     }
 
@@ -509,7 +509,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       flex-shrink: 0;
     }
 
-    /* 左下角：富文本詳細抽屜面板 (純黑高對比面板) */
+    /* 左下角：富文本詳細抽屜面板 */
     #detailPanel {
       position: absolute;
       bottom: 20px;
@@ -608,11 +608,11 @@ export function generateKnowledgeGraph(registryInput = null) {
     </div>
     <div class="legend-grid">
       <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:14px; height:2px; background:var(--brand-cyan);"></span>
+        <span style="display:inline-block; width:14px; height:2px; background:var(--brand-cobalt);"></span>
         <span><b>實線</b>：主分類歸屬網絡</span>
       </div>
       <div class="legend-item" style="cursor:default;">
-        <span style="display:inline-block; width:14px; height:0; border-top:2px dashed #94a3b8;"></span>
+        <span style="display:inline-block; width:14px; height:0; border-top:2px dashed #64748b;"></span>
         <span><b>虛線</b>：拆解微技能/能力</span>
       </div>
     </div>
@@ -661,7 +661,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       nodes: {
         font: {
           face: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif',
-          strokeWidth: 0.6,
+          strokeWidth: 0.5,
           strokeColor: '#000000'
         },
         borderWidth: 1.2,
@@ -695,7 +695,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const network2d = new vis.Network(container2d, data2d, options2d);
     
-    // -- 2D Hover Tooltip (純黑微陰影樣式) --
+    // -- 2D Hover Tooltip --
     function updateTooltip2d(node) {
       let tooltipEl = document.getElementById('graph-tooltip-2d');
       if (!tooltipEl) {
@@ -790,7 +790,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       return luminance > 0.6 ? "#000000" : "#ffffff";
     }
 
-    // ─── 2. 初始化 3D Force-Directed Graph ──
+    // ─── 2. 初始化 3D Force-Directed Graph (柔和霧面磨砂實心球體，舒適不刺眼) ──
     function init3DGraph() {
       if (graph3DInstance) return;
 
@@ -805,52 +805,72 @@ export function generateKnowledgeGraph(registryInput = null) {
       })(container3d)
         .graphData(gData)
         .backgroundColor('#000000')
-        .nodeColor(node => node.colorHex || '#38bdf8')
-        .nodeOpacity(1) // 100% 完全不透明實心球體 (Opaque Solid Spheres)
-        .nodeResolution(20) // 高解析平滑球體
-        .nodeVal(node => node.val || 10)
         .nodeThreeObject(node => {
-          if (typeof SpriteText === 'undefined') return null;
-          const label = node.label.replace('\\n', ' ');
-          const bgHex = node.colorHex || '#38bdf8';
-          const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#ffffff';
+          const group = new THREE.Group();
+          const bgHex = node.colorHex || '#0284c7';
 
-          const sprite = new SpriteText(label);
-          sprite.fontFace = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
-          sprite.fontWeight = 'normal'; // 文字不加粗 (Regular)
+          // 計算合適的球體半徑 (適中比例，不巨大、不刺眼)
+          let radius = 2.4;
+          if (node.group === 'root') radius = 7.0;
+          else if (node.group === 'category') radius = 4.6;
+          else if (node.group === 'subtool') radius = 1.4;
 
-          if (node.group === 'root') {
-            sprite.textHeight = 10;
-            sprite.backgroundColor = '#0284c7';
-            sprite.textColor = '#ffffff';
-            sprite.strokeColor = '#ffffff';
-            sprite.strokeWidth = 0.5; // 細化外框線
-          } else if (node.group === 'category') {
-            sprite.textHeight = 8;
-            sprite.backgroundColor = bgHex;
-            sprite.textColor = txtColor;
-            sprite.strokeColor = '#000000';
-            sprite.strokeWidth = 0.5; // 細化外框線
-          } else if (node.group === 'tool') {
-            sprite.textHeight = 4.6;
-            sprite.backgroundColor = 'rgba(0, 0, 0, 0.92)';
-            sprite.strokeColor = bgHex;
-            sprite.strokeWidth = 0.6; // 細化外框線
-            sprite.textColor = '#f8fafc';
-          } else {
-            sprite.textHeight = 3.2;
-            sprite.backgroundColor = 'rgba(0, 0, 0, 0.88)';
-            sprite.strokeColor = '#666666';
-            sprite.strokeWidth = 0.5; // 細化外框線
-            sprite.textColor = '#cbd5e1';
+          // 建立柔和霧面磨砂實心球體 (MeshStandardMaterial with high roughness to eliminate glaring reflections)
+          const sphereGeo = new THREE.SphereGeometry(radius, 16, 16);
+          const sphereMat = new THREE.MeshStandardMaterial({
+            color: bgHex,
+            roughness: 0.75, // 高粗糙度 = 柔和霧面漫反射，不刺眼
+            metalness: 0.05,
+            transparent: false,
+            opacity: 1.0
+          });
+          const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
+          group.add(sphereMesh);
+
+          // 建立 SpriteText 標籤文字
+          if (typeof SpriteText !== 'undefined') {
+            const label = node.label.replace('\\n', ' ');
+            const txtColor = node.group === 'category' ? getContrastTextColorJS(bgHex) : '#ffffff';
+
+            const sprite = new SpriteText(label);
+            sprite.fontFace = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
+            sprite.fontWeight = 'normal'; // 文字不加粗 (Regular)
+
+            if (node.group === 'root') {
+              sprite.textHeight = 9;
+              sprite.backgroundColor = '#0284c7';
+              sprite.textColor = '#ffffff';
+              sprite.strokeColor = '#000000';
+              sprite.strokeWidth = 0.5;
+            } else if (node.group === 'category') {
+              sprite.textHeight = 7.5;
+              sprite.backgroundColor = bgHex;
+              sprite.textColor = txtColor;
+              sprite.strokeColor = '#000000';
+              sprite.strokeWidth = 0.5;
+            } else if (node.group === 'tool') {
+              sprite.textHeight = 4.2;
+              sprite.backgroundColor = 'rgba(0, 0, 0, 0.92)';
+              sprite.strokeColor = bgHex;
+              sprite.strokeWidth = 0.5;
+              sprite.textColor = '#f1f5f9';
+            } else {
+              sprite.textHeight = 3.0;
+              sprite.backgroundColor = 'rgba(0, 0, 0, 0.88)';
+              sprite.strokeColor = '#475569';
+              sprite.strokeWidth = 0.4;
+              sprite.textColor = '#cbd5e1';
+            }
+
+            sprite.padding = 2.0;
+            sprite.borderRadius = 3;
+            sprite.position.set(0, radius + 4.5, 0);
+            group.add(sprite);
           }
 
-          sprite.padding = 2.5;
-          sprite.borderRadius = 3;
-          sprite.position.set(0, (node.val || 10) / 3 + 8, 0);
-          return sprite;
+          return group;
         })
-        .nodeThreeObjectExtend(true)
+        .nodeThreeObjectExtend(false) // 使用自定義柔和磨砂球體完全替代預設反光球
         .nodeLabel(node => {
           const name = node.label.replace('\\n', ' ');
           let html = '<div style="background:rgba(0,0,0,0.98); padding:10px 14px; border-radius:6px; border:1px solid #0284c7; color:#ffffff; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:13px; min-width:180px; box-shadow:0 8px 30px rgba(0,0,0,0.95);">';
@@ -880,11 +900,12 @@ export function generateKnowledgeGraph(registryInput = null) {
           html += '</div>';
           return html;
         })
-        .linkColor(link => link.colorHex || '#38bdf8')
-        .linkWidth(link => link.width || 1.2)
+        .linkColor(link => link.colorHex || '#0284c7')
+        .linkOpacity(0.5) // 柔和連線透明度
+        .linkWidth(link => link.width || 1.0)
         .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
-        .linkDirectionalParticleSpeed(0.006)
-        .linkDirectionalParticleWidth(2)
+        .linkDirectionalParticleSpeed(0.005)
+        .linkDirectionalParticleWidth(1.6)
         .onNodeClick(node => {
           const distance = 140;
           const distRatio = 1 + distance / Math.hypot(node.x || 1, node.y || 1, node.z || 1);
@@ -1101,7 +1122,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
     });
 
-    // 動態富文本面板渲染 (純黑 OLED 高對比面板)
+    // 動態富文本面板渲染
     function showPanel(node) {
       const panel = document.getElementById('detailPanel');
       const content = document.getElementById('panelContent');
