@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-16T05:44:57.096Z
+ * 產生時間：2026-08-16T05:50:01.276Z
  */
 export const SYNONYM_MAP = {
   "簡報": [

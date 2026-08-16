@@ -1,5 +1,23 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 知識圖譜 2D 與 3D 超深層 Zoom In 放大能力優化 (Deep Zoom In & Unrestricted Scaling)
+
+### 需求
+針對使用者指出「圖譜可以 zoom out 很多，卻不能 zoom in 很多」，進行 2D 與 3D 縮放引擎之架構級優化：
+1. **2D Vis.js 縮放突破**：
+   - 根因分析：Vis.js 預設縮放上限僅為 2.5x~4.0x，導致無法深入放大至單一微技能節點細節。
+   - 解決方案：實作原生 `container2d` 滑鼠滾輪監聽器，結合 `network2d.DOMtoCanvas()` 幾何換算，達成以游標為焦點之 2D Pivot Zoom，縮放範圍擴展至 `0.02x ~ 35.0x`（最高可放大 35 倍）。
+2. **3D ForceGraph 縮放突破**：
+   - 根因分析：原本 OrbitControls 與 Pivot Zoom 的最小相機距離被硬編碼限制在 5 單位，導致放大到一定程度即被截斷。
+   - 解決方案：將相機與焦點的最小距離放寬至 `0.5` 單位（`minDistance: 0.5`），允許用戶無障礙放大至超近距離檢視 3D 節點球體與標籤細節。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`。
+- 執行 `npm run build` 同步生成 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 通過驗證（0 個 Console 錯誤）。
+
+---
+
 ## 2026-08-16 知識圖譜 2D 節點無外框化與全圖比照 Obsidian Graph View 風格重構 (Obsidian Graph View Style & Zero Border Circles)
 
 ### 需求

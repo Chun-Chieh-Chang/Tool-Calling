@@ -695,7 +695,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       },
       interaction: {
         hover: true,
-        zoomView: true,
+        zoomView: false, // 由自定義 2D Pivot Zoom 引擎全權接管，打破縮放限制
+        dragView: true,
         hoverConnectedEdges: true
       }
     };
@@ -775,6 +776,25 @@ export function generateKnowledgeGraph(registryInput = null) {
         tooltipEl.style.top = y + 'px';
       }
     });
+
+    // 2D Pivot Zoom (支援超深層放大檢視，突破 Vis.js 原生縮放上限)
+    container2d.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      const currentScale = network2d.getScale();
+      const zoomFactor = e.deltaY < 0 ? 1.18 : 0.85;
+      const newScale = Math.min(Math.max(currentScale * zoomFactor, 0.02), 35.0);
+
+      const rect = container2d.getBoundingClientRect();
+      const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      const domPos = network2d.DOMtoCanvas(pointer);
+
+      network2d.moveTo({
+        position: domPos,
+        scale: newScale,
+        offset: { x: -pointer.x + rect.width / 2, y: -pointer.y + rect.height / 2 },
+        animation: false
+      });
+    }, { passive: false });
 
     network2d.once('stabilizationIterationsDone', function() {
       network2d.setOptions({ physics: { enabled: false } });
@@ -923,6 +943,8 @@ export function generateKnowledgeGraph(registryInput = null) {
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
 
+            controls.minDistance = 0.5; // 支援超近距離 3D 放大 (Deep Zoom In)
+            controls.maxDistance = 20000;
             controls.mouseButtons = {
               LEFT: 0,
               MIDDLE: 2,
@@ -987,7 +1009,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
       }, true);
 
-      // Pivot Zoom
+      // Pivot Zoom (支援超深層放大檢視)
       container3d.addEventListener('wheel', function (event) {
         if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
@@ -1017,7 +1039,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
         const camToPivot = new Vector3Class().subVectors(camera.position, pivot);
         const currentDist = camToPivot.length();
-        const newDist = Math.max(currentDist * zoomStep, 5);
+        const newDist = Math.max(currentDist * zoomStep, 0.5);
         camToPivot.normalize().multiplyScalar(newDist);
         const newCamPos = new Vector3Class().addVectors(pivot, camToPivot);
 
@@ -1028,7 +1050,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         const newTarget = new Vector3Class().addVectors(pivot, targetToPivot);
 
         const finalDist = new Vector3Class().subVectors(newCamPos, newTarget).length();
-        if (finalDist < 5 || finalDist > 5000) return;
+        if (finalDist < 0.5 || finalDist > 20000) return;
 
         camera.position.copy(newCamPos);
         controls.target.copy(newTarget);
