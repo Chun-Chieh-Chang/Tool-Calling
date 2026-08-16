@@ -1,5 +1,28 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 全域優化作業 v1.5：死碼清理與文件統計同步 (Global Optimization: Dead Code Cleanup & Doc Sync)
+
+### 需求
+執行「專案的整體程式碼與檔案優化作業」5 階段 SOP，採保守策略（僅移除有明確證據的孤立項目），並將上一輪未提交的 2 個新工具（figures4papers、deepseek-harness-desktop）併入本次基準點。
+
+### 處理結果
+- **階段一（盤點與移除）**：驗證引用後移除 11 個孤立檔案：
+  - `web/fonts.css` + `web/fonts/` 4 個 woff2（DEV_LOG 2026-08-16 記載已移除 fonts.css 連結，檔案屬殘留）；同步移除 `scripts/build-web.js` 中對應死碼複製區塊。
+  - `scripts/verify-graph-playwright.js`（已被 tests/knowledge-graph.test.js 取代）、`scripts/check-existing.js`、`scripts/fix-low-quality-tools.js`、`scripts/process-batch-replace.js`、`scripts/check-category-consistency.js`（零程式碼引用、無 npm script 掛載）。
+  - `tests/eval-benchmark.js`（零引用、未匹配測試 glob、內含硬編碼絕對路徑）。
+  - 保留確認：`@modelcontextprotocol/sdk`（mcp-server.js 子路徑引用）、`web/favicon.ico`（build-web.js 複製 + GitHub Pages fallback）、`core/telemetry-summary.js`（測試引用）、全部 registry 資料檔。
+- **階段二（文件同步）**：
+  - `AGENTS.md`：585 工具 / 2220 repos / 25,801,749 stars / 44,106 avg；Top 5 分類（AI 框架 148、AI 代理 108、UI/UX設計 29）與語言（python 208、typescript 119、javascript 54）；測試數 11/11 → 75/75（3 處）；追蹤池與目錄註解 2173 → 2220。
+  - `README.md`：583 → 585（4 處）、同義詞 334 → 351 詞彙（386 → 422 組配對）、追蹤池 2219 → 2220。
+  - `.agents/AGENTS.md`：580+ → 585+ 工具。
+  - `package.json`：補齊 AGENTS.md 已文件化但缺失的 `agents:init` 與 `tracked-repos` script；description 583+ → 585+。
+  - `web/index.html`：補回 DEV_LOG 記載但遺失的 alternate icon favicon.ico 舊瀏覽器備援；description 583+ → 585+。
+  - `scripts/generate-agents-md.js` 模板：11/11 → 75/75（避免未來重生成倒退）。
+  - `docs/RCA-TOOL-VISIBILITY-ISSUE.md`：文末註記 check-category-consistency.js 已移除及其替代驗證方式。
+- **驗證**：`npm test` 75/75 PASS；`node cli.js validate` 585/585 100/100 分 0 錯誤；`node scripts/check-mece.js` 通過；`node scripts/build-web.js` 成功（585 工具知識圖譜）。
+
+---
+
 ## 2026-08-16 專案整體程式碼、檔案與文件之全流程 MECE 優化作業 (Full Project Code & File Optimization)
 
 ### 需求

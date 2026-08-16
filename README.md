@@ -4,7 +4,7 @@
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **583 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **585 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -30,7 +30,7 @@
 | Web Worker | UI流畅度↑ | 离线TF-IDF计算 |
 | IndexedDB | 冷启动<100ms | 跨页面持久化快取 |
 | Fuzzy Matching | +15% 容错率 | Levenshtein距离模糊匹配 |
-| 同義詞擴充 | 334詞彙 | 41個種子詞 + 386組配對自動挖掘 |
+| 同義詞擴充 | 351詞彙 | 41個種子詞 + 422組配對自動挖掘 |
 
 詳細報告請見 [docs/OPTIMIZATION-REPORT.md](./docs/OPTIMIZATION-REPORT.md)
 
@@ -39,7 +39,7 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 583 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - 整合 585 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
    - 支援 22 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
@@ -55,7 +55,7 @@
 6. 🔥 **雲端 Auto-Trending 自動探勘管道**：
    - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
 7. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
-   - 基於固定追蹤池（2219 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
+   - 基於固定追蹤池（2220 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
    - **雙週展示**：同時展示「上週完整數據（LAST WEEK，列入工具箱納入判斷）」與「本週迄今即時數據（THIS WEEK，進行中，不列入判斷）」，清晰區隔正式與預覽數據。
    - 嚴格遵守 ISO-8601 World Week 國際標準（週一 00:00:00 UTC → 週日 23:59:59 UTC）。
 8. 🔄 **啟動自動按需更新與介面即時刷新 (Startup Auto-Update & Live Refresh)**：
@@ -124,7 +124,7 @@ node cli.js interview "网页爬虫"
 Tool-Calling/
 ├── core/               # 核心模组
 │   ├── search-engine.js     # 三层检索引擎 (L1-L3)
-│   ├── synonyms.generated.js # 同义词词典 (334词汇)
+│   ├── synonyms.generated.js # 同义词词典 (351词汇)
 │   ├── telemetry.js         # 使用统计
 │   └── ...
 ├── web/                # 前端精密儀表數據工作台
@@ -141,7 +141,7 @@ Tool-Calling/
 │   ├── generate-knowledge-graph.js # 100% OLED 純黑實心知識圖譜生成器
 │   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
-│   └── tools.json        # 583 工具 (单一真理来源)
+│   └── tools.json        # 585 工具 (单一真理来源)
 ├── docs/               # 文档
 │   ├── OPTIMIZATION-REPORT.md  # 优化报告
 │   └── PROJECT-OPTIMIZATION-SUMMARY.md # 总览
@@ -166,7 +166,7 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v1.4 - 583 Tools, 334 Synonyms, Live Refresh & Dual-Week Trending
+> Tool-Calling v1.4 - 585 Tools, 351 Synonyms, Live Refresh & Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI

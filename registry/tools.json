@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-16T10:34:57.861Z",
+  "lastUpdated": "2026-08-16T12:24:49.134Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -37042,6 +37042,94 @@
       ],
       "stars": 102493,
       "addedAt": "2026-08-16T10:34:57.861Z",
+      "status": "active"
+    },
+    {
+      "id": "figures4papers",
+      "name": "Figures4Papers",
+      "url": "https://github.com/ChenLiu-1996/figures4papers",
+      "description": "Yale PhD 高品質學術出版圖表 Python 腳本庫：發表於 Nature Machine Intelligence / ICML / NeurIPS / ECCV 等頂級會議，內建 scientific-figure-making Agent Skill。",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "figures4papers",
+        "scientific-figure-making",
+        "學術圖表",
+        "論文圖表",
+        "publication figures",
+        "paper figures",
+        "academic figure",
+        "journal figure",
+        "matplotlib 圖表",
+        "出版級圖表"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/ChenLiu-1996/figures4papers.git",
+        "repoUrl": "https://github.com/ChenLiu-1996/figures4papers"
+      },
+      "capabilities": [
+        "scientific-figure",
+        "matplotlib",
+        "publication-visualization",
+        "multi-panel-layout"
+      ],
+      "useCase": "當需要為學術論文、頂級會議投稿（NeurIPS/ICML/CVPR/ECCV 等）或研究簡報，製作符合頂級期刊出版品質的 matplotlib 圖表（長條圖、趨勢圖、散點圖、熱力圖、雷達圖與多面板排版）時使用。",
+      "advantages": [
+        "腳本皆出自 Nature Machine Intelligence / ICML / NeurIPS / ECCV 等頂級發表，家規風格經實戰驗證",
+        "內建 scientific-figure-making Agent Skill（SKILL.md + references/），AI Agent 可直接遵循出版級排版慣例產圖",
+        "涵蓋長條圖、趨勢、散點、熱力、雷達與多面板排版，支援 PDF/SVG/高 DPI 向量匯出"
+      ],
+      "negativeConstraints": [
+        "不適用於互動式 / Web 視覺化（Plotly、Altair、Bokeh）或儀表板需求",
+        "不適用於以 3D、GIS 地圖或 Illustrator/Figma 為主的資訊圖表工作流",
+        "純探索性 EDA 繪圖（無出版目標）使用 seaborn/pandas 即可，無需此工具"
+      ],
+      "stars": 3323,
+      "addedAt": "2026-08-16T12:24:49.134Z",
+      "status": "active"
+    },
+    {
+      "id": "deepseek-harness-desktop",
+      "name": "DeepSeek Harness Desktop",
+      "url": "https://github.com/steven-kid/deepseek-harness-desktop",
+      "description": "DeepSeek Harness 非官方社群桌面包裝器：Electron 跨平台（macOS/Windows/Linux）一鍵安裝包，自動啟動本地服務、系統托盤常駐、免 CLI 免管 port，開箱即用。",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "deepseek-harness-desktop",
+        "dsh desktop",
+        "deepseek harness 桌面版",
+        "harness 桌面端",
+        "dsh 桌面",
+        "electron harness",
+        "harness desktop"
+      ],
+      "install": {
+        "method": "binary",
+        "command": "從 GitHub Releases 下載對應平台安裝包（macOS DMG / Windows NSIS+ZIP / Linux AppImage+deb），安裝後即開即用",
+        "repoUrl": "https://github.com/steven-kid/deepseek-harness-desktop"
+      },
+      "capabilities": [
+        "desktop-wrapper",
+        "electron",
+        "deepseek-harness",
+        "agent-runtime",
+        "cross-platform"
+      ],
+      "useCase": "當使用者想以原生桌面應用程式體驗 DeepSeek Harness 的完整 Agent 介面（模型、會話、設定、插件），且不想手動啟動 CLI 或管理本地 port 時使用。",
+      "advantages": [
+        "跨平台一鍵安裝（macOS ARM/Intel、Windows x64、Linux x64），免 CLI、免配置、開箱即用",
+        "自動啟動/停止本地 Harness 服務並配置隨機 loopback port，系統托盤常駐，關窗不中斷",
+        "完整保留官方 @deepseek-ai/dsh 的模型、會話、插件與 Agent 能力，不 fork、不改寫、不注入"
+      ],
+      "negativeConstraints": [
+        "非官方社群包裝，依賴快速演進的 @deepseek-ai/dsh@0.1.0-rc.6，API 可能隨時破壞性變更",
+        "macOS 未 Apple 公證、Windows 未商業簽章，企業或嚴謹環境可能被攔截",
+        "僅是桌面宿主，不提供官方 Harness 以外的額外 Agent 功能"
+      ],
+      "stars": 170,
+      "addedAt": "2026-08-16T12:24:49.134Z",
       "status": "active"
     }
   ]

@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-16T12:00:41.879Z
+ * 產生時間：2026-08-16T12:49:12.092Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -2056,6 +2056,154 @@ export const SYNONYM_MAP = {
   "人教版": [
     "chinatextbook",
     "textbook"
+  ],
+  "學術圖表": [
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures",
+    "academic figure",
+    "journal figure"
+  ],
+  "figures4papers": [
+    "學術圖表",
+    "論文圖表",
+    "matplotlib 圖表",
+    "出版級圖表",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures",
+    "academic figure"
+  ],
+  "scientific-figure-making": [
+    "學術圖表",
+    "論文圖表",
+    "matplotlib 圖表",
+    "出版級圖表",
+    "figures4papers",
+    "publication figures",
+    "paper figures",
+    "academic figure"
+  ],
+  "publication figures": [
+    "學術圖表",
+    "論文圖表",
+    "matplotlib 圖表",
+    "出版級圖表",
+    "figures4papers",
+    "scientific-figure-making",
+    "paper figures",
+    "academic figure"
+  ],
+  "paper figures": [
+    "學術圖表",
+    "論文圖表",
+    "matplotlib 圖表",
+    "出版級圖表",
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "academic figure"
+  ],
+  "academic figure": [
+    "學術圖表",
+    "論文圖表",
+    "matplotlib 圖表",
+    "出版級圖表",
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures"
+  ],
+  "journal figure": [
+    "學術圖表",
+    "論文圖表",
+    "matplotlib 圖表",
+    "出版級圖表",
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures"
+  ],
+  "論文圖表": [
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures",
+    "academic figure",
+    "journal figure"
+  ],
+  "matplotlib 圖表": [
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures",
+    "academic figure",
+    "journal figure"
+  ],
+  "出版級圖表": [
+    "figures4papers",
+    "scientific-figure-making",
+    "publication figures",
+    "paper figures",
+    "academic figure",
+    "journal figure"
+  ],
+  "deepseek harness 桌面版": [
+    "deepseek-harness-desktop",
+    "dsh desktop",
+    "electron harness",
+    "harness desktop",
+    "harness 桌面端",
+    "dsh 桌面"
+  ],
+  "deepseek-harness-desktop": [
+    "deepseek harness 桌面版",
+    "harness 桌面端",
+    "dsh 桌面",
+    "dsh desktop",
+    "electron harness",
+    "harness desktop"
+  ],
+  "dsh desktop": [
+    "deepseek harness 桌面版",
+    "harness 桌面端",
+    "dsh 桌面",
+    "deepseek-harness-desktop",
+    "electron harness",
+    "harness desktop"
+  ],
+  "electron harness": [
+    "deepseek harness 桌面版",
+    "harness 桌面端",
+    "dsh 桌面",
+    "deepseek-harness-desktop",
+    "dsh desktop",
+    "harness desktop"
+  ],
+  "harness desktop": [
+    "deepseek harness 桌面版",
+    "harness 桌面端",
+    "dsh 桌面",
+    "deepseek-harness-desktop",
+    "dsh desktop",
+    "electron harness"
+  ],
+  "harness 桌面端": [
+    "deepseek-harness-desktop",
+    "dsh desktop",
+    "electron harness",
+    "harness desktop",
+    "deepseek harness 桌面版",
+    "dsh 桌面"
+  ],
+  "dsh 桌面": [
+    "deepseek-harness-desktop",
+    "dsh desktop",
+    "electron harness",
+    "harness desktop",
+    "deepseek harness 桌面版",
+    "harness 桌面端"
   ],
   "翻譯": [
     "translate",

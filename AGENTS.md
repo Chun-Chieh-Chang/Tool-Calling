@@ -32,24 +32,24 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 583 個工具
-追蹤 repos: 2219 個
-總 star 數: 25,798,256 ⭐
-平均 star 數: 44,251 ⭐
+工具庫規模: 585 個工具
+追蹤 repos: 2220 個
+總 star 數: 25,801,749 ⭐
+平均 star 數: 44,106 ⭐
 最後更新: 2026/8/16
 ```
 
 ### Top 5 分類
-- `AI 框架`: 147 個工具
-- `AI 代理`: 107 個工具
+- `AI 框架`: 148 個工具
+- `AI 代理`: 108 個工具
 - `開發工具`: 94 個工具
 - `學習資源`: 38 個工具
-- `UI/UX設計`: 28 個工具
+- `UI/UX設計`: 29 個工具
 
 ### Top 5 語言
-- `python`: 207 個工具
-- `typescript`: 118 個工具
-- `javascript`: 53 個工具
+- `python`: 208 個工具
+- `typescript`: 119 個工具
+- `javascript`: 54 個工具
 - `other`: 44 個工具
 - `rust`: 24 個工具
 
@@ -88,8 +88,8 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2173 repos)
-npm test                  # 執行所有測試 (11/11 pass)
+npm run tracked-repos     # 重建追蹤池 (2220 repos)
+npm test                  # 執行所有測試 (75/75 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 
@@ -97,7 +97,7 @@ npm run agents:init       # 生成/驗證 AGENTS.md
 node cli.js search "<需求>"           # 三層檢索工具
 node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
-node cli.js list                      # 列出所有工具 (583+)
+node cli.js list                      # 列出所有工具 (585+)
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
 ```
@@ -135,7 +135,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - [ ] 所有測試通過 (75/75 PASS)
 - [ ] UTF-8 編碼門禁通過 (0 個 U+FFFD 亂碼字元)
 - [ ] HTML ID 唯一性門禁通過 (0 個重複 ID)
-- [ ] 工具庫驗證通過 (583+ 工具, 100/100 分)
+- [ ] 工具庫驗證通過 (585+ 工具, 100/100 分)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -247,8 +247,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 580+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2173 追蹤 repos
+│   ├── tools.json      # 585+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2220 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -290,7 +290,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (11 tests)
+### 單元測試 (75 tests)
 ```bash
 npm test
 ```
@@ -310,7 +310,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (11/11 pass)
+1. `npm test` (75/75 pass)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 

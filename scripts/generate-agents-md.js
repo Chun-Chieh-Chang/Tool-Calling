@@ -141,7 +141,7 @@ ${topLangs.map(([lang, count]) => `- \`${lang}\`: ${count} 個工具`).join('\n'
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
 npm run tracked-repos     # 重建追蹤池 (${trackedCount} repos)
-npm test                  # 執行所有測試 (11/11 pass)
+npm test                  # 執行所有測試 (75/75 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 
