@@ -30,30 +30,32 @@
 | Web Worker | UI流畅度↑ | 离线TF-IDF计算 |
 | IndexedDB | 冷启动<100ms | 跨页面持久化快取 |
 | Fuzzy Matching | +15% 容错率 | Levenshtein距离模糊匹配 |
-| 同义词扩充 | 239词汇 | 41个种子词自动挖掘 |
+| 同義詞擴充 | 334詞彙 | 41個種子詞 + 386組配對自動挖掘 |
 
-详细报告请见 [docs/OPTIMIZATION-REPORT.md](./docs/OPTIMIZATION-REPORT.md)
+詳細報告請見 [docs/OPTIMIZATION-REPORT.md](./docs/OPTIMIZATION-REPORT.md)
 
 ---
 
-## ⚡ 核心亮点功能 (Phases 106 - 112)
+## ⚡ 核心亮點功能
 
-1. 🗺️ **复杂任务多工具链自动规划 (Tool Chain Planner)**：
-   - 专案开发往往需要多个工具协同（例如：`网页爬虫` + `LLM RAG 清洗` + `简报生成`）。
-   - 自动将长任务 Prompt 拆解为 DAG 执行流程图，定义输入/输出 Data Flow 介面与备选竞品。
-2. 🏆 **五维度竞品适配重排矩阵 (5D Disambiguation Matrix)**：
-   - 解决同类工具混淆问题（如 6 大网页爬虫工具之选择）。
-   - 计算程式语言对齐 (+30%/-35%)、下游场景匹配 (RAG/E2E/Pipeline)、禁用场景硬性门禁 (Negative Constraints -60%) 与 GitHub Stars 加权。
-3. 💬 **亲和白话需求导向互动引导问答 (Jargon-Free Interactive Interview)**：
-   - 彻底剔除生涩专业术语！当需求模糊时，透过 3 步直觉情境问答（开发语言、真实用途、网页动态画面）主动逼近用户真实需求。
-4. 🛡️ **沙盒环境预检与安全调用验证器 (Pre-flight Sandbox Validator)**：
-   - 一键预检本机 `Node.js`, `Python`, `pip`, `npx`, `Git`, `Docker` 相依环境准备状况。
-5. 🔥 **云端 Auto-Trending 自动探勘管道**：
-   - 连线 GitHub Search API 自动探勘新涨星热门 AI Agent 与 MCP 专案。
-6. 📈 **每週涨星排行榜 (Weekly Star Trending)**：
-   - 基于固定追踪池（2000+ repos）与历史快照，计算真实的週涨星数。
-   - 自动筛选有意义的涨幅（过滤异常数据），生成 Top 10 排行榜。
-   - 每週自动入库高潜力新工具，保持工具箱时时更新。
+1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
+   - 整合 580 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
+   - 支援 22 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
+2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
+   - 專案開發往往需要多個工具協同（例如：`網頁爬蟲` + `LLM RAG 清洗` + `簡報生成`）。
+   - 自動將長任務 Prompt 拆解為 DAG 執行流程圖，定義輸入/輸出 Data Flow 介面與備選競品。
+3. 🏆 **五維度競品適配重排矩陣 (5D Disambiguation Matrix)**：
+   - 解決同類工具混淆問題（如 6 大網頁爬蟲工具之選擇）。
+   - 計算程式語言對齊 (+30%/-35%)、下游場景匹配 (RAG/E2E/Pipeline)、禁用場景硬性門禁 (Negative Constraints -60%) 與 GitHub Stars 加权。
+4. 💬 **親和白話需求導向互動引導問答 (Jargon-Free Interactive Interview)**：
+   - 徹底剔除生澀專業術語！當需求模糊時，透過 3 步直覺情境問答（開發語言、真實用途、網頁動態畫面）主動逼近用戶真實需求。
+5. 🛡️ **沙盒環境預檢與安全調用驗證器 (Pre-flight Sandbox Validator)**：
+   - 一鍵預檢本機 `Node.js`, `Python`, `pip`, `npx`, `Git`, `Docker` 相依環境準備狀況。
+6. 🔥 **雲端 Auto-Trending 自動探勘管道**：
+   - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
+7. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
+   - 基於固定追蹤池（2173 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
 
 ---
 

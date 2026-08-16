@@ -1,5 +1,30 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 專案整體程式碼、檔案與文件之全流程 MECE 優化作業 (Full Project Code & File Optimization)
+
+### 需求
+根據使用者指令「執行專案的整體程式碼與檔案優化作業」，嚴格遵守 `project-refactor-cleanup` 5 大階段 SOP 執行：
+1. **階段一：全面盤點與清理作業 (MECE Audit & Dead Code/Asset Removal)**：
+   - 清理 `docs/` 中 11 個過時且冗餘的歷史暫存報告（`FIND-SKILL-FINAL-REPORT.md`, `FIND-SKILL-FINAL-STATUS.md`, `FIND-SKILL-INTEGRATION-COMPLETE.md`, `FIND-SKILL-INTEGRATION-REPORT.md`, `FIND-SKILL-INTEGRATION-SUMMARY.md`, `task_plan.md`, `progress.md`, `GOAL-ACHIEVEMENT.md`, `CI-FIX-SUMMARY.md`, `INTEGRATION-STATUS.md`, `PROJECT-OPTIMIZATION-SUMMARY.md`），統一收斂至權威指引 `docs/find-skill-integration-guide.md` 與 `README.md`。
+2. **階段二：同步更新所有開發相關文件 (Documentation Synchronization & Alignment)**：
+   - 同步更新 `README.md`：同義詞詞典規模更新為 334 詞彙（386 組挖掘配對 + 41 個種子詞）；新增 Obsidian 2D/3D 雙視角動態知識圖譜與第一性原理零位移縮放功能介紹。
+   - 確保所有文檔與現有 580 個工具庫、2173 個追蹤 repos 數據 100% 保持一致。
+3. **階段三：遵循 MECE 原則整合整理 (MECE Architecture Consolidation)**：
+   - 執行 `npm run check-mece`，確認 22 個領域分類 100% 相互獨立、完全窮盡，無任何「其他」或「未分類」殘留。
+   - 執行 `node cli.js validate`，確認全庫 580 個工具詮釋資料 100/100 滿分通過品質門禁。
+4. **階段四：建立程式碼還原基準點 (Verification & Atomic Commit)**：
+   - 執行 `npm test`：75/75 單元與端到端測試 100% 通過（包含 UTF-8 編碼安全防禦門禁、HTML 唯一 ID 門禁、各檢索層門禁）。
+   - 執行 `node scripts/verify-graph-playwright.js`：Playwright 無頭瀏覽器視覺確效 100% 通過，0 Console 錯誤。
+5. **階段五：推送變更至 GitHub 遠端倉庫 (Privacy Audit & Push to Remote)**：
+   - 執行資安與敏感憑證自檢，確認代碼庫無任何硬編碼 API 金鑰。
+
+### 處理結果
+- 清理冗餘檔案 11 個。
+- 更新 `README.md`、`DEV_LOG.md` 與分發產物 `dist/`。
+- 本地測試 75/75 PASS。
+
+---
+
 ## 2026-08-16 第一性原理深度排查：3D 沿滑鼠視線射線推拉演算法徹底消除旋轉與焦點漂移 (3D Parallel Ray Dolly RCA & CAPA)
 
 ### 根本原因分析 (RCA)
