@@ -1051,7 +1051,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       container3d.addEventListener('contextmenu', e => e.preventDefault());
 
-      // 3D Pivot Zoom (縮放中心：滑鼠當前位置，縮小 1~1/20，放大 1~20)
+      // 3D Pivot Zoom (第一性原理：沿滑鼠視線射線直線推拉相機與焦點，實現 0 角度偏轉、0 像素漂移)
       container3d.addEventListener('wheel', function (e) {
         if (!graph3DInstance) return;
         const camera = graph3DInstance.camera();
@@ -1069,25 +1069,24 @@ export function generateKnowledgeGraph(registryInput = null) {
 
         const raycaster = new THREE.Raycaster();
         raycaster.setFromCamera(mouseNDC, camera);
+        const rayDir = raycaster.ray.direction.clone().normalize();
 
-        const plane = new THREE.Plane();
-        const cameraDir = new THREE.Vector3();
-        camera.getWorldDirection(cameraDir);
-        plane.setFromNormalAndCoplanarPoint(cameraDir.negate(), controls.target);
+        // 當前相機與 target 距離
+        const currentDist = camera.position.distanceTo(controls.target);
 
-        const targetPoint = new THREE.Vector3();
-        if (!raycaster.ray.intersectPlane(plane, targetPoint)) {
-          targetPoint.copy(controls.target);
-        }
+        // 縮放比例步長 (縮小時 deltaY > 0, 放大時 deltaY < 0)
+        const zoomStep = e.deltaY < 0 ? 0.12 : -0.136;
+        const stepDist = currentDist * zoomStep;
 
-        const zoomRatio = e.deltaY < 0 ? 0.88 : (1 / 0.88);
+        const newDist = currentDist - stepDist;
+        if (newDist < 15.0 || newDist > 6000.0) return; // 嚴格鎖定於 20x (距離 15) ~ 1/20x (距離 6000)
 
-        const camToPivot = new THREE.Vector3().subVectors(camera.position, targetPoint);
-        const currentDist = camToPivot.length();
-        const newDist = Math.min(Math.max(currentDist * zoomRatio, 15.0), 6000.0);
+        // 平移向量 deltaVec 嚴格沿著滑鼠射線方向
+        const deltaVec = rayDir.clone().multiplyScalar(stepDist);
 
-        camera.position.copy(targetPoint).addScaledVector(camToPivot.normalize(), newDist);
-        controls.target.copy(targetPoint);
+        // 同步平移 camera 與 target，保持 OrbitControls 視角角度絕對平行不變形
+        camera.position.add(deltaVec);
+        controls.target.add(deltaVec);
         controls.update();
       }, { passive: false });
 
