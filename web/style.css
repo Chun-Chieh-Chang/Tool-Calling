@@ -1277,3 +1277,65 @@ select:focus {
   align-items: center;
   gap: 4px;
 }
+
+/* ─── 刷新按鈕樣式 (Refresh Trending Button) ────────────────────────────── */
+
+.refresh-trending-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--surface-panel);
+  border: 1px solid var(--brand-cobalt);
+  color: var(--brand-cobalt);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0 16px;
+  min-height: 44px; /* 觸控標準 ≥ 44px */
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  box-shadow: 0 1px 3px rgba(2, 132, 199, 0.1);
+  white-space: nowrap;
+}
+
+.refresh-trending-btn:hover {
+  background: var(--brand-cobalt);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  transform: translateY(-1px);
+}
+
+.refresh-trending-btn:active {
+  transform: translateY(0);
+}
+
+.refresh-trending-btn:disabled,
+.refresh-trending-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  background: var(--surface-hover);
+  border-color: var(--border-precision);
+  color: var(--text-secondary);
+  box-shadow: none;
+  transform: none;
+}
+
+.refresh-trending-btn .refresh-icon {
+  transition: transform 0.3s ease;
+}
+
+.refresh-trending-btn.loading .refresh-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

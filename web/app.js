@@ -33,10 +33,11 @@ const trendingScannedCount = document.getElementById('trendingScannedCount');
 const trendingAddedCount = document.getElementById('trendingAddedCount');
 const leaderboardBody = document.getElementById('leaderboardBody');
 const newlyAddedGrid = document.getElementById('newlyAddedGrid');
-// 新增 DOM refs for 雙週展示
+// 新增 DOM refs for 雙週展示與刷新按鈕
 const lastWeekDateRangeLabel = document.getElementById('lastWeekDateRangeLabel');
 const currentWeekDateRangeLabel = document.getElementById('currentWeekDateRangeLabel');
 const currentWeekLeaderboardBody = document.getElementById('currentWeekLeaderboardBody');
+const refreshTrendingBtn = document.getElementById('refreshTrendingBtn');
 
 // 初始化
 async function init() {
@@ -75,6 +76,9 @@ async function init() {
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
     if (trendingTabBtn) trendingTabBtn.addEventListener('click', () => switchTab('trending'));
+
+    // 綁定每週漲星榜即時刷新按鈕
+    setupRefreshTrendingButton();
 
   } catch (err) {
     console.error(err);
@@ -432,12 +436,13 @@ function renderLeaderboardRows(tbody, items, isWip = false) {
   });
 }
 
-async function loadWeeklyTrending() {
+async function loadWeeklyTrending(forceRefresh = false) {
   if (!leaderboardBody) return;
-  if (weeklyTrendingLoaded) return;
+  if (weeklyTrendingLoaded && !forceRefresh) return;
 
   try {
-    const res = await fetch('./registry/weekly-trending.json');
+    const fetchUrl = forceRefresh ? `./registry/weekly-trending.json?t=${Date.now()}` : './registry/weekly-trending.json';
+    const res = await fetch(fetchUrl);
     if (!res.ok) throw new Error('Weekly trending data not found');
     const data = await res.json();
 
@@ -499,6 +504,72 @@ async function loadWeeklyTrending() {
     }
   }
 }
+
+/**
+ * 綁定每週漲星即時刷新按鈕
+ */
+function setupRefreshTrendingButton() {
+  if (!refreshTrendingBtn) return;
+
+  refreshTrendingBtn.addEventListener('click', async () => {
+    const textSpan = refreshTrendingBtn.querySelector('.refresh-text');
+    const originalText = textSpan ? textSpan.textContent : '🔄 刷新當日即時數據';
+
+    // 進入 loading 狀態
+    refreshTrendingBtn.classList.add('loading');
+    refreshTrendingBtn.disabled = true;
+    if (textSpan) textSpan.textContent = '⏳ 正在向 GitHub 探勘中...';
+
+    try {
+      // 觸發伺服器端刷新 API
+      const res = await fetch('/api/trending/refresh', { credentials: 'same-origin' });
+      
+      if (res.status === 404) {
+        // 純前端靜態託管（如 GitHub Pages）
+        alert('ℹ 當前處於線上靜態展示模式。線上數據每週一凌晨由 GitHub Actions 自動定時探勘更新。\n\n若需即時探勘，請在本地終端機執行 `npm run trending`。');
+        if (textSpan) textSpan.textContent = originalText;
+        refreshTrendingBtn.classList.remove('loading');
+        refreshTrendingBtn.disabled = false;
+        return;
+      }
+
+      // 輪詢直到掃描完成
+      const pollInterval = setInterval(async () => {
+        try {
+          const statusRes = await fetch('/api/trending/status');
+          if (statusRes.ok) {
+            const statusData = await statusRes.json();
+            if (!statusData.isScanning) {
+              clearInterval(pollInterval);
+              // 強制重新載入前端 JSON
+              await loadWeeklyTrending(true);
+              
+              if (textSpan) textSpan.textContent = '✅ 已刷新為最新即時數據！';
+              refreshTrendingBtn.classList.remove('loading');
+              
+              setTimeout(() => {
+                if (textSpan) textSpan.textContent = originalText;
+                refreshTrendingBtn.disabled = false;
+              }, 2500);
+            }
+          }
+        } catch {
+          // 網路暫態錯誤，繼續下一輪輪詢
+        }
+      }, 2000);
+
+    } catch (err) {
+      console.warn('Refresh request failed:', err);
+      if (textSpan) textSpan.textContent = '⚠ 刷新失敗，請確認伺服器已啟動';
+      setTimeout(() => {
+        if (textSpan) textSpan.textContent = originalText;
+        refreshTrendingBtn.classList.remove('loading');
+        refreshTrendingBtn.disabled = false;
+      }, 3000);
+    }
+  });
+}
+
 
 // ─── 分類工具函式 ────────────────────────────────────────────────────────
 

@@ -2415,3 +2415,25 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
    - cli.js validate: 580/580 工具通過 Contract v2 驗證 (品質 100/100)
    - scripts/check-mece.js: 22 分類 100% 互斥且窮盡
    - scripts/check-utf8.js & scripts/check-duplicate-ids.js: 100% 通過
+
+## [2026-08-16] 實現啟用時自動按需更新數據與前端即時刷新按鈕 (方案 1 + 2)
+
+### 需求
+- 伺服器每次啟動時 (npm start)，自動根據當前日期與 World Week 比對快照最後更新時間
+- 若跨日或跨週，背景非阻塞執行 trending-weekly 探勘最新 GitHub Star 數據並同步至工作台
+- 於每週漲星榜介面頂部提供「🔄 刷新當日即時數據」按鈕與輪詢狀態動畫，支援即時刷新
+
+### 實作細節 (CAPA)
+1. **web/server.js**：
+   - 加入 checkAndAutoUpdateOnStartup() 於伺服器啟動時自動比對
+   - 新增 POST /api/trending/refresh 與 GET /api/trending/status API 端點
+   - 新增 isTrendingScanning 互斥狀態鎖與 syncRegistryToDist() 同步機制
+2. **web/index.html & web/style.css**：
+   - 新增 #refreshTrendingBtn 刷新按鈕與 @keyframes spin 旋轉動畫
+3. **web/app.js**：
+   - loadWeeklyTrending(forceRefresh) 支援防快取時間戳重新載入
+   - setupRefreshTrendingButton() 實作非同步觸發、輪詢進度與成功狀態提示
+
+### 確效結果
+- npm test: 75/75 PASS (20 suites, 0 failures)
+- node scripts/build-web.js: dist/ 同步成功
