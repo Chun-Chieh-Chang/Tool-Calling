@@ -751,6 +751,8 @@ export function generateKnowledgeGraph(registryInput = null) {
     };
 
     const network2d = new vis.Network(container2d, data2d, options2d);
+    window.network2d = network2d;
+    window.data2d = data2d;
     
     // -- 2D Hover Tooltip (Obsidian Minimalist Popover) --
     function updateTooltip2d(node) {

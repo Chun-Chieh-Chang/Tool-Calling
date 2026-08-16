@@ -1,5 +1,21 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 Playwright 2D / 3D 深度視覺與互動微觀對焦自動化確效 (Playwright Visual & Interaction Verification)
+
+### 需求
+使用 Playwright Headless 瀏覽器實測 `http://localhost:3000/knowledge-graph.html`，對 2D 與 3D 知識圖譜的渲染、力導向星系展開、深度微觀對焦與抽屜面板進行端到端視覺確效：
+1. **2D 深度對焦確效**：成功鎖定目標工具節點（如 `PPT Master`），執行 3.5x 聚焦放大，截圖保存至 `dist/verify-2d-deep-zoom.png`。
+2. **3D 星系全景確效**：驗證 580 個節點在 3D 空間中經 `d3Force` 斥力 (-480) 與廣闊連線間距 (320/140) 作用下，完全展開為宏觀立體星系（`dist/verify-3d-galaxy.png`）。
+3. **3D 微觀向量推進對焦確效**：執行 `zoomTo3DNode(node, 28)`，相機精準飛入節點正前方 28 單位距離，清晰呈現節點實心球體、無背景立體文字與微技能連線（`dist/verify-3d-micro-detail.png`）。
+4. **Obsidian 詳細抽屜確效**：左下角富文本抽屜正常喚起，完整呈現工具推薦場景、核心優勢、禁用限制、開發語言與 GitHub 按鈕。
+5. **門禁檢驗**：控制台 0 個錯誤（0 Console Errors）。
+
+### 處理結果
+- 新增 `scripts/verify-graph-playwright.js`。
+- 執行 `node scripts/verify-graph-playwright.js` 100% 通過。
+
+---
+
 ## 2026-08-16 3D 知識圖譜物理空間拉伸與相機向量推進對焦徹底修復 (3D Galaxy Physics & Vector Camera Focus)
 
 ### 需求
