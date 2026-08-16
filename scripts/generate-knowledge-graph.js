@@ -50,7 +50,7 @@ function getCategoryColor(catName, index) {
 }
 
 /**
- * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (100% True Pure OLED Black + Solid Filled Nodes)
+ * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (100% True Pure OLED Black + Solid Filled Nodes + Fine Regular Text)
  */
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
@@ -62,7 +62,7 @@ export function generateKnowledgeGraph(registryInput = null) {
   const nodes = [];
   const edges = [];
 
-  // 1. Root Node (品牌鈷藍實心核心節點)
+  // 1. Root Node (品牌鈷藍實心核心節點 - 細外框、標準字重)
   nodes.push({
     id: "root",
     label: `Tool-Calling\n(${registry.tools.length} AI Tools)`,
@@ -77,11 +77,11 @@ export function generateKnowledgeGraph(registryInput = null) {
       hover: { background: "#38bdf8", border: "#ffffff" }
     },
     colorHex: "#0284c7",
-    font: { color: "#ffffff", size: 20, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: true },
+    font: { color: "#ffffff", size: 18, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: false, strokeWidth: 0.5, strokeColor: "#000000" },
     val: 40
   });
 
-  // 2. Category Nodes (實心高飽和分類節點)
+  // 2. Category Nodes (實心高飽和分類節點 - 細外框、標準字重)
   const categories = [...new Set(registry.tools.map(t => t.category))].filter(Boolean);
   
   categories.forEach((cat, idx) => {
@@ -119,10 +119,10 @@ export function generateKnowledgeGraph(registryInput = null) {
       textColor: textColor,
       font: {
         color: textColor,
-        size: 15,
+        size: 14,
         face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
-        bold: true,
-        strokeWidth: 2,
+        bold: false,
+        strokeWidth: 0.5,
         strokeColor: '#000000'
       },
       val: 24
@@ -135,11 +135,11 @@ export function generateKnowledgeGraph(registryInput = null) {
       target: catId,
       color: { color: "#38bdf8", highlight: "#ffffff", opacity: 0.85 },
       colorHex: "#38bdf8",
-      width: 2.2,
+      width: 2,
       isDashed: false
     });
 
-    // 3. Tools in this Category (實心高飽和工具節點 Solid Nodes)
+    // 3. Tools in this Category (實心工具節點 - 細微外框線、標準無加粗字體)
     catTools.forEach(tool => {
       const toolNodeId = `tool_${tool.id}`;
       
@@ -161,17 +161,24 @@ export function generateKnowledgeGraph(registryInput = null) {
           capabilities: tool.capabilities || []
         },
         shape: "dot",
-        size: 10,
+        size: 9,
         color: {
           background: colorHex,          // 實心節點底色 (Solid filled)
-          border: "#ffffff",             // 純白細外框提升在黑底上的銳利度
+          border: "#ffffff",             // 純白細外框
           highlight: { background: "#ffffff", border: colorHex },
           hover: { background: "#ffffff", border: colorHex }
         },
         colorHex: colorHex,
-        font: { color: "#ffffff", size: 12, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: true, strokeWidth: 3, strokeColor: "#000000" },
+        font: {
+          color: "#f8fafc",
+          size: 12,
+          face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+          bold: false,                   // 文字不加粗 (Regular weight)
+          strokeWidth: 0.6,              // 細化文字外框線 (Fine subtle outline)
+          strokeColor: "#000000"
+        },
         title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
-        val: 12
+        val: 11
       });
 
       edges.push({
@@ -181,12 +188,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         target: toolNodeId,
         color: { color: colorHex, highlight: "#ffffff", opacity: 0.75 },
         colorHex: colorHex,
-        width: 1.4,
+        width: 1.2,
         length: 90,
         isDashed: false
       });
 
-      // 4. SubTools / Capabilities (實心微技能節點)
+      // 4. SubTools / Capabilities (實心微技能節點 - 細微外框線、標準字體)
       if (tool.subTools && Array.isArray(tool.subTools)) {
         tool.subTools.slice(0, 3).forEach((sub, sIdx) => {
           const subId = `sub_${tool.id}_${sIdx}`;
@@ -198,16 +205,23 @@ export function generateKnowledgeGraph(registryInput = null) {
             parentToolName: tool.name,
             subDesc: sub.description || '深層拆解之微技能',
             shape: "diamond",
-            size: 6,
+            size: 5,
             color: {
-              background: "#94a3b8",      // 實心石板銀灰 (Solid filled)
+              background: "#94a3b8",      // 實心石板銀灰
               border: "#ffffff",
               highlight: { background: "#38bdf8", border: "#ffffff" },
               hover: { background: "#38bdf8", border: "#ffffff" }
             },
             colorHex: "#94a3b8",
-            font: { color: "#cbd5e1", size: 10, face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif", bold: true, strokeWidth: 2, strokeColor: "#000000" },
-            val: 6
+            font: {
+              color: "#cbd5e1",
+              size: 10,
+              face: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif",
+              bold: false,               // 文字不加粗
+              strokeWidth: 0.5,          // 細化文字外框線
+              strokeColor: "#000000"
+            },
+            val: 5
           });
 
           edges.push({
@@ -215,9 +229,9 @@ export function generateKnowledgeGraph(registryInput = null) {
             to: subId,
             source: toolNodeId,
             target: subId,
-            color: { color: "#64748b", highlight: "#38bdf8", opacity: 0.7 },
+            color: { color: "#64748b", highlight: "#38bdf8", opacity: 0.65 },
             colorHex: "#64748b",
-            width: 1.1,
+            width: 1,
             length: 40,
             dashes: true,
             isDashed: true
@@ -645,8 +659,12 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     const options2d = {
       nodes: {
-        font: { face: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif' },
-        borderWidth: 1.5,
+        font: {
+          face: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif',
+          strokeWidth: 0.6,
+          strokeColor: '#000000'
+        },
+        borderWidth: 1.2,
         shadow: false
       },
       edges: {
@@ -796,35 +814,35 @@ export function generateKnowledgeGraph(registryInput = null) {
 
           const sprite = new SpriteText(label);
           sprite.fontFace = '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif';
-          sprite.fontWeight = 'bold';
+          sprite.fontWeight = 'normal'; // 文字不加粗 (Regular)
 
           if (node.group === 'root') {
             sprite.textHeight = 10;
             sprite.backgroundColor = '#0284c7';
             sprite.textColor = '#ffffff';
             sprite.strokeColor = '#ffffff';
-            sprite.strokeWidth = 2;
+            sprite.strokeWidth = 0.5; // 細化外框線
           } else if (node.group === 'category') {
             sprite.textHeight = 8;
             sprite.backgroundColor = bgHex;
             sprite.textColor = txtColor;
             sprite.strokeColor = '#000000';
-            sprite.strokeWidth = 2;
+            sprite.strokeWidth = 0.5; // 細化外框線
           } else if (node.group === 'tool') {
-            sprite.textHeight = 4.8;
+            sprite.textHeight = 4.6;
             sprite.backgroundColor = 'rgba(0, 0, 0, 0.92)';
             sprite.strokeColor = bgHex;
-            sprite.strokeWidth = 1.5;
-            sprite.textColor = '#ffffff';
+            sprite.strokeWidth = 0.6; // 細化外框線
+            sprite.textColor = '#f8fafc';
           } else {
-            sprite.textHeight = 3.4;
+            sprite.textHeight = 3.2;
             sprite.backgroundColor = 'rgba(0, 0, 0, 0.88)';
             sprite.strokeColor = '#666666';
-            sprite.strokeWidth = 1;
+            sprite.strokeWidth = 0.5; // 細化外框線
             sprite.textColor = '#cbd5e1';
           }
 
-          sprite.padding = 3;
+          sprite.padding = 2.5;
           sprite.borderRadius = 3;
           sprite.position.set(0, (node.val || 10) / 3 + 8, 0);
           return sprite;

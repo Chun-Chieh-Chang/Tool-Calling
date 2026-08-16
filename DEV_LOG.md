@@ -1,5 +1,26 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-16 互動式知識圖譜文字外框線細化與字重標準化優化 (Refined Fine Outline & Regular Font Weight)
+
+### 需求
+根據使用者反饋，進一步細化 2D Vis.js 與 3D ForceGraph 知識圖譜中所有節點文字標籤之視覺層次：
+1. **細化文字外框線**：將原本粗重描邊（2px~3px）全面細化至 `0.5px ~ 0.6px` 的微細黑/白外框線（`strokeWidth: 0.5 ~ 0.6`），避免粗重外框壓迫文字本體。
+2. **取消文字加粗 (Regular Font Weight)**：
+   - 2D Vis.js 節點：將 `bold: true` 全面改為 `bold: false`。
+   - 3D ForceGraph SpriteText：將 `sprite.fontWeight = 'bold'` 改為 `'normal'`。
+
+### 處理結果
+- 修改 `scripts/generate-knowledge-graph.js`：
+  - Root 核心節點：`bold: false`, `strokeWidth: 0.5`, 3D SpriteText `fontWeight: 'normal'`, `strokeWidth: 0.5`。
+  - Category 分類節點：`bold: false`, `strokeWidth: 0.5`, 3D SpriteText `fontWeight: 'normal'`, `strokeWidth: 0.5`。
+  - Tool 工具節點：`bold: false`, `strokeWidth: 0.6`, 3D SpriteText `fontWeight: 'normal'`, `strokeWidth: 0.6`。
+  - SubTool 微技能節點：`bold: false`, `strokeWidth: 0.5`, 3D SpriteText `fontWeight: 'normal'`, `strokeWidth: 0.5`。
+  - 2D 全域 options：`font: { strokeWidth: 0.6, strokeColor: '#000000' }`。
+- 重新執行 `npm run build` 同步至 `dist/knowledge-graph.html` 與 `docs/knowledge-graph.html`。
+- 執行 `node --test tests/knowledge-graph.test.js` 與門禁檢查，全部 100% 通過。
+
+---
+
 ## 2026-08-16 專案整體程式碼、檔案與文件優化重構作業 (Project Refactor & Cleanup SOP)
 
 ### 需求與動機
