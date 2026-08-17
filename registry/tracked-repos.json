@@ -547,7 +547,7 @@
     "fullName": "github/awesome-copilot",
     "owner": "github",
     "repo": "awesome-copilot",
-    "category": "AI 代理",
+    "category": "UI/UX設計",
     "addedAt": "2026-07-19T07:55:24.619Z",
     "status": "tracking"
   },
@@ -1494,7 +1494,7 @@
     "fullName": "JimLiu/baoyu-skills",
     "owner": "JimLiu",
     "repo": "baoyu-skills",
-    "category": "AI 框架",
+    "category": "AI 代理",
     "addedAt": "2026-07-19T12:33:32.754Z",
     "status": "tracking"
   },
@@ -2532,7 +2532,7 @@
     "fullName": "Eversmile12/leaked-llm-prompts",
     "owner": "Eversmile12",
     "repo": "leaked-llm-prompts",
-    "category": "AI 框架",
+    "category": "研究",
     "addedAt": "2026-07-27T02:50:36.637Z",
     "status": "tracking"
   },
@@ -12269,12 +12269,9 @@
     "fullName": "rasbt/LLMs-from-scratch",
     "owner": "rasbt",
     "repo": "LLMs-from-scratch",
-    "initialStars": 101266,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
     "category": "學習資源",
     "addedAt": "2026-08-16T10:34:57.861Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "JuliusBrussee/caveman": {
     "fullName": "JuliusBrussee/caveman",
@@ -20154,12 +20151,9 @@
     "fullName": "anomalyco/opencode",
     "owner": "anomalyco",
     "repo": "opencode",
-    "initialStars": 195008,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "AI 代理",
     "addedAt": "2026-08-16T10:34:57.861Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "DigitalPlatDev/FreeDomain": {
     "fullName": "DigitalPlatDev/FreeDomain",
@@ -20169,8 +20163,8 @@
     "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-17T02:59:06.863Z",
+    "status": "in_registry"
   },
   "microsoft/vscode": {
     "fullName": "microsoft/vscode",
@@ -20591,12 +20585,9 @@
     "fullName": "jaywcjlove/awesome-mac",
     "owner": "jaywcjlove",
     "repo": "awesome-mac",
-    "initialStars": 109358,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
     "category": "學習資源",
     "addedAt": "2026-08-16T10:34:57.861Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "axios/axios": {
     "fullName": "axios/axios",
@@ -21394,8 +21385,8 @@
     "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-17T02:59:06.863Z",
+    "status": "in_registry"
   },
   "zerx-lab/FluxDown": {
     "fullName": "zerx-lab/FluxDown",
@@ -22717,11 +22708,247 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2218,
-    "inRegistry": 560,
-    "trackedOnly": 1658,
-    "lastGenerated": "2026-08-16T10:34:57.887Z"
+  "ChenLiu-1996/figures4papers": {
+    "fullName": "ChenLiu-1996/figures4papers",
+    "owner": "ChenLiu-1996",
+    "repo": "figures4papers",
+    "category": "研究",
+    "addedAt": "2026-08-16T12:24:49.134Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-08-16T10:34:57.861Z"
+  "steven-kid/deepseek-harness-desktop": {
+    "fullName": "steven-kid/deepseek-harness-desktop",
+    "owner": "steven-kid",
+    "repo": "deepseek-harness-desktop",
+    "category": "AI 代理",
+    "addedAt": "2026-08-16T12:24:49.134Z",
+    "status": "tracking"
+  },
+  "anywhere-labs/deepseek-harness-desktop": {
+    "fullName": "anywhere-labs/deepseek-harness-desktop",
+    "owner": "anywhere-labs",
+    "repo": "deepseek-harness-desktop",
+    "initialStars": 7751,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "awesome-dsh-plugin/awesome-dsh-plugin": {
+    "fullName": "awesome-dsh-plugin/awesome-dsh-plugin",
+    "owner": "awesome-dsh-plugin",
+    "repo": "awesome-dsh-plugin",
+    "initialStars": 3862,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "LaoFeng-mouse/flyingmouse-format": {
+    "fullName": "LaoFeng-mouse/flyingmouse-format",
+    "owner": "LaoFeng-mouse",
+    "repo": "flyingmouse-format",
+    "initialStars": 3318,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zhu1090093659/dsh-web-ui": {
+    "fullName": "zhu1090093659/dsh-web-ui",
+    "owner": "zhu1090093659",
+    "repo": "dsh-web-ui",
+    "initialStars": 3095,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pathwaycom/arc-task-gen": {
+    "fullName": "pathwaycom/arc-task-gen",
+    "owner": "pathwaycom",
+    "repo": "arc-task-gen",
+    "initialStars": 2672,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xiaobright/dsh-anchored-standard": {
+    "fullName": "xiaobright/dsh-anchored-standard",
+    "owner": "xiaobright",
+    "repo": "dsh-anchored-standard",
+    "initialStars": 2643,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yjh051108/dsh-routing-suite": {
+    "fullName": "yjh051108/dsh-routing-suite",
+    "owner": "yjh051108",
+    "repo": "dsh-routing-suite",
+    "initialStars": 2383,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "cordiverse/paper": {
+    "fullName": "cordiverse/paper",
+    "owner": "cordiverse",
+    "repo": "paper",
+    "initialStars": 1746,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xoreaxeaxeax/skitter-creek-bath-salts": {
+    "fullName": "xoreaxeaxeax/skitter-creek-bath-salts",
+    "owner": "xoreaxeaxeax",
+    "repo": "skitter-creek-bath-salts",
+    "initialStars": 1695,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "omdsh-dev/DSH-better-sidebar": {
+    "fullName": "omdsh-dev/DSH-better-sidebar",
+    "owner": "omdsh-dev",
+    "repo": "DSH-better-sidebar",
+    "initialStars": 1462,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dmmulroy/anti-slop": {
+    "fullName": "dmmulroy/anti-slop",
+    "owner": "dmmulroy",
+    "repo": "anti-slop",
+    "initialStars": 1448,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jd-opensource/JoyAI-Video-Edit": {
+    "fullName": "jd-opensource/JoyAI-Video-Edit",
+    "owner": "jd-opensource",
+    "repo": "JoyAI-Video-Edit",
+    "initialStars": 1424,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ccch1mneyyy/dsh-TUI": {
+    "fullName": "ccch1mneyyy/dsh-TUI",
+    "owner": "ccch1mneyyy",
+    "repo": "dsh-TUI",
+    "initialStars": 1421,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Paritok-official/paritok-4b-v1": {
+    "fullName": "Paritok-official/paritok-4b-v1",
+    "owner": "Paritok-official",
+    "repo": "paritok-4b-v1",
+    "initialStars": 1362,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "gvzdv/claudish-to-english": {
+    "fullName": "gvzdv/claudish-to-english",
+    "owner": "gvzdv",
+    "repo": "claudish-to-english",
+    "initialStars": 1218,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "0xsline/OpenChatCut": {
+    "fullName": "0xsline/OpenChatCut",
+    "owner": "0xsline",
+    "repo": "OpenChatCut",
+    "initialStars": 1154,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Leutenegger/book-to-skill": {
+    "fullName": "Leutenegger/book-to-skill",
+    "owner": "Leutenegger",
+    "repo": "book-to-skill",
+    "initialStars": 1140,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "google-gemma/gemma-translator": {
+    "fullName": "google-gemma/gemma-translator",
+    "owner": "google-gemma",
+    "repo": "gemma-translator",
+    "initialStars": 1137,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "magicrew/doc7": {
+    "fullName": "magicrew/doc7",
+    "owner": "magicrew",
+    "repo": "doc7",
+    "initialStars": 1135,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mermaid-js/mermaid": {
+    "fullName": "mermaid-js/mermaid",
+    "owner": "mermaid-js",
+    "repo": "mermaid",
+    "initialStars": 89788,
+    "discoveredAt": "2026-08-16T10:34:57.861Z",
+    "sourceSnapshotWeek": "2026-W33",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2240,
+    "inRegistry": 565,
+    "trackedOnly": 1675,
+    "lastGenerated": "2026-08-17T02:59:06.893Z"
+  },
+  "lastGenerated": "2026-08-17T02:59:06.863Z"
 }

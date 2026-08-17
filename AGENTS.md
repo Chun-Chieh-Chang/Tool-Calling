@@ -32,9 +32,9 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 597 個工具
-追蹤 repos: 2220 個
-總 star 數: 26,073,372 ⭐
+工具庫規模: 598 個工具
+追蹤 repos: 2242 個
+總 star 數: 26,259,519 ⭐
 平均 star 數: 43,674 ⭐
 最後更新: 2026/8/17
 ```
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2220 repos)
+npm run tracked-repos     # 重建追蹤池 (2242 repos)
 npm test                  # 執行所有測試 (57/57 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -99,7 +99,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (597+)
+node cli.js list                      # 列出所有工具 (598+)
 ```
 
 ### Git 工作流
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (57/57)
-- [ ] 工具庫驗證通過 (597+ 工具)
+- [ ] 工具庫驗證通過 (598+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -243,8 +243,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 597+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2220 追蹤 repos
+│   ├── tools.json      # 598+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2242 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組

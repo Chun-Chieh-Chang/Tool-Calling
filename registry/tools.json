@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-17T13:20:27.425Z",
+  "lastUpdated": "2026-08-17T13:30:03.910Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -30362,7 +30362,7 @@
       "id": "computer",
       "name": "Cloudflare Computer",
       "url": "https://github.com/cloudflare/computer",
-      "description": "Cloudflare's agent runtime with virtual filesystem and sandboxed execution via Durable Objects",
+      "description": "Cloudflare 官方『給你的 Agent 一台電腦』：Durable Object 內的 SQLite 虛擬檔案系統，透過可插拔執行後端（Container FUSE / Isolate Shell / Isolate JS）執行 Agent 工作",
       "category": "AI 框架",
       "language": "typescript",
       "triggers": [
@@ -30372,9 +30372,10 @@
         "virtual filesystem",
         "durable object",
         "agent runtime",
-        "sandbox",
+        "workspace.runtime",
         "computerd",
-        "dofs"
+        "dofs",
+        "sandbox"
       ],
       "install": {
         "method": "npm",
@@ -30390,17 +30391,17 @@
         "worker-isolate"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
-      "status": "active",
-      "useCase": "Enabling AI agents to persistently store and process data in isolated sandboxes on Cloudflare's edge network",
+      "status": "experimental",
+      "useCase": "當需要為 AI Agent 提供具備持久化虛擬檔案系統與多種可插拔執行後端（容器/Shell/JS isolate）的運算工作區時使用",
       "advantages": [
-        "Sandboxed execution with multiple backends (Container FUSE, Isolate Shell, Isolate JS)",
-        "Persistent virtual filesystem with SQLite via Durable Objects",
-        "Edge-native deployment on Cloudflare's global network"
+        "SQLite 權威狀態 + 單一執行入口 workspace.runtime.exec，多後端可並存並延遲連接",
+        "Container 後端以 FUSE mount 投影真實 Linux userland，可執行真實二進位與完整網路",
+        "Cloudflare 官方出品 (8.1k+ stars)，含 MCP 範例與完整設計規格文件"
       ],
       "negativeConstraints": [
-        "High-throughput batch processing requiring massive compute resources",
-        "Applications needing direct database connections or external service integrations",
-        "Real-time collaborative applications requiring low-latency shared state"
+        "PREVIEW ONLY：API 不穩定且設計可能變更，不適合生產環境",
+        "依賴 Cloudflare Workers / Durable Objects 生態，不適用於非 Cloudflare 部署",
+        "非瀏覽器自動化工具，網頁操作請改用 Browser Use / Playwright"
       ],
       "stars": 8253
     },
@@ -37132,89 +37133,74 @@
       "status": "active"
     },
     {
-      "id": "dashi-ppt-skill",
-      "name": "Dashi Ppt Skill",
-      "url": "https://github.com/chuspeeism/dashi-ppt-skill",
-      "description": "AI-agent skill that generates browser-editable presentations from multiple visual themes, exportable to HTML, PDF, and PPTX.",
-      "category": "文件生產力",
-      "language": "javascript",
+      "id": "freedomain",
+      "name": "FreeDomain",
+      "url": "https://github.com/DigitalPlatDev/FreeDomain",
+      "description": "Free domain registration and practical DNS learning resources for everyone.",
+      "category": "學習資源",
+      "language": "markdown",
       "triggers": [
-        "dashi",
-        "ppt-skill",
-        "ai-ppt",
-        "html-presentation",
-        "pptx-export",
-        "presentation-generator",
-        "slides"
-      ],
-      "capabilities": [
-        "presentation-generation",
-        "multi-theme",
-        "html-export",
-        "pdf-export",
-        "pptx-export",
-        "browser-editable"
+        "freedomain",
+        "digitalplat",
+        "dns",
+        "dns-tutorial",
+        "documentation",
+        "domain"
       ],
       "install": {
-        "method": "git-clone",
-        "command": "git clone https://github.com/chuspeeism/dashi-ppt-skill.git",
-        "repoUrl": "https://github.com/chuspeeism/dashi-ppt-skill"
+        "method": "none",
+        "repoUrl": "https://github.com/DigitalPlatDev/FreeDomain"
       },
-      "useCase": "當需要從自然語言描述快速生成多主題、可瀏覽器編輯的專業簡報，並支援 HTML/PDF/PPTX 多格式匯出時使用。",
+      "capabilities": [
+        "digitalplat",
+        "dns",
+        "dns-tutorial",
+        "documentation",
+        "domain",
+        "domain-platform"
+      ],
+      "useCase": "Free domain registration and practical DNS learning resources for everyone. — 上週漲星 +1082 (2026-W33 自動探勘入庫)。",
       "advantages": [
-        "多視覺主題選單，支援 HTML、PDF、PPTX 三種匯出格式",
-        "輸出為瀏覽器可編輯的 HTML，便於後續微調",
-        "適合非設計師快速產出高品質簡報"
+        "GitHub ⭐ 193,487 星",
+        "上週漲星 +1082",
+        "2026-W33 自動探勘入庫"
       ],
       "negativeConstraints": [
-        "不適合需要精細版面控制的專業印刷需求",
-        "匯出 PPTX 為基礎版式，複雜動畫效果有限",
-        "依賴 JavaScript 環境，離線使用需預先下載"
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
       ],
-      "status": "active",
-      "addedAt": "2026-08-17T12:47:57.232Z",
-      "stars": 5191
+      "stars": 193487,
+      "addedAt": "2026-08-17T02:59:06.863Z",
+      "status": "active"
     },
     {
-      "id": "deepseek-harness-desktop-anywhere",
-      "name": "DeepSeek Harness Desktop (Anywhere Labs)",
-      "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-      "description": "為 DeepSeek Harness (DSH) 插件生態打造的現代化桌面端解決方案。萬物皆「插件」，桌面本身也是「插件」。",
-      "category": "AI 代理",
-      "language": "typescript",
+      "id": "photo-abstract-editorial",
+      "name": "photo-abstract-editorial",
+      "url": "https://github.com/ZzzLc0405/photo-abstract-editorial",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
       "triggers": [
-        "deepseek-harness-desktop",
-        "dsh-desktop",
-        "dsh-plugin-desktop",
-        "cordis-plugin-desktop",
-        "deepseek desktop"
-      ],
-      "capabilities": [
-        "dsh-plugin-ecosystem",
-        "desktop-shell",
-        "cordis-integration",
-        "plugin-native-ui"
+        "photo-abstract-editorial"
       ],
       "install": {
-        "method": "git-clone",
-        "command": "git clone https://github.com/anywhere-labs/deepseek-harness-desktop.git",
-        "repoUrl": "https://github.com/anywhere-labs/deepseek-harness-desktop"
+        "method": "none",
+        "repoUrl": "https://github.com/ZzzLc0405/photo-abstract-editorial"
       },
-      "useCase": "當需要以桌面原生體驗運行 DeepSeek Harness 插件生態，或使用 DSH Plugin 架構開發桌面級 AI Agent 應用時使用。",
+      "capabilities": [],
+      "useCase": "photo-abstract-editorial — 上週漲星 +1000 (2026-W33 自動探勘入庫)。",
       "advantages": [
-        "為 DSH 插件生態量身打造的桌面端解決方案",
-        "插件化架構：桌面本身也是插件，極具擴充性",
-        "與 DeepSeek Harness Web 版共享 Cordis 插件系統"
+        "GitHub ⭐ 3,870 星",
+        "上週漲星 +1000",
+        "2026-W33 自動探勘入庫"
       ],
       "negativeConstraints": [
-        "需搭配 DeepSeek Harness 本體使用，非獨立運行環境",
-        "目前為早期版本，插件生態仍在成長中",
-        "僅支援 DSH 兼容的插件格式 (dsh-plugin)"
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
       ],
-      "status": "active",
-      "addedAt": "2026-08-17T12:47:57.234Z",
-      "stars": 11210,
-      "repoUrl": "https://github.com/anywhere-labs/deepseek-harness-desktop"
+      "stars": 3870,
+      "addedAt": "2026-08-17T02:59:06.863Z",
+      "status": "active"
     },
     {
       "id": "zouyuxuan122-deepseek-harness-eac",
@@ -37253,7 +37239,7 @@
         "插件生態仍在成長中，可用 skin 數量有限"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 685
     },
     {
@@ -37295,7 +37281,7 @@
         "企業級權限管控仍在發展中"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 21661
     },
     {
@@ -37337,7 +37323,7 @@
         "UI 客製化能力受限於表格范式"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 64562
     },
     {
@@ -37379,7 +37365,7 @@
         "大型資料庫（GB+）匯入時需特別注意效能"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 11384
     },
     {
@@ -37420,7 +37406,7 @@
         "社群規模較小，插件生態不如 OpenRefine"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 11464
     },
     {
@@ -37461,7 +37447,7 @@
         "複雜自動化場景仍需搭配外部工具"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 5623
     },
     {
@@ -37503,7 +37489,7 @@
         "自訂視覺化需深入 JavaScript/D3.js 技術"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 74287
     },
     {
@@ -37545,7 +37531,7 @@
         "團隊協作與權限管理功能較弱"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 6858
     },
     {
@@ -37587,7 +37573,7 @@
         "不支援 dbt 的部分進階功能（如 materialized views）"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 3245
     },
     {
@@ -37628,8 +37614,52 @@
         "缺乏進階功能如復原日誌分析、遠端連線"
       ],
       "status": "active",
-      "addedAt": "2026-08-17T13:08:53.076Z",
+      "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 24487
+    },
+    {
+      "id": "dashi-ppt-skill",
+      "name": "Dashi Ppt Skill",
+      "url": "https://github.com/chuspeeism/dashi-ppt-skill",
+      "description": "AI-agent skill that generates browser-editable presentations from multiple visual themes, exportable to HTML, PDF, and PPTX.",
+      "category": "文件生產力",
+      "language": "javascript",
+      "triggers": [
+        "dashi",
+        "ppt-skill",
+        "ai-ppt",
+        "html-presentation",
+        "pptx-export",
+        "presentation-generator",
+        "slides"
+      ],
+      "capabilities": [
+        "presentation-generation",
+        "multi-theme",
+        "html-export",
+        "pdf-export",
+        "pptx-export",
+        "browser-editable"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/chuspeeism/dashi-ppt-skill.git",
+        "repoUrl": "https://github.com/chuspeeism/dashi-ppt-skill"
+      },
+      "useCase": "當需要從自然語言描述快速生成多主題、可瀏覽器編輯的專業簡報，並支援 HTML/PDF/PPTX 多格式匯出時使用。",
+      "advantages": [
+        "多視覺主題選單，支援 HTML、PDF、PPTX 三種匯出格式",
+        "輸出為瀏覽器可編輯的 HTML，便於後續微調",
+        "適合非設計師快速產出高品質簡報"
+      ],
+      "negativeConstraints": [
+        "不適合需要精細版面控制的專業印刷需求",
+        "匯出 PPTX 為基礎版式，複雜動畫效果有限",
+        "依賴 JavaScript 環境，離線使用需預先下載"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:30:03.910Z",
+      "stars": 5191
     }
   ]
 }
