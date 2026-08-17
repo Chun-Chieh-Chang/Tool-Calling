@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-16T14:08:00.842Z",
+  "lastUpdated": "2026-08-17T02:59:06.863Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -37130,6 +37130,76 @@
       ],
       "stars": 170,
       "addedAt": "2026-08-16T12:24:49.134Z",
+      "status": "active"
+    },
+    {
+      "id": "freedomain",
+      "name": "FreeDomain",
+      "url": "https://github.com/DigitalPlatDev/FreeDomain",
+      "description": "Free domain registration and practical DNS learning resources for everyone.",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "freedomain",
+        "digitalplat",
+        "dns",
+        "dns-tutorial",
+        "documentation",
+        "domain"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/DigitalPlatDev/FreeDomain"
+      },
+      "capabilities": [
+        "digitalplat",
+        "dns",
+        "dns-tutorial",
+        "documentation",
+        "domain",
+        "domain-platform"
+      ],
+      "useCase": "Free domain registration and practical DNS learning resources for everyone. — 上週漲星 +1082 (2026-W33 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 193,487 星",
+        "上週漲星 +1082",
+        "2026-W33 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 193487,
+      "addedAt": "2026-08-17T02:59:06.863Z",
+      "status": "active"
+    },
+    {
+      "id": "photo-abstract-editorial",
+      "name": "photo-abstract-editorial",
+      "url": "https://github.com/ZzzLc0405/photo-abstract-editorial",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "photo-abstract-editorial"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ZzzLc0405/photo-abstract-editorial"
+      },
+      "capabilities": [],
+      "useCase": "photo-abstract-editorial — 上週漲星 +1000 (2026-W33 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 3,870 星",
+        "上週漲星 +1000",
+        "2026-W33 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3870,
+      "addedAt": "2026-08-17T02:59:06.863Z",
       "status": "active"
     }
   ]
