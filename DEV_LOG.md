@@ -2522,3 +2522,86 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 - node cli.js validate:100/100 分,0 errors,0 warnings
 - node scripts/check-mece.js:通過
 - UTF-8 門禁與 ID 唯一性門禁隨 npm test 自動執行通過
+
+## 2026-08-17 — 批量工具入庫與分類檢討 (Batch Tool Ingestion & Category Review)
+
+### 需求
+批量新增 9 個 GitHub Repo 至工具庫，並檢視與既有工具之重複性。
+
+### 處理結果
+
+**重複分析**：
+| 用戶輸入 URL | 匹配結果 | 處理方式 |
+|---|---|---|
+| op7418/guizang-ppt-skill | 已存在 (Guizang Ppt Skill ★24114→24260) | 更新星數 |
+| zarazhangrui/frontend-slides | 已存在 (Frontend Slides Generator ★27579→27673) | 更新星數 |
+| alchaincyf/huashu-design | 已存在 (Huashu Design ★23186) | 更新星數 + 重新分類 |
+| lewislulu/html-ppt-skill | 已存在 (Html Ppt Skill ★7872→7916) | 更新星數 |
+| chuspeeism/dashi-ppt-skill | **全新工具** | 新增 |
+| img2threejs/img2threejs | 已存在 (Img2threejs ★11846→12028) | 更新星數 |
+| deepseek-ai/deepseek-harness | 已存在 (DeepSeek Harness ★115472→145857) | 更新星數 |
+| anywhere-labs/deepseek-harness-desktop | **全新工具** (11189★) | 新增；舊版 Bruc3van ★33 / 非官方社群包 ★170 保留不覆蓋 |
+| ChenLiu-1996/figures4papers | **不在列表中**（上一輪 v1.5 記錄應已入庫，本次未見） | 待查 |
+
+**分類檢討**：
+- `Huashu Design`：原屬「UI/UX設計」，GitHub topics 含 `presentation`，功能涵蓋 HTML 簡報生成（5 維评审 + 20 設計哲學 + MP4 匯出）。與 PPT Master、Guizang 同屬簡報生成範疇，移入「文件生產力」。
+- `dashi-ppt-skill`：直接歸入「文件生產力」。
+- `DeepSeek Harness Desktop (Anywhere Labs)`：官方 DSH 桌面殼層，歸入「AI 代理」（非 DeepSeek 模型相關，屬 Agent 執行環境）。
+
+**統計更新**：
+- 工具總數：585 → 587
+- 總星數：25,801,749 → 25,849,065
+- 文件生產力：51 → 53（+Huashu Design 移入 +dashi-ppt-skill 新增）
+
+### 驗證結果
+- npm test: 57/57 PASS
+- node cli.js validate: 587/587 100/100 分，0 errors, 0 warnings
+- node scripts/check-mece.js: 通過，無殘留分類
+- Web build: 知識圖譜更新至 587 工具
+
+## 2026-08-17 — 批量工具入庫 v1.7：資料庫/BI/No-Code 專區擴充
+
+### 需求
+批量新增 12 個 GitHub Repo 至工具庫，檢查重複並全盤檢討分類邏輯。
+
+### 處理結果
+
+**重複分析**：
+| 用戶輸入 URL | 匹配結果 | 處理方式 |
+|---|---|---|
+| zouyuxuan122/Deepseek-Harness-EAC | **全新工具** (685★) | 新增 |
+| anywhere-labs/deepseek-harness-desktop | 已存在 (DeepSeek Harness Desktop Anywhere Labs ★11189→11210) | 更新星數 + 修復 repoUrl（原為 undefined） |
+| duckdb/duckdb | 已存在 (DuckDB ★40250→40280) | 更新星數 |
+| teableio/teable | **全新工具** (21661★) | 新增 → 文件生產力 |
+| nocodb/nocodb | **全新工具** (64562★) | 新增 → 開發工具 |
+| simonw/datasette | **全新工具** (11384★) | 新增 → 研究 |
+| gristlabs/grist-core | **全新工具** (11464★) | 新增 → 文件生產力 |
+| baserow/baserow | **全新工具** (5623★) | 新增 → 開發工具 |
+| apache/superset | **全新工具** (74287★) | 新增 → 數據分析 |
+| evidence-dev/evidence | **全新工具** (6858★) | 新增 → 數據分析 |
+| SQLMesh/sqlmesh | **全新工具** (3245★) | 新增 → 開發工具 |
+| sqlitebrowser/sqlitebrowser | **全新工具** (24487★) | 新增 → 資料庫 |
+
+**分類決策**：
+- `Teable` / `Grist`：核心功能為 AI 增強型試算表/關聯式資料應用，歸入「文件生產力」（與 PPT Master、Guizang 同級）。
+- `NocoDB` / `Baserow` / `SQLMesh`：定位為開發者基礎設施（資料庫橋接器、資料轉換框架），歸入「開發工具」。
+- `Superset` / `Evidence`：企業級 BI 與程式碼驅動儀表板，歸入「數據分析」（原有 7 個工具，現擴至 9 個）。
+- `Datasette`：Simon Willison 的開放數據出版工具，定位為研究與數據新聞，歸入「研究」。
+- `DB Browser for SQLite`：SQLite 官方管理 GUI，歸入「資料庫」。
+- `DeepSeek Harness EAC`：DSH 第三方桌面客戶端，歸入「AI 代理」。
+
+### 統計變化
+- 工具總數：587 → 597 (+10)
+- 總星數：25,849,065 → 26,073,372 (+224,307)
+- 文件生產力：53 → 55
+- 開發工具：54 → 57
+- 數據分析：7 → 9
+- 研究：14 → 15
+- 資料庫：3 → 4
+- 同義詞詞彙：351 → 356
+
+### 驗證結果
+- npm test: 57/57 PASS
+- node cli.js validate: 597/597 100/100 分, 0 errors, 0 warnings
+- node scripts/check-mece.js: 通過
+- Web build: 知識圖譜更新至 597 工具，同義詞 356 詞彙

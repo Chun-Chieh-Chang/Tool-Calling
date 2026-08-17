@@ -1,7 +1,7 @@
 {
   "name": "tool-calling",
   "version": "1.0.0",
-  "description": "全自動工具調用效能外掛系統 - 擁有 585+ 頂尖開源 AI 代理技能與工具的檢索庫與儀表板",
+  "description": "全自動工具調用效能外掛系統 - 擁有 597+ 頂尖開源 AI 代理技能與工具的檢索庫與儀表板",
   "main": "cli.js",
   "type": "module",
   "bin": {

@@ -1,6 +1,9 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-16T12:49:12.092Z
+ * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
+ *   node scripts/mine-synonyms.js
+ *
+ * 產生時間：2026-08-17T13:19:57.945Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -2204,6 +2207,36 @@ export const SYNONYM_MAP = {
     "harness desktop",
     "deepseek harness 桌面版",
     "harness 桌面端"
+  ],
+  "deepseek 桌面": [
+    "deepseek-harness-eac",
+    "dsh-eac",
+    "dsh-desktop",
+    "embrace-all-creation"
+  ],
+  "deepseek-harness-eac": [
+    "deepseek 桌面",
+    "dsh-eac",
+    "dsh-desktop",
+    "embrace-all-creation"
+  ],
+  "dsh-eac": [
+    "deepseek 桌面",
+    "deepseek-harness-eac",
+    "dsh-desktop",
+    "embrace-all-creation"
+  ],
+  "dsh-desktop": [
+    "deepseek 桌面",
+    "deepseek-harness-eac",
+    "dsh-eac",
+    "embrace-all-creation"
+  ],
+  "embrace-all-creation": [
+    "deepseek 桌面",
+    "deepseek-harness-eac",
+    "dsh-eac",
+    "dsh-desktop"
   ],
   "翻譯": [
     "translate",
