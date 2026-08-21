@@ -32,24 +32,24 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 591 個工具
-追蹤 repos: 2219 個
-總 star 數: 25,801,749 ⭐
-平均 star 數: 44,106 ⭐
-最後更新: 2026/8/16
+工具庫規模: 598 個工具
+追蹤 repos: 2242 個
+總 star 數: 26,259,519 ⭐
+平均 star 數: 43,674 ⭐
+最後更新: 2026/8/17
 ```
 
 ### Top 5 分類
-- `AI 代理`: 119 個工具
+- `AI 代理`: 121 個工具
 - `AI 框架`: 77 個工具
-- `開發工具`: 54 個工具
-- `文件生產力`: 51 個工具
+- `開發工具`: 57 個工具
+- `文件生產力`: 55 個工具
 - `學習資源`: 46 個工具
 
 ### Top 5 語言
-- `python`: 208 個工具
-- `typescript`: 119 個工具
-- `javascript`: 54 個工具
+- `python`: 226 個工具
+- `typescript`: 123 個工具
+- `javascript`: 57 個工具
 - `other`: 44 個工具
 - `rust`: 24 個工具
 
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2219 repos)
+npm run tracked-repos     # 重建追蹤池 (2242 repos)
 npm test                  # 執行所有測試 (57/57 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -99,14 +99,14 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (591+)
+node cli.js list                      # 列出所有工具 (598+)
 ```
 
 ### Git 工作流
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 11/11 測試通過
+npm test           # 確保 57/57 測試通過
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -122,7 +122,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：11/11 pass, 0 fail
+npm test  # 目標：57/57 pass, 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -132,8 +132,8 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (11/11)
-- [ ] 工具庫驗證通過 (591+ 工具)
+- [ ] 所有測試通過 (57/57)
+- [ ] 工具庫驗證通過 (598+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -212,7 +212,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 591 and add new features
+fix(README): update tool count from 381 to 597 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -243,8 +243,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 591+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2219 追蹤 repos
+│   ├── tools.json      # 598+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2242 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -286,7 +286,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (11 tests)
+### 單元測試 (57 tests)
 ```bash
 npm test
 ```
@@ -306,7 +306,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (11/11 pass)
+1. `npm test` (57/57 pass)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -424,4 +424,4 @@ PDCA 循環：
 
 > **協議版本**：2026.08.10 v1.0 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-08-16T14:42:31.135Z
+> **最後更新**：2026-08-17T13:19:57.559Z

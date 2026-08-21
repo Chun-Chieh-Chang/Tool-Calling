@@ -158,7 +158,7 @@ node cli.js list                      # 列出所有工具 (${totalTools}+)
 \`\`\`bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 11/11 測試通過
+npm test           # 確保 57/57 測試通過
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -174,7 +174,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 \`\`\`bash
 # Phase 1: 單元測試
-npm test  # 目標：11/11 pass, 0 fail
+npm test  # 目標：57/57 pass, 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -184,7 +184,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 \`\`\`
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (11/11)
+- [ ] 所有測試通過 (57/57)
 - [ ] 工具庫驗證通過 (${totalTools}+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
@@ -338,7 +338,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (11 tests)
+### 單元測試 (57 tests)
 \`\`\`bash
 npm test
 \`\`\`
@@ -358,7 +358,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. \`npm test\` (11/11 pass)
+1. \`npm test\` ((57/57 pass))
 2. \`node cli.js validate\` (100% 工具通過)
 3. \`node scripts/check-mece.js\` (無殘留分類)
 

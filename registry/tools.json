@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-16T14:08:00.842Z",
+  "lastUpdated": "2026-08-17T13:30:03.910Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -1231,7 +1231,7 @@
         "Avoid for offline-only environments requiring no internet access.",
         "Not ideal for complex data dashboards or heavy interactive animations."
       ],
-      "stars": 24114
+      "stars": 24260
     },
     {
       "id": "open-slide",
@@ -1308,7 +1308,7 @@
         "Generating video recordings or screen-captured presentations.",
         "Building complex data dashboards requiring real-time database connections."
       ],
-      "stars": 7872
+      "stars": 7916
     },
     {
       "id": "awesome-llm-apps",
@@ -15713,7 +15713,7 @@
         "Avoid for highly complex print layouts requiring precise page breaks",
         "Not intended for video editing or non-web media production"
       ],
-      "stars": 27579
+      "stars": 27673
     },
     {
       "id": "frontend-slides-editable",
@@ -22167,7 +22167,7 @@
       "name": "Huashu Design",
       "url": "https://github.com/alchaincyf/huashu-design",
       "description": "HTML-native design skill for generating high-fidelity prototypes, slides, and animations.",
-      "category": "UI/UX設計",
+      "category": "文件生產力",
       "language": "html",
       "triggers": [
         "huashu-design",
@@ -22194,7 +22194,7 @@
         "Inappropriate for generating native mobile app binaries (APK/IPA).",
         "Does not replace dedicated graphic design software like Figma for vector asset creation."
       ],
-      "stars": 23101
+      "stars": 23186
     },
     {
       "id": "archify",
@@ -24540,7 +24540,7 @@
         "Avoid for complex organic shapes requiring high-poly detail",
         "Not ideal when non-Three.js export formats (FBX, GLB) are required"
       ],
-      "stars": 11846
+      "stars": 12028
     },
     {
       "id": "wayfinder",
@@ -25159,7 +25159,7 @@
       ],
       "addedAt": "2026-07-25T03:00:00.000Z",
       "status": "active",
-      "stars": 40250
+      "stars": 40280
     },
     {
       "id": "polars",
@@ -36282,7 +36282,7 @@
         "目前為 developer preview，API 可能隨時破壞性變更，不適合生產環境依賴",
         "需要 Node.js 環境，不適用於非 JS 生態的部署場景"
       ],
-      "stars": 115472
+      "stars": 145857
     },
     {
       "id": "codewiki",
@@ -37131,6 +37131,535 @@
       "stars": 170,
       "addedAt": "2026-08-16T12:24:49.134Z",
       "status": "active"
+    },
+    {
+      "id": "freedomain",
+      "name": "FreeDomain",
+      "url": "https://github.com/DigitalPlatDev/FreeDomain",
+      "description": "Free domain registration and practical DNS learning resources for everyone.",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "freedomain",
+        "digitalplat",
+        "dns",
+        "dns-tutorial",
+        "documentation",
+        "domain"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/DigitalPlatDev/FreeDomain"
+      },
+      "capabilities": [
+        "digitalplat",
+        "dns",
+        "dns-tutorial",
+        "documentation",
+        "domain",
+        "domain-platform"
+      ],
+      "useCase": "Free domain registration and practical DNS learning resources for everyone. — 上週漲星 +1082 (2026-W33 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 193,487 星",
+        "上週漲星 +1082",
+        "2026-W33 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 193487,
+      "addedAt": "2026-08-17T02:59:06.863Z",
+      "status": "active"
+    },
+    {
+      "id": "photo-abstract-editorial",
+      "name": "photo-abstract-editorial",
+      "url": "https://github.com/ZzzLc0405/photo-abstract-editorial",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "photo-abstract-editorial"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ZzzLc0405/photo-abstract-editorial"
+      },
+      "capabilities": [],
+      "useCase": "photo-abstract-editorial — 上週漲星 +1000 (2026-W33 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 3,870 星",
+        "上週漲星 +1000",
+        "2026-W33 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3870,
+      "addedAt": "2026-08-17T02:59:06.863Z",
+      "status": "active"
+    },
+    {
+      "id": "zouyuxuan122-deepseek-harness-eac",
+      "name": "DeepSeek Harness EAC",
+      "url": "https://github.com/zouyuxuan122/Deepseek-Harness-EAC",
+      "description": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮肤。EAC: Embracing All Creation 揽尽万象。",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "deepseek-harness-eac",
+        "dsh-eac",
+        "dsh-desktop",
+        "deepseek 桌面",
+        "embrace-all-creation"
+      ],
+      "capabilities": [
+        "dsh-desktop-client",
+        "electron-app",
+        "multi-skin-ui",
+        "one-click-launch"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/zouyuxuan122/Deepseek-Harness-EAC.git",
+        "repoUrl": "https://github.com/zouyuxuan122/Deepseek-Harness-EAC"
+      },
+      "useCase": "當需要在 Windows/Linux 桌面環境中以一鍵啟動方式運行 DeepSeek Harness，並偏好內建多套 UI 皮肤的桌面體驗時使用。",
+      "advantages": [
+        "內建 Node.js + dsh CLI，無需額外安裝依賴即可一鍵啟動",
+        "提供 10 套預設 UI 皮肤，支援視覺客製化",
+        "與 DeepSeek Harness 插件生態（dsh-plugin）完全相容"
+      ],
+      "negativeConstraints": [
+        "功能相較官方 Anywhere Labs 版本較簡化，缺少部分進階設定",
+        "目前僅支援 Windows/Linux，不支援 macOS",
+        "插件生態仍在成長中，可用 skin 數量有限"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 685
+    },
+    {
+      "id": "teableio-teable",
+      "name": "Teable",
+      "url": "https://github.com/teableio/teable",
+      "description": "✨ AI Spreadsheet for Business — 後端基於 PostgreSQL，前端結合 NoSQL 效能的新一代 AI 表格平台，Airtable 開源替代品。",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "teable",
+        "ai-spreadsheet",
+        "airtable-alternative",
+        "ai-table",
+        "business-spreadsheet",
+        "postgres-spreadsheet"
+      ],
+      "capabilities": [
+        "ai-spreadsheet",
+        "no-code-database",
+        "postgres-backend",
+        "airtable-alternative",
+        "internal-tool-builder"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -p 3000:3000 teableio/teable",
+        "repoUrl": "https://github.com/teableio/teable"
+      },
+      "useCase": "當需要一款 AI 增強型雲端表格，用於構建內部工具、資料管理或替代 Airtable 且希望後端使用 PostgreSQL 時使用。",
+      "advantages": [
+        "基於 PostgreSQL 提供企業級資料完整性與 ACID 保障",
+        "結合 NoSQL 效能實現快速查詢與欄位互動",
+        "原生 AI Agent 整合，支援智慧欄位建議與自動分類"
+      ],
+      "negativeConstraints": [
+        "部署需 Docker 環境，不支援純靜態 Hosting",
+        "大量資料量（百萬行以上）下效能未經極端壓力測試",
+        "企業級權限管控仍在發展中"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 21661
+    },
+    {
+      "id": "nocodb-nocodb",
+      "name": "NocoDB",
+      "url": "https://github.com/nocodb/nocodb",
+      "description": "🔥🔥🔥 A Free & Self-hostable Airtable Alternative — 將任何 MySQL/PostgreSQL/SQL Server 資料庫瞬間轉為智慧表格介面，支援 REST API 與 Swagger 自動生成。",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "nocodb",
+        "airtable-alternative",
+        "no-code-database",
+        "database-to-spreadsheet",
+        "rest-api-generator",
+        "swagger-api"
+      ],
+      "capabilities": [
+        "no-code-platform",
+        "api-auto-generation",
+        "spreadsheet-ui",
+        "multi-dialect-support",
+        "self-hosted"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -d -p 8080:8080 nocodb/nocodb",
+        "repoUrl": "https://github.com/nocodb/nocodb"
+      },
+      "useCase": "當需要快速將既有資料庫轉換為可編輯的表格介面，同時自動生成 REST API 供前端或第三方應用消費時使用。",
+      "advantages": [
+        "支援 MySQL、PostgreSQL、SQL Server、SQLite 等多種後端",
+        "自動產生 Swagger 相容的 RESTful API",
+        "自架免費，無使用者數量限制，符合 GDPR/SOC2"
+      ],
+      "negativeConstraints": [
+        "不適合需要複雜報表視覺化的分析型場景",
+        "大量並發寫入時仍不如原生資料庫效能",
+        "UI 客製化能力受限於表格范式"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 64562
+    },
+    {
+      "id": "simonw-datasette",
+      "name": "Datasette",
+      "url": "https://github.com/simonw/datasette",
+      "description": "An open source multi-tool for exploring and publishing data — 單鍵部署 SQLite 資料集的 API 瀏覽器，適合數據新聞、研究出版與開放數據專案。",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "datasette",
+        "sqlite-browser",
+        "data-publishing",
+        "open-data",
+        "data-exploration",
+        "simonwillison"
+      ],
+      "capabilities": [
+        "sqlite-exploration",
+        "automatic-api",
+        "data-publishing",
+        "csv-json-export",
+        "plugin-system"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install datasette && datasette mydata.db",
+        "repoUrl": "https://github.com/simonw/datasette"
+      },
+      "useCase": "當需要快速將 SQLite 檔案部署為可探索的資料集網頁，對外發布 CSV/JSON API 或建立開放數據專案時使用。",
+      "advantages": [
+        "一行命令即可從 SQLite 檔案啟動完整網頁資料集",
+        "內建 FACET、SEARCH、JSON/CSV 匯出等強大探索功能",
+        "豐富的 plugin 系統與 Simon Willison 長期維護"
+      ],
+      "negativeConstraints": [
+        "主要針對 SQLite 設計，不直接支援 PostgreSQL/MySQL 線上庫",
+        "不適合高並發 Web 流量場景",
+        "大型資料庫（GB+）匯入時需特別注意效能"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 11384
+    },
+    {
+      "id": "gristlabs-grist-core",
+      "name": "Grist",
+      "url": "https://github.com/gristlabs/grist-core",
+      "description": "Grist is the evolution of spreadsheets — 結合資料庫關聯性與試算表直覺介面的下一代資料平台，支援 Python 公式引擎與自動關聯。",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "grist",
+        "spreadsheet-evolution",
+        "relational-spreadsheet",
+        "python-formula",
+        "data-platform"
+      ],
+      "capabilities": [
+        "relational-spreadsheet",
+        "python-formulas",
+        "auto-relationships",
+        "data-app-builder",
+        "self-hosted"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -p 8484:8484 gristlabs/grist-docker",
+        "repoUrl": "https://github.com/gristlabs/grist-core"
+      },
+      "useCase": "當需要超越傳統試算表的關聯式資料應用，在保持試算表直覺介面的同時享受資料庫的關聯性與 Python 公式支援時使用。",
+      "advantages": [
+        "試算表介面 + 資料庫關聯性的獨特結合",
+        "Python 公式引擎支援，可處理複雜資料轉換",
+        "內建協作功能與 API，適合團隊資料管理"
+      ],
+      "negativeConstraints": [
+        "學習曲線高於傳統 Excel/Google Sheets",
+        "大型電子表格效能有待改善",
+        "社群規模較小，插件生態不如 OpenRefine"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 11464
+    },
+    {
+      "id": "baserow-baserow",
+      "name": "Baserow",
+      "url": "https://github.com/baserow/baserow",
+      "description": "Build databases, automations, apps & agents with AI — no code — Open source Airtable alternative with GDPR/HIPAA/SOC2 compliant self-hosted option.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "baserow",
+        "airtable-alternative",
+        "no-code-database",
+        "ai-agent-builder",
+        "gdpr-compliant"
+      ],
+      "capabilities": [
+        "no-code-platform",
+        "ai-agent-builder",
+        "automations",
+        "self-hosted",
+        "gdpr-compliant"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -d -p 80:80 baserow/baserow",
+        "repoUrl": "https://github.com/baserow/baserow"
+      },
+      "useCase": "當需要在合規要求（GDPR/HIPAA/SOC2）的環境下快速構建無碼資料庫、自動化流程與 AI Agent 應用時使用。",
+      "advantages": [
+        "全功能免費開源，支援自我託管與雲端版",
+        "內建 AI Agent 構建器，可直接在表單中觸發 AI 操作",
+        "GDPR/HIPAA/SOC2 合規認證，適合企業部署"
+      ],
+      "negativeConstraints": [
+        "免費版功能相對於 Airtable Plus 仍有差距",
+        "自我託管需自行維護基礎設施",
+        "複雜自動化場景仍需搭配外部工具"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 5623
+    },
+    {
+      "id": "apache-superset",
+      "name": "Apache Superset",
+      "url": "https://github.com/apache/superset",
+      "description": "Apache Superset is a Data Visualization and Data Exploration Platform — 企業級 BI 平台，支援多資料來源、自助式分析和互動式儀表板，CNCF 孵化項目。",
+      "category": "數據分析",
+      "language": "python",
+      "triggers": [
+        "superset",
+        "apache-superset",
+        "bi-dashboard",
+        "data-visualization",
+        "sql-editor",
+        "analytics-platform"
+      ],
+      "capabilities": [
+        "enterprise-bi",
+        "multi-datasource",
+        "sql-editor",
+        "interactive-dashboards",
+        "self-service-analytics"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -d -p 8088:8088 apache/superset",
+        "repoUrl": "https://github.com/apache/superset"
+      },
+      "useCase": "當需要企業級 BI 平台支援自助式資料探索、建立互動式儀表板，並對接多種資料來源（SQL、Spark、Presto 等）時使用。",
+      "advantages": [
+        "Apache 基金會專案，企業級穩定性與社群支援",
+        "支援 30+ 種資料來源後端",
+        "靈活的 SQL 編輯器與視覺化元件庫"
+      ],
+      "negativeConstraints": [
+        "部署與維運複雜度較高，需專業 DBA 知識",
+        "大量資料即時渲染效能受限於瀏覽器記憶體",
+        "自訂視覺化需深入 JavaScript/D3.js 技術"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 74287
+    },
+    {
+      "id": "evidence-dev-evidence",
+      "name": "Evidence",
+      "url": "https://github.com/evidence-dev/evidence",
+      "description": "Business intelligence as code: build fast, interactive data visualizations in SQL and markdown — 以程式碼驅動 BI，結合 DuckDB 直接在 Markdown 中查詢與視覺化。",
+      "category": "數據分析",
+      "language": "javascript",
+      "triggers": [
+        "evidence",
+        "bi-as-code",
+        "sql-visualization",
+        "duckdb-report",
+        "data-storytelling",
+        "markdown-dashboard"
+      ],
+      "capabilities": [
+        "sql-to-viz",
+        "duckdb-integration",
+        "markdown-based",
+        "self-hosted-bi",
+        "wasm-rendering"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm init evidence && npm run dev",
+        "repoUrl": "https://github.com/evidence-dev/evidence"
+      },
+      "useCase": "當開發者希望以 Markdown + SQL 程式碼方式快速建立互動式資料儀表板，不需要拖拽式 BI 工具的複雜度時使用。",
+      "advantages": [
+        "SQL + Markdown 即可構建完整儀表板",
+        "內建 DuckDB 支援，零配置即可完成資料分析",
+        "WASM 渲染帶來極快的頁面加載速度"
+      ],
+      "negativeConstraints": [
+        "不適合非技術用戶（需要 SQL 能力）",
+        "視覺化選擇相對有限，不如 Tableau/Superset",
+        "團隊協作與權限管理功能較弱"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 6858
+    },
+    {
+      "id": "sqlmesh-sqlmesh",
+      "name": "SQLMesh",
+      "url": "https://github.com/SQLMesh/sqlmesh",
+      "description": "Scalable and efficient data transformation framework — dbt 的後向相容替代品，支援 Plan/Apply 兩階段執行、時間旅行與大規模數據建模。",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "sqlmesh",
+        "dbt-alternative",
+        "data-transformation",
+        "sql-orchestration",
+        "time-travel",
+        "plan-apply"
+      ],
+      "capabilities": [
+        "plan-apply-execution",
+        "time-travel",
+        "schema-evolution",
+        "dbt-compatible",
+        "ci-cd-integration"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install sqlmesh",
+        "repoUrl": "https://github.com/SQLMesh/sqlmesh"
+      },
+      "useCase": "當需要比 dbt 更具擴充性與安全性的資料轉換框架，特別是涉及大規模資料建模、CI/CD 整合或時間旅行需求時使用。",
+      "advantages": [
+        "Plan/Apply 兩階段模式避免意外覆蓋生產資料",
+        "內建時間旅行，可回溯至任意歷史狀態",
+        "完全相容 dbt SQL 語法，遷移成本低"
+      ],
+      "negativeConstraints": [
+        "生態系相較 dbt 仍較小，範例與插件有限",
+        "學習曲線略陡，需理解 Plan/Apply 概念",
+        "不支援 dbt 的部分進階功能（如 materialized views）"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 3245
+    },
+    {
+      "id": "sqlitebrowser-sqlitebrowser",
+      "name": "DB Browser for SQLite",
+      "url": "https://github.com/sqlitebrowser/sqlitebrowser",
+      "description": "Official home of the DB Browser for SQLite (DB4S) project — 跨平台 SQLite 圖形化管理工具，支援 SQL 編輯、視覺化建表、匯入匯出與資料瀏覽。",
+      "category": "資料庫",
+      "language": "cpp",
+      "triggers": [
+        "sqlite-browser",
+        "db4s",
+        "sqlite-gui",
+        "database-browser",
+        "sqlite-manager"
+      ],
+      "capabilities": [
+        "sqlite-management",
+        "sql-editor",
+        "visual-schema-design",
+        "data-import-export",
+        "cross-platform"
+      ],
+      "install": {
+        "method": "download",
+        "command": "https://sqlitebrowser.org/dl/",
+        "repoUrl": "https://github.com/sqlitebrowser/sqlitebrowser"
+      },
+      "useCase": "當需要一款輕量級、跨平台的 SQLite 資料庫圖形化管理工具，用於設計資料表結構、執行 SQL 查詢或匯入匯出資料時使用。",
+      "advantages": [
+        "官方維護、完全免費且無廣告",
+        "跨平台（Windows/macOS/Linux），無需安裝運行時",
+        "直觀的視覺化表設計器與 SQL 編輯器"
+      ],
+      "negativeConstraints": [
+        "僅支援 SQLite 格式，不支援其他 RDBMS",
+        "大型資料庫（>1GB）操作效能較差",
+        "缺乏進階功能如復原日誌分析、遠端連線"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:28:20.209Z",
+      "stars": 24487
+    },
+    {
+      "id": "dashi-ppt-skill",
+      "name": "Dashi Ppt Skill",
+      "url": "https://github.com/chuspeeism/dashi-ppt-skill",
+      "description": "AI-agent skill that generates browser-editable presentations from multiple visual themes, exportable to HTML, PDF, and PPTX.",
+      "category": "文件生產力",
+      "language": "javascript",
+      "triggers": [
+        "dashi",
+        "ppt-skill",
+        "ai-ppt",
+        "html-presentation",
+        "pptx-export",
+        "presentation-generator",
+        "slides"
+      ],
+      "capabilities": [
+        "presentation-generation",
+        "multi-theme",
+        "html-export",
+        "pdf-export",
+        "pptx-export",
+        "browser-editable"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/chuspeeism/dashi-ppt-skill.git",
+        "repoUrl": "https://github.com/chuspeeism/dashi-ppt-skill"
+      },
+      "useCase": "當需要從自然語言描述快速生成多主題、可瀏覽器編輯的專業簡報，並支援 HTML/PDF/PPTX 多格式匯出時使用。",
+      "advantages": [
+        "多視覺主題選單，支援 HTML、PDF、PPTX 三種匯出格式",
+        "輸出為瀏覽器可編輯的 HTML，便於後續微調",
+        "適合非設計師快速產出高品質簡報"
+      ],
+      "negativeConstraints": [
+        "不適合需要精細版面控制的專業印刷需求",
+        "匯出 PPTX 為基礎版式，複雜動畫效果有限",
+        "依賴 JavaScript 環境，離線使用需預先下載"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-17T13:30:03.910Z",
+      "stars": 5191
     }
   ]
 }
