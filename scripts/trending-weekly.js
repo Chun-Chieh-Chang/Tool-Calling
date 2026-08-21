@@ -368,7 +368,6 @@ export async function discoverTrendingTools() {
 
   let addedCount = 0;
   const addedToolUrls = new Set();
-  const addedTools = [];
 
   for (const repo of lastWeekTop20) {
     const repoUrl = repo.html_url;
@@ -409,7 +408,6 @@ export async function discoverTrendingTools() {
     existingUrls.add(repoUrl.toLowerCase());
     addedCount++;
     addedToolUrls.add(repoUrl);
-    addedTools.push({ ...newTool, delta: repo.delta });
 
     if (trackedData[repo.fullName]) {
       trackedData[repo.fullName].addedAt = now.toISOString();

@@ -1,6 +1,6 @@
-import { search, listAll, listByCategory, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache, getRegistryCacheFingerprint } from './core/search-engine.js';
+import { search, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache, getRegistryCacheFingerprint } from './core/search-engine.js';
 import { persistCache } from './persist-cache.js';
-import { behaviorTracker, installAutoTracking } from './behavior-tracker.js';
+import { behaviorTracker } from './behavior-tracker.js';
 
 let registryTools = [];
 let categoryChartInstance = null;
@@ -79,6 +79,9 @@ async function init() {
 
     // 綁定每週漲星榜即時刷新按鈕
     setupRefreshTrendingButton();
+
+    // 綁定「加入工具庫」按鈕事件委派
+    setupAddToRegistryButtons();
 
   } catch (err) {
     console.error(err);
@@ -407,14 +410,13 @@ function renderLeaderboardRows(tbody, items, isWip = false) {
 
     // 正式模式：標準藍色 delta-badge；WIP 模式：琥珀色 delta-badge-wip
     const deltaBadgeClass = isWip ? 'delta-badge-wip' : 'delta-badge';
-    // 狀態 badge 樣式
-    let statusClass = 'in-registry';
-    let statusText = item.statusText || '--';
+    // 狀態 badge / 按鈕
+    let statusHtml;
     if (!isWip) {
-      statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
+      const statusClass = item.isNewlyAdded ? 'newly-added' : 'in-registry';
+      statusHtml = `<span class="status-badge ${statusClass}">${escapeHtml(item.statusText || '--')}</span>`;
     } else {
-      statusClass = 'preview';
-      statusText = '⏳ 預覽中';
+      statusHtml = `<button class="add-to-registry-btn" data-url="${safeUrl(item.url)}" data-name="${escapeHtml(item.name)}">＋ 加入工具庫</button>`;
     }
 
     tr.innerHTML = `
@@ -430,7 +432,7 @@ function renderLeaderboardRows(tbody, items, isWip = false) {
       </td>
       <td><span class="${deltaBadgeClass}">🔥 ${deltaStr}</span></td>
       <td><span class="category-tag">${escapeHtml(item.category)}</span></td>
-      <td style="text-align: center;"><span class="status-badge ${statusClass}">${escapeHtml(statusText)}</span></td>
+      <td style="text-align: center;">${statusHtml}</td>
     `;
     tbody.appendChild(tr);
   });
@@ -566,6 +568,54 @@ function setupRefreshTrendingButton() {
         refreshTrendingBtn.classList.remove('loading');
         refreshTrendingBtn.disabled = false;
       }, 3000);
+    }
+  });
+}
+
+/**
+ * 綁定「加入工具庫」按鈕（事件委派於 leaderboardBody）
+ */
+function setupAddToRegistryButtons() {
+  const target = currentWeekLeaderboardBody || leaderboardBody;
+  if (!target) return;
+  target.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.add-to-registry-btn');
+    if (!btn) return;
+
+    const toolUrl = btn.dataset.url;
+    const toolName = btn.dataset.name;
+    if (!toolUrl) return;
+
+    const confirmed = window.confirm(`確認將「${toolName}」加入工具庫？\n\n${toolUrl}`);
+    if (!confirmed) return;
+
+    btn.disabled = true;
+    btn.textContent = '⏳ 加入中...';
+
+    try {
+      const res = await fetch('/api/tools/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: toolUrl })
+      });
+      const data = await res.json();
+
+      if (data.status === 'exists') {
+        btn.textContent = '✅ 已存在';
+        btn.classList.add('added');
+      } else if (data.status === 'added') {
+        btn.textContent = '✅ 已加入';
+        btn.classList.add('added');
+      } else {
+        btn.textContent = '❌ 失敗';
+        btn.classList.add('failed');
+        setTimeout(() => { btn.textContent = '＋ 加入工具庫'; btn.disabled = false; btn.classList.remove('failed'); }, 3000);
+      }
+    } catch (err) {
+      console.warn('Add tool failed:', err);
+      btn.textContent = '❌ 網路錯誤';
+      btn.classList.add('failed');
+      setTimeout(() => { btn.textContent = '＋ 加入工具庫'; btn.disabled = false; btn.classList.remove('failed'); }, 3000);
     }
   });
 }

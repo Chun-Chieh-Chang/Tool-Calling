@@ -128,6 +128,13 @@ const server = http.createServer(async (req, res) => {
     const rawUrl = req.url.split('?')[0];
     let decodedUrl = decodeURIComponent(rawUrl);
 
+    // ─── POST 請求 body 讀取 ────────────────────────────────────────────
+    if (req.method === 'POST') {
+      let body = '';
+      for await (const chunk of req) body += chunk;
+      req._body = body;
+    }
+
     // ─── API 路由處理 ──────────────────────────────────────────────────
     if (decodedUrl === '/api/trending/status') {
       res.writeHead(200, {
@@ -160,6 +167,70 @@ const server = http.createServer(async (req, res) => {
         'Access-Control-Allow-Origin': '*'
       });
       res.end(JSON.stringify({ status: 'started', message: '已在背景啟動即時探勘作業' }));
+      return;
+    }
+
+    // ─── 新增工具 API ──────────────────────────────────────────────────
+    if (decodedUrl === '/api/tools/add' && req.method === 'POST') {
+      const { url: githubUrl } = JSON.parse(req._body || '{}');
+      const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|blob)\/([^/]+)\/(.+))?\/?$/;
+      const m = githubUrl?.match(githubRegex);
+      if (!m) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ error: '無效的 GitHub URL' }));
+        return;
+      }
+
+      const [, owner, repo, , subpath] = m;
+      try {
+        const { loadRegistry, saveRegistry, generateId } = await import('../core/registry.js');
+        const registry = loadRegistry();
+
+        if (registry.tools.some(t => t.url === githubUrl)) {
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+          res.end(JSON.stringify({ status: 'exists', message: '工具已存在於工具庫' }));
+          return;
+        }
+
+        const { scan } = await import('../scripts/scan-tool.js');
+        const newTool = await scan(githubUrl, { silent: true });
+
+        let id = newTool.id;
+        if (registry.tools.some(t => t.id === id)) id = generateId(`${owner}-${subpath ? subpath.split('/').pop() : repo}`);
+        if (registry.tools.some(t => t.id === id)) id = `${id}-${owner}`;
+        newTool.id = id;
+
+        registry.tools.push(newTool);
+        saveRegistry(registry);
+
+        // 更新 star snapshot
+        try {
+          const { loadSnapshot, saveSnapshot, parseOwnerRepo } = await import('../core/snapshot.js');
+          const snap = loadSnapshot();
+          const parsed = parseOwnerRepo(githubUrl);
+          if (parsed) {
+            const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}`;
+            const res2 = await fetch(apiUrl, { headers: { 'User-Agent': 'Tool-Calling-Add-Agent' }, signal: AbortSignal.timeout(5000) });
+            if (res2.ok) {
+              const data = await res2.json();
+              if (typeof data.stargazers_count === 'number') {
+                snap[`${parsed.owner}/${parsed.repo}`] = data.stargazers_count;
+                newTool.stars = data.stargazers_count;
+                saveSnapshot(snap);
+              }
+            }
+          }
+        } catch { /* snapshot 非必要 */ }
+
+        // 同步到 dist
+        try { syncRegistryToDist(); } catch {}
+
+        res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ status: 'added', tool: { id: newTool.id, name: newTool.name, category: newTool.category, stars: newTool.stars || 0 } }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ error: `新增失敗: ${err.message}` }));
+      }
       return;
     }
 

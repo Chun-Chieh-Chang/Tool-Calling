@@ -150,7 +150,7 @@ export function cacheSearchResults(query, category, language, results, registryV
  * @param {string} query - 查詢字串
  * @returns {object[]} 匹配結果（含分數）
  */
-export function exactMatch(tools, query) {
+function exactMatch(tools, query) {
   const q = normalize(query);
   return tools
     .filter(tool => {
@@ -174,7 +174,7 @@ export function exactMatch(tools, query) {
  * @param {string} query - 查詢字串
  * @returns {object[]} 匹配結果（含分數，按分數降序）
  */
-export function keywordMatch(tools, query) {
+function keywordMatch(tools, query) {
   const queryTokens = tokenize(query);
   if (queryTokens.length === 0) return [];
   const normQuery = normalize(query); // 提到迴圈外，避免對每個 tool 的每個 trigger 重複正規化同一個查詢字串
@@ -304,7 +304,7 @@ export function keywordMatch(tools, query) {
     if (tool.negativeConstraints) {
       for (const neg of tool.negativeConstraints) {
         const negNorm = normalize(neg);
-        if (negNorm.length >= 2 && normalize(query).includes(negNorm)) {
+        if (negNorm.length >= 2 && normQuery.includes(negNorm)) {
           isNegativeMatch = true;
           break;
         }
@@ -616,7 +616,7 @@ export function warmSearchIndex(tools) {
  * @param {number} threshold - 最低相似度閾值（預設 0.03）
  * @returns {object[]} 匹配結果
  */
-export function semanticSearch(tools, query, threshold = 0.03) {
+function semanticSearch(tools, query, threshold = 0.03) {
   // Step 1: 查詢同義詞擴展
   const rawQueryTokens = tokenize(query);
   const expandedQueryTokens = expandSynonyms(rawQueryTokens);
@@ -686,6 +686,26 @@ export function semanticSearch(tools, query, threshold = 0.03) {
  * @param {string} [options.language] - 限定語言
  * @returns {object[]} 搜尋結果
  */
+
+/** 套用 Telemetry 動態權重（成功/失敗軌跡調整 score） */
+function applyTelemetryWeights(results, telemetryStats) {
+  if (!telemetryStats) return;
+  for (const result of results) {
+    const stats = telemetryStats[result.tool.id];
+    if (stats && stats.total >= 2) {
+      if (stats.successRate <= 0.3) {
+        result.score = result.score * 0.1;
+        if (!result.matchedKeywords) result.matchedKeywords = [];
+        result.matchedKeywords.push('⚠️ 軌跡警告: 成功率極低');
+      } else if (stats.successRate >= 0.8) {
+        result.score = Math.min(result.score * 1.2, 0.99);
+        if (!result.matchedKeywords) result.matchedKeywords = [];
+        result.matchedKeywords.push('🌟 軌跡推薦: 高成功率');
+      }
+    }
+  }
+}
+
 export function search(registryTools, query, options = {}) {
   const { topK = 5, category, language } = options;
   const registryVersion = options.registryVersion || getRegistryCacheFingerprint(registryTools);
@@ -725,24 +745,8 @@ export function search(registryTools, query, options = {}) {
   const l1Results = exactMatch(tools, targetQuery);
   if (l1Results.length > 0) {
     let finalL1 = l1Results.slice(0, topK);
-    const { telemetryStats } = options;
-    if (telemetryStats) {
-      for (const result of finalL1) {
-        const stats = telemetryStats[result.tool.id];
-        if (stats && stats.total >= 2) {
-          if (stats.successRate <= 0.3) {
-            result.score = result.score * 0.1;
-            if (!result.matchedKeywords) result.matchedKeywords = [];
-            result.matchedKeywords.push('⚠️ 軌跡警告: 成功率極低');
-          } else if (stats.successRate >= 0.8) {
-            result.score = Math.min(result.score * 1.2, 0.99);
-            if (!result.matchedKeywords) result.matchedKeywords = [];
-            result.matchedKeywords.push('🌟 軌跡推薦: 高成功率');
-          }
-        }
-      }
-      finalL1.sort((a, b) => b.score - a.score);
-    }
+    applyTelemetryWeights(finalL1, options.telemetryStats);
+    if (options.telemetryStats) finalL1.sort((a, b) => b.score - a.score);
     
     cacheSearchResults(query, category, language, finalL1, registryVersion);
     return finalL1;
@@ -772,23 +776,7 @@ export function search(registryTools, query, options = {}) {
   }
 
   // 套用 Telemetry 動態權重
-  const { telemetryStats } = options;
-  if (telemetryStats) {
-    for (const result of merged) {
-      const stats = telemetryStats[result.tool.id];
-      if (stats && stats.total >= 2) { // 至少累積 2 次才具有統計意義
-        if (stats.successRate <= 0.3) {
-          result.score = result.score * 0.1; // 重罰
-          if (!result.matchedKeywords) result.matchedKeywords = [];
-          result.matchedKeywords.push('⚠️ 軌跡警告: 成功率極低');
-        } else if (stats.successRate >= 0.8) {
-          result.score = Math.min(result.score * 1.2, 0.99); // 獎勵
-          if (!result.matchedKeywords) result.matchedKeywords = [];
-          result.matchedKeywords.push('🌟 軌跡推薦: 高成功率');
-        }
-      }
-    }
-  }
+  applyTelemetryWeights(merged, options.telemetryStats);
 
   merged.sort((a, b) => b.score - a.score);
   

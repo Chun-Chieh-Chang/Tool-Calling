@@ -1,4 +1,4 @@
-# AGENTS.md — Tool-Calling 全域行為協議
+﻿# AGENTS.md — Tool-Calling 全域行為協議
 
 > **身份**：AI 開發協作代理 (AgnesCode × Antigravity IDE 統一協議)
 > **版本**：2026.08.10 v1.0
@@ -32,7 +32,7 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 585 個工具
+工具庫規模: 591 個工具
 追蹤 repos: 2219 個
 總 star 數: 25,801,749 ⭐
 平均 star 數: 44,106 ⭐
@@ -99,7 +99,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (585+)
+node cli.js list                      # 列出所有工具 (591+)
 ```
 
 ### Git 工作流
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (11/11)
-- [ ] 工具庫驗證通過 (585+ 工具)
+- [ ] 工具庫驗證通過 (591+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -212,7 +212,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 585 and add new features
+fix(README): update tool count from 381 to 591 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -243,7 +243,7 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 585+ 工具 (單一真理來源)
+│   ├── tools.json      # 591+ 工具 (單一真理來源)
 │   ├── tracked-repos.json  # 2219 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告

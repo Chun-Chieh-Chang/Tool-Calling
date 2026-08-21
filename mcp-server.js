@@ -10,7 +10,6 @@ import { createJob, getJob, cancelJob, listJobs, getStats } from "./core/job-man
 import { 
   searchAllSkills, 
   installSkill, 
-  listSkills as listInstalledSkills, 
   isSkillCliAvailable 
 } from "./core/skill-discovery.js";
 

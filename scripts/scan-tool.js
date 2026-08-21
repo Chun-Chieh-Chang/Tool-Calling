@@ -290,4 +290,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     .catch(() => process.exit(1));
 }
 
-export { scan, guessCategory };
+export { scan };

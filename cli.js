@@ -13,7 +13,6 @@ import { scanMonorepo } from './scripts/scan-monorepo.js';
 import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
 import { assessRegistryContract } from './core/registry-contract.js';
 import { 
-  searchSkills, 
   installSkill, 
   listSkills, 
   isSkillCliAvailable,

@@ -2522,3 +2522,44 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 - node cli.js validate:100/100 分,0 errors,0 warnings
 - node scripts/check-mece.js:通過
 - UTF-8 門禁與 ID 唯一性門禁隨 npm test 自動執行通過
+
+---
+
+## 2026-08-21 程式碼品質優化 Phase 1：死碼清理與邏輯去重複 (Code Quality Optimization)
+
+### 需求
+執行系統性程式碼品質審計，移除未使用 import、死變數、重複邏輯、不必要 export，並清理孤立檔案。
+
+### 處理結果 (RCA + CAPA)
+1. **未使用 import 移除**：
+   - cli.js:16 searchSkills (已改用 searchAllSkills)
+   - web/app.js:1 listAll, listByCategory (前端不使用)
+   - web/app.js:3 installAutoTracking (未使用)
+   - mcp-server.js:13 listSkills as listInstalledSkills (未使用)
+2. **死變數移除**：
+   - scripts/trending-weekly.js:371 ddedTools[] (只 push 不 read)
+3. **重複邏輯去重複**：
+   - core/search-engine.js 提取 pplyTelemetryWeights() helper，替代 L1/L2 兩處重複的 telemetry 調整區塊
+4. **不必要 export 移除**：
+   - core/search-engine.js exactMatch/keywordMatch/semanticSearch (僅內部使用)
+   - scripts/scan-tool.js guessCategory (無外部 import)
+5. **冗餘邏輯簡化**：
+   - web/server.js 合併兩段 URL 驗證為單一 regex check
+   - web/server.js 移除未使用 ranch destructure
+   - core/search-engine.js:307 修正 
+ormalize(query) 為已快取的 
+ormQuery
+6. **動態 import 改為靜態**：
+   - scripts/sync-daemon.js 5 處動態 import 改為頂層靜態 import，移除冗餘路徑重建
+7. **孤兒檔案確認**（依檔案刪除保護規則，不主動刪除）：
+   - core/skill-aggregator.js、scripts/find-skill.js、scripts/fix-low-quality-tools.js、scripts/check-existing.js、scripts/check-category-consistency.js、	ests/eval-benchmark.js
+   - 以上全部零 import、零 package.json 引用
+8. **建構产物清理**：移除 dist/server.js (不應存在的 build artifact)
+
+### 驗證結果
+- 
+ode --check 8 個檔案全部通過語法檢查
+- 
+pm test：62/62 PASS, 0 FAIL
+- 
+ode cli.js validate：0 errors, 13 warnings, 4 low-quality tools (pre-existing)
