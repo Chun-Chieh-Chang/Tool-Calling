@@ -89,7 +89,7 @@
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
 npm run tracked-repos     # 重建追蹤池 (2242 repos)
-npm test                  # 執行所有測試 (57/57 pass)
+npm test                  # 執行所有測試 (62/62 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 
@@ -106,7 +106,7 @@ node cli.js list                      # 列出所有工具 (598+)
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 57/57 測試通過
+npm test           # 確保 62/62 測試通過
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -122,7 +122,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：57/57 pass, 0 fail
+npm test  # 目標：62/62 pass, 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -132,11 +132,20 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (57/57)
+- [ ] 所有測試通過 (62/62)
 - [ ] 工具庫驗證通過 (598+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
+
+---
+
+## Definition of Done — 任務完成定義與驗收標準
+
+- **任務完成的定義**：必須達成預先設定的驗收標準 (Acceptance Criteria)。未達成全部驗收標準前，該任務一律視為「未完成」，禁止宣告完成或交付。
+- **制訂時機**：所有驗收標準必須在計畫擬定完成後**隨即**制訂完畢，並在開始執行前向使用者確認。
+- **最高標準**：所有驗收標準必須設定為最高標準 — 可量化、可驗證、無歧義（例如：0 編譯警告、0 Console 錯誤、驗證腳本全數 PASS、數據筆數變更前後對比一致、邊界案例覆蓋）。禁止以「看起來可以」「應該沒問題」「大致完成」等模糊表述作為完成依據。
+- **需求未明處理**：若無法於執行前制訂出可量化的驗收標準，該任務視為需求未明，應先回到「反向提問流程」澄清後再行制訂。
 
 ---
 
