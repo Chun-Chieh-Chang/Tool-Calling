@@ -1257,11 +1257,38 @@ select:focus {
   background-color: #f8fafc;
 }
 
-/* 預覽狀態 badge（本週迄今專用，灰色） */
-.status-badge.preview {
-  background: #f8fafc;
-  color: #94a3b8;
-  border: 1px solid #cbd5e1;
+/* 加入工具庫按鈕（本週迄今 WIP 專用） */
+.add-to-registry-btn {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.add-to-registry-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+}
+.add-to-registry-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.add-to-registry-btn.added {
+  background: var(--status-success-bg);
+  color: #065f46;
+}
+.add-to-registry-btn.failed {
+  background: #fef2f2;
+  color: #991b1b;
 }
 
 /* delta-badge 的「進行中」變體（琥珀色） */
