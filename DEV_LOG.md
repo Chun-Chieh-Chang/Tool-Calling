@@ -1,4 +1,4 @@
-﻿# Tool-Calling 開發日誌
+# Tool-Calling 開發日誌
 
 ## 2026-08-16 全域優化作業 v1.5：死碼清理與文件統計同步 (Global Optimization: Dead Code Cleanup & Doc Sync)
 
@@ -2605,3 +2605,32 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 - node cli.js validate: 597/597 100/100 分, 0 errors, 0 warnings
 - node scripts/check-mece.js: 通過
 - Web build: 知識圖譜更新至 597 工具，同義詞 356 詞彙
+
+---
+
+## 2026-08-21 全域優化作業 v1.8：死碼檔案全面清理 + AGENTS.md 驗收標準條款補強
+
+### 需求
+執行「專案的整體程式碼與檔案優化作業」，並修訂 skills 內容納入驗收標準原則。
+
+### 處理結果 (RCA + CAPA)
+1. **skills 條款補強**：
+   - C:\Users\ws61\.claude\CLAUDE.md 第 36-40 行已有 [Definition of Done] 驗收標準條款（完整）。
+   - AGENTS.md 原缺此條款，已補入 ## Definition of Done — 任務完成定義與驗收標準 節（含任務完成定義、制訂時機、最高標準、需求未明處理 4 小節）。
+2. **死碼檔案清理**（透過 analyze-imports.js 靜態分析 + package.json 引用交叉比對，確認零 import 且零 package.json 引用）：
+   - **Core 死碼**（1 個）：core/skill-aggregator.js（598 行，已被 skill-discovery.js 取代）
+   - **Scripts 死碼**（5 個）：scripts/check-category-consistency.js、scripts/check-existing.js、scripts/find-skill.js、scripts/fix-low-quality-tools.js、scripts/reclassify-tools.js
+   - **Tests 死碼**（1 個）：	ests/eval-benchmark.js（檔名不匹配 *.test.js glob，npm test 永不執行）
+   - **Docs 死碼**（17 個）：docs/FIND-SKILL-FINAL-REPORT.md 等整合報告 + docs/archive/ 下 3 個（全部零引用）
+   - 合計移除 28 個檔案，共 5,895 行死碼
+3. **文件同步**：
+   - AGENTS.md：598 工具 / 2242 repos / 26,259,519 stars；測試數 57/57→62/62
+   - README.md：591→598（已從 remote sync）
+
+### 驗證結果
+- 
+pm test：62/62 PASS, 0 FAIL
+- 
+ode cli.js validate：0 errors
+- 
+ode scripts/check-mece.js：通過
