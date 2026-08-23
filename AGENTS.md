@@ -1,7 +1,7 @@
 ﻿# AGENTS.md — Tool-Calling 全域行為協議
 
 > **身份**：AI 開發協作代理 (AgnesCode × Antigravity IDE 統一協議)
-> **版本**：2026.08.10 v1.0
+> **版本**：2026.08.23 v1.2 (含 Dead Code 清理與語言規範化)
 > **維護者**：Agentic AI Foundation (Linux Foundation)
 > **相容工具**：AgnesCode, Antigravity IDE, Claude Code, Cursor, Codex, Gemini CLI
 
@@ -32,26 +32,26 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 598 個工具
-追蹤 repos: 2242 個
-總 star 數: 26,259,519 ⭐
-平均 star 數: 43,674 ⭐
-最後更新: 2026/8/17
+工具庫規模: 601 個工具
+追蹤 repos: 2307 個
+總 star 數: 25,559,157 ⭐
+平均 star 數: 42,528 ⭐
+最後更新: 2026/8/23
 ```
 
 ### Top 5 分類
-- `AI 代理`: 121 個工具
-- `AI 框架`: 77 個工具
-- `開發工具`: 57 個工具
-- `文件生產力`: 55 個工具
+- `AI 代理`: 124 個工具
+- `AI 框架`: 76 個工具
+- `開發工具`: 59 個工具
+- `文件生產力`: 56 個工具
 - `學習資源`: 46 個工具
 
 ### Top 5 語言
-- `python`: 226 個工具
+- `python`: 227 個工具
 - `typescript`: 123 個工具
-- `javascript`: 57 個工具
-- `other`: 44 個工具
-- `rust`: 24 個工具
+- `javascript`: 60 個工具
+- `other`: 42 個工具
+- `rust`: 25 個工具
 
 ---
 
@@ -88,8 +88,8 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2242 repos)
-npm test                  # 執行所有測試 (62/62 pass)
+npm run tracked-repos     # 重建追蹤池 (2307 repos)
+npm test                  # 執行所有測試 (57/57 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 
@@ -99,7 +99,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (598+)
+node cli.js list                      # 列出所有工具 (601+)
 ```
 
 ### Git 工作流
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (62/62)
-- [ ] 工具庫驗證通過 (598+ 工具)
+- [ ] 工具庫驗證通過 (601+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -166,7 +166,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - **日誌**：使用 emoji 分隔符 (🔍 📊 🏆 ✅ ⚠️ ❌)
 
 ### 拒絕的樣式
-- ❌ 避免過度抽象 (YAGNI 六層階梯)
+- ❌ 避免過度抽象 (參見協議五 5-2 Simplicity First)
 - ❌ 禁止硬編碼 API Keys/Secrets
 - ❌ 避免大於 500 行的單一函數
 
@@ -252,8 +252,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 598+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2242 追蹤 repos
+│   ├── tools.json      # 601+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2307 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -378,6 +378,43 @@ PDCA 循環：
 - 禁止隱藏前置假設
 ```
 
+### 協議五：Karpathy 編碼守則 (205K ⭐ / multica-ai/andrej-karpathy-skills)
+**適用場景**：所有程式碼開發任務（Always On）
+
+> 這些指引偏向謹慎而非速度。對瑣碎任務請用判斷力取代之。
+
+**5-1. 編碼前思考 (Think Before Coding)**
+- 明確陳述假設；不確定時提問，不猜測
+- 存在多種解釋時全部列出，不靜默選擇
+- 有更簡潔方案時主動指出，必要時反駁需求
+- 遇到模糊處立即停止，命名混淆點並提問
+
+**5-2. 簡單優先 (Simplicity First)**
+- 只寫解決問題所需的最小代碼，不寫 speculate 的功能
+- 不使用未要求的抽象、彈性設計或額外的錯誤處理
+- 若寫了 200 行卻可以 50 行完成 → 重寫
+- 自問：「資深工程師會覺得這過度複雜嗎？」若是，簡化
+
+**5-3. 外科式修改 (Surgical Changes)**
+- 只觸碰必要的部分；不「順手改進」相鄰程式碼或格式
+- 不重構沒壞的東西；匹配既有風格（即使你不這麼做）
+- 發現不相關的 dead code → 提及，不刪除
+- 由你改動產生的孤立 import/變數/函數 → 一併清除
+- 測試：每一行變更都應能追溯至使用者請求
+
+**5-4. 目標驅動執行 (Goal-Driven Execution)**
+- 將任務轉為可驗證目標：
+  - 「新增驗證」→ 「先寫失敗測試，再讓它通過」
+  - 「修復 bug」→ 「先寫復現測試，再讓它通過」
+  - 「重構 X」→ 「確保重構前後測試都通過」
+- 多步驟任務先陳述簡短計畫：
+  ```
+  1. [步驟] → 驗證：[檢查點]
+  2. [步驟] → 驗證：[檢查點]
+  3. [步驟] → 驗證：[檢查點]
+  ```
+- 強成功標準讓你獨立迴圈；弱標準（「做就好了」）需要不斷確認
+
 ---
 
 ## Document Conventions — 文件規範
@@ -431,6 +468,6 @@ PDCA 循環：
 
 ---
 
-> **協議版本**：2026.08.10 v1.0 (AgnesCode × Antigravity IDE 統一協議)
+> **協議版本**：2026.08.23 v1.2 (含 Dead Code 清理與語言規範化)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-08-17T13:19:57.559Z
+> **最後更新**：2026-08-23

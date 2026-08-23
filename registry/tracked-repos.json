@@ -23296,5 +23296,317 @@
     "trackedOnly": 1697,
     "lastGenerated": "2026-08-24T03:02:11.109Z"
   },
-  "lastGenerated": "2026-08-24T03:02:11.076Z"
+  "lastGenerated": "2026-08-24T03:02:11.076Z",
+  "chaitanyagiri/munder-difflin": {
+    "fullName": "chaitanyagiri/munder-difflin",
+    "owner": "chaitanyagiri",
+    "repo": "munder-difflin",
+    "category": "AI 代理",
+    "addedAt": "2026-08-23T00:00:00.000Z",
+    "status": "tracking"
+  },
+  "akitaonrails/ai-memory": {
+    "fullName": "akitaonrails/ai-memory",
+    "owner": "akitaonrails",
+    "repo": "ai-memory",
+    "category": "AI 代理",
+    "addedAt": "2026-08-23T00:00:00.000Z",
+    "status": "tracking"
+  },
+  "astraclawteam/deepseek-work": {
+    "fullName": "astraclawteam/deepseek-work",
+    "owner": "astraclawteam",
+    "repo": "deepseek-work",
+    "category": "AI 代理",
+    "addedAt": "2026-08-23T00:00:00.000Z",
+    "status": "tracking"
+  },
+  "DavidHDev/react-bits": {
+    "fullName": "DavidHDev/react-bits",
+    "owner": "DavidHDev",
+    "repo": "react-bits",
+    "category": "UI/UX設計",
+    "addedAt": "2026-08-23T00:00:00.000Z",
+    "status": "tracking"
+  },
+  "weijiafu14/pi2dsh": {
+    "fullName": "weijiafu14/pi2dsh",
+    "owner": "weijiafu14",
+    "repo": "pi2dsh",
+    "category": "API 整合",
+    "addedAt": "2026-08-23T00:00:00.000Z",
+    "status": "tracking"
+  },
+  "baidu/Unlimited-OCR": {
+    "fullName": "baidu/Unlimited-OCR",
+    "owner": "baidu",
+    "repo": "Unlimited-OCR",
+    "category": "文件生產力",
+    "addedAt": "2026-08-23T00:00:00.000Z",
+    "status": "tracking"
+  },
+  "Tiger3807861189/J-Space-Cognition-Suite-V3.6": {
+    "fullName": "Tiger3807861189/J-Space-Cognition-Suite-V3.6",
+    "owner": "Tiger3807861189",
+    "repo": "J-Space-Cognition-Suite-V3.6",
+    "initialStars": 2985,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "s1dashu/ip-as-logo-skill": {
+    "fullName": "s1dashu/ip-as-logo-skill",
+    "owner": "s1dashu",
+    "repo": "ip-as-logo-skill",
+    "initialStars": 3863,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yetone/cumora": {
+    "fullName": "yetone/cumora",
+    "owner": "yetone",
+    "repo": "cumora",
+    "initialStars": 2922,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "truefoundry/trueforge": {
+    "fullName": "truefoundry/trueforge",
+    "owner": "truefoundry",
+    "repo": "trueforge",
+    "initialStars": 3656,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "geeklee/srt-whiteboard-animation": {
+    "fullName": "geeklee/srt-whiteboard-animation",
+    "owner": "geeklee",
+    "repo": "srt-whiteboard-animation",
+    "initialStars": 2185,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "vercel-labs/fx": {
+    "fullName": "vercel-labs/fx",
+    "owner": "vercel-labs",
+    "repo": "fx",
+    "initialStars": 2185,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dsh-market/dsh-market": {
+    "fullName": "dsh-market/dsh-market",
+    "owner": "dsh-market",
+    "repo": "dsh-market",
+    "initialStars": 1978,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "fuxicodex/Fuxi": {
+    "fullName": "fuxicodex/Fuxi",
+    "owner": "fuxicodex",
+    "repo": "Fuxi",
+    "initialStars": 1773,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "CopilotKit/OpenBot": {
+    "fullName": "CopilotKit/OpenBot",
+    "owner": "CopilotKit",
+    "repo": "OpenBot",
+    "initialStars": 2423,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "cinderline/northcinder": {
+    "fullName": "cinderline/northcinder",
+    "owner": "cinderline",
+    "repo": "northcinder",
+    "initialStars": 1206,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Accio-org/CommerceAgentBench": {
+    "fullName": "Accio-org/CommerceAgentBench",
+    "owner": "Accio-org",
+    "repo": "CommerceAgentBench",
+    "initialStars": 1196,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ZSvirt/zsvirt": {
+    "fullName": "ZSvirt/zsvirt",
+    "owner": "ZSvirt",
+    "repo": "zsvirt",
+    "initialStars": 1203,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "alchaincyf/deepseek-harness-orange-book": {
+    "fullName": "alchaincyf/deepseek-harness-orange-book",
+    "owner": "alchaincyf",
+    "repo": "deepseek-harness-orange-book",
+    "initialStars": 1096,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nvm-sh/nvm": {
+    "fullName": "nvm-sh/nvm",
+    "owner": "nvm-sh",
+    "repo": "nvm",
+    "initialStars": 94699,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Stirling-Tools/Stirling-PDF": {
+    "fullName": "Stirling-Tools/Stirling-PDF",
+    "owner": "Stirling-Tools",
+    "repo": "Stirling-PDF",
+    "initialStars": 90165,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "sherlock-project/sherlock": {
+    "fullName": "sherlock-project/sherlock",
+    "owner": "sherlock-project",
+    "repo": "sherlock",
+    "initialStars": 89868,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Tiger3807861189/J-Space-Cognition-Suite-V3.7": {
+    "fullName": "Tiger3807861189/J-Space-Cognition-Suite-V3.7",
+    "owner": "Tiger3807861189",
+    "repo": "J-Space-Cognition-Suite-V3.7",
+    "initialStars": 3015,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "FlashML-org/FreeToken": {
+    "fullName": "FlashML-org/FreeToken",
+    "owner": "FlashML-org",
+    "repo": "FreeToken",
+    "initialStars": 2960,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "MengTo/threeui": {
+    "fullName": "MengTo/threeui",
+    "owner": "MengTo",
+    "repo": "threeui",
+    "initialStars": 2517,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "arvids-unavailable/openGym": {
+    "fullName": "arvids-unavailable/openGym",
+    "owner": "arvids-unavailable",
+    "repo": "openGym",
+    "initialStars": 1826,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zenbu-labs/terminal-code": {
+    "fullName": "zenbu-labs/terminal-code",
+    "owner": "zenbu-labs",
+    "repo": "terminal-code",
+    "initialStars": 1424,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wang2122/sprix-sage-router": {
+    "fullName": "wang2122/sprix-sage-router",
+    "owner": "wang2122",
+    "repo": "sprix-sage-router",
+    "initialStars": 1411,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Leonxlnx/unlazy": {
+    "fullName": "Leonxlnx/unlazy",
+    "owner": "Leonxlnx",
+    "repo": "unlazy",
+    "initialStars": 1325,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "vvxw/deploy-vercel": {
+    "fullName": "vvxw/deploy-vercel",
+    "owner": "vvxw",
+    "repo": "deploy-vercel",
+    "initialStars": 1199,
+    "discoveredAt": "2026-08-23T14:40:36.354Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  }
 }

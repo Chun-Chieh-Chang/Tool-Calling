@@ -1,4 +1,4 @@
-import { search, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache, getRegistryCacheFingerprint } from './core/search-engine.js';
+import { search, listByCategory, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache, getRegistryCacheFingerprint } from './core/search-engine.js';
 import { persistCache } from './persist-cache.js';
 import { behaviorTracker } from './behavior-tracker.js';
 

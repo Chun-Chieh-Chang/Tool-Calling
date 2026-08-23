@@ -13,3 +13,5 @@ docs/knowledge-graph.html
 strix_runs/
 sync.ffs_db
 
+# Local-only IDE rule exports — migrate to AgnesCode separately
+docs/antigravity-global-rules.md

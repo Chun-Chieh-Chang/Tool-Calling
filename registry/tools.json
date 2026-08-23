@@ -37968,6 +37968,394 @@
       "stars": 1697,
       "addedAt": "2026-08-24T03:02:11.076Z",
       "status": "active"
+    },
+    {
+      "id": "mattpocock-skills",
+      "name": "Matt Pocock Skills",
+      "url": "https://github.com/mattpocock/skills",
+      "description": "Real engineering skills from Matt Pocock's .agents directory — TDD, wayfinding, grill-with-docs, and more CLI-native agent skills for production codebases.",
+      "category": "AI 代理",
+      "language": "shell",
+      "triggers": [
+        "mattpocock-skills",
+        "matt-pocock",
+        "agent-skills",
+        "tdd-skill",
+        "wayfinding",
+        "grill-with-docs"
+      ],
+      "capabilities": [
+        "tdd-workflow",
+        "wayfinding-planning",
+        "adversarial-review",
+        "agent-skills"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx skills@latest add mattpocock/skills",
+        "repoUrl": "https://github.com/mattpocock/skills"
+      },
+      "subTools": [
+        {
+          "name": "TDD",
+          "description": "Test-driven development workflows using red-green-refactor cycles.",
+          "subpath": "skills/engineering/tdd"
+        },
+        {
+          "name": "Wayfinder",
+          "description": "Plan large-scale work as investigation tickets, mapping the path from idea to execution.",
+          "subpath": "skills/engineering/wayfinder"
+        },
+        {
+          "name": "Grill With Docs",
+          "description": "Adversarial interview to sharpen plans while generating ADRs and glossary.",
+          "subpath": "skills/engineering/grill-with-docs"
+        }
+      ],
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "active",
+      "useCase": "When an AI coding agent needs structured engineering skills — TDD cycles, exploratory planning, or adversarial design review — applied directly from proven real-world workflows.",
+      "advantages": [
+        "Skills are battle-tested in production, not theoretical",
+        "CLI-native integration via npx skills@latest",
+        "Three curated engineering skills cover planning, testing, and design review"
+      ],
+      "negativeConstraints": [
+        "Shell-based skills require a Unix-like environment or WSL on Windows",
+        "Individual skill subpaths must be installed separately via npx skills@latest add"
+      ],
+      "stars": 233320
+    },
+    {
+      "id": "munder-difflin",
+      "name": "Munder Difflin",
+      "url": "https://github.com/chaitanyagiri/munder-difflin",
+      "description": "Local multi-agent harness that wraps Claude Code, Gemini CLI, OpenAI Codex, and 10+ coding CLIs into a coordinated office of agent clones working on your machine.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "munder-difflin",
+        "multi-agent-harness",
+        "agent-coordinator",
+        "claude-code",
+        "agent-clone",
+        "office-agents"
+      ],
+      "capabilities": [
+        "multi-agent-orchestration",
+        "claude-code",
+        "gemini-cli",
+        "openai-codex",
+        "agent-coordination"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/chaitanyagiri/munder-difflin.git",
+        "repoUrl": "https://github.com/chaitanyagiri/munder-difflin"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "experimental",
+      "useCase": "Running multiple AI coding agents simultaneously on your local machine, each as a clone of yourself, coordinating tasks across Claude Code, Gemini CLI, and other CLIs.",
+      "advantages": [
+        "Unified harness for 10+ coding CLI providers with bring-your-own keys",
+        "Agents can message, route, and remember across different LLM backends",
+        "Visualized as avatars on a shared office floor for collaborative oversight"
+      ],
+      "negativeConstraints": [
+        "Working prototype — may have stability issues in production workflows",
+        "Requires subscriptions to multiple AI providers for full capability",
+        "Electron app has higher memory footprint than single-agent CLIs"
+      ],
+      "stars": 3796
+    },
+    {
+      "id": "ai-memory",
+      "name": "AiMemory",
+      "url": "https://github.com/akitaonrails/ai-memory",
+      "description": "Long-term memory system for AI coding agents — continue work across different agent vendors (Claude Code, OpenAI Codex, Gemini CLI) without re-explaining context.",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "ai-memory",
+        "agent-memory",
+        "coding-agent-memory",
+        "cross-agent-context",
+        "claude-code-memory"
+      ],
+      "capabilities": [
+        "long-term-agent-memory",
+        "cross-agent-context",
+        "agent-handoff",
+        "mcp-config",
+        "lifecycle-hooks"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install ai-memory",
+        "repoUrl": "https://github.com/akitaonrails/ai-memory"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "experimental",
+      "useCase": "Resuming a coding session in a different AI CLI (e.g., switching from Claude Code to OpenAI Codex) while preserving architecture decisions, failed approaches, and open questions.",
+      "advantages": [
+        "Language-agnostic memory storage enables seamless handoff between any AI coding agent",
+        "MCP config + lifecycle hooks integrate directly with agent startup flows",
+        "Cross-platform support: Linux, macOS, Windows (WSL2 and native)"
+      ],
+      "negativeConstraints": [
+        "Native Windows support still experimental — WSL2 recommended for Windows users",
+        "Requires manual MCP configuration for each supported agent",
+        "Memory scope is project-local, not suitable for organization-wide knowledge bases"
+      ],
+      "stars": 4181
+    },
+    {
+      "id": "karpathy-skills",
+      "name": "Karpathy Skills",
+      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+      "description": "Behavioral guidelines to reduce common LLM coding mistakes — derived from Andrej Karpathy's observations on LLM pitfalls. 4 core principles: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.",
+      "category": "AI 代理",
+      "language": "markdown",
+      "triggers": [
+        "karpathy-skills",
+        "llm-coding-guidelines",
+        "coding-behavior",
+        "simplicity-first",
+        "surgical-changes"
+      ],
+      "capabilities": [
+        "llm-pitfall-prevention",
+        "coding-discipline",
+        "requirement-clarification",
+        "refactoring-guidance"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/multica-ai/andrej-karpathy-skills",
+        "repoUrl": "https://github.com/multica-ai/andrej-karpathy-skills"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "active",
+      "useCase": "When the AI agent needs behavioral guardrails to avoid common LLM coding mistakes such as over-engineering, hidden confusion, and unchecked assumptions.",
+      "advantages": [
+        "Directly reduces unnecessary changes in diffs through surgical change discipline",
+        "Forces explicit assumption surfacing before any implementation begins",
+        "Bias toward caution over speed prevents costly rewrites from overcomplication"
+      ],
+      "negativeConstraints": [
+        "These guidelines bias toward caution over speed — not suitable for trivial tasks where judgment should override",
+        "Single CLAUDE.md file; requires manual merge with project-specific instructions rather than automated integration"
+      ],
+      "stars": 205603
+    },
+    {
+      "id": "deepseek-work",
+      "name": "DeepSeek Work",
+      "url": "https://github.com/astraclawteam/deepseek-work",
+      "description": "DeepSeek Harness 桌面工作台 — 開箱即用的社區發行版，整合 Agent、MCP、Skill 與 Subagent，支援 Windows/macOS 原生窗口與系統托盤。",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "deepseek-work",
+        "deepseek-harness",
+        "desktop-ai-agent",
+        "electron-ai",
+        "mcp-desktop"
+      ],
+      "capabilities": [
+        "multi-agent-desktop",
+        "mcp-integration",
+        "skill-management",
+        "subagent-orchestration",
+        "electron-app"
+      ],
+      "install": {
+        "method": "download",
+        "command": "https://github.com/astraclawteam/deepseek-work/releases",
+        "repoUrl": "https://github.com/astraclawteam/deepseek-work"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "experimental",
+      "useCase": "When you need a ready-to-run desktop environment for DeepSeek Harness with built-in runtime, system tray, and health checks — no manual Node.js setup required.",
+      "advantages": [
+        "All-in-one installer with locked dependency versions for reproducibility",
+        "Native desktop window with system tray and standalone app data directory",
+        "Built-in process lifecycle management and startup health checks"
+      ],
+      "negativeConstraints": [
+        "Community release, not an official DeepSeek product",
+        "Currently supports Windows x64 and macOS Apple Silicon only",
+        "Requires accepting DeepSeek brand and licensing terms"
+      ],
+      "stars": 0
+    },
+    {
+      "id": "react-bits",
+      "name": "React Bits",
+      "url": "https://github.com/DavidHDev/react-bits",
+      "description": "Open-source collection of animated, interactive & fully customizable React components — 3D effects, CSS animations, and Tailwind-ready UI primitives.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "react-bits",
+        "react-components",
+        "css-animations",
+        "3d-react",
+        "tailwind-ui",
+        "animated-components"
+      ],
+      "capabilities": [
+        "react-component-library",
+        "css-animations",
+        "3d-interactions",
+        "tailwind-components",
+        "interactive-ui"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install react-bits",
+        "repoUrl": "https://github.com/DavidHDev/react-bits"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "active",
+      "useCase": "When building memorable web interfaces with pre-built animated React components that integrate seamlessly with Tailwind CSS.",
+      "advantages": [
+        "Fully customizable with Tailwind CSS utility classes",
+        "Includes 3D and animation effects without external animation libraries",
+        "Open-source with permissive licensing for commercial use"
+      ],
+      "negativeConstraints": [
+        "Requires React 18+ and Tailwind CSS v3+",
+        "Some 3D components depend on Three.js which increases bundle size",
+        "Not a full design system — components are individual pieces, not cohesive tokens"
+      ],
+      "stars": 46021
+    },
+    {
+      "id": "pi2dsh",
+      "name": "Pi2DSH",
+      "url": "https://github.com/weijiafu14/pi2dsh",
+      "description": "Compatibility layer that runs Pi ecosystem plugins on DeepSeek Harness unmodified — one Pi Host ABI bridges two agent platforms.",
+      "category": "API 整合",
+      "language": "typescript",
+      "triggers": [
+        "pi2dsh",
+        "pi-to-dsh",
+        "deepseek-harness-plugin",
+        "pi-agent-compat",
+        "dsh-plugin-migration"
+      ],
+      "capabilities": [
+        "plugin-compatibility",
+        "abi-bridge",
+        "agent-migration",
+        "dsh-extension"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "dsh plugin add pi2dsh",
+        "repoUrl": "https://github.com/weijiafu14/pi2dsh"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "experimental",
+      "useCase": "When migrating from Pi.dev agents to DeepSeek Harness and needing to run hundreds of existing Pi plugins without rewriting them.",
+      "advantages": [
+        "Zero-modification plugin migration — Pi packages run as-is on DSH",
+        "Implements Pi's public extension ABI on top of DSH's native services",
+        "Serves as a real-world architecture test for DeepSeek Harness extensibility"
+      ],
+      "negativeConstraints": [
+        "Early compatibility layer — some Pi plugins may expose DSH architectural limitations",
+        "Requires both Pi.dev and DeepSeek Harness environments to be installed",
+        "Not a replacement for native DSH plugins; use only for migration scenarios"
+      ],
+      "stars": 158
+    },
+    {
+      "id": "unlimited-ocr",
+      "name": "Unlimited OCR Works",
+      "url": "https://github.com/baidu/Unlimited-OCR",
+      "description": "One-shot long-horizon OCR from Baidu — welcome the era of single-image document parsing with gundam and base configs.",
+      "category": "文件生產力",
+      "language": "python",
+      "triggers": [
+        "unlimited-ocr",
+        "baidu-ocr",
+        "long-horizon-ocr",
+        "document-parsing",
+        "one-shot-ocr"
+      ],
+      "capabilities": [
+        "document-ocr",
+        "long-horizon-parsing",
+        "single-image-ocr",
+        "baidu-models"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install unlimited-ocr",
+        "repoUrl": "https://github.com/baidu/Unlimited-OCR"
+      },
+      "addedAt": "2026-08-23T00:00:00.000Z",
+      "status": "active",
+      "useCase": "When processing complex documents (multi-page forms, invoices, receipts) in a single image pass without iterative cropping or segmentation.",
+      "advantages": [
+        "Baidu's production-grade OCR models with gundam and base configurations",
+        "Long-horizon parsing handles entire documents in one shot",
+        "Published on Hugging Face for easy model access"
+      ],
+      "negativeConstraints": [
+        "Requires Baidu account or Hugging Face token for model access",
+        "Chinese-language document optimization may reduce English accuracy",
+        "Large model footprint requires GPU for production throughput"
+      ],
+      "stars": 24393
+    },
+    {
+      "id": "tooljet",
+      "name": "ToolJet",
+      "url": "https://github.com/ToolJet/ToolJet",
+      "description": "ToolJet is the open-source foundation of ToolJet AI — an enterprise app generation platform for building internal tools, dashboards, workflows and AI agents. Visual builder, drag-and-drop UI, and integrations with databases, APIs, SaaS apps.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "tooljet",
+        "internal-tools",
+        "low-code",
+        "no-code",
+        "app-builder",
+        "workflow-automation",
+        "dashboard-builder",
+        "ai-agents"
+      ],
+      "capabilities": [
+        "internal-app-builder",
+        "low-code-platform",
+        "workflow-automation",
+        "ai-agent-builder",
+        "self-hosted",
+        "dashboard"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -d -p 8080:8080 tooljet/tooljet-ce",
+        "repoUrl": "https://github.com/ToolJet/ToolJet"
+      },
+      "addedAt": "2026-08-23T08:30:00.000Z",
+      "status": "active",
+      "useCase": "Build internal dashboards, admin panels, and workflow automation apps without writing full-stack code.",
+      "advantages": [
+        "Visual drag-and-drop builder with 100+ pre-built integrations",
+        "Self-hostable with community edition, no vendor lock-in",
+        "Built-in AI agent builder for workflow automation",
+        "Supports JavaScript/Python query builders"
+      ],
+      "negativeConstraints": [
+        "Not suitable for consumer-facing applications requiring high performance",
+        "Enterprise features (SSO, RBAC) require paid edition",
+        "Limited custom theming compared to dedicated frontend frameworks"
+      ],
+      "stars": 40720
     }
   ]
 }
