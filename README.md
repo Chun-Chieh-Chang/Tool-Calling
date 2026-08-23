@@ -4,7 +4,7 @@
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **598 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **601 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -39,7 +39,7 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 598 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - 整合 601 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
    - 支援 22 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
@@ -55,7 +55,7 @@
 6. 🔥 **雲端 Auto-Trending 自動探勘管道**：
    - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
 7. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
-   - 基於固定追蹤池（2242 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
+   - 基於固定追蹤池（2307 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
    - **雙週展示**：同時展示「上週完整數據（LAST WEEK，列入工具箱納入判斷）」與「本週迄今即時數據（THIS WEEK，進行中，不列入判斷）」，清晰區隔正式與預覽數據。
    - 嚴格遵守 ISO-8601 World Week 國際標準（週一 00:00:00 UTC → 週日 23:59:59 UTC）。
 8. 🔄 **啟動自動按需更新與介面即時刷新 (Startup Auto-Update & Live Refresh)**：
@@ -112,7 +112,7 @@ node cli.js interview "网页爬虫"
 | `npm run trending` | `node scripts/trending-weekly.js` | 每週涨星探勘 |
 | `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精灵 |
 | `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同义词词典 |
-| `npm test` | `node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test tests/*.test.js` | 執行 75 項單元與 Playwright 3D 視覺測試 |
+| `npm test` | `node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test tests/*.test.js` | 執行 62 項單元與 Playwright 3D 視覺測試 |
 | `npm start` | `node web/server.js` | 啟動精密儀表數據工作台 (http://localhost:3000) |
 | `npm run mcp` | `node mcp-server.js` | 启动 MCP 伺服器 |
 
@@ -141,13 +141,13 @@ Tool-Calling/
 │   ├── generate-knowledge-graph.js # 100% OLED 純黑實心知識圖譜生成器
 │   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
-│   └── tools.json        # 598 工具 (单一真理来源)
+│   └── tools.json        # 601 工具 (单一真理来源)
 ├── docs/               # 文档
 │   ├── SEARCH-ENGINE-OPTIMIZATION-REPORT.md  # 检索引擎优化报告
 │   ├── category-conventions.md    # 分類慣例(領域優先 + AI 框架/代理邊界)
 │   └── category-audit-2026-08-16.md # 分類全面稽核報告(255 項修正)
 └── tests/              # 测试
-    └── *.test.js       # 13 套件、57 項單元與端到端測試
+    └── *.test.js       # 13 套件、62 項單元與端到端測試
 ```
 
 ---
@@ -157,7 +157,7 @@ Tool-Calling/
 提交前必须通过：
 
 ```bash
-npm test                          # 全套單元與 Playwright 3D 視覺測試 (57/57 PASS)
+npm test                          # 全套單元與 Playwright 3D 視覺測試 (62/62 PASS)
 node scripts/check-utf8.js        # UTF-8 編碼物理防護門禁 (0 個 U+FFFD)
 node scripts/check-duplicate-ids.js # 全站 HTML ID 唯一性門禁 (0 個重複)
 node cli.js validate              # 工具庫 100/100 詮釋資料品質門禁 (0 錯誤 0 警告)
@@ -167,7 +167,7 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v1.4 - 598 Tools, 356 Synonyms, Live Refresh & Dual-Week Trending
+> Tool-Calling v1.9 - 601 Tools, 356 Synonyms, Live Refresh & Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI

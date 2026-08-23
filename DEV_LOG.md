@@ -1,5 +1,34 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-24 全域優化作業 v1.9：Rebase 收尾、誤刪還原與文件統計對齊 (Global Optimization: Rebase Completion, Wrongful Deletion Restore & Doc Stats Alignment)
+
+### 需求
+執行「專案的整體程式碼與檔案優化作業」5 階段 SOP。動工前盤點發現工作區卡在未完成的 interactive rebase（3 個衝突檔案已手動解決但未收尾），且 registry/tools.json 含 2 處重複 `{` 導致 JSON 無效。
+
+### 處理結果
+- **階段零（阻斷修復）**：
+  - 修復 registry/tools.json 第 465、6411 行殘留的重複 `{`（前次衝突解決失誤），恢復單一真理來源有效性（601 工具）。
+  - 完成 rebase 重播：dcadc3a（v1.8 優化）、e3057bf（DEV_LOG）、f53bbb7（trending 快照）；docs/archive/GRILL-WITH-DOCS-ADDITION.md 維持 f63dfae 的刻意刪除決定。main 領先 origin/main 3 個 commit。
+- **階段一（死碼盤點）**：
+  - **還原被誤刪的 scripts/reclassify-tools.js**：f63dfae 宣稱「零程式碼引用」係誤判——scripts/hook-reclassify.js 第 65 行以動態 import 引用該檔，且該 hook 掛載於 `npm run reclassify`；還原後 `npm run reclassify` 恢復可用（dry-run 模式驗證通過，registry 未被觸碰）。
+  - 確認非死碼：web/search-worker.js（app.js:688 以 new Worker() 字串引用）、tests/*.test.js（node --test glob 執行）、cli.js 與 mcp-server.js（直接執行入口）。
+  - 依賴體檢：@modelcontextprotocol/sdk（mcp-server.js）、zod（mcp-server.js:5）、playwright（CI deploy-pages.yml + knowledge-graph 測試）全數有效，零死依賴。
+  - 本地殘留清理（未追蹤、不影響 git 歷史）：strix_runs/（63 檔）、.exports/（1 檔）；保留 dist/（建構產物）、.omo/、.agnes/、.claude/（工具配置）。
+  - **記錄在案的日誌矛盾**：v1.8 日誌宣稱已刪除 core/telemetry-summary.js 與 tests/telemetry-summary.test.js，經查 dcadc3a 從未觸碰這兩個檔案，兩者存在且測試通過（v1.5 亦有「保留確認」記載）。依外科式修改原則保留現狀，僅於此註記更正。
+- **階段二（文件同步）**：
+  - README.md 9 處漂移修正：工具數 598→601（4 處）、追蹤池 2242→2307、npm test 描述 75 項→62 項、目錄註解 57 項→62 項、品質門禁 57/57→62/62、版本標識 v1.4→v1.9。
+  - WORKFLOW.md 品質門禁 57/57→62/62。
+  - docs/ 全量掃描確認無停用腳本殘留引用（RCA-TOOL-VISIBILITY-ISSUE.md 已含 check-category-consistency.js 移除註記；分類文件對 reclassify-tools.js 的引用因本輪還原而重新有效）。
+
+### 驗證結果
+- npm test: 62/62 PASS（13 suites）
+- node cli.js validate: 0 errors, 1 warning（photo-abstract-editorial 觸發詞不足，既有項目非本次變更）
+- node scripts/check-mece.js: 通過（601 工具 / 22 分類）
+- node scripts/check-utf8.js: 通過（0 個 U+FFFD）
+- 事實基準（2026-08-24 實測）：tools=601、categories=22、tracked-repos=2307、synonyms=356、tests=62
+
+---
+
 ## 2026-08-23 全域優化作業 v1.8：Dead Code 補刪、語言規範化、統計同步 (Global Optimization: Missing Dead Code Cleanup, Language Normalization, Stats Sync)
 
 ### 需求

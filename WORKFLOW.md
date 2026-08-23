@@ -132,7 +132,7 @@ node scripts/enrich-registry.js
 ```bash
 node cli.js validate        # 1. 全庫 0 錯誤 0 警告
 npm run check-mece          # 2. MECE 分類檢查（無「其他」殘留）
-npm test                    # 3. 57/57 測試全數 PASS
+npm test                    # 3. 62/62 測試全數 PASS
 ```
 
 批次新增後另需執行 `node scripts/build-web.js` 更新知識圖譜與前端。
