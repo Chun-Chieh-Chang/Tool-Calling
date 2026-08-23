@@ -1,5 +1,30 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-23 全域優化作業 v1.8：Dead Code 補刪、語言規範化、統計同步 (Global Optimization: Missing Dead Code Cleanup, Language Normalization, Stats Sync)
+
+### 需求
+執行「專案的整體程式碼與檔案優化作業」5 階段 SOP，補上 v1.5 記載未實際執行的死碼刪除，並進行語言大小寫規範化與全盤統計更新。
+
+### 處理結果
+- **階段一（盤點與補刪）**：v1.5 記載應刪除但遺漏執行的檔案現在正式刪除：
+  - `core/skill-aggregator.js`（已被 skill-discovery 取代，僅 DEV_LOG 記載不應存在）
+  - `scripts/find-skill.js`（與 cli.js find-skill 命令重複的獨立 wrapper）
+  - `scripts/check-category-consistency.js`（已記載移除但檔案仍存在）
+  - `core/telemetry-summary.js` + `tests/telemetry-summary.test.js`（無生產消費者，測試亦已清理）
+  - 一次性清理 22 個未追蹤死檔：docs/FIND-SKILL-*、docs/GOAL-ACHIEVEMENT.md、docs/INTEGRATION-STATUS.md、docs/OPTIMIZATION-REPORT.md、docs/OPTIMIZATION_ANALYSIS.md、docs/PROJECT-OPTIMIZATION-SUMMARY.md、docs/batch-add-report-20260810.md、docs/find-skill-integration-plan.md、docs/job-manager-plan.md、docs/progress.md、docs/task_plan.md、docs/GRILL-WITH-DOCS-ADDITION.md、scripts/check-existing.js、scripts/fix-low-quality-tools.js、scripts/temp-batch-add.txt、tests/eval-benchmark.js、web/fonts.css、web/fonts/
+- **語言規範化**：26 個工具 language 大小寫不統一（Python→python、C++→cpp、C#→csharp、Go→go、Markdown→markdown、Jupyter Notebook→jupyter）。
+- **新增工具**：tooljet（601 個工具）。
+- **統計更新**：AGENTS.md 工具數 598→601，追蹤 repos 2242→2307，總 stars 26,259,519→25,559,157（因 normalization 修正計數），平均 stars 43,674→42,528，測試數恢復至 57/57。
+- **web/app.js**：移除未使用 import `listAll`。
+
+### 驗證結果
+- npm test: 57/57 PASS
+- node cli.js validate: 0 errors, 1 warning（photo-abstract-editorial 觸發詞不足，非本次變更）
+- node scripts/check-mece.js: 通過（601 工具 / 22 分類）
+- UTF-8 門禁與 ID 唯一性門禁通過
+
+---
+
 ## 2026-08-16 全域優化作業 v1.5：死碼清理與文件統計同步 (Global Optimization: Dead Code Cleanup & Doc Sync)
 
 ### 需求
