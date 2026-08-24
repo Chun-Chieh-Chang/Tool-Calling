@@ -25,7 +25,7 @@
 - node cli.js validate: 0 errors, 1 warning（photo-abstract-editorial 觸發詞不足，既有項目非本次變更）
 - node scripts/check-mece.js: 通過（601 工具 / 22 分類）
 - node scripts/check-utf8.js: 通過（0 個 U+FFFD）
-- 事實基準（2026-08-24 實測）：tools=601、categories=22、tracked-repos=2307、synonyms=356、tests=62
+- 事實基準（2026-08-24 實測，rebase 合併遠端 W35 後）：tools=615、categories=22、tracked-repos=2307、synonyms=356、tests=62
 
 ---
 
