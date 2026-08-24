@@ -1860,7 +1860,7 @@
     "fullName": "alchaincyf/huashu-design",
     "owner": "alchaincyf",
     "repo": "huashu-design",
-    "category": "UI/UX設計",
+    "category": "文件生產力",
     "addedAt": "2026-07-21T13:46:06.613Z",
     "status": "tracking"
   },
@@ -12071,12 +12071,9 @@
     "fullName": "teableio/teable",
     "owner": "teableio",
     "repo": "teable",
-    "initialStars": 21625,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "文件生產力",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
   },
   "trycua/cua": {
     "fullName": "trycua/cua",
@@ -19463,12 +19460,9 @@
     "fullName": "apache/superset",
     "owner": "apache",
     "repo": "superset",
-    "initialStars": 74152,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "數據分析",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
   },
   "Asabeneh/30-Days-Of-Python": {
     "fullName": "Asabeneh/30-Days-Of-Python",
@@ -20159,12 +20153,9 @@
     "fullName": "DigitalPlatDev/FreeDomain",
     "owner": "DigitalPlatDev",
     "repo": "FreeDomain",
-    "initialStars": 191680,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "學習資源",
     "addedAt": "2026-08-17T02:59:06.863Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "microsoft/vscode": {
     "fullName": "microsoft/vscode",
@@ -21381,12 +21372,9 @@
     "fullName": "ZzzLc0405/photo-abstract-editorial",
     "owner": "ZzzLc0405",
     "repo": "photo-abstract-editorial",
-    "initialStars": 1667,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-08-17T02:59:06.863Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "zerx-lab/FluxDown": {
     "fullName": "zerx-lab/FluxDown",
@@ -22732,8 +22720,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "awesome-dsh-plugin/awesome-dsh-plugin": {
     "fullName": "awesome-dsh-plugin/awesome-dsh-plugin",
@@ -22743,8 +22731,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "LaoFeng-mouse/flyingmouse-format": {
     "fullName": "LaoFeng-mouse/flyingmouse-format",
@@ -22765,8 +22753,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "pathwaycom/arc-task-gen": {
     "fullName": "pathwaycom/arc-task-gen",
@@ -22776,8 +22764,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "xiaobright/dsh-anchored-standard": {
     "fullName": "xiaobright/dsh-anchored-standard",
@@ -22787,8 +22775,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "yjh051108/dsh-routing-suite": {
     "fullName": "yjh051108/dsh-routing-suite",
@@ -22798,8 +22786,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "cordiverse/paper": {
     "fullName": "cordiverse/paper",
@@ -22831,8 +22819,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "dmmulroy/anti-slop": {
     "fullName": "dmmulroy/anti-slop",
@@ -22842,8 +22830,8 @@
     "discoveredAt": "2026-08-16T10:34:57.861Z",
     "sourceSnapshotWeek": "2026-W33",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-24T03:02:11.076Z",
+    "status": "in_registry"
   },
   "jd-opensource/JoyAI-Video-Edit": {
     "fullName": "jd-opensource/JoyAI-Video-Edit",
@@ -22944,11 +22932,369 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2240,
-    "inRegistry": 565,
-    "trackedOnly": 1675,
-    "lastGenerated": "2026-08-17T02:59:06.893Z"
+  "zouyuxuan122/Deepseek-Harness-EAC": {
+    "fullName": "zouyuxuan122/Deepseek-Harness-EAC",
+    "owner": "zouyuxuan122",
+    "repo": "Deepseek-Harness-EAC",
+    "category": "AI 代理",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-08-17T02:59:06.863Z"
+  "nocodb/nocodb": {
+    "fullName": "nocodb/nocodb",
+    "owner": "nocodb",
+    "repo": "nocodb",
+    "category": "開發工具",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "simonw/datasette": {
+    "fullName": "simonw/datasette",
+    "owner": "simonw",
+    "repo": "datasette",
+    "category": "研究",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "gristlabs/grist-core": {
+    "fullName": "gristlabs/grist-core",
+    "owner": "gristlabs",
+    "repo": "grist-core",
+    "category": "文件生產力",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "baserow/baserow": {
+    "fullName": "baserow/baserow",
+    "owner": "baserow",
+    "repo": "baserow",
+    "category": "開發工具",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "evidence-dev/evidence": {
+    "fullName": "evidence-dev/evidence",
+    "owner": "evidence-dev",
+    "repo": "evidence",
+    "category": "數據分析",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "SQLMesh/sqlmesh": {
+    "fullName": "SQLMesh/sqlmesh",
+    "owner": "SQLMesh",
+    "repo": "sqlmesh",
+    "category": "開發工具",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "sqlitebrowser/sqlitebrowser": {
+    "fullName": "sqlitebrowser/sqlitebrowser",
+    "owner": "sqlitebrowser",
+    "repo": "sqlitebrowser",
+    "category": "資料庫",
+    "addedAt": "2026-08-17T13:28:20.209Z",
+    "status": "tracking"
+  },
+  "chuspeeism/dashi-ppt-skill": {
+    "fullName": "chuspeeism/dashi-ppt-skill",
+    "owner": "chuspeeism",
+    "repo": "dashi-ppt-skill",
+    "category": "文件生產力",
+    "addedAt": "2026-08-17T13:30:03.910Z",
+    "status": "tracking"
+  },
+  "guillermolg00/morphicons": {
+    "fullName": "guillermolg00/morphicons",
+    "owner": "guillermolg00",
+    "repo": "morphicons",
+    "initialStars": 1239,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "MatrAIx-ai/MatrAIx-Persona-8B": {
+    "fullName": "MatrAIx-ai/MatrAIx-Persona-8B",
+    "owner": "MatrAIx-ai",
+    "repo": "MatrAIx-Persona-8B",
+    "initialStars": 1135,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "danyuchn/asd-ste100-skill": {
+    "fullName": "danyuchn/asd-ste100-skill",
+    "owner": "danyuchn",
+    "repo": "asd-ste100-skill",
+    "initialStars": 1135,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "milind-soni/OpenMausBot": {
+    "fullName": "milind-soni/OpenMausBot",
+    "owner": "milind-soni",
+    "repo": "OpenMausBot",
+    "initialStars": 1124,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Small-tailqwq/dsh-deep-whale": {
+    "fullName": "Small-tailqwq/dsh-deep-whale",
+    "owner": "Small-tailqwq",
+    "repo": "dsh-deep-whale",
+    "initialStars": 1114,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "openTrinity/mycontext": {
+    "fullName": "openTrinity/mycontext",
+    "owner": "openTrinity",
+    "repo": "mycontext",
+    "initialStars": 1077,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "AdamPlatin123/awesome-dsh-plugins": {
+    "fullName": "AdamPlatin123/awesome-dsh-plugins",
+    "owner": "AdamPlatin123",
+    "repo": "awesome-dsh-plugins",
+    "initialStars": 1073,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "hahhforest/pi-textbook": {
+    "fullName": "hahhforest/pi-textbook",
+    "owner": "hahhforest",
+    "repo": "pi-textbook",
+    "initialStars": 1052,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mothparkzo6249/TG-Polymarket-bot": {
+    "fullName": "mothparkzo6249/TG-Polymarket-bot",
+    "owner": "mothparkzo6249",
+    "repo": "TG-Polymarket-bot",
+    "initialStars": 1048,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "MengTo/kage": {
+    "fullName": "MengTo/kage",
+    "owner": "MengTo",
+    "repo": "kage",
+    "initialStars": 1038,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "SaladDay/pi-from-scratch": {
+    "fullName": "SaladDay/pi-from-scratch",
+    "owner": "SaladDay",
+    "repo": "pi-from-scratch",
+    "initialStars": 1029,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "petergyang/human-review": {
+    "fullName": "petergyang/human-review",
+    "owner": "petergyang",
+    "repo": "human-review",
+    "initialStars": 1025,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "didriksg/Crisp": {
+    "fullName": "didriksg/Crisp",
+    "owner": "didriksg",
+    "repo": "Crisp",
+    "initialStars": 994,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "miuuyy/codex-chatgpt-web": {
+    "fullName": "miuuyy/codex-chatgpt-web",
+    "owner": "miuuyy",
+    "repo": "codex-chatgpt-web",
+    "initialStars": 988,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mikiarlo3/ai-copywriter": {
+    "fullName": "mikiarlo3/ai-copywriter",
+    "owner": "mikiarlo3",
+    "repo": "ai-copywriter",
+    "initialStars": 968,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Flaminis/Dalaran": {
+    "fullName": "Flaminis/Dalaran",
+    "owner": "Flaminis",
+    "repo": "Dalaran",
+    "initialStars": 967,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Anionex/agent-vision-toolkit": {
+    "fullName": "Anionex/agent-vision-toolkit",
+    "owner": "Anionex",
+    "repo": "agent-vision-toolkit",
+    "initialStars": 960,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dacnay816y62-hub/cinema-dna-21x9x3": {
+    "fullName": "dacnay816y62-hub/cinema-dna-21x9x3",
+    "owner": "dacnay816y62-hub",
+    "repo": "cinema-dna-21x9x3",
+    "initialStars": 946,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "sophiamyang/finger-frame-effect-ai": {
+    "fullName": "sophiamyang/finger-frame-effect-ai",
+    "owner": "sophiamyang",
+    "repo": "finger-frame-effect-ai",
+    "initialStars": 938,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pireel/pireel": {
+    "fullName": "pireel/pireel",
+    "owner": "pireel",
+    "repo": "pireel",
+    "initialStars": 931,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "elayadesign/ai-design-skills": {
+    "fullName": "elayadesign/ai-design-skills",
+    "owner": "elayadesign",
+    "repo": "ai-design-skills",
+    "initialStars": 929,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "perplexityai/numbat": {
+    "fullName": "perplexityai/numbat",
+    "owner": "perplexityai",
+    "repo": "numbat",
+    "initialStars": 927,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "egoist/waku": {
+    "fullName": "egoist/waku",
+    "owner": "egoist",
+    "repo": "waku",
+    "initialStars": 925,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Hisn00w/ASu-skills": {
+    "fullName": "Hisn00w/ASu-skills",
+    "owner": "Hisn00w",
+    "repo": "ASu-skills",
+    "initialStars": 915,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xoreaxeaxeax/asm-hall-of-shame": {
+    "fullName": "xoreaxeaxeax/asm-hall-of-shame",
+    "owner": "xoreaxeaxeax",
+    "repo": "asm-hall-of-shame",
+    "initialStars": 906,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xikhar/persona": {
+    "fullName": "xikhar/persona",
+    "owner": "xikhar",
+    "repo": "persona",
+    "initialStars": 893,
+    "discoveredAt": "2026-08-17T02:59:06.863Z",
+    "sourceSnapshotWeek": "2026-W34",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2275,
+    "inRegistry": 578,
+    "trackedOnly": 1697,
+    "lastGenerated": "2026-08-24T03:02:11.109Z"
+  },
+  "lastGenerated": "2026-08-24T03:02:11.076Z"
 }

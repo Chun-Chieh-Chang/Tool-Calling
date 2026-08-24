@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-23T00:55:31.185Z",
+  "lastUpdated": "2026-08-24T03:02:11.076Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -37660,6 +37660,314 @@
       "status": "active",
       "addedAt": "2026-08-17T13:30:03.910Z",
       "stars": 5990
+    },
+    {
+      "id": "deepseek-harness-desktop-anywhere",
+      "name": "deepseek-harness-desktop",
+      "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
+      "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "deepseek-harness-desktop-anywhere",
+        "cordis",
+        "cordis-plugin",
+        "deepseek",
+        "deepseek-harness",
+        "desktop"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/anywhere-labs/deepseek-harness-desktop"
+      },
+      "capabilities": [
+        "cordis",
+        "cordis-plugin",
+        "deepseek",
+        "deepseek-harness",
+        "desktop",
+        "dsh"
+      ],
+      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 — 上週漲星 +1825 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 9,576 星",
+        "上週漲星 +1825",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 9576,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "awesome-dsh-plugin",
+      "name": "awesome-dsh-plugin",
+      "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin",
+      "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "awesome-dsh-plugin",
+        "awesome",
+        "awesome-list",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin"
+      },
+      "capabilities": [
+        "awesome",
+        "awesome-list",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "useCase": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表 — 上週漲星 +1820 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 5,682 星",
+        "上週漲星 +1820",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 5682,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "dsh-routing-suite",
+      "name": "dsh-routing-suite",
+      "url": "https://github.com/yjh051108/dsh-routing-suite",
+      "description": "dsh-routing-suite — injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23).",
+      "category": "開發工具",
+      "language": "powershell",
+      "triggers": [
+        "dsh-routing-suite",
+        "ai-agents",
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/yjh051108/dsh-routing-suite"
+      },
+      "capabilities": [
+        "ai-agents",
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin"
+      ],
+      "useCase": "dsh-routing-suite — injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23). — 上週漲星 +588 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 2,971 星",
+        "上週漲星 +588",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 2971,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "arc-task-gen",
+      "name": "arc-task-gen",
+      "url": "https://github.com/pathwaycom/arc-task-gen",
+      "description": "Generates original ARC-AGI-1-style tasks distribution-matched to the public eval set.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "arc-task-gen"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/pathwaycom/arc-task-gen"
+      },
+      "capabilities": [],
+      "useCase": "Generates original ARC-AGI-1-style tasks distribution-matched to the public eval set. — 上週漲星 +512 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 3,184 星",
+        "上週漲星 +512",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3184,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "dsh-anchored-standard",
+      "name": "dsh-anchored-standard",
+      "url": "https://github.com/xiaobright/dsh-anchored-standard",
+      "description": "Two-phase DeepSeek Harness preset: Minimal-aligned bootstrap, then full Standard tools (Project2 98/99)",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "dsh-anchored-standard",
+        "deepseek",
+        "deepseek-harness",
+        "dsh-plugin",
+        "llm-agent"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/xiaobright/dsh-anchored-standard"
+      },
+      "capabilities": [
+        "deepseek",
+        "deepseek-harness",
+        "dsh-plugin",
+        "llm-agent"
+      ],
+      "useCase": "Two-phase DeepSeek Harness preset: Minimal-aligned bootstrap, then full Standard tools (Project2 98/99) — 上週漲星 +494 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 3,137 星",
+        "上週漲星 +494",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3137,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "dsh-web-ui",
+      "name": "dsh-web-ui",
+      "url": "https://github.com/zhu1090093659/dsh-web-ui",
+      "description": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - T",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "dsh-web-ui",
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "dsh-web"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/zhu1090093659/dsh-web-ui"
+      },
+      "capabilities": [
+        "cordis",
+        "deepseek-harness",
+        "dsh",
+        "dsh-plugin",
+        "dsh-web",
+        "dsh-web-ui"
+      ],
+      "useCase": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop. — 上週漲星 +478 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 3,573 星",
+        "上週漲星 +478",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3573,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "anti-slop",
+      "name": "anti-slop",
+      "url": "https://github.com/dmmulroy/anti-slop",
+      "description": "Opinionated Oxlint rules for rejecting low-evidence TypeScript and JavaScript patterns",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "anti-slop",
+        "agent-skills",
+        "linting",
+        "oxlint",
+        "typescript"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/dmmulroy/anti-slop"
+      },
+      "capabilities": [
+        "agent-skills",
+        "linting",
+        "oxlint",
+        "typescript"
+      ],
+      "useCase": "Opinionated Oxlint rules for rejecting low-evidence TypeScript and JavaScript patterns — 上週漲星 +239 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,687 星",
+        "上週漲星 +239",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1687,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
+    },
+    {
+      "id": "dsh-better-sidebar",
+      "name": "DSH-better-sidebar",
+      "url": "https://github.com/omdsh-dev/DSH-better-sidebar",
+      "description": "开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/侧边对话/Git/子代理页面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, ",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "dsh-better-sidebar",
+        "deepseek",
+        "deepseek-harness",
+        "dsh",
+        "dsh-better-sidebar",
+        "dsh-plugin"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/omdsh-dev/DSH-better-sidebar"
+      },
+      "capabilities": [
+        "deepseek",
+        "deepseek-harness",
+        "dsh",
+        "dsh-better-sidebar",
+        "dsh-plugin",
+        "sidebar"
+      ],
+      "useCase": "开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/侧边对话/Git/子代理页面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, and sub-agent pages. — 上週漲星 +235 (2026-W34 自動探勘入庫)。",
+      "advantages": [
+        "GitHub ⭐ 1,697 星",
+        "上週漲星 +235",
+        "2026-W34 自動探勘入庫"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 1697,
+      "addedAt": "2026-08-24T03:02:11.076Z",
+      "status": "active"
     }
   ]
 }
