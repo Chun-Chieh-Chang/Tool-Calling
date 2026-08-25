@@ -13,6 +13,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildTrackedRepos, getTrackedRepos } from './tracked-repos.js';
 import { getCurrentWorldWeek, getPreviousWorldWeek, getWeekRangeFromWeekStr } from '../core/world-week.js';
+import { syncRegistryToDist } from './dist-sync.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -148,7 +149,7 @@ function getLatestSnapshot(snapshotData) {
  * @param {boolean} allowNewRepos - 是否允許近 30 天新建專案（無基線）進入排名
  * @returns {Array} 排序後的 repo 資訊陣列
  */
-function computeRanking(reposMap, baselineSnapshot, weekInfo, allowNewRepos = true) {
+function computeRanking(reposMap, baselineSnapshot, weekInfo, allowNewRepos = true, startDateStr = null, endDateStr = null) {
   let filteredCount = 0;
   const rankedRepos = [];
 
@@ -191,8 +192,8 @@ function computeRanking(reposMap, baselineSnapshot, weekInfo, allowNewRepos = tr
       pushedAt: repo.pushed_at,
       html_url: repo.html_url,
       category: inferCategory(repo),
-      startStarsAt: weekInfo.mondayStr,
-      endStarsAt: weekInfo.sundayStr
+      startStarsAt: startDateStr || weekInfo.mondayStr,
+      endStarsAt: endDateStr || weekInfo.sundayStr
     });
   }
 
@@ -263,20 +264,17 @@ export async function discoverTrendingTools() {
   // 上上週快照 → 作為「上週完整數據」的基準線
   const prevPrevWeekInfo = getPreviousWorldWeek(prevWeekInfo.monday);
   const prevPrevWeekStr = prevPrevWeekInfo.weekStr;
+  const prevPrevWeekSnap = getSnapshotForWeek(prevPrevWeekStr, snapshotData);
   const baselineForLastWeek =
-    getSnapshotForWeek(prevPrevWeekStr, snapshotData)?.repos ||
+    prevPrevWeekSnap?.repos ||
     getSnapshotForWeek(prevWeekStr, snapshotData)?.repos ||
     getLatestSnapshot(snapshotData)?.repos ||
     allHistoricalRepos;
 
-  // 上週快照 → 作為「本週迄今」的基準線（週一開始時的狀態）
-  const baselineForCurrentWeek =
-    getSnapshotForWeek(prevWeekStr, snapshotData)?.repos ||
-    getLatestSnapshot(snapshotData)?.repos ||
-    allHistoricalRepos;
+  // 本週「週初基準」快照（在 Step 3 取得 liveRepos 後再決定 fallback 值）
+  const currentWeekBaselineSnap = getSnapshotForWeek(currentWeekStr, snapshotData);
 
   console.log(`   上週基準 (${prevPrevWeekStr})：${Object.keys(baselineForLastWeek).length} 個 repos`);
-  console.log(`   本週基準 (${prevWeekStr})：${Object.keys(baselineForCurrentWeek).length} 個 repos`);
   console.log(`   歷史總計 ${Object.keys(allHistoricalRepos).length} 個 unique repos\n`);
 
   // Step 3: 搜尋熱門 repos
@@ -311,11 +309,24 @@ export async function discoverTrendingTools() {
 
   console.log(`\n   搜尋共獲得 ${liveRepos.size} 個 repos\n`);
 
+  // 本週「週初基準」：優先取本週自身快照（首次執行後即被保留，作為本週迄今比對基準）；
+  // 本週首次執行時尚無本週快照，則以即時值為基準（本週迄今 delta ≈ 0，正確反映週初狀態）
+  const liveReposBaseline = Object.fromEntries([...liveRepos].map(([k, v]) => [k, v.stargazers_count || 0]));
+  const baselineForCurrentWeek =
+    currentWeekBaselineSnap?.repos ||
+    liveReposBaseline ||
+    getSnapshotForWeek(prevWeekStr, snapshotData)?.repos ||
+    getLatestSnapshot(snapshotData)?.repos ||
+    allHistoricalRepos;
+  console.log(`   本週基準 (${currentWeekStr})：${Object.keys(baselineForCurrentWeek).length} 個 repos`);
+
   // Step 4a: 計算「上週完整數據」排名（基準：上上週末 → 當前即時星數，代表上週累積）
   // 說明：腳本上週執行時已抓上週末數據存入快照，現在用「上上週」基線對比「上週末快照」
   // 但為了簡化（避免需要兩次API呼叫），我們用「上週末快照」 vs「上上週快照」計算正式的上週delta
   console.log('📊 Step 4a: 計算上週完整數據排名（正式，列入入庫判斷）...');
   const prevWeekSnap = getSnapshotForWeek(prevWeekStr, snapshotData);
+  const lastWeekStartStr = (prevPrevWeekSnap?.timestamp || '').slice(0, 10) || prevWeekInfo.mondayStr;
+  const lastWeekEndStr = (prevWeekSnap?.timestamp || '').slice(0, 10) || prevWeekInfo.sundayStr;
   let lastWeekRanked;
   if (prevWeekSnap?.repos && Object.keys(prevWeekSnap.repos).length > 0) {
     // 理想路徑：上週快照存在，用「上上週快照 vs 上週快照」計算純上週 delta
@@ -332,11 +343,11 @@ export async function discoverTrendingTools() {
           created_at: liveRepos.get(name)?.created_at || null }
       ])
     );
-    lastWeekRanked = computeRanking(lastWeekReposMap, baselineForLastWeek, prevWeekInfo, false);
+    lastWeekRanked = computeRanking(lastWeekReposMap, baselineForLastWeek, prevWeekInfo, false, lastWeekStartStr, lastWeekEndStr);
     console.log(`   使用上週快照 (${prevWeekStr}) vs 基準 (${prevPrevWeekStr})，計算純上週增量`);
   } else {
     // 退化路徑：上週快照不存在，改用 live repos vs 上週基線估算
-    lastWeekRanked = computeRanking(liveRepos, baselineForLastWeek, prevWeekInfo, true);
+    lastWeekRanked = computeRanking(liveRepos, baselineForLastWeek, prevWeekInfo, true, lastWeekStartStr, lastWeekEndStr);
     console.log(`   ⚠ 上週快照不存在，改用即時數據估算上週排名`);
   }
   const lastWeekTop20 = lastWeekRanked.slice(0, 20);
@@ -344,7 +355,8 @@ export async function discoverTrendingTools() {
 
   // Step 4b: 計算「本週迄今」排名（基準：上週末快照 → 今日即時星數，不列入入庫）
   console.log('📊 Step 4b: 計算本週迄今數據排名（進行中，不列入入庫判斷）...');
-  const currentWeekRanked = computeRanking(liveRepos, baselineForCurrentWeek, currentWeekInfo, true);
+  const currentWeekStartStr = (currentWeekBaselineSnap?.timestamp || '').slice(0, 10) || currentWeekInfo.mondayStr;
+  const currentWeekRanked = computeRanking(liveRepos, baselineForCurrentWeek, currentWeekInfo, true, currentWeekStartStr, todayStr);
   const currentWeekTop20 = currentWeekRanked.slice(0, 20);
   console.log(`   本週迄今計算完成，共 ${currentWeekRanked.length} 個有效 repos\n`);
 
@@ -435,17 +447,23 @@ export async function discoverTrendingTools() {
     } catch { /* ignore */ }
   }
 
-  // 去重：移除同週的舊快照
-  snapshotFileData.snapshots = snapshotFileData.snapshots.filter(s => s.week !== currentWeekStr);
-
+  // 保留「週初基準」：本週快照僅在首次執行時寫入，後續執行不覆寫 repos，
+  // 以避免「本週迄今」的比對基準被洗掉（否則本週迄今會變成上週整週漲幅，誤標為單日暴衝）
   const mergedSnapshot = { ...allHistoricalRepos, ...currentSnapshot };
-
-  snapshotFileData.snapshots.push({
-    week: currentWeekStr,
-    dateRange: `${currentWeekInfo.mondayStr} ~ ${todayStr}`,
-    timestamp: now.toISOString(),
-    repos: mergedSnapshot
-  });
+  const existingCurrentSnap = snapshotFileData.snapshots.find(s => s.week === currentWeekStr);
+  if (existingCurrentSnap) {
+    existingCurrentSnap.dateRange = `${currentWeekInfo.mondayStr} ~ ${todayStr}`;
+    existingCurrentSnap.timestamp = now.toISOString();
+    // 保留 existingCurrentSnap.repos（週初基準），不更新
+  } else {
+    snapshotFileData.snapshots.push({
+      week: currentWeekStr,
+      dateRange: `${currentWeekInfo.mondayStr} ~ ${todayStr}`,
+      timestamp: now.toISOString(),
+      isWeekStart: true,
+      repos: currentSnapshot
+    });
+  }
 
   snapshotFileData.lastUpdated = now.toISOString();
   writeFileSync(SNAPSHOTS_PATH, JSON.stringify(snapshotFileData, null, 2), 'utf8');
@@ -542,6 +560,14 @@ export async function discoverTrendingTools() {
   console.log(`   JSON 數據已寫入：${jsonPath}`);
   console.log(`   └─ lastWeek: ${prevWeekStr} (${prevWeekInfo.dateRange}) — 正式，入庫判斷有效`);
   console.log(`   └─ currentWeekToDate: ${currentWeekStr} (${currentWeekInfo.mondayStr} ~ ${todayStr}) — 進行中，不入庫\n`);
+
+  // 同步至 dist/registry/，確保工作台實際服務的資料與 registry 一致
+  try {
+    syncRegistryToDist();
+    console.log(`   📦 已同步 registry → dist/registry/（weekly-trending.json, tools.json）`);
+  } catch (e) {
+    console.warn(`   ⚠ 同步至 dist 失敗（不影響 registry 資料）：${e.message || e}`);
+  }
 
   console.log(`✅ [完成] 每週漲星探勘作業結束！\n`);
 }

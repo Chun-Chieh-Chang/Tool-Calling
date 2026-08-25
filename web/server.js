@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { discoverTrendingTools } from '../scripts/trending-weekly.js';
 import { getCurrentWorldWeek } from '../core/world-week.js';
+import { syncRegistryToDist } from '../scripts/dist-sync.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -32,23 +33,6 @@ const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 let isTrendingScanning = false;
 let lastScanError = null;
 let lastScanCompletedAt = null;
-
-/**
- * 將生成的最新 registry 檔案同步至 dist 目錄
- */
-function syncRegistryToDist() {
-  const filesToSync = [
-    { src: path.join(rootDir, 'registry', 'weekly-trending.json'), dest: path.join(distDir, 'registry', 'weekly-trending.json') },
-    { src: path.join(rootDir, 'registry', 'tools.json'), dest: path.join(distDir, 'registry', 'tools.json') }
-  ];
-
-  for (const { src, dest } of filesToSync) {
-    if (fs.existsSync(src)) {
-      fs.mkdirSync(path.dirname(dest), { recursive: true });
-      fs.copyFileSync(src, dest);
-    }
-  }
-}
 
 /**
  * 執行探勘任務（含狀態鎖與自動同步）
@@ -283,4 +267,9 @@ server.listen(PORT, () => {
 
   // 伺服器啟動後執行自動檢查
   checkAndAutoUpdateOnStartup();
+
+  // 週期性自動更新：每 30 分鐘檢查跨日/跨週，保持「本週迄今」即時並於週初捕獲基準
+  setInterval(() => {
+    try { checkAndAutoUpdateOnStartup(); } catch { /* 忽略暫態錯誤 */ }
+  }, 30 * 60 * 1000);
 });

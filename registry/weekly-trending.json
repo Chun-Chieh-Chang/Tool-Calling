@@ -1,17 +1,17 @@
 {
   "worldWeek": "2026-W34",
-  "lastUpdated": "2026-08-24T03:02:11.076Z",
+  "lastUpdated": "2026-08-24T14:38:41.827Z",
   "dateRange": "2026-08-17 ~ 2026-08-23",
   "statPeriod": {
     "start": "2026-08-17T00:00:00.000Z",
     "end": "2026-08-23T23:59:59.999Z"
   },
-  "scanTime": "2026-08-24T03:02:11.076Z",
-  "trackedPoolSize": 2276,
+  "scanTime": "2026-08-24T14:38:41.827Z",
+  "trackedPoolSize": 2326,
   "activeReposCount": 199,
   "scannedReposCount": 199,
-  "historicalCoverage": 1407,
-  "newlyAddedCount": 8,
+  "historicalCoverage": 1411,
+  "newlyAddedCount": 0,
   "top10": [
     {
       "rank": 1,
@@ -26,24 +26,24 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 2,
       "name": "deepseek-harness-desktop",
       "fullName": "anywhere-labs/deepseek-harness-desktop",
       "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-      "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+      "description": "",
       "currentStars": 9576,
       "prevStars": 7751,
       "delta": 1825,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 3,
@@ -55,11 +55,11 @@
       "prevStars": 3862,
       "delta": 1820,
       "category": "研究",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 4,
@@ -74,8 +74,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 5,
@@ -90,8 +90,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 6,
@@ -106,8 +106,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 7,
@@ -119,11 +119,11 @@
       "prevStars": 2383,
       "delta": 588,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 8,
@@ -135,11 +135,11 @@
       "prevStars": 2672,
       "delta": 512,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 9,
@@ -151,27 +151,27 @@
       "prevStars": 2643,
       "delta": 494,
       "category": "AI 框架",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 10,
       "name": "dsh-web-ui",
       "fullName": "zhu1090093659/dsh-web-ui",
       "url": "https://github.com/zhu1090093659/dsh-web-ui",
-      "description": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop.",
+      "description": "",
       "currentStars": 3573,
       "prevStars": 3095,
       "delta": 478,
       "category": "UI/UX設計",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     }
   ],
   "top20": [
@@ -188,24 +188,24 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 2,
       "name": "deepseek-harness-desktop",
       "fullName": "anywhere-labs/deepseek-harness-desktop",
       "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-      "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+      "description": "",
       "currentStars": 9576,
       "prevStars": 7751,
       "delta": 1825,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 3,
@@ -217,11 +217,11 @@
       "prevStars": 3862,
       "delta": 1820,
       "category": "研究",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 4,
@@ -236,8 +236,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 5,
@@ -252,8 +252,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 6,
@@ -268,8 +268,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 7,
@@ -281,11 +281,11 @@
       "prevStars": 2383,
       "delta": 588,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 8,
@@ -297,11 +297,11 @@
       "prevStars": 2672,
       "delta": 512,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 9,
@@ -313,27 +313,27 @@
       "prevStars": 2643,
       "delta": 494,
       "category": "AI 框架",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 10,
       "name": "dsh-web-ui",
       "fullName": "zhu1090093659/dsh-web-ui",
       "url": "https://github.com/zhu1090093659/dsh-web-ui",
-      "description": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop.",
+      "description": "",
       "currentStars": 3573,
       "prevStars": 3095,
       "delta": 478,
       "category": "UI/UX設計",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 11,
@@ -348,8 +348,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 12,
@@ -364,8 +364,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 13,
@@ -380,8 +380,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 14,
@@ -393,11 +393,11 @@
       "prevStars": 1448,
       "delta": 239,
       "category": "AI 代理",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 15,
@@ -409,11 +409,11 @@
       "prevStars": 1462,
       "delta": 235,
       "category": "AI 代理",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "statusText": "✅ 已在工具箱",
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 16,
@@ -428,8 +428,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 17,
@@ -444,8 +444,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 18,
@@ -460,8 +460,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 19,
@@ -476,8 +476,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     },
     {
       "rank": 20,
@@ -492,8 +492,8 @@
       "isNewlyAdded": false,
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
-      "startStarsAt": "2026-08-17",
-      "endStarsAt": "2026-08-23"
+      "startStarsAt": "2026-08-16",
+      "endStarsAt": "2026-08-17"
     }
   ],
   "lastWeek": {
@@ -501,7 +501,7 @@
     "dateRange": "2026-08-17 ~ 2026-08-23",
     "isComplete": true,
     "note": "上週完整數據，列入工具箱納入判斷",
-    "newlyAddedCount": 8,
+    "newlyAddedCount": 0,
     "top10": [
       {
         "rank": 1,
@@ -516,24 +516,24 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 2,
         "name": "deepseek-harness-desktop",
         "fullName": "anywhere-labs/deepseek-harness-desktop",
         "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-        "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+        "description": "",
         "currentStars": 9576,
         "prevStars": 7751,
         "delta": 1825,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 3,
@@ -545,11 +545,11 @@
         "prevStars": 3862,
         "delta": 1820,
         "category": "研究",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 4,
@@ -564,8 +564,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 5,
@@ -580,8 +580,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 6,
@@ -596,8 +596,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 7,
@@ -609,11 +609,11 @@
         "prevStars": 2383,
         "delta": 588,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 8,
@@ -625,11 +625,11 @@
         "prevStars": 2672,
         "delta": 512,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 9,
@@ -641,27 +641,27 @@
         "prevStars": 2643,
         "delta": 494,
         "category": "AI 框架",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 10,
         "name": "dsh-web-ui",
         "fullName": "zhu1090093659/dsh-web-ui",
         "url": "https://github.com/zhu1090093659/dsh-web-ui",
-        "description": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop.",
+        "description": "",
         "currentStars": 3573,
         "prevStars": 3095,
         "delta": 478,
         "category": "UI/UX設計",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       }
     ],
     "top20": [
@@ -678,24 +678,24 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 2,
         "name": "deepseek-harness-desktop",
         "fullName": "anywhere-labs/deepseek-harness-desktop",
         "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-        "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+        "description": "",
         "currentStars": 9576,
         "prevStars": 7751,
         "delta": 1825,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 3,
@@ -707,11 +707,11 @@
         "prevStars": 3862,
         "delta": 1820,
         "category": "研究",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 4,
@@ -726,8 +726,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 5,
@@ -742,8 +742,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 6,
@@ -758,8 +758,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 7,
@@ -771,11 +771,11 @@
         "prevStars": 2383,
         "delta": 588,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 8,
@@ -787,11 +787,11 @@
         "prevStars": 2672,
         "delta": 512,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 9,
@@ -803,27 +803,27 @@
         "prevStars": 2643,
         "delta": 494,
         "category": "AI 框架",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 10,
         "name": "dsh-web-ui",
         "fullName": "zhu1090093659/dsh-web-ui",
         "url": "https://github.com/zhu1090093659/dsh-web-ui",
-        "description": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop.",
+        "description": "",
         "currentStars": 3573,
         "prevStars": 3095,
         "delta": 478,
         "category": "UI/UX設計",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 11,
@@ -838,8 +838,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 12,
@@ -854,8 +854,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 13,
@@ -870,8 +870,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 14,
@@ -883,11 +883,11 @@
         "prevStars": 1448,
         "delta": 239,
         "category": "AI 代理",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 15,
@@ -899,11 +899,11 @@
         "prevStars": 1462,
         "delta": 235,
         "category": "AI 代理",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 16,
@@ -918,8 +918,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 17,
@@ -934,8 +934,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 18,
@@ -950,8 +950,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 19,
@@ -966,8 +966,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       },
       {
         "rank": 20,
@@ -982,8 +982,8 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-17",
-        "endStarsAt": "2026-08-23"
+        "startStarsAt": "2026-08-16",
+        "endStarsAt": "2026-08-17"
       }
     ]
   },
@@ -1000,159 +1000,159 @@
         "fullName": "deepseek-ai/deepseek-harness",
         "url": "https://github.com/deepseek-ai/deepseek-harness",
         "description": "DeepSeek Harness: Everything is a Plugin.",
-        "currentStars": 188611,
-        "prevStars": 135909,
-        "delta": 52702,
+        "currentStars": 191067,
+        "prevStars": 191012,
+        "delta": 55,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 2,
+        "name": "grok-bot-0.18-reconstructed",
+        "fullName": "b-nnett/grok-bot-0.18-reconstructed",
+        "url": "https://github.com/b-nnett/grok-bot-0.18-reconstructed",
+        "description": "Unofficial source-oriented reconstruction and extension of Grok Bot 0.18.0 for macOS",
+        "currentStars": 1033,
+        "prevStars": 981,
+        "delta": 52,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 3,
         "name": "skills",
         "fullName": "mattpocock/skills",
         "url": "https://github.com/mattpocock/skills",
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
-        "currentStars": 234029,
-        "prevStars": 219398,
-        "delta": 14631,
+        "currentStars": 234936,
+        "prevStars": 234916,
+        "delta": 20,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
-        "rank": 3,
-        "name": "MoneyPrinterTurbo",
-        "fullName": "harry0703/MoneyPrinterTurbo",
-        "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-        "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-        "currentStars": 115387,
-        "prevStars": 104089,
-        "delta": 11298,
+        "rank": 4,
+        "name": "openGym",
+        "fullName": "arvids-unavailable/openGym",
+        "url": "https://github.com/arvids-unavailable/openGym",
+        "description": "https://github.com/DuarteSantos8/openGym",
+        "currentStars": 3634,
+        "prevStars": 3617,
+        "delta": 17,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 5,
+        "name": "andrej-karpathy-skills",
+        "fullName": "multica-ai/andrej-karpathy-skills",
+        "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+        "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+        "currentStars": 206215,
+        "prevStars": 206199,
+        "delta": 16,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 4,
-        "name": "deepseek-harness-desktop",
-        "fullName": "anywhere-labs/deepseek-harness-desktop",
-        "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-        "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
-        "currentStars": 19076,
-        "prevStars": 9576,
-        "delta": 9500,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 5,
-        "name": "codex",
-        "fullName": "openai/codex",
-        "url": "https://github.com/openai/codex",
-        "description": "Lightweight coding agent that runs in your terminal",
-        "currentStars": 115593,
-        "prevStars": 106194,
-        "delta": 9399,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 6,
+        "name": "hermes-agent",
+        "fullName": "NousResearch/hermes-agent",
+        "url": "https://github.com/NousResearch/hermes-agent",
+        "description": "The agent that grows with you",
+        "currentStars": 235524,
+        "prevStars": 235510,
+        "delta": 14,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 7,
         "name": "public-apis",
         "fullName": "public-apis/public-apis",
         "url": "https://github.com/public-apis/public-apis",
         "description": "A collective list of free APIs",
-        "currentStars": 469280,
-        "prevStars": 461961,
-        "delta": 7319,
+        "currentStars": 469645,
+        "prevStars": 469632,
+        "delta": 13,
         "category": "API 整合",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 7,
-        "name": "awesome-dsh-plugin",
-        "fullName": "awesome-dsh-plugin/awesome-dsh-plugin",
-        "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin",
-        "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
-        "currentStars": 11919,
-        "prevStars": 5682,
-        "delta": 6237,
-        "category": "研究",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 8,
-        "name": "watermarks-remover",
-        "fullName": "guillaumemeyer/watermarks-remover",
-        "url": "https://github.com/guillaumemeyer/watermarks-remover",
-        "description": "Strip multi-vendor AI provenance marks: Unicode text hygiene, statistical rewrite hooks, and C2PA/metadata from PNG/JPEG/SVG/PDF/DOCX/HTML/MD",
-        "currentStars": 17484,
-        "prevStars": 11808,
-        "delta": 5676,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 9,
-        "name": "ip-as-logo-skill",
-        "fullName": "s1dashu/ip-as-logo-skill",
-        "url": "https://github.com/s1dashu/ip-as-logo-skill",
-        "description": "A compact Agent Skill for highly simplified, rounded, subtly neo-skeuomorphic IP mascot logos.",
-        "currentStars": 3938,
-        "prevStars": 0,
-        "delta": 3938,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 10,
         "name": "superpowers",
         "fullName": "obra/superpowers",
         "url": "https://github.com/obra/superpowers",
         "description": "An agentic skills framework & software development methodology that works.",
-        "currentStars": 276716,
-        "prevStars": 272854,
-        "delta": 3862,
+        "currentStars": 276933,
+        "prevStars": 276921,
+        "delta": 12,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 9,
+        "name": "dsh-desktop",
+        "fullName": "anywhere-labs/dsh-desktop",
+        "url": "https://github.com/anywhere-labs/dsh-desktop",
+        "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+        "currentStars": 19584,
+        "prevStars": 19573,
+        "delta": 11,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 10,
+        "name": "codex",
+        "fullName": "openai/codex",
+        "url": "https://github.com/openai/codex",
+        "description": "Lightweight coding agent that runs in your terminal",
+        "currentStars": 116763,
+        "prevStars": 116752,
+        "delta": 11,
+        "category": "AI 代理",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
       }
     ],
     "top20": [
@@ -1162,319 +1162,319 @@
         "fullName": "deepseek-ai/deepseek-harness",
         "url": "https://github.com/deepseek-ai/deepseek-harness",
         "description": "DeepSeek Harness: Everything is a Plugin.",
-        "currentStars": 188611,
-        "prevStars": 135909,
-        "delta": 52702,
+        "currentStars": 191067,
+        "prevStars": 191012,
+        "delta": 55,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 2,
+        "name": "grok-bot-0.18-reconstructed",
+        "fullName": "b-nnett/grok-bot-0.18-reconstructed",
+        "url": "https://github.com/b-nnett/grok-bot-0.18-reconstructed",
+        "description": "Unofficial source-oriented reconstruction and extension of Grok Bot 0.18.0 for macOS",
+        "currentStars": 1033,
+        "prevStars": 981,
+        "delta": 52,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 3,
         "name": "skills",
         "fullName": "mattpocock/skills",
         "url": "https://github.com/mattpocock/skills",
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
-        "currentStars": 234029,
-        "prevStars": 219398,
-        "delta": 14631,
+        "currentStars": 234936,
+        "prevStars": 234916,
+        "delta": 20,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
-        "rank": 3,
-        "name": "MoneyPrinterTurbo",
-        "fullName": "harry0703/MoneyPrinterTurbo",
-        "url": "https://github.com/harry0703/MoneyPrinterTurbo",
-        "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
-        "currentStars": 115387,
-        "prevStars": 104089,
-        "delta": 11298,
+        "rank": 4,
+        "name": "openGym",
+        "fullName": "arvids-unavailable/openGym",
+        "url": "https://github.com/arvids-unavailable/openGym",
+        "description": "https://github.com/DuarteSantos8/openGym",
+        "currentStars": 3634,
+        "prevStars": 3617,
+        "delta": 17,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 5,
+        "name": "andrej-karpathy-skills",
+        "fullName": "multica-ai/andrej-karpathy-skills",
+        "url": "https://github.com/multica-ai/andrej-karpathy-skills",
+        "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
+        "currentStars": 206215,
+        "prevStars": 206199,
+        "delta": 16,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 4,
-        "name": "deepseek-harness-desktop",
-        "fullName": "anywhere-labs/deepseek-harness-desktop",
-        "url": "https://github.com/anywhere-labs/deepseek-harness-desktop",
-        "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
-        "currentStars": 19076,
-        "prevStars": 9576,
-        "delta": 9500,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 5,
-        "name": "codex",
-        "fullName": "openai/codex",
-        "url": "https://github.com/openai/codex",
-        "description": "Lightweight coding agent that runs in your terminal",
-        "currentStars": 115593,
-        "prevStars": 106194,
-        "delta": 9399,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 6,
+        "name": "hermes-agent",
+        "fullName": "NousResearch/hermes-agent",
+        "url": "https://github.com/NousResearch/hermes-agent",
+        "description": "The agent that grows with you",
+        "currentStars": 235524,
+        "prevStars": 235510,
+        "delta": 14,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 7,
         "name": "public-apis",
         "fullName": "public-apis/public-apis",
         "url": "https://github.com/public-apis/public-apis",
         "description": "A collective list of free APIs",
-        "currentStars": 469280,
-        "prevStars": 461961,
-        "delta": 7319,
+        "currentStars": 469645,
+        "prevStars": 469632,
+        "delta": 13,
         "category": "API 整合",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 7,
-        "name": "awesome-dsh-plugin",
-        "fullName": "awesome-dsh-plugin/awesome-dsh-plugin",
-        "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin",
-        "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
-        "currentStars": 11919,
-        "prevStars": 5682,
-        "delta": 6237,
-        "category": "研究",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 8,
-        "name": "watermarks-remover",
-        "fullName": "guillaumemeyer/watermarks-remover",
-        "url": "https://github.com/guillaumemeyer/watermarks-remover",
-        "description": "Strip multi-vendor AI provenance marks: Unicode text hygiene, statistical rewrite hooks, and C2PA/metadata from PNG/JPEG/SVG/PDF/DOCX/HTML/MD",
-        "currentStars": 17484,
-        "prevStars": 11808,
-        "delta": 5676,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 9,
-        "name": "ip-as-logo-skill",
-        "fullName": "s1dashu/ip-as-logo-skill",
-        "url": "https://github.com/s1dashu/ip-as-logo-skill",
-        "description": "A compact Agent Skill for highly simplified, rounded, subtly neo-skeuomorphic IP mascot logos.",
-        "currentStars": 3938,
-        "prevStars": 0,
-        "delta": 3938,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 10,
         "name": "superpowers",
         "fullName": "obra/superpowers",
         "url": "https://github.com/obra/superpowers",
         "description": "An agentic skills framework & software development methodology that works.",
-        "currentStars": 276716,
-        "prevStars": 272854,
-        "delta": 3862,
+        "currentStars": 276933,
+        "prevStars": 276921,
+        "delta": 12,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 9,
+        "name": "dsh-desktop",
+        "fullName": "anywhere-labs/dsh-desktop",
+        "url": "https://github.com/anywhere-labs/dsh-desktop",
+        "description": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+        "currentStars": 19584,
+        "prevStars": 19573,
+        "delta": 11,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 10,
+        "name": "codex",
+        "fullName": "openai/codex",
+        "url": "https://github.com/openai/codex",
+        "description": "Lightweight coding agent that runs in your terminal",
+        "currentStars": 116763,
+        "prevStars": 116752,
+        "delta": 11,
+        "category": "AI 代理",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 11,
-        "name": "dsh-routing-suite",
-        "fullName": "yjh051108/dsh-routing-suite",
-        "url": "https://github.com/yjh051108/dsh-routing-suite",
-        "description": "dsh-routing-suite — injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23).",
-        "currentStars": 6715,
-        "prevStars": 2971,
-        "delta": 3744,
-        "category": "開發工具",
+        "name": "MoneyPrinterTurbo",
+        "fullName": "harry0703/MoneyPrinterTurbo",
+        "url": "https://github.com/harry0703/MoneyPrinterTurbo",
+        "description": "利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workflow.",
+        "currentStars": 115772,
+        "prevStars": 115761,
+        "delta": 11,
+        "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 12,
-        "name": "hermes-agent",
-        "fullName": "NousResearch/hermes-agent",
-        "url": "https://github.com/NousResearch/hermes-agent",
-        "description": "The agent that grows with you",
-        "currentStars": 235075,
-        "prevStars": 231578,
-        "delta": 3497,
+        "name": "watermarks-remover",
+        "fullName": "guillaumemeyer/watermarks-remover",
+        "url": "https://github.com/guillaumemeyer/watermarks-remover",
+        "description": "Strip multi-vendor AI provenance marks: Unicode text hygiene, statistical rewrite hooks, and C2PA/metadata from PNG/JPEG/SVG/PDF/DOCX/HTML/MD",
+        "currentStars": 17764,
+        "prevStars": 17754,
+        "delta": 10,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
         "rank": 13,
-        "name": "firecrawl",
-        "fullName": "firecrawl/firecrawl",
-        "url": "https://github.com/firecrawl/firecrawl",
-        "description": "The context API to search, scrape, and interact with the web at scale. 🔥",
-        "currentStars": 171442,
-        "prevStars": 168239,
-        "delta": 3203,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 14,
         "name": "threeui",
         "fullName": "MengTo/threeui",
         "url": "https://github.com/MengTo/threeui",
         "description": "Open-source ThreeUI Community catalog with live interactive components and complete Community source.",
-        "currentStars": 2996,
-        "prevStars": 0,
-        "delta": 2996,
+        "currentStars": 3308,
+        "prevStars": 3298,
+        "delta": 10,
         "category": "UI/UX設計",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
-        "rank": 15,
-        "name": "cumora",
-        "fullName": "yetone/cumora",
-        "url": "https://github.com/yetone/cumora",
-        "description": "Where agent teams gather. Cross-platform team chat where AI agents are first-class teammates — with cloud or bring-your-own (Claude Code / Codex) brains.",
-        "currentStars": 2969,
-        "prevStars": 0,
-        "delta": 2969,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 16,
-        "name": "ui-ux-pro-max-skill",
-        "fullName": "nextlevelbuilder/ui-ux-pro-max-skill",
-        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
-        "description": "An AI skill that provides design intelligence for building professional UI/UX across multiple platforms.",
-        "currentStars": 120270,
-        "prevStars": 117363,
-        "delta": 2907,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 17,
-        "name": "openGym",
-        "fullName": "arvids-unavailable/openGym",
-        "url": "https://github.com/arvids-unavailable/openGym",
-        "description": "https://github.com/DuarteSantos8/openGym",
-        "currentStars": 2769,
-        "prevStars": 0,
-        "delta": 2769,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
-      },
-      {
-        "rank": 18,
-        "name": "awesome",
-        "fullName": "sindresorhus/awesome",
-        "url": "https://github.com/sindresorhus/awesome",
-        "description": "😎 Awesome lists about all kinds of interesting topics [NOTE: Pull requests are temporarily disabled until I have a chance to catch up with the existing ones]",
-        "currentStars": 499329,
-        "prevStars": 496620,
-        "delta": 2709,
+        "rank": 14,
+        "name": "awesome-dsh-plugin",
+        "fullName": "awesome-dsh-plugin/awesome-dsh-plugin",
+        "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin",
+        "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
+        "currentStars": 12187,
+        "prevStars": 12178,
+        "delta": 9,
         "category": "研究",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
-        "rank": 19,
-        "name": "andrej-karpathy-skills",
-        "fullName": "multica-ai/andrej-karpathy-skills",
-        "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-        "description": "A single CLAUDE.md file to improve Claude Code behavior, derived from Andrej Karpathy's observations on LLM coding pitfalls.",
-        "currentStars": 205812,
-        "prevStars": 203111,
-        "delta": 2701,
-        "category": "AI 框架",
+        "rank": 15,
+        "name": "yt-dlp",
+        "fullName": "yt-dlp/yt-dlp",
+        "url": "https://github.com/yt-dlp/yt-dlp",
+        "description": "A feature-rich command-line audio/video downloader",
+        "currentStars": 186627,
+        "prevStars": 186619,
+        "delta": 8,
+        "category": "影片",
         "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
       },
       {
-        "rank": 20,
+        "rank": 16,
+        "name": "HelloGitHub",
+        "fullName": "521xueweihan/HelloGitHub",
+        "url": "https://github.com/521xueweihan/HelloGitHub",
+        "description": ":octocat: 分享 GitHub 上有趣、入门级的开源项目。Share interesting, entry-level open source projects on GitHub.",
+        "currentStars": 172702,
+        "prevStars": 172694,
+        "delta": 8,
+        "category": "研究",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 17,
         "name": "opencode",
         "fullName": "anomalyco/opencode",
         "url": "https://github.com/anomalyco/opencode",
         "description": "The open source coding agent.",
-        "currentStars": 200712,
-        "prevStars": 198168,
-        "delta": 2544,
+        "currentStars": 200902,
+        "prevStars": 200895,
+        "delta": 7,
         "category": "AI 代理",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-08-24",
-        "endStarsAt": "2026-08-30"
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 18,
+        "name": "dsh-web",
+        "fullName": "zhu1090093659/dsh-web",
+        "url": "https://github.com/zhu1090093659/dsh-web",
+        "description": "DeepSeek Harness（DSH）Web 插件聚合生态包 · 一切皆插件，创意工坊分发（dsh-market.com）",
+        "currentStars": 5892,
+        "prevStars": 5886,
+        "delta": 6,
+        "category": "UI/UX設計",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 19,
+        "name": "unlazy",
+        "fullName": "Leonxlnx/unlazy",
+        "url": "https://github.com/Leonxlnx/unlazy",
+        "description": "Anti-laziness skill for AI agents. Core: the Depth Tree method, which splits a task N layers deep and gives every leaf the full time budget of the whole task, so effort multiplies with depth. Grounded in 2025-2026 research on model laziness, underthinking and premature completion.",
+        "currentStars": 2155,
+        "prevStars": 2149,
+        "delta": 6,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
+      },
+      {
+        "rank": 20,
+        "name": "ECC",
+        "fullName": "affaan-m/ECC",
+        "url": "https://github.com/affaan-m/ECC",
+        "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+        "currentStars": 242797,
+        "prevStars": 242791,
+        "delta": 6,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-08-24",
+        "endStarsAt": "2026-08-24"
       }
     ]
   }
