@@ -170,7 +170,7 @@ const server = http.createServer(async (req, res) => {
         const { loadRegistry, saveRegistry, generateId } = await import('../core/registry.js');
         const registry = loadRegistry();
 
-        if (registry.tools.some(t => t.url === githubUrl)) {
+        if (registry.tools.some(t => t.url && t.url.toLowerCase() === githubUrl.toLowerCase())) {
           res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
           res.end(JSON.stringify({ status: 'exists', message: '工具已存在於工具庫' }));
           return;

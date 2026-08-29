@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-24T14:38:41.827Z",
+  "lastUpdated": "2026-08-29T15:51:31.533Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -6471,8 +6471,8 @@
     },
     {
       "week": "2026-W35",
-      "dateRange": "2026-08-24 ~ 2026-08-24",
-      "timestamp": "2026-08-24T14:38:41.827Z",
+      "dateRange": "2026-08-24 ~ 2026-08-29",
+      "timestamp": "2026-08-29T15:51:31.533Z",
       "repos": {
         "obra/superpowers": 276921,
         "NousResearch/hermes-agent": 235510,
@@ -7887,5 +7887,7 @@
         "orbien-org/orbien": 911
       }
     }
-  ]
+  ],
+  "HEJustinSun/my-girlfriend-jingtian-latex": 3855,
+  "JuliusBrussee/caveman": 101719
 }

@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-17T13:31:18.043Z
+ * 產生時間：2026-08-29T15:58:49.334Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -618,23 +618,15 @@ export const SYNONYM_MAP = {
   ],
   "永續記憶": [
     "optmem",
-    "agent-memory",
     "permanent-memory"
   ],
   "optmem": [
     "永續記憶",
-    "agent-memory",
-    "permanent-memory"
-  ],
-  "agent-memory": [
-    "永續記憶",
-    "optmem",
     "permanent-memory"
   ],
   "permanent-memory": [
     "永續記憶",
-    "optmem",
-    "agent-memory"
+    "optmem"
   ],
   "程式碼安全掃描": [
     "codex-security",
@@ -1866,75 +1858,33 @@ export const SYNONYM_MAP = {
     "environment"
   ],
   "ai agent 框架": [
-    "deepseek-harness",
-    "dsh",
     "harness",
     "agent harness",
     "cordis",
-    "dsh-plugin",
     "agent 執行環境"
-  ],
-  "deepseek-harness": [
-    "ai agent 框架",
-    "agent 執行環境",
-    "dsh",
-    "harness",
-    "agent harness",
-    "cordis",
-    "dsh-plugin"
-  ],
-  "dsh": [
-    "ai agent 框架",
-    "agent 執行環境",
-    "deepseek-harness",
-    "harness",
-    "agent harness",
-    "cordis",
-    "dsh-plugin"
   ],
   "harness": [
     "ai agent 框架",
     "agent 執行環境",
-    "deepseek-harness",
-    "dsh",
     "agent harness",
-    "cordis",
-    "dsh-plugin"
+    "cordis"
   ],
   "agent harness": [
     "ai agent 框架",
     "agent 執行環境",
-    "deepseek-harness",
-    "dsh",
     "harness",
-    "cordis",
-    "dsh-plugin"
+    "cordis"
   ],
   "cordis": [
     "ai agent 框架",
     "agent 執行環境",
-    "deepseek-harness",
-    "dsh",
     "harness",
-    "agent harness",
-    "dsh-plugin"
-  ],
-  "dsh-plugin": [
-    "ai agent 框架",
-    "agent 執行環境",
-    "deepseek-harness",
-    "dsh",
-    "harness",
-    "agent harness",
-    "cordis"
+    "agent harness"
   ],
   "agent 執行環境": [
-    "deepseek-harness",
-    "dsh",
     "harness",
     "agent harness",
     "cordis",
-    "dsh-plugin",
     "ai agent 框架"
   ],
   "程式碼文件": [

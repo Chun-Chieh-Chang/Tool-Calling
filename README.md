@@ -1,10 +1,10 @@
-﻿# Tool-Calling 🔧⚡
+# Tool-Calling 🔧⚡
 
 > 一個帮你自动找工具、装工具、用工具的全自动 AI 助手、多工具协同与知识图谱系统
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **615 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **618 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -39,7 +39,7 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 615 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - 整合 618 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
    - 支援 22 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
@@ -55,7 +55,7 @@
 6. 🔥 **雲端 Auto-Trending 自動探勘管道**：
    - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
 7. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
-   - 基於固定追蹤池（2307 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
+   - 基於固定追蹤池（2,331 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
    - **雙週展示**：同時展示「上週完整數據（LAST WEEK，列入工具箱納入判斷）」與「本週迄今即時數據（THIS WEEK，進行中，不列入判斷）」，清晰區隔正式與預覽數據。
    - 嚴格遵守 ISO-8601 World Week 國際標準（週一 00:00:00 UTC → 週日 23:59:59 UTC）。
 8. 🔄 **啟動自動按需更新與介面即時刷新 (Startup Auto-Update & Live Refresh)**：
@@ -167,7 +167,7 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v1.9 - 615 Tools, 356 Synonyms, Live Refresh & Dual-Week Trending
+> Tool-Calling v2.0 - 618 Tools, 352 Synonyms, Live Refresh & Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI

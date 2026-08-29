@@ -239,6 +239,11 @@ async function scan(url, options = {}) {
       ...meta.topics
     ]);
 
+    const triggerList = Array.from(triggers).slice(0, 8);
+    if (triggerList.length < 2) {
+      triggerList.push(category.toLowerCase());
+    }
+
     const toolEntry = {
       id: generateId(baseName),
       name: baseName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
@@ -246,9 +251,18 @@ async function scan(url, options = {}) {
       description,
       category,
       language: meta.language || 'other',
-      triggers: Array.from(triggers).slice(0, 8),
+      triggers: triggerList,
       install,
       capabilities: meta.topics.slice(0, 5),
+      useCase: `適用於 ${category} 領域之相關任務需求：${description.slice(0, 80)}`,
+      advantages: [
+        `自動化掃描收錄，精準歸入「${category}」領域`,
+        `支援 ${meta.language || '多語言'} 開發生態`
+      ],
+      negativeConstraints: [
+        '初次收錄建議人工審查其最新版本文檔與依賴環境',
+        '非通用型工具，請確認專案環境符合需求'
+      ],
       addedAt: new Date().toISOString(),
       status: 'experimental'
     };

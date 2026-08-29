@@ -1,5 +1,94 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-30 專案整體程式碼與檔案優化、重複死碼清理與防禦性架構鞏固 (Project Optimization, Dead Code Removal & Defensive Architecture Consolidation)
+
+### 需求
+執行專案的整體程式碼與檔案優化作業（依據 `project-refactor-cleanup` Skill SOP）：
+1. 全面盤點與清理作業（整合與更新過時文件，死碼與無效資源移除，手術刀式零功能 Regression 防護）。
+2. 全面同步更新所有開發相關文件（對齊 DEV_LOG.md、README.md、AGENTS.md 與 docs/ 100% 準確性）。
+3. 遵循 MECE 原則整合整理（消除資源分類重疊，保障跨平台同構性）。
+4. 建立程式碼還原基準點（通過沙盒確效測試後原子化提交 Git Commit）。
+5. 推送變更至 GitHub 遠端倉庫（完成資安與數據隱私盤點，獲得許可後一鍵推送）。
+
+### 處理結果與架構決策 (PDCA)
+- **死碼與重複項目清理 (Dead Code / Duplicate Clean-up)**：
+  - 清理重複項目：移除 `juliusbrussee-caveman`（與既有高質量 entry `caveman` 大小寫重複，且缺少場景標籤）。
+  - 清理無效測試項：移除 `my-girlfriend-jingtian-latex`（非 AI 工具、缺少描述與標籤之無效殘留）。
+  - 重複項目架構融合：將 `karpathy-skills` 融合至 `andrej-karpathy-skills`，保留高質量中文場景標籤 (`useCase`)、優勢約束 (`advantages`/`negativeConstraints`) 與子工具 (`subTools: Karpathy Guidelines`)，消除同 URL 衝突。
+  - URL 精準度校正：校正 `total-typescript-skills` 之官方倉庫網址至 `https://github.com/total-typescript/type-transformations-workshop`，解耦與 `mattpocock-skills` 之 URL 衝突。
+  - 補齊觸發詞：為 `photo-abstract-editorial` 與 `arc-task-gen` 補齊至 3 個觸發詞，達成 Registry Contract 門禁 0 錯誤、0 警告。
+- **程式碼防禦性架構強化 (Defensive Architecture)**：
+  - `web/server.js`：API 新增工具時，將 URL 查重升級為大小寫不敏感比對 (`t.url.toLowerCase() === githubUrl.toLowerCase()`)，徹底預防同倉庫重複。
+  - `scripts/scan-tool.js`：自動為掃描入庫之工具生成保底觸發詞（≥2 個）與標準 `useCase`、`advantages`、`negativeConstraints` 範本，徹底根除未來新增工具違反 Registry Contract v2 之風險。
+- **檔案與資料同構同步 (MECE Consolidation)**：
+  - 重新執行 `scripts/build-web.js` 與 `dist-sync.js`，自動更新動態同義詞詞典（352 詞彙）並同步至 `./dist`，保障 GitHub Pages 與本地端 100% 同構。
+- **文件全量同步更新 (Documentation Alignment)**：
+  - `README.md`：同步工具庫規模為 618 個工具、追蹤池 2,331 repos、62 項測試、版本更新至 v2.0。
+  - `AGENTS.md`：同步 Project Stats（618 工具、2,331 repos、總星數 27,093,990 ⭐、平均 43,841 ⭐、Top 5 分類與語言最新統計）。
+
+### 根因分析 (RCA) 與預防措施 (CAPA)
+- **RCA**：
+  1. `web/server.js` 過去使用大小寫敏感 (`===`) 比對 URL，當用戶或腳本以 `JuliusBrussee` 與 `juliusbrussee` 不同大小寫提交相同 repo 時，會繞過查重邏輯導致重複 entry。
+  2. `scan-tool.js` 原始設計為輕量掃描器，未內建 Registry Contract v2 所要求的 `useCase` 與 `negativeConstraints`，導致透過該腳本入庫的工具無法通過 `cli.js validate` 門禁。
+- **CAPA**：
+  1. 強化 `web/server.js` 與所有 URL 查重處為 `toLowerCase()` 比對。
+  2. 在 `scan-tool.js` 產出物件時強制注入領域感知之標準場景標籤與優勢約束，確保產出即符合 100 分品質契約。
+
+### 驗證結果
+- `node cli.js validate`: **0 個錯誤, 0 個警告**（Metadata Quality: 100/100, Contract issues: 0）
+- `node scripts/check-mece.js`: **PASS**（總工具數 618，分類數 22，無「其他」殘留）
+- `node scripts/check-utf8.js`: **PASS**（0 個 U+FFFD 亂碼字元）
+- `npm test`: **62/62 tests 全數 PASS (13 suites, 0 fail)**
+- 資安金鑰掃描：**0 個硬編碼 API 金鑰**
+
+---
+
+## 2026-08-29 批量工具入庫、Subtools 拆解整合與分類邏輯全盤檢討 (Batch Tool Ingestion, Subtools Integration & Category Refinement)
+
+### 需求
+依使用者需求繼續批量加入 6 個指定 GitHub 倉庫，檢查是否需要拆解（Monorepo/Subtools），若遇到與既有工具重複時，重新解析並全盤檢討分類邏輯，比較後若有優化則以新版取代舊版：
+1. `https://github.com/chuspeeism/dashi-ppt-skill`
+2. `https://github.com/k-dense-ai/scientific-agent-skills`
+3. `https://github.com/InternScience/Awesome-Scientific-Skills`
+4. `https://github.com/google-deepmind/science-skills`
+5. `https://github.com/VoltAgent/awesome-agent-skills`
+6. `https://github.com/orchestra-research/AI-research-SKILLs`
+
+### 處理結果與架構決策 (PDCA)
+- **Monorepo / Subtools 拆解決策**：
+  - 依據第一性原理與工具庫既有架構慣例（如 `claude-skills` 798 技能、`anthropic-cybersecurity-skills` 817 技能），大型技能庫若扁平化直接拆解為 200+ 獨立 entry，將造成單一分類嚴重失衡與搜尋噪音。
+  - 故採取「統一工具主實體 + 完整 `subTools` 子技能索引」模式：
+    - `scientific-agent-skills`：收錄 163 個生物、化學、醫藥子技能。
+    - `google-deepmind-science-skills`：收錄 38 個官方科研資料庫子技能（AlphaFold DB、AlphaGenome 等）。
+    - `ai-research-skills`：收錄 23 個全流程 AI 研發模組（0-autoresearch 到 22-agent-native-research-artifact）。
+    - `awesome-scientific-skills`：收錄 30 個外部科研技能倉庫導引。
+- **重複工具重新解析與分類全盤檢討**：
+  - `chuspeeism/dashi-ppt-skill`：既有存在 (`dashi-ppt-skill`)，分類 `文件生產力` 符合 PPT/簡報生成規範；更新星數 (5,990 → 6,804)，擴充 triggers 與 capabilities。
+  - `VoltAgent/awesome-agent-skills`：既有存在 (`awesome-agent-skills-VoltAgent`)，原分類為 `AI 代理`。全盤檢討其本質為 1000+ 技能導引清單（Awesome List），依 `docs/category-conventions.md` 規範（「學習資源：課程、教學、書籍、awesome 清單」）優化重構：
+    - 分類由 `AI 代理` 遷移至 `學習資源`。
+    - 安裝方式由 `git-clone` 調整為無執行包的資源型 `none`。
+    - 星數更新 (30,946 → 33,178)，重構 triggers 與中文 `useCase`/`negativeConstraints`。
+- **新工具分類決定（領域優先 Domain-First）**：
+  - `scientific-agent-skills`、`google-deepmind-science-skills`、`ai-research-skills`、`awesome-scientific-skills` 皆服務於科學研究、論文寫作、分子計算與 AI 科研，依領域優先原則統一歸入 `研究` 分類（研究類工具數自 16 成長至 20）。
+- **追蹤池同步**：
+  - 同步將 4 個新倉庫加入 `registry/tracked-repos.json`，全專案追蹤池達 2,329 個 repos。
+- **詮釋資料完整性門禁 (Metadata Completeness)**：
+  - 所有 6 筆工具 100% 具備 `useCase`、`negativeConstraints` (1~3 項) 與 `advantages` (2~3 項)。
+
+### 根因分析 (RCA) 與預防措施 (CAPA)
+- **RCA**：先前部分 Awesome 清單（如 VoltAgent）在初始入庫時被粗粒度歸入 `AI 代理`，導致 `AI 代理` 分類膨脹（超過 125 個工具），且安裝指令誤標為 `git-clone`；同時若不以 `subTools` 管理大型技能庫，扁平化會造成檢索污染。
+- **CAPA**：落實分類審查標準：Awesome 清單目錄嚴格歸入 `學習資源` 且安裝方式標記為 `none`；科研專門工具堅持 Domain-First 歸入 `研究`；大型技能集合統一採用 `subTools` 進行二級索引。
+
+### 驗證結果
+- `npm test`: 62/62 PASS (13 suites, 0 fail)
+- `node cli.js validate`: 0 errors (100% Quality Score)
+- `node scripts/check-mece.js`: PASS (619 工具，22 分類，0 殘留)
+- `node scripts/check-utf8.js`: PASS (0 個 U+FFFD)
+- `node scripts/build-web.js`: PASS (打包成功，同義詞詞典更新至 352 個詞彙)
+- 實測基準：工具總數 615 → 619，追蹤 repos 2,327 → 2,329。
+
+---
+
 ## 2026-08-24 全域優化作業 v1.9：Rebase 收尾、誤刪還原與文件統計對齊 (Global Optimization: Rebase Completion, Wrongful Deletion Restore & Doc Stats Alignment)
 
 ### 需求

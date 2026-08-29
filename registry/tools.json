@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-24T14:38:41.827Z",
+  "lastUpdated": "2026-08-29T15:52:15.200Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -313,7 +313,7 @@
     {
       "id": "total-typescript-skills",
       "name": "Total TypeScript Skills",
-      "url": "https://github.com/mattpocock/skills",
+      "url": "https://github.com/total-typescript/type-transformations-workshop",
       "description": "Matt Pocock 的 TypeScript 進階型別與技能參考資源，涵蓋型別體操與實戰技巧。",
       "category": "學習資源",
       "language": "typescript",
@@ -326,10 +326,11 @@
       ],
       "install": {
         "method": "git-clone",
-        "command": "git clone https://github.com/mattpocock/skills.git",
+        "command": "git clone https://github.com/total-typescript/type-transformations-workshop.git",
         "requirements": [
           "node>=16"
-        ]
+        ],
+        "repoUrl": "https://github.com/total-typescript/type-transformations-workshop"
       },
       "capabilities": [
         "typescript-learning",
@@ -6550,42 +6551,43 @@
       "id": "awesome-agent-skills-VoltAgent",
       "name": "Awesome Agent Skills",
       "url": "https://github.com/VoltAgent/awesome-agent-skills",
-      "description": "Curated repository of 1000+ AI agent skills for Claude, Cursor, Gemini, and other coding tools.",
-      "category": "AI 代理",
+      "description": "匯聚超過 1000+ 個由官方與社群打造的 AI Agent Skills 綜合資源清單，相容 Claude Code、Cursor、Gemini CLI 與 Codex 等主流行星級 Coding 代理環境。",
+      "category": "學習資源",
       "language": "other",
       "triggers": [
         "voltagent-awesome-agent-skills",
-        "ai-agents",
+        "agent-skills-directory",
+        "awesome-agent-skills",
         "coding-assistant",
-        "prompt-library",
+        "agent-skills-list",
         "agent-skills"
       ],
       "install": {
-        "method": "git-clone",
-        "command": "git clone https://github.com/VoltAgent/awesome-agent-skills.git",
+        "method": "none",
+        "command": "https://github.com/VoltAgent/awesome-agent-skills",
         "repoUrl": "https://github.com/VoltAgent/awesome-agent-skills"
       },
       "capabilities": [
-        "awesome",
-        "skills",
         "awesome-list",
-        "awesome-lists",
-        "ai-agents"
+        "agent-skills",
+        "prompt-library",
+        "coding-assistant",
+        "curated-resources"
       ],
       "addedAt": "2026-07-19T09:25:58.394Z",
       "status": "active",
-      "useCase": "Developers rapidly extending their AI coding assistant capabilities by discovering and installing pre-built workflow prompts.",
+      "useCase": "當開發者需要廣泛探索、尋找各領域現成的 AI Agent Skills 與工作流提示詞，並評估跨平臺工具生態時使用。",
       "advantages": [
-        "Cross-platform compatibility with major CLI and IDE-based AI agents",
-        "Community-vetted and officially maintained skill configurations",
-        "Modular design allows easy installation and customization of prompts"
+        "收錄超過 1000+ 經社群與官方驗證的 Agent Skills",
+        "涵蓋 Claude Code、Cursor、Codex 等主流 AI 開發環境",
+        "模組化分類清楚，便於快速查閱與引入各領域現成技能"
       ],
       "negativeConstraints": [
-        "Not suitable for building standalone AI models or training data pipelines",
-        "Inappropriate for production environments requiring strict security compliance audits",
-        "Unsuitable for non-coding tasks like data analysis or graphic design workflows"
+        "作為靜態目錄資源，不包含可直接一鍵 npm/pip 安裝的執行包",
+        "不適用於需要自動化依賴注入與版本控制的生產環境",
+        "部分第三方收錄項目可能缺乏即時維護或安全性審查"
       ],
-      "stars": 30946
+      "stars": 33178
     },
     {
       "id": "claude-skills",
@@ -11199,42 +11201,48 @@
       "id": "andrej-karpathy-skills",
       "name": "Andrej Karpathy Skills",
       "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "description": "Claude Code configuration based on Karpathy's LLM coding best practices to reduce common pitfalls.",
-      "category": "AI 框架",
+      "description": "Behavioral guidelines to reduce common LLM coding mistakes — derived from Andrej Karpathy observations. 4 core principles: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.",
+      "category": "AI 代理",
       "language": "other",
       "triggers": [
         "andrej-karpathy-skills",
-        "andrej",
-        "karpathy",
-        "skills",
-        "claude-code",
-        "llm-coding",
-        "coding-pitfalls"
+        "karpathy-skills",
+        "llm-coding-guidelines",
+        "coding-behavior",
+        "simplicity-first",
+        "surgical-changes"
       ],
       "install": {
         "method": "git-clone",
         "command": "git clone https://github.com/multica-ai/andrej-karpathy-skills.git",
         "repoUrl": "https://github.com/multica-ai/andrej-karpathy-skills"
       },
-      "capabilities": [],
+      "capabilities": [
+        "llm-pitfall-prevention",
+        "coding-discipline",
+        "requirement-clarification",
+        "refactoring-guidance"
+      ],
       "addedAt": "2026-07-19T11:16:05.644Z",
       "status": "active",
       "subTools": [
         {
           "name": "Karpathy Guidelines",
-          "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
+          "description": "Behavioral guidelines to reduce common LLM coding mistakes. 4 core principles: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.",
           "subpath": "skills/karpathy-guidelines"
         }
       ],
-      "useCase": "Karpathy風格的AI訓練skills",
+      "useCase": "When an AI agent or developer needs behavioral guardrails to avoid common LLM coding mistakes such as over-engineering, hidden confusion, and unchecked assumptions.",
       "advantages": [
-        "頂尖專家"
+        "Directly reduces unnecessary changes in diffs through surgical change discipline",
+        "Forces explicit assumption surfacing before any implementation begins",
+        "Bias toward caution over speed prevents costly rewrites from overcomplication"
       ],
       "negativeConstraints": [
-        "需要GPU",
-        "研究級"
+        "These guidelines bias toward caution over speed — not suitable for trivial tasks where judgment should override",
+        "Single behavioral skill specification requiring thoughtful integration with project-specific workflows"
       ],
-      "stars": 205304
+      "stars": 205603
     },
     {
       "id": "eigenflux-arena",
@@ -37181,7 +37189,9 @@
       "category": "開發工具",
       "language": "unknown",
       "triggers": [
-        "photo-abstract-editorial"
+        "photo-abstract-editorial",
+        "abstract-editorial-photo",
+        "editorial-photography"
       ],
       "install": {
         "method": "none",
@@ -37626,6 +37636,7 @@
       "language": "javascript",
       "triggers": [
         "dashi",
+        "dashi-ppt",
         "ppt-skill",
         "ai-ppt",
         "html-presentation",
@@ -37659,7 +37670,7 @@
       ],
       "status": "active",
       "addedAt": "2026-08-17T13:30:03.910Z",
-      "stars": 5990
+      "stars": 6804
     },
     {
       "id": "deepseek-harness-desktop-anywhere",
@@ -37790,7 +37801,9 @@
       "category": "開發工具",
       "language": "python",
       "triggers": [
-        "arc-task-gen"
+        "arc-task-gen",
+        "arc-agi-tasks",
+        "task-generator"
       ],
       "install": {
         "method": "none",
@@ -38110,45 +38123,6 @@
       "stars": 4181
     },
     {
-      "id": "karpathy-skills",
-      "name": "Karpathy Skills",
-      "url": "https://github.com/multica-ai/andrej-karpathy-skills",
-      "description": "Behavioral guidelines to reduce common LLM coding mistakes — derived from Andrej Karpathy's observations on LLM pitfalls. 4 core principles: Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution.",
-      "category": "AI 代理",
-      "language": "markdown",
-      "triggers": [
-        "karpathy-skills",
-        "llm-coding-guidelines",
-        "coding-behavior",
-        "simplicity-first",
-        "surgical-changes"
-      ],
-      "capabilities": [
-        "llm-pitfall-prevention",
-        "coding-discipline",
-        "requirement-clarification",
-        "refactoring-guidance"
-      ],
-      "install": {
-        "method": "none",
-        "command": "https://github.com/multica-ai/andrej-karpathy-skills",
-        "repoUrl": "https://github.com/multica-ai/andrej-karpathy-skills"
-      },
-      "addedAt": "2026-08-23T00:00:00.000Z",
-      "status": "active",
-      "useCase": "When the AI agent needs behavioral guardrails to avoid common LLM coding mistakes such as over-engineering, hidden confusion, and unchecked assumptions.",
-      "advantages": [
-        "Directly reduces unnecessary changes in diffs through surgical change discipline",
-        "Forces explicit assumption surfacing before any implementation begins",
-        "Bias toward caution over speed prevents costly rewrites from overcomplication"
-      ],
-      "negativeConstraints": [
-        "These guidelines bias toward caution over speed — not suitable for trivial tasks where judgment should override",
-        "Single CLAUDE.md file; requires manual merge with project-specific instructions rather than automated integration"
-      ],
-      "stars": 205603
-    },
-    {
       "id": "deepseek-work",
       "name": "DeepSeek Work",
       "url": "https://github.com/astraclawteam/deepseek-work",
@@ -38356,6 +38330,1459 @@
         "Limited custom theming compared to dedicated frontend frameworks"
       ],
       "stars": 40720
+    },
+    {
+      "id": "scientific-agent-skills",
+      "name": "Scientific Agent Skills",
+      "url": "https://github.com/k-dense-ai/scientific-agent-skills",
+      "description": "全球領先的科研 AI Agent 技能庫，涵蓋生物學、化學、醫藥、藥物研發與物理計算等 160+ 個已驗證專業科學技能與 100+ 科學資料庫對接，相容 Cursor、Claude Code、Codex 與 Antigravity。",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "scientific-agent-skills",
+        "ai-scientist",
+        "scientific-skills",
+        "bioinformatics",
+        "drug-discovery",
+        "chemistry-agent",
+        "science-agent",
+        "computational-biology"
+      ],
+      "capabilities": [
+        "scientific-research",
+        "bioinformatics",
+        "cheminformatics",
+        "drug-discovery",
+        "data-analysis"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/k-dense-ai/scientific-agent-skills.git",
+        "repoUrl": "https://github.com/k-dense-ai/scientific-agent-skills"
+      },
+      "useCase": "當需要將 AI Agent 轉化為具備生物醫學、化學模擬、分子對接、單細胞分析或藥物研發能力的 AI 科學家時使用。",
+      "advantages": [
+        "內建超過 160+ 經過實戰驗證的科研技能與 100+ 科學資料庫串接",
+        "覆蓋生物、化學、醫學、材料與藥物發現等全領域科學計算",
+        "廣泛支援 Claude Code、Cursor、Antigravity 等主流開放標準"
+      ],
+      "negativeConstraints": [
+        "部分分子模擬與高通量計算技能高度依賴專用科學函式庫 (如 RDKit、Scanpy) 與本機環境",
+        "不適用於非科研性質的一般商業或前端網頁開發任務",
+        "產出之科研結論與模擬結果需經實驗室領域專家同行審查"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-29T14:15:00.000Z",
+      "stars": 37436,
+      "subTools": [
+        {
+          "name": "Adaptyv",
+          "description": "Scientific agent skill for adaptyv",
+          "subpath": "skills/adaptyv"
+        },
+        {
+          "name": "Aeon",
+          "description": "Scientific agent skill for aeon",
+          "subpath": "skills/aeon"
+        },
+        {
+          "name": "Analytical Method Validation",
+          "description": "Scientific agent skill for analytical method validation",
+          "subpath": "skills/analytical-method-validation"
+        },
+        {
+          "name": "Anndata",
+          "description": "Scientific agent skill for anndata",
+          "subpath": "skills/anndata"
+        },
+        {
+          "name": "Arbor",
+          "description": "Scientific agent skill for arbor",
+          "subpath": "skills/arbor"
+        },
+        {
+          "name": "Arboreto",
+          "description": "Scientific agent skill for arboreto",
+          "subpath": "skills/arboreto"
+        },
+        {
+          "name": "Astropy",
+          "description": "Scientific agent skill for astropy",
+          "subpath": "skills/astropy"
+        },
+        {
+          "name": "Autoskill",
+          "description": "Scientific agent skill for autoskill",
+          "subpath": "skills/autoskill"
+        },
+        {
+          "name": "Benchling Integration",
+          "description": "Scientific agent skill for benchling integration",
+          "subpath": "skills/benchling-integration"
+        },
+        {
+          "name": "Bgpt Paper Search",
+          "description": "Scientific agent skill for bgpt paper search",
+          "subpath": "skills/bgpt-paper-search"
+        },
+        {
+          "name": "Bids",
+          "description": "Scientific agent skill for bids",
+          "subpath": "skills/bids"
+        },
+        {
+          "name": "Biopython",
+          "description": "Scientific agent skill for biopython",
+          "subpath": "skills/biopython"
+        },
+        {
+          "name": "Bioservices",
+          "description": "Scientific agent skill for bioservices",
+          "subpath": "skills/bioservices"
+        },
+        {
+          "name": "Bulk Rnaseq",
+          "description": "Scientific agent skill for bulk rnaseq",
+          "subpath": "skills/bulk-rnaseq"
+        },
+        {
+          "name": "Cellxgene Census",
+          "description": "Scientific agent skill for cellxgene census",
+          "subpath": "skills/cellxgene-census"
+        },
+        {
+          "name": "Cirq",
+          "description": "Scientific agent skill for cirq",
+          "subpath": "skills/cirq"
+        },
+        {
+          "name": "Citation Management",
+          "description": "Scientific agent skill for citation management",
+          "subpath": "skills/citation-management"
+        },
+        {
+          "name": "Clinical Decision Support",
+          "description": "Scientific agent skill for clinical decision support",
+          "subpath": "skills/clinical-decision-support"
+        },
+        {
+          "name": "Clinical Reports",
+          "description": "Scientific agent skill for clinical reports",
+          "subpath": "skills/clinical-reports"
+        },
+        {
+          "name": "Cobrapy",
+          "description": "Scientific agent skill for cobrapy",
+          "subpath": "skills/cobrapy"
+        },
+        {
+          "name": "Consciousness Council",
+          "description": "Scientific agent skill for consciousness council",
+          "subpath": "skills/consciousness-council"
+        },
+        {
+          "name": "Dask",
+          "description": "Scientific agent skill for dask",
+          "subpath": "skills/dask"
+        },
+        {
+          "name": "Database Lookup",
+          "description": "Scientific agent skill for database lookup",
+          "subpath": "skills/database-lookup"
+        },
+        {
+          "name": "Datamol",
+          "description": "Scientific agent skill for datamol",
+          "subpath": "skills/datamol"
+        },
+        {
+          "name": "Deepchem",
+          "description": "Scientific agent skill for deepchem",
+          "subpath": "skills/deepchem"
+        },
+        {
+          "name": "Deepspot M",
+          "description": "Scientific agent skill for deepspot m",
+          "subpath": "skills/deepspot-m"
+        },
+        {
+          "name": "Deeptools",
+          "description": "Scientific agent skill for deeptools",
+          "subpath": "skills/deeptools"
+        },
+        {
+          "name": "Depmap",
+          "description": "Scientific agent skill for depmap",
+          "subpath": "skills/depmap"
+        },
+        {
+          "name": "Dhdna Profiler",
+          "description": "Scientific agent skill for dhdna profiler",
+          "subpath": "skills/dhdna-profiler"
+        },
+        {
+          "name": "Diffdock",
+          "description": "Scientific agent skill for diffdock",
+          "subpath": "skills/diffdock"
+        },
+        {
+          "name": "Dnanexus Integration",
+          "description": "Scientific agent skill for dnanexus integration",
+          "subpath": "skills/dnanexus-integration"
+        },
+        {
+          "name": "Docx",
+          "description": "Scientific agent skill for docx",
+          "subpath": "skills/docx"
+        },
+        {
+          "name": "Esm",
+          "description": "Scientific agent skill for esm",
+          "subpath": "skills/esm"
+        },
+        {
+          "name": "Etetoolkit",
+          "description": "Scientific agent skill for etetoolkit",
+          "subpath": "skills/etetoolkit"
+        },
+        {
+          "name": "Exa Search",
+          "description": "Scientific agent skill for exa search",
+          "subpath": "skills/exa-search"
+        },
+        {
+          "name": "Experimental Design",
+          "description": "Scientific agent skill for experimental design",
+          "subpath": "skills/experimental-design"
+        },
+        {
+          "name": "Exploratory Data Analysis",
+          "description": "Scientific agent skill for exploratory data analysis",
+          "subpath": "skills/exploratory-data-analysis"
+        },
+        {
+          "name": "Flowio",
+          "description": "Scientific agent skill for flowio",
+          "subpath": "skills/flowio"
+        },
+        {
+          "name": "Fluidsim",
+          "description": "Scientific agent skill for fluidsim",
+          "subpath": "skills/fluidsim"
+        },
+        {
+          "name": "Generate Image",
+          "description": "Scientific agent skill for generate image",
+          "subpath": "skills/generate-image"
+        },
+        {
+          "name": "Geniml",
+          "description": "Scientific agent skill for geniml",
+          "subpath": "skills/geniml"
+        },
+        {
+          "name": "Genomic Coordinates",
+          "description": "Scientific agent skill for genomic coordinates",
+          "subpath": "skills/genomic-coordinates"
+        },
+        {
+          "name": "Genomic Intelligence",
+          "description": "Scientific agent skill for genomic intelligence",
+          "subpath": "skills/genomic-intelligence"
+        },
+        {
+          "name": "Geomaster",
+          "description": "Scientific agent skill for geomaster",
+          "subpath": "skills/geomaster"
+        },
+        {
+          "name": "Geopandas",
+          "description": "Scientific agent skill for geopandas",
+          "subpath": "skills/geopandas"
+        },
+        {
+          "name": "Get Available Resources",
+          "description": "Scientific agent skill for get available resources",
+          "subpath": "skills/get-available-resources"
+        },
+        {
+          "name": "Gget",
+          "description": "Scientific agent skill for gget",
+          "subpath": "skills/gget"
+        },
+        {
+          "name": "Ginkgo Cloud Lab",
+          "description": "Scientific agent skill for ginkgo cloud lab",
+          "subpath": "skills/ginkgo-cloud-lab"
+        },
+        {
+          "name": "Glycoengineering",
+          "description": "Scientific agent skill for glycoengineering",
+          "subpath": "skills/glycoengineering"
+        },
+        {
+          "name": "Gtars",
+          "description": "Scientific agent skill for gtars",
+          "subpath": "skills/gtars"
+        },
+        {
+          "name": "Histolab",
+          "description": "Scientific agent skill for histolab",
+          "subpath": "skills/histolab"
+        },
+        {
+          "name": "Hugging Science",
+          "description": "Scientific agent skill for hugging science",
+          "subpath": "skills/hugging-science"
+        },
+        {
+          "name": "Hypogenic",
+          "description": "Scientific agent skill for hypogenic",
+          "subpath": "skills/hypogenic"
+        },
+        {
+          "name": "Hypothesis Generation",
+          "description": "Scientific agent skill for hypothesis generation",
+          "subpath": "skills/hypothesis-generation"
+        },
+        {
+          "name": "Imaging Data Commons",
+          "description": "Scientific agent skill for imaging data commons",
+          "subpath": "skills/imaging-data-commons"
+        },
+        {
+          "name": "Infographics",
+          "description": "Scientific agent skill for infographics",
+          "subpath": "skills/infographics"
+        },
+        {
+          "name": "Iso Standards Readiness",
+          "description": "Scientific agent skill for iso standards readiness",
+          "subpath": "skills/iso-standards-readiness"
+        },
+        {
+          "name": "Lab Hardware Cad",
+          "description": "Scientific agent skill for lab hardware cad",
+          "subpath": "skills/lab-hardware-cad"
+        },
+        {
+          "name": "Labarchive Integration",
+          "description": "Scientific agent skill for labarchive integration",
+          "subpath": "skills/labarchive-integration"
+        },
+        {
+          "name": "Lamindb",
+          "description": "Scientific agent skill for lamindb",
+          "subpath": "skills/lamindb"
+        },
+        {
+          "name": "Latchbio Integration",
+          "description": "Scientific agent skill for latchbio integration",
+          "subpath": "skills/latchbio-integration"
+        },
+        {
+          "name": "Latex Posters",
+          "description": "Scientific agent skill for latex posters",
+          "subpath": "skills/latex-posters"
+        },
+        {
+          "name": "Liteparse",
+          "description": "Scientific agent skill for liteparse",
+          "subpath": "skills/liteparse"
+        },
+        {
+          "name": "Literature Review",
+          "description": "Scientific agent skill for literature review",
+          "subpath": "skills/literature-review"
+        },
+        {
+          "name": "Markdown Mermaid Writing",
+          "description": "Scientific agent skill for markdown mermaid writing",
+          "subpath": "skills/markdown-mermaid-writing"
+        },
+        {
+          "name": "Market Research Reports",
+          "description": "Scientific agent skill for market research reports",
+          "subpath": "skills/market-research-reports"
+        },
+        {
+          "name": "Markitdown",
+          "description": "Scientific agent skill for markitdown",
+          "subpath": "skills/markitdown"
+        },
+        {
+          "name": "Matchms",
+          "description": "Scientific agent skill for matchms",
+          "subpath": "skills/matchms"
+        },
+        {
+          "name": "Matlab",
+          "description": "Scientific agent skill for matlab",
+          "subpath": "skills/matlab"
+        },
+        {
+          "name": "Matplotlib",
+          "description": "Scientific agent skill for matplotlib",
+          "subpath": "skills/matplotlib"
+        },
+        {
+          "name": "Medchem",
+          "description": "Scientific agent skill for medchem",
+          "subpath": "skills/medchem"
+        },
+        {
+          "name": "Modal",
+          "description": "Scientific agent skill for modal",
+          "subpath": "skills/modal"
+        },
+        {
+          "name": "Molecular Dynamics",
+          "description": "Scientific agent skill for molecular dynamics",
+          "subpath": "skills/molecular-dynamics"
+        },
+        {
+          "name": "Molfeat",
+          "description": "Scientific agent skill for molfeat",
+          "subpath": "skills/molfeat"
+        },
+        {
+          "name": "Ncats Arax",
+          "description": "Scientific agent skill for ncats arax",
+          "subpath": "skills/ncats-arax"
+        },
+        {
+          "name": "Networkx",
+          "description": "Scientific agent skill for networkx",
+          "subpath": "skills/networkx"
+        },
+        {
+          "name": "Neurokit2",
+          "description": "Scientific agent skill for neurokit2",
+          "subpath": "skills/neurokit2"
+        },
+        {
+          "name": "Neuropixels Analysis",
+          "description": "Scientific agent skill for neuropixels analysis",
+          "subpath": "skills/neuropixels-analysis"
+        },
+        {
+          "name": "Nextflow",
+          "description": "Scientific agent skill for nextflow",
+          "subpath": "skills/nextflow"
+        },
+        {
+          "name": "Omero Integration",
+          "description": "Scientific agent skill for omero integration",
+          "subpath": "skills/omero-integration"
+        },
+        {
+          "name": "Onekgpd",
+          "description": "Scientific agent skill for onekgpd",
+          "subpath": "skills/onekgpd"
+        },
+        {
+          "name": "Ontology Term Resolution",
+          "description": "Scientific agent skill for ontology term resolution",
+          "subpath": "skills/ontology-term-resolution"
+        },
+        {
+          "name": "Open Notebook",
+          "description": "Scientific agent skill for open notebook",
+          "subpath": "skills/open-notebook"
+        },
+        {
+          "name": "Openpiv",
+          "description": "Scientific agent skill for openpiv",
+          "subpath": "skills/openpiv"
+        },
+        {
+          "name": "Opentrons Integration",
+          "description": "Scientific agent skill for opentrons integration",
+          "subpath": "skills/opentrons-integration"
+        },
+        {
+          "name": "Optimize For Gpu",
+          "description": "Scientific agent skill for optimize for gpu",
+          "subpath": "skills/optimize-for-gpu"
+        },
+        {
+          "name": "Pacsomatic",
+          "description": "Scientific agent skill for pacsomatic",
+          "subpath": "skills/pacsomatic"
+        },
+        {
+          "name": "Paper Lookup",
+          "description": "Scientific agent skill for paper lookup",
+          "subpath": "skills/paper-lookup"
+        },
+        {
+          "name": "Paperclip",
+          "description": "Scientific agent skill for paperclip",
+          "subpath": "skills/paperclip"
+        },
+        {
+          "name": "Paperzilla",
+          "description": "Scientific agent skill for paperzilla",
+          "subpath": "skills/paperzilla"
+        },
+        {
+          "name": "Parallel Web",
+          "description": "Scientific agent skill for parallel web",
+          "subpath": "skills/parallel-web"
+        },
+        {
+          "name": "Pathml",
+          "description": "Scientific agent skill for pathml",
+          "subpath": "skills/pathml"
+        },
+        {
+          "name": "Pathogen Variant Surveillance",
+          "description": "Scientific agent skill for pathogen variant surveillance",
+          "subpath": "skills/pathogen-variant-surveillance"
+        },
+        {
+          "name": "Pathway Enrichment",
+          "description": "Scientific agent skill for pathway enrichment",
+          "subpath": "skills/pathway-enrichment"
+        },
+        {
+          "name": "Pdf",
+          "description": "Scientific agent skill for pdf",
+          "subpath": "skills/pdf"
+        },
+        {
+          "name": "Peer Review",
+          "description": "Scientific agent skill for peer review",
+          "subpath": "skills/peer-review"
+        },
+        {
+          "name": "Pennylane",
+          "description": "Scientific agent skill for pennylane",
+          "subpath": "skills/pennylane"
+        },
+        {
+          "name": "Phylogenetics",
+          "description": "Scientific agent skill for phylogenetics",
+          "subpath": "skills/phylogenetics"
+        },
+        {
+          "name": "Pi Agent",
+          "description": "Scientific agent skill for pi agent",
+          "subpath": "skills/pi-agent"
+        },
+        {
+          "name": "Pkpd Modeling",
+          "description": "Scientific agent skill for pkpd modeling",
+          "subpath": "skills/pkpd-modeling"
+        },
+        {
+          "name": "Polars Bio",
+          "description": "Scientific agent skill for polars bio",
+          "subpath": "skills/polars-bio"
+        },
+        {
+          "name": "Polars",
+          "description": "Scientific agent skill for polars",
+          "subpath": "skills/polars"
+        },
+        {
+          "name": "Pptx Posters",
+          "description": "Scientific agent skill for pptx posters",
+          "subpath": "skills/pptx-posters"
+        },
+        {
+          "name": "Pptx",
+          "description": "Scientific agent skill for pptx",
+          "subpath": "skills/pptx"
+        },
+        {
+          "name": "Primekg",
+          "description": "Scientific agent skill for primekg",
+          "subpath": "skills/primekg"
+        },
+        {
+          "name": "Protocolsio Integration",
+          "description": "Scientific agent skill for protocolsio integration",
+          "subpath": "skills/protocolsio-integration"
+        },
+        {
+          "name": "Pufferlib",
+          "description": "Scientific agent skill for pufferlib",
+          "subpath": "skills/pufferlib"
+        },
+        {
+          "name": "Pydeseq2",
+          "description": "Scientific agent skill for pydeseq2",
+          "subpath": "skills/pydeseq2"
+        },
+        {
+          "name": "Pydicom",
+          "description": "Scientific agent skill for pydicom",
+          "subpath": "skills/pydicom"
+        },
+        {
+          "name": "Pyhealth",
+          "description": "Scientific agent skill for pyhealth",
+          "subpath": "skills/pyhealth"
+        },
+        {
+          "name": "Pylabrobot",
+          "description": "Scientific agent skill for pylabrobot",
+          "subpath": "skills/pylabrobot"
+        },
+        {
+          "name": "Pymatgen",
+          "description": "Scientific agent skill for pymatgen",
+          "subpath": "skills/pymatgen"
+        },
+        {
+          "name": "Pymc",
+          "description": "Scientific agent skill for pymc",
+          "subpath": "skills/pymc"
+        },
+        {
+          "name": "Pymoo",
+          "description": "Scientific agent skill for pymoo",
+          "subpath": "skills/pymoo"
+        },
+        {
+          "name": "Pyopenms",
+          "description": "Scientific agent skill for pyopenms",
+          "subpath": "skills/pyopenms"
+        },
+        {
+          "name": "Pysam",
+          "description": "Scientific agent skill for pysam",
+          "subpath": "skills/pysam"
+        },
+        {
+          "name": "Pytdc",
+          "description": "Scientific agent skill for pytdc",
+          "subpath": "skills/pytdc"
+        },
+        {
+          "name": "Pytorch Lightning",
+          "description": "Scientific agent skill for pytorch lightning",
+          "subpath": "skills/pytorch-lightning"
+        },
+        {
+          "name": "Pyzotero",
+          "description": "Scientific agent skill for pyzotero",
+          "subpath": "skills/pyzotero"
+        },
+        {
+          "name": "Qiskit",
+          "description": "Scientific agent skill for qiskit",
+          "subpath": "skills/qiskit"
+        },
+        {
+          "name": "Qutip",
+          "description": "Scientific agent skill for qutip",
+          "subpath": "skills/qutip"
+        },
+        {
+          "name": "Rdkit",
+          "description": "Scientific agent skill for rdkit",
+          "subpath": "skills/rdkit"
+        },
+        {
+          "name": "Relsa Severity Assessment",
+          "description": "Scientific agent skill for relsa severity assessment",
+          "subpath": "skills/relsa-severity-assessment"
+        },
+        {
+          "name": "Research Grants",
+          "description": "Scientific agent skill for research grants",
+          "subpath": "skills/research-grants"
+        },
+        {
+          "name": "Research Lookup",
+          "description": "Scientific agent skill for research lookup",
+          "subpath": "skills/research-lookup"
+        },
+        {
+          "name": "Rowan",
+          "description": "Scientific agent skill for rowan",
+          "subpath": "skills/rowan"
+        },
+        {
+          "name": "Scanpy",
+          "description": "Scientific agent skill for scanpy",
+          "subpath": "skills/scanpy"
+        },
+        {
+          "name": "Scholar Evaluation",
+          "description": "Scientific agent skill for scholar evaluation",
+          "subpath": "skills/scholar-evaluation"
+        },
+        {
+          "name": "Scientific Brainstorming",
+          "description": "Scientific agent skill for scientific brainstorming",
+          "subpath": "skills/scientific-brainstorming"
+        },
+        {
+          "name": "Scientific Critical Thinking",
+          "description": "Scientific agent skill for scientific critical thinking",
+          "subpath": "skills/scientific-critical-thinking"
+        },
+        {
+          "name": "Scientific Schematics",
+          "description": "Scientific agent skill for scientific schematics",
+          "subpath": "skills/scientific-schematics"
+        },
+        {
+          "name": "Scientific Slides",
+          "description": "Scientific agent skill for scientific slides",
+          "subpath": "skills/scientific-slides"
+        },
+        {
+          "name": "Scientific Visualization",
+          "description": "Scientific agent skill for scientific visualization",
+          "subpath": "skills/scientific-visualization"
+        },
+        {
+          "name": "Scientific Writing",
+          "description": "Scientific agent skill for scientific writing",
+          "subpath": "skills/scientific-writing"
+        },
+        {
+          "name": "Scikit Bio",
+          "description": "Scientific agent skill for scikit bio",
+          "subpath": "skills/scikit-bio"
+        },
+        {
+          "name": "Scikit Learn",
+          "description": "Scientific agent skill for scikit learn",
+          "subpath": "skills/scikit-learn"
+        },
+        {
+          "name": "Scikit Survival",
+          "description": "Scientific agent skill for scikit survival",
+          "subpath": "skills/scikit-survival"
+        },
+        {
+          "name": "Scvelo",
+          "description": "Scientific agent skill for scvelo",
+          "subpath": "skills/scvelo"
+        },
+        {
+          "name": "Scvi Tools",
+          "description": "Scientific agent skill for scvi tools",
+          "subpath": "skills/scvi-tools"
+        },
+        {
+          "name": "Seaborn",
+          "description": "Scientific agent skill for seaborn",
+          "subpath": "skills/seaborn"
+        },
+        {
+          "name": "Shap",
+          "description": "Scientific agent skill for shap",
+          "subpath": "skills/shap"
+        },
+        {
+          "name": "Simpy",
+          "description": "Scientific agent skill for simpy",
+          "subpath": "skills/simpy"
+        },
+        {
+          "name": "Stable Baselines3",
+          "description": "Scientific agent skill for stable baselines3",
+          "subpath": "skills/stable-baselines3"
+        },
+        {
+          "name": "Statistical Analysis",
+          "description": "Scientific agent skill for statistical analysis",
+          "subpath": "skills/statistical-analysis"
+        },
+        {
+          "name": "Statistical Power",
+          "description": "Scientific agent skill for statistical power",
+          "subpath": "skills/statistical-power"
+        },
+        {
+          "name": "Statsmodels",
+          "description": "Scientific agent skill for statsmodels",
+          "subpath": "skills/statsmodels"
+        },
+        {
+          "name": "Sympy",
+          "description": "Scientific agent skill for sympy",
+          "subpath": "skills/sympy"
+        },
+        {
+          "name": "Tamarind",
+          "description": "Scientific agent skill for tamarind",
+          "subpath": "skills/tamarind"
+        },
+        {
+          "name": "Tiledbvcf",
+          "description": "Scientific agent skill for tiledbvcf",
+          "subpath": "skills/tiledbvcf"
+        },
+        {
+          "name": "Timesfm Forecasting",
+          "description": "Scientific agent skill for timesfm forecasting",
+          "subpath": "skills/timesfm-forecasting"
+        },
+        {
+          "name": "Torch Geometric",
+          "description": "Scientific agent skill for torch geometric",
+          "subpath": "skills/torch-geometric"
+        },
+        {
+          "name": "Torchdrug",
+          "description": "Scientific agent skill for torchdrug",
+          "subpath": "skills/torchdrug"
+        },
+        {
+          "name": "Transformers",
+          "description": "Scientific agent skill for transformers",
+          "subpath": "skills/transformers"
+        },
+        {
+          "name": "Treatment Plans",
+          "description": "Scientific agent skill for treatment plans",
+          "subpath": "skills/treatment-plans"
+        },
+        {
+          "name": "Umap Learn",
+          "description": "Scientific agent skill for umap learn",
+          "subpath": "skills/umap-learn"
+        },
+        {
+          "name": "Uncertainty And Units",
+          "description": "Scientific agent skill for uncertainty and units",
+          "subpath": "skills/uncertainty-and-units"
+        },
+        {
+          "name": "Usfiscaldata",
+          "description": "Scientific agent skill for usfiscaldata",
+          "subpath": "skills/usfiscaldata"
+        },
+        {
+          "name": "Vaex",
+          "description": "Scientific agent skill for vaex",
+          "subpath": "skills/vaex"
+        },
+        {
+          "name": "Venue Templates",
+          "description": "Scientific agent skill for venue templates",
+          "subpath": "skills/venue-templates"
+        },
+        {
+          "name": "Waypoint Bio",
+          "description": "Scientific agent skill for waypoint bio",
+          "subpath": "skills/waypoint-bio"
+        },
+        {
+          "name": "What If Oracle",
+          "description": "Scientific agent skill for what if oracle",
+          "subpath": "skills/what-if-oracle"
+        },
+        {
+          "name": "Xlsx",
+          "description": "Scientific agent skill for xlsx",
+          "subpath": "skills/xlsx"
+        },
+        {
+          "name": "Zarr Python",
+          "description": "Scientific agent skill for zarr python",
+          "subpath": "skills/zarr-python"
+        }
+      ]
+    },
+    {
+      "id": "google-deepmind-science-skills",
+      "name": "Google DeepMind Science Skills",
+      "url": "https://github.com/google-deepmind/science-skills",
+      "description": "Google DeepMind 官方出品的科研 Agent 技能庫，整合 AlphaGenome、AlphaFold DB、UniProt、ChEMBL 等 30+ 頂級科研資料庫與分析工具，提升科學工作流真實性與 Token 使用效率。",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "google-deepmind-science-skills",
+        "deepmind-science",
+        "alphafold-skills",
+        "alphagenome",
+        "science-skills",
+        "bio-databases",
+        "uniprot",
+        "chembl"
+      ],
+      "capabilities": [
+        "genomics",
+        "protein-analysis",
+        "alphafold",
+        "cheminformatics",
+        "scientific-literature"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/google-deepmind/science-skills.git",
+        "repoUrl": "https://github.com/google-deepmind/science-skills"
+      },
+      "useCase": "當需要利用 AlphaFold、AlphaGenome 等 DeepMind 官方數據庫與生物科研 API 進行蛋白質結構檢索、變異分析與科學文獻深層檢索時使用。",
+      "advantages": [
+        "Google DeepMind 官方維護，深度整合 AlphaGenome 與 AlphaFold DB",
+        "專為提升 Agent 知識 Grounding 與減少 Token 浪費進行提示詞與介面優化",
+        "內建 PubMed、ArXiv、BioRxiv、ChEMBL 等 30+ 頂級學術資料庫解析"
+      ],
+      "negativeConstraints": [
+        "部分生物醫學數據庫查詢需要網路連線與合規的 API 授權或速率限制",
+        "不適用於一般的文字創作、非生命科學類別的通用開發任務",
+        "預測變異與蛋白質結構仍屬計算推論，臨床應用需遵守相應監管規範"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-29T14:15:00.000Z",
+      "stars": 2788,
+      "subTools": [
+        {
+          "name": "Alphafold Database Fetch And Analyze",
+          "description": "DeepMind science skill for alphafold database fetch and analyze",
+          "subpath": "skills/alphafold_database_fetch_and_analyze"
+        },
+        {
+          "name": "Alphagenome Single Variant Analysis",
+          "description": "DeepMind science skill for alphagenome single variant analysis",
+          "subpath": "skills/alphagenome_single_variant_analysis"
+        },
+        {
+          "name": "Chembl Database",
+          "description": "DeepMind science skill for chembl database",
+          "subpath": "skills/chembl_database"
+        },
+        {
+          "name": "Clinical Trials Database",
+          "description": "DeepMind science skill for clinical trials database",
+          "subpath": "skills/clinical_trials_database"
+        },
+        {
+          "name": "Clinvar Database",
+          "description": "DeepMind science skill for clinvar database",
+          "subpath": "skills/clinvar_database"
+        },
+        {
+          "name": "Credentials",
+          "description": "DeepMind science skill for credentials",
+          "subpath": "skills/credentials"
+        },
+        {
+          "name": "Dbsnp Database",
+          "description": "DeepMind science skill for dbsnp database",
+          "subpath": "skills/dbsnp_database"
+        },
+        {
+          "name": "Embl Ebi Ols",
+          "description": "DeepMind science skill for embl ebi ols",
+          "subpath": "skills/embl_ebi_ols"
+        },
+        {
+          "name": "Encode Ccres Database",
+          "description": "DeepMind science skill for encode ccres database",
+          "subpath": "skills/encode_ccres_database"
+        },
+        {
+          "name": "Ensembl Database",
+          "description": "DeepMind science skill for ensembl database",
+          "subpath": "skills/ensembl_database"
+        },
+        {
+          "name": "Foldseek Structural Search",
+          "description": "DeepMind science skill for foldseek structural search",
+          "subpath": "skills/foldseek_structural_search"
+        },
+        {
+          "name": "Gnomad Database",
+          "description": "DeepMind science skill for gnomad database",
+          "subpath": "skills/gnomad_database"
+        },
+        {
+          "name": "Gtex Database",
+          "description": "DeepMind science skill for gtex database",
+          "subpath": "skills/gtex_database"
+        },
+        {
+          "name": "Human Protein Atlas Database",
+          "description": "DeepMind science skill for human protein atlas database",
+          "subpath": "skills/human_protein_atlas_database"
+        },
+        {
+          "name": "Interpro Database",
+          "description": "DeepMind science skill for interpro database",
+          "subpath": "skills/interpro_database"
+        },
+        {
+          "name": "Jaspar Database",
+          "description": "DeepMind science skill for jaspar database",
+          "subpath": "skills/jaspar_database"
+        },
+        {
+          "name": "Literature Search Arxiv",
+          "description": "DeepMind science skill for literature search arxiv",
+          "subpath": "skills/literature_search_arxiv"
+        },
+        {
+          "name": "Literature Search Biorxiv",
+          "description": "DeepMind science skill for literature search biorxiv",
+          "subpath": "skills/literature_search_biorxiv"
+        },
+        {
+          "name": "Literature Search Europepmc",
+          "description": "DeepMind science skill for literature search europepmc",
+          "subpath": "skills/literature_search_europepmc"
+        },
+        {
+          "name": "Literature Search Openalex",
+          "description": "DeepMind science skill for literature search openalex",
+          "subpath": "skills/literature_search_openalex"
+        },
+        {
+          "name": "Ncbi Sequence Fetch",
+          "description": "DeepMind science skill for ncbi sequence fetch",
+          "subpath": "skills/ncbi_sequence_fetch"
+        },
+        {
+          "name": "Openfda Database",
+          "description": "DeepMind science skill for openfda database",
+          "subpath": "skills/openfda_database"
+        },
+        {
+          "name": "Opentargets Database",
+          "description": "DeepMind science skill for opentargets database",
+          "subpath": "skills/opentargets_database"
+        },
+        {
+          "name": "Pdb Database",
+          "description": "DeepMind science skill for pdb database",
+          "subpath": "skills/pdb_database"
+        },
+        {
+          "name": "Predictingthepast",
+          "description": "DeepMind science skill for predictingthepast",
+          "subpath": "skills/predictingthepast"
+        },
+        {
+          "name": "Protein Sequence Msa",
+          "description": "DeepMind science skill for protein sequence msa",
+          "subpath": "skills/protein_sequence_msa"
+        },
+        {
+          "name": "Protein Sequence Similarity Search",
+          "description": "DeepMind science skill for protein sequence similarity search",
+          "subpath": "skills/protein_sequence_similarity_search"
+        },
+        {
+          "name": "Pubchem Database",
+          "description": "DeepMind science skill for pubchem database",
+          "subpath": "skills/pubchem_database"
+        },
+        {
+          "name": "Pubmed Database",
+          "description": "DeepMind science skill for pubmed database",
+          "subpath": "skills/pubmed_database"
+        },
+        {
+          "name": "Pymol",
+          "description": "DeepMind science skill for pymol",
+          "subpath": "skills/pymol"
+        },
+        {
+          "name": "Quickgo Database",
+          "description": "DeepMind science skill for quickgo database",
+          "subpath": "skills/quickgo_database"
+        },
+        {
+          "name": "Reactome Database",
+          "description": "DeepMind science skill for reactome database",
+          "subpath": "skills/reactome_database"
+        },
+        {
+          "name": "String Database",
+          "description": "DeepMind science skill for string database",
+          "subpath": "skills/string_database"
+        },
+        {
+          "name": "Ucsc Conservation And Tfbs",
+          "description": "DeepMind science skill for ucsc conservation and tfbs",
+          "subpath": "skills/ucsc_conservation_and_tfbs"
+        },
+        {
+          "name": "Unibind Database",
+          "description": "DeepMind science skill for unibind database",
+          "subpath": "skills/unibind_database"
+        },
+        {
+          "name": "Uniprot Database",
+          "description": "DeepMind science skill for uniprot database",
+          "subpath": "skills/uniprot_database"
+        },
+        {
+          "name": "Uv",
+          "description": "DeepMind science skill for uv",
+          "subpath": "skills/uv"
+        },
+        {
+          "name": "Workflow Skill Creator",
+          "description": "DeepMind science skill for workflow skill creator",
+          "subpath": "skills/workflow_skill_creator"
+        }
+      ]
+    },
+    {
+      "id": "awesome-scientific-skills",
+      "name": "Awesome Scientific Skills",
+      "url": "https://github.com/InternScience/Awesome-Scientific-Skills",
+      "description": "由 InternScience 社群策劃的開源科研 Agent 技能聚合庫，整合學術論文寫作、神經科學、計算生物學、深度研究等多個科研 Agent Skills 倉庫。",
+      "category": "研究",
+      "language": "markdown",
+      "triggers": [
+        "awesome-scientific-skills",
+        "internscience",
+        "scientific-agent",
+        "academic-skills",
+        "research-skills",
+        "scientific-tools",
+        "science-skills-collection"
+      ],
+      "capabilities": [
+        "scientific-skills",
+        "academic-writing",
+        "neuroscience",
+        "research-tools",
+        "curated-collection"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/InternScience/Awesome-Scientific-Skills",
+        "repoUrl": "https://github.com/InternScience/Awesome-Scientific-Skills"
+      },
+      "useCase": "當科研人員或開發者需要一站式查閱、克隆或擴展不同團隊開源的科學 Agent Skills 集合時使用。",
+      "advantages": [
+        "集合多個科研技能先驅專案 (如 AcademicForge, SciCraft, Deep-Research 等)",
+        "提供跨領域 (神經科學、計算科學、論文寫作) 的整合視角",
+        "以開源標準組織，支援社群共同維護與擴展"
+      ],
+      "negativeConstraints": [
+        "作為元聚合倉庫，各子技能倉庫由不同作者維護，相容性與更新頻率可能不一",
+        "不適合需要單一統一生產依賴的高穩定度自動化管線",
+        "非單一獨立執行的軟體套件，需個別 clone 或引用子專案"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-29T14:15:00.000Z",
+      "stars": 525,
+      "subTools": [
+        {
+          "name": "ComposioHQ awesome claude skills",
+          "description": "Curated scientific skill collection: ComposioHQ-awesome-claude-skills",
+          "subpath": "skills/ComposioHQ-awesome-claude-skills"
+        },
+        {
+          "name": "HaoxuanLiTHUAI awesome_cognitive_and_neuroscience_skills",
+          "description": "Curated scientific skill collection: HaoxuanLiTHUAI-awesome_cognitive_and_neuroscience_skills",
+          "subpath": "skills/HaoxuanLiTHUAI-awesome_cognitive_and_neuroscience_skills"
+        },
+        {
+          "name": "HughYau AcademicForge",
+          "description": "Curated scientific skill collection: HughYau-AcademicForge",
+          "subpath": "skills/HughYau-AcademicForge"
+        },
+        {
+          "name": "HughYau neuroforge skills",
+          "description": "Curated scientific skill collection: HughYau-neuroforge-skills",
+          "subpath": "skills/HughYau-neuroforge-skills"
+        },
+        {
+          "name": "InternScience scp",
+          "description": "Curated scientific skill collection: InternScience-scp",
+          "subpath": "skills/InternScience-scp"
+        },
+        {
+          "name": "K Dense AI claude scientific skills",
+          "description": "Curated scientific skill collection: K-Dense-AI-claude-scientific-skills",
+          "subpath": "skills/K-Dense-AI-claude-scientific-skills"
+        },
+        {
+          "name": "K Dense AI claude scientific writer",
+          "description": "Curated scientific skill collection: K-Dense-AI-claude-scientific-writer",
+          "subpath": "skills/K-Dense-AI-claude-scientific-writer"
+        },
+        {
+          "name": "K Dense AI claude skills mcp",
+          "description": "Curated scientific skill collection: K-Dense-AI-claude-skills-mcp",
+          "subpath": "skills/K-Dense-AI-claude-skills-mcp"
+        },
+        {
+          "name": "OthmanAdi planning with files",
+          "description": "Curated scientific skill collection: OthmanAdi-planning-with-files",
+          "subpath": "skills/OthmanAdi-planning-with-files"
+        },
+        {
+          "name": "VoltAgent awesome openclaw skills",
+          "description": "Curated scientific skill collection: VoltAgent-awesome-openclaw-skills",
+          "subpath": "skills/VoltAgent-awesome-openclaw-skills"
+        },
+        {
+          "name": "Weizhena Deep Research skills",
+          "description": "Curated scientific skill collection: Weizhena-Deep-Research-skills",
+          "subpath": "skills/Weizhena-Deep-Research-skills"
+        },
+        {
+          "name": "affaan m everything claude code",
+          "description": "Curated scientific skill collection: affaan-m-everything-claude-code",
+          "subpath": "skills/affaan-m-everything-claude-code"
+        },
+        {
+          "name": "agentskills agentskills",
+          "description": "Curated scientific skill collection: agentskills-agentskills",
+          "subpath": "skills/agentskills-agentskills"
+        },
+        {
+          "name": "anthropics skills",
+          "description": "Curated scientific skill collection: anthropics-skills",
+          "subpath": "skills/anthropics-skills"
+        },
+        {
+          "name": "coreyhaines31 marketingskills",
+          "description": "Curated scientific skill collection: coreyhaines31-marketingskills",
+          "subpath": "skills/coreyhaines31-marketingskills"
+        },
+        {
+          "name": "heilcheng awesome agent skills",
+          "description": "Curated scientific skill collection: heilcheng-awesome-agent-skills",
+          "subpath": "skills/heilcheng-awesome-agent-skills"
+        },
+        {
+          "name": "hesreallyhim awesome claude code",
+          "description": "Curated scientific skill collection: hesreallyhim-awesome-claude-code",
+          "subpath": "skills/hesreallyhim-awesome-claude-code"
+        },
+        {
+          "name": "huggingface skills",
+          "description": "Curated scientific skill collection: huggingface-skills",
+          "subpath": "skills/huggingface-skills"
+        },
+        {
+          "name": "jaechang hits scicraft",
+          "description": "Curated scientific skill collection: jaechang-hits-scicraft",
+          "subpath": "skills/jaechang-hits-scicraft"
+        },
+        {
+          "name": "kepano obsidian skills",
+          "description": "Curated scientific skill collection: kepano-obsidian-skills",
+          "subpath": "skills/kepano-obsidian-skills"
+        },
+        {
+          "name": "muratcankoylan Agent Skills for Context Engineering",
+          "description": "Curated scientific skill collection: muratcankoylan-Agent-Skills-for-Context-Engineering",
+          "subpath": "skills/muratcankoylan-Agent-Skills-for-Context-Engineering"
+        },
+        {
+          "name": "nextlevelbuilder ui ux pro max skill",
+          "description": "Curated scientific skill collection: nextlevelbuilder-ui-ux-pro-max-skill",
+          "subpath": "skills/nextlevelbuilder-ui-ux-pro-max-skill"
+        },
+        {
+          "name": "obra superpowers",
+          "description": "Curated scientific skill collection: obra-superpowers",
+          "subpath": "skills/obra-superpowers"
+        },
+        {
+          "name": "openai skills",
+          "description": "Curated scientific skill collection: openai-skills",
+          "subpath": "skills/openai-skills"
+        },
+        {
+          "name": "openclaw clawhub",
+          "description": "Curated scientific skill collection: openclaw-clawhub",
+          "subpath": "skills/openclaw-clawhub"
+        },
+        {
+          "name": "sickn33 antigravity awesome skills",
+          "description": "Curated scientific skill collection: sickn33-antigravity-awesome-skills",
+          "subpath": "skills/sickn33-antigravity-awesome-skills"
+        },
+        {
+          "name": "travisvn awesome claude skills",
+          "description": "Curated scientific skill collection: travisvn-awesome-claude-skills",
+          "subpath": "skills/travisvn-awesome-claude-skills"
+        },
+        {
+          "name": "vercel labs agent skills",
+          "description": "Curated scientific skill collection: vercel-labs-agent-skills",
+          "subpath": "skills/vercel-labs-agent-skills"
+        },
+        {
+          "name": "ynulihao AgentSkillOS",
+          "description": "Curated scientific skill collection: ynulihao-AgentSkillOS",
+          "subpath": "skills/ynulihao-AgentSkillOS"
+        },
+        {
+          "name": "yorkeccak scientific skills",
+          "description": "Curated scientific skill collection: yorkeccak-scientific-skills",
+          "subpath": "skills/yorkeccak-scientific-skills"
+        }
+      ]
+    },
+    {
+      "id": "ai-research-skills",
+      "name": "AI Research SKILLs",
+      "url": "https://github.com/orchestra-research/AI-research-SKILLs",
+      "description": "Orchestra Research 出品的全流程 AI 研發與工程技能庫，涵蓋從研究構想、模型架構、分詞、微調、訓練優化、RL/後訓練、對齊到論文撰寫與 MLOps 的 23 個模組。",
+      "category": "研究",
+      "language": "python",
+      "triggers": [
+        "ai-research-skills",
+        "orchestra-research",
+        "model-architecture",
+        "fine-tuning",
+        "mechanistic-interpretability",
+        "mlops",
+        "paper-writing",
+        "research-ideation"
+      ],
+      "capabilities": [
+        "model-architecture",
+        "fine-tuning",
+        "distributed-training",
+        "paper-writing",
+        "mlops"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/orchestra-research/AI-research-SKILLs.git",
+        "repoUrl": "https://github.com/orchestra-research/AI-research-SKILLs"
+      },
+      "useCase": "當需要將 Claude Code、Codex 或 Gemini 轉型為具備完整 AI 研發能力（模型架構設計、分詞微調、分佈式訓練、機制可解釋性研究與論文產出）的研究代理時使用。",
+      "advantages": [
+        "覆蓋從 0-autoresearch 到 22-agent-native-research-artifact 的 AI 研發全生命週期",
+        "包含前沿的機制可解釋性、後訓練對齊 (RLHF/DPO) 與推論優化技能",
+        "提供端到端的機器學習論文撰寫、審稿與研究構思自動化能力"
+      ],
+      "negativeConstraints": [
+        "模型訓練、微調與分佈式計算技能需要高規格硬體 (GPU/TPU) 與分散式環境支援",
+        "不適用於與 AI/ML 演算法研究無關的一般消費型應用開發",
+        "產生之研究假說與論文草稿仍需研究員親自驗證與覆核"
+      ],
+      "status": "active",
+      "addedAt": "2026-08-29T14:15:00.000Z",
+      "stars": 12146,
+      "subTools": [
+        {
+          "name": "Autoresearch Skill",
+          "description": "AI research and engineering module: 0-autoresearch-skill",
+          "subpath": "0-autoresearch-skill"
+        },
+        {
+          "name": "Model Architecture",
+          "description": "AI research and engineering module: 01-model-architecture",
+          "subpath": "01-model-architecture"
+        },
+        {
+          "name": "Tokenization",
+          "description": "AI research and engineering module: 02-tokenization",
+          "subpath": "02-tokenization"
+        },
+        {
+          "name": "Fine Tuning",
+          "description": "AI research and engineering module: 03-fine-tuning",
+          "subpath": "03-fine-tuning"
+        },
+        {
+          "name": "Mechanistic Interpretability",
+          "description": "AI research and engineering module: 04-mechanistic-interpretability",
+          "subpath": "04-mechanistic-interpretability"
+        },
+        {
+          "name": "Data Processing",
+          "description": "AI research and engineering module: 05-data-processing",
+          "subpath": "05-data-processing"
+        },
+        {
+          "name": "Post Training",
+          "description": "AI research and engineering module: 06-post-training",
+          "subpath": "06-post-training"
+        },
+        {
+          "name": "Safety Alignment",
+          "description": "AI research and engineering module: 07-safety-alignment",
+          "subpath": "07-safety-alignment"
+        },
+        {
+          "name": "Distributed Training",
+          "description": "AI research and engineering module: 08-distributed-training",
+          "subpath": "08-distributed-training"
+        },
+        {
+          "name": "Infrastructure",
+          "description": "AI research and engineering module: 09-infrastructure",
+          "subpath": "09-infrastructure"
+        },
+        {
+          "name": "Optimization",
+          "description": "AI research and engineering module: 10-optimization",
+          "subpath": "10-optimization"
+        },
+        {
+          "name": "Evaluation",
+          "description": "AI research and engineering module: 11-evaluation",
+          "subpath": "11-evaluation"
+        },
+        {
+          "name": "Inference Serving",
+          "description": "AI research and engineering module: 12-inference-serving",
+          "subpath": "12-inference-serving"
+        },
+        {
+          "name": "Mlops",
+          "description": "AI research and engineering module: 13-mlops",
+          "subpath": "13-mlops"
+        },
+        {
+          "name": "Agents",
+          "description": "AI research and engineering module: 14-agents",
+          "subpath": "14-agents"
+        },
+        {
+          "name": "Rag",
+          "description": "AI research and engineering module: 15-rag",
+          "subpath": "15-rag"
+        },
+        {
+          "name": "Prompt Engineering",
+          "description": "AI research and engineering module: 16-prompt-engineering",
+          "subpath": "16-prompt-engineering"
+        },
+        {
+          "name": "Observability",
+          "description": "AI research and engineering module: 17-observability",
+          "subpath": "17-observability"
+        },
+        {
+          "name": "Multimodal",
+          "description": "AI research and engineering module: 18-multimodal",
+          "subpath": "18-multimodal"
+        },
+        {
+          "name": "Emerging Techniques",
+          "description": "AI research and engineering module: 19-emerging-techniques",
+          "subpath": "19-emerging-techniques"
+        },
+        {
+          "name": "Ml Paper Writing",
+          "description": "AI research and engineering module: 20-ml-paper-writing",
+          "subpath": "20-ml-paper-writing"
+        },
+        {
+          "name": "Research Ideation",
+          "description": "AI research and engineering module: 21-research-ideation",
+          "subpath": "21-research-ideation"
+        },
+        {
+          "name": "Agent Native Research Artifact",
+          "description": "AI research and engineering module: 22-agent-native-research-artifact",
+          "subpath": "22-agent-native-research-artifact"
+        }
+      ]
     }
   ]
 }
