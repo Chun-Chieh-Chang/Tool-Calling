@@ -1,5 +1,64 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-30 批量工具入庫、HumanLayer Monorepo 拆解、Free-Claude-Code 競品演化比對與分類重構
+
+### 需求
+依使用者需求將以下 3 個 GitHub 網址批量加入工具庫，檢查是否需要拆解（Monorepo/Subtools），若遇到與既有工具重複時，需重新解析並全盤檢討分類邏輯，比較後若有優化則以新的取代舊的：
+1. `https://github.com/humanlayer/skills`
+2. `https://github.com/alishahryar1/free-claude-code`
+3. `https://github.com/Rishurajgautam24/free-claude-code`
+
+### 處理結果與架構決策 (PDCA)
+
+#### 1. Monorepo 拆解分析與實作 (`humanlayer/skills`)
+- **第一性原理深度檢驗**：
+  - `humanlayer/skills` 為 HumanLayer 官方發布的 Claude Code 外掛與技能集合庫，根目錄包含 `plugins/` 容器目錄與 `.claude-plugin/marketplace.json`。
+  - 經深入掃描發現，該倉庫在 `plugins/` 下實質包含 5 個高度獨立、具備完整 `.claude-plugin/plugin.json` 與 `SKILL.md` 的專案級技能，官方安裝規範亦為 `npx skills add humanlayer/skills --skill <skillname>`。
+- **URL Resolver 引擎防禦性增強**：
+  - 根因分析發現既有 `scripts/url-resolver.js` 在倉庫僅有一個根目錄候選項（如單一 `plugins/` 或 `skills/`）時直接回退判定為單一 tool，未能深入探測次級容器目錄。
+  - 外科手術式修訂 `url-resolver.js`：增補單一容器目錄次層探測與 `plugin.json`/`package.json` 識別邏輯，使系統能自動識別並拆解單一容器目錄下的多個獨立技能外掛。
+- **拆解收錄方案**：
+  - 收錄主條目 `humanlayer-skills`（含 5 個完整 `subTools` 索引，分類：`AI 代理`）。
+  - 將 5 個獨立外掛進行高精度拆解入庫，提供 100% 完整雙語 triggers、場景與限制：
+    1. `improve-claude-md`（分類：`AI 代理`）：優化 `CLAUDE.md`，使用 `<important if>` 條件區塊提升 Claude Code 指令依從性與上下文利用率。
+    2. `build-iterated-agentic-loop`（分類：`AI 代理`）：一鍵建立本地技能並自動配置 GitHub Actions 排程與迭代 Coding-Agent 自動化工作流。
+    3. `design-control-loop`（分類：`AI 代理`）：以訪談引導式設計專門適配於程式庫的 Agent 控制迴路（感測器、控制器、致動器閉環）。
+    4. `narrow-react-prop-types`（分類：`UI/UX設計`）：縮窄與清理過度膨脹的 React Component Prop 類型，消除 Storybook/Mock 造成的虛假狀態。
+    5. `show-me`（分類：`文件生產力`）：為 AI Agent 提供極簡視覺化解說、虛擬碼草圖與獨立互動式 HTML Artifacts 展示成果。
+
+#### 2. 重複與分支工具深度比對 (`alishahryar1/free-claude-code` vs `Rishurajgautam24/free-claude-code`)
+- **多維度事實對比**：
+  - `alishahryar1/free-claude-code`：
+    - 星數：**51,497 ⭐** | Forks：8,289
+    - 最新版本：**v5.17.2**（持續維護，最新 commit 2026-08-30，超過 1,600+ commits）
+    - 生態支援：全生態覆蓋（Claude Code CLI、Codex、Pi、OpenCode、OpenClaw、VSCode 插件、Discord、Web Admin UI、手機語音輸入、1.3B+ 免費 token、HTTP 413 容錯）。
+  - `Rishurajgautam24/free-claude-code`：
+    - 星數：887 ⭐ | Forks：168
+    - 最新版本：v2.0.0（停留在 2026-03-05，為早期階段的分支/備份副本，僅支援 Claude Code CLI 橋接 NVIDIA NIM）。
+- **全盤分類邏輯檢討與取代決策**：
+  - **分類本質檢討**：該工具不是具備自主決策循環的 Autonomous Agent（非 `AI 代理`），亦非訓練或模型底層 SDK（非典型 `AI 框架`）；本質上為開發者本地高可用 CLI Proxy / 中介軟體，配合 `cc-switch` 桌面 Hub 管理多個 coding agents。依據系統 MECE 原則與分類慣例，標準歸入 **`開發工具`**。
+  - **取代決策**：依指示「比較後若有優化則以新的取代舊的」，工具庫全面以原創且高度演化的 `alishahryar1/free-claude-code` (v5.17.2, 51.5k ⭐) 為正式權威收錄條目，並在描述與優勢中清楚說明其涵蓋並超越了早期 NVIDIA NIM 簡易分支的所有能力。
+
+#### 3. 詞典與檢索引擎同步
+- 執行 `scripts/mine-synonyms.js` 與 `scripts/build-web.js`，詞典詞彙數由 352 擴充至 415 個（含 554 組配對），支援「免費 claude」、「免金鑰」、「claude proxy」等即時精確檢索。
+
+### 根因分析 (RCA) 與預防措施 (CAPA)
+- **RCA**：
+  1. `url-resolver.js` 在識別 Monorepo 時，過去只檢驗根目錄下的目錄數量是否 `>= 2`，對於將所有 plugins 或 skills 放置於單一根目錄（如 `plugins/`）的倉庫結構會誤判為一般工具。
+  2. 開發者常因早期 fork 或名稱相仿專案（如兩款 `free-claude-code`）造成混淆，若未經版本 (v5.17.2 vs v2.0.0) 與 Star 數 (51k vs 887) 深度比對，易收錄過時死碼版本。
+- **CAPA**：
+  1. 強化 `url-resolver.js` 之次層掃描機制，未來遇到此類技能集合倉庫均能自動識別並提示拆解。
+  2. 嚴格執行「雙重比對 + 權威主版本取代」SOP，並在 Metadata 中落實競品選型優勢與禁忌約束。
+
+### 驗證結果
+- `node cli.js validate`: **0 個錯誤, 0 個警告**（Metadata Quality: 100/100, 625 個工具全數驗證通過）
+- `node scripts/check-mece.js`: **PASS**（總工具數 625，分類數 22，無任何「其他」或「未分類」殘留）
+- `node scripts/check-utf8.js`: **PASS**（0 個 U+FFFD 亂碼字元）
+- `npm test`: **62/62 tests 全數 PASS (13 suites, 0 fail)**
+- 資安金鑰掃描：**0 個硬編碼 API 金鑰**
+
+---
+
 ## 2026-08-30 專案整體程式碼與檔案優化、重複死碼清理與防禦性架構鞏固 (Project Optimization, Dead Code Removal & Defensive Architecture Consolidation)
 
 ### 需求

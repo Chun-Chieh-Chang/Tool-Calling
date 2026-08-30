@@ -81,11 +81,36 @@ export async function resolveMonorepo(url, options = {}) {
       } catch {}
     }
 
+    // 若只有 1 個候選目錄 (如 plugins/ 或 skills/)，進一步探測其子目錄
+    if (candidateDirs.length === 1) {
+      const containerDir = candidateDirs[0];
+      try {
+        const subApiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${containerDir}`;
+        const subRes = await fetch(subApiUrl, {
+          headers: {
+            'User-Agent': 'Tool-Calling-Resolver/1.0',
+            'Accept': 'application/vnd.github.v3+json',
+          }
+        });
+        if (subRes.ok) {
+          const subContents = await subRes.json();
+          if (Array.isArray(subContents)) {
+            const nestedDirs = subContents.filter(i => i.type === 'dir').map(i => `${containerDir}/${i.name}`);
+            if (nestedDirs.length >= 2) {
+              candidateDirs.length = 0;
+              candidateDirs.push(...nestedDirs);
+            }
+          }
+        }
+      } catch {}
+    }
+
     if (candidateDirs.length < 2) return null;
 
     // 對候選目錄做進一步驗證
     const candidates = [];
     for (const subdir of candidateDirs.slice(0, 10)) { // 限制深度
+      // 1. SKILL.md 直接或在子目錄下
       try {
         const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${subdir}/SKILL.md`;
         const skillRes = await fetch(rawUrl, { method: 'HEAD' });
@@ -94,7 +119,28 @@ export async function resolveMonorepo(url, options = {}) {
           continue;
         }
       } catch {}
+
+      // 2. Claude Plugin (plugin.json)
+      try {
+        const pluginUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${subdir}/.claude-plugin/plugin.json`;
+        const pRes = await fetch(pluginUrl, { method: 'HEAD' });
+        if (pRes.ok) {
+          candidates.push({ path: subdir, type: 'plugin', url: `https://github.com/${owner}/${repo}/tree/${branch}/${subdir}` });
+          continue;
+        }
+      } catch {}
+
+      // 3. package.json / pyproject.toml
+      try {
+        const pkgUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${subdir}/package.json`;
+        const pkgRes = await fetch(pkgUrl, { method: 'HEAD' });
+        if (pkgRes.ok) {
+          candidates.push({ path: subdir, type: 'package', url: `https://github.com/${owner}/${repo}/tree/${branch}/${subdir}` });
+          continue;
+        }
+      } catch {}
       
+      // 4. README.md
       try {
         const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${subdir}/README.md`;
         const readmeRes = await fetch(rawUrl, { method: 'HEAD' });

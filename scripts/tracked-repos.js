@@ -200,7 +200,7 @@ function addTrackedRepo(owner, repo, extra = {}) {
 // CLI entry point
 // ──────────────────────────────────────────────
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && fileURLToPath(import.meta.url).toLowerCase() === process.argv[1].toLowerCase()) {
   const force = process.argv.includes('--force');
   buildTrackedRepos({ forceRegenerate: force });
 }

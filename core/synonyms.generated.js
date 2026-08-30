@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-29T15:58:49.334Z
+ * 產生時間：2026-08-30T03:23:37.930Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -2184,6 +2184,621 @@ export const SYNONYM_MAP = {
     "deepseek-harness-eac",
     "dsh-eac",
     "dsh-desktop"
+  ],
+  "claude外掛": [
+    "humanlayer-skills",
+    "humanlayer",
+    "claude-code-skills",
+    "agentic-loop",
+    "control-loop",
+    "claudemd-optimizer",
+    "react-props-narrowing",
+    "claude技能庫"
+  ],
+  "humanlayer-skills": [
+    "claude外掛",
+    "claude技能庫",
+    "humanlayer",
+    "claude-code-skills",
+    "agentic-loop",
+    "control-loop",
+    "claudemd-optimizer",
+    "react-props-narrowing"
+  ],
+  "humanlayer": [
+    "claude外掛",
+    "claude技能庫",
+    "humanlayer-skills",
+    "claude-code-skills",
+    "agentic-loop",
+    "control-loop",
+    "claudemd-optimizer",
+    "react-props-narrowing"
+  ],
+  "claude-code-skills": [
+    "claude外掛",
+    "claude技能庫",
+    "humanlayer-skills",
+    "humanlayer",
+    "agentic-loop",
+    "control-loop",
+    "claudemd-optimizer",
+    "react-props-narrowing"
+  ],
+  "agentic-loop": [
+    "claude外掛",
+    "claude技能庫",
+    "agent閉環",
+    "迭代agent工作流",
+    "humanlayer-skills",
+    "humanlayer",
+    "claude-code-skills",
+    "control-loop"
+  ],
+  "control-loop": [
+    "claude外掛",
+    "claude技能庫",
+    "控制迴路",
+    "agent控制設計",
+    "代碼反饋控制",
+    "humanlayer-skills",
+    "humanlayer",
+    "claude-code-skills"
+  ],
+  "claudemd-optimizer": [
+    "claude外掛",
+    "claude技能庫",
+    "humanlayer-skills",
+    "humanlayer",
+    "claude-code-skills",
+    "agentic-loop",
+    "control-loop",
+    "react-props-narrowing"
+  ],
+  "react-props-narrowing": [
+    "claude外掛",
+    "claude技能庫",
+    "humanlayer-skills",
+    "humanlayer",
+    "claude-code-skills",
+    "agentic-loop",
+    "control-loop",
+    "claudemd-optimizer"
+  ],
+  "claude技能庫": [
+    "humanlayer-skills",
+    "humanlayer",
+    "claude-code-skills",
+    "agentic-loop",
+    "control-loop",
+    "claudemd-optimizer",
+    "react-props-narrowing",
+    "claude外掛"
+  ],
+  "claudemd優化": [
+    "improve-claude-md",
+    "claudemd",
+    "prompt-engineering",
+    "system-prompt-optimization",
+    "instruction-adherence",
+    "提示詞遵循",
+    "claude指令調優"
+  ],
+  "improve-claude-md": [
+    "claudemd優化",
+    "提示詞遵循",
+    "claude指令調優",
+    "claudemd",
+    "prompt-engineering",
+    "system-prompt-optimization",
+    "instruction-adherence"
+  ],
+  "claudemd": [
+    "claudemd優化",
+    "提示詞遵循",
+    "claude指令調優",
+    "improve-claude-md",
+    "prompt-engineering",
+    "system-prompt-optimization",
+    "instruction-adherence"
+  ],
+  "prompt-engineering": [
+    "claudemd優化",
+    "提示詞遵循",
+    "claude指令調優",
+    "improve-claude-md",
+    "claudemd",
+    "system-prompt-optimization",
+    "instruction-adherence"
+  ],
+  "system-prompt-optimization": [
+    "claudemd優化",
+    "提示詞遵循",
+    "claude指令調優",
+    "improve-claude-md",
+    "claudemd",
+    "prompt-engineering",
+    "instruction-adherence"
+  ],
+  "instruction-adherence": [
+    "claudemd優化",
+    "提示詞遵循",
+    "claude指令調優",
+    "improve-claude-md",
+    "claudemd",
+    "prompt-engineering",
+    "system-prompt-optimization"
+  ],
+  "提示詞遵循": [
+    "improve-claude-md",
+    "claudemd",
+    "prompt-engineering",
+    "system-prompt-optimization",
+    "instruction-adherence",
+    "claudemd優化",
+    "claude指令調優"
+  ],
+  "claude指令調優": [
+    "improve-claude-md",
+    "claudemd",
+    "prompt-engineering",
+    "system-prompt-optimization",
+    "instruction-adherence",
+    "claudemd優化",
+    "提示詞遵循"
+  ],
+  "agent閉環": [
+    "build-iterated-agentic-loop",
+    "agentic-loop",
+    "iterated-agent",
+    "coding-agent-workflow",
+    "github-actions-agent",
+    "agent-ci-cd",
+    "迭代agent工作流"
+  ],
+  "build-iterated-agentic-loop": [
+    "agent閉環",
+    "迭代agent工作流",
+    "agentic-loop",
+    "iterated-agent",
+    "coding-agent-workflow",
+    "github-actions-agent",
+    "agent-ci-cd"
+  ],
+  "iterated-agent": [
+    "agent閉環",
+    "迭代agent工作流",
+    "build-iterated-agentic-loop",
+    "agentic-loop",
+    "coding-agent-workflow",
+    "github-actions-agent",
+    "agent-ci-cd"
+  ],
+  "coding-agent-workflow": [
+    "agent閉環",
+    "迭代agent工作流",
+    "build-iterated-agentic-loop",
+    "agentic-loop",
+    "iterated-agent",
+    "github-actions-agent",
+    "agent-ci-cd"
+  ],
+  "github-actions-agent": [
+    "agent閉環",
+    "迭代agent工作流",
+    "build-iterated-agentic-loop",
+    "agentic-loop",
+    "iterated-agent",
+    "coding-agent-workflow",
+    "agent-ci-cd"
+  ],
+  "agent-ci-cd": [
+    "agent閉環",
+    "迭代agent工作流",
+    "build-iterated-agentic-loop",
+    "agentic-loop",
+    "iterated-agent",
+    "coding-agent-workflow",
+    "github-actions-agent"
+  ],
+  "迭代agent工作流": [
+    "build-iterated-agentic-loop",
+    "agentic-loop",
+    "iterated-agent",
+    "coding-agent-workflow",
+    "github-actions-agent",
+    "agent-ci-cd",
+    "agent閉環"
+  ],
+  "控制迴路": [
+    "design-control-loop",
+    "control-loop",
+    "cybernetics-agent",
+    "codebase-controller",
+    "sensor-actuator",
+    "feedback-loop",
+    "agent控制設計",
+    "代碼反饋控制"
+  ],
+  "design-control-loop": [
+    "控制迴路",
+    "agent控制設計",
+    "代碼反饋控制",
+    "control-loop",
+    "cybernetics-agent",
+    "codebase-controller",
+    "sensor-actuator",
+    "feedback-loop"
+  ],
+  "cybernetics-agent": [
+    "控制迴路",
+    "agent控制設計",
+    "代碼反饋控制",
+    "design-control-loop",
+    "control-loop",
+    "codebase-controller",
+    "sensor-actuator",
+    "feedback-loop"
+  ],
+  "codebase-controller": [
+    "控制迴路",
+    "agent控制設計",
+    "代碼反饋控制",
+    "design-control-loop",
+    "control-loop",
+    "cybernetics-agent",
+    "sensor-actuator",
+    "feedback-loop"
+  ],
+  "sensor-actuator": [
+    "控制迴路",
+    "agent控制設計",
+    "代碼反饋控制",
+    "design-control-loop",
+    "control-loop",
+    "cybernetics-agent",
+    "codebase-controller",
+    "feedback-loop"
+  ],
+  "feedback-loop": [
+    "控制迴路",
+    "agent控制設計",
+    "代碼反饋控制",
+    "design-control-loop",
+    "control-loop",
+    "cybernetics-agent",
+    "codebase-controller",
+    "sensor-actuator"
+  ],
+  "agent控制設計": [
+    "design-control-loop",
+    "control-loop",
+    "cybernetics-agent",
+    "codebase-controller",
+    "sensor-actuator",
+    "feedback-loop",
+    "控制迴路",
+    "代碼反饋控制"
+  ],
+  "代碼反饋控制": [
+    "design-control-loop",
+    "control-loop",
+    "cybernetics-agent",
+    "codebase-controller",
+    "sensor-actuator",
+    "feedback-loop",
+    "控制迴路",
+    "agent控制設計"
+  ],
+  "react屬性縮窄": [
+    "narrow-react-prop-types",
+    "react-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "component-refactoring",
+    "clean-props",
+    "props精簡",
+    "前端型別重構"
+  ],
+  "narrow-react-prop-types": [
+    "react屬性縮窄",
+    "props精簡",
+    "前端型別重構",
+    "react-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "component-refactoring",
+    "clean-props"
+  ],
+  "react-types": [
+    "react屬性縮窄",
+    "props精簡",
+    "前端型別重構",
+    "narrow-react-prop-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "component-refactoring",
+    "clean-props"
+  ],
+  "prop-types-narrowing": [
+    "react屬性縮窄",
+    "props精簡",
+    "前端型別重構",
+    "narrow-react-prop-types",
+    "react-types",
+    "typescript-react",
+    "component-refactoring",
+    "clean-props"
+  ],
+  "typescript-react": [
+    "react屬性縮窄",
+    "props精簡",
+    "前端型別重構",
+    "narrow-react-prop-types",
+    "react-types",
+    "prop-types-narrowing",
+    "component-refactoring",
+    "clean-props"
+  ],
+  "component-refactoring": [
+    "react屬性縮窄",
+    "props精簡",
+    "前端型別重構",
+    "narrow-react-prop-types",
+    "react-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "clean-props"
+  ],
+  "clean-props": [
+    "react屬性縮窄",
+    "props精簡",
+    "前端型別重構",
+    "narrow-react-prop-types",
+    "react-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "component-refactoring"
+  ],
+  "props精簡": [
+    "narrow-react-prop-types",
+    "react-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "component-refactoring",
+    "clean-props",
+    "react屬性縮窄",
+    "前端型別重構"
+  ],
+  "前端型別重構": [
+    "narrow-react-prop-types",
+    "react-types",
+    "prop-types-narrowing",
+    "typescript-react",
+    "component-refactoring",
+    "clean-props",
+    "react屬性縮窄",
+    "props精簡"
+  ],
+  "可視化解說": [
+    "show-me",
+    "visual-explanation",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "html-artifacts",
+    "concept-visualization",
+    "架構草圖",
+    "html展示生成"
+  ],
+  "show-me": [
+    "可視化解說",
+    "架構草圖",
+    "html展示生成",
+    "visual-explanation",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "html-artifacts",
+    "concept-visualization"
+  ],
+  "visual-explanation": [
+    "可視化解說",
+    "架構草圖",
+    "html展示生成",
+    "show-me",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "html-artifacts",
+    "concept-visualization"
+  ],
+  "architecture-diagrams": [
+    "可視化解說",
+    "架構草圖",
+    "html展示生成",
+    "show-me",
+    "visual-explanation",
+    "pseudocode-sketch",
+    "html-artifacts",
+    "concept-visualization"
+  ],
+  "pseudocode-sketch": [
+    "可視化解說",
+    "架構草圖",
+    "html展示生成",
+    "show-me",
+    "visual-explanation",
+    "architecture-diagrams",
+    "html-artifacts",
+    "concept-visualization"
+  ],
+  "html-artifacts": [
+    "可視化解說",
+    "架構草圖",
+    "html展示生成",
+    "show-me",
+    "visual-explanation",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "concept-visualization"
+  ],
+  "concept-visualization": [
+    "可視化解說",
+    "架構草圖",
+    "html展示生成",
+    "show-me",
+    "visual-explanation",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "html-artifacts"
+  ],
+  "架構草圖": [
+    "show-me",
+    "visual-explanation",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "html-artifacts",
+    "concept-visualization",
+    "可視化解說",
+    "html展示生成"
+  ],
+  "html展示生成": [
+    "show-me",
+    "visual-explanation",
+    "architecture-diagrams",
+    "pseudocode-sketch",
+    "html-artifacts",
+    "concept-visualization",
+    "可視化解說",
+    "架構草圖"
+  ],
+  "免費claude": [
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude",
+    "anthropic-proxy",
+    "openai-compatible-proxy",
+    "nvidia-nim-proxy",
+    "coding-agent-proxy",
+    "fcc-server"
+  ],
+  "free-claude-code": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "claude-code-proxy",
+    "free-claude",
+    "anthropic-proxy"
+  ],
+  "claude-code-proxy": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "free-claude",
+    "anthropic-proxy"
+  ],
+  "free-claude": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "claude-code-proxy",
+    "anthropic-proxy"
+  ],
+  "anthropic-proxy": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude"
+  ],
+  "openai-compatible-proxy": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude"
+  ],
+  "nvidia-nim-proxy": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude"
+  ],
+  "coding-agent-proxy": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude"
+  ],
+  "fcc-server": [
+    "免費claude",
+    "免費claude-code",
+    "免金鑰claude",
+    "免api-key",
+    "claude代理",
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude"
+  ],
+  "免費claude-code": [
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude",
+    "anthropic-proxy",
+    "openai-compatible-proxy",
+    "nvidia-nim-proxy",
+    "coding-agent-proxy",
+    "fcc-server"
+  ],
+  "免金鑰claude": [
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude",
+    "anthropic-proxy",
+    "openai-compatible-proxy",
+    "nvidia-nim-proxy",
+    "coding-agent-proxy",
+    "fcc-server"
+  ],
+  "免api-key": [
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude",
+    "anthropic-proxy",
+    "openai-compatible-proxy",
+    "nvidia-nim-proxy",
+    "coding-agent-proxy",
+    "fcc-server"
+  ],
+  "claude代理": [
+    "free-claude-code",
+    "claude-code-proxy",
+    "free-claude",
+    "anthropic-proxy",
+    "openai-compatible-proxy",
+    "nvidia-nim-proxy",
+    "coding-agent-proxy",
+    "fcc-server"
   ],
   "翻譯": [
     "translate",
