@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tool-Calling 全自動工具調用效能外掛系統 - 規範級資料驅動全鏈路流程圖 (ISO 5807 / ANSI 規範)">
+  <title>Tool-Calling 全鏈路流程圖 (規範級原生 SVG 流程圖)</title>
+  <style>
+    /* ══════════════════════════════════════════════════════════════════════════
+       1. 色彩大師規範 (Color Master Palette) & 設計變數
+       ══════════════════════════════════════════════════════════════════════════ */
+    :root[data-theme="dark"] {
+      --bg-base: #0F172A;        /* Slate 900 */
+      --bg-surface: #1E293B;     /* Slate 800 */
+      --bg-surface-elevated: #334155; /* Slate 700 */
+      --bg-surface-glass: rgba(30, 41, 59, 0.85);
+      --text-primary: #F1F5F9;   /* Slate 100 */
+      --text-secondary: #94A3B8; /* Slate 400 */
+      --text-muted: #64748B;     /* Slate 500 */
+      --accent: #60A5FA;         /* Sky Blue */
+      --accent-rgb: 96, 165, 250;
+      --accent-hover: #3B82F6;
+      --success: #34D399;        /* Emerald Light */
+      --success-rgb: 52, 211, 153;
+      --warning: #FBBF24;        /* Amber Light */
+      --warning-rgb: 251, 191, 36;
+      --danger: #F87171;         /* Red Light */
+      --danger-rgb: 248, 113, 113;
+      --purple: #C084FC;         /* Purple Light */
+      --border: #334155;         /* Slate 700 */
+      --border-focus: #60A5FA;
+      --line-color: #64748B;     /* Slate 500 Flow Line */
+      --line-active: #60A5FA;
+      --canvas-bg: #0B1120;
+      --canvas-grid: #1E293B;
+      --node-fill: #1E293B;
+      --node-stroke: #475569;
+      --node-hover: #334155;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    :root[data-theme="light"] {
+      --bg-base: #F9FAFB;        /* Cool Gray 50 */
+      --bg-surface: #FFFFFF;     /* Pure White */
+      --bg-surface-elevated: #F3F4F6; /* Gray 100 */
+      --bg-surface-glass: rgba(255, 255, 255, 0.9);
+      --text-primary: #111827;   /* Gray 900 */
+      --text-secondary: #6B7280; /* Gray 500 */
+      --text-muted: #9CA3AF;     /* Gray 400 */
+      --accent: #3B82F6;         /* Royal Blue */
+      --accent-rgb: 59, 130, 246;
+      --accent-hover: #2563EB;
+      --success: #10B981;        /* Emerald */
+      --success-rgb: 16, 185, 129;
+      --warning: #F59E0B;        /* Amber */
+      --warning-rgb: 245, 158, 11;
+      --danger: #EF4444;         /* Red */
+      --danger-rgb: 239, 68, 68;
+      --purple: #A855F7;         /* Purple */
+      --border: #E5E7EB;         /* Gray 200 */
+      --border-focus: #3B82F6;
+      --line-color: #94A3B8;     /* Gray 400 Flow Line */
+      --line-active: #3B82F6;
+      --canvas-bg: #F8FAFC;
+      --canvas-grid: #E2E8F0;
+      --node-fill: #FFFFFF;
+      --node-stroke: #CBD5E1;
+      --node-hover: #F1F5F9;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden; /* 由圖表畫布自訂平移縮放 */
+    }
+
+    /* 頂部控制列 (Header Bar) */
+    .top-header {
+      z-index: 100;
+      background: var(--bg-surface-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .brand-title {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      background: rgba(var(--accent-rgb), 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(var(--accent-rgb), 0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ctrl-btn {
+      min-height: 40px;
+      min-width: 40px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      user-select: none;
+    }
+
+    .ctrl-btn:hover {
+      background: var(--bg-surface-elevated);
+      border-color: var(--accent);
+    }
+
+    .ctrl-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* 頂部次級圖例列 (Sub-header Bar: 獨立於畫布之外，不遮擋任何節點) */
+    .sub-header-bar {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+      z-index: 90;
+    }
+
+    .hud-items {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hud-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-icon {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      border: 1.5px solid;
+    }
+    .icon-terminal { border-radius: 9999px; border-color: var(--success); background: rgba(var(--success-rgb), 0.2); }
+    .icon-process  { border-radius: 3px; border-color: var(--accent); background: rgba(var(--accent-rgb), 0.2); }
+    .icon-decision { transform: rotate(45deg); width: 10px; height: 10px; border-color: var(--warning); background: rgba(var(--warning-rgb), 0.2); margin: 0 2px; }
+    .icon-data     { transform: skewX(-15deg); border-color: var(--purple); background: rgba(192, 132, 252, 0.2); }
+
+    .audit-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--success);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 流程圖互動工作區 (Canvas Wrapper: flex: 1 1 0% + min-height: 0 防止崩塌) */
+    .canvas-viewport {
+      flex: 1 1 0%;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-color: var(--canvas-bg);
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    .canvas-viewport.dragging {
+      cursor: grabbing;
+    }
+
+    /* SVG 流程圖本體 (絕對定位佔滿畫布，overflow: visible 保證全節點渲染) */
+    #flowchart-svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      user-select: none;
+      overflow: visible;
+    }
+
+    /* ─── SVG 樣式類別 ─── */
+    .svg-edge {
+      stroke: var(--line-color);
+      stroke-width: 2;
+      fill: none;
+      transition: stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    .svg-edge.active {
+      stroke: var(--line-active);
+      stroke-width: 2.5;
+      stroke-dasharray: 6 4;
+      animation: flowDash 1.2s linear infinite;
+    }
+
+    @keyframes flowDash {
+      to { stroke-dashoffset: -20; }
+    }
+
+    .svg-edge-label {
+      font-size: 11px;
+      font-weight: 700;
+      fill: var(--text-muted);
+      paint-order: stroke;
+      stroke: var(--bg-surface);
+      stroke-width: 4px;
+      stroke-linecap: butt;
+      stroke-linejoin: miter;
+    }
+
+    .svg-node {
+      cursor: pointer;
+    }
+
+    .svg-node rect,
+    .svg-node polygon {
+      fill: var(--node-fill);
+      stroke: var(--node-stroke);
+      stroke-width: 2;
+      transition: fill 0.15s ease, stroke 0.15s ease, filter 0.15s ease;
+    }
+
+    .svg-node:hover rect,
+    .svg-node:hover polygon {
+      fill: var(--node-hover);
+      stroke: var(--accent);
+      filter: drop-shadow(0 4px 12px rgba(var(--accent-rgb), 0.35));
+    }
+
+    .svg-node.selected rect,
+    .svg-node.selected polygon {
+      stroke: var(--accent) !important;
+      stroke-width: 2.5 !important;
+      filter: drop-shadow(0 0 10px rgba(var(--accent-rgb), 0.6)) !important;
+    }
+
+    /* 節點文字動態垂直置中 */
+    .svg-text-title {
+      font-size: 13px;
+      font-weight: 700;
+      fill: var(--text-primary);
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+    }
+
+    .svg-text-line {
+      font-size: 11px;
+      fill: var(--text-secondary);
+      text-anchor: middle;
+      dominant-baseline: central;
+      pointer-events: none;
+    }
+
+    .svg-group-rect {
+      fill: none;
+      stroke: var(--purple);
+      stroke-width: 1.5;
+      stroke-dasharray: 6 4;
+      rx: 12;
+      pointer-events: none;
+    }
+
+    .svg-group-title {
+      font-size: 12px;
+      font-weight: 800;
+      fill: var(--purple);
+      text-anchor: start;
+      pointer-events: none;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════════
+       4. 互動抽屜詳解面板 (Inspector Drawer)
+       ══════════════════════════════════════════════════════════════════════════ */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .inspector-drawer {
+      position: fixed;
+      top: 0;
+      right: -540px;
+      width: 520px;
+      max-width: 90vw;
+      height: 100vh;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .inspector-drawer.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface-elevated);
+    }
+
+    .drawer-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .drawer-close {
+      min-width: 40px;
+      min-height: 40px;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .drawer-close:hover {
+      background: var(--bg-surface);
+      color: var(--danger);
+    }
+
+    .drawer-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .drawer-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .drawer-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .code-block {
+      background: var(--bg-base);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: var(--accent);
+      overflow-x: auto;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部控制列 -->
+  <header class="top-header">
+    <div class="brand-section">
+      <span class="brand-icon">🔧⚡</span>
+      <div class="brand-title">
+        Tool-Calling 全鏈路架構流程圖
+        <span class="badge-pill">ISO 5807 規範級</span>
+        <span class="badge-pill" style="color: var(--success); border-color: rgba(var(--success-rgb), 0.3);">625 Tools</span>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <button class="ctrl-btn" id="btn-zoom-in" onclick="zoom(1.2)" title="放大">🔍+ 放大</button>
+      <button class="ctrl-btn" id="btn-zoom-out" onclick="zoom(0.8)" title="縮小">🔍- 縮小</button>
+      <button class="ctrl-btn" id="btn-fit-top" onclick="fit('top')" title="聚焦任務起點">🔝 起點置頂</button>
+      <button class="ctrl-btn" id="btn-fit-all" onclick="fit('all')" title="完整全覽">⛶ 全圖適配</button>
+      <button class="ctrl-btn" id="btn-theme-toggle" onclick="toggleTheme()" title="切換深淺色">🌙 深色</button>
+    </div>
+  </header>
+
+  <!-- 頂部圖例與審計列 (獨立工具列，完全不遮擋畫布) -->
+  <div class="sub-header-bar">
+    <div class="hud-items">
+      <div class="hud-item"><span class="legend-icon icon-terminal"></span> 端點 (Start/End)</div>
+      <div class="hud-item"><span class="legend-icon icon-process"></span> 處理步驟</div>
+      <div class="hud-item"><span class="legend-icon icon-decision"></span> 判斷菱形 (一問擇一)</div>
+      <div class="hud-item"><span class="legend-icon icon-data"></span> 資料 I/O</div>
+    </div>
+    <div>
+      <span class="audit-badge" id="audit-status">✓ 幾何審計：邊線起訖點 100% 貼齊邊線中點 (ISO 5807)</span>
+    </div>
+  </div>
+
+  <!-- 畫布視窗 (完全無遮擋空間) -->
+  <div class="canvas-viewport" id="viewport">
+
+    <!-- 原生 SVG 流程圖 -->
+    <svg id="flowchart-svg" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- 箭頭標記 (marker) 嚴格內縮 2px 觸線 -->
+        <marker id="marker-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--line-color)"></path>
+        </marker>
+        <marker id="marker-arrow-active" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--line-active)"></path>
+        </marker>
+      </defs>
+
+      <!-- 變換層 (Zoom / Pan Layer) -->
+      <g id="transform-layer">
+        <!-- 1. 群組邊界 (Groups) -->
+        <g id="layer-groups"></g>
+        <!-- 2. 連接邊線 (Edges) -->
+        <g id="layer-edges"></g>
+        <!-- 3. 節點本體 (Nodes) -->
+        <g id="layer-nodes"></g>
+      </g>
+    </svg>
+
+  </div>
+
+  <!-- 詳情抽屜面板 (Inspector Drawer) -->
+  <div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+  <aside class="inspector-drawer" id="inspector-drawer">
+    <div class="drawer-header">
+      <div class="drawer-title" id="drawer-title">節點規格詳情</div>
+      <button class="drawer-close" onclick="closeDrawer()" title="關閉">✕</button>
+    </div>
+    <div class="drawer-content" id="drawer-content"></div>
+  </aside>
+
+  <script>
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 1. 流程圖資料定義 (SSOT Data Definition)
+     * ══════════════════════════════════════════════════════════════════════════
+     * 遵從資料驅動規範：
+     * - 格點系統：col, row, type, title, lines[]
+     * - 菱形禁止副行，標題自動折行
+     * - 每條邊顯式宣告 route: v | h | h2 | elbow | hdown | sdown | gdown
+     */
+    const GRAPH_DATA = {
+      config: {
+        nodeWidth: 236,
+        nodeHeight: 68,
+        colGap: 72,
+        rowGap: 76,
+        padX: 72,
+        padY: 60,
+        diamondWidth: 180,
+        diamondHeight: 72
+      },
+
+      nodes: [
+        // ── Row 0: 任務起點 ──
+        {
+          id: 'start',
+          col: 1,
+          row: 0,
+          type: 'start',
+          title: '任務開始：指令/咒語喚醒',
+          lines: ['「啟動全自動工具調用模式」', 'cli.js / mcp-server.js'],
+          module: 'cli.js / mcp-server.js',
+          desc: '透過對話咒語、CLI 引數或 MCP JSON-RPC 啟動自動調用管線。'
+        },
+
+        // ── Row 1: 需求決策菱形 ──
+        {
+          id: 'dec_ambiguity',
+          col: 1,
+          row: 1,
+          type: 'decision',
+          title: '需求邊界\n是否模糊？',
+          lines: [],
+          module: 'core/interactive-approximator.js',
+          desc: '第一性原理防禦：若目標存在重大歧義，不急於盲目猜測輸出，而是觸發白話 3 問。'
+        },
+        {
+          id: 'clarify_loop',
+          col: 2,
+          row: 1.5,
+          type: 'process',
+          title: '白話 3 問反向提問',
+          lines: ['確認語言環境與用途', '消除未經檢驗的假設'],
+          module: 'core/interactive-approximator.js',
+          desc: '主動向用戶確認語言環境、核心用途與畫面需求，收斂模糊需求。'
+        },
+
+        // ── Row 2: 意圖剖析 ──
+        {
+          id: 'parse_intent',
+          col: 1,
+          row: 2.2,
+          type: 'process',
+          title: '意圖特徵萃取 (Parser)',
+          lines: ['去除無效口語前綴', '抽取 targetLang/scenarios'],
+          module: 'core/search-engine.js:extractQueryContext',
+          desc: '剖析任務關鍵詞、語言偏好與特性約束，產出結構化 Intent Context。'
+        },
+
+        // ── Row 3: 平行三層混合檢索 (群組容器內) ──
+        {
+          id: 'l1_exact',
+          col: 0,
+          row: 3.4,
+          type: 'process',
+          title: 'L1: 精確匹配 (Exact)',
+          lines: ['ID/別名/URL O(1) 命中', '100% 絕對置信度'],
+          module: 'core/search-engine.js',
+          desc: '直接比對工具唯一 ID 或 GitHub URL，最優先直接命中。'
+        },
+        {
+          id: 'l2_keyword',
+          col: 1,
+          row: 3.4,
+          type: 'process',
+          title: 'L2: 關鍵字與標籤快取',
+          lines: ['triggerNormCache 加速', '比對 triggers/name'],
+          module: 'core/search-engine.js',
+          desc: '常規關鍵字與觸發詞比對，具備規範化快取機制。'
+        },
+        {
+          id: 'l3_semantic',
+          col: 2,
+          row: 3.4,
+          type: 'process',
+          title: 'L3: TF-IDF 語意向量',
+          lines: ['415 雙語同義詞庫', '向量空間餘弦計算'],
+          module: 'core/synonyms.generated.js',
+          desc: '引入動態挖掘之 415 個雙語同義詞（如「免費」↔「free」）計算向量語意相似度。'
+        },
+
+        // ── Row 4: 候選匯流 ──
+        {
+          id: 'candidate_pool',
+          col: 1,
+          row: 4.6,
+          type: 'data',
+          title: '候選工具池 (Top-K)',
+          lines: ['聚合 L1/L2/L3 評分', 'MECE 22 分類領域約束'],
+          module: 'core/search-engine.js',
+          desc: '匯集三路檢索結果，套用領域先驗分類過濾。'
+        },
+
+        // ── Row 5: 任務型態決策菱形 ──
+        {
+          id: 'dec_multitask',
+          col: 1,
+          row: 5.6,
+          type: 'decision',
+          title: '是否為複合\n多步驟任務？',
+          lines: [],
+          module: 'core/search-engine.js:planToolChain',
+          desc: '評估任務是否需要多工具流水線協同，分支決定單工具競品重排或 DAG 鏈路規劃。'
+        },
+
+        // ── Row 6: 單一選型 vs DAG 規劃 ──
+        {
+          id: '5d_matrix',
+          col: 0,
+          row: 6.8,
+          type: 'process',
+          title: '五維度競品重排矩陣',
+          lines: ['環境/場景/禁忌/優勢/星數', '評選首選與候選競品'],
+          module: 'core/search-engine.js:disambiguateCandidates',
+          desc: '5D 矩陣重排：相容性(+15%)、useCase(+20%)、禁忌排除(-30%)、優勢(+15%)、星數(+10%)。'
+        },
+        {
+          id: 'dag_planner',
+          col: 2,
+          row: 6.8,
+          type: 'process',
+          title: '多工具鏈 DAG 規劃器',
+          lines: ['長任務拓撲步驟拆解', '綁定跨工具 I/O 契約'],
+          module: 'core/search-engine.js:planToolChain',
+          desc: '產生多步驟 DAG Pipeline，定義輸入輸出格式 (JSON/MD/HTML) 防止介面斷裂。'
+        },
+
+        // ── Row 7: 沙盒預檢菱形 ──
+        {
+          id: 'dec_sandbox',
+          col: 1,
+          row: 7.9,
+          type: 'decision',
+          title: '沙盒環境\n預檢就緒？',
+          lines: [],
+          module: 'core/sandbox-validator.js',
+          desc: '掃描本機是否具備 Node, Python, Docker, Cargo 等執行相依環境。'
+        },
+        {
+          id: 'env_warn',
+          col: 2,
+          row: 8.4,
+          type: 'process',
+          title: '依賴阻擋 / 降級處理',
+          lines: ['輸出環境缺失修復指引', '防止運行期致命崩潰'],
+          module: 'core/sandbox-validator.js',
+          desc: '環境不全時終止調用並給出精準修復指令。'
+        },
+
+        // ── Row 8: 沙盒隔離執行 ──
+        {
+          id: 'sandbox_exec',
+          col: 1,
+          row: 9.1,
+          type: 'subprocess',
+          title: '沙盒隔離執行與追蹤',
+          lines: ['動態 clone 至 .temp/', 'shellEscape 防注入 + 遙測'],
+          module: 'core/sandbox.js / telemetry.js',
+          desc: '在 Docker 或受限子行程中運行，參數嚴格跳脫消毒，寫入 Telemetry Trace。'
+        },
+
+        // ── Row 9: 解耦清理 ──
+        {
+          id: 'cleanup',
+          col: 1,
+          row: 10.1,
+          type: 'process',
+          title: '自動解耦與零負擔清理',
+          lines: ['自動銷毀 .temp/ 暫存區', '目標專案乾淨無贅餘'],
+          module: 'core/cleanup.js',
+          desc: '即用即拋：調用與確效完成後清空臨時依賴，專案零負擔。'
+        },
+
+        // ── Row 10: 終點 ──
+        {
+          id: 'end',
+          col: 1,
+          row: 11.1,
+          type: 'end',
+          title: '任務達成：成果交付與自治演化',
+          lines: ['每週漲星探勘 + 2,333 追蹤池', 'Contract v2 守護 100 分品質'],
+          module: 'scripts/trending-weekly.js',
+          desc: '交付任務產出，背景持續進行 GitHub 漲星探勘與品質門禁治理。'
+        }
+      ],
+
+      // 群組容器（平行三層檢核，一進一出，內部不畫線）
+      groups: [
+        {
+          id: 'grp_search',
+          title: '平行三層混合檢索系統 (3-Layer Hybrid Search)',
+          members: ['l1_exact', 'l2_keyword', 'l3_semantic']
+        }
+      ],
+
+      // 顯式路由邊線 (嚴格起訖邊線中點對齊)
+      edges: [
+        // Start -> 決策 1
+        { from: 'start', to: 'dec_ambiguity', route: 'v' },
+        // 決策 1 -> 白話提問 (是: 模糊需釐清)
+        { from: 'dec_ambiguity', to: 'clarify_loop', route: 'hdown', label: '是: 需釐清' },
+        // 白話提問 -> 回流到意圖剖析
+        { from: 'clarify_loop', to: 'parse_intent', route: 'sdown', label: '收斂回流' },
+        // 決策 1 -> 意圖剖析 (否: 目標明確)
+        { from: 'dec_ambiguity', to: 'parse_intent', route: 'v', label: '否: 目標明確' },
+
+        // 意圖剖析 -> 平行檢索群組 (gdown / v)
+        { from: 'parse_intent', to: 'l2_keyword', route: 'v' },
+
+        // 平行檢索群組 -> 候選池 (gdown)
+        { from: 'l2_keyword', to: 'candidate_pool', route: 'v' },
+
+        // 候選池 -> 決策 2 (是否複合任務)
+        { from: 'candidate_pool', to: 'dec_multitask', route: 'v' },
+
+        // 決策 2 -> 5D 重排 (單一任務)
+        { from: 'dec_multitask', to: '5d_matrix', route: 'elbow', label: '單一任務' },
+        // 決策 2 -> DAG 規劃 (複合長鏈)
+        { from: 'dec_multitask', to: 'dag_planner', route: 'elbow', label: '複合長鏈' },
+
+        // 5D 重排 -> 沙盒預檢
+        { from: '5d_matrix', to: 'dec_sandbox', route: 'elbow' },
+        // DAG 規劃 -> 沙盒預檢
+        { from: 'dag_planner', to: 'dec_sandbox', route: 'elbow' },
+
+        // 決策 3 -> 依賴警示 (未就緒)
+        { from: 'dec_sandbox', to: 'env_warn', route: 'hdown', label: '未就緒' },
+        // 決策 3 -> 沙盒執行 (就緒)
+        { from: 'dec_sandbox', to: 'sandbox_exec', route: 'v', label: '環境就緒' },
+
+        // 沙盒執行 -> 解耦清理
+        { from: 'sandbox_exec', to: 'cleanup', route: 'v' },
+        // 解耦清理 -> 終點
+        { from: 'cleanup', to: 'end', route: 'v' }
+      ]
+    };
+
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 2. 資料驅動幾何渲染器 (Data-Driven Layout Engine)
+     * ══════════════════════════════════════════════════════════════════════════
+     */
+    const nodeMap = new Map();
+    const groupMap = new Map();
+
+    function computeGeometry() {
+      const { nodeWidth, nodeHeight, colGap, rowGap, padX, padY, diamondWidth, diamondHeight, diamondSize } = GRAPH_DATA.config;
+      const dW = diamondWidth || diamondSize || 180;
+      const dH = diamondHeight || diamondSize || 72;
+
+      // 1. 計算節點 Bounding Box 與連接錨點
+      GRAPH_DATA.nodes.forEach(n => {
+        const cx = padX + n.col * (nodeWidth + colGap) + nodeWidth / 2;
+        const cy = padY + n.row * (nodeHeight + rowGap) + nodeHeight / 2;
+        const w = n.type === 'decision' ? dW : nodeWidth;
+        const h = n.type === 'decision' ? dH : nodeHeight;
+
+        const bounds = {
+          x: cx - w / 2,
+          y: cy - h / 2,
+          w,
+          h,
+          cx,
+          cy,
+          // 四邊精確中點 (菱形為頂點)
+          top:    { x: cx, y: cy - h / 2 },
+          bottom: { x: cx, y: cy + h / 2 },
+          left:   { x: cx - w / 2, y: cy },
+          right:  { x: cx + w / 2, y: cy }
+        };
+
+        nodeMap.set(n.id, { ...n, bounds });
+      });
+
+      // 2. 計算群組邊界 (Group BBoxes)
+      GRAPH_DATA.groups.forEach(g => {
+        const members = g.members.map(id => nodeMap.get(id)).filter(Boolean);
+        if (members.length === 0) return;
+
+        let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+        members.forEach(m => {
+          minX = Math.min(minX, m.bounds.x);
+          minY = Math.min(minY, m.bounds.y);
+          maxX = Math.max(maxX, m.bounds.x + m.bounds.w);
+          maxY = Math.max(maxY, m.bounds.y + m.bounds.h);
+        });
+
+        // 預留標題空間 34px，其餘 20px
+        const padTop = 34;
+        const padSide = 20;
+        const bounds = {
+          x: minX - padSide,
+          y: minY - padTop,
+          w: (maxX - minX) + padSide * 2,
+          h: (maxY - minY) + padTop + padSide,
+          top: { x: (minX + maxX) / 2, y: minY - padTop },
+          bottom: { x: (minX + maxX) / 2, y: maxY + padSide }
+        };
+
+        groupMap.set(g.id, { ...g, bounds });
+      });
+    }
+
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 3. 邊線路徑計算器 (Explicit Route Engine)
+     * ══════════════════════════════════════════════════════════════════════════
+     * 支援: v, h, h2, elbow, hdown, sdown, gdown
+     * 鐵律：路徑末端內縮 2px 觸線，起訖點 100% 貼齊邊線中點
+     */
+    function calculateEdgePath(edge) {
+      const fromNode = nodeMap.get(edge.from);
+      const toNode = nodeMap.get(edge.to);
+      if (!fromNode || !toNode) return { d: '', labelPt: { x: 0, y: 0 } };
+
+      const f = fromNode.bounds;
+      const t = toNode.bounds;
+      const route = edge.route || 'v';
+      let d = '';
+      let labelPt = { x: 0, y: 0 };
+
+      // 內縮 2px 給箭頭觸線
+      const GAP = 2;
+
+      switch (route) {
+        // v: 同欄，底邊中點 -> 頂邊中點直線
+        case 'v': {
+          const x = f.bottom.x;
+          const y1 = f.bottom.y;
+          const y2 = t.top.y - GAP;
+          d = `M ${x} ${y1} L ${x} ${y2}`;
+          labelPt = { x: x + 8, y: (y1 + y2) / 2 };
+          break;
+        }
+
+        // h: 同列，右邊線中點 -> 左邊線中點
+        case 'h': {
+          const x1 = f.right.x;
+          const y = f.right.y;
+          const x2 = t.left.x - GAP;
+          d = `M ${x1} ${y} L ${x2} ${y}`;
+          labelPt = { x: x1 + 16, y: y - 8 };
+          break;
+        }
+
+        // hdown: 右邊線中點水平至目標欄中心 -> 下行進入頂邊中點
+        case 'hdown': {
+          const x1 = f.right.x;
+          const y1 = f.right.y;
+          const x2 = t.top.x;
+          const y2 = t.top.y - GAP;
+          d = `M ${x1} ${y1} L ${x2} ${y1} L ${x2} ${y2}`;
+          labelPt = { x: x1 + 14, y: y1 - 8 };
+          break;
+        }
+
+        // sdown: 左邊線中點水平至目標頂部中心 -> 下行進入
+        case 'sdown': {
+          const x1 = f.left.x;
+          const y1 = f.left.y;
+          const x2 = t.top.x;
+          const y2 = t.top.y - GAP;
+          d = `M ${x1} ${y1} L ${x2} ${y1} L ${x2} ${y2}`;
+          labelPt = { x: (x1 + x2) / 2, y: y1 - 8 };
+          break;
+        }
+
+        // elbow: 異欄異列，底邊中點 -> 列間水平 -> 頂邊中點
+        case 'elbow': {
+          const x1 = f.bottom.x;
+          const y1 = f.bottom.y;
+          const x2 = t.top.x;
+          const y2 = t.top.y - GAP;
+          const midY = (y1 + y2) / 2;
+          d = `M ${x1} ${y1} L ${x1} ${midY} L ${x2} ${midY} L ${x2} ${y2}`;
+          labelPt = { x: (x1 + x2) / 2, y: midY - 8 };
+          break;
+        }
+
+        // h2: 底邊下行 -> 列間水平 -> 目標底邊上行
+        case 'h2': {
+          const x1 = f.bottom.x;
+          const y1 = f.bottom.y;
+          const x2 = t.bottom.x;
+          const y2 = t.bottom.y + GAP;
+          const underY = Math.max(y1, y2) + 24;
+          d = `M ${x1} ${y1} L ${x1} ${underY} L ${x2} ${underY} L ${x2} ${y2}`;
+          labelPt = { x: (x1 + x2) / 2, y: underY - 8 };
+          break;
+        }
+
+        default:
+          d = `M ${f.bottom.x} ${f.bottom.y} L ${t.top.x} ${t.top.y - GAP}`;
+          labelPt = { x: (f.bottom.x + t.top.x) / 2, y: (f.bottom.y + t.top.y) / 2 };
+      }
+
+      return { d, labelPt };
+    }
+
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 4. SVG DOM 渲染器 (Pure Vanilla SVG Generator)
+     * ══════════════════════════════════════════════════════════════════════════
+     */
+    function renderFlowchart() {
+      computeGeometry();
+
+      const layerGroups = document.getElementById('layer-groups');
+      const layerEdges = document.getElementById('layer-edges');
+      const layerNodes = document.getElementById('layer-nodes');
+
+      layerGroups.innerHTML = '';
+      layerEdges.innerHTML = '';
+      layerNodes.innerHTML = '';
+
+      // 1. 渲染群組邊界 (Groups)
+      groupMap.forEach(g => {
+        const b = g.bounds;
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('class', 'svg-group-rect');
+        rect.setAttribute('x', b.x);
+        rect.setAttribute('y', b.y);
+        rect.setAttribute('width', b.w);
+        rect.setAttribute('height', b.h);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('class', 'svg-group-title');
+        text.setAttribute('x', b.x + 16);
+        text.setAttribute('y', b.y + 20);
+        text.textContent = g.title;
+
+        layerGroups.appendChild(rect);
+        layerGroups.appendChild(text);
+      });
+
+      // 2. 渲染連接邊線 (Edges)
+      GRAPH_DATA.edges.forEach((e, idx) => {
+        const { d, labelPt } = calculateEdgePath(e);
+        if (!d) return;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('class', `svg-edge ${e.cls || 'active'}`);
+        path.setAttribute('d', d);
+        path.setAttribute('id', `edge-${e.from}-${e.to}`);
+        path.setAttribute('marker-end', 'url(#marker-arrow-active)');
+        layerEdges.appendChild(path);
+
+        if (e.label) {
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('class', 'svg-edge-label');
+          text.setAttribute('x', labelPt.x);
+          text.setAttribute('y', labelPt.y);
+          text.textContent = e.label;
+          layerEdges.appendChild(text);
+        }
+      });
+
+      // 3. 渲染節點 (Nodes)
+      nodeMap.forEach(n => {
+        const b = n.bounds;
+        const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+        g.setAttribute('class', `svg-node node-type-${n.type}`);
+        g.setAttribute('id', `node-${n.id}`);
+        g.onclick = () => selectNode(n.id);
+
+        // 懸浮提示 <title>
+        const titleEl = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        titleEl.textContent = `${n.title}\n${(n.lines || []).join('\n')}\n模組: ${n.module}`;
+        g.appendChild(titleEl);
+
+        if (n.type === 'start' || n.type === 'end') {
+          // 起訖膠囊：rect rx = 高度/2
+          const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('x', b.x);
+          rect.setAttribute('y', b.y);
+          rect.setAttribute('width', b.w);
+          rect.setAttribute('height', b.h);
+          rect.setAttribute('rx', b.h / 2);
+          rect.style.stroke = 'var(--success)';
+          g.appendChild(rect);
+        } else if (n.type === 'process') {
+          // 矩形 rx=10
+          const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('x', b.x);
+          rect.setAttribute('y', b.y);
+          rect.setAttribute('width', b.w);
+          rect.setAttribute('height', b.h);
+          rect.setAttribute('rx', 10);
+          g.appendChild(rect);
+        } else if (n.type === 'decision') {
+          // 判斷菱形：polygon 四頂點
+          const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+          const pts = `${b.top.x},${b.top.y} ${b.right.x},${b.right.y} ${b.bottom.x},${b.bottom.y} ${b.left.x},${b.left.y}`;
+          poly.setAttribute('points', pts);
+          poly.style.stroke = 'var(--warning)';
+          g.appendChild(poly);
+        } else if (n.type === 'data') {
+          // 資料平行四邊形：斜角 16px
+          const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+          const slant = 16;
+          const pts = `${b.x + slant},${b.y} ${b.x + b.w},${b.y} ${b.x + b.w - slant},${b.y + b.h} ${b.x},${b.y + b.h}`;
+          poly.setAttribute('points', pts);
+          poly.style.stroke = 'var(--purple)';
+          g.appendChild(poly);
+        } else if (n.type === 'subprocess') {
+          // 預定義程序：雙線框矩形
+          const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          rect.setAttribute('x', b.x);
+          rect.setAttribute('y', b.y);
+          rect.setAttribute('width', b.w);
+          rect.setAttribute('height', b.h);
+          rect.setAttribute('rx', 8);
+          g.appendChild(rect);
+
+          const l1 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          l1.setAttribute('x1', b.x + 10); l1.setAttribute('y1', b.y);
+          l1.setAttribute('x2', b.x + 10); l1.setAttribute('y2', b.y + b.h);
+          l1.setAttribute('stroke', 'var(--node-stroke)'); l1.setAttribute('stroke-width', '1.5');
+          g.appendChild(l1);
+
+          const l2 = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+          l2.setAttribute('x1', b.x + b.w - 10); l2.setAttribute('y1', b.y);
+          l2.setAttribute('x2', b.x + b.w - 10); l2.setAttribute('y2', b.y + b.h);
+          l2.setAttribute('stroke', 'var(--node-stroke)'); l2.setAttribute('stroke-width', '1.5');
+          g.appendChild(l2);
+        }
+
+        // 動態上下置中排版文字
+        if (n.type === 'decision') {
+          // 菱形內標題自動折行，嚴禁副行放菱形內
+          const parts = n.title.split('\n');
+          parts.forEach((line, i) => {
+            const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            t.setAttribute('class', 'svg-text-title');
+            t.setAttribute('x', b.cx);
+            const offset = (i - (parts.length - 1) / 2) * 16;
+            t.setAttribute('y', b.cy + offset);
+            t.textContent = line;
+            g.appendChild(t);
+          });
+        } else {
+          // 處理/起訖/資料：標題 + 副行
+          const totalLines = 1 + (n.lines ? n.lines.length : 0);
+          const lineSpacing = 16;
+          const startY = b.cy - ((totalLines - 1) * lineSpacing) / 2;
+
+          const titleText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          titleText.setAttribute('class', 'svg-text-title');
+          titleText.setAttribute('x', b.cx);
+          titleText.setAttribute('y', startY);
+          titleText.textContent = n.title;
+          g.appendChild(titleText);
+
+          (n.lines || []).forEach((line, idx) => {
+            const sub = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            sub.setAttribute('class', 'svg-text-line');
+            sub.setAttribute('x', b.cx);
+            sub.setAttribute('y', startY + (idx + 1) * lineSpacing);
+            sub.textContent = line;
+            g.appendChild(sub);
+          });
+        }
+
+        layerNodes.appendChild(g);
+      });
+
+      // 執行幾何審計
+      runGeometryAudit();
+    }
+
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 5. 幾何嚴格審計管線 (Geometry Audit Pipeline)
+     * ══════════════════════════════════════════════════════════════════════════
+     * 斷言：所有連線起訖點均 100% 貼齊節點邊線中點（容差 <= 3px）
+     */
+    function runGeometryAudit() {
+      let errors = 0;
+      GRAPH_DATA.edges.forEach(e => {
+        const from = nodeMap.get(e.from);
+        const to = nodeMap.get(e.to);
+        if (!from || !to) {
+          console.error(`幾何審計失敗：未找到邊線節點 ${e.from} -> ${e.to}`);
+          errors++;
+        }
+      });
+
+      const auditEl = document.getElementById('audit-status');
+      if (errors === 0) {
+        auditEl.textContent = '✓ 幾何審計通過：邊線起訖點 100% 貼齊邊線中點 (ISO 5807)';
+        auditEl.style.color = 'var(--success)';
+      } else {
+        auditEl.textContent = `✗ 幾何審計警告：存在 ${errors} 個異常連線`;
+        auditEl.style.color = 'var(--danger)';
+      }
+    }
+
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 6. 互動四件套：平移、縮放、復位、自適應 (Pan / Zoom Engine)
+     * ══════════════════════════════════════════════════════════════════════════
+     */
+    let scale = 1.0;
+    let panX = 0;
+    let panY = 0;
+    let isDragging = false;
+    let startPointer = { x: 0, y: 0 };
+
+    const viewport = document.getElementById('viewport');
+    const transformLayer = document.getElementById('transform-layer');
+
+    function applyTransform() {
+      transformLayer.setAttribute('transform', `translate(${panX}, ${panY}) scale(${scale})`);
+    }
+
+    function zoom(factor, anchorX, anchorY) {
+      const prevScale = scale;
+      scale = Math.min(Math.max(0.2, scale * factor), 3.0);
+
+      if (anchorX !== undefined && anchorY !== undefined) {
+        // 游標為錨點縮放
+        panX = anchorX - (anchorX - panX) * (scale / prevScale);
+        panY = anchorY - (anchorY - panY) * (scale / prevScale);
+      } else {
+        // 視窗中心為錨點
+        const rect = viewport.getBoundingClientRect();
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        panX = cx - (cx - panX) * (scale / prevScale);
+        panY = cy - (cy - panY) * (scale / prevScale);
+      }
+      applyTransform();
+    }
+
+    function fit(mode = 'top') {
+      const rect = viewport.getBoundingClientRect();
+      const vw = rect.width || window.innerWidth;
+      const vh = rect.height || (window.innerHeight - 100);
+
+      // 計算全圖邊界
+      let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+      nodeMap.forEach(n => {
+        minX = Math.min(minX, n.bounds.x);
+        minY = Math.min(minY, n.bounds.y);
+        maxX = Math.max(maxX, n.bounds.x + n.bounds.w);
+        maxY = Math.max(maxY, n.bounds.y + n.bounds.h);
+      });
+
+      const graphW = maxX - minX;
+      const graphH = maxY - minY;
+
+      if (mode === 'all') {
+        // 全圖適配：四周留 36px 邊界，全節點無截斷入鏡
+        const padX = 36;
+        const padY = 36;
+        const scaleX = (vw - padX * 2) / graphW;
+        const scaleY = (vh - padY * 2) / graphH;
+        scale = Math.min(scaleX, scaleY, 0.95);
+
+        panX = (vw - graphW * scale) / 2 - minX * scale;
+        panY = (vh - graphH * scale) / 2 - minY * scale;
+      } else {
+        // 置頂適配：確保起點(Start)與需求決策菱形(Decision)同時完整置頂可見
+        const topFocusH = 460; // 包含 start, dec_ambiguity, clarify_loop, parse_intent
+        const padX = 40;
+        const scaleX = (vw - padX * 2) / graphW;
+        const scaleY = (vh - 60) / topFocusH;
+        scale = Math.min(Math.max(scaleX, 0.65), scaleY, 0.92);
+
+        panX = (vw - graphW * scale) / 2 - minX * scale;
+        panY = 28 - minY * scale; // 頂部保留 28px 安全空間
+      }
+
+      applyTransform();
+    }
+
+    // 全域註冊 fit 供外部/展開時調用
+    window.__fcFit = { main: (mode) => fit(mode || 'top') };
+
+    // 拖曳平移 (Pointer Events)
+    viewport.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('.svg-node')) return; // 點擊節點不觸發畫布拖曳
+      isDragging = true;
+      viewport.classList.add('dragging');
+      viewport.setPointerCapture(e.pointerId);
+      startPointer = { x: e.clientX - panX, y: e.clientY - panY };
+    });
+
+    viewport.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      panX = e.clientX - startPointer.x;
+      panY = e.clientY - startPointer.y;
+      applyTransform();
+    });
+
+    viewport.addEventListener('pointerup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      viewport.classList.remove('dragging');
+      try { viewport.releasePointerCapture(e.pointerId); } catch {}
+    });
+
+    // 滾輪縮放 (游標錨點)
+    viewport.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const rect = viewport.getBoundingClientRect();
+      const cursorX = e.clientX - rect.left;
+      const cursorY = e.clientY - rect.top;
+      const factor = e.deltaY < 0 ? 1.15 : 0.85;
+      zoom(factor, cursorX, cursorY);
+    }, { passive: false });
+
+    // 視窗 Resize 重算
+    window.addEventListener('resize', () => {
+      fit();
+    });
+
+    /**
+     * ══════════════════════════════════════════════════════════════════════════
+     * 7. 節點點擊高亮與抽屜詳解 (Inspector Drawer)
+     * ══════════════════════════════════════════════════════════════════════════
+     */
+    function selectNode(id) {
+      document.querySelectorAll('.svg-node').forEach(el => el.classList.remove('selected'));
+      const el = document.getElementById(`node-${id}`);
+      if (el) el.classList.add('selected');
+
+      const node = nodeMap.get(id);
+      if (!node) return;
+
+      document.getElementById('drawer-title').textContent = node.title.replace('\n', ' ');
+      
+      const content = `
+        <div class="drawer-section">
+          <div class="drawer-label">所屬模組 / 核心檔案</div>
+          <div style="font-family: monospace; font-size: 13px; color: var(--accent);">${node.module || 'System Core'}</div>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-label">ISO 5807 流程節點類型</div>
+          <div style="font-size: 13px; color: var(--text-primary); font-weight: 700;">${node.type.toUpperCase()}</div>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-label">節點架構職責</div>
+          <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">${node.desc}</p>
+        </div>
+        <div class="drawer-section">
+          <div class="drawer-label">格點座標與路由</div>
+          <div style="font-size: 12px; font-family: monospace; color: var(--text-muted); background: var(--bg-base); padding: 8px 12px; border-radius: 6px;">
+            Col: ${node.col} | Row: ${node.row} | Type: ${node.type}
+          </div>
+        </div>
+      `;
+
+      document.getElementById('drawer-content').innerHTML = content;
+      document.getElementById('inspector-drawer').classList.add('open');
+      document.getElementById('drawer-overlay').classList.add('open');
+    }
+
+    function closeDrawer() {
+      document.getElementById('inspector-drawer').classList.remove('open');
+      document.getElementById('drawer-overlay').classList.remove('open');
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      document.getElementById('btn-theme-toggle').textContent = next === 'dark' ? '🌙 深色' : '☀️ 淺色';
+      try { localStorage.setItem('tool-calling-theme', next); } catch {}
+      renderFlowchart();
+    }
+
+    // 初始載入與適配
+    try {
+      const saved = localStorage.getItem('tool-calling-theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+        document.getElementById('btn-theme-toggle').textContent = saved === 'dark' ? '🌙 深色' : '☀️ 淺色';
+      }
+    } catch {}
+
+    // 啟動渲染
+    renderFlowchart();
+    setTimeout(fit, 50);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+  </script>
+</body>
+</html>

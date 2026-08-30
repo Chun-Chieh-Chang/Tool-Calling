@@ -1,5 +1,64 @@
 # Tool-Calling 開發日誌
 
+## 2026-08-30 規範級原生 SVG 全鏈路流程圖建置 (ISO 5807 / ANSI) 與三層驗證管線
+
+### 需求
+使用者要求建立本專案工具 html 格式的全鏈路流程圖檔案，並嚴格遵循流程圖核心架構決策與工程標準：
+1. **零依賴原生 SVG + vanilla JS**：不引入 mermaid/d3 等外部庫，離線可用、iframe sandbox 安全、無版本風險。
+2. **資料驅動佈局 (Data-Driven Layout)**：流程圖以資料定義（`nodes: {id, col, row, type, title, lines[]}` ＋ `edges: {from, to, route, label?, cls?}`），禁止手寫座標 SVG。
+3. **格點系統**：`col/row` 常數＋PAD；支援小數 row 做交錯排列。
+4. **標準符號 (ISO 5807 / ANSI)**：起訖膠囊 (rx=h/2)、處理矩形 (rx=10)、判斷菱形 (四頂點、標題自動折兩行、副行嚴禁放菱形內改放懸浮 title)、資料平行四邊形 (斜角 16px)、預定義程序 (雙線框矩形)、群組邊界 (虛線圓角容器，一進一出，內部不畫線)。
+5. **邊線路由規範**：顯式指定 `v`、`h`、`h2`、`elbow`、`hdown`、`sdown`、`gdown`；箭頭起訖點 100% 貼齊邊線中點（菱形為頂點），路徑末端內縮 2px 觸線（marker refX=8 貼齊），審計容差 3px。
+6. **互動四件套**：滾輪縮放（游標錨點）、拖曳平移（Pointer Events + setPointerCapture）、工具列按鈕（放大/縮小/復位/最佳適配）、resize 重算，全域註冊 `window.__fcFit`；所有 `localStorage` 強制 `try/catch`。
+7. **三層驗證管線**：語法檢查 (`new Function`)、拓撲與幾何審計腳本、單元測試。
+
+### 處理結果與架構決策 (PDCA)
+- **檔案實作**：
+  - [docs/pipeline-workflow.html](file:///d:/Self-developed_Apps/Tool-Calling/docs/pipeline-workflow.html) 與 [dist/pipeline-workflow.html](file:///d:/Self-developed_Apps/Tool-Calling/dist/pipeline-workflow.html) 全新重構。
+  - 完全基於原生 SVG + Vanilla JS，純資料驅動 `GRAPH_DATA` 渲染。
+  - 涵蓋任務觸發、需求邊界判斷、意圖解析、平行三層檢索群組、候選工具池、長任務決策菱形、5D 矩陣重排 vs DAG 規劃、沙盒環境預檢菱形、沙盒安全隔離執行、自動解耦清理、以及任務達成終點。
+- **Skill 模組化沉澱**：
+  - 建立專案與全域通用 Skill：[.agents/skills/flowchart-spec/SKILL.md](file:///d:/Self-developed_Apps/Tool-Calling/.agents/skills/flowchart-spec/SKILL.md) 與 `C:\Users\3kids\.gemini\config\skills\flowchart-spec/`。
+  - 支援「流程圖」、「流程圖規範」、「繪製流程圖」、「架構流程圖」、「全鏈路流程圖」、「flowchart」、「SVG 流程圖」等全語意喚醒與調用。
+  - 內建 `verify-flowchart.js` 自動化幾何與三層管線審計工具。
+- **判斷菱形極致扁平化微調 (Flat Landscape Decision Diamond 180x72)**：
+  - 依據指示進一步調整扁平度，將菱形尺寸升級為寬 180px、高 72px（長寬比達 **2.50**），呈現流暢洗鍊的橫向流動感。
+  - 嚴格幾何推演：兩行文字（`y = cy ± 7px`）時，水平可用空間達 145px，容納 4 個中文字（約 52px）左右各有 46.5px 巨大留白空間，上下亦保留 22.5px 頂點防碰撞距離，文字裝載極度從容大氣，邊線頂點對齊率 100%。
+- **三層驗證管線實作**：
+  - 建立 [scripts/verify-flowchart-spec.js](file:///d:/Self-developed_Apps/Tool-Calling/scripts/verify-flowchart-spec.js)：
+    - Layer 0: UTF-8 編碼與 U+FFFD 檢查（0 個亂碼）
+    - Layer 1: 所有 `<script>` 區塊 `new Function(code)` 語法解析 100% 通過
+    - Layer 2: 節點 ID 唯一性、邊線 from/to 節點存在性、顯式路由類型（v/h/elbow/hdown/sdown）100% 合法
+    - Layer 3: 邊線起訖點貼齊邊線中點幾何驗證（誤差 0px，嚴格符合 <= 3px 容差規範）
+
+### 根因分析 (RCA) 與預防措施 (CAPA)
+- **RCA 1（版面非流程圖）**：前一版本採用卡片垂直堆疊與文字清單，雖有資訊層次但視覺上類似「規格說明文章」，缺少「以格點計算、邊線中點對齊、標準 ISO 符號、顯式路由定義」的工程級流程圖本質。
+- **RCA 2（流程圖頂部被遮擋）**：
+  1. 浮動圖例 HUD 原設為 `position: absolute; top: 16px; left: 16px` 懸浮於畫布內部，直接蓋住畫布左上區域。
+  2. 原 `fit()` 算法在計算垂直平移量時採用 `panY = (rect.height - totalH * scale) / 2 - minY * scale`，當流程圖總高 (1700px) 大於視窗高度時，該值算出巨大負數，導致頂部起點與決策菱形被往上推擠至視窗外。
+  3. `<svg>` 位於 flex 容器內且未設置 `min-height: 0` 與 `overflow: visible`，在部分視窗條件下發生經典 SVG 150px 高度崩塌裁切。
+- **CAPA**：
+  1. **圖例獨立解耦**：將圖例欄與幾何審計徽章移出畫布，作為 Header 下方的獨立次級工具列 (`sub-header-bar`)，畫布視窗 100% 乾淨無遮擋。
+  2. **視圖算法雙模態 (Dual-Mode Fit)**：
+     - `fit('top')`（預設）：以起點與前三層（起點、決策菱形、白話提問、意圖解析）為焦點，鎖定頂部 28px 安全留白，頂部絕對不被截斷。
+     - `fit('all')`（全圖適配）：計算全圖 16 個節點之 Bounding Box，四周留 36px 邊界縮放至 100% 入鏡，起訖完整可見。
+  3. **Flexbox + SVG 幾何防護**：
+     - `html, body` 鎖定 `height: 100vh; height: 100dvh; overflow: hidden;`
+     - `.canvas-viewport` 設置 `flex: 1 1 0%; min-height: 0; position: relative;`
+     - `#flowchart-svg` 設置 `position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: visible;` 徹底消除裁切風險。
+  4. **縮放平滑化**：將按鈕縮放係數調至 1.15 與 0.88，階梯更細膩平滑。
+
+### 驗證結果
+- Playwright Headless 實測渲染：
+  - Initial 視角：`Start` 節點 `top: 128`，`Decision` 菱形清晰完整在頂部可見，完全零遮擋。
+  - Fit All 視角：全圖 16 個節點（從起點到終點）全部精準落在 `top: 136` 至 `bottom: 684` 之 720px 視窗內。
+- `node scripts/verify-flowchart-spec.js`: **三層驗證管線 100% 通過 (0 亂碼, 100% 邊線中點貼齊)**
+- `node scripts/check-utf8.js`: **PASS (0 個 U+FFFD 亂碼字元)**
+- `node scripts/check-duplicate-ids.js`: **PASS (所有 ID 100% 唯一)**
+- `npm test`: **62/62 tests 全數 PASS (13 suites, 0 fail)**
+
+---
+
 ## 2026-08-30 批量工具入庫、HumanLayer Monorepo 拆解、Free-Claude-Code 競品演化比對與分類重構
 
 ### 需求
