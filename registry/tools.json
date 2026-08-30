@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-08-30",
+  "lastUpdated": "2026-08-30T13:50:24.173Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -30370,20 +30370,18 @@
       "id": "computer",
       "name": "Cloudflare Computer",
       "url": "https://github.com/cloudflare/computer",
-      "description": "Cloudflare 官方『給你的 Agent 一台電腦』：Durable Object 內的 SQLite 虛擬檔案系統，透過可插拔執行後端（Container FUSE / Isolate Shell / Isolate JS）執行 Agent 工作",
+      "description": "Cloudflare Durable Object-based virtual filesystem with pluggable execution backends for agent workloads.",
       "category": "AI 框架",
       "language": "typescript",
       "triggers": [
-        "computer",
         "cloudflare computer",
-        "agent workspace",
-        "virtual filesystem",
         "durable object",
         "agent runtime",
-        "workspace.runtime",
-        "computerd",
-        "dofs",
-        "sandbox"
+        "virtual filesystem",
+        "sandbox execution",
+        "edge agent",
+        "container fuse",
+        "isolate shell"
       ],
       "install": {
         "method": "npm",
@@ -30399,17 +30397,17 @@
         "worker-isolate"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
-      "status": "experimental",
-      "useCase": "當需要為 AI Agent 提供具備持久化虛擬檔案系統與多種可插拔執行後端（容器/Shell/JS isolate）的運算工作區時使用",
+      "status": "active",
+      "useCase": "Running isolated AI agent tasks with persistent state and sandboxed execution on Cloudflare's edge infrastructure.",
       "advantages": [
-        "SQLite 權威狀態 + 單一執行入口 workspace.runtime.exec，多後端可並存並延遲連接",
-        "Container 後端以 FUSE mount 投影真實 Linux userland，可執行真實二進位與完整網路",
-        "Cloudflare 官方出品 (8.1k+ stars)，含 MCP 範例與完整設計規格文件"
+        "Built on Cloudflare Durable Objects for globally distributed, low-latency persistent storage via SQLite",
+        "Pluggable execution backends (Container FUSE, Isolate Shell, Isolate JS) enable flexible sandboxed workloads",
+        "Edge-native architecture eliminates cold-start latency and scales automatically with Cloudflare's infrastructure"
       ],
       "negativeConstraints": [
-        "PREVIEW ONLY：API 不穩定且設計可能變更，不適合生產環境",
-        "依賴 Cloudflare Workers / Durable Objects 生態，不適用於非 Cloudflare 部署",
-        "非瀏覽器自動化工具，網頁操作請改用 Browser Use / Playwright"
+        "Not suitable for compute-intensive workloads requiring high CPU/GPU resources beyond edge capabilities",
+        "Avoid for applications needing long-running persistent processes that exceed Durable Object lifetime limits",
+        "Not ideal for workloads requiring direct access to traditional VM-level resources or kernel features"
       ],
       "stars": 8485
     },
@@ -38043,7 +38041,7 @@
       "id": "munder-difflin",
       "name": "Munder Difflin",
       "url": "https://github.com/chaitanyagiri/munder-difflin",
-      "description": "Local multi-agent harness that wraps Claude Code, Gemini CLI, OpenAI Codex, and 10+ coding CLIs into a coordinated office of agent clones working on your machine.",
+      "description": "Local multi-agent orchestration harness coordinating Claude, Gemini, Codex, and 10+ coding CLIs.",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -38052,7 +38050,9 @@
         "agent-coordinator",
         "claude-code",
         "agent-clone",
-        "office-agents"
+        "office-agents",
+        "multi-model-coding",
+        "local-agent-orchestration"
       ],
       "capabilities": [
         "multi-agent-orchestration",
@@ -38067,17 +38067,17 @@
         "repoUrl": "https://github.com/chaitanyagiri/munder-difflin"
       },
       "addedAt": "2026-08-23T00:00:00.000Z",
-      "status": "experimental",
-      "useCase": "Running multiple AI coding agents simultaneously on your local machine, each as a clone of yourself, coordinating tasks across Claude Code, Gemini CLI, and other CLIs.",
+      "status": "active",
+      "useCase": "Running parallel code reviews across multiple AI assistants simultaneously to catch diverse issues and generate comparative feedback on a codebase.",
       "advantages": [
-        "Unified harness for 10+ coding CLI providers with bring-your-own keys",
-        "Agents can message, route, and remember across different LLM backends",
-        "Visualized as avatars on a shared office floor for collaborative oversight"
+        "Coordinates multiple AI coding models (Claude, Gemini, Codex) in a single local workflow for parallel task execution",
+        "Keeps all agent activity and data on the user's machine, ensuring privacy and no cloud dependency",
+        "Supports 10+ coding CLIs, enabling flexible model selection and specialized agent roles"
       ],
       "negativeConstraints": [
-        "Working prototype — may have stability issues in production workflows",
-        "Requires subscriptions to multiple AI providers for full capability",
-        "Electron app has higher memory footprint than single-agent CLIs"
+        "Not suitable for cloud-based collaborative workflows requiring remote team access",
+        "Avoid for simple single-task coding requests where a single CLI tool would suffice",
+        "Not ideal for environments with limited local compute resources due to multi-agent overhead"
       ],
       "stars": 3796
     },
@@ -38085,7 +38085,7 @@
       "id": "ai-memory",
       "name": "AiMemory",
       "url": "https://github.com/akitaonrails/ai-memory",
-      "description": "Long-term memory system for AI coding agents — continue work across different agent vendors (Claude Code, OpenAI Codex, Gemini CLI) without re-explaining context.",
+      "description": "Cross-agent memory system for AI coding assistants to persist context between sessions and vendors.",
       "category": "AI 代理",
       "language": "rust",
       "triggers": [
@@ -38108,17 +38108,17 @@
         "repoUrl": "https://github.com/akitaonrails/ai-memory"
       },
       "addedAt": "2026-08-23T00:00:00.000Z",
-      "status": "experimental",
-      "useCase": "Resuming a coding session in a different AI CLI (e.g., switching from Claude Code to OpenAI Codex) while preserving architecture decisions, failed approaches, and open questions.",
+      "status": "active",
+      "useCase": "Switching from Claude Code to Gemini CLI mid-project without losing conversation context or requiring re-prompting.",
       "advantages": [
-        "Language-agnostic memory storage enables seamless handoff between any AI coding agent",
-        "MCP config + lifecycle hooks integrate directly with agent startup flows",
-        "Cross-platform support: Linux, macOS, Windows (WSL2 and native)"
+        "Persists conversation context across different AI coding agent vendors",
+        "Enables seamless handoff between agents without re-explaining project state",
+        "Integrates via MCP config and lifecycle hooks for automated memory management"
       ],
       "negativeConstraints": [
-        "Native Windows support still experimental — WSL2 recommended for Windows users",
-        "Requires manual MCP configuration for each supported agent",
-        "Memory scope is project-local, not suitable for organization-wide knowledge bases"
+        "Single-agent workflows where context persistence is unnecessary",
+        "Real-time collaborative coding sessions requiring instant shared state",
+        "Non-coding AI tasks that do not benefit from long-term memory"
       ],
       "stars": 4181
     },
@@ -38126,7 +38126,7 @@
       "id": "deepseek-work",
       "name": "DeepSeek Work",
       "url": "https://github.com/astraclawteam/deepseek-work",
-      "description": "DeepSeek Harness 桌面工作台 — 開箱即用的社區發行版，整合 Agent、MCP、Skill 與 Subagent，支援 Windows/macOS 原生窗口與系統托盤。",
+      "description": "Desktop AI agent harness with multi-agent, MCP, and skill management for Windows/macOS",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -38149,17 +38149,17 @@
         "repoUrl": "https://github.com/astraclawteam/deepseek-work"
       },
       "addedAt": "2026-08-23T00:00:00.000Z",
-      "status": "experimental",
-      "useCase": "When you need a ready-to-run desktop environment for DeepSeek Harness with built-in runtime, system tray, and health checks — no manual Node.js setup required.",
+      "status": "active",
+      "useCase": "Teams deploying local AI agents with MCP tool integration and skill orchestration on desktop environments",
       "advantages": [
-        "All-in-one installer with locked dependency versions for reproducibility",
-        "Native desktop window with system tray and standalone app data directory",
-        "Built-in process lifecycle management and startup health checks"
+        "Native Windows/macOS support with system tray integration",
+        "Built-in MCP protocol support for seamless tool connectivity",
+        "Multi-agent orchestration with subagent management"
       ],
       "negativeConstraints": [
-        "Community release, not an official DeepSeek product",
-        "Currently supports Windows x64 and macOS Apple Silicon only",
-        "Requires accepting DeepSeek brand and licensing terms"
+        "Cloud-only deployments without local execution requirements",
+        "Mobile-first applications requiring iOS/Android native support",
+        "Headless server environments without GUI requirements"
       ],
       "stars": 0
     },
@@ -38209,7 +38209,7 @@
       "id": "pi2dsh",
       "name": "Pi2DSH",
       "url": "https://github.com/weijiafu14/pi2dsh",
-      "description": "Compatibility layer that runs Pi ecosystem plugins on DeepSeek Harness unmodified — one Pi Host ABI bridges two agent platforms.",
+      "description": "Runs Pi plugins on DeepSeek Harness via ABI bridge, enabling cross-platform agent compatibility.",
       "category": "API 整合",
       "language": "typescript",
       "triggers": [
@@ -38231,17 +38231,17 @@
         "repoUrl": "https://github.com/weijiafu14/pi2dsh"
       },
       "addedAt": "2026-08-23T00:00:00.000Z",
-      "status": "experimental",
-      "useCase": "When migrating from Pi.dev agents to DeepSeek Harness and needing to run hundreds of existing Pi plugins without rewriting them.",
+      "status": "active",
+      "useCase": "Migrating existing Pi ecosystem plugins to DeepSeek Harness without modification.",
       "advantages": [
-        "Zero-modification plugin migration — Pi packages run as-is on DSH",
-        "Implements Pi's public extension ABI on top of DSH's native services",
-        "Serves as a real-world architecture test for DeepSeek Harness extensibility"
+        "No plugin modification required, preserving original Pi ecosystem code.",
+        "Single ABI bridge reduces integration effort and maintenance overhead.",
+        "Enables seamless cross-platform agent compatibility between Pi and DeepSeek."
       ],
       "negativeConstraints": [
-        "Early compatibility layer — some Pi plugins may expose DSH architectural limitations",
-        "Requires both Pi.dev and DeepSeek Harness environments to be installed",
-        "Not a replacement for native DSH plugins; use only for migration scenarios"
+        "When plugins require DeepSeek-native features not exposed via Pi ABI.",
+        "When performance overhead of ABI translation is unacceptable for latency-sensitive workloads.",
+        "When targeting platforms other than DeepSeek Harness."
       ],
       "stars": 158
     },
@@ -40135,6 +40135,663 @@
       "status": "active",
       "addedAt": "2026-08-30T03:23:32.664Z",
       "stars": 51497
+    },
+    {
+      "id": "awesome-gpt-image-2",
+      "name": "Awesome Gpt Image 2",
+      "url": "https://github.com/YouMind-OpenLab/awesome-gpt-image-2",
+      "description": "Curated prompt library for GPT Image 2 with 2000+ prompts, previews, and multi-language support.",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "gpt-image-2",
+        "ai-image-generation",
+        "prompt-library",
+        "commercial-illustration",
+        "ai-prompts"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/YouMind-OpenLab/awesome-gpt-image-2",
+        "repoUrl": "https://github.com/YouMind-OpenLab/awesome-gpt-image-2"
+      },
+      "capabilities": [
+        "ai-image-generation",
+        "ai-prompts",
+        "awesome",
+        "awesome-list",
+        "commercial-illustration"
+      ],
+      "useCase": "Designers and marketers can quickly generate consistent, commercial-grade AI illustrations with accurate text rendering for branding and marketing materials.",
+      "advantages": [
+        "2000+ curated prompts with preview images for rapid iteration",
+        "Supports 16 languages for global accessibility",
+        "Optimized for cross-image consistency and pixel-perfect text rendering"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time image generation without prompt preparation",
+        "Does not replace professional design tools for complex layout work",
+        "Limited to GPT Image 2 model capabilities and may not support other AI image models"
+      ],
+      "addedAt": "2026-08-30T13:44:51.720Z",
+      "status": "active"
+    },
+    {
+      "id": "omarchy",
+      "name": "Omarchy",
+      "url": "https://github.com/omacom/omarchy",
+      "description": "A modern, opinionated Linux distribution focused on aesthetics and usability.",
+      "category": "基礎設施",
+      "language": "shell",
+      "triggers": [
+        "omarchy",
+        "開發工具",
+        "linux distro",
+        "aesthetic linux"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/omacom/omarchy.git",
+        "repoUrl": "https://github.com/omacom/omarchy"
+      },
+      "capabilities": [],
+      "useCase": "Ideal for developers seeking a visually appealing, pre-configured Linux environment that reduces setup time.",
+      "advantages": [
+        "Pre-configured with modern desktop environments and themes out-of-the-box.",
+        "Opinionated design choices that streamline user experience.",
+        "Regular updates with security patches and latest software."
+      ],
+      "negativeConstraints": [
+        "Not suitable for minimal or headless server deployments.",
+        "Avoid if you prefer full control over every system component.",
+        "Not recommended for production environments requiring strict stability over new features."
+      ],
+      "addedAt": "2026-08-30T13:44:52.447Z",
+      "status": "active"
+    },
+    {
+      "id": "openlogi",
+      "name": "OpenLogi",
+      "url": "https://github.com/AprilNEA/OpenLogi",
+      "description": "Local-first Rust tool for remapping Logitech mouse buttons, DPI, and SmartShift via HID++ — no account or telemetry required.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "openlogi",
+        "dpi",
+        "gpui",
+        "hid",
+        "hidpp",
+        "local-first",
+        "logitech",
+        "logitech-mouse",
+        "mouse-remap",
+        "rust-tool"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/AprilNEA/OpenLogi",
+        "repoUrl": "https://github.com/AprilNEA/OpenLogi"
+      },
+      "capabilities": [
+        "dpi",
+        "gpui",
+        "hid",
+        "hidpp",
+        "local-first"
+      ],
+      "useCase": "A Linux user with a Logitech MX Master mouse wants to remap buttons and adjust DPI without installing proprietary software or creating an account.",
+      "advantages": [
+        "No account, telemetry, or cloud dependency — fully local-first operation",
+        "Written in Rust for low-level HID++ communication with minimal resource usage",
+        "Supports button remapping, DPI adjustment, and SmartShift configuration natively"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-Logitech mice or devices that do not use the HID++ protocol",
+        "Not ideal for Windows users who prefer the official Logitech Options+ ecosystem with cloud sync",
+        "Does not support firmware updates or advanced cloud-based features like Flow across devices"
+      ],
+      "addedAt": "2026-08-30T13:44:53.198Z",
+      "status": "active"
+    },
+    {
+      "id": "openhuman",
+      "name": "Openhuman",
+      "url": "https://github.com/tinyhumansai/openhuman",
+      "description": "Local-first personal AI that builds life memory, orchestrates agent fleets, and performs deep research.",
+      "category": "知識管理",
+      "language": "rust",
+      "triggers": [
+        "openhuman",
+        "知識管理",
+        "local-first AI",
+        "agent orchestration",
+        "personal memory",
+        "deep research"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/tinyhumansai/openhuman",
+        "repoUrl": "https://github.com/tinyhumansai/openhuman"
+      },
+      "capabilities": [],
+      "useCase": "A knowledge worker uses Openhuman to maintain a persistent local memory of their projects and daily decisions while coordinating multiple AI agents to automate research and workflow tasks.",
+      "advantages": [
+        "Local-first architecture ensures all personal data and memories stay on-device, providing strong privacy and data sovereignty.",
+        "Built-in agent fleet orchestration enables parallel multi-agent workflows for complex research and automation tasks.",
+        "Deep research capability with persistent memory allows the system to learn from past interactions and accumulate domain knowledge over time."
+      ],
+      "negativeConstraints": [
+        "Not suitable for cloud-dependent real-time collaboration scenarios requiring instant multi-user synchronization.",
+        "Avoid for high-throughput production workloads where server-grade compute and scaling are required.",
+        "Not ideal for users who need pre-trained enterprise integrations without custom configuration."
+      ],
+      "addedAt": "2026-08-30T13:44:53.946Z",
+      "status": "active"
+    },
+    {
+      "id": "canvas-project-manager",
+      "name": "Canvas Project Manager",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/canvas-project-manager",
+      "description": "Manages canvas-based projects with operation sequencing and data security constraints.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "canvas-project-manager",
+        "canvas",
+        "project",
+        "manager",
+        "画布",
+        "操作顺序",
+        "数据安全"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/canvas-project-manager"
+      },
+      "capabilities": [],
+      "useCase": "When coordinating multi-step visual workspace workflows that require strict operation ordering and data safety guarantees.",
+      "advantages": [
+        "Enforces operation sequence constraints to prevent data corruption in canvas projects",
+        "Provides built-in data security checks before executing canvas operations",
+        "Integrates with existing canvas tool contracts for seamless capability chaining"
+      ],
+      "negativeConstraints": [
+        "Do not use for simple single-step canvas operations that do not require sequencing",
+        "Avoid when real-time collaborative editing without security constraints is needed",
+        "Not suitable for non-canvas project management tasks like code repositories or databases"
+      ],
+      "addedAt": "2026-08-30T13:45:00.723Z",
+      "status": "active"
+    },
+    {
+      "id": "car-commercial-storyboard",
+      "name": "Car Commercial Storyboard",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/car-commercial-storyboard",
+      "description": "AI-powered tool for generating consistent car commercial storyboards with unified vehicle styling and cinematic visuals.",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "car-commercial-storyboard",
+        "car",
+        "commercial",
+        "storyboard",
+        "automotive",
+        "vehicle",
+        "advertising"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/car-commercial-storyboard"
+      },
+      "capabilities": [],
+      "useCase": "An automotive marketing team needs to produce a cohesive series of storyboard frames for a new SUV commercial campaign while maintaining brand-accurate vehicle details.",
+      "advantages": [
+        "Ensures structural and brand consistency across all storyboard frames",
+        "Integrates vehicle styling, advertising visuals, and cinematic composition in one workflow",
+        "Reduces manual coordination between designers and brand guidelines"
+      ],
+      "negativeConstraints": [
+        "Not suitable for non-automotive product advertising or unrelated commercial storyboarding",
+        "Should not be used when brand-specific vehicle accuracy is not required",
+        "Inappropriate for abstract or non-representational visual storytelling"
+      ],
+      "addedAt": "2026-08-30T13:45:00.845Z",
+      "status": "active"
+    },
+    {
+      "id": "car-model-skill",
+      "name": "Car Model Skill",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/car-model-skill",
+      "description": "A skill for retrieving and comparing car model information, specifications, and details.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "car-model-skill",
+        "car",
+        "model",
+        "skill",
+        "vehicle",
+        "car comparison",
+        "auto specs"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/car-model-skill"
+      },
+      "capabilities": [],
+      "useCase": "A car buyer researching different SUV models to compare features, pricing, and fuel efficiency before visiting a dealership.",
+      "advantages": [
+        "Provides structured car model data including specifications, pricing, and feature comparisons",
+        "Supports quick lookups across multiple vehicle makes and models",
+        "Enables side-by-side comparison of key attributes like engine type, MPG, and trim levels"
+      ],
+      "negativeConstraints": [
+        "Do not use for real-time car inventory or availability checks at specific dealerships",
+        "Do not use for vehicle history reports, recall lookups, or VIN decoding",
+        "Do not use for purchasing transactions or financing calculations"
+      ],
+      "addedAt": "2026-08-30T13:45:00.995Z",
+      "status": "active"
+    },
+    {
+      "id": "film-master",
+      "name": "Film Master",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/film-master",
+      "description": "Converts scripts or scene descriptions into professional, continuous, executable film storyboards for image generation.",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "film-master",
+        "film",
+        "master",
+        "storyboard",
+        "分镜",
+        "script-to-visual"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/film-master"
+      },
+      "capabilities": [],
+      "useCase": "A film director uses this tool to transform a written screenplay into a sequence of detailed storyboard panels ready for AI image generation.",
+      "advantages": [
+        "Generates coherent, sequential storyboards that maintain visual continuity across scenes",
+        "Integrates directly with image generation pipelines for seamless production workflow",
+        "Translates natural language descriptions into structured, executable shot specifications"
+      ],
+      "negativeConstraints": [
+        "Do not use for generating standalone images without a narrative or script context",
+        "Avoid for real-time video or animation production where motion is required",
+        "Not suitable for simple thumbnail or icon generation tasks"
+      ],
+      "addedAt": "2026-08-30T13:45:01.119Z",
+      "status": "active"
+    },
+    {
+      "id": "geography-video-effects",
+      "name": "Geography Video Effects",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/geography-video-effects",
+      "description": "Transforms geography, history, and culture scripts into cinematic map-based visuals with spatial relationships.",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "geography-video-effects",
+        "geography",
+        "video",
+        "effects",
+        "map animation",
+        "historical visualization",
+        "cinematic maps"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/geography-video-effects"
+      },
+      "capabilities": [],
+      "useCase": "A documentary creator converts a historical narrative about the Silk Road into a sequence of animated map visuals showing trade routes, cities, and cultural exchanges over time.",
+      "advantages": [
+        "Generates spatially accurate map-based visuals that maintain geographic credibility",
+        "Combines cinematic visual storytelling with structured geographic data for engaging educational content",
+        "Supports multi-topic integration of geography, humanities, and history in a single visual pipeline"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time interactive mapping or live GPS navigation applications",
+        "Should not be used when photorealistic 3D terrain rendering is required instead of stylized map visuals",
+        "Inappropriate for generating purely abstract or non-geographic visual content without spatial context"
+      ],
+      "addedAt": "2026-08-30T13:45:01.242Z",
+      "status": "active"
+    },
+    {
+      "id": "internet-ad-director",
+      "name": "Internet Ad Director",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/internet-ad-director",
+      "description": "AI-powered internet ad director for viral marketing, short-video ad planning, and brand campaign execution.",
+      "category": "行銷",
+      "language": "typescript",
+      "triggers": [
+        "internet-ad-director",
+        "viral-ad",
+        "short-video-ad",
+        "ad-storyboard",
+        "brand-campaign"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/internet-ad-director"
+      },
+      "capabilities": [],
+      "useCase": "A DTC skincare brand needs a viral TikTok ad campaign targeting Gen Z in Southeast Asia, from creative concept to storyboard and production prompts.",
+      "advantages": [
+        "End-to-end workflow from viral strategy to AI-generated video prompts and Feishu table setup",
+        "Integrates 6 modules: viral element matching, director style recommendation, short-video structure, crossover collab, cultural mood radar, and integrated marketing matrix",
+        "Step-by-step confirmation checkpoints ensure creative alignment before execution"
+      ],
+      "negativeConstraints": [
+        "Not suitable for long-form TVC production beyond short-video formats",
+        "Not designed for static print or out-of-home advertising campaigns",
+        "Not appropriate when no creative brief or brand guidelines are provided"
+      ],
+      "addedAt": "2026-08-30T13:45:01.366Z",
+      "status": "active"
+    },
+    {
+      "id": "jimeng-cli",
+      "name": "Jimeng Cli",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/jimeng-cli",
+      "description": "Command-line interface for Dreamina login, sessions, task history, and AI image/video generation.",
+      "category": "多媒體生成",
+      "language": "typescript",
+      "triggers": [
+        "jimeng-cli",
+        "jimeng",
+        "cli",
+        "dreamina",
+        "seedream",
+        "seedance"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/jimeng-cli"
+      },
+      "capabilities": [],
+      "useCase": "Automate Dreamina login and generate images or videos via command line for batch processing.",
+      "advantages": [
+        "Direct CLI access to Dreamina services",
+        "Supports both image and video generation",
+        "Integrates with existing task history and sessions"
+      ],
+      "negativeConstraints": [
+        "When a graphical user interface is required",
+        "When network access to Dreamina is unavailable",
+        "When only text generation is needed"
+      ],
+      "addedAt": "2026-08-30T13:45:01.482Z",
+      "status": "active"
+    },
+    {
+      "id": "lark-cli",
+      "name": "Lark Cli",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/lark-cli",
+      "description": "CLI tool for interacting with Lark platform, enabling programmatic access to Lark services and APIs.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "lark-cli",
+        "lark",
+        "cli",
+        "lark bot",
+        "lark messaging",
+        "lark automation"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/lark-cli"
+      },
+      "capabilities": [],
+      "useCase": "Automating Lark message sending, channel management, and bot interactions via command-line interface.",
+      "advantages": [
+        "Provides lightweight command-line access to Lark APIs without requiring full SDK integration",
+        "Enables scripting and automation of Lark workflows in CI/CD pipelines or batch operations",
+        "Supports common Lark operations like messaging, user management, and webhook handling"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time event-driven applications requiring WebSocket or long-polling connections",
+        "Avoid for complex Lark feature coverage where official SDKs provide broader API support",
+        "Not ideal for GUI-based Lark administration tasks requiring visual interfaces"
+      ],
+      "addedAt": "2026-08-30T13:45:01.596Z",
+      "status": "active"
+    },
+    {
+      "id": "minimax-docx",
+      "name": "Minimax Docx",
+      "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/minimax-docx",
+      "description": "Minimax-powered DOCX document generation and processing skill for creating Word documents programmatically.",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "minimax-docx",
+        "minimax",
+        "docx",
+        "word document",
+        "document generation"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng",
+        "branch": "main",
+        "subpath": "skills/minimax-docx"
+      },
+      "capabilities": [],
+      "useCase": "Automatically generating formatted Word reports or documents from structured data using Minimax AI capabilities.",
+      "advantages": [
+        "Leverages Minimax AI for intelligent document content generation and formatting",
+        "Supports structured DOCX output with programmatic control over document elements",
+        "Integrates seamlessly into AI agent workflows via the kunpeng skill framework"
+      ],
+      "negativeConstraints": [
+        "Not suitable for editing or modifying existing DOCX files that require precise layout preservation",
+        "Avoid for generating documents requiring complex mathematical formulas or specialized scientific typesetting",
+        "Not ideal for high-volume batch processing where performance latency is critical"
+      ],
+      "addedAt": "2026-08-30T13:45:01.722Z",
+      "status": "active"
+    },
+    {
+      "id": "cognicode-core",
+      "name": "Cognicode Core",
+      "url": "https://github.com/Rubentxu/CogniCode/tree/main/skills/cognicode-core",
+      "description": "AI-powered code intelligence tool providing call graph analysis and LSP capabilities for developers.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "cognicode-core",
+        "call-graph",
+        "code-intelligence",
+        "lsp",
+        "ai"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "cargo install --git https://github.com/Rubentxu/CogniCode",
+        "repoUrl": "https://github.com/Rubentxu/CogniCode",
+        "branch": "main",
+        "subpath": "skills/cognicode-core"
+      },
+      "capabilities": [
+        "ai",
+        "call-graph",
+        "code-intelligence",
+        "developer-tools",
+        "lsp"
+      ],
+      "useCase": "When navigating a large, unfamiliar codebase and needing to understand function call relationships and dependencies quickly.",
+      "advantages": [
+        "Provides automated call graph generation for visualizing code dependencies",
+        "Integrates with LSP for real-time code intelligence and navigation",
+        "Leverages AI to enhance code understanding and analysis"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time collaborative editing scenarios",
+        "Not designed for runtime performance monitoring or profiling",
+        "Not intended for static code quality checking or linting"
+      ],
+      "addedAt": "2026-08-30T13:45:03.485Z",
+      "status": "active"
+    },
+    {
+      "id": "cognicode-mcp-driven",
+      "name": "Cognicode Mcp Driven",
+      "url": "https://github.com/Rubentxu/CogniCode/tree/main/skills/cognicode-mcp-driven",
+      "description": "AI-powered code intelligence tool using MCP for call graph analysis and developer productivity.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "cognicode-mcp-driven",
+        "call-graph",
+        "code-intelligence",
+        "mcp",
+        "lsp"
+      ],
+      "install": {
+        "method": "git-clone-sparse",
+        "command": "cargo install --git https://github.com/Rubentxu/CogniCode",
+        "repoUrl": "https://github.com/Rubentxu/CogniCode",
+        "branch": "main",
+        "subpath": "skills/cognicode-mcp-driven"
+      },
+      "capabilities": [
+        "ai",
+        "call-graph",
+        "code-intelligence",
+        "developer-tools",
+        "lsp"
+      ],
+      "useCase": "Useful for developers needing to visualize and analyze call graphs in large codebases to understand dependencies and refactor safely.",
+      "advantages": [
+        "AI-assisted call graph generation",
+        "Seamless LSP integration for real-time code intelligence",
+        "MCP-driven architecture for extensibility and tool interoperability"
+      ],
+      "negativeConstraints": [
+        "Not suitable for real-time performance monitoring",
+        "Avoid for non-code repositories like documentation or design docs",
+        "Not recommended for languages without LSP support"
+      ],
+      "addedAt": "2026-08-30T13:45:03.602Z",
+      "status": "active"
+    },
+    {
+      "id": "eli5",
+      "name": "Eli5",
+      "url": "https://github.com/dreambigou/eli5",
+      "description": "Adaptive explanation tool that translates complex topics into audience-appropriate language and analogies.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "eli5",
+        "explain-like-im-5",
+        "simplify",
+        "jargon-free",
+        "audience-adapt"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/dreambigou/eli5.git",
+        "repoUrl": "https://github.com/dreambigou/eli5"
+      },
+      "capabilities": [
+        "ai-skill",
+        "anthropic",
+        "claude",
+        "claude-code",
+        "claude-skill"
+      ],
+      "useCase": "A manager needs a quick, jargon-free summary of an AI model architecture before a board presentation.",
+      "advantages": [
+        "Dynamically adjusts vocabulary and analogy depth based on target audience",
+        "Supports multiple personas from children to domain experts",
+        "Maintains technical accuracy while simplifying presentation"
+      ],
+      "negativeConstraints": [
+        "Formal academic writing or peer-reviewed publications",
+        "Legal or medical advice requiring precise terminology",
+        "Technical documentation where exact jargon is required"
+      ],
+      "addedAt": "2026-08-30T13:45:04.333Z",
+      "status": "active"
+    },
+    {
+      "id": "qwen-code",
+      "name": "Qwen Code",
+      "url": "https://github.com/QwenLM/qwen-code",
+      "description": "Open-source AI coding agent that operates directly in your terminal for intelligent code assistance.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "qwen-code",
+        "qwen",
+        "code",
+        "agentic",
+        "ai",
+        "ai-agent",
+        "ai-coding",
+        "cli",
+        "terminal",
+        "coding-agent"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx qwen-code",
+        "repoUrl": "https://github.com/QwenLM/qwen-code"
+      },
+      "capabilities": [
+        "agentic",
+        "ai",
+        "ai-agent",
+        "ai-coding",
+        "cli"
+      ],
+      "useCase": "A developer needs to quickly generate, refactor, or debug code in their terminal using natural language commands without switching contexts.",
+      "advantages": [
+        "Terminal-native operation eliminates context switching between IDE and AI tools",
+        "Open-source with full transparency and self-hosting capability",
+        "Agentic behavior enables autonomous multi-step coding tasks"
+      ],
+      "negativeConstraints": [
+        "Not suitable for GUI-based or visual development workflows",
+        "Requires terminal environment and may not work in restricted or sandboxed systems",
+        "Not ideal for real-time collaborative coding sessions with multiple users"
+      ],
+      "addedAt": "2026-08-30T13:46:10.157Z",
+      "status": "active"
     }
   ]
 }
