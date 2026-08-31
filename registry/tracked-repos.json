@@ -3608,12 +3608,9 @@
     "fullName": "tinyhumansai/openhuman",
     "owner": "tinyhumansai",
     "repo": "openhuman",
-    "initialStars": 35997,
-    "discoveredAt": "2026-07-26T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "知識管理",
+    "addedAt": "2026-08-30T13:44:53.946Z",
+    "status": "tracking"
   },
   "ashishpatel26/500-AI-Agents-Projects": {
     "fullName": "ashishpatel26/500-AI-Agents-Projects",
@@ -3913,12 +3910,9 @@
     "fullName": "QwenLM/qwen-code",
     "owner": "QwenLM",
     "repo": "qwen-code",
-    "initialStars": 26730,
-    "discoveredAt": "2026-07-26T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W30",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "AI 代理",
+    "addedAt": "2026-08-30T13:46:10.157Z",
+    "status": "tracking"
   },
   "Kilo-Org/kilocode": {
     "fullName": "Kilo-Org/kilocode",
@@ -17752,12 +17746,9 @@
     "fullName": "YouMind-OpenLab/awesome-gpt-image-2",
     "owner": "YouMind-OpenLab",
     "repo": "awesome-gpt-image-2",
-    "initialStars": 9136,
-    "discoveredAt": "2026-08-03T00:00:00.000Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "category": "多媒體生成",
+    "addedAt": "2026-08-30T13:44:51.720Z",
+    "status": "tracking"
   },
   "mengxi-ream/read-frog": {
     "fullName": "mengxi-ream/read-frog",
@@ -20368,8 +20359,8 @@
     "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-08-31T08:09:43.424Z",
+    "status": "in_registry"
   },
   "krahets/hello-algo": {
     "fullName": "krahets/hello-algo",
@@ -23852,11 +23843,51 @@
     "addedAt": "2026-08-30T03:23:32.664Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2333,
-    "inRegistry": 601,
-    "trackedOnly": 1731,
-    "lastGenerated": "2026-08-30T03:23:37.442Z"
+  "omacom/omarchy": {
+    "fullName": "omacom/omarchy",
+    "owner": "omacom",
+    "repo": "omarchy",
+    "category": "基礎設施",
+    "addedAt": "2026-08-30T13:44:52.447Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-08-30T03:23:37.442Z"
+  "AprilNEA/OpenLogi": {
+    "fullName": "AprilNEA/OpenLogi",
+    "owner": "AprilNEA",
+    "repo": "OpenLogi",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T13:44:53.198Z",
+    "status": "tracking"
+  },
+  "pengfeiqiao/kunpeng": {
+    "fullName": "pengfeiqiao/kunpeng",
+    "owner": "pengfeiqiao",
+    "repo": "kunpeng",
+    "category": "文件生產力",
+    "addedAt": "2026-08-30T13:45:00.723Z",
+    "status": "tracking"
+  },
+  "Rubentxu/CogniCode": {
+    "fullName": "Rubentxu/CogniCode",
+    "owner": "Rubentxu",
+    "repo": "CogniCode",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T13:45:03.485Z",
+    "status": "tracking"
+  },
+  "dreambigou/eli5": {
+    "fullName": "dreambigou/eli5",
+    "owner": "dreambigou",
+    "repo": "eli5",
+    "category": "AI 代理",
+    "addedAt": "2026-08-30T13:45:04.333Z",
+    "status": "tracking"
+  },
+  "_meta": {
+    "total": 2338,
+    "inRegistry": 609,
+    "trackedOnly": 1728,
+    "lastGenerated": "2026-08-31T08:09:43.460Z"
+  },
+  "lastGenerated": "2026-08-31T08:09:43.424Z"
 }
