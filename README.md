@@ -30,7 +30,7 @@
 | Web Worker | UI流畅度↑ | 离线TF-IDF计算 |
 | IndexedDB | 冷启动<100ms | 跨页面持久化快取 |
 | Fuzzy Matching | +15% 容错率 | Levenshtein距离模糊匹配 |
-| 同義詞擴充 | 356詞彙 | 41個種子詞 + 422組配對自動挖掘 |
+| 同義詞擴充 | 2309詞彙 | 41個種子詞 + 2268組配對自動挖掘 |
 
 詳細報告請見 [docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md](./docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md)
 
@@ -124,7 +124,7 @@ node cli.js interview "网页爬虫"
 Tool-Calling/
 ├── core/               # 核心模组
 │   ├── search-engine.js     # 三层检索引擎 (L1-L3)
-│   ├── synonyms.generated.js # 同义词词典 (356词汇)
+│   ├── synonyms.generated.js # 同义词词典 (2309词汇)
 │   ├── telemetry.js         # 使用统计
 │   └── ...
 ├── web/                # 前端精密儀表數據工作台
@@ -167,7 +167,7 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v2.0 - 653 Tools, 352 Synonyms, Live Refresh & Dual-Week Trending
+> Tool-Calling v2.0 - 653 Tools, 2309 Synonyms, Live Refresh & Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI

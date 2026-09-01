@@ -47,7 +47,7 @@
 - `學習資源`: 54 個工具
 
 ### Top 5 語言
-- `python`: 235 個工具
+- `python`: 221 個工具
 - `typescript`: 148 個工具
 - `javascript`: 62 個工具
 - `other`: 44 個工具
