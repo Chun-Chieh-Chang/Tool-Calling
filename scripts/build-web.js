@@ -56,6 +56,7 @@ if (fs.existsSync(path.join(webDir, 'favicon.ico'))) {
 }
 if (fs.existsSync(path.join(rootDir, 'docs', 'knowledge-graph.html'))) {
   fs.copyFileSync(path.join(rootDir, 'docs', 'knowledge-graph.html'), path.join(distDir, 'knowledge-graph.html'));
+  fs.copyFileSync(path.join(rootDir, 'docs', 'pipeline-workflow.html'), path.join(distDir, 'pipeline-workflow.html'));
 }
 
 // 複製依賴檔案
