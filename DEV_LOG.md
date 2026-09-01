@@ -49,8 +49,8 @@
   - 追蹤 repos：2,334 → 2,382
   - 總 star 數：27,149,159 → 27,298,755
   - 平均 star 數：43,439 → 41,805
-  - Top 5 分類：AI 代理 132 / AI 框架 77 / 開發工具 74 / 文件生產力 58 / 學習資源 53
-  - Top 5 語言：Python 235 / TypeScript 148 / JavaScript 62 / Other 44 / Rust 29
+  - Top 5 分類：AI 代理 136 / 開發工具 80 / AI 框架 77 / 文件生產力 58 / 學習資源 54
+  - Top 5 語言：Python 221 / TypeScript 148 / JavaScript 62 / Other 44 / Rust 29
   - 測試數：57 → 62
   - 版本：v1.0 → v1.2
 - **README.md 同步**：
