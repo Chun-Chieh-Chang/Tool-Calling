@@ -40826,6 +40826,444 @@
       "stars": 134939,
       "addedAt": "2026-08-31T08:09:43.424Z",
       "status": "active"
+    },
+    {
+      "id": "3d-web-experience",
+      "name": "3D Web Experience",
+      "url": "https://github.com/TheCodeTherapy/3d-web-experience",
+      "description": "MML-based multiplayer 3D web experience framework — 8-package monorepo with client, server, avatar, networking, editor, and chat modules for collaborative 3D apps.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "3d-web",
+        "3d web experience",
+        "mml",
+        "multiplayer 3d",
+        "3d framework",
+        "webgl",
+        "collaborative 3d"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/TheCodeTherapy/3d-web-experience.git",
+        "repoUrl": "https://github.com/TheCodeTherapy/3d-web-experience"
+      },
+      "capabilities": [
+        "3d-web-framework",
+        "multiplayer",
+        "collaborative-experience",
+        "mml-protocol"
+      ],
+      "subTools": [
+        {
+          "name": "3D Web Experience Client",
+          "subpath": "packages/client"
+        },
+        {
+          "name": "3D Web Experience Server",
+          "subpath": "packages/server"
+        },
+        {
+          "name": "3D Web Experience Core",
+          "subpath": "packages/core"
+        },
+        {
+          "name": "3D Web Experience Networking",
+          "subpath": "packages/networking"
+        },
+        {
+          "name": "3D Web Experience Avatar",
+          "subpath": "packages/avatar"
+        },
+        {
+          "name": "3D Web Experience Editor",
+          "subpath": "packages/editor"
+        },
+        {
+          "name": "3D Web Experience Chat",
+          "subpath": "packages/chat"
+        },
+        {
+          "name": "3D Web Experience MML",
+          "subpath": "packages/mml"
+        }
+      ],
+      "status": "active",
+      "stars": 43,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Building multiplayer 3D web experiences with real-time collaboration, avatar systems, and chat — ideal for virtual showrooms or collaborative design reviews.",
+      "advantages": [
+        "Modular monorepo architecture allows incremental adoption of client/server/avatar modules",
+        "MML protocol enables standardized multi-user 3D interactions",
+        "TypeScript-native with full type safety across all packages"
+      ],
+      "negativeConstraints": [
+        "Requires WebGL-supporting browser and decent GPU for smooth performance",
+        "Monorepo setup may be complex for beginners without TypeScript experience",
+        "Not suitable for single-user 3D visualization where multiplayer is unnecessary overhead"
+      ]
+    },
+    {
+      "id": "generative-ui",
+      "name": "Generative UI",
+      "url": "https://github.com/CopilotKit/generative-ui",
+      "description": "AG-UI/A2UI/MCP Apps generative UI implementation examples — four patterns (AG-UI, A2UI, Open-JSON-UI, MCP Apps) with runnable tutorials and component examples.",
+      "category": "學習資源",
+      "language": "typescript",
+      "triggers": [
+        "generative ui",
+        "ag-ui",
+        "a2ui",
+        "open-json-ui",
+        "mcp apps",
+        "copilotkit",
+        "generative interface"
+      ],
+      "capabilities": [
+        "generative-ui-patterns",
+        "tutorial-examples",
+        "component-showcase"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/CopilotKit/generative-ui.git",
+        "repoUrl": "https://github.com/CopilotKit/generative-ui"
+      },
+      "status": "active",
+      "stars": 815,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Learning and implementing generative UI patterns (AG-UI, A2UI, MCP Apps) for AI-powered dynamic interfaces.",
+      "advantages": [
+        "Covers four distinct generative UI patterns in one repository",
+        "Runnable examples for each pattern reduce learning curve",
+        "Backed by CopilotKit with production-grade implementation quality"
+      ],
+      "negativeConstraints": [
+        "Primarily tutorial/examples — not a standalone framework or library",
+        "Requires familiarity with React/TypeScript to fully utilize examples",
+        "Pattern coverage is conceptual; each pattern may need separate deep-dive resources"
+      ]
+    },
+    {
+      "id": "awesome-agentic-patterns",
+      "name": "Awesome Agentic Patterns",
+      "url": "https://github.com/nibzard/awesome-agentic-patterns",
+      "description": "Curated collection of 100+ agentic AI patterns organized into 8 categories: Context/Memory, Feedback Loops, Orchestration, Reliability, Security, Tool Use, Evaluation, and Multi-Agent Systems.",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "agentic patterns",
+        "ai agent patterns",
+        "awesome agentic",
+        "agent design patterns",
+        "multi-agent systems"
+      ],
+      "capabilities": [
+        "pattern-reference",
+        "agentic-architecture",
+        "design-patterns"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/nibzard/awesome-agentic-patterns.git",
+        "repoUrl": "https://github.com/nibzard/awesome-agentic-patterns"
+      },
+      "status": "active",
+      "stars": 4932,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Reference guide for designing robust agentic AI systems — from simple single-agent patterns to complex multi-agent orchestration strategies.",
+      "advantages": [
+        "8-category taxonomy covers the full spectrum of agentic design concerns",
+        "100+ patterns provide practical reference for common agent architectures",
+        "Markdown-based format is easily searchable and integrable into documentation"
+      ],
+      "negativeConstraints": [
+        "No executable code — patterns are conceptual references requiring implementation",
+        "Not a framework or library; requires developer interpretation for each use case",
+        "Coverage gaps may exist for emerging patterns not yet catalogued"
+      ]
+    },
+    {
+      "id": "figma-sharp",
+      "name": "FigmaSharp",
+      "url": "https://github.com/microsoft/FigmaSharp",
+      "description": "Convert Figma designs to native .NET/WPF/UWP/Xamarin UI — bridge design-to-code workflow for Microsoft ecosystem (ARCHIVED).",
+      "category": "開發工具",
+      "language": "csharp",
+      "triggers": [
+        "figma sharp",
+        "figma to code",
+        ".net figma",
+        "wpf figma",
+        "xamarin figma",
+        "figma design to code"
+      ],
+      "capabilities": [
+        "figma-export",
+        "native-ui-generation",
+        ".net-integration"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/microsoft/FigmaSharp.git",
+        "repoUrl": "https://github.com/microsoft/FigmaSharp"
+      },
+      "status": "archived",
+      "stars": 498,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Converting Figma designs to native .NET/WPF/UWP/Xamarin UI components for Microsoft ecosystem applications.",
+      "advantages": [
+        "Direct Figma-to-.NET translation reduces manual UI coding effort",
+        "Supports multiple Microsoft platforms from a single design source",
+        "Microsoft-originated tool with design toolchain integration"
+      ],
+      "negativeConstraints": [
+        "ARCHIVED since 2023-04 — no active maintenance or updates",
+        "Limited to Microsoft ecosystem (WPF/UWP/Xamarin) only",
+        "May not support latest Figma API features or complex design tokens"
+      ]
+    },
+    {
+      "id": "figma-sds",
+      "name": "Figma SDS",
+      "url": "https://github.com/figma/sds",
+      "description": "Figma Code Connect + Storybook + React design system example — tokens, scripts, and component library for bridging Figma designs to React code.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "figma sds",
+        "figma design system",
+        "code connect",
+        "figma tokens",
+        "storybook react",
+        "design tokens"
+      ],
+      "capabilities": [
+        "design-tokens",
+        "react-components",
+        "figma-integration",
+        "storybook"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/figma/sds.git",
+        "repoUrl": "https://github.com/figma/sds"
+      },
+      "status": "active",
+      "stars": 838,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Implementing a complete design system workflow from Figma tokens to React components with Storybook documentation.",
+      "advantages": [
+        "End-to-end Figma-to-React pipeline with token synchronization",
+        "Storybook integration provides live component documentation",
+        "Official Figma-backed example demonstrating best practices"
+      ],
+      "negativeConstraints": [
+        "Specific to React ecosystem — not directly applicable to other frameworks",
+        "Requires Figma Code Connect plugin for token synchronization",
+        "Example-focused; not a production-ready library itself"
+      ]
+    },
+    {
+      "id": "figma-mcp-server-guide",
+      "name": "Figma MCP Server Guide",
+      "url": "https://github.com/figma/mcp-server-guide",
+      "description": "Official Figma MCP Server setup guide — connect Claude, Cursor, VS Code, and Gemini CLI to Figma for design-aware AI assistance.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "figma mcp",
+        "figma claude",
+        "figma cursor",
+        "mcp server figma",
+        "figma ai assistant",
+        "figma prompt"
+      ],
+      "capabilities": [
+        "mcp-setup",
+        "figma-integration",
+        "ai-assistance"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install figma-mcp-server",
+        "repoUrl": "https://github.com/figma/mcp-server-guide"
+      },
+      "status": "active",
+      "stars": 1940,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Connecting AI coding assistants (Claude, Cursor, VS Code, Gemini CLI) to Figma for design-aware code generation and inspection.",
+      "advantages": [
+        "Official Figma-backed MCP server with reliable API integration",
+        "Supports multiple AI clients in a single setup guide",
+        "Includes prompting best practices for design-to-code workflows"
+      ],
+      "negativeConstraints": [
+        "Requires Figma account with API access token",
+        "Only works with MCP-compatible AI clients",
+        "Does not provide design editing capabilities — read-only access only"
+      ]
+    },
+    {
+      "id": "figma-plugin-samples",
+      "name": "Figma Plugin Samples",
+      "url": "https://github.com/figma/plugin-samples",
+      "description": "Official Figma Plugin sample collection — 20+ complete examples covering charts, variables, dev mode, text search, and more plugin development patterns.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "figma plugin",
+        "figma sdk",
+        "figma development",
+        "figma api",
+        "figma widget",
+        "plugin samples"
+      ],
+      "capabilities": [
+        "plugin-development",
+        "figma-sdk",
+        "api-examples",
+        "component-samples"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/figma/plugin-samples.git",
+        "repoUrl": "https://github.com/figma/plugin-samples"
+      },
+      "status": "active",
+      "stars": 1847,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Learning Figma plugin development through 20+ production-quality examples covering charts, variables, dev mode, and UI extensions.",
+      "advantages": [
+        "Official Figma-maintained samples with up-to-date API usage",
+        "Covers diverse plugin types: data visualization, utilities, UI extensions",
+        "Each sample is a complete, runnable plugin ready for modification"
+      ],
+      "negativeConstraints": [
+        "Primarily educational — not a reusable library or framework",
+        "Requires Figma desktop app for testing and debugging",
+        "No server-side or backend plugin examples included"
+      ]
+    },
+    {
+      "id": "figma-code-connect",
+      "name": "Figma Code Connect",
+      "url": "https://github.com/figma/code-connect",
+      "description": "Figma Code Connect official tool — bridge Figma designs to code templates supporting React, HTML, SwiftUI, and Jetpack Compose with framework-specific output.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "figma code connect",
+        "figma to code",
+        "figma templates",
+        "design to code",
+        "figma sdk",
+        "figma react"
+      ],
+      "capabilities": [
+        "design-to-code",
+        "template-generation",
+        "multi-framework",
+        "figma-integration"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install -g @figma/code-connect",
+        "repoUrl": "https://github.com/figma/code-connect"
+      },
+      "status": "active",
+      "stars": 1568,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Converting Figma designs into framework-specific code templates (React, HTML, SwiftUI, Compose) for accelerated front-end development.",
+      "advantages": [
+        "Official Figma tool with native plugin integration",
+        "Multi-framework support reduces context switching between design and code",
+        "Template-based approach ensures design-to-code consistency"
+      ],
+      "negativeConstraints": [
+        "Requires Figma plugin installation and manual setup per project",
+        "Output quality depends on Figma design structure and layer naming conventions",
+        "Not a full UI generation tool — templates require further customization"
+      ]
+    },
+    {
+      "id": "figma-api-demo",
+      "name": "Figma API Demo",
+      "url": "https://github.com/figma/figma-api-demo",
+      "description": "Figma REST API demonstration app — showcases key API endpoints including file retrieval, component exploration, and style management (ARCHIVED).",
+      "category": "學習資源",
+      "language": "javascript",
+      "triggers": [
+        "figma api",
+        "figma rest api",
+        "figma integration",
+        "figma developer",
+        "figma api demo"
+      ],
+      "capabilities": [
+        "api-examples",
+        "figma-integration",
+        "tutorial-app"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/figma/figma-api-demo.git",
+        "repoUrl": "https://github.com/figma/figma-api-demo"
+      },
+      "status": "archived",
+      "stars": 1336,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Learning Figma REST API usage through a working demo application covering file operations, components, and styles.",
+      "advantages": [
+        "Official Figma-maintained demo with accurate API usage patterns",
+        "Covers core API endpoints: files, components, styles, comments",
+        "Runnable application provides immediate hands-on learning experience"
+      ],
+      "negativeConstraints": [
+        "ARCHIVED since 2023-04 — no active maintenance or API updates",
+        "Demo scope is limited to basic API operations",
+        "May not reflect latest Figma API features or authentication methods"
+      ]
+    },
+    {
+      "id": "figma-community-resources",
+      "name": "Figma Community Resources",
+      "url": "https://github.com/figma/community-resources",
+      "description": "Figma community resource index — curated directory of plugins, widgets, agent skills, and additional resources organized by category for the Figma ecosystem.",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "figma community",
+        "figma plugins",
+        "figma resources",
+        "figma widgets",
+        "figma agent skill",
+        "figma ecosystem"
+      ],
+      "capabilities": [
+        "resource-index",
+        "plugin-directory",
+        "community-curation"
+      ],
+      "install": {
+        "method": "none",
+        "command": "",
+        "repoUrl": "https://github.com/figma/community-resources"
+      },
+      "status": "active",
+      "stars": 840,
+      "addedAt": "2026-08-30T08:00:00.000Z",
+      "useCase": "Discovering Figma community plugins, widgets, and agent skills through a categorized directory for ecosystem exploration.",
+      "advantages": [
+        "Centralized index of Figma ecosystem resources saves discovery time",
+        "Categorized by plugin, widget, agent skill, and additional resources",
+        "Community-maintained with regular updates on new additions"
+      ],
+      "negativeConstraints": [
+        "Purely a resource index — no functional tool or plugin itself",
+        "Community-maintained content may have varying quality and recency",
+        "Does not provide installation or integration guidance beyond links"
+      ]
     }
   ]
 }

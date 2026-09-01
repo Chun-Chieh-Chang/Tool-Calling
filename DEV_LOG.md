@@ -1,4 +1,4 @@
-# Tool-Calling 開發日誌
+﻿# Tool-Calling 開發日誌
 
 ## 2026-08-30 規範級原生 SVG 全鏈路流程圖建置 (ISO 5807 / ANSI) 與三層驗證管線
 
@@ -2895,3 +2895,36 @@ pm test：62/62 PASS, 0 FAIL
 ode cli.js validate：0 errors
 - 
 ode scripts/check-mece.js：通過
+## 2026-08-30 批量加入 10 個 Figma/Generative UI/AI Patterns 工具 + 全盤分類重構
+
+### 需求
+批量加入 11 個 GitHub 倉庫，並執行即時數據刷新與分類全盤檢討。
+
+### 處理結果
+**批量新增**（10 個工具，653 總計）：
+| URL | 分類 | Stars | 備註 |
+|-----|------|-------|------|
+| TheCodeTherapy/3d-web-experience | 開發工具 | 43 | Monorepo 拆解 8 subTools |
+| CopilotKit/generative-ui | 學習資源 | 815 | AG-UI/A2UI/MCP Apps 範例 |
+| nibzard/awesome-agentic-patterns | 學習資源 | 4,932 | 100+ Agentic 模式目錄 |
+| microsoft/ai-agents-for-beginners | 學習資源 | 73,020 | 已存在，stars 同步 |
+| microsoft/FigmaSharp | 開發工具 | 498 | status=archived (2023-04) |
+| figma/sds | 開發工具 | 838 | Code Connect + Storybook |
+| figma/mcp-server-guide | 學習資源 | 1,940 | MCP Server 設定指南 |
+| figma/plugin-samples | 開發工具 | 1,847 | 20+ Plugin 範例 |
+| figma/code-connect | 開發工具 | 1,568 | 設計轉碼官方工具 |
+| figma/figma-api-demo | 學習資源 | 1,336 | status=archived (2023-04) |
+| figma/community-resources | 學習資源 | 840 | Figma 生態資源索引 |
+
+**分類全盤重構**（reclassify-tools.js）：
+- 308/659 工具重新分類
+- AI 框架: 77→186 (+109)｜AI 代理: 133→133（持平）
+- 開發工具: 74→112 (+38)｜學習資源: 53→33 (-20)
+
+**手動修正誤判**：
+- openai-agents-js: 音訊→AI 代理（描述含 "voice agents" 誤觸發音訊規則）
+
+### 驗證結果
+- npm test: 62/62 pass, 0 fail ✅
+- cli.js validate: 0 errors, 0 warnings ✅
+- check-mece.js: 653 工具 / 22 分類通過 ✅
