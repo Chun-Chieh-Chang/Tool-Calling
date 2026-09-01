@@ -74,7 +74,7 @@
 
 ### 驗證結果
 - `node cli.js validate`: **0 個錯誤, 0 個警告**
-- `node scripts/check-mece.js`: **PASS**（653 工具，22 分類，無殘留）
+- `node scripts/check-mece.js`: **PASS**（653 工具，18 分類，無殘留）
 - `npm test`: **62/62 tests 全數 PASS (13 suites, 0 fail)**
 
 ---
