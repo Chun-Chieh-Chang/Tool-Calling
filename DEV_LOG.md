@@ -1,5 +1,41 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-01 分類系統精簡：22→18 分類，提升辨識度
+
+### 需求
+分類數量過多（22個）且部分分類工具數過少（資料庫 4、行銷 3、基礎設施 6），導致辨識度下降。執行合併與重新分配。
+
+### 處理結果 (PDCA)
+- **刪除「圖標與視覺資源」(16)**：全部并入 UI/UX設計（Lucide/Heroicons/Phosphor 等即為 UI 元素）
+- **刪除「資料庫」(4)**：postgres-mcp/duckdb/sqlite 等并入開發工具
+- **刪除「行銷」(3)**：marketingskills/openreply/internet-ad-director 本質為 Agent 技能，并入 AI 代理
+- **重新分配「基礎設施」(6)**：
+  - awesome-selfhosted → 學習資源（自架清單屬參考資源）
+  - ontology-ontio → 安全性（區塊鏈安全相關）
+  - block-buzz → AI 代理（群體智慧協作 Agent）
+  - celld → 開發工具（Deno runtime）
+  - fanqiang → 安全性（代理工具聚合）
+  - omarchy → 開發工具（Linux 開發環境）
+- **新分類分布（18個）**：
+  - AI 代理: 136 / 開發工具: 80 / AI 框架: 77 / 文件生產力: 58 / 學習資源: 54 / UI/UX設計: 53
+  - 知識管理: 32 / 金融與投資: 25 / 影片: 23 / 研究: 21 / 多媒體生成: 18 / 瀏覽器自動化: 16
+  - 安全性: 15 / 3D工程繪圖: 10 / API 整合: 9 / 數據分析: 9 / 音訊: 9 / 測試與自動化: 8
+
+### 根因分析 (RCA)
+- 早期分類策略過於細分（22個），造成小分類工具數不足、辨識度下降
+- 圖標庫（如 Lucide/Heroicons）與 UI/UX 的邊界模糊，不應各自獨立
+
+### 矯正與預防措施 (CAPA)
+- 建立「最小分類閾值」規則：單一分類 < 5 工具時強制并入相鄰領域
+- reclassify-tools.js 加入自動合併提示邏輯
+
+### 驗證結果
+- `node cli.js validate`: **0 錯誤, 0 警告**
+- `node scripts/check-mece.js`: **PASS**（18 分類，653 工具，無殘留）
+- `npm test`: **62/62 tests 全數 PASS**
+
+---
+
 ## 2026-09-01 全盤開發文件同步更新與 stale 資源清理 (Documentation Sync & Stale Resource Cleanup)
 
 ### 需求
@@ -44,8 +80,6 @@
 ---
 
 ## 2026-08-30 規範級原生 SVG 全鏈路流程圖建置 (ISO 5807 / ANSI) 與三層驗證管線
-
-### 需求
 使用者要求建立本專案工具 html 格式的全鏈路流程圖檔案，並嚴格遵循流程圖核心架構決策與工程標準：
 1. **零依賴原生 SVG + vanilla JS**：不引入 mermaid/d3 等外部庫，離線可用、iframe sandbox 安全、無版本風險。
 2. **資料驅動佈局 (Data-Driven Layout)**：流程圖以資料定義（`nodes: {id, col, row, type, title, lines[]}` ＋ `edges: {from, to, route, label?, cls?}`），禁止手寫座標 SVG。

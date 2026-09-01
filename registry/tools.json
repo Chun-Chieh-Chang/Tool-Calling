@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-01T13:06:09.951Z",
+  "lastUpdated": "2026-09-01T13:56:02.391Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -489,7 +489,7 @@
       "name": "Postgres Mcp",
       "url": "https://github.com/crystaldba/postgres-mcp",
       "description": "PostgreSQL MCP server enabling AI agents to execute queries and analyze database performance.",
-      "category": "資料庫",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "postgres",
@@ -5531,7 +5531,7 @@
       "name": "Awesome Selfhosted",
       "url": "https://github.com/awesome-selfhosted/awesome-selfhosted",
       "description": "Curated list of free software alternatives to proprietary SaaS for self-hosting.",
-      "category": "基礎設施",
+      "category": "學習資源",
       "language": "other",
       "triggers": [
         "selfhosted",
@@ -23311,7 +23311,7 @@
       "name": "Marketingskills",
       "url": "https://github.com/coreyhaines31/marketingskills",
       "description": "Marketing toolkit for AI agents covering CRO, SEO, copywriting, and analytics.",
-      "category": "行銷",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "marketing",
@@ -25134,7 +25134,7 @@
       "name": "DuckDB",
       "url": "https://github.com/duckdb/duckdb",
       "description": "High-performance in-process SQL OLAP database management system for analytical queries.",
-      "category": "資料庫",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "duckdb",
@@ -27094,7 +27094,7 @@
       "name": "Homepage",
       "url": "https://github.com/phosphor-icons/homepage",
       "description": "The homepage of Phosphor Icons, a flexible icon family for everyone",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "homepage",
@@ -27136,7 +27136,7 @@
       "name": "Remixicon",
       "url": "https://github.com/Remix-Design/remixicon",
       "description": "Open source neutral style icon system",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "less",
       "triggers": [
         "remixicon",
@@ -27176,7 +27176,7 @@
       "name": "Iconoir",
       "url": "https://github.com/iconoir-icons/iconoir",
       "description": "An open source icons library with 1600+ icons, supporting React, React Native, Flutter, Vue, Figma, and Framer.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "iconoir",
@@ -27286,7 +27286,7 @@
       "name": "Lucide",
       "url": "https://github.com/lucide-icons/lucide",
       "description": "Beautiful & consistent icon toolkit made by the community. Open-source project and a fork of Feather Icons.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "lucide",
@@ -27374,7 +27374,7 @@
       "name": "Bootstrap Icons",
       "url": "https://github.com/uiwjs/bootstrap-icons",
       "description": "Official open source SVG icon library for Bootstrap.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "other",
       "triggers": [
         "bootstrap-icons",
@@ -27417,7 +27417,7 @@
       "name": "Tabler Icons",
       "url": "https://github.com/tabler/tabler-icons",
       "description": "A set of over 6000 free MIT-licensed high-quality SVG icons for you to use in your web projects.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "tabler-icons",
@@ -27582,7 +27582,7 @@
       "name": "Heroicons",
       "url": "https://github.com/tailwindlabs/heroicons",
       "description": "A set of free MIT-licensed high-quality SVG icons for UI development.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "heroicons",
@@ -27615,7 +27615,7 @@
       "name": "Icons",
       "url": "https://github.com/radix-ui/icons",
       "description": "A crisp set of 15×15 icons designed by the @workos team.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "icons",
@@ -27656,7 +27656,7 @@
       "name": "Ant Design Icons",
       "url": "https://github.com/ant-design/ant-design-icons",
       "description": "⭐ Ant Design SVG Icons",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "ant-design-icons",
@@ -27744,7 +27744,7 @@
       "name": "Welovesvg",
       "url": "https://github.com/icons8/welovesvg",
       "description": "SVG sets compilation for popular iconic projects ",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "other",
       "triggers": [
         "welovesvg",
@@ -27826,7 +27826,7 @@
       "name": "Iconify",
       "url": "https://github.com/iconify/iconify",
       "description": "Universal icon framework. One syntax for FontAwesome, Material Design Icons, DashIcons, Feather Icons, EmojiOne, Noto Emoji and many other open source icon sets (over 200 icon sets and ~300k icons). SVG framework, React, Vue and Svelte components!",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
         "iconify",
@@ -27869,7 +27869,7 @@
       "name": "Font Awesome",
       "url": "https://github.com/FortAwesome/Font-Awesome",
       "description": "The iconic SVG, font, and CSS toolkit",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "font-awesome",
@@ -27913,7 +27913,7 @@
       "name": "Material Design Icons",
       "url": "https://github.com/google/material-design-icons",
       "description": "Material Design icons by Google (Material Symbols)",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "other",
       "triggers": [
         "material-design-icons",
@@ -27957,7 +27957,7 @@
       "name": "Fluentui System Icons",
       "url": "https://github.com/microsoft/fluentui-system-icons",
       "description": "Fluent System Icons are a collection of familiar, friendly and modern icons from Microsoft.",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "html",
       "triggers": [
         "fluentui-system-icons",
@@ -28001,7 +28001,7 @@
       "name": "SFSafeSymbols",
       "url": "https://github.com/SFSafeSymbols/SFSafeSymbols",
       "description": "Safely access Apple's SF Symbols using static typing",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "swift",
       "triggers": [
         "sfsafesymbols",
@@ -28043,7 +28043,7 @@
       "name": "Simple Icons",
       "url": "https://github.com/simple-icons/simple-icons",
       "description": "SVG icons for popular brands",
-      "category": "圖標與視覺資源",
+      "category": "UI/UX設計",
       "language": "javascript",
       "triggers": [
         "simple-icons",
@@ -29999,7 +29999,7 @@
       "name": "Ontology",
       "url": "https://github.com/ontio/ontology",
       "description": "Official Go implementation of the Ontology blockchain protocol, enabling high-performance distributed ledger development.",
-      "category": "基礎設施",
+      "category": "安全性",
       "language": "go",
       "triggers": [
         "ontology",
@@ -32309,7 +32309,7 @@
       "name": "Buzz (Block)",
       "url": "https://github.com/block/buzz",
       "description": "Block 開源的「蜂巢思維（hive mind）」去中心化溝通平台，以 Rust 打造，聚焦於群體智慧協作與分散式訊息交換基礎設施。",
-      "category": "基礎設施",
+      "category": "AI 代理",
       "language": "rust",
       "triggers": [
         "buzz",
@@ -32662,7 +32662,7 @@
       "name": "Celld",
       "url": "https://github.com/denoland/celld",
       "description": "Self-hosted distributed Durable Objects for Deno, enabling stateful edge computing.",
-      "category": "基礎設施",
+      "category": "開發工具",
       "language": "rust",
       "triggers": [
         "celld",
@@ -32696,7 +32696,7 @@
       "name": "Fanqiang",
       "url": "https://github.com/bannedbook/fanqiang",
       "description": "Aggregates open-source proxy tools (Brook, Daze, Shadowsocks, etc.) for bypassing internet censorship.",
-      "category": "基礎設施",
+      "category": "安全性",
       "language": "kotlin",
       "triggers": [
         "fanqiang",
@@ -33176,7 +33176,7 @@
       "name": "openreply",
       "url": "https://github.com/diwenne/openreply",
       "description": "Open-source ManyChat alternative: comment-dm automation + account analytics. NOTE: the link below will not allow you to OAuth; you must self-host with your own API keys.",
-      "category": "行銷",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "openreply",
@@ -34364,7 +34364,7 @@
       "name": "Sqlite",
       "url": "https://github.com/sqlite/sqlite",
       "description": "Self-contained, serverless SQL database engine with full ACID compliance and zero configuration.",
-      "category": "資料庫",
+      "category": "開發工具",
       "language": "c",
       "triggers": [
         "sqlite",
@@ -37589,7 +37589,7 @@
       "name": "DB Browser for SQLite",
       "url": "https://github.com/sqlitebrowser/sqlitebrowser",
       "description": "Official home of the DB Browser for SQLite (DB4S) project — 跨平台 SQLite 圖形化管理工具，支援 SQL 編輯、視覺化建表、匯入匯出與資料瀏覽。",
-      "category": "資料庫",
+      "category": "開發工具",
       "language": "cpp",
       "triggers": [
         "sqlite-browser",
@@ -40181,7 +40181,7 @@
       "name": "Omarchy",
       "url": "https://github.com/omacom/omarchy",
       "description": "A modern, opinionated Linux distribution focused on aesthetics and usability.",
-      "category": "基礎設施",
+      "category": "開發工具",
       "language": "shell",
       "triggers": [
         "omarchy",
@@ -40483,7 +40483,7 @@
       "name": "Internet Ad Director",
       "url": "https://github.com/pengfeiqiao/kunpeng/tree/main/skills/internet-ad-director",
       "description": "AI-powered internet ad director for viral marketing, short-video ad planning, and brand campaign execution.",
-      "category": "行銷",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "internet-ad-director",
