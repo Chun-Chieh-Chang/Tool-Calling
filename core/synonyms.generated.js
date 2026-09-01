@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-08-30T03:23:37.930Z
+ * 產生時間：2026-09-01T13:28:05.913Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -139,73 +139,51 @@ export const SYNONYM_MAP = {
     "compliance-check"
   ],
   "卡通": [
-    "video",
     "animate",
     "cartoon",
     "ai animation",
     "動畫",
     "影片生成",
-    "生成",
-    "影片"
-  ],
-  "video": [
-    "卡通",
-    "動畫",
-    "影片生成",
-    "生成",
-    "animate",
-    "cartoon",
-    "ai animation",
     "影片"
   ],
   "animate": [
     "卡通",
     "動畫",
     "影片生成",
-    "video",
     "cartoon",
     "ai animation",
-    "生成",
     "影片"
   ],
   "cartoon": [
     "卡通",
     "動畫",
     "影片生成",
-    "video",
     "animate",
     "ai animation",
-    "生成",
     "影片"
   ],
   "ai animation": [
     "卡通",
     "動畫",
     "影片生成",
-    "video",
     "animate",
     "cartoon",
-    "生成",
     "影片"
   ],
   "動畫": [
-    "video",
     "animate",
     "cartoon",
     "ai animation",
     "卡通",
     "影片生成",
-    "生成",
     "影片"
   ],
   "影片生成": [
-    "video",
     "animate",
     "cartoon",
     "ai animation",
     "卡通",
     "動畫",
-    "生成",
     "影片"
   ],
   "圖片": [
@@ -1258,35 +1236,53 @@ export const SYNONYM_MAP = {
     "ai设计"
   ],
   "生成": [
-    "video",
     "text2video",
     "text to video",
     "ai video",
     "video generation",
-    "卡通",
-    "動畫",
-    "影片生成"
+    "影像生成",
+    "oil-motion",
+    "motion",
+    "video ai"
   ],
   "text2video": [
-    "生成"
+    "生成",
+    "text to video",
+    "ai video",
+    "video generation",
+    "影像生成",
+    "oil-motion",
+    "motion",
+    "video ai"
   ],
   "text to video": [
-    "生成"
+    "生成",
+    "text2video",
+    "ai video",
+    "video generation",
+    "影像生成",
+    "oil-motion",
+    "motion",
+    "video ai"
   ],
   "ai video": [
     "生成",
     "影像生成",
-    "oil-motion",
+    "text2video",
+    "text to video",
     "video generation",
+    "oil-motion",
     "motion",
     "video ai"
   ],
   "video generation": [
     "生成",
     "影像生成",
+    "text2video",
+    "text to video",
+    "ai video",
     "oil-motion",
     "motion",
-    "ai video",
     "video ai"
   ],
   "pdf 分類": [
@@ -1593,7 +1589,9 @@ export const SYNONYM_MAP = {
     "motion",
     "ai video",
     "video ai",
-    "生成"
+    "生成",
+    "text2video",
+    "text to video"
   ],
   "oil-motion": [
     "影像生成",
@@ -1601,7 +1599,9 @@ export const SYNONYM_MAP = {
     "motion",
     "ai video",
     "video ai",
-    "生成"
+    "生成",
+    "text2video",
+    "text to video"
   ],
   "motion": [
     "影像生成",
@@ -1609,7 +1609,9 @@ export const SYNONYM_MAP = {
     "video generation",
     "ai video",
     "video ai",
-    "生成"
+    "生成",
+    "text2video",
+    "text to video"
   ],
   "video ai": [
     "影像生成",
@@ -1617,7 +1619,9 @@ export const SYNONYM_MAP = {
     "video generation",
     "motion",
     "ai video",
-    "生成"
+    "生成",
+    "text2video",
+    "text to video"
   ],
   "微信": [
     "wechat-ai",
@@ -2800,6 +2804,166 @@ export const SYNONYM_MAP = {
     "coding-agent-proxy",
     "fcc-server"
   ],
+  "開發工具": [
+    "omarchy",
+    "linux distro",
+    "aesthetic linux"
+  ],
+  "omarchy": [
+    "開發工具",
+    "linux distro",
+    "aesthetic linux"
+  ],
+  "linux distro": [
+    "開發工具",
+    "omarchy",
+    "aesthetic linux"
+  ],
+  "aesthetic linux": [
+    "開發工具",
+    "omarchy",
+    "linux distro"
+  ],
+  "知識管理": [
+    "openhuman",
+    "local-first ai",
+    "agent orchestration",
+    "personal memory",
+    "deep research"
+  ],
+  "openhuman": [
+    "知識管理",
+    "local-first ai",
+    "agent orchestration",
+    "personal memory",
+    "deep research"
+  ],
+  "local-first ai": [
+    "知識管理",
+    "openhuman",
+    "agent orchestration",
+    "personal memory",
+    "deep research"
+  ],
+  "agent orchestration": [
+    "知識管理",
+    "openhuman",
+    "local-first ai",
+    "personal memory",
+    "deep research"
+  ],
+  "personal memory": [
+    "知識管理",
+    "openhuman",
+    "local-first ai",
+    "agent orchestration",
+    "deep research"
+  ],
+  "deep research": [
+    "知識管理",
+    "openhuman",
+    "local-first ai",
+    "agent orchestration",
+    "personal memory"
+  ],
+  "画布": [
+    "canvas-project-manager",
+    "canvas",
+    "project",
+    "manager",
+    "操作顺序",
+    "数据安全"
+  ],
+  "canvas-project-manager": [
+    "画布",
+    "操作顺序",
+    "数据安全",
+    "canvas",
+    "project",
+    "manager"
+  ],
+  "canvas": [
+    "画布",
+    "操作顺序",
+    "数据安全",
+    "canvas-project-manager",
+    "project",
+    "manager"
+  ],
+  "project": [
+    "画布",
+    "操作顺序",
+    "数据安全",
+    "canvas-project-manager",
+    "canvas",
+    "manager"
+  ],
+  "manager": [
+    "画布",
+    "操作顺序",
+    "数据安全",
+    "canvas-project-manager",
+    "canvas",
+    "project"
+  ],
+  "操作顺序": [
+    "canvas-project-manager",
+    "canvas",
+    "project",
+    "manager",
+    "画布",
+    "数据安全"
+  ],
+  "数据安全": [
+    "canvas-project-manager",
+    "canvas",
+    "project",
+    "manager",
+    "画布",
+    "操作顺序"
+  ],
+  "分镜": [
+    "film-master",
+    "film",
+    "master",
+    "storyboard",
+    "script-to-visual"
+  ],
+  "film-master": [
+    "分镜",
+    "film",
+    "master",
+    "storyboard",
+    "script-to-visual"
+  ],
+  "film": [
+    "分镜",
+    "film-master",
+    "master",
+    "storyboard",
+    "script-to-visual"
+  ],
+  "master": [
+    "分镜",
+    "film-master",
+    "film",
+    "storyboard",
+    "script-to-visual"
+  ],
+  "storyboard": [
+    "分镜",
+    "film-master",
+    "film",
+    "master",
+    "script-to-visual"
+  ],
+  "script-to-visual": [
+    "分镜",
+    "film-master",
+    "film",
+    "master",
+    "storyboard"
+  ],
   "翻譯": [
     "translate",
     "translation",
@@ -3016,12 +3180,10 @@ export const SYNONYM_MAP = {
   ],
   "影片": [
     "影片生成",
-    "video",
     "animate",
     "cartoon",
     "ai animation",
     "卡通",
-    "動畫",
-    "生成"
+    "動畫"
   ]
 };

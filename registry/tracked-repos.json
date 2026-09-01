@@ -20355,12 +20355,9 @@
     "fullName": "ripienaar/free-for-dev",
     "owner": "ripienaar",
     "repo": "free-for-dev",
-    "initialStars": 131312,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "研究",
     "addedAt": "2026-08-31T08:09:43.424Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "krahets/hello-algo": {
     "fullName": "krahets/hello-algo",
@@ -23883,11 +23880,443 @@
     "addedAt": "2026-08-30T13:45:04.333Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2338,
-    "inRegistry": 609,
-    "trackedOnly": 1728,
-    "lastGenerated": "2026-08-31T08:09:43.460Z"
+  "TheCodeTherapy/3d-web-experience": {
+    "fullName": "TheCodeTherapy/3d-web-experience",
+    "owner": "TheCodeTherapy",
+    "repo": "3d-web-experience",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-08-31T08:09:43.424Z"
+  "CopilotKit/generative-ui": {
+    "fullName": "CopilotKit/generative-ui",
+    "owner": "CopilotKit",
+    "repo": "generative-ui",
+    "category": "學習資源",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "nibzard/awesome-agentic-patterns": {
+    "fullName": "nibzard/awesome-agentic-patterns",
+    "owner": "nibzard",
+    "repo": "awesome-agentic-patterns",
+    "category": "學習資源",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "microsoft/FigmaSharp": {
+    "fullName": "microsoft/FigmaSharp",
+    "owner": "microsoft",
+    "repo": "FigmaSharp",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "figma/sds": {
+    "fullName": "figma/sds",
+    "owner": "figma",
+    "repo": "sds",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "figma/mcp-server-guide": {
+    "fullName": "figma/mcp-server-guide",
+    "owner": "figma",
+    "repo": "mcp-server-guide",
+    "category": "學習資源",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "figma/plugin-samples": {
+    "fullName": "figma/plugin-samples",
+    "owner": "figma",
+    "repo": "plugin-samples",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "figma/code-connect": {
+    "fullName": "figma/code-connect",
+    "owner": "figma",
+    "repo": "code-connect",
+    "category": "開發工具",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "figma/figma-api-demo": {
+    "fullName": "figma/figma-api-demo",
+    "owner": "figma",
+    "repo": "figma-api-demo",
+    "category": "學習資源",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "figma/community-resources": {
+    "fullName": "figma/community-resources",
+    "owner": "figma",
+    "repo": "community-resources",
+    "category": "學習資源",
+    "addedAt": "2026-08-30T08:00:00.000Z",
+    "status": "tracking"
+  },
+  "sapientinc/PRAXIST": {
+    "fullName": "sapientinc/PRAXIST",
+    "owner": "sapientinc",
+    "repo": "PRAXIST",
+    "initialStars": 4813,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "HEJustinSun/my-girlfriend-jingtian-latex": {
+    "fullName": "HEJustinSun/my-girlfriend-jingtian-latex",
+    "owner": "HEJustinSun",
+    "repo": "my-girlfriend-jingtian-latex",
+    "initialStars": 4168,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Gaoshu705/QzoneArchive": {
+    "fullName": "Gaoshu705/QzoneArchive",
+    "owner": "Gaoshu705",
+    "repo": "QzoneArchive",
+    "initialStars": 2469,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "tobi/walgit": {
+    "fullName": "tobi/walgit",
+    "owner": "tobi",
+    "repo": "walgit",
+    "initialStars": 2350,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "CYQawa/YunX": {
+    "fullName": "CYQawa/YunX",
+    "owner": "CYQawa",
+    "repo": "YunX",
+    "initialStars": 2027,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "amagine-ai/Amagine3D": {
+    "fullName": "amagine-ai/Amagine3D",
+    "owner": "amagine-ai",
+    "repo": "Amagine3D",
+    "initialStars": 1619,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "XiaoDuoYa/codex-with-chatgpt": {
+    "fullName": "XiaoDuoYa/codex-with-chatgpt",
+    "owner": "XiaoDuoYa",
+    "repo": "codex-with-chatgpt",
+    "initialStars": 1574,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zouyuxuan122/DSH-Desktop-EAC": {
+    "fullName": "zouyuxuan122/DSH-Desktop-EAC",
+    "owner": "zouyuxuan122",
+    "repo": "DSH-Desktop-EAC",
+    "initialStars": 1457,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "AdamPlatin123/dsh-plugin-radar": {
+    "fullName": "AdamPlatin123/dsh-plugin-radar",
+    "owner": "AdamPlatin123",
+    "repo": "dsh-plugin-radar",
+    "initialStars": 1435,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "MeteorNOX/DeepSeek-Balance-Whale-Widget": {
+    "fullName": "MeteorNOX/DeepSeek-Balance-Whale-Widget",
+    "owner": "MeteorNOX",
+    "repo": "DeepSeek-Balance-Whale-Widget",
+    "initialStars": 1425,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ApodexAI/FrontierAgent": {
+    "fullName": "ApodexAI/FrontierAgent",
+    "owner": "ApodexAI",
+    "repo": "FrontierAgent",
+    "initialStars": 1319,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nateherkai/scroll-craft": {
+    "fullName": "nateherkai/scroll-craft",
+    "owner": "nateherkai",
+    "repo": "scroll-craft",
+    "initialStars": 1300,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "N4darae/anti-mage": {
+    "fullName": "N4darae/anti-mage",
+    "owner": "N4darae",
+    "repo": "anti-mage",
+    "initialStars": 1258,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "MetaMask-AI/metamask-desktop": {
+    "fullName": "MetaMask-AI/metamask-desktop",
+    "owner": "MetaMask-AI",
+    "repo": "metamask-desktop",
+    "initialStars": 1228,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "AIMixer/ComfyUI_MiniMaxH3_Director": {
+    "fullName": "AIMixer/ComfyUI_MiniMaxH3_Director",
+    "owner": "AIMixer",
+    "repo": "ComfyUI_MiniMaxH3_Director",
+    "initialStars": 1179,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wide-trace/open-higgsfield": {
+    "fullName": "wide-trace/open-higgsfield",
+    "owner": "wide-trace",
+    "repo": "open-higgsfield",
+    "initialStars": 1104,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "bryllim/workout-guide": {
+    "fullName": "bryllim/workout-guide",
+    "owner": "bryllim",
+    "repo": "workout-guide",
+    "initialStars": 1034,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xmanrui/dsh-im": {
+    "fullName": "xmanrui/dsh-im",
+    "owner": "xmanrui",
+    "repo": "dsh-im",
+    "initialStars": 1025,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Nanako0129/sepia": {
+    "fullName": "Nanako0129/sepia",
+    "owner": "Nanako0129",
+    "repo": "sepia",
+    "initialStars": 1020,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ant-research/4DAnyone": {
+    "fullName": "ant-research/4DAnyone",
+    "owner": "ant-research",
+    "repo": "4DAnyone",
+    "initialStars": 1016,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "cclank/lanshu-create-ai-presenter-video": {
+    "fullName": "cclank/lanshu-create-ai-presenter-video",
+    "owner": "cclank",
+    "repo": "lanshu-create-ai-presenter-video",
+    "initialStars": 982,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "themartiano/try-omarchy": {
+    "fullName": "themartiano/try-omarchy",
+    "owner": "themartiano",
+    "repo": "try-omarchy",
+    "initialStars": 973,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "stanuwu/Sunrise": {
+    "fullName": "stanuwu/Sunrise",
+    "owner": "stanuwu",
+    "repo": "Sunrise",
+    "initialStars": 960,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "0xsline/awesome-deepseek-harness": {
+    "fullName": "0xsline/awesome-deepseek-harness",
+    "owner": "0xsline",
+    "repo": "awesome-deepseek-harness",
+    "initialStars": 957,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Tencent/WeMM-Embedding": {
+    "fullName": "Tencent/WeMM-Embedding",
+    "owner": "Tencent",
+    "repo": "WeMM-Embedding",
+    "initialStars": 954,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Spielewoy/autoprompt-skill": {
+    "fullName": "Spielewoy/autoprompt-skill",
+    "owner": "Spielewoy",
+    "repo": "autoprompt-skill",
+    "initialStars": 949,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "amosblomqvist/learn": {
+    "fullName": "amosblomqvist/learn",
+    "owner": "amosblomqvist",
+    "repo": "learn",
+    "initialStars": 943,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "syv-ai/qwen38-27b-rtx3090": {
+    "fullName": "syv-ai/qwen38-27b-rtx3090",
+    "owner": "syv-ai",
+    "repo": "qwen38-27b-rtx3090",
+    "initialStars": 932,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "amirh00sain/SpiderPanel": {
+    "fullName": "amirh00sain/SpiderPanel",
+    "owner": "amirh00sain",
+    "repo": "SpiderPanel",
+    "initialStars": 930,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "p2r3/ha.mr": {
+    "fullName": "p2r3/ha.mr",
+    "owner": "p2r3",
+    "repo": "ha.mr",
+    "initialStars": 918,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shadcn-labs/pdfcn": {
+    "fullName": "shadcn-labs/pdfcn",
+    "owner": "shadcn-labs",
+    "repo": "pdfcn",
+    "initialStars": 906,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jeremy-prt/bloub": {
+    "fullName": "jeremy-prt/bloub",
+    "owner": "jeremy-prt",
+    "repo": "bloub",
+    "initialStars": 900,
+    "discoveredAt": "2026-08-31T08:09:43.424Z",
+    "sourceSnapshotWeek": "2026-W36",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2380,
+    "inRegistry": 620,
+    "trackedOnly": 1759,
+    "lastGenerated": "2026-09-01T13:06:09.973Z"
+  },
+  "lastGenerated": "2026-09-01T13:06:09.951Z"
 }

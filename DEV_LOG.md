@@ -1,4 +1,47 @@
-﻿# Tool-Calling 開發日誌
+# Tool-Calling 開發日誌
+
+## 2026-09-01 全盤開發文件同步更新與 stale 資源清理 (Documentation Sync & Stale Resource Cleanup)
+
+### 需求
+執行「整體程式碼與檔案優化作業」五階段 SOP：dead code 盤點 → 文件同步 → MECE 確效 → 測試驗證 → Git commit。
+
+### 處理結果 (PDCA)
+- **Dead Code 刪除**：
+  - `scripts/temp-batch-add.txt`：已無參考價值的舊批次 URL 暫存檔（最後使用於 2026-08-27 批次）
+- **AGENTS.md 統計同步**（Project Stats 區塊）：
+  - 工具庫規模：625 → 653
+  - 追蹤 repos：2,334 → 2,382
+  - 總 star 數：27,149,159 → 27,298,755
+  - 平均 star 數：43,439 → 41,805
+  - Top 5 分類：AI 代理 132 / AI 框架 77 / 開發工具 74 / 文件生產力 58 / 學習資源 53
+  - Top 5 語言：Python 235 / TypeScript 148 / JavaScript 62 / Other 44 / Rust 29
+  - 測試數：57 → 62
+  - 版本：v1.0 → v1.2
+- **README.md 同步**：
+  - 工具數 625 → 653（3 處）
+  - 工具數 618 → 653（2 處）
+  - 工具數 615 → 653（1 處）
+- **docs/pipeline-workflow.html 同步**：
+  - 標題徽標 625 → 653 Tools
+- **DEAD CODE 盤點確認**：
+  - 經全域 grep 掃描，`scripts/check-category-consistency.js`、`scripts/fix-low-quality-tools.js`、`scripts/check-existing.js` 均已不存在於檔案系統（已於 2026-08-30 優化批次中刪除）
+  - `core/skill-aggregator.js`、`core/telemetry-summary.js`、`scripts/find-skill.js`、`tests/eval-benchmark.js` 均不存在
+  - 本次無新增 dead code，文件與實作狀態對齊
+
+### 根因分析 (RCA)
+- AGENTS.md 統計數字未隨工具庫擴充同步更新，導致協議文件與 registry 實際狀態漂移（stale stats）
+- README.md 工具數文字散佈於 6 處，未建立 SSOT 單一來源追蹤，導致更新遺漏
+
+### 矯正與預防措施 (CAPA)
+- 每次批量入庫或 trending 後，強制執行 `node cli.js validate` + `npm test` + `check-mece` 並同步更新 AGENTS.md 與 README.md 的統計數據
+- 建立 COMMIT HOOK 規則：提交前檢查 `node cli.js validate` 0 errors 為前提
+
+### 驗證結果
+- `node cli.js validate`: **0 個錯誤, 0 個警告**
+- `node scripts/check-mece.js`: **PASS**（653 工具，22 分類，無殘留）
+- `npm test`: **62/62 tests 全數 PASS (13 suites, 0 fail)**
+
+---
 
 ## 2026-08-30 規範級原生 SVG 全鏈路流程圖建置 (ISO 5807 / ANSI) 與三層驗證管線
 

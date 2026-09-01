@@ -4,7 +4,7 @@
 
 ## 这是什么？
 
-想像你有一个 **全功能 AI 工具箱**，里面收录了 **625 个顶尖开源 AI 工具与 Agent 技能**：
+想像你有一个 **全功能 AI 工具箱**，里面收录了 **653 个顶尖开源 AI 工具与 Agent 技能**：
 
 - 📊 **数据与分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **简报与文件生产力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -141,7 +141,7 @@ Tool-Calling/
 │   ├── generate-knowledge-graph.js # 100% OLED 純黑實心知識圖譜生成器
 │   └── check-mece.js       # MECE 分类检查
 ├── registry/           # 工具库
-│   └── tools.json        # 615 工具 (单一真理来源)
+│   └── tools.json        # 653 工具 (单一真理来源)
 ├── docs/               # 文档
 │   ├── SEARCH-ENGINE-OPTIMIZATION-REPORT.md  # 检索引擎优化报告
 │   ├── category-conventions.md    # 分類慣例(領域優先 + AI 框架/代理邊界)
@@ -167,7 +167,7 @@ node scripts/check-mece.js        # MECE 原則分類完整度驗證
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v2.0 - 618 Tools, 352 Synonyms, Live Refresh & Dual-Week Trending
+> Tool-Calling v2.0 - 653 Tools, 352 Synonyms, Live Refresh & Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI
