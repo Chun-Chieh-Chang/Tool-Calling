@@ -1016,11 +1016,12 @@
 
         // vloop: 同欄向下循環，底邊下行 -> 水平回流 -> 頂邊上行
         case 'vloop': {
+          const cfg = GRAPH_DATA.config;
           const x1 = f.bottom.x;
           const y1 = f.bottom.y;
           const x2 = t.top.x;
           const y2 = t.top.y - GAP;
-          const loopDepth = Math.max(50, Math.min(100, rowGap * 0.5));
+          const loopDepth = Math.max(50, Math.min(100, cfg.rowGap * 0.5));
           const loopY = Math.max(y1, y2) + loopDepth;
           d = `M ${x1} ${y1} L ${x1} ${loopY} L ${x2} ${loopY} L ${x2} ${y2}`;
           labelPt = { x: x1 + 8, y: (Math.max(y1, y2) + loopY) / 2 };
