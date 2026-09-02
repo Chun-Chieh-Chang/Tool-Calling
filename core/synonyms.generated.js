@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-09-01T14:16:29.049Z
+ * 產生時間：2026-09-02T12:50:13.650Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -2963,6 +2963,18 @@ export const SYNONYM_MAP = {
     "film",
     "master",
     "storyboard"
+  ],
+  "研究": [
+    "praxist"
+  ],
+  "praxist": [
+    "研究"
+  ],
+  "ai 代理": [
+    "goldie"
+  ],
+  "goldie": [
+    "ai 代理"
   ],
   "翻譯": [
     "translate",
