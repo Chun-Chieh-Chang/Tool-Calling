@@ -2240,7 +2240,7 @@
       "url": "https://github.com/juliusbrussee/caveman",
       "description": "Claude Code skill minimizing token usage through simplified communication.",
       "category": "開發工具",
-      "language": "javascript",
+      "language": "go",
       "triggers": [
         "caveman",
         "claude code",
@@ -2273,7 +2273,7 @@
         "Avoid for complex reasoning tasks where simplified phrasing may lose critical nuance.",
         "Not suitable for non-Claude Code environments or other LLM interfaces."
       ],
-      "stars": 100336
+      "stars": 102388
     },
     {
       "id": "caveman-code",
@@ -5323,7 +5323,7 @@
         "Requires external LLM API access or local model configuration to function.",
         "May incur token costs depending on the selected model provider."
       ],
-      "stars": 234395
+      "stars": 239808
     },
     {
       "id": "maigret",
@@ -11888,7 +11888,7 @@
       "url": "https://github.com/blader/humanizer",
       "description": "Text processing skill to remove AI writing patterns and make content sound natural.",
       "category": "文件生產力",
-      "language": "other",
+      "language": "python",
       "triggers": [
         "humanizer",
         "rewrite",
@@ -41516,38 +41516,6 @@
       ],
       "addedAt": "2026-09-02T11:10:52.855Z",
       "status": "experimental"
-    },
-    {
-      "id": "free-router",
-      "name": "Free Router",
-      "url": "https://github.com/bytonylee/free-router",
-      "description": "The free AI model router, API for everyday AI work. Find the best option, compare results, switch with less friction.",
-      "category": "API 整合",
-      "language": "typescript",
-      "triggers": [
-        "free-router",
-        "ai-router",
-        "model-comparison",
-        "api-router"
-      ],
-      "capabilities": [
-        "ai-router",
-        "model-comparison",
-        "api-integration"
-      ],
-      "advantages": [
-        "Free tier available for AI model routing",
-        "Compare results across multiple models",
-        "Low-friction model switching"
-      ],
-      "useCase": "Compare AI model outputs across providers and route to the best performer for your use case.",
-      "stars": 371,
-      "status": "active",
-      "negativeConstraints": [
-        "需要多個 AI 模型提供者的 API 存取權限",
-        "不適合單一模型工作流，僅在需要比較時使用",
-        "免費層級可能有使用頻率限制"
-      ]
     },
     {
       "id": "timesfm",
