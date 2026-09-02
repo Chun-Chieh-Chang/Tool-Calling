@@ -1253,10 +1253,10 @@
     function runGeometryAudit() {
       let errors = 0;
       GRAPH_DATA.edges.forEach(e => {
-        const from = nodeMap.get(e.from);
-        const to = nodeMap.get(e.to);
+        const from = nodeMap.get(e.from) || groupMap.get(e.from);
+        const to = nodeMap.get(e.to) || groupMap.get(e.to);
         if (!from || !to) {
-          console.error(`幾何審計失敗：未找到邊線節點 ${e.from} -> ${e.to}`);
+          console.error(`幾何審計失敗：未找到邊線端點 ${e.from} -> ${e.to}`);
           errors++;
         }
       });

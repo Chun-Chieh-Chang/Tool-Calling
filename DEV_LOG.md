@@ -22,7 +22,7 @@
 - **群組容器邊界接線修復（消除邊框穿越）**：
   - 將意圖剖析進入平行檢索群組的目標更正為群組本身（`to: 'grp_search'`），藍色接線終止於紫紅色頂部邊界正中點（$x=570, y=515.6$）。
   - 將離開檢索群組至候選池的來源更正為群組本身（`from: 'grp_search'`，`route: 'gdown'`），藍色接線起始於紫紅色底部邊界正中點（$x=570, y=637.6$）。
-  - 渲染器 `calculateEdgePath` 與驗證腳本 `verify-flowchart-spec.js` 全面支援群組實體端點與 `gdown` 路由幾何審計，徹底杜絕線條穿透群組容器。
+  - 渲染器 `calculateEdgePath`、網頁前端 `runGeometryAudit()` 與驗證腳本 `verify-flowchart-spec.js` 全面支援群組實體端點與 `gdown` 路由幾何審計，徹底杜絕線條穿透群組容器與前端誤報異常連線警告。
 - **提示詞規範全面優化 (prompt-pipeline-workflow.md)**：
   - 更新群組容器「邊界絕不穿透」鐵律，要求連線嚴格終止於頂部中點（`to: 'grp_id'`）並起始於底部中點（`from: 'grp_id', route: 'gdown'`），刪除舊版「半透明遮擋穿透線」的妥協文字。
   - 確立「起點近列分流強制 `hdown` 鐵律」，防範 `elbow` 在 $\Delta Y < 60\text{px}$ 下的 1px 貼邊橫切畸形。
