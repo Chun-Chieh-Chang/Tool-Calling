@@ -809,7 +809,7 @@
         // Start -> 決策 1
         { from: 'start', to: 'dec_ambiguity', route: 'v' },
         // Start -> 加入工具庫（平行管線）
-        { from: 'start', to: 'add_tool', route: 'h' },
+        { from: 'start', to: 'add_tool', route: 'v' },
         // 加入工具庫 -> LLM 分類決策
         { from: 'add_tool', to: 'dec_llm_category', route: 'v' },
         // LLM 可用 -> LLM 分類
@@ -964,7 +964,7 @@
           const y = f.right.y;
           const x2 = t.left.x - GAP;
           d = `M ${x1} ${y} L ${x2} ${y}`;
-          labelPt = { x: x1 + 16, y: y - 8 };
+          labelPt = { x: x1 + 16, y: y + 8 };
           break;
         }
 
@@ -1011,6 +1011,19 @@
           const underY = Math.max(y1, y2) + 24;
           d = `M ${x1} ${y1} L ${x1} ${underY} L ${x2} ${underY} L ${x2} ${y2}`;
           labelPt = { x: (x1 + x2) / 2, y: underY - 8 };
+          break;
+        }
+
+        // vloop: 同欄向下循環，底邊下行 -> 水平回流 -> 頂邊上行
+        case 'vloop': {
+          const x1 = f.bottom.x;
+          const y1 = f.bottom.y;
+          const x2 = t.top.x;
+          const y2 = t.top.y - GAP;
+          const loopDepth = Math.max(50, Math.min(100, rowGap * 0.5));
+          const loopY = Math.max(y1, y2) + loopDepth;
+          d = `M ${x1} ${y1} L ${x1} ${loopY} L ${x2} ${loopY} L ${x2} ${y2}`;
+          labelPt = { x: x1 + 8, y: (Math.max(y1, y2) + loopY) / 2 };
           break;
         }
 
