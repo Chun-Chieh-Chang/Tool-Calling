@@ -512,12 +512,12 @@
 
       <!-- 變換層 (Zoom / Pan Layer) -->
       <g id="transform-layer">
-        <!-- 1. 群組邊界 (Groups) -->
-        <g id="layer-groups"></g>
-        <!-- 2. 連接邊線 (Edges) -->
+        <!-- 2. 連接邊線 (Edges) — 最底層 -->
         <g id="layer-edges"></g>
-        <!-- 3. 節點本體 (Nodes) -->
+        <!-- 3. 節點本體 (Nodes) — 遮擋穿過邊線 -->
         <g id="layer-nodes"></g>
+        <!-- 4. 群組邊界 (Groups) — 最上層，浮在所有 edge 上方 -->
+        <g id="layer-groups"></g>
       </g>
     </svg>
 
@@ -944,8 +944,8 @@
       let d = '';
       let labelPt = { x: 0, y: 0 };
 
-      // 內縮 6px 給箭頭觸線（marker refX=8, refY=5，tip 約伸入 5-6px）
-      const GAP = 6;
+      // 內縮 2px 給箭頭觸線（marker refX=8, refY=5）
+      const GAP = 2;
 
       switch (route) {
         // v: 同欄，底邊中點 -> 頂邊中點直線
