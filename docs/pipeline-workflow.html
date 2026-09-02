@@ -661,7 +661,7 @@
         // ── Row 3: 平行三層混合檢索 (群組容器內) ──
         {
           id: 'l1_exact',
-          col: 0,
+          col: 0.5,
           row: 3.4,
           type: 'process',
           title: 'L1: 精確匹配 (Exact)',
@@ -816,8 +816,8 @@
         { from: 'dec_llm_category', to: 'llm_classify', route: 'h', label: '是 (AGNES_API_KEY)' },
         // LLM 不可用 -> 規則引擎
         { from: 'dec_llm_category', to: 'rule_classify', route: 'v', label: '否 / 低置信度' },
-        // LLM 分類 -> hook-reclassify
-        { from: 'llm_classify', to: 'hook_reclassify', route: 'v' },
+        // LLM 分類 -> hook-reclassify（異列 → elbow）
+        { from: 'llm_classify', to: 'hook_reclassify', route: 'elbow' },
         // 規則引擎 -> hook-reclassify
         { from: 'rule_classify', to: 'hook_reclassify', route: 'v' },
         // hook-reclassify -> 回寫分类
