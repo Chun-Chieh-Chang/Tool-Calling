@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-02T11:10:52.855Z",
+  "lastUpdated": "2026-09-02T13:04:51.060Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41619,7 +41619,7 @@
       "name": "SIE",
       "url": "https://github.com/superlinked/sie",
       "description": "Open-source inference server and production cluster for all the models your agent needs.",
-      "category": "基礎建設",
+      "category": "AI 框架",
       "language": "python",
       "triggers": [
         "sie",

@@ -1,4 +1,4 @@
-﻿# 工具分類系統 (MECE 原則)
+# 工具分類系統 (MECE 原則)
 
 ## 概述
 
@@ -10,35 +10,31 @@
 
 ## 當前分類架構
 
-> 統計時間:2026-08-16(`node cli.js validate` + `npm run check-mece` 確認)
-> 分類慣例與兩大判定原則詳見 `docs/category-conventions.md`(領域優先 + AI 框架/代理邊界)
+> 統計時間: 2026-09-02 (`node cli.js validate` + `node scripts/check-mece.js` 確認)
+> 分類慣例與兩大判定原則詳見 `docs/category-conventions.md` (領域優先 + AI 框架/代理邊界)
 
 | 分類 | 數量 | 說明 |
 |------|------|------|
-| AI 代理 | 119 | 成品 agent、agent harness、skill/plugin 集合、agent 平台 |
-| AI 框架 | 77 | LLM SDK、模型本體、推論/訓練框架、agent 建構庫 |
-| 開發工具 | 54 | CLI、IDE、代碼審查、token 壓縮等泛用工具 |
-| 文件生產力 | 51 | 簡報/PPT、Office、PDF、文件轉換、寫作輔助 |
-| 學習資源 | 46 | 教程、課程、書籍、Awesome Lists |
-| UI/UX設計 | 35 | 前端框架、設計系統、網頁動畫、原型 |
-| 知識管理 | 31 | agent 記憶、RAG、知識圖譜、codebase 索引 |
+| AI 代理 | 141 | 成品 agent、agent harness、skill/plugin 集合、agent 平台 |
+| 開發工具 | 83 | CLI、IDE、代碼審查、token 壓縮等泛用工具 |
+| AI 框架 | 78 | LLM SDK、模型本體、推論/訓練框架、agent 建構庫 |
+| 文件生產力 | 58 | 簡報/PPT、Office、PDF、文件轉換、寫作輔助 |
+| 學習資源 | 54 | 教程、課程、書籍、Awesome Lists |
+| UI/UX設計 | 53 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
+| 知識管理 | 32 | agent 記憶、RAG、知識圖譜、codebase 索引 |
 | 金融與投資 | 25 | 交易、量化、股票分析、投資研究 |
 | 影片 | 23 | 視頻編輯、視頻生成、串流 |
+| 研究 | 23 | 學術研究、文獻、洩漏提示詞研究 |
+| 多媒體生成 | 18 | AI 圖像/視頻生成 |
 | 瀏覽器自動化 | 16 | 爬蟲、Scraper、Headless、agent 瀏覽器 |
-| 圖標與視覺資源 | 16 | 圖標庫本體、SVG 矢量資源 |
-| 研究 | 14 | 學術研究、文獻、洩漏提示詞研究 |
-| 安全性 | 13 | 滲透測試、漏洞掃描、資安技能 |
-| 多媒體生成 | 13 | AI 圖像/視頻生成 |
+| 安全性 | 15 | 滲透測試、漏洞掃描、資安技能 |
+| 數據分析 | 10 | Pandas/Polars、產品分析 |
+| 音訊 | 10 | TTS/STT、音頻處理 |
 | 3D工程繪圖 | 10 | CAD、3D 建模、3D 資產生成 |
-| 音訊 | 9 | TTS/STT、音頻處理 |
+| API 整合 | 9 | API 閘道、整合工具 |
 | 測試與自動化 | 8 | Test Runner、E2E 測試框架 |
-| API 整合 | 8 | API 閘道、整合工具 |
-| 數據分析 | 7 | Pandas/Polars、產品分析 |
-| 基礎設施 | 5 | Docker/K8s、網路代理、區塊鏈協議 |
-| 資料庫 | 3 | SQL/NoSQL 數據庫引擎 |
-| 行銷 | 2 | SEO、社群自動化、CRM |
 
-**合計**:597 個工具,22 個分類,無「其他」殘留(MECE 強制)。
+**合計**: 666 個工具, 18 個分類, 無「其他」殘留 (MECE 強制 100% 覆蓋)。
 
 ---
 

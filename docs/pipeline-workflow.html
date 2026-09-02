@@ -501,7 +501,7 @@
     <!-- 原生 SVG 流程圖 -->
     <svg id="flowchart-svg" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- 箭頭標記 (marker) 嚴格內縮 2px 觸線 -->
+        <!-- 箭頭標記 (marker) refX=8, markerWidth=6 → tip 超出 endpoint 4.8px -->
         <marker id="marker-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
           <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--line-color)"></path>
         </marker>
@@ -568,7 +568,7 @@
           desc: '透過對話咒語、CLI 引數或 MCP JSON-RPC 啟動自動調用管線。'
         },
 
-        // ── Row 0.5: 加入工具庫（平行管線）──
+        // ── Row 0.5 ~ 4.5: 加入工具庫與分類治理管線（平行管線）──
         {
           id: 'add_tool',
           col: 3,
@@ -585,14 +585,14 @@
           row: 1.5,
           type: 'decision',
           title: 'LLM 分類\n可用？',
-          lines: ['AGNES_API_KEY 有值時觸發'],
+          lines: [],
           module: 'core/classifier.js',
           desc: '若有 AGNES_API_KEY，先用 LLM 判斷分類；否則僅用規則引擎。'
         },
         {
           id: 'llm_classify',
           col: 4,
-          row: 1.8,
+          row: 1.5,
           type: 'process',
           title: 'LLM 分類決策',
           lines: ['confidence ≥ 0.8 → 直接採用',
@@ -613,15 +613,37 @@
           desc: '當 LLM 不可用或低置信度時，使用重構後的 18 分類規則引擎。'
         },
         {
+          id: 'llm_applied',
+          col: 4,
+          row: 2.5,
+          type: 'process',
+          title: 'LLM 分類採納',
+          lines: ['置信度 ≥ 0.5 更新分類',
+                  '預寫入 tools.json 暫存'],
+          module: 'core/classifier.js',
+          desc: '採納 LLM 高中置信度分類結果，標記建議並準備全庫重審。'
+        },
+        {
           id: 'hook_reclassify',
           col: 3,
           row: 3.5,
           type: 'process',
           title: 'hook-reclassify dry-run',
-          lines: ['整庫重審分类建議',
+          lines: ['整庫重審分類建議',
                   '輸出需人工確認的差異'],
           module: 'scripts/hook-reclassify.js',
           desc: '新增工具後觸發整庫重審，輸出差異報告供用戶決定是否 apply。'
+        },
+        {
+          id: 'tool_saved',
+          col: 3,
+          row: 4.5,
+          type: 'end',
+          title: '工具收錄完成',
+          lines: ['寫入 tools.json 註冊表',
+                  '人工確認後 apply 生效'],
+          module: 'registry/tools.json',
+          desc: '新工具分類審查就緒，寫入註冊庫完成全自動收錄與分類治理。'
         },
 
         // ── Row 1: 需求決策菱形 ──
@@ -808,20 +830,24 @@
       edges: [
         // Start -> 決策 1
         { from: 'start', to: 'dec_ambiguity', route: 'v' },
-        // Start -> 加入工具庫（平行管線）
-        { from: 'start', to: 'add_tool', route: 'v' },
-        // 加入工具庫 -> LLM 分類決策
+        // Start -> 加入工具庫（平行管線分流：從起點右側中點水平射出，垂直下折進入頂邊中點）
+        { from: 'start', to: 'add_tool', route: 'hdown', label: '擴充管線: 新增工具' },
+        // 加入工具庫 -> LLM 分類可用？菱形
         { from: 'add_tool', to: 'dec_llm_category', route: 'v' },
-        // LLM 可用 -> LLM 分類
-        { from: 'dec_llm_category', to: 'llm_classify', route: 'h', label: '是 (AGNES_API_KEY)' },
-        // LLM 不可用 -> 規則引擎
-        { from: 'dec_llm_category', to: 'rule_classify', route: 'v', label: '否 / 低置信度' },
-        // LLM 分類 -> hook-reclassify
-        { from: 'llm_classify', to: 'hook_reclassify', route: 'v' },
-        // 規則引擎 -> hook-reclassify
-        { from: 'rule_classify', to: 'hook_reclassify', route: 'v' },
-        // hook-reclassify -> 回寫分类
-        { from: 'hook_reclassify', to: 'add_tool', route: 'vloop', label: '人工覆核後 apply' },
+        // LLM 可用 -> LLM 分類決策 (同列水平向右，精準對齊邊線中點)
+        { from: 'dec_llm_category', to: 'llm_classify', route: 'h', label: '是: API 就緒' },
+        // LLM 不可用 -> 規則引擎 (同欄垂直向下，消除邏輯倒置)
+        { from: 'dec_llm_category', to: 'rule_classify', route: 'v', label: '否: 無 API Key' },
+        // LLM 分類決策 -> 規則引擎 (低置信度回退)
+        { from: 'llm_classify', to: 'rule_classify', route: 'elbow', label: '< 0.5 (回退規則)' },
+        // LLM 分類決策 -> LLM 分類採納 (高置信度直接採用)
+        { from: 'llm_classify', to: 'llm_applied', route: 'v', label: '≥ 0.5 (直接採用)' },
+        // 規則引擎 -> hook-reclassify (規則兜底完成匯流)
+        { from: 'rule_classify', to: 'hook_reclassify', route: 'v', label: '規則兜底完成' },
+        // LLM 分類採納 -> hook-reclassify (LLM 採納完成匯流)
+        { from: 'llm_applied', to: 'hook_reclassify', route: 'elbow', label: 'LLM 採納完成' },
+        // hook-reclassify -> 工具收錄完成 (終點收尾)
+        { from: 'hook_reclassify', to: 'tool_saved', route: 'v', label: '人工覆核後 apply' },
         // 決策 1 -> 白話提問 (是: 模糊需釐清)
         { from: 'dec_ambiguity', to: 'clarify_loop', route: 'hdown', label: '是: 需釐清' },
         // 白話提問 -> 回流到意圖剖析
@@ -829,11 +855,11 @@
         // 決策 1 -> 意圖剖析 (否: 目標明確)
         { from: 'dec_ambiguity', to: 'parse_intent', route: 'v', label: '否: 目標明確' },
 
-        // 意圖剖析 -> 平行檢索群組 (gdown / v)
-        { from: 'parse_intent', to: 'l2_keyword', route: 'v' },
+        // 意圖剖析 -> 平行檢索群組 (終止於紫紅色頂部邊界中點，不穿越)
+        { from: 'parse_intent', to: 'grp_search', route: 'v', label: '意圖驅動' },
 
-        // 平行檢索群組 -> 候選池 (gdown)
-        { from: 'l2_keyword', to: 'candidate_pool', route: 'v' },
+        // 平行檢索群組 -> 候選池 (起始於紫紅色底部邊界中點，不穿越)
+        { from: 'grp_search', to: 'candidate_pool', route: 'gdown' },
 
         // 候選池 -> 決策 2 (是否複合任務)
         { from: 'candidate_pool', to: 'dec_multitask', route: 'v' },
@@ -931,11 +957,11 @@
      * 3. 邊線路徑計算器 (Explicit Route Engine)
      * ══════════════════════════════════════════════════════════════════════════
      * 支援: v, h, h2, elbow, hdown, sdown, gdown
-     * 鐵律：路徑末端內縮 2px 觸線，起訖點 100% 貼齊邊線中點
+     * 鐵律：路徑末端內縮 GAP=5，tip=4.8px，超出 border 0.2px 緊貼邊界不浮空
      */
     function calculateEdgePath(edge) {
-      const fromNode = nodeMap.get(edge.from);
-      const toNode = nodeMap.get(edge.to);
+      const fromNode = nodeMap.get(edge.from) || groupMap.get(edge.from);
+      const toNode = nodeMap.get(edge.to) || groupMap.get(edge.to);
       if (!fromNode || !toNode) return { d: '', labelPt: { x: 0, y: 0 } };
 
       const f = fromNode.bounds;
@@ -944,12 +970,23 @@
       let d = '';
       let labelPt = { x: 0, y: 0 };
 
-      // 內縮 2px 給箭頭觸線（marker refX=8, refY=5）
-      const GAP = 2;
+      // marker tip 伸出路徑 endpoint 4.8px (refX=8 × markerWidth/viewBox = 8×6/10)
+      // GAP=5：path endpoint 距 border 5px，tip 伸入 4.8px → 超出 border 0.2px，視覺上緊貼邊界不浮空
+      const GAP = 5;
 
       switch (route) {
         // v: 同欄，底邊中點 -> 頂邊中點直線
         case 'v': {
+          const x = f.bottom.x;
+          const y1 = f.bottom.y;
+          const y2 = t.top.y - GAP;
+          d = `M ${x} ${y1} L ${x} ${y2}`;
+          labelPt = { x: x + 8, y: (y1 + y2) / 2 };
+          break;
+        }
+
+        // gdown: 群組底邊中點垂直下行進入下游頂邊中點
+        case 'gdown': {
           const x = f.bottom.x;
           const y1 = f.bottom.y;
           const y2 = t.top.y - GAP;

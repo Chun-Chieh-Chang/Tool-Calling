@@ -33,7 +33,7 @@
 
 ```yaml
 工具庫規模: 666 個工具
-追蹤 repos: 2382 個
+追蹤 repos: 2390 個
 總 star 數: 27,489,596 ⭐
 平均 star 數: 41,276 ⭐
 最後更新: 2026/9/2
@@ -42,15 +42,15 @@
 ### Top 5 分類
 - `AI 代理`: 141 個工具
 - `開發工具`: 83 個工具
-- `AI 框架`: 77 個工具
+- `AI 框架`: 78 個工具
 - `文件生產力`: 58 個工具
 - `學習資源`: 54 個工具
 
 ### Top 5 語言
 - `python`: 228 個工具
 - `typescript`: 151 個工具
-- `javascript`: 63 個工具
-- `other`: 44 個工具
+- `javascript`: 62 個工具
+- `other`: 43 個工具
 - `rust`: 30 個工具
 
 ---
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2382 repos)
+npm run tracked-repos     # 重建追蹤池 (2390 repos)
 npm test                  # 執行所有測試 (62/62 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -99,7 +99,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (653+)
+node cli.js list                      # 列出所有工具 (666+)
 ```
 
 ### Git 工作流
@@ -122,7 +122,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：57/57 pass, 0 fail
+npm test  # 目標：62/62 pass, 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (62/62)
-- [ ] 工具庫驗證通過 (653+ 工具)
+- [ ] 工具庫驗證通過 (666+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -212,7 +212,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 625 and add new features
+fix(README): update tool count from 381 to 666 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -243,8 +243,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 653+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2382 追蹤 repos
+│   ├── tools.json      # 666+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2390 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -286,7 +286,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (57 tests)
+### 單元測試 (62 tests)
 ```bash
 npm test
 ```
@@ -306,7 +306,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` ((62/62 pass))
+1. `npm test` (62/62 pass)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -422,6 +422,6 @@ PDCA 循環：
 
 ---
 
-> **協議版本**：2026.09.01 v1.2 (AgnesCode × Antigravity IDE 統一協議)
+> **協議版本**：2026.09.02 v1.2 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-01T13:08:00.000Z
+> **最後更新**：2026-09-02T14:28:48.384Z

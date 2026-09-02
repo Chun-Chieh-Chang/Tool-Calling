@@ -63,17 +63,19 @@ nodes.forEach(n => {
 });
 console.log('✅ 節點 ID 100% 唯一');
 
-// 斷言邊線之 from / to 節點存在且無未知路由
+// 斷言邊線之 from / to 實體 (節點或群組) 存在且無未知路由
+const groupIds = new Set((groups || []).map(g => g.id));
+const entityIds = new Set([...nodeIds, ...groupIds]);
 const validRoutes = new Set(['v', 'h', 'h2', 'elbow', 'hdown', 'sdown', 'gdown']);
 let routeErrors = 0;
 
 edges.forEach(e => {
-  if (!nodeIds.has(e.from)) {
-    console.error(`❌ [Broken Edge] 來源節點不存在: ${e.from}`);
+  if (!entityIds.has(e.from)) {
+    console.error(`❌ [Broken Edge] 來源實體不存在: ${e.from}`);
     routeErrors++;
   }
-  if (!nodeIds.has(e.to)) {
-    console.error(`❌ [Broken Edge] 目標節點不存在: ${e.to}`);
+  if (!entityIds.has(e.to)) {
+    console.error(`❌ [Broken Edge] 目標實體不存在: ${e.to}`);
     routeErrors++;
   }
   if (!validRoutes.has(e.route)) {
@@ -101,6 +103,7 @@ nodes.forEach(n => {
   const h = n.type === 'decision' ? dH : nodeHeight;
 
   nodeMap.set(n.id, {
+    bounds: { x: cx - w / 2, y: cy - h / 2, w, h },
     top:    { x: cx, y: cy - h / 2 },
     bottom: { x: cx, y: cy + h / 2 },
     left:   { x: cx - w / 2, y: cy },
@@ -108,15 +111,33 @@ nodes.forEach(n => {
   });
 });
 
-edges.forEach(e => {
-  const from = nodeMap.get(e.from);
-  const to = nodeMap.get(e.to);
+const groupMap = new Map();
+(groups || []).forEach(g => {
+  const members = g.members.map(id => nodeMap.get(id)).filter(Boolean);
+  if (members.length === 0) return;
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  members.forEach(m => {
+    minX = Math.min(minX, m.bounds.x);
+    minY = Math.min(minY, m.bounds.y);
+    maxX = Math.max(maxX, m.bounds.x + m.bounds.w);
+    maxY = Math.max(maxY, m.bounds.y + m.bounds.h);
+  });
+  const padTop = 34, padSide = 20;
+  groupMap.set(g.id, {
+    top:    { x: (minX + maxX) / 2, y: minY - padTop },
+    bottom: { x: (minX + maxX) / 2, y: maxY + padSide }
+  });
+});
 
-  // 驗證同欄 v 直線是否 X 對齊
-  if (e.route === 'v') {
+edges.forEach(e => {
+  const from = nodeMap.get(e.from) || groupMap.get(e.from);
+  const to = nodeMap.get(e.to) || groupMap.get(e.to);
+
+  // 驗證同欄 v 或 gdown 直線是否 X 對齊
+  if (e.route === 'v' || e.route === 'gdown') {
     const deltaX = Math.abs(from.bottom.x - to.top.x);
     if (deltaX > 3) {
-      console.error(`❌ [Misalignment] v 路由 X 軸未對齊: ${e.from} (${from.bottom.x}) -> ${e.to} (${to.top.x})`);
+      console.error(`❌ [Misalignment] ${e.route} 路由 X 軸未對齊: ${e.from} (${from.bottom.x}) -> ${e.to} (${to.top.x})`);
       process.exit(1);
     }
   }
