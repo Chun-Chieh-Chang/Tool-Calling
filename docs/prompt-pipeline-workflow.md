@@ -17,10 +17,10 @@ const GRAPH_DATA = {
     nodeHeight:  68,   // 標準流程節點高度
     diamondW:    170,  // 菱形寬度（寬軸）
     diamondH:    74,   // 菱形高度（高軸）
-    colGap:      80,   // 欄間距
-    rowGap:      88,   // 行間距
-    padX:        72,   // 畫布左邊距
-    padY:        56    // 畫布上邊距
+    colGap:      72,   // 欄間距（同列節點水平淨距）
+    rowGap:      76,   // 行間距（同行節點垂直淨距）
+    padX:       144,   // 畫布左邊距（≥128，避免 L1 等首欄節點貼邊）
+    padY:        60    // 畫布上邊距
   },
 
   nodes: [
@@ -75,16 +75,22 @@ const GRAPH_DATA = {
 
 ```
 route: 'v'     同欄直線    from.bottom → to.top
-route: 'h'     同列水平    from.right  → to.left
+route: 'h'     同列水平    from.right  → to.left（label 置於邊線**下方** 8px）
 route: 'hdown' L型右轉下    from.right → 右 → 下 → to.top（分流）
 route: 'sdown' S型返回     from.bottom → 下 → 右 → 下 → to.top（匯流）
-route: 'elbow' L型彎折     自動選最簡捷方向
+route: 'elbow' L型彎折     自動選最簡捷方向（異欄異列）
 route: 'h2'    橫跨下行    from.bottom → 下降 → 橫跨 → 上升 → to.bottom
 route: 'gdown' 群組出口    從群組底邊中點垂直下行
-route: 'vloop' 回流線      從下方繞回上方節點（反饋循環）
+route: 'vloop' 回流線      同欄向下繞回上方節點（從 from.bottom 下行至 hook 後水平回流至 to.top）
 ```
 
-**鐵律**：路徑末端內縮 2px 預留箭頭空間；起訖點 100% 貼齊錨點邊線中點，不允許浮空。
+**鐵律**：
+- 路徑末端內縮 **6px** 預留箭頭空間（marker refX=8, refY=5，tip 約伸入 5-6px）；起訖點 100% 貼齊錨點邊線中點，不允許浮空
+- `route: 'h'` 的 label 必須位於邊線**下方**（`y + 8`），不得位於上方（`y - 8`），避免與菱形頂點重疊
+- `route: 'vloop'` 專用於同欄循環回流；不得用於異欄連接（否則落入 default 生成對角斜線）
+- `start` 節點如需連接非第一列節點，使用 `route: 'v'`（垂直向下）而非 `route: 'h'`（水平穿越空白區域）
+- **渲染順序**：edges → nodes → groups（群組邊界最後繪製，確保浮在邊線上方遮擋穿透）
+- **群組背景**：`.svg-group-rect` 必須使用半透明 fill（如 `rgba(accent-rgb, 0.04)`）遮擋穿過的邊線
 
 ---
 

@@ -333,7 +333,7 @@
     }
 
     .svg-group-rect {
-      fill: none;
+      fill: rgba(var(--accent-rgb), 0.04);
       stroke: var(--purple);
       stroke-width: 1.5;
       stroke-dasharray: 6 4;
@@ -944,8 +944,8 @@
       let d = '';
       let labelPt = { x: 0, y: 0 };
 
-      // 內縮 2px 給箭頭觸線
-      const GAP = 2;
+      // 內縮 6px 給箭頭觸線（marker refX=8, refY=5，tip 約伸入 5-6px）
+      const GAP = 6;
 
       switch (route) {
         // v: 同欄，底邊中點 -> 頂邊中點直線
@@ -1052,27 +1052,7 @@
       layerEdges.innerHTML = '';
       layerNodes.innerHTML = '';
 
-      // 1. 渲染群組邊界 (Groups)
-      groupMap.forEach(g => {
-        const b = g.bounds;
-        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-        rect.setAttribute('class', 'svg-group-rect');
-        rect.setAttribute('x', b.x);
-        rect.setAttribute('y', b.y);
-        rect.setAttribute('width', b.w);
-        rect.setAttribute('height', b.h);
-
-        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('class', 'svg-group-title');
-        text.setAttribute('x', b.x + 16);
-        text.setAttribute('y', b.y + 20);
-        text.textContent = g.title;
-
-        layerGroups.appendChild(rect);
-        layerGroups.appendChild(text);
-      });
-
-      // 2. 渲染連接邊線 (Edges)
+      // 1. 渲染連接邊線 (Edges) — 先畫邊緣
       GRAPH_DATA.edges.forEach((e, idx) => {
         const { d, labelPt } = calculateEdgePath(e);
         if (!d) return;
@@ -1094,7 +1074,7 @@
         }
       });
 
-      // 3. 渲染節點 (Nodes)
+      // 2. 渲染節點 (Nodes) — 中間層，遮擋穿過的邊線
       nodeMap.forEach(n => {
         const b = n.bounds;
         const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -1201,6 +1181,26 @@
         }
 
         layerNodes.appendChild(g);
+      });
+
+      // 3. 渲染群組邊界 (Groups) — 最後畫，確保邊界浮在邊線上方
+      groupMap.forEach(g => {
+        const b = g.bounds;
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('class', 'svg-group-rect');
+        rect.setAttribute('x', b.x);
+        rect.setAttribute('y', b.y);
+        rect.setAttribute('width', b.w);
+        rect.setAttribute('height', b.h);
+
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        text.setAttribute('class', 'svg-group-title');
+        text.setAttribute('x', b.x + 16);
+        text.setAttribute('y', b.y + 20);
+        text.textContent = g.title;
+
+        layerGroups.appendChild(rect);
+        layerGroups.appendChild(text);
       });
 
       // 執行幾何審計
