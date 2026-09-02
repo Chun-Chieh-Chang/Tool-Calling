@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { discoverTrendingTools } from '../scripts/trending-weekly.js';
 import { getCurrentWorldWeek } from '../core/world-week.js';
 import { syncRegistryToDist } from '../scripts/dist-sync.js';
+import { classifyTool } from '../core/classifier.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -209,8 +210,37 @@ const server = http.createServer(async (req, res) => {
         // 同步到 dist
         try { syncRegistryToDist(); } catch {}
 
+        // LLM 分类优化（使用 AGNES_API_KEY 时触发）
+        let classificationInfo = { source: 'rule', confidence: 0.6 };
+        try {
+          const llmResult = await classifyTool(newTool.name, newTool.description || '', newTool.topics || []);
+          if (llmResult.category !== newTool.category && llmResult.confidence >= 0.7) {
+            newTool.category = llmResult.category;
+            registry.tools[registry.tools.length - 1] = newTool;
+            saveRegistry(registry);
+            classificationInfo = llmResult;
+          }
+        } catch (err) {
+          console.warn('[AddTool] LLM 分类失败，保留规则分类:', err.message);
+        }
+
+        // 触发 hook-reclassify dry-run，提示是否需要人工覆核
+        try {
+          const { main: runHook } = await import('../scripts/hook-reclassify.js');
+          const hookResult = await runHook({ dryRun: true });
+          if (hookResult.recommendations?.length > 0) {
+            console.log('[AddTool] hook-reclassify 建议:', JSON.stringify(hookResult.recommendations.slice(0, 3)));
+          }
+        } catch (err) {
+          console.warn('[AddTool] hook-reclassify 未执行:', err.message);
+        }
+
         res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
-        res.end(JSON.stringify({ status: 'added', tool: { id: newTool.id, name: newTool.name, category: newTool.category, stars: newTool.stars || 0 } }));
+        res.end(JSON.stringify({
+          status: 'added',
+          tool: { id: newTool.id, name: newTool.name, category: newTool.category, stars: newTool.stars || 0 },
+          classification: classificationInfo
+        }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
         res.end(JSON.stringify({ error: `新增失敗: ${err.message}` }));

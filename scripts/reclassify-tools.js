@@ -1,11 +1,11 @@
 /**
- * 工具分類規則引擎 - 基於 MECE 原則
+ * 工具分類規則引擎 - 基於 MECE 原則 (18 分類)
  *
  * ⚠️ 本腳本預設為 dry-run(僅輸出建議),需加上 --apply 才會寫入 registry,
  *    避免粗粒度 regex 覆蓋人工修正後的分類。
  *
  * 分類慣例(詳見 docs/category-conventions.md):
- * 1. 領域優先:金融/行銷/3D/研究等領域工具先歸領域分類
+ * 1. 領域優先:金融/3D/研究等領域工具先歸領域分類
  * 2. AI 框架 = 建構積木(SDK/模型/推論引擎/訓練框架)
  *    AI 代理 = 成品(agent 本體/harness/skill 與 plugin 集合/平台)
  */
@@ -74,25 +74,25 @@ const CATEGORY_RULES = [
     priority: 90
   },
   
-  // 圖標與視覺資源 - 專門的圖標庫
+  // 圖文資源 - 專門的圖標庫
   {
     pattern: /\b(lucide|heroicons|font-awesome|tabler-icons|iconify)\b/i,
-    cat: '圖標與視覺資源',
+    cat: '圖文資源',
     priority: 100
   },
   {
     pattern: /\b(simple-icons|welovesvg|sfsafesymbols|remix-icon|iconoir)\b/i,
-    cat: '圖標與視覺資源',
+    cat: '圖文資源',
     priority: 100
   },
   {
     pattern: /\b(material-design-icon|fluentui-system-icon|ant-design-icon|polaris-icon|radix-icon)\b/i,
-    cat: '圖標與視覺資源',
+    cat: '圖文資源',
     priority: 90
   },
   {
     pattern: /\b(icon set|icon library|icon family|icon system|svg icons?)\b/i,
-    cat: '圖標與視覺資源',
+    cat: '圖文資源',
     priority: 90,
     exclude: /\b(3d|model)\b/i
   },
@@ -162,23 +162,16 @@ const CATEGORY_RULES = [
     priority: 90
   },
   
-  // 資料庫
-  { 
-    pattern: /\b(database|sql|nosql|postgres|mongo|redis|sqlite)\b/i, 
-    cat: '資料庫',
-    priority: 90
-  },
-  
   // 數據分析
-  { 
-    pattern: /\b(data-analy|pandas|polars|duckdb|dataframe|eda|profiling)\b/i, 
+  {
+    pattern: /\b(data-analy|pandas|polars|duckdb|dataframe|eda|profiling)\b/i,
     cat: '數據分析',
     priority: 90
   },
-  
+
   // 研究
-  { 
-    pattern: /\b(research|paper|arxiv|science|survey)\b/i, 
+  {
+    pattern: /\b(research|paper|arxiv|science|survey)\b/i,
     cat: '研究',
     priority: 80
   },
@@ -197,11 +190,10 @@ const CATEGORY_RULES = [
     priority: 90
   },
   
-  // 行銷(領域優先)
-  // 注意:嚴禁用 "analytics"(曾導致 Apache OSSIE 誤入)
+  // 金融與投資(領域優先)
   {
-    pattern: /\b(marketing|seo|advertisement|social.?media|crm|copywriting)\b/i,
-    cat: '行銷',
+    pattern: /\b(trading|stock|quant|portfolio|backtest|hedge.?fund|financial market|finance)\b/i,
+    cat: '金融與投資',
     priority: 85
   },
 
@@ -214,19 +206,6 @@ const CATEGORY_RULES = [
     exclude: /\b(landing page|scroll)\b/i
   },
 
-  // 金融與投資(領域優先)
-  {
-    pattern: /\b(trading|stock|quant|portfolio|backtest|hedge.?fund|financial market|finance)\b/i,
-    cat: '金融與投資',
-    priority: 85
-  },
-  
-  // 基礎設施
-  { 
-    pattern: /\b(infra|docker|kubernetes|terraform|cloud|serverless)\b/i, 
-    cat: '基礎設施',
-    priority: 80
-  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════
@@ -319,7 +298,7 @@ function getCategoryReason(tool, category) {
     'AI 代理': '匹配到 Agent/Skill/Prompt 相關關鍵字',
     'AI 框架': '匹配到 LLM/Transformer/模型相關關鍵字',
     'UI/UX設計': '匹配到前端框架/設計系統相關關鍵字',
-    '圖標與視覺資源': '匹配到圖標庫相關關鍵字',
+    '圖文資源': '匹配到圖標庫相關關鍵字',
     '開發工具': '預設分類（無明確匹配）',
     '學習資源': '匹配到教程/課程相關關鍵字',
     '測試與自動化': '匹配到測試框架相關關鍵字',
