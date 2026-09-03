@@ -73,7 +73,7 @@ const GRAPH_DATA = {
 
 ---
 
-## 三、邊線路由引擎（七大標準路由）
+## 三、邊線路由引擎（八大標準路由）
 
 ```
 route: 'v'     同欄自上而下直線   from.bottom → to.top (嚴格同欄 colA = colB, ΔX = 0)
@@ -81,6 +81,7 @@ route: 'h'     同列水平向右直通   from.right  → to.left (嚴格同列 
 route: 'hdown' L型右轉下折分流    from.right  → 右水平 → 垂直下折 → to.top (箭頭垂直打入頂邊正中點)
 route: 'sdown' S型左轉下折回流    from.left   → 左水平 → 垂直下折 → to.top (箭頭垂直打入頂邊正中點)
 route: 'elbow' 階梯避障彎折       from.bottom → 垂直下行 → midY 水平橫跨 → 垂直下行 → to.top (異欄異列)
+route: 'sider' 階梯側邊匯入       from.bottom → 垂直下行 → channelX 列距通道 → 下行至 to.right.y → to.right (箭頭水平打入目標右側邊線正中點，防同軌重疊)
 route: 'h2'    跨欄底邊下行繞行   from.bottom → 下降 → 列間橫跨 → 上升 → to.bottom (同列避開中間節點)
 route: 'gdown' 群組底邊出口直通   group.bottom → 垂直下行 → to.top (從群組底邊正中點垂直直入下游頂邊正中點)
 ```
@@ -113,7 +114,13 @@ route: 'gdown' 群組底邊出口直通   group.bottom → 垂直下行 → to.t
    - marker tip 伸出路徑 endpoint 距離：$8 \times 6 / 10 = 4.8\text{px}$。
    - 邊線路徑末端統一內縮 **`GAP = 5`**：path endpoint 距邊界 5px，tip 伸入 4.8px 後超出 border 0.2px，視覺上緊貼邊界不浮空、不穿透，審計誤差 $\le 3\text{px}$。
 
-6. **業務邏輯閉環與死循環防禦**：
+6. **分支匯流防同軌重疊鐵律 (`route: 'sider'`)**：
+   - 當目標節點同時接收「上方主垂直流線 (`route: 'v'`)」與「右側回退/匯流分支線」時：
+     - **嚴禁使用 `route: 'elbow'` 或 `route: 'sdown'` 盲目灌入頂部中點 (`to.top`)**（因兩條線在同一垂直像素軸重疊流動時，會造成動態虛線波形重合融合成「粗實線」的嚴重視覺 Bug，且標籤文字相互遮擋）。
+     - **強制使用 `route: 'sider'` 側邊接入**（從來源底邊出發，在列間淨空帶折向欄間通道，垂直下行後水平射入目標節點**右側邊線垂直正中點 (`to.right`)**）。
+   - 保證主幹垂直線貫通無阻、分支線平滑自右側匯入，各邊線 $100\%$ 軌道隔離、零疊字、零共軌。
+
+7. **業務邏輯閉環與死循環防禦**：
    - 決策分流（如置信度 $\ge 0.5$ 與 $< 0.5$）必須在圖面上完整繪製回退線與採納分流線，禁止斷頭懸空。
    - 流程必須收尾於明確的終點節點（`type: 'end'`），禁止死循環（如重審後重新循環回到 POST 新增起點）。
    - 禁止使用未列入標準規範之非法路由（如 `vloop` 原地同軸折返）。

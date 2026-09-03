@@ -74,16 +74,16 @@ https://github.com/owner/repo-2
 | 安全性 | `cybersec`, `osint`, `pentest`, `vulnerability`, `ctf` |
 | 文件生產力 | `powerpoint`, `spreadsheet`, `docx`, `xlsx`, `pdf` |
 | 知識管理 | `knowledge-graph`, `knowledge-base`, `memory`, `wiki` |
-| 基礎設施 | `infrastructure`, `devops`, `kubernetes`, `docker`, `cloud` |
 | API 整合 | `mcp-server`, `webhook`, `graphql`, `rest-api`, `sdk` |
-| ...等 17 個分類 | ... |
+| ...等共 18 個分類 | 詳見 `docs/CATEGORY-SYSTEM.md` (MECE 原則) |
 
-### Phase 2 — 備用比對（15 個通用分類）
+### Phase 2 — 備用比對（通用分類關鍵詞）
 ### Phase 3 — Heuristic 推斷
-- `microsoft` / `azure` → **基礎設施**
-- `aws` / `google-cloud` → **基礎設施**
 - `ai` / `llm` → **AI 代理**
+- `agent` / `skill` → **開發工具**
 - `cli` / `command` → **開發工具**
+- `automation` → **測試與自動化**
+- MECE 兜底 → **開發工具**（禁止產生「其他」殘留）
 
 ---
 

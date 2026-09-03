@@ -1,5 +1,74 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-03 專案整體程式碼與檔案優化作業（MECE 確效、死碼清理、文檔同構與 SSOT 固化）
+
+### 需求
+執行 `project-refactor-cleanup` 技能之 5 大階段 SOP，全面盤點與清理無效文檔引用、死碼與過時分類，同步更新所有開發文件，鞏固 SSOT 單一真理來源，執行多維度確效測試並建立版本基準點。
+
+### 處理結果 (PDCA)
+- **全面盤點與死碼/無效資源清理**：
+  - 清理 `QUICKSTART.md` 殘留之失效文檔引用（`FIND-SKILL-INTEGRATION-COMPLETE.md`）。
+  - 清理 `WORKFLOW.md` 中過時之「基礎設施」分類描述，與現行 `scripts/scan-tool.js` 及 MECE 18 分類完全對齊。
+  - 校準 `package.json`（652+ ➜ 666+ 工具）與 `README.md`（19 ➜ 18 分類，2,331 ➜ 2,390 repos）數據。
+- **SSOT 單一真理來源固化 (Single Source of Truth)**：
+  - 更新 `scripts/generate-agents-md.js`，將「SVG 流程圖渲染協議 v1.3（八大標準路由 + sider 側邊接入）」永久寫入模板，消除腳本覆寫導致協議遺失的風險。
+  - 執行 `npm run agents:init` 重新產生全專案權威 `AGENTS.md`。
+- **全流程打包編譯與 MECE 確效**：
+  - 執行 `npm run build`，自動編譯同義詞詞庫 (`core/synonyms.generated.js`)、全景知識圖譜 (`docs/knowledge-graph.html`) 並完整同步至 `dist/`。
+  - `node scripts/check-mece.js` 確認 18 分類 100% 互斥窮盡，無「其他」殘留。
+- **邊線幾何與單元測試防禦**：
+  - `node docs/edge-diagnostic.cjs` 驗證全量 24 條邊線 100% 合法（0 penetration, 0 error）。
+  - `npm test` 通過全量 62/62 單元測試。
+  - `node cli.js validate` 666/666 工具元數據 100/100 滿分。
+
+### 根因分析 (RCA)
+1. **文檔與代碼演化脫節**：先前在 2026-09-01 合併分類及清理歷史報告時，部分文檔（`QUICKSTART.md`、`WORKFLOW.md`、`README.md`）未同步更新，導致殘留失效連結與過時分類名稱。
+2. **生成腳本與手動協議不同步**：`AGENTS.md` 手動增補協議未同步至 `generate-agents-md.js` 模板，造成腳本重新生成時協議被覆寫丟失。
+
+### 矯正與預防措施 (CAPA)
+1. 強制將所有新增的全域協議直接寫入 `scripts/generate-agents-md.js` 模板，由腳本作為唯一產生源。
+2. 任何重大重構與功能發布前，強制執行 `project-refactor-cleanup` 5 階段檢查清單。
+
+### 驗證結果
+- `npm run agents:init`: **AGENTS.md 478 行 100% 生成，所有必要章節完整**
+- `node docs/edge-diagnostic.cjs`: **24/24 edges valid, 0 errors**
+- `npm test`: **62/62 pass, 0 fail (100% 通過)**
+- `node cli.js validate`: **100% 通過 (666/666 工具滿分)**
+- `node scripts/check-mece.js`: **PASS (18 分類無殘留)**
+- `npm run build`: **編譯打包完成，dist 與 docs 100% 同步**
+
+---
+
+## 2026-09-03 邊線同軌碰撞與虛線融合成實線根治（側邊接入 route: sider 路由架構升級）
+
+### 需求
+用戶反饋流程圖中部分線條出現「上半段虛線、下半段變實線」與文字重疊疊字現象（包括 `dec_ambiguity -> parse_intent` 與 `dec_llm_category -> rule_classify`）。需根除虛線融合變實線與標籤遮擋問題，保留全圖「科技感流動虛線」風格，並優化規範文檔。
+
+### 處理結果 (PDCA)
+- **視覺現象根因排查 (RCA)**：
+  - 排查確認：下半段「實線」並非手動定義的實線，而是兩條動態流動虛線（`.svg-edge.active`，`stroke-dasharray: 6 4`）在同一垂直像素座標軸（$X=570$ 與 $X=1186$）**$100\%$ 同軸重疊流動**，因動畫相差互補填滿空白間隙，肉眼視覺呈現「粗實線」與雙箭頭重疊。
+- **全新側邊匯流路由架構 (`route: 'sider'`)**：
+  - 徹底摒棄回流與分支線全部硬塞目標頂部中點 (`to.top`) 的舊架構。
+  - 設計 `route: 'sider'`：從來源底邊出發，在列間淨空帶經由欄距通道下行，水平射入目標節點的**右側邊線正中點 (`to.right`)**。
+  - 套用於：
+    1. `clarify_loop -> parse_intent` (`sider`，收斂回流)
+    2. `llm_classify -> rule_classify` (`sider`，< 0.5 回退規則)
+    3. `llm_applied -> hook_reclassify` (`sider`，LLM 採納完成)
+  - 效果：主幹垂直線（`v`）貫通無阻，分支回流線平滑自右側接入，全圖零同軸重疊、零疊字、零雙箭頭、全線流暢呈現純淨科技感流動虛線。
+- **規範文檔與協議同步升級**：
+  - `prompt-pipeline-workflow.md`：七大標準路由升級為「八大標準路由」，新增「分支匯流防同軌重疊鐵律」。
+  - `AGENTS.md`：Route 選擇規則增補 `sider` 側邊接入協議。
+  - `docs/edge-diagnostic.cjs`：加入 `sider` 路由端點與幾何確效驗證。
+  - `dist/pipeline-workflow.html`：保持與 `docs/pipeline-workflow.html` 100% 同步。
+
+### 驗證結果
+- `node docs/edge-diagnostic.cjs`: **24/24 edges valid, 0 errors（全數通過）**
+- `npm test`: **62/62 pass, 0 fail (100% 通過)**
+- `node cli.js validate`: **100% 通過 (666/666 工具滿分)**
+- `node scripts/check-mece.js`: **PASS (18 分類無殘留)**
+
+---
+
 ## 2026-09-03 SVG 流程圖箭頭間距自我演化與幾何診斷確效閉環 (Self-Evolution & Edge Diagnostic)
 
 ### 需求

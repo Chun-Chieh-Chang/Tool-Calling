@@ -125,6 +125,12 @@ edges.forEach(e => {
       path = `M${f.bottom.x.toFixed(0)} ${f.bottom.y.toFixed(0)} L${f.bottom.x.toFixed(0)} ${((f.bottom.y + t.top.y) / 2).toFixed(0)} L${t.top.x.toFixed(0)} ${((f.bottom.y + t.top.y) / 2).toFixed(0)} L${t.top.x.toFixed(0)} ${(t.top.y - GAP).toFixed(0)}`;
       tipExtends = GAP - MARKER_TIP;
       break;
+    case 'sider':
+      const chanX = (t.right.x + f.left.x) / 2;
+      const mY = (f.bottom.y + t.top.y) / 2;
+      path = `M${f.bottom.x.toFixed(0)} ${f.bottom.y.toFixed(0)} L${f.bottom.x.toFixed(0)} ${mY.toFixed(0)} L${chanX.toFixed(0)} ${mY.toFixed(0)} L${chanX.toFixed(0)} ${t.right.y.toFixed(0)} L${(t.right.x + GAP).toFixed(0)} ${t.right.y.toFixed(0)}`;
+      tipExtends = GAP - MARKER_TIP;
+      break;
     default:
       path = `??? [${route}]`;
       tipExtends = 0;
@@ -134,9 +140,13 @@ edges.forEach(e => {
     ? `✓ tip extends ${(tipExtends).toFixed(1)}px past border (not penetrating)`
     : `⚠ PENETRATES ${(Math.abs(tipExtends)).toFixed(1)}px`;
 
+  const targetAnchor = route === 'sider'
+    ? `right=[${t.right.x.toFixed(0)},${t.right.y.toFixed(0)}]`
+    : `top=[${t.top.x.toFixed(0)},${t.top.y.toFixed(0)}]`;
+
   const targetInfo = (toNode && toNode.id && toNode.id.startsWith('grp_'))
     ? `group[${toNode.id}] bottom=[${t.bottom.x.toFixed(0)},${t.bottom.y.toFixed(0)}] top=[${t.top.x.toFixed(0)},${t.top.y.toFixed(0)}]`
-    : `node[${toNode && toNode.id}] top=[${t.top.x.toFixed(0)},${t.top.y.toFixed(0)}]`;
+    : `node[${toNode && toNode.id}] ${targetAnchor}`;
 
   console.log(`\n  ${e.from} → ${e.to} [${route}] "${e.label}"`);
   console.log(`    path: ${path}`);

@@ -838,20 +838,20 @@
         { from: 'dec_llm_category', to: 'llm_classify', route: 'h', label: '是: API 就緒' },
         // LLM 不可用 -> 規則引擎 (同欄垂直向下，消除邏輯倒置)
         { from: 'dec_llm_category', to: 'rule_classify', route: 'v', label: '否: 無 API Key' },
-        // LLM 分類決策 -> 規則引擎 (低置信度回退)
-        { from: 'llm_classify', to: 'rule_classify', route: 'elbow', label: '< 0.5 (回退規則)' },
+        // LLM 分類決策 -> 規則引擎 (低置信度回退，側邊接入消除同軌重疊)
+        { from: 'llm_classify', to: 'rule_classify', route: 'sider', label: '< 0.5 (回退規則)' },
         // LLM 分類決策 -> LLM 分類採納 (高置信度直接採用)
         { from: 'llm_classify', to: 'llm_applied', route: 'v', label: '≥ 0.5 (直接採用)' },
         // 規則引擎 -> hook-reclassify (規則兜底完成匯流)
         { from: 'rule_classify', to: 'hook_reclassify', route: 'v', label: '規則兜底完成' },
-        // LLM 分類採納 -> hook-reclassify (LLM 採納完成匯流)
-        { from: 'llm_applied', to: 'hook_reclassify', route: 'elbow', label: 'LLM 採納完成' },
+        // LLM 分類採納 -> hook-reclassify (LLM 採納完成匯流，側邊接入消除同軌重疊)
+        { from: 'llm_applied', to: 'hook_reclassify', route: 'sider', label: 'LLM 採納完成' },
         // hook-reclassify -> 工具收錄完成 (終點收尾)
         { from: 'hook_reclassify', to: 'tool_saved', route: 'v', label: '人工覆核後 apply' },
         // 決策 1 -> 白話提問 (是: 模糊需釐清)
         { from: 'dec_ambiguity', to: 'clarify_loop', route: 'hdown', label: '是: 需釐清' },
-        // 白話提問 -> 回流到意圖剖析
-        { from: 'clarify_loop', to: 'parse_intent', route: 'sdown', label: '收斂回流' },
+        // 白話提問 -> 回流到意圖剖析 (側邊接入消除同軌重疊)
+        { from: 'clarify_loop', to: 'parse_intent', route: 'sider', label: '收斂回流' },
         // 決策 1 -> 意圖剖析 (否: 目標明確)
         { from: 'dec_ambiguity', to: 'parse_intent', route: 'v', label: '否: 目標明確' },
 
@@ -956,7 +956,7 @@
      * ══════════════════════════════════════════════════════════════════════════
      * 3. 邊線路徑計算器 (Explicit Route Engine)
      * ══════════════════════════════════════════════════════════════════════════
-     * 支援: v, h, h2, elbow, hdown, sdown, gdown
+     * 支援: v, h, h2, elbow, hdown, sdown, sider, gdown
      * 鐵律：路徑末端內縮 GAP=5，tip=4.8px，超出 border 0.2px 緊貼邊界不浮空
      */
     function calculateEdgePath(edge) {
@@ -1024,6 +1024,19 @@
           const y2 = t.top.y - GAP;
           d = `M ${x1} ${y1} L ${x2} ${y1} L ${x2} ${y2}`;
           labelPt = { x: (x1 + x2) / 2, y: y1 - 8 };
+          break;
+        }
+
+        // sider: 異欄側邊匯入（從右上方節點底邊出發，經行列淨空帶，水平射入目標右側邊線中點，消除同軌重疊）
+        case 'sider': {
+          const x1 = f.bottom.x;
+          const y1 = f.bottom.y;
+          const x2 = t.right.x + GAP;
+          const y2 = t.right.y;
+          const midY = (y1 + t.top.y) / 2;
+          const channelX = (t.right.x + f.left.x) / 2;
+          d = `M ${x1} ${y1} L ${x1} ${midY} L ${channelX} ${midY} L ${channelX} ${y2} L ${x2} ${y2}`;
+          labelPt = { x: (x1 + channelX) / 2, y: midY - 8 };
           break;
         }
 

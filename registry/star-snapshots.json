@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-02T13:04:51.060Z",
+  "lastUpdated": "2026-09-03T11:55:00.944Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -7889,8 +7889,8 @@
     },
     {
       "week": "2026-W36",
-      "dateRange": "2026-08-31 ~ 2026-09-02",
-      "timestamp": "2026-09-02T13:04:51.060Z",
+      "dateRange": "2026-08-31 ~ 2026-09-03",
+      "timestamp": "2026-09-03T11:55:00.944Z",
       "isWeekStart": true,
       "repos": {
         "deepseek-ai/deepseek-harness": 205493,

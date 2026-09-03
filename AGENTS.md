@@ -36,7 +36,7 @@
 追蹤 repos: 2390 個
 總 star 數: 27,489,596 ⭐
 平均 star 數: 41,276 ⭐
-最後更新: 2026/9/2
+最後更新: 2026/9/3
 ```
 
 ### Top 5 分類
@@ -421,7 +421,7 @@ PDCA 循環：
 ### 修改前（MANDATORY 5 步驟）
 
 ```
-Step 1: 讀碼 — 用 Read 工具讀取目标檔案，確認 renderFlowchart() / calculateEdgePath() 實作
+Step 1: 讀碼 — 用 Read 工具讀取目標檔案，確認 renderFlowchart() / calculateEdgePath() 實作
 Step 2: 診斷 — 運行 node docs/edge-diagnostic.cjs，記錄所有 edge 的 gap 值
 Step 3: 核對 — 若用戶提供截圖，截圖證據優先於診斷輸出
 Step 4: 計算 — 手算 tip_offset = refX × (markerWidth / viewBox)
@@ -449,6 +449,7 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 同列節點（相同 col）→ route='v'，不繞行
 同行節點（相同 row）→ route='h'，不繞行
 擋路時才繞行 → hdown / sdown / elbow / vloop / gdown
+分支匯流（防同軌重疊）→ route='sider'，嚴禁與垂直主線共用頂部中點，一律側邊右側匯入
 群組邊界 → 群組 fill 遮擋，無需特殊繞行
 ```
 
@@ -473,4 +474,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-03T10:00:00.000Z
+> **最後更新**：2026-09-03T12:38:19.699Z

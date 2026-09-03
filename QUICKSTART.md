@@ -139,7 +139,6 @@ A: 使用 `node cli.js add https://github.com/your/repo`
 
 更多資訊請查看：
 - `docs/USAGE-GUIDE.md` - 完整使用指南
-- `docs/FIND-SKILL-INTEGRATION-COMPLETE.md` - 技能整合說明
 - `docs/SKILLS-SH-vs-TOOL-CALLING.md` - 與 skills.sh 的比較
 
 ---
