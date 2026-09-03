@@ -1,5 +1,41 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-03 SVG 流程圖箭頭間距自我演化與幾何診斷確效閉環 (Self-Evolution & Edge Diagnostic)
+
+### 需求
+解決 `docs/pipeline-workflow.html` 流程圖中所有邊線 marker tip 穿透節點或浮空之問題，建立第一性原理幾何數學模型，並將自我演化規則寫入專案協議中。
+
+### 處理結果 (PDCA)
+- **第一性原理數學建模 (Marker Tip Offset)**：
+  - 精確計算 marker tip 溢出公式：$tip\_offset = refX \times (markerWidth / viewBox) = 8 \times (6 / 10) = 4.8\text{px}$。
+  - 將 GAP 參數嚴謹校正為 $5\text{px}$（即 $4.8\text{px} + 0.2\text{px}$ 安全貼邊微距），徹底根除尖端穿透與浮空斷頭。
+- **邊線路由優化**：
+  - 同欄節點（如 `parse_intent -> l2_keyword`）更正為直通 `route: 'v'`，消除無意義折線。
+- **自動化診斷與協議固化 (Self-Evolution)**：
+  - 建立 `docs/edge-diagnostic.cjs` 獨立幾何診斷腳本，驗證全量 24/24 條邊線 100% 合法（0 penetration, 0 error）。
+  - 產出 `docs/SELF-EVOLUTION-REPORT.md`、`docs/EVOLUTION_LOG.md` 與 `docs/project-constraints.md`。
+  - 在 `AGENTS.md` 增補「SVG 流程圖渲染協議（pipeline-workflow.html）」強制 5 步驟與核心公式（v1.3）。
+- **無頭瀏覽器實測確效**：
+  - 透過 Headless Browser 載入渲染，0 Console Error，截圖確認所有節點箭頭貼邊效果極佳，幾何審計 100% 綠燈通過。
+
+### 根因分析 (RCA)
+1. **Marker Tip 換算盲點**：誤將 SVG marker 的 `refX=8` 直接當作 offset，忽略了 `markerWidth / viewBox` 的縮放比例（$6/10 = 0.6$），導致真實 tip 為 $4.8\text{px}$。先前的 $GAP=2$ 造成 $2.8\text{px}$ 邊框穿透，$GAP=8$ 造成浮空。
+2. **缺乏獨立幾何確效工具**：先前的驗證依賴猜測與局部調整，未在修改前運行端點數學診斷。
+
+### 矯正與預防措施 (CAPA)
+1. 嚴格執行 `AGENTS.md` 中的 SVG 流程圖 5 步驟：先讀碼、跑診斷、核對截圖、手算 tip_offset、才提案。
+2. 任何 SVG 流程圖修改前與修改後，必須強制執行 `node docs/edge-diagnostic.cjs`。
+3. 遵循「用戶截圖優先於診斷輸出」原則。
+
+### 驗證結果
+- `node docs/edge-diagnostic.cjs`: **24/24 edges valid, 0 errors**
+- `npm test`: **62/62 pass, 0 fail (100% 通過)**
+- `node cli.js validate`: **100% 通過 (666/666 工具)**
+- `node scripts/check-mece.js`: **PASS (18 分類無殘留)**
+- **瀏覽器實際渲染驗證**: **0 console errors, 幾何審計 100% 綠燈**
+
+---
+
 ## 2026-09-02 流程圖異常連接線修復（箭頭未指向圖塊邊線中點）與業務邏輯校正
 
 ### 需求

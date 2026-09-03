@@ -413,6 +413,55 @@ PDCA 循環：
 
 ---
 
+## SVG 流程圖渲染協議（pipeline-workflow.html）
+
+> **適用範圍**：修改 pipeline-workflow.html 或任何 SVG 流程圖時強制遵守
+> **根因**：2026-09-03 RCA，7+ 輪反覆錯誤，根本原因為 marker tip 計算錯誤 + 未讀碼即修改
+
+### 修改前（MANDATORY 5 步驟）
+
+```
+Step 1: 讀碼 — 用 Read 工具讀取目标檔案，確認 renderFlowchart() / calculateEdgePath() 實作
+Step 2: 診斷 — 運行 node docs/edge-diagnostic.cjs，記錄所有 edge 的 gap 值
+Step 3: 核對 — 若用戶提供截圖，截圖證據優先於診斷輸出
+Step 4: 計算 — 手算 tip_offset = refX × (markerWidth / viewBox)
+Step 5: 提案 — 給出行號、舊值、新值 + 數學過程，預估影響範圍
+```
+
+### 核心公式（不可違背）
+
+```
+tip_offset = refX × (markerWidth / viewBox)
+
+本專案值: refX=8, markerWidth=6, viewBox=10 → tip_offset = 4.8px
+GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（保守）
+
+絕對禁止:
+  ❌ 將 refX 值（8）直接當做 tip_offset
+  ❌ 使用 GAP = 0~4（tip 必穿透或浮空）
+  ❌ 未讀碼前假設行號或結構
+  ❌ 忽略用戶截圖反饋，堅持「數學正確」
+```
+
+### Route 選擇規則
+
+```
+同列節點（相同 col）→ route='v'，不繞行
+同行節點（相同 row）→ route='h'，不繞行
+擋路時才繞行 → hdown / sdown / elbow / vloop / gdown
+群組邊界 → 群組 fill 遮擋，無需特殊繞行
+```
+
+### 修改後驗證
+
+```
+□ node docs/edge-diagnostic.cjs 全 Pass（gap ≥ 5.0，penetration = false）
+□ HTML / diagnostic.cjs / prompt-pipeline-workflow.md 三者 GAP 值一致
+□ 用戶截圖確認視覺改善
+```
+
+---
+
 ## References — 參考資源
 
 - **AGENTS.md Spec**: https://agents.md/
@@ -422,6 +471,6 @@ PDCA 循環：
 
 ---
 
-> **協議版本**：2026.09.02 v1.2 (AgnesCode × Antigravity IDE 統一協議)
+> **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-02T14:28:48.384Z
+> **最後更新**：2026-09-03T10:00:00.000Z
