@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-03T11:55:00.944Z",
+  "lastUpdated": "2026-09-05T06:14:03.491Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41710,6 +41710,390 @@
         "仍處於早期階段，可能缺少部分 Claude 功能",
         "設定複雜度高於專屬替代品"
       ]
+    },
+    {
+      "id": "openwiki",
+      "name": "Openwiki",
+      "url": "https://github.com/langchain-ai/openwiki",
+      "description": "OpenWiki is a CLI that writes and maintains agent documentation for your codebase.",
+      "category": "知識管理",
+      "language": "typescript",
+      "triggers": [
+        "openwiki",
+        "文件生產力"
+      ],
+      "capabilities": [],
+      "install": {
+        "method": "npm",
+        "command": "npx openwiki",
+        "repoUrl": "https://github.com/langchain-ai/openwiki"
+      },
+      "useCase": "適用於 文件生產力 領域之相關任務需求：OpenWiki is a CLI that writes and maintains agent documentation for your codebas",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「文件生產力」領域",
+        "支援 typescript 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.152Z",
+      "stars": 16129
+    },
+    {
+      "id": "obscura",
+      "name": "Obscura",
+      "url": "https://github.com/h4ckf0r0day/obscura",
+      "description": "The headless browser for AI agents and web scraping",
+      "category": "瀏覽器自動化",
+      "language": "rust",
+      "triggers": [
+        "obscura",
+        "antidetect",
+        "antidetect-browser",
+        "browser",
+        "browser-automation",
+        "cdp",
+        "headless",
+        "playwright"
+      ],
+      "capabilities": [
+        "antidetect",
+        "antidetect-browser",
+        "browser",
+        "browser-automation",
+        "cdp"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/h4ckf0r0day/obscura",
+        "repoUrl": "https://github.com/h4ckf0r0day/obscura"
+      },
+      "useCase": "適用於 瀏覽器自動化 領域之相關任務需求：The headless browser for AI agents and web scraping",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「瀏覽器自動化」領域",
+        "支援 rust 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.154Z",
+      "stars": 24998
+    },
+    {
+      "id": "agent-orchestrator",
+      "name": "Agent Orchestrator",
+      "url": "https://github.com/Untrivial-ai/agent-orchestrator",
+      "description": "Agent IDE that enables you to manage fleets of coding agents. It comes with an agentic orchestrator that plans tasks, spawns agents, and autonomously handles CI fixes, merge conflicts, and code reviews.",
+      "category": "AI 框架",
+      "language": "go",
+      "triggers": [
+        "agent-orchestrator",
+        "agent",
+        "orchestrator",
+        "agent-fleet",
+        "agent-ide",
+        "agent-orchestration",
+        "agent-swarm",
+        "claude-code"
+      ],
+      "capabilities": [
+        "agent-fleet",
+        "agent-ide",
+        "agent-orchestration",
+        "agent-swarm",
+        "claude-code"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Untrivial-ai/agent-orchestrator.git",
+        "repoUrl": "https://github.com/Untrivial-ai/agent-orchestrator"
+      },
+      "useCase": "適用於 AI 框架 領域之相關任務需求：Agent IDE that enables you to manage fleets of coding agents. It comes with an a",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「AI 框架」領域",
+        "支援 go 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.156Z",
+      "stars": 10938
+    },
+    {
+      "id": "freetoken",
+      "name": "FreeToken",
+      "url": "https://github.com/FlashML-org/FreeToken",
+      "description": "FreeToken brings datacenter-scale model serving to your desktop. Run massive models locally, fast and efficiently.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "freetoken",
+        "deepseek-v4",
+        "edge",
+        "glm",
+        "inference",
+        "minimax",
+        "moe",
+        "qwen"
+      ],
+      "capabilities": [
+        "deepseek-v4",
+        "edge",
+        "glm",
+        "inference",
+        "minimax"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/FlashML-org/FreeToken.git",
+        "repoUrl": "https://github.com/FlashML-org/FreeToken"
+      },
+      "useCase": "適用於 開發工具 領域之相關任務需求：FreeToken brings datacenter-scale model serving to your desktop. Run massive mod",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「開發工具」領域",
+        "支援 python 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.157Z",
+      "stars": 11678
+    },
+    {
+      "id": "graft",
+      "name": "Graft",
+      "url": "https://github.com/trailhq/Graft",
+      "description": "Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: faster, cheaper, with contextual understanding specific to your codebase.",
+      "category": "API 整合",
+      "language": "typescript",
+      "triggers": [
+        "graft",
+        "ai-agents",
+        "anthropic",
+        "claude-code",
+        "cli",
+        "code-graph",
+        "codex",
+        "context-engineering"
+      ],
+      "capabilities": [
+        "ai-agents",
+        "anthropic",
+        "claude-code",
+        "cli",
+        "code-graph"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx Graft",
+        "repoUrl": "https://github.com/trailhq/Graft"
+      },
+      "useCase": "適用於 API 整合 領域之相關任務需求：Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: faster, che",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「API 整合」領域",
+        "支援 typescript 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.158Z",
+      "stars": 5569
+    },
+    {
+      "id": "freebuff",
+      "name": "Freebuff",
+      "url": "https://github.com/CodebuffAI/freebuff",
+      "description": "The free coding agent",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "freebuff",
+        "開發工具"
+      ],
+      "capabilities": [],
+      "install": {
+        "method": "npm",
+        "command": "npx freebuff",
+        "repoUrl": "https://github.com/CodebuffAI/freebuff"
+      },
+      "useCase": "適用於 開發工具 領域之相關任務需求：The free coding agent",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「開發工具」領域",
+        "支援 typescript 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.158Z",
+      "stars": 11640
+    },
+    {
+      "id": "kunpeng",
+      "name": "Kunpeng",
+      "url": "https://github.com/pengfeiqiao/kunpeng",
+      "description": "鲲鹏 Kunpeng — 跑在本地的中文 AIGC 创作工作台（Tauri + React + Rust，内嵌 DeepSeek Harness 引擎）。支持 macOS 与 Windows；Windows 版目前为测试版，可能存在问题，欢迎 Issue 反馈。Windows 移植由 @CocoSkyler 发起（PR #2）。",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "kunpeng",
+        "開發工具"
+      ],
+      "capabilities": [],
+      "install": {
+        "method": "npm",
+        "command": "npx kunpeng",
+        "repoUrl": "https://github.com/pengfeiqiao/kunpeng"
+      },
+      "useCase": "適用於 開發工具 領域之相關任務需求：鲲鹏 Kunpeng — 跑在本地的中文 AIGC 创作工作台（Tauri + React + Rust，内嵌 DeepSeek Harness 引擎）。支持 ",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「開發工具」領域",
+        "支援 typescript 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.159Z",
+      "stars": 89
+    },
+    {
+      "id": "unlazy",
+      "name": "Unlazy",
+      "url": "https://github.com/Leonxlnx/unlazy",
+      "description": "Anti-laziness skill for AI agents. Core: the Depth Tree method, which splits a task N layers deep and gives every leaf the full time budget of the whole task, so effort multiplies with depth. Grounded in 2025-2026 research on model laziness, underthinking and premature completion.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "unlazy",
+        "ai-agents",
+        "claude",
+        "claude-code",
+        "llm",
+        "productivity",
+        "prompt-engineering",
+        "skill"
+      ],
+      "capabilities": [
+        "ai-agents",
+        "claude",
+        "claude-code",
+        "llm",
+        "productivity"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx unlazy",
+        "repoUrl": "https://github.com/Leonxlnx/unlazy"
+      },
+      "useCase": "適用於 AI 代理 領域之相關任務需求：Anti-laziness skill for AI agents. Core: the Depth Tree method, which splits a t",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「AI 代理」領域",
+        "支援 javascript 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.159Z",
+      "stars": 3059
+    },
+    {
+      "id": "cognicode",
+      "name": "CogniCode",
+      "url": "https://github.com/Rubentxu/CogniCode",
+      "description": "AI-powered code intelligence MCP server — 17 tools for code analysis, search, refactoring and call graph visualization across 6 languages",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "cognicode",
+        "ai",
+        "call-graph",
+        "code-intelligence",
+        "developer-tools",
+        "lsp",
+        "mcp",
+        "rust"
+      ],
+      "capabilities": [
+        "ai",
+        "call-graph",
+        "code-intelligence",
+        "developer-tools",
+        "lsp"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/Rubentxu/CogniCode",
+        "repoUrl": "https://github.com/Rubentxu/CogniCode"
+      },
+      "useCase": "適用於 數據分析 領域之相關任務需求：AI-powered code intelligence MCP server — 17 tools for code analysis, search, re",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「數據分析」領域",
+        "支援 rust 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.161Z",
+      "stars": 4
+    },
+    {
+      "id": "lieflat-charts",
+      "name": "Lieflat Charts",
+      "url": "https://github.com/larashero3-dotcom/lieflat-charts",
+      "description": "Data visualization Skill for AI Agents, turning data into polished, interactive HTML charts. 面向 AI Agents 的数据可视化 Skill，将数据快速生成精致、可交互的 HTML 图表。",
+      "category": "數據分析",
+      "language": "html",
+      "triggers": [
+        "lieflat-charts",
+        "lieflat",
+        "charts",
+        "agent-skills",
+        "claude-code",
+        "codex",
+        "data-visualization",
+        "html"
+      ],
+      "capabilities": [
+        "agent-skills",
+        "charts",
+        "claude-code",
+        "codex",
+        "data-visualization"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/larashero3-dotcom/lieflat-charts.git",
+        "repoUrl": "https://github.com/larashero3-dotcom/lieflat-charts"
+      },
+      "useCase": "適用於 數據分析 領域之相關任務需求：Data visualization Skill for AI Agents, turning data into polished, interactive ",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「數據分析」領域",
+        "支援 html 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "status": "experimental",
+      "addedAt": "2026-09-05T06:13:34.163Z",
+      "stars": 4662
     }
   ]
 }
