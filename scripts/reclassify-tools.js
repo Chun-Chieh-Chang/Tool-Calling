@@ -44,6 +44,27 @@ const CATEGORY_RULES = [
     cat: 'AI 框架',
     priority: 100
   },
+
+  // 建構用 AI/Agent SDK → AI 框架(根治 2026-08-30 openai-agents-js 誤判:建構 voice agents 的 SDK 是積木不是成品)
+  {
+    pattern: /\b(sdk|toolkit) for building (ai|agent|llm|multi.?agent|voice|chatbot|conversational|assistant)\b/i,
+    cat: 'AI 框架',
+    priority: 96
+  },
+  // 推論引擎/本地模型伺服器 → AI 框架(慣例一:推論引擎如 airllm、h3-c、magnitude 歸 AI 框架)
+  {
+    pattern: /\b(inference server|inference engine|local (llm|models?|inference)|model server|llm runtime)\b/i,
+    cat: 'AI 框架',
+    priority: 95
+  },
+  // Agent harness 成品 → AI 代理(慣例二:可直接部署使用的 harness 屬「成品」)
+  // 優先級 101:明確的成品 harness 訊號應壓過泛用 "claude/gpt" 關鍵字(如 ruflo 同時提及兩者)
+  {
+    pattern: /\b(agent harness|meta.?harness|agent swarm|multi.?agent swarm|swarm intelligence|deploy.*swarms)\b/i,
+    cat: 'AI 代理',
+    priority: 101,
+    exclude: /\b(harness sdk|harness framework|build (a |your )?harness)\b/i
+  },
   { 
     pattern: /\b(huggingface|diffusion|stable.?diffusion|midjourney|dalle)\b/i, 
     cat: 'AI 框架',
@@ -134,10 +155,12 @@ const CATEGORY_RULES = [
   },
   
   // 音訊
+  // 注意:排除 "voice agents"(2026-08-30 openai-agents-js 誤判教訓:建構 voice agent 的 SDK 非音訊工具)
   { 
     pattern: /\b(audio|music|speech|voice|whisper|tts|stt|text-to-speech)\b/i, 
     cat: '音訊',
-    priority: 90
+    priority: 90,
+    exclude: /\b(sdk|library|framework) for building\b/i
   },
   
   // 多媒體生成 - AI 生成
@@ -217,7 +240,7 @@ const CATEGORY_RULES = [
  * @param {Object} tool - 工具物件
  * @returns {string} 分類名稱
  */
-function inferCategory(tool) {
+export function inferCategory(tool) {
   if (!tool) return '開發工具';
   
   const name = (tool.name || '').toLowerCase();

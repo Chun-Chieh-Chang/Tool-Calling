@@ -28,6 +28,13 @@
 
 **速記**:框架回答「如何建」;代理回答「拿來用」。
 
+### 慣例二之一:Harness 與推論引擎判準(2026-09-06 增補)
+
+- **成品 agent harness → AI 代理**:可直接部署/安裝使用的 harness(ruflo、metaharness、deepseek-harness、t3code)屬「成品」;harness SDK/框架(讓別人「蓋」harness 的開發套件,如 harness-sdk)屬「積木」→ AI 框架。規則引擎訊號:`agent harness|meta-harness|agent swarm`(priority 101,壓過泛用 `claude/gpt` 關鍵字)。
+- **推論引擎/本地模型伺服器 → AI 框架**:inference server/engine、本地 LLM 執行環境(airllm、h3-c、sie、magnitude)是建構側基礎設施,不是成品 agent → AI 框架(慣例一)。規則引擎訊號:`inference server|inference engine|local (llm|models|inference)`(priority 95)。
+- **建構用 AI/Agent SDK → AI 框架**:`SDK/toolkit for building (multi-agent|voice agents|...)` 是積木(例:openai-agents-js),即使描述含音訊詞彙也不歸音訊。音訊規則已排除 `sdk/library/framework for building` 誤觸發(根治 2026-08-30 openai-agents-js 誤判)。
+- **注意**:規則引擎既有寬鬆規則(`\b(llm|claude|gpt)\b` priority 100)與 2026-08-16 稽核後的現狀存在大規模矛盾(dry-run 約 321 筆建議),`--apply` 前必須逐項覆核;本次僅增補上述邊界規則,未套用既有矛盾建議。
+
 ## 各分類收錄基準(快速索引)
 
 | 分類 | 收錄 | 不收錄(改歸) |

@@ -3161,3 +3161,34 @@ ode scripts/check-mece.js：通過
 - npm test: 62/62 pass, 0 fail ✅
 - cli.js validate: 0 errors, 0 warnings ✅
 - check-mece.js: 653 工具 / 22 分類通過 ✅
+
+## 2026-09-06 批量加入 3 個工具 + ruflo 重複重新解析 + Harness/推論引擎分類判準增補
+
+### 需求
+批量加入 4 個 GitHub URL（ruflo、everything-claude-code、magnitude、nvm），檢查是否需拆解；遇重複需重新解析，並全盤檢討分類邏輯，有優化則以新代舊。
+
+### 處理結果
+**批量新增**（3 個工具，676 → 679 總計）：
+| URL | 分類 | Stars | 備註 |
+|-----|------|-------|------|
+| WorldFlowAI/everything-claude-code | AI 代理 | 2,358 | Claude Code 插件型工具集；agents/commands 為 .md、skills 為知識型 → 不拆解；安裝修正為 /plugin marketplace add（npm 同名包為空佔位） |
+| magnitudedev/magnitude | AI 框架 | 3,208 | 本地模型推論伺服器；單一產品 monorepo（turbo 万路徑）→ 不拆解；掃描誤歸開發工具已修；安裝修正為 @magnitudedev/cli（npm 的 magnitude 是他人向量數學套件） |
+| nvm-sh/nvm | 開發工具 | 94,919 | Node 版本管理器；GitHub 描述含迷因幣地址汙染，已清除並補 useCase/優勢/禁用場景 |
+
+**重複重新解析**：
+- ruvnet/ruflo（70,694★）已存在 → 重新解析：AI 框架 → AI 代理（agent meta-harness 成品，與 metaharness/deepseek-harness 等 AI 代理案例一致）；描述同步官方；安裝修正為 npm install -g ruflo（npm 上 ruflo v3.38.21 即本專案 launcher，repository 指向 ruvnet/claude-flow 的 ruflo 目錄）；star-snapshots 補寫 ruvnet/ruflo（原缺口會導致週報 delta 誤差）
+
+**分類邏輯全盤檢討**（reclassify-tools.js，dry-run 基線比較）：
+- 新增規則：「成品 agent harness → AI 代理」（priority 101，壓過泛用 claude/gpt 關鍵字）、「推論引擎/本地模型伺服器 → AI 框架」（priority 95）、「建構用 AI/Agent SDK → AI 框架」（priority 96）
+- 根治音訊誤觸發：音訊規則排除「sdk/library/framework for building」（2026-08-30 openai-agents-js 手動修正的規則面根治，moonshine 等真音訊工具不受影響）
+- 隔離測試 10 案例全數符合預期（ruflo/magnitude/khoj/nativ/openai-agents-js/moonshine/learn-claude-code/sie/ds4/airllm）
+- 全庫 dry-run：322 → 321 筆建議，唯一差異為移除「openai-agents-js → 音訊」有害建議；引擎既有寬鬆規則（\\b(llm|claude|gpt)\\b priority 100）與 2026-08-16 稽核現狀存在大規模矛盾（約 321 筆），不予套用，僅增補邊界規則並於文件標註 --apply 風險
+- inferCategory 改為 export 供隔離測試
+- docs/category-conventions.md 增補「慣例二之一：Harness 與推論引擎判準」
+
+### 驗證結果
+- npm test: 62/62 pass, 0 fail ✅
+- cli.js validate: 679/679 通過，metadata quality 100/100，0 errors 0 warnings ✅
+- check-mece.js: 679 工具 / 18 分類通過（AI 代理 144 / 開發工具 87 / AI 框架 80）✅
+- check-utf8.js: 0 個 U+FFFD ✅
+- check-duplicate-ids.js: 通過 ✅

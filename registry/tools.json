@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-05T06:14:03.491Z",
+  "lastUpdated": "2026-09-06T01:11:43.476Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -5201,8 +5201,8 @@
       "id": "ruflo",
       "name": "Ruflo",
       "url": "https://github.com/ruvnet/ruflo",
-      "description": "TypeScript framework for orchestrating multi-agent swarms with memory, RAG, and adaptive learning.",
-      "category": "AI 框架",
+      "description": "Agent meta-harness for deploying multi-player agent swarms, coordinating autonomous workflows, and building conversational AI systems with adaptive memory, self-learning intelligence, RAG, and native Claude Code / Codex / Hermes integration.",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "ruflo",
@@ -5211,11 +5211,14 @@
         "typescript",
         "agents",
         "harness",
-        "rag"
+        "rag",
+        "meta-harness",
+        "agent-swarm",
+        "claude-code-integration"
       ],
       "install": {
         "method": "npm",
-        "command": "npm install https://github.com/ruvnet/ruflo",
+        "command": "npm install -g ruflo && ruflo",
         "repoUrl": "https://github.com/ruvnet/ruflo"
       },
       "capabilities": [
@@ -5223,11 +5226,12 @@
         "typescript",
         "skills",
         "multi-agent",
-        "swarm"
+        "swarm",
+        "mcp-server"
       ],
       "addedAt": "2026-07-19T08:58:21.029Z",
       "status": "active",
-      "useCase": "Coordinate multiple specialized AI agents to autonomously research a complex topic and compile a structured report.",
+      "useCase": "Deploy a coordinated swarm of specialized agents (researcher, coder, reviewer) that share memory and adapt workflows across long-running autonomous tasks.",
       "advantages": [
         "Native integration with multiple LLM providers including Claude Code, Codex, and Hermes.",
         "Built-in adaptive memory and self-learning intelligence for evolving workflows.",
@@ -5238,7 +5242,7 @@
         "Avoid for projects needing a lightweight standalone CLI without orchestration overhead.",
         "May be overkill for basic conversational bots that do not need swarm capabilities."
       ],
-      "stars": 68861
+      "stars": 70694
     },
     {
       "id": "crewai",
@@ -42094,6 +42098,124 @@
       "status": "experimental",
       "addedAt": "2026-09-05T06:13:34.163Z",
       "stars": 4662
+    },
+    {
+      "id": "everything-claude-code",
+      "name": "Everything Claude Code",
+      "url": "https://github.com/WorldFlowAI/everything-claude-code",
+      "description": "Claude Code toolkit - agents, commands, skills, rules, and hooks for productive AI-assisted development",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "everything-claude-code",
+        "everything",
+        "claude",
+        "code",
+        "claude-code-plugin",
+        "subagents",
+        "hooks",
+        "slash-commands",
+        "tdd-workflow"
+      ],
+      "install": {
+        "method": "plugin-marketplace",
+        "command": "Claude Code: /plugin marketplace add WorldFlowAI/everything-claude-code，或直接複製 agents/skills/hooks/rules 目錄內容使用",
+        "repoUrl": "https://github.com/WorldFlowAI/everything-claude-code"
+      },
+      "capabilities": [],
+      "useCase": "Drop a proven set of Claude Code subagents (planner, TDD guide, security reviewer), skills, hooks, and slash commands into a real product codebase for disciplined AI-assisted development.",
+      "advantages": [
+        "Production-ready agents/skills/hooks/commands/rules evolved from 10+ months of daily use (Anthropic hackathon winner)",
+        "Installs as a single Claude Code plugin via marketplace, or copy individual components",
+        "Includes workflow skills such as TDD, verification loop, security review, and continuous learning"
+      ],
+      "negativeConstraints": [
+        "Claude Code specific — not a standalone CLI or library",
+        "Opinionated workflows; teams may want to prune or adapt commands and rules to their conventions"
+      ],
+      "addedAt": "2026-09-06T01:02:56.799Z",
+      "status": "experimental",
+      "stars": 2358
+    },
+    {
+      "id": "magnitude",
+      "name": "Magnitude",
+      "url": "https://github.com/magnitudedev/magnitude",
+      "description": "Open-source local-model inference server that profiles your hardware, recommends/downloads/tunes the best local models, and serves them to agents like OpenClaw, Claude Code, Codex, and Cline.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "magnitude",
+        "開發工具",
+        "inference-server",
+        "local-models",
+        "llm-inference",
+        "offline-llm"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install -g @magnitudedev/cli && magnitude",
+        "repoUrl": "https://github.com/magnitudedev/magnitude"
+      },
+      "capabilities": [],
+      "useCase": "Give your existing coding agent (OpenClaw/Claude Code/Codex/Cline) free, private, offline local models by auto-matching the best models to your GPU/CPU hardware.",
+      "advantages": [
+        "自動化掃描收錄，精準歸入「開發工具」領域",
+        "支援 typescript 開發生態"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-06T01:03:00.811Z",
+      "status": "experimental",
+      "stars": 3208
+    },
+    {
+      "id": "nvm",
+      "name": "Nvm",
+      "url": "https://github.com/nvm-sh/nvm",
+      "description": "Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions, switch per-project via .nvmrc, and install LTS or nightly Node builds.",
+      "category": "開發工具",
+      "language": "shell",
+      "triggers": [
+        "nvm",
+        "bash",
+        "install",
+        "lts",
+        "node",
+        "node-js",
+        "nodejs",
+        "nvmrc",
+        "nvm-windows-alternative",
+        "node-versions",
+        "version-manager"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/nvm-sh/nvm.git",
+        "repoUrl": "https://github.com/nvm-sh/nvm"
+      },
+      "capabilities": [
+        "bash",
+        "install",
+        "lts",
+        "node",
+        "node-js"
+      ],
+      "useCase": "Switch Node.js versions per project (e.g. Node 18 for a legacy repo, Node 22 for a new one) via `nvm use` and .nvmrc on POSIX shells.",
+      "advantages": [
+        "De-facto standard Node version manager, POSIX-compliant bash/zsh, zero runtime dependencies",
+        "Per-project version pinning via .nvmrc and `nvm use`",
+        "Direct LTS/nightly install and shell PATH isolation between Node versions"
+      ],
+      "negativeConstraints": [
+        "POSIX shells only (bash/zsh/sh) — Windows needs nvm-windows or WSL, this repo does not support cmd/PowerShell natively",
+        "Only manages Node.js versions — not a general-purpose package or runtime manager"
+      ],
+      "addedAt": "2026-09-06T01:03:01.685Z",
+      "status": "experimental",
+      "stars": 94919
     }
   ]
 }
