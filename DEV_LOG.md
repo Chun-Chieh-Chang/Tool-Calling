@@ -3192,3 +3192,21 @@ ode scripts/check-mece.js：通過
 - check-mece.js: 679 工具 / 18 分類通過（AI 代理 144 / 開發工具 87 / AI 框架 80）✅
 - check-utf8.js: 0 個 U+FFFD ✅
 - check-duplicate-ids.js: 通過 ✅
+
+## 2026-09-06 npm audit 漏洞盤點與修復
+
+### 需求
+GitHub 推送時回報預設分支有 6 個依賴漏洞（4 high、2 moderate），執行 npm audit 盤點並升級。
+
+### 處理結果
+| 套件 | 嚴重度 | 版本 | 修復 | 路徑 |
+|------|--------|------|------|------|
+| fast-uri | high（GHSA-5jgf-p345-68v8 等 4 個：host confusion / SSRF） | 3.1.5 → 3.1.7 | npm audit fix | @modelcontextprotocol/sdk → ajv |
+| qs | moderate（array-limit bypass / DoS） | 6.15.3 → 6.16.0 | npm audit fix | @modelcontextprotocol/sdk → express |
+
+- 兩者皆為傳遞依賴 patch 升級，直接依賴（@modelcontextprotocol/sdk、zod、playwright）未變動
+- npm audit 修復後：0 vulnerabilities
+
+### 驗證結果
+- npm test: 62/62 pass, 0 fail ✅
+- npm audit: found 0 vulnerabilities ✅
