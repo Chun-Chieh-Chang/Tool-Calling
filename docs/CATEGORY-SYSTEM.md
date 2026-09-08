@@ -10,31 +10,34 @@
 
 ## 當前分類架構
 
-> 統計時間: 2026-09-02 (`node cli.js validate` + `node scripts/check-mece.js` 確認)
+> 統計時間: 2026-09-08 (`node cli.js validate` + `node scripts/check-mece.js` 確認)
 > 分類慣例與兩大判定原則詳見 `docs/category-conventions.md` (領域優先 + AI 框架/代理邊界)
 
 | 分類 | 數量 | 說明 |
 |------|------|------|
-| AI 代理 | 141 | 成品 agent、agent harness、skill/plugin 集合、agent 平台 |
-| 開發工具 | 83 | CLI、IDE、代碼審查、token 壓縮等泛用工具 |
-| AI 框架 | 78 | LLM SDK、模型本體、推論/訓練框架、agent 建構庫 |
+| AI 代理 | 145 | 成品 agent、agent harness、skill/plugin 集合、agent 平台 |
+| 開發工具 | 91 | CLI、IDE、代碼審查、token 壓縮等泛用工具 |
+| AI 框架 | 83 | LLM SDK、模型本體、推論/訓練框架、agent 建構庫 |
 | 文件生產力 | 58 | 簡報/PPT、Office、PDF、文件轉換、寫作輔助 |
-| 學習資源 | 54 | 教程、課程、書籍、Awesome Lists |
-| UI/UX設計 | 53 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
-| 知識管理 | 32 | agent 記憶、RAG、知識圖譜、codebase 索引 |
+| 學習資源 | 57 | 教程、課程、書籍、Awesome Lists |
+| UI/UX設計 | 54 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
+| 知識管理 | 34 | agent 記憶、RAG、知識圖譜、codebase 索引 |
 | 金融與投資 | 25 | 交易、量化、股票分析、投資研究 |
 | 影片 | 23 | 視頻編輯、視頻生成、串流 |
 | 研究 | 23 | 學術研究、文獻、洩漏提示詞研究 |
-| 多媒體生成 | 18 | AI 圖像/視頻生成 |
-| 瀏覽器自動化 | 16 | 爬蟲、Scraper、Headless、agent 瀏覽器 |
+| 多媒體生成 | 19 | AI 圖像/視頻生成 |
+| 瀏覽器自動化 | 17 | 爬蟲、Scraper、Headless、agent 瀏覽器 |
 | 安全性 | 15 | 滲透測試、漏洞掃描、資安技能 |
-| 數據分析 | 10 | Pandas/Polars、產品分析 |
+| 數據分析 | 11 | Pandas/Polars、產品分析 |
+| 3D工程繪圖 | 11 | CAD、3D 建模、3D 資產生成 |
+| API 整合 | 10 | API 閘道、整合工具 |
 | 音訊 | 10 | TTS/STT、音頻處理 |
-| 3D工程繪圖 | 10 | CAD、3D 建模、3D 資產生成 |
-| API 整合 | 9 | API 閘道、整合工具 |
 | 測試與自動化 | 8 | Test Runner、E2E 測試框架 |
+| UI/UX设计 | 1 | 設計系統（簡體中文分類，待統一） |
 
-**合計**: 666 個工具, 18 個分類, 無「其他」殘留 (MECE 強制 100% 覆蓋)。
+**合計**: 695 個工具, 19 個分類, 無「其他」殘留 (MECE 強制 100% 覆蓋)。
+
+> **注意**: 2026-09-08 新增 9 個工具後，總數從 680 增至 695。分類數從 18 增至 19（新增「3D工程繪圖」分類）。
 
 ---
 

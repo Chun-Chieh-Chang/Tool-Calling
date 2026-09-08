@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-09-03T12:38:49.471Z
+ * 產生時間：2026-09-08T13:45:46.098Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -273,20 +273,10 @@ export const SYNONYM_MAP = {
     "advanced types"
   ],
   "跨瀏覽器測試": [
-    "playwright",
     "e2e-testing",
     "browser automation",
     "自動化測試",
     "網頁爬蟲",
-    "瀏覽器自動化",
-    "測試"
-  ],
-  "playwright": [
-    "跨瀏覽器測試",
-    "自動化測試",
-    "網頁爬蟲",
-    "e2e-testing",
-    "browser automation",
     "瀏覽器自動化",
     "測試"
   ],
@@ -294,7 +284,6 @@ export const SYNONYM_MAP = {
     "跨瀏覽器測試",
     "自動化測試",
     "網頁爬蟲",
-    "playwright",
     "browser automation",
     "瀏覽器自動化",
     "測試"
@@ -304,12 +293,10 @@ export const SYNONYM_MAP = {
     "自動化測試",
     "網頁爬蟲",
     "瀏覽器自動化",
-    "playwright",
     "e2e-testing",
     "測試"
   ],
   "自動化測試": [
-    "playwright",
     "e2e-testing",
     "browser automation",
     "跨瀏覽器測試",
@@ -318,14 +305,14 @@ export const SYNONYM_MAP = {
     "測試"
   ],
   "網頁爬蟲": [
-    "playwright",
     "e2e-testing",
     "browser automation",
     "跨瀏覽器測試",
     "自動化測試",
     "瀏覽器自動化",
     "web scraping",
-    "crawler"
+    "crawler",
+    "測試"
   ],
   "檔案系統": [
     "filesystem",
@@ -1864,31 +1851,21 @@ export const SYNONYM_MAP = {
   "ai agent 框架": [
     "harness",
     "agent harness",
-    "cordis",
     "agent 執行環境"
   ],
   "harness": [
     "ai agent 框架",
     "agent 執行環境",
-    "agent harness",
-    "cordis"
+    "agent harness"
   ],
   "agent harness": [
     "ai agent 框架",
     "agent 執行環境",
-    "harness",
-    "cordis"
-  ],
-  "cordis": [
-    "ai agent 框架",
-    "agent 執行環境",
-    "harness",
-    "agent harness"
+    "harness"
   ],
   "agent 執行環境": [
     "harness",
     "agent harness",
-    "cordis",
     "ai agent 框架"
   ],
   "程式碼文件": [
@@ -1943,7 +1920,8 @@ export const SYNONYM_MAP = {
   ],
   "openwiki": [
     "程式碼文件",
-    "自動文件生成"
+    "自動文件生成",
+    "文件生產力"
   ],
   "自動文件生成": [
     "codewiki",
@@ -2282,7 +2260,6 @@ export const SYNONYM_MAP = {
   "claudemd優化": [
     "improve-claude-md",
     "claudemd",
-    "prompt-engineering",
     "system-prompt-optimization",
     "instruction-adherence",
     "提示詞遵循",
@@ -2293,7 +2270,6 @@ export const SYNONYM_MAP = {
     "提示詞遵循",
     "claude指令調優",
     "claudemd",
-    "prompt-engineering",
     "system-prompt-optimization",
     "instruction-adherence"
   ],
@@ -2302,16 +2278,6 @@ export const SYNONYM_MAP = {
     "提示詞遵循",
     "claude指令調優",
     "improve-claude-md",
-    "prompt-engineering",
-    "system-prompt-optimization",
-    "instruction-adherence"
-  ],
-  "prompt-engineering": [
-    "claudemd優化",
-    "提示詞遵循",
-    "claude指令調優",
-    "improve-claude-md",
-    "claudemd",
     "system-prompt-optimization",
     "instruction-adherence"
   ],
@@ -2321,7 +2287,6 @@ export const SYNONYM_MAP = {
     "claude指令調優",
     "improve-claude-md",
     "claudemd",
-    "prompt-engineering",
     "instruction-adherence"
   ],
   "instruction-adherence": [
@@ -2330,13 +2295,11 @@ export const SYNONYM_MAP = {
     "claude指令調優",
     "improve-claude-md",
     "claudemd",
-    "prompt-engineering",
     "system-prompt-optimization"
   ],
   "提示詞遵循": [
     "improve-claude-md",
     "claudemd",
-    "prompt-engineering",
     "system-prompt-optimization",
     "instruction-adherence",
     "claudemd優化",
@@ -2345,7 +2308,6 @@ export const SYNONYM_MAP = {
   "claude指令調優": [
     "improve-claude-md",
     "claudemd",
-    "prompt-engineering",
     "system-prompt-optimization",
     "instruction-adherence",
     "claudemd優化",
@@ -2807,22 +2769,21 @@ export const SYNONYM_MAP = {
   "開發工具": [
     "omarchy",
     "linux distro",
-    "aesthetic linux"
+    "aesthetic linux",
+    "freebuff",
+    "kunpeng",
+    "magnitude",
+    "inference-server",
+    "local-models"
   ],
   "omarchy": [
-    "開發工具",
-    "linux distro",
-    "aesthetic linux"
+    "開發工具"
   ],
   "linux distro": [
-    "開發工具",
-    "omarchy",
-    "aesthetic linux"
+    "開發工具"
   ],
   "aesthetic linux": [
-    "開發工具",
-    "omarchy",
-    "linux distro"
+    "開發工具"
   ],
   "知識管理": [
     "openhuman",
@@ -2975,6 +2936,220 @@ export const SYNONYM_MAP = {
   ],
   "goldie": [
     "ai 代理"
+  ],
+  "文件生產力": [
+    "openwiki",
+    "程式碼文件",
+    "自動文件生成"
+  ],
+  "freebuff": [
+    "開發工具"
+  ],
+  "kunpeng": [
+    "開發工具"
+  ],
+  "magnitude": [
+    "開發工具"
+  ],
+  "inference-server": [
+    "開發工具"
+  ],
+  "local-models": [
+    "開發工具"
+  ],
+  "llm-inference": [
+    "開發工具"
+  ],
+  "offline-llm": [
+    "開發工具"
+  ],
+  "截圖轉碼": [
+    "screenshot-to-code",
+    "screenshot",
+    "figma-to-code",
+    "design-to-code",
+    "ui-to-code",
+    "html-generator",
+    "tailwind",
+    "vue"
+  ],
+  "screenshot-to-code": [
+    "截圖轉碼",
+    "screenshot",
+    "figma-to-code",
+    "design-to-code",
+    "ui-to-code",
+    "html-generator",
+    "tailwind",
+    "vue"
+  ],
+  "screenshot": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "figma-to-code",
+    "design-to-code",
+    "ui-to-code",
+    "html-generator",
+    "tailwind",
+    "vue"
+  ],
+  "figma-to-code": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "screenshot",
+    "design-to-code",
+    "ui-to-code",
+    "html-generator",
+    "tailwind",
+    "vue"
+  ],
+  "design-to-code": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "screenshot",
+    "figma-to-code",
+    "ui-to-code",
+    "html-generator",
+    "tailwind",
+    "vue"
+  ],
+  "ui-to-code": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "screenshot",
+    "figma-to-code",
+    "design-to-code",
+    "html-generator",
+    "tailwind",
+    "vue"
+  ],
+  "html-generator": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "screenshot",
+    "figma-to-code",
+    "design-to-code",
+    "ui-to-code",
+    "tailwind",
+    "vue"
+  ],
+  "tailwind": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "screenshot",
+    "figma-to-code",
+    "design-to-code",
+    "ui-to-code",
+    "html-generator",
+    "vue"
+  ],
+  "vue": [
+    "截圖轉碼",
+    "screenshot-to-code",
+    "screenshot",
+    "figma-to-code",
+    "design-to-code",
+    "ui-to-code",
+    "html-generator",
+    "tailwind"
+  ],
+  "學習 claude": [
+    "claude-code-source-study",
+    "claude-code-source",
+    "claude-source-code",
+    "agent-architecture",
+    "claude-study"
+  ],
+  "claude-code-source-study": [
+    "學習 claude",
+    "claude-code-source",
+    "claude-source-code",
+    "agent-architecture",
+    "claude-study"
+  ],
+  "claude-code-source": [
+    "學習 claude",
+    "claude-code-source-study",
+    "claude-source-code",
+    "agent-architecture",
+    "claude-study"
+  ],
+  "claude-source-code": [
+    "學習 claude",
+    "claude-code-source-study",
+    "claude-code-source",
+    "agent-architecture",
+    "claude-study"
+  ],
+  "agent-architecture": [
+    "學習 claude",
+    "claude-code-source-study",
+    "claude-code-source",
+    "claude-source-code",
+    "claude-study"
+  ],
+  "claude-study": [
+    "學習 claude",
+    "claude-code-source-study",
+    "claude-code-source",
+    "claude-source-code",
+    "agent-architecture"
+  ],
+  "免費課程": [
+    "claude-code-everyone-course",
+    "claude-code-course",
+    "learn-claude-code",
+    "claude-tutorial",
+    "cc-for-everyone",
+    "claude 入門"
+  ],
+  "claude-code-everyone-course": [
+    "免費課程",
+    "claude 入門",
+    "claude-code-course",
+    "learn-claude-code",
+    "claude-tutorial",
+    "cc-for-everyone"
+  ],
+  "claude-code-course": [
+    "免費課程",
+    "claude 入門",
+    "claude-code-everyone-course",
+    "learn-claude-code",
+    "claude-tutorial",
+    "cc-for-everyone"
+  ],
+  "learn-claude-code": [
+    "免費課程",
+    "claude 入門",
+    "claude-code-everyone-course",
+    "claude-code-course",
+    "claude-tutorial",
+    "cc-for-everyone"
+  ],
+  "claude-tutorial": [
+    "免費課程",
+    "claude 入門",
+    "claude-code-everyone-course",
+    "claude-code-course",
+    "learn-claude-code",
+    "cc-for-everyone"
+  ],
+  "cc-for-everyone": [
+    "免費課程",
+    "claude 入門",
+    "claude-code-everyone-course",
+    "claude-code-course",
+    "learn-claude-code",
+    "claude-tutorial"
+  ],
+  "claude 入門": [
+    "claude-code-everyone-course",
+    "claude-code-course",
+    "learn-claude-code",
+    "claude-tutorial",
+    "cc-for-everyone",
+    "免費課程"
   ],
   "翻譯": [
     "translate",
@@ -3173,7 +3348,6 @@ export const SYNONYM_MAP = {
   ],
   "測試": [
     "自動化測試",
-    "playwright",
     "e2e-testing",
     "browser automation",
     "跨瀏覽器測試",

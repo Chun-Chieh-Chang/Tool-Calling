@@ -733,17 +733,17 @@ export function generateKnowledgeGraph(registryInput = null) {
       physics: {
         enabled: true,
         barnesHut: {
-          gravitationalConstant: -18000,
-          centralGravity: 0.025,
-          springLength: 95,
-          springConstant: 0.03,
-          damping: 0.45,
+          gravitationalConstant: -25000,
+          centralGravity: 0.015,
+          springLength: 120,
+          springConstant: 0.02,
+          damping: 0.3,
           avoidOverlap: 0.95
         },
-        maxVelocity: 40,
-        minVelocity: 0.2,
+        maxVelocity: 60,
+        minVelocity: 0.1,
         solver: 'barnesHut',
-        stabilization: { enabled: true, iterations: 300 }
+        stabilization: { enabled: true, iterations: 500 }
       },
       interaction: {
         hover: true,
@@ -875,9 +875,13 @@ export function generateKnowledgeGraph(registryInput = null) {
 
     network2d.once('stabilizationIterationsDone', function() {
       network2d.setOptions({ physics: { enabled: false } });
-      network2d.moveTo({ position: { x: 0, y: 0 }, scale: 1.0, animation: false });
+      // 預設全景：使用 fit() 自動縮放以顯示所有節點
+      network2d.fit({ animation: { duration: 800, easingFunction: 'easeInOutQuad' } });
     });
-    setTimeout(function() { network2d.moveTo({ position: { x: 0, y: 0 }, scale: 1.0, animation: false }); }, 300);
+    setTimeout(function() { 
+      // 延遲後再次 fit，確保佈局穩定後完整顯示
+      network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } }); 
+    }, 500);
 
     // ─── 2. 初始化 3D Force-Directed Graph (Obsidian 廣闊宇宙空間) ─────────────
     function init3DGraph() {
@@ -976,10 +980,10 @@ export function generateKnowledgeGraph(registryInput = null) {
         .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
         .linkDirectionalParticleSpeed(0.004)
         .linkDirectionalParticleWidth(1.4)
-        .d3VelocityDecay(0.25)
-        .d3AlphaDecay(0.015)
-        .warmupTicks(60)
-        .cooldownTicks(300)
+        .d3VelocityDecay(0.4)
+        .d3AlphaDecay(0.05)
+        .warmupTicks(100)
+        .cooldownTicks(600)
         .onNodeClick(node => {
           // 點擊節點：深入對焦至節點正前方
           zoomTo3DNode(node, 36);
@@ -990,7 +994,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       setTimeout(() => {
         if (graph3DInstance && graph3DInstance.d3Force) {
           const chargeForce = graph3DInstance.d3Force('charge');
-          if (chargeForce) chargeForce.strength(-220);
+          if (chargeForce) chargeForce.strength(-600);
 
           const linkForce = graph3DInstance.d3Force('link');
           if (linkForce) {
@@ -1037,8 +1041,8 @@ export function generateKnowledgeGraph(registryInput = null) {
             controls.screenSpacePanning = true;
             controls.enableRotate = true;
             controls.rotateSpeed = 1.0;
-            controls.minDistance = 15.0;   // 放大 20x (距離 15)
-            controls.maxDistance = 6000.0; // 縮小 1/20 (距離 6000)
+            controls.minDistance = 8.0;    // 放大 60x (距離 8)
+            controls.maxDistance = 10000.0; // 縮小 1/60 (距離 10000)
 
             controls.mouseButtons = {
               LEFT: 0,   // 左鍵: 旋轉 (ROTATE)
@@ -1074,12 +1078,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         // 當前相機與 target 距離
         const currentDist = camera.position.distanceTo(controls.target);
 
-        // 縮放比例步長 (縮小時 deltaY > 0, 放大時 deltaY < 0)
-        const zoomStep = e.deltaY < 0 ? 0.12 : -0.136;
+        // 縮放比例步長 (縮小時 deltaY > 0, 放大時 deltaY < 0) — 提高靈敏度
+        const zoomStep = e.deltaY < 0 ? 0.20 : -0.25;
         const stepDist = currentDist * zoomStep;
 
         const newDist = currentDist - stepDist;
-        if (newDist < 15.0 || newDist > 6000.0) return; // 嚴格鎖定於 20x (距離 15) ~ 1/20x (距離 6000)
+        if (newDist < 8.0 || newDist > 10000.0) return; // 嚴格鎖定於 60x (距離 8) ~ 1/60x (距離 10000)
 
         // 平移向量 deltaVec 嚴格沿著滑鼠射線方向
         const deltaVec = rayDir.clone().multiplyScalar(stepDist);
@@ -1145,8 +1149,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       }, true);
 
       window.graph3DInstance = graph3DInstance;
-      // 預設 1:1 基準視野 (z: 300)
-      graph3DInstance.cameraPosition({ x: 0, y: 0, z: 300 });
+      // 預設全景視野：大距離斜角視角，確保所有 19 個分類節點群組完整可見
+      graph3DInstance.cameraPosition({ x: 400, y: 400, z: 1200 });
     }
 
     // 切換 2D / 3D 視角
@@ -1346,20 +1350,17 @@ export function generateKnowledgeGraph(registryInput = null) {
       // 2. 關閉詳細資訊抽屜
       closePanel();
 
-      // 3. 視圖回歸預設 1:1 基準視野 (Scale: 1.0 / Z: 300)
+      // 3. 視圖回歸預設全景視野 (Z: 1200 斜角視角顯示所有分類群組)
       if (is3DMode && graph3DInstance) {
         graph3DInstance.cameraPosition(
-          { x: 0, y: 0, z: 300 },
+          { x: 400, y: 400, z: 1200 },
           { x: 0, y: 0, z: 0 },
           1000
         );
       } else if (network2d) {
         network2d.unselectAll();
-        network2d.moveTo({
-          position: { x: 0, y: 0 },
-          scale: 1.0,
-          animation: { duration: 600, easingFunction: 'easeInOutQuad' }
-        });
+        // 重置 2D 全景：使用 fit() 自動適配所有節點
+        network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
       }
     }
   </script>

@@ -1,5 +1,143 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-08 知識圖譜 3D/2D 雙視角全景優化
+
+### 需求
+1. 批量加入 9 個新工具至工具庫（完成於上午）
+2. 優化 3D 圖譜預設全景視角，確保所有 19 個分類群組可見
+3. 增加動態縮放靈敏度（滾輪縮放幅度提升）
+4. 修正 2D 圖譜預設與重置全景視角
+5. 確保中文編碼無亂碼問題
+
+### 處理結果 (PDCA)
+
+#### Phase 1: 3D 圖譜物理模擬優化
+- **問題診斷**：初始 3D 視角過近（Z=300），且力導向物理參數導致節點過度收縮
+- **修改內容**：
+  | 參數 | 原值 | 新值 | 效果 |
+  |------|------|------|------|
+  | 初始相機位置 | `{x:0, y:0, z:300}` | `{x:400, y:400, z:1200}` | 斜角 45° 全景 |
+  | 斥力強度 | `-220` | `-600` | 分類群組彼此分離 |
+  | 速度衰減 | `0.25` | `0.4` | 減低阻尼，模擬持續更久 |
+  | Alpha 衰減 | `0.015` | `0.05` | 控制收斂速度 |
+  | 預熱刻度 | `60` | `100` | 增加初始模擬步數 |
+  | 冷卻刻度 | `300` | `600` | 延長穩定化過程 |
+- **縮放範圍擴展**：`minDistance: 15→8`，`maxDistance: 6000→10000`（20x → 60x）
+- **縮放步長提升**：`0.12/0.136` → `0.20/0.25`（灵敏度 +70-80%）
+
+#### Phase 2: 2D 圖譜視角優化
+- **問題診斷**：stabilization 後使用固定 `scale: 1.0`，無法適配 695 個節點
+- **修改內容**：
+  - 初始載入：`moveTo({scale:1.0})` → `fit({animation:true})`
+  - 重置視角：`moveTo({scale:1.0})` → `fit({animation:true})`
+- **物理參數調整**：
+  | 參數 | 原值 | 新值 | 效果 |
+  |------|------|------|------|
+  | gravitationalConstant | `-18000` | `-25000` | 增強斥力 |
+  | centralGravity | `0.025` | `0.015` | 減弱中心引力 |
+  | springLength | `95` | `120` | 增加連線長度 |
+  | springConstant | `0.03` | `0.02` | 減弱彈簧力 |
+  | stabilization iterations | `300` | `500` | 更充分穩定 |
+
+#### Phase 3: 中文編碼驗證
+- 執行 `node scripts/check-utf8.js` 驗證所有核心檔案
+- 結果：**0 個 U+FFFD 亂碼字元**，UTF-8 編碼正確
+
+### 根因分析 (RCA)
+
+1. **3D 物理參數設定過於保守**：
+   - 原始 `charge.strength(-220)` 不足以將 19 個分類群組推開
+   - `d3VelocityDecay(0.25)` 阻尼過高，導致模擬過早停止
+   - `warmupTicks(60)` 與 `cooldownTicks(300)` 不足，佈局未充分展開
+
+2. **2D 視角設定採用固定縮放**：
+   - `scale: 1.0` 假設節點分佈在單位範圍內，但實際佈局範圍可能更大
+   - 未使用 `fit()` 自動計算邊界，導致部分節點超出可視區域
+
+3. **相機位置與物理佈局脫鉤**：
+   - 初始 `z:300` 對於 695 個節點的佈局範圍過近
+   - 需要更遠的視角（Z=1200）才能完整呈現全景
+
+### 矯正與預防措施 (CAPA)
+
+1. **3D 力導向參數標準化**：
+   - 斥力強度：`-600`（至少是節點數量的 1 倍）
+   - 速度衰減：`0.4`（平衡穩定性與收斂速度）
+   - 預熱/冷卻刻度：`100/600`（確保充分模擬）
+
+2. **2D/3D 視角統一使用適配算法**：
+   - 2D：預設與重置均使用 `fit()` 自動適配
+   - 3D：預設與重置均使用固定的全景相機位置
+
+3. **編碼檢查常規化**：
+   - 每次修改 HTML 模板後執行 `node scripts/check-utf8.js`
+   - 確保繁體中文內容在 UTF-8 下正確顯示
+
+### 驗證結果
+- `npm test`: **62/62 pass, 0 fail (100% 通過)**
+- `node scripts/check-utf8.js`: **所有核心檔案 UTF-8 編碼檢查通過 (0 個 U+FFFD 亂碼字元)**
+- `node cli.js validate`: **100% 通過 (689/689 工具滿分)**
+- `node scripts/check-mece.js`: **PASS (19 分類無殘留)**
+- 總工具數：**689**（原 680 + 新增 9）
+
+### 技術備註
+- 3D 圖譜使用 `3d-force-graph` 庫，基於 `three.js` + `d3-force-3d`
+- 2D 圖譜使用 `vis-network` 庫，支援自定義物理引擎
+- 縮放引擎採用自定義 `Pivot Zoom`（沿視線射線推拉，0 角度偏轉）
+- 物理參數需根據節點數量動態調整：節點越多，斥力越大，模擬時間越長
+
+---
+
+## 2026-09-08 批量工具加入與分類邏輯全盤檢討
+
+### 需求
+批量加入 16 個 GitHub 倉庫至工具庫，檢測重複並重新解析，全盤檢討分類邏輯後優化。
+
+### 處理結果 (PDCA)
+- **重複檢測**：16 個 URL 中，8 個已入庫（qwenpaw, m3e-canvas, magnitude, freetoken, graft, freebuff, learn-claude-code, diagram-design），9 個需新增（openviking, hkuds-nanobot, obot-nanobot, abi/screenshot-to-code, emilwallner/screenshot-to-code, plasticityai/magnitude, gods-eye-view, luyao618/claude-code-source-study, carlvellotti/claude-code-everyone-course）。注意：m3e-canvas 實際已入庫（舊版），本次新增 abi/screenshot-to-code 為主流版本（76k stars vs emilwallner 16.5k stars 舊版 neural network）。
+- **分類邏輯全盤檢討**：
+  - 遵循 `docs/category-conventions.md` 領域優先 + AI 框架 vs AI 代理邊界原則
+  - OpenViking → 知識管理（Context Database，非 AI 代理）
+  - HKUDS/nanobot → AI 框架（framework 為建構積木）
+  - obot-platform/nanobot → AI 代理（MCP host 為成品 harness）
+  - abi/screenshot-to-code → UI/UX設計（截圖→前端代碼，非多媒體生成）
+  - emilwallner/screenshot-to-code → AI 框架（2018 年 CNN-LSTM 研究架構）
+  - plasticityai/magnitude → AI 框架（向量嵌入工具庫）
+  - gods-eye-view → 3D工程繪圖（3D 地球儀空間視覺化）
+  - luyao618/claude-code-source-study → 學習資源（源碼教程）
+  - carlvellotti/claude-code-everyone-course → 學習資源（免費課程）
+- **AI 智囊團審查**：3 項分類調整（hkuds-nanobot 代理→框架、obot-nanobot 框架→代理、emilwallner-screenshot 多媒體→框架）
+- **驗證結果**：689 工具，19 分類，62/62 測試通過，100% 元數據滿分，MECE 無殘留
+
+### 新增工具摘要
+| ID | 名稱 | 分類 | Stars | URL |
+|---|---|---|---|---|
+| openviking | OpenViking | 知識管理 | 34,857 | volcengine/OpenViking |
+| hkuds-nanobot | nanobot (HKUDS) | AI 框架 | 47,538 | HKUDS/nanobot |
+| obot-nanobot | Nanobot (obot) | AI 代理 | 1,335 | obot-platform/nanobot |
+| screenshot-to-code | Screenshot to Code | UI/UX設計 | 76,086 | abi/screenshot-to-code |
+| emilwallner-screenshot-to-code | Screenshot to Code (Neural) | AI 框架 | 16,505 | emilwallner/Screenshot-to-code |
+| plasticityai-magnitude | Magnitude | AI 框架 | 1,665 | plasticityai/magnitude |
+| gods-eye-view | God's Eye View | 3D工程繪圖 | 12,928 | bilawalsidhu/gods-eye-view |
+| claude-code-source-study | Claude Code 源碼研究 | 學習資源 | 1,544 | luyao618/Claude-Code-Source-Study |
+| claude-code-everyone-course | Claude Code for Everyone | 學習資源 | 561 | carlvellotti/claude-code-everyone-course |
+
+### 根因分析 (RCA)
+1. **分類規則引擎建議與人工稽核衝突**：自動規則建議 329 項調整，但部分建議違反 `category-conventions.md` 領域優先原則，必須人工覆核。
+2. **nanobot 同名衝突**：HKUDS/nanobot（Python agent framework）vs obot-platform/nanobot（Go MCP host），兩者是完全不同項目，需區分處理。
+
+### 矯正與預防措施 (CAPA)
+1. 新增工具統一遵循「領域優先 + 框架/代理邊界」雙重判定。
+2. 同名衝突項目務必檢查 owner 與語言，避免混為一談。
+
+### 驗證結果
+- `npm test`: **62/62 pass, 0 fail (100% 通過)**
+- `node cli.js validate`: **100% 通過 (689/689 工具滿分)**
+- `node scripts/check-mece.js`: **PASS (19 分類無殘留)**
+- 總工具數：**689**（原 680 + 新增 9）
+
+---
+
 ## 2026-09-03 專案整體程式碼與檔案優化作業（MECE 確效、死碼清理、文檔同構與 SSOT 固化）
 
 ### 需求

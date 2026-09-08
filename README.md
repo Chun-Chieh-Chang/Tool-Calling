@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡麵收錄了 **666 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡麵收錄了 **695 個頂尖開源 AI 工具與 Agent 技能**：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與檔案生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -39,9 +39,9 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 666 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平麵與 3D Three.js 宇宙視角無縫切換。
+   - 整合 695 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平麵與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位元移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位元置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
-    - 支援 18 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
+    - 支援 19 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
    - 專案開發往往需要多個工具協同（例如：`網頁爬蟲` + `LLM RAG 清洗` + `簡報生成`）。
    - 自動將長任務 Prompt 拆解為 DAG 執行串流程圖，定義輸入/輸齣 Data Flow 介麵與備選競品。
