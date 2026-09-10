@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-09T00:12:02.299Z",
+  "lastUpdated": "2026-09-10T12:39:48.766Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -42315,6 +42315,75 @@
       "stars": 3458,
       "addedAt": "2026-09-07T07:02:26.772Z",
       "status": "active"
+    },
+    {
+      "id": "shiji-kb",
+      "name": "史記知識庫 (Shiji KB)",
+      "url": "https://github.com/baojie/shiji-kb",
+      "description": "AI 將《史記》57 萬字轉化為可交互知識圖譜：14,065 實體 / 126,441 標注（22 類）/ 3,198 個歷史事件 / 7,637 條事件關係；Butler 自主 AI Agent 維護 20,000+ 頁 Wiki；附 103 個 Agentic Ontology SKILL 文檔（14 元技能 + 89 管線技能），方法論可直接遷移至任意古籍或領域語料。",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "knowledge graph from text",
+        "ancient text processing",
+        "agentic ontology",
+        "knowledge engineering",
+        "autonomous wiki agent",
+        "entity extraction",
+        "historical knowledge graph",
+        "ontology from corpus",
+        "知識圖譜",
+        "古籍處理",
+        "butler agent",
+        "wiki automation"
+      ],
+      "install": {
+        "method": "git",
+        "command": "git clone https://github.com/baojie/shiji-kb && python3 wiki/server/serve.py wiki/public 8000",
+        "requirements": [
+          "python>=3.8"
+        ]
+      },
+      "capabilities": [
+        "entity-annotation-22-types",
+        "knowledge-graph-construction",
+        "autonomous-wiki-maintenance",
+        "historical-event-extraction",
+        "interactive-timeline-visualization",
+        "cross-chapter-contradiction-detection",
+        "agentic-ontology-methodology"
+      ],
+      "addedAt": "2026-09-10",
+      "status": "active",
+      "useCase": "AI 工程師參考 Agentic Ontology 方法論（103 SKILL 文檔）設計大型文獻知識工程管線；Butler Agent 為自主 Wiki 維護 Agent 的完整實作參考案例（三層反思機制，12,000+ 輪次運行）",
+      "advantages": [
+        "103 個 SKILL 文檔覆蓋知識工程全流程（校勘→實體→事件→關係→本體→推理），可直接遷移至其他語料",
+        "Agentic Ontology 新範式：本體從語料自下而上湧現，無需預先人工設計",
+        "Butler Agent 含流程/圖式/類型三層反思機制，展示高可靠 Agentic Loop 設計",
+        "史記地鐵圖：130 條線路 × 3,197 站點，支援縮放/拖曳/搜索的互動時間線"
+      ],
+      "negativeConstraints": [
+        "資料集專針對《史記》，並非通用 NLP 或知識圖譜框架，無法開箱即用於其他語料",
+        "Butler Agent 依賴 LLM API，大規模 Wiki 維護有持續 API 費用"
+      ],
+      "stars": 2749,
+      "subTools": [
+        {
+          "id": "butler-agent",
+          "name": "Butler Agent",
+          "description": "自主 AI Agent 按輪次維護 Wiki（新建 Stub、精品擴寫、引文核驗、斷鏈修復），含流程反思（W5）/ 圖式反思（W9）/ 類型審計（W11）三層反思機制"
+        },
+        {
+          "id": "shiji-metro-map",
+          "name": "史記地鐵圖",
+          "description": "130 條互動式歷史時間線 × 3,197 事件站點，支援縮放/拖曳/搜索（位於 app/metro）"
+        },
+        {
+          "id": "agentic-ontology-skills",
+          "name": "Agentic Ontology SKILL 體系",
+          "description": "14 元技能 + 89 管線技能（PDF 合集 863 頁），可遷移至任意古籍或領域語料的知識工程全流程"
+        }
+      ]
     }
   ]
 }
