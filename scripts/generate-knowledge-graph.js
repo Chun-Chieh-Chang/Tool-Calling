@@ -746,10 +746,11 @@ export function generateKnowledgeGraph(registryInput = null) {
         stabilization: { enabled: true, iterations: 500 }
       },
       interaction: {
-        hover: true,
-        zoomView: false, // 由自定義 2D Pivot Zoom 引擎接管，支援 100 倍極致深層放大
+        hover: false,              // 關閉原生 hover 重繪，防止游標移動造成視覺變動
+        zoomView: false,           // 由自定義 2D Pivot Zoom 引擎接管
         dragView: true,
-        hoverConnectedEdges: true
+        dragNodes: false,          // 禁止節點拖曳，確保左鍵拖曳永遠平移視圖
+        hoverConnectedEdges: false // 關閉邊緣高亮，消除游標移過時的視覺干擾
       }
     };
 
@@ -760,17 +761,20 @@ export function generateKnowledgeGraph(registryInput = null) {
     // -- 2D Hover Tooltip (Obsidian Minimalist Popover) --
     function updateTooltip2d(node) {
       let tooltipEl = document.getElementById('graph-tooltip-2d');
+
+      if (!node) {
+        if (tooltipEl) {
+          tooltipEl.style.opacity = '0';
+          setTimeout(() => { if (tooltipEl.parentNode) tooltipEl.remove(); }, 150);
+        }
+        return;
+      }
+
       if (!tooltipEl) {
         tooltipEl = document.createElement('div');
         tooltipEl.id = 'graph-tooltip-2d';
         tooltipEl.style.cssText = 'position:absolute; pointer-events:none; z-index:1000; transition: opacity 0.12s;';
         document.body.appendChild(tooltipEl);
-      }
-      
-      if (!node) {
-        tooltipEl.style.opacity = '0';
-        setTimeout(() => tooltipEl.remove(), 150);
-        return;
       }
       
       let html = '<div style="background:rgba(12,12,12,0.96); padding:10px 14px; border-radius:6px; border:1px solid #222222; border-left:3px solid ' + (node.colorHex || '#0284c7') + '; color:#f1f5f9; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:12px; min-width:180px; max-width:320px; box-shadow:0 8px 28px rgba(0,0,0,0.9);">';
@@ -807,30 +811,53 @@ export function generateKnowledgeGraph(registryInput = null) {
       tooltipEl.style.opacity = '1';
     }
 
-    network2d.on('hoverNode', function(params) {
-      const nodeId = params.node;
-      const node = data2d.nodes.get(nodeId);
-      updateTooltip2d(node);
-    });
+    // hover: false 時 hoverNode/blurNode 不觸發，改用 mousemove 手動偵測節點
+    let _hoveredNodeId2d = null;
+    container2d.addEventListener('mousemove', function(e) {
+      const rect = container2d.getBoundingClientRect();
+      const pointer = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+      const nodeId = network2d.getNodeAt(pointer);
 
-    network2d.on('blurNode', function() {
+      if (nodeId !== undefined) {
+        container2d.style.cursor = 'pointer';
+        if (nodeId !== _hoveredNodeId2d) {
+          _hoveredNodeId2d = nodeId;
+          updateTooltip2d(data2d.nodes.get(nodeId));
+        }
+      } else {
+        container2d.style.cursor = '';
+        if (_hoveredNodeId2d !== null) {
+          _hoveredNodeId2d = null;
+          updateTooltip2d(null);
+        }
+      }
+
       const tooltipEl = document.getElementById('graph-tooltip-2d');
-      if (tooltipEl) {
-        tooltipEl.style.opacity = '0';
-        setTimeout(() => tooltipEl.remove(), 150);
+      if (tooltipEl && tooltipEl.style.opacity !== '0') {
+        let x = e.clientX + 14;
+        let y = e.clientY - 10;
+        const tipRect = tooltipEl.getBoundingClientRect();
+        if (x + tipRect.width > window.innerWidth) x = e.clientX - tipRect.width - 14;
+        if (y + tipRect.height > window.innerHeight) y = e.clientY - tipRect.height - 10;
+        tooltipEl.style.left = x + 'px';
+        tooltipEl.style.top = y + 'px';
       }
     });
 
-    container2d.addEventListener('mousemove', function(e) {
-      const tooltipEl = document.getElementById('graph-tooltip-2d');
-      if (tooltipEl) {
-        let x = e.clientX + 14;
-        let y = e.clientY - 10;
-        const rect = tooltipEl.getBoundingClientRect();
-        if (x + rect.width > window.innerWidth) x = e.clientX - rect.width - 14;
-        if (y + rect.height > window.innerHeight) y = e.clientY - rect.height - 10;
-        tooltipEl.style.left = x + 'px';
-        tooltipEl.style.top = y + 'px';
+    container2d.addEventListener('mouseleave', function() {
+      _hoveredNodeId2d = null;
+      updateTooltip2d(null);
+      container2d.style.cursor = '';
+    });
+
+    // 2D 雙擊空白處：重置全景視角
+    // 使用 dblclick 事件，並在處理函數中檢查是否點擊在空白處
+    container2d.addEventListener('dblclick', function(e) {
+      // 檢查是否點擊在空白處（沒有節點）
+      const canvas = container2d.querySelector('canvas');
+      if (canvas && e.target === canvas) {
+        // 雙擊空白處，觸發重置
+        resetToDefaultState();
       }
     });
 
@@ -1054,6 +1081,17 @@ export function generateKnowledgeGraph(registryInput = null) {
       }, 100);
 
       container3d.addEventListener('contextmenu', e => e.preventDefault());
+
+      // 3D 雙擊空白處：重置全景視角
+      // 使用 dblclick 事件，並在處理函數中檢查是否點擊在空白處
+      container3d.addEventListener('dblclick', function(e) {
+        // 檢查是否點擊在空白處（沒有節點）
+        const canvas = container3d.querySelector('canvas');
+        if (canvas && e.target === canvas) {
+          // 雙擊空白處，觸發重置
+          resetToDefaultState();
+        }
+      });
 
       // 3D Pivot Zoom (第一性原理：沿滑鼠視線射線直線推拉相機與焦點，實現 0 角度偏轉、0 像素漂移)
       container3d.addEventListener('wheel', function (e) {
