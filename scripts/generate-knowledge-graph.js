@@ -748,8 +748,8 @@ export function generateKnowledgeGraph(registryInput = null) {
       interaction: {
         hover: false,              // 關閉原生 hover 重繪，防止游標移動造成視覺變動
         zoomView: false,           // 由自定義 2D Pivot Zoom 引擎接管
-        dragView: true,
-        dragNodes: false,          // 禁止節點拖曳，確保左鍵拖曳永遠平移視圖
+        dragView: false,           // 由自定義平移引擎接管，確保任何位置左鍵拖曳皆可平移
+        dragNodes: false,          // 禁止節點拖曳
         hoverConnectedEdges: false // 關閉邊緣高亮，消除游標移過時的視覺干擾
       }
     };
@@ -848,6 +848,42 @@ export function generateKnowledgeGraph(registryInput = null) {
       _hoveredNodeId2d = null;
       updateTooltip2d(null);
       container2d.style.cursor = '';
+    });
+
+    // 自定義左鍵平移引擎（dragView:false 完全接管，任何位置均可平移）
+    // 原理：以 mousedown 時的視圖中心為錨點，依游標偏移量同步更新視圖中心
+    // new_center = anchor_center - delta / scale  （紙張拖曳語義：拖右 → 顯示左側內容）
+    let _pan2d = null;
+    container2d.addEventListener('mousedown', function(e) {
+      if (e.button !== 0) return;
+      const vc = network2d.getViewPosition();
+      _pan2d = { sx: e.clientX, sy: e.clientY, vx: vc.x, vy: vc.y, moved: false };
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (is3DMode || !_pan2d) return;
+      const dx = e.clientX - _pan2d.sx;
+      const dy = e.clientY - _pan2d.sy;
+      if (!_pan2d.moved && Math.hypot(dx, dy) > 4) {
+        _pan2d.moved = true;
+        container2d.style.cursor = 'grabbing';
+      }
+      if (_pan2d.moved) {
+        const s = network2d.getScale();
+        network2d.moveTo({
+          position: { x: _pan2d.vx - dx / s, y: _pan2d.vy - dy / s },
+          animation: false
+        });
+      }
+    });
+    window.addEventListener('mouseup', function(e) {
+      if (e.button !== 0) return;
+      if (_pan2d) {
+        _pan2d = null;
+        // 恢復游標：若滑鼠仍在節點上顯示 pointer，否則清除
+        const rect2 = container2d.getBoundingClientRect();
+        const pt = { x: e.clientX - rect2.left, y: e.clientY - rect2.top };
+        container2d.style.cursor = network2d.getNodeAt(pt) !== undefined ? 'pointer' : '';
+      }
     });
 
     // 2D 雙擊空白處：重置全景視角
