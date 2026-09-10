@@ -12041,7 +12041,7 @@
     "owner": "Gitlawb",
     "repo": "openclaude",
     "category": "AI 代理",
-    "addedAt": "2026-09-07T07:02:26.794Z",
+    "addedAt": "2026-09-09T00:12:02.311Z",
     "status": "tracking"
   },
   "nocobase/nocobase": {
@@ -13962,7 +13962,7 @@
     "owner": "Imbad0202",
     "repo": "academic-research-skills",
     "category": "研究",
-    "addedAt": "2026-09-07T07:02:26.794Z",
+    "addedAt": "2026-09-09T00:12:02.311Z",
     "status": "tracking"
   },
   "mindsdb/mindshub": {
@@ -14503,7 +14503,7 @@
     "owner": "ChromeDevTools",
     "repo": "chrome-devtools-mcp",
     "category": "開發工具",
-    "addedAt": "2026-09-07T07:02:26.794Z",
+    "addedAt": "2026-09-09T00:12:02.311Z",
     "status": "tracking"
   },
   "modelcontextprotocol/python-sdk": {
@@ -23494,12 +23494,9 @@
     "fullName": "arvids-unavailable/openGym",
     "owner": "arvids-unavailable",
     "repo": "openGym",
-    "initialStars": 3617,
-    "discoveredAt": "2026-08-29T15:51:31.533Z",
-    "sourceSnapshotWeek": "2026-W35",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-09-07T07:02:26.772Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "zenbu-labs/terminal-code": {
     "fullName": "zenbu-labs/terminal-code",
@@ -23722,12 +23719,9 @@
     "fullName": "anywhere-labs/dsh-desktop",
     "owner": "anywhere-labs",
     "repo": "dsh-desktop",
-    "initialStars": 19573,
-    "discoveredAt": "2026-08-29T15:51:31.533Z",
-    "sourceSnapshotWeek": "2026-W35",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-09-07T07:02:26.772Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "zhu1090093659/dsh-web": {
     "fullName": "zhu1090093659/dsh-web",
@@ -23744,12 +23738,9 @@
     "fullName": "b-nnett/grok-bot-0.18-reconstructed",
     "owner": "b-nnett",
     "repo": "grok-bot-0.18-reconstructed",
-    "initialStars": 981,
-    "discoveredAt": "2026-08-29T15:51:31.533Z",
-    "sourceSnapshotWeek": "2026-W35",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-09-07T07:02:26.772Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "orbien-org/orbien": {
     "fullName": "orbien-org/orbien",
@@ -24344,7 +24335,7 @@
     "owner": "google-research",
     "repo": "timesfm",
     "category": "數據分析",
-    "addedAt": "2026-09-07T07:02:26.794Z",
+    "addedAt": "2026-09-09T00:12:02.311Z",
     "status": "tracking"
   },
   "fmtlib/fmt": {
@@ -24352,7 +24343,7 @@
     "owner": "fmtlib",
     "repo": "fmt",
     "category": "開發工具",
-    "addedAt": "2026-09-07T07:02:26.794Z",
+    "addedAt": "2026-09-09T00:12:02.311Z",
     "status": "tracking"
   },
   "superlinked/sie": {
@@ -24360,7 +24351,7 @@
     "owner": "superlinked",
     "repo": "sie",
     "category": "AI 框架",
-    "addedAt": "2026-09-07T07:02:26.794Z",
+    "addedAt": "2026-09-09T00:12:02.311Z",
     "status": "tracking"
   },
   "h4ckf0r0day/obscura": {
@@ -24419,11 +24410,319 @@
     "addedAt": "2026-09-06T01:03:00.811Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2396,
-    "inRegistry": 643,
-    "trackedOnly": 1752,
-    "lastGenerated": "2026-09-07T07:02:26.810Z"
+  "lnkiai/m3e-canvas": {
+    "fullName": "lnkiai/m3e-canvas",
+    "owner": "lnkiai",
+    "repo": "m3e-canvas",
+    "initialStars": 4412,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
   },
-  "lastGenerated": "2026-09-07T07:02:26.772Z"
+  "rakanki911/DLSS5-Swapper": {
+    "fullName": "rakanki911/DLSS5-Swapper",
+    "owner": "rakanki911",
+    "repo": "DLSS5-Swapper",
+    "initialStars": 2423,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "anthropics/commerce-agents": {
+    "fullName": "anthropics/commerce-agents",
+    "owner": "anthropics",
+    "repo": "commerce-agents",
+    "initialStars": 2284,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "omacom/try-omarchy": {
+    "fullName": "omacom/try-omarchy",
+    "owner": "omacom",
+    "repo": "try-omarchy",
+    "initialStars": 1614,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "EvoMap/AutoResearch": {
+    "fullName": "EvoMap/AutoResearch",
+    "owner": "EvoMap",
+    "repo": "AutoResearch",
+    "initialStars": 1576,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ashemag/human-atlas": {
+    "fullName": "ashemag/human-atlas",
+    "owner": "ashemag",
+    "repo": "human-atlas",
+    "initialStars": 1543,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Player-YN/PawWork_ZhuaZhua": {
+    "fullName": "Player-YN/PawWork_ZhuaZhua",
+    "owner": "Player-YN",
+    "repo": "PawWork_ZhuaZhua",
+    "initialStars": 1477,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Rion-Wu-tech/wechat-intelligence-hub": {
+    "fullName": "Rion-Wu-tech/wechat-intelligence-hub",
+    "owner": "Rion-Wu-tech",
+    "repo": "wechat-intelligence-hub",
+    "initialStars": 1413,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jub0t/Concat": {
+    "fullName": "jub0t/Concat",
+    "owner": "jub0t",
+    "repo": "Concat",
+    "initialStars": 1345,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "cbrock84/headcount": {
+    "fullName": "cbrock84/headcount",
+    "owner": "cbrock84",
+    "repo": "headcount",
+    "initialStars": 1300,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shadcn-ui/cn": {
+    "fullName": "shadcn-ui/cn",
+    "owner": "shadcn-ui",
+    "repo": "cn",
+    "initialStars": 1223,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "GangTailorUpgrade/undress-service": {
+    "fullName": "GangTailorUpgrade/undress-service",
+    "owner": "GangTailorUpgrade",
+    "repo": "undress-service",
+    "initialStars": 1145,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "totec448-spec/chat-on-steroids": {
+    "fullName": "totec448-spec/chat-on-steroids",
+    "owner": "totec448-spec",
+    "repo": "chat-on-steroids",
+    "initialStars": 1084,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Minglink/dsh-infinite-gen-3": {
+    "fullName": "Minglink/dsh-infinite-gen-3",
+    "owner": "Minglink",
+    "repo": "dsh-infinite-gen-3",
+    "initialStars": 1076,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pierrenade/short-video-generator-AI": {
+    "fullName": "pierrenade/short-video-generator-AI",
+    "owner": "pierrenade",
+    "repo": "short-video-generator-AI",
+    "initialStars": 1063,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xevrion/breakscale": {
+    "fullName": "xevrion/breakscale",
+    "owner": "xevrion",
+    "repo": "breakscale",
+    "initialStars": 1063,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jprx/darwin-vm": {
+    "fullName": "jprx/darwin-vm",
+    "owner": "jprx",
+    "repo": "darwin-vm",
+    "initialStars": 1050,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Tiger3807861189/GLM-5.3-Flash-J-Space-Capability-Realization-Report": {
+    "fullName": "Tiger3807861189/GLM-5.3-Flash-J-Space-Capability-Realization-Report",
+    "owner": "Tiger3807861189",
+    "repo": "GLM-5.3-Flash-J-Space-Capability-Realization-Report",
+    "initialStars": 1025,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pgrundev/pgbot": {
+    "fullName": "pgrundev/pgbot",
+    "owner": "pgrundev",
+    "repo": "pgbot",
+    "initialStars": 985,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shaobeichen/dsh-pocket": {
+    "fullName": "shaobeichen/dsh-pocket",
+    "owner": "shaobeichen",
+    "repo": "dsh-pocket",
+    "initialStars": 979,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "2akouwu/reverify": {
+    "fullName": "2akouwu/reverify",
+    "owner": "2akouwu",
+    "repo": "reverify",
+    "initialStars": 978,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "EchoMusicApp/Echo-Music": {
+    "fullName": "EchoMusicApp/Echo-Music",
+    "owner": "EchoMusicApp",
+    "repo": "Echo-Music",
+    "initialStars": 956,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "missuo/kumone": {
+    "fullName": "missuo/kumone",
+    "owner": "missuo",
+    "repo": "kumone",
+    "initialStars": 950,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "boyang-hu/website-rebuild-skill": {
+    "fullName": "boyang-hu/website-rebuild-skill",
+    "owner": "boyang-hu",
+    "repo": "website-rebuild-skill",
+    "initialStars": 945,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "brayonpi/hexstellar": {
+    "fullName": "brayonpi/hexstellar",
+    "owner": "brayonpi",
+    "repo": "hexstellar",
+    "initialStars": 936,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "sebbbi/NoGraphicsAPI": {
+    "fullName": "sebbbi/NoGraphicsAPI",
+    "owner": "sebbbi",
+    "repo": "NoGraphicsAPI",
+    "initialStars": 931,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "panel-zeus/Z-E-U-S": {
+    "fullName": "panel-zeus/Z-E-U-S",
+    "owner": "panel-zeus",
+    "repo": "Z-E-U-S",
+    "initialStars": 928,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shadcn-ui/chatbot-template": {
+    "fullName": "shadcn-ui/chatbot-template",
+    "owner": "shadcn-ui",
+    "repo": "chatbot-template",
+    "initialStars": 922,
+    "discoveredAt": "2026-09-07T07:02:26.772Z",
+    "sourceSnapshotWeek": "2026-W37",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2424,
+    "inRegistry": 646,
+    "trackedOnly": 1777,
+    "lastGenerated": "2026-09-09T00:12:02.329Z"
+  },
+  "lastGenerated": "2026-09-09T00:12:02.299Z"
 }

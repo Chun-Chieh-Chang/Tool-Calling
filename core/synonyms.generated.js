@@ -1,6 +1,6 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-09-08T13:45:46.098Z
+ * 產生時間：2026-09-09T12:17:51.612Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -1851,21 +1851,31 @@ export const SYNONYM_MAP = {
   "ai agent 框架": [
     "harness",
     "agent harness",
+    "cordis",
     "agent 執行環境"
   ],
   "harness": [
     "ai agent 框架",
     "agent 執行環境",
-    "agent harness"
+    "agent harness",
+    "cordis"
   ],
   "agent harness": [
     "ai agent 框架",
     "agent 執行環境",
-    "harness"
+    "harness",
+    "cordis"
+  ],
+  "cordis": [
+    "ai agent 框架",
+    "agent 執行環境",
+    "harness",
+    "agent harness"
   ],
   "agent 執行環境": [
     "harness",
     "agent harness",
+    "cordis",
     "ai agent 框架"
   ],
   "程式碼文件": [
@@ -2962,194 +2972,6 @@ export const SYNONYM_MAP = {
   ],
   "offline-llm": [
     "開發工具"
-  ],
-  "截圖轉碼": [
-    "screenshot-to-code",
-    "screenshot",
-    "figma-to-code",
-    "design-to-code",
-    "ui-to-code",
-    "html-generator",
-    "tailwind",
-    "vue"
-  ],
-  "screenshot-to-code": [
-    "截圖轉碼",
-    "screenshot",
-    "figma-to-code",
-    "design-to-code",
-    "ui-to-code",
-    "html-generator",
-    "tailwind",
-    "vue"
-  ],
-  "screenshot": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "figma-to-code",
-    "design-to-code",
-    "ui-to-code",
-    "html-generator",
-    "tailwind",
-    "vue"
-  ],
-  "figma-to-code": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "screenshot",
-    "design-to-code",
-    "ui-to-code",
-    "html-generator",
-    "tailwind",
-    "vue"
-  ],
-  "design-to-code": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "screenshot",
-    "figma-to-code",
-    "ui-to-code",
-    "html-generator",
-    "tailwind",
-    "vue"
-  ],
-  "ui-to-code": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "screenshot",
-    "figma-to-code",
-    "design-to-code",
-    "html-generator",
-    "tailwind",
-    "vue"
-  ],
-  "html-generator": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "screenshot",
-    "figma-to-code",
-    "design-to-code",
-    "ui-to-code",
-    "tailwind",
-    "vue"
-  ],
-  "tailwind": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "screenshot",
-    "figma-to-code",
-    "design-to-code",
-    "ui-to-code",
-    "html-generator",
-    "vue"
-  ],
-  "vue": [
-    "截圖轉碼",
-    "screenshot-to-code",
-    "screenshot",
-    "figma-to-code",
-    "design-to-code",
-    "ui-to-code",
-    "html-generator",
-    "tailwind"
-  ],
-  "學習 claude": [
-    "claude-code-source-study",
-    "claude-code-source",
-    "claude-source-code",
-    "agent-architecture",
-    "claude-study"
-  ],
-  "claude-code-source-study": [
-    "學習 claude",
-    "claude-code-source",
-    "claude-source-code",
-    "agent-architecture",
-    "claude-study"
-  ],
-  "claude-code-source": [
-    "學習 claude",
-    "claude-code-source-study",
-    "claude-source-code",
-    "agent-architecture",
-    "claude-study"
-  ],
-  "claude-source-code": [
-    "學習 claude",
-    "claude-code-source-study",
-    "claude-code-source",
-    "agent-architecture",
-    "claude-study"
-  ],
-  "agent-architecture": [
-    "學習 claude",
-    "claude-code-source-study",
-    "claude-code-source",
-    "claude-source-code",
-    "claude-study"
-  ],
-  "claude-study": [
-    "學習 claude",
-    "claude-code-source-study",
-    "claude-code-source",
-    "claude-source-code",
-    "agent-architecture"
-  ],
-  "免費課程": [
-    "claude-code-everyone-course",
-    "claude-code-course",
-    "learn-claude-code",
-    "claude-tutorial",
-    "cc-for-everyone",
-    "claude 入門"
-  ],
-  "claude-code-everyone-course": [
-    "免費課程",
-    "claude 入門",
-    "claude-code-course",
-    "learn-claude-code",
-    "claude-tutorial",
-    "cc-for-everyone"
-  ],
-  "claude-code-course": [
-    "免費課程",
-    "claude 入門",
-    "claude-code-everyone-course",
-    "learn-claude-code",
-    "claude-tutorial",
-    "cc-for-everyone"
-  ],
-  "learn-claude-code": [
-    "免費課程",
-    "claude 入門",
-    "claude-code-everyone-course",
-    "claude-code-course",
-    "claude-tutorial",
-    "cc-for-everyone"
-  ],
-  "claude-tutorial": [
-    "免費課程",
-    "claude 入門",
-    "claude-code-everyone-course",
-    "claude-code-course",
-    "learn-claude-code",
-    "cc-for-everyone"
-  ],
-  "cc-for-everyone": [
-    "免費課程",
-    "claude 入門",
-    "claude-code-everyone-course",
-    "claude-code-course",
-    "learn-claude-code",
-    "claude-tutorial"
-  ],
-  "claude 入門": [
-    "claude-code-everyone-course",
-    "claude-code-course",
-    "learn-claude-code",
-    "claude-tutorial",
-    "cc-for-everyone",
-    "免費課程"
   ],
   "翻譯": [
     "translate",
