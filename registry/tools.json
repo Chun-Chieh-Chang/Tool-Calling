@@ -15,7 +15,11 @@
         "簡報",
         "做簡報",
         "powerpoint",
-        "slides"
+        "slides",
+        "presentation",
+        "slides-deck",
+        "ai-ppt",
+        "narration"
       ],
       "capabilities": [
         "ppt",
@@ -366,7 +370,11 @@
         "跨瀏覽器測試",
         "自動化測試",
         "網頁爬蟲",
-        "browser automation"
+        "browser automation",
+        "js-rendered",
+        "headless-browser",
+        "dom-scraping",
+        "cross-browser-e2e"
       ],
       "install": {
         "method": "npm",
@@ -4691,7 +4699,10 @@
         "browser-automation",
         "ai-agents",
         "playwright",
-        "web-scraping"
+        "web-scraping",
+        "ai-web-agent",
+        "js-rendered-scraping",
+        "logged-in-browsing"
       ],
       "install": {
         "method": "pip",
@@ -28386,7 +28397,10 @@
         "crawlee",
         "apify-crawlee",
         "node-crawler",
-        "playwright-crawlee"
+        "playwright-crawlee",
+        "web-crawler-framework",
+        "scraping-pipeline",
+        "crawler-framework"
       ],
       "install": {
         "method": "npm",
@@ -33002,7 +33016,13 @@
         "typescript",
         "youtube",
         "podcast",
-        "url"
+        "url",
+        "youtube-transcript",
+        "video-to-text",
+        "podcast-notes",
+        "transcription",
+        "markdown-notes",
+        "llm-summary"
       ],
       "install": {
         "method": "npm",
@@ -34199,7 +34219,11 @@
         "pandas",
         "python",
         "historical-prices",
-        "ticker-data"
+        "ticker-data",
+        "yahoo-stock",
+        "equity-data",
+        "price-history",
+        "fundamental-data"
       ],
       "install": {
         "method": "pip",

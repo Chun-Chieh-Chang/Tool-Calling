@@ -4,6 +4,54 @@
  * (此模組為 Pure JS，可用於 Node.js 與瀏覽器前端)
  */
 
+// ─── 停用詞（語境詞）過濾 ─────────────────────────────────────────────
+//
+// 這些詞幾乎出现在所有 AI/開發工具的 trigger、description 裡，
+// 對「這個工具能做什麼」的鑑別力接近 0。L2 的 token 比對與 L3 的
+// TF-IDF 都應先剔除，避免「ai / tool / agent / code / 自動化」這類
+// 語境詞把不相關工具推到前面（實測：k8s 部署查詢被 crm 偽命中）。
+const GENERIC_STOPWORDS = new Set([
+  'a', 'an', 'the', 'and', 'for', 'to', 'of', 'in', 'on', 'with', 'or', 'is', 'are',
+  // 真·語境詞：出現在極多工具的 trigger/desc 中，鑑別力接近 0
+  'ai', 'agent', 'agents', 'llm', 'llms', 'mcp', 'gpt',
+  'open', 'open-source', 'open-source-project', 'free', '开源',
+  'skill', 'skills', 'plugin', 'plugins', 'agent-skill',
+]);
+
+/**
+ * 把 token 拆成中英子元：中文切 bigram、英文切單詞。
+ * 用於 L2/L3 的 token 雙向比對，讓 `ppt` 能命中 `簡報`、`video` 能命中 `youtube`。
+ * @param {string} token
+ * @returns {string[]}
+ */
+function subTokensOf(token) {
+  const t = String(token || '').toLowerCase();
+  const out = new Set();
+  // 英文：整 token + 去掉常见後綴
+  out.add(t);
+  for (const m of t.matchAll(/[a-z][a-z0-9+.#_-]{2,}/g)) out.add(m[0]);
+  // 中文：bigram
+  for (const run of t.match(/[\u4e00-\u9fff]+/g) || []) {
+    if (run.length === 1) out.add(run);
+    else for (let i = 0; i < run.length - 1; i++) out.add(run.slice(i, i + 2));
+  }
+  return [...out].filter((x) => x.length >= 1);
+}
+
+/**
+ * 判斷 token 是否為語境停用詞。
+ * 多字 trigger（如 `open-source-project`）整段命中也當作停用。
+ * @param {string} token
+ * @returns {boolean}
+ */
+function isGenericStopword(token) {
+  const t = String(token || '').toLowerCase().trim();
+  if (!t) return true;
+  if (GENERIC_STOPWORDS.has(t)) return true;
+  // 中文通用詞（簡短）
+  if (/^(自動化|工具|模型|代理|程式|程式碼|開放原始碼|免費|套件)$/.test(t)) return true;
+  return false;
+}
 
 /**
  * 文字正規化：轉小寫 + 去除多餘空白
@@ -39,6 +87,11 @@ function tokenize(text) {
         finalTokens.add(kw);
       }
     }
+  }
+  // 把含連字號的 token 拆成子 token，讓 `js-rendered` 能匹配單詞 `js`
+  for (const token of rawTokens) {
+    const parts = token.split(/[-_]+/).filter((p) => p.length >= 2);
+    for (const p of parts) finalTokens.add(p);
   }
   return Array.from(finalTokens);
 }
@@ -168,6 +221,107 @@ function exactMatch(tools, query) {
 
 // ─── L2：關鍵字匹配 ──────────────────────────────────────────────────────
 
+// ── Trigger IDF 快取 ─────────────────────────────────────────────────────
+// 把 trigger 詞頻換成 IDF：罕見 trigger（如 kubernetes、js-rendered）分數高，
+// 通用 trigger（如 ai、agent、data、automation）分數低。這是修正「通用
+// trigger 偽命中」的根本方法。以 trigger 正規化字串為 key 做整程序快取。
+const triggerIdfCache = new Map();   // normTrigger → idfScore
+let triggerIdfBuilt = false;
+let triggerIdfMax = 0;              // 全庫最大 IDF，首次建置時填入
+
+/**
+ * 建立 / 回傳 trigger IDF 表（首次呼叫時建置，之後快取）。
+ * @param {object[]} tools
+ * @returns {Map<string, number>} normTrigger → idf
+ */
+function getTriggerIdf(tools) {
+  if (triggerIdfBuilt) return triggerIdfCache;
+  // 以 token 為單位統計 df：把每個 trigger 拆成子 token，每個 token 出現於幾個工具
+  const df = new Map();
+  for (const t of tools) {
+    const seenTokens = new Set();
+    for (const trig of (t.triggers || [])) {
+      const norm = String(trig).toLowerCase().trim();
+      if (!norm) continue;
+      // 整串 trigger 也當一個 token（讓查詢整串命中時可查到）
+      seenTokens.add(norm);
+      for (const sub of norm.split(/[-\s]+/).filter((s) => s.length >= 2)) {
+        seenTokens.add(sub);
+      }
+    }
+    for (const tok of seenTokens) df.set(tok, (df.get(tok) || 0) + 1);
+  }
+  const N = tools.length;
+  const maxRaw = Math.log((N + 1) / 1) + 1; // df=0 時的 IDF（最大可能值）
+  for (const [tok, count] of df) {
+    // 平滑 IDF：df 越大分越低。N=693 時：
+    //   df=1 → 7.25（罕見）；df=10 → 4.26；df=50 → 2.62；df=200 → 1.70；df=693 → 1.01（極常見）
+    const idf = Math.log((N + 1) / (count + 1)) + 1;
+    triggerIdfCache.set(tok, idf);
+  }
+  triggerIdfMax = maxRaw; // 填正則化常數
+  triggerIdfBuilt = true;
+  return triggerIdfCache;
+}
+
+/**
+ * 取得某 trigger 的「鑑別分數」（0~1）：IDF 正規化 + 停用詞過濾。
+ * 停用詞過濾採「全 token 皆通用才視為停用」：
+ *  - 單字 trigger `ai` → 停用（ai 是語境詞）
+ *  - 複合 trigger `youtube-transcript` → 非停用（youtube/transcript 皆有意義）
+ *  - 複合 trigger `open-source` → 停用（open/source 皆語境詞）
+ * @param {string} trigger
+ * @param {Map<string, number>} idfMap
+ * @returns {number}
+ */
+function triggerDiscriminativeScore(trigger, idfMap) {
+  const norm = String(trigger).toLowerCase().trim();
+  if (!norm) return 0;
+  const tokens = norm.split(/[-\s]+/).filter(Boolean);
+  const meaningful = tokens.filter((t) => !isGenericStopword(t));
+  if (meaningful.length === 0) return 0; // 全 token 皆停用
+  // 取該 trigger 各有意義 token 中 IDF 最低者（最保守），避免被高 IDF 子詞拉高
+  let raw = Infinity;
+  for (const t of meaningful) {
+    const v = idfMap.get(t);
+    if (v != null && v < raw) raw = v;
+  }
+  if (!Number.isFinite(raw)) raw = 0.5 * triggerIdfMax; // 全未見過 → 中階
+  // 相對正規化：除以全庫最大 IDF（≈7.54），df=0 → 1.0，df=693 → ~0.13
+  return Math.max(0, Math.min(1.0, raw / triggerIdfMax));
+}
+
+// ── 查詢 token 鑑別分數快取 ──────────────────────────────────────────────
+// 對查詢中的每個 token，回傳 0~1 的「資訊量分數」。
+// 常見停用詞（ai/doc/data）→ 0；罕見詞（kubernetes/js-rendered）→ 1。
+const queryTokenDiscrimCache = new Map();
+
+/**
+ * 取得查詢 token 的「鑑別分數」（0~1）：依該 token 在全庫 trigger 的出現頻率。
+ * token 出現越多分越低（越像語境詞）；罕見 token 分高。
+ * @param {string} token
+ * @param {Map<string, number>} idfMap
+ * @returns {number}
+ */
+function tokenDiscriminativeScore(token, idfMap) {
+  const t = String(token || '').toLowerCase().trim();
+  if (!t) return 0;
+  if (isGenericStopword(t)) return 0;
+  const cached = queryTokenDiscrimCache.get(t);
+  if (cached !== undefined) return cached;
+  const raw = idfMap.get(t);
+  let v;
+  if (raw == null) {
+    // 未在 trigger 出現過：罕見詞，給高鑑別分
+    v = 0.95;
+  } else {
+    // 相對正規化：df=0 → ~1.0，df=693 → ~0.13
+    v = Math.max(0, Math.min(1.0, raw / triggerIdfMax));
+  }
+  queryTokenDiscrimCache.set(t, v);
+  return v;
+}
+
 /**
  * L2 關鍵字匹配：查詢字串與工具觸發關鍵字 + 分類 + 描述 交叉匹配
  * @param {object[]} tools - 工具列表
@@ -175,9 +329,15 @@ function exactMatch(tools, query) {
  * @returns {object[]} 匹配結果（含分數，按分數降序）
  */
 function keywordMatch(tools, query) {
-  const queryTokens = tokenize(query);
-  if (queryTokens.length === 0) return [];
+  const allQueryTokens = tokenize(query);
+  if (allQueryTokens.length === 0) return [];
   const normQuery = normalize(query); // 提到迴圈外，避免對每個 tool 的每個 trigger 重複正規化同一個查詢字串
+
+  // 剔除語境停用詞，只保留有鑑別力的 token 參與比對
+  const queryTokens = allQueryTokens.filter((t) => !isGenericStopword(t));
+
+  // 取得 trigger IDF 表（首次建置，之後快取）
+  const idfMap = getTriggerIdf(tools);
 
   const results = [];
 
@@ -185,60 +345,92 @@ function keywordMatch(tools, query) {
     let score = 0;
     const matchedKeywords = [];
 
-    // 觸發關鍵字匹配（權重最高：每個匹配 +3）
+    // 觸發關鍵字匹配（IDF 加權 + token 雙向比對：罕見 trigger 分高、通用 trigger 分低/不計分）
+    // 關鍵改進：對多字 trigger（如 `youtube-transcript`、`js-rendered`）拆成 token 雙向比對，
+    // 讓查詢單詞能命中 trigger 的子 token（video ↔ youtube-transcript 的 transcript 不匹配，
+    // 但 video-to-text 的 video 會匹配）。
     for (const trigger of tool.triggers) {
       const triggerNorm = getTriggerNorm(trigger);
-      // 查詢包含觸發詞
+      const discrim = triggerDiscriminativeScore(trigger, idfMap);
+      if (discrim === 0) continue; // 停用 trigger 完全不加權
+
+      // 強命中：查詢字串整段包含 trigger（如查 `ppt-master`）
       if (normQuery.includes(triggerNorm)) {
-        score += 3;
-        matchedKeywords.push(trigger);
+        score += 3 * discrim;
+        if (!matchedKeywords.includes(trigger)) matchedKeywords.push(trigger);
+        continue;
       }
-      // 觸發詞包含查詢的某個 token
-      for (const token of queryTokens) {
-        if (triggerNorm.includes(token) && token.length >= 2) {
-          score += 1.5;
-          if (!matchedKeywords.includes(trigger)) {
-            matchedKeywords.push(trigger);
+
+      // token 雙向比對：拆 trigger 成 token，與查詢 token 交叉
+      // 單字元 token（`c`、`a`）與 2 字元易偽命中 token（`mp4` 除外）一律不參與
+      const triggerTokens = triggerNorm.split(/[-\s]+/).filter((t) => t.length >= 3);
+      let triggerHitCount = 0;
+      for (const trigTok of triggerTokens) {
+        if (isGenericStopword(trigTok)) continue;
+        // (a) trigger token 整段出現在查詢字串 → 強命中
+        if (normQuery.includes(trigTok)) {
+          triggerHitCount++;
+          continue;
+        }
+        // (b) 查詢 token 與 trigger token 互相包含 → 弱命中
+        for (const token of queryTokens) {
+          if (token.length < 3) continue;
+          if (trigTok.includes(token) || (token.includes(trigTok))) {
+            triggerHitCount++;
+            break;
           }
         }
-        // Fuzzy 匹配：允許拼字錯誤或 variant
-        else if (fuzzyMatch(triggerNorm, token)) {
-          score += 1.0; // 模糊匹配權重較低
-          if (!matchedKeywords.includes(`[fuzzy:${trigger}]`)) {
-            matchedKeywords.push(`[fuzzy:${trigger}]`);
-          }
-        }
+      }
+      if (triggerHitCount > 0) {
+        // 強命中的 token 數 × 鑑別分數；上限 = 基礎分 3
+        const hitScore = Math.min(3, 1.5 * triggerHitCount) * discrim;
+        score += hitScore;
+        if (!matchedKeywords.includes(trigger)) matchedKeywords.push(trigger);
       }
     }
 
-    // 分類匹配（權重中：+2）
+    // 分類匹配（IDF 加權 + 只比有意義 token）
     const categoryNorm = normalize(tool.category);
     for (const token of queryTokens) {
-      if (categoryNorm.includes(token) && token.length >= 2) {
-        score += 2;
-        matchedKeywords.push(`[category:${tool.category}]`);
+      if (token.length < 3) continue;
+      if (categoryNorm.includes(token)) {
+        const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+        score += 2 * tokDiscrim;
+        if (!matchedKeywords.includes(`[category:${tool.category}]`)) matchedKeywords.push(`[category:${tool.category}]`);
       }
     }
 
-    // 描述匹配（權重低：+1）
+    // 描述匹配（IDF 加權 + 只比有意義 token）
     const descNorm = normalize(tool.description);
     for (const token of queryTokens) {
-      if (descNorm.includes(token) && token.length >= 2) {
-        score += 1;
+      if (token.length < 3) continue;
+      if (descNorm.includes(token)) {
+        const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+        score += 1 * tokDiscrim;
       }
     }
 
-    // 能力標籤匹配 (權重中：每個匹配 +1.5)
+    // 能力標籤匹配（IDF 加權 + token 雙向）
     if (tool.capabilities) {
       for (const cap of tool.capabilities) {
         const capNorm = normalize(cap);
-        for (const token of queryTokens) {
-          if (capNorm.includes(token) && token.length >= 2) {
-            score += 1.5;
-            if (!matchedKeywords.includes(cap)) {
-              matchedKeywords.push(cap);
+        const capTokens = capNorm.split(/[-\s]+/).filter((t) => t.length >= 3);
+        let capHitCount = 0;
+        if (normQuery.includes(capNorm)) capHitCount = 2;
+        else {
+          for (const capTok of capTokens) {
+            if (isGenericStopword(capTok)) continue;
+            if (normQuery.includes(capTok)) { capHitCount++; continue; }
+            for (const token of queryTokens) {
+              if (token.length < 3) continue;
+              if (capTok.includes(token) || token.includes(capTok)) { capHitCount++; break; }
             }
           }
+        }
+        if (capHitCount > 0) {
+          const capDiscrim = Math.max(0, Math.min(1.0, 1 / Math.max(1, tool.capabilities.length)));
+          score += Math.min(3, 1.5 * capHitCount) * Math.max(capDiscrim, 0.3);
+          if (!matchedKeywords.includes(cap)) matchedKeywords.push(cap);
         }
       }
     }
@@ -276,12 +468,13 @@ function keywordMatch(tools, query) {
       score += Math.min(subToolScore, 6);
     }
 
-    // 場景與優勢匹配 (權重高：每個匹配 +2)
+    // 場景與優勢匹配（IDF 加權：只對有鑑別力的 token 加分，避免 `doc`/`data` 白拿分）
     if (tool.useCase) {
       const useCaseNorm = normalize(tool.useCase);
       for (const token of queryTokens) {
         if (useCaseNorm.includes(token) && token.length >= 2) {
-          score += 2;
+          const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+          score += 2 * tokDiscrim;
           if (!matchedKeywords.includes(`場景匹配`)) matchedKeywords.push(`場景匹配`);
         }
       }
@@ -292,7 +485,8 @@ function keywordMatch(tools, query) {
         const advNorm = normalize(adv);
         for (const token of queryTokens) {
           if (advNorm.includes(token) && token.length >= 2) {
-            score += 2;
+            const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+            score += 2 * tokDiscrim;
             if (!matchedKeywords.includes(`優勢匹配`)) matchedKeywords.push(`優勢匹配`);
           }
         }
@@ -750,6 +944,43 @@ export function search(registryTools, query, options = {}) {
     
     cacheSearchResults(query, category, language, finalL1, registryVersion);
     return finalL1;
+  }
+
+  // ── L1.5：trigger 整串精確命中（新增）─────────────────────────────
+  // L1 只比 id/name 整串，漏掉「查詢含某 trigger 整串」的強信號。
+  // 例如查詢 `summarize a 2-hour video` 應命中 trigger `summarize`。
+  // 條件（保守，避免 ffmpeg/tree-sitter 的 `c` 偽命中）：
+  //  - trigger 整串字元 >= 4（排除 1~3 字的單字 trigger 如 `c`、`ppt`、`h3`）
+  //  - 查詢字串整段「包含」trigger（不做 token 共現，單字 trigger 易偽命中）
+  //  - trigger 非停用（全 token 皆語境詞的不計）
+  const triggerExactHits = [];
+  {
+    const qNorm = normalize(targetQuery);
+    const idfMap = getTriggerIdf(tools);
+    for (const tool of tools) {
+      for (const trig of (tool.triggers || [])) {
+        const tNorm = getTriggerNorm(trig);
+        if (tNorm.length < 4) continue;           // 太短的 trigger 不參與精確命中
+        if (!qNorm.includes(tNorm)) continue;      // 查詢必須整段包含 trigger
+        const discrim = triggerDiscriminativeScore(trig, idfMap);
+        if (discrim <= 0) continue;               // 停用 trigger 不計
+        triggerExactHits.push({
+          tool,
+          score: Math.round((3 * discrim) * 100) / 100,
+          matchLevel: 'L1.5-trigger-exact',
+          matchedKeywords: [trig],
+        });
+        break; // 一個工具只算一次
+      }
+    }
+    if (triggerExactHits.length > 0) {
+      triggerExactHits.sort((a, b) => b.score - a.score);
+      let finalHits = triggerExactHits.slice(0, topK);
+      applyTelemetryWeights(finalHits, options.telemetryStats);
+      if (options.telemetryStats) finalHits.sort((a, b) => b.score - a.score);
+      cacheSearchResults(query, category, language, finalHits, registryVersion);
+      return finalHits;
+    }
   }
 
   // L2 關鍵字匹配
