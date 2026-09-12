@@ -3,6 +3,17 @@
  * 
  * Tests for skill discovery and aggregation functionality.
  * Covers: search, install, list, cache, error handling, boundary cases.
+ *
+ * ⚠️ 這是**整合測試**，預設跳過。每個案例都會真的呼叫 `npx skills`（外部 CLI）或 GitHub API，
+ *    因此有四個問題：
+ *      1. 慢 —— 單次 timeout 可達 30–60 秒，`isSkillCliAvailable()` 最多重試 3 次
+ *      2. 不穩 —— 依賴網路與 GitHub 未認證額度（60/hr，易被限流）
+ *      3. 有副作用 —— 會在 ~/.tool-calling/skills-cache 寫檔
+ *      4. 會讓 npx 重解析並替換 ~/.npm/_npx 快取，一次 churn 300+ 個檔案，
+ *         因而跨越工作區 bulk-delete 守衛的 50 筆門檻、每次跑測試都跳授權提示
+ *
+ * 執行方式：`npm run test:integration`
+ * 純函式與快取短路邏輯的測試請看 tests/skill-discovery-unit.test.js（無外部依賴）。
  */
 
 import { describe, it, beforeEach, afterEach } from 'node:test';
@@ -17,6 +28,18 @@ const CACHE_DIR = join(homedir(), '.tool-calling', 'skills-cache');
 const CACHE_FILE = join(CACHE_DIR, 'skills.json');
 const AGGREGATOR_CACHE_FILE = join(CACHE_DIR, 'skills-aggregated.json');
 
+/**
+ * 整合測試開關：需明確指定才會執行。
+ * 用 `npm_lifecycle_event` 是為了在 Windows 上免裝 cross-env 也能運作
+ * （cmd.exe 不支援 `VAR=1 cmd` 語法）。
+ */
+const SKIP_INTEGRATION = !(
+  process.env.SKILLS_CLI_TEST === '1' ||
+  process.env.npm_lifecycle_event === 'test:integration'
+);
+const INTEGRATION_SKIP_REASON =
+  '整合測試：需外部 npx skills CLI 與網路，請用 npm run test:integration';
+
 async function cleanupCache() {
   const files = [CACHE_FILE, AGGREGATOR_CACHE_FILE];
   for (const file of files) {
@@ -28,7 +51,7 @@ async function cleanupCache() {
 
 // ─── Test Suites ─────────────────────────────────────────────────────────────
 
-describe('Skill Discovery Module', () => {
+describe('Skill Discovery Module', { skip: SKIP_INTEGRATION ? INTEGRATION_SKIP_REASON : false }, () => {
   
   // ─── Environment Checks ──────────────────────────────────────────────────
   
@@ -229,7 +252,7 @@ describe('Skill Discovery Module', () => {
 
 // ─── Integration Tests ───────────────────────────────────────────────────────
 
-describe('Find Skill Integration Tests', () => {
+describe('Find Skill Integration Tests', { skip: SKIP_INTEGRATION ? INTEGRATION_SKIP_REASON : false }, () => {
   
   describe('End-to-End Workflow', () => {
     beforeEach(async () => {

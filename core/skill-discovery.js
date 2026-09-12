@@ -74,9 +74,14 @@ export function searchSkills(query, limit = 10) {
 function parseSkillOutput(output) {
   const lines = output.split('\n').filter(Boolean);
   const results = [];
-  
+
+  // 注意：owner 與 repo 必須容許連字號與點，否則 `vercel-labs/skills@react`
+  // 會被靜默截斷成 `labs/skills@react`（產生錯誤的 id 與 URL）。
+  // 前方的 (?:^|[\s|]) 確保不會從單字的尾端開始匹配。
+  const SKILL_LINE = /(?:^|[\s|])([\w.-]+\/[\w.-]+@[\w.-]+)\s+\d+\s+installs?/;
+
   for (const line of lines) {
-    const match = line.match(/(\w+\/\w+@[\w-]+)\s+\d+\s+installs?/);
+    const match = line.match(SKILL_LINE);
     if (match) {
       const id = match[1];
       results.push({
@@ -91,6 +96,9 @@ function parseSkillOutput(output) {
   
   return results.slice(0, parseInt(process.env.SKILL_LIMIT || '10'));
 }
+
+// 純函式，導出供單元測試（tests/skill-discovery-unit.test.js）使用
+export { parseSkillOutput };
 
 // ─── Secondary Source: GitHub Search ─────────────────────────────────────────
 
