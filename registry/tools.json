@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-12T11:27:43.839Z",
+  "lastUpdated": "2026-09-12T11:55:30.756Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -31202,8 +31202,12 @@
         "resources",
         "unicorns"
       ],
-      "useCase": "😎 Awesome lists about all kinds of interesting topics",
-      "advantages": [],
+      "useCase": "入門某個陌生領域時，直接從此清單找到該領域最常被推薦的高品質資源與工具。",
+      "advantages": [
+        "提供統一入口點，彙整各主題領域的精選資源清單，避免漫無目的的搜尋",
+        "社群持續維護更新，清單品質高於單次爬取的搜尋結果",
+        "涵蓋極廣主題（從程式語言到設計到數據科學），一套結構涵蓋多領域入門需求"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31244,8 +31248,12 @@
         "d3",
         "education"
       ],
-      "useCase": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
-      "advantages": [],
+      "useCase": "無基礎者系統性入門程式設計與電腦科學，並取得可驗證的技能認證。",
+      "advantages": [
+        "完整免費課程與認證體系，從零到就職的路徑有清晰結構",
+        "課程內建互動式開發環境與自動化測試，學習即練習，無需另搭環境",
+        "社群規模大，論壇與貢獻者眾多，問題求助與合作效率高"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31286,8 +31294,12 @@
         "python-libraries",
         "python-tools"
       ],
-      "useCase": "An opinionated list of Python frameworks, libraries, tools, and resources",
-      "advantages": [],
+      "useCase": "開發者需要快速尋找某個特定領域（如 Web 框架、資料視覺化）的 Python 函式庫時，可直接透過此清單篩選並比較熱門選擇。",
+      "advantages": [
+        "收錄涵蓋框架、函式庫、工具與學習資源的完整清單，節省搜尋時間",
+        "按類別分組整理，方便快速定位特定領域的 Python 生態系資源",
+        "持續由社群維護更新，確保資源時效性與品質"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31361,8 +31373,12 @@
         "react",
         "ui"
       ],
-      "useCase": "The library for web and native user interfaces.",
-      "advantages": [],
+      "useCase": "建構需要高互動性、狀態複雜度的現代 Web 或原生应用前端介面。",
+      "advantages": [
+        "宣告式 UI 模型大幅降低狀態管理的認知負荷，組件可組合性高",
+        "Virtual DOM diffing 使 UI 更新高效，無需手動操作 DOM",
+        "生態系成熟：Hooks、Server Components、Next.js 等配套完整，大型專案可持續維護"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31437,8 +31453,12 @@
         "community-driven",
         "education"
       ],
-      "useCase": "All Algorithms implemented in Python",
-      "advantages": [],
+      "useCase": "學習或複習演算法時，快速找到特定演算法的 Python 實作與說明。",
+      "advantages": [
+        "覆蓋數據結構、排序、圖演算法、動態規劃等各大類，一應俱全",
+        "附演算法說明與複雜度註解，不只給代碼，也講清楚原理",
+        "社群驅動，演算法實作持續新增，追蹤最新競賽題型"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31476,8 +31496,12 @@
         "javascript",
         "vue"
       ],
-      "useCase": "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core",
-      "advantages": [],
+      "useCase": "快速建構中大型 Web 應用，特別適合前端團隊偏好渐进式採用（而非整顆框架）的場景。",
+      "advantages": [
+        "單檔組件（SFC）整合 template/script/style，開發效率與可讀性兼顧",
+        "響應式系統自動追蹤依賴，無需手動宣告響應式變數",
+        "輕量核心設計，可搭配 Vite 構建極快的開發與打包體驗"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31515,8 +31539,12 @@
         "courses",
         "curriculum"
       ],
-      "useCase": "🎓 Path to a free self-taught education in Computer Science!",
-      "advantages": [],
+      "useCase": "無正式 CS 學歷的轉職者，按此路徑系統性補齊電腦科學基礎。",
+      "advantages": [
+        "依課程結構化組織，涵蓋資料結構、演算法、系統、理論等 CS 完整領域",
+        "全部資源免費或開放，無學費門檻",
+        "每課程標示先修關係，可規劃學習路徑而非盲目跳課"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31557,8 +31585,12 @@
         "cursor",
         "cursorai"
       ],
-      "useCase": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models",
-      "advantages": [],
+      "useCase": "研究或改進自身 AI Agent 的系統提示詞時，參照成熟工具的設計模式。",
+      "advantages": [
+        "收錄大量主流 AI 工具（Cursor、Claude Code、Copilot 等）的系統提示詞，是逆向工程提示工程的珍貴語料",
+        "涵蓋多家廠商的模型版本，可比較不同工具的設計哲學差異",
+        "持續更新，跟得上工具快速迭代的速度"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -31932,8 +31964,12 @@
         "gpgpu",
         "llm"
       ],
-      "useCase": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook",
-      "advantages": [],
+      "useCase": "在 Apple Silicon 筆電上離線運行大模型，避免雲端 API 延遲與資料外洩風險。",
+      "advantages": [
+        "在 M-series Mac 上以 ~2GB 記憶體跑 26B 參數模型，對低記憶體筆電極友好",
+        "利用 Apple GPU（GPGPU）加速推論，速度明顯優於純 CPU",
+        "支援 Gemma 4 26B-A4B 模型，可離線運行、資料不經第三方"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -32106,8 +32142,12 @@
         "claude-code-skills",
         "claude-skills"
       ],
-      "useCase": "AI video skill for Claude Code & Codex",
-      "advantages": [],
+      "useCase": "產品團隊用 AI Agent 自動產製具有電影感的產品展示影片。",
+      "advantages": [
+        "106 張鏡頭配方卡 + 161 個動作預覽，提供可直接套用的拍片框架",
+        "整合 Remotion 產生 MP4，輸出即最終產物，無需額外剪輯軟體",
+        "以 Claude Code / Codex 技能格式提供，可直接被 AI Agent 呼叫"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -32181,8 +32221,12 @@
         "office-tools",
         "office365"
       ],
-      "useCase": "Bento, the office suite that fits in a file",
-      "advantages": [],
+      "useCase": "團隊需要輕量、可自架的辦公套件替代，不想付費訂閱 Office 365 的場景。",
+      "advantages": [
+        "單檔案即可完整運行，無需安裝伺服器或資料庫，部署極簡",
+        "MIT 授權，可自由嵌入或二次開發",
+        "整合文字處理、試算表與簡報，涵蓋辦公三大核心需求"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33025,8 +33069,12 @@
         "repoUrl": "https://github.com/NVIDIA-NeMo/labs-OO-Agents"
       },
       "capabilities": [],
-      "useCase": "NVIDIA Object Oriented Agents: the Pythonic way to build AI Agents.",
-      "advantages": [],
+      "useCase": "建構需要多 Agent 協作、且要與 NVIDIA GPU 基礎設施整合的 AI 應用。",
+      "advantages": [
+        "Python 物件導向語法建置 Agent，符合 Python 開發者直覺，學習成本低",
+        "NVIDIA 官方支援，與 NeMo 生態整合，可直接連結 HPC 與 GPU 資源",
+        "物件模型便於多 Agent 協作時定義角色與邊界"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33044,7 +33092,7 @@
       "id": "dashi-taskboard",
       "name": "dashi-taskboard",
       "url": "https://github.com/chuspeeism/dashi-taskboard",
-      "description": "No description provided.",
+      "description": "A local-first issue board that runs in a browser and can be embedded in Codex through the standalone CDP launcher or its injection script. The same HTTP API powers the React UI and the `taskctl` CLI u",
       "category": "開發工具",
       "language": "javascript",
       "triggers": [
@@ -33058,8 +33106,12 @@
         "repoUrl": "https://github.com/chuspeeism/dashi-taskboard"
       },
       "capabilities": [],
-      "useCase": "dashi-taskboard",
-      "advantages": [],
+      "useCase": "開發者需要輕量、隱私友善的個人或小型團隊任務管理，並與 AI Agent 協同工作。",
+      "advantages": [
+        "本地優先設計，資料不離開裝置，無外部雲端依賴",
+        "可嵌入 Codex，Agent 與人類共用同一個任務面板，協作無縫",
+        "純瀏覽器執行，無需安裝 Node.js 或資料庫"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33093,8 +33145,12 @@
         "llm-tools",
         "steganography"
       ],
-      "useCase": "Use LLMs to hide messages inside normal looking conversations",
-      "advantages": [],
+      "useCase": "安全研究者在受控環境中測試訊息隱寫技術的偵測難度（研究用途，非實際通訊工具）。",
+      "advantages": [
+        "利用 LLM 產生看似自然的對話內容隱含訊息，難以被傳統內容過濾偵測",
+        "Go 實作，編譯後為單檔二進位，部署無依賴",
+        "概念上可應用於安全研究與隱私測試場景"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33126,8 +33182,12 @@
         "repoUrl": "https://github.com/Blaizzy/nativ"
       },
       "capabilities": [],
-      "useCase": "Local AI, native to your Mac. Chat, serve, monitor, and connect MLX models from one macOS app.",
-      "advantages": [],
+      "useCase": "Mac 開發者想在本地跑 LLM 並監控效能，不想依賴雲端 API 的場景。",
+      "advantages": [
+        "純 macOS 原生 App，與 MLX 框架原生整合，效能優於跨平台方案",
+        "一介面整合 LLM 聊天、模型管理、效能監控，無需切換多個工具",
+        "本地推理，資料不出裝置，隱私完整"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33167,8 +33227,12 @@
         "litellm",
         "model-router"
       ],
-      "useCase": "External-model router for Codex with guided Kimi OAuth/API, DeepSeek, safe migration, and rollback.",
-      "advantages": [],
+      "useCase": "團隊使用 Codex 但需要依成本或能力切換 DeepSeek / Kimi 等替代模型。",
+      "advantages": [
+        "支援 Kimi OAuth 與 DeepSeek API，提供 Codex 之外更多模型選擇",
+        "內建安全遷移與回滾機制，切換模型不會中斷現有工作流",
+        "以 LiteLLM 為底層，統一 API 格式，程式碼遷移成本低"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33200,8 +33264,12 @@
         "repoUrl": "https://github.com/gnipbao/story-to-handdrawn-video"
       },
       "capabilities": [],
-      "useCase": "Agent skill: convert Chinese story copy or ordered images into a hand-drawn diary-comic animation (silent MP4 picture track).",
-      "advantages": [],
+      "useCase": "內容創作者將文字故事快速轉為具手繪風格的動畫短片，用於社群媒體發布。",
+      "advantages": [
+        "直接從中文故事文案產出手繪日記風動畫 MP4，全過程無需手繪或剪輯",
+        "靜止圖片序列轉動的影片，製作成本低且風格一致",
+        "以 Agent 技能格式提供，可嵌入現有 AI 工作流"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33233,8 +33301,12 @@
         "repoUrl": "https://github.com/ben-z/findphone"
       },
       "capabilities": [],
-      "useCase": "Locate a nearby Bluetooth device by signal strength, from the macOS command line",
-      "advantages": [],
+      "useCase": "Find My 網頁版慢或離線時，快速從終端機找到附近藍牙裝置的位置。",
+      "advantages": [
+        "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位",
+        "依賴藍牙信號強度（RSSI），無需 GPS 或網路連線",
+        "Swift 原生 macOS 開發，無額外依賴"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33266,8 +33338,12 @@
         "repoUrl": "https://github.com/diwenne/openreply"
       },
       "capabilities": [],
-      "useCase": "Open-source ManyChat alternative: comment-dm automation + account analytics. NOTE: the link below will not allow you to OAuth; you must self-host with your own API keys.",
-      "advantages": [],
+      "useCase": "品牌或內容創作者自架 Instagram 留言/DM 自動回應系統，降低 SaaS 訂閱成本。",
+      "advantages": [
+        "開源自架替代 ManyChat，免月費，數據完整掌握在自己手上",
+        "同時處理 Instagram 留言與 DM 自動化，減少多工具切換",
+        "內建帳號分析，可直接追蹤互動轉化率"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33285,7 +33361,7 @@
       "id": "openmouse",
       "name": "openmouse",
       "url": "https://github.com/OpenMouse-Project/openmouse",
-      "description": "No description provided.",
+      "description": "OpenMouse is a browser-based control panel for supported gaming mice. Connect a mouse, view its information, and change supported settings such as DPI and polling rate without installing a different a",
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
@@ -33299,8 +33375,12 @@
         "repoUrl": "https://github.com/OpenMouse-Project/openmouse"
       },
       "capabilities": [],
-      "useCase": "openmouse",
-      "advantages": [],
+      "useCase": "使用受支援電競滑鼠時，在不安裝廠商驅動的情況下調整設定。",
+      "advantages": [
+        "瀏覽器操控，無需安裝專有驅動程式，跨平台兼容",
+        "可調整 DPI、輪詢率與感測器參數，無需回廠商軟體",
+        "開源專案，功能不受廠商鎖死"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33332,8 +33412,12 @@
         "repoUrl": "https://github.com/XYZ-AI-Lab/AxisAgentic"
       },
       "capabilities": [],
-      "useCase": "AxisAgentic: An Extensible Runtime and Trajectory-Collection Framework for Long-Horizon Agents.",
-      "advantages": [],
+      "useCase": "研究團隊需要收集大量 Agent 行為軌跡用於模型訓練或評估。",
+      "advantages": [
+        "專為長時間 Agent 任務設計，內建軌跡收集（trajectory collection）機制",
+        "架構可擴展，便於加入自訂工具或策略",
+        "收集之軌跡可直接作為 RLHF / DPO 訓練資料"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33374,8 +33458,12 @@
         "series",
         "streaming"
       ],
-      "useCase": "A modern Rust based terminal user interface for streaming. Fast, lightweight, keyboard first, and cross-platform.",
-      "advantages": [],
+      "useCase": "伺服器或無桌面環境下，用終端機快速串流影視內容。",
+      "advantages": [
+        "純終端機 UI，資源極輕，低規格主機也能流暢使用",
+        "Rust 編譯，無垃圾回收，效能穩定",
+        "跨平台支援，Linux 與 Windows 皆可用"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33416,8 +33504,12 @@
         "build-tool",
         "claude-code"
       ],
-      "useCase": "🐧 Automated Agent Builder. Create Self-Evolving Agents in One Click (DeepSeek/Kimi/GPT/Claude/Gemini)",
-      "advantages": [],
+      "useCase": "快速原型化 AI Agent，並讓它在運行中自我優化任務執行策略。",
+      "advantages": [
+        "一鍵生成自演化 Agent，支援 DeepSeek / Kimi / GPT / Claude / Gemini 多模型切換",
+        "Agent 可自我改進策略，減少反覆手動調整",
+        "開源，無 SaaS 訂閱費用"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33449,8 +33541,12 @@
         "repoUrl": "https://github.com/Blueturboguy07/cue"
       },
       "capabilities": [],
-      "useCase": "Open-source macOS AI copilot that floats over your screen, sees/hears your meetings, and stays hidden from screen shares. Cluely alternative, bring-your-own-key.",
-      "advantages": [],
+      "useCase": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓对方看到 AI 介面的場景。",
+      "advantages": [
+        "浮動覆蓋層設計，不中斷工作流，同時聽取與回應",
+        "刻意隱藏於螢幕分享，會議中不需擔心隱私外洩",
+        "macOS 原生，效能與整合度優於跨平台方案"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -33491,8 +33587,12 @@
         "ai-search",
         "crawler"
       ],
-      "useCase": "The context API to search, scrape, and interact with the web at scale. 🔥",
-      "advantages": [],
+      "useCase": "建構需要即時網頁資料的 RAG 系統或 AI Agent，無需自己維護爬蟲基礎設施。",
+      "advantages": [
+        "一次 API 同時完成搜尋、爬取、互動，省去多工具拼接",
+        "專為 AI Agent 優化，輸出格式直接可餵給 LLM",
+        "支援大規模爬取，遠比手動寫 crawler 穩定"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -34875,8 +34975,12 @@
         "repoUrl": "https://github.com/QwenLM/Qwen-MM-Plugins"
       },
       "capabilities": [],
-      "useCase": "Make any agent harness multimodal-native.",
-      "advantages": [],
+      "useCase": "現有 Agent 應用需要理解使用者上傳的圖片或影片，快速加入多模態輸入能力。",
+      "advantages": [
+        "讓任何 Agent harness 一行程式碼接入多模態能力（圖片、影片理解）",
+        "Qwen 官方維護，與 Qwen 模型生態相容性最好",
+        "Plugin 架構不綁定特定 Agent 框架，移植成本低"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -34917,8 +35021,12 @@
         "pytorch",
         "stable-diffusion"
       ],
-      "useCase": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
-      "advantages": [],
+      "useCase": "需要精確控制 AI 圖像生成管線（多模型、多步驟）的專業創作者或開發者。",
+      "advantages": [
+        "節點圖形介面，複雜 workflow 可視化編排，調參無須改碼",
+        "支援 Stable Diffusion 全系列、LoRA、ControlNet 等最新擴充",
+        "API 介面完整，可串接自動化管線或批量產製"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -34952,8 +35060,12 @@
         "repoUrl": "https://github.com/sqliteai/warp"
       },
       "capabilities": [],
-      "useCase": "Run the full 2.78-trillion-parameter Kimi K3 model beyond available RAM by streaming activated weights directly from NVMe. A dependency-free, embeddable C inference engine.",
-      "advantages": [],
+      "useCase": "在配有 NVM 的伺服器上運行超大型語言模型，突破 RAM 容量限制。",
+      "advantages": [
+        "以串流方式載入 2.78T 參數模型權重，讓超出 RAM 容量的模型也可運行",
+        "C 語言實作，效能極高，無 JVM / Python 開銷",
+        "結合 NVM（新型記憶體）直接讀取，繞過傳統磁碟瓶頸"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -35026,8 +35138,12 @@
         "automation",
         "developer-tools"
       ],
-      "useCase": "let your agent control your phone",
-      "advantages": [],
+      "useCase": "需要 AI Agent 自動操作手機 App（填表、點按、截圖）的自動化場景。",
+      "advantages": [
+        "讓 AI Agent 直接操控手機，跨越純文字/網頁操作的侷限",
+        "Python 實作，易於整合至現有 Agent 管線",
+        "開源，不受廠商 API 鎖定"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -35061,8 +35177,12 @@
         "repoUrl": "https://github.com/oil-oil/oil-motion"
       },
       "capabilities": [],
-      "useCase": "Create smooth, responsive interactive web animations.",
-      "advantages": [],
+      "useCase": "網頁開發者需要高品質互動動畫效果，但不想手寫大量 CSS keyframes。",
+      "advantages": [
+        "Python API 即可產生流暢互動網頁動畫，無需手寫 CSS/JS 動畫",
+        "支援響應式與互動觸發，非純影片匯出",
+        "生成結果可直接嵌入現行網頁專案"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -35080,7 +35200,7 @@
       "id": "wechat-ai",
       "name": "WeChat-AI",
       "url": "https://github.com/SMNETSTUDIO/WeChat-AI",
-      "description": "No description provided.",
+      "description": "Self-hosted WeChat roleplay chatbot service that connects to Tencent iLink for AI-driven character conversations.",
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
@@ -35096,8 +35216,12 @@
         "repoUrl": "https://github.com/SMNETSTUDIO/WeChat-AI"
       },
       "capabilities": [],
-      "useCase": "WeChat-AI",
-      "advantages": [],
+      "useCase": "在微信生態中部署具特定角色性格的 AI 對話服務，不依賴外部 SaaS。",
+      "advantages": [
+        "自架部署，對話數據不經第三方，隱私可控",
+        "直接連接騰訊 iLink 官方通道，相容性佳",
+        "角色扮演導向，可直接產生特定角色語氣與人格的 AI 對話"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -35132,8 +35256,12 @@
         "repoUrl": "https://github.com/antirez/h3.c"
       },
       "capabilities": [],
-      "useCase": "MiniMax H3 inference engine for Mac computers",
-      "advantages": [],
+      "useCase": "在 Mac 上以極低資源開銷運行 MiniMax H3 模型，追求最高效能。",
+      "advantages": [
+        "C 語言實作，零依賴、無垃圾回收，開銷極低",
+        "支援 MiniMax H3 模型在 Mac 上原生推理",
+        "antirez（Redis 作者）開發，代碼品質與設計哲學可靠"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37056,8 +37184,12 @@
         "repoUrl": "https://github.com/anomalyco/opencode"
       },
       "capabilities": [],
-      "useCase": "The open source coding agent.",
-      "advantages": [],
+      "useCase": "開發者想在本機運行 AI 編碼助理，但不想訂閱閉源 SaaS。",
+      "advantages": [
+        "開源編碼 Agent，無月費，可自架自訂",
+        "模型中立：支援多家 LLM 後端，不綁定單一廠商",
+        "可嵌入現有開發工具鏈，不替代 IDE 而是補充"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37098,8 +37230,12 @@
         "awesome",
         "awesome-list"
       ],
-      "useCase": " This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use.",
-      "advantages": [],
+      "useCase": "Mac 用戶重新整理作業系統時，系統性找齊各類型工具的最佳 macOS 原生替代。",
+      "advantages": [
+        "專為 macOS 挑選，跨平台清單中不會出現不支援 Mac 的項目",
+        "系統性分類整理，可快速找到特定類別的最佳選擇",
+        "社群持續更新，工具上下線跟得上"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37117,7 +37253,7 @@
       "id": "llms-from-scratch",
       "name": "LLMs-from-scratch",
       "url": "https://github.com/rasbt/LLMs-from-scratch",
-      "description": "No description provided.",
+      "description": "This repository contains the code for developing, pretraining, and finetuning a GPT-like LLM and is the official code repository for the book [Build a Large Language Model (From Scratch)](https://amzn",
       "category": "學習資源",
       "language": "other",
       "triggers": [
@@ -37130,8 +37266,12 @@
         "repoUrl": "https://github.com/rasbt/LLMs-from-scratch"
       },
       "capabilities": [],
-      "useCase": "LLMs-from-scratch",
-      "advantages": [],
+      "useCase": "想真正理解 LLM 內部運作，而非僅呼叫 API 的研究者或開發者。",
+      "advantages": [
+        "官方配套書籍（Build a LLM From Scratch）的完整代碼，學習路徑清晰",
+        "涵蓋 pretraining → finetuning → 部署完整管線，非只做推理",
+        "PyTorch 實作，代碼量适中，可逐步執行理解"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37260,8 +37400,12 @@
         "domain",
         "domain-platform"
       ],
-      "useCase": "Free domain registration and practical DNS learning resources for everyone.",
-      "advantages": [],
+      "useCase": "個人專案需要免費域名上線，同時學習 DNS 概念與實務。",
+      "advantages": [
+        "提供免費域名註冊渠道，降低個人開發者上線成本",
+        "內建 DNS 教學資源，不只是工具也包含學習材料",
+        "所有資源集中一處，無需多方查詢"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37279,7 +37423,7 @@
       "id": "photo-abstract-editorial",
       "name": "photo-abstract-editorial",
       "url": "https://github.com/ZzzLc0405/photo-abstract-editorial",
-      "description": "No description provided.",
+      "description": "Converts a single photo into a vertical editorial piece combining a raw photography area, abstract memory panels, and a poetic English title. Free for personal and non-commercial use.",
       "category": "開發工具",
       "language": "other",
       "triggers": [
@@ -37292,8 +37436,12 @@
         "repoUrl": "https://github.com/ZzzLc0405/photo-abstract-editorial"
       },
       "capabilities": [],
-      "useCase": "photo-abstract-editorial",
-      "advantages": [],
+      "useCase": "社群創作者需要快速產出具藝術感的照片編輯內容系列。",
+      "advantages": [
+        "一張照片即可產出含「原始攝影區 + 抽象記憶面板 + 詩意標題」的完整編輯作品",
+        "風格一致，可批量產製系列內容",
+        "授權明確：個人與非商業使用免費"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37794,8 +37942,12 @@
         "desktop",
         "dsh"
       ],
-      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
-      "advantages": [],
+      "useCase": "開發者希望把 DeepSeek Harness 的 AI 能力從終端機擴展到桌面全工作流。",
+      "advantages": [
+        "將 DeepSeek Harness 從純插件擴展為桌面級方案，能力覆蓋全螢幕場景",
+        "Cordis 插件架構，可與既有 DSH 插件生態互換",
+        "桌面本身即插件，可組合出多種工作空間配置"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37835,8 +37987,12 @@
         "dsh",
         "dsh-plugin"
       ],
-      "useCase": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
-      "advantages": [],
+      "useCase": "評估 DeepSeek Harness 插件生態時，快速找出現有可用的插件方案。",
+      "advantages": [
+        "收錄 DeepSeek Harness 生態系統全部插件，一站式瀏覽",
+        "按功能分類，快速找到符合需求的插件",
+        "社群維護，新插件上線可及時追蹤"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37876,8 +38032,12 @@
         "dsh",
         "dsh-plugin"
       ],
-      "useCase": "dsh-routing-suite",
-      "advantages": [],
+      "useCase": "Windows 開發者需要在 DeepSeek Harness 中依任務類型自動切換不同 LLM 模型。",
+      "advantages": [
+        "兩階段設計：先裝 runtime injector，再裝 task-aware 推理路由，依序安裝避免衝突",
+        "任務感知路由可根據工作內容動態切換模型，兼顧效能與成本",
+        "PowerShell 腳本封裝，Windows 環境一鍵部署"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37908,8 +38068,12 @@
         "repoUrl": "https://github.com/pathwaycom/arc-task-gen"
       },
       "capabilities": [],
-      "useCase": "Generates original ARC-AGI-1-style tasks distribution-matched to the public eval set.",
-      "advantages": [],
+      "useCase": "ARC-AGI 模型評估時，需要大量新任務以测试泛化能力。",
+      "advantages": [
+        "自動產生與公開 ARC-AGI-1 評測集分佈匹配的新任務，可擴展測試集規模",
+        "Python 實作，易於嵌入現有評估管線",
+        "任務產生非人工，可大量產生邊界案例"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37947,8 +38111,12 @@
         "dsh-plugin",
         "llm-agent"
       ],
-      "useCase": "Two-phase DeepSeek Harness preset: Minimal-aligned bootstrap, then full Standard tools (Project2 98/99)",
-      "advantages": [],
+      "useCase": "需要 DeepSeek Harness 最大能力但無法承受全量工具不穩定風險的開發者。",
+      "advantages": [
+        "兩階段 preset 設計：先最小化 bootstrap，再啟用完整標準工具，依序降風險",
+        "經 Project2 98/99 實測驗證，穩定度有据",
+        "JavaScript 實作，跨平台部署無阻礙"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -37989,8 +38157,12 @@
         "dsh-web",
         "dsh-web-ui"
       ],
-      "useCase": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop.",
-      "advantages": [],
+      "useCase": "希望以瀏覽器為主要介面操作 DeepSeek Harness 的開發者。",
+      "advantages": [
+        "Web GUI 讓 DSH 無需終端機即可操作，降低使用門檻",
+        "皮膚經 WebGL 深度優化，視覺效果與效能兼顧",
+        "支援任務看板、遠端 SSH 運維、Wallpaper Engine 等多場景"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -38028,8 +38200,12 @@
         "oxlint",
         "typescript"
       ],
-      "useCase": "Opinionated Oxlint rules for rejecting low-evidence TypeScript and JavaScript patterns",
-      "advantages": [],
+      "useCase": "在大型 TypeScript 專案中，確保團隊遵循嚴格的類型安全規範，避免引入低證據的程式碼模式。",
+      "advantages": [
+        "捕捉標準 linter 無法偵測的微妙類型安全問題",
+        "透過獨斷規則強制執行一致的編碼標準",
+        "在開發早期拒絕低證據模式以降低技術債"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -38070,8 +38246,12 @@
         "dsh-plugin",
         "sidebar"
       ],
-      "useCase": "开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/侧边对话/Git/子代理页面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, and sub-agent pages.",
-      "advantages": [],
+      "useCase": "需要在 DSH 側邊欄中整合自訂工作流頁面（如 Jira 儀表板、CI 狀態）的開發者。",
+      "advantages": [
+        "開放側邊欄底座，支援第三方註冊新頁面，擴展性遠超封閉方案",
+        "內建文件編輯、終端、Git、子代理等實用頁面，開箱即用",
+        "TypeScript 實作，易於二次開發"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -42350,8 +42530,12 @@
         "repoUrl": "https://github.com/arvids-unavailable/openGym"
       },
       "capabilities": [],
-      "useCase": "openGym",
-      "advantages": [],
+      "useCase": "健身愛好者需要自架、完全掌握個人數據的訓練追蹤系統。",
+      "advantages": [
+        "完全自架，健康數據不經第三方，隱私完整",
+        "週計畫 + 引導式訓練 + 逐組紀錄，結構化程度高",
+        "可擴展自訂訓練動作，不被預設清單限制"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -42392,8 +42576,12 @@
         "desktop",
         "dsh"
       ],
-      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
-      "advantages": [],
+      "useCase": "需要把 DeepSeek Harness 的完整 AI 能力部署到桌面工作環境（非僅終端機）。",
+      "advantages": [
+        "與 deepseek-harness-desktop-anywhere 同源，支援完整桌面級 DSH 方案",
+        "插件架構，可與既有 DSH 插件互換",
+        "TypeScript 實作，易於修改與擴展"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -42426,8 +42614,12 @@
         "repoUrl": "https://github.com/b-nnett/grok-bot-0.18-reconstructed"
       },
       "capabilities": [],
-      "useCase": "Unofficial source-oriented reconstruction and extension of Grok Bot 0.18.0 for macOS",
-      "advantages": [],
+      "useCase": "研究 Grok 模型推理架構或逆向工程研究的開發者與研究者。",
+      "advantages": [
+        "基於 0.18.0 逆向重建，可研究 Grok Bot 內部架構與推理路徑設計",
+        "提供 macOS 原生執行方式，非純模擬",
+        "含推理路由器（inference router），展示 Grok 模型路由策略"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
