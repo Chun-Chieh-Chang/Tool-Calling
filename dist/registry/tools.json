@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-12T05:53:34.278Z",
+  "lastUpdated": "2026-09-12T07:42:26.168Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -42260,11 +42260,15 @@
       "id": "opengym",
       "name": "openGym",
       "url": "https://github.com/arvids-unavailable/openGym",
-      "description": "No description provided.",
+      "description": "A self-hosted gym & body-weight tracker you actually own. Plan your week, run guided workouts, and track every set and body weight behind your own passkey login — no subscription, no ads, no telemetry.",
       "category": "開發工具",
       "language": "other",
       "triggers": [
-        "opengym"
+        "opengym",
+        "fitness tracker",
+        "workout tracker",
+        "self-hosted fitness",
+        "body weight tracking"
       ],
       "install": {
         "method": "none",
@@ -42334,7 +42338,11 @@
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
-        "grok-bot-0-18-reconstructed"
+        "grok-bot",
+        "grok bot",
+        "macos app reconstruction",
+        "reverse engineering",
+        "inference router"
       ],
       "install": {
         "method": "none",
