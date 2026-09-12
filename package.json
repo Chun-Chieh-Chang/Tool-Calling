@@ -23,6 +23,7 @@
     "agents:init": "node scripts/generate-agents-md.js",
     "tracked-repos": "node scripts/tracked-repos.js",
     "rescan-classification": "node scripts/rescan-classification.js",
+    "discriminability": "node scripts/measure-discriminability.js",
     "categories:sync": "node scripts/sync-categories.js",
     "categories:check": "node scripts/sync-categories.js --check",
     "mcp": "node mcp-server.js",
