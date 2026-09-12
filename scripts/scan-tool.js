@@ -239,11 +239,12 @@ async function scan(url, options = {}) {
       triggers: triggerList,
       install,
       capabilities: meta.topics.slice(0, 5),
-      useCase: `適用於 ${category} 領域之相關任務需求：${description.slice(0, 80)}`,
-      advantages: [
-        `自動化掃描收錄，精準歸入「${category}」領域`,
-        `支援 ${meta.language || '多語言'} 開發生態`
-      ],
+      useCase: description.slice(0, 200),
+      // ⚠️ advantages 是「語意欄位」——描述這個工具相對其他選擇的優勢。
+      // 「歸入某領域」不是工具的優勢,「支援某語言」也不是(那是 install 的事)。
+      // 先前填入這些只是為了消 validate 警告,反而污染了語意。
+      // 留空 → 誠實地表示「此工具的優勢尚未查證」。
+      advantages: [],
       negativeConstraints: [
         '初次收錄建議人工審查其最新版本文檔與依賴環境',
         '非通用型工具，請確認專案環境符合需求'

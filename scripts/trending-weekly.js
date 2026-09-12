@@ -400,19 +400,30 @@ export async function discoverTrendingTools() {
       triggers: [toolId, ...(repo.topics?.slice(0, 5) || [])],
       install: { method: 'none', repoUrl },
       capabilities: repo.topics?.slice(0, 6) || [],
-      useCase: `${repo.description || repo.name} — 上週漲星 +${repo.delta} (${prevWeekStr} 自動探勘入庫)。`,
-      advantages: [
-        `GitHub ⭐ ${repo.currentStars.toLocaleString()} 星`,
-        `上週漲星 +${repo.delta}`,
-        `${prevWeekStr} 自動探勘入庫`
-      ],
+      // ⚠️ useCase 是「語意欄位」——描述這個工具適合什麼任務。
+      // 探勘 provenance(漲星數、入庫週次)不屬於語意內容,改記錄於 _provenance。
+      useCase: repo.description || repo.name,
+      // ⚠️ advantages 是「語意欄位」——描述這個工具相對其他選擇的優勢。
+      // 星數不是工具的優勢,而是受歡迎程度的客觀指標,應存於 stars 欄位。
+      // 無法從 GitHub metadata 推得真正的優勢,故留空待人工/後續豐富化補齊,
+      // 空陣列會觸發 registry-contract 的警告(penalty 15)—— 這是誠實的訊號,
+      // 提醒這一筆尚未完成解析。先前填入星數只是為了消警告,反而污染了語意。
+      advantages: [],
       negativeConstraints: [
-        '由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用',
+        '由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用',
         '詳細安裝指令需依官方 README 為準'
       ],
       stars: repo.currentStars,
       addedAt: now.toISOString(),
-      status: 'active'
+      status: 'active',
+      // 入庫 provenance 集中於此,不污染語意欄位
+      _provenance: {
+        source: 'trending-weekly',
+        week: prevWeekStr,
+        starsAtIngest: repo.currentStars,
+        weeklyDelta: repo.delta,
+        ingestedAt: now.toISOString()
+      }
     };
 
     registry.tools.push(newTool);

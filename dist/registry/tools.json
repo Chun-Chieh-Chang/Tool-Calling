@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-12T07:42:26.168Z",
+  "lastUpdated": "2026-09-12T11:27:43.839Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -25570,11 +25570,9 @@
         "ml",
         "neural-network"
       ],
-      "useCase": "An Open Source Machine Learning Framework for Everyone — 本週漲星 +196501 (2026-W30 自動探勘入庫)。",
+      "useCase": "An Open Source Machine Learning Framework for Everyone",
       "advantages": [
-        "GitHub ⭐ 196,501 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-25)",
-        "2026-W30 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-25)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -25582,7 +25580,12 @@
       ],
       "stars": 197330,
       "addedAt": "2026-07-25T03:33:36.818Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W30",
+        "weeklyDelta": 196501
+      }
     },
     {
       "id": "ohmyzsh",
@@ -25611,11 +25614,9 @@
         "oh-my-zsh-theme",
         "ohmyzsh"
       ],
-      "useCase": "🙃   A delightful community-driven (with 2,500+ contributors) framework for managing your zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool that makes it easy to keep up with the latest updates from the community. — 本週漲星 +188788 (2026-W30 自動探勘入庫)。",
+      "useCase": "🙃   A delightful community-driven (with 2,500+ contributors) framework for managing your zsh configuration. Includes 300+ optional plugins (rails, git, macOS, hub, docker, homebrew, node, php, python, etc), 140+ themes to spice up your morning, and an auto-update tool that makes it easy to keep up with the latest updates from the community.",
       "advantages": [
-        "GitHub ⭐ 188,788 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-23)",
-        "2026-W30 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-23)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -25623,7 +25624,12 @@
       ],
       "stars": 189317,
       "addedAt": "2026-07-25T03:33:36.818Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W30",
+        "weeklyDelta": 188788
+      }
     },
     {
       "id": "javaguide",
@@ -25651,11 +25657,9 @@
         "interview",
         "java"
       ],
-      "useCase": "Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发 — 本週漲星 +157281 (2026-W30 自動探勘入庫)。",
+      "useCase": "Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发",
       "advantages": [
-        "GitHub ⭐ 157,281 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-21)",
-        "2026-W30 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-21)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -25663,7 +25667,12 @@
       ],
       "stars": 157957,
       "addedAt": "2026-07-25T03:33:36.818Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W30",
+        "weeklyDelta": 157281
+      }
     },
     {
       "id": "worldmonitor",
@@ -25691,11 +25700,9 @@
         "mcp",
         "mcp-server"
       ],
-      "useCase": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface — 本週漲星 +11 (2026-W30 自動探勘入庫)。",
+      "useCase": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
       "advantages": [
-        "GitHub ⭐ 73,420 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-25)",
-        "2026-W30 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-25)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -25703,7 +25710,12 @@
       ],
       "stars": 83805,
       "addedAt": "2026-07-25T03:41:05.133Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W30",
+        "weeklyDelta": 11
+      }
     },
     {
       "id": "awesome-claude-skills",
@@ -25732,11 +25744,9 @@
         "claude",
         "claude-code"
       ],
-      "useCase": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — 本週漲星 +7 (2026-W30 自動探勘入庫)。",
+      "useCase": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
       "advantages": [
-        "GitHub ⭐ 70,137 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-24)",
-        "2026-W30 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-24)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -25744,7 +25754,12 @@
       ],
       "stars": 73040,
       "addedAt": "2026-07-25T03:41:05.133Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W30",
+        "weeklyDelta": 7
+      }
     },
     {
       "id": "ktransformers",
@@ -25764,11 +25779,9 @@
         "repoUrl": "https://github.com/kvcache-ai/ktransformers"
       },
       "capabilities": [],
-      "useCase": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations — 本週漲星 +2 (2026-W30 自動探勘入庫)。",
+      "useCase": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
       "advantages": [
-        "GitHub ⭐ 19,003 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-24)",
-        "2026-W30 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-24)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -25776,7 +25789,12 @@
       ],
       "stars": 19268,
       "addedAt": "2026-07-25T03:41:05.133Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W30",
+        "weeklyDelta": 2
+      }
     },
     {
       "id": "daily-stock-analysis",
@@ -30754,11 +30772,9 @@
         "generative-ai",
         "generativeai"
       ],
-      "useCase": "21 Lessons, Get Started Building with Generative AI  — 本週漲星 +3057 (2026-W31 自動探勘入庫)。",
+      "useCase": "21 Lessons, Get Started Building with Generative AI",
       "advantages": [
-        "GitHub ⭐ 116,598 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-04)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-04)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -30766,7 +30782,12 @@
       ],
       "stars": 118356,
       "addedAt": "2026-08-05T14:02:32.814Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 3057
+      }
     },
     {
       "id": "cherry-studio",
@@ -30795,11 +30816,9 @@
         "codex",
         "deepseek"
       ],
-      "useCase": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs — 本週漲星 +13 (2026-W31 自動探勘入庫)。",
+      "useCase": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
       "advantages": [
-        "GitHub ⭐ 49,565 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-05)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -30807,7 +30826,12 @@
       ],
       "stars": 50923,
       "addedAt": "2026-08-05T14:28:15.296Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 13
+      }
     },
     {
       "id": "goose",
@@ -30832,11 +30856,9 @@
         "ai-agents",
         "mcp"
       ],
-      "useCase": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM — 本週漲星 +3 (2026-W31 自動探勘入庫)。",
+      "useCase": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
       "advantages": [
-        "GitHub ⭐ 52,344 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-05)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -30844,7 +30866,12 @@
       ],
       "stars": 53262,
       "addedAt": "2026-08-05T14:34:01.174Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 3
+      }
     },
     {
       "id": "sglang",
@@ -30873,11 +30900,9 @@
         "diffusion",
         "glm"
       ],
-      "useCase": "SGLang is a high-performance serving framework for large language models and multimodal models. — 本週漲星 +2 (2026-W31 自動探勘入庫)。",
+      "useCase": "SGLang is a high-performance serving framework for large language models and multimodal models.",
       "advantages": [
-        "GitHub ⭐ 31,343 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-05)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -30885,7 +30910,12 @@
       ],
       "stars": 32269,
       "addedAt": "2026-08-05T14:34:01.174Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 2
+      }
     },
     {
       "id": "llamafactory",
@@ -30913,11 +30943,9 @@
         "gemma",
         "gpt"
       ],
-      "useCase": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) — 本週漲星 +2 (2026-W31 自動探勘入庫)。",
+      "useCase": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)",
       "advantages": [
-        "GitHub ⭐ 73,790 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-04)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-04)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -30925,7 +30953,12 @@
       ],
       "stars": 74292,
       "addedAt": "2026-08-05T14:38:23.090Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 2
+      }
     },
     {
       "id": "qlib",
@@ -30995,11 +31028,9 @@
         "awesome",
         "awesome-list"
       ],
-      "useCase": "280+ free n8n automation templates — ready-to-use workflows for Gmail, Telegram, Slack, Discord, WhatsApp, Google Drive, Notion, OpenAI, and more. AI agents, RAG   chatbots, email automation, social media, DevOps, and document processing. The largest open-source n8n template collection. — 本週漲星 +290 (2026-W31 自動探勘入庫)。",
+      "useCase": "280+ free n8n automation templates",
       "advantages": [
-        "GitHub ⭐ 24,458 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-07-23)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-07-23)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -31007,7 +31038,12 @@
       ],
       "stars": 24881,
       "addedAt": "2026-08-05T14:41:05.240Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 290
+      }
     },
     {
       "id": "qwenpaw",
@@ -31036,11 +31072,9 @@
         "ai-agents",
         "chatbot"
       ],
-      "useCase": "Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities. — 本週漲星 +19 (2026-W31 自動探勘入庫)。",
+      "useCase": "Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities.",
       "advantages": [
-        "GitHub ⭐ 33,463 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-05)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -31048,7 +31082,12 @@
       ],
       "stars": 34334,
       "addedAt": "2026-08-05T15:17:05.289Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 19
+      }
     },
     {
       "id": "kimi-k3-in-c",
@@ -31077,11 +31116,9 @@
         "from-scratch",
         "inference-engine"
       ],
-      "useCase": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU. — 本週漲星 +15 (2026-W31 自動探勘入庫)。",
+      "useCase": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU.",
       "advantages": [
-        "GitHub ⭐ 2,415 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-01)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-01)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -31089,7 +31126,12 @@
       ],
       "stars": 6287,
       "addedAt": "2026-08-05T15:17:05.289Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 15
+      }
     },
     {
       "id": "khoj",
@@ -31117,11 +31159,9 @@
         "chatgpt",
         "emacs"
       ],
-      "useCase": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free. — 本週漲星 +7 (2026-W31 自動探勘入庫)。",
+      "useCase": "Your AI second brain. Self-hostable. Get answers from the web or your docs. Build custom agents, schedule automations, do deep research. Turn any online or local LLM into your personal, autonomous AI (gpt, claude, gemini, llama, qwen, mistral). Get started - free.",
       "advantages": [
-        "GitHub ⭐ 36,263 星，社群高度活躍",
-        "近期頻繁更新維護 (最後推送 2026-08-02)",
-        "2026-W31 漲星探勘自動入庫"
+        "近期頻繁更新維護 (最後推送 2026-08-02)"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -31129,7 +31169,12 @@
       ],
       "stars": 36660,
       "addedAt": "2026-08-05T15:30:57.061Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 7
+      }
     },
     {
       "id": "awesome",
@@ -31157,19 +31202,20 @@
         "resources",
         "unicorns"
       ],
-      "useCase": "😎 Awesome lists about all kinds of interesting topics — 本週漲星 +492695 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 492,695 星，社群高度活躍",
-        "本週漲星 +492695",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "😎 Awesome lists about all kinds of interesting topics",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 498994,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 492695
+      }
     },
     {
       "id": "freecodecamp",
@@ -31198,19 +31244,20 @@
         "d3",
         "education"
       ],
-      "useCase": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free. — 本週漲星 +453539 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 453,539 星，社群高度活躍",
-        "本週漲星 +453539",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "freeCodeCamp.org's open-source codebase and curriculum. Learn math, programming, and computer science for free.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 454452,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 453539
+      }
     },
     {
       "id": "awesome-python",
@@ -31239,19 +31286,20 @@
         "python-libraries",
         "python-tools"
       ],
-      "useCase": "An opinionated list of Python frameworks, libraries, tools, and resources — 本週漲星 +312338 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 312,338 星，社群高度活躍",
-        "本週漲星 +312338",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "An opinionated list of Python frameworks, libraries, tools, and resources",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 315535,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 312338
+      }
     },
     {
       "id": "996-icu",
@@ -31313,19 +31361,20 @@
         "react",
         "ui"
       ],
-      "useCase": "The library for web and native user interfaces. — 本週漲星 +247011 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 247,011 星，社群高度活躍",
-        "本週漲星 +247011",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "The library for web and native user interfaces.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 247639,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 247011
+      }
     },
     {
       "id": "linux",
@@ -31388,19 +31437,20 @@
         "community-driven",
         "education"
       ],
-      "useCase": "All Algorithms implemented in Python — 本週漲星 +223510 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 223,510 星，社群高度活躍",
-        "本週漲星 +223510",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "All Algorithms implemented in Python",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 223950,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 223510
+      }
     },
     {
       "id": "vue",
@@ -31426,19 +31476,20 @@
         "javascript",
         "vue"
       ],
-      "useCase": "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core — 本週漲星 +210216 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 210,216 星，社群高度活躍",
-        "本週漲星 +210216",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "This is the repo for Vue 2. For Vue 3, go to https://github.com/vuejs/core",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 210455,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 210216
+      }
     },
     {
       "id": "computer-science",
@@ -31464,19 +31515,20 @@
         "courses",
         "curriculum"
       ],
-      "useCase": "🎓 Path to a free self-taught education in Computer Science! — 本週漲星 +207652 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 207,652 星，社群高度活躍",
-        "本週漲星 +207652",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "🎓 Path to a free self-taught education in Computer Science!",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 208331,
       "addedAt": "2026-08-05T16:48:53.910Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 207652
+      }
     },
     {
       "id": "system-prompts-and-models-of-ai-tools",
@@ -31505,19 +31557,20 @@
         "cursor",
         "cursorai"
       ],
-      "useCase": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models — 本週漲星 +5 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 142,587 星",
-        "本週漲星 +5",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, VSCode Agent, Warp.dev, Windsurf, Xcode, Z.ai Code, Dia & v0. (And other Open Sourced) System Prompts, Internal Tools & AI Models",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 143016,
       "addedAt": "2026-08-05T17:02:46.173Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 5
+      }
     },
     {
       "id": "autogpt",
@@ -31879,19 +31932,20 @@
         "gpgpu",
         "llm"
       ],
-      "useCase": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook — 本週漲星 +5403 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 5,403 星",
-        "本週漲星 +5403",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "Gemma 4 26B-A4B inference in ~2 GB of RAM on any M-series MacBook",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 6264,
       "addedAt": "2026-08-08T15:34:11.530Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 5403
+      }
     },
     {
       "id": "decimen-optical-transfer",
@@ -32052,19 +32106,20 @@
         "claude-code-skills",
         "claude-skills"
       ],
-      "useCase": "AI video skill for Claude Code & Codex — cinematic product videos with Remotion: 106 shot recipe cards, 161 motion previews, a production-ready template — 本週漲星 +4153 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 4,153 星",
-        "本週漲星 +4153",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "AI video skill for Claude Code & Codex",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 6058,
       "addedAt": "2026-08-08T15:34:11.530Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 4153
+      }
     },
     {
       "id": "os-taxonomy",
@@ -32126,19 +32181,20 @@
         "office-tools",
         "office365"
       ],
-      "useCase": "Bento, the office suite that fits in a file — 本週漲星 +3827 (2026-W31 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 3,827 星",
-        "本週漲星 +3827",
-        "2026-W31 自動探勘入庫"
-      ],
+      "useCase": "Bento, the office suite that fits in a file",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 4440,
       "addedAt": "2026-08-08T15:34:11.530Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W31",
+        "weeklyDelta": 3827
+      }
     },
     {
       "id": "geolibre",
@@ -32969,19 +33025,20 @@
         "repoUrl": "https://github.com/NVIDIA-NeMo/labs-OO-Agents"
       },
       "capabilities": [],
-      "useCase": "NVIDIA Object Oriented Agents: the Pythonic way to build AI Agents. — 本週漲星 +1340 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,340 星",
-        "本週漲星 +1340",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "NVIDIA Object Oriented Agents: the Pythonic way to build AI Agents.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1863,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1340
+      }
     },
     {
       "id": "dashi-taskboard",
@@ -33001,19 +33058,20 @@
         "repoUrl": "https://github.com/chuspeeism/dashi-taskboard"
       },
       "capabilities": [],
-      "useCase": "dashi-taskboard — 本週漲星 +1298 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,298 星",
-        "本週漲星 +1298",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "dashi-taskboard",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 2462,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1298
+      }
     },
     {
       "id": "conversation-steganography",
@@ -33035,19 +33093,20 @@
         "llm-tools",
         "steganography"
       ],
-      "useCase": "Use LLMs to hide messages inside normal looking conversations — 本週漲星 +1208 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,208 星",
-        "本週漲星 +1208",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Use LLMs to hide messages inside normal looking conversations",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1229,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1208
+      }
     },
     {
       "id": "nativ",
@@ -33067,19 +33126,20 @@
         "repoUrl": "https://github.com/Blaizzy/nativ"
       },
       "capabilities": [],
-      "useCase": "Local AI, native to your Mac. Chat, serve, monitor, and connect MLX models from one macOS app. — 本週漲星 +1177 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,177 星",
-        "本週漲星 +1177",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Local AI, native to your Mac. Chat, serve, monitor, and connect MLX models from one macOS app.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1283,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1177
+      }
     },
     {
       "id": "codex-router",
@@ -33107,19 +33167,20 @@
         "litellm",
         "model-router"
       ],
-      "useCase": "External-model router for Codex with guided Kimi OAuth/API, DeepSeek, safe migration, and rollback. — 本週漲星 +1176 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,176 星",
-        "本週漲星 +1176",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "External-model router for Codex with guided Kimi OAuth/API, DeepSeek, safe migration, and rollback.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 2768,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1176
+      }
     },
     {
       "id": "story-to-handdrawn-video",
@@ -33139,19 +33200,20 @@
         "repoUrl": "https://github.com/gnipbao/story-to-handdrawn-video"
       },
       "capabilities": [],
-      "useCase": "Agent skill: convert Chinese story copy or ordered images into a hand-drawn diary-comic animation (silent MP4 picture track). — 本週漲星 +1166 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,166 星",
-        "本週漲星 +1166",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Agent skill: convert Chinese story copy or ordered images into a hand-drawn diary-comic animation (silent MP4 picture track).",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1517,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1166
+      }
     },
     {
       "id": "findphone",
@@ -33171,19 +33233,20 @@
         "repoUrl": "https://github.com/ben-z/findphone"
       },
       "capabilities": [],
-      "useCase": "Locate a nearby Bluetooth device by signal strength, from the macOS command line — for when Find My isn't available — 本週漲星 +1125 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,125 星",
-        "本週漲星 +1125",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Locate a nearby Bluetooth device by signal strength, from the macOS command line",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1299,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1125
+      }
     },
     {
       "id": "openreply",
@@ -33203,19 +33266,20 @@
         "repoUrl": "https://github.com/diwenne/openreply"
       },
       "capabilities": [],
-      "useCase": "Open-source ManyChat alternative: comment-dm automation + account analytics. NOTE: the link below will not allow you to OAuth; you must self-host with your own API keys. — 本週漲星 +1122 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,122 星",
-        "本週漲星 +1122",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Open-source ManyChat alternative: comment-dm automation + account analytics. NOTE: the link below will not allow you to OAuth; you must self-host with your own API keys.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1508,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1122
+      }
     },
     {
       "id": "openmouse",
@@ -33235,19 +33299,20 @@
         "repoUrl": "https://github.com/OpenMouse-Project/openmouse"
       },
       "capabilities": [],
-      "useCase": "openmouse — 本週漲星 +1112 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,112 星",
-        "本週漲星 +1112",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "openmouse",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1378,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1112
+      }
     },
     {
       "id": "axisagentic",
@@ -33267,19 +33332,20 @@
         "repoUrl": "https://github.com/XYZ-AI-Lab/AxisAgentic"
       },
       "capabilities": [],
-      "useCase": "AxisAgentic: An Extensible Runtime and Trajectory-Collection Framework for Long-Horizon Agents. — 本週漲星 +1103 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,103 星",
-        "本週漲星 +1103",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "AxisAgentic: An Extensible Runtime and Trajectory-Collection Framework for Long-Horizon Agents.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1113,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1103
+      }
     },
     {
       "id": "moviebox-tui",
@@ -33308,19 +33374,20 @@
         "series",
         "streaming"
       ],
-      "useCase": "A modern Rust based terminal user interface for streaming. Fast, lightweight, keyboard first, and cross-platform. — 本週漲星 +1100 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,100 星",
-        "本週漲星 +1100",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "A modern Rust based terminal user interface for streaming. Fast, lightweight, keyboard first, and cross-platform.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1289,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1100
+      }
     },
     {
       "id": "penguin-harness",
@@ -33349,19 +33416,20 @@
         "build-tool",
         "claude-code"
       ],
-      "useCase": "🐧 Automated Agent Builder. Create Self-Evolving Agents in One Click (DeepSeek/Kimi/GPT/Claude/Gemini) — 本週漲星 +1099 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,099 星",
-        "本週漲星 +1099",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "🐧 Automated Agent Builder. Create Self-Evolving Agents in One Click (DeepSeek/Kimi/GPT/Claude/Gemini)",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1610,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1099
+      }
     },
     {
       "id": "cue",
@@ -33381,19 +33449,20 @@
         "repoUrl": "https://github.com/Blueturboguy07/cue"
       },
       "capabilities": [],
-      "useCase": "Open-source macOS AI copilot that floats over your screen, sees/hears your meetings, and stays hidden from screen shares. Cluely alternative, bring-your-own-key. — 本週漲星 +1076 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,076 星",
-        "本週漲星 +1076",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Open-source macOS AI copilot that floats over your screen, sees/hears your meetings, and stays hidden from screen shares. Cluely alternative, bring-your-own-key.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1210,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1076
+      }
     },
     {
       "id": "firecrawl",
@@ -33422,19 +33491,20 @@
         "ai-search",
         "crawler"
       ],
-      "useCase": "The context API to search, scrape, and interact with the web at scale. 🔥 — 本週漲星 +1062 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 164,289 星",
-        "本週漲星 +1062",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "The context API to search, scrape, and interact with the web at scale. 🔥",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 170975,
       "addedAt": "2026-08-10T03:53:59.933Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1062
+      }
     },
     {
       "id": "diagram-design",
@@ -34805,19 +34875,20 @@
         "repoUrl": "https://github.com/QwenLM/Qwen-MM-Plugins"
       },
       "capabilities": [],
-      "useCase": "Make any agent harness multimodal-native. — 本週漲星 +2185 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 2,185 星",
-        "本週漲星 +2185",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Make any agent harness multimodal-native.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 2755,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 2185
+      }
     },
     {
       "id": "comfyui",
@@ -34846,19 +34917,20 @@
         "pytorch",
         "stable-diffusion"
       ],
-      "useCase": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface. — 本週漲星 +2182 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 126,992 星",
-        "本週漲星 +2182",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 129007,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 2182
+      }
     },
     {
       "id": "warp",
@@ -34880,19 +34952,20 @@
         "repoUrl": "https://github.com/sqliteai/warp"
       },
       "capabilities": [],
-      "useCase": "Run the full 2.78-trillion-parameter Kimi K3 model beyond available RAM by streaming activated weights directly from NVMe. A dependency-free, embeddable C inference engine. — 本週漲星 +2086 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 2,086 星",
-        "本週漲星 +2086",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Run the full 2.78-trillion-parameter Kimi K3 model beyond available RAM by streaming activated weights directly from NVMe. A dependency-free, embeddable C inference engine.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 2236,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 2086
+      }
     },
     {
       "id": "gathered-scenes-zine-skill",
@@ -34914,19 +34987,20 @@
         "repoUrl": "https://github.com/Zeejay0/gathered-scenes-zine-skill"
       },
       "capabilities": [],
-      "useCase": "gathered-scenes-zine-skill — 本週漲星 +1692 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 2,974 星",
-        "本週漲星 +1692",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "gathered-scenes-zine-skill",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 4230,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1692
+      }
     },
     {
       "id": "phone-harness",
@@ -34952,19 +35026,20 @@
         "automation",
         "developer-tools"
       ],
-      "useCase": "let your agent control your phone — 本週漲星 +1580 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,580 星",
-        "本週漲星 +1580",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "let your agent control your phone",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1984,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1580
+      }
     },
     {
       "id": "oil-motion",
@@ -34986,19 +35061,20 @@
         "repoUrl": "https://github.com/oil-oil/oil-motion"
       },
       "capabilities": [],
-      "useCase": "Create smooth, responsive interactive web animations. — 本週漲星 +1556 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,556 星",
-        "本週漲星 +1556",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "Create smooth, responsive interactive web animations.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1980,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1556
+      }
     },
     {
       "id": "wechat-ai",
@@ -35020,19 +35096,20 @@
         "repoUrl": "https://github.com/SMNETSTUDIO/WeChat-AI"
       },
       "capabilities": [],
-      "useCase": "WeChat-AI — 本週漲星 +1507 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,507 星",
-        "本週漲星 +1507",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "WeChat-AI",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1827,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1507
+      }
     },
     {
       "id": "h3-c",
@@ -35055,19 +35132,20 @@
         "repoUrl": "https://github.com/antirez/h3.c"
       },
       "capabilities": [],
-      "useCase": "MiniMax H3 inference engine for Mac computers — 本週漲星 +1499 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,499 星",
-        "本週漲星 +1499",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "MiniMax H3 inference engine for Mac computers",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 2358,
       "addedAt": "2026-08-12T13:04:24.020Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1499
+      }
     },
     {
       "id": "openbb",
@@ -36978,19 +37056,20 @@
         "repoUrl": "https://github.com/anomalyco/opencode"
       },
       "capabilities": [],
-      "useCase": "The open source coding agent. — 上週漲星 +1443 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 196,451 星",
-        "上週漲星 +1443",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "The open source coding agent.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 200357,
       "addedAt": "2026-08-16T10:34:57.861Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1443
+      }
     },
     {
       "id": "awesome-mac",
@@ -37019,19 +37098,20 @@
         "awesome",
         "awesome-list"
       ],
-      "useCase": " This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use. — 上週漲星 +1396 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 110,754 星",
-        "上週漲星 +1396",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": " This project is dedicated to collecting high-quality macOS software and organizing them systematically by different categories for easy search and use.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 111617,
       "addedAt": "2026-08-16T10:34:57.861Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1396
+      }
     },
     {
       "id": "llms-from-scratch",
@@ -37050,19 +37130,20 @@
         "repoUrl": "https://github.com/rasbt/LLMs-from-scratch"
       },
       "capabilities": [],
-      "useCase": "LLMs-from-scratch — 上週漲星 +1227 (2026-W32 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 102,493 星",
-        "上週漲星 +1227",
-        "2026-W32 自動探勘入庫"
-      ],
+      "useCase": "LLMs-from-scratch",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 103288,
       "addedAt": "2026-08-16T10:34:57.861Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W32",
+        "weeklyDelta": 1227
+      }
     },
     {
       "id": "figures4papers",
@@ -37179,19 +37260,20 @@
         "domain",
         "domain-platform"
       ],
-      "useCase": "Free domain registration and practical DNS learning resources for everyone. — 上週漲星 +1082 (2026-W33 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 193,487 星",
-        "上週漲星 +1082",
-        "2026-W33 自動探勘入庫"
-      ],
+      "useCase": "Free domain registration and practical DNS learning resources for everyone.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 195024,
       "addedAt": "2026-08-17T02:59:06.863Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W33",
+        "weeklyDelta": 1082
+      }
     },
     {
       "id": "photo-abstract-editorial",
@@ -37210,19 +37292,20 @@
         "repoUrl": "https://github.com/ZzzLc0405/photo-abstract-editorial"
       },
       "capabilities": [],
-      "useCase": "photo-abstract-editorial — 上週漲星 +1000 (2026-W33 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 3,870 星",
-        "上週漲星 +1000",
-        "2026-W33 自動探勘入庫"
-      ],
+      "useCase": "photo-abstract-editorial",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 4596,
       "addedAt": "2026-08-17T02:59:06.863Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W33",
+        "weeklyDelta": 1000
+      }
     },
     {
       "id": "zouyuxuan122-deepseek-harness-eac",
@@ -37711,19 +37794,20 @@
         "desktop",
         "dsh"
       ],
-      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 — 上週漲星 +1825 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 9,576 星",
-        "上週漲星 +1825",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 9576,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 1825
+      }
     },
     {
       "id": "awesome-dsh-plugin",
@@ -37751,19 +37835,20 @@
         "dsh",
         "dsh-plugin"
       ],
-      "useCase": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表 — 上週漲星 +1820 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 5,682 星",
-        "上週漲星 +1820",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 5682,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 1820
+      }
     },
     {
       "id": "dsh-routing-suite",
@@ -37791,19 +37876,20 @@
         "dsh",
         "dsh-plugin"
       ],
-      "useCase": "dsh-routing-suite — injector + router-standard kit: install the runtime injector first, then the task-aware reasoning-mode router preset (measured P1-P23). — 上週漲星 +588 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 2,971 星",
-        "上週漲星 +588",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "dsh-routing-suite",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 2971,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 588
+      }
     },
     {
       "id": "arc-task-gen",
@@ -37822,19 +37908,20 @@
         "repoUrl": "https://github.com/pathwaycom/arc-task-gen"
       },
       "capabilities": [],
-      "useCase": "Generates original ARC-AGI-1-style tasks distribution-matched to the public eval set. — 上週漲星 +512 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 3,184 星",
-        "上週漲星 +512",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "Generates original ARC-AGI-1-style tasks distribution-matched to the public eval set.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 3184,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 512
+      }
     },
     {
       "id": "dsh-anchored-standard",
@@ -37860,19 +37947,20 @@
         "dsh-plugin",
         "llm-agent"
       ],
-      "useCase": "Two-phase DeepSeek Harness preset: Minimal-aligned bootstrap, then full Standard tools (Project2 98/99) — 上週漲星 +494 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 3,137 星",
-        "上週漲星 +494",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "Two-phase DeepSeek Harness preset: Minimal-aligned bootstrap, then full Standard tools (Project2 98/99)",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 3137,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 494
+      }
     },
     {
       "id": "dsh-web-ui",
@@ -37901,19 +37989,20 @@
         "dsh-web",
         "dsh-web-ui"
       ],
-      "useCase": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop. — 上週漲星 +478 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 3,573 星",
-        "上週漲星 +478",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "DeepSeek Harness（DSH）Web GUI 插件与皮肤生态：一切皆插件。任务看板、移动端远程与 SSH 运维构筑开发工作台；皮肤经 WebGL 深度优化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市场一键安装，正迈向 DSH 创意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - Task board, remote mobile UI, SSH ops, WebGL-optimized skins with Wallpaper Engine wallpapers - becoming a DSH creative workshop.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 3573,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 478
+      }
     },
     {
       "id": "anti-slop",
@@ -37939,19 +38028,20 @@
         "oxlint",
         "typescript"
       ],
-      "useCase": "Opinionated Oxlint rules for rejecting low-evidence TypeScript and JavaScript patterns — 上週漲星 +239 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,687 星",
-        "上週漲星 +239",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "Opinionated Oxlint rules for rejecting low-evidence TypeScript and JavaScript patterns",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1687,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 239
+      }
     },
     {
       "id": "dsh-better-sidebar",
@@ -37980,19 +38070,20 @@
         "dsh-plugin",
         "sidebar"
       ],
-      "useCase": "开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/侧边对话/Git/子代理页面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, and sub-agent pages. — 上週漲星 +235 (2026-W34 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 1,697 星",
-        "上週漲星 +235",
-        "2026-W34 自動探勘入庫"
-      ],
+      "useCase": "开放的侧边栏底座，支持三方拓展注册新侧边栏页面。内置文件渲染编辑/终端/侧边对话/Git/子代理页面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, and sub-agent pages.",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 1697,
       "addedAt": "2026-08-24T03:02:11.076Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W34",
+        "weeklyDelta": 235
+      }
     },
     {
       "id": "mattpocock-skills",
@@ -41320,7 +41411,6 @@
       ],
       "useCase": "適用於 AI 代理 領域之相關任務需求：One-ink editorial print image skill — warm paper, halftone photography, active n",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 代理」領域",
         "支援 python 開發生態"
       ],
       "negativeConstraints": [
@@ -41349,7 +41439,6 @@
       "capabilities": [],
       "useCase": "適用於 研究 領域之相關任務需求：Autonomous research system for measurable, computer-executable research.",
       "advantages": [
-        "自動化掃描收錄，精準歸入「研究」領域",
         "支援 python 開發生態"
       ],
       "negativeConstraints": [
@@ -41390,7 +41479,6 @@
       ],
       "useCase": "適用於 音訊 領域之相關任務需求：Spotify, native and fast. One lightweight Rust app for your whole library, local",
       "advantages": [
-        "自動化掃描收錄，精準歸入「音訊」領域",
         "支援 rust 開發生態"
       ],
       "negativeConstraints": [
@@ -41419,7 +41507,6 @@
       "capabilities": [],
       "useCase": "適用於 AI 代理 領域之相關任務需求：✨ agentic app store previews and screenshots",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 代理」領域",
         "支援 typescript 開發生態"
       ],
       "negativeConstraints": [
@@ -41449,7 +41536,6 @@
       "capabilities": [],
       "useCase": "適用於 AI 代理 領域之相關任務需求：AI harness reference implementation for on-demand delivery workflows",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 代理」領域",
         "支援 java 開發生態"
       ],
       "negativeConstraints": [
@@ -41490,7 +41576,6 @@
       ],
       "useCase": "適用於 AI 代理 領域之相關任務需求：Stop That Shit（别再造史了）｜面向 Codex/GPT 场景的多平台 Hook + Skill Guard：拦截 AI coding agent ",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 代理」領域",
         "支援 javascript 開發生態"
       ],
       "negativeConstraints": [
@@ -41531,7 +41616,6 @@
       ],
       "useCase": "適用於 AI 代理 領域之相關任務需求：A CLI that reads Claude Code, Codex, and Gemini CLI session logs and works out h",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 代理」領域",
         "支援 python 開發生態"
       ],
       "negativeConstraints": [
@@ -41754,7 +41838,6 @@
       },
       "useCase": "適用於 文件生產力 領域之相關任務需求：OpenWiki is a CLI that writes and maintains agent documentation for your codebas",
       "advantages": [
-        "自動化掃描收錄，精準歸入「文件生產力」領域",
         "支援 typescript 開發生態"
       ],
       "negativeConstraints": [
@@ -41796,7 +41879,6 @@
       },
       "useCase": "適用於 瀏覽器自動化 領域之相關任務需求：The headless browser for AI agents and web scraping",
       "advantages": [
-        "自動化掃描收錄，精準歸入「瀏覽器自動化」領域",
         "支援 rust 開發生態"
       ],
       "negativeConstraints": [
@@ -41838,7 +41920,6 @@
       },
       "useCase": "適用於 AI 框架 領域之相關任務需求：Agent IDE that enables you to manage fleets of coding agents. It comes with an a",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 框架」領域",
         "支援 go 開發生態"
       ],
       "negativeConstraints": [
@@ -41927,7 +42008,6 @@
       },
       "useCase": "適用於 API 整合 領域之相關任務需求：Turbocharge Claude Code, Cursor, Codex, Gemini & every coding agent: faster, che",
       "advantages": [
-        "自動化掃描收錄，精準歸入「API 整合」領域",
         "支援 typescript 開發生態"
       ],
       "negativeConstraints": [
@@ -42001,7 +42081,6 @@
       },
       "useCase": "適用於 開發工具 領域之相關任務需求：鲲鹏 Kunpeng — 跑在本地的中文 AIGC 创作工作台（Tauri + React + Rust，内嵌 DeepSeek Harness 引擎）。支持 ",
       "advantages": [
-        "自動化掃描收錄，精準歸入「開發工具」領域",
         "支援 typescript 開發生態"
       ],
       "negativeConstraints": [
@@ -42043,7 +42122,6 @@
       },
       "useCase": "適用於 AI 代理 領域之相關任務需求：Anti-laziness skill for AI agents. Core: the Depth Tree method, which splits a t",
       "advantages": [
-        "自動化掃描收錄，精準歸入「AI 代理」領域",
         "支援 javascript 開發生態"
       ],
       "negativeConstraints": [
@@ -42085,7 +42163,6 @@
       },
       "useCase": "適用於 數據分析 領域之相關任務需求：AI-powered code intelligence MCP server — 17 tools for code analysis, search, re",
       "advantages": [
-        "自動化掃描收錄，精準歸入「數據分析」領域",
         "支援 rust 開發生態"
       ],
       "negativeConstraints": [
@@ -42127,7 +42204,6 @@
       },
       "useCase": "適用於 數據分析 領域之相關任務需求：Data visualization Skill for AI Agents, turning data into polished, interactive ",
       "advantages": [
-        "自動化掃描收錄，精準歸入「數據分析」領域",
         "支援 html 開發生態"
       ],
       "negativeConstraints": [
@@ -42199,7 +42275,6 @@
       "capabilities": [],
       "useCase": "Give your existing coding agent (OpenClaw/Claude Code/Codex/Cline) free, private, offline local models by auto-matching the best models to your GPU/CPU hardware.",
       "advantages": [
-        "自動化掃描收錄，精準歸入「開發工具」領域",
         "支援 typescript 開發生態"
       ],
       "negativeConstraints": [
@@ -42275,19 +42350,20 @@
         "repoUrl": "https://github.com/arvids-unavailable/openGym"
       },
       "capabilities": [],
-      "useCase": "openGym — 上週漲星 +2726 (2026-W36 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 6,343 星",
-        "上週漲星 +2726",
-        "2026-W36 自動探勘入庫"
-      ],
+      "useCase": "openGym",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 6343,
       "addedAt": "2026-09-07T07:02:26.772Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W36",
+        "weeklyDelta": 2726
+      }
     },
     {
       "id": "dsh-desktop-anywhere",
@@ -42316,19 +42392,20 @@
         "desktop",
         "dsh"
       ],
-      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。 — 上週漲星 +2689 (2026-W36 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 22,262 星",
-        "上週漲星 +2689",
-        "2026-W36 自動探勘入庫"
-      ],
+      "useCase": "为 DeepSeek Harness (DSH) 插件生态打造的现代化桌面端解决方案。万物皆「插件」，桌面本身也是「插件」。",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 22262,
       "addedAt": "2026-09-07T07:02:26.772Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W36",
+        "weeklyDelta": 2689
+      }
     },
     {
       "id": "grok-bot-0-18-reconstructed",
@@ -42349,19 +42426,20 @@
         "repoUrl": "https://github.com/b-nnett/grok-bot-0.18-reconstructed"
       },
       "capabilities": [],
-      "useCase": "Unofficial source-oriented reconstruction and extension of Grok Bot 0.18.0 for macOS — 上週漲星 +2477 (2026-W36 自動探勘入庫)。",
-      "advantages": [
-        "GitHub ⭐ 3,458 星",
-        "上週漲星 +2477",
-        "2026-W36 自動探勘入庫"
-      ],
+      "useCase": "Unofficial source-oriented reconstruction and extension of Grok Bot 0.18.0 for macOS",
+      "advantages": [],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
       "stars": 3458,
       "addedAt": "2026-09-07T07:02:26.772Z",
-      "status": "active"
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W36",
+        "weeklyDelta": 2477
+      }
     },
     {
       "id": "shiji-kb",
