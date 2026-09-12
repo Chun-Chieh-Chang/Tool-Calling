@@ -71,6 +71,11 @@
           ],
           "description": "工具分類（18 個正規分類，MECE；無「其他」殘留類別）。單一真理來源：docs/CLASSIFICATION.md"
         },
+        "categories": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "多值分類（MECE 多維度身分）。由 scripts/infer-multidimensional.js 推斷、經人工核准後填入；第一欄必為 primary 身分（=category）。不強制 enum，作為只讀派生欄位，避免破壞既有 CI。"
+        },
         "language": {
           "type": "string",
           "enum": [
