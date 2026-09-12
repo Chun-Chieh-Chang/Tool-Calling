@@ -39,6 +39,20 @@ jobs:
       - name: Run Tests (Software Validation)
         run: npm test
 
+      # ─── 分類系統防護網（2026-09-12 加入）───────────────────────────────
+      # 背景：當天在 5 個檔案中發現 4 次分類定義脫節，全部靠人工同步。
+      # 這兩個檢查把「脫節」變成建置失敗：
+      #   1. check-mece  — MECE + enum 合規 + 分類單一來源一致性（含色表唯一性/色距/黑底對比）
+      #   2. rescan      — 確認沒有 Tier 1 分類違反（唯讀，--apply 只在人工確認後執行）
+      - name: Check MECE & Category Source Consistency
+        run: npm run check-mece
+
+      - name: Check Category Sync (generated files vs categories.json)
+        run: npm run categories:check
+
+      - name: Rescan Classification (read-only, must have 0 Tier 1 violations)
+        run: node scripts/rescan-classification.js --ci
+
       - name: Build Web
         run: node scripts/build-web.js
 
