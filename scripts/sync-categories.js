@@ -125,7 +125,7 @@ const r2 = syncBlock({
   end: INV_END,
   build: () => {
     const sorted = [...cats].sort(
-      (a, b) => (counts[b.name] || 0) - (counts[a.name] || 0) || a.name.localeCompare(b.name)
+      (a, b) => (counts[b.name] || 0) - (counts[a.name] || 0) || a.name.localeCompare(b.name, 'zh-Hant')
     );
     const rows = sorted.map(c => `| \`${c.name}\` | ${counts[c.name] || 0} | ${escapeCell(c.definition)} |`);
     return [
