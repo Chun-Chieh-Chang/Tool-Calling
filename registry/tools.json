@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-12T11:55:30.756Z",
+  "lastUpdated": "2026-09-12T13:47:20.803Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -396,7 +396,11 @@
         "不適用於需要模擬非瀏覽器環境，例如 IoT 裝置或桌面原生應用程式的場景。",
         "不建議用於高頻率的即時交易系統監控，因瀏覽器自動化延遲較高。"
       ],
-      "stars": 94973
+      "stars": 94973,
+      "categories": [
+        "測試與自動化",
+        "瀏覽器自動化"
+      ]
     },
     {
       "id": "flysystem",
@@ -4134,7 +4138,11 @@
         "Avoid for generating binary executables or non-text assets.",
         "Not suitable for editing original source files in place."
       ],
-      "stars": 175512
+      "stars": 175512,
+      "categories": [
+        "文件生產力",
+        "知識管理"
+      ]
     },
     {
       "id": "markitdown-website",
@@ -4710,7 +4718,11 @@
         "Direct backend database operations without a web interface",
         "Environments with aggressive anti-bot CAPTCHA challenges"
       ],
-      "stars": 110146
+      "stars": 110146,
+      "categories": [
+        "測試與自動化",
+        "瀏覽器自動化"
+      ]
     },
     {
       "id": "browserbase-web-automation-skills",
@@ -16155,7 +16167,11 @@
         "Avoid for extremely short texts where full-context reading is faster than retrieval.",
         "Not suitable for real-time conversational agents without document input."
       ],
-      "stars": 3841
+      "stars": 3841,
+      "categories": [
+        "文件生產力",
+        "知識管理"
+      ]
     },
     {
       "id": "awesome-auto-research-tools",
@@ -28472,7 +28488,11 @@
       ],
       "addedAt": "2026-07-29T13:59:34.604Z",
       "status": "active",
-      "stars": 1749
+      "stars": 1749,
+      "categories": [
+        "文件生產力",
+        "知識管理"
+      ]
     },
     {
       "id": "beautifulsoup4",
@@ -34206,7 +34226,11 @@
         "Seamless pandas DataFrame integration for direct data analysis and visualization",
         "Supports multiple timeframes, dividends, splits, and pre/post-market data"
       ],
-      "stars": 25054
+      "stars": 25054,
+      "categories": [
+        "金融與投資",
+        "數據分析"
+      ]
     },
     {
       "id": "grill-with-docs",
