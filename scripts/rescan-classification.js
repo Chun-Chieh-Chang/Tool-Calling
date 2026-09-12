@@ -490,7 +490,10 @@ function main() {
     tier2,
     tier3
   };
-  writeFileSync(JSON_OUT, JSON.stringify(result, null, 2) + '\n', 'utf-8');
+  // CI 模式是唯讀閘門，不寫檔。
+  // 否則每次跑 gate 都會弄髒工作區 —— generatedAt 每次都不同，產生物
+  // 永遠顯示為「已修改」，讓真正的變更淹沒在雜訊裡。
+  if (!CI_MODE) writeFileSync(JSON_OUT, JSON.stringify(result, null, 2) + '\n', 'utf-8');
 
   // ─── Markdown 報告 ──────────────────────────────────────────────────────
   const before = {};
@@ -741,7 +744,7 @@ function main() {
   L.push('而非單純因為「找不到領域詞」。修正後 Tier 1 由 37 筆降至 10 筆，全數可辯護。');
   L.push('');
 
-  writeFileSync(MD_OUT, L.join('\n'), 'utf-8');
+  if (!CI_MODE) writeFileSync(MD_OUT, L.join('\n'), 'utf-8');
 
   console.log(`📊 掃描 ${tools.length} 個工具`);
   console.log(`   Tier 1 明確違反 : ${tier1.length}`);
@@ -750,8 +753,12 @@ function main() {
   console.log(`   合規            : ${compliant.length}`);
   console.log(`   無規則命中      : ${noRule.length}`);
   console.log(`   決策樹覆蓋率     : ${((ruleHitCount / tools.length) * 100).toFixed(1)}%`);
-  console.log(`\n📄 報告：docs/classification-rescan-2026-09-12.md`);
-  console.log(`📄 差異：registry/classification-rescan.json`);
+  if (CI_MODE) {
+    console.log('\n（CI 模式：唯讀，未寫入報告檔）');
+  } else {
+    console.log(`\n📄 報告：docs/classification-rescan-2026-09-12.md`);
+    console.log(`📄 差異：registry/classification-rescan.json`);
+  }
 
   if (APPLY) {
     if (tier1.length === 0) { console.log('\n✅ 無 Tier 1 變更需套用。'); return; }
