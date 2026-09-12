@@ -1,0 +1,1635 @@
+{
+  "generatedAt": "2026-09-12T07:12:18.290Z",
+  "decisionTree": "docs/CLASSIFICATION.md",
+  "totalTools": 696,
+  "summary": {
+    "tier1_violations": 0,
+    "tier2_needsReview": 12,
+    "tier3_domainHeuristic": 17,
+    "compliant": 170,
+    "noRuleMatched": 497
+  },
+  "moves": {},
+  "compliant": [
+    {
+      "id": "ppt-master",
+      "category": "文件生產力",
+      "rule": "D13-T1"
+    },
+    {
+      "id": "graphify",
+      "category": "知識管理",
+      "rule": "D2-T3"
+    },
+    {
+      "id": "strix",
+      "category": "安全性",
+      "rule": "D5-T3"
+    },
+    {
+      "id": "open-generative-ai",
+      "category": "多媒體生成",
+      "rule": "D10-T3"
+    },
+    {
+      "id": "imaginairy",
+      "category": "多媒體生成",
+      "rule": "D10-T3"
+    },
+    {
+      "id": "tdd",
+      "category": "測試與自動化",
+      "rule": "D14-T3"
+    },
+    {
+      "id": "build-your-own-x",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "code-review-graph",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "guizang-ppt-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "html-ppt-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "rag-anything",
+      "category": "知識管理",
+      "rule": "D2-T1"
+    },
+    {
+      "id": "ui-ux-pro-max-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "whisper",
+      "category": "音訊",
+      "rule": "D12-T3"
+    },
+    {
+      "id": "agent-reach",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "gitnexus",
+      "category": "知識管理",
+      "rule": "D2-T3"
+    },
+    {
+      "id": "open-design",
+      "category": "UI/UX設計",
+      "rule": "D1-T3"
+    },
+    {
+      "id": "playwright-skill",
+      "category": "測試與自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "gh-address-comments",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "awesome-notebooklm-workflows",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "aippt",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "notebooklm2ppt",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "nblm2pptx",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "mineru2ppt",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "awesome-notebooklm",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "openai-figma-implement-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "vercel-web-design-guidelines-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "nexu-prototype-generator-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "microsoft-playwright-cli-skill",
+      "category": "測試與自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "openai-playwright-automation-skill",
+      "category": "測試與自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "github-copilot-playwright-test-skill",
+      "category": "測試與自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "openai-figma-generate-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "anthropic-pdf-analysis-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "browserbase-web-automation-skills",
+      "category": "瀏覽器自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "stable-diffusion-webui",
+      "category": "多媒體生成",
+      "rule": "D10-T1"
+    },
+    {
+      "id": "stable-diffusion-webui-localization-zhtw",
+      "category": "多媒體生成",
+      "rule": "D10-T1"
+    },
+    {
+      "id": "nousresearch-hermes-coding-agent",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "yangshun-tech-interview-handbook",
+      "category": "學習資源",
+      "rule": "D3-T1"
+    },
+    {
+      "id": "tech-interview-handbook-Avishkar201",
+      "category": "學習資源",
+      "rule": "D3-T1"
+    },
+    {
+      "id": "public-apis",
+      "category": "API 整合",
+      "rule": "R1"
+    },
+    {
+      "id": "developer-roadmap",
+      "category": "學習資源",
+      "rule": "D3-T1"
+    },
+    {
+      "id": "the-evolution-of-a-go-programmer",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "dotnet-developer-roadmap",
+      "category": "學習資源",
+      "rule": "D3-T1"
+    },
+    {
+      "id": "free-programming-books",
+      "category": "學習資源",
+      "rule": "R2"
+    },
+    {
+      "id": "coding-interview-university",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "project-based-learning",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "the-book-of-secret-knowledge",
+      "category": "學習資源",
+      "rule": "R2"
+    },
+    {
+      "id": "generative-media-skills",
+      "category": "多媒體生成",
+      "rule": "R10"
+    },
+    {
+      "id": "voicebox",
+      "category": "音訊",
+      "rule": "D12-T3"
+    },
+    {
+      "id": "metaharness",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "blender",
+      "category": "3D工程繪圖",
+      "rule": "D7-T1"
+    },
+    {
+      "id": "hkuds-vibe-trading",
+      "category": "金融與投資",
+      "rule": "D6-T1"
+    },
+    {
+      "id": "tradingagents",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "ai-trader",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "agent-vibe-trading-personal",
+      "category": "金融與投資",
+      "rule": "D6-T1"
+    },
+    {
+      "id": "frontend-slides-editable",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "codegraph",
+      "category": "知識管理",
+      "rule": "D2-T3"
+    },
+    {
+      "id": "anthropic-cybersecurity-skills",
+      "category": "安全性",
+      "rule": "R10"
+    },
+    {
+      "id": "cybersecurity-skills",
+      "category": "安全性",
+      "rule": "R10"
+    },
+    {
+      "id": "claude-code-cybersecurity-skill",
+      "category": "安全性",
+      "rule": "R10"
+    },
+    {
+      "id": "cybersecurity-skills-Hi-FullHouse",
+      "category": "安全性",
+      "rule": "R10"
+    },
+    {
+      "id": "oh-my-pi",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "moneyprinterturbo",
+      "category": "影片",
+      "rule": "D11-T3"
+    },
+    {
+      "id": "codex",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "emil-design-skills",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "codex-ppt-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "minimax-ppt-skills",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "airllm",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "ui-skills",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "ds4",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "openhands",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "agents",
+      "category": "UI/UX設計",
+      "rule": "D1-T3"
+    },
+    {
+      "id": "elevenlabs-voice-skills",
+      "category": "音訊",
+      "rule": "R10"
+    },
+    {
+      "id": "browser-act-automation",
+      "category": "瀏覽器自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "runcomfy-intent-skills",
+      "category": "多媒體生成",
+      "rule": "R10"
+    },
+    {
+      "id": "doany-comfyui-skills",
+      "category": "多媒體生成",
+      "rule": "R10"
+    },
+    {
+      "id": "hyperframes",
+      "category": "影片",
+      "rule": "D11-T3"
+    },
+    {
+      "id": "mimo-v25-asr",
+      "category": "音訊",
+      "rule": "D12-T3"
+    },
+    {
+      "id": "ppt-agent-skills",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "pandas-ai",
+      "category": "數據分析",
+      "rule": "D9-T1"
+    },
+    {
+      "id": "polars",
+      "category": "數據分析",
+      "rule": "D9-T1"
+    },
+    {
+      "id": "pygwalker",
+      "category": "數據分析",
+      "rule": "D9-T3"
+    },
+    {
+      "id": "ydata-profiling",
+      "category": "數據分析",
+      "rule": "D9-T3"
+    },
+    {
+      "id": "shadcn-ui",
+      "category": "UI/UX設計",
+      "rule": "D1-T3"
+    },
+    {
+      "id": "freecad",
+      "category": "3D工程繪圖",
+      "rule": "D7-T1"
+    },
+    {
+      "id": "openscad",
+      "category": "3D工程繪圖",
+      "rule": "D7-T1"
+    },
+    {
+      "id": "cadquery",
+      "category": "3D工程繪圖",
+      "rule": "D7-T3"
+    },
+    {
+      "id": "xlsxtohtmlconverter",
+      "category": "文件生產力",
+      "rule": "D13-T1"
+    },
+    {
+      "id": "premium-frontend-ui-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "frame",
+      "category": "影片",
+      "rule": "D11-T3"
+    },
+    {
+      "id": "ffmpeg",
+      "category": "影片",
+      "rule": "D11-T1"
+    },
+    {
+      "id": "pdf2md-agent-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "pi-web",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "agents-course",
+      "category": "學習資源",
+      "rule": "D3-T1"
+    },
+    {
+      "id": "agnescode",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "agnescode-ViviQuan",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "firecrawl-cli-skills",
+      "category": "瀏覽器自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "firecrawl-skills",
+      "category": "瀏覽器自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "crawl4ai",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "scrapy",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "buzz",
+      "category": "音訊",
+      "rule": "D12-T3"
+    },
+    {
+      "id": "ego-lite",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "open-code-review",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "ai-agents-for-beginners",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "executor",
+      "category": "API 整合",
+      "rule": "R1"
+    },
+    {
+      "id": "howtheytest",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "code-review-skill",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "awesome-systematic-trading",
+      "category": "金融與投資",
+      "rule": "D6-T1"
+    },
+    {
+      "id": "awesome-solidity",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "ai-for-beginners",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "jcode",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "ui-ux-pro-max-skill-cn",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "gsap-skills",
+      "category": "UI/UX設計",
+      "rule": "R10"
+    },
+    {
+      "id": "edge-tts",
+      "category": "音訊",
+      "rule": "D12-T1"
+    },
+    {
+      "id": "easyvoice",
+      "category": "音訊",
+      "rule": "D12-T3"
+    },
+    {
+      "id": "openai-edge-tts",
+      "category": "音訊",
+      "rule": "D12-T1"
+    },
+    {
+      "id": "pdf-inspector",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "karpathy-llm-wiki",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "jetbrains-cc-gui",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "awesome",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "freecodecamp",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "awesome-python",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "computer-science",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "cadam",
+      "category": "3D工程繪圖",
+      "rule": "D7-T3"
+    },
+    {
+      "id": "youtube-skills",
+      "category": "影片",
+      "rule": "R10"
+    },
+    {
+      "id": "firecrawl",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "semantica",
+      "category": "知識管理",
+      "rule": "D2-T3"
+    },
+    {
+      "id": "mediacrawler",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "code-graph-rag",
+      "category": "知識管理",
+      "rule": "D2-T1"
+    },
+    {
+      "id": "plannotator",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "rapid-mlx",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "moonshine",
+      "category": "音訊",
+      "rule": "D12-T3"
+    },
+    {
+      "id": "imgtothree",
+      "category": "3D工程繪圖",
+      "rule": "D7-T3"
+    },
+    {
+      "id": "awesome-remote-job",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "best-deals-bot",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "ai-hedge-fund",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "vnpy",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "backtrader",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "lean",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "finrobot",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "tradingagents-cn",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "tradingagents-astock",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "go-stock",
+      "category": "金融與投資",
+      "rule": "D6-T3"
+    },
+    {
+      "id": "3b1b-manim",
+      "category": "影片",
+      "rule": "D11-T1"
+    },
+    {
+      "id": "manim-community",
+      "category": "影片",
+      "rule": "D11-T1"
+    },
+    {
+      "id": "ragflow",
+      "category": "知識管理",
+      "rule": "D2-T3"
+    },
+    {
+      "id": "everyone-can-use-english",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "scrapling",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
+    },
+    {
+      "id": "claude-code-skill-scrapling",
+      "category": "瀏覽器自動化",
+      "rule": "R10"
+    },
+    {
+      "id": "opencode",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "llms-from-scratch",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "freedomain",
+      "category": "學習資源",
+      "rule": "D3-T3"
+    },
+    {
+      "id": "dashi-ppt-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "awesome-dsh-plugin",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "scientific-agent-skills",
+      "category": "研究",
+      "rule": "R10"
+    },
+    {
+      "id": "google-deepmind-science-skills",
+      "category": "研究",
+      "rule": "R10"
+    },
+    {
+      "id": "awesome-scientific-skills",
+      "category": "研究",
+      "rule": "R10"
+    },
+    {
+      "id": "ai-research-skills",
+      "category": "研究",
+      "rule": "R10"
+    },
+    {
+      "id": "qwen-code",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "free-for-dev",
+      "category": "學習資源",
+      "rule": "R3"
+    },
+    {
+      "id": "academic-research-skills",
+      "category": "研究",
+      "rule": "R9"
+    },
+    {
+      "id": "openclaude",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "freetoken",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "freebuff",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "web-llm",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "free-api",
+      "category": "API 整合",
+      "rule": "R1"
+    },
+    {
+      "id": "public-api-lists",
+      "category": "API 整合",
+      "rule": "R1"
+    },
+    {
+      "id": "pr-agent",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "freecad-library",
+      "category": "3D工程繪圖",
+      "rule": "D7-T1"
+    },
+    {
+      "id": "free-books",
+      "category": "學習資源",
+      "rule": "R2"
+    },
+    {
+      "id": "musicfree",
+      "category": "音訊",
+      "rule": "R8"
+    }
+  ],
+  "noRuleMatched": [
+    "ai-animation-video-generator",
+    "vercel-ai-skills",
+    "total-typescript-skills",
+    "flysystem",
+    "postgres-mcp",
+    "github-mcp-server",
+    "context7",
+    "sequentialthinking",
+    "mcp-sequential-thinking",
+    "memmy-agent",
+    "posthog",
+    "hallmark",
+    "officecli",
+    "stablyai-orca",
+    "herdr",
+    "slidesmaker",
+    "lean-ctx",
+    "loop-engineering",
+    "loop-engineering-orange-book",
+    "open-slide",
+    "awesome-llm-apps",
+    "desktopcommandermcp",
+    "stitch-skills",
+    "cli-anything",
+    "addyosmani-agent-skills",
+    "directus",
+    "lanshu-animated-architecture-diagram",
+    "agency-agents",
+    "codebase-memory-mcp",
+    "codebase-memory-mcp-pro",
+    "openmontage",
+    "video-use",
+    "cognee",
+    "caveman",
+    "caveman-code",
+    "codex-plugin-cc",
+    "openai-agents-js",
+    "openai-codex-skills",
+    "openai-mcpkit",
+    "html-deck-editor",
+    "superpowers",
+    "claude-mem",
+    "humanizer-zh",
+    "mini-agent",
+    "cl4r1t4s",
+    "frontend-design",
+    "react-best-practices",
+    "awesome-copilot",
+    "kane-cli",
+    "gh-fix-ci",
+    "figma-generate-library",
+    "notebooklm-obsidian-pipeline",
+    "awesome-notebooklm-prompts",
+    "claude-world-notebooklm",
+    "ai-short-video-engine",
+    "ontology-playground",
+    "ontology",
+    "notebooklm-slide-pipeline",
+    "animejs-v4-ai-guidelines",
+    "virgiliojr94-book-to-skill",
+    "book2skills",
+    "book-skill-generator",
+    "markitdown-website",
+    "anthropic-claude-skills",
+    "vercel-agent-skills",
+    "book-to-skill-apple-ouyang",
+    "autogen",
+    "metagpt",
+    "lobehub",
+    "transformers",
+    "cocoindex",
+    "mem0",
+    "ruflo",
+    "crewai",
+    "maigret",
+    "open-webui",
+    "aider",
+    "awesome-selfhosted",
+    "javascript-algorithms",
+    "30-seconds-of-code",
+    "gitignore",
+    "n8n",
+    "openclaw",
+    "system-design-primer",
+    "the-art-of-command-line",
+    "you-dont-know-js",
+    "cc-switch",
+    "codexplusplus",
+    "claudemd",
+    "agentic-awesome-skills",
+    "claude-code-best-practice",
+    "awesome-agent-skills-VoltAgent",
+    "claude-skills",
+    "claude-code-guide",
+    "continuous-claude-v3",
+    "anime",
+    "understand-anything",
+    "andrej-karpathy-skills",
+    "eigenflux-arena",
+    "council-of-high-intelligence",
+    "grok-build",
+    "codex-dream-skin",
+    "lingbot-map",
+    "opencut",
+    "wand-enhancer",
+    "memos",
+    "memos-MemTensor",
+    "self-harness",
+    "browser-harness",
+    "openharness",
+    "humanizer",
+    "humanizer-zh-tw",
+    "stop-slop",
+    "ai-flavor-remover",
+    "remove-ai-flavor-writing-skill",
+    "shuorenhua",
+    "de-ai-prompt-enhancer-writer-booster-skill",
+    "writing-agent",
+    "mathmodelagent",
+    "omniroute",
+    "openthoughts-agent",
+    "financial-services",
+    "knowledge-work-plugins",
+    "claude-for-legal",
+    "claude-legal-skill",
+    "taiwan-claude-legal",
+    "claude-for-legal-zh",
+    "open-llm-vtuber",
+    "last30days-skill",
+    "last30days-skill-cn",
+    "skill",
+    "ecc",
+    "frontend-slides-Kelemani",
+    "slidev",
+    "baoyu-skills",
+    "autoresearch",
+    "llm-council",
+    "awesome-auto-research-tools",
+    "clodex-ide",
+    "speak-human-tw",
+    "taste-skill",
+    "paddleocr",
+    "open-notebook",
+    "gemini-cli",
+    "deer-flow",
+    "ruview",
+    "ai-engineering-from-scratch",
+    "awesome-free-llm-apis",
+    "free-llm-api-resources",
+    "jpeetz-hermes-studio",
+    "hermes-studio-EKKOLearnAI",
+    "harness",
+    "learn-claude-code",
+    "hermes-webui",
+    "headroom",
+    "compound-engineering-plugin",
+    "supermemory",
+    "trivy",
+    "fff",
+    "awesome-codex-subagents",
+    "ponytail",
+    "officecli-officecli",
+    "gstack",
+    "presentation-report-preflight",
+    "huashu-design",
+    "archify",
+    "claude-code-infrastructure-showcase",
+    "ossie",
+    "skill-creator",
+    "workbuddyguide",
+    "gnome-orca",
+    "ai-job-search",
+    "colibri",
+    "antigravity-notebooklm-mcp",
+    "khunotebooklmmcp",
+    "pi",
+    "notebooklm-skill-PleasePrompto",
+    "dbskill",
+    "agent-pulse-skills",
+    "tapestry-skills-for-claude-code",
+    "marketingskills",
+    "agent-toolkit",
+    "rigorpilot-skills",
+    "qu-integration-skills",
+    "web-quality-skills",
+    "convex-agent-skills",
+    "agentspace-skill-manager",
+    "github-copilot-for-azure",
+    "notebooklm-antigravity-skill",
+    "img2threejs",
+    "wayfinder",
+    "agentic-inbox",
+    "open-higgsfield-ai",
+    "shepherd",
+    "hy3",
+    "minimax-m3",
+    "glm-5",
+    "step-37-flash",
+    "gpt-api-free",
+    "storybook",
+    "tldraw",
+    "tensorflow",
+    "ohmyzsh",
+    "javaguide",
+    "worldmonitor",
+    "awesome-claude-skills",
+    "ktransformers",
+    "daily-stock-analysis",
+    "kimi-k3-code-free-desktop-ai",
+    "opencodex",
+    "data-to-html",
+    "exceltohtml",
+    "excel-to-html",
+    "obsidian-skills",
+    "claude-obsidian",
+    "seedance-20",
+    "seedance2-skill",
+    "remotion",
+    "opencv",
+    "exercises-dataset",
+    "opencode-acp",
+    "claude-opus-5md",
+    "opus-5md",
+    "systempromptsleaks",
+    "claude-system-prompt",
+    "i-have-adhd",
+    "phosphor-icons",
+    "remixicon",
+    "iconoir",
+    "pi-web-agegr",
+    "hugging-multi-agent",
+    "lucide",
+    "text-to-cad",
+    "bootstrap-icons",
+    "tabler-icons",
+    "hugagentos",
+    "adhd",
+    "heroicons",
+    "radix-ui-icons",
+    "ant-design-icons",
+    "polybar-themes",
+    "welovesvg",
+    "polaris-react",
+    "iconify",
+    "font-awesome",
+    "material-design-icons",
+    "fluentui-system-icons",
+    "sfsafesymbols",
+    "simple-icons",
+    "selenium",
+    "crawlee",
+    "beautifulsoup4",
+    "splash",
+    "deepspec",
+    "openworker",
+    "aisuite",
+    "context-hub",
+    "context-hub-skill",
+    "translation-agent",
+    "optmem",
+    "codex-security",
+    "langgraph",
+    "awesome-claude-code-subagents",
+    "claude-code-debug-mode",
+    "claude-plugins-official",
+    "first-principles-skill",
+    "5-whys-skill",
+    "mermaid-syntax-skill",
+    "agent-skills-manager",
+    "reactphp-filesystem",
+    "sequential-thinking-skill",
+    "appkit",
+    "tencentdb-agent-memory",
+    "react-d3-tree",
+    "kaneo",
+    "evolver",
+    "ai-engineering-from-scratch-zh",
+    "ontology-ontio",
+    "oh-my-hermes",
+    "oh-my-hermes-salomondiei08",
+    "design-md-chrome",
+    "text2video",
+    "computer",
+    "loopx",
+    "deepseek-reasonix",
+    "supervision",
+    "next.js",
+    "tailwindcss",
+    "crm",
+    "generative-ai-for-beginners",
+    "cherry-studio",
+    "goose",
+    "sglang",
+    "llamafactory",
+    "qlib",
+    "awesome-n8n-templates",
+    "qwenpaw",
+    "kimi-k3-in-c",
+    "khoj",
+    "996-icu",
+    "react",
+    "linux",
+    "python",
+    "vue",
+    "autogpt",
+    "minimax-h3",
+    "prime-agent",
+    "qm",
+    "anydoc",
+    "aos-ce",
+    "kimi-k3",
+    "x4g",
+    "scroll-world",
+    "turbo-fieldfare",
+    "decimen-optical-transfer",
+    "gpt-5-6-instruct",
+    "gc-minimal-zine-poster",
+    "no-ai-slop",
+    "video-shotcraft",
+    "os-taxonomy",
+    "bento",
+    "geolibre",
+    "t3code",
+    "trellis2",
+    "block-buzz",
+    "hermes-skill-factory",
+    "hermesskill",
+    "oh-my-hermes-rlaope",
+    "skills",
+    "ladybird",
+    "celld",
+    "fanqiang",
+    "reverse-skill",
+    "agent-scripts",
+    "summarize",
+    "repobar",
+    "labs-oo-agents",
+    "dashi-taskboard",
+    "conversation-steganography",
+    "nativ",
+    "codex-router",
+    "story-to-handdrawn-video",
+    "findphone",
+    "openreply",
+    "openmouse",
+    "axisagentic",
+    "moviebox-tui",
+    "penguin-harness",
+    "cue",
+    "diagram-design",
+    "paperclip",
+    "lifeos",
+    "weathernext",
+    "dopamine",
+    "comfyui-mcp",
+    "codex-autorunner",
+    "firstmate",
+    "delegate-skills",
+    "grill-with-docs",
+    "harness-sdk",
+    "smolagents",
+    "cockpit-tools",
+    "500-ai-agents-projects",
+    "tree-sitter",
+    "sqlite",
+    "rtk",
+    "threejs",
+    "ghost",
+    "moneyprinterv2",
+    "open-saas",
+    "theremotefreelancer",
+    "qwen-mm-plugins",
+    "comfyui",
+    "gathered-scenes-zine-skill",
+    "phone-harness",
+    "wechat-ai",
+    "h3-c",
+    "openbb",
+    "fincept-terminal",
+    "fingpt",
+    "ai-berkshire",
+    "mars",
+    "avernet",
+    "deeptutor",
+    "slavingia-skills",
+    "awesome-openclaw-skills",
+    "huggingface-skills",
+    "trailofbits-skills",
+    "mengto-skills",
+    "microsoft-official-skills",
+    "nvidia-skills",
+    "manim-ml",
+    "3b1b-videos",
+    "kronos",
+    "sdkmate",
+    "deepseek-harness",
+    "codewiki",
+    "chinatextbook",
+    "spec-kit",
+    "watermarks-remover",
+    "awesome-deepseek-agent",
+    "janus",
+    "dsh-desktop",
+    "dsh-desktop-bruc3van",
+    "kilocode",
+    "stable-diffusion",
+    "awesome-mac",
+    "figures4papers",
+    "deepseek-harness-desktop",
+    "photo-abstract-editorial",
+    "zouyuxuan122-deepseek-harness-eac",
+    "teableio-teable",
+    "nocodb-nocodb",
+    "simonw-datasette",
+    "gristlabs-grist-core",
+    "baserow-baserow",
+    "apache-superset",
+    "evidence-dev-evidence",
+    "sqlmesh-sqlmesh",
+    "sqlitebrowser-sqlitebrowser",
+    "deepseek-harness-desktop-anywhere",
+    "dsh-routing-suite",
+    "arc-task-gen",
+    "dsh-anchored-standard",
+    "dsh-web-ui",
+    "anti-slop",
+    "dsh-better-sidebar",
+    "mattpocock-skills",
+    "munder-difflin",
+    "ai-memory",
+    "deepseek-work",
+    "react-bits",
+    "pi2dsh",
+    "unlimited-ocr",
+    "tooljet",
+    "humanlayer-skills",
+    "improve-claude-md",
+    "build-iterated-agentic-loop",
+    "design-control-loop",
+    "narrow-react-prop-types",
+    "show-me",
+    "free-claude-code",
+    "awesome-gpt-image-2",
+    "omarchy",
+    "openlogi",
+    "openhuman",
+    "canvas-project-manager",
+    "car-commercial-storyboard",
+    "car-model-skill",
+    "film-master",
+    "geography-video-effects",
+    "internet-ad-director",
+    "jimeng-cli",
+    "lark-cli",
+    "minimax-docx",
+    "cognicode-core",
+    "cognicode-mcp-driven",
+    "eli5",
+    "3d-web-experience",
+    "generative-ui",
+    "awesome-agentic-patterns",
+    "figma-sharp",
+    "figma-sds",
+    "figma-mcp-server-guide",
+    "figma-plugin-samples",
+    "figma-api-demo",
+    "figma-community-resources",
+    "mono-color-skill",
+    "praxist",
+    "fastpotify",
+    "goldie",
+    "delivery-harness",
+    "stop-that-shit",
+    "tokentab",
+    "timesfm",
+    "fmt",
+    "chrome-devtools-mcp",
+    "sie",
+    "openwiki",
+    "obscura",
+    "agent-orchestrator",
+    "kunpeng",
+    "unlazy",
+    "cognicode",
+    "lieflat-charts",
+    "everything-claude-code",
+    "nvm",
+    "opengym",
+    "dsh-desktop-anywhere",
+    "grok-bot-0-18-reconstructed",
+    "shiji-kb",
+    "weread-hot-booklists",
+    "m3e-canvas",
+    "youtube-automation-agent",
+    "freetube",
+    "gpt4free",
+    "freellmapi"
+  ],
+  "tier1": [],
+  "tier2": [
+    {
+      "id": "impeccable",
+      "name": "Impeccable",
+      "current": "UI/UX設計",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "designmd",
+      "name": "Design.Md",
+      "current": "UI/UX設計",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "terax-ai",
+      "name": "Terax Ai",
+      "current": "開發工具",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "zarazhangrui-frontend-slides",
+      "name": "Frontend Slides (Generator)",
+      "current": "文件生產力",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "beautiful-html-templates",
+      "name": "Beautiful Html Templates",
+      "current": "文件生產力",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "destructivecommandguard",
+      "name": "Destructive_command_guard",
+      "current": "開發工具",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "ai-agent-book",
+      "name": "Ai Agent Book",
+      "current": "學習資源",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "system-prompts-and-models-of-ai-tools",
+      "name": "system-prompts-and-models-of-ai-tools",
+      "current": "研究",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "codexbar",
+      "name": "CodexBar",
+      "current": "開發工具",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "nofx",
+      "name": "NOFX",
+      "current": "金融與投資",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "graft",
+      "name": "Graft",
+      "current": "API 整合",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    },
+    {
+      "id": "magnitude",
+      "name": "Magnitude",
+      "current": "AI 框架",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+    }
+  ],
+  "tier3": [
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "current": "測試與自動化",
+      "proposed": "瀏覽器自動化",
+      "rule": "D8-T3",
+      "ruleDesc": "爬蟲、Scraper、Headless 瀏覽器 → 瀏覽器自動化（敘述提及）",
+      "why": "identity:\\bscrap(e|er|ing)\\b|web crawler|craw",
+      "stars": 94973
+    },
+    {
+      "id": "heilcheng-awesome-agent-skills",
+      "name": "Awesome Agent Skills (Heilcheng)",
+      "current": "AI 代理",
+      "proposed": "學習資源",
+      "rule": "D3-T3",
+      "ruleDesc": "教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） → 學習資源（敘述提及）",
+      "why": "identity:tutorial",
+      "stars": 6127
+    },
+    {
+      "id": "markitdown",
+      "name": "Markitdown",
+      "current": "文件生產力",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 175512
+    },
+    {
+      "id": "browser-use",
+      "name": "Browser Use",
+      "current": "測試與自動化",
+      "proposed": "瀏覽器自動化",
+      "rule": "D8-T3",
+      "ruleDesc": "爬蟲、Scraper、Headless 瀏覽器 → 瀏覽器自動化（敘述提及）",
+      "why": "identity:\\bscrap(e|er|ing)\\b|web crawler|craw",
+      "stars": 110146
+    },
+    {
+      "id": "langflow",
+      "name": "Langflow",
+      "current": "AI 框架",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 153567
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "current": "AI 框架",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 144789
+    },
+    {
+      "id": "dify",
+      "name": "Dify",
+      "current": "AI 框架",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 153220
+    },
+    {
+      "id": "reader3",
+      "name": "Reader3",
+      "current": "文件生產力",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 3841
+    },
+    {
+      "id": "duckdb",
+      "name": "DuckDB",
+      "current": "開發工具",
+      "proposed": "數據分析",
+      "rule": "D9-T3",
+      "ruleDesc": "Pandas/Polars、資料框架、產品分析 → 數據分析（敘述提及）",
+      "why": "identity:\\bpandas\\b|\\bpolars\\b|dataframe|expl",
+      "stars": 40536
+    },
+    {
+      "id": "llmsherpa",
+      "name": "Llmsherpa",
+      "current": "文件生產力",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 1749
+    },
+    {
+      "id": "hermes-plugins",
+      "name": "Hermes Plugins (evey)",
+      "current": "AI 代理",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 417
+    },
+    {
+      "id": "yfinance",
+      "name": "Yfinance",
+      "current": "金融與投資",
+      "proposed": "數據分析",
+      "rule": "D9-T3",
+      "ruleDesc": "Pandas/Polars、資料框架、產品分析 → 數據分析（敘述提及）",
+      "why": "identity:\\bpandas\\b|\\bpolars\\b|dataframe|expl",
+      "stars": 25054
+    },
+    {
+      "id": "hello-agents",
+      "name": "Hello Agents",
+      "current": "學習資源",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 74222
+    },
+    {
+      "id": "warp",
+      "name": "warp",
+      "current": "AI 框架",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:vector (db|database|store)",
+      "stars": 2236
+    },
+    {
+      "id": "oil-motion",
+      "name": "oil-motion",
+      "current": "UI/UX設計",
+      "proposed": "影片",
+      "rule": "D11-T3",
+      "ruleDesc": "影片編輯、影片串流、影片客戶端 → 影片（敘述提及）",
+      "why": "identity:video (edit|editor|generation|pipeli",
+      "stars": 1980
+    },
+    {
+      "id": "llama-index",
+      "name": "LlamaIndex",
+      "current": "AI 框架",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 51802
+    },
+    {
+      "id": "figma-code-connect",
+      "name": "Figma Code Connect",
+      "current": "開發工具",
+      "proposed": "UI/UX設計",
+      "rule": "D1-T3",
+      "ruleDesc": "前端框架、設計系統、網頁動畫、原型、圖標庫 → UI/UX設計（敘述提及）",
+      "why": "identity:figma (plugin|api|library|sdk|widget",
+      "stars": 1568
+    }
+  ]
+}

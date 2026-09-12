@@ -1,7 +1,7 @@
 {
   "name": "tool-calling",
   "version": "1.0.0",
-  "description": "全自動工具調用效能外掛系統 - 擁有 666+ 頂尖開源 AI 代理技能與工具的檢索庫與儀表板",
+  "description": "全自動工具調用效能外掛系統 - 擁有 696 個頂尖開源 AI 代理技能與工具的檢索庫與儀表板",
   "main": "cli.js",
   "type": "module",
   "bin": {
@@ -12,6 +12,7 @@
     "dev": "node web/server.js --dev",
     "build": "node scripts/build-web.js",
     "test": "node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test tests/*.test.js",
+    "test:integration": "node --test tests/*.test.js",
     "validate": "node cli.js validate",
     "check-mece": "node scripts/check-mece.js",
     "enrich": "node scripts/enrich-registry.js",
@@ -21,6 +22,9 @@
     "mine-synonyms": "node scripts/mine-synonyms.js",
     "agents:init": "node scripts/generate-agents-md.js",
     "tracked-repos": "node scripts/tracked-repos.js",
+    "rescan-classification": "node scripts/rescan-classification.js",
+    "categories:sync": "node scripts/sync-categories.js",
+    "categories:check": "node scripts/sync-categories.js --check",
     "mcp": "node mcp-server.js",
     "lint": "echo \"No linter configured, skipping...\""
   },

@@ -50,22 +50,55 @@
         "category": {
           "type": "string",
           "enum": [
-            "文件生產力",
-            "知識管理",
-            "安全性",
-            "多媒體生成",
+            "AI 代理",
             "AI 框架",
+            "開發工具",
+            "UI/UX設計",
+            "知識管理",
             "學習資源",
-            "測試與自動化",
-            "基礎設施",
-            "其他"
+            "研究",
+            "安全性",
+            "金融與投資",
+            "3D工程繪圖",
+            "瀏覽器自動化",
+            "API 整合",
+            "數據分析",
+            "多媒體生成",
+            "影片",
+            "音訊",
+            "文件生產力",
+            "測試與自動化"
           ],
-          "description": "工具分類"
+          "description": "工具分類（18 個正規分類，MECE；無「其他」殘留類別）。單一真理來源：docs/CLASSIFICATION.md"
         },
         "language": {
           "type": "string",
-          "enum": ["python", "typescript", "javascript", "php", "go", "rust", "java", "other"],
-          "description": "主要程式語言"
+          "enum": [
+            "python",
+            "typescript",
+            "javascript",
+            "go",
+            "rust",
+            "java",
+            "kotlin",
+            "swift",
+            "c",
+            "c++",
+            "c#",
+            "php",
+            "shell",
+            "powershell",
+            "html",
+            "css",
+            "less",
+            "vue",
+            "markdown",
+            "mdx",
+            "jupyter notebook",
+            "clojure",
+            "other"
+          ],
+          "description": "主要程式語言（一律小寫；未知或非程式碼資源用 other）"
         },
         "triggers": {
           "type": "array",
@@ -81,7 +114,25 @@
           "properties": {
             "method": {
               "type": "string",
-              "enum": ["npm", "pip", "git-clone", "git-clone-sparse", "composer", "cargo", "manual"]
+              "enum": [
+                "npm",
+                "npx",
+                "pip",
+                "conda",
+                "cargo",
+                "composer",
+                "apt",
+                "docker",
+                "git",
+                "git-clone",
+                "git-clone-sparse",
+                "curl",
+                "download",
+                "binary",
+                "plugin-marketplace",
+                "none",
+                "manual"
+              ]
             },
             "command": {
               "type": "string"

@@ -1,32 +1,32 @@
 /**
- * 工具分类器模块 - LLM + 规则引擎混合方案
+ * 工具分類器模組 - LLM + 規則引擎混合方案
  *
- * 分类策略：
- * - 高置信度（≥0.8）：直接采用 LLM 分类
- * - 中置信度（0.5-0.8）：LLM 建议 + 规则校验，需人工覆核
- * - 低置信度（<0.5）：回退到规则引擎，标记为需人工确认
+ * 分類策略：
+ * - 高置信度（≥0.8）：直接採用 LLM 分類
+ * - 中置信度（0.5-0.8）：LLM 建議 + 規則校驗，需人工覆核
+ * - 低置信度（<0.5）：回退到規則引擎
+ * - 規則引擎也無匹配 → category: null + needsReview: true（**不再靜默預設分類**）
+ *
+ * 分類定義的單一來源：registry/categories.json（經 core/categories.js 存取）
  *
  * 使用方式：
- * - 调用 AGNES_API_KEY 时启用 LLM 分类
- * - 否则仅使用规则引擎
+ * - 設定 AGNES_API_KEY 時啟用 LLM 分類
+ * - 否則僅使用規則引擎
  */
 
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { categoryNames, promptCategoryBlock, promptDecisionTree } from './categories.js';
 
 const __dirname = import.meta.dirname;
 const ROOT = join(__dirname, '..');
 const HOOK_LOG_PATH = join(ROOT, '.agnes', 'hooks', 'classifier-log.json');
 
-// 18 个有效分类
-const VALID_CATEGORIES = [
-  'AI 代理', 'AI 框架', '开发工具', 'UI/UX设计',
-  '图文资源', '知识管理', '学习资源', '研究',
-  '安全性', '金融与投资', '3D工程绘图', '浏览器自动化',
-  'API 整合', '数据分析', '多媒体生成', '影片',
-  '音频', '文件生产力'
-];
+// 18 個正規分類 — 單一來源：registry/categories.json
+// 不可在此硬編碼清單。歷史上這裡曾寫成簡體中文（'开发工具'）而 registry 用繁體（'開發工具'），
+// 導致 LLM 回傳的分類因驗證失敗被靜默丟棄、悄悄退回規則引擎 —— 是隱形故障。
+const VALID_CATEGORIES = categoryNames();
 
 /**
  * 调用 LLM 进行分类
@@ -35,39 +35,27 @@ async function classifyWithLLM(name, description, topics) {
   const apiKey = process.env.AGNES_API_KEY;
   if (!apiKey) return null;
 
-  const prompt = `你是一个专业的工具分类专家。请根据以下信息将工具归类到最合适的分类中。
+  // Prompt 由 registry/categories.json 產生，確保與決策樹永遠一致。
+  // 歷史上這裡是手寫的簡體中文清單，且停在舊版 6 步決策樹 —— 與 CLASSIFICATION.md 脫節。
+  const prompt = `你是一個專業的工具分類專家。請根據以下資訊將工具歸類到最合適的分類中。
 
-工具名称：${name}
+工具名稱：${name}
 工具描述：${description}
-相关标签：${topics ? topics.join(', ') : '无'}
+相關標籤：${topics ? topics.join(', ') : '無'}
 
-可选分类（共18个）：
-AI 代理 - 成品agent、agent harness、skill/plugin集合
-AI 框架 - LLM SDK、模型本体、推理/训练框架
-开发工具 - CLI、IDE、代码审查、token压缩等泛用工具
-UI/UX设计 - 前端框架、设计系统、网页动画、原型
-图文资源 - 图标库、SVG矢量资源
-知识管理 - agent记忆、RAG、知识图谱、codebase索引
-学习资源 - 教程、课程、书籍、Awesome Lists
-研究 - 学术研究、文献、论文
-安全性 - 渗透测试、漏洞扫描、信息安全
-金融与投资 - 交易、量化、股票分析
-3D工程绘图 - CAD、3D建模、3D资产
-浏览器自动化 - 爬虫、Scraper、Headless
-API 整合 - API网关、集成工具
-数据分析 - Pandas/Polars、产品分析
-多媒体生成 - AI图像/视频生成
-影片 - 视频编辑、视频生成、串流
-音频 - TTS/STT、音频处理
-文件生产力 - 简报/PPT、Office、PDF
+可選分類（共 ${VALID_CATEGORIES.length} 個）：
+${promptCategoryBlock()}
 
-请按以下格式输出JSON：
-{"category": "分类名称", "confidence": 0.xx, "reason": "分类理由"}
+分類優先序（衝突時依序套用，先命中者勝）：
+${promptDecisionTree()}
+
+請依以下格式輸出 JSON：
+{"category": "分類名稱", "confidence": 0.xx, "reason": "分類理由"}
 
 注意：
-1. confidence 必须在0到1之间
-2. category必须是上述18个分类之一
-3. reason简要说明分类依据`;
+1. confidence 必須在 0 到 1 之間
+2. category 必須是上述 ${VALID_CATEGORIES.length} 個分類之一，且使用繁體中文原名
+3. reason 簡要說明分類依據`;
 
   try {
     const res = await fetch('https://apihub.agnes-ai.com/v1/chat/completions', {
@@ -124,25 +112,28 @@ function classifyByRules(name, description, topics) {
     { pattern: /\b(autonomous-agent|assistant\.?bot|copilot)\b/i, cat: 'AI 代理', weight: 100 },
     { pattern: /\b(agent|mcp-server)\b/i, cat: 'AI 代理', weight: 90 },
     { pattern: /\b(llm|language.model|transformer|gpt|claude|gemini|huggingface|diffusion|stable.?diffusion|midjourney|dalle)\b/i, cat: 'AI 框架', weight: 100 },
-    { pattern: /\b(shadcn-ui|storybook|tldraw|chakra-ui|ant-design|material-ui|radix-ui|tailwind|next\.?js)\b/i, cat: 'UI/UX设计', weight: 100 },
-    { pattern: /\b(lucide|heroicons|font-awesome|tabler-icons|iconify|simple-icons|remix-icon|iconoir)\b/i, cat: '图文资源', weight: 100 },
-    { pattern: /\b(rag|retrieval|embedding|knowledge.?graph|second.?brain|persistent.?memory)\b/i, cat: '知识管理', weight: 95 },
-    { pattern: /\b(tutorial|course|education|bootcamp|roadmap|awesome-list|curriculum|handbook|interview|面试)\b/i, cat: '学习资源', weight: 90 },
+    { pattern: /\b(shadcn-ui|storybook|tldraw|chakra-ui|ant-design|material-ui|radix-ui|tailwind|next\.?js)\b/i, cat: 'UI/UX設計', weight: 100 },
+    // 圖標庫 / SVG 資源：registry 無獨立「圖文資源」分類，依決策樹歸入 UI/UX設計
+    { pattern: /\b(lucide|heroicons|font-awesome|tabler-icons|iconify|simple-icons|remix-icon|iconoir)\b/i, cat: 'UI/UX設計', weight: 100 },
+    { pattern: /\b(rag|retrieval|embedding|knowledge.?graph|second.?brain|persistent.?memory)\b/i, cat: '知識管理', weight: 95 },
+    { pattern: /\b(tutorial|course|education|bootcamp|roadmap|awesome-list|awesome|curriculum|handbook|interview|面试|booklist|free-books|ebook)\b/i, cat: '學習資源', weight: 90 },
     { pattern: /\b(research|paper|arxiv|science|survey)\b/i, cat: '研究', weight: 80 },
     { pattern: /\b(security|vuln|pentest|hack|owasp|cryptography)\b/i, cat: '安全性', weight: 90 },
-    { pattern: /\b(trading|stock|quant|portfolio|backtest|financial market|finance)\b/i, cat: '金融与投资', weight: 85 },
-    { pattern: /\b(cad|freecad|openscad|blender|bim|text-to-cad|cadquery|parametric 3d|3d model|mesh|geometry|opengl)\b/i, cat: '3D工程绘图', weight: 85 },
-    { pattern: /\b(crawl|scrape|scraper|crawler|spider|puppeteer|headless-browser)\b/i, cat: '浏览器自动化', weight: 100 },
-    { pattern: /\b(api gateway|api integration|rest api|graphql api|openapi|mcp connector)\b/i, cat: 'API 整合', weight: 80 },
-    { pattern: /\b(data-analy|pandas|polars|duckdb|dataframe|eda)\b/i, cat: '数据分析', weight: 90 },
-    { pattern: /\b(generative-ai|img2video|text2video|text2img|image-generation|diffusion-model)\b/i, cat: '多媒体生成', weight: 100 },
+    { pattern: /\b(trading|stock|quant|portfolio|backtest|financial market|finance)\b/i, cat: '金融與投資', weight: 85 },
+    { pattern: /\b(cad|freecad|openscad|blender|bim|text-to-cad|cadquery|parametric 3d|3d model|mesh|geometry|opengl)\b/i, cat: '3D工程繪圖', weight: 85 },
+    { pattern: /\b(crawl|scrape|scraper|crawler|spider|puppeteer|headless-browser)\b/i, cat: '瀏覽器自動化', weight: 100 },
+    // API 網關 / 聚合器 / 可直接調用的 API 端點目錄
+    { pattern: /\b(api gateway|api integration|rest api|graphql api|openapi|mcp connector|api.?directory|api.?list|free api|llm.?router|api.?aggregator|failover)\b/i, cat: 'API 整合', weight: 85 },
+    { pattern: /\b(data-analy|pandas|polars|duckdb|dataframe|eda)\b/i, cat: '數據分析', weight: 90 },
+    { pattern: /\b(generative-ai|img2video|text2video|text2img|image-generation|diffusion-model)\b/i, cat: '多媒體生成', weight: 100 },
     { pattern: /\b(video|animation|movie|ffmpeg|streaming)\b/i, cat: '影片', weight: 90 },
-    { pattern: /\b(audio|music|speech|voice|whisper|tts|stt)\b/i, cat: '音频', weight: 90 },
-    { pattern: /\b(ppt|powerpoint|slide|presentation|office|docx|xlsx|pdf|markdown)\b/i, cat: '文件生产力', weight: 90 },
-    { pattern: /\b(skill|prompt|cli-tool|code-editor|ide)\b/i, cat: '开发工具', weight: 80 },
+    { pattern: /\b(audio|music|speech|voice|whisper|tts|stt)\b/i, cat: '音訊', weight: 90 },
+    { pattern: /\b(ppt|powerpoint|slide|presentation|office|docx|xlsx|pdf|markdown)\b/i, cat: '文件生產力', weight: 90 },
+    { pattern: /\b(testing|test-runner|ci\/cd|playwright|cypress|vitest|jest)\b/i, cat: '測試與自動化', weight: 85 },
+    { pattern: /\b(skill|prompt|cli-tool|code-editor|ide|code.?review|linter|proxy)\b/i, cat: '開發工具', weight: 80 },
   ];
 
-  let bestMatch = { cat: '开发工具', weight: 0 };
+  let bestMatch = { cat: null, weight: 0 };
   for (const rule of rules) {
     if (rule.pattern.test(text)) {
       if (rule.weight > bestMatch.weight) {
@@ -151,8 +142,13 @@ function classifyByRules(name, description, topics) {
     }
   }
 
-  // 如果没匹配到，默认归入开发工具
-  return bestMatch.weight > 0 ? bestMatch.cat : '开发工具';
+  // 無匹配時回傳 null（明確的「無法分類」），不再靜默塞進「開發工具」。
+  //
+  // 為什麼改：MECE 要求「不得有殘留分類」，但靜默預設只是把「其他」改名成「開發工具」——
+  // 表面上通過檢查，實際上讓分類失敗完全不可見。開發工具因此膨脹到 91 筆（13%），
+  // 且無法判斷其中有多少其實是分類失敗的殘留。
+  // 現在改為顯式回報，呼叫端可據此標記待覆核。
+  return bestMatch.cat;
 }
 
 /**
@@ -192,24 +188,40 @@ export async function classifyTool(name, description, topics = []) {
     return { category: llmResult.category, confidence: llmResult.confidence, source: 'llm' };
   }
 
-  // 回退到规则引擎
+  // 回退到規則引擎
   const ruleCategory = classifyByRules(name, description, topics);
-  console.log(`[Classifier] 规则分类: ${name} → ${ruleCategory}`);
+
+  if (!ruleCategory) {
+    // 規則引擎無匹配 → 顯式回報「無法分類」，交由呼叫端標記待人工覆核。
+    // 不再回傳一個假的低信心分類，避免污染 registry。
+    console.warn(`[Classifier] ⚠️ 無法分類: ${name} — LLM 與規則引擎皆無結論，需人工覆核`);
+    return { category: null, confidence: 0, source: 'unclassified', needsReview: true };
+  }
+
+  console.log(`[Classifier] 規則分類: ${name} → ${ruleCategory}`);
   return { category: ruleCategory, confidence: 0.6, source: 'rule' };
 }
 
 /**
- * 批量分类工具
+ * 批量分類工具
+ *
+ * 回傳的每筆工具可能帶有 category: null（無法分類），
+ * 呼叫端 MUST 檢查 _meta.needsReview，不得直接寫入 registry。
  */
 export async function batchClassify(tools) {
   const results = [];
+  let unclassified = 0;
   for (const tool of tools) {
     const result = await classifyTool(
       tool.name,
       tool.description || '',
       tool.topics || tool.triggers || []
     );
+    if (result.needsReview) unclassified++;
     results.push({ ...tool, category: result.category, _meta: result });
+  }
+  if (unclassified > 0) {
+    console.warn(`[Classifier] ${unclassified}/${tools.length} 筆無法分類，需人工覆核`);
   }
   return results;
 }

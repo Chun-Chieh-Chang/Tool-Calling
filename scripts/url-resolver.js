@@ -8,9 +8,17 @@
  */
 
 const RESOURCE_SIGNALS = [
-  'public-apis', 'awesome-list', 'free-api', 'api-directory',
+  'public-apis', 'awesome-list', 'awesome', 'free-api', 'api-directory',
   'roadmap', 'curriculum', 'learning-path', 'cheatsheet',
-  'handbook', 'reference-guide', 'catalog', 'directory'
+  'handbook', 'reference-guide', 'catalog', 'directory',
+  // 書單 / 書籍索引（含中文描述，避免非英文倉庫被誤判為 tool）
+  'free-books', 'free-ebook', 'booklist', 'book-list', 'books',
+  '免费书籍', '免费电子书', '书单', '书籍', '電子書',
+  // 免費額度 / 精選清單
+  'free-tier', 'free tier', 'curated list', 'curated-list',
+  'free-for-dev', 'free-for-developers',
+  // 中文免費資源目錄
+  '免费接口', '免費接口', 'api大全'
 ];
 
 /**
@@ -170,15 +178,20 @@ export function isResourceUrl(url, description = '', topics = []) {
 
 /**
  * 主解析函式：回傳工具類型與建議動作
+ *
+ * 判定順序（2026-09 修正）：
+ *   結構證據優先於關鍵字證據。能拆出 ≥2 個可獨立安裝的子工具時，
+ *   monorepo 判定優先於「清單型資源」——因為 awesome-llm-apps 這類倉庫
+ *   同時是「清單」也是「可運行子工具集合」，若先以關鍵字判為 resource 會漏掉拆解。
  */
 export async function resolve(url, description = '', topics = []) {
-  if (isResourceUrl(url, description, topics)) {
-    return { type: 'resource', action: 'add-as-is', url };
-  }
-
   const monorepo = await resolveMonorepo(url, description);
   if (monorepo && monorepo.subTools.length >= 2) {
     return { type: 'monorepo', action: 'split', ...monorepo };
+  }
+
+  if (isResourceUrl(url, description, topics)) {
+    return { type: 'resource', action: 'add-as-is', url };
   }
 
   return { type: 'tool', action: 'scan-and-add', url };

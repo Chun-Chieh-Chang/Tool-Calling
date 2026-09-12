@@ -55,8 +55,11 @@ function generateAgentsMd(registry, trackedRepos) {
   const avgStars = Math.round(totalStars / totalTools);
   
   // 追蹤池資訊
-  const trackedCount = trackedRepos ? 
-    Object.keys(trackedRepos).filter(k => !k.startsWith('_')).length : 0;
+  // 注意：不可只過濾 `_` 前綴 —— tracked-repos.json 另含 `repos`（歷史遺留的陣列）
+  // 與 `lastGenerated`（字串）兩個中繼欄位，只濾 `_` 會把它們算成 repo（曾因此報 2435，實際 2433）。
+  // 只計「owner/repo」形狀的鍵。
+  const trackedCount = trackedRepos ?
+    Object.keys(trackedRepos).filter(k => /^[\w.-]+\/[\w.-]+$/.test(k)).length : 0;
   
   return `# AGENTS.md — ${registry.name || 'Tool-Calling'} 全域行為協議
 

@@ -24724,5 +24724,85 @@
     "trackedOnly": 1777,
     "lastGenerated": "2026-09-09T00:12:02.329Z"
   },
-  "lastGenerated": "2026-09-09T00:12:02.299Z"
+  "lastGenerated": "2026-09-09T00:12:02.299Z",
+  "able8/weread-hot-booklists": {
+    "fullName": "able8/weread-hot-booklists",
+    "owner": "able8",
+    "repo": "weread-hot-booklists",
+    "category": "學習資源",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "mlc-ai/web-llm": {
+    "fullName": "mlc-ai/web-llm",
+    "owner": "mlc-ai",
+    "repo": "web-llm",
+    "category": "AI 框架",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "fangzesheng/free-api": {
+    "fullName": "fangzesheng/free-api",
+    "owner": "fangzesheng",
+    "repo": "free-api",
+    "category": "API 整合",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "darkzOGx/youtube-automation-agent": {
+    "fullName": "darkzOGx/youtube-automation-agent",
+    "owner": "darkzOGx",
+    "repo": "youtube-automation-agent",
+    "category": "AI 代理",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "FreeCAD/FreeCAD-library": {
+    "fullName": "FreeCAD/FreeCAD-library",
+    "owner": "FreeCAD",
+    "repo": "FreeCAD-library",
+    "category": "3D工程繪圖",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "FreeTubeApp/FreeTube": {
+    "fullName": "FreeTubeApp/FreeTube",
+    "owner": "FreeTubeApp",
+    "repo": "FreeTube",
+    "category": "影片",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "tashfeenahmed/freellmapi": {
+    "fullName": "tashfeenahmed/freellmapi",
+    "owner": "tashfeenahmed",
+    "repo": "freellmapi",
+    "category": "API 整合",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "ruanyf/free-books": {
+    "fullName": "ruanyf/free-books",
+    "owner": "ruanyf",
+    "repo": "free-books",
+    "category": "學習資源",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "maotoumao/MusicFree": {
+    "fullName": "maotoumao/MusicFree",
+    "owner": "maotoumao",
+    "repo": "MusicFree",
+    "category": "音訊",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  },
+  "Alishahryar1/free-claude-code": {
+    "fullName": "Alishahryar1/free-claude-code",
+    "owner": "Alishahryar1",
+    "repo": "free-claude-code",
+    "category": "開發工具",
+    "addedAt": "2026-09-12T05:23:23.915Z",
+    "status": "tracking"
+  }
 }

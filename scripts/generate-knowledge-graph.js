@@ -1,34 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { categoryColors } from '../core/categories.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// OLED 純黑與 Obsidian 沉穩調色盤 (True Pure OLED Black & Obsidian Graph View Palette)
-const baseCategoryColors = {
-  "AI 框架": "#0284c7",        // 沉穩天藍 (Sky 600)
-  "AI 代理": "#0891b2",        // 深邃青藍 (Cyan 600)
-  "開發工具": "#94a3b8",      // 柔和石板 (Slate 400)
-  "UI/UX設計": "#9333ea",     // 雅致紫羅蘭 (Purple 600)
-  "多媒體生成": "#db2777",    // 典雅玫紅 (Pink 600)
-  "影片": "#e11d48",          // 復古磚紅 (Rose 600)
-  "音訊": "#65a30d",          // 自然苔綠 (Lime 600)
-  "瀏覽器自動化": "#2563eb",  // 皇家寶藍 (Blue 600)
-  "安全性": "#dc2626",        // 警示赤紅 (Red 600)
-  "測試與自動化": "#0369a1",  // 沉靜鈷藍 (Sky 700)
-  "API 整合": "#0d9488",      // 介面松石 (Teal 600)
-  "學習資源": "#d97706",      // 琥珀暖金 (Amber 600)
-  "文件生產力": "#059669",    // 墨綠翡翠 (Emerald 600)
-  "資料庫": "#16a34a",        // 穩固森林 (Green 600)
-  "知識管理": "#0284c7",      // 知識沉藍 (Sky 600)
-  "研究": "#7e22ce",          // 深度典雅紫 (Purple 700)
-  "基礎設施": "#64748b",      // 鋼鐵冷灰 (Slate 500)
-  "行銷": "#ea580c",          // 活力暖橙 (Orange 600)
-  "數據分析": "#0f766e",      // 深海暗綠 (Teal 700)
-  "3D工程繪圖": "#4f46e5",    // 幾何靛青 (Indigo 600)
-  "圖標與視覺資源": "#a855f7" // 柔和薰衣草 (Purple 500)
-};
+// 分類色表 — 單一來源：registry/categories.json
+// 不可在此硬編碼色表。歷史上這裡曾手寫 21 個 key（含 4 個已廢棄分類），
+// 且漏掉「金融與投資」（25 筆工具落回索引推導的任意色），
+// 另有「AI 框架」與「知識管理」共用 #0284c7 導致 105 筆無法區分。
+// 色表的唯一性／色距／黑底對比由 scripts/check-mece.js 驗證。
+const baseCategoryColors = categoryColors();
 
 // 根據背景 Hex 顏色計算最優文字對比色
 function getContrastTextColor(hexColor) {
@@ -45,6 +28,13 @@ function getContrastTextColor(hexColor) {
 // 若遇動態新增之未知分類，自動透過色相演算法生成
 function getCategoryColor(catName, index) {
   if (baseCategoryColors[catName]) return baseCategoryColors[catName];
+  // 理論上不應發生：check-mece.js 會強制「registry 的每個分類都必須在 categories.json 有設計色」。
+  // 若真的走到這裡，代表有人繞過了守衛，必須讓它可見而不是靜默給一個任意色。
+  const missing = getCategoryColor._warned || (getCategoryColor._warned = new Set());
+  if (!missing.has(catName)) {
+    missing.add(catName);
+    console.warn(`⚠️  [knowledge-graph] 分類「${catName}」在 registry/categories.json 沒有設計色，暫用推導色。請補上並執行 node scripts/check-mece.js`);
+  }
   const hue = (index * 137.5 + 200) % 360;
   return `hsl(${Math.floor(hue)}, 65%, 48%)`;
 }

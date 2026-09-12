@@ -128,7 +128,12 @@ function buildTrackedRepos({ forceRegenerate = false } = {}) {
   }
   reposMap.forEach((v, k) => { existingTracked[k] = v; });
 
-  const repoArray = Object.values(existingTracked);
+  // 只計「owner/repo」形狀的鍵。
+  // 原本用 Object.values(existingTracked) 會把 `repos`（歷史遺留陣列）等中繼欄位
+  // 也算成一筆 repo，導致 _meta.total 虛胖。
+  const repoArray = Object.entries(existingTracked)
+    .filter(([k]) => /^[\w.-]+\/[\w.-]+$/.test(k))
+    .map(([, v]) => v);
   const _meta = {
     total: repoArray.length,
     inRegistry: repoArray.filter(r => r.addedAt).length,

@@ -214,7 +214,8 @@ const server = http.createServer(async (req, res) => {
         let classificationInfo = { source: 'rule', confidence: 0.6 };
         try {
           const llmResult = await classifyTool(newTool.name, newTool.description || '', newTool.topics || []);
-          if (llmResult.category !== newTool.category && llmResult.confidence >= 0.7) {
+          // category 為 null 代表「無法分類」（needsReview），不可覆寫既有分類
+          if (llmResult.category && llmResult.category !== newTool.category && llmResult.confidence >= 0.7) {
             newTool.category = llmResult.category;
             registry.tools[registry.tools.length - 1] = newTool;
             saveRegistry(registry);

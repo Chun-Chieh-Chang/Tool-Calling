@@ -1,6 +1,9 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-09-09T12:17:51.612Z
+ * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
+ *   node scripts/mine-synonyms.js
+ *
+ * 產生時間：2026-09-12T06:58:29.226Z
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -379,6 +382,91 @@ export const SYNONYM_MAP = {
     "php",
     "abstraction"
   ],
+  "llm範例": [
+    "awesome-llm-apps",
+    "llm-apps",
+    "generative-ui-agents",
+    "agent範例"
+  ],
+  "awesome-llm-apps": [
+    "llm範例",
+    "agent範例",
+    "llm-apps",
+    "generative-ui-agents"
+  ],
+  "llm-apps": [
+    "llm範例",
+    "agent範例",
+    "awesome-llm-apps",
+    "generative-ui-agents"
+  ],
+  "generative-ui-agents": [
+    "llm範例",
+    "agent範例",
+    "awesome-llm-apps",
+    "llm-apps"
+  ],
+  "agent範例": [
+    "awesome-llm-apps",
+    "llm-apps",
+    "generative-ui-agents",
+    "llm範例"
+  ],
+  "免費api": [
+    "public-apis",
+    "free-apis",
+    "api-directory",
+    "api-list",
+    "public-api-lists",
+    "free-public-apis",
+    "awesome-apis",
+    "public-api"
+  ],
+  "public-apis": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "free-apis": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "api-directory": [
+    "免費api",
+    "api清單",
+    "公開api",
+    "免费api",
+    "免费接口",
+    "中文api",
+    "api大全",
+    "免費接口"
+  ],
+  "api-list": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "api清單": [
+    "public-apis",
+    "free-apis",
+    "api-directory",
+    "api-list",
+    "public-api-lists",
+    "free-public-apis",
+    "awesome-apis",
+    "public-api"
+  ],
+  "公開api": [
+    "public-apis",
+    "free-apis",
+    "api-directory",
+    "api-list",
+    "public-api-lists",
+    "free-public-apis",
+    "awesome-apis",
+    "public-api"
+  ],
   "免費-gpt": [
     "gpt-api-free",
     "chatanywhere",
@@ -408,21 +496,23 @@ export const SYNONYM_MAP = {
   ],
   "free-gpt": [
     "免費-gpt",
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
     "gpt-api-free",
     "chatanywhere",
     "openai-compatible",
-    "gpt-proxy",
-    "claude-api",
-    "deepseek-api"
+    "gpt-proxy"
   ],
   "openai-compatible": [
     "免費-gpt",
-    "gpt-api-free",
-    "chatanywhere",
-    "free-gpt",
-    "gpt-proxy",
-    "claude-api",
-    "deepseek-api"
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "gpt-api-free"
   ],
   "gpt-proxy": [
     "免費-gpt",
@@ -450,6 +540,106 @@ export const SYNONYM_MAP = {
     "openai-compatible",
     "gpt-proxy",
     "claude-api"
+  ],
+  "開源cad": [
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim",
+    "fem-analysis",
+    "step-stl-export"
+  ],
+  "freecad": [
+    "開源cad",
+    "參數化建模",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim",
+    "fem-analysis"
+  ],
+  "3d-cad": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim",
+    "fem-analysis"
+  ],
+  "parametric-modeling": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "3d-cad",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim",
+    "fem-analysis"
+  ],
+  "mechanical-cad": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "engineering-drafting",
+    "bim",
+    "fem-analysis"
+  ],
+  "engineering-drafting": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "bim",
+    "fem-analysis"
+  ],
+  "bim": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "fem-analysis"
+  ],
+  "fem-analysis": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim"
+  ],
+  "step-stl-export": [
+    "開源cad",
+    "參數化建模",
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim"
+  ],
+  "參數化建模": [
+    "freecad",
+    "3d-cad",
+    "parametric-modeling",
+    "mechanical-cad",
+    "engineering-drafting",
+    "bim",
+    "fem-analysis",
+    "step-stl-export"
   ],
   "推測解碼": [
     "deepspec",
@@ -1487,11 +1677,13 @@ export const SYNONYM_MAP = {
   ],
   "qwen": [
     "阿里通義",
+    "本地推理",
+    "模型服務",
+    "本地部署",
     "qwen-mm-plugins",
     "multimodal",
     "ai plugins",
-    "llm plugins",
-    "multimodal ai"
+    "llm plugins"
   ],
   "multimodal": [
     "阿里通義",
@@ -2780,11 +2972,11 @@ export const SYNONYM_MAP = {
     "omarchy",
     "linux distro",
     "aesthetic linux",
-    "freebuff",
     "kunpeng",
     "magnitude",
     "inference-server",
-    "local-models"
+    "local-models",
+    "llm-inference"
   ],
   "omarchy": [
     "開發工具"
@@ -2935,6 +3127,78 @@ export const SYNONYM_MAP = {
     "master",
     "storyboard"
   ],
+  "免費資源": [
+    "free-for-dev",
+    "free-tier",
+    "saas-free-tier",
+    "devops",
+    "free-for-developers",
+    "免費額度",
+    "雲端免費方案"
+  ],
+  "free-for-dev": [
+    "免費資源",
+    "免費額度",
+    "雲端免費方案",
+    "free-tier",
+    "saas-free-tier",
+    "devops",
+    "free-for-developers"
+  ],
+  "free-tier": [
+    "免費資源",
+    "免費額度",
+    "雲端免費方案",
+    "free-for-dev",
+    "saas-free-tier",
+    "devops",
+    "free-for-developers"
+  ],
+  "saas-free-tier": [
+    "免費資源",
+    "免費額度",
+    "雲端免費方案",
+    "free-for-dev",
+    "free-tier",
+    "devops",
+    "free-for-developers"
+  ],
+  "devops": [
+    "免費資源",
+    "免費額度",
+    "雲端免費方案",
+    "free-for-dev",
+    "free-tier",
+    "saas-free-tier",
+    "free-for-developers"
+  ],
+  "free-for-developers": [
+    "免費資源",
+    "免費額度",
+    "雲端免費方案",
+    "free-for-dev",
+    "free-tier",
+    "saas-free-tier",
+    "devops"
+  ],
+  "免費額度": [
+    "free-for-dev",
+    "free-tier",
+    "saas-free-tier",
+    "devops",
+    "free-for-developers",
+    "免費資源",
+    "雲端免費方案"
+  ],
+  "雲端免費方案": [
+    "free-for-dev",
+    "free-tier",
+    "saas-free-tier",
+    "devops",
+    "free-for-developers",
+    "免費資源",
+    "免費額度"
+  ],
   "研究": [
     "praxist"
   ],
@@ -2952,8 +3216,148 @@ export const SYNONYM_MAP = {
     "程式碼文件",
     "自動文件生成"
   ],
+  "本地推理": [
+    "freetoken",
+    "local-inference",
+    "moe-inference",
+    "desktop-serving",
+    "qwen",
+    "glm",
+    "minimax"
+  ],
+  "freetoken": [
+    "本地推理",
+    "模型服務",
+    "本地部署",
+    "local-inference",
+    "moe-inference",
+    "desktop-serving",
+    "qwen",
+    "glm"
+  ],
+  "local-inference": [
+    "本地推理",
+    "模型服務",
+    "本地部署",
+    "freetoken",
+    "moe-inference",
+    "desktop-serving",
+    "qwen",
+    "glm"
+  ],
+  "moe-inference": [
+    "本地推理",
+    "模型服務",
+    "本地部署",
+    "freetoken",
+    "local-inference",
+    "desktop-serving",
+    "qwen",
+    "glm"
+  ],
+  "desktop-serving": [
+    "本地推理",
+    "模型服務",
+    "本地部署",
+    "freetoken",
+    "local-inference",
+    "moe-inference",
+    "qwen",
+    "glm"
+  ],
+  "glm": [
+    "本地推理",
+    "模型服務",
+    "本地部署",
+    "freetoken",
+    "local-inference",
+    "moe-inference",
+    "desktop-serving",
+    "qwen"
+  ],
+  "minimax": [
+    "本地推理",
+    "模型服務",
+    "本地部署",
+    "freetoken",
+    "local-inference",
+    "moe-inference",
+    "desktop-serving",
+    "qwen"
+  ],
+  "模型服務": [
+    "freetoken",
+    "local-inference",
+    "moe-inference",
+    "desktop-serving",
+    "qwen",
+    "glm",
+    "minimax"
+  ],
+  "本地部署": [
+    "freetoken",
+    "local-inference",
+    "moe-inference",
+    "desktop-serving",
+    "qwen",
+    "glm",
+    "minimax"
+  ],
+  "免費編碼代理": [
+    "freebuff",
+    "cli-agent",
+    "codebuff",
+    "free-coding-agent",
+    "編碼agent",
+    "終端機agent"
+  ],
   "freebuff": [
-    "開發工具"
+    "免費編碼代理",
+    "編碼agent",
+    "終端機agent",
+    "cli-agent",
+    "codebuff",
+    "free-coding-agent"
+  ],
+  "cli-agent": [
+    "免費編碼代理",
+    "編碼agent",
+    "終端機agent",
+    "freebuff",
+    "codebuff",
+    "free-coding-agent"
+  ],
+  "codebuff": [
+    "免費編碼代理",
+    "編碼agent",
+    "終端機agent",
+    "freebuff",
+    "cli-agent",
+    "free-coding-agent"
+  ],
+  "free-coding-agent": [
+    "免費編碼代理",
+    "編碼agent",
+    "終端機agent",
+    "freebuff",
+    "cli-agent",
+    "codebuff"
+  ],
+  "編碼agent": [
+    "freebuff",
+    "cli-agent",
+    "codebuff",
+    "free-coding-agent",
+    "免費編碼代理",
+    "終端機agent"
+  ],
+  "終端機agent": [
+    "freebuff",
+    "cli-agent",
+    "codebuff",
+    "free-coding-agent",
+    "免費編碼代理",
+    "編碼agent"
   ],
   "kunpeng": [
     "開發工具"
@@ -2972,6 +3376,1128 @@ export const SYNONYM_MAP = {
   ],
   "offline-llm": [
     "開發工具"
+  ],
+  "知識圖譜": [
+    "knowledge graph from text",
+    "ancient text processing",
+    "agentic ontology",
+    "knowledge engineering",
+    "autonomous wiki agent",
+    "entity extraction",
+    "historical knowledge graph",
+    "ontology from corpus"
+  ],
+  "knowledge graph from text": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "ancient text processing": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "agentic ontology": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "knowledge engineering": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "autonomous wiki agent": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "entity extraction": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "historical knowledge graph": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "ontology from corpus": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "butler agent": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "wiki automation": [
+    "知識圖譜",
+    "古籍處理"
+  ],
+  "古籍處理": [
+    "knowledge graph from text",
+    "ancient text processing",
+    "agentic ontology",
+    "knowledge engineering",
+    "autonomous wiki agent",
+    "entity extraction",
+    "historical knowledge graph",
+    "ontology from corpus"
+  ],
+  "微信读书": [
+    "weread-hot-booklists",
+    "weread",
+    "booklist",
+    "reading-notes"
+  ],
+  "weread-hot-booklists": [
+    "微信读书",
+    "热门书单",
+    "读书笔记",
+    "書單",
+    "閱讀筆記",
+    "热门收藏",
+    "weread",
+    "booklist"
+  ],
+  "weread": [
+    "微信读书",
+    "热门书单",
+    "读书笔记",
+    "書單",
+    "閱讀筆記",
+    "热门收藏",
+    "weread-hot-booklists",
+    "booklist"
+  ],
+  "booklist": [
+    "微信读书",
+    "热门书单",
+    "读书笔记",
+    "書單",
+    "閱讀筆記",
+    "热门收藏",
+    "weread-hot-booklists",
+    "weread"
+  ],
+  "reading-notes": [
+    "微信读书",
+    "热门书单",
+    "读书笔记",
+    "書單",
+    "閱讀筆記",
+    "热门收藏",
+    "weread-hot-booklists",
+    "weread"
+  ],
+  "热门书单": [
+    "weread-hot-booklists",
+    "weread",
+    "booklist",
+    "reading-notes"
+  ],
+  "读书笔记": [
+    "weread-hot-booklists",
+    "weread",
+    "booklist",
+    "reading-notes"
+  ],
+  "書單": [
+    "weread-hot-booklists",
+    "weread",
+    "booklist",
+    "reading-notes",
+    "free-books",
+    "ebooks",
+    "free-ebooks"
+  ],
+  "閱讀筆記": [
+    "weread-hot-booklists",
+    "weread",
+    "booklist",
+    "reading-notes"
+  ],
+  "热门收藏": [
+    "weread-hot-booklists",
+    "weread",
+    "booklist",
+    "reading-notes"
+  ],
+  "原型設計": [
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch",
+    "design-to-prompt",
+    "vibe-coding"
+  ],
+  "m3e-canvas": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch",
+    "design-to-prompt"
+  ],
+  "material-3": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "m3e-canvas",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch",
+    "design-to-prompt"
+  ],
+  "material-design": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "m3e-canvas",
+    "material-3",
+    "material3-expressive",
+    "ui-sketch",
+    "design-to-prompt"
+  ],
+  "material3-expressive": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "ui-sketch",
+    "design-to-prompt"
+  ],
+  "ui-sketch": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "design-to-prompt"
+  ],
+  "design-to-prompt": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch"
+  ],
+  "vibe-coding": [
+    "原型設計",
+    "設計稿",
+    "介面草圖",
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch"
+  ],
+  "設計稿": [
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch",
+    "design-to-prompt",
+    "vibe-coding"
+  ],
+  "介面草圖": [
+    "m3e-canvas",
+    "material-3",
+    "material-design",
+    "material3-expressive",
+    "ui-sketch",
+    "design-to-prompt",
+    "vibe-coding"
+  ],
+  "瀏覽器推理": [
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference",
+    "client-side-llm",
+    "tvm",
+    "local-llm"
+  ],
+  "web-llm": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference",
+    "client-side-llm"
+  ],
+  "webllm": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference",
+    "client-side-llm"
+  ],
+  "in-browser-llm": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "webllm",
+    "webgpu",
+    "browser-inference",
+    "client-side-llm"
+  ],
+  "webgpu": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "browser-inference",
+    "client-side-llm"
+  ],
+  "browser-inference": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "client-side-llm"
+  ],
+  "client-side-llm": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference"
+  ],
+  "tvm": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference"
+  ],
+  "local-llm": [
+    "瀏覽器推理",
+    "本地模型",
+    "邊緣推理",
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference"
+  ],
+  "本地模型": [
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference",
+    "client-side-llm",
+    "tvm",
+    "local-llm"
+  ],
+  "邊緣推理": [
+    "web-llm",
+    "webllm",
+    "in-browser-llm",
+    "webgpu",
+    "browser-inference",
+    "client-side-llm",
+    "tvm",
+    "local-llm"
+  ],
+  "免费api": [
+    "free-api",
+    "api-directory",
+    "免费接口",
+    "中文api",
+    "api大全",
+    "免費接口",
+    "接口服务",
+    "免费接口服务"
+  ],
+  "free-api": [
+    "免费api",
+    "免费接口",
+    "中文api",
+    "api大全",
+    "免費接口",
+    "接口服务",
+    "免费接口服务",
+    "api-directory"
+  ],
+  "免费接口": [
+    "free-api",
+    "api-directory",
+    "免费api",
+    "中文api",
+    "api大全",
+    "免費接口",
+    "接口服务",
+    "免费接口服务"
+  ],
+  "中文api": [
+    "free-api",
+    "api-directory",
+    "免费api",
+    "免费接口",
+    "api大全",
+    "免費接口",
+    "接口服务",
+    "免费接口服务"
+  ],
+  "api大全": [
+    "free-api",
+    "api-directory",
+    "免费api",
+    "免费接口",
+    "中文api",
+    "免費接口",
+    "接口服务",
+    "免费接口服务"
+  ],
+  "免費接口": [
+    "free-api",
+    "api-directory",
+    "免费api",
+    "免费接口",
+    "中文api",
+    "api大全",
+    "接口服务",
+    "免费接口服务"
+  ],
+  "接口服务": [
+    "free-api",
+    "api-directory",
+    "免费api",
+    "免费接口",
+    "中文api",
+    "api大全",
+    "免費接口",
+    "免费接口服务"
+  ],
+  "免费接口服务": [
+    "free-api",
+    "api-directory",
+    "免费api",
+    "免费接口",
+    "中文api",
+    "api大全",
+    "免費接口",
+    "接口服务"
+  ],
+  "public-api-lists": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "free-public-apis": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "awesome-apis": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "public-api": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "json-api": [
+    "免費api",
+    "api清單",
+    "公開api"
+  ],
+  "代碼審查": [
+    "pr-agent",
+    "pr-reviewer",
+    "code-review",
+    "pull-request",
+    "ai-code-review",
+    "qodo",
+    "code-review-agent"
+  ],
+  "pr-agent": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-reviewer",
+    "code-review",
+    "pull-request",
+    "ai-code-review",
+    "qodo"
+  ],
+  "pr-reviewer": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-agent",
+    "code-review",
+    "pull-request",
+    "ai-code-review",
+    "qodo"
+  ],
+  "code-review": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-agent",
+    "pr-reviewer",
+    "pull-request",
+    "ai-code-review",
+    "qodo"
+  ],
+  "pull-request": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-agent",
+    "pr-reviewer",
+    "code-review",
+    "ai-code-review",
+    "qodo"
+  ],
+  "ai-code-review": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-agent",
+    "pr-reviewer",
+    "code-review",
+    "pull-request",
+    "qodo"
+  ],
+  "qodo": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-agent",
+    "pr-reviewer",
+    "code-review",
+    "pull-request",
+    "ai-code-review"
+  ],
+  "code-review-agent": [
+    "代碼審查",
+    "pr審查",
+    "程式碼審查",
+    "pr-agent",
+    "pr-reviewer",
+    "code-review",
+    "pull-request",
+    "ai-code-review"
+  ],
+  "pr審查": [
+    "pr-agent",
+    "pr-reviewer",
+    "code-review",
+    "pull-request",
+    "ai-code-review",
+    "qodo",
+    "code-review-agent"
+  ],
+  "影片自動化": [
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation",
+    "seo-optimization",
+    "thumbnail-generator"
+  ],
+  "youtube-automation-agent": [
+    "影片自動化",
+    "youtube自動化",
+    "自動上片",
+    "頻道自動化",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation",
+    "seo-optimization"
+  ],
+  "youtube-automation": [
+    "影片自動化",
+    "youtube自動化",
+    "自動上片",
+    "頻道自動化",
+    "youtube-automation-agent",
+    "youtube-bot",
+    "content-automation",
+    "seo-optimization"
+  ],
+  "youtube-bot": [
+    "影片自動化",
+    "youtube自動化",
+    "自動上片",
+    "頻道自動化",
+    "youtube-automation-agent",
+    "youtube-automation",
+    "content-automation",
+    "seo-optimization"
+  ],
+  "content-automation": [
+    "影片自動化",
+    "youtube自動化",
+    "自動上片",
+    "頻道自動化",
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "seo-optimization"
+  ],
+  "seo-optimization": [
+    "影片自動化",
+    "youtube自動化",
+    "自動上片",
+    "頻道自動化",
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation"
+  ],
+  "thumbnail-generator": [
+    "影片自動化",
+    "youtube自動化",
+    "自動上片",
+    "頻道自動化",
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation"
+  ],
+  "youtube自動化": [
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation",
+    "seo-optimization",
+    "thumbnail-generator"
+  ],
+  "自動上片": [
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation",
+    "seo-optimization",
+    "thumbnail-generator"
+  ],
+  "頻道自動化": [
+    "youtube-automation-agent",
+    "youtube-automation",
+    "youtube-bot",
+    "content-automation",
+    "seo-optimization",
+    "thumbnail-generator"
+  ],
+  "零件庫": [
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library",
+    "step-parts",
+    "fcstd"
+  ],
+  "freecad-library": [
+    "零件庫",
+    "3d零件",
+    "標準零件",
+    "機械零件",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library",
+    "step-parts"
+  ],
+  "freecad-parts": [
+    "零件庫",
+    "3d零件",
+    "標準零件",
+    "機械零件",
+    "freecad-library",
+    "cad-parts",
+    "3d-parts-library",
+    "step-parts"
+  ],
+  "cad-parts": [
+    "零件庫",
+    "3d零件",
+    "標準零件",
+    "機械零件",
+    "freecad-library",
+    "freecad-parts",
+    "3d-parts-library",
+    "step-parts"
+  ],
+  "3d-parts-library": [
+    "零件庫",
+    "3d零件",
+    "標準零件",
+    "機械零件",
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "step-parts"
+  ],
+  "step-parts": [
+    "零件庫",
+    "3d零件",
+    "標準零件",
+    "機械零件",
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library"
+  ],
+  "fcstd": [
+    "零件庫",
+    "3d零件",
+    "標準零件",
+    "機械零件",
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library"
+  ],
+  "3d零件": [
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library",
+    "step-parts",
+    "fcstd"
+  ],
+  "標準零件": [
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library",
+    "step-parts",
+    "fcstd"
+  ],
+  "機械零件": [
+    "freecad-library",
+    "freecad-parts",
+    "cad-parts",
+    "3d-parts-library",
+    "step-parts",
+    "fcstd"
+  ],
+  "無廣告youtube": [
+    "freetube",
+    "youtube-client",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "desktop-youtube",
+    "sponsorblock",
+    "隱私影片",
+    "去廣告觀看"
+  ],
+  "freetube": [
+    "無廣告youtube",
+    "隱私影片",
+    "去廣告觀看",
+    "youtube-client",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "desktop-youtube",
+    "sponsorblock"
+  ],
+  "youtube-client": [
+    "無廣告youtube",
+    "隱私影片",
+    "去廣告觀看",
+    "freetube",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "desktop-youtube",
+    "sponsorblock"
+  ],
+  "privacy-youtube": [
+    "無廣告youtube",
+    "隱私影片",
+    "去廣告觀看",
+    "freetube",
+    "youtube-client",
+    "ad-free-youtube",
+    "desktop-youtube",
+    "sponsorblock"
+  ],
+  "ad-free-youtube": [
+    "無廣告youtube",
+    "隱私影片",
+    "去廣告觀看",
+    "freetube",
+    "youtube-client",
+    "privacy-youtube",
+    "desktop-youtube",
+    "sponsorblock"
+  ],
+  "desktop-youtube": [
+    "無廣告youtube",
+    "隱私影片",
+    "去廣告觀看",
+    "freetube",
+    "youtube-client",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "sponsorblock"
+  ],
+  "sponsorblock": [
+    "無廣告youtube",
+    "隱私影片",
+    "去廣告觀看",
+    "freetube",
+    "youtube-client",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "desktop-youtube"
+  ],
+  "隱私影片": [
+    "freetube",
+    "youtube-client",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "desktop-youtube",
+    "sponsorblock",
+    "無廣告youtube",
+    "去廣告觀看"
+  ],
+  "去廣告觀看": [
+    "freetube",
+    "youtube-client",
+    "privacy-youtube",
+    "ad-free-youtube",
+    "desktop-youtube",
+    "sponsorblock",
+    "無廣告youtube",
+    "隱私影片"
+  ],
+  "免費gpt": [
+    "gpt4free",
+    "g4f",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible",
+    "multi-provider",
+    "free-llm"
+  ],
+  "gpt4free": [
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
+    "g4f",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible",
+    "multi-provider"
+  ],
+  "g4f": [
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
+    "gpt4free",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible",
+    "multi-provider"
+  ],
+  "reverse-engineering": [
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
+    "gpt4free",
+    "g4f",
+    "free-gpt",
+    "openai-compatible",
+    "multi-provider"
+  ],
+  "multi-provider": [
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
+    "gpt4free",
+    "g4f",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible"
+  ],
+  "free-llm": [
+    "免費gpt",
+    "逆向接口",
+    "多供應商聚合",
+    "gpt4free",
+    "g4f",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible"
+  ],
+  "逆向接口": [
+    "gpt4free",
+    "g4f",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible",
+    "multi-provider",
+    "free-llm"
+  ],
+  "多供應商聚合": [
+    "gpt4free",
+    "g4f",
+    "free-gpt",
+    "reverse-engineering",
+    "openai-compatible",
+    "multi-provider",
+    "free-llm"
+  ],
+  "免費llm": [
+    "freellmapi",
+    "llm-router",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible",
+    "failover",
+    "llm-gateway"
+  ],
+  "freellmapi": [
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "llm-router",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible",
+    "failover"
+  ],
+  "llm-router": [
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "freellmapi",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible",
+    "failover"
+  ],
+  "free-llm-api": [
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "freellmapi",
+    "llm-router",
+    "api-aggregator",
+    "openai-compatible",
+    "failover"
+  ],
+  "api-aggregator": [
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "freellmapi",
+    "llm-router",
+    "free-llm-api",
+    "openai-compatible",
+    "failover"
+  ],
+  "failover": [
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "freellmapi",
+    "llm-router",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible"
+  ],
+  "llm-gateway": [
+    "免費llm",
+    "模型路由",
+    "金鑰池",
+    "freellmapi",
+    "llm-router",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible"
+  ],
+  "模型路由": [
+    "freellmapi",
+    "llm-router",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible",
+    "failover",
+    "llm-gateway"
+  ],
+  "金鑰池": [
+    "freellmapi",
+    "llm-router",
+    "free-llm-api",
+    "api-aggregator",
+    "openai-compatible",
+    "failover",
+    "llm-gateway"
+  ],
+  "免费书籍": [
+    "free-books",
+    "ebooks",
+    "free-ebooks"
+  ],
+  "free-books": [
+    "免费书籍",
+    "免费电子书",
+    "互联网免费书籍",
+    "免費書",
+    "書單",
+    "免費閱讀",
+    "weread-hot-booklists",
+    "weread"
+  ],
+  "ebooks": [
+    "免费书籍",
+    "免费电子书",
+    "互联网免费书籍",
+    "免費書",
+    "書單",
+    "免費閱讀",
+    "weread-hot-booklists",
+    "weread"
+  ],
+  "free-ebooks": [
+    "免费书籍",
+    "免费电子书",
+    "互联网免费书籍",
+    "免費書",
+    "書單",
+    "免費閱讀",
+    "weread-hot-booklists",
+    "weread"
+  ],
+  "免费电子书": [
+    "free-books",
+    "ebooks",
+    "free-ebooks"
+  ],
+  "互联网免费书籍": [
+    "free-books",
+    "ebooks",
+    "free-ebooks"
+  ],
+  "免費書": [
+    "free-books",
+    "ebooks",
+    "free-ebooks"
+  ],
+  "免費閱讀": [
+    "free-books",
+    "ebooks",
+    "free-ebooks"
+  ],
+  "免費音樂": [
+    "musicfree",
+    "music-player",
+    "plugin-music",
+    "ad-free-music",
+    "react-native",
+    "音樂播放器",
+    "插件化播放器",
+    "無廣告音樂"
+  ],
+  "musicfree": [
+    "免費音樂",
+    "音樂播放器",
+    "插件化播放器",
+    "無廣告音樂",
+    "music-player",
+    "plugin-music",
+    "ad-free-music",
+    "react-native"
+  ],
+  "music-player": [
+    "免費音樂",
+    "音樂播放器",
+    "插件化播放器",
+    "無廣告音樂",
+    "musicfree",
+    "plugin-music",
+    "ad-free-music",
+    "react-native"
+  ],
+  "plugin-music": [
+    "免費音樂",
+    "音樂播放器",
+    "插件化播放器",
+    "無廣告音樂",
+    "musicfree",
+    "music-player",
+    "ad-free-music",
+    "react-native"
+  ],
+  "ad-free-music": [
+    "免費音樂",
+    "音樂播放器",
+    "插件化播放器",
+    "無廣告音樂",
+    "musicfree",
+    "music-player",
+    "plugin-music",
+    "react-native"
+  ],
+  "react-native": [
+    "免費音樂",
+    "音樂播放器",
+    "插件化播放器",
+    "無廣告音樂",
+    "musicfree",
+    "music-player",
+    "plugin-music",
+    "ad-free-music"
+  ],
+  "音樂播放器": [
+    "musicfree",
+    "music-player",
+    "plugin-music",
+    "ad-free-music",
+    "react-native",
+    "免費音樂",
+    "插件化播放器",
+    "無廣告音樂"
+  ],
+  "插件化播放器": [
+    "musicfree",
+    "music-player",
+    "plugin-music",
+    "ad-free-music",
+    "react-native",
+    "免費音樂",
+    "音樂播放器",
+    "無廣告音樂"
+  ],
+  "無廣告音樂": [
+    "musicfree",
+    "music-player",
+    "plugin-music",
+    "ad-free-music",
+    "react-native",
+    "免費音樂",
+    "音樂播放器",
+    "插件化播放器"
   ],
   "翻譯": [
     "translate",

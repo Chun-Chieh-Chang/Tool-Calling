@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-09T00:12:02.299Z",
+  "lastUpdated": "2026-09-12T05:23:23.915Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -8096,7 +8096,7 @@
     },
     {
       "week": "2026-W37",
-      "dateRange": "2026-09-07 ~ 2026-09-09",
+      "dateRange": "2026-09-07 ~ 2026-09-13",
       "timestamp": "2026-09-09T00:12:02.299Z",
       "isWeekStart": true,
       "repos": {
@@ -8109,7 +8109,7 @@
         "sapientinc/PRAXIST": 6482,
         "MengTo/threeui": 5281,
         "s1dashu/ip-as-logo-skill": 5000,
-        "lnkiai/m3e-canvas": 4412,
+        "lnkiai/m3e-canvas": 6184,
         "CopilotKit/OpenBot": 4387,
         "dataelement/dsh-desktop": 4362,
         "dmmulroy/anti-slop": 4145,
@@ -8202,7 +8202,7 @@
         "shadcn-ui/chatbot-template": 922,
         "codecrafters-io/build-your-own-x": 545685,
         "sindresorhus/awesome": 503759,
-        "public-apis/public-apis": 476648,
+        "public-apis/public-apis": 479098,
         "freeCodeCamp/freeCodeCamp": 455145,
         "EbookFoundation/free-programming-books": 396152,
         "openclaw/openclaw": 389072,
@@ -8268,8 +8268,8 @@
         "microsoft/PowerToys": 138462,
         "golang/go": 137982,
         "iptv-org/iptv": 137930,
-        "ripienaar/free-for-dev": 136774,
-        "Shubhamsaboo/awesome-llm-apps": 136448,
+        "ripienaar/free-for-dev": 137157,
+        "Shubhamsaboo/awesome-llm-apps": 137265,
         "labuladong/fucking-algorithm": 135698,
         "github/spec-kit": 133768,
         "Comfy-Org/ComfyUI": 131834,
@@ -8298,7 +8298,25 @@
         "Graphify-Labs/graphify": 115417,
         "mrdoob/three.js": 115212,
         "VoltAgent/awesome-design-md": 114513,
-        "d3/d3": 113665
+        "d3/d3": 113665,
+        "able8/weread-hot-booklists": 762,
+        "mlc-ai/web-llm": 19094,
+        "fangzesheng/free-api": 16245,
+        "public-api-lists/public-api-lists": 15791,
+        "The-PR-Agent/pr-agent": 12954,
+        "darkzOGx/youtube-automation-agent": 3336,
+        "FreeCAD/FreeCAD-library": 1951,
+        "FreeTubeApp/FreeTube": 21901,
+        "xtekky/gpt4free": 66685,
+        "tashfeenahmed/freellmapi": 25587,
+        "ruanyf/free-books": 15998,
+        "maotoumao/MusicFree": 26794,
+        "chatanywhere/GPT_API_free": 42348,
+        "mnfst/awesome-free-llm-apis": 7528,
+        "CodebuffAI/freebuff": 11963,
+        "FreeCAD/FreeCAD": 33438,
+        "alishahryar1/free-claude-code": 54577,
+        "FlashML-org/FreeToken": 12501
       }
     }
   ]

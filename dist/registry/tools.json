@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-07T07:02:26.772Z",
+  "lastUpdated": "2026-09-12T05:53:34.278Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -272,7 +272,7 @@
       "name": "Vercel AI SDK Skills",
       "url": "https://github.com/vercel-labs/skills",
       "description": "Composable tool-calling skills for Vercel AI SDK to extend AI chatbots and agents.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "vercel",
@@ -1313,95 +1313,102 @@
     },
     {
       "id": "awesome-llm-apps",
-      "name": "Awesome Llm Apps",
+      "name": "Awesome LLM Apps",
       "url": "https://github.com/Shubhamsaboo/awesome-llm-apps",
-      "description": "A curated list of awesome LLM applications built with open source projects",
-      "category": "AI 框架",
+      "description": "100+ free and open-source AI agent, agent-skill and RAG application examples — starter to advanced multi-agent systems, always-on agents, MCP agents, voice agents and generative-UI agents.",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "awesome-llm-apps",
-        "python",
-        "rag",
+        "llm-apps",
         "ai-agents",
-        "llm-apps"
+        "rag",
+        "multi-agent",
+        "agent-skills",
+        "generative-ui-agents",
+        "llm範例",
+        "agent範例"
       ],
       "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/Shubhamsaboo/awesome-llm-apps.git",
+        "method": "git-clone",
+        "command": "git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git",
         "repoUrl": "https://github.com/Shubhamsaboo/awesome-llm-apps"
       },
       "capabilities": [
-        "python",
-        "agents",
-        "rag",
-        "llms"
+        "agent-examples",
+        "rag-tutorials",
+        "multi-agent",
+        "mcp-agents",
+        "voice-agents",
+        "generative-ui",
+        "agent-skills"
       ],
       "addedAt": "2026-07-19T05:20:38.814Z",
       "status": "active",
       "subTools": [
         {
-          "name": "Client",
-          "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\r \r ## Setup\r \r 1. **Install dependencies:**\r    ``",
-          "subpath": "advanced_ai_agents/multi_agent_apps/agent_teams/ai_travel_planner_agent_team/client"
+          "name": "Starter AI Agents",
+          "description": "入門級單一 Agent 範例，適合首次接觸 LLM Agent 開發者。",
+          "subpath": "starter_ai_agents"
         },
         {
-          "name": "Web",
-          "description": "### `npm start`\r Runs the app in the development mode.\\\r Open [http://localhost:3000](http://localhost:3000) to view it in your browser.\r \r The page will reload when you make changes.\\\r You may also s",
-          "subpath": "advanced_ai_agents/multi_agent_apps/ai_news_and_podcast_agents/web"
+          "name": "Advanced AI Agents",
+          "description": "進階多 Agent 協作與複雜工作流範例（含 agent teams、news/podcast agents）。",
+          "subpath": "advanced_ai_agents"
         },
         {
-          "name": "Frontend",
-          "description": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\r \r ## Getting Started\r \r First, run the developmen",
-          "subpath": "advanced_llm_apps/multimodal_video_moment_finder/frontend"
+          "name": "Always-On Agents",
+          "description": "常駐型 Agent 範例，可持續運行並回應事件。",
+          "subpath": "always_on_agents"
         },
         {
-          "name": "Advisor Orchestrator Worker",
-          "description": ">-",
-          "subpath": "agent_skills/advisor-orchestrator-worker"
+          "name": "MCP AI Agents",
+          "description": "以 Model Context Protocol 串接外部工具的 Agent 範例。",
+          "subpath": "mcp_ai_agents"
         },
         {
-          "name": "Commit Archaeologist",
-          "description": ">-",
-          "subpath": "agent_skills/commit-archaeologist"
+          "name": "Voice AI Agents",
+          "description": "語音互動 Agent 範例，涵蓋 STT/TTS 整合。",
+          "subpath": "voice_ai_agents"
         },
         {
-          "name": "Project Graveyard",
-          "description": ">-",
-          "subpath": "agent_skills/project-graveyard"
+          "name": "Generative UI Agents",
+          "description": "生成式 UI Agent 範例，含 dashboard、deep research 與 MCP app builder。",
+          "subpath": "generative_ui_agents"
         },
         {
-          "name": "Scope Creep Detector",
-          "description": ">-",
-          "subpath": "agent_skills/scope-creep-detector"
+          "name": "Agent Skills",
+          "description": "可直接掛載的 Agent Skills 集合（advisor orchestrator、commit archaeologist 等）。",
+          "subpath": "agent_skills"
         },
         {
-          "name": "Chatgpt App Builder",
-          "description": "|",
-          "subpath": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/chatgpt-app-builder"
+          "name": "RAG Tutorials",
+          "description": "檢索增強生成（RAG）教學與實作範例。",
+          "subpath": "rag_tutorials"
         },
         {
-          "name": "Mcp Apps Builder",
-          "description": "|",
-          "subpath": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/mcp-apps-builder"
+          "name": "Advanced LLM Apps",
+          "description": "進階 LLM 應用範例（多模態、影片時刻搜尋等）。",
+          "subpath": "advanced_llm_apps"
         },
         {
-          "name": "Mcp Builder",
-          "description": "|",
-          "subpath": "generative_ui_agents/ai-mcp-app-builder/apps/mcp-use-server/.agent/skills/mcp-builder"
+          "name": "AI Agent Framework Crash Course",
+          "description": "主流 Agent 框架速成教材與對照範例。",
+          "subpath": "ai_agent_framework_crash_course"
         }
       ],
-      "useCase": "Developers can rapidly prototype enterprise AI solutions by cloning and adapting these pre-built agent and RAG architectures.",
+      "useCase": "當需要快速取得可運行的 Agent／RAG 範例作為專案起點或教學素材時使用，涵蓋入門到進階多 Agent 架構。",
       "advantages": [
-        "Pre-configured deployment workflows for rapid prototyping",
-        "Diverse architectural patterns including RAG and multi-agent systems",
-        "Community-vetted codebases with documented best practices"
+        "100+ 個可運行範例，涵蓋 starter 到 advanced multi-agent 完整梯度",
+        "同時提供 Agent Skills 與 Generative UI 範例，緊跟 2026 年主流範式",
+        "每個子專案皆可獨立 clone 運行，學習與複製成本低"
       ],
       "negativeConstraints": [
-        "Not suitable as a standalone managed SaaS platform",
-        "Avoid for real-time high-frequency inference serving",
-        "Do not use directly in compliance-heavy environments without thorough security audits"
+        "為範例集而非產品，程式碼未經生產環境硬化",
+        "各子專案依賴與版本各自獨立，無統一環境管理",
+        "合規敏感場景須自行完成安全與隱私審查"
       ],
-      "stars": 133606
+      "stars": 137265
     },
     {
       "id": "desktopcommandermcp",
@@ -1667,7 +1674,7 @@
       "name": "Agent Skills (Addy Osmani)",
       "url": "https://github.com/addyosmani/agent-skills",
       "description": "Curated prompt skills for AI coding agents to standardize and improve engineering workflows.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "cursor",
@@ -3192,7 +3199,7 @@
       "name": "Playwright Skill",
       "url": "https://github.com/lackeyjb/playwright-skill",
       "description": "Claude Code skill enabling autonomous browser automation and web testing via Playwright.",
-      "category": "AI 框架",
+      "category": "測試與自動化",
       "language": "javascript",
       "triggers": [
         "playwright",
@@ -3350,7 +3357,7 @@
       "name": "Gh Address Comments",
       "url": "https://github.com/openai/skills/tree/main/skills/.curated/gh-address-comments",
       "description": "Address GitHub PR review comments on the current branch using gh CLI with built-in auth checks.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "gh-address-comments",
@@ -3423,7 +3430,7 @@
       "name": "Awesome Notebooklm Workflows",
       "url": "https://github.com/notebooklmremover/awesome-notebooklm-workflows",
       "description": "Curated list of free NotebookLM scripts and tools for watermark removal, audio processing, and prompts.",
-      "category": "文件生產力",
+      "category": "學習資源",
       "language": "python",
       "triggers": [
         "notebooklm",
@@ -4521,7 +4528,7 @@
       "name": "SKILL.Md (GitHub Copilot Test)",
       "url": "https://github.com/github/awesome-copilot/blob/main/skills/playwright-generate-test/SKILL.md",
       "description": "Curated community skills and configurations to optimize GitHub Copilot workflows.",
-      "category": "AI 代理",
+      "category": "測試與自動化",
       "language": "python",
       "triggers": [
         "github-copilot",
@@ -4710,7 +4717,7 @@
       "name": "Browserbase Agent Skills",
       "url": "https://github.com/browserbase/skills",
       "description": "Reusable agent skills for reliable web automation and browser interaction via Browserbase.",
-      "category": "AI 代理",
+      "category": "瀏覽器自動化",
       "language": "javascript",
       "triggers": [
         "browserbase-skills",
@@ -5883,50 +5890,47 @@
     },
     {
       "id": "public-apis",
-      "name": "Public Apis",
+      "name": "Public APIs",
       "url": "https://github.com/public-apis/public-apis",
-      "description": "Curated directory of free APIs for developers.",
+      "description": "Curated, community-maintained directory of free public APIs, categorised by domain (auth, finance, weather, healthcare…) with direct links to each vendor's documentation.",
       "category": "API 整合",
       "language": "python",
       "triggers": [
         "public-apis",
-        "public",
-        "apis",
-        "api",
-        "lists",
-        "open-source",
-        "list",
-        "development",
         "free-apis",
         "api-directory",
-        "developer-tools"
+        "api-list",
+        "developer-tools",
+        "open-source",
+        "免費api",
+        "api清單",
+        "公開api"
       ],
       "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/public-apis/public-apis.git",
+        "method": "none",
+        "command": "No installation required — browse the README directory or consume the community-maintained dataset.",
         "repoUrl": "https://github.com/public-apis/public-apis"
       },
       "capabilities": [
-        "api",
-        "lists",
-        "open-source",
-        "list",
-        "development"
+        "api-directory",
+        "free-apis",
+        "community-maintained",
+        "categorized-listing"
       ],
       "addedAt": "2026-07-19T09:12:09.823Z",
       "status": "active",
-      "useCase": "Developers can quickly discover and integrate reliable third-party endpoints for prototyping or production applications.",
+      "useCase": "當開發者需要快速尋找並整合可靠的第三方 API 端點（用於原型或正式系統）時使用，可依領域分類檢索。",
       "advantages": [
-        "Community-maintained open-source repository ensures current and verified listings.",
-        "Categorized by domain such as authentication, finance, and healthcare for efficient discovery.",
-        "Provides direct access to documentation and usage details for each API."
+        "GitHub 上星數最高的 API 目錄，社群維護活躍、條目持續更新",
+        "依認證方式、HTTPS 支援、CORS 等維度標註，挑選成本低",
+        "每筆條目直接連結官方文件，便於評估整合可行性"
       ],
       "negativeConstraints": [
-        "Not suitable for discovering proprietary, paid-only, or internal enterprise APIs.",
-        "Does not replace official vendor documentation or guarantee service availability.",
-        "Inappropriate for managing private API gateways or internal governance workflows."
+        "僅為索引，不保證任何第三方 API 的可用性或服務水準",
+        "不含付費、私有或企業內部 API",
+        "不具備 API 閘道或治理功能，無法取代內部 API 管理"
       ],
-      "stars": 468645
+      "stars": 479098
     },
     {
       "id": "developer-roadmap",
@@ -6316,7 +6320,7 @@
       "name": "The Book Of Secret Knowledge",
       "url": "https://github.com/trimstray/the-book-of-secret-knowledge",
       "description": "Curated repository of Linux, DevOps, security, and developer cheatsheets, guides, and CLI tools.",
-      "category": "安全性",
+      "category": "學習資源",
       "language": "other",
       "triggers": [
         "linux",
@@ -13050,7 +13054,7 @@
       "name": "Knowledge Work Plugins",
       "url": "https://github.com/anthropics/knowledge-work-plugins",
       "description": "Open-source plugins for knowledge workers using Claude Cowork.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "knowledge-work-plugins",
@@ -15196,7 +15200,7 @@
       "name": "Skill",
       "url": "https://github.com/anbeime/skill",
       "description": "Centralized hub for 72+ AI skills, auto-synced from GitHub, categorized by stars and update time.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "python",
       "triggers": [
         "skill",
@@ -16309,7 +16313,7 @@
       "name": "Taste Skill",
       "url": "https://github.com/leonxlnx/taste-skill",
       "description": "Enhances AI output quality by eliminating generic content and improving aesthetic taste.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "javascript",
       "triggers": [
         "taste-skill",
@@ -21113,7 +21117,7 @@
       "name": "Awesome Free Llm Apis",
       "url": "https://github.com/mnfst/awesome-free-llm-apis",
       "description": "Curated list of permanent free LLM API keys for developers.",
-      "category": "AI 框架",
+      "category": "API 整合",
       "language": "javascript",
       "triggers": [
         "free-llm",
@@ -21122,16 +21126,16 @@
         "llm-discovery"
       ],
       "install": {
-        "method": "npm",
-        "command": "npm install https://github.com/mnfst/awesome-free-llm-apis",
+        "method": "none",
+        "command": "No installation required — browse the curated list, or load the bundled SKILL.md into an agent for guided setup.",
         "repoUrl": "https://github.com/mnfst/awesome-free-llm-apis"
       },
       "capabilities": [
-        "ai-agents",
-        "anthropic",
-        "awesome",
+        "free-llm-apis",
+        "api-keys",
         "awesome-list",
-        "gemini"
+        "provider-discovery",
+        "agent-skill"
       ],
       "addedAt": "2026-07-21T13:10:58.235Z",
       "status": "active",
@@ -21142,18 +21146,18 @@
           "subpath": "free-llm-apis"
         }
       ],
-      "useCase": "Developers prototyping AI features without immediate budget constraints.",
+      "useCase": "當需要尋找可長期免費使用的 LLM API 供應商與金鑰申請途徑時使用；內附 SKILL.md 可讓 Agent 引導完成申請與設定。",
       "advantages": [
-        "Zero cost access to multiple LLM providers",
-        "Centralized discovery of available APIs",
-        "Supports various models like Gemini and Anthropic"
+        "彙整各家「永久免費」LLM API 額度，避免逐一摸索",
+        "內建 Claude Skill（free-llm-apis/SKILL.md），可交由 Agent 自動引導設定",
+        "同步提供 data.json，便於程式化取用"
       ],
       "negativeConstraints": [
-        "Not suitable for production-grade high-volume applications",
-        "Unreliable for critical business operations",
-        "API keys may change or become invalid frequently"
+        "免費額度與政策隨時可能變動，清單不保證長期有效",
+        "不適合高流量或需 SLA 的生產環境",
+        "部分供應商需綁定信用卡或實名驗證"
       ],
-      "stars": 6924
+      "stars": 7528
     },
     {
       "id": "free-llm-api-resources",
@@ -21486,7 +21490,7 @@
       "name": "Compound Engineering Plugin",
       "url": "https://github.com/everyinc/compound-engineering-plugin",
       "description": "Official plugin for Compound Engineering across Claude, Codex, and Cursor.",
-      "category": "AI 框架",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "compound-engineering-plugin",
@@ -21954,7 +21958,7 @@
       "name": "Skills (MiniMax PPT)",
       "url": "https://github.com/MiniMax-AI/skills",
       "description": "MiniMax AI skills repository for modular agent capabilities and functional extensions.",
-      "category": "AI 代理",
+      "category": "文件生產力",
       "language": "c#",
       "triggers": [
         "minimax-ppt-skills",
@@ -25054,7 +25058,7 @@
       "name": "GPT API Free",
       "url": "https://github.com/chatanywhere/GPT_API_free",
       "description": "Free and paid access to GPT, DeepSeek, Claude, and more via OpenAI-compatible API endpoints. No SDK installation required — simply configure your app's API base URL and key.",
-      "category": "AI 框架",
+      "category": "API 整合",
       "language": "python",
       "triggers": [
         "gpt-api-free",
@@ -25091,7 +25095,7 @@
         "不保證免費端點的穩定性與速率限制",
         "不適合用於需要 SLA 保證的生產環境"
       ],
-      "stars": 40913
+      "stars": 42348
     },
     {
       "id": "pandas-ai",
@@ -25422,10 +25426,14 @@
       "triggers": [
         "freecad",
         "3d-cad",
-        "engineering-drafting",
         "parametric-modeling",
         "mechanical-cad",
-        "step-stl-export"
+        "engineering-drafting",
+        "bim",
+        "fem-analysis",
+        "step-stl-export",
+        "開源cad",
+        "參數化建模"
       ],
       "install": {
         "method": "conda",
@@ -25437,7 +25445,9 @@
         "2d-technical-drawing",
         "bim-architecture",
         "fem-analysis",
-        "step-iges-conversion"
+        "cam-gcode",
+        "step-iges-conversion",
+        "python-scripting"
       ],
       "useCase": "Designing parametric 3D mechanical components, generating technical 2D engineering drawings, and exporting STEP/STL files.",
       "advantages": [
@@ -25451,7 +25461,7 @@
       ],
       "addedAt": "2026-07-25T03:08:00.000Z",
       "status": "active",
-      "stars": 33013
+      "stars": 33438
     },
     {
       "id": "openscad",
@@ -30964,7 +30974,7 @@
       "url": "https://github.com/enescingoz/awesome-n8n-templates",
       "description": "280+ free n8n automation templates — ready-to-use workflows for Gmail, Telegram, Slack, Discord, WhatsApp, Google Drive, Notion, OpenAI, and more. AI agents, RAG   chatbots, email automation, social m",
       "category": "學習資源",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "awesome-n8n-templates",
         "ai-agents",
@@ -31127,7 +31137,7 @@
       "url": "https://github.com/sindresorhus/awesome",
       "description": "😎 Awesome lists about all kinds of interesting topics",
       "category": "學習資源",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "awesome",
         "awesome",
@@ -31249,7 +31259,7 @@
       "url": "https://github.com/996icu/996.ICU",
       "description": "Repository documenting the 996 work schedule in tech companies, advocating for workers' rights and labor awareness.",
       "category": "開發工具",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "996-icu",
         "996 work schedule",
@@ -31474,7 +31484,7 @@
       "url": "https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools",
       "description": "FULL Augment Code, Claude Code, Cluely, CodeBuddy, Comet, Cursor, Devin AI, Junie, Kiro, Leap.new, Lovable, Manus, NotionAI, Orchids.app, Perplexity, Poke, Qoder, Replit, Same.dev, Trae, Traycer AI, V",
       "category": "研究",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "system-prompts-and-models-of-ai-tools",
         "ai",
@@ -31749,7 +31759,7 @@
       "url": "https://github.com/MoonshotAI/Kimi-K3",
       "description": "Advanced AI model for frontier research and complex reasoning tasks.",
       "category": "AI 框架",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "kimi-k3",
         "moonshot-ai",
@@ -31956,7 +31966,7 @@
       "url": "https://github.com/LiamGvchi/gc-minimal-zine-poster",
       "description": "Generates minimal zine-style editorial poster prompts and images with a quiet aesthetic.",
       "category": "多媒體生成",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "gc-minimal-zine-poster",
         "minimalist poster",
@@ -34890,7 +34900,7 @@
       "url": "https://github.com/Zeejay0/gathered-scenes-zine-skill",
       "description": "No description provided.",
       "category": "開發工具",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "gathered-scenes-zine-skill",
         "zine",
@@ -35065,7 +35075,7 @@
       "url": "https://github.com/OpenBB-finance/OpenBB",
       "description": "Open Data Platform for analysts, quants and AI agents",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "openbb",
         "openbb",
@@ -35105,7 +35115,7 @@
       "url": "https://github.com/virattt/ai-hedge-fund",
       "description": "An AI Hedge Fund Team - proof of concept for AI-powered hedge fund trading system",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "ai-hedge-fund",
         "ai-hedge-fund",
@@ -35145,7 +35155,7 @@
       "url": "https://github.com/vnpy/vnpy",
       "description": "基于Python的开源量化交易平台开发框架",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "vnpy",
         "vn.py",
@@ -35185,7 +35195,7 @@
       "url": "https://github.com/Fincept-Corporation/FinceptTerminal",
       "description": "Open-source financial analysis platform - modern finance application with advanced market analytics",
       "category": "金融與投資",
-      "language": "C++",
+      "language": "c++",
       "triggers": [
         "fincept-terminal",
         "finceptterminal",
@@ -35225,7 +35235,7 @@
       "url": "https://github.com/mementum/backtrader",
       "description": "Python Backtesting library for trading strategies",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "backtrader",
         "backtrader",
@@ -35265,7 +35275,7 @@
       "url": "https://github.com/QuantConnect/Lean",
       "description": "Lean Algorithmic Trading Engine by QuantConnect - Open, Institutional Calibre Engine Multi-asset",
       "category": "金融與投資",
-      "language": "C#",
+      "language": "c#",
       "triggers": [
         "lean",
         "lean",
@@ -35305,7 +35315,7 @@
       "url": "https://github.com/AI4Finance-Foundation/FinGPT",
       "description": "FinGPT: Open-Source Financial Large Language Models for sentiment analysis, forecasting, and more",
       "category": "金融與投資",
-      "language": "Jupyter Notebook",
+      "language": "jupyter notebook",
       "triggers": [
         "fingpt",
         "fingpt",
@@ -35345,7 +35355,7 @@
       "url": "https://github.com/AI4Finance-Foundation/FinRobot",
       "description": "FinRobot: An Open-Source AI Agent Platform for Financial Applications",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "finrobot",
         "finrobot",
@@ -35385,7 +35395,7 @@
       "url": "https://github.com/NoFxAiOS/nofx",
       "description": "Your AI trading terminal assistant for US markets - open-source trading terminal where strategy is a language model",
       "category": "金融與投資",
-      "language": "Go",
+      "language": "go",
       "triggers": [
         "nofx",
         "nofx",
@@ -35425,7 +35435,7 @@
       "url": "https://github.com/xbtlin/ai-berkshire",
       "description": "AI 时代的伯克希尔：基于 Claude Code/Codex 的价值投资研究 Skill 合集",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "ai-berkshire",
         "ai berkshire",
@@ -35465,7 +35475,7 @@
       "url": "https://github.com/hsliuping/TradingAgents-CN",
       "description": "Chinese stock trading agents with A-share support",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "tradingagents-cn",
         "tradingagents-cn",
@@ -35504,7 +35514,7 @@
       "url": "https://github.com/simonlin1212/TradingAgents-astock",
       "description": "A-stock focused trading agents",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "tradingagents-astock",
         "tradingagents-astock",
@@ -35543,7 +35553,7 @@
       "url": "https://github.com/ArvinLovegood/go-stock",
       "description": "Modern stock analysis and trading platform",
       "category": "金融與投資",
-      "language": "Go",
+      "language": "go",
       "triggers": [
         "go-stock",
         "go-stock",
@@ -35583,7 +35593,7 @@
       "url": "https://github.com/microsoft/MarS",
       "description": "Microsoft Research platform for financial AI",
       "category": "金融與投資",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "mars",
         "mars",
@@ -35622,7 +35632,7 @@
       "url": "https://github.com/inclusionAI/Avernet",
       "description": "AI agent networking framework",
       "category": "AI 框架",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "avernet",
         "avernet",
@@ -35659,7 +35669,7 @@
       "url": "https://github.com/HKUDS/DeepTutor",
       "description": "AI-powered personalized learning tutor",
       "category": "學習資源",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "deeptutor",
         "deeptutor",
@@ -35699,7 +35709,7 @@
       "url": "https://github.com/slavingia/skills",
       "description": "Slavingia skills collection",
       "category": "AI 代理",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "slavingia-skills",
         "skills",
@@ -35732,7 +35742,7 @@
       "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
       "description": "Awesome OpenClaw skills",
       "category": "AI 代理",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "awesome-openclaw-skills",
         "awesome-openclaw-skills",
@@ -35765,7 +35775,7 @@
       "url": "https://github.com/huggingface/skills",
       "description": "Hugging Face skills",
       "category": "AI 代理",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "huggingface-skills",
         "skills",
@@ -35801,7 +35811,7 @@
       "url": "https://github.com/trailofbits/skills",
       "description": "Trail of Bits security-focused skills",
       "category": "安全性",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "trailofbits-skills",
         "skills",
@@ -35836,7 +35846,7 @@
       "url": "https://github.com/MengTo/Skills",
       "description": "MengTo 開源之設計師專用 AI 輔助 UI/UX、動畫與視覺設計技能庫集合 (DesignCode 創辦人開源)",
       "category": "UI/UX設計",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "mengto-skills",
         "skills",
@@ -35870,7 +35880,7 @@
       "url": "https://github.com/microsoft/skills",
       "description": "Microsoft official skills repository",
       "category": "AI 代理",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "microsoft-official-skills",
         "skills",
@@ -35905,7 +35915,7 @@
       "url": "https://github.com/NVIDIA/skills",
       "description": "NVIDIA AI skills",
       "category": "AI 代理",
-      "language": "Markdown",
+      "language": "markdown",
       "triggers": [
         "nvidia-skills",
         "skills",
@@ -35943,7 +35953,7 @@
       "url": "https://github.com/3b1b/manim",
       "description": "Animation engine for explanatory math videos — 由 3Blue1Brown 創作者 Grant Sanderson 開發的原始版本",
       "category": "影片",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "3b1b-manim",
         "manim",
@@ -35982,7 +35992,7 @@
       "url": "https://github.com/ManimCommunity/manim",
       "description": "A community-maintained Python framework for creating mathematical animations — 社群維護版，功能更豐富",
       "category": "影片",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "manim-community",
         "manim community",
@@ -36023,7 +36033,7 @@
       "url": "https://github.com/helblazer811/ManimML",
       "description": "Animations and visualizations of common machine learning concepts with the Manim Community Library",
       "category": "影片",
-      "language": "Python",
+      "language": "python",
       "triggers": [
         "manim-ml",
         "manimml",
@@ -37029,7 +37039,7 @@
       "url": "https://github.com/rasbt/LLMs-from-scratch",
       "description": "No description provided.",
       "category": "學習資源",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "llms-from-scratch",
         "build-llm",
@@ -37189,7 +37199,7 @@
       "url": "https://github.com/ZzzLc0405/photo-abstract-editorial",
       "description": "No description provided.",
       "category": "開發工具",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "photo-abstract-editorial",
         "abstract-editorial-photo",
@@ -37594,7 +37604,7 @@
       "url": "https://github.com/sqlitebrowser/sqlitebrowser",
       "description": "Official home of the DB Browser for SQLite (DB4S) project — 跨平台 SQLite 圖形化管理工具，支援 SQL 編輯、視覺化建表、匯入匯出與資料瀏覽。",
       "category": "開發工具",
-      "language": "cpp",
+      "language": "c++",
       "triggers": [
         "sqlite-browser",
         "db4s",
@@ -37720,7 +37730,7 @@
       "name": "awesome-dsh-plugin",
       "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin",
       "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
-      "category": "研究",
+      "category": "學習資源",
       "language": "python",
       "triggers": [
         "awesome-dsh-plugin",
@@ -40091,7 +40101,7 @@
     {
       "id": "free-claude-code",
       "name": "Free Claude Code",
-      "url": "https://github.com/alishahryar1/free-claude-code",
+      "url": "https://github.com/Alishahryar1/free-claude-code",
       "description": "Local high-performance proxy connecting coding agents (Claude Code, Codex, Pi, OpenCode, OpenClaw) to OpenAI-compatible AI providers with 1.3B+ free tokens and voice support.",
       "category": "開發工具",
       "language": "python",
@@ -40124,7 +40134,7 @@
       "install": {
         "method": "curl",
         "command": "curl -fsSL https://raw.githubusercontent.com/Alishahryar1/free-claude-code/main/scripts/install.sh | sh",
-        "repoUrl": "https://github.com/alishahryar1/free-claude-code"
+        "repoUrl": "https://github.com/Alishahryar1/free-claude-code"
       },
       "useCase": "適用於希望在終端機、IDE (VSCode) 或手機端免 Anthropic 官方付費 API Key 免費調用 Claude Code, Codex, OpenCode 等編程 Agent，透過本地 Proxy 橋接至 NVIDIA NIM 或其他 OpenAI 相容免費模型的場景。",
       "advantages": [
@@ -40138,7 +40148,7 @@
       ],
       "status": "active",
       "addedAt": "2026-08-30T03:23:32.664Z",
-      "stars": 51497
+      "stars": 54577
     },
     {
       "id": "awesome-gpt-image-2",
@@ -40801,33 +40811,43 @@
       "id": "free-for-dev",
       "name": "free-for-dev",
       "url": "https://github.com/ripienaar/free-for-dev",
-      "description": "A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev",
-      "category": "研究",
+      "description": "A curated list of SaaS, PaaS and IaaS offerings that have free tiers useful for DevOps and infrastructure developers.",
+      "category": "學習資源",
       "language": "html",
       "triggers": [
         "free-for-dev",
+        "free-tier",
+        "saas-free-tier",
+        "devops",
         "awesome-list",
-        "free-for-developers"
+        "free-for-developers",
+        "免費資源",
+        "免費額度",
+        "雲端免費方案"
       ],
       "install": {
         "method": "none",
+        "command": "No installation required — browse the list at https://free-for.dev/ or read the README.",
         "repoUrl": "https://github.com/ripienaar/free-for-dev"
       },
       "capabilities": [
-        "awesome-list",
-        "free-for-developers"
+        "free-tier-directory",
+        "saas-paas-iaas",
+        "devops-resources",
+        "awesome-list"
       ],
-      "useCase": "A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev — 上週漲星 +2943 (2026-W35 自動探勘入庫)。",
+      "useCase": "當需要為專案尋找具免費額度的 SaaS / PaaS / IaaS 服務（CI、託管、資料庫、監控、日誌等）時使用。",
       "advantages": [
-        "GitHub ⭐ 134,939 星",
-        "上週漲星 +2943",
-        "2026-W35 自動探勘入庫"
+        "涵蓋 CI/CD、監控、日誌、資料庫、DNS 等完整 DevOps 工具鏈的免費方案",
+        "每項標註免費額度細節與限制條件，評估成本快速",
+        "社群維護活躍（13.7 萬星），並有 free-for.dev 網頁版可直接搜尋"
       ],
       "negativeConstraints": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "僅為資訊彙整，免費方案條款與額度可能隨時變更",
+        "不含付費方案比較，也不提供供應商推薦或背書",
+        "不適合需要採購合約、SLA 或合規認證的企業選型流程"
       ],
-      "stars": 134939,
+      "stars": 137157,
       "addedAt": "2026-08-31T08:09:43.424Z",
       "status": "active"
     },
@@ -40993,7 +41013,7 @@
       "url": "https://github.com/microsoft/FigmaSharp",
       "description": "Convert Figma designs to native .NET/WPF/UWP/Xamarin UI — bridge design-to-code workflow for Microsoft ecosystem (ARCHIVED).",
       "category": "開發工具",
-      "language": "csharp",
+      "language": "c#",
       "triggers": [
         "figma sharp",
         "figma to code",
@@ -41560,7 +41580,7 @@
       "url": "https://github.com/fmtlib/fmt",
       "description": "A modern formatting library for C++. Provides a high-performance format_string implementation.",
       "category": "開發工具",
-      "language": "cpp",
+      "language": "c++",
       "triggers": [
         "fmt",
         "cpp-format",
@@ -41833,43 +41853,48 @@
       "id": "freetoken",
       "name": "FreeToken",
       "url": "https://github.com/FlashML-org/FreeToken",
-      "description": "FreeToken brings datacenter-scale model serving to your desktop. Run massive models locally, fast and efficiently.",
+      "description": "FreeToken brings datacenter-scale model serving to your desktop — run massive MoE models (Qwen, GLM, DeepSeek, MiniMax) locally, fast and efficiently.",
       "category": "AI 框架",
       "language": "python",
       "triggers": [
         "freetoken",
-        "deepseek-v4",
-        "edge",
+        "local-inference",
+        "moe-inference",
+        "desktop-serving",
+        "qwen",
         "glm",
-        "inference",
+        "deepseek",
         "minimax",
-        "moe",
-        "qwen"
+        "本地推理",
+        "模型服務",
+        "本地部署"
       ],
       "capabilities": [
-        "deepseek-v4",
-        "edge",
-        "glm",
-        "inference",
-        "minimax"
+        "local-model-serving",
+        "moe-inference",
+        "desktop-runtime",
+        "high-throughput-inference",
+        "gpu-acceleration"
       ],
       "install": {
         "method": "pip",
         "command": "pip install git+https://github.com/FlashML-org/FreeToken.git",
         "repoUrl": "https://github.com/FlashML-org/FreeToken"
       },
-      "useCase": "適用於 開發工具 領域之相關任務需求：FreeToken brings datacenter-scale model serving to your desktop. Run massive mod",
+      "useCase": "當需要在個人電腦上高效運行大型 MoE 模型（如 Qwen、GLM、DeepSeek、MiniMax）並取得接近資料中心等級的推理吞吐時使用。",
       "advantages": [
-        "自動化掃描收錄，精準歸入「開發工具」領域",
-        "支援 python 開發生態"
+        "把資料中心等級的模型服務能力帶到桌機，無需昂貴硬體",
+        "針對 MoE 架構最佳化，大型模型推理吞吐顯著提升",
+        "Apache-2.0 授權，商業使用友善"
       ],
       "negativeConstraints": [
-        "初次收錄建議人工審查其最新版本文檔與依賴環境",
-        "非通用型工具，請確認專案環境符合需求"
+        "仍需一定等級的本地 GPU 與記憶體，非一般筆電皆可運行",
+        "專注本地推理服務，不含模型訓練或微調能力",
+        "專案年輕、迭代快速，API 與相容性可能變動"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.157Z",
-      "stars": 11678
+      "stars": 12501
     },
     {
       "id": "graft",
@@ -41917,31 +41942,45 @@
       "id": "freebuff",
       "name": "Freebuff",
       "url": "https://github.com/CodebuffAI/freebuff",
-      "description": "The free coding agent",
-      "category": "開發工具",
+      "description": "Free CLI coding agent from Codebuff — reads your codebase and writes code across multiple files from a natural-language request, powered by the Codebuff model-routing backend.",
+      "category": "AI 代理",
       "language": "typescript",
       "triggers": [
         "freebuff",
-        "開發工具"
+        "coding-agent",
+        "cli-agent",
+        "codebuff",
+        "free-coding-agent",
+        "免費編碼代理",
+        "編碼agent",
+        "終端機agent"
       ],
-      "capabilities": [],
+      "capabilities": [
+        "coding-agent",
+        "cli",
+        "multi-file-edit",
+        "codebase-aware",
+        "natural-language"
+      ],
       "install": {
         "method": "npm",
         "command": "npx freebuff",
         "repoUrl": "https://github.com/CodebuffAI/freebuff"
       },
-      "useCase": "適用於 開發工具 領域之相關任務需求：The free coding agent",
+      "useCase": "當需要在終端機中以自然語言驅動一個免費編碼 Agent、讓它跨檔案讀寫程式碼時使用。",
       "advantages": [
-        "自動化掃描收錄，精準歸入「開發工具」領域",
-        "支援 typescript 開發生態"
+        "npx 一鍵啟動，無需複雜安裝與設定",
+        "由 Codebuff 模型路由後端驅動，免費使用",
+        "CLI 原生體驗，易於融入既有終端機工作流"
       ],
       "negativeConstraints": [
-        "初次收錄建議人工審查其最新版本文檔與依賴環境",
-        "非通用型工具，請確認專案環境符合需求"
+        "免費額度與模型選擇受 Codebuff 服務政策限制",
+        "僅提供 CLI 介面，無 IDE 整合或圖形化操作",
+        "程式碼內容會送至雲端模型，敏感專案需評估"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.158Z",
-      "stars": 11640
+      "stars": 11963
     },
     {
       "id": "kunpeng",
@@ -42223,7 +42262,7 @@
       "url": "https://github.com/arvids-unavailable/openGym",
       "description": "No description provided.",
       "category": "開發工具",
-      "language": "unknown",
+      "language": "other",
       "triggers": [
         "opengym"
       ],
@@ -42315,6 +42354,674 @@
       "stars": 3458,
       "addedAt": "2026-09-07T07:02:26.772Z",
       "status": "active"
+    },
+    {
+      "id": "shiji-kb",
+      "name": "史記知識庫 (Shiji KB)",
+      "url": "https://github.com/baojie/shiji-kb",
+      "description": "AI 將《史記》57 萬字轉化為可交互知識圖譜：14,065 實體 / 126,441 標注（22 類）/ 3,198 個歷史事件 / 7,637 條事件關係；Butler 自主 AI Agent 維護 20,000+ 頁 Wiki；附 103 個 Agentic Ontology SKILL 文檔（14 元技能 + 89 管線技能），方法論可直接遷移至任意古籍或領域語料。",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "knowledge graph from text",
+        "ancient text processing",
+        "agentic ontology",
+        "knowledge engineering",
+        "autonomous wiki agent",
+        "entity extraction",
+        "historical knowledge graph",
+        "ontology from corpus",
+        "知識圖譜",
+        "古籍處理",
+        "butler agent",
+        "wiki automation"
+      ],
+      "install": {
+        "method": "git",
+        "command": "git clone https://github.com/baojie/shiji-kb && python3 wiki/server/serve.py wiki/public 8000",
+        "requirements": [
+          "python>=3.8"
+        ]
+      },
+      "capabilities": [
+        "entity-annotation-22-types",
+        "knowledge-graph-construction",
+        "autonomous-wiki-maintenance",
+        "historical-event-extraction",
+        "interactive-timeline-visualization",
+        "cross-chapter-contradiction-detection",
+        "agentic-ontology-methodology"
+      ],
+      "addedAt": "2026-09-10",
+      "status": "active",
+      "useCase": "AI 工程師參考 Agentic Ontology 方法論（103 SKILL 文檔）設計大型文獻知識工程管線；Butler Agent 為自主 Wiki 維護 Agent 的完整實作參考案例（三層反思機制，12,000+ 輪次運行）",
+      "advantages": [
+        "103 個 SKILL 文檔覆蓋知識工程全流程（校勘→實體→事件→關係→本體→推理），可直接遷移至其他語料",
+        "Agentic Ontology 新範式：本體從語料自下而上湧現，無需預先人工設計",
+        "Butler Agent 含流程/圖式/類型三層反思機制，展示高可靠 Agentic Loop 設計",
+        "史記地鐵圖：130 條線路 × 3,197 站點，支援縮放/拖曳/搜索的互動時間線"
+      ],
+      "negativeConstraints": [
+        "資料集專針對《史記》，並非通用 NLP 或知識圖譜框架，無法開箱即用於其他語料",
+        "Butler Agent 依賴 LLM API，大規模 Wiki 維護有持續 API 費用"
+      ],
+      "stars": 2749,
+      "subTools": [
+        {
+          "id": "butler-agent",
+          "name": "Butler Agent",
+          "description": "自主 AI Agent 按輪次維護 Wiki（新建 Stub、精品擴寫、引文核驗、斷鏈修復），含流程反思（W5）/ 圖式反思（W9）/ 類型審計（W11）三層反思機制"
+        },
+        {
+          "id": "shiji-metro-map",
+          "name": "史記地鐵圖",
+          "description": "130 條互動式歷史時間線 × 3,197 事件站點，支援縮放/拖曳/搜索（位於 app/metro）"
+        },
+        {
+          "id": "agentic-ontology-skills",
+          "name": "Agentic Ontology SKILL 體系",
+          "description": "14 元技能 + 89 管線技能（PDF 合集 863 頁），可遷移至任意古籍或領域語料的知識工程全流程"
+        }
+      ]
+    },
+    {
+      "id": "weread-hot-booklists",
+      "name": "WeRead Hot Booklists (微信讀書熱門書單)",
+      "url": "https://github.com/able8/weread-hot-booklists",
+      "description": "Curated archive of WeRead (微信讀書) most-collected booklists and reader highlights, organised into ready-to-read Markdown notes with per-book like counts.",
+      "category": "學習資源",
+      "language": "go",
+      "triggers": [
+        "weread-hot-booklists",
+        "微信读书",
+        "热门书单",
+        "读书笔记",
+        "weread",
+        "booklist",
+        "reading-notes",
+        "書單",
+        "閱讀筆記",
+        "热门收藏"
+      ],
+      "capabilities": [
+        "booklist-aggregation",
+        "reading-notes",
+        "markdown-export",
+        "wechat-reading"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/able8/weread-hot-booklists.git",
+        "repoUrl": "https://github.com/able8/weread-hot-booklists"
+      },
+      "useCase": "當需要中文優質書單、微信讀書熱門收藏與讀者劃線筆記作為選書或閱讀素材時使用。",
+      "advantages": [
+        "書單以 Markdown 整理，每本書附熱度數據與讀者金句，可直接離線閱讀",
+        "涵蓋大學生必讀、商業、心理等多個主題榜單，選書成本低",
+        "以 Go 工具定期更新，榜單具時效性"
+      ],
+      "negativeConstraints": [
+        "僅為書單與筆記索引，不提供電子書全文下載",
+        "內容以簡體中文書籍為主，非中文書籍覆蓋有限",
+        "榜單反映微信讀書平台熱度，不代表專業書評意見"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 762
+    },
+    {
+      "id": "m3e-canvas",
+      "name": "M3E Canvas",
+      "url": "https://github.com/lnkiai/m3e-canvas",
+      "description": "Browser-based sketching canvas for Material 3 Expressive screens — link screens, tap through a prototype, and export a structured prompt for your AI coding tool.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "m3e-canvas",
+        "material-3",
+        "material-design",
+        "material3-expressive",
+        "ui-sketch",
+        "design-to-prompt",
+        "vibe-coding",
+        "原型設計",
+        "設計稿",
+        "介面草圖"
+      ],
+      "capabilities": [
+        "ui-sketching",
+        "material3-expressive",
+        "prototype-linking",
+        "prompt-generation",
+        "design-to-code"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/lnkiai/m3e-canvas.git",
+        "repoUrl": "https://github.com/lnkiai/m3e-canvas"
+      },
+      "useCase": "當需要快速繪製 Material 3 Expressive 介面草圖、串接多頁可點擊原型，並一鍵導出給 AI 編碼工具的結構化提示詞時使用。",
+      "advantages": [
+        "瀏覽器內即開即用，另有官方線上 Demo，無需本地安裝",
+        "內建 Material 3 Expressive 設計規範元件，草圖即符合規範",
+        "可將原型直接轉為 AI 編碼提示詞，縮短設計到實作的落差"
+      ],
+      "negativeConstraints": [
+        "定位為草圖與原型工具，非高保真設計稿或設計交付工具",
+        "僅支援 Material 3 設計語言，不適合其他設計系統",
+        "不含多人協作與版本控管能力"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 6184
+    },
+    {
+      "id": "web-llm",
+      "name": "WebLLM",
+      "url": "https://github.com/mlc-ai/web-llm",
+      "description": "High-performance in-browser LLM inference engine. Runs quantised models fully client-side on WebGPU with OpenAI-compatible streaming APIs and Web Worker support — no server required.",
+      "category": "AI 框架",
+      "language": "typescript",
+      "triggers": [
+        "web-llm",
+        "webllm",
+        "in-browser-llm",
+        "webgpu",
+        "browser-inference",
+        "client-side-llm",
+        "tvm",
+        "local-llm",
+        "瀏覽器推理",
+        "本地模型",
+        "邊緣推理"
+      ],
+      "capabilities": [
+        "in-browser-inference",
+        "webgpu",
+        "openai-compatible-api",
+        "streaming",
+        "web-worker",
+        "quantization"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npm install @mlc-ai/web-llm",
+        "repoUrl": "https://github.com/mlc-ai/web-llm"
+      },
+      "useCase": "當需要在瀏覽器端以 WebGPU 完全離線運行 LLM（無需伺服器、推論資料不出本機）時使用，特別適合隱私敏感的邊緣推理與前端 AI 應用。",
+      "advantages": [
+        "MLC-LLM / TVM 團隊維護，推論效能與量化支援業界領先",
+        "完全客戶端執行，零伺服器成本且資料不外流",
+        "提供 OpenAI 相容串流 API，既有程式碼幾乎無痛遷移"
+      ],
+      "negativeConstraints": [
+        "需使用者瀏覽器支援 WebGPU，舊版瀏覽器與部分行動裝置不支援",
+        "受限於瀏覽器記憶體與算力，僅適合中小型量化模型",
+        "首次載入需下載模型權重，冷啟動較慢"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 19094
+    },
+    {
+      "id": "free-api",
+      "name": "Free API 中文免費接口大全",
+      "url": "https://github.com/fangzesheng/free-api",
+      "description": "Continuously updated Chinese-language directory of free public APIs — weather, typhoon tracks, string encryption, translation and more — with monthly changelog and online-callable endpoints.",
+      "category": "API 整合",
+      "language": "markdown",
+      "triggers": [
+        "free-api",
+        "免费api",
+        "免费接口",
+        "中文api",
+        "api大全",
+        "api-directory",
+        "免費接口",
+        "接口服务",
+        "免费接口服务"
+      ],
+      "capabilities": [
+        "api-directory",
+        "free-endpoints",
+        "chinese-apis",
+        "monthly-updates"
+      ],
+      "install": {
+        "method": "none",
+        "command": "No installation required — browse the README directory and call the listed endpoints directly.",
+        "repoUrl": "https://github.com/fangzesheng/free-api"
+      },
+      "useCase": "當需要尋找可免費調用的中文第三方 API（如颱風路徑、字串加密、翻譯等）並查看每月更新清單時使用。",
+      "advantages": [
+        "中文語境整理，介面說明與範例對中文開發者友善",
+        "每月定時更新並附變更紀錄，維護活躍度高",
+        "部分介面提供線上直接調用，無需註冊即可試用"
+      ],
+      "negativeConstraints": [
+        "部分介面來自第三方，需自行至對方平台註冊取得金鑰",
+        "第三方介面的穩定性與可用性無任何保證",
+        "不適合需要 SLA 與商業授權的生產環境"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 16245
+    },
+    {
+      "id": "public-api-lists",
+      "name": "Public API Lists",
+      "url": "https://github.com/public-api-lists/public-api-lists",
+      "description": "Curated, community-maintained list of free public APIs — searchable and beginner-friendly, and itself exposed through a free JSON API for programmatic lookup.",
+      "category": "API 整合",
+      "language": "markdown",
+      "triggers": [
+        "public-api-lists",
+        "free-public-apis",
+        "api-list",
+        "awesome-apis",
+        "public-api",
+        "json-api",
+        "免費api",
+        "api清單",
+        "公開api"
+      ],
+      "capabilities": [
+        "api-directory",
+        "json-api",
+        "searchable-catalog",
+        "community-maintained"
+      ],
+      "install": {
+        "method": "none",
+        "command": "No installation required — browse the list or query the free JSON API endpoint.",
+        "repoUrl": "https://github.com/public-api-lists/public-api-lists"
+      },
+      "useCase": "當需要以程式化方式（免費 JSON API）或人工瀏覽檢索公開免費 API 清單，為原型或系統整合挑選端點時使用。",
+      "advantages": [
+        "本身即提供免費 JSON API，可用程式自動檢索而非人工翻閱",
+        "標示新手友善（beginner-friendly）與認證需求，降低挑選門檻",
+        "社群持續維護，條目經人工審核"
+      ],
+      "negativeConstraints": [
+        "僅為清單索引，不代管也不保證任何第三方端點可用性",
+        "與 public-apis 條目高度重疊，需擇一使用避免重複研究",
+        "不含付費或企業內部 API"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 15791
+    },
+    {
+      "id": "pr-agent",
+      "name": "PR-Agent",
+      "url": "https://github.com/The-PR-Agent/pr-agent",
+      "description": "Open-source AI-powered pull-request reviewer. Generates PR descriptions, inline code suggestions, security and effort reviews, and answers questions about a diff — runs as a GitHub/GitLab/Bitbucket app, CLI or webhook with any LLM provider.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "pr-agent",
+        "pr-reviewer",
+        "code-review",
+        "pull-request",
+        "ai-code-review",
+        "qodo",
+        "代碼審查",
+        "PR審查",
+        "code-review-agent",
+        "程式碼審查"
+      ],
+      "capabilities": [
+        "pr-review",
+        "code-suggestions",
+        "pr-description",
+        "security-review",
+        "cli",
+        "webhook",
+        "multi-provider-llm"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install pr-agent",
+        "repoUrl": "https://github.com/The-PR-Agent/pr-agent"
+      },
+      "useCase": "當需要在 GitHub / GitLab / Bitbucket 上自動化 PR 審查、生成 PR 描述與行內改進建議時使用，可掛載為 CI 步驟或 webhook 服務。",
+      "advantages": [
+        "支援 GitHub / GitLab / Bitbucket / Azure DevOps 與 CLI、webhook 多種掛載方式",
+        "相容 OpenAI、Anthropic、Ollama 等多家 LLM，可自架自控成本",
+        "功能模組化（描述、審查、改進、提問、安全審查），可按需啟用"
+      ],
+      "negativeConstraints": [
+        "為社群維護的 legacy 專案，非 Qodo 商業版，功能迭代較慢",
+        "自動審查建議仍需人工覆核，不可取代人工 code review",
+        "呼叫 LLM 會將 diff 內容送至所選供應商，敏感專案需評估"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 12954
+    },
+    {
+      "id": "youtube-automation-agent",
+      "name": "YouTube Automation Agent",
+      "url": "https://github.com/darkzOGx/youtube-automation-agent",
+      "description": "Fully automated YouTube channel management with AI agents — ideates topics, writes scripts, generates thumbnails, optimises SEO metadata and uploads videos on a schedule, using a free Gemini API key or OpenAI with no coding required.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "youtube-automation-agent",
+        "youtube-automation",
+        "youtube-bot",
+        "content-automation",
+        "seo-optimization",
+        "thumbnail-generator",
+        "影片自動化",
+        "YouTube自動化",
+        "自動上片",
+        "頻道自動化"
+      ],
+      "capabilities": [
+        "content-ideation",
+        "script-generation",
+        "thumbnail-generation",
+        "seo-optimization",
+        "scheduled-upload",
+        "youtube-api",
+        "gemini"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/darkzOGx/youtube-automation-agent.git",
+        "repoUrl": "https://github.com/darkzOGx/youtube-automation-agent"
+      },
+      "useCase": "當需要以 AI Agent 全自動經營 YouTube 頻道（選題、腳本、縮圖、SEO 到定時上傳）時使用，適合個人創作者與內容自動化實驗。",
+      "advantages": [
+        "支援免費 Gemini API 金鑰即可運作，入門成本低",
+        "涵蓋選題到上傳的完整流水線，非單點工具",
+        "宣稱無需程式能力即可配置，Node.js 生態易於部署"
+      ],
+      "negativeConstraints": [
+        "自動上傳需自行申請 YouTube Data API 配額與 OAuth 憑證",
+        "大量自動上傳可能觸發平台政策審查，須自行承擔風險",
+        "產出內容品質仍需人工把關，不建議完全無人監督"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 3336
+    },
+    {
+      "id": "freecad-library",
+      "name": "FreeCAD Parts Library",
+      "url": "https://github.com/FreeCAD/FreeCAD-library",
+      "description": "Community-maintained library of reusable FreeCAD parts, organised by family and shipped in .FcStd and .stp formats — the standard add-on parts repository for FreeCAD models.",
+      "category": "3D工程繪圖",
+      "language": "other",
+      "triggers": [
+        "freecad-library",
+        "freecad-parts",
+        "cad-parts",
+        "3d-parts-library",
+        "step-parts",
+        "fcstd",
+        "零件庫",
+        "3D零件",
+        "標準零件",
+        "機械零件"
+      ],
+      "capabilities": [
+        "cad-parts-library",
+        "fcstd",
+        "step",
+        "stl",
+        "parametric-parts"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/FreeCAD/FreeCAD-library.git",
+        "repoUrl": "https://github.com/FreeCAD/FreeCAD-library"
+      },
+      "useCase": "當需要在 FreeCAD 中重用標準機械零件（螺絲、軸承、型材等）作為組裝基礎，避免從零建模時使用。",
+      "advantages": [
+        "由 FreeCAD 社群長期維護，零件以家族分類、命名規範統一",
+        "同時提供 .FcStd 與 .stp 格式，兼顧原生編輯與跨 CAD 交換",
+        "可直接透過 FreeCAD 附加元件管理員安裝"
+      ],
+      "negativeConstraints": [
+        "倉庫體積巨大（數 GB），下載與附加元件管理員可能長時間無回應",
+        "非 FreeCAD 官方核心專案，零件品質由貢獻者自行負責",
+        "零件為通用標準件，不含特定廠牌型號或客製設計"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 1951
+    },
+    {
+      "id": "freetube",
+      "name": "FreeTube",
+      "url": "https://github.com/FreeTubeApp/FreeTube",
+      "description": "Open-source desktop YouTube client focused on privacy — no ads, no Google account required, with local subscriptions, playlists, SponsorBlock and optional Tor/SOCKS5 proxying.",
+      "category": "影片",
+      "language": "vue",
+      "triggers": [
+        "freetube",
+        "youtube-client",
+        "privacy-youtube",
+        "ad-free-youtube",
+        "desktop-youtube",
+        "sponsorblock",
+        "無廣告YouTube",
+        "隱私影片",
+        "去廣告觀看"
+      ],
+      "capabilities": [
+        "youtube-client",
+        "ad-blocking",
+        "local-subscriptions",
+        "sponsorblock",
+        "tor-proxy",
+        "cross-platform-desktop"
+      ],
+      "install": {
+        "method": "download",
+        "command": "Download the installer for your platform from https://freetubeapp.io/ or the GitHub Releases page.",
+        "repoUrl": "https://github.com/FreeTubeApp/FreeTube"
+      },
+      "useCase": "當需要在桌面端觀看 YouTube 但避免廣告與 Google 追蹤、並以本機儲存訂閱與播放清單時使用。",
+      "advantages": [
+        "不需 Google 帳號即可訂閱與管理頻道，訂閱資料僅存本機",
+        "內建 SponsorBlock 與廣告阻擋，觀看體驗乾淨",
+        "支援 Tor / SOCKS5 代理，可進一步隱藏來源 IP"
+      ],
+      "negativeConstraints": [
+        "非官方客戶端，可能因 YouTube 介面變動而暫時失效",
+        "不支援 Google 帳號同步、留言互動等登入後功能",
+        "無法下載影片離線觀看（非下載工具）"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 21901
+    },
+    {
+      "id": "gpt4free",
+      "name": "gpt4free (g4f)",
+      "url": "https://github.com/xtekky/gpt4free",
+      "description": "Python library and OpenAI-compatible endpoint that aggregates dozens of free or reverse-engineered LLM providers (GPT, DeepSeek, Gemini, Claude, Grok and more) behind a single unified interface.",
+      "category": "API 整合",
+      "language": "python",
+      "triggers": [
+        "gpt4free",
+        "g4f",
+        "free-gpt",
+        "reverse-engineering",
+        "openai-compatible",
+        "multi-provider",
+        "free-llm",
+        "免費gpt",
+        "逆向接口",
+        "多供應商聚合"
+      ],
+      "capabilities": [
+        "multi-provider-aggregation",
+        "openai-compatible",
+        "image-generation",
+        "provider-pooling",
+        "python-library",
+        "web-ui"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install -U g4f[all]",
+        "repoUrl": "https://github.com/xtekky/gpt4free"
+      },
+      "useCase": "當需要以免費方式存取多家 LLM 供應商、並以統一 OpenAI 相容介面呼叫（含圖像生成）時使用，適合個人實驗與原型驗證。",
+      "advantages": [
+        "單一介面聚合數十家供應商，供應商失效可快速切換",
+        "提供 Python 套件與 Web UI 兩種使用方式",
+        "社群規模大、更新頻繁，新模型支援速度快"
+      ],
+      "negativeConstraints": [
+        "多數上游為逆向或非官方端點，穩定性與合規性均無保證",
+        "嚴禁用於生產環境、商業用途或任何需要合規稽核的場景",
+        "可能違反上游供應商服務條款，使用風險須自行承擔"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 66685
+    },
+    {
+      "id": "freellmapi",
+      "name": "FreeLLMAPI",
+      "url": "https://github.com/tashfeenahmed/freellmapi",
+      "description": "Self-hosted router that aggregates free tiers from 34 LLM providers and 635 model endpoints behind a single OpenAI-compatible /v1 API, with smart model routing, automatic failover, encrypted key storage and per-key usage tracking.",
+      "category": "API 整合",
+      "language": "typescript",
+      "triggers": [
+        "freellmapi",
+        "llm-router",
+        "free-llm-api",
+        "api-aggregator",
+        "openai-compatible",
+        "failover",
+        "llm-gateway",
+        "免費llm",
+        "模型路由",
+        "金鑰池"
+      ],
+      "capabilities": [
+        "llm-routing",
+        "automatic-failover",
+        "openai-compatible",
+        "encrypted-keys",
+        "usage-tracking",
+        "docker-deploy"
+      ],
+      "install": {
+        "method": "docker",
+        "command": "docker run -p 3000:3000 ghcr.io/freellmapi/freellmapi",
+        "repoUrl": "https://github.com/tashfeenahmed/freellmapi"
+      },
+      "useCase": "當需要把數十家免費 LLM 供應商整合成單一 /v1 端點、並以智慧路由與自動容錯維持可用性時使用。",
+      "advantages": [
+        "聚合 34 家供應商、635 個模型端點於單一 OpenAI 相容端點",
+        "內建智慧路由、速率限制自動容錯與每把金鑰用量追蹤",
+        "金鑰加密儲存，Docker 一鍵自架，資料自控"
+      ],
+      "negativeConstraints": [
+        "官方定位為個人實驗用途，不適合生產或商業服務",
+        "實際可用額度受各上游免費方案限制，非穩定保證",
+        "需自行管理多家供應商金鑰，維運成本不可忽略"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 25587
+    },
+    {
+      "id": "free-books",
+      "name": "互聯網上的免費書籍",
+      "url": "https://github.com/ruanyf/free-books",
+      "description": "阮一峰整理的互聯網免費書籍索引，按語言與主題分類收錄可合法免費閱讀的技術與人文書目，並提供原文連結。",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "free-books",
+        "免费书籍",
+        "免费电子书",
+        "互联网免费书籍",
+        "ebooks",
+        "free-ebooks",
+        "免費書",
+        "書單",
+        "免費閱讀"
+      ],
+      "capabilities": [
+        "ebook-index",
+        "free-books",
+        "curated-links",
+        "chinese-resources"
+      ],
+      "install": {
+        "method": "none",
+        "command": "No installation required — browse the curated index and follow the original links.",
+        "repoUrl": "https://github.com/ruanyf/free-books"
+      },
+      "useCase": "當需要尋找可合法免費閱讀的中英文技術／人文書籍資源時使用，適合作為自學與閱讀清單的起點。",
+      "advantages": [
+        "由知名技術作者阮一峰整理，選書品質與可信度高",
+        "以索引形式導向原始合法來源，不涉及侵權轉載",
+        "涵蓋程式技術與人文社科，主題廣度大"
+      ],
+      "negativeConstraints": [
+        "僅為書目索引，不託管也不提供書籍檔案下載",
+        "更新頻率低（最後一次推送為 2024 年），部分連結可能失效",
+        "不保證所列書目的授權狀態，使用前仍須自行確認"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 15998
+    },
+    {
+      "id": "musicfree",
+      "name": "MusicFree",
+      "url": "https://github.com/maotoumao/MusicFree",
+      "description": "Plugin-based, customisable and ad-free free music player for Android and desktop. Music sources are supplied as community plugins, so the player itself ships with no bundled content.",
+      "category": "音訊",
+      "language": "typescript",
+      "triggers": [
+        "musicfree",
+        "music-player",
+        "免費音樂",
+        "音樂播放器",
+        "plugin-music",
+        "ad-free-music",
+        "react-native",
+        "插件化播放器",
+        "無廣告音樂"
+      ],
+      "capabilities": [
+        "music-playback",
+        "plugin-architecture",
+        "ad-free",
+        "cross-platform",
+        "react-native",
+        "customisable-ui"
+      ],
+      "install": {
+        "method": "download",
+        "command": "Download the Android APK or desktop build from the GitHub Releases page.",
+        "repoUrl": "https://github.com/maotoumao/MusicFree"
+      },
+      "useCase": "當需要一款可透過插件自訂音源、無廣告且跨平台的免費音樂播放器時使用。",
+      "advantages": [
+        "插件化架構，音源可自行擴充與替換，不被單一平台綁定",
+        "完全無廣告，介面與主題可高度自訂",
+        "基於 React Native，同時支援 Android 與桌面端"
+      ],
+      "negativeConstraints": [
+        "播放器本體不含任何音樂內容，音源全由第三方插件提供",
+        "使用第三方音源須自行確認來源合法性與著作權合規",
+        "插件品質參差，穩定性取決於所選插件"
+      ],
+      "status": "active",
+      "addedAt": "2026-09-12T05:23:23.915Z",
+      "stars": 26794
     }
   ]
 }

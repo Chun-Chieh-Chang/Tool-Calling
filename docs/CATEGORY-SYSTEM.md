@@ -8,67 +8,79 @@
 
 ---
 
+## 權威來源（請先讀這裡）
+
+本文件**不重複定義分類規則**，避免與權威文件脫節。各項事實的單一來源如下：
+
+| 想知道什麼 | 去哪裡看 |
+|---|---|
+| 分類的**判定規則**（某工具該歸哪一類） | `docs/CLASSIFICATION.md` |
+| 分類的**慣例與邊界案例**（領域優先、AI 框架 vs 代理） | `docs/category-conventions.md` |
+| 分類的**機器可讀定義**（名稱／定義／色碼／關鍵詞） | `registry/categories.json` |
+| 工具的**實際資料**（含 category 欄位） | `registry/tools.json` |
+| 本文件的**統計表** | 由 `npm run categories:sync` 自動產生（見下節） |
+
+---
+
 ## 當前分類架構
 
-> 統計時間: 2026-09-08 (`node cli.js validate` + `node scripts/check-mece.js` 確認)
-> 分類慣例與兩大判定原則詳見 `docs/category-conventions.md` (領域優先 + AI 框架/代理邊界)
+<!-- CATEGORIES:INVENTORY:START -->
+> 本表由 `registry/tools.json` ＋ `registry/categories.json` 自動產生，**請勿手改**。
+> 修改分類請改 `categories.json`，再執行 `npm run categories:sync`。
 
-| 分類 | 數量 | 說明 |
-|------|------|------|
-| AI 代理 | 145 | 成品 agent、agent harness、skill/plugin 集合、agent 平台 |
-| 開發工具 | 91 | CLI、IDE、代碼審查、token 壓縮等泛用工具 |
-| AI 框架 | 83 | LLM SDK、模型本體、推論/訓練框架、agent 建構庫 |
-| 文件生產力 | 58 | 簡報/PPT、Office、PDF、文件轉換、寫作輔助 |
-| 學習資源 | 57 | 教程、課程、書籍、Awesome Lists |
-| UI/UX設計 | 54 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
-| 知識管理 | 34 | agent 記憶、RAG、知識圖譜、codebase 索引 |
-| 金融與投資 | 25 | 交易、量化、股票分析、投資研究 |
-| 影片 | 23 | 視頻編輯、視頻生成、串流 |
-| 研究 | 23 | 學術研究、文獻、洩漏提示詞研究 |
-| 多媒體生成 | 19 | AI 圖像/視頻生成 |
-| 瀏覽器自動化 | 17 | 爬蟲、Scraper、Headless、agent 瀏覽器 |
-| 安全性 | 15 | 滲透測試、漏洞掃描、資安技能 |
-| 數據分析 | 11 | Pandas/Polars、產品分析 |
-| 3D工程繪圖 | 11 | CAD、3D 建模、3D 資產生成 |
-| API 整合 | 10 | API 閘道、整合工具 |
-| 音訊 | 10 | TTS/STT、音頻處理 |
-| 測試與自動化 | 8 | Test Runner、E2E 測試框架 |
-| UI/UX设计 | 1 | 設計系統（簡體中文分類，待統一） |
+| 分類 | 數量 | 定義 |
+|---|---:|---|
+| `AI 代理` | 149 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
+| `開發工具` | 91 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
+| `AI 框架` | 71 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
+| `學習資源` | 60 | 教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） |
+| `文件生產力` | 58 | 簡報／PPT、Office、PDF |
+| `UI/UX設計` | 54 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
+| `知識管理` | 34 | agent 記憶、RAG、知識圖譜、codebase 索引 |
+| `金融與投資` | 25 | 交易、量化、股票分析 |
+| `影片` | 24 | 影片編輯、影片串流、影片客戶端 |
+| `研究` | 21 | 學術研究、文獻、論文、學術資料集 |
+| `多媒體生成` | 18 | AI 圖像／影片生成 |
+| `瀏覽器自動化` | 18 | 爬蟲、Scraper、Headless 瀏覽器 |
+| `API 整合` | 16 | API 網關、整合工具、可直接調用的 API 端點目錄／聚合器 |
+| `安全性` | 14 | 滲透測試、漏洞掃描、資訊安全 |
+| `3D工程繪圖` | 11 | CAD、3D 建模、3D 資產／零件庫 |
+| `音訊` | 11 | TTS/STT、音訊處理、音樂播放 |
+| `數據分析` | 11 | Pandas/Polars、資料框架、產品分析 |
+| `測試與自動化` | 10 | 測試框架、CI/CD、自動化腳本 |
 
-**合計**: 695 個工具, 19 個分類, 無「其他」殘留 (MECE 強制 100% 覆蓋)。
+**合計**: 696 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
+<!-- CATEGORIES:INVENTORY:END -->
 
-> **注意**: 2026-09-08 新增 9 個工具後，總數從 680 增至 695。分類數從 18 增至 19（新增「3D工程繪圖」分類）。
-
----
-
-## 分類判定原則(2026-08-16 稽核後確立)
-
-1. **領域優先**:屬於特定領域(金融/行銷/3D/研究)的工具,先歸領域分類,再考慮功能
-2. **AI 框架 vs AI 代理**:框架=建構積木(SDK/模型/推論引擎);代理=可直接使用的成品(agent 本體/skill 集合/平台)
-3. **規則引擎優先級**:明確名稱匹配(100)→ 語義短語(90-95)→ 功能特徵(80-85),並遵守排除條件
-4. **嚴禁關鍵字**(歷史教訓,详见 `category-conventions.md`):`agents`(UI/UX 誤判)、`/\b3d\b/`(3D 誤判)、語言名稱(學習資源誤判)、`analytics`(行銷誤判)
+> 本表為**衍生內容**，由 `registry/tools.json` ＋ `registry/categories.json` 自動產生，
+> 請勿手改；執行 `npm run categories:sync` 更新，`npm run categories:check` 會檢查是否同步。
+>
+> **歷史教訓**：此表的數字在本專案至少被人工修正過 5 次
+> （483/21 類 → 474/21 類 → 538/21 類 → 585/22 類 → 680/18 類 → 695/19 類），
+> 每次都是同一種腐化。改為自動產生後，這類漂移在結構上不可能再發生。
 
 ---
 
-## 自動重構機制(2026-08-16 起為建議模式)
+## 自動重構機制（2026-08-16 起為建議模式）
 
-> ⚠️ 行為變更:registry 分類已於 2026-08-16 完成人工稽核修正(255 項,見
-> `docs/category-audit-2026-08-16.md`)。規則引擎不再自動寫入,僅輸出差異建議。
+> ⚠️ 行為變更：registry 分類已於 2026-08-16 完成人工稽核修正（255 項，見
+> `docs/category-audit-2026-08-16.md`）。規則引擎不再自動寫入，僅輸出差異建議。
 
 ### 觸發時機
 
-1. **工具新增後**:`node cli.js add <url>` —— 新工具由 `scan-tool.guessCategory()` 給初始分類
-2. **建議檢查**:`node scripts/hook-reclassify.js`(dry-run,輸出建議不寫入)
-3. **確定採用**:`node scripts/reclassify-tools.js --apply`(寫入前必須人工覆核建議清單)
+1. **工具新增後**：`node cli.js add <url>` —— 新工具由 `scan-tool.guessCategory()` 給初始分類
+2. **建議檢查**：`node scripts/hook-reclassify.js`（dry-run，輸出建議不寫入）
+3. **確定採用**：`node scripts/reclassify-tools.js --apply`（寫入前必須人工覆核建議清單）
+4. **全庫重掃**：`npm run rescan-classification`（唯讀差異報告，分 Tier 1／2／3）
 
 ### 執行流程
 
 ```
 用戶執行 add/batch-add
         ↓
-    新增工具到 registry(guessCategory 給初始分類)
+    新增工具到 registry（guessCategory 給初始分類）
         ↓
-    hook-reclassify.js(dry-run)
+    hook-reclassify.js（dry-run）
         ↓
     reclassify-tools.js 規則引擎輸出差異建議
         ↓
@@ -92,6 +104,16 @@ node scripts/hook-reclassify.js force
 
 # 僅檢查（不修改）
 node scripts/hook-reclassify.js check
+
+# 全庫重掃（唯讀，產出差異報告）
+npm run rescan-classification
+```
+
+### 產生／驗證衍生檔
+
+```bash
+npm run categories:sync    # 重生 schema enum、CLASSIFICATION.md §2.1、本文件統計表
+npm run categories:check   # 檢查是否同步（CI 門禁，不同步則 exit 1）
 ```
 
 ### 查看重構日誌
@@ -104,11 +126,12 @@ cat .agnes/hooks/reclassify-log.json
 
 ## MECE 驗證指標
 
-系統會自動檢查以下指標：
+`node scripts/check-mece.js` 會自動檢查以下指標：
 
 1. **互斥性檢查**
-   - 「其他」類別是否為空
+   - 「其他」／「未分類」類別是否為空
    - 是否有過度重疊的類別
+   - 分類色碼是否唯一、色距是否足夠、對黑底對比是否足夠
 
 2. **窮盡性檢查**
    - 所有工具是否都已歸類
@@ -117,6 +140,9 @@ cat .agnes/hooks/reclassify-log.json
 3. **平衡性檢查**
    - 小類別警告（≤2 個工具）
    - 大類別警告（≥50 個工具）
+
+4. **來源一致性檢查**（2026-09-12 新增）
+   - `registry/categories.json`、schema enum、色表、`CLASSIFICATION.md` 是否一致
 
 ---
 
@@ -135,4 +161,6 @@ cat .agnes/hooks/reclassify-log.json
 
 - 分類規則會持續優化，每當有新的工具類型出現時
 - 手動修改 `registry/tools.json` 中的 `category` 欄位也會生效
-- 如需調整分類規則，請編輯 `scripts/reclassify-tools.js`
+- **新增或調整分類**時，請改 `registry/categories.json`（單一來源），再依序執行
+  `npm run categories:sync` → `npm run check-mece` → `npm test`；
+  分類的**判定規則**變更則編輯 `docs/CLASSIFICATION.md`

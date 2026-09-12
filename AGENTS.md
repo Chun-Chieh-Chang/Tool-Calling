@@ -32,26 +32,26 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 666 個工具
-追蹤 repos: 2390 個
-總 star 數: 27,489,596 ⭐
-平均 star 數: 41,276 ⭐
-最後更新: 2026/9/3
+工具庫規模: 696 個工具
+追蹤 repos: 2433 個
+總 star 數: 27,971,794 ⭐
+平均 star 數: 40,189 ⭐
+最後更新: 2026/9/12
 ```
 
 ### Top 5 分類
-- `AI 代理`: 141 個工具
-- `開發工具`: 83 個工具
-- `AI 框架`: 78 個工具
+- `AI 代理`: 149 個工具
+- `開發工具`: 91 個工具
+- `AI 框架`: 71 個工具
+- `學習資源`: 60 個工具
 - `文件生產力`: 58 個工具
-- `學習資源`: 54 個工具
 
 ### Top 5 語言
-- `python`: 228 個工具
-- `typescript`: 151 個工具
-- `javascript`: 62 個工具
-- `other`: 43 個工具
-- `rust`: 30 個工具
+- `python`: 246 個工具
+- `typescript`: 162 個工具
+- `javascript`: 65 個工具
+- `other`: 54 個工具
+- `rust`: 32 個工具
 
 ---
 
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2390 repos)
+npm run tracked-repos     # 重建追蹤池 (2433 repos)
 npm test                  # 執行所有測試 (62/62 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -99,7 +99,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (666+)
+node cli.js list                      # 列出所有工具 (696+)
 ```
 
 ### Git 工作流
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (62/62)
-- [ ] 工具庫驗證通過 (666+ 工具)
+- [ ] 工具庫驗證通過 (696+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -212,7 +212,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 666 and add new features
+fix(README): update tool count from 381 to 696 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -243,8 +243,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 666+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2390 追蹤 repos
+│   ├── tools.json      # 696+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2433 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -474,4 +474,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-03T12:38:19.699Z
+> **最後更新**：2026-09-12T07:04:58.659Z

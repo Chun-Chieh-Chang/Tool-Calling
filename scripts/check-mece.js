@@ -11,6 +11,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { categoryList } from '../core/categories.js';
 
 const __dirname = import.meta.dirname;
 const ROOT = join(__dirname, '..');
@@ -133,6 +134,186 @@ function checkMECE() {
     warn(`發現 ${noTriggers.length} 個工具缺少 triggers（影響檢索準確度）`);
   }
 
+  // ─── 檢查 4：enum 合規（分類 / 語言 / 安裝方式 與 tool.schema.json 對齊）──
+  console.log(`\n${c.bold}【Enum 合規檢查】${c.reset}`);
+
+  let enumViolations = 0;
+  try {
+    const schemaPath = join(ROOT, 'registry', 'schemas', 'tool.schema.json');
+    const schema = JSON.parse(readFileSync(schemaPath, 'utf8'));
+    const props = schema.definitions.Tool.properties;
+
+    const checkEnum = (enumValues, getValue, label) => {
+      const allowed = new Set(enumValues);
+      const bad = tools
+        .map(t => ({ id: t.id, value: getValue(t) }))
+        .filter(x => x.value !== undefined && x.value !== null && !allowed.has(x.value));
+      if (bad.length > 0) {
+        const grouped = {};
+        bad.forEach(b => { grouped[b.value] = (grouped[b.value] || 0) + 1; });
+        fail(`${label} 有 ${bad.length} 筆不符合 schema enum：${JSON.stringify(grouped)}`);
+        console.log(`     範例：${bad.slice(0, 3).map(b => `${b.id}=${b.value}`).join(', ')}`);
+        enumViolations += bad.length;
+      } else {
+        pass(`${label} 全部符合 schema enum（${allowed.size} 個允許值）`);
+      }
+    };
+
+    checkEnum(props.category.enum, t => t.category, 'category');
+    checkEnum(props.language.enum, t => t.language, 'language');
+    checkEnum(props.install.properties.method.enum, t => t.install && t.install.method, 'install.method');
+  } catch (err) {
+    warn(`無法讀取 schema 進行 enum 檢查：${err.message}`);
+  }
+
+  // ─── 檢查 5：分類單一來源一致性（registry/categories.json）──────
+  // 這一節是 2026-09-12 審計的直接產物：當天在 5 個檔案中發現 4 次分類脫節
+  // （簡繁不符、schema enum 過期、色表缺漏與重複、LLM prompt 停在舊版決策樹）。
+  // 這裡把「所有衍生處必須與單一來源一致」變成建置失敗條件。
+  console.log(`\n${c.bold}【分類來源一致性檢查】${c.reset}`);
+
+  let sourceViolations = 0;
+  try {
+    const cats = categoryList();
+    const catNames = cats.map(x => x.name);
+    const catSet = new Set(catNames);
+
+    // 5a. categories.json 內部：名稱唯一且非空
+    if (catNames.some(n => !n)) { fail('categories.json 有分類缺少 name'); sourceViolations++; }
+    else if (catSet.size !== catNames.length) { fail('categories.json 有重複的分類名稱'); sourceViolations++; }
+    else pass(`categories.json 定義 ${catNames.length} 個分類，名稱唯一`);
+
+    // 5b. registry 實際使用的分類都必須有定義（反向：有定義但沒用到是允許的，僅提示）
+    const usedCats = Object.keys(categoryStats);
+    const undefinedCats = usedCats.filter(x => !catSet.has(x));
+    if (undefinedCats.length > 0) {
+      fail(`registry 使用了 categories.json 未定義的分類：${undefinedCats.join(', ')}`);
+      sourceViolations += undefinedCats.length;
+    } else {
+      pass(`registry 使用的 ${usedCats.length} 個分類都有定義`);
+    }
+
+    // 5c. 每個分類都要有合法色碼
+    const badColor = cats.filter(x => !/^#[0-9a-f]{6}$/i.test(x.color || ''));
+    if (badColor.length > 0) {
+      fail(`以下分類缺少合法色碼（#RRGGBB）：${badColor.map(x => x.name).join(', ')}`);
+      sourceViolations += badColor.length;
+    } else {
+      pass(`每個分類都有合法色碼`);
+    }
+
+    // 5d. 色碼必須唯一（曾發生 AI 框架 與 知識管理 同為 #0284c7，105 筆無法區分）
+    const byColor = {};
+    cats.forEach(x => { (byColor[x.color] = byColor[x.color] || []).push(x.name); });
+    const dupColors = Object.entries(byColor).filter(([, names]) => names.length > 1);
+    if (dupColors.length > 0) {
+      dupColors.forEach(([hex, names]) => fail(`色碼重複：${hex} 被 ${names.join(' / ')} 共用`));
+      sourceViolations += dupColors.length;
+    } else {
+      pass('18 個分類的色碼互不重複');
+    }
+
+    // 5e. 色距 >= 55（RGB 歐氏距離）— 確保圖例上可分辨
+    const hex2rgb = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    const rgbDist = (a, b) => {
+      const [r1, g1, b1] = hex2rgb(a), [r2, g2, b2] = hex2rgb(b);
+      return Math.sqrt((r1 - r2) ** 2 + (g1 - g2) ** 2 + (b1 - b2) ** 2);
+    };
+    const tooClose = [];
+    for (let i = 0; i < cats.length; i++) {
+      for (let j = i + 1; j < cats.length; j++) {
+        const d = rgbDist(cats[i].color, cats[j].color);
+        if (d < 55) tooClose.push({ a: cats[i].name, b: cats[j].name, d: d.toFixed(1) });
+      }
+    }
+    if (tooClose.length > 0) {
+      tooClose.forEach(x => fail(`色距過近（${x.d} < 55）：${x.a} ↔ ${x.b}，圖例上難以分辨`));
+      sourceViolations += tooClose.length;
+    } else {
+      const allD = [];
+      for (let i = 0; i < cats.length; i++)
+        for (let j = i + 1; j < cats.length; j++) allD.push(rgbDist(cats[i].color, cats[j].color));
+      pass(`所有色距 >= 55（實際最小 ${Math.min(...allD).toFixed(1)}）`);
+    }
+
+    // 5f. 黑底對比 >= 3.5:1 — 知識圖譜背景為 OLED 純黑
+    const contrast = h => {
+      const [r, g, b] = hex2rgb(h).map(v => {
+        const s = v / 255;
+        return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4;
+      });
+      const L = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      return (L + 0.05) / 0.05;
+    };
+    const lowContrast = cats.filter(x => contrast(x.color) < 3.5);
+    if (lowContrast.length > 0) {
+      lowContrast.forEach(x => fail(`${x.name} 的色碼 ${x.color} 對純黑對比僅 ${contrast(x.color).toFixed(2)}:1（需 >= 3.5:1），黑底上會看不見`));
+      sourceViolations += lowContrast.length;
+    } else {
+      pass('所有色碼對純黑對比 >= 3.5:1（OLED 黑底可見）');
+    }
+
+    // 5g. schema enum 必須與 categories.json 完全一致（順序與內容）
+    try {
+      const schemaPath = join(ROOT, 'registry', 'schemas', 'tool.schema.json');
+      const schema = JSON.parse(readFileSync(schemaPath, 'utf8'));
+      const enumList = schema.definitions.Tool.properties.category.enum;
+      const sameSet = enumList.length === catNames.length && enumList.every((v, i) => v === catNames[i]);
+      if (!sameSet) {
+        fail(`tool.schema.json 的 category enum 與 categories.json 不一致（請執行 npm run categories:sync）`);
+        console.log(`     enum：${enumList.join(', ')}`);
+        sourceViolations++;
+      } else {
+        pass('tool.schema.json 的 category enum 與 categories.json 一致');
+      }
+    } catch (err) {
+      warn(`無法比對 schema enum：${err.message}`);
+    }
+
+    // 5h. CLASSIFICATION.md §2.1 詞表必須與 categories.json 一致
+    try {
+      const md = readFileSync(join(ROOT, 'docs', 'CLASSIFICATION.md'), 'utf8');
+      const missingInMd = cats.filter(x => !md.includes(x.name));
+      if (missingInMd.length > 0) {
+        fail(`docs/CLASSIFICATION.md 未提及以下分類：${missingInMd.map(x => x.name).join(', ')}`);
+        sourceViolations += missingInMd.length;
+      } else {
+        pass('docs/CLASSIFICATION.md 涵蓋全部 18 個分類');
+      }
+    } catch (err) {
+      warn(`無法比對 CLASSIFICATION.md：${err.message}`);
+    }
+
+    // 5i. CATEGORY-SYSTEM.md 的分類清單必須與 categories.json 集合相等
+    //     （只驗「有提到」不夠 —— 該檔歷史上曾殘留已不存在的 `UI/UX设计` 分類，
+    //       所以必須同時抓「缺少」與「幽靈」兩種情況）
+    try {
+      const cs = readFileSync(join(ROOT, 'docs', 'CATEGORY-SYSTEM.md'), 'utf8');
+      const s = cs.indexOf('<!-- CATEGORIES:INVENTORY:START -->');
+      const e = cs.indexOf('<!-- CATEGORIES:INVENTORY:END -->');
+      if (s === -1 || e === -1) {
+        fail('docs/CATEGORY-SYSTEM.md 缺少 CATEGORIES:INVENTORY 標記區塊');
+        sourceViolations++;
+      } else {
+        const listed = [...cs.slice(s, e).matchAll(/^\|\s*`([^`]+)`\s*\|\s*(\d+)\s*\|/gm)].map(m => m[1]);
+        const expected = cats.map(c => c.name);
+        const missing = expected.filter(n => !listed.includes(n));
+        const phantom = listed.filter(n => !expected.includes(n));
+        if (missing.length || phantom.length) {
+          if (missing.length) fail(`docs/CATEGORY-SYSTEM.md 缺少分類：${missing.join(', ')}`);
+          if (phantom.length) fail(`docs/CATEGORY-SYSTEM.md 出現 categories.json 沒有的分類：${phantom.join(', ')}`);
+          sourceViolations += missing.length + phantom.length;
+        } else {
+          pass(`docs/CATEGORY-SYSTEM.md 分類清單與 categories.json 一致（${listed.length} 列）`);
+        }
+      }
+    } catch (err) {
+      warn(`無法比對 CATEGORY-SYSTEM.md：${err.message}`);
+    }
+  } catch (err) {
+    warn(`無法讀取 categories.json 進行一致性檢查：${err.message}`);
+  }
+
   // ─── 分類分布報告 ──────────────────────────────────────────────
   console.log(`\n${c.bold}【分類分布】${c.reset}`);
   const sorted = Object.entries(categoryStats).sort((a, b) => b[1].count - a[1].count);
@@ -145,7 +326,7 @@ function checkMECE() {
   // ─── 總結 ──────────────────────────────────────────────────────
   console.log(`\n${c.bold}=== 檢查結果 ===${c.reset}`);
 
-  const hasFailures = issues.some(i => i.type === 'residual') || calculatedTotal !== totalTools || missingFields.length > 0 || noCategory.length > 0;
+  const hasFailures = issues.some(i => i.type === 'residual') || calculatedTotal !== totalTools || missingFields.length > 0 || noCategory.length > 0 || enumViolations > 0 || sourceViolations > 0;
   
   if (hasFailures) {
     fail('\n存在需修復的問題，請執行相關修正腳本。');

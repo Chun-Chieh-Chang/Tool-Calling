@@ -1,0 +1,144 @@
+{
+  "$schema": "./schemas/categories.schema.json",
+  "version": 1,
+  "updatedAt": "2026-09-12",
+  "note": "18 個正規分類的單一機器可讀來源。所有衍生處（schema enum、classifier prompt、知識圖譜色表、rescan 領域規則、CLASSIFICATION.md §2.1）都必須與本檔一致，並由 scripts/check-mece.js 強制驗證。修改分類時只改本檔，再執行 npm run categories:sync。",
+  "paletteConstraint": {
+    "reason": "知識圖譜背景為 OLED 純黑，且 18 個分類必須在圖例中可區分。",
+    "rules": [
+      "每個分類一個唯一色，禁止重複",
+      "任兩色 RGB 歐氏距離 >= 55（現行最小 58.1）",
+      "每個顏色對純黑的 WCAG 對比 >= 3.5:1（否則黑底看不見）",
+      "每個色相家族最多使用一次（避免同家族深淺兩色難以分辨）"
+    ],
+    "reference": "驗證邏輯見 scripts/check-mece.js 的【色表檢查】"
+  },
+  "categories": [
+    {
+      "name": "AI 代理",
+      "definition": "成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4）",
+      "color": "#0ea5e9",
+      "examples": ["freebuff", "awesome-llm-apps", "youtube-automation-agent", "openai-codex-skills"],
+      "keywords": []
+    },
+    {
+      "name": "AI 框架",
+      "definition": "LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包）",
+      "color": "#2563eb",
+      "examples": ["web-llm", "freetoken", "airllm"],
+      "keywords": []
+    },
+    {
+      "name": "開發工具",
+      "definition": "CLI、IDE、代碼審查、token 壓縮、開發流程 proxy",
+      "color": "#94a3b8",
+      "examples": ["pr-agent", "free-claude-code", "rtk"],
+      "keywords": []
+    },
+    {
+      "name": "UI/UX設計",
+      "definition": "前端框架、設計系統、網頁動畫、原型、圖標庫",
+      "color": "#ec4899",
+      "examples": ["m3e-canvas", "storybook"],
+      "keywords": ["design system", "ui (kit|library|component)", "prototyp", "wireframe", "design token", "figma (plugin|api|library|sdk|widget|integration)"]
+    },
+    {
+      "name": "知識管理",
+      "definition": "agent 記憶、RAG、知識圖譜、codebase 索引",
+      "color": "#9333ea",
+      "examples": ["OpenViking", "graphify"],
+      "keywords": ["\\brag\\b", "retrieval[- ]augmented", "knowledge graph", "vector (db|database|store)", "embedding (store|index)", "second brain", "agent memory", "codebase (index|map)"]
+    },
+    {
+      "name": "學習資源",
+      "definition": "教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值）",
+      "color": "#ea580c",
+      "examples": ["free-books", "free-for-dev", "weread-hot-booklists"],
+      "keywords": ["tutorial", "course", "curriculum", "roadmap", "handbook", "cheat ?sheet", "interview (prep|handbook)", "learn .{0,20}(from|by) (scratch|doing|example)", "guide to"]
+    },
+    {
+      "name": "研究",
+      "definition": "學術研究、文獻、論文、學術資料集",
+      "color": "#78716c",
+      "examples": ["systempromptsleaks"],
+      "keywords": ["arxiv", "research paper|academic (paper|research)", "literature review|systematic review", "preprint|peer[- ]reviewed", "论文|論文|文献|學術|学术"]
+    },
+    {
+      "name": "安全性",
+      "definition": "滲透測試、漏洞掃描、資訊安全",
+      "color": "#dc2626",
+      "examples": ["anthropic-cybersecurity-skills"],
+      "keywords": ["pentest|penetration test|vulnerability (scan|assessment)|exploit (dev|development)|malware|owasp|threat (intel|hunt)|security (audit|scanner)|forensic"]
+    },
+    {
+      "name": "金融與投資",
+      "definition": "交易、量化、股票分析",
+      "color": "#f59e0b",
+      "examples": ["financial-services"],
+      "keywords": ["\\btrading\\b|quant(itative)? (trading|finance|strategy)|portfolio (optim|management)|backtest|stock (analysis|market|screening)|financial (analysis|data|statement)"]
+    },
+    {
+      "name": "3D工程繪圖",
+      "definition": "CAD、3D 建模、3D 資產／零件庫",
+      "color": "#0891b2",
+      "examples": ["FreeCAD", "freecad-library"],
+      "keywords": ["\\bcad\\b|parametric (3d|model)|openscad|freecad|3d (model|asset|mesh|printing)|blender|\\bbim\\b"]
+    },
+    {
+      "name": "瀏覽器自動化",
+      "definition": "爬蟲、Scraper、Headless 瀏覽器",
+      "color": "#6366f1",
+      "examples": ["browser-use", "scrapling"],
+      "keywords": ["\\bscrap(e|er|ing)\\b|web crawler|crawling|headless browser|browser automation|stealth.*fetch"]
+    },
+    {
+      "name": "API 整合",
+      "definition": "API 網關、整合工具、可直接調用的 API 端點目錄／聚合器",
+      "color": "#10b981",
+      "examples": ["public-apis", "gpt4free", "freellmapi"],
+      "keywords": []
+    },
+    {
+      "name": "數據分析",
+      "definition": "Pandas/Polars、資料框架、產品分析",
+      "color": "#16a34a",
+      "examples": ["posthog"],
+      "keywords": ["\\bpandas\\b|\\bpolars\\b|dataframe|exploratory data analysis|\\beda\\b|\\bolap\\b|data (analysis|visuali[sz]ation) (tool|library)|analytical (database|engine)"]
+    },
+    {
+      "name": "多媒體生成",
+      "definition": "AI 圖像／影片生成",
+      "color": "#d946ef",
+      "examples": ["stable-diffusion-webui"],
+      "keywords": ["image generation|text[- ]to[- ](image|video)|stable diffusion|diffusion model|generative (image|video|media)|image (generator|synthesis)"]
+    },
+    {
+      "name": "影片",
+      "definition": "影片編輯、影片串流、影片客戶端",
+      "color": "#f43f5e",
+      "examples": ["freetube", "youtube-skills"],
+      "keywords": ["video (edit|editor|generation|pipeline|production)|ffmpeg|subtitle (generation|editing)|\\bmanim\\b"]
+    },
+    {
+      "name": "音訊",
+      "definition": "TTS/STT、音訊處理、音樂播放",
+      "color": "#84cc16",
+      "examples": ["musicfree"],
+      "keywords": ["\\btts\\b|\\bstt\\b|text[- ]to[- ]speech|speech[- ]to[- ]text|voice (cloning|synthesis)|audio (processing|transcription)|transcrib"]
+    },
+    {
+      "name": "文件生產力",
+      "definition": "簡報／PPT、Office、PDF",
+      "color": "#a16207",
+      "examples": ["ppt-master", "markitdown"],
+      "keywords": ["\\bpptx?\\b|powerpoint|slide deck|presentation (deck|generation)|docx|xlsx|pdf (generation|parsing|conversion|extraction)|office (document|file)"]
+    },
+    {
+      "name": "測試與自動化",
+      "definition": "測試框架、CI/CD、自動化腳本",
+      "color": "#2dd4bf",
+      "examples": ["playwright"],
+      "keywords": ["test (runner|framework|automation|harness)|ci\\/cd|e2e test|unit test|\\bcypress\\b|\\bvitest\\b|\\bjest\\b|regression test"]
+    }
+  ]
+}
