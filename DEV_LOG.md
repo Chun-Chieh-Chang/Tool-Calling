@@ -1,5 +1,515 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-12（晚間・第五輪）文件層 SSOT：分類統計改為產生、README 繁體化、修兩個計數 bug
+
+### 需求
+使用者要求盤點未完成任務。審計後發現第四輪只治好了「程式碼層的 SSOT」，
+**文件層的同一個病完全沒治** —— 4 個文件各自手抄分類／工具數字，其中 1 個已完全腐化。
+使用者指示「照繁體修，採納你的建議繼續執行任務」。
+
+### 問題 1：`docs/CATEGORY-SYSTEM.md` 是第二份分類清單，已完全腐化
+
+| 項目 | 文件聲稱 | 實際 |
+|---|---|---|
+| 工具總數 | 695 | **696** |
+| 分類數 | 19 | **18** |
+| `UI/UX设计`（簡體分類） | 1 筆 | **0 筆，分類根本不存在** |
+| 19 列中的錯誤列數 | — | **12 列**（AI 代理 145→149、AI 框架 83→71、API 整合 10→16…） |
+
+**根因**：`check-mece.js` 的 5h 只驗 `docs/CLASSIFICATION.md`，`sync-categories.js` 也只重生
+`CLASSIFICATION.md` §2.1 —— 這個檔**完全沒有守衛**。
+
+**這是慣性問題，不是一次性失誤**。DEV_LOG 可見它至少被人工修正過 5 次：
+483/21 類 → 474/21 類 → 538/21 類 → 585/22 類 → 680/18 類 → 695/19 類。每次都是同一種腐化。
+
+**CAPA**：不再人工同步，改為**產生**。
+- `scripts/sync-categories.js` 新增第 3 個產生目標：`CATEGORY-SYSTEM.md` 的分類清單與數量
+  （標記區塊 `<!-- CATEGORIES:INVENTORY:START/END -->`），資料來自 `tools.json` ＋ `categories.json`
+- 同時把腳本內重複的標記區塊邏輯抽成 `syncBlock()` 共用函式
+- `scripts/check-mece.js` 新增 **5i**：驗 `CATEGORY-SYSTEM.md` 的清單與 `categories.json`
+  **集合相等**（同時抓「缺少」與「幽靈」—— 只驗「有提到」抓不到殘留的 `UI/UX设计`）
+- `docs/CATEGORY-SYSTEM.md` 重寫：加標記區塊、刪幽靈列、**移除重複的規則定義**
+  （規則的權威是 `CLASSIFICATION.md` ＋ `category-conventions.md`，本檔只留統計與重構機制）
+- `tests/category-guards.test.js` 新增 3 個注入測試（幽靈分類／缺少分類／缺少標記），
+  由 8 項增至 **11 項**
+
+### 問題 2：`README.md` 中文嚴重損壞（專案門面）
+
+- **10 處 `面`→`麵`**：`裡麵`、`全麵優化`、`平麵`、`介麵`、`畫麵`、`跨页麵`
+- **大量簡體字殘留**：网页、专案、透过、搜寻、进行、触发、延迟、离线、容错、距离、词汇、
+  集成、函式库、资料集、微调、补帖、规划、问答、互动、数量、关鍵词
+- **同音字誤代**：`齣` 代替 `出`（`輸齣`、`列齣`、`汇齣`）
+- **疊字**：`功能類別别`、`分類別`
+- **語意錯字**：`游標位元置`（位元＝bit，應為 `游標位置`）、`零位元移縮放`（應為 `零位移`）
+
+**為何 `check-utf8.js` 沒抓到**：它只驗 U+FFFD 替換字元，而這些是「合法但錯」的字。
+（其他文件 QUICKSTART／WORKFLOW／USAGE-GUIDE／CATEGORY-SYSTEM／SECURITY 經查全部乾淨，
+問題僅限 README。）
+
+**處理**：全檔以繁體重寫，並順帶修正數字（見下）。CLI 指令表經交叉比對 `cli.js`
+（21 個指令全部存在、無遺漏）後保留。
+
+### 問題 3：數字過期 —— 並因此挖出兩個計數 bug
+
+| 位置 | 原值 | 修正後 |
+|---|---|---|
+| README 工具數 | 695 | 696 |
+| README 分類數 | 19 個領域分類 | 18 |
+| README 追蹤池 | 2,390 | **2,433** |
+| README 同義詞 | 2309 詞彙 / 2268 配對 | 620 詞彙 / 945 配對 |
+| README 測試數 | 62 項、64 項、13 套件 | 15 檔、56 項（整合共 76 項） |
+| README 目錄樹 | `tools.json # 667 工具` | 696 |
+| README 品質門禁 | 缺 `check-mece`／`categories:check`／`rescan --ci` | 已補齊 |
+| README 沙盒註記 | 「`npm test` 有 12 項會失敗」 | **已失效**（第四輪修好了），改為測試分層說明 |
+| `package.json` description | 「666+」 | 696 |
+| `AGENTS.md` 追蹤 repos | 2,435 | **2,433** |
+
+**順帶挖出的兩個真 bug（同一個根因：把中繼欄位當成 repo 計數）**
+
+`registry/tracked-repos.json` 的結構是「頂層即 repo」，但另含 3 個中繼欄位：
+`repos`（歷史遺留陣列，僅 2 筆）、`_meta`、`lastGenerated`。
+
+1. `scripts/generate-agents-md.js:59` 原本用 `.filter(k => !k.startsWith('_'))`
+   → 只濾掉 `_meta`，把 `repos` 與 `lastGenerated` 也算成 repo，**報 2435（實際 2433）**
+2. `scripts/tracked-repos.js:131` 原本用 `Object.values(existingTracked)`
+   → 連 `repos` 陣列本身也算一筆，`_meta.total` 虛胖
+
+**CAPA**：兩處都改為只計「`owner/repo` 形狀」的鍵（`/^[\w.-]+\/[\w.-]+$/`）。
+
+> ⚠️ **未修（誠實揭露）**：`registry/tracked-repos.json` 的 `_meta.total` 仍是 **2424**（實際 2433），
+> 需執行 `npm run tracked-repos` 重建才會自我修正。**刻意不動**，因為該腳本會打 GitHub API
+> （2433 repos，未認證額度 60/hr 必被限流），且手改會讓 `lastGenerated` 時間戳說謊；
+> 經查**沒有任何程式消費 `_meta.total`**，影響僅限資訊顯示。`repos` 這個歷史遺留鍵同理保留
+> —— `batch-add-20260908.js` 與 `add-user-requested-tools.js` 仍會讀它。
+
+### 最終驗證（全綠）
+
+| 檢查 | 結果 |
+|---|---|
+| `npm test` | ✅ **56 tests / 54 pass / 0 fail / 2 skipped**（新增 3 個守衛測試） |
+| `tests/category-guards.test.js` | ✅ **11/11 pass** |
+| 新守衛 5i 實測攔截 | ✅ 注入 `UI/UX设计` → exit 1，訊息 `出現 categories.json 沒有的分類：UI/UX设计`，還原位元組一致 |
+| `npm run check-mece` | ✅ 通過（含新增的 `CATEGORY-SYSTEM.md 分類清單與 categories.json 一致（18 列）`） |
+| `npm run categories:check` | ✅ 3 個衍生檔全同步 |
+| `node scripts/rescan-classification.js --ci` | ✅ exit 0（Tier 1 = 0、覆蓋率 28.6%） |
+| `node cli.js validate` | ✅ 0 錯誤 / 2 警告、品質 100/100 |
+| README 錯字掃描 | ✅ 0 處殘留（麵／齣／44 種簡體字型） |
+| 全文件數字一致性掃描 | ✅ 無殘留舊值 |
+
+### 產出檔案
+`docs/CATEGORY-SYSTEM.md`（重寫）、`README.md`（重寫）、`scripts/sync-categories.js`（+第 3 目標、抽 `syncBlock`）、
+`scripts/check-mece.js`（+5i）、`scripts/generate-agents-md.js`（計數修正）、`scripts/tracked-repos.js`（計數修正）、
+`tests/category-guards.test.js`（+3 測試）、`AGENTS.md`（重生）、`package.json`（description）
+
+### 仍待處理（延續前幾輪）
+C1 497 筆未命中工具的 LLM 建議報告｜C2 12 筆 Tier 2 覆核清單｜C3 審計 91 筆 `開發工具`｜
+`opengym` 與 `grok-bot-0-18-reconstructed` 觸發詞不足｜2026-W37 每週漲星報告｜
+`_meta.total` 待 `npm run tracked-repos` 自我修正｜311 個孤兒 `.DELETE.*`（使用者自行處理）｜本次變更尚未 commit
+
+---
+
+## 2026-09-12（晚間・第四輪）測試衛生：切開整合測試、備份移出工作區、修 parseSkillOutput 真 bug
+
+### 需求
+使用者查詢「刪除的 50 筆是什麼檔案」→ 追查後發現那不是專案檔案，而是 `npm test` 觸發的
+npx 快取 churn 撞上 bulk-delete 守衛（詳見下方「查證」）。使用者指示「修，能優化就不要怠惰」。
+
+### 查證結論（先立證據，再動手）
+| 項目 | 事實 |
+|---|---|
+| 「50」是什麼 | **守衛門檻值**，不是檔案數。事件為 `count: 50, threshold: 50`，兩次獨立觸發都恰好 50 |
+| 被刪的是什麼 | npm 自己的 `_npx` 快取，**專案內 0 個 `.DELETE.*`**、`git status` 0 筆 D |
+| 實際數量 | `C:\Users\3kids\AppData\Local\npm-cache\_npx\ac0ed6aa23b37c1e\node_modules\` 下 **311 個** `*.DELETE.<hash>`（`tar` 174、`skills` 15、`minizlib` 11、`@isaacs` 9…） |
+| 根因鏈 | `npm test` → `tests/find-skill.test.js` 真的呼叫 `core/skill-discovery.js` 的 `npx skills` → npx 重解析 `skills@^1.5.26` → npm 兩階段刪除（改名 → 標記 `*.DELETE.*` → unlink）→ 跨越 50 門檻 |
+| 兩次事件 | 13:17:58 needs-approval → 13:20:01 **rejected**；14:32:08 needs-approval → 14:32:51 **approved** |
+
+### 修正一：整合測試與單元測試切開
+`tests/find-skill.test.js` 的 20 個案例與 `tests/skill-discovery.test.js` 的 2 個案例**全部都**會
+呼叫外部 CLI 或 GitHub API，本質上是整合測試。原本混在 `npm test` 裡造成四個問題：
+慢（單次 timeout 30–60 秒）、不穩（GitHub 未認證額度 60/hr）、有副作用（寫 `~/.tool-calling/skills-cache`）、
+以及上述的 npx 快取 churn。
+
+- 兩個檔案的 suite 加上 `{ skip }`，預設跳過並顯示明確原因（不是靜默消失）
+- 開關：`SKILLS_CLI_TEST=1` **或** `npm_lifecycle_event === 'test:integration'`
+  （後者是為了 Windows 相容 —— cmd.exe 不支援 `VAR=1 cmd`，免裝 cross-env）
+- 新增 `npm run test:integration`
+- 清理：`tests/skill-discovery.test.js` 原有 **2 組完全相同的重複測試**，已移除
+- `test.after()` 的快取清理也一併加上 gate —— 沒跑整合測試就不該動使用者的快取
+
+### 修正二：補上真正的單元覆蓋（不是只把測試跳過）
+新增 `tests/skill-discovery-unit.test.js`（5 個測試，**零外部依賴**）：
+1–4. `parseSkillOutput` 純函式解析（格式、雜訊過濾、空輸入、`SKILL_LIMIT` 截斷）
+5. `searchSkills` 的快取短路 —— 用「外部 CLI 不可能產生的注入 id」證明該路徑完全沒有 shell out
+
+隔離手法：在動態 `import` **之前**把 `USERPROFILE`／`HOME` 指向 `mkdtempSync()` 的暫存目錄，
+因為 `skill-discovery.js` 在載入時就把 `CACHE_DIR` 固定為 `homedir()/.tool-calling/skills-cache`。
+因此完全不碰使用者真實快取。為此把 `parseSkillOutput` 加上 named export（純函式，無副作用）。
+
+### 修正三：新測試抓到一個真 bug（`parseSkillOutput`）
+| 項目 | 內容 |
+|---|---|
+| **現象** | `vercel-labs/skills@react` 被解析成 `labs/skills@react` |
+| **根因** | 舊 regex 為 `/(\w+\/\w+@[\w-]+)\s+\d+\s+installs?/`，`\w` **不含連字號**，於是從 `vercel` 之後的 `-` 斷開、改從 `labs` 開始匹配 |
+| **影響** | GitHub 上大量 owner 含連字號 → id 與 `https://skills.sh/<id>` URL 全部錯誤（靜默錯誤，不拋例外） |
+| **CAPA** | 改為 `/(?:^|[\s|])([\w.-]+\/[\w.-]+@[\w.-]+)\s+\d+\s+installs?/`；前置 `(?:^|[\s|])` 避免從單字尾端起匹配 |
+| **驗證** | 該案例已寫成回歸鎖（測試中明示不得截斷） |
+
+### 修正四：守衛測試備份移出受版控目錄
+`tests/category-guards.test.js` 原本把備份寫成 `${f}.guardtest.bak`，會產生
+`registry/schemas/tool.schema.json.guardtest.bak` 等檔案。`try/finally` 能還原，但行程被硬殺
+（SIGKILL／OOM）會留下殘骸，且該檔名原本不在 `.gitignore` → 污染 `git status`。
+- 備份改寫到 `mkdtempSync(join(tmpdir(), 'tool-calling-guard-'))`
+- `finally` 內再包一層 `try/finally`，確保**還原斷言失敗時暫存目錄仍會被清掉**
+- 移除死碼 `const BAK`（只宣告、從未使用）
+- `.gitignore` 加上 `*.guardtest.bak`（防回歸保險）
+
+### 最終驗證（全綠，且以「前後快照」證明副作用歸零）
+| 檢查 | 結果 |
+|---|---|
+| `npm test` | ✅ **53 tests / 51 pass / 0 fail / 2 skipped**（原 70 → 扣 24 整合 + 補 5 單元 + 扣 2 重複） |
+| `npm run test:integration -- --test-name-pattern=parseSkillOutput` | ✅ **73 tests / 73 pass / 0 skipped** —— 證明 gate 確實會開（兩個 suite 都不再帶 `# SKIP`） |
+| npx 快取檔案數 | ✅ 908 → **908**（未變動） |
+| npx `.DELETE.*` 檔數 | ✅ 311 → **311**（未變動） |
+| bulk-delete 審計事件 | ✅ 2 → **2**（跑測試不再觸發授權提示） |
+| 專案內 `.guardtest.bak` | ✅ 0 筆 |
+| tmpdir 殘留 | ✅ 0 筆 |
+| `tests/category-guards.test.js` | ✅ 8/8 pass（改用 tmpdir 備份後仍有效） |
+| `npm run check-mece` / `categories:check` | ✅ 通過 / 已同步 |
+| `.gitignore` 規則實測 | ✅ `git check-ignore` 命中 `.gitignore:11` |
+
+> **驗證方法論**：這次不用「測試有沒有過」當唯一證據，而是**在執行前後對同一個外部狀態取快照**
+> （npx 快取檔數、`.DELETE.` 數、審計事件數）。三者皆未變動，才算證明「不再有副作用」。
+> 若只跑 `npm test` 看綠燈，是無法區分「修好了」與「剛好沒觸發」的。
+
+### 產出檔案
+`tests/skill-discovery-unit.test.js`（新）、`tests/find-skill.test.js`（改）、
+`tests/skill-discovery.test.js`（改，去重）、`tests/category-guards.test.js`（改）、
+`core/skill-discovery.js`（改，export + regex 修正）、`package.json`（+`test:integration`）、`.gitignore`
+
+### 待辦（需使用者決定）
+`_npx` 快取內那 **311 個孤兒 `.DELETE.*` 檔**是 13:20 那次「拒絕刪除」留下的殘骸（npm 已改名、
+但 unlink 階段被守衛擋下）。它們位於 `AppData\Local\npm-cache`（工作區之外），清掉可讓快取目錄恢復乾淨，
+但屬工作區外的刪除，需使用者明確授權後再處理。
+
+---
+
+## 2026-09-12（晚間・第三輪）分類系統單一來源化（SSOT）+ 一致性守衛 + CI 門禁
+
+### 需求
+第二輪修完分類**內容**後，回頭審計分類**基礎設施**，發現 18 個分類被複製在 5 個以上的檔案裡、靠人工同步。經提案並取得使用者 approve 後，執行 `docs/OPTIMIZATION-PLAN.md` 全案（B1 → A1 → B2/A2/A3 → B3）。
+
+### 診斷：5 個已證實的缺陷（皆非臆測，均有檔案行號證據）
+
+| # | 缺陷 | 後果 |
+|---|---|---|
+| D1 | 知識圖譜色表漏了 `金融與投資` | 25 筆工具落到 `hsl()` 動態推導色，非設計色 |
+| D2 | 色表含 4 個已廢棄分類的幽靈 key（`資料庫`/`基礎設施`/`行銷`/`圖標與視覺資源`） | 圖例與真實分類不一致 |
+| D3 | `AI 框架` 與 `知識管理` 共用 `#0284c7` | 105 筆工具在圖上完全無法區分 |
+| D4 | `core/classifier.js` 的 LLM prompt 停在舊版 6 步決策樹、且是簡體 | LLM 分類結果與本文件不一致 |
+| D5 | 分類失敗時靜默回退到 `開發工具` | 等同一個改名的「其他」（當時 91 筆／13%），違反 MECE |
+
+**根因（單一）**：18 個分類同時存在於 5 個以上檔案，且**沒有任何機制偵測脫節**。當天一天內就發生 4 次漂移。
+
+### 處理結果
+
+#### B1 — 建立單一來源
+- 新增 `registry/categories.json`：18 個分類的 `name` / `definition` / `color` / `examples` / `keywords`，為唯一機器可讀來源。
+- 新增 `core/categories.js`：共用載入器，導出 `categoryNames()`、`categoryColors()`、`categoriesWithKeywords()`、`promptCategoryBlock()`、`promptDecisionTree()` 等。
+- 色表重設計並寫入 `paletteConstraint`（4 條硬規則）：
+  1. 每分類色彩唯一
+  2. 任兩色 RGB 歐氏距離 **≥ 55**
+  3. 對純黑（OLED 背景）對比度 **≥ 3.5:1**
+  4. 一分類一色系（避免兩個洋紅／兩個萊姆綠）
+- 最終色表：最小兩兩距離 **58.1**，0 對低於 55，全數對比度 ≥ 3.5:1。
+
+#### A1 — 改寫所有消費端
+| 檔案 | 變更 |
+|---|---|
+| `core/classifier.js` | 硬編碼 `VALID_CATEGORIES` → `categoryNames()`；簡體舊 prompt → 由 `promptCategoryBlock()` + `promptDecisionTree()` 執行期產生；**移除靜默回退**，改為 `{ category: null, source: 'unclassified', needsReview: true }` |
+| `scripts/generate-knowledge-graph.js` | 刪除 21-key 硬編碼色表（含 4 幽靈 key、漏 `金融與投資`、`AI 框架`/`知識管理` 同色）→ `categoryColors()`；缺設計色時輸出可見警告 |
+| `scripts/rescan-classification.js` | `DOMAIN_RULES` 改由 `categoriesWithKeywords()` 產生；修正 D13 硬編碼 |
+| `web/server.js` | 加守衛：`llmResult.category` 為 `null` 時不得覆寫 |
+
+#### B2 — 靜態衍生檔產生器
+新增 `scripts/sync-categories.js`，重新產生 `registry/schemas/tool.schema.json` 的分類 enum 與 `docs/CLASSIFICATION.md` §2.1 詞表（marker 標記區塊）。支援 `--check` 供 CI 使用。
+
+#### A2 / A3 — 一致性守衛與測試
+- `scripts/check-mece.js` 新增 §5 共 8 項檢查：名稱唯一、registry 分類皆有定義、hex 色合法、**色彩唯一**、**距離 ≥55**、**對比度 ≥3.5:1**、**schema enum 完全一致（含順序）**、CLASSIFICATION.md 提及全部 18 類。
+- 新增 `tests/category-guards.test.js`（8 個測試）：**注入違規 → 斷言守衛以非零碼退出並給出預期訊息**，而非只驗證「現在是好的」。用 `withRestore()` + `try/finally` + 位元組比對確保還原。
+
+#### B3 — CI 門禁（受保護路徑，已取得使用者同意）
+`.github/workflows/deploy-pages.yml` 加入三步：
+```yaml
+- run: npm run check-mece
+- run: npm run categories:check
+- run: node scripts/rescan-classification.js --ci
+```
+
+### RCA：`langchain` Tier 1 回歸（我自己引入的）
+
+| 項目 | 內容 |
+|---|---|
+| **現象** | 關鍵詞改由 `categories.json` 驅動後，`langchain` 被報 `AI 框架 → 知識管理`，`why=body×2` |
+| **根因** | `strict` 分支仍保留「內文 ≥2 信號」退路，與本文件「Tier 1 = 僅比對名稱」的定義自相矛盾。決策樹步驟 5（LLM 框架）本應優先於步驟 7（領域關鍵詞） |
+| **CAPA** | `strict` 分支改為**純名稱比對、命中即回傳、未命中即 `no-name-hit`** |
+| **驗證** | Tier 1 回到 0，覆蓋率 28.2% → 28.6% |
+
+### RCA：備份指令失效（操作失誤）
+
+| 項目 | 內容 |
+|---|---|
+| **現象** | 注入測試值後還原失敗（`cannot stat`），`tools.json` 一度停在注入狀態 |
+| **根因** | 指令為 `cp registry/tools.json /tmp/tools.bak 2>/dev/null \|\| cp ... registry/_guard-test-backup.json`。**第一個 `cp` 成功**，`\|\|` 右側從未執行，備份檔根本沒建立 |
+| **CAPA** | 破壞性測試一律用 `try/finally`，不依賴 shell `\|\|`；注入前先 `test -f` 驗證備份存在 |
+| **驗證** | 由 `/tmp/tools.bak` 還原，`cmp -s` 位元組相同、696 工具、10 筆重分類完好、MECE 通過 |
+
+### 最終驗證（全綠）
+
+| 檢查 | 結果 |
+|---|---|
+| `npm run check-mece` | ✅ 全通過（含最小色距 58.1、對比度全 ≥3.5:1） |
+| `npm run categories:check` | ✅ 兩個衍生檔皆同步 |
+| `node scripts/rescan-classification.js --ci` | ✅ exit 0｜Tier 1 = 0、Tier 2 = 12、Tier 3 = 17、覆蓋率 28.6% |
+| `node cli.js validate` | ✅ 0 errors / 2 warnings，品質 100/100 |
+| `npm test` | ✅ **70/70 pass**（原 62 + 新增 8 守衛測試） |
+| 知識圖譜圖例 | ✅ 18/18 顏色與 `categories.json` 一致，0 筆 `hsl()` 殘留 |
+
+### 產出檔案
+`registry/categories.json`（新）、`core/categories.js`（新）、`scripts/sync-categories.js`（新）、
+`tests/category-guards.test.js`（新）、`docs/OPTIMIZATION-PLAN.md`（新）；
+`core/classifier.js`、`scripts/generate-knowledge-graph.js`、`scripts/rescan-classification.js`、
+`scripts/check-mece.js`、`web/server.js`、`package.json`、`.github/workflows/deploy-pages.yml`、
+`docs/CLASSIFICATION.md`（v1.2）、`registry/schemas/tool.schema.json`（改）
+
+### 待辦（未在本輪執行，屬計畫後段）
+- **C1**：為 497 筆未命中工具產生 LLM 建議報告（**僅供人工覆核，不自動套用**）
+- **C2**：12 筆 Tier 2 的互動式覆核清單
+- **C3**：審計 91 筆 `開發工具`，確認它不是改名的「其他」
+
+---
+
+## 2026-09-12（下午・第二輪）決策樹修訂 + 領域關鍵詞兩級化 + 套用 10 筆分類修正
+
+### 需求
+對第一輪重掃報告提出的三項缺口做決策並落地：
+(a) 套用 4 筆 Tier 1 分類變更
+(b) 把 Tier 3 領域關鍵詞正式寫入決策樹
+(c) 修訂 §2-2「領域主題 curated 清單」政策
+(d) 修訂 §2-4「通用型 vs 領域專屬 skill 包」政策
+
+### 處理結果
+
+#### (a) 4 筆 Tier 1 變更（已套用）
+`gh-address-comments` → 開發工具、`awesome-dsh-plugin` → 學習資源、
+`the-book-of-secret-knowledge` → 學習資源、`awesome-notebooklm-workflows` → 學習資源。
+
+#### (b) §2.1 領域關鍵詞表明文化
+13 個領域的關鍵詞由 Tier 3 草案升格為決策樹明文條文（`docs/CLASSIFICATION.md` §2.1），
+並成為程式 `DOMAIN_RULES` 的單一來源。同時寫入**兩條禁令**：
+1. 不可把特定工具名當信號（`duckdb` 會自我命中 → 循環論證）
+2. 不可把裸品牌名當信號（`figma` 會誤中 `figma-guide` 這類教學資源）
+
+#### (c) §2-2 修訂：領域主題清單 → 學習資源
+裁決採 **A 案**：清單的價值是「閱讀」，**主題不改變清單的性質**。
+唯二例外為既有條文：條目是可直接呼叫的 API 端點 → `API 整合`；可掛載執行的 agent/skill 包 → `AI 代理`。
+
+#### (d) §2-4 修訂：領域專屬 vs 通用型 skill 包
+修訂為「**領域專屬** skill 包 → 該領域；**通用型** → `AI 代理`」。
+判定依據**只看名稱欄位**，僅 description 提及領域詞不算。
+
+### RCA：第二輪初版的 27 筆誤判事故
+
+| 項目 | 內容 |
+|---|---|
+| **現象** | 把 §2-4 實作成「名稱自稱 skill/plugin 且不含領域詞 ⇒ 通用型 ⇒ AI 代理」，產出 37 筆 Tier 1 |
+| **根因** | ①**反向推論謬誤**：領域詞表不可能窮盡，「名稱沒有領域詞」≠「通用型」。`ui-skills`、`trailofbits-skills`、`gsap-skills`、`mengto-skills`、`reverse-skill` 全被誤判<br>②`book` 未加詞邊界 → 誤中 `note**book**lm`，把 4 個 NotebookLM 工具判成學習資源<br>③未排除 `samples` 學習產物 → `figma-plugin-samples` 被判成 UI/UX設計 |
+| **CAPA** | ①R10 **只保留正向判定**（名稱明確指向領域才算領域專屬），刪除「通用型」推論<br>②新增 **R10b**：通用型推論收窄為「現行分類為 `AI 框架`」的**排除法**（skill 包在任何定義下都不是框架），結論由演繹得出而非啟發<br>③`book` 移出領域詞表（書單已由 R2/R3 處理）<br>④新增 `PACK_LEARNING_ARTIFACT` 排除條款 |
+| **驗證** | Tier 1 由 37 筆降至 **10 筆**，人工逐筆核對後 10 筆全數可辯護；誤判率 27/37 → 0/10 |
+
+### 精度設計：三輪分層（pass）
+
+「先命中者勝」改為**只在同一 pass 內成立**，低 pass 一律優先，確保精確規則不被寬鬆規則搶走：
+
+| pass | 內容 | 命中欄位 | 可否自動套用 |
+|---|---|---|---|
+| 1 | 結構性規則 R1–R5/R7/R8/R10/R10b + 領域精確規則 `D*-T1` | `id`/`name` | ✅ |
+| 2 | 語境裁決 R6（編碼 agent）、R9（學術研究） | 需排除周邊語境 | ❌ |
+| 3 | 領域啟發 `D*-T3` | `id`/`name`/`triggers` | ❌ |
+
+同一組領域關鍵詞**兩級套用**：名稱命中（`D*-T1`，Tier 1，可套用）／身分欄位命中（`D*-T3`，Tier 3，僅供覆核）。
+實測：單用精確級覆蓋率 11.9%、單用啟發級偽陽性爆炸 → 兩級並用覆蓋率 **28.2%** 且 Tier 1 零偽陽性。
+
+### 已套用的 10 筆分類修正
+
+| 工具 | 變更 | 規則 |
+|---|---|---|
+| `vercel-ai-skills` | AI 框架 → AI 代理 | R10b |
+| `addyosmani-agent-skills` | AI 框架 → AI 代理 | R10b |
+| `knowledge-work-plugins` | AI 框架 → AI 代理 | R10b |
+| `skill` | AI 框架 → AI 代理 | R10b |
+| `taste-skill` | AI 框架 → AI 代理 | R10b |
+| `compound-engineering-plugin` | AI 框架 → AI 代理 | R10b |
+| `playwright-skill` | AI 框架 → 測試與自動化 | R10 |
+| `github-copilot-playwright-test-skill` | AI 代理 → 測試與自動化 | R10 |
+| `browserbase-web-automation-skills` | AI 代理 → 瀏覽器自動化 | R10 |
+| `minimax-ppt-skills` | AI 代理 → 文件生產力 | R10 |
+
+### 驗證結果
+| 檢查 | 結果 |
+|---|---|
+| `scripts/rescan-classification.js` | Tier 1 **0** ／ Tier 2 12 ／ Tier 3 16 ／ 合規 168 ／ 覆蓋率 28.2% |
+| `scripts/check-mece.js` | ✅ 全部通過（18 分類） |
+| `cli.js validate` | 0 錯誤、2 警告、品質 100/100 |
+| 測試 | **62/62 pass** |
+| 分類分布 | AI 代理 149、開發工具 91、AI 框架 71、學習資源 60、文件生產力 58、UI/UX設計 54… |
+
+### 備份
+`.backup-20260912/tools.before-tier1.json`（4 筆前）、`tools.before-r10.json`（10 筆前）。
+
+### 已知技術債
+`docs/CLASSIFICATION.md` §2.1 詞表與 `scripts/rescan-classification.js` 的 `DOMAIN_RULES`
+是同一個知識的兩種表述，**尚未自動同步檢查**。修改其一須手動核對另一邊。
+
+---
+
+## 2026-09-12（下午）分類決策樹全庫重掃 + 差異報告
+
+### 需求
+以 `docs/CLASSIFICATION.md` 的決策樹對全庫 696 個工具做一次重掃，產出差異報告。
+
+### 方法（PDCA）
+
+#### Plan：為何不做「全量重新推導分類」
+全量重新推導會產生數百筆主觀變更，無法區分「規則違反」與「個人偏好」。
+改採**規則違反審計**：僅當已明文記載的決策樹規則明確適用、且現行分類與其不符時才列出。
+未命中規則者一律標記「維持現狀」，不臆測。
+
+#### Do：精度迭代（關鍵在降低偽陽性）
+首版規則引擎產出 **71 筆 Tier 1**，人工檢視後發現大量偽陽性，經四輪收斂至 **4 筆**：
+
+| 輪次 | Tier 1 | 發現的偽陽性根因 | 修正 |
+|---|---:|---|---|
+| v1 | 71 | `ebook` 誤中 `notebook`（拖入全部 NotebookLM 工具）；`multi-provider` 誤中一般 LLM 工具 | 加 `\b` 邊界；收緊為 `multi-provider (router\|gateway\|failover)` |
+| v2 | 22 | 無欄位加權 —— 工具只是「提到」關鍵詞就被判定 | 引入**欄位加權**：id/name/triggers 為身分欄位（命中一次成立）；description/useCase/capabilities 為敘述欄位（需 ≥2 個不同信號） |
+| v3 | 15 | `officecli officecli officecli agent` 產生跨詞邊界的假 "cli agent"；`awesome-skills` 被當成清單 | 移除 `cli agent` 訊號；R3 補回 skill/subagent 包排除條款 |
+| v4 | 4 | 「X **for** AI coding agents」被誤認為 X 是 agent 本身 | R6 加入**語境判別**（排除 `for/using/with … agents` 與 `… coding model`），並**降級為 Tier 2** |
+
+**R6 降級的理由**：「agent」是語料中最高頻詞，且大量工具屬「為 agent 服務」而非「本身是 agent」。
+自動判定誤判率仍偏高（會誤判 model、book、menu-bar app），故僅列待人工覆核。
+
+#### Check：三層分級輸出
+| 分層 | 筆數 | 說明 |
+|---|---:|---|
+| Tier 1 明確違反 | **4** | 決策樹明文規則適用且不符 → 建議套用 |
+| Tier 2 需人工裁決 | 12 | 依賴語境／誤判率偏高 → 不自動套用 |
+| Tier 3 領域關鍵詞啟發 | 30 | 決策樹 §2 步驟 7 關鍵詞草案 → 僅供參考 |
+| 合規 | 159 | 規則命中且分類正確 |
+| 無規則命中 | 491 | 維持現狀（非違規） |
+
+決策樹覆蓋率 **29.5%**、規則命中者合規率 **77.6%**。
+
+#### Act：報告與套用機制
+- 產出 `docs/classification-rescan-2026-09-12.md`（人可讀）+ `registry/classification-rescan.json`（機器可讀）
+- `node scripts/rescan-classification.js --apply` 可套用 Tier 1（預設唯讀）
+- 註冊 npm script：`npm run rescan-classification`
+
+### 報告的兩項關鍵發現
+1. **決策樹 §2 步驟 7 未定義關鍵詞** → 領域分類（安全性／金融與投資／數據分析…）無明文依據，
+   這是覆蓋率僅 29.5% 的根本原因。建議將 Tier 3 的關鍵詞草案正式寫入 `docs/CLASSIFICATION.md` 後升格為 Tier 1。
+2. **「領域主題的 curated 清單」政策未定** → `the-book-of-secret-knowledge`（安全性）、
+   `awesome-notebooklm-workflows`（文件生產力）這類清單，決策樹要求歸 `學習資源`，
+   但這會拆散其主題叢集。報告已列出 A/B 兩種解讀與各自影響，待決策後修訂決策樹 §2-2。
+
+### 未套用（依需求「產出差異報告」）
+本次**未修改任何工具的分類**，registry 維持 696 筆現狀，差異報告保持可比對。
+Tier 1 的 4 筆待確認後執行 `--apply`。
+
+---
+
+## 2026-09-12 批量入庫 23 個 URL + 分類邏輯全庫審計
+
+### 需求
+1. 批量加入使用者提供的 23 個 GitHub URL（含 1 個重複，實際 22 個唯一）
+2. 檢查每個 URL 是否需要拆解（monorepo → 子工具）
+3. 與既有工具重複者，重新解析後以較優者取代舊資料
+4. 全盤檢討分類邏輯並重新分類
+
+### 處理結果 (PDCA)
+
+#### Phase 1: URL 解析與拆解判定
+- **方法**：以 GitHub API 取得權威 metadata（stars / description / topics / language），再以 `scripts/url-resolver.js` 判定類型
+- **判定結果**：22 個 URL 中 **0 個需要拆解**（無新 monorepo）；`Shubhamsaboo/awesome-llm-apps` 雖為 monorepo，但既有 entry 已拆解
+- **發現的解析器缺陷**：
+  | 缺陷 | 證據 | 修正 |
+  |---|---|---|
+  | 資源判定順序錯誤 | `resolve()` 先做關鍵字資源判定、後做結構拆解判定 → awesome-list 型 monorepo 會被誤判為 resource 而漏掉拆解 | 改為**結構證據優先**（能拆出 ≥2 子工具即判 monorepo） |
+  | 資源信號詞不足 | `ruanyf/free-books`、`able8/weread-hot-booklists` 被誤判為 `tool`（純中文描述無英文信號詞） | `RESOURCE_SIGNALS` 補入書籍/書單/免費額度/中文目錄信號 |
+- **注意**：初次解析輸出不可信 — GitHub 未認證 API 額度僅 60/hr，探測過程中已被限流（剩 5 次），故以 README 原文（raw.githubusercontent，不計額度）人工覆核每個倉庫性質
+
+#### Phase 2: 既有工具重新解析與升級（9 筆）
+| id | 分類變更 | 其他修正 |
+|---|---|---|
+| `gpt-api-free` | AI 框架 → **API 整合** | stars 40913→42348 |
+| `awesome-free-llm-apis` | AI 框架 → **API 整合** | install method `npm`→`none`（實為清單+SKILL.md） |
+| `freebuff` | 開發工具 → **AI 代理** | metadata 為掃描殘留（capabilities 空、triggers 僅 2 條且含分類名、status experimental）→ 全面重寫 |
+| `awesome-llm-apps` | AI 框架 → **AI 代理** | **subTools 為掃描雜訊**：10 筆中多筆 description 是 README 原始片段（`">-"`、`"|"`），subpath 指向 build 產物（`.agent/skills/...`）→ 改為 9 個真實頂層集合 |
+| `free-for-dev` | 研究 → **學習資源** | useCase/advantages 為探勘殘留（「上週漲星 +2943」）→ 重寫為實質內容 |
+| `public-apis` | （維持 API 整合） | install method `pip` → `none`（清單型資源無安裝指令）；清掉無鑑別度 triggers |
+| `freetoken` | （維持 AI 框架） | useCase/advantages 殘留「開發工具」字樣與 category 矛盾 → 修正；status experimental→active |
+| `free-claude-code` | （維持 開發工具） | URL owner 大小寫正規化 `alishahryar1`→`Alishahryar1` |
+| `freecad` | （維持 3D工程繪圖） | triggers 6→10、capabilities 5→7（提升召回） |
+
+#### Phase 3: 新增 13 個工具（683 → 696）
+| id | 分類 | ⭐ |
+|---|---|---|
+| `weread-hot-booklists` | 學習資源 | 762 |
+| `m3e-canvas` | UI/UX設計 | 6184 |
+| `web-llm` | AI 框架 | 19094 |
+| `free-api` | API 整合 | 16245 |
+| `public-api-lists` | API 整合 | 15791 |
+| `pr-agent` | 開發工具 | 12954 |
+| `youtube-automation-agent` | AI 代理 | 3336 |
+| `freecad-library` | 3D工程繪圖 | 1951 |
+| `freetube` | 影片 | 21901 |
+| `gpt4free` | API 整合 | 66685 |
+| `freellmapi` | API 整合 | 25587 |
+| `free-books` | 學習資源 | 15998 |
+| `musicfree` | 音訊 | 26794 |
+
+#### Phase 4: 分類邏輯全庫審計（RCA）
+**根本原因**：分類定義從未明文，導致三個位置各自漂移且互不校驗。
+
+| # | 問題 | 影響 | 矯正 |
+|---|---|---|---|
+| 1 | `core/classifier.js` 的 `VALID_CATEGORIES` 為**簡體中文**（`开发工具`），與 registry 繁體（`開發工具`）不符 | LLM 分類結果被 `VALID_CATEGORIES.includes()` 拒絕 → **靜默退回規則引擎**，LLM 分類形同失效 | 改為 18 個繁體正規分類；補上 `測試與自動化`、移除 0 工具的 `圖文資源` |
+| 2 | 規則引擎分類名亦為簡體，且 `图文资源` 在 registry 不存在 | 規則分類會產出無效分類值 | 全部改為繁體；圖標庫規則改歸 `UI/UX設計` |
+| 3 | `tool.schema.json` category enum 僅 9 值且含違反 MECE 的「其他」；language 僅 8 值、install.method 僅 7 值 | 實際資料為 18 分類 / 23 語言 / 17 安裝方式 → schema 形同無約束（`c++`、`conda`、`none` 等全數違規） | enum 全面對齊實際值；移除「其他」 |
+| 4 | 語言欄位大小寫/別名混亂（`Python`/`python`、`C++`/`cpp`、`csharp`、`unknown`） | 語言篩選與統計失準 | 全庫正規化 **39 筆** |
+| 5 | 無任何機制校驗 enum | 上述漂移可無聲累積 | `check-mece.js` 新增 **Enum 合規檢查**（自動讀取 schema enum，違反即建置失敗） |
+| 6 | 分類決策無明文 → Awesome List 散落 學習資源/AI 框架/研究 | 同類工具無法聚類 | 新增 `docs/CLASSIFICATION.md`：18 分類定義 + 7 步決策樹 + 邊界裁決案例 |
+
+**CAPA（防止再發）**：`docs/CLASSIFICATION.md` 第六節明定變更分類時 MUST 同步 4 個位置（文件 / schema enum / classifier.js / check-mece 自動讀 schema）。
+
+### 驗證結果
+| 檢查項 | 結果 |
+|---|---|
+| `node scripts/check-mece.js` | ✅ 全數通過（696 工具 / 18 分類 / 無「其他」殘留 / enum 合規 18+23+17） |
+| `node cli.js validate` | ✅ 0 錯誤、2 警告、平均品質 **100/100**、0 個低品質工具 |
+| `node scripts/check-utf8.js` | ✅ 0 個 U+FFFD 亂碼 |
+| `node scripts/check-duplicate-ids.js` | ✅ 全站 HTML ID 唯一 |
+| `npm test` | ⚠️ 64 項中 52 通過、12 失敗 — **全數為環境因素**（測試的 `fs` 清理步驟被沙盒 safe-delete 守衛以 `SAFE_DELETE_BULK_REJECTED` 攔截），**修改前基線即已失敗**，非本次回歸 |
+| 知識圖譜重生 | ✅ `docs/` 與 `dist/knowledge-graph.html` 已更新為 696 工具（原嵌 683） |
+| `dist/registry/tools.json` | ✅ 已同步 696 工具 |
+| `AGENTS.md` 重生 | ✅ 696 工具 / 2435 repos / 27,971,794 ⭐ |
+
+### 備份與待辦
+- **備份**：`.backup-20260912/`（tools.json、tracked-repos.json、star-snapshots.json 修改前快照）
+- **待辦**：本輪因沙盒刪除防護攔截，以下暫存檔未能刪除，請手動清理：
+  `scripts/_tmp-{check-dup,fetch-meta,probe,resolve,show-existing,regenerate-dashboard}.mjs`、`registry/_tmp-metadata.json`
+- **待辦**：`docs/CLASSIFICATION.md` 的決策樹已套用於本次 22 個工具，但**全庫 696 個工具僅部分覆核**（Awesome List 類仍有 3 筆落在 `AI 框架`：`free-llm-api-resources` 等）。建議下一輪以決策樹全庫重掃。
+
+---
+
 ## 2026-09-08 知識圖譜 3D/2D 雙視角全景優化
 
 ### 需求
