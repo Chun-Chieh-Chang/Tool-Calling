@@ -1,6 +1,6 @@
 # 分類全庫重掃差異報告
 
-> **產生時間**：2026-09-12T07:12:18.294Z
+> **產生時間**：2026-09-12T13:15:58.445Z
 > **依據**：`docs/CLASSIFICATION.md` v1.1（18 分類 + 決策樹 + §2.1 領域關鍵詞表 + 邊界裁決案例）
 > **掃描範圍**：全部 696 個工具
 > **方法**：規則違反審計 — 僅在已明文規則**明確適用**且現行分類與其不符時才列出
@@ -13,13 +13,13 @@
 | 分層 | 數量 | 說明 |
 |---|---|---|
 | **Tier 1 — 明確規則違反** | **0** | 決策樹有明文規則適用，現行分類不符 → 建議套用 |
-| Tier 2 — 需人工裁決 | 12 | 決策樹與既有慣例衝突，或規則依賴語境、誤判率偏高 → 不自動套用 |
+| Tier 2 — 需人工裁決 | 15 | 決策樹與既有慣例衝突，或規則依賴語境、誤判率偏高 → 不自動套用 |
 | Tier 3 — 領域關鍵詞啟發 | 17 | 決策樹 §2.1 關鍵詞表在**啟發級**（含 triggers）命中 → 僅供參考，不自動套用 |
-| 合規（規則命中且分類正確） | 170 | 已符合決策樹 |
-| 無明確規則命中 | 497 | 決策樹未涵蓋，**維持現狀（非違規）** |
+| 合規（規則命中且分類正確） | 171 | 已符合決策樹 |
+| 無明確規則命中 | 493 | 決策樹未涵蓋，**維持現狀（非違規）** |
 
-**規則命中者合規率**：170 / 199 = 85.4%
-**決策樹覆蓋率**：199 / 696 = 28.6%
+**規則命中者合規率**：171 / 203 = 84.2%
+**決策樹覆蓋率**：203 / 696 = 29.2%
 
 > ⚠️ 覆蓋率未達 100% 是**預期結果**：決策樹的 7 個步驟為「先命中者勝」的粗篩，
 > 且 Tier 1 只採「名稱欄位命中」等**高精度**條件。實測放寬到身分欄位雖可把覆蓋率推高，
@@ -60,25 +60,28 @@ _無 Tier 1 變更_
 _無_
 ---
 
-## 三、Tier 2 — 需人工裁決（12 筆）
+## 三、Tier 2 — 需人工裁決（15 筆）
 
 這些不是「錯誤」，而是**規則依賴語境、自動判定誤判率偏高**，或**決策樹與既有慣例衝突**。
 需人工覆核後再決定，故不列入自動套用。
 
 | 工具 | 現行分類 | 決策樹建議 | 規則 | 說明 |
 |---|---|---|---|---|
-| `impeccable` | UI/UX設計 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `designmd` | UI/UX設計 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `terax-ai` | 開發工具 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `zarazhangrui-frontend-slides` | 文件生產力 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `beautiful-html-templates` | 文件生產力 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `destructivecommandguard` | 開發工具 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `ai-agent-book` | 學習資源 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `system-prompts-and-models-of-ai-tools` | 研究 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `codexbar` | 開發工具 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `nofx` | 金融與投資 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `graft` | API 整合 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
-| `magnitude` | AI 框架 | AI 代理 | R6 | 編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理 |
+| `impeccable` | UI/UX設計 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `lean-ctx` | 開發工具 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `designmd` | UI/UX設計 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `video-use` | 影片 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `terax-ai` | 開發工具 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `zarazhangrui-frontend-slides` | 文件生產力 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `codegraph` | 知識管理 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `beautiful-html-templates` | 文件生產力 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `headroom` | 開發工具 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `destructivecommandguard` | 開發工具 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `ai-agent-book` | 學習資源 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `codexbar` | 開發工具 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `nofx` | 金融與投資 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `graft` | API 整合 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
+| `magnitude` | AI 框架 | AI 代理 | R6 | 自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決） |
 
 ### 為何 R6（編碼 Agent）不自動套用
 

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-09-12T07:12:18.290Z",
+  "generatedAt": "2026-09-12T13:15:58.437Z",
   "decisionTree": "docs/CLASSIFICATION.md",
   "totalTools": 696,
   "summary": {
     "tier1_violations": 0,
-    "tier2_needsReview": 12,
+    "tier2_needsReview": 15,
     "tier3_domainHeuristic": 17,
-    "compliant": 170,
-    "noRuleMatched": 497
+    "compliant": 171,
+    "noRuleMatched": 493
   },
   "moves": {},
   "compliant": [
@@ -287,11 +287,6 @@
       "rule": "D13-T3"
     },
     {
-      "id": "codegraph",
-      "category": "知識管理",
-      "rule": "D2-T3"
-    },
-    {
       "id": "anthropic-cybersecurity-skills",
       "category": "安全性",
       "rule": "R10"
@@ -472,6 +467,11 @@
       "rule": "R6"
     },
     {
+      "id": "pi-web-agegr",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
       "id": "agents-course",
       "category": "學習資源",
       "rule": "D3-T1"
@@ -535,11 +535,6 @@
       "id": "howtheytest",
       "category": "學習資源",
       "rule": "R3"
-    },
-    {
-      "id": "code-review-skill",
-      "category": "開發工具",
-      "rule": "R5"
     },
     {
       "id": "awesome-systematic-trading",
@@ -620,6 +615,11 @@
       "id": "computer-science",
       "category": "學習資源",
       "rule": "R3"
+    },
+    {
+      "id": "prime-agent",
+      "category": "AI 代理",
+      "rule": "R6"
     },
     {
       "id": "cadam",
@@ -777,6 +777,11 @@
       "rule": "R3"
     },
     {
+      "id": "ai-memory",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
       "id": "scientific-agent-skills",
       "category": "研究",
       "rule": "R10"
@@ -879,7 +884,6 @@
     "stablyai-orca",
     "herdr",
     "slidesmaker",
-    "lean-ctx",
     "loop-engineering",
     "loop-engineering-orange-book",
     "open-slide",
@@ -894,7 +898,6 @@
     "codebase-memory-mcp",
     "codebase-memory-mcp-pro",
     "openmontage",
-    "video-use",
     "cognee",
     "caveman",
     "caveman-code",
@@ -1017,7 +1020,6 @@
     "harness",
     "learn-claude-code",
     "hermes-webui",
-    "headroom",
     "compound-engineering-plugin",
     "supermemory",
     "trivy",
@@ -1092,7 +1094,6 @@
     "phosphor-icons",
     "remixicon",
     "iconoir",
-    "pi-web-agegr",
     "hugging-multi-agent",
     "lucide",
     "text-to-cad",
@@ -1128,6 +1129,7 @@
     "awesome-claude-code-subagents",
     "claude-code-debug-mode",
     "claude-plugins-official",
+    "code-review-skill",
     "first-principles-skill",
     "5-whys-skill",
     "mermaid-syntax-skill",
@@ -1167,9 +1169,9 @@
     "linux",
     "python",
     "vue",
+    "system-prompts-and-models-of-ai-tools",
     "autogpt",
     "minimax-h3",
-    "prime-agent",
     "qm",
     "anydoc",
     "aos-ce",
@@ -1292,7 +1294,6 @@
     "dsh-better-sidebar",
     "mattpocock-skills",
     "munder-difflin",
-    "ai-memory",
     "deepseek-work",
     "react-bits",
     "pi2dsh",
@@ -1369,7 +1370,15 @@
       "current": "UI/UX設計",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
+    },
+    {
+      "id": "lean-ctx",
+      "name": "Lean Ctx",
+      "current": "開發工具",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "designmd",
@@ -1377,7 +1386,15 @@
       "current": "UI/UX設計",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
+    },
+    {
+      "id": "video-use",
+      "name": "Video Use",
+      "current": "影片",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "terax-ai",
@@ -1385,7 +1402,7 @@
       "current": "開發工具",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "zarazhangrui-frontend-slides",
@@ -1393,7 +1410,15 @@
       "current": "文件生產力",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
+    },
+    {
+      "id": "codegraph",
+      "name": "Codegraph",
+      "current": "知識管理",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "beautiful-html-templates",
@@ -1401,7 +1426,15 @@
       "current": "文件生產力",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
+    },
+    {
+      "id": "headroom",
+      "name": "Headroom",
+      "current": "開發工具",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "destructivecommandguard",
@@ -1409,7 +1442,7 @@
       "current": "開發工具",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "ai-agent-book",
@@ -1417,15 +1450,7 @@
       "current": "學習資源",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
-    },
-    {
-      "id": "system-prompts-and-models-of-ai-tools",
-      "name": "system-prompts-and-models-of-ai-tools",
-      "current": "研究",
-      "proposed": "AI 代理",
-      "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "codexbar",
@@ -1433,7 +1458,7 @@
       "current": "開發工具",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "nofx",
@@ -1441,7 +1466,7 @@
       "current": "金融與投資",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "graft",
@@ -1449,7 +1474,7 @@
       "current": "API 整合",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
       "id": "magnitude",
@@ -1457,7 +1482,7 @@
       "current": "AI 框架",
       "proposed": "AI 代理",
       "rule": "R6",
-      "reason": "編碼 Agent（會自行讀寫程式碼的成品 agent）→ AI 代理"
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     }
   ],
   "tier3": [
