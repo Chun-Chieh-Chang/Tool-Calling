@@ -44,9 +44,11 @@ import { extractIntent, weightsForIntent } from './query-intent.js';
 //   adopt-with-warning : l2Leads && !agentConsistent
 //   no-match        : !l2Leads && !agentConsistent
 //
-// 注意：「clean jsonl」這類空集查詢 agent 端仍會誤判 high-confidence，
-// 這是 agent-retrieval 引擎本身的詞彙天花板，融合層只能誠實回傳
-// agent 的自報決策，無法比 agent 更聰明。
+// 注意：「clean jsonl」這類空集查詢 agent 端仍會因 V2 bag-similarity 通道
+// 誤判 high-confidence，這是純詞彙引擎的天花板。Option C 的「意圖三元組
+// 權重調整」（query-intent.js）改善的是「物件/約束詞被 V2 誇大」的邊界
+// 情形；對 V2 通道本身接住通用詞的偽命中（如 airllm 對 jsonl），純規則
+// 無法壓制，需 Option B（語意 embedding）才能根治。
 const AGENT_HIGH = 0.35;          // 與 agent-retrieval 的 BEST_DIM_THRESHOLD 一致
 const L2_LEAD_MARGIN = 0.4;       // top-1 比第 K 筆高 ≥0.4 視為「明確領先」
 const AGENT_MIN_CONSISTENT = 3;   // topK=5 中至少 3 筆高置信才算「一致」
@@ -75,6 +77,10 @@ export function retrieve(tools, query, options = {}) {
   const { topK = 5, category, language, telemetryStats } = options;
 
   // 1. 跑兩套引擎
+  // 意圖三元組（Option C）：抽出查詢中的物件/約束/動作訊號，
+  // 調整 agent 端四維權重（物件→V2 加權、約束→V4 加權）。
+  // 純規則，詞表可維護；對語意跳躍查詢（如 scrape dashboard → 瀏覽器引擎）
+  // 幫助有限，屬詞彙天花板以內的最佳改良。
   const intent = extractIntent(query);
   const intentWeights = weightsForIntent(intent);
   const l2Results = search(tools, query, { topK, category, language, telemetryStats });

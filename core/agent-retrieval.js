@@ -255,6 +255,11 @@ function reasons(q, tool, fuseResult) {
 }
 
 // ── 對外 API ─────────────────────────────────────────────────────────────
+// intentWeights：由 retrieval-fusion 透過 query-intent.js 傳入的意圖驅動維度權重。
+// 意圖再排序（intentTerms）目前未接入：純規則的「常見 trigger 懲罰」無法
+// 壓制 V2 bag-similarity 通道的偽命中（如 clean jsonl 查詢中 airllm 的 V2），
+// 反而造成誠實度退步。保留此參數以便後續 Option B（語意 embedding）成熟後
+// 再接入，避免現在用規則強壓造成更多偽陽性。
 export function agentRetrieve(tools, query, { topK = 5, intentWeights } = {}) {
   const q = extractQuery(query);
   const idf = buildIdf(tools);
@@ -264,7 +269,7 @@ export function agentRetrieve(tools, query, { topK = 5, intentWeights } = {}) {
     ...fuse(q, tool, idf, w),
   })).filter((x) => x.bestDim > 0);
 
-  // 按 weighted 分數排序
+  // 按 weighted 分數排序（意圖權重已反映在 w 中）
   scored.sort((a, b) => b.weighted - a.weighted);
   const top = scored.slice(0, topK).map((x) => ({
     id: x.tool.id,
