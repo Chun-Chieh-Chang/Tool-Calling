@@ -18,6 +18,7 @@
 import { search } from './search-engine.js';
 import { agentRetrieve } from './agent-retrieval.js';
 import { extractIntent, weightsForIntent } from './query-intent.js';
+import { loadVectors, cosine } from './embedding.js';
 
 // ── 融合參數 ─────────────────────────────────────────────────────────────
 //
@@ -84,7 +85,19 @@ export function retrieve(tools, query, options = {}) {
   const intent = extractIntent(query);
   const intentWeights = weightsForIntent(intent);
   const l2Results = search(tools, query, { topK, category, language, telemetryStats });
-  const agentResult = agentRetrieve(tools, query, { topK, intentWeights });
+
+  // 語意 embedding（Option B）：
+  //   vectors：預計算的工具向量（registry/embeddings/vectors.json），不存在 → null。
+  //   queryVector：查詢文字的 embedding。
+  //     - 離線（無 API key）：無法即時算查詢向量 → V0 停用，完全退化四維引擎。
+  //     - 線上：若呼叫端提供 `options.queryVector`（數組）則直接使用；
+  //       未提供時本模組也不自己去打 API（保持純函式、無副作用），V0 停用。
+  // 因此 V0 只在「vectors 存在 且 呼叫端明確傳入 queryVector」時啟用。
+  const vectors = loadVectors();
+  const queryVector = (Array.isArray(options.queryVector) && options.queryVector.length > 0)
+    ? options.queryVector
+    : null;
+  const agentResult = agentRetrieve(tools, query, { topK, intentWeights, vectors, queryVector });
 
   // 2. 取訊號做決策矩陣
   //

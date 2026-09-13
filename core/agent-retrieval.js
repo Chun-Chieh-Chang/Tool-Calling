@@ -36,6 +36,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadVectors, cosine } from './embedding.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -229,17 +230,34 @@ const BEST_DIM_THRESHOLD = 0.35;
 const NO_MATCH_THRESHOLD = 0.15;
 const DIM_WEIGHTS = { V1: 0.30, V2: 0.35, V3: 0.20, V4: 0.15 };
 // V2 capability 權重最高：對 agent 選工具而言「能做什麼」比「怎麼裝」重要。
+// V0 semantic（語意 embedding）：預設權重 0。只有當提供 vectors 與查詢向量
+// 時才啟用，啟用後 V0 取代部分 V2 權重（語意已涵蓋功能端接）。
+const V0_WEIGHT = 0.25;
 
-function fuse(q, tool, idf, weights = DIM_WEIGHTS) {
+function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null) {
   const s1 = scoreV1Identity(q, tool, idf);
   const s2 = scoreV2Capability(q, tool, idf);
   const s3 = scoreV3Scenario(q, tool, idf);
   const s4 = scoreV4Constraint(q, tool, idf);
   const per = { V1: s1.value, V2: s2.value, V3: s3.value, V4: s4.value };
-  const bestDim = Math.max(per.V1, per.V2, per.V3, per.V4);
-  const weighted = per.V1 * weights.V1 + per.V2 * weights.V2 +
-                   per.V3 * weights.V3 + per.V4 * weights.V4;
-  const topDimKey = Object.keys(per).reduce((a, b) => (per[a] >= per[b] ? a : b));
+  if (v0 !== null) per.V0 = v0; // 僅當提供查詢向量時才有 V0
+
+  const dims = Object.keys(per);
+  const bestDim = Math.max(...dims.map((k) => per[k]));
+  // 加權：V0 啟用時把它當獨立維度計入（權重 V0_WEIGHT，剩餘按原比例縮放）
+  let weighted;
+  if (v0 !== null) {
+    const restSum = 1 - V0_WEIGHT;
+    const baseSum = weights.V1 + weights.V2 + weights.V3 + weights.V4;
+    weighted =
+      per.V0 * V0_WEIGHT +
+      (per.V1 * weights.V1 + per.V2 * weights.V2 + per.V3 * weights.V3 + per.V4 * weights.V4) *
+        (restSum / (baseSum || 1));
+  } else {
+    weighted =
+      per.V1 * weights.V1 + per.V2 * weights.V2 + per.V3 * weights.V3 + per.V4 * weights.V4;
+  }
+  const topDimKey = dims.reduce((a, b) => (per[a] >= per[b] ? a : b));
   return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit };
 }
 
@@ -256,20 +274,24 @@ function reasons(q, tool, fuseResult) {
 
 // ── 對外 API ─────────────────────────────────────────────────────────────
 // intentWeights：由 retrieval-fusion 透過 query-intent.js 傳入的意圖驅動維度權重。
-// 意圖再排序（intentTerms）目前未接入：純規則的「常見 trigger 懲罰」無法
-// 壓制 V2 bag-similarity 通道的偽命中（如 clean jsonl 查詢中 airllm 的 V2），
-// 反而造成誠實度退步。保留此參數以便後續 Option B（語意 embedding）成熟後
-// 再接入，避免現在用規則強壓造成更多偽陽性。
-export function agentRetrieve(tools, query, { topK = 5, intentWeights } = {}) {
+// vectors / queryVector：Option B 的語意 embedding。
+//   - vectors：loadVectors() 回傳的預計算工具向量（registry/embeddings/vectors.json）。
+//   - queryVector：查詢文字的 embedding（number[]）。由呼叫端算好傳入；
+//     為 null / undefined 時 V0 停用，完全退化成原四維引擎（離線安全）。
+// 兩者皆提供時，V0 = cosine(queryVector, vectors[tool.id])，權重 V0_WEIGHT。
+export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors = null, queryVector = null } = {}) {
   const q = extractQuery(query);
   const idf = buildIdf(tools);
   const w = intentWeights ?? DIM_WEIGHTS;
-  const scored = tools.map((tool) => ({
-    tool,
-    ...fuse(q, tool, idf, w),
-  })).filter((x) => x.bestDim > 0);
+  const v0Enabled = vectors !== null && queryVector !== null && Array.isArray(queryVector) && queryVector.length > 0;
+  const scored = tools.map((tool) => {
+    const v0 = v0Enabled
+      ? (vectors?.tools?.[tool.id] ? cosine(queryVector, vectors.tools[tool.id]) : 0)
+      : null;
+    return { tool, ...fuse(q, tool, idf, w, v0) };
+  }).filter((x) => x.bestDim > 0);
 
-  // 按 weighted 分數排序（意圖權重已反映在 w 中）
+  // 按 weighted 分數排序（意圖權重已反映在 w 中；V0 啟用時已納入 weighted）
   scored.sort((a, b) => b.weighted - a.weighted);
   const top = scored.slice(0, topK).map((x) => ({
     id: x.tool.id,
