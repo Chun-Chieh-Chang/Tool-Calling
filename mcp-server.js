@@ -55,28 +55,84 @@ server.tool(
 
 server.tool(
   "search_tools",
-  "搜尋工具（支援自然語言查詢與分類過濾）",
+  "搜尋工具（支援自然語言查詢與分類過濾；預設使用融合引擎，含誠實訊號）",
   {
     query: z.string().min(1).describe("搜尋查詢（例如 '我要做簡報'）"),
     category: z.string().optional().describe("依分類過濾"),
     topK: z.number().min(1).max(50).optional().describe("回傳前 K 筆（預設 5）"),
+    mode: z.enum(["auto", "lexical", "agent"]).optional().describe(
+      "檢索模式：auto（預設，融合 L2 + agent-retrieval，含誠實訊號）／lexical（只用 L2 關鍵字）／agent（只用 agent-retrieval 四維度）"
+    ),
   },
   async (args) => {
     try {
-      const { search } = await import("./core/search-engine.js");
       const tools = loadRegistry().tools;
       const telemetry = await getTelemetry();
-      const results = search(tools, args.query, {
+      const telemetryStats = telemetry?.getTelemetryStats() || {};
+
+      if (args.mode === "lexical") {
+        // 純 L2 關鍵字（舊行為，供調試）
+        const { search } = await import("./core/search-engine.js");
+        const results = search(tools, args.query, {
+          topK: args.topK || 5,
+          category: args.category,
+          telemetryStats,
+        });
+        const output = results.map((r) => ({
+          id: r.tool.id, name: r.tool.name, category: r.tool.category,
+          description: (r.tool.description || "").slice(0, 300), score: r.score,
+          matchLevel: r.matchLevel, advantages: r.tool.advantages || [],
+        }));
+        return { content: [{ type: "text", text: JSON.stringify({
+          total: output.length, mode: "lexical", results: output,
+        }, null, 2) }] };
+      }
+
+      if (args.mode === "agent") {
+        // 純 agent-retrieval（供調試）
+        const { agentRetrieve } = await import("./core/agent-retrieval.js");
+        const r = agentRetrieve(tools, args.query, { topK: args.topK || 5 });
+        const output = r.topK.map((x) => ({
+          id: x.id, name: x.name, category: x.category,
+          score: x.score, confidence: x.confidence,
+          triggerHit: x.triggerHit || null, reasons: x.reasons,
+          perDimension: x.perDimension,
+        }));
+        return { content: [{ type: "text", text: JSON.stringify({
+          total: output.length, mode: "agent",
+          decision: r.decision, fallbackHint: r.fallbackHint,
+          matched: r.matched, totalCandidates: r.totalCandidates,
+          results: output,
+        }, null, 2) }] };
+      }
+
+      // 預設 auto：融合 L2 + agent-retrieval
+      const { retrieve } = await import("./core/retrieval-fusion.js");
+      const r = retrieve(tools, args.query, {
         topK: args.topK || 5,
         category: args.category,
-        telemetryStats: telemetry?.getTelemetryStats() || {},
+        telemetryStats,
       });
-      const output = results.map((r) => ({
-        id: r.tool.id, name: r.tool.name, category: r.tool.category,
-        description: r.tool.description?.slice(0, 300), score: r.score,
-        matchLevel: r.matchLevel, advantages: r.tool.advantages || [],
+      const output = r.results.map((x) => ({
+        id: x.id, name: x.name, category: x.category,
+        description: x.description,
+        score: x.score, matchLevel: x.matchLevel, source: x.source,
+        confidence: x.confidence ?? null,
+        reasons: x.reasons,
       }));
-      return { content: [{ type: "text", text: JSON.stringify({ total: output.length, results: output }, null, 2) }] };
+      return { content: [{ type: "text", text: JSON.stringify({
+        total: output.length,
+        mode: "auto (fusion)",
+        decision: r.decision,
+        confidence: r.confidence,
+        fallbackHint: r.fallbackHint,
+        source: r.source,
+        agentConsistentCount: r.agentConsistentCount,
+        l2Leads: r.l2Leads,
+        matched: r.matched,
+        totalCandidates: r.totalCandidates,
+        results: output,
+      }, null, 2) }] };
     } catch (err) {
       return server.createToolError(`搜尋失敗: ${err.message}`);
     }

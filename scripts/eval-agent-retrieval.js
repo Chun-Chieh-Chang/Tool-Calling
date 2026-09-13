@@ -20,6 +20,7 @@ const tools = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'),
 
 const { search } = await import(pathToFileURL(path.join(ROOT, 'core', 'search-engine.js')).href);
 const { agentRetrieve } = await import(pathToFileURL(path.join(ROOT, 'core', 'agent-retrieval.js')).href);
+const { retrieve } = await import(pathToFileURL(path.join(ROOT, 'core', 'retrieval-fusion.js')).href);
 
 // 人工標註的评测集（8 筆）
 const EVAL_SET = [
@@ -94,9 +95,11 @@ function summarize(rows, label) {
 
 const l2 = runEngine((t, q, o) => search(t, q, o), 5, (res) => res);
 const ag = runEngine((t, q, o) => agentRetrieve(t, q, o), 5, (res) => res.topK);
+const fus = runEngine((t, q, o) => retrieve(t, q, o), 5, (res) => res.results);
 
 summarize(l2, 'L2 關鍵字（現行 search-engine.js）');
-summarize(ag, 'agent-retrieval.js（新引擎）');
+summarize(ag, 'agent-retrieval.js（四維度引擎）');
+summarize(fus, 'retrieval-fusion.js（L2 + agent 融合）');
 
 // 誠實率檢查：空集查詢時，引擎是否回傳 low-confidence / no-match
 console.log('\n══ 誠實率（空集查詢） ══');
@@ -104,8 +107,11 @@ for (const { q, correct } of EVAL_SET) {
   if (correct.size > 0) continue;
   const r = agentRetrieve(tools, q, { topK: 5 });
   const l2res = search(tools, q, { topK: 5 });
+  const fusRes = retrieve(tools, q, { topK: 5 });
   const l2Top1Score = l2res[0]?.score || 0;
   console.log(`  ${q}`);
+  console.log(`    L2:             top1.score=${l2Top1Score} (無誠實訊號，一律回傳結果)`);
   console.log(`    agent-retrieval: decision=${r.decision} top1.conf=${(r.topK[0]?.confidence * 100).toFixed(0)}%`);
-  console.log(`    L2:              top1.score=${l2Top1Score} (無誠實訊號，一律回傳結果)`);
+  console.log(`    fusion:        decision=${fusRes.decision} source=${fusRes.source} consistent=${fusRes.agentConsistentCount} l2Leads=${fusRes.l2Leads}`);
+  if (fusRes.fallbackHint) console.log(`                 hint=${fusRes.fallbackHint.slice(0, 90)}`);
 }
