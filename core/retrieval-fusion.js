@@ -100,9 +100,13 @@ export function retrieve(tools, query, options = {}) {
   const agentTop1 = agentResult.topK[0] ?? null;
   const agentConf = agentTop1?.confidence ?? 0;
   const agentDecision = agentResult.decision;
-  // 一致性門檻：看 agent **自己** 的 topK（非融合後），至少 N 筆 conf ≥ 0.35
+  // 一致性門檻：看 agent **自己** 的 topK（非融合後），至少 N 筆 conf ≥ 0.35。
+  // 若 agent 自身 decision 已是 low-confidence / no-match（誠實訊號），
+  // 即使 topK 中有個別高置信筆也不視為一致——避免通用 trigger 偽命中
+  // 透過 bag-similarity 通道把 confidence 撐到 0.35 以上。
   const agentConsistentCount = agentResult.topK.filter((x) => x.confidence >= AGENT_HIGH).length;
-  const agentConsistent = agentConsistentCount >= AGENT_MIN_CONSISTENT;
+  const agentSelfHonest = agentDecision === 'low-confidence' || agentDecision === 'no-match';
+  const agentConsistent = !agentSelfHonest && agentConsistentCount >= AGENT_MIN_CONSISTENT;
 
   let decision, source, fallbackHint = '', confidence = agentConf;
 
@@ -110,13 +114,25 @@ export function retrieve(tools, query, options = {}) {
     // agent 一致高置信 + L2 有候選 → 採用
     decision = 'adopt';
     source = l2Leads ? 'both' : 'agent-only';
-  } else if (l2Leads && !agentConsistent) {
-    // L2 有明確領先但 agent 不一致 → 採用但加誠實提示
+  } else if (agentConsistent && l2HasAny) {
+    // agent 未達「一致」但 top-1 高置信，且 L2 有候選 → 採但加誠實提示
+    decision = 'adopt-with-warning';
+    source = 'agent-only';
+    fallbackHint = 'Agent 端 top-1 高置信，但 topK 未達一致門檻（高置信 ' +
+      agentConsistentCount + '/' + agentResult.topK.length + ' 筆），' +
+      '建議以 list_tools 覆核或重新描述需求。';
+  } else if (l2Leads && !agentSelfHonest && !agentConsistent) {
+    // L2 有明確領先、agent 未自報無匹配、但未達一致性 → 採用但加誠實提示
     decision = 'adopt-with-warning';
     source = 'l2-only';
     fallbackHint = 'L2 有明確領先候選，但 agent 端置信度不一致（topK 高置信僅 ' +
       agentConsistentCount + '/' + agentResult.topK.length + ' 筆），' +
       '建議用 list_tools 依分類覆核。';
+  } else if (agentDecision === 'high-confidence' && l2HasAny) {
+    // agent 自報高置信但 L2 無明確領先 → 採 agent 結果（保守版）
+    decision = 'adopt-with-warning';
+    source = 'agent-only';
+    fallbackHint = 'Agent 端 top-1 高置信，但 L2 無明確領先，建議以 list_tools 覆核。';
   } else {
     // 兩者皆弱 → 誠實回傳「無工具」
     decision = 'no-match';

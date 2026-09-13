@@ -72,7 +72,7 @@ function buildIdf(tools) {
     for (const [tok, d] of df) m.set(tok, Math.log((N + 1) / (d + 1)) + 1);
     return m;
   };
-  return { idfIdentity: idf(dfId) };
+  return { idfIdentity: idf(dfId), dfIdentity: dfId, identityDocumentCount: N };
 }
 // 加權 bag 相似度：sum(idf[共詞] * wA * wB) / (sqrt(sum(idf^2 * wA^2)) * sqrt(sum(idf^2 * wB^2)))
 // w 預設 1；身分欄位可用更高權重放大 token 命中。
@@ -118,6 +118,46 @@ function extractQuery(query) {
 // trigger 命中不再給固定 0.9 —— 改為依 IDF：罕見 trigger（如 kubernetes）
 // 命中給 0.95，常見 trigger（如 markdown、node、data）命中只給 ~0.4。
 // 這是因為 agent 寫 query 時包含「markdown」很可能只是語境詞，不是身分。
+//
+// **全 token 覆蓋門控（2026-09-13 修正）**：
+// 僅「V1 單一 hit」不足以判定身分——若查詢有 5 個有意義 token，
+// 而命中 trigger 只覆蓋其中 1 個（例如 `lean` 命中 `clean and dedupe
+// jsonl dataset` 中的 `lean` 子串，但跟 clean/dedupe/jsonl/dataset 全無關），
+// 該 hit 應被「覆蓋率」打折：0.84 × 0.2 = 0.17 → 落到 V2/V3 端接。
+// 對真實命中（如 `scrape` 命中 `scrape a JS-rendered dashboard`），
+// 即使 V1 被覆蓋率打折，V2 會接住 dashboard/scrape/tables 等 capability
+// 詞，confidence 仍達 0.35+。
+// 通用詞（generic domain terms）：即使 df 低也不該拿自指信用，
+// 因為它們是語境詞而非身分信號（`dataset`、`data`、`model`…）。
+const GENERIC_TERMS = new Set([
+  'data', 'dataset', 'model', 'tool', 'agent', 'ai', 'api', 'cli',
+  'web', 'app', 'service', 'plugin', 'engine', 'framework', 'library',
+  'large', 'small', 'fast', 'quick', 'easy', 'simple', 'basic',
+]);
+
+function queryTokenCoverage(q, trigger, idf) {
+  // 統計查詢中有幾個「有意義 token」被該 trigger 整串覆蓋（子串包含）
+  const trigNorm = String(trigger || '').toLowerCase().trim();
+  if (!trigNorm) return 1; // 無 trigger → 不打折
+  const qTokens = (q.tokens || []).filter((t) => t.length >= 2);
+  if (qTokens.length === 0) return 1;
+
+  let covered = 0;
+  let selfRefIsRare = false;
+  for (const qt of qTokens) {
+    const coveredByTrigger = trigNorm.includes(qt) || qt.includes(trigNorm);
+    if (coveredByTrigger) covered++;
+    if (qt === trigNorm && !GENERIC_TERMS.has(qt)) {
+      const selfRefDf = idf?.dfIdentity?.get(qt) ?? Infinity;
+      if (selfRefDf <= 3) selfRefIsRare = true;
+    }
+  }
+
+  // 罕見且非通用詞的自指命中 → 保底 0.5；通用詞 → 不保底。
+  // 這樣 `summarize` 可保留身分信用，`dataset` 不會只靠單一通用詞撐起 high-confidence。
+  const selfRefCredit = selfRefIsRare ? 0.5 : 0;
+  return Math.max(covered / qTokens.length, selfRefCredit);
+}
 function scoreV1Identity(q, tool, idf) {
   const trigHit = triggerHit(q.bag, tool);
   let hitScore = 0;
@@ -129,12 +169,22 @@ function scoreV1Identity(q, tool, idf) {
       : 1;
     // 全庫平均 IDF ≈ log(N) ≈ 6.5；常見詞 ~2，罕見詞 ~8
     const normIdf = Math.max(0, Math.min(1, (trigIdf - 1.5) / 6.0)); // 1.5→0, 7.5→1
-    hitScore = 0.3 + 0.65 * normIdf; // 常見 ~0.3-0.5，罕見 0.95
+    let raw = 0.3 + 0.65 * normIdf; // 常見 ~0.3-0.5，罕見 0.95
+    // 全 token 覆蓋門控：罕見自指命中保底 0.5；子串偽命中按覆蓋率打折
+    const cov = queryTokenCoverage(q, trigHit, idf);
+    hitScore = raw * cov;
   }
   const identityTokens = [tool.id, tool.name, ...(tool.triggers || [])].filter(Boolean);
   const toolBag = bagOf(identityTokens.flatMap((s) => tokenize(s)));
   const idfScore = weightedSim(q.bag, toolBag, idf.idfIdentity, { weightA: 1.5, weightB: 1 });
-  return { value: Math.max(hitScore, idfScore), trigHit };
+  let v1 = Math.max(hitScore, idfScore);
+  // 通用 trigger 偽命中上限：當 hit trigger 只覆蓋查詢極小部分（cov < 0.5），
+  // 身分維度（V1 的 hit 或 idf 來源）都應被壓低，避免單一字串把整筆查詢拉高。
+  if (trigHit) {
+    const cov = queryTokenCoverage(q, trigHit, idf);
+    if (cov < 0.5) v1 = Math.min(v1, 0.25);
+  }
+  return { value: v1, trigHit };
 }
 
 // V2 功能：capabilities 陣列 + description；IDF 加權。
