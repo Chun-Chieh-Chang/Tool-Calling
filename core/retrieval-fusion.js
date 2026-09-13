@@ -17,6 +17,7 @@
 
 import { search } from './search-engine.js';
 import { agentRetrieve } from './agent-retrieval.js';
+import { extractIntent, weightsForIntent } from './query-intent.js';
 
 // ── 融合參數 ─────────────────────────────────────────────────────────────
 //
@@ -74,8 +75,10 @@ export function retrieve(tools, query, options = {}) {
   const { topK = 5, category, language, telemetryStats } = options;
 
   // 1. 跑兩套引擎
+  const intent = extractIntent(query);
+  const intentWeights = weightsForIntent(intent);
   const l2Results = search(tools, query, { topK, category, language, telemetryStats });
-  const agentResult = agentRetrieve(tools, query, { topK });
+  const agentResult = agentRetrieve(tools, query, { topK, intentWeights });
 
   // 2. 取訊號做決策矩陣
   //

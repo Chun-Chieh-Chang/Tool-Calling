@@ -230,15 +230,15 @@ const NO_MATCH_THRESHOLD = 0.15;
 const DIM_WEIGHTS = { V1: 0.30, V2: 0.35, V3: 0.20, V4: 0.15 };
 // V2 capability 權重最高：對 agent 選工具而言「能做什麼」比「怎麼裝」重要。
 
-function fuse(q, tool, idf) {
+function fuse(q, tool, idf, weights = DIM_WEIGHTS) {
   const s1 = scoreV1Identity(q, tool, idf);
   const s2 = scoreV2Capability(q, tool, idf);
   const s3 = scoreV3Scenario(q, tool, idf);
   const s4 = scoreV4Constraint(q, tool, idf);
   const per = { V1: s1.value, V2: s2.value, V3: s3.value, V4: s4.value };
   const bestDim = Math.max(per.V1, per.V2, per.V3, per.V4);
-  const weighted = per.V1 * DIM_WEIGHTS.V1 + per.V2 * DIM_WEIGHTS.V2 +
-                   per.V3 * DIM_WEIGHTS.V3 + per.V4 * DIM_WEIGHTS.V4;
+  const weighted = per.V1 * weights.V1 + per.V2 * weights.V2 +
+                   per.V3 * weights.V3 + per.V4 * weights.V4;
   const topDimKey = Object.keys(per).reduce((a, b) => (per[a] >= per[b] ? a : b));
   return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit };
 }
@@ -255,12 +255,13 @@ function reasons(q, tool, fuseResult) {
 }
 
 // ── 對外 API ─────────────────────────────────────────────────────────────
-export function agentRetrieve(tools, query, { topK = 5 } = {}) {
+export function agentRetrieve(tools, query, { topK = 5, intentWeights } = {}) {
   const q = extractQuery(query);
   const idf = buildIdf(tools);
+  const w = intentWeights ?? DIM_WEIGHTS;
   const scored = tools.map((tool) => ({
     tool,
-    ...fuse(q, tool, idf),
+    ...fuse(q, tool, idf, w),
   })).filter((x) => x.bestDim > 0);
 
   // 按 weighted 分數排序
