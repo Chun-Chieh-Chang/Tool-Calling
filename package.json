@@ -29,6 +29,7 @@
     "categories:check": "node scripts/sync-categories.js --check",
     "mcp": "node mcp-server.js",
     "embed:build": "node scripts/embed-build.js",
+    "benchmark": "node scripts/eval-benchmark.js",
     "lint": "echo \"No linter configured, skipping...\""
   },
   "keywords": [
