@@ -224,6 +224,62 @@ export function retrieve(tools, query, options = {}) {
   };
 }
 
+/**
+ * 融合檢索 + LLM rerank（async 版本）
+ *
+ * 為什麼需要較大的召回數：rerank 只能從候選中選，因此召回率就是它的天花板。
+ * 實測 agent 引擎 top-5 召回率僅 33.3%，top-20 才有 54.8%。
+ * 所以這裡先用 recallK（預設 20）召回，rerank 後再截斷回 topK。
+ *
+ * 離線安全：無 API key 時 rerank 直接略過，回傳原順序（與 retrieve() 相同）。
+ * API 失敗時亦同，絕不因 rerank 故障而讓整個檢索失效。
+ *
+ * @param {object[]} tools
+ * @param {string} query
+ * @param {object} [options]
+ * @param {number} [options.topK=5] - 最終回傳筆數
+ * @param {number} [options.recallK=20] - rerank 前的召回筆數（天花板）
+ * @param {boolean} [options.rerank] - 明確停用請傳 false；預設有 key 就啟用
+ * @returns {Promise<object>} retrieve() 的結果，外加 rerank 欄位
+ */
+export async function retrieveWithRerank(tools, query, options = {}) {
+  const { topK = 5, recallK = 20 } = options;
+
+  // 1. 先用較大 K 召回，確保正確答案有機會進入候選
+  const base = retrieve(tools, query, { ...options, topK: Math.max(topK, recallK) });
+
+  const skip = (reason) => ({
+    ...base,
+    results: base.results.slice(0, topK),
+    rerank: { applied: false, reason },
+  });
+
+  if (options.rerank === false) return skip('disabled');
+  if (base.results.length === 0) return skip('no candidates');
+
+  // 2. LLM rerank（動態 import：離線時也不增加啟動成本）
+  const { rerankCandidates, promote } = await import('./llm-rerank.js');
+  const descOf = (id) => tools.find((t) => t.id === id)?.description || '';
+  const candidates = base.results.map((x) => ({
+    id: x.id,
+    description: x.description || descOf(x.id),
+  }));
+
+  const { picked, error } = await rerankCandidates(query, candidates, {
+    maxRetries: 1,
+    timeoutMs: 12000,
+  });
+
+  if (!picked) return skip(error || 'no pick');
+
+  // 3. 把選中項提到首位，其餘維持原順序，再截斷回 topK
+  return {
+    ...base,
+    results: promote(base.results, picked).slice(0, topK),
+    rerank: { applied: true, picked },
+  };
+}
+
 // ── CLI 入口（僅在直接執行時）────────────────────────────────────────────
 // 用法：node core/retrieval-fusion.js "query" [topK]
 if (process.argv[1] && process.argv[1].endsWith('retrieval-fusion.js')) {

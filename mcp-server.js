@@ -63,6 +63,9 @@ server.tool(
     mode: z.enum(["auto", "lexical", "agent"]).optional().describe(
       "檢索模式：auto（預設，融合 L2 + agent-retrieval，含誠實訊號）／lexical（只用 L2 關鍵字）／agent（只用 agent-retrieval 四維度）"
     ),
+    rerank: z.boolean().optional().describe(
+      "是否用 LLM 對候選做語意重排（實測 Hit@1 從 11.9% 提升到 43–48%）。預設：有 API key 時自動啟用。傳 false 可關閉以縮短延遲。"
+    ),
   },
   async (args) => {
     try {
@@ -106,12 +109,13 @@ server.tool(
         }, null, 2) }] };
       }
 
-      // 預設 auto：融合 L2 + agent-retrieval
-      const { retrieve } = await import("./core/retrieval-fusion.js");
-      const r = retrieve(tools, args.query, {
+      // 預設 auto：融合 L2 + agent-retrieval（+ 可選 LLM rerank）
+      const { retrieveWithRerank } = await import("./core/retrieval-fusion.js");
+      const r = await retrieveWithRerank(tools, args.query, {
         topK: args.topK || 5,
         category: args.category,
         telemetryStats,
+        rerank: args.rerank,
       });
       const output = r.results.map((x) => ({
         id: x.id, name: x.name, category: x.category,
@@ -122,7 +126,7 @@ server.tool(
       }));
       return { content: [{ type: "text", text: JSON.stringify({
         total: output.length,
-        mode: "auto (fusion)",
+        mode: r.rerank?.applied ? "auto (fusion + llm-rerank)" : "auto (fusion)",
         decision: r.decision,
         confidence: r.confidence,
         fallbackHint: r.fallbackHint,
@@ -131,6 +135,7 @@ server.tool(
         l2Leads: r.l2Leads,
         matched: r.matched,
         totalCandidates: r.totalCandidates,
+        rerank: r.rerank ?? null,
         results: output,
       }, null, 2) }] };
     } catch (err) {

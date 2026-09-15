@@ -1,6 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { parsePick, buildPrompt, rerankCandidates, promote } from '../core/llm-rerank.js';
+import { retrieveWithRerank } from '../core/retrieval-fusion.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const registry = JSON.parse(readFileSync(path.join(__dirname, '..', 'registry', 'tools.json'), 'utf8'));
+const registryTools = registry.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
 const CANDS = ['alpha', 'beta', 'gamma', 'delta'];
 
@@ -127,4 +135,50 @@ test('promote - 不修改原陣列', () => {
   const items = [{ id: 'a' }, { id: 'b' }];
   promote(items, 'b');
   assert.deepEqual(items.map((x) => x.id), ['a', 'b']);
+});
+
+// ── retrieveWithRerank：離線時必須與 retrieve() 行為一致 ───────────────────
+// 這裡全部在無 API key 的前提下執行，確保 rerank 故障/停用不會改變檢索結果。
+
+test('retrieveWithRerank - 無 api key 時略過 rerank 且維持原順序', async () => {
+  const prev = process.env.AGNES_API_KEY;
+  delete process.env.AGNES_API_KEY;
+  try {
+    const r = await retrieveWithRerank(registryTools, '我要做簡報', { topK: 5 });
+    assert.equal(r.rerank.applied, false);
+    assert.equal(r.rerank.reason, 'no api key (offline)');
+    assert.ok(r.results.length <= 5, '結果應截斷到 topK');
+    assert.ok(r.results.length > 0 && r.results[0].id, '應有檢索結果');
+  } finally {
+    if (prev !== undefined) process.env.AGNES_API_KEY = prev;
+  }
+});
+
+test('retrieveWithRerank - rerank=false 時明確停用', async () => {
+  const r = await retrieveWithRerank(registryTools, '我要做簡報', { topK: 5, rerank: false });
+  assert.equal(r.rerank.applied, false);
+  assert.equal(r.rerank.reason, 'disabled');
+});
+
+test('retrieveWithRerank - 回傳筆數不超過 topK（即便召回數較大）', async () => {
+  const prev = process.env.AGNES_API_KEY;
+  delete process.env.AGNES_API_KEY;
+  try {
+    const r = await retrieveWithRerank(registryTools, '圖表視覺化工具', { topK: 3, recallK: 20 });
+    assert.ok(r.results.length <= 3, `應 ≤3 筆，實際 ${r.results.length}`);
+  } finally {
+    if (prev !== undefined) process.env.AGNES_API_KEY = prev;
+  }
+});
+
+test('retrieveWithRerank - 無候選時安全略過', async () => {
+  const prev = process.env.AGNES_API_KEY;
+  delete process.env.AGNES_API_KEY;
+  try {
+    const r = await retrieveWithRerank(registryTools, '這是一個完全不存在的神奇工具哈哈', { topK: 5 });
+    assert.equal(r.rerank.applied, false);
+    assert.ok(['no candidates', 'no api key (offline)'].includes(r.rerank.reason));
+  } finally {
+    if (prev !== undefined) process.env.AGNES_API_KEY = prev;
+  }
 });
