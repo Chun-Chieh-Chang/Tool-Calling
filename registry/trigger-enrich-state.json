@@ -915,6 +915,210 @@
     "destructivecommandguard": {
       "at": "2026-09-15T12:44:44.451Z",
       "added": 10
+    },
+    "hallmark": {
+      "at": "2026-09-15T23:47:49.830Z",
+      "added": 5
+    },
+    "designmd": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "heilcheng-awesome-agent-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "openai-figma-implement-skill": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "anthropic-pdf-analysis-skill": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "nousresearch-hermes-coding-agent": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "gitignore": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "openclaw": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "project-based-learning": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "the-book-of-secret-knowledge": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "memos-MemTensor": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "stop-slop": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "claude-for-legal-zh": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "frontend-slides-Kelemani": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "awesome-auto-research-tools": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "taste-skill": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "harness": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "minimax-ppt-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "gstack": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "gnome-orca": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "ds4": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "ai-job-search": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "antigravity-notebooklm-mcp": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "khunotebooklmmcp": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "pi": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "notebooklm-skill-PleasePrompto": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "dbskill": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "agent-pulse-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "tapestry-skills-for-claude-code": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "marketingskills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "agents": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "rigorpilot-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "qu-integration-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "web-quality-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "convex-agent-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "agentspace-skill-manager": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "github-copilot-for-azure": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "elevenlabs-voice-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "browser-act-automation": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "runcomfy-intent-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "doany-comfyui-skills": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "notebooklm-antigravity-skill": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "img2threejs": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "wayfinder": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "agentic-inbox": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "open-higgsfield-ai": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "shepherd": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "hy3": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "mimo-v25-asr": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "glm-5": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
+    },
+    "step-37-flash": {
+      "at": "2026-09-15T23:47:49.831Z",
+      "added": 5
     }
   },
   "model": "agnes-2.5-flash"

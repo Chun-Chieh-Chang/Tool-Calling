@@ -44,8 +44,12 @@ const args = process.argv.slice(2);
 const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) || Infinity;
 const DRY = args.includes('--dry');
 const FORCE = args.includes('--force');
-// --show：印出每個工具實際產生的詞，用於驗證品質與黑名單效果
+// --show：印出每個工具實際保留的詞，用於驗證品質與守門效果
 const SHOW = args.includes('--show');
+// 鑑別力守門參數（可用 --no-guard 關閉以對照效果）
+const GUARD = !args.includes('--no-guard');
+const MAX_DF = Number(args.find((a) => a.startsWith('--max-df='))?.split('=')[1] || 3);
+const MAX_PER_TOOL = Number(args.find((a) => a.startsWith('--max-per-tool='))?.split('=')[1] || 5);
 
 const API_KEY = process.env.AGNES_API_KEY;
 const API_URL = 'https://apihub.agnes-ai.com/v1/chat/completions';
@@ -150,6 +154,62 @@ async function genTriggers(tool) {
   throw new Error(lastErr);
 }
 
+// ── 鑑別力守門 ───────────────────────────────────────────────────────────
+// 背景（2026-09-15）：擴到 361 筆時 fusion Hit@1 從 11.9% 退步到 7.1%。
+// 根因是**稀釋**——新增 trigger 讓競爭對手一起變強，原本的優勢被抵銷。
+// 所以「詞越多越好」是錯的：一個詞若已出現在很多工具，再加它只會稀釋。
+//
+// 做法：在**批次層級**統計每個新詞的 document frequency（df），
+//   df = 既有全庫 triggers 中出現過的次數 + 本批次內有幾個工具也想加它
+// df 越高代表越沒有鑑別力。超過 MAX_DF 直接剔除；
+// 剩下的按 IDF 由高到低排序，每個工具只留 MAX_PER_TOOL 個。
+
+const norm = (s) => String(s || '').toLowerCase().trim();
+
+function buildTermDf(tools) {
+  const df = new Map();
+  for (const t of tools) {
+    // 只用 triggers：守門關心的是 trigger 匹配時的競爭程度
+    const terms = new Set((t.triggers || []).map(norm));
+    for (const term of terms) df.set(term, (df.get(term) || 0) + 1);
+  }
+  return df;
+}
+
+/**
+ * 依鑑別力過濾候選詞。
+ * @param {Map<string,string[]>} candidates - toolId → 候選詞
+ * @param {Map<string,number>} existingDf - 既有全庫的詞頻
+ * @param {number} totalTools - 工具總數（算 IDF 用）
+ * @param {number} maxDf - df 超過此值即剔除
+ * @param {number} maxPerTool - 每工具最多保留幾個
+ * @returns {Map<string,string[]>} 過濾後的詞
+ */
+export function guardDiscriminability(candidates, existingDf, totalTools, maxDf, maxPerTool) {
+  // 本批次內，每個詞被多少工具想要
+  const batchCount = new Map();
+  for (const terms of candidates.values()) {
+    for (const term of new Set(terms.map(norm))) {
+      batchCount.set(term, (batchCount.get(term) || 0) + 1);
+    }
+  }
+
+  const out = new Map();
+  for (const [id, terms] of candidates) {
+    const scored = [];
+    for (const term of terms) {
+      const n = norm(term);
+      // 該詞最終會出現在多少個工具
+      const df = (existingDf.get(n) || 0) + (batchCount.get(n) || 0);
+      if (df > maxDf) continue;                    // 太常見 → 無鑑別力
+      scored.push({ term, idf: Math.log((totalTools + 1) / (df + 1)) });
+    }
+    scored.sort((a, b) => b.idf - a.idf);
+    out.set(id, scored.slice(0, maxPerTool).map((s) => s.term));
+  }
+  return out;
+}
+
 async function main() {
   if (!API_KEY) {
     console.error('Error: AGNES_API_KEY is not set.');
@@ -166,10 +226,13 @@ async function main() {
   const pending = all.filter((t) => !state.done[t.id]).slice(0, LIMIT);
 
   console.log(`\n工具總數 ${all.length}；已處理 ${Object.keys(state.done).length}；本次待處理 ${pending.length}`);
+  console.log(`鑑別力守門：${GUARD ? `啟用（df ≤ ${MAX_DF}、每筆 ≤ ${MAX_PER_TOOL} 詞）` : '停用'}`);
   if (DRY) console.log('（--dry：不會寫入 tools.json）\n');
   if (pending.length === 0) { console.log('沒有待處理的工具。'); return; }
 
-  let ok = 0, fail = 0, filtered = 0;
+  // ── Phase 1：產生候選（先不寫入）──────────────────────────────────────
+  const candidates = new Map();
+  let fail = 0;
   for (let i = 0; i < pending.length; i += CONCURRENCY) {
     const chunk = pending.slice(i, i + CONCURRENCY);
     const results = await Promise.all(chunk.map(async (tool) => {
@@ -179,22 +242,44 @@ async function main() {
         return { tool, news: [], err: e.message.slice(0, 60) };
       }
     }));
-
     for (const { tool, news, err } of results) {
       if (err) { fail++; console.error(`  ✗ ${tool.id}: ${err}`); continue; }
-      if (news.length === 0) { fail++; filtered++; continue; }
-      if (SHOW) console.log(`  ${tool.id}\n    → ${news.join(' / ')}`);
-      tool.triggers = [...new Set([...(tool.triggers || []), ...news])];
-      state.done[tool.id] = { at: new Date().toISOString(), added: news.length };
-      ok++;
+      if (news.length === 0) { fail++; continue; }
+      candidates.set(tool.id, news);
     }
-
     const done = Math.min(i + CONCURRENCY, pending.length);
-    process.stdout.write(`  進度 ${done}/${pending.length}（成功 ${ok}／失敗 ${fail}）\r`);
+    process.stdout.write(`  產生候選 ${done}/${pending.length}\r`);
     if (i + CONCURRENCY < pending.length) await sleep(DELAY_MS);
   }
+  console.log(`\n  取得候選 ${candidates.size} 筆，API 失敗 ${fail} 筆`);
 
-  console.log(`\n\n完成：成功 ${ok}、失敗或全被過濾 ${fail}`);
+  // ── Phase 2：鑑別力守門 ────────────────────────────────────────────────
+  const existingDf = buildTermDf(all);
+  const finalTerms = GUARD
+    ? guardDiscriminability(candidates, existingDf, all.length, MAX_DF, MAX_PER_TOOL)
+    : candidates;
+
+  let beforeCount = 0, afterCount = 0;
+  for (const terms of candidates.values()) beforeCount += terms.length;
+  for (const terms of finalTerms.values()) afterCount += terms.length;
+  if (GUARD) {
+    console.log(`  守門過濾：${beforeCount} 詞 → ${afterCount} 詞（剔除 ${beforeCount - afterCount}，${((1 - afterCount / (beforeCount || 1)) * 100).toFixed(0)}%）`);
+  }
+
+  // ── Phase 3：套用 ──────────────────────────────────────────────────────
+  let ok = 0;
+  const byId = new Map(all.map((t) => [t.id, t]));
+  for (const [id, terms] of finalTerms) {
+    const tool = byId.get(id);
+    if (!tool) continue;
+    if (SHOW) console.log(`  ${id}\n    → ${terms.join(' / ')}`);
+    if (terms.length === 0) continue;
+    tool.triggers = [...new Set([...(tool.triggers || []), ...terms])];
+    state.done[id] = { at: new Date().toISOString(), added: terms.length };
+    ok++;
+  }
+
+  console.log(`\n完成：寫入 ${ok} 筆、API 失敗 ${fail} 筆`);
 
   if (!DRY && ok > 0) {
     mkdirSync(BACKUP_DIR, { recursive: true });

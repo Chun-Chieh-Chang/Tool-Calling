@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { isGeneric, GENERIC_PHRASES } from '../scripts/enrich-triggers-llm.js';
+import { isGeneric, GENERIC_PHRASES, guardDiscriminability } from '../scripts/enrich-triggers-llm.js';
 
 // ── 萬能詞防護 ───────────────────────────────────────────────────────────
 // LLM 擴充 trigger 時會產生「幫我搞定」「有沒有工具能做這個」這類
@@ -56,4 +56,74 @@ test('GENERIC_PHRASES - 每個條目確實會被 isGeneric 攔下', () => {
   for (const p of GENERIC_PHRASES) {
     assert.equal(isGeneric(`前綴${p}後綴`), true, `黑名單條目無效：${p}`);
   }
+});
+
+// ── 鑑別力守門 ───────────────────────────────────────────────────────────
+// 背景（2026-09-15）：擴充到 361 筆時 fusion Hit@1 從 11.9% 退步到 7.1%。
+// 根因是稀釋：新 trigger 讓競爭對手一起變強，原本的優勢被抵銷。
+// 守門機制確保只加入「出現在少量工具」的詞——也就是有區分力的詞。
+
+test('guardDiscriminability - 剔除已在太多工具出現的詞', () => {
+  const candidates = new Map([['toolA', ['罕見詞語', '到處都有']]]);
+  const existingDf = new Map([['到處都有', 50]]);   // 已出現在 50 個工具
+  const out = guardDiscriminability(candidates, existingDf, 100, 3, 5);
+  assert.ok(!out.get('toolA').includes('到處都有'), '高 df 的詞應被剔除');
+  assert.ok(out.get('toolA').includes('罕見詞語'), '低 df 的詞應保留');
+});
+
+test('guardDiscriminability - 剔除本批次內多個工具都想加的詞', () => {
+  // 「生成圖片」同時被 3 個工具想要 → 加進去只會互相稀釋
+  const candidates = new Map([
+    ['toolA', ['生成圖片', '專屬特徵A']],
+    ['toolB', ['生成圖片', '專屬特徵B']],
+    ['toolC', ['生成圖片', '專屬特徵C']],
+  ]);
+  const existingDf = new Map();
+  const out = guardDiscriminability(candidates, existingDf, 100, 2, 5);
+  for (const id of ['toolA', 'toolB', 'toolC']) {
+    assert.ok(!out.get(id).includes('生成圖片'), `${id} 的「生成圖片」應被剔除（批內競爭 3 > maxDf 2）`);
+    assert.ok(out.get(id).length > 0, `${id} 應保留自己的專屬詞`);
+  }
+});
+
+test('guardDiscriminability - 既有 df 與批次內競爭會相加計算', () => {
+  // 既有 2 個工具已有此詞，批次內又有 2 個想加 → 總 df = 4 > 3，應剔除
+  const candidates = new Map([
+    ['toolA', ['邊界詞']],
+    ['toolB', ['邊界詞']],
+  ]);
+  const existingDf = new Map([['邊界詞', 2]]);
+  const out = guardDiscriminability(candidates, existingDf, 100, 3, 5);
+  assert.equal(out.get('toolA').includes('邊界詞'), false, 'df 2+2=4 > 3 應剔除');
+});
+
+test('guardDiscriminability - 每工具保留數量不超過上限', () => {
+  const candidates = new Map([['toolA', ['w1', 'w2', 'w3', 'w4', 'w5', 'w6', 'w7']]]);
+  const out = guardDiscriminability(candidates, new Map(), 100, 3, 3);
+  assert.ok(out.get('toolA').length <= 3, `應 ≤3 詞，實際 ${out.get('toolA').length}`);
+});
+
+test('guardDiscriminability - 保留的是 IDF 最高者（最罕見的詞）', () => {
+  // common 已在 2 個工具、rare 在 0 個 → rare 的 IDF 較高，應優先保留
+  const candidates = new Map([['toolA', ['common', 'rare']]]);
+  const existingDf = new Map([['common', 2]]);
+  const out = guardDiscriminability(candidates, existingDf, 100, 3, 1);
+  assert.deepEqual(out.get('toolA'), ['rare'], '應保留 IDF 最高的 rare');
+});
+
+test('guardDiscriminability - 空輸入與邊界安全', () => {
+  assert.equal(guardDiscriminability(new Map(), new Map(), 100, 3, 5).size, 0);
+  const out = guardDiscriminability(new Map([['a', []]]), new Map(), 100, 3, 5);
+  assert.deepEqual(out.get('a'), []);
+});
+
+test('guardDiscriminability - 大小寫與空白視為同一詞', () => {
+  const candidates = new Map([
+    ['toolA', ['Chart Tool']],
+    ['toolB', ['chart tool']],
+  ]);
+  const out = guardDiscriminability(candidates, new Map(), 100, 1, 5);
+  // 正規化後兩者相同，批內競爭 2 > maxDf 1 → 都剔除
+  assert.equal(out.get('toolA').length, 0);
+  assert.equal(out.get('toolB').length, 0);
 });
