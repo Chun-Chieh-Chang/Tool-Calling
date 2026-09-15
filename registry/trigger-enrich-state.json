@@ -1,0 +1,921 @@
+{
+  "done": {
+    "ppt-master": {
+      "at": "2026-09-15T12:19:16.055Z",
+      "added": 10
+    },
+    "graphify": {
+      "at": "2026-09-15T12:19:16.059Z",
+      "added": 10
+    },
+    "strix": {
+      "at": "2026-09-15T12:19:16.059Z",
+      "added": 10
+    },
+    "ai-animation-video-generator": {
+      "at": "2026-09-15T12:19:16.059Z",
+      "added": 10
+    },
+    "open-generative-ai": {
+      "at": "2026-09-15T12:19:31.277Z",
+      "added": 10
+    },
+    "imaginairy": {
+      "at": "2026-09-15T12:19:31.277Z",
+      "added": 10
+    },
+    "vercel-ai-skills": {
+      "at": "2026-09-15T12:19:31.277Z",
+      "added": 6
+    },
+    "total-typescript-skills": {
+      "at": "2026-09-15T12:19:31.277Z",
+      "added": 10
+    },
+    "flysystem": {
+      "at": "2026-09-15T12:19:39.098Z",
+      "added": 9
+    },
+    "tdd": {
+      "at": "2026-09-15T12:19:39.098Z",
+      "added": 10
+    },
+    "postgres-mcp": {
+      "at": "2026-09-15T12:19:39.098Z",
+      "added": 10
+    },
+    "github-mcp-server": {
+      "at": "2026-09-15T12:20:21.856Z",
+      "added": 9
+    },
+    "context7": {
+      "at": "2026-09-15T12:20:21.856Z",
+      "added": 10
+    },
+    "sequentialthinking": {
+      "at": "2026-09-15T12:20:21.856Z",
+      "added": 10
+    },
+    "mcp-sequential-thinking": {
+      "at": "2026-09-15T12:20:21.856Z",
+      "added": 10
+    },
+    "memmy-agent": {
+      "at": "2026-09-15T12:20:30.175Z",
+      "added": 10
+    },
+    "build-your-own-x": {
+      "at": "2026-09-15T12:20:30.175Z",
+      "added": 10
+    },
+    "posthog": {
+      "at": "2026-09-15T12:20:30.175Z",
+      "added": 10
+    },
+    "code-review-graph": {
+      "at": "2026-09-15T12:20:36.472Z",
+      "added": 10
+    },
+    "officecli": {
+      "at": "2026-09-15T12:20:36.472Z",
+      "added": 10
+    },
+    "stablyai-orca": {
+      "at": "2026-09-15T12:20:36.472Z",
+      "added": 10
+    },
+    "herdr": {
+      "at": "2026-09-15T12:20:36.472Z",
+      "added": 10
+    },
+    "impeccable": {
+      "at": "2026-09-15T12:20:54.500Z",
+      "added": 9
+    },
+    "slidesmaker": {
+      "at": "2026-09-15T12:20:54.500Z",
+      "added": 10
+    },
+    "lean-ctx": {
+      "at": "2026-09-15T12:20:54.500Z",
+      "added": 10
+    },
+    "loop-engineering-orange-book": {
+      "at": "2026-09-15T12:21:07.988Z",
+      "added": 10
+    },
+    "guizang-ppt-skill": {
+      "at": "2026-09-15T12:21:07.988Z",
+      "added": 10
+    },
+    "open-slide": {
+      "at": "2026-09-15T12:21:07.988Z",
+      "added": 10
+    },
+    "awesome-llm-apps": {
+      "at": "2026-09-15T12:21:46.457Z",
+      "added": 10
+    },
+    "stitch-skills": {
+      "at": "2026-09-15T12:21:46.457Z",
+      "added": 10
+    },
+    "rag-anything": {
+      "at": "2026-09-15T12:21:51.589Z",
+      "added": 10
+    },
+    "cli-anything": {
+      "at": "2026-09-15T12:21:51.589Z",
+      "added": 10
+    },
+    "addyosmani-agent-skills": {
+      "at": "2026-09-15T12:21:51.589Z",
+      "added": 10
+    },
+    "directus": {
+      "at": "2026-09-15T12:22:03.115Z",
+      "added": 10
+    },
+    "lanshu-animated-architecture-diagram": {
+      "at": "2026-09-15T12:22:03.115Z",
+      "added": 10
+    },
+    "agency-agents": {
+      "at": "2026-09-15T12:22:03.115Z",
+      "added": 10
+    },
+    "codebase-memory-mcp-pro": {
+      "at": "2026-09-15T12:22:10.935Z",
+      "added": 10
+    },
+    "openmontage": {
+      "at": "2026-09-15T12:22:10.935Z",
+      "added": 10
+    },
+    "video-use": {
+      "at": "2026-09-15T12:22:10.935Z",
+      "added": 10
+    },
+    "cognee": {
+      "at": "2026-09-15T12:22:18.989Z",
+      "added": 10
+    },
+    "caveman": {
+      "at": "2026-09-15T12:22:18.989Z",
+      "added": 10
+    },
+    "caveman-code": {
+      "at": "2026-09-15T12:22:18.989Z",
+      "added": 10
+    },
+    "codex-plugin-cc": {
+      "at": "2026-09-15T12:22:18.989Z",
+      "added": 10
+    },
+    "openai-agents-js": {
+      "at": "2026-09-15T12:22:28.959Z",
+      "added": 10
+    },
+    "openai-codex-skills": {
+      "at": "2026-09-15T12:22:28.959Z",
+      "added": 10
+    },
+    "openai-mcpkit": {
+      "at": "2026-09-15T12:22:28.959Z",
+      "added": 10
+    },
+    "claudemd": {
+      "at": "2026-09-15T12:22:56.839Z",
+      "added": 10
+    },
+    "agentic-awesome-skills": {
+      "at": "2026-09-15T12:22:56.839Z",
+      "added": 10
+    },
+    "claude-code-best-practice": {
+      "at": "2026-09-15T12:22:56.840Z",
+      "added": 10
+    },
+    "awesome-agent-skills-VoltAgent": {
+      "at": "2026-09-15T12:22:56.840Z",
+      "added": 10
+    },
+    "claude-skills": {
+      "at": "2026-09-15T12:23:00.793Z",
+      "added": 10
+    },
+    "claude-code-guide": {
+      "at": "2026-09-15T12:23:00.793Z",
+      "added": 10
+    },
+    "playwright": {
+      "at": "2026-09-15T12:28:16.929Z",
+      "added": 10
+    },
+    "loop-engineering": {
+      "at": "2026-09-15T12:28:23.575Z",
+      "added": 10
+    },
+    "html-ppt-skill": {
+      "at": "2026-09-15T12:28:23.576Z",
+      "added": 10
+    },
+    "desktopcommandermcp": {
+      "at": "2026-09-15T12:28:37.655Z",
+      "added": 10
+    },
+    "codebase-memory-mcp": {
+      "at": "2026-09-15T12:28:54.270Z",
+      "added": 10
+    },
+    "whisper": {
+      "at": "2026-09-15T12:28:54.270Z",
+      "added": 10
+    },
+    "html-deck-editor": {
+      "at": "2026-09-15T12:28:59.087Z",
+      "added": 10
+    },
+    "superpowers": {
+      "at": "2026-09-15T12:28:59.087Z",
+      "added": 10
+    },
+    "claude-mem": {
+      "at": "2026-09-15T12:29:11.775Z",
+      "added": 10
+    },
+    "agent-reach": {
+      "at": "2026-09-15T12:29:11.775Z",
+      "added": 10
+    },
+    "gitnexus": {
+      "at": "2026-09-15T12:29:18.848Z",
+      "added": 10
+    },
+    "humanizer-zh": {
+      "at": "2026-09-15T12:29:18.848Z",
+      "added": 10
+    },
+    "mini-agent": {
+      "at": "2026-09-15T12:29:30.936Z",
+      "added": 10
+    },
+    "terax-ai": {
+      "at": "2026-09-15T12:29:30.936Z",
+      "added": 10
+    },
+    "cl4r1t4s": {
+      "at": "2026-09-15T12:29:38.584Z",
+      "added": 10
+    },
+    "frontend-design": {
+      "at": "2026-09-15T12:29:38.584Z",
+      "added": 10
+    },
+    "open-design": {
+      "at": "2026-09-15T12:29:55.902Z",
+      "added": 10
+    },
+    "react-best-practices": {
+      "at": "2026-09-15T12:29:55.902Z",
+      "added": 10
+    },
+    "playwright-skill": {
+      "at": "2026-09-15T12:30:07.068Z",
+      "added": 10
+    },
+    "awesome-copilot": {
+      "at": "2026-09-15T12:30:07.068Z",
+      "added": 10
+    },
+    "kane-cli": {
+      "at": "2026-09-15T12:30:16.438Z",
+      "added": 10
+    },
+    "gh-fix-ci": {
+      "at": "2026-09-15T12:30:16.438Z",
+      "added": 10
+    },
+    "gh-address-comments": {
+      "at": "2026-09-15T12:30:42.164Z",
+      "added": 9
+    },
+    "figma-generate-library": {
+      "at": "2026-09-15T12:30:42.164Z",
+      "added": 10
+    },
+    "notebooklm-obsidian-pipeline": {
+      "at": "2026-09-15T12:30:49.799Z",
+      "added": 3
+    },
+    "aippt": {
+      "at": "2026-09-15T12:31:02.874Z",
+      "added": 10
+    },
+    "awesome-notebooklm-prompts": {
+      "at": "2026-09-15T12:31:02.874Z",
+      "added": 10
+    },
+    "notebooklm2ppt": {
+      "at": "2026-09-15T12:31:17.292Z",
+      "added": 10
+    },
+    "claude-world-notebooklm": {
+      "at": "2026-09-15T12:31:17.292Z",
+      "added": 10
+    },
+    "nblm2pptx": {
+      "at": "2026-09-15T12:31:25.190Z",
+      "added": 10
+    },
+    "ai-short-video-engine": {
+      "at": "2026-09-15T12:31:25.190Z",
+      "added": 10
+    },
+    "mineru2ppt": {
+      "at": "2026-09-15T12:31:31.868Z",
+      "added": 10
+    },
+    "awesome-notebooklm": {
+      "at": "2026-09-15T12:31:31.868Z",
+      "added": 10
+    },
+    "ontology-playground": {
+      "at": "2026-09-15T12:31:40.334Z",
+      "added": 10
+    },
+    "ontology": {
+      "at": "2026-09-15T12:31:40.334Z",
+      "added": 10
+    },
+    "notebooklm-slide-pipeline": {
+      "at": "2026-09-15T12:31:45.163Z",
+      "added": 10
+    },
+    "animejs-v4-ai-guidelines": {
+      "at": "2026-09-15T12:31:45.163Z",
+      "added": 10
+    },
+    "virgiliojr94-book-to-skill": {
+      "at": "2026-09-15T12:31:51.067Z",
+      "added": 10
+    },
+    "book2skills": {
+      "at": "2026-09-15T12:31:51.067Z",
+      "added": 10
+    },
+    "book-skill-generator": {
+      "at": "2026-09-15T12:31:59.648Z",
+      "added": 10
+    },
+    "markitdown": {
+      "at": "2026-09-15T12:31:59.648Z",
+      "added": 10
+    },
+    "markitdown-website": {
+      "at": "2026-09-15T12:32:04.044Z",
+      "added": 10
+    },
+    "anthropic-claude-skills": {
+      "at": "2026-09-15T12:32:04.044Z",
+      "added": 10
+    },
+    "vercel-web-design-guidelines-skill": {
+      "at": "2026-09-15T12:32:08.204Z",
+      "added": 10
+    },
+    "nexu-prototype-generator-skill": {
+      "at": "2026-09-15T12:32:35.667Z",
+      "added": 10
+    },
+    "vercel-agent-skills": {
+      "at": "2026-09-15T12:32:35.667Z",
+      "added": 10
+    },
+    "microsoft-playwright-cli-skill": {
+      "at": "2026-09-15T12:32:43.891Z",
+      "added": 10
+    },
+    "openai-playwright-automation-skill": {
+      "at": "2026-09-15T12:32:43.891Z",
+      "added": 10
+    },
+    "github-copilot-playwright-test-skill": {
+      "at": "2026-09-15T12:32:48.612Z",
+      "added": 10
+    },
+    "openai-figma-generate-skill": {
+      "at": "2026-09-15T12:32:48.612Z",
+      "added": 10
+    },
+    "book-to-skill-apple-ouyang": {
+      "at": "2026-09-15T12:32:54.774Z",
+      "added": 10
+    },
+    "browser-use": {
+      "at": "2026-09-15T12:33:02.695Z",
+      "added": 10
+    },
+    "browserbase-web-automation-skills": {
+      "at": "2026-09-15T12:33:02.695Z",
+      "added": 10
+    },
+    "autogen": {
+      "at": "2026-09-15T12:33:23.870Z",
+      "added": 10
+    },
+    "metagpt": {
+      "at": "2026-09-15T12:33:23.870Z",
+      "added": 10
+    },
+    "lobehub": {
+      "at": "2026-09-15T12:33:33.192Z",
+      "added": 10
+    },
+    "transformers": {
+      "at": "2026-09-15T12:33:33.192Z",
+      "added": 10
+    },
+    "cocoindex": {
+      "at": "2026-09-15T12:33:44.598Z",
+      "added": 10
+    },
+    "stable-diffusion-webui": {
+      "at": "2026-09-15T12:33:44.598Z",
+      "added": 10
+    },
+    "stable-diffusion-webui-localization-zhtw": {
+      "at": "2026-09-15T12:33:59.965Z",
+      "added": 5
+    },
+    "langflow": {
+      "at": "2026-09-15T12:33:59.965Z",
+      "added": 10
+    },
+    "mem0": {
+      "at": "2026-09-15T12:34:09.777Z",
+      "added": 10
+    },
+    "ruflo": {
+      "at": "2026-09-15T12:34:09.777Z",
+      "added": 10
+    },
+    "crewai": {
+      "at": "2026-09-15T12:34:14.314Z",
+      "added": 10
+    },
+    "maigret": {
+      "at": "2026-09-15T12:34:23.777Z",
+      "added": 10
+    },
+    "open-webui": {
+      "at": "2026-09-15T12:34:23.777Z",
+      "added": 10
+    },
+    "aider": {
+      "at": "2026-09-15T12:34:28.168Z",
+      "added": 10
+    },
+    "yangshun-tech-interview-handbook": {
+      "at": "2026-09-15T12:34:28.168Z",
+      "added": 10
+    },
+    "tech-interview-handbook-Avishkar201": {
+      "at": "2026-09-15T12:34:37.926Z",
+      "added": 10
+    },
+    "awesome-selfhosted": {
+      "at": "2026-09-15T12:34:37.926Z",
+      "added": 10
+    },
+    "javascript-algorithms": {
+      "at": "2026-09-15T12:34:54.685Z",
+      "added": 10
+    },
+    "30-seconds-of-code": {
+      "at": "2026-09-15T12:34:54.685Z",
+      "added": 10
+    },
+    "langchain": {
+      "at": "2026-09-15T12:35:00.784Z",
+      "added": 10
+    },
+    "n8n": {
+      "at": "2026-09-15T12:35:11.436Z",
+      "added": 10
+    },
+    "dify": {
+      "at": "2026-09-15T12:35:15.400Z",
+      "added": 10
+    },
+    "public-apis": {
+      "at": "2026-09-15T12:35:15.400Z",
+      "added": 10
+    },
+    "developer-roadmap": {
+      "at": "2026-09-15T12:35:20.345Z",
+      "added": 10
+    },
+    "the-evolution-of-a-go-programmer": {
+      "at": "2026-09-15T12:35:20.345Z",
+      "added": 10
+    },
+    "dotnet-developer-roadmap": {
+      "at": "2026-09-15T12:35:34.783Z",
+      "added": 10
+    },
+    "free-programming-books": {
+      "at": "2026-09-15T12:35:34.783Z",
+      "added": 10
+    },
+    "system-design-primer": {
+      "at": "2026-09-15T12:35:44.216Z",
+      "added": 10
+    },
+    "coding-interview-university": {
+      "at": "2026-09-15T12:35:44.216Z",
+      "added": 10
+    },
+    "the-art-of-command-line": {
+      "at": "2026-09-15T12:35:53.186Z",
+      "added": 10
+    },
+    "you-dont-know-js": {
+      "at": "2026-09-15T12:36:06.638Z",
+      "added": 10
+    },
+    "cc-switch": {
+      "at": "2026-09-15T12:36:14.063Z",
+      "added": 10
+    },
+    "codexplusplus": {
+      "at": "2026-09-15T12:36:14.063Z",
+      "added": 10
+    },
+    "continuous-claude-v3": {
+      "at": "2026-09-15T12:36:39.253Z",
+      "added": 10
+    },
+    "generative-media-skills": {
+      "at": "2026-09-15T12:36:39.253Z",
+      "added": 10
+    },
+    "anime": {
+      "at": "2026-09-15T12:36:44.958Z",
+      "added": 10
+    },
+    "understand-anything": {
+      "at": "2026-09-15T12:36:44.958Z",
+      "added": 10
+    },
+    "andrej-karpathy-skills": {
+      "at": "2026-09-15T12:36:50.887Z",
+      "added": 10
+    },
+    "eigenflux-arena": {
+      "at": "2026-09-15T12:36:50.887Z",
+      "added": 10
+    },
+    "council-of-high-intelligence": {
+      "at": "2026-09-15T12:37:00.927Z",
+      "added": 10
+    },
+    "grok-build": {
+      "at": "2026-09-15T12:37:00.927Z",
+      "added": 10
+    },
+    "codex-dream-skin": {
+      "at": "2026-09-15T12:37:11.197Z",
+      "added": 10
+    },
+    "lingbot-map": {
+      "at": "2026-09-15T12:37:11.197Z",
+      "added": 10
+    },
+    "opencut": {
+      "at": "2026-09-15T12:37:31.990Z",
+      "added": 10
+    },
+    "voicebox": {
+      "at": "2026-09-15T12:37:31.990Z",
+      "added": 9
+    },
+    "wand-enhancer": {
+      "at": "2026-09-15T12:37:36.249Z",
+      "added": 10
+    },
+    "memos": {
+      "at": "2026-09-15T12:37:36.249Z",
+      "added": 10
+    },
+    "metaharness": {
+      "at": "2026-09-15T12:37:42.347Z",
+      "added": 10
+    },
+    "self-harness": {
+      "at": "2026-09-15T12:37:53.385Z",
+      "added": 10
+    },
+    "browser-harness": {
+      "at": "2026-09-15T12:37:53.385Z",
+      "added": 10
+    },
+    "openharness": {
+      "at": "2026-09-15T12:37:59.576Z",
+      "added": 10
+    },
+    "humanizer": {
+      "at": "2026-09-15T12:37:59.576Z",
+      "added": 10
+    },
+    "humanizer-zh-tw": {
+      "at": "2026-09-15T12:38:05.778Z",
+      "added": 10
+    },
+    "ai-flavor-remover": {
+      "at": "2026-09-15T12:38:27.178Z",
+      "added": 10
+    },
+    "remove-ai-flavor-writing-skill": {
+      "at": "2026-09-15T12:38:27.178Z",
+      "added": 10
+    },
+    "shuorenhua": {
+      "at": "2026-09-15T12:38:38.942Z",
+      "added": 10
+    },
+    "de-ai-prompt-enhancer-writer-booster-skill": {
+      "at": "2026-09-15T12:38:38.942Z",
+      "added": 10
+    },
+    "writing-agent": {
+      "at": "2026-09-15T12:38:47.215Z",
+      "added": 10
+    },
+    "mathmodelagent": {
+      "at": "2026-09-15T12:38:47.215Z",
+      "added": 10
+    },
+    "blender": {
+      "at": "2026-09-15T12:38:54.595Z",
+      "added": 10
+    },
+    "hkuds-vibe-trading": {
+      "at": "2026-09-15T12:38:54.595Z",
+      "added": 10
+    },
+    "omniroute": {
+      "at": "2026-09-15T12:39:06.015Z",
+      "added": 10
+    },
+    "openthoughts-agent": {
+      "at": "2026-09-15T12:39:06.015Z",
+      "added": 10
+    },
+    "financial-services": {
+      "at": "2026-09-15T12:39:17.224Z",
+      "added": 10
+    },
+    "knowledge-work-plugins": {
+      "at": "2026-09-15T12:39:17.224Z",
+      "added": 10
+    },
+    "claude-for-legal": {
+      "at": "2026-09-15T12:39:33.952Z",
+      "added": 10
+    },
+    "claude-legal-skill": {
+      "at": "2026-09-15T12:39:33.952Z",
+      "added": 8
+    },
+    "taiwan-claude-legal": {
+      "at": "2026-09-15T12:39:46.876Z",
+      "added": 10
+    },
+    "open-llm-vtuber": {
+      "at": "2026-09-15T12:39:54.613Z",
+      "added": 10
+    },
+    "last30days-skill": {
+      "at": "2026-09-15T12:39:54.613Z",
+      "added": 10
+    },
+    "last30days-skill-cn": {
+      "at": "2026-09-15T12:40:03.755Z",
+      "added": 10
+    },
+    "skill": {
+      "at": "2026-09-15T12:40:03.755Z",
+      "added": 10
+    },
+    "tradingagents": {
+      "at": "2026-09-15T12:40:12.457Z",
+      "added": 10
+    },
+    "ai-trader": {
+      "at": "2026-09-15T12:40:12.457Z",
+      "added": 10
+    },
+    "agent-vibe-trading-personal": {
+      "at": "2026-09-15T12:40:21.017Z",
+      "added": 10
+    },
+    "zarazhangrui-frontend-slides": {
+      "at": "2026-09-15T12:40:21.017Z",
+      "added": 10
+    },
+    "frontend-slides-editable": {
+      "at": "2026-09-15T12:40:30.336Z",
+      "added": 10
+    },
+    "ecc": {
+      "at": "2026-09-15T12:40:30.336Z",
+      "added": 10
+    },
+    "slidev": {
+      "at": "2026-09-15T12:40:41.445Z",
+      "added": 10
+    },
+    "baoyu-skills": {
+      "at": "2026-09-15T12:41:03.774Z",
+      "added": 10
+    },
+    "autoresearch": {
+      "at": "2026-09-15T12:41:03.774Z",
+      "added": 10
+    },
+    "llm-council": {
+      "at": "2026-09-15T12:41:12.662Z",
+      "added": 10
+    },
+    "reader3": {
+      "at": "2026-09-15T12:41:12.662Z",
+      "added": 10
+    },
+    "clodex-ide": {
+      "at": "2026-09-15T12:41:17.859Z",
+      "added": 10
+    },
+    "speak-human-tw": {
+      "at": "2026-09-15T12:41:22.387Z",
+      "added": 10
+    },
+    "codegraph": {
+      "at": "2026-09-15T12:41:22.387Z",
+      "added": 1
+    },
+    "anthropic-cybersecurity-skills": {
+      "at": "2026-09-15T12:41:27.520Z",
+      "added": 10
+    },
+    "cybersecurity-skills": {
+      "at": "2026-09-15T12:41:31.716Z",
+      "added": 10
+    },
+    "claude-code-cybersecurity-skill": {
+      "at": "2026-09-15T12:41:31.716Z",
+      "added": 10
+    },
+    "paddleocr": {
+      "at": "2026-09-15T12:41:37.287Z",
+      "added": 10
+    },
+    "open-notebook": {
+      "at": "2026-09-15T12:41:47.057Z",
+      "added": 10
+    },
+    "gemini-cli": {
+      "at": "2026-09-15T12:41:47.057Z",
+      "added": 10
+    },
+    "deer-flow": {
+      "at": "2026-09-15T12:41:54.640Z",
+      "added": 10
+    },
+    "ruview": {
+      "at": "2026-09-15T12:41:54.640Z",
+      "added": 10
+    },
+    "ai-engineering-from-scratch": {
+      "at": "2026-09-15T12:42:02.276Z",
+      "added": 8
+    },
+    "oh-my-pi": {
+      "at": "2026-09-15T12:42:02.276Z",
+      "added": 10
+    },
+    "awesome-free-llm-apis": {
+      "at": "2026-09-15T12:42:06.968Z",
+      "added": 10
+    },
+    "free-llm-api-resources": {
+      "at": "2026-09-15T12:42:06.968Z",
+      "added": 10
+    },
+    "beautiful-html-templates": {
+      "at": "2026-09-15T12:42:16.909Z",
+      "added": 10
+    },
+    "jpeetz-hermes-studio": {
+      "at": "2026-09-15T12:42:16.909Z",
+      "added": 10
+    },
+    "hermes-studio-EKKOLearnAI": {
+      "at": "2026-09-15T12:42:21.055Z",
+      "added": 10
+    },
+    "learn-claude-code": {
+      "at": "2026-09-15T12:42:30.147Z",
+      "added": 10
+    },
+    "hermes-webui": {
+      "at": "2026-09-15T12:42:30.147Z",
+      "added": 10
+    },
+    "headroom": {
+      "at": "2026-09-15T12:42:46.185Z",
+      "added": 10
+    },
+    "compound-engineering-plugin": {
+      "at": "2026-09-15T12:42:46.185Z",
+      "added": 10
+    },
+    "moneyprinterturbo": {
+      "at": "2026-09-15T12:42:56.502Z",
+      "added": 10
+    },
+    "supermemory": {
+      "at": "2026-09-15T12:42:56.502Z",
+      "added": 9
+    },
+    "trivy": {
+      "at": "2026-09-15T12:43:05.097Z",
+      "added": 10
+    },
+    "fff": {
+      "at": "2026-09-15T12:43:05.097Z",
+      "added": 10
+    },
+    "codex": {
+      "at": "2026-09-15T12:43:14.026Z",
+      "added": 10
+    },
+    "awesome-codex-subagents": {
+      "at": "2026-09-15T12:43:14.026Z",
+      "added": 10
+    },
+    "ponytail": {
+      "at": "2026-09-15T12:43:31.172Z",
+      "added": 10
+    },
+    "officecli-officecli": {
+      "at": "2026-09-15T12:43:31.172Z",
+      "added": 5
+    },
+    "emil-design-skills": {
+      "at": "2026-09-15T12:43:37.154Z",
+      "added": 10
+    },
+    "codex-ppt-skill": {
+      "at": "2026-09-15T12:43:37.154Z",
+      "added": 10
+    },
+    "presentation-report-preflight": {
+      "at": "2026-09-15T12:43:47.943Z",
+      "added": 10
+    },
+    "huashu-design": {
+      "at": "2026-09-15T12:43:47.943Z",
+      "added": 10
+    },
+    "archify": {
+      "at": "2026-09-15T12:44:04.968Z",
+      "added": 10
+    },
+    "claude-code-infrastructure-showcase": {
+      "at": "2026-09-15T12:44:04.968Z",
+      "added": 10
+    },
+    "airllm": {
+      "at": "2026-09-15T12:44:27.373Z",
+      "added": 9
+    },
+    "ui-skills": {
+      "at": "2026-09-15T12:44:27.373Z",
+      "added": 10
+    },
+    "ossie": {
+      "at": "2026-09-15T12:44:39.392Z",
+      "added": 10
+    },
+    "skill-creator": {
+      "at": "2026-09-15T12:44:39.392Z",
+      "added": 10
+    },
+    "destructivecommandguard": {
+      "at": "2026-09-15T12:44:44.451Z",
+      "added": 10
+    }
+  },
+  "model": "agnes-2.5-flash"
+}

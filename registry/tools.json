@@ -19,7 +19,17 @@
         "presentation",
         "slides-deck",
         "ai-ppt",
-        "narration"
+        "narration",
+        "把報告轉成簡報",
+        "把文章做成PPT",
+        "把文件轉成投影片",
+        "幫我做簡報",
+        "把資料做成簡報",
+        "把文件轉成PPT",
+        "文章轉簡報",
+        "報告轉投影片",
+        "生成簡報",
+        "把報告做成PPT"
       ],
       "capabilities": [
         "ppt",
@@ -57,7 +67,17 @@
         "code analysis",
         "架構分析",
         "codebase understanding",
-        "sql-schema-analysis"
+        "sql-schema-analysis",
+        "把程式碼轉成圖",
+        "分析資料庫結構",
+        "跨專案搜尋程式碼",
+        "把SQL schema轉成圖",
+        "畫出專案架構圖",
+        "找出程式碼之間的關聯",
+        "把資料庫轉成知識圖譜",
+        "搜尋跨專案的類別和函數",
+        "把程式碼視覺化成圖",
+        "分析專案基礎建設"
       ],
       "install": {
         "method": "npm",
@@ -106,7 +126,17 @@
         "security scan",
         "auto-fix",
         "compliance-check",
-        "penetration-testing"
+        "penetration-testing",
+        "扫描網頁漏洞",
+        "檢測應用程式漏洞",
+        "自動修復安全漏洞",
+        "滲透測試網站",
+        "檢查代碼安全漏洞",
+        "掃描 API 漏洞",
+        "檢測系統漏洞",
+        "修復應用程序漏洞",
+        "檢查網站安全性",
+        "掃描資料庫漏洞"
       ],
       "install": {
         "method": "pip",
@@ -151,7 +181,17 @@
         "卡通",
         "動畫",
         "影片生成",
-        "AI animation"
+        "AI animation",
+        "生成動畫影片",
+        "把文字轉成動畫",
+        "AI 做卡通影片",
+        "製作動態短影音",
+        "文字轉動畫影片",
+        "AI 動畫生成器",
+        "免費做動畫",
+        "簡筆畫轉動畫",
+        "產生卡通視頻",
+        "用 AI 繪製動畫"
       ],
       "install": {
         "method": "git-clone",
@@ -195,7 +235,17 @@
         "no content filter",
         "flux",
         "sora",
-        "midjourney"
+        "midjourney",
+        "圖像生成",
+        "影片生成",
+        "無內容過濾AI",
+        "自託管AI模型",
+        "Flux圖生圖",
+        "Sora影片生成",
+        "無審查AI圖片",
+        "多模型AI生成器",
+        "自架AI視覺工具",
+        "無限制圖片生成"
       ],
       "install": {
         "method": "git-clone",
@@ -240,7 +290,17 @@
         "img2img",
         "AI image",
         "圖片",
-        "影像編輯"
+        "影像編輯",
+        "文字轉圖片",
+        "AI 畫圖",
+        "圖片修改",
+        "圖生圖",
+        "生成影片",
+        "圖片編輯",
+        "AI 影像生成",
+        "設計海報",
+        "參考圖片重繪",
+        "文字描述生成圖"
       ],
       "install": {
         "method": "pip",
@@ -284,7 +344,13 @@
         "tool calling",
         "chatbot",
         "composable skills",
-        "ai agent"
+        "ai agent",
+        "給聊天機器人添加工具調用能力",
+        "讓 AI agent 調用外部 API",
+        "幫 AI 集成外部服務",
+        "為聊天機器人開發工具插件",
+        "用 Vercel SDK 構建 AI 技能系統",
+        "讓 AI 執行特定任務函數"
       ],
       "install": {
         "method": "npm",
@@ -326,7 +392,17 @@
         "type gymnastics",
         "advanced types",
         "型別體操",
-        "ts skills"
+        "ts skills",
+        "挑戰 TypeScript 進階類型",
+        "練習型別體操題目",
+        "參考進階類型技巧",
+        "學習 TypeScript 工具類型",
+        "實作條件型別",
+        "理解泛型推斷",
+        "解決型別安全問題",
+        "探索類型体操解法",
+        "編寫複雜型別",
+        "學習 Matt Pocock 類型教程"
       ],
       "install": {
         "method": "git-clone",
@@ -374,7 +450,17 @@
         "js-rendered",
         "headless-browser",
         "dom-scraping",
-        "cross-browser-e2e"
+        "cross-browser-e2e",
+        "跑跨浏览器自动化测试",
+        "截取网页完整截图",
+        "把网页转成 PDF",
+        "抓取动态加载的网页内容",
+        "测试表单自动填写",
+        "模拟用户点击操作",
+        "解析 JavaScript 渲染的页面",
+        "生成网页截图存档",
+        "跨浏览器兼容性测试",
+        "自动化回归测试"
       ],
       "install": {
         "method": "npm",
@@ -428,7 +514,16 @@
         "儲存",
         "php",
         "abstraction",
-        "gcs"
+        "gcs",
+        "上傳圖片到 AWS S3",
+        "管理本地與雲端儲存空間",
+        "PHP 多後端檔案操作",
+        "整合 S3 與 GCS 儲存",
+        "處理雲端儲存權限設定",
+        "異地備份資料到 S3",
+        "動態切換儲存後端配置",
+        "部署時綁定雲端儲存服務",
+        "跨平台檔案存取操作"
       ],
       "install": {
         "method": "composer",
@@ -471,7 +566,17 @@
         "test-driven",
         "red-green-refactor",
         "unit tests",
-        "test first"
+        "test first",
+        "讀取檔案內容",
+        "分析Excel表格",
+        "網頁自動測試",
+        "程式碼審查",
+        "PDF處理",
+        "抓取網頁資料",
+        "尋找程式碼",
+        "圖片識別描述",
+        "編寫程式碼",
+        "執行程式碼"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -508,7 +613,17 @@
         "mcp",
         "sql",
         "database",
-        "query"
+        "query",
+        "執行 SQL 查詢",
+        "查詢 PostgreSQL 資料庫",
+        "分析資料庫效能",
+        "運行數據庫查詢",
+        "檢查資料庫狀態",
+        "查詢資料表內容",
+        "分析 SQL 查詢效能",
+        "執行資料庫操作",
+        "查詢資料庫記錄",
+        "診斷資料庫問題"
       ],
       "install": {
         "method": "pip",
@@ -547,7 +662,16 @@
         "pull-requests",
         "issues",
         "ai-agent",
-        "coding-assistant"
+        "coding-assistant",
+        "管理 GitHub 存放庫",
+        "處理 GitHub issues",
+        "建立程式碼拉取請求",
+        "管理 GitHub 專案問題",
+        "搜尋 GitHub 程式碼倉儲",
+        "操作 GitHub 版本控制",
+        "檢視 GitHub issue 列表",
+        "提交 GitHub pull request",
+        "追蹤 GitHub 倉儲動態"
       ],
       "install": {
         "method": "git-clone",
@@ -585,7 +709,17 @@
         "context7",
         "mcp-server",
         "code-documentation",
-        "llm-integration"
+        "llm-integration",
+        "更新MCP伺服器文件",
+        "給AI程式編輯器加文件",
+        "為LLM產生最新程式碼文檔",
+        "幫AI編程助手理解API",
+        "更新MCP工具的上下文文件",
+        "讓AI編輯器讀最新程式文件",
+        "給code editor生成MCP文檔",
+        "更新AI程式助手的文件內容",
+        "為LLM補新API文件",
+        "幫AI IDE加最新文件"
       ],
       "install": {
         "method": "npm",
@@ -624,7 +758,17 @@
         "sequentialthinking",
         "reasoning",
         "problem-solving",
-        "step-by-step"
+        "step-by-step",
+        "拆解複雜問題",
+        "逐步分析步驟",
+        "一步步思考邏輯",
+        "分步解難題",
+        "結構化拆解任務",
+        "條列式說明原因",
+        "逐步推導答案",
+        "分解執行步驟",
+        "一步步推理問題",
+        "逐步解釋流程"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -662,7 +806,17 @@
         "thinking",
         "mcp-sequential-thinking",
         "reasoning",
-        "planning"
+        "planning",
+        "逐步拆解問題",
+        "分步驟思考解法",
+        "梳理複雜任務",
+        "規劃執行步驟",
+        "一步步分析問題",
+        "拆解任務流程",
+        "逐步推理",
+        "列出解決方案的每一步",
+        "把大任務拆成小步驟",
+        "思考並整理解決辦法"
       ],
       "install": {
         "method": "pip",
@@ -696,7 +850,17 @@
         "memmy-agent",
         "long-term-memory",
         "shared-memory",
-        "ai-agents"
+        "ai-agents",
+        "記住對話內容",
+        "跨會話保留資訊",
+        "AI助手記住用戶",
+        "不同Agent共享知識",
+        "持久儲存記憶",
+        "累積Agent經驗",
+        "記錄用戶偏好",
+        "讓AI跨會話記得住",
+        "建立AI長期記憶",
+        "匯總Agent學習內容"
       ],
       "install": {
         "method": "npm",
@@ -737,7 +901,17 @@
         "programming",
         "tutorials",
         "awesome-list",
-        "from-scratch"
+        "from-scratch",
+        "從頭實作核心技術",
+        "手寫編譯器",
+        "自己造資料庫",
+        "實作迷你作業系統",
+        "手刻版本控制系統",
+        "建立自己的 Web 框架",
+        "從零開始寫指令碼引擎",
+        "自製迷你瀏覽器",
+        "手寫串流處理工具",
+        "實作自己的搜尋引擎"
       ],
       "install": {
         "method": "git-clone",
@@ -778,7 +952,17 @@
         "product-analytics",
         "feature-flags",
         "session-replay",
-        "ab-testing"
+        "ab-testing",
+        "記錄用戶行為",
+        "分析功能使用率",
+        "查看用戶操作錄像",
+        "測試新功能效果",
+        "控制功能開關",
+        "追蹤用戶點擊路徑",
+        "對比兩個版本數據",
+        "設置實驗分組",
+        "監控產品關鍵指標",
+        "找出用戶流失環節"
       ],
       "install": {
         "method": "pip",
@@ -853,7 +1037,17 @@
         "tree-sitter",
         "static-analysis",
         "context-reduction",
-        "ai-coding"
+        "ai-coding",
+        "建立程式碼圖形結構",
+        "解析程式碼樹",
+        "生成抽象語法樹",
+        "減少程式碼審查上下文",
+        "追蹤程式碼變更",
+        "靜態分析程式碼庫",
+        "構建代碼依賴關係圖",
+        "增量更新程式碼地圖",
+        "提取程式碼符號資訊",
+        "構建程式碼知識图谱"
       ],
       "install": {
         "method": "pip",
@@ -896,7 +1090,17 @@
         "word",
         "powerpoint",
         "automation",
-        "cli"
+        "cli",
+        "自動化 Word 文件",
+        "Excel 批量處理",
+        "產生 PowerPoint 簡報",
+        "不用安裝 Office 編輯檔案",
+        "命令列操作 Office",
+        "AI agent 控制 Word",
+        "無頭模式跑 Excel",
+        "自動匯出 PPT",
+        "CLI 自動化 Office",
+        "程式產生 Word 報告"
       ],
       "install": {
         "method": "git-clone",
@@ -942,7 +1146,17 @@
         "mobile-app",
         "orchestration",
         "parallel-agents",
-        "coding-agent"
+        "coding-agent",
+        "並行執行多個 coding agent",
+        "用終端機跑多個 AI 編程任務",
+        "讓 AI 代理在 IDE 裡並行寫程式",
+        "用自家 API key 跑 AI 編程",
+        "手機上開多個 AI 編程代理",
+        "同時執行多個編碼任務",
+        "讓多個 AI agent 協作完成開發",
+        "終端機並行編程工作流",
+        "用 opencode 並行開發",
+        "編排多個 coding agent 寫程式"
       ],
       "install": {
         "method": "npm",
@@ -984,7 +1198,17 @@
         "tmux",
         "rust",
         "terminal",
-        "multiplexer"
+        "multiplexer",
+        "終端機同時跑多個 AI",
+        "管理多個 AI 編程助手",
+        "tmux 分屏運行 AI agent",
+        "終端機多工管理 coding agent",
+        "在同一終端開多個 AI 對話",
+        "用 tmux 操控 AI 編程工具",
+        "終端機並行執行多個 AI 任務",
+        "管理多個命令行 AI 助手",
+        "終端多工器跑 AI coding",
+        "用終端同時開多個 AI 程序"
       ],
       "install": {
         "method": "cargo",
@@ -1023,7 +1247,16 @@
       "triggers": [
         "impeccable",
         "ai-ui-generation",
-        "css-design-system"
+        "css-design-system",
+        "生成風格一致的網頁介面",
+        "把文字描述轉成排版整齊的UI程式碼",
+        "產出可重複使用的CSS設計系統",
+        "設計帶完整樣式規範的網頁元件",
+        "用整組CSS規則自動產生網頁",
+        "建立風格統一的UI元件庫",
+        "將口語需求轉換成乾淨的前端樣式",
+        "生成貼近設計稿的整齊網頁布局",
+        "統一補齊分散的介面樣式"
       ],
       "install": {
         "method": "npm",
@@ -1058,7 +1291,17 @@
         "powerpoint",
         "presentation",
         "python",
-        "agent"
+        "agent",
+        "從文件轉成簡報",
+        "用 Python 生成投影片",
+        "加入圖表到簡報",
+        "插入數學公式",
+        "製作動畫簡報",
+        "將程式碼轉為幻燈片",
+        "AI 輔助製作投影片",
+        "建立可編輯的 PPTX",
+        "從 Markdown 生成簡報",
+        "匯入資料做圖表"
       ],
       "install": {
         "method": "pip",
@@ -1100,7 +1343,17 @@
         "mcp",
         "cursor",
         "ai-agents",
-        "token-reduction"
+        "token-reduction",
+        "減少AI token消耗",
+        "壓縮LLM上下文",
+        "本地AI記憶優化",
+        "降低大模型調用成本",
+        "AI代理上下文瘦身",
+        "減少prompt token用量",
+        "本地Rust AI工具",
+        "AI上下文壓縮",
+        "減少API費用",
+        "AI代理效率優化"
       ],
       "install": {
         "method": "cargo",
@@ -1141,7 +1394,17 @@
         "ai-coding",
         "agent-orchestration",
         "mcp",
-        "devtools"
+        "devtools",
+        "追踪AI编码成本",
+        "审计AI代理操作",
+        "初始化编码代理循环",
+        "管理Grok使用费用",
+        "编排多步AI任务",
+        "监控Codex消耗",
+        "追踪MCP工具调用成本",
+        "审查AI代理执行记录",
+        "统计LLM API费用",
+        "自动化AI代理工作流"
       ],
       "install": {
         "method": "npm",
@@ -1180,7 +1443,17 @@
       "triggers": [
         "loop-engineering",
         "iterative-systems",
-        "architectural-patterns"
+        "architectural-patterns",
+        "定義反饋迴圈",
+        "建立迭代式系統架構",
+        "識別迴圈模式",
+        "設計持續交付流程",
+        "分析控制迴圈",
+        "理解迭代架構原則",
+        "規劃反饋機制的實作",
+        "套用循環架構模式",
+        "優化系統迭代流程",
+        "檢視架構中的反饋節點"
       ],
       "install": {
         "method": "git-clone",
@@ -1217,7 +1490,17 @@
         "html-slides",
         "web-deck",
         "slide-deck",
-        "codex"
+        "codex",
+        "生成 HTML 簡報",
+        "製作網頁版投影片",
+        "產出互動式報告",
+        "設計編輯風格簡報",
+        "創建 WebGL 簡報",
+        "生成帶圖片提示的投影片",
+        "製作 Html 報告頁面",
+        "產出可分享的網頁簡報",
+        "設計含視覺素材的投影片",
+        "生成排版精良的 HTML 簡報"
       ],
       "install": {
         "method": "git-clone",
@@ -1258,7 +1541,17 @@
         "react",
         "agent",
         "slides",
-        "presentation"
+        "presentation",
+        "用 AI 寫簡報",
+        "把報告轉成投影片",
+        "用 agent 自動生成幻燈片",
+        "用 React 建分頁演示文稿",
+        "幫我把文字內容做成簡報",
+        "把資料整理成投影片頁面",
+        "用 AI 產出簡報架構",
+        "把簡報內容自動分頁排版",
+        "用 agent 幫忙做演示文稿",
+        "把長文濃縮成投影片"
       ],
       "install": {
         "method": "npm",
@@ -1300,7 +1593,17 @@
         "presentation",
         "slide",
         "animation",
-        "theme"
+        "theme",
+        "製作 HTML 簡報",
+        "設計網頁投影片",
+        "套簡報主題",
+        "幫簡報加動畫效果",
+        "排版投影片內容",
+        "建立線上簡報",
+        "製作有特效的簡報頁面",
+        "設計簡報布局樣式",
+        "轉成 HTML 格式簡報",
+        "幫簡報換主題風格"
       ],
       "install": {
         "method": "git-clone",
@@ -1339,7 +1642,17 @@
         "agent-skills",
         "generative-ui-agents",
         "llm範例",
-        "agent範例"
+        "agent範例",
+        "找agent示例代码",
+        "学做RAG系统",
+        "参考多代理架构",
+        "找语音助手实现",
+        "了解MCP协议应用",
+        "找生成式UI范例",
+        "学写AI代理技能",
+        "找常驻AI代理",
+        "找开源AI应用",
+        "参考AI agent项目"
       ],
       "install": {
         "method": "git-clone",
@@ -1435,7 +1748,17 @@
         "terminal-ai",
         "terminal-automation",
         "code-editing",
-        "shell-control"
+        "shell-control",
+        "執行終端指令",
+        "編輯程式檔案",
+        "開終端機跑命令",
+        "批量修改程式碼",
+        "在伺服器上操作",
+        "透過對話控制指令列",
+        "寫 shell 腳本",
+        "自動編輯程式碼",
+        "執行指令列任務",
+        "管理遠端終端機"
       ],
       "install": {
         "method": "npm",
@@ -1475,7 +1798,17 @@
         "stitch",
         "stitch-skills",
         "agent-skills",
-        "mcp-server"
+        "mcp-server",
+        "跨Agent传递代码",
+        "让不同Agent协同写代码",
+        "Agent间共享上下文",
+        "把上下文传给下一个Agent",
+        "让两个Agent互相调用工具",
+        "跨Agent复用技能",
+        "Agent之间传递数据",
+        "让另一个Agent理解我的代码",
+        "跨Agent协作编程",
+        "Agent互通代码和结果"
       ],
       "install": {
         "method": "npm",
@@ -1620,7 +1953,17 @@
         "multimodal-rag",
         "retrieval-augmented-generation",
         "rag-anything",
-        "vector-search"
+        "vector-search",
+        "從圖片提取資訊",
+        "從影片內容搜尋資料",
+        "從音檔中檢索資訊",
+        "用文字描述找相似圖片",
+        "根據問題檢索文件片段",
+        "跨文件格式搜尋資訊",
+        "從向量資料庫查資料",
+        "用語音查詢相關內容",
+        "從圖像中搜尋特定物件",
+        "用問題找對應的影片片段"
       ],
       "install": {
         "method": "pip",
@@ -1658,7 +2001,17 @@
         "cli",
         "agent",
         "automation",
-        "llm"
+        "llm",
+        "讓終端命令能被 AI 調用",
+        "自動化執行 bash 腳本",
+        "把命令行工具接入 AI agent",
+        "用 AI 自動跑終端命令",
+        "讓 CLI 工具支援 agent 調用",
+        "AI 自動執行 Linux 命令",
+        "把舊版 CLI 軟體變成 agent 原生",
+        "AI 控制命令行工具自動化",
+        "讓終端工具被 agent 調度",
+        "用 AI 自動化執行腳本"
       ],
       "install": {
         "method": "pip",
@@ -1694,7 +2047,17 @@
         "codex",
         "agent-skills",
         "ai-coding",
-        "prompts"
+        "prompts",
+        "優化編程提示",
+        "標準化AI代碼生成流程",
+        "提升Cursor使用效率",
+        "改進Codex工作流",
+        "自動化編程任務",
+        "智能提示工程實踐",
+        "優化AI代理編碼效能",
+        "程式碼審查輔助技巧",
+        "改進軟體開發流程",
+        "提升編碼協作效率"
       ],
       "install": {
         "method": "npm",
@@ -1909,7 +2272,17 @@
         "graphql",
         "mysql",
         "headless",
-        "node"
+        "node",
+        "建立頭部 CMS",
+        "產生 API 介面",
+        "轉換資料庫為 API",
+        "搭建管理後台",
+        "設計 GraphQL 查詢",
+        "同步多平台內容",
+        "連接前端與後端",
+        "自動化內容管理",
+        "建立即時資料更新",
+        "匯出結構化資料"
       ],
       "install": {
         "method": "npm",
@@ -1992,7 +2365,17 @@
         "animated",
         "hand-drawn",
         "codex skill",
-        "system design"
+        "system design",
+        "畫出系統架構圖",
+        "製作動畫架構圖",
+        "生成手繪風格技術圖",
+        "將文字轉成架構圖",
+        "繪製軟體系統流程圖",
+        "做出手繪版資料庫圖",
+        "把規格書轉成視覺圖",
+        "產生動畫式網路拓撲圖",
+        "畫出雲端架構示意圖",
+        "把口述需求轉成技術圖"
       ],
       "install": {
         "method": "pip",
@@ -2029,7 +2412,17 @@
         "ai-agents",
         "specialized-agents",
         "multi-agent-framework",
-        "ai-agency"
+        "ai-agency",
+        "使用AI代理做工程任務",
+        "讓AI設計師產出視覺稿",
+        "AI行銷團隊寫文案",
+        "AI銷售代理人開發客戶",
+        "多Agent協作工作流",
+        "建立AI代理團隊",
+        "AI工程師審程式碼",
+        "AI設計師製作圖說",
+        "AI行銷人設執行活動",
+        "AI銷售人設推銷產品"
       ],
       "install": {
         "method": "git-clone",
@@ -2064,7 +2457,17 @@
         "tree-sitter",
         "sqlite",
         "knowledge-graph",
-        "opencode"
+        "opencode",
+        "搜尋函式定義",
+        "找出 function 被呼叫的位置",
+        "跨檔案找變數用法",
+        "把整個專案建索引",
+        "查某個 class 有哪些方法",
+        "分析程式碼依賴關係",
+        "快速定位 symbol 位置",
+        "匯整檔案中的類別清單",
+        "找特定錯誤訊息的來源",
+        "搜尋跨語言程式碼引用"
       ],
       "install": {
         "method": "git-clone",
@@ -2108,7 +2511,17 @@
         "pro",
         "knowledge-graph",
         "c-server",
-        "incremental-indexing"
+        "incremental-indexing",
+        "記住我的程式碼上下文",
+        "增量索引程式碼",
+        "搜尋程式碼知識圖",
+        "追蹤程式碼變化",
+        "語意搜尋原始碼",
+        "程式碼脈絡記憶",
+        "記憶我寫過的程式",
+        "分析程式碼結構",
+        "儲存開發歷程",
+        "程式碼關聯圖"
       ],
       "install": {
         "method": "git-clone",
@@ -2148,7 +2561,17 @@
         "ai",
         "ffmpeg",
         "video-production",
-        "automation"
+        "automation",
+        "文字轉語音配音",
+        "AI生成影片",
+        "用AI剪影片",
+        "自動化剪輯影片",
+        "編排影片製作流程",
+        "批量處理影片",
+        "用Python產生影片",
+        "自動化影片後製",
+        "用Flux生成影片",
+        "合成AI語音影片"
       ],
       "install": {
         "method": "pip",
@@ -2189,7 +2612,17 @@
         "video-use",
         "video-editing",
         "browser-use",
-        "coding-agent"
+        "coding-agent",
+        "自動剪片",
+        "AI 剪影片",
+        "幫我做影片剪輯",
+        "自動加字幕",
+        "影片轉文字稿",
+        "批量處理影片",
+        "用 AI 整理影片素材",
+        "自動生成影片縮圖",
+        "把影片裁切轉檔",
+        "用程式自動剪片"
       ],
       "install": {
         "method": "pip",
@@ -2224,7 +2657,17 @@
         "knowledge-graph",
         "ai-memory",
         "agent-memory",
-        "self-hosted"
+        "self-hosted",
+        "建立 AI 長期記憶",
+        "儲存對話歷史讓模型記住",
+        "建知識圖譜供 AI agent 使用",
+        "架設自架式 AI 記憶系統",
+        "把文件內容轉換成知識圖譜",
+        "給 LLM 加持久化上下文記憶",
+        "建立 agent 專屬的知識庫",
+        "讓 AI agent 跨回合記住資訊",
+        "把數據組織成可查詢的知識圖譜",
+        "為 chatbot 加長期記憶層"
       ],
       "install": {
         "method": "pip",
@@ -2265,7 +2708,17 @@
         "claude code",
         "token optimization",
         "prompt engineering",
-        "ai skill"
+        "ai skill",
+        "減少 token 用量",
+        "簡化提示詞",
+        "壓縮提示長度",
+        "節省 token",
+        "讓 AI 少用 token",
+        "簡化溝通方式",
+        "用更少 token 完成任務",
+        "避免 token 耗盡",
+        "精簡 Prompt 文字",
+        "用更短的提示獲取答案"
       ],
       "install": {
         "method": "npm",
@@ -2308,7 +2761,17 @@
         "minimalist",
         "extension",
         "raw",
-        "developer"
+        "developer",
+        "寫簡潔程式碼",
+        "減少干擾的編碼插件",
+        "快速搭建開發環境",
+        "直覺式程式編輯",
+        "無冗餘功能的編碼工具",
+        "輕量級編程外掛",
+        "簡化開發流程的插件",
+        "純淨編碼工作區",
+        "少即是多的編程助手",
+        "原生感編碼插件"
       ],
       "install": {
         "method": "npm",
@@ -2341,7 +2804,17 @@
       "triggers": [
         "codex-plugin-cc",
         "codex",
-        "claude-code"
+        "claude-code",
+        "用AI審查程式碼",
+        "自動review程式碼",
+        "讓AI幫忙修bug",
+        "用Codex處理程式碼",
+        "程式碼品質檢查工具",
+        "指令列自動查錯",
+        "AI代寫程式碼",
+        "任務委派給Codex",
+        "整合Codex做開發",
+        "程式碼自動修復"
       ],
       "install": {
         "method": "npm",
@@ -2375,7 +2848,17 @@
         "whisper",
         "speech-to-text",
         "transcription",
-        "audio-recognition"
+        "audio-recognition",
+        "語音轉文字",
+        "音頻辨識",
+        "錄音檔轉文字",
+        "多語言翻譯",
+        "口說內容轉文字",
+        "音檔轉成字幕",
+        "語音檔案轉寫",
+        "英文轉繁體中文",
+        "聽寫轉換",
+        "無字幕影片加字幕"
       ],
       "install": {
         "method": "pip",
@@ -2410,7 +2893,17 @@
         "typescript",
         "agents",
         "realtime-api",
-        "multi-agent"
+        "multi-agent",
+        "建立多代理工作流程",
+        "搭建 TypeScript AI agent",
+        "開發語音助手",
+        "整合 OpenAI API 實現多步驟任務",
+        "建構對話式 agent 系統",
+        "串連多個 AI 代理協作",
+        "實作即時語音對話代理",
+        "用 OpenAI 編排多階段任務",
+        "開發智慧型 agent 應用程式",
+        "搭建多代理溝通管道"
       ],
       "install": {
         "method": "npm",
@@ -2452,7 +2945,17 @@
         "coding",
         "agent",
         "reusable-skills",
-        "openai-codex"
+        "openai-codex",
+        "擴展 Codex 編碼能力",
+        "給編碼代理加技能",
+        "添加可重用編碼功能",
+        "擴充 AI 編碼器技能庫",
+        "為 Codex 新增編碼技巧",
+        "整合可複用編碼模組",
+        "增強程式碼代理功能",
+        "為 Codex 加入額外技能",
+        "擴充編碼助手功能",
+        "建立可重用編碼技能"
       ],
       "install": {
         "method": "pip",
@@ -2709,7 +3212,17 @@
         "openai",
         "mcpkit",
         "mcp",
-        "model-context-protocol"
+        "model-context-protocol",
+        "讓 AI 呼叫外部工具",
+        "建立 MCP 伺服器",
+        "開發 MCP 客戶端",
+        "讓模型連線外部 API",
+        "建構 AI 工具串接",
+        "用 MCP 協議整合服務",
+        "讓 ChatGPT 存取外部資料",
+        "打造 AI 擴展介面",
+        "為模型搭建工具橋接",
+        "啟用 AI 調用遠端功能"
       ],
       "install": {
         "method": "pip",
@@ -2745,7 +3258,17 @@
         "editor",
         "presentation",
         "local-first",
-        "ai-slides"
+        "ai-slides",
+        "將AI生成轉換成可編輯HTML",
+        "下載演示文稿為zip",
+        "離線編輯HTML簡報",
+        "轉換AI幻燈片為本地文件",
+        "打開HTML格式的演示文稿",
+        "將簡報匯出為可編輯版本",
+        "本地處理演示文稿檔案",
+        "轉換幻燈片為zip格式",
+        "編輯AI生成的演示內容",
+        "轉存演示稿為本地HTML"
       ],
       "install": {
         "method": "npm",
@@ -2789,7 +3312,17 @@
         "brainstorming",
         "sdlc",
         "subagent-driven-development",
-        "agentic-workflow"
+        "agentic-workflow",
+        "AI幫写程式碼",
+        "AI代理開發流程",
+        "AI Skills框架",
+        "自動化程式碼審查",
+        "AI解構開發任務",
+        "Subagent驅動開發",
+        "軟體開發工作流AI化",
+        "AI協作編程",
+        "AI技能工具整合",
+        "軟體生命週期AI輔助"
       ],
       "install": {
         "method": "git-clone",
@@ -2830,7 +3363,17 @@
         "ai-agents",
         "sqlite",
         "embeddings",
-        "session-memory"
+        "session-memory",
+        "記住對話歷史",
+        "跨 session 記憶",
+        "儲存用戶偏好",
+        "讓 AI 記住上次聊的",
+        "持久化對話內容",
+        "跨對話保留上下文",
+        "記憶功能",
+        "AI 記住我的資訊",
+        "保存會話紀錄",
+        "讓模型記住之前說過的話"
       ],
       "install": {
         "method": "npm",
@@ -2869,7 +3412,17 @@
       "triggers": [
         "agent-reach",
         "web-scraper",
-        "mcp"
+        "mcp",
+        "爬取Instagram貼文",
+        "抓取Twitter動態",
+        "搜尋Reddit帖子",
+        "收集Facebook評論",
+        "自動下載TikTok影片",
+        "監控LinkedIn資料",
+        "爬蟲YouTube留言",
+        "搜索Instagram標籤",
+        "抓取Pinterest圖文",
+        "收集Telegram頻道訊息"
       ],
       "install": {
         "method": "pip",
@@ -2909,7 +3462,17 @@
         "gitnexus",
         "code-intelligence",
         "knowledge-graph",
-        "graph-rag"
+        "graph-rag",
+        "生成程式碼知識圖譜",
+        "繪製程式碼關係圖",
+        "視覺化Git倉庫結構",
+        "建立程式碼RAG問答",
+        "分析程式碼依賴關係",
+        "建構程式碼智能助手",
+        "把程式碼轉成互動圖表",
+        "查詢程式庫知識",
+        "在瀏覽器裡分析程式碼庫",
+        "搜尋程式碼關聯"
       ],
       "install": {
         "method": "npm",
@@ -2944,7 +3507,17 @@
         "humanizer-zh",
         "ai-detector",
         "text-humanization",
-        "claude-code-skill"
+        "claude-code-skill",
+        "讓文字不像機器寫的",
+        "降低AI檢測率",
+        "改寫AI生成文章",
+        "潤飾AI寫作的內容",
+        "把AI文章改成自然語氣",
+        "消除文字中的AI痕跡",
+        "讓文字讀起來更像真人",
+        "調整AI生成內容的語調",
+        "把機器人風格改成日常口語",
+        "改善文字的自然流暢度"
       ],
       "install": {
         "method": "git-clone",
@@ -2978,7 +3551,17 @@
         "mini-agent",
         "agent",
         "llm",
-        "minimax"
+        "minimax",
+        "建立LLM代理",
+        "部署輕量agent",
+        "整合Minimax模型",
+        "自動化任務處理",
+        "構建對話系統",
+        "開發聊天機器人",
+        "運行LLM管線",
+        "創建智能代理",
+        "構建單一agent架構",
+        "實現生產級agent"
       ],
       "install": {
         "method": "pip",
@@ -3019,7 +3602,17 @@
         "terminal",
         "ai",
         "lightweight",
-        "dev-workspace"
+        "dev-workspace",
+        "終端機 AI 助手",
+        "輕量級 AI 開發環境",
+        "跨平台終端編程工具",
+        "Rust AI 程式助手",
+        "MB AI 工作區",
+        "終端內建 AI 輔助",
+        "小型 AI 開發工具",
+        "終端 AI 程式助手",
+        "輕量化 AI 編程環境",
+        "跨平台 AI 終端助手"
       ],
       "install": {
         "method": "npm",
@@ -3059,7 +3652,17 @@
         "cl4r1t4s",
         "system prompt",
         "ai transparency",
-        "model analysis"
+        "model analysis",
+        "查詢 AI 系統提示詞",
+        "搜尋大模型泄露的 prompt",
+        "抓取 AI 模型設定檔",
+        "檢視 ChatGPT 系統指令",
+        "找開放 AI 提示庫",
+        "解析 AI 模型內部配置",
+        "蒐集 GPT 提示詞泄露資料",
+        "取得 Claude 系統提示內容",
+        "逆向工程 AI 模型提示詞",
+        "公開 AI 模型安全設定"
       ],
       "install": {
         "method": "git-clone",
@@ -3101,7 +3704,17 @@
         "design",
         "agent-skills",
         "ui-design",
-        "typography"
+        "typography",
+        "設計視覺風格",
+        "設定排版字體",
+        "優化介面設計",
+        "規劃 UI 布局",
+        "調整視覺層次",
+        "設計網頁配色",
+        "建立品牌視覺",
+        "美化使用者介面",
+        "設計按鈕樣式",
+        "規劃字型配置"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -3140,7 +3753,17 @@
         "design-tools",
         "prototyping",
         "desktop-app",
-        "no-code"
+        "no-code",
+        "做原型",
+        "畫介面",
+        "設計頁面",
+        "建設計系統",
+        "做互動原型",
+        "無程式碼設計",
+        "導入稿",
+        "做元件庫",
+        "本地存設計檔",
+        "匯出設計圖"
       ],
       "install": {
         "method": "npm",
@@ -3181,7 +3804,17 @@
         "nextjs",
         "performance",
         "optimization",
-        "vercel"
+        "vercel",
+        "優化 React 效能",
+        "加速 Next.js 網站",
+        "改善 React 渲染速度",
+        "最佳化 Next.js 載入效能",
+        "優化 React 組件效能",
+        "改善 Next.js 建構速度",
+        "最佳化 React 應用程式載入時間",
+        "優化 Vercel 部署效能",
+        "改善 React 首屏渲染速度",
+        "最佳化 Next.js 靜態生成速度"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -3218,7 +3851,17 @@
         "browser-automation",
         "claude",
         "nodejs",
-        "web-testing"
+        "web-testing",
+        "自動登入網站",
+        "抓取產品價格",
+        "填寫線上表單",
+        "測試網站功能",
+        "生成網頁截圖",
+        "監控網站變化",
+        "收集網頁資料",
+        "點擊網頁按鈕",
+        "滾動網頁頁面",
+        "驗證網頁元素"
       ],
       "install": {
         "method": "npm",
@@ -3258,7 +3901,17 @@
         "github-copilot",
         "prompt-engineering",
         "copilot-agents",
-        "ide-optimization"
+        "ide-optimization",
+        "優化程式碼提示詞",
+        "配置AI助手設定",
+        "創建編程智能體",
+        "提升程式碼補全效果",
+        "編寫AI提示模板",
+        "自定義IDE行為",
+        "自動化程式碼審查流程",
+        "調整程式碼補全策略",
+        "配置AI代理工作流",
+        "改善編程助手輸出質量"
       ],
       "install": {
         "method": "pip",
@@ -3298,7 +3951,17 @@
         "kane-cli",
         "natural-language",
         "test-automation",
-        "ai-coding-assistant"
+        "ai-coding-assistant",
+        "幫我寫測試腳本",
+        "生成測試用例",
+        "用自然語言產生測試",
+        "自動化測試程式",
+        "執行回歸測試",
+        "驗證功能是否正常",
+        "生成測試報告",
+        "自動檢查網頁表格",
+        "用中文描述測試需求",
+        "幫我寫自動化測試"
       ],
       "install": {
         "method": "npm",
@@ -3339,7 +4002,17 @@
         "fix",
         "ci-debug",
         "github-actions",
-        "pr-checks"
+        "pr-checks",
+        "排查CI流水線故障",
+        "Debug GitHub Actions檢查",
+        "分析PR建構失敗原因",
+        "彙整GitHub Actions錯誤日誌",
+        "修復持續整合測試失敗",
+        "偵錯Pull Request檢查",
+        "解讀GitHub工作流異常",
+        "修正編譯或測試錯誤",
+        "生成修復CI計畫草案",
+        "追蹤GitHub Actions執行問題"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -3376,7 +4049,16 @@
         "address",
         "comments",
         "pr-review",
-        "resolve-comments"
+        "resolve-comments",
+        "回答PR評論",
+        "解決GitHub PR review",
+        "用gh處理PR評論",
+        "回應PR審查意見",
+        "gh CLI解決review",
+        "回覆代碼審查",
+        "處理GitHub PR評論",
+        "PR評論自動化處理",
+        "gh解決PR審查"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -3412,7 +4094,17 @@
         "figma-generate-library",
         "figma",
         "design-tokens",
-        "component-sync"
+        "component-sync",
+        "同步設計令牌到 Figma",
+        "從程式碼生成 Figma 元件庫",
+        "自動更新 Figma 主題變數",
+        "將設計令牌同步為 Figma 變量",
+        "從代碼庫匯入 Figma 元件",
+        "用程式碼驅動 Figma 設計系統",
+        "管理 Figma 色彩令牌",
+        "自動將 Figma 元件與程式碼同步",
+        "把 Figma 設計系統連接到代碼",
+        "從代碼生成 Figma 色板和字體令牌"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -3491,7 +4183,10 @@
         "obsidian",
         "pipeline",
         "knowledge-management",
-        "note-sync"
+        "note-sync",
+        "NotebookLM 匯出到知識庫",
+        "Obsidian 自動同步 NotebookLM",
+        "整合 NotebookLM 和 Obsidian"
       ],
       "install": {
         "method": "pip",
@@ -3527,7 +4222,17 @@
         "slide-generator",
         "pdf2ppt",
         "llm",
-        "python"
+        "python",
+        "生成簡報",
+        "製作 PowerPoint 檔案",
+        "PDF 轉簡報",
+        "AI 簡報生成器",
+        "編輯簡報內容",
+        "自動產生投影片",
+        "轉換 PDF 到 PowerPoint",
+        "Python 生成簡報工具",
+        "TypeScript PPT 製作",
+        "匯出簡報為 PDF"
       ],
       "install": {
         "method": "pip",
@@ -3570,7 +4275,17 @@
         "slides",
         "presentation",
         "gemini",
-        "ai"
+        "ai",
+        "做Google Slides",
+        "生成簡報",
+        "把筆記轉成投影片",
+        "用AI做PPT",
+        "快速製作簡報",
+        "資料轉成幻燈片",
+        "AI生成演示文稿",
+        "把文件變投影片",
+        "做出簡報投影片",
+        "自動生成演示"
       ],
       "install": {
         "method": "git-clone",
@@ -3610,7 +4325,13 @@
         "notebooklm",
         "pdf-to-ppt",
         "pptx-converter",
-        "presentation-editing"
+        "presentation-editing",
+        "PDF转PPT",
+        "NotebookLM转PPT",
+        "PDF转PowerPoint",
+        "把PDF转成PPT",
+        "NotebookLM导出转演示文稿",
+        "转PDF为PPT"
       ],
       "install": {
         "method": "pip",
@@ -3651,7 +4372,17 @@
         "ai-research",
         "content-pipeline",
         "mcp-server",
-        "podcast-generator"
+        "podcast-generator",
+        "把文件轉成播客",
+        "根據PDF提問摘要",
+        "整合多份文件研究",
+        "從文件生成簡報內容",
+        "將文章轉成語音節目",
+        "用AI分析文件內容",
+        "把資料夾轉成研究報告",
+        "自動整理文件重點",
+        "從Google Drive文件提問",
+        "將筆記本資料輸出為文章"
       ],
       "install": {
         "method": "pip",
@@ -3692,7 +4423,17 @@
         "notebooklm-to-pptx",
         "pdf-converter",
         "pptx",
-        "gemini-ai"
+        "gemini-ai",
+        "PDF轉成PPT",
+        "PDF轉成PowerPoint簡報",
+        "提取PDF文字做成簡報",
+        "OCR識別PDF圖片轉成可編輯文字",
+        "NotebookLM文件轉簡報",
+        "把PDF內容轉成簡報投影片",
+        "移除PDF背景後轉成PPT",
+        "將文件PDF轉換成PowerPoint",
+        "從PDF生成簡報",
+        "Google Docs PDF轉投影片"
       ],
       "install": {
         "method": "git-clone",
@@ -3732,7 +4473,17 @@
         "ai-short-video-engine",
         "video-generator",
         "article-to-video",
-        "social-media-content"
+        "social-media-content",
+        "文章轉短影片",
+        "文章剪成抖音短片",
+        "文字轉成影片",
+        "寫成病毒式短片",
+        "文章做成Reels影片",
+        "文章轉TikTok內容",
+        "自動生成爆款短片",
+        "部落格文章剪短片",
+        "長文轉短视频",
+        "新聞文章剪成抖音"
       ],
       "install": {
         "method": "pip",
@@ -3773,7 +4524,17 @@
         "pdf-to-pptx",
         "ocr",
         "document-reconstruction",
-        "image-to-pptx"
+        "image-to-pptx",
+        "PDF轉PPT",
+        "轉換PDF成簡報",
+        "PDF轉PPTX",
+        "OCR識別PDF內容",
+        "掃描版PDF轉可編輯簡報",
+        "PDF解析重建轉投影片",
+        "圖片轉成簡報",
+        "PDF轉PowerPoint",
+        "文件重建轉PPT",
+        "PDF提取文字轉簡報"
       ],
       "install": {
         "method": "pip",
@@ -3814,7 +4575,17 @@
         "awesome-notebooklm",
         "awesome-list",
         "google-notebooklm",
-        "ai-podcast"
+        "ai-podcast",
+        "把文件轉成Podcast",
+        "用AI聲音朗讀文件",
+        "把PDF變成播客",
+        "從文檔生成語音摘要",
+        "產生AI雙人對話解說",
+        "把報告做成Podcast",
+        "把文件轉成有聲内容",
+        "用AI語音總結文件",
+        "把研究文獻轉成聽的",
+        "把會議記錄做成Podcast"
       ],
       "install": {
         "method": "git-clone",
@@ -3853,7 +4624,17 @@
         "ontology",
         "playground",
         "rdf-export",
-        "semantic-modeling"
+        "semantic-modeling",
+        "視覺化建立本體圖",
+        "匯出 RDF/XML 檔案",
+        "設計知識圖譜結構",
+        "轉換資料為本體格式",
+        "生成語義網路圖",
+        "整理類別與關係層級",
+        "繪製本體關係圖",
+        "建立可視化本體模型",
+        "匯出本體至 RDF 格式",
+        "設計語義本體架構"
       ],
       "install": {
         "method": "npm",
@@ -3889,7 +4670,17 @@
         "open-energy-family",
         "oeo",
         "semantic-web",
-        "energy-system-modeling"
+        "energy-system-modeling",
+        "建立能源資料模型",
+        "定義能源數據結構",
+        "構建能源本體",
+        "建立能源知識圖譜",
+        "建構能源資料詞彙表",
+        "創建能源概念框架",
+        "建立能源資訊模型",
+        "設計能源資料標準",
+        "建構能源領域本體",
+        "建立能源數據語意標準"
       ],
       "install": {
         "method": "pip",
@@ -3927,7 +4718,17 @@
         "notebooklm",
         "slide",
         "presentation",
-        "automation"
+        "automation",
+        "把 NotebookLM 筆記轉成幻燈片",
+        "從 AI 筆記自動生成簡報",
+        "將學習內容轉換成投影片",
+        "把文檔變成 PPT 格式",
+        "自動化製作演示文稿",
+        "從研究筆記輸出幻燈片",
+        "將筆記整理成簡報結構",
+        "把 NotebookLM 內容做成演示",
+        "自動生成幻燈片演示",
+        "將文字筆記轉成投影簡報"
       ],
       "install": {
         "method": "pip",
@@ -3961,7 +4762,17 @@
         "animejs",
         "animejs-v4-ai-guidelines",
         "gsap-migration",
-        "animation-library"
+        "animation-library",
+        "GSAP 轉 Anime.js",
+        "animejs v4 查詢",
+        "動畫庫遷移",
+        "GSAP 語法替換",
+        "確認 animejs 功能",
+        "animejs 參數查表",
+        "GSAP 改寫 animejs",
+        "檢查 animejs 能力",
+        "動畫程式碼轉換",
+        "GSAP 兼容性檢查"
       ],
       "install": {
         "method": "git-clone",
@@ -3996,7 +4807,17 @@
         "book",
         "skill",
         "pdf-conversion",
-        "claude-code"
+        "claude-code",
+        "把PDF書轉成學習筆記",
+        "將技術書籍轉成Claude Code技能",
+        "PDF轉成可搜尋知識庫",
+        "把電子書轉成技能文件",
+        "將PDF轉成工作流工具",
+        "把技術手冊轉成Claude指令",
+        "PDF書籍轉成快速參考",
+        "將厚書轉成AI技能",
+        "把技術PDF轉成可直接使用",
+        "將技術文檔轉成Claude Code助手"
       ],
       "install": {
         "method": "pip",
@@ -4034,7 +4855,17 @@
         "anthropic",
         "anthropic-claude",
         "agent-skills",
-        "agentskills"
+        "agentskills",
+        "把投資書轉成AI技能",
+        "從書籍提取股票分析策略",
+        "將經典投資書籍轉成可執行指令",
+        "把財經書做成agent能力",
+        "將股票書轉成分析腳本",
+        "從投資書籍擷取實戰技巧",
+        "把好書轉成投資框架",
+        "將書籍內容轉成可運作技能",
+        "從股票分析書提取交易策略",
+        "把投資書籍化成agentskills"
       ],
       "install": {
         "method": "pip",
@@ -4077,7 +4908,17 @@
         "generator",
         "methodology",
         "agent",
-        "reading"
+        "reading",
+        "把書變成AI技能",
+        "從讀書筆記生成agent",
+        "把書籍方法論轉成可執行流程",
+        "將專業內容轉成agent工作流",
+        "把書中的方法提取成工具",
+        "從文章生成人工智慧技能",
+        "把閱讀內容轉換成agent流程",
+        "將書籍知識轉成自動化技能",
+        "從知識書本產出agent能力",
+        "把理論方法轉成可運作工具"
       ],
       "install": {
         "method": "git-clone",
@@ -4119,7 +4960,17 @@
         "docx",
         "office-documents",
         "rag",
-        "llm-conversion"
+        "llm-conversion",
+        "PDF转Markdown",
+        "PDF转纯文本",
+        "Word转成文字",
+        "网页转成Markdown",
+        "Office文档转Markdown",
+        "DOCX转文字",
+        "把PDF转成Markdown",
+        "网页抓成Markdown",
+        "文档转成可读取文字",
+        "PDF转成文本"
       ],
       "install": {
         "method": "pip",
@@ -4164,7 +5015,17 @@
         "markitdown-website",
         "pdf-to-markdown",
         "document-converter",
-        "offline-tool"
+        "offline-tool",
+        "PDF轉成Markdown",
+        "Word文件轉Markdown",
+        "Excel轉Markdown",
+        "PPT轉Markdown",
+        "網頁內容轉Markdown",
+        "文件轉成文字檔",
+        "PDF抓成文字",
+        "離線轉換文件",
+        "Office文件轉Markdown",
+        "瀏覽器轉文件成Markdown"
       ],
       "install": {
         "method": "npm",
@@ -4199,7 +5060,17 @@
         "claude-skills",
         "agent-skills",
         "anthropic",
-        "ai-agents"
+        "ai-agents",
+        "尋找AI技能庫",
+        "整合Claude技能",
+        "搜尋Agent能力插件",
+        "查看Anthropic技能範例",
+        "部署AI代理技能",
+        "擴充Claude Agent功能",
+        "套用現成AI技能",
+        "尋找Agent模組",
+        "實作AI技能",
+        "搜尋Claude插件"
       ],
       "install": {
         "method": "pip",
@@ -4364,7 +5235,17 @@
         "skill.md",
         "web design",
         "ui guidelines",
-        "frontend"
+        "frontend",
+        "設計網頁介面",
+        "撰寫前端程式碼",
+        "制定 UI/UX 規範",
+        "建立響應式網頁",
+        "優化網站樣式",
+        "製作頁面佈局",
+        "設計導覽列",
+        "實作使用者操作流程",
+        "設計按鈕與表單元件",
+        "套用網頁設計指引"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -4400,7 +5281,17 @@
         "prototyping",
         "ai-agents",
         "design-tools",
-        "ui-generator"
+        "ui-generator",
+        "AI生成界面原型",
+        "無代碼構建交互原型",
+        "用AI輸出可運行設計稿",
+        "自動轉換設計圖為程式碼",
+        "快速原型製作工具",
+        "AI輔助UI組件生成",
+        "設計系統自動化導出",
+        "生成多平台界面原型",
+        "AI繪製應用程式原型",
+        "將設計概念轉為實作檔案"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -4443,7 +5334,17 @@
         "agent-skills",
         "agent",
         "vercel",
-        "ai-assistant"
+        "ai-assistant",
+        "擴展 AI 助手能力",
+        "整合重覆使用的技能庫",
+        "為 Agent 添加可用工具",
+        "為 AI 助手注入新技能",
+        "擴充助手可執行的功能",
+        "將技能庫接入 AI 助手",
+        "為 Agent 配置可用的工具模組",
+        "連接第三方工具到 AI 助手",
+        "提升 AI 助手處理任務的能力",
+        "為聊天助手加入額外功能模組"
       ],
       "install": {
         "method": "npm",
@@ -4477,7 +5378,17 @@
         "playwright",
         "skill.md",
         "browser automation",
-        "code generation"
+        "code generation",
+        "录制浏览器操作",
+        "网页自动截图",
+        "自动化测试网页",
+        "生成前端测试代码",
+        "抓取网页表格资料",
+        "自动点击网页按钮",
+        "检查网页选择器",
+        "浏览器操作回放",
+        "网页元素检测",
+        "录制网页操作转代码"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -4514,7 +5425,17 @@
       "triggers": [
         "skill.md",
         "playwright",
-        "browser automation"
+        "browser automation",
+        "自動填寫網頁表單",
+        "自動截圖網頁",
+        "自動抓取網頁資料",
+        "自動點擊網頁按鈕",
+        "自動登入網站帳號",
+        "自動爬取網頁內容",
+        "自動化測試網頁功能",
+        "自動瀏覽網站頁面",
+        "自動處理網頁表格",
+        "自動下載網頁檔案"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -4550,7 +5471,17 @@
         "github-copilot",
         "skill.md",
         "prompt-engineering",
-        "agent-skills"
+        "agent-skills",
+        "優化 GitHub Copilot 工作流程",
+        "設定 Copilot 技能配置",
+        "撰寫 Prompt 提示詞",
+        "配置 AI Agent 行為",
+        "建立 Prompt 模板",
+        "調整 Copilot 推薦設定",
+        "設定開發助手工作模式",
+        "管理 Agent 技能模組",
+        "最佳化程式碼建議品質",
+        "配置 GitHub Copilot 設定"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -4591,7 +5522,17 @@
       "triggers": [
         "skill.md",
         "codex",
-        "agent-instructions"
+        "agent-instructions",
+        "Figma 轉成程式碼",
+        "將設計稿轉換成 HTML/CSS",
+        "Figma 轉 React 元件",
+        "Figma 設計轉前端程式",
+        "透過指令檔引導 AI 寫程式",
+        "設定 AI 編程代理工作流程",
+        "用 Skill.md 指引 Codex 生成程式",
+        "Figma 轉程式碼自動化流程",
+        "設計稿轉程式碼指令模板",
+        "AI 編程代理工作流設定"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -4627,7 +5568,17 @@
         "book-to-skill-apple-ouyang",
         "book-to-skill",
         "book",
-        "skill"
+        "skill",
+        "把书转成AI技能",
+        "把书的内容做成agent",
+        "从书里提取决策规则",
+        "将书籍转成可执行工具",
+        "把书的知识整理成skill",
+        "用书训练自动化决策",
+        "把电子书变成AI助手",
+        "从书中抓方法论做成技能",
+        "把书的内容转成agent skill",
+        "将专业知识书转成可执行指令"
       ],
       "install": {
         "method": "git-clone",
@@ -4702,7 +5653,17 @@
         "web-scraping",
         "ai-web-agent",
         "js-rendered-scraping",
-        "logged-in-browsing"
+        "logged-in-browsing",
+        "自動填寫網頁表單",
+        "爬取動態渲染網頁",
+        "登入網站後抓取資料",
+        "AI 控制瀏覽器操作",
+        "自動化點擊網頁按鈕",
+        "批量爬取網頁表格",
+        "瀏覽器自動化測試",
+        "AI 網頁機器人",
+        "爬 JavaScript 動態網頁",
+        "自動登入並抓取網頁資料"
       ],
       "install": {
         "method": "pip",
@@ -4747,7 +5708,17 @@
         "browserbase",
         "web-automation",
         "agent",
-        "browser"
+        "browser",
+        "抓取網頁資料",
+        "爬取網站內容",
+        "瀏覽器自動化操作",
+        "網頁表單自動填寫",
+        "網頁截圖",
+        "自動登入網站",
+        "監控網頁變化",
+        "網頁數據萃取",
+        "批量操作瀏覽器",
+        "自動化網頁測試"
       ],
       "install": {
         "method": "npm",
@@ -4865,7 +5836,17 @@
         "llm-framework",
         "agentic-ai",
         "chatgpt",
-        "microsoft"
+        "microsoft",
+        "让多个 AI 代理协作完成任务",
+        "编排多步骤 LLM 对话流程",
+        "自动让 AI 分角色讨论问题",
+        "构建多智能体编程助手",
+        "让 ChatGPT 群聊解决复杂任务",
+        "自动化 AI 代理工作流编排",
+        "设计多 LLM 协作对话系统",
+        "用多代理框架实现任务自动化",
+        "让 AI 团队分工处理编程任务",
+        "搭建可自主协作的 AI 系统"
       ],
       "install": {
         "method": "pip",
@@ -4906,7 +5887,17 @@
         "multi-agent",
         "software-engineering",
         "code-generation",
-        "llm"
+        "llm",
+        "自動寫程式",
+        "生成軟體架構",
+        "自動產生測試",
+        "多代理協作開發",
+        "AI 協助編碼",
+        "自動構建專案",
+        "跨角色合作編程",
+        "用LLM生成代碼",
+        "自動完成軟體項目",
+        "代碼自動補全"
       ],
       "install": {
         "method": "pip",
@@ -4947,7 +5938,17 @@
         "agent",
         "mcp",
         "orchestration",
-        "ai-skills"
+        "ai-skills",
+        "跑AI代理",
+        "设定定时任务让AI自动执行",
+        "让AI24小时在线工作",
+        "编排多步骤的AI流程",
+        "监控AI任务进度",
+        "批量调度多个AI代理",
+        "用AI技能自动化任务",
+        "连接多个AI服务一起跑",
+        "设定AI定期检查什么",
+        "让AI自动循环工作"
       ],
       "install": {
         "method": "npm",
@@ -4990,7 +5991,17 @@
         "pytorch",
         "deep-learning",
         "python",
-        "natural-language-processing"
+        "natural-language-processing",
+        "生成文章",
+        "翻譯文件",
+        "總結文章重點",
+        "文字轉語音",
+        "語音轉文字",
+        "分析文章情感",
+        "根據資料回答問題",
+        "訓練語言模型",
+        "圖片分類",
+        "文字補全續寫"
       ],
       "install": {
         "method": "pip",
@@ -5033,7 +6044,17 @@
         "rust",
         "real-time",
         "etl",
-        "data-engineering"
+        "data-engineering",
+        "維護 AI 長期記憶",
+        "增量更新檢索索引",
+        "保持上下文持久化",
+        "實時同步資料索引",
+        "長輪廓任務情境管理",
+        "自動索引 ETL 流程",
+        "追蹤資料變更記錄",
+        "大模型上下文持久化",
+        "增量索引維護引擎",
+        "長任務 AI 記憶延續"
       ],
       "install": {
         "method": "cargo",
@@ -5078,7 +6099,17 @@
         "img2img",
         "controlnet",
         "lora",
-        "inpainting"
+        "inpainting",
+        "文字描述生成圖片",
+        "根據參考圖生成新圖",
+        "圖片局部重繪修改",
+        "擴展圖片邊緣內容",
+        "用ControlNet精確控制構圖",
+        "加載LoRA風格微調",
+        "圖片高清晰放大",
+        "批量生成圖片",
+        "給圖片加蒙版修改",
+        "用不同模型風格出圖"
       ],
       "install": {
         "method": "git-clone",
@@ -5122,7 +6153,12 @@
         "traditional-chinese",
         "a1111",
         "sd-webui",
-        "localization-extension"
+        "localization-extension",
+        "把 SD WebUI 改成中文顯示",
+        "安裝 AUTOMATIC1111 繁中語系",
+        "把 SD WebUI 介面繁中化",
+        "把 AUTOMATIC1111 網頁改成中文",
+        "安裝 SD WebUI 中文版擴充功能"
       ],
       "install": {
         "method": "npm",
@@ -5157,7 +6193,17 @@
         "agents",
         "llm-workflows",
         "rag",
-        "visual-builder"
+        "visual-builder",
+        "搭建AI工作流程",
+        "設計多Agent系統",
+        "視覺化串接大語言模型",
+        "拖拉建立RAG流程",
+        "零程式碼製作AI應用",
+        "繪製Agent對話流程",
+        "串接LLM管線",
+        "用畫面設計AI工作流",
+        "搭建檢索生成系統",
+        "視覺化部署Agent"
       ],
       "install": {
         "method": "pip",
@@ -5199,7 +6245,17 @@
         "memory",
         "chatbots",
         "llm",
-        "langchain"
+        "langchain",
+        "保存對話記錄",
+        "記住用戶偏好",
+        "跨會話記憶檢索",
+        "持久化AI狀態",
+        "管理聊天上下文",
+        "存儲AI記憶",
+        "會話間數據同步",
+        "AI記憶緩存",
+        "跟蹤用戶歷史",
+        "維護聊天狀態"
       ],
       "install": {
         "method": "npm",
@@ -5244,7 +6300,17 @@
         "rag",
         "meta-harness",
         "agent-swarm",
-        "claude-code-integration"
+        "claude-code-integration",
+        "部署多 agent 群組",
+        "協調自主工作流",
+        "建立對話式 AI 系統",
+        "整合 Claude 與 Codex 工具",
+        "搭建 RAG 搜尋引擎",
+        "串接多代理協調任務",
+        "設定 Agent Swarm",
+        "建立多模型協作框架",
+        "自動化 Agent 團隊任務",
+        "建構具記憶力的 AI 對話系統"
       ],
       "install": {
         "method": "npm",
@@ -5285,7 +6351,17 @@
         "crewai",
         "ai-agents",
         "multi-agent",
-        "llm-orchestration"
+        "llm-orchestration",
+        "编排多代理协作流程",
+        "建立角色扮演型AI代理",
+        "让多个LLM分工完成复杂任务",
+        "创建可协作的Agent团队",
+        "用多Agent架构执行串联任务",
+        "设计AI代理角色扮演工作流",
+        "实现多步骤AI任务自动化",
+        "构建自主Agent协同系统",
+        "整合多个AI代理完成端到端流程",
+        "搭建分工明确的多Agent平台"
       ],
       "install": {
         "method": "pip",
@@ -5371,7 +6447,17 @@
         "username-enumeration",
         "cli-tool",
         "security-audit",
-        "maigret"
+        "maigret",
+        "查某個使用者名稱在哪些網站有註冊",
+        "搜尋某個帳號的公開資訊",
+        "透過使用者名稱找帳號在哪裡存在",
+        "查詢使用者的社交媒體帳號",
+        "找出某人的網路足跡",
+        "檢查某個名稱是否被註冊",
+        "搜尋用戶名在不同平台的資料",
+        "利用使用者名稱做 OSINT 調查",
+        "查詢某個帳號的線上存在",
+        "搜尋網路上的使用者帳號"
       ],
       "install": {
         "method": "pip",
@@ -5411,7 +6497,17 @@
         "open-webui",
         "self-hosted",
         "llm-dashboard",
-        "multi-model-ui"
+        "multi-model-ui",
+        "管理多個 AI 模型",
+        "架設自托管聊天界面",
+        "整合多個 LLM 供應商",
+        "統一介面操作不同模型",
+        "建立 AI 模型儀表板",
+        "在本地部署對話界面",
+        "切換比對多個語言模型",
+        "連接多個 AI 服務 API",
+        "自架多模型對話平台",
+        "管理混合 AI 系統介面"
       ],
       "install": {
         "method": "pip",
@@ -5455,7 +6551,17 @@
         "gemini",
         "llama",
         "git",
-        "pair-programming"
+        "pair-programming",
+        "編輯程式碼",
+        "寫python腳本",
+        "除錯bug",
+        "產生程式碼",
+        "修改现有代碼",
+        "自動化指令",
+        "終端機編程",
+        "協助寫git commit",
+        "程式碼檢查",
+        "開發助手"
       ],
       "install": {
         "method": "pip",
@@ -5496,7 +6602,17 @@
         "algorithm",
         "interview-prep",
         "coding-interviews",
-        "data-structures"
+        "data-structures",
+        "複習演算法",
+        "練習資料結構",
+        "備考工程師面試",
+        "刷 LeetCode 題目",
+        "複習系統設計",
+        "找面試題庫",
+        "模擬技術面試",
+        "整理演算法筆記",
+        "準備 FAANG 面試",
+        "練習演算法題"
       ],
       "install": {
         "method": "npm",
@@ -5537,7 +6653,17 @@
         "tech-interview-handbook",
         "interview",
         "coding-prep",
-        "system-design"
+        "system-design",
+        "準備技術面試",
+        "刷 LeetCode 題型",
+        "練習系統設計",
+        "找編程面試題目",
+        "複習演算法",
+        "整理面試常問問題",
+        "備考大廠程式碼挑戰",
+        "學習系統架構設計",
+        "練習編碼面試題",
+        "準備軟體工程師面試"
       ],
       "install": {
         "method": "npm",
@@ -5573,7 +6699,17 @@
         "free-software",
         "privacy",
         "open-source",
-        "saas-alternative"
+        "saas-alternative",
+        "找免費軟體替代商業SaaS",
+        "尋找可自建的Google Drive替代方案",
+        "用開源工具替換付費雲端服務",
+        "搭建隱私保護的文件存儲服務",
+        "擺脫SaaS服務托管網站",
+        "尋找開源項目管理工具推薦",
+        "把業務遷移到自有服務器",
+        "新手自托管起步指南",
+        "適合開發者的開源協作平台",
+        "企業級私有雲解決方案推薦"
       ],
       "install": {
         "method": "git-clone",
@@ -5613,7 +6749,17 @@
         "javascript",
         "algorithms",
         "data-structures",
-        "interview-preparation"
+        "interview-preparation",
+        "學習 JavaScript 演算法",
+        "練習程式碼面試",
+        "理解資料結構",
+        "記憶演算法模式",
+        "複習 JavaScript 概念",
+        "準備技術面試",
+        "實現排序演算法",
+        "解釋大 O 符號",
+        "解決常見演算法問題",
+        "尋找演算法速查表"
       ],
       "install": {
         "method": "npm",
@@ -5657,7 +6803,17 @@
         "html",
         "git",
         "code-snippets",
-        "developer-resources"
+        "developer-resources",
+        "查JavaScript语法",
+        "找CSS写法参考",
+        "看Node.js示例代码",
+        "查Git命令用法",
+        "找代码片段",
+        "查HTML标签用法",
+        "看JavaScript技巧",
+        "找前端代码示例",
+        "查CSS属性写法",
+        "看Node.js用法示例"
       ],
       "install": {
         "method": "npm",
@@ -5739,7 +6895,17 @@
         "vectorstores",
         "llm-orchestration",
         "chains",
-        "agent-tools"
+        "agent-tools",
+        "構建RAG問答系統",
+        "載入PDF文件提取內容",
+        "呼叫大語言模型生成文本",
+        "設計提示詞模板",
+        "查詢向量資料庫找相似內容",
+        "自動化執行多步驟任務",
+        "整合多個AI模型做決策",
+        "編寫鏈式工作流程",
+        "測試提示詞效果",
+        "建立自動回覆的聊天機器人"
       ],
       "install": {
         "method": "pip",
@@ -5796,7 +6962,17 @@
       "triggers": [
         "workflow automation",
         "api integration",
-        "fair-code"
+        "fair-code",
+        "串接 API",
+        "自動化表格整理",
+        "抓取網頁資料",
+        "觸發條件執行動作",
+        "自動發 Mail 通知",
+        "讓 AI 回覆訊息",
+        "部署自架服務",
+        "不用雲端跑程式",
+        "定時清理資料",
+        "串接第三方 App"
       ],
       "install": {
         "method": "npm",
@@ -5882,7 +7058,17 @@
         "mcp",
         "llm",
         "rag",
-        "open-source"
+        "open-source",
+        "搭建 AI 应用",
+        "创建智能体",
+        "接入大语言模型",
+        "构建 RAG 系统",
+        "配置 MCP 接口",
+        "自动化 AI 流程",
+        "搭建对话机器人",
+        "设计 agent 工作流",
+        "可视化编排 LLM 应用",
+        "集成知识库问答"
       ],
       "install": {
         "method": "npm",
@@ -5927,7 +7113,17 @@
         "open-source",
         "免費api",
         "api清單",
-        "公開api"
+        "公開api",
+        "找免費API",
+        "搜尋公共API清單",
+        "查第三方API目錄",
+        "找開放API服務",
+        "搜尋免費網頁API",
+        "找可用的API",
+        "查詢公開API索引",
+        "找開源API資源",
+        "搜尋免費外部API",
+        "找免費開發者API"
       ],
       "install": {
         "method": "none",
@@ -5970,7 +7166,17 @@
         "devops-roadmap",
         "frontend-roadmap",
         "backend-roadmap",
-        "learning-path"
+        "learning-path",
+        "制定學習路線",
+        "規劃技術成長路徑",
+        "撰寫開發者學習藍圖",
+        "安排課程進度",
+        "列出技能進階順序",
+        "制定程式語言學習計畫",
+        "設計 DevOps 實作步驟",
+        "繪製前端技術學習地圖",
+        "規劃後端開發學習路線",
+        "整理計算機科學學習綱要"
       ],
       "install": {
         "method": "npm",
@@ -6010,7 +7216,17 @@
         "go-roadmap",
         "golang",
         "developer-roadmap",
-        "go-skills"
+        "go-skills",
+        "Go 學習路線圖",
+        "Go 程序員成長路徑",
+        "從入門到精通 Go 的步驟",
+        "Go 語言學習指南",
+        "掌握 Go 併發與系統設計的路線",
+        "Go 開發者技能進階圖",
+        "Go 語言學習藍圖",
+        "從基礎到進階的 Go 成長路徑",
+        "Go 程式設計學習導航",
+        "成為資深 Go 程序員的路線圖"
       ],
       "install": {
         "method": "git-clone",
@@ -6050,7 +7266,17 @@
         "dotnet",
         "roadmap",
         "dotnetcore",
-        "full-stack"
+        "full-stack",
+        "整理.NET學習路徑",
+        "列出C#開發技能清單",
+        "規劃前端後端技術學習順序",
+        "梳理ASP.NET Core進階內容",
+        "整理資料庫與API實作步驟",
+        "規劃全端專案學習順序",
+        "整理DevOps部署流程",
+        "列出Azure雲端服務學習步驟",
+        "梳理測試與CI/CD實作方向",
+        "整理微服務架構學習內容"
       ],
       "install": {
         "method": "git-clone",
@@ -6092,7 +7318,17 @@
         "books",
         "education",
         "open-source",
-        "learning"
+        "learning",
+        "找免費程式書",
+        "下載技術書籍",
+        "推薦免費開發教材",
+        "學 Python 的書",
+        "JavaScript 免費教程",
+        "開源程式設計書",
+        "免費軟體工程書籍",
+        "找技術參考書",
+        "免費學習程式設計",
+        "推薦開源技術書"
       ],
       "install": {
         "method": "pip",
@@ -6139,7 +7375,17 @@
         "interview-prep",
         "distributed-systems",
         "scalability",
-        "architecture"
+        "architecture",
+        "面試準備系統設計",
+        "畫系統架構圖",
+        "設計分散式系統",
+        "學習系統擴展性",
+        "解構大型架構",
+        "系統設計練習題",
+        "分析服務器擴展方案",
+        "解釋數據庫分片策略",
+        "設計高可用架構",
+        "準備技術面試系統設計"
       ],
       "install": {
         "method": "pip",
@@ -6180,7 +7426,17 @@
         "computer-science",
         "roadmap",
         "algorithms",
-        "interview-prep"
+        "interview-prep",
+        "刷算法題",
+        "準備技術面試",
+        "學習資料結構",
+        "模擬編程面試",
+        "複習CS基礎知識",
+        "制定面試準備計畫",
+        "練習編碼題目",
+        "攻頂演算法題型",
+        "面試刷题",
+        "準備FAANG面試"
       ],
       "install": {
         "method": "git-clone",
@@ -6223,7 +7479,17 @@
         "windows",
         "unix",
         "shell-commands",
-        "the-art-of-command-line"
+        "the-art-of-command-line",
+        "bash 指令用法查詢",
+        "Linux 命令列入門指南",
+        "學 Shell 腳本寫法",
+        "查管道與重導向技巧",
+        "Unix 命令最佳實踐",
+        "grep sed awk 用法查詢",
+        "找命令列進階技巧",
+        "學 Bash 快捷操作",
+        "查檔案處理命令大全",
+        "找命令列自動化方法"
       ],
       "install": {
         "method": "git-clone",
@@ -6309,7 +7575,17 @@
         "async",
         "scope",
         "closures",
-        "you-dont-know-js"
+        "you-dont-know-js",
+        "理解 JavaScript 作用域",
+        "搞懂閉包概念",
+        "學習 ES6 語法",
+        "掌握 Promise 與 async/await",
+        "弄清楚 let const var 差異",
+        "理解 JavaScript 變數提升",
+        "學會非同步程式設計",
+        "搞懂原型鏈與繼承",
+        "弄明白事件循環機制",
+        "學習 JavaScript 核心觀念"
       ],
       "install": {
         "method": "git-clone",
@@ -6396,7 +7672,17 @@
         "hermes-agent",
         "skills-management",
         "desktop-hub",
-        "wsl-support"
+        "wsl-support",
+        "切換編碼工具",
+        "管理多個編程助手",
+        "跨平台編碼hub配置",
+        "統一管理coding provider",
+        "切換AI編程工具",
+        "管理編程skills",
+        "WSL編程助手切換",
+        "切換coding agent",
+        "管理多個編程provider",
+        "統一配置編程工具"
       ],
       "install": {
         "method": "cargo",
@@ -6437,7 +7723,17 @@
       "triggers": [
         "codexplusplus",
         "codex",
-        "codexapp"
+        "codexapp",
+        "寫程式碼",
+        "修補程式錯誤",
+        "優化程式效能",
+        "檢查程式碼品質",
+        "產生程式註解",
+        "翻譯程式碼語言",
+        "除錯應用程式",
+        "改善開發體驗",
+        "自動補全程式碼",
+        "重構程式邏輯"
       ],
       "install": {
         "method": "cargo",
@@ -6471,7 +7767,17 @@
         "claude.md",
         "claude code",
         "llm coding pitfalls",
-        "karpathy skills"
+        "karpathy skills",
+        "优化代码生成",
+        "修复LLM常见错误",
+        "提升编程准确率",
+        "解决代码幻觉",
+        "修正逻辑漏洞",
+        "减少编码错误",
+        "改善AI编程输出",
+        "提升代码质量",
+        "优化模型表现",
+        "改进代码生成效果"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -6509,7 +7815,17 @@
         "ai-agents",
         "developer-tools",
         "cursor",
-        "skill-discovery"
+        "skill-discovery",
+        "發現AI技能",
+        "查找MCP工具",
+        "尋找Cursor擴展",
+        "查看AI代理能力",
+        "探索開發者工具",
+        "搜尋自動化方案",
+        "了解Agent功能",
+        "查找程式碼技能",
+        "搜尋工作流工具",
+        "探索AI助手能力"
       ],
       "install": {
         "method": "pip",
@@ -6549,7 +7865,17 @@
         "claude-code",
         "ai-agents",
         "best-practices",
-        "prompt-optimization"
+        "prompt-optimization",
+        "優化提示詞",
+        "改進AI程式輸出品質",
+        "調整模型回應格式",
+        "提升Claude Code效能",
+        "設計AI代理工作流程",
+        "審查程式碼",
+        "訓練語言模型",
+        "優化提示工程",
+        "改善AI開發流程",
+        "建構智能代理系統"
       ],
       "install": {
         "method": "git-clone",
@@ -6591,7 +7917,17 @@
         "awesome-agent-skills",
         "coding-assistant",
         "agent-skills-list",
-        "agent-skills"
+        "agent-skills",
+        "找 Claude Code 技能清單",
+        "搜尋 AI Agent 提示詞庫",
+        "匯總 Cursor 編程插件",
+        "查看 Gemini CLI 功能列表",
+        "整理 Codex 工具集",
+        "尋找程式開發 AI 技能庫",
+        "搜集編程代理資源清單",
+        "獲取 AI 寫程式提示集",
+        "查閱 Agent Skills 綜合目錄",
+        "尋找 Coding Agent 資源彙編"
       ],
       "install": {
         "method": "none",
@@ -6633,7 +7969,17 @@
         "openai-codex",
         "prompt-engineering",
         "cursor",
-        "ai-agents"
+        "ai-agents",
+        "AI編程提示詞庫",
+        "程式碼自動補全插件",
+        "claude編程技能庫",
+        "code review AI工具",
+        "自然語言生成程式碼",
+        "Cursor編程助手",
+        "Codex AI代理",
+        "開發者AI技能包",
+        "寫程式碼的AI插件",
+        "Gemini CLI編程技能"
       ],
       "install": {
         "method": "pip",
@@ -10667,7 +12013,17 @@
         "mcp",
         "vscode-extension",
         "ai-agent",
-        "claude"
+        "claude",
+        "設定 Claude Code",
+        "安裝 Claude Code",
+        "學習 Claude Code 指令",
+        "配置 MCP server",
+        "安裝 VSCode 擴充功能",
+        "建立 AI 編程助手",
+        "自動化程式碼任務",
+        "整合終端機與 AI",
+        "初學者學習 Claude Code",
+        "進階 Claude Code 工作流程"
       ],
       "install": {
         "method": "pip",
@@ -10708,7 +12064,17 @@
         "claude-code",
         "mcp",
         "agents",
-        "context-management"
+        "context-management",
+        "持續對話上下文管理",
+        "Claude Code hooks 設定",
+        "MCP 隔離工作窗口",
+        "多 Agent 平行運行",
+        "對話記憶 ledger",
+        "跨會話上下文保留",
+        "Claude Code 自動化鉤子",
+        "AI 會話內容追蹤",
+        "多個 Agent 獨立上下文",
+        "MCP 工具隔離環境"
       ],
       "install": {
         "method": "pip",
@@ -10749,7 +12115,17 @@
         "video-generation",
         "audio-generation",
         "ai-agents",
-        "mcp"
+        "mcp",
+        "生成圖片",
+        "文生圖",
+        "轉換文字為圖片",
+        "製作AI影片",
+        "生成影片",
+        "產生音頻",
+        "合成語音",
+        "AI生成聲音",
+        "文字轉圖片",
+        "生成圖像"
       ],
       "install": {
         "method": "git-clone",
@@ -11159,7 +12535,17 @@
         "svg",
         "canvas",
         "animation",
-        "javascript-library"
+        "javascript-library",
+        "CSS 動畫",
+        "SVG 動畫",
+        "DOM 動畫",
+        "JavaScript 動畫效果",
+        "網頁元素動態",
+        "轉場動畫效果",
+        "Canvas 動畫",
+        "物件動畫效果",
+        "網頁過場特效",
+        "JavaScript 動畫插件"
       ],
       "install": {
         "method": "npm",
@@ -11200,7 +12586,17 @@
         "codebase-visualization",
         "memory",
         "business-knowledge",
-        "code-exploration"
+        "code-exploration",
+        "把代码库转成知识图谱",
+        "用图谱查看我的代码",
+        "分析我的代码库结构",
+        "给代码库建立知识库",
+        "查询业务逻辑的知识图谱",
+        "让代码库可以问答",
+        "探索代码之间的关系",
+        "把代码转成可搜索的图谱",
+        "可视化我的代码知识",
+        "分析整个项目的代码结构"
       ],
       "install": {
         "method": "npm",
@@ -11241,7 +12637,17 @@
         "llm-coding-guidelines",
         "coding-behavior",
         "simplicity-first",
-        "surgical-changes"
+        "surgical-changes",
+        "先思考再写代码",
+        "简化代码",
+        "精准修改 bug",
+        "审查代码错误",
+        "澄清编程需求",
+        "重构代码",
+        "避免 AI 编程错误",
+        "简单优先原则",
+        "目标导向开发",
+        "减少 LLM 常见失误"
       ],
       "install": {
         "method": "git-clone",
@@ -11288,7 +12694,17 @@
         "arena",
         "multi-agent",
         "agent communication",
-        "broadcast"
+        "broadcast",
+        "讓多個 AI agent 互相通信",
+        "多智能體同步訊息",
+        "agent 間傳數據",
+        "跨 agent 廣播通知",
+        "多個 AI 共享狀態",
+        "agent 網路協調",
+        "讓不同 AI 交換資訊",
+        "建立 agent 通訊協定",
+        "多 agent 同步資料",
+        "分散式 AI 溝通"
       ],
       "install": {
         "method": "git-clone",
@@ -11330,7 +12746,17 @@
         "gemini-cli",
         "opencode",
         "agent-debate",
-        "verdict-framework"
+        "verdict-framework",
+        "多觀點檢視技術方案",
+        "交叉審查設計決策",
+        "匯集專家意見評估",
+        "對比不同架構優劣",
+        "檢測方案潛在風險",
+        "強制正反方辯論",
+        "綜合多方意見決策",
+        "平衡不同立場建議",
+        "權衡技術選型利弊",
+        "分析複雜決定盲點"
       ],
       "install": {
         "method": "git-clone",
@@ -11385,7 +12811,17 @@
         "build",
         "coding-agent",
         "tui",
-        "xai"
+        "xai",
+        "用 Grok 寫程式碼",
+        "用 Grok 自動編譯",
+        "用 Grok 審查程式碼",
+        "用 Grok 生成程式片段",
+        "用 Grok 除錯",
+        "用 Grok 建立 Coding Agent",
+        "用 Grok 整合開發流程",
+        "用 Grok TUI 互動",
+        "用 Grok 自動化編程任務",
+        "用 Grok 模型輔助編碼"
       ],
       "install": {
         "method": "cargo",
@@ -11422,7 +12858,17 @@
         "skin",
         "theme",
         "code-editor",
-        "developer"
+        "developer",
+        "夢幻風格程式主題",
+        "替程式編輯器換主題",
+        "設定IDE夢幻配色",
+        "找夢幻系編碼界面",
+        "給編碼環境加視覺主題",
+        "更換程式碼介面外觀",
+        "設定編譯器夢幻主題",
+        "找夢幻色系程式主題",
+        "自訂編程界面夢幻風格",
+        "為編碼軟體換夢幻皮膚"
       ],
       "install": {
         "method": "npm",
@@ -11458,7 +12904,17 @@
         "map",
         "3d-reconstruction",
         "streaming-scene",
-        "real-time-mapping"
+        "real-time-mapping",
+        "用影片重建3D場景",
+        "即時生成3D地圖",
+        "從串流影片建構三維模型",
+        "實時掃瞄建立3D空間",
+        "持續錄影重建立體場景",
+        "線上串流轉3D重建",
+        "即時3D掃描實景",
+        "用影片做實時三維重建",
+        "從連續影像組建3D場景",
+        "實時重建環境的三維模型"
       ],
       "install": {
         "method": "pip",
@@ -11495,7 +12951,17 @@
         "oss",
         "opensource",
         "timeline",
-        "capcutalternative"
+        "capcutalternative",
+        "剪輯影片",
+        "製作影片剪輯",
+        "加入影片特效",
+        "為影片加轉場效果",
+        "多軌編輯影片",
+        "找免費剪片工具",
+        "找 CapCut 替代品",
+        "在時間線上編輯影片",
+        "把照片合成影片",
+        "用開源軟體剪片"
       ],
       "install": {
         "method": "npm",
@@ -11536,7 +13002,16 @@
         "tts",
         "speech-to-text",
         "text-to-speech",
-        "ai-voice"
+        "ai-voice",
+        "複製別人語音",
+        "語音轉成文字稿",
+        "文字合成語音",
+        "本機跑語音辨識",
+        "影片轉字幕",
+        "生成AI配音",
+        "用自己的聲音克隆",
+        "錄音轉寫成稿件",
+        "模擬特定人聲音"
       ],
       "install": {
         "method": "npm",
@@ -11578,7 +13053,17 @@
         "csharp",
         "wpf",
         "game-modding",
-        "ux-extension"
+        "ux-extension",
+        "改游戏界面布局",
+        "优化WPF界面",
+        "扩展Wand功能",
+        "调整游戏修改器界面",
+        "美化游戏界面",
+        "集成游戏功能",
+        "自定义游戏修改器UI",
+        "改进Wand界面交互",
+        "扩展游戏工具功能",
+        "优化游戏界面体验"
       ],
       "install": {
         "method": "git-clone",
@@ -11620,7 +13105,17 @@
         "docker",
         "self-hosted",
         "note-taking",
-        "sqlite"
+        "sqlite",
+        "寫筆記",
+        "記錄想法",
+        "建立知識庫",
+        "團隊協作筆記",
+        "同步筆記",
+        "寫 Markdown 文件",
+        "自架筆記系統",
+        "記錄程式碼片段",
+        "快速記筆記",
+        "管理個人筆記"
       ],
       "install": {
         "method": "git-clone",
@@ -11705,7 +13200,17 @@
         "rvm",
         "codex",
         "ai-agent",
-        "sandboxing"
+        "sandboxing",
+        "搭建 AI agent 框架",
+        "建立多 agent 系統",
+        "整合 MCP 協定",
+        "設定 AI 代理記憶體",
+        "創建沙箱化 AI 環境",
+        "架設品牌化 AI agent",
+        "實作多個 AI agent 協作",
+        "初始化 AI 系統骨架",
+        "部署具隔離性的 AI agent",
+        "串接 MCP 工具的 AI 架構"
       ],
       "install": {
         "method": "npm",
@@ -11817,7 +13322,17 @@
         "self-harness",
         "harness",
         "agent",
-        "harness-engineering"
+        "harness-engineering",
+        "建構自癒AI Agent架構",
+        "設定長期運行Agent的容錯機制",
+        "實作Agent錯誤自動恢復",
+        "設計Agent重啟與復原流程",
+        "建立穩定AI Agent運作環境",
+        "處理Agent執行異常的救援機制",
+        "架構可自我修復的Agent系統",
+        "設定Agent生命週期管理流程",
+        "實作Agent執行中斷後的自動恢復",
+        "建立高可用性AI Agent運行架構"
       ],
       "install": {
         "method": "pip",
@@ -11850,7 +13365,17 @@
       "triggers": [
         "browser-automation",
         "cdp",
-        "self-healing"
+        "self-healing",
+        "瀏覽器自動化",
+        "自動填表",
+        "網頁爬蟲",
+        "自動截圖",
+        "網頁資料抓取",
+        "自動化測試網頁",
+        "批量操作網頁",
+        "自動登入網站",
+        "自動提交表單",
+        "抓網頁表格資料"
       ],
       "install": {
         "method": "pip",
@@ -11890,7 +13415,17 @@
         "openharness",
         "agent-benchmark",
         "llm-agent",
-        "tool-use"
+        "tool-use",
+        "搭建 LLM agent 框架",
+        "評測 AI agent 效能",
+        "建置個人化自動代理",
+        "執行 LLM agent 流程",
+        "benchmark 語音助手能力",
+        "串接工具呼叫的 agent",
+        "評估 AI 代理任務表現",
+        "訓練自閉環 LLM 系統",
+        "測試多工具 agent 整合",
+        "建構可微調的自動代理"
       ],
       "install": {
         "method": "pip",
@@ -11924,7 +13459,17 @@
         "humanizer",
         "rewrite",
         "ai-detection",
-        "paraphrase"
+        "paraphrase",
+        "去除AI痕跡",
+        "讓文章更像人寫的",
+        "過AI檢測",
+        "改写AI生成文字",
+        "消除機器人語氣",
+        "修飾AI作文風",
+        "去掉AI用語感",
+        "讓語句更自然",
+        "潤色AI產生內容",
+        "降低文字AI感"
       ],
       "install": {
         "method": "git-clone",
@@ -11958,7 +13503,17 @@
         "humanizer-zh-tw",
         "humanizer",
         "text-naturalization",
-        "ai-content-refinement"
+        "ai-content-refinement",
+        "改寫 AI 文章",
+        "去除 AI 痕跡",
+        "讓文字更自然",
+        "人工潤飾中文",
+        "AI 內容去機械化",
+        "優化中文語感",
+        "轉成人寫風格",
+        "消滅機器人語氣",
+        "改善 AI 生成文本",
+        "文字自然化處理"
       ],
       "install": {
         "method": "git-clone",
@@ -12028,7 +13583,17 @@
         "flavor",
         "remover",
         "humanize",
-        "text-polishing"
+        "text-polishing",
+        "去除AI語氣",
+        "洗掉文字AI腔調",
+        "讓AI文章聽起來像人寫",
+        "將機械文風改自然",
+        "潤飾AI生成草稿",
+        "清除刻板寫作句型",
+        "轉化文案為真人語感",
+        "人工修飾AI文本",
+        "消除機器人行文風格",
+        "改順AI翻譯內容"
       ],
       "install": {
         "method": "git-clone",
@@ -12063,7 +13628,17 @@
         "humanizer",
         "chinese-writing",
         "ai-text",
-        "claude-code-skill"
+        "claude-code-skill",
+        "去除 AI 寫作痕跡",
+        "讓文字讀起來自然",
+        "改掉模板化句子",
+        "把 AI 文改成人話",
+        "潤色 AI 生成內容",
+        "消除機器人語氣",
+        "檢查文字有沒有 AI 味",
+        "讓文章像人寫的",
+        "去掉生硬的機械化表達",
+        "人類化 AI 文本"
       ],
       "install": {
         "method": "pip",
@@ -12104,7 +13679,17 @@
         "chinese",
         "cursor",
         "ai-tone-removal",
-        "writing"
+        "writing",
+        "改写AI生成文本",
+        "去除机翻腔",
+        "本地化技术文档",
+        "润色机器翻译",
+        "修正程序注释",
+        "优化提示词表达",
+        "翻译技术文件",
+        "改写英文文档为中文",
+        "消除AI腔调",
+        "润色开发者文案"
       ],
       "install": {
         "method": "pip",
@@ -12145,7 +13730,17 @@
         "prompt",
         "writer",
         "humanize",
-        "ai-flavor"
+        "ai-flavor",
+        "AI 文章改人話",
+        "潤稿消除機器人感",
+        "prompt 修飾優化",
+        "文字自然化",
+        "AI 文風去味",
+        "提示詞增強",
+        "內容人性化處理",
+        "文章改寫流畅",
+        "AI 生成文本優化",
+        "寫作自然化調整"
       ],
       "install": {
         "method": "npm",
@@ -12216,7 +13811,17 @@
         "writing-agent",
         "content-generation",
         "ai-writer",
-        "ghost-writing"
+        "ghost-writing",
+        "寫文章",
+        "幫我寫作",
+        "代筆",
+        "AI寫手",
+        "生成內容",
+        "寫博客",
+        "寫行銷文案",
+        "創作長文",
+        "寫產品說明",
+        "幫我做內容"
       ],
       "install": {
         "method": "npm",
@@ -12257,7 +13862,17 @@
         "research-agent",
         "paper-writing-agent",
         "math-modeling",
-        "competition-paper"
+        "competition-paper",
+        "寫數學建模論文",
+        "生成競賽論文",
+        "建數學模型",
+        "畫數據分析圖",
+        "撰寫研究報告",
+        "完成數學建模比賽論文",
+        "轉數據為圖表",
+        "整理論文格式",
+        "撰寫統計分析報告",
+        "生成數學建模結果"
       ],
       "install": {
         "method": "git-clone",
@@ -12297,7 +13912,17 @@
         "rendering",
         "open-source",
         "computer-graphics",
-        "b3d"
+        "b3d",
+        "建3D模型",
+        "拉3D圖形",
+        "做動畫",
+        "弄3D動作",
+        "渲染畫面",
+        "剪影片",
+        "建角色",
+        "做場景",
+        "產3D檔案",
+        "做特效"
       ],
       "install": {
         "method": "git-clone",
@@ -12341,7 +13966,17 @@
         "trading",
         "python",
         "fintech",
-        "llm-trading"
+        "llm-trading",
+        "用AI自動交易",
+        "LLM執行股市策略",
+        "多代理自動化交易系統",
+        "用MCP連接交易接口",
+        "Python量化策略自動化",
+        "AI驅動金融策略執行",
+        "智能交易機器人",
+        "用大語言模型下單",
+        "自動化投資組合再平衡",
+        "LLM輔助交易決策"
       ],
       "install": {
         "method": "pip",
@@ -12387,7 +14022,17 @@
         "gemini",
         "codex",
         "ai-gateway",
-        "token-compression"
+        "token-compression",
+        "壓縮 AI Token 費用",
+        "自動切換 AI 提供商",
+        "統一接入多個 AI 接口",
+        "單一入口呼叫所有 AI 模型",
+        "智能降級失效 AI 服務",
+        "AI 請求自動重試",
+        "跨模型結果比較",
+        "代理不同 AI 廠商呼叫",
+        "批量替換 API 接口呼叫",
+        "降低大語言模型使用成本"
       ],
       "install": {
         "method": "npm",
@@ -12428,7 +14073,17 @@
         "openthoughts",
         "agent",
         "ai-agents",
-        "training-data"
+        "training-data",
+        "訓練 AI agent",
+        "生成 agent 訓練數據",
+        "製作 agent 數據集",
+        "建立 agent 訓練集",
+        "匯編 agent 數據配方",
+        "建構 agent 訓練 pipeline",
+        "開發 AI agent 訓練數據",
+        "準備 agent 訓練資料",
+        "打造 agent 數據配方",
+        "訓練對話型 AI agent"
       ],
       "install": {
         "method": "pip",
@@ -12463,7 +14118,17 @@
         "financial",
         "banking",
         "compliance",
-        "risk-assessment"
+        "risk-assessment",
+        "審查貸款申請",
+        "計算財務比率",
+        "評估投資風險",
+        "檢查合規要求",
+        "分析財務報表",
+        "驗證反洗錢規定",
+        "評估信用風險",
+        "計算投資回報",
+        "審核交易記錄",
+        "分析市場風險"
       ],
       "install": {
         "method": "pip",
@@ -13084,7 +14749,17 @@
         "claude-cowork",
         "automation",
         "research",
-        "plugins"
+        "plugins",
+        "自动化资料收集",
+        "研究文献整理",
+        "网页表格提取",
+        "文档格式转换",
+        "知识库查询检索",
+        "报告自动撰写",
+        "资料自动归类",
+        "数据格式转换",
+        "网页资讯抓取",
+        "任务流程自动化"
       ],
       "install": {
         "method": "pip",
@@ -14181,7 +15856,17 @@
         "legal",
         "contract-review",
         "legal-research",
-        "drafting"
+        "drafting",
+        "審查合約",
+        "合約條款分析",
+        "法律研究",
+        "起草合約",
+        "檢視法律文件",
+        "草擬法律文件",
+        "合約風險評估",
+        "法規查詢",
+        "合約條款修改建議",
+        "法律意見撰寫"
       ],
       "install": {
         "method": "pip",
@@ -14976,7 +16661,15 @@
         "cursor",
         "nda",
         "redline",
-        "cuad"
+        "cuad",
+        "審查合約",
+        "檢測法律風險",
+        "修訂合約條款",
+        "進行盡職調查",
+        "審核保密協議",
+        "分析合約風險",
+        "檢查法律條文",
+        "審閱法律文件"
       ],
       "install": {
         "method": "git-clone",
@@ -15021,7 +16714,17 @@
         "legal-tech",
         "civil-code",
         "anthropic",
-        "taiwan-law"
+        "taiwan-law",
+        "抓案例",
+        "查法規",
+        "審契約",
+        "更新法條",
+        "寫訴狀",
+        "判例分析",
+        "法條比對",
+        "法律知識庫",
+        "案件研究自動化",
+        "契約條款審查"
       ],
       "install": {
         "method": "pip",
@@ -15104,7 +16807,17 @@
         "vtuber",
         "live2d",
         "voice-assistant",
-        "local-ai"
+        "local-ai",
+        "用語音控制虛擬主播",
+        "本地運行 Live2D 角色",
+        "跟 VTuber 聊天互動",
+        "語音驅動動畫人物說話",
+        "離線 AI 虚拟主播工具",
+        "用嘴巴控制卡通形象回應",
+        "本地部署語音虛擬助手",
+        "語音互動 Live2D 模型",
+        "在家運行 AI 虛擬主播",
+        "用聲音驅動角色扮演對話"
       ],
       "install": {
         "method": "pip",
@@ -15146,7 +16859,17 @@
         "reddit",
         "x",
         "youtube",
-        "polymarket"
+        "polymarket",
+        "搜尋最近30天熱門討論",
+        "整理近期社群趨勢",
+        "匯總YouTube近期影片重點",
+        "收集X上最近話題",
+        "抓取Reddit熱門文章摘要",
+        "統整近期網頁資訊",
+        "綜合最近30天網路熱點",
+        "快速掌握近期社群動態",
+        "蒐集最近30天各方觀點",
+        "整理近期網路爭議焦點"
       ],
       "install": {
         "method": "pip",
@@ -15189,7 +16912,17 @@
         "web-search",
         "rednotebook",
         "tiktok",
-        "china-market"
+        "china-market",
+        "搜尋中國社群平台",
+        "搜集近30天資訊",
+        "生成研究報告",
+        "從小紅書TikTok抓取內容",
+        "市場調研中國大陸",
+        "整理網路資料成報告",
+        "分析中國網路趨勢",
+        "搜尋主流中國網站",
+        "蒐集中文社群資訊",
+        "生成引用出處報告"
       ],
       "install": {
         "method": "pip",
@@ -15230,7 +16963,17 @@
         "skills",
         "claude-skills",
         "gemini-skills",
-        "ai-skills"
+        "ai-skills",
+        "找 AI 技能庫",
+        "瀏覽熱門 AI 技能",
+        "匯入 Claude 技能",
+        "安裝 Gemini 技能",
+        "同步 GitHub AI 技能",
+        "查閱最新 AI 技能",
+        "分類搜尋 AI 工具",
+        "找高星 AI 技能",
+        "新增 AI 自動化技能",
+        "更新已安裝技能"
       ],
       "install": {
         "method": "pip",
@@ -15605,7 +17348,17 @@
         "trading",
         "llm",
         "stock-market",
-        "portfolio-management"
+        "portfolio-management",
+        "分析股票走勢",
+        "建立交易策略",
+        "追蹤大盤指數",
+        "優化投資組合",
+        "預測股價變動",
+        "生成技術分析",
+        "監控市場情緒",
+        "回測交易系統",
+        "分散投資風險",
+        "分析財報數據"
       ],
       "install": {
         "method": "pip",
@@ -15646,7 +17399,17 @@
         "trader",
         "autonomous-trading",
         "llm-trading",
-        "crypto-bot"
+        "crypto-bot",
+        "用 AI 分析加密货币行情",
+        "AI 自动执行交易",
+        "让 LLM 进行代币买卖",
+        "自动监控加密货币价格走势",
+        "AI 生成交易策略并执行",
+        "自动化执行加密货币买卖",
+        "用 AI 追踪币圈市场动态",
+        "AI 自动下单交易",
+        "让 AI 管理加密货币投资组合",
+        "自动执行币圈交易"
       ],
       "install": {
         "method": "pip",
@@ -15681,7 +17444,17 @@
         "vibe-trading",
         "vibe-trading-agent",
         "install-vibe-trading",
-        "trading-automation"
+        "trading-automation",
+        "看盤自動化",
+        "自動下單買賣",
+        "設定交易策略",
+        "追蹤股況",
+        "執行量化交易",
+        "分析K線走勢",
+        "設定停損停利",
+        "市場走勢監控",
+        "自動交易機器人",
+        "個人投資助手"
       ],
       "install": {
         "method": "pip",
@@ -15725,7 +17498,17 @@
         "presentation",
         "generative-ui",
         "web-slides",
-        "deck"
+        "deck",
+        "用 HTML 做投影片",
+        "生成網頁簡報",
+        "製作互動式簡報",
+        "產生 Web 演示文稿",
+        "用程式碼做簡報",
+        "建立線上投影片",
+        "設計網頁式簡報",
+        "用 AI 寫簡報頁面",
+        "轉換成互動式投影片",
+        "生成前端簡報頁面"
       ],
       "install": {
         "method": "npm",
@@ -15767,7 +17550,17 @@
         "slides",
         "editable",
         "html-presentation",
-        "pptx-conversion"
+        "pptx-conversion",
+        "製作 HTML 簡報",
+        "編輯網頁投影片",
+        "拖拉調整簡報元素",
+        "重新排序投影片",
+        "簡報轉成 PPTX",
+        "用 HTML 做簡報",
+        "線上編輯簡報",
+        "簡報加減頁面",
+        "把簡報輸出成 PowerPoint",
+        "建立可拖曳的網頁投影片"
       ],
       "install": {
         "method": "git-clone",
@@ -15802,7 +17595,17 @@
         "ai-agents",
         "claude",
         "mcp",
-        "developer-tools"
+        "developer-tools",
+        "加速 AI 寫程式",
+        "優化 Claude 效能",
+        "幫 AI 記住設定",
+        "檢查程式碼安全性",
+        "訓練 AI 編程技能",
+        "提升寫碼速度",
+        "整合 MCP 工具",
+        "優化 AI 開發流程",
+        "加速 AI 產生程式碼",
+        "管理 AI 代理記憶"
       ],
       "install": {
         "method": "npm",
@@ -15892,7 +17695,17 @@
         "vueuse",
         "developer",
         "code",
-        "pdf"
+        "pdf",
+        "用 Markdown 寫投影片",
+        "用 Vue 組件做簡報",
+        "Markdown 轉成投影片",
+        "開發者簡報框架",
+        "寫程式簡報",
+        "用 Markdown 製作投影片",
+        "Vue 開發投影片",
+        "Markdown 做簡報",
+        "技術簡報工具",
+        "用 Markdown 寫簡報"
       ],
       "install": {
         "method": "npm",
@@ -15935,7 +17748,17 @@
         "codex-skills",
         "openclaw-skills",
         "ai-coding",
-        "agent-prompts"
+        "agent-prompts",
+        "编写 Claude 指令",
+        "生成 Codex 提示词",
+        "配置 OpenClaw 技能",
+        "创建 agent 模板",
+        "设计可重用 AI 提示词",
+        "制作 coding assistant 配方",
+        "输出 agent 行为指令",
+        "调整 AI 助手工作流",
+        "建立 reusable prompts",
+        "生成编程辅助模板"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -16087,7 +17910,17 @@
       "triggers": [
         "autoresearch",
         "autonomous research",
-        "llm training"
+        "llm training",
+        "訓練聊天模型",
+        "單卡訓練 LLM",
+        "輕量級語言模型訓練",
+        "自動化模型研究",
+        "微調聊天機器人",
+        "LLM 實驗平台",
+        "本地訓練對話模型",
+        "快速試驗語言模型",
+        "nanochat 訓練",
+        "低資源模型調教"
       ],
       "install": {
         "method": "pip",
@@ -16123,7 +17956,17 @@
         "council",
         "multi-model",
         "debate",
-        "consensus"
+        "consensus",
+        "讓多個 AI 辯論",
+        "用多個模型討論問題",
+        "交叉檢視 AI 答案",
+        "讓不同模型對照回答",
+        "請多個 AI 共同解答",
+        "用多模型辯論找答案",
+        "AI 互相辯論得出結論",
+        "用多種模型審查問題",
+        "讓 AI 辯論後共識",
+        "請多個語言模型對話"
       ],
       "install": {
         "method": "pip",
@@ -16157,7 +18000,17 @@
         "reader3",
         "book",
         "pdf",
-        "rag"
+        "rag",
+        "讀 PDF",
+        "讀電子書",
+        "問書本內容",
+        "分析書籍",
+        "摘要書籍重點",
+        "查詢書籍資料",
+        "讀小說提問",
+        "研究論文摘要",
+        "翻閱書籍內容",
+        "解讀書本"
       ],
       "install": {
         "method": "pip",
@@ -16231,7 +18084,17 @@
         "zero-trust",
         "ai-agents",
         "local-first",
-        "developer-tools"
+        "developer-tools",
+        "本地使用 AI 寫程式碼",
+        "安全審查程式碼",
+        "離線 AI 編程環境",
+        "本機跑 AI 代理開發",
+        "驗證程式碼安全性",
+        "本地優先 IDE",
+        "AI 自主編譯執行",
+        "隱私保護型編程",
+        "本地端 AI 輔助開發",
+        "零信任編程工具"
       ],
       "install": {
         "method": "npm",
@@ -16272,7 +18135,17 @@
         "humanizer",
         "traditional-chinese",
         "ai-detector",
-        "writing-style"
+        "writing-style",
+        "改寫 AI 文章",
+        "去除 AI 痕跡",
+        "繁體中文潤稿",
+        "校正文中標點",
+        "修正 AI 用語",
+        "讓文字像人寫",
+        "優化 AI 寫作風格",
+        "humanize 繁體中文文章",
+        "偵測 AI 寫作痕跡",
+        "自然化 AI 產出文字"
       ],
       "install": {
         "method": "git-clone",
@@ -16312,7 +18185,8 @@
         "codegraph",
         "knowledge graph",
         "local ai",
-        "codebase context"
+        "codebase context",
+        "關鍵字/短語："
       ],
       "install": {
         "method": "git-clone",
@@ -16386,7 +18260,17 @@
         "anthropic-cybersecurity-skills",
         "cybersecurity",
         "claude-code",
-        "mitre-attack"
+        "mitre-attack",
+        "查MITRE架構",
+        "檢查雲端安全設定",
+        "分析資安弱點",
+        "做漏洞掃描",
+        "審查DevSecOps流程",
+        "對照NIST框架",
+        "檢查AWS安全組態",
+        "分析攻擊向量",
+        "做威脅建模",
+        "寫資安審查報告"
       ],
       "install": {
         "method": "pip",
@@ -20514,7 +22398,17 @@
         "cybersecurity",
         "skills",
         "secure-coding",
-        "vulnerability-detection"
+        "vulnerability-detection",
+        "掃描程式碼漏洞",
+        "檢查SQL注入風險",
+        "偵測XSS弱點",
+        "審查程式碼資安",
+        "找出資安漏洞",
+        "檢查憑證儲存安全",
+        "掃描駭客攻擊入口",
+        "檢視API安全配置",
+        "檢查資安弱點",
+        "稽核程式碼安全漏洞"
       ],
       "install": {
         "method": "npm",
@@ -20695,7 +22589,17 @@
         "claude-code-cybersecurity-skill",
         "cybersecurity",
         "threat-hunting",
-        "offensive-security"
+        "offensive-security",
+        "掃描弱點",
+        "滲透測試",
+        "分析網路流量",
+        "威脅搜尋",
+        "審查程式碼安全",
+        "紅隊演練",
+        "分析惡意軟體",
+        "檢查安全配置",
+        "執行安全審計",
+        "進行漏洞評估"
       ],
       "install": {
         "method": "pip",
@@ -20869,7 +22773,17 @@
         "ocr",
         "document-parsing",
         "paddleocr",
-        "ai4science"
+        "ai4science",
+        "把圖片轉成文字",
+        "掃PDF抓文字",
+        "辨識紙本文件內容",
+        "從圖片讀取文字",
+        "解析掃描文件",
+        "提取表格文字",
+        "識別發票資訊",
+        "翻譯掃描文件",
+        "讀取手寫文字",
+        "將圖片文字化"
       ],
       "install": {
         "method": "pip",
@@ -20909,7 +22823,17 @@
         "open-notebook",
         "note-taking",
         "self-hosted",
-        "ai-notes"
+        "ai-notes",
+        "上傳文件自動摘要",
+        "用 AI 整理筆記重點",
+        "自架筆記系統",
+        "論文閱讀輔助",
+        "筆記內容問答",
+        "多檔案知識庫",
+        "將 YouTube 影片轉成筆記",
+        "PDF 文件提問",
+        "學術文獻整理",
+        "替代 Google Notebook LM"
       ],
       "install": {
         "method": "npm",
@@ -20949,7 +22873,17 @@
         "gemini-cli",
         "ai-agents",
         "terminal-automation",
-        "code-generation"
+        "code-generation",
+        "在 terminal 用 AI 寫程式",
+        "terminal 跑 Gemini",
+        "終端機 AI 助手",
+        "用 Gemmi 生成代碼",
+        "命令列 AI 工具",
+        "AI 自動敲指令",
+        "終端機程式碼生成",
+        "命令行 AI agent",
+        "terminal 內用 AI 編程",
+        "終端機執行 AI 任務"
       ],
       "install": {
         "method": "npm",
@@ -20989,7 +22923,17 @@
         "deer-flow",
         "agentic-workflow",
         "long-horizon-agent",
-        "autonomous-coding"
+        "autonomous-coding",
+        "自動撰寫程式碼",
+        "監控伺服器日誌",
+        "整理PDF資料",
+        "轉譯語音檔",
+        "匯出報表",
+        "訓練AI模型",
+        "審查程式碼",
+        "抓網頁表格",
+        "預測股價走勢",
+        "同步雲端檔案"
       ],
       "install": {
         "method": "pip",
@@ -21030,7 +22974,17 @@
         "privacy-preserving",
         "iot-health",
         "ruview",
-        "esp32"
+        "esp32",
+        "用 WiFi 信號感測人體動作",
+        "不用鏡頭監測呼吸頻率",
+        "透過 WiFi 偵測有人出現在房間",
+        "ESP32 實現無穿戴式生命体征監測",
+        "用無線訊號感知跌倒",
+        "隱私保護的居家健康監控",
+        "不靠攝像頭偵測心跳速率",
+        "WiFi sensing 做活動辨識",
+        "用路由器訊號判斷是否在床",
+        "免設備的睡眠品質追蹤"
       ],
       "install": {
         "method": "cargo",
@@ -21070,7 +23024,15 @@
         "ai-engineering",
         "agents",
         "computer-vision",
-        "build-ai"
+        "build-ai",
+        "構建AI代理",
+        "訓練電腦視覺模型",
+        "設計智能體系統",
+        "實作電腦視覺應用",
+        "從零開始建AI專案",
+        "開發AI代理程式",
+        "建立視覺識別系統",
+        "設計AI代理流程"
       ],
       "install": {
         "method": "pip",
@@ -21110,7 +23072,17 @@
         "oh-my-pi",
         "ai-coding-agent",
         "terminal-ai",
-        "hash-edits"
+        "hash-edits",
+        "用hash定位編輯程式碼",
+        "在終端機用AI寫程式",
+        "用LSP檢查程式碼",
+        "多個AI代理協作",
+        "精確替換程式碼段落",
+        "終端機整合AI編碼",
+        "AI輔助程式碼審查",
+        "跨模型呼叫AI編碼",
+        "終端環境自動化編碼任務",
+        "根據程式碼上下文修改檔案"
       ],
       "install": {
         "method": "npm",
@@ -21150,7 +23122,17 @@
         "free-llm",
         "api-keys",
         "awesome-list",
-        "llm-discovery"
+        "llm-discovery",
+        "找免費 LLM API",
+        "搜尋免費 AI 模型 key",
+        "取得大語言模型金鑰",
+        "查找免費 API 提供商",
+        "蒐集免費語音轉文字服務",
+        "找免費圖像生成 API",
+        "查免費 NLP 工具",
+        "搜尋免費機器學習 endpoints",
+        "找免費 AI 後門 key",
+        "收集免費模型推理接口"
       ],
       "install": {
         "method": "none",
@@ -21203,7 +23185,17 @@
         "gemini",
         "llama",
         "free",
-        "inference"
+        "inference",
+        "找免費AI模型接口",
+        "查免費大語言模型API",
+        "獲取免費LLM呼叫地址",
+        "搜免費AI API資源",
+        "找零成本AI推理入口",
+        "查免費模型API金鑰",
+        "找免費GPT替代品",
+        "搜免費AI模型端點",
+        "查免費生成式AI接口",
+        "找免費LLM推理服務"
       ],
       "install": {
         "method": "pip",
@@ -21243,7 +23235,17 @@
         "html",
         "templates",
         "slides",
-        "presentation"
+        "presentation",
+        "生成html簡報",
+        "製作ppt模板",
+        "轉換成投影片",
+        "產生演示文稿",
+        "寫好html簡報",
+        "輸出幻灯頁面",
+        "自動化生成投影片",
+        "設計展示頁面模板",
+        "將資料轉成簡報",
+        "產出網頁版報告"
       ],
       "install": {
         "method": "git-clone",
@@ -21279,7 +23281,17 @@
         "ai-agent",
         "dashboard",
         "self-hosted",
-        "multi-agent"
+        "multi-agent",
+        "自托管 AI 助手界面",
+        "搭建 AI 代理工作區",
+        "多代理 AI 管理平台",
+        "本地部署聊天機器人",
+        "編排多個 AI 代理",
+        "配置 AI 代理記憶功能",
+        "自建 AI agent 控制面板",
+        "管理 AI 智能體叢集",
+        "運行多智能體協作系統",
+        "打造自托管 AI 工作台"
       ],
       "install": {
         "method": "npm",
@@ -21321,7 +23333,17 @@
         "dashboard",
         "ai-agent",
         "chat-ui",
-        "analytics"
+        "analytics",
+        "查看 AI 對話紀錄",
+        "管理 AI 聊天 session",
+        "監控 AI agent 分析數據",
+        "追蹤對話 session 狀態",
+        "查看聊天統計圖表",
+        "管理多個 AI 會話",
+        "檢視 AI 對話歷史",
+        "追蹤 AI agent 使用情況",
+        "查看會話分析報告",
+        "管理 AI 對話看板"
       ],
       "install": {
         "method": "npm",
@@ -21402,7 +23424,17 @@
         "claude-code",
         "agent-harness",
         "bash-agent",
-        "ai-agent"
+        "ai-agent",
+        "用 AI 跑 bash 命令",
+        "本地部署 coding 助手",
+        "AI 自動寫腳本",
+        "輕量版 Claude Code",
+        "AI 輔助寫程式",
+        "本機跑 agent",
+        "AI 執行終端指令",
+        "離線 AI 開發助手",
+        "AI 管理專案文件",
+        "本地運行指令的 AI"
       ],
       "install": {
         "method": "pip",
@@ -21442,7 +23474,17 @@
         "hermes-webui",
         "webui",
         "agent",
-        "nous-research"
+        "nous-research",
+        "用瀏覽器操作 AI 代理",
+        "手機網頁開啟 AI 助手",
+        "為 AI 代理建立圖形介面",
+        "透過網頁存取 AI 工具",
+        "在手機瀏覽器使用 AI 代理",
+        "開啟 AI 助手的網頁版介面",
+        "用視覺化介面控制 AI 代理",
+        "行動裝置連線操作 AI 工具",
+        "瀏覽網頁版 AI 助手介面",
+        "透過手機瀏覽器使用 AI 代理"
       ],
       "install": {
         "method": "pip",
@@ -21483,7 +23525,17 @@
         "compression",
         "token-reduction",
         "context-window",
-        "agent-optimization"
+        "agent-optimization",
+        "壓縮工具輸出結果",
+        "減少 LLM token 用量",
+        "壓縮 Agent 日誌",
+        "縮短上下文視窗",
+        "壓縮程式碼執行記錄",
+        "降低 Claude Code 成本",
+        "精簡冗長輸出內容",
+        "壓縮對話歷史記憶",
+        "節省 Agent 運行 token",
+        "壓低大型模型消耗"
       ],
       "install": {
         "method": "pip",
@@ -21525,7 +23577,17 @@
         "engineering",
         "plugin",
         "claude-code",
-        "cursor"
+        "cursor",
+        "撰寫 Python 腳本",
+        "除錯 JavaScript 錯誤",
+        "重構 Java 類別",
+        "生成 Go 語言測試",
+        "解釋 React 組件邏輯",
+        "轉換 YAML 配置為 JSON",
+        "自動化資料處理流程",
+        "優化 SQL 查詢效能",
+        "審查 C++ 記憶體洩漏",
+        "產生 REST API 文檔"
       ],
       "install": {
         "method": "npm",
@@ -21563,7 +23625,17 @@
         "short-video",
         "content-creation",
         "llm",
-        "ffmpeg"
+        "ffmpeg",
+        "關鍵字轉成影片",
+        "AI生成短影片",
+        "文字轉成影片",
+        "輸入關鍵字產影片",
+        "AI自動剪輯影片",
+        "生成Ins Reels",
+        "用關鍵字生影片",
+        "文字產生短片",
+        "生成短影片",
+        "keyword to video"
       ],
       "install": {
         "method": "pip",
@@ -21604,7 +23676,16 @@
         "agent-memory",
         "ai-memory",
         "cloudflare-kv",
-        "cloudflare-workers"
+        "cloudflare-workers",
+        "儲存 AI 對話記錄",
+        "為 LLM 添加長期記憶",
+        "管理 AI 上下文窗口",
+        "整合知識庫到 AI 應用",
+        "保存聊天機器人用戶資料",
+        "記憶 AI 跨會話內容",
+        "在 Edge 環境存儲 Agent 記憶體",
+        "快速存取 AI 歷史記錄",
+        "為 Agent 框架添加持久化記憶"
       ],
       "install": {
         "method": "npm",
@@ -21645,7 +23726,17 @@
         "security",
         "vulnerability",
         "containers",
-        "devsecops"
+        "devsecops",
+        "掃描容器漏洞",
+        "檢查鏡像安全",
+        "審查Kubernetes配置",
+        "掃描Terraform代碼",
+        "檢測依賴漏洞",
+        "掃描Docker鏡像",
+        "檢查程式碼安全",
+        "掃描漏洞",
+        "審查基礎設施",
+        "檢查容器安全"
       ],
       "install": {
         "method": "git-clone",
@@ -21686,7 +23777,17 @@
         "filesearch",
         "neovim",
         "rust",
-        "ai-agent"
+        "ai-agent",
+        "快速搜尋檔案",
+        "在 Neovim 找檔案",
+        "AI agent 檔案搜索",
+        "專案目錄檢索",
+        "終端機 glob 搜尋",
+        "Rust 寫的快速搜檔工具",
+        "fzf 替代品",
+        "大型專案找路徑",
+        "IDE 檔案定位",
+        "程式碼倉庫搜尋"
       ],
       "install": {
         "method": "cargo",
@@ -21726,7 +23827,17 @@
         "codex",
         "terminal",
         "code-generation",
-        "debugging"
+        "debugging",
+        "寫一段程式",
+        "除錯",
+        "修 bug",
+        "生成程式碼",
+        "讀懂這程式碼",
+        "轉成終端指令",
+        "審查程式碼",
+        "處理編譯錯誤",
+        "重構現有程式碼",
+        "寫自動化腳本"
       ],
       "install": {
         "method": "cargo",
@@ -21760,7 +23871,17 @@
         "awesome-codex-subagents",
         "codex-skills",
         "ai-agents",
-        "subagents"
+        "subagents",
+        "找 Codex 子代理",
+        "找 AI 开发工具",
+        "用 AI 代理写代码",
+        "部署 AI 编程助手",
+        "扩展 Codex 功能",
+        "找现成 AI 技能包",
+        "用 Codex 自动跑任务",
+        "配置 AI 代理工作流",
+        "找专业 Codex 技能",
+        "批量使用 AI 代理"
       ],
       "install": {
         "method": "git-clone",
@@ -21800,7 +23921,17 @@
         "ponytail",
         "claude-code-plugin",
         "minimalism",
-        "refactoring"
+        "refactoring",
+        "精简代码量",
+        "重构出冗余",
+        "代码瘦身",
+        "删掉重复逻辑",
+        "别写过头代码",
+        "用更少代码实现功能",
+        "清理注释代码",
+        "压缩函数行数",
+        "简化复杂逻辑",
+        "减少重复代码"
       ],
       "install": {
         "method": "npm",
@@ -21840,7 +23971,12 @@
         "officecli",
         "ai-document-generator",
         "cli",
-        "automation"
+        "automation",
+        "製作 Excel 試算表",
+        "將提示轉成 Office 檔案",
+        "產生可編輯的 Office 文件",
+        "轉換 markdown 為 Word 文件",
+        "輸出 .pptx 簡報從描述"
       ],
       "install": {
         "method": "git-clone",
@@ -21880,7 +24016,17 @@
         "emil-design-skills",
         "design-engineering",
         "productivity",
-        "prototyping"
+        "prototyping",
+        "绘制CAD图纸",
+        "创建3D原型",
+        "做工程设计计算",
+        "审查机械图纸",
+        "生成BOM清单",
+        "做产品仿真分析",
+        "查询设计规范要求",
+        "撰写技术规格文档",
+        "做方案对比分析",
+        "优化设计参数"
       ],
       "install": {
         "method": "git-clone",
@@ -21951,7 +24097,17 @@
         "ppt-generator",
         "image-slides",
         "codex-skill",
-        "ai-presentation"
+        "ai-presentation",
+        "生成簡報",
+        "製作投影片",
+        "用AI做PPT",
+        "文字轉投影片",
+        "自動製作簡報",
+        "簡報配圖",
+        "生成演示文稿",
+        "投影片設計",
+        "圖片生成簡報",
+        "AI產生簡報"
       ],
       "install": {
         "method": "pip",
@@ -22176,7 +24332,17 @@
         "presentation",
         "report",
         "preflight",
-        "strategy-brief"
+        "strategy-brief",
+        "製作簡報策略大綱",
+        "生成簡報前置藍圖",
+        "簡報企劃準備",
+        "PPT製作前檢查",
+        "簡報框架規劃",
+        "簡報策略文件產出",
+        "HTML簡報準備",
+        "簡報前預審",
+        "簡報計畫書撰寫",
+        "簡報開發前置確認"
       ],
       "install": {
         "method": "git-clone",
@@ -22216,7 +24382,17 @@
         "huashu-design",
         "design",
         "prototype",
-        "html"
+        "html",
+        "生成網頁原型",
+        "製作高保真原型",
+        "設計投影片",
+        "製作 HTML 動畫",
+        "快速生成設計稿",
+        "做出可互動原型",
+        "繪製 UI 介面",
+        "產出簡報頁面",
+        "轉換設計為 HTML",
+        "生成前端介面"
       ],
       "install": {
         "method": "git-clone",
@@ -22250,7 +24426,17 @@
         "architecture-diagram",
         "diagram-as-code",
         "html-diagram",
-        "developer-tools"
+        "developer-tools",
+        "畫系統架構圖",
+        "生成 Mermaid 語法圖",
+        "匯出架構圖為 SVG 或 PNG",
+        "切換圖表深色與淺色主題",
+        "用程式碼繪製技術流程圖",
+        "產出軟體架構視覺圖",
+        "將需求描述轉成架構示意圖",
+        "生成 UML 類圖與序列圖",
+        "輸出多格式技術白板圖",
+        "快速繪製雲端部署圖"
       ],
       "install": {
         "method": "git-clone",
@@ -22291,7 +24477,17 @@
         "infrastructure",
         "hooks",
         "agents",
-        "automation"
+        "automation",
+        "設定 Claude Code 自動啟動",
+        "配置 hooks 觸發腳本",
+        "建立自動化 agents",
+        "寫 pre-commit 鉤子檢查程式碼",
+        "自動化部署流程",
+        "設定 Claude Code 工作流程",
+        "自動執行單元測試",
+        "自動化開發環境建置",
+        "設定 Claude Code 條件式啟動",
+        "串接 CI/CD 自動化"
       ],
       "install": {
         "method": "npm",
@@ -22325,7 +24521,16 @@
         "airllm",
         "low-vram-inference",
         "cpu-offload",
-        "large-model-inference"
+        "large-model-inference",
+        "用低顯存 GPU 跑大語言模型",
+        "將模型參數卸載到 CPU 記憶體",
+        "在資源有限的設備上運行大型 LLM",
+        "不需要高階顯卡推理大模型",
+        "在 8GB 顯存的卡上跑 70B 模型",
+        "透過 CPU 離載技術進行大型生成式模型推理",
+        "低配電腦跑大語言模型",
+        "顯存不足時用記憶體換空間推理 LLM",
+        "用普通顯示卡跑大型 AI 模型"
       ],
       "install": {
         "method": "git-clone",
@@ -22365,7 +24570,17 @@
         "ui-skills",
         "skills",
         "design-engineering",
-        "frontend-components"
+        "frontend-components",
+        "組裝一致介面",
+        "套用按鈕元件",
+        "建立標準表單",
+        "產出前端UI套件",
+        "統一頁面視覺風格",
+        "構建跨頁面共用元件",
+        "產出UI互動原型",
+        "整合設計與前端程式碼",
+        "生成響應式排版套件",
+        "套用上層導航列"
       ],
       "install": {
         "method": "npm",
@@ -22440,7 +24655,17 @@
         "metadata",
         "semantic",
         "apache",
-        "interoperability"
+        "interoperability",
+        "匯出語意元資料",
+        "統一 AI 平台元資料格式",
+        "跨系統交換元資料",
+        "標準化數據描述",
+        "產生機器可讀的元資料",
+        "整合不同分析平台的元資料",
+        "建立語意對照表",
+        "轉換元資料格式",
+        "設定數據語意標籤",
+        "統一資料字典格式"
       ],
       "install": {
         "method": "pip",
@@ -22477,7 +24702,17 @@
         "skill-creator",
         "agent-skills",
         "create skill",
-        "optimize skill"
+        "optimize skill",
+        "创建 agent 技能",
+        "編輯現有技能",
+        "測試技能效果",
+        "建立新能力",
+        "優化技能表現",
+        "對比不同技能",
+        "檢查技能差異",
+        "設定技能基準",
+        "修改 agent 配置",
+        "評估技能質量"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -22554,7 +24789,17 @@
         "destructive_command_guard",
         "ai-agents",
         "git-safety",
-        "rust-cli"
+        "rust-cli",
+        "防止 git 刪除分支",
+        "阻擋危險的 git 指令",
+        "AI 寫程式時保護專案不被誤刪",
+        "過濾 rm -rf 等破壞性 shell 命令",
+        "防止 git force push",
+        "阻止 git clean 清掉檔案",
+        "AI 程式碼助理安全防護",
+        "攔截破壞性 git 操作",
+        "保護專案免於誤刪資料",
+        "阻擋 AI agent 的危險指令"
       ],
       "install": {
         "method": "cargo",

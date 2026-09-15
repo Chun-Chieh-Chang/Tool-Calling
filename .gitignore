@@ -25,3 +25,5 @@ docs/antigravity-global-rules.md
 
 # Option B 預計算語意向量（可由 `npm run embed:build` 再生，含大量 float，不宜 version control）
 registry/embeddings/
+# 寫入 tools.json 前的自動備份（每次執行都產生一份，屬還原點非原始碼）
+registry/backups/

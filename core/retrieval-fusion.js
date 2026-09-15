@@ -199,6 +199,23 @@ export function retrieve(tools, query, options = {}) {
     });
   }
 
+  // 3b. 讓 agent 的高置信結果有機會競爭首位
+  //
+  // 實測（2026-09-15，擴充 trigger 後）：agent 引擎 Hit@1 從 11.9% 升到
+  // 19.0%，但 fusion 停在 7.1%——因為 merged 是先放滿 L2 的所有結果，
+  // agent 只能「補 L2 沒有的」，等於 L2 永遠佔住首位。
+  // 這裡讓 agent 明確高置信（≥ AGENT_HIGH）且通過誠實門檻的 top-1 提到最前。
+  //
+  // 排除條件：L2 若已明確領先（l2Leads）代表詞彙端有很強的訊號，
+  // 此時不覆蓋，避免犧牲 L1/L2 精確匹配的優勢。
+  if (agentTop1 && agentTop1.confidence >= AGENT_HIGH && !agentSelfHonest && !l2Leads) {
+    const i = merged.findIndex((x) => x.id === agentTop1.id);
+    if (i > 0) {
+      const [hit] = merged.splice(i, 1);
+      merged.unshift(hit);
+    }
+  }
+
   // 重新排序：L2 結果保持原分數；agent 補充結果的 score 維持 0~1 量級
   // 用 source 標記讓调用端知道哪邊來的
   return {
