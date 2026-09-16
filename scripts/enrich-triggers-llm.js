@@ -34,6 +34,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { toTraditional } from './fix-simplified.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
@@ -145,6 +146,10 @@ async function genTriggers(tool) {
       return text
         .split(/[,，\n]/)
         .map((s) => s.trim().replace(/^[-•\d.\s]+/, ''))
+        // 簡轉繁：LLM 訓練語料以簡體為主，常輸出「浏览器」「测试」，
+        // 而本專案查詢是繁體 → tokenize 後 bigram 不重疊，永遠匹配不到。
+        // 在源頭轉換，避免簡體再度寫入 tools.json。
+        .map(toTraditional)
         .filter((s) => s.length >= 2 && s.length <= 24)
         .filter((s) => !isGeneric(s))   // ← 偽陽性防護
         .slice(0, 10);
