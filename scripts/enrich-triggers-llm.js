@@ -50,6 +50,8 @@ const SHOW = args.includes('--show');
 const GUARD = !args.includes('--no-guard');
 const MAX_DF = Number(args.find((a) => a.startsWith('--max-df='))?.split('=')[1] || 3);
 const MAX_PER_TOOL = Number(args.find((a) => a.startsWith('--max-per-tool='))?.split('=')[1] || 5);
+// 每幾筆做一次「產生→守門→寫入」並存檔（避免長時間執行被中斷後整批白跑）
+const GROUP = Number(args.find((a) => a.startsWith('--group='))?.split('=')[1] || 25);
 
 const API_KEY = process.env.AGNES_API_KEY;
 const API_URL = 'https://apihub.agnes-ai.com/v1/chat/completions';
@@ -230,68 +232,78 @@ async function main() {
   if (DRY) console.log('（--dry：不會寫入 tools.json）\n');
   if (pending.length === 0) { console.log('沒有待處理的工具。'); return; }
 
-  // ── Phase 1：產生候選（先不寫入）──────────────────────────────────────
-  const candidates = new Map();
-  let fail = 0;
-  for (let i = 0; i < pending.length; i += CONCURRENCY) {
-    const chunk = pending.slice(i, i + CONCURRENCY);
-    const results = await Promise.all(chunk.map(async (tool) => {
-      try {
-        return { tool, news: await genTriggers(tool), err: null };
-      } catch (e) {
-        return { tool, news: [], err: e.message.slice(0, 60) };
-      }
-    }));
-    for (const { tool, news, err } of results) {
-      if (err) { fail++; console.error(`  ✗ ${tool.id}: ${err}`); continue; }
-      if (news.length === 0) { fail++; continue; }
-      candidates.set(tool.id, news);
-    }
-    const done = Math.min(i + CONCURRENCY, pending.length);
-    process.stdout.write(`  產生候選 ${done}/${pending.length}\r`);
-    if (i + CONCURRENCY < pending.length) await sleep(DELAY_MS);
-  }
-  console.log(`\n  取得候選 ${candidates.size} 筆，API 失敗 ${fail} 筆`);
-
-  // ── Phase 2：鑑別力守門 ────────────────────────────────────────────────
-  const existingDf = buildTermDf(all);
-  const finalTerms = GUARD
-    ? guardDiscriminability(candidates, existingDf, all.length, MAX_DF, MAX_PER_TOOL)
-    : candidates;
-
-  let beforeCount = 0, afterCount = 0;
-  for (const terms of candidates.values()) beforeCount += terms.length;
-  for (const terms of finalTerms.values()) afterCount += terms.length;
-  if (GUARD) {
-    console.log(`  守門過濾：${beforeCount} 詞 → ${afterCount} 詞（剔除 ${beforeCount - afterCount}，${((1 - afterCount / (beforeCount || 1)) * 100).toFixed(0)}%）`);
-  }
-
-  // ── Phase 3：套用 ──────────────────────────────────────────────────────
-  let ok = 0;
+  // 以小組為單位跑完整流程（產生 → 守門 → 套用 → 寫入）。
+  // 實測單次執行常因限流超過 10 分鐘被 timeout 中斷；若整批結束才寫入，
+  // 中斷就等於整批白跑。改成每 GROUP 筆存一次，中斷最多損失一組。
   const byId = new Map(all.map((t) => [t.id, t]));
-  for (const [id, terms] of finalTerms) {
-    const tool = byId.get(id);
-    if (!tool) continue;
-    if (SHOW) console.log(`  ${id}\n    → ${terms.join(' / ')}`);
-    if (terms.length === 0) continue;
-    tool.triggers = [...new Set([...(tool.triggers || []), ...terms])];
-    state.done[id] = { at: new Date().toISOString(), added: terms.length };
-    ok++;
+  let totalOk = 0, totalFail = 0, backedUp = false;
+
+  for (let g = 0; g < pending.length; g += GROUP) {
+    const group = pending.slice(g, g + GROUP);
+
+    // ── Phase 1：產生候選（先不寫入）───────────────────────────────────
+    const candidates = new Map();
+    let fail = 0;
+    for (let i = 0; i < group.length; i += CONCURRENCY) {
+      const chunk = group.slice(i, i + CONCURRENCY);
+      const results = await Promise.all(chunk.map(async (tool) => {
+        try {
+          return { tool, news: await genTriggers(tool), err: null };
+        } catch (e) {
+          return { tool, news: [], err: e.message.slice(0, 60) };
+        }
+      }));
+      for (const { tool, news, err } of results) {
+        if (err) { fail++; continue; }
+        if (news.length === 0) { fail++; continue; }
+        candidates.set(tool.id, news);
+      }
+      if (i + CONCURRENCY < group.length) await sleep(DELAY_MS);
+    }
+    totalFail += fail;
+
+    // ── Phase 2：鑑別力守門 ────────────────────────────────────────────
+    const existingDf = buildTermDf(all);
+    const finalTerms = GUARD
+      ? guardDiscriminability(candidates, existingDf, all.length, MAX_DF, MAX_PER_TOOL)
+      : candidates;
+
+    let before = 0, after = 0;
+    for (const terms of candidates.values()) before += terms.length;
+    for (const terms of finalTerms.values()) after += terms.length;
+
+    // ── Phase 3：套用 ──────────────────────────────────────────────────
+    let ok = 0;
+    for (const [id, terms] of finalTerms) {
+      const tool = byId.get(id);
+      if (!tool) continue;
+      if (SHOW) console.log(`  ${id}\n    → ${terms.join(' / ')}`);
+      if (terms.length === 0) continue;
+      tool.triggers = [...new Set([...(tool.triggers || []), ...terms])];
+      state.done[id] = { at: new Date().toISOString(), added: terms.length };
+      ok++;
+    }
+    totalOk += ok;
+
+    const doneN = Math.min(g + GROUP, pending.length);
+    const guardNote = GUARD && before > 0 ? `，守門 ${before}→${after} 詞` : '';
+    console.log(`  組 ${Math.ceil(doneN / GROUP)}：進度 ${doneN}/${pending.length}（寫入 ${ok}、失敗 ${fail}${guardNote}）`);
+
+    // ── Phase 4：每組寫入 ──────────────────────────────────────────────
+    if (!DRY && ok > 0) {
+      if (!backedUp) {
+        mkdirSync(BACKUP_DIR, { recursive: true });
+        const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+        copyFileSync(REGISTRY, path.join(BACKUP_DIR, `tools.${stamp}.json`));
+        backedUp = true;
+      }
+      writeFileSync(REGISTRY, `${JSON.stringify(j, null, 2)}\n`, 'utf8');
+      writeFileSync(STATE_FILE, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
+    }
   }
 
-  console.log(`\n完成：寫入 ${ok} 筆、API 失敗 ${fail} 筆`);
-
-  if (!DRY && ok > 0) {
-    mkdirSync(BACKUP_DIR, { recursive: true });
-    const stamp = new Date().toISOString().replace(/[:.]/g, '-');
-    const backup = path.join(BACKUP_DIR, `tools.${stamp}.json`);
-    copyFileSync(REGISTRY, backup);
-    console.log(`已備份 → ${path.relative(ROOT, backup)}`);
-
-    writeFileSync(REGISTRY, `${JSON.stringify(j, null, 2)}\n`, 'utf8');
-    writeFileSync(STATE_FILE, `${JSON.stringify(state, null, 2)}\n`, 'utf8');
-    console.log('已寫入 tools.json 與 trigger-enrich-state.json');
-  }
+  console.log(`\n完成：共寫入 ${totalOk} 筆、API 失敗 ${totalFail} 筆`);
+  if (!DRY && totalOk > 0) console.log('已寫入 tools.json 與 trigger-enrich-state.json');
 }
 
 // 僅在直接執行時啟動；被 import（例如單元測試）時不應自動跑，
