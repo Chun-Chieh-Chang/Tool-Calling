@@ -248,7 +248,8 @@ function toGeneratedSource(map) {
  * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
  *   node scripts/mine-synonyms.js
  *
- * 產生時間：${new Date().toISOString()}
+ * 刻意不寫入產生時間：時間戳會讓每次 build 都產生只差一行的無意義 diff，
+ * 掩蓋真正的內容變更。需要時間資訊請看 git log。
  */
 `;
   return `${header}export const SYNONYM_MAP = ${JSON.stringify(map, null, 2)};\n`;
@@ -271,4 +272,10 @@ async function main() {
   console.log(`  已寫入：${path.relative(rootDir, outPath)}`);
 }
 
-main();
+// 僅在直接執行時啟動。原本是無條件呼叫 main()，導致 build-web.js
+// import mineSynonyms 時也被連帶執行、寫入一份帶時間戳的檔案，
+// 與 build-web.js 自己寫的版本互相覆蓋（註解聲稱不會，實作卻會）。
+const isDirectRun = process.argv[1] && path.resolve(process.argv[1]) === __filename;
+if (isDirectRun) {
+  main();
+}

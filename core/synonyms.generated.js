@@ -1,9 +1,8 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
- *   node scripts/mine-synonyms.js
  *
- * 產生時間：2026-09-16T14:18:47.727Z
+ * 刻意不寫入產生時間：時間戳會讓每次 build 都產生只差一行的無意義 diff，
+ * 掩蓋真正的內容變更。需要時間資訊請看 git log。
  */
 export const SYNONYM_MAP = {
   "簡報": [
