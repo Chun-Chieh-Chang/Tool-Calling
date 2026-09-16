@@ -8,7 +8,7 @@
 
 ## 1. 背景：為什麼不靠分類
 
-前 17 輪工作（含 dynamic-K、TRIZ 分析、Aurora 聚类、`categories[]` 落盤）已確立：
+前 17 輪工作（含 dynamic-K、TRIZ 分析、Aurora 聚類、`categories[]` 落盤）已確立：
 
 1. **18 分類是 22→18 合併的歷史產物**，不是資料最優。dynamic-K 引擎建議 38，但 TF-IDF 空間的 silhouette < 0.016，證明**詞彙空間沒有結構**，加更多詞彙維度無效。
 2. **分類的真正消費者是 agent**（`mcp-server.js` 的 `search_tools`），不是人類瀏覽。

@@ -286,7 +286,7 @@ ${registry.description || 'Tool-Calling — 全自動工具調用效能外掛系
 5. **MECE 自動分類系統**
 
 ### 技術棧
-- **运行时**：Node.js ≥ 18.0.0
+- **執行環境**：Node.js ≥ 18.0.0
 - **主要語言**：TypeScript / JavaScript (ES Modules)
 - **UI 框架**：vis.js (2D), Three.js (3D)
 - **測試**：Node.js built-in test runner

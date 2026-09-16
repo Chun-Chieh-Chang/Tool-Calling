@@ -45,8 +45,8 @@
 |---|---------|---------|---------|---------|
 | D1 | **HTML 檔案缺乏自動驗證機制**：跑起來後無 CI/CD 檢查 SVG 邊線幾何正確性 | 問題只能在用戶回報後發現 | 中 | 🔴 P0 |
 | D2 | **diagnostic 腳本與實際渲染 engine 座標公式未同步**：diagnostic 的 case 'h2' 分支是空殼，與 HTML 中的實際計算有差距 | 驗證準確度不可信 | 高 | 🔴 P0 |
-| D3 | **prompt-pipeline-workflow.md 文檔未及时同步**：GAP 參數文檔與實作長期脫節 | 未來修改方向失準 | 中 | 🟡 P1 |
-| D4 | **無「基準截图」比對機制**：前後版本的視覺差異只能靠人眼判斷，缺乏自動化 pixel diff | 效果量化困難 | 低 | 🟢 P2 |
+| D3 | **prompt-pipeline-workflow.md 文檔未及時同步**：GAP 參數文檔與實作長期脫節 | 未來修改方向失準 | 中 | 🟡 P1 |
+| D4 | **無「基準截圖」比對機制**：前後版本的視覺差異只能靠人眼判斷，缺乏自動化 pixel diff | 效果量化困難 | 低 | 🟢 P2 |
 
 ---
 
@@ -75,8 +75,8 @@
 |-----|-------|---------|
 | SVG flowchart 類檔案的驗證自動化 | **納入 CI** | GitHub Actions 新增 pipeline visual test |
 | 關鍵公式庫建立 | **≥ 5 個核心公式固化** | 寫入 project-constraints.md |
-| 問題分類標籤化 | **每問題打上 P0/P1/P2 等級** | AGENTS.md 新增問題分级處理流程 |
-| 截圖比對自动化 | **pixel diff 工具鏈** | 加入 workflow 自動化 |
+| 問題分類標籤化 | **每問題打上 P0/P1/P2 等級** | AGENTS.md 新增問題分級處理流程 |
+| 截圖比對自動化 | **pixel diff 工具鏈** | 加入 workflow 自動化 |
 
 ---
 
@@ -92,7 +92,7 @@
 ### 節點 2：本週內完成
 
 - [ ] **寫入 project-constraints.md**：新增「SVG 邊線渲染鐵律」章節
-  - marker tip 计算公式：`tip_offset = refX × (markerWidth / viewBox)`
+  - marker tip 計算公式：`tip_offset = refX × (markerWidth / viewBox)`
   - GAP 設定規則：`GAP = Math.ceil(tip_offset) + 1`（確保 1px 安全邊距）
   - 任何修改前必須先閱讀源碼，再提出修改方案
 
@@ -128,7 +128,7 @@
   - refX=8, markerWidth=6, viewBox=10 → tip_offset=4.8 → GAP=6
   
   座標系方向：
-  - SVG y 軸向下为正（browser coordinate system）
+  - SVG y 軸向下為正（browser coordinate system）
   - "bottom.y" > "top.y" (bottom 的 y 值更大)
   ```
 
@@ -179,7 +179,7 @@
 ### 教訓 3：用戶截圖是唯一真理來源，優先於任何診斷腳本輸出
 
 > 錯誤做法：認為「數學正確」就等於「視覺正確」，忽略用戶截圖的明確反饋
-> 正確做法：**用戶說「沒改善」時，第一反應是「我的假設哪裡錯了」，而不是「腳本說没问题」**
+> 正確做法：**用戶說「沒改善」時，第一反應是「我的假設哪裡錯了」，而不是「腳本說没問題」**
 
 ### 教訓 4：同列節點不要用繞行 route
 

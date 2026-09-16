@@ -72,7 +72,7 @@ copy "D:\Self-developed_Apps\Tool-Calling\AGENTS.md" ".agents\rules\project-prot
 
 ### 長期（季度）
 - [ ] 將 AGENTS.md 轉換為 SKILL.md 格式，支援 Skills 系統
-- [ ] 探索與 MCP 协议的整合
+- [ ] 探索與 MCP 協議的整合
 
 ---
 

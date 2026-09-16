@@ -153,7 +153,7 @@ npm run mcp
 #### 背景作業
 | 工具名 | 功能 |
 |--------|------|
-| `run_tool_async` | 异步執行工具 |
+| `run_tool_async` | 異步執行工具 |
 | `get_job_status` | 查詢作業狀態 |
 | `cancel_job` | 取消作業 |
 | `list_jobs` | 列出作業記錄 |

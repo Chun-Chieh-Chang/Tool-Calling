@@ -33,10 +33,10 @@
 
 ```yaml
 工具庫規模: 696 個工具
-追蹤 repos: 2433 個
+追蹤 repos: 2434 個
 總 star 數: 27,971,794 ⭐
 平均 star 數: 40,189 ⭐
-最後更新: 2026/9/12
+最後更新: 2026/9/16
 ```
 
 ### Top 5 分類
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2433 repos)
+npm run tracked-repos     # 重建追蹤池 (2434 repos)
 npm test                  # 執行所有測試 (62/62 pass)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -231,7 +231,7 @@ Tool-Calling — 全自動工具調用效能外掛系統
 5. **MECE 自動分類系統**
 
 ### 技術棧
-- **运行时**：Node.js ≥ 18.0.0
+- **執行環境**：Node.js ≥ 18.0.0
 - **主要語言**：TypeScript / JavaScript (ES Modules)
 - **UI 框架**：vis.js (2D), Three.js (3D)
 - **測試**：Node.js built-in test runner
@@ -244,7 +244,7 @@ Tool-Calling/
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
 │   ├── tools.json      # 696+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2433 追蹤 repos
+│   ├── tracked-repos.json  # 2434 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -474,4 +474,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-12T07:04:58.659Z
+> **最後更新**：2026-09-16T14:27:41.994Z
