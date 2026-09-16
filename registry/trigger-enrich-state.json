@@ -1779,6 +1779,894 @@
     "decimen-optical-transfer": {
       "at": "2026-09-16T00:00:27.843Z",
       "added": 5
+    },
+    "llmsherpa": {
+      "at": "2026-09-16T00:21:10.676Z",
+      "added": 5
+    },
+    "executor": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "awesome-systematic-trading": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "evolver": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "deepseek-reasonix": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "goose": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "kimi-k3-in-c": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "minimax-h3": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "aos-ce": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "gpt-5-6-instruct": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "gc-minimal-zine-poster": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "no-ai-slop": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "video-shotcraft": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "os-taxonomy": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "bento": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "geolibre": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "t3code": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "cadam": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "block-buzz": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "hermes-plugins": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "hermesskill": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "youtube-skills": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "oh-my-hermes-rlaope": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "skills": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "ladybird": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "celld": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "fanqiang": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "codexbar": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "agent-scripts": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "summarize": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "repobar": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "labs-oo-agents": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "dashi-taskboard": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "conversation-steganography": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "nativ": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "codex-router": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "story-to-handdrawn-video": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "findphone": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "openreply": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "openmouse": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "moviebox-tui": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "penguin-harness": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "cue": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "firecrawl": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "diagram-design": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "semantica": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "mediacrawler": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "paperclip": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "lifeos": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "weathernext": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "dopamine": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "comfyui-mcp": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "codex-autorunner": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "firstmate": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "delegate-skills": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "rapid-mlx": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "yfinance": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "harness-sdk": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "cockpit-tools": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "hello-agents": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 1
+    },
+    "500-ai-agents-projects": {
+      "at": "2026-09-16T00:21:10.677Z",
+      "added": 5
+    },
+    "trellis2": {
+      "at": "2026-09-16T00:34:13.660Z",
+      "added": 5
+    },
+    "reverse-skill": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "axisagentic": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "code-graph-rag": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "plannotator": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "grill-with-docs": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "moonshine": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "tree-sitter": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "sqlite": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "threejs": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "imgtothree": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "ghost": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "moneyprinterv2": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "open-saas": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "theremotefreelancer": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "awesome-remote-job": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "best-deals-bot": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "qwen-mm-plugins": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "comfyui": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "warp": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "gathered-scenes-zine-skill": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "phone-harness": {
+      "at": "2026-09-16T00:34:13.661Z",
+      "added": 5
+    },
+    "oil-motion": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "h3-c": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "openbb": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "ai-hedge-fund": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "vnpy": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "fincept-terminal": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "lean": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "fingpt": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "finrobot": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "tradingagents-cn": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "tradingagents-astock": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "go-stock": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "mars": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "avernet": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "deeptutor": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "slavingia-skills": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "huggingface-skills": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "mengto-skills": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "microsoft-official-skills": {
+      "at": "2026-09-16T00:35:33.944Z",
+      "added": 5
+    },
+    "nvidia-skills": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "3b1b-manim": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "manim-community": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "3b1b-videos": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "kronos": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "ragflow": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "everyone-can-use-english": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "sdkmate": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "deepseek-harness": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "codewiki": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "chinatextbook": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "scrapling": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "claude-code-skill-scrapling": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "watermarks-remover": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "janus": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "dsh-desktop": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "dsh-desktop-bruc3van": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "kilocode": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "llama-index": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "opencode": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "awesome-mac": {
+      "at": "2026-09-16T00:37:09.634Z",
+      "added": 5
+    },
+    "llms-from-scratch": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "figures4papers": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "deepseek-harness-desktop": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "freedomain": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "photo-abstract-editorial": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "zouyuxuan122-deepseek-harness-eac": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "teableio-teable": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "simonw-datasette": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "gristlabs-grist-core": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "baserow-baserow": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "evidence-dev-evidence": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "sqlmesh-sqlmesh": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "deepseek-harness-desktop-anywhere": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "awesome-dsh-plugin": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "dsh-routing-suite": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "arc-task-gen": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "dsh-anchored-standard": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "dsh-web-ui": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "anti-slop": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "dsh-better-sidebar": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "mattpocock-skills": {
+      "at": "2026-09-16T00:38:37.072Z",
+      "added": 5
+    },
+    "ai-memory": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "deepseek-work": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "react-bits": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "pi2dsh": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "unlimited-ocr": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "tooljet": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "scientific-agent-skills": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "google-deepmind-science-skills": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "awesome-scientific-skills": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "ai-research-skills": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "improve-claude-md": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "build-iterated-agentic-loop": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "design-control-loop": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "show-me": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "free-claude-code": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "awesome-gpt-image-2": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "omarchy": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "openlogi": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "openhuman": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "canvas-project-manager": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "car-commercial-storyboard": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "car-model-skill": {
+      "at": "2026-09-16T00:40:07.278Z",
+      "added": 5
+    },
+    "film-master": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "geography-video-effects": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "internet-ad-director": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "lark-cli": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "minimax-docx": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "cognicode-core": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "cognicode-mcp-driven": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "eli5": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "free-for-dev": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "3d-web-experience": {
+      "at": "2026-09-16T00:41:47.218Z",
+      "added": 5
+    },
+    "generative-ui": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "awesome-agentic-patterns": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "figma-sds": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "figma-mcp-server-guide": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "figma-plugin-samples": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "figma-code-connect": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "figma-community-resources": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "mono-color-skill": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "praxist": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "fastpotify": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "goldie": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "delivery-harness": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "stop-that-shit": {
+      "at": "2026-09-16T00:41:47.219Z",
+      "added": 5
+    },
+    "tokentab": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "timesfm": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "fmt": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "sie": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "academic-research-skills": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "openclaude": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "openwiki": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "obscura": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "agent-orchestrator": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "freetoken": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "graft": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "freebuff": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "kunpeng": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "cognicode": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "lieflat-charts": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "everything-claude-code": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "magnitude": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "nvm": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "opengym": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "dsh-desktop-anywhere": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "grok-bot-0-18-reconstructed": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "shiji-kb": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "weread-hot-booklists": {
+      "at": "2026-09-16T00:43:33.609Z",
+      "added": 5
+    },
+    "m3e-canvas": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "web-llm": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "free-api": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "public-api-lists": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "pr-agent": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "youtube-automation-agent": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "gpt4free": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "freellmapi": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "free-books": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
+    },
+    "musicfree": {
+      "at": "2026-09-16T00:44:10.673Z",
+      "added": 5
     }
   },
   "model": "agnes-2.5-flash"
