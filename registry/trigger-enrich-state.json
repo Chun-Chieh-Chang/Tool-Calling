@@ -2667,6 +2667,90 @@
     "musicfree": {
       "at": "2026-09-16T00:44:10.673Z",
       "added": 5
+    },
+    "hermes-skill-factory": {
+      "at": "2026-09-16T13:12:44.570Z",
+      "added": 5
+    },
+    "smolagents": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "wechat-ai": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "backtrader": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "nofx": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "ai-berkshire": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "awesome-openclaw-skills": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "trailofbits-skills": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "manim-ml": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "spec-kit": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "awesome-deepseek-agent": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "stable-diffusion": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "nocodb-nocodb": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "apache-superset": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "dashi-ppt-skill": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "munder-difflin": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "narrow-react-prop-types": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "jimeng-cli": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "chrome-devtools-mcp": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "freecad-library": {
+      "at": "2026-09-16T13:12:44.571Z",
+      "added": 5
+    },
+    "freetube": {
+      "at": "2026-09-16T13:12:49.719Z",
+      "added": 5
     }
   },
   "model": "agnes-2.5-flash"

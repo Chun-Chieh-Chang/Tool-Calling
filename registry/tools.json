@@ -35993,7 +35993,12 @@
         "workflow-capture",
         "skill-generation",
         "automation",
-        "skill-automation"
+        "skill-automation",
+        "记录工作流程",
+        "自动生成技能",
+        "捕获重复任务",
+        "自动化项目设定",
+        "自动化代码审查"
       ],
       "install": {
         "method": "pip",
@@ -38045,7 +38050,12 @@
         "smolagents",
         "code agent",
         "Hugging Face",
-        "Python automation"
+        "Python automation",
+        "執行 Python 腳本",
+        "自動爬取網頁資料",
+        "調用外部 API 服務",
+        "轉換圖片格式",
+        "審查原始碼錯誤"
       ],
       "install": {
         "method": "pip",
@@ -38993,7 +39003,12 @@
         "微信",
         "chatbot",
         "ai chat",
-        "通訊機器人"
+        "通訊機器人",
+        "微信設定聊天機器人",
+        "自建角色扮演 AI",
+        "WeChat 接入 AI 對話",
+        "在微信裡和 AI 角色聊天",
+        "微信整合大型語言模型"
       ],
       "install": {
         "method": "none",
@@ -39251,11 +39266,15 @@
       "language": "python",
       "triggers": [
         "backtrader",
-        "backtrader",
         "backtest",
         "trading",
         "quant",
-        "strategy"
+        "strategy",
+        "回測交易策略",
+        "測試量化策略",
+        "模擬股票交易",
+        "寫買賣策略",
+        "驗證交易想法"
       ],
       "stars": 22928,
       "forks": 5226,
@@ -39423,11 +39442,15 @@
       "language": "go",
       "triggers": [
         "nofx",
-        "nofx",
         "trading",
         "crypto",
         "ai",
-        "bot"
+        "bot",
+        "自動化執行交易策略",
+        "回測加密貨幣策略",
+        "建立 AI 交易機器人",
+        "編寫量化交易腳本",
+        "監控美股即時行情"
       ],
       "stars": 12723,
       "forks": 3023,
@@ -39467,7 +39490,12 @@
         "investing",
         "value-investing",
         "buffett",
-        "ai"
+        "ai",
+        "分析企業財報",
+        "評估公司內在價值",
+        "篩選價值投資標的",
+        "解讀財務報表",
+        "比對巴菲特投資法則"
       ],
       "stars": 15763,
       "forks": 2000,
@@ -39798,9 +39826,13 @@
       "language": "markdown",
       "triggers": [
         "awesome-openclaw-skills",
-        "awesome-openclaw-skills",
         "skills",
-        "openclaw"
+        "openclaw",
+        "爬取網頁資料",
+        "自動化網頁操作",
+        "抓取網站內容",
+        "監控網頁更新",
+        "批量抓取網站資料"
       ],
       "stars": 52121,
       "forks": 380,
@@ -39873,8 +39905,12 @@
         "trailofbits-skills",
         "skills",
         "security",
-        "skills",
-        "crypto"
+        "crypto",
+        "審視程式碼安全性",
+        "檢查加密實作",
+        "測試系統弱點",
+        "分析密碼演算法",
+        "評估資安風險"
       ],
       "stars": 6787,
       "forks": 320,
@@ -40120,7 +40156,12 @@
         "manim",
         "visualization",
         "deep-learning",
-        "neural-networks"
+        "neural-networks",
+        "製作機器學習動畫",
+        "視覺化神經網路架構",
+        "用 Manim 繪製 ML 動畫",
+        "製作深度學習概念動畫",
+        "產生機器學習視覺化影片"
       ],
       "stars": 3487,
       "addedAt": "2026-08-12T14:09:05.851Z",
@@ -40651,7 +40692,12 @@
         "spec-driven-development",
         "specify",
         "specify-cli",
-        "slash-command"
+        "slash-command",
+        "寫產品需求文件",
+        "生成規格說明",
+        "產出PRD",
+        "建立規格驅動的開發流程",
+        "用斜線指令生成功能規格"
       ],
       "install": {
         "method": "pip",
@@ -40755,7 +40801,12 @@
         "copilot",
         "claude-code",
         "codex",
-        "cline"
+        "cline",
+        "用 DeepSeek 連線 AstrBot",
+        "在 Cline 裡啟用 DeepSeek",
+        "安裝 DeepSeek 到 Codex",
+        "DeepSeek API 串接 AI 工具",
+        "DeepSeek 模型接 Bot 平台"
       ],
       "install": {
         "method": "none",
@@ -41091,7 +41142,12 @@
         "text-to-image",
         "diffusion-models",
         "generative-ai",
-        "image-synthesis"
+        "image-synthesis",
+        "AI繪圖",
+        "圖片修復",
+        "AI作圖",
+        "擴圖",
+        "圖片放大"
       ],
       "install": {
         "method": "git-clone",
@@ -41548,7 +41604,12 @@
         "no-code-database",
         "database-to-spreadsheet",
         "rest-api-generator",
-        "swagger-api"
+        "swagger-api",
+        "連上MySQL看資料",
+        "把PostgreSQL變成表格",
+        "把現有資料庫轉成Airtable風格",
+        "不用寫程式產生REST API",
+        "為SQL Server自動生成Swagger文件"
       ],
       "capabilities": [
         "no-code-platform",
@@ -41729,7 +41790,12 @@
         "bi-dashboard",
         "data-visualization",
         "sql-editor",
-        "analytics-platform"
+        "analytics-platform",
+        "製作 BI 儀表板",
+        "串接多種資料庫進行數據分析",
+        "用 SQL 編輯器查詢並視覺化結果",
+        "建立互動式圖表",
+        "自助式資料探索"
       ],
       "capabilities": [
         "enterprise-bi",
@@ -41908,7 +41974,12 @@
         "html-presentation",
         "pptx-export",
         "presentation-generator",
-        "slides"
+        "slides",
+        "產生簡報",
+        "投影片",
+        "轉成HTML簡報",
+        "轉成PDF簡報",
+        "做成PPTX檔"
       ],
       "capabilities": [
         "presentation-generation",
@@ -42404,7 +42475,12 @@
         "agent-clone",
         "office-agents",
         "multi-model-coding",
-        "local-agent-orchestration"
+        "local-agent-orchestration",
+        "協調多個AI程式助手",
+        "跑多個coding模型分工",
+        "本地串接Claude Gemini Codex",
+        "同時用多種AI寫程式",
+        "跨模型AI編程工作流"
       ],
       "capabilities": [
         "multi-agent-orchestration",
@@ -44427,7 +44503,12 @@
         "clean-props",
         "react屬性縮窄",
         "props精簡",
-        "前端型別重構"
+        "前端型別重構",
+        "收窄 prop 類型",
+        "精简 React 组件属性",
+        "去掉多余 prop 类型",
+        "移除无用 prop",
+        "修正 prop 类型范围"
       ],
       "capabilities": [
         "react",
@@ -45004,7 +45085,12 @@
         "cli",
         "dreamina",
         "seedream",
-        "seedance"
+        "seedance",
+        "AI 生成圖片",
+        "AI 生成影片",
+        "Dreamina 登入",
+        "AI 圖片任務紀錄",
+        "AI 短片產生"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -46188,7 +46274,12 @@
         "chrome-devtools",
         "devtools-mcp",
         "chrome-debugging",
-        "cdp"
+        "cdp",
+        "调试网页元素",
+        "检查网络请求",
+        "分析页面性能",
+        "截网页图",
+        "执行JavaScript代码"
       ],
       "capabilities": [
         "browser-debugging",
@@ -47479,7 +47570,12 @@
         "零件庫",
         "3D零件",
         "標準零件",
-        "機械零件"
+        "機械零件",
+        "下載 FreeCAD 零件模型",
+        "匯入 STEP 格式機械零件",
+        "使用 FreeCAD 零件庫",
+        "找標準機械零件",
+        "下載 FcStd 格式零件"
       ],
       "capabilities": [
         "cad-parts-library",
@@ -47524,7 +47620,12 @@
         "sponsorblock",
         "無廣告YouTube",
         "隱私影片",
-        "去廣告觀看"
+        "去廣告觀看",
+        "看 YouTube 去廣告",
+        "本地儲存 YouTube 訂閱",
+        "不用 Google 帳號看影片",
+        "阻擋 YouTube 追蹤器",
+        "本地建立播放清單"
       ],
       "capabilities": [
         "youtube-client",
