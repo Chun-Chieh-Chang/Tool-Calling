@@ -1,6 +1,8 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 產生時間：2026-09-16T14:13:19.411Z
+ *
+ * 刻意不寫入產生時間：時間戳會讓每次 build 都產生只差一行的無意義 diff，
+ * 掩蓋真正的內容變更。需要時間資訊請看 git log。
  */
 export const SYNONYM_MAP = {
   "簡報": [
