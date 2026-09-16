@@ -155,6 +155,52 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── 檢索 API ──────────────────────────────────────────────────────
+    // 前端原本自行實作 TF-IDF（search-worker.js）與 L2，與 core/ 的引擎
+    // 不一致，導致檢索引擎的改進無法反映到網頁。此端點讓前端改走同一套
+    // 引擎（agent 四維 + fusion 融合 + 可選 LLM rerank）。
+    //
+    // 為什麼放 server：agent-retrieval.js 依賴 node:fs 讀取 embeddings，
+    // 本來就無法在瀏覽器執行；且 rerank 需要 API key，不應暴露到前端。
+    if (decodedUrl === '/api/search' && req.method === 'POST') {
+      const { query, topK = 30, category, rerank } = JSON.parse(req._body || '{}');
+      if (!query || !String(query).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ error: 'query 不可為空' }));
+        return;
+      }
+
+      const t0 = Date.now();
+      try {
+        const { loadRegistry } = await import('../core/registry.js');
+        const { retrieveWithRerank } = await import('../core/retrieval-fusion.js');
+        const registry = loadRegistry();
+        const r = await retrieveWithRerank(registry.tools, String(query).trim(), {
+          topK: Math.min(Math.max(Number(topK) || 30, 1), 100),
+          category: category || undefined,
+          rerank,   // undefined = 有 key 就啟用
+        });
+
+        res.writeHead(200, {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          'Cache-Control': 'no-cache',
+        });
+        res.end(JSON.stringify({
+          query,
+          decision: r.decision,
+          confidence: r.confidence,
+          rerank: r.rerank ?? null,
+          elapsedMs: Date.now() - t0,
+          results: r.results,
+        }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
+
     // ─── 新增工具 API ──────────────────────────────────────────────────
     if (decodedUrl === '/api/tools/add' && req.method === 'POST') {
       const { url: githubUrl } = JSON.parse(req._body || '{}');

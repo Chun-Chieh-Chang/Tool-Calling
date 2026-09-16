@@ -754,6 +754,49 @@ function initWorker() {
 }
 
 /**
+ * 走 server 檢索（與 MCP / CLI 共用 core/ 引擎：agent 四維 + fusion 融合）
+ *
+ * 為什麼要改走 server：前端原本自行實作 TF-IDF（search-worker.js）與 L2，
+ * 與 core/ 的引擎是兩套不同實作，導致檢索引擎的改進無法反映到網頁
+ * （實測 Hit@1 差距 16.7% vs 38.1%）。
+ *
+ * 延遲實測（2026-09-16）：
+ *   詞彙引擎（rerank=false）  平均 119ms  → 適合即時搜尋
+ *   含 LLM rerank（rerank=true）平均 5365ms → 太慢，僅供使用者主動觸發
+ *
+ * 失敗時回傳 null，由呼叫端退回原本的 Worker / 主線程流程（離線安全）。
+ *
+ * @param {string} query
+ * @param {{topK?: number, category?: string, deep?: boolean}} [options]
+ *        deep=true 才啟用 LLM rerank（慢但準）
+ * @returns {Promise<Array|null>} 工具陣列，失敗時 null
+ */
+async function serverSearch(query, options = {}) {
+  try {
+    const res = await fetch('/api/search', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query,
+        topK: options.topK || 100,
+        category: options.category || undefined,
+        rerank: options.deep === true ? undefined : false,
+      }),
+    });
+    if (!res.ok) throw new Error(`api ${res.status}`);
+    const data = await res.json();
+    if (Array.isArray(data.results)) {
+      console.log(`[Search] server (${data.elapsedMs}ms, decision=${data.decision})`);
+      return data.results;
+    }
+    return null;
+  } catch (err) {
+    console.warn('[Search] server unavailable, falling back:', err.message);
+    return null;
+  }
+}
+
+/**
  * 執行 Worker 搜尋
  */
 function performWorkerSearch(query, options) {
@@ -807,18 +850,27 @@ function syncAllViews() {
         return;
       }
       
-      // 嘗試使用 Worker（如果就緒）
-      if (searchWorker && workerReady) {
-        console.log('[Search] Using Worker for semantic search');
-        performWorkerSearch(query, options);
-        return;
-      }
-      
-      // 回退到主線程搜尋
-      console.log('[Search] Using main thread search');
-      const results = search(registryTools || [], query, options);
-      setInMemoryCache(query, category, undefined, results, registryVersion);
-      renderSearchResults(results);
+      // 優先走 server 檢索（與 MCP / CLI 共用 core/ 引擎）
+      serverSearch(query, { topK: options.topK, category }).then(serverResults => {
+        if (serverResults) {
+          setInMemoryCache(query, category, undefined, serverResults, registryVersion);
+          renderSearchResults(serverResults);
+          return;
+        }
+
+        // server 不可用 → 退回 Worker（如果就緒）
+        if (searchWorker && workerReady) {
+          console.log('[Search] Using Worker for semantic search');
+          performWorkerSearch(query, options);
+          return;
+        }
+
+        // 最後回退到主線程搜尋
+        console.log('[Search] Using main thread search');
+        const results = search(registryTools || [], query, options);
+        setInMemoryCache(query, category, undefined, results, registryVersion);
+        renderSearchResults(results);
+      });
     }).catch(err => {
       console.error('[Search] Cache lookup failed:', err);
       // 出錯時回退到主線程
