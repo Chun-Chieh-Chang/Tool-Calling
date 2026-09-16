@@ -1,5 +1,94 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-16 檢索準確度工程：LLM rerank、trigger 擴充、三端統一、架構清理
+
+### 需求
+延續「提升工具選用效率」的主線。使用者陸續指示：建立評測集、補 metadata、
+實作鑑別力守門、盤點與清理、同步文件、建立還原基準點、推送。
+
+### 起點：先建立可衡量的基準
+
+先前僅有 8 筆硬編碼查詢，統計上不足。新建 `registry/eval-queries.json`
+（47 筆：42 可命中 + 5 空集）與 `scripts/eval-benchmark.js`
+（Hit@1 / Hit@3 / MRR / 空集誠實率，按類型分組）。
+
+**初始基準（v1.0.0）**：L2 7.1%、agent 11.9%、fusion 7.1% Hit@1。
+先前 8 筆顯示的 50% 是**假象**。
+
+### 三次「先診斷」改變了原定方向
+
+| 原本打算做 | 診斷後發現 | 實際做法 |
+|---|---|---|
+| 補 344 筆缺欄位 | 未召回者僅 26% 是欄位缺失，兩組平均描述長度幾乎相同（176.7 vs 176.0）→ **瓶頸是語意鴻溝** | 擴充「使用者視角」trigger |
+| 做能力圖譜 | 8 筆進不了 top-20 者，只有 2 筆真撈不到，其餘排名在 33~73 → **是排序問題非召回問題** | 擴大 rerank 候選範圍 |
+| 改 fusion 合併策略 | agent 對、fusion 錯的 5 筆全是 confidence 21~29%（未達 0.35 門檻）→ **門檻過嚴** | no-match 時仍給出最佳猜測 |
+
+**教訓**：先分辨「撈不到」與「排不夠前」，再決定要不要改架構。
+擴大候選範圍的成本遠低於重建匹配架構。
+
+### 主要成果
+
+| 項目 | 內容 |
+|---|---|
+| `core/llm-rerank.js` | LLM 後處理重排。離線安全（無 key 不打網路）、失敗不拋出、內建重試 |
+| `scripts/enrich-triggers-llm.js` | 由工具描述產生使用者視角詞彙，**693/693 全數完成** |
+| 鑑別力守門 | df = 既有全庫出現數 + 批次內競爭數；df > 3 剔除，每筆留 5 個。**每批穩定剔除約 49%** |
+| `scripts/fix-simplified.js` | 簡→繁轉換。修正 508 項／1201 字元／110 筆工具 |
+| `core/retrieval-fusion.js` | ①agent 高置信 top-1 可競爭首位 ②no-match 時仍給最佳猜測 ③recallK 預設 50 |
+
+**最終分數**：agent Hit@1 11.9% → **38.1%**、fusion 7.1% → **38.1%**、
+加上 rerank 達 **73.8%**、空集誠實率 80% → **100%**、召回天花板 40.5% → **95.2%**。
+
+### 三次失敗與回滾（negative results）
+
+1. **擴到 361 筆時退步**：fusion Hit@1 從 11.9% 掉到 7.1%。
+   根因是**鑑別力被稀釋**——新 trigger 讓競爭對手一起變強
+   （`stable-diffusion` 被 `trellis2` 搶走、`freetube` 被 `3b1b-videos` 搶走）。
+   已回滾並實作守門。**「更多資料一定更好」是錯的。**
+2. **rerank 首測看似無效**：跑出 9.5%（比原本 11.9% 更差）。
+   實際是**解析 bug**——模型回傳編號（`5`）而非 id，我的解析只認 id 字串，
+   42 筆全數失敗。修正後 45.2%。**LLM 回傳格式不可假設。**
+3. **限流造成假象**：同一份評測連跑兩次，31.0%（成功 29/42）vs 47.6%（42/42）。
+   加重試後穩定。**看評測數字務必確認「成功呼叫數」。**
+
+### 三端檢索引擎不一致（重大發現）
+
+盤點發現前端有**三套檢索實作**：L2（`core/search-engine.js`）、
+自製 TF-IDF（`web/search-worker.js`）、core/ 的 agent+fusion+rerank。
+**改進後者對網頁完全無效**——實測 Web 端 16.7% vs MCP/CLI 38.1%（含 rerank 73.8%）。
+
+**處置**：
+- `web/server.js` 新增 `POST /api/search`（放 server 是必然：
+  `agent-retrieval.js` 依賴 `node:fs` 讀 embeddings，本質上無法在瀏覽器執行；
+  且 rerank 的 API key 不應暴露前端）
+- `web/app.js` 新增 `serverSearch()` 優先使用，失敗回退 L2
+- 移除 `web/search-worker.js`（412 行重複實作）
+
+**延遲實測決定設計**：詞彙引擎 119ms（適合即時搜尋）、
+含 rerank 5365ms（僅供主動觸發）。故即時搜尋走快路徑，
+rerank 以 `{ deep: true }` 保留待 UI 接上。
+
+### 架構清理與基準點
+
+- `dist/` 完全 untrack（CI 的 `deploy-pages.yml` 有 `Build Web` 步驟才上傳，
+  產物不需進版控）
+- 修 `mine-synonyms.js` 的 top-level `main()`：被 import 時也會執行並寫檔，
+  與註解聲稱的行為不符
+- 移除產物時間戳，讓 build 可重複執行且不留 diff
+- 刪除死碼 `core/telemetry-summary.js` + 測試（無生產消費者）
+- 刪除誤建的 `$null` 檔（shell 重導向意外產生）
+- 文件簡繁一致性：修正 docs/ 33 個字元、檔名、AGENTS.md 產生器
+
+⚠️ **保留的簡體是刻意引用**：`CLASSIFICATION.md` 的「`开发工具`」
+（描述 classifier bug）、`README.md` 的「`浏览器`」（簡繁問題的舉例）、
+`DEV_LOG.md` 描述過往清理時的引用。
+
+### 驗證
+`npm test` 121 pass / 0 fail；`cli.js validate` 0 errors；
+`npm run check-mece` 通過；build 連續兩次執行結果一致。
+
+---
+
 ## 2026-09-12（晚間・第五輪）文件層 SSOT：分類統計改為產生、README 繁體化、修兩個計數 bug
 
 ### 需求
@@ -1153,6 +1242,11 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
   - `scripts/verify-graph-playwright.js`（已被 tests/knowledge-graph.test.js 取代）、`scripts/check-existing.js`、`scripts/fix-low-quality-tools.js`、`scripts/process-batch-replace.js`、`scripts/check-category-consistency.js`（零程式碼引用、無 npm script 掛載）。
   - `tests/eval-benchmark.js`（零引用、未匹配測試 glob、內含硬編碼絕對路徑）。
   - 保留確認：`@modelcontextprotocol/sdk`（mcp-server.js 子路徑引用）、`web/favicon.ico`（build-web.js 複製 + GitHub Pages fallback）、`core/telemetry-summary.js`（測試引用）、全部 registry 資料檔。
+
+  > **2026-09-16 更正**：本輪「保留」的 `core/telemetry-summary.js` 已於
+  > 2026-09-16 實際刪除（連同其測試）。當時判斷為「測試引用故保留」，
+  > 但「只有自己的測試在引用」正是死碼的定義——它從未有過生產消費者。
+  > 詳見本日誌最上方 2026-09-16 條目。此處保留原始決策記錄以存史。
 - **階段二（文件同步）**：
   - `AGENTS.md`：585 工具 / 2220 repos / 25,801,749 stars / 44,106 avg；Top 5 分類（AI 框架 148、AI 代理 108、UI/UX設計 29）與語言（python 208、typescript 119、javascript 54）；測試數 11/11 → 75/75（3 處）；追蹤池與目錄註解 2173 → 2220。
   - `README.md`：583 → 585（4 處）、同義詞 334 → 351 詞彙（386 → 422 組配對）、追蹤池 2219 → 2220。

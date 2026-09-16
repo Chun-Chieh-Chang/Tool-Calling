@@ -27,7 +27,7 @@
 |---------|---------|------|
 | triggerNormCache | +40-60% L2速度 | 觸發詞規範化快取 |
 | 搜尋結果快取 | -90% 延遲 | 5 分鐘 TTL 記憶體快取 |
-| Web Worker | UI 串流暢度↑ | 離線 TF-IDF 計算 |
+| ~~Web Worker~~ | 已移除 | 與 core/ 重複的第三套檢索實作，改用 `/api/search` |
 | IndexedDB | 冷啟動 <100ms | 跨頁面持久化快取 |
 | Fuzzy Matching | +15% 容錯率 | Levenshtein 距離模糊匹配 |
 | 同義詞擴充 | 620 詞彙 | 41 個種子詞 + 945 組配對自動挖掘 |
@@ -155,8 +155,8 @@ Tool-Calling/
 │   ├── telemetry.js         # 使用統計
 │   └── ...
 ├── web/                # 前端精密儀表數據工作台
-│   ├── app.js              # 主應用（整合 Worker + 快取）
-│   ├── search-worker.js    # Web Worker（離線計算）
+│   ├── app.js              # 主應用（server 檢索 + 快取）
+│   ├── server.js           # 本地伺服器（/api/search 走 core/ 檢索引擎）
 │   ├── persist-cache.js    # IndexedDB 持久化快取
 │   ├── behavior-tracker.js # 使用者行為追蹤
 │   ├── server.js           # 零相依本地 HTTP 伺服器
