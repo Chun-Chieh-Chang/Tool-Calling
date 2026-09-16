@@ -105,11 +105,34 @@ async function cmdSearch(query, options = {}) {
 
   header(`搜尋: "${query}"`);
   const registry = loadRegistry();
-  const results = search(registry.tools, query, { 
-    topK: options.topK || 5, 
+
+  // 走與 MCP / Web 相同的 core/ 融合引擎（agent 四維 + L2 + 可選 rerank）。
+  // 原本這裡只用 L2（search()），是三端不一致的第三處——
+  // 實測 Hit@1 L2 16.7% vs fusion 38.1%（含 rerank 73.8%）。
+  const { retrieveWithRerank } = await import('./core/retrieval-fusion.js');
+  const fused = await retrieveWithRerank(registry.tools, query, {
+    topK: options.topK || 5,
     category: options.category,
-    telemetryStats 
+    telemetryStats,
+    // 預設走快速路徑（詞彙引擎 ~119ms）；--deep 才啟用 LLM rerank（~5s）
+    rerank: options.deep ? undefined : false,
   });
+
+  // 轉為既有輸出格式（tool / score / matchLevel / matchedKeywords）
+  const byId = new Map(registry.tools.map((t) => [t.id, t]));
+  const results = fused.results.map((x) => ({
+    tool: byId.get(x.id) || { id: x.id, name: x.name, description: x.description || '', url: '' },
+    score: x.score,
+    matchLevel: x.matchLevel,
+    matchedKeywords: x.reasons || [],
+  }));
+
+  if (fused.decision === 'no-match') {
+    warn('工具庫暫無高置信度對應工具，以下為最接近的候選：');
+  }
+  if (fused.rerank?.applied) {
+    console.log(`${c.dim}（已套用 LLM rerank，耗時較長）${c.reset}`);
+  }
 
   if (results.length === 0) {
     warn('未找到匹配的工具。');
@@ -882,15 +905,19 @@ async function main() {
     case 'search': {
       const searchArgs = [];
       let searchCat = undefined;
+      let searchDeep = false;
       for (let i = 0; i < args.length; i++) {
         if (args[i] === '-c' || args[i] === '--category') {
           searchCat = args[i + 1];
           i++;
+        } else if (args[i] === '--deep') {
+          // 啟用 LLM rerank（較準但約需 5 秒）
+          searchDeep = true;
         } else {
           searchArgs.push(args[i]);
         }
       }
-      await cmdSearch(searchArgs.join(' '), { category: searchCat });
+      await cmdSearch(searchArgs.join(' '), { category: searchCat, deep: searchDeep });
       break;
     }
     case 'info':
