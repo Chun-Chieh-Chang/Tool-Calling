@@ -1119,6 +1119,666 @@
     "step-37-flash": {
       "at": "2026-09-15T23:47:49.831Z",
       "added": 5
+    },
+    "ui-ux-pro-max-skill": {
+      "at": "2026-09-15T23:54:10.625Z",
+      "added": 5
+    },
+    "awesome-notebooklm-workflows": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "cybersecurity-skills-Hi-FullHouse": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "workbuddyguide": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "colibri": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "openhands": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "hyperframes": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "ppt-agent-skills": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "gpt-api-free": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "duckdb": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "polars": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "pygwalker": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "shadcn-ui": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "tldraw": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "freecad": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "openscad": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "cadquery": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "tensorflow": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "ohmyzsh": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "javaguide": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "worldmonitor": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "awesome-claude-skills": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "ktransformers": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "daily-stock-analysis": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "opencodex": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "data-to-html": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "exceltohtml": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "excel-to-html": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "xlsxtohtmlconverter": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "obsidian-skills": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "claude-obsidian": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "premium-frontend-ui-skill": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "seedance-20": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "seedance2-skill": {
+      "at": "2026-09-15T23:54:10.626Z",
+      "added": 5
+    },
+    "remotion": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "opencv": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "frame": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "ffmpeg": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "pdf2md-agent-skill": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "exercises-dataset": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "ai-agent-book": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "opencode-acp": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "claude-opus-5md": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "opus-5md": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "systempromptsleaks": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "claude-system-prompt": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "i-have-adhd": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "pi-web": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "phosphor-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "remixicon": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "iconoir": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "pi-web-agegr": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "hugging-multi-agent": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "lucide": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "text-to-cad": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "bootstrap-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "tabler-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "agents-course": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "hugagentos": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "adhd": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "heroicons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "radix-ui-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "ant-design-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "polybar-themes": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "welovesvg": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "polaris-react": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "iconify": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "material-design-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "fluentui-system-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "sfsafesymbols": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "simple-icons": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "agnescode": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "agnescode-ViviQuan": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "firecrawl-cli-skills": {
+      "at": "2026-09-15T23:54:10.627Z",
+      "added": 5
+    },
+    "agent-toolkit": {
+      "at": "2026-09-16T00:00:27.841Z",
+      "added": 5
+    },
+    "minimax-m3": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "pandas-ai": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ydata-profiling": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "storybook": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "font-awesome": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "firecrawl-skills": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "crawl4ai": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "selenium": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "crawlee": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "scrapy": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "beautifulsoup4": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "splash": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "deepspec": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "openworker": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "aisuite": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "context-hub": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "context-hub-skill": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "translation-agent": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "optmem": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "codex-security": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "langgraph": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "buzz": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ego-lite": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "open-code-review": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ai-agents-for-beginners": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "awesome-claude-code-subagents": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "claude-code-debug-mode": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "claude-plugins-official": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "howtheytest": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "code-review-skill": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "first-principles-skill": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "5-whys-skill": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "mermaid-syntax-skill": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "agent-skills-manager": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "reactphp-filesystem": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "sequential-thinking-skill": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "appkit": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "tencentdb-agent-memory": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "react-d3-tree": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "awesome-solidity": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ai-for-beginners": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "kaneo": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "jcode": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ai-engineering-from-scratch-zh": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ontology-ontio": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "oh-my-hermes": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "oh-my-hermes-salomondiei08": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "ui-ux-pro-max-skill-cn": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "gsap-skills": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "design-md-chrome": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "edge-tts": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "easyvoice": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "openai-edge-tts": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "text2video": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "computer": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "loopx": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "pdf-inspector": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "supervision": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "next.js": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "tailwindcss": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "karpathy-llm-wiki": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "jetbrains-cc-gui": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "crm": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "generative-ai-for-beginners": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "cherry-studio": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "sglang": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "llamafactory": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "qlib": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "awesome-n8n-templates": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "qwenpaw": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "khoj": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "awesome": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "freecodecamp": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "awesome-python": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "996-icu": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "react": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "linux": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "python": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "vue": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "computer-science": {
+      "at": "2026-09-16T00:00:27.842Z",
+      "added": 5
+    },
+    "system-prompts-and-models-of-ai-tools": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "autogpt": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "prime-agent": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "qm": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "anydoc": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "kimi-k3": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "x4g": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "scroll-world": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "turbo-fieldfare": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
+    },
+    "decimen-optical-transfer": {
+      "at": "2026-09-16T00:00:27.843Z",
+      "added": 5
     }
   },
   "model": "agnes-2.5-flash"

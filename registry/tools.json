@@ -2338,7 +2338,12 @@
         "ui-design",
         "landing-page",
         "ui-ux",
-        "frontend"
+        "frontend",
+        "生成 React 組件",
+        "設計落地頁",
+        "轉換設計稿為程式碼",
+        "建立 UI 介面",
+        "開發前端頁面"
       ],
       "install": {
         "method": "pip",
@@ -4156,7 +4161,12 @@
         "watermark-removal",
         "audio-processing",
         "awesome-list",
-        "client-side"
+        "client-side",
+        "去除视频水印",
+        "清除PDF水印",
+        "处理音频文件",
+        "NotebookLM提示词",
+        "批量删除视频logo"
       ],
       "install": {
         "method": "pip",
@@ -22814,7 +22824,12 @@
         "cybersecurity",
         "skills",
         "security-knowledge",
-        "pentesting-guide"
+        "pentesting-guide",
+        "解釋網路攻擊手法",
+        "分析系統弱點",
+        "推薦防禦策略",
+        "審視程式碼安全漏洞",
+        "說明滲透測試流程"
       ],
       "install": {
         "method": "pip",
@@ -24845,7 +24860,12 @@
         "workbuddyguide",
         "workbuddy",
         "automation",
-        "mcp"
+        "mcp",
+        "建立自動化流程",
+        "配置MCP服務器",
+        "創建AI技能",
+        "設置多智能體系統",
+        "設計Agent工作流"
       ],
       "install": {
         "method": "pip",
@@ -25057,7 +25077,12 @@
         "colibri",
         "glm-5.2",
         "low-ram-inference",
-        "pure-c-llm"
+        "pure-c-llm",
+        "在低内存设备上运行大语言模型",
+        "旧电脑跑 GLM-5.2",
+        "不用 GPU 运行 LLM 推理",
+        "树莓派上运行大模型",
+        "纯 CPU 跑大型语言模型"
       ],
       "install": {
         "method": "git-clone",
@@ -25092,7 +25117,12 @@
         "ai-coding-agent",
         "autonomous-development",
         "code-generation",
-        "developer-tools"
+        "developer-tools",
+        "寫程式",
+        "自動生成程式碼",
+        "用文字寫程式",
+        "幫我寫網頁",
+        "修復程式錯誤"
       ],
       "install": {
         "method": "pip",
@@ -25786,7 +25816,12 @@
         "agent-skills",
         "claude-code",
         "ai-coding",
-        "developer-tools"
+        "developer-tools",
+        "自動化開發流程",
+        "規劃專案流程",
+        "Claude Code技能擴展",
+        "AI編程代理工具",
+        "自動審查程式碼"
       ],
       "install": {
         "method": "pip",
@@ -27266,7 +27301,12 @@
         "framework",
         "gsap",
         "html",
-        "mcp"
+        "mcp",
+        "HTML轉影片",
+        "GSAP動畫生成",
+        "FFmpeg視頻合成",
+        "程式化動畫",
+        "HTML動畫渲染"
       ],
       "install": {
         "method": "npm",
@@ -27411,7 +27451,12 @@
         "llm",
         "ai-agent",
         "code-generation",
-        "reasoning"
+        "reasoning",
+        "編寫Python腳本",
+        "分析並解釋代碼",
+        "解決數學推理問題",
+        "開發API",
+        "設計網站"
       ],
       "install": {
         "method": "pip",
@@ -27551,7 +27596,12 @@
         "code-driven-slides",
         "agent-skills",
         "programmatic-slides",
-        "code-driven-presentation"
+        "code-driven-presentation",
+        "HTML 轉投影片",
+        "用程式碼產生簡報",
+        "網頁轉成簡報",
+        "寫程式做投影片",
+        "程式自動產 PPT"
       ],
       "install": {
         "method": "pip",
@@ -27595,7 +27645,12 @@
         "gpt-proxy",
         "claude-api",
         "deepseek-api",
-        "免費-GPT"
+        "免費-GPT",
+        "用 GPT 寫程式碼",
+        "用 Claude 回覆問題",
+        "用 DeepSeek 做摘要",
+        "產生廣告文案",
+        "翻譯英文文章"
       ],
       "install": {
         "method": "none",
@@ -27637,7 +27692,12 @@
         "data-analysis",
         "dataframe-ai",
         "natural-language-data",
-        "eda-agent"
+        "eda-agent",
+        "自然語言分析資料表",
+        "用文字問 DataFrame 資料",
+        "對話式數據探索",
+        "文字轉 SQL 查詢",
+        "自動畫資料圖表"
       ],
       "install": {
         "method": "pip",
@@ -27677,7 +27737,12 @@
         "sql-analysis",
         "in-process-db",
         "columnar-database",
-        "parquet-analysis"
+        "parquet-analysis",
+        "分析Parquet檔",
+        "跑SQL分析查詢",
+        "OLAP資料庫",
+        "分析大數據檔案",
+        "匯入Parquet轉表格"
       ],
       "install": {
         "method": "pip",
@@ -27717,7 +27782,12 @@
         "fast-pandas",
         "rust-dataframe",
         "lazy-evaluation",
-        "big-data-analysis"
+        "big-data-analysis",
+        "快速處理大量資料",
+        "取代慢速 Pandas",
+        "使用延遲求值處理資料",
+        "用多執行緒加速資料分析",
+        "處理超過記憶體限制的大型檔案"
       ],
       "install": {
         "method": "pip",
@@ -27757,7 +27827,12 @@
         "interactive-eda",
         "visual-analytics",
         "graphic-walker",
-        "jupyter-viz"
+        "jupyter-viz",
+        "做成互動式圖表儀表板",
+        "用拖放分析資料",
+        "在 Jupyter 裡做可視化分析",
+        "做互動式探索性分析",
+        "拖曳式資料視覺化"
       ],
       "install": {
         "method": "pip",
@@ -27797,7 +27872,12 @@
         "automated-eda",
         "data-quality-report",
         "dataset-profiling",
-        "eda-report"
+        "eda-report",
+        "自動生成EDA報告",
+        "產生數據質量報告",
+        "分析缺失值",
+        "檢查相關性矩陣",
+        "資料集健康檢查"
       ],
       "install": {
         "method": "pip",
@@ -27837,7 +27917,12 @@
         "ui-component-generator",
         "tailwind-ui",
         "design-system",
-        "radix-ui"
+        "radix-ui",
+        "生成 React UI 組件",
+        "複製 Tailwind 元件到專案",
+        "建立可存取的前端元件",
+        "安裝 shadcn 樣式組件",
+        "搭建 React 設計系統"
       ],
       "install": {
         "method": "npx",
@@ -27876,7 +27961,12 @@
         "component-workshop",
         "ui-testing",
         "design-system-docs",
-        "isolated-ui"
+        "isolated-ui",
+        "隔離開發UI元件",
+        "建立元件文件",
+        "進行視覺回歸測試",
+        "預覽元件各種狀態",
+        "構建設計系統"
       ],
       "install": {
         "method": "npx",
@@ -27916,7 +28006,12 @@
         "ui-wireframing",
         "web-design-sketch",
         "gen-ui-canvas",
-        "whiteboard-ui"
+        "whiteboard-ui",
+        "畫 UI 線框原型",
+        "在無限畫布上設計網頁版面",
+        "快速手繪介面草圖",
+        "用 AI 生成 UI 佈局",
+        "多人協作繪製產品原型"
       ],
       "install": {
         "method": "npm",
@@ -27960,7 +28055,12 @@
         "fem-analysis",
         "step-stl-export",
         "開源cad",
-        "參數化建模"
+        "參數化建模",
+        "用參數化方式建3D模型",
+        "畫2D工程圖",
+        "做BIM建築模型",
+        "轉STEP格式",
+        "匯出STL檔案"
       ],
       "install": {
         "method": "conda",
@@ -28003,7 +28103,12 @@
         "scripted-3d-modeling",
         "csg-modeling",
         "3d-printing-cad",
-        "parametric-parts"
+        "parametric-parts",
+        "用脚本建模 3D 零件",
+        "参数化设计机械件",
+        "CSG 构造实体几何",
+        "代码生成 CAD 模型",
+        "导出 STL 3D 打印"
       ],
       "install": {
         "method": "apt",
@@ -28043,7 +28148,12 @@
         "cq-editor",
         "opencascade-python",
         "cad-scripting",
-        "parametric-cad-python"
+        "parametric-cad-python",
+        "用 Python 寫 3D 模型",
+        "參數化設計機械零件",
+        "代碼生成 CAD 幾何",
+        "匯出 STEP 格式 3D 模型",
+        "Python 腳本建立 3D 組件"
       ],
       "install": {
         "method": "pip",
@@ -28083,7 +28193,12 @@
         "deep-learning",
         "deep-neural-networks",
         "distributed",
-        "machine-learning"
+        "machine-learning",
+        "訓練深度神經網路",
+        "建立機器學習模型",
+        "訓練影像分類模型",
+        "實作自然語言處理模型",
+        "訓練循環神經網路 RNN"
       ],
       "install": {
         "method": "none",
@@ -28127,7 +28242,12 @@
         "cli-app",
         "oh-my-zsh",
         "oh-my-zsh-plugin",
-        "oh-my-zsh-theme"
+        "oh-my-zsh-theme",
+        "管理zsh插件",
+        "設定zsh主題",
+        "自動補全指令",
+        "整合git工作流",
+        "接docker開發"
       ],
       "install": {
         "method": "none",
@@ -28170,7 +28290,12 @@
         "agent",
         "context-engineering",
         "deepseek",
-        "interview"
+        "interview",
+        "准备Java面试",
+        "复习数据库面试题",
+        "学习分布式系统",
+        "准备高并发编程面试",
+        "复习系统设计"
       ],
       "install": {
         "method": "none",
@@ -28213,7 +28338,12 @@
         "agent",
         "dashboard",
         "geopolitics",
-        "mcp"
+        "mcp",
+        "追蹤地緣政治動態",
+        "匯整全球新聞",
+        "監控基礎設施狀態",
+        "掌握國際局勢",
+        "追蹤各國政經發展"
       ],
       "install": {
         "method": "none",
@@ -28257,7 +28387,12 @@
         "ai-agents",
         "antigravity",
         "automation",
-        "claude"
+        "claude",
+        "建立 AI 代理自動化工作流程",
+        "客製化 Claude 指令和工作流",
+        "設定 Claude Code 輔助編碼",
+        "尋找 AI 工具整合方案",
+        "打造專屬 AI 技能庫"
       ],
       "install": {
         "method": "none",
@@ -28299,7 +28434,12 @@
         "ktransformers",
         "kvcache",
         "llm-inference",
-        "transformers"
+        "transformers",
+        "加速 LLM 推理",
+        "優化 Transformers 訓練效能",
+        "KV Cache 最佳化",
+        "大模型微調加速",
+        "降低 GPU 顯存占用"
       ],
       "install": {
         "method": "none",
@@ -28336,7 +28476,12 @@
         "ai-agent",
         "aigc",
         "llm",
-        "quant"
+        "quant",
+        "分析股票行情",
+        "查看A股走势",
+        "监控股票新闻",
+        "定时推送股票",
+        "多市场选股"
       ],
       "install": {
         "method": "none",
@@ -28415,7 +28560,12 @@
         "web search sidecar",
         "multi-agent routing",
         "oauth pooling",
-        "model switching"
+        "model switching",
+        "統一呼叫不同 LLM 接口",
+        "跨平台切換 AI 模型",
+        "聚合多個 AI 服務商",
+        "批量管理 API 金鑰",
+        "網頁搜索輔助 AI 對話"
       ],
       "install": {
         "method": "npm",
@@ -28567,7 +28717,12 @@
       "triggers": [
         "data-to-html",
         "data",
-        "html"
+        "html",
+        "把 Clojure 数据转成 HTML",
+        "Clojure 数据结构生成网页",
+        "用 Clojure map 转 HTML 表格",
+        "Clojure 列表渲染成 HTML",
+        "把 Clojure 对象输出成 HTML 代码"
       ],
       "install": {
         "method": "git-clone",
@@ -28601,7 +28756,12 @@
         "converter",
         "engine",
         "excel",
-        "html"
+        "html",
+        "將 Excel 轉成 HTML 網頁",
+        "把試算表轉成網頁表格",
+        "Excel 匯出成 HTML 格式",
+        "將 XLSX 檔案轉換成 HTML",
+        "把 Excel 轉成可瀏覽的網頁"
       ],
       "install": {
         "method": "git-clone",
@@ -28638,7 +28798,12 @@
       "triggers": [
         "excel-to-html",
         "excel",
-        "html"
+        "html",
+        "把Excel轉成網頁",
+        "匯出Excel為HTML格式",
+        "製作網頁表格",
+        "Excel資料生成HTML頁面",
+        "將試算表轉換成網頁"
       ],
       "install": {
         "method": "pip",
@@ -28674,7 +28839,12 @@
         "data",
         "document",
         "dotnet",
-        "excel"
+        "excel",
+        "XLSX轉HTML",
+        "Excel表格轉網頁",
+        "讀取Excel檔案轉網頁",
+        "Excel轉HTML工具",
+        "XLSX轉HTML轉換器"
       ],
       "install": {
         "method": "git-clone",
@@ -28716,7 +28886,12 @@
         "agentskills",
         "bases",
         "claude",
-        "clawdbot"
+        "clawdbot",
+        "處理Obsidian筆記",
+        "寫入Markdown檔案",
+        "建立Bases欄位資料",
+        "讀取JSON Canvas圖表",
+        "匯出Obsidian資料"
       ],
       "install": {
         "method": "git-clone",
@@ -28786,7 +28961,12 @@
         "ai-note-taking",
         "ai-second-brain",
         "claude-code",
-        "claude-code-skill"
+        "claude-code-skill",
+        "連知識庫",
+        "轉成圖",
+        "抓文字",
+        "建知識圖",
+        "做筆記"
       ],
       "install": {
         "method": "pip",
@@ -28906,7 +29086,12 @@
         "awesome",
         "custom-agents",
         "github-copilot",
-        "hacktoberfest"
+        "hacktoberfest",
+        "寫前端介面",
+        "設計網頁版面",
+        "生成 UI 元件",
+        "製作響應式頁面",
+        "寫 CSS 樣式"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -28947,7 +29132,12 @@
       "triggers": [
         "seedance-2.0",
         "seedance",
-        "2.0"
+        "2.0",
+        "生成短片",
+        "文字轉影片",
+        "製作 AI 影片",
+        "合成影片音效",
+        "圖片生成動態畫面"
       ],
       "install": {
         "method": "pip",
@@ -28984,7 +29174,12 @@
         "prompt",
         "seedance",
         "seedance-2",
-        "video-prompt"
+        "video-prompt",
+        "生成影片提示詞",
+        "寫 AI 影片腳本",
+        "轉換文字為影片描述",
+        "優化視頻生成提示",
+        "設計 AI 影片指令"
       ],
       "install": {
         "method": "git-clone",
@@ -29023,7 +29218,12 @@
         "remotion",
         "javascript",
         "react",
-        "video"
+        "video",
+        "用 React 寫程式產生影片",
+        "把網頁元件轉成影片",
+        "自動化輸出影片",
+        "寫 JavaScript 做影片動畫",
+        "用程式生成 MP4"
       ],
       "install": {
         "method": "npm",
@@ -29062,7 +29262,12 @@
         "c-plus-plus",
         "computer-vision",
         "deep-learning",
-        "image-processing"
+        "image-processing",
+        "處理圖片",
+        "辨識人臉",
+        "裁剪影像",
+        "檢測物體",
+        "把圖片變清晰"
       ],
       "install": {
         "method": "git-clone",
@@ -29106,7 +29311,12 @@
         "gpui-ce",
         "linux",
         "macos",
-        "media-converter"
+        "media-converter",
+        "影片轉成其他格式",
+        "影片剪輯",
+        "壓縮影片檔案",
+        "把影片轉成 GIF",
+        "截取影片片段"
       ],
       "install": {
         "method": "cargo",
@@ -29150,7 +29360,12 @@
         "hevc",
         "hls",
         "matroska",
-        "mp4"
+        "mp4",
+        "音頻抽出",
+        "影片壓縮",
+        "合併影片片段",
+        "加字幕",
+        "影片轉GIF"
       ],
       "install": {
         "method": "git-clone",
@@ -29194,7 +29409,12 @@
         "agent-skill",
         "claude-code",
         "claude-code-skill",
-        "document-conversion"
+        "document-conversion",
+        "把 PDF 轉成 Markdown",
+        "把 Word 轉成文字",
+        "掃描檔 OCR 轉文字",
+        "從 PPT 抓重點",
+        "把 Excel 轉成 Markdown"
       ],
       "install": {
         "method": "pip",
@@ -29238,7 +29458,12 @@
         "fitness",
         "fitness-app",
         "gym",
-        "json"
+        "json",
+        "找健身動作動畫",
+        "查詢動作肌肉群",
+        "搜尋健身器材對應動作",
+        "取得運動指導步驟",
+        "建立健身應用的資料集"
       ],
       "install": {
         "method": "git-clone",
@@ -29282,7 +29507,12 @@
         "ai-agent",
         "coding-agent",
         "context-engineering",
-        "large-language-models"
+        "large-language-models",
+        "AI Agent 設計",
+        "AI Agent 實作",
+        "AI Agent 架構",
+        "Agent 記憶體管理",
+        "編寫 AI Agent"
       ],
       "install": {
         "method": "pip",
@@ -29321,7 +29551,12 @@
       "triggers": [
         "opencode-acp",
         "opencode",
-        "acp"
+        "acp",
+        "壓縮上下文",
+        "清理對話歷史",
+        "主動壓縮長對話",
+        "管理 OpenCode 上下文",
+        "精簡冗長對話"
       ],
       "install": {
         "method": "npm",
@@ -29359,7 +29594,12 @@
         "ai",
         "ai-agents",
         "ai-prompts",
-        "anthropic"
+        "anthropic",
+        "抓 AI 系統提示詞",
+        "取出大模型指令",
+        "查看 Claude 隱藏指示",
+        "翻開 ChatGPT 系統提示",
+        "提取 Gemini 提示詞"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -29400,7 +29640,12 @@
       "triggers": [
         "opus-5.md",
         "opus",
-        "5.md"
+        "5.md",
+        "泄露的 AI 提示詞",
+        "取得大模型內部 prompt",
+        "複製 ChatGPT 系統指令",
+        "蒐集 LLM 對話範本",
+        "下載 AI 隱藏提示詞"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -29440,7 +29685,12 @@
         "anthropic",
         "chatbot",
         "chatgpt",
-        "claude"
+        "claude",
+        "查 Claude 系統提示詞",
+        "看 ChatGPT 的隱藏指令",
+        "洩漏的 AI 模型提示詞",
+        "找 Gemini 的 system prompt",
+        "Grok 內建指令"
       ],
       "install": {
         "method": "npm",
@@ -29531,7 +29781,12 @@
         "ai-security",
         "anthropic",
         "claude-code",
-        "llm"
+        "llm",
+        "提取 Claude 系統提示詞",
+        "反編譯 Claude prompt",
+        "取得 Claude 原始指令",
+        "揭露 Claude 系統設定",
+        "扒出 Claude 內部 prompt"
       ],
       "install": {
         "method": "git-clone",
@@ -29575,7 +29830,12 @@
         "claude-code-plugin",
         "claude-skills",
         "developer-tools",
-        "productivity"
+        "productivity",
+        "直接給答案",
+        "簡潔回答問題",
+        "別解釋太多",
+        "一步到位解決",
+        "只要結論不要廢話"
       ],
       "install": {
         "method": "pip",
@@ -29619,7 +29879,12 @@
         "coding-agent",
         "developer-tools",
         "persistent-sessions",
-        "pi-coding-agent"
+        "pi-coding-agent",
+        "保持程式碼會話不中斷",
+        "持續運行AI編程助手",
+        "網頁介面寫程式",
+        "記住開發對話",
+        "不丟失的編程會話"
       ],
       "install": {
         "method": "npm",
@@ -29661,7 +29926,12 @@
         "icon-pack",
         "icons",
         "phosphor",
-        "svgs"
+        "svgs",
+        "尋找免費圖標資源",
+        "下載SVG圖標庫",
+        "搜尋可視化圖示",
+        "找Vector圖標套件",
+        "使用開源圖標字體"
       ],
       "install": {
         "method": "npm",
@@ -29702,7 +29972,12 @@
         "icon",
         "icon-font",
         "icon-pack",
-        "svg"
+        "svg",
+        "找图标",
+        "下载图标字体",
+        "获取图标包",
+        "添加矢量图标",
+        "安装图标库"
       ],
       "install": {
         "method": "git-clone",
@@ -29745,7 +30020,12 @@
         "icon",
         "icons",
         "react",
-        "react-native"
+        "react-native",
+        "找圖標庫",
+        "下載 svg 圖標",
+        "安裝 icon 套件",
+        "Figma 圖標素材",
+        "Flutter 圖標包"
       ],
       "install": {
         "method": "npm",
@@ -29783,7 +30063,12 @@
       "language": "typescript",
       "triggers": [
         "pi-web",
-        "web"
+        "web",
+        "建立網站",
+        "執行腳本",
+        "除錯程式",
+        "自動編碼任務",
+        "生成程式碼片段"
       ],
       "install": {
         "method": "npm",
@@ -29817,7 +30102,12 @@
         "hugging-multi-agent",
         "hugging",
         "multi",
-        "agent"
+        "agent",
+        "了解多智能體概念",
+        "使用MetaGPT寫程式",
+        "學習Agent開發",
+        "搭建多智能體系統",
+        "初學者入門Agent教程"
       ],
       "install": {
         "method": "none",
@@ -29855,7 +30145,12 @@
         "react",
         "svg",
         "svg-icons",
-        "svgs"
+        "svgs",
+        "換掉 Feather 圖示",
+        "用 React 顯示 SVG 圖標",
+        "在 Figma 設計圖示套件",
+        "匯出 SVG 圖標",
+        "找開源的 React 圖標庫"
       ],
       "install": {
         "method": "npm",
@@ -29899,7 +30194,12 @@
         "agents",
         "ai-agents",
         "build123d",
-        "dxf"
+        "dxf",
+        "文字轉 CAD 模型",
+        "文字描述生成 3D 檔",
+        "產出 3MF 檔案",
+        "文字轉 DXF 圖檔",
+        "Build123D 建參數化零件"
       ],
       "install": {
         "method": "npm",
@@ -29942,7 +30242,12 @@
         "css",
         "font",
         "icon-classname",
-        "svg-icons"
+        "svg-icons",
+        "使用 Bootstrap 圖示",
+        "選取 SVG 圖標",
+        "查詢 Bootstrap 圖標名稱",
+        "將圖標轉成 CSS class",
+        "載入 Bootstrap 圖標字型"
       ],
       "install": {
         "method": "git-clone",
@@ -29986,7 +30291,12 @@
         "components",
         "css",
         "icon",
-        "icon-pack"
+        "icon-pack",
+        "添加图标",
+        "下载图标",
+        "选择图标组件",
+        "导入图标资源",
+        "查找图标素材"
       ],
       "install": {
         "method": "npm",
@@ -30030,7 +30340,12 @@
         "huggingface",
         "langchain",
         "llamaindex",
-        "smolagents"
+        "smolagents",
+        "学习AI Agent教程",
+        "了解LangChain入门",
+        "实践smolagents使用",
+        "查找HuggingFace Agent课程",
+        "学习LLM应用开发"
       ],
       "install": {
         "method": "git-clone",
@@ -30069,7 +30384,12 @@
       "triggers": [
         "hugagentos",
         "agent-os",
-        "ontology"
+        "ontology",
+        "構建本體知識庫",
+        "執行知識推理",
+        "驗證結論可信度",
+        "建立企業知識圖譜",
+        "查詢實體關係網絡"
       ],
       "install": {
         "method": "pip",
@@ -30107,7 +30427,12 @@
         "brainstorm",
         "chain-of-thought",
         "claude",
-        "claude-agent-sdk"
+        "claude-agent-sdk",
+        "多角度 brainstorm 想法",
+        "拆解複雜問題成多個思路",
+        "用不同認知框架分析問題",
+        "產生多元解方並評分篩選",
+        "跨界交叉思考找解法"
       ],
       "install": {
         "method": "npm",
@@ -30146,7 +30471,12 @@
       "triggers": [
         "heroicons",
         "tailwind",
-        "svg-icons"
+        "svg-icons",
+        "繪製UI圖標",
+        "轉成SVG檔案",
+        "生成介面圖示",
+        "建立網站圖標",
+        "設計按鈕圖形"
       ],
       "install": {
         "method": "npm",
@@ -30181,7 +30511,12 @@
         "design",
         "iconset",
         "react",
-        "svg"
+        "svg",
+        "建立圖示套件",
+        "轉成 React 圖示元件",
+        "設計 SVG 小圖示",
+        "尋找圖示套件",
+        "輸出 SVG 圖示"
       ],
       "install": {
         "method": "npm",
@@ -30225,7 +30560,12 @@
         "angular",
         "ant-design",
         "antd",
-        "react"
+        "react",
+        "找 Ant Design 圖標",
+        "插入 SVG 圖示到 React 專案",
+        "用 antd 圖標組件",
+        "搜尋 UI 圖標",
+        "找按鈕圖示"
       ],
       "install": {
         "method": "npm",
@@ -30269,7 +30609,12 @@
         "archcraft",
         "archlinux",
         "debian",
-        "desktop-environment"
+        "desktop-environment",
+        "換狀態欄主題",
+        "美化桌面狀態欄",
+        "找狀態欄樣式",
+        "修改狀態欄配色",
+        "下載狀態欄皮膚"
       ],
       "install": {
         "method": "git-clone",
@@ -30309,7 +30654,12 @@
         "welovesvg",
         "icon-management",
         "icon-packs",
-        "icons"
+        "icons",
+        "下载图标包",
+        "查找SVG图标集",
+        "管理图标资源",
+        "整合图标素材",
+        "获取矢量图标"
       ],
       "install": {
         "method": "git-clone",
@@ -30351,7 +30701,12 @@
         "design-system",
         "design-systems",
         "design-tokens",
-        "figma-plugin"
+        "figma-plugin",
+        "建立 Shopify 後台介面",
+        "套用 Polaris 元件庫",
+        "打造電商管理儀表板",
+        "使用 React 組件搭建商家平台",
+        "整合 Shopify 設計規範"
       ],
       "install": {
         "method": "npm",
@@ -30394,7 +30749,12 @@
         "icons",
         "svg",
         "svg-framework",
-        "vector-icons"
+        "vector-icons",
+        "添加圖標到網頁",
+        "搜索特定圖標",
+        "轉換圖標為 SVG",
+        "在 React 項目中使用圖標",
+        "在 Vue 組件中插入圖標"
       ],
       "install": {
         "method": "npm",
@@ -30438,7 +30798,12 @@
         "fontawesome",
         "icons",
         "svg-icons",
-        "svg-sprites"
+        "svg-sprites",
+        "插入圖標到網頁",
+        "使用 SVG 圖標庫",
+        "添加 CSS 圖標套件",
+        "選用字型圖標工具",
+        "替換現有圖標"
       ],
       "install": {
         "method": "npm",
@@ -30482,7 +30847,12 @@
         "android",
         "ios",
         "material-design",
-        "sprites"
+        "sprites",
+        "Material Design 圖標下載",
+        "Google 圖標庫找圖",
+        "Material Symbols 搜尋",
+        "Android 圖標下載",
+        "Io斯矢量圖標"
       ],
       "install": {
         "method": "git-clone",
@@ -30526,7 +30896,12 @@
         "android",
         "design",
         "fluent",
-        "flutter"
+        "flutter",
+        "找系統圖標庫",
+        "下載微軟圖標資源",
+        "為 App 加圖標",
+        "製作界面圖標",
+        "Flutter 集成圖標"
       ],
       "install": {
         "method": "git-clone",
@@ -30568,7 +30943,12 @@
         "ios",
         "sfsymbols",
         "swift",
-        "symbols"
+        "symbols",
+        "存取SF Symbols",
+        "Swift iOS圖標",
+        "使用靜態類型訪問圖標",
+        "iOS圖標安全訪問",
+        "Swift符號安全訪問"
       ],
       "install": {
         "method": "git-clone",
@@ -30612,7 +30992,12 @@
         "brand-assets",
         "brand-colors",
         "branding",
-        "branding-assets"
+        "branding-assets",
+        "找品牌logo",
+        "下载SVG图标",
+        "找APP的icon",
+        "获取品牌图标素材",
+        "找产品的logo"
       ],
       "install": {
         "method": "npm",
@@ -30654,7 +31039,12 @@
         "code-generation",
         "terminal-coding",
         "debugging-assistance",
-        "open-source-ai"
+        "open-source-ai",
+        "生成代码",
+        "调试程序",
+        "管理项目",
+        "执行终端命令",
+        "审查代码"
       ],
       "install": {
         "method": "git-clone",
@@ -30698,7 +31088,12 @@
         "code-generation",
         "debugging-assistance",
         "multimodal-api",
-        "cli-development"
+        "cli-development",
+        "調試程式錯誤",
+        "生成代碼片段",
+        "AI寫腳本",
+        "檢查代碼漏洞",
+        "自動化編碼任務"
       ],
       "install": {
         "method": "npm",
@@ -30739,7 +31134,12 @@
         "firecrawl-cli-skills",
         "firecrawl-cli",
         "firecrawl",
-        "cli-skills"
+        "cli-skills",
+        "爬取網站資料",
+        "從網址抓取內容",
+        "把網頁轉成文字",
+        "搜尋並抓取網頁資訊",
+        "從網頁提取文字"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -30780,7 +31180,12 @@
         "firecrawl-skills",
         "firecrawl",
         "web-scraping-skills",
-        "rag-scraper"
+        "rag-scraper",
+        "抓網頁內容轉Markdown",
+        "抓取網站資料",
+        "爬網頁表格",
+        "提取網頁資訊",
+        "網站內容轉Markdown"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -30821,7 +31226,12 @@
         "crawl4ai",
         "llm-crawler",
         "ai-scraper",
-        "crawl4ai-python"
+        "crawl4ai-python",
+        "抓網頁內容轉文字",
+        "從網站抓取資料建 RAG 知識庫",
+        "網頁轉 Markdown",
+        "爬網頁表格和資料",
+        "抓網頁資訊當 AI Agent 資料來源"
       ],
       "install": {
         "method": "pip",
@@ -30858,7 +31268,12 @@
         "selenium",
         "webdriver",
         "browser-automation",
-        "e2e-testing"
+        "e2e-testing",
+        "自動填表單欄位",
+        "擷取網頁截圖",
+        "模擬滑鼠點擊與鍵盤輸入",
+        "在不同瀏覽器上執行測試",
+        "自動登入網頁帳號"
       ],
       "install": {
         "method": "git-clone",
@@ -30900,7 +31315,12 @@
         "playwright-crawlee",
         "web-crawler-framework",
         "scraping-pipeline",
-        "crawler-framework"
+        "crawler-framework",
+        "爬取網頁數據",
+        "抓取網頁內容",
+        "自動化瀏覽器操作",
+        "無頭瀏覽器爬蟲",
+        "網頁表格抓取"
       ],
       "install": {
         "method": "npm",
@@ -30939,7 +31359,12 @@
         "scrapy",
         "scrapy-framework",
         "python-scraper",
-        "async-crawler"
+        "async-crawler",
+        "從網頁提取資訊",
+        "爬取產品價格",
+        "爬取新聞文章",
+        "爬取社交媒體帖子",
+        "爬取電商網站"
       ],
       "install": {
         "method": "pip",
@@ -31019,7 +31444,12 @@
         "beautifulsoup4",
         "bs4",
         "html-parser",
-        "python-bs4"
+        "python-bs4",
+        "解析 HTML 頁面",
+        "從網頁抓表格資料",
+        "提取 XML 標籤內容",
+        "爬蟲抓取網頁元素",
+        "從 HTML 抽取文字"
       ],
       "install": {
         "method": "pip",
@@ -31056,7 +31486,12 @@
         "splash",
         "scrapinghub-splash",
         "splash-headless",
-        "lua-browser-service"
+        "lua-browser-service",
+        "渲染含JavaScript的網頁",
+        "抓取動態加載的網頁數據",
+        "生成網頁截圖或PDF",
+        "用Lua腳本控制瀏覽器行為",
+        "透過HTTP介面操作無頭瀏覽器"
       ],
       "install": {
         "method": "pip",
@@ -31093,7 +31528,12 @@
         "deepspec",
         "speculative-decoding",
         "llm-acceleration",
-        "推測解碼"
+        "推測解碼",
+        "訓練推測解碼模型",
+        "評估解碼效能",
+        "降低 LLM 延遲",
+        "比較解碼算法",
+        "測試推測解碼速度"
       ],
       "install": {
         "method": "pip",
@@ -31126,7 +31566,12 @@
         "openworker",
         "agent-worker",
         "distributed-worker",
-        "任務執行器"
+        "任務執行器",
+        "分散式任務排程",
+        "批量執行多個 agent",
+        "並行分配 agent 任務",
+        "建立 agent 叢集",
+        "任務工作排程器"
       ],
       "install": {
         "method": "pip",
@@ -31159,7 +31604,12 @@
         "aisuite",
         "multi-llm",
         "unified-llm-sdk",
-        "多模型調用"
+        "多模型調用",
+        "切換 LLM 提供商",
+        "統一呼叫多個 AI 模型",
+        "跨平台調用 LLM",
+        "同時使用 OpenAI 和 Anthropic",
+        "合併不同 AI 模型 API"
       ],
       "install": {
         "method": "pip",
@@ -31193,7 +31643,12 @@
         "chub",
         "context-packer",
         "上下文管理",
-        "prompt-context"
+        "prompt-context",
+        "打包程式碼庫上下文",
+        "檢索專案文件",
+        "整合多份文件摘要",
+        "為 AI 提示詞補充上下文",
+        "壓縮冗長對話歷史"
       ],
       "install": {
         "method": "npm",
@@ -31226,7 +31681,12 @@
         "context-hub-skill",
         "chub-skill",
         "agent-context-skill",
-        "上下文技能"
+        "上下文技能",
+        "查閱Agent情境記憶",
+        "載入歷史對話紀錄",
+        "讀取Agent狀態資料",
+        "查詢情境匯流排",
+        "同步Agent知識快取"
       ],
       "install": {
         "method": "git-clone",
@@ -31259,7 +31719,12 @@
         "translation-agent",
         "reflection-translation",
         "llm-translator",
-        "反思翻譯"
+        "反思翻譯",
+        "翻译文件",
+        "把中文翻成英文",
+        "翻译文档",
+        "中英互翻",
+        "多语言翻译"
       ],
       "install": {
         "method": "pip",
@@ -31292,7 +31757,12 @@
         "optmem",
         "agent-memory",
         "permanent-memory",
-        "永續記憶"
+        "永續記憶",
+        "記憶 Agent 跨會話",
+        "為 AI 保留長期記憶",
+        "讓聊天機器人記住之前的內容",
+        "持久化 Agent 知識",
+        "跨輪次回憶資訊"
       ],
       "install": {
         "method": "pip",
@@ -31326,7 +31796,12 @@
         "ai-code-security",
         "security-scanner",
         "程式碼安全掃描",
-        "vulnerability-repair"
+        "vulnerability-repair",
+        "檢測安全缺陷",
+        "修復程式風險",
+        "檢查安全性弱點",
+        "分析程式碼安全",
+        "找出漏洞位置"
       ],
       "install": {
         "method": "npm",
@@ -31366,7 +31841,12 @@
         "stateful-agent",
         "agent-workflow",
         "multi-agent-graph",
-        "循環 Agent"
+        "循環 Agent",
+        "建立多Agent協同系統",
+        "設計循環Agent流程",
+        "搭建有狀態的Agent圖",
+        "實作Agent工作流編排",
+        "建構圖狀Agent架構"
       ],
       "install": {
         "method": "pip",
@@ -31409,7 +31889,12 @@
         "語音轉文字",
         "offline-transcription",
         "translation",
-        "buzz"
+        "buzz",
+        "錄音轉文字",
+        "語音翻譯",
+        "離線轉錄音檔",
+        "辨識不同說話者",
+        "影片語音轉文字"
       ],
       "install": {
         "method": "pip",
@@ -31455,7 +31940,12 @@
         "logged-in state",
         "chromium",
         "ai agent browser",
-        "瀏覽器自動化"
+        "瀏覽器自動化",
+        "AI自動瀏覽器",
+        "讓AI用Chrome登入狀態爬蟲",
+        "Agent並行開多個瀏覽器",
+        "隔離瀏覽器跑網頁自動化",
+        "AI Agent自動上網抓取資料"
       ],
       "install": {
         "method": "manual",
@@ -31500,7 +31990,12 @@
         "pull request review",
         "程式碼審查",
         "line-level comments",
-        "ci-cd-review"
+        "ci-cd-review",
+        "review pull requests",
+        "檢查SQL注入漏洞",
+        "找出空指針異常",
+        "掃描XSS資安問題",
+        "逐行標註程式碼缺陷"
       ],
       "install": {
         "method": "manual",
@@ -31548,7 +32043,12 @@
         "ai agent tutorial",
         "agent design patterns",
         "agent framework learning",
-        "ai-agents-for-beginners"
+        "ai-agents-for-beginners",
+        "学做 AI agent",
+        "从零认识 AI agent",
+        "了解 AI agent 设计模式",
+        "找 AI agent 入门课程",
+        "学构建智能体"
       ],
       "install": {
         "method": "git-clone",
@@ -31594,7 +32094,12 @@
         "awesome-claude-code-subagents",
         "VoltAgent",
         "agent collection",
-        "custom agents"
+        "custom agents",
+        "寫後端API",
+        "建構REST服務",
+        "開發前端元件",
+        "檢查安全漏洞",
+        "分析資料集"
       ],
       "install": {
         "method": "git-clone",
@@ -31639,7 +32144,12 @@
         "claude code debug",
         "debug mode",
         "root cause analysis",
-        "除錯"
+        "除錯",
+        "追蹤程式執行流程",
+        "找出 bug 根因",
+        "檢查執行時錯誤",
+        "監控程式運行狀態",
+        "分析程式崩潰原因"
       ],
       "install": {
         "method": "git-clone",
@@ -31682,7 +32192,12 @@
         "official plugins",
         "mcp plugins",
         "claude-plugins-official",
-        "agent plugins"
+        "agent plugins",
+        "搜尋 Claude 插件",
+        "安裝 MCP 伺服器",
+        "查找 AI 代理工具",
+        "瀏覽 Claude Code 命令集",
+        "添加技能外掛"
       ],
       "install": {
         "method": "none",
@@ -31775,7 +32290,12 @@
         "company testing",
         "software quality",
         "測試實踐",
-        "howtheytest"
+        "howtheytest",
+        "研究大廠如何測試軟體",
+        "查 Amazon 的測試流程",
+        "找 Airbnb 品質保證做法",
+        "看 Apple 的軟體測試文化",
+        "搜尋科技公司 QA 策略"
       ],
       "install": {
         "method": "none",
@@ -31818,7 +32338,12 @@
         "agent skill",
         "react review",
         "typescript review",
-        "程式碼審查"
+        "程式碼審查",
+        "程式碼安全審查",
+        "檢查 React 程式碼",
+        "檢視 PR 內容",
+        "分析程式碼性能",
+        "檢查 TypeScript 類型問題"
       ],
       "install": {
         "method": "git-clone",
@@ -31861,7 +32386,12 @@
         "first-principles-skill",
         "reasoning",
         "assumptions",
-        "第一性原理"
+        "第一性原理",
+        "拆解問題基本結構",
+        "驗證邏輯推論",
+        "挑戰隱藏假設",
+        "分解複雜問題",
+        "追本溯源分析"
       ],
       "install": {
         "method": "git-clone",
@@ -31903,7 +32433,12 @@
         "5-whys-skill",
         "debugging methodology",
         "rca",
-        "根因分析"
+        "根因分析",
+        "追查 bug 根本原因",
+        "分析系統故障根因",
+        "用 5 whys 找問題根源",
+        "逐步追查失誤原因",
+        "找出程式崩潰的根本原因"
       ],
       "install": {
         "method": "git-clone",
@@ -31946,7 +32481,12 @@
         "mermaid-syntax-skill",
         "sequence diagram",
         "er diagram",
-        "流程圖"
+        "流程圖",
+        "畫流程圖",
+        "生成序列圖",
+        "產出 ER 圖",
+        "轉換 Mermaid 語法",
+        "畫甘特圖"
       ],
       "install": {
         "method": "git-clone",
@@ -31989,7 +32529,12 @@
         "unified skills",
         "multi-agent skills",
         "agent-skills-manager",
-        "skills sync"
+        "skills sync",
+        "同步多個 AI 工具的技能目錄",
+        "用符號連結維護統一技能庫",
+        "管理多代理程式的技能目錄",
+        "一鍵同步所有 AI 編碼助手的 skills",
+        "跨多個編碼代理集中管理 skills"
       ],
       "install": {
         "method": "git-clone",
@@ -32033,7 +32578,12 @@
         "php async",
         "filesystem php",
         "async file",
-        "reactphp-filesystem"
+        "reactphp-filesystem",
+        "async讀檔案",
+        "非同步寫檔案",
+        "非阻塞檔案存取",
+        "非阻塞讀取目錄",
+        "PHP async讀寫"
       ],
       "install": {
         "method": "composer",
@@ -32081,7 +32631,12 @@
         "think step by step",
         "reasoning skill",
         "no-mcp reasoning",
-        "hypothesis verification"
+        "hypothesis verification",
+        "分支思考",
+        "驗證假設",
+        "結構化推理",
+        "追蹤推理過程",
+        "多路徑分析"
       ],
       "install": {
         "method": "git-clone",
@@ -32129,7 +32684,12 @@
         "web3",
         "react",
         "integration",
-        "onchain"
+        "onchain",
+        "串錢包",
+        "加錢包登入",
+        "整合 Web3 錢包",
+        "串接以太坊錢包",
+        "開發 dapp"
       ],
       "install": {
         "method": "npm",
@@ -32175,7 +32735,12 @@
         "llm",
         "local-first",
         "knowledge-reuse",
-        "multi-agent"
+        "multi-agent",
+        "儲存對話紀錄供AI代理程式記憶",
+        "把文件轉成可復用的向量記憶",
+        "為多代理程式建立共享知識庫",
+        "將程式碼轉換成可搜尋的記憶資產",
+        "從團隊討論中提取可複用的經驗記憶"
       ],
       "install": {
         "method": "npm",
@@ -32222,7 +32787,12 @@
         "d3-visualization",
         "hierarchy",
         "organizational chart",
-        "interactive tree"
+        "interactive tree",
+        "画树状图",
+        "绘制组织架构",
+        "可视化层级结构",
+        "渲染文件目录树",
+        "构建组织图表"
       ],
       "install": {
         "method": "npm",
@@ -32307,7 +32877,12 @@
         "ethereum",
         "smart-contracts",
         "dapps",
-        "awesome-list"
+        "awesome-list",
+        "找Solidity資源",
+        "查智能合約教程",
+        "了解以太坊開發工具",
+        "學Solidity入門",
+        "查看Solidity庫"
       ],
       "install": {
         "method": "none",
@@ -32351,7 +32926,12 @@
         "cnn",
         "machine-learning",
         "beginner",
-        "microsoft-ai"
+        "microsoft-ai",
+        "學 AI 入門課程",
+        "免費機器學習教學",
+        "週 AI 學習計畫",
+        "從零學深度學習",
+        "CNN 視覺課程"
       ],
       "install": {
         "method": "git-clone",
@@ -32398,7 +32978,12 @@
         "linear-alternative",
         "open-source",
         "self-hosted",
-        "project-management"
+        "project-management",
+        "追蹤程式問題",
+        "管理專案進度",
+        "建立看板",
+        "分配團隊任務",
+        "追蹤缺陷"
       ],
       "install": {
         "method": "npm",
@@ -32443,7 +33028,12 @@
         "llm",
         "coding-agent",
         "ram-efficient",
-        "lightweight-ai"
+        "lightweight-ai",
+        "轉換程式碼為其他語言",
+        "修復 Bug",
+        "優化代碼性能",
+        "將自然語言指令轉為執行腳本",
+        "生成單元測試"
       ],
       "install": {
         "method": "cargo",
@@ -32531,7 +33121,12 @@
         "from",
         "scratch",
         "agent工程师",
-        "ai学习路径"
+        "ai学习路径",
+        "學AI工程",
+        "學習AI代理開發",
+        "從零開始學AI",
+        "學習智能體開發",
+        "AI編程入門"
       ],
       "install": {
         "method": "none",
@@ -32572,7 +33167,12 @@
         "blockchain",
         "distributed-ledger",
         "golang",
-        "high-performance"
+        "high-performance",
+        "部署 Ontology 節點",
+        "構建分散式應用程式",
+        "撰寫區塊鏈智能合約",
+        "操作分散式帳本",
+        "查詢區塊鏈狀態"
       ],
       "install": {
         "method": "git-clone",
@@ -32613,7 +33213,12 @@
         "hermes",
         "multi-agent",
         "orchestration",
-        "agent-skills"
+        "agent-skills",
+        "串接多個 AI 代理協作",
+        "建立 AI 工作流程自動化",
+        "整合不同 AI 工具技能",
+        "協調多代理人任務分配",
+        "管理 AI 技能庫與分工"
       ],
       "install": {
         "method": "pip",
@@ -32648,7 +33253,12 @@
         "hermes",
         "workflow",
         "deployment",
-        "ci-cd"
+        "ci-cd",
+        "跑Hermes工作流",
+        "部署Hermes應用程式",
+        "建立Hermes Agent Pipeline",
+        "CI/CD驅動Hermes自動化",
+        "管理Hermes任務排程"
       ],
       "install": {
         "method": "git-clone",
@@ -32685,7 +33295,12 @@
         "skill",
         "ui/ux",
         "ai设计",
-        "中文教程"
+        "中文教程",
+        "学习AI辅助UI设计",
+        "用AI生成APP界面",
+        "AI制作网页原型",
+        "设计移动端组件",
+        "学习UX交互技巧"
       ],
       "install": {
         "method": "git-clone",
@@ -32722,7 +33337,12 @@
         "greensock",
         "animation",
         "tween",
-        "timeline"
+        "timeline",
+        "創建動畫效果",
+        "調整時間軸",
+        "使用插件",
+        "處理過渡效果",
+        "控制動畫序列"
       ],
       "install": {
         "method": "git-clone",
@@ -32762,7 +33382,12 @@
         "claude-design",
         "design-system",
         "style-extraction",
-        "typeui"
+        "typeui",
+        "抓网页样式成文件",
+        "把网站设计转成Markdown",
+        "导出CSS样式成文档",
+        "抓取网页样式为Markdown",
+        "把CSS转成文字文件"
       ],
       "install": {
         "method": "npm",
@@ -32805,7 +33430,12 @@
         "speech-synthesis",
         "text-to-speech",
         "microsoft-tts",
-        "voice-generation"
+        "voice-generation",
+        "把文章唸出來",
+        "文字轉語音合成",
+        "把文字讀給我用",
+        "文字變語音",
+        "文章轉語音播放"
       ],
       "install": {
         "method": "pip",
@@ -32845,7 +33475,12 @@
         "tts",
         "tts-engines",
         "text-to-speech",
-        "voiceover"
+        "voiceover",
+        "把文章讀出來",
+        "長篇文字轉語音",
+        "多角色配音",
+        "AI朗讀文字",
+        "故事配音"
       ],
       "install": {
         "method": "npm",
@@ -32885,7 +33520,12 @@
         "edge",
         "openai",
         "voice",
-        "audio-generation"
+        "audio-generation",
+        "轉文字成語音",
+        "語音合成",
+        "text to speech",
+        "讀稿生音",
+        "生成語音檔案"
       ],
       "addedAt": "2026-08-05T13:07:13.958Z",
       "status": "active",
@@ -32915,7 +33555,12 @@
         "生成",
         "text to video",
         "AI video",
-        "video generation"
+        "video generation",
+        "文字製作影片",
+        "AI做影片",
+        "文字生影片",
+        "描述生成影片",
+        "用文字產生影片"
       ],
       "addedAt": "2026-08-05T13:07:13.958Z",
       "status": "active",
@@ -32947,7 +33592,12 @@
         "sandbox execution",
         "edge agent",
         "container fuse",
-        "isolate shell"
+        "isolate shell",
+        "沙箱執行程式碼",
+        "建立虛擬檔案系統",
+        "隔離運算容器",
+        "邊緣執行代理程式",
+        "持久化儲存檔案"
       ],
       "install": {
         "method": "npm",
@@ -32991,7 +33641,12 @@
         "workflow",
         "task automation",
         "iterative processing",
-        "batch processing"
+        "batch processing",
+        "批量轉換檔案格式",
+        "自動爬取網頁資料並整理",
+        "週期性匯出報表",
+        "批次處理圖片檔名",
+        "自動讀取 CSV 欄位並重新格式化"
       ],
       "addedAt": "2026-08-05T13:11:36.234Z",
       "status": "active",
@@ -33025,7 +33680,12 @@
         "pdf extraction",
         "scanned pdf",
         "ocr routing",
-        "pdf classification"
+        "pdf classification",
+        "扫描件pdf判断",
+        "提取pdf文字",
+        "检测pdf表格",
+        "区分pdf文字型和扫描型",
+        "pdf多栏解析"
       ],
       "install": {
         "method": "pip",
@@ -33105,7 +33765,12 @@
         "tracking",
         "object-detection",
         "visualization",
-        "bounding-box"
+        "bounding-box",
+        "畫偵測框",
+        "標註物體位置",
+        "繪製視覺化圖",
+        "追蹤物體移動",
+        "偵測物體"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
       "status": "active",
@@ -33137,7 +33802,12 @@
         "server-components",
         "static-site",
         "fullstack",
-        "vercel"
+        "vercel",
+        "構建伺服器端渲染網站",
+        "建立靜態生成網頁",
+        "用 React 搭全端應用",
+        "開發帶有 API 介面的網站",
+        "架設需 SEO 優化的網站"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
       "status": "active",
@@ -33168,7 +33838,12 @@
         "styling",
         "responsive",
         "framework",
-        "ui"
+        "ui",
+        "排版回應式網頁",
+        "建立 UI 元件庫",
+        "快速原型設計介面",
+        "美化按鈕樣式",
+        "設計現代化網站"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
       "status": "active",
@@ -33200,7 +33875,12 @@
         "learning",
         "language model",
         "research paper",
-        "NLP"
+        "NLP",
+        "搜索 NLP 入門教程",
+        "閱讀大語言模型研究論文",
+        "查找 Andrej Karpathy 課程",
+        "尋找 LLM 技術報告",
+        "追綜機器學習入門資源"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
       "status": "active",
@@ -33229,7 +33909,12 @@
         "code-review",
         "gui",
         "ide",
-        "analysis"
+        "analysis",
+        "IDE 程式碼分析",
+        "幫我檢查程式碼",
+        "找出程式碼問題",
+        "JetBrains 外掛推薦",
+        "AI 程式碼審查"
       ],
       "addedAt": "2026-08-05T13:11:46.668Z",
       "status": "active",
@@ -33257,7 +33942,12 @@
         "crm",
         "customer management",
         "agent automation",
-        "sales pipeline"
+        "sales pipeline",
+        "管理客戶資料",
+        "追蹤銷售管線",
+        "自動化跟進潛在客戶",
+        "串接 AI 客服助理",
+        "整理客戶互動紀錄"
       ],
       "install": {
         "method": "npm",
@@ -33292,7 +33982,12 @@
         "azure",
         "chatgpt",
         "dall-e",
-        "generative-ai"
+        "generative-ai",
+        "从零开始学Azure OpenAI",
+        "ChatGPT入门指南",
+        "DALL-E 画图教程",
+        "生成式AI应用开发",
+        "用GPT写代码"
       ],
       "install": {
         "method": "none",
@@ -33336,7 +34031,12 @@
         "ai-agent",
         "awesome-skills",
         "claude-code",
-        "codex"
+        "codex",
+        "翻譯英文文件",
+        "整理會議錄音",
+        "搜尋最新研究論文",
+        "比較不同 AI 模型回答",
+        "轉換 CSV 為 JSON"
       ],
       "install": {
         "method": "none",
@@ -33420,7 +34120,12 @@
         "blackwell",
         "cuda",
         "deepseek",
-        "diffusion"
+        "diffusion",
+        "部署語言模型推理服務",
+        "用 SGLang 加速模型推論",
+        "在 GPU 上執行大語言模型",
+        "部署 DeepSeek 模型推論",
+        "使用 Blackwell GPU 運行 LLM"
       ],
       "install": {
         "method": "none",
@@ -33463,7 +34168,12 @@
         "agent",
         "deepseek",
         "fine-tuning",
-        "gemma"
+        "gemma",
+        "微调大语言模型",
+        "訓練 LLM 模型",
+        "fine-tune 視覺語言模型",
+        "微調多模態模型",
+        "訓練 DeepSeek 模型"
       ],
       "install": {
         "method": "none",
@@ -33507,7 +34217,12 @@
         "auto-quant",
         "deep-learning",
         "finance",
-        "fintech"
+        "fintech",
+        "訓練量化模型",
+        "開發策略回測",
+        "自動化交易系統",
+        "構建投資組合優化器",
+        "訓練因子模型"
       ],
       "install": {
         "method": "none",
@@ -33548,7 +34263,12 @@
         "ai-automation",
         "automation",
         "automation-templates",
-        "awesome"
+        "awesome",
+        "自動發送 Gmail 郵件",
+        "建立 Slack 通知機器人",
+        "創建 Discord 自動回應",
+        "開發 Telegram 聊天機器人",
+        "搭建 WhatsApp 訊息自動化"
       ],
       "install": {
         "method": "none",
@@ -33592,7 +34312,12 @@
         "agent-harness",
         "agentscope",
         "ai-agent",
-        "ai-agents"
+        "ai-agents",
+        "個人 AI 助手部署",
+        "架設 AI Agent",
+        "建立 Chatbot",
+        "自部署 AI 助手",
+        "串接多平台聊天 AI"
       ],
       "install": {
         "method": "none",
@@ -33679,7 +34404,12 @@
         "agent",
         "assistant",
         "chat",
-        "chatgpt"
+        "chatgpt",
+        "從我的文件找答案",
+        "分析網頁內容",
+        "搜尋本地知識庫",
+        "進行深度研究",
+        "整合不同AI模型"
       ],
       "install": {
         "method": "none",
@@ -33719,11 +34449,15 @@
       "language": "other",
       "triggers": [
         "awesome",
-        "awesome",
         "awesome-list",
         "lists",
         "resources",
-        "unicorns"
+        "unicorns",
+        "找某個主題的資源清單",
+        "搜尋技術精選大全",
+        "查各領域資源合集",
+        "找免費工具資源列表",
+        "挖掘專業領域資源匯總"
       ],
       "install": {
         "method": "none",
@@ -33768,7 +34502,12 @@
         "certification",
         "community",
         "curriculum",
-        "d3"
+        "d3",
+        "學程式設計",
+        "找免費編程課程",
+        "考編程認證",
+        "練習 JavaScript",
+        "學習數據可視化"
       ],
       "install": {
         "method": "none",
@@ -33814,7 +34553,12 @@
         "collections",
         "python",
         "python-frameworks",
-        "python-libraries"
+        "python-libraries",
+        "找Python框架推薦",
+        "查Python數據分析套件",
+        "選Python自動化腳本",
+        "搜Python機器學習庫",
+        "參考Python Web框架"
       ],
       "install": {
         "method": "none",
@@ -33858,7 +34602,12 @@
         "996-icu",
         "996 work schedule",
         "labor rights",
-        "tech worker advocacy"
+        "tech worker advocacy",
+        "查詢 996 工時制度",
+        "了解科技業加班文化",
+        "查詢勞動權益資訊",
+        "查找科技公司工時紀錄",
+        "了解過勞案例"
       ],
       "install": {
         "method": "none",
@@ -33893,7 +34642,11 @@
         "frontend",
         "javascript",
         "library",
-        "react"
+        "構建網頁界面",
+        "開發前端專案",
+        "設計UI元件",
+        "實現響應式布局",
+        "製作動態表單"
       ],
       "install": {
         "method": "none",
@@ -33938,7 +34691,12 @@
         "kernel",
         "driver",
         "patch",
-        "embedded"
+        "embedded",
+        "編碼解",
+        "自動處理重複任務",
+        "整理資料",
+        "追蹤系統狀態",
+        "產生報告"
       ],
       "install": {
         "method": "none",
@@ -33973,7 +34731,12 @@
         "algorithm-competitions",
         "algorithms-implemented",
         "algos",
-        "community-driven"
+        "community-driven",
+        "Python 演算法實作",
+        "排序演算法範例",
+        "圖論演算法 Python",
+        "動態規劃程式碼",
+        "搜尋演算法實現"
       ],
       "install": {
         "method": "none",
@@ -34018,7 +34781,11 @@
         "framework",
         "frontend",
         "javascript",
-        "vue"
+        "建構網頁介面",
+        "開發單頁應用程式",
+        "組裝網頁元件",
+        "渲染動態資料清單",
+        "綁定表單資料到畫面"
       ],
       "install": {
         "method": "none",
@@ -34059,9 +34826,13 @@
       "triggers": [
         "computer-science",
         "awesome-list",
-        "computer-science",
         "courses",
-        "curriculum"
+        "curriculum",
+        "找免費計算機科學課程",
+        "制定自學路徑",
+        "計算機科學學習清單",
+        "規劃計算機科學課程表",
+        "查詢核心計算機科學課程"
       ],
       "install": {
         "method": "none",
@@ -34105,7 +34876,12 @@
         "bolt",
         "cluely",
         "copilot",
-        "cursor"
+        "cursor",
+        "查詢 AI 工具的系統提示詞",
+        "比較不同 AI 程式助手的模型設定",
+        "查找各 AI 工具的 prompt 配置",
+        "查看 AI 編碼助手的提示框架",
+        "對照多個 AI 開發工具的模型規格"
       ],
       "install": {
         "method": "none",
@@ -34153,7 +34929,12 @@
         "goal-driven-agent",
         "ai-agents",
         "agbenchmark",
-        "agent-forge"
+        "agent-forge",
+        "爬網頁抓資料",
+        "用終端機自動跑指令",
+        "把目標拆成小步驟一步步執行",
+        "訓練和測試AI代理人",
+        "多個AI助手分工協作"
       ],
       "install": {
         "method": "pip",
@@ -34248,7 +35029,12 @@
         "agent",
         "autonomous coding",
         "RLM",
-        "self-improving agent"
+        "self-improving agent",
+        "跑長任務",
+        "優化程式碼",
+        "修復bug",
+        "生成代碼",
+        "執行自動化任務"
       ],
       "install": {
         "method": "npm",
@@ -34283,7 +35069,12 @@
         "multiplayer",
         "agent",
         "harness",
-        "collaboration"
+        "collaboration",
+        "多個 AI 一起工作",
+        "讓幾個 agent 分工",
+        "協調一群 AI 助手",
+        "設計 AI 協作流程",
+        "讓多個 AI 合作寫程式"
       ],
       "install": {
         "method": "none",
@@ -34316,7 +35107,12 @@
         "anydoc",
         "markdown conversion",
         "document to markdown",
-        "file format converter"
+        "file format converter",
+        "PDF轉Markdown",
+        "Word轉Markdown",
+        "HTML轉Markdown",
+        "圖片轉Markdown",
+        "掃描檔轉Markdown"
       ],
       "install": {
         "method": "none",
@@ -34383,7 +35179,12 @@
         "kimi-k3",
         "moonshot-ai",
         "frontier-model",
-        "reasoning-agent"
+        "reasoning-agent",
+        "分析程式碼",
+        "搜尋研究文獻",
+        "處理複雜推理",
+        "翻譯技術文件",
+        "檢索學術資源"
       ],
       "install": {
         "method": "none",
@@ -34416,7 +35217,12 @@
         "x4g",
         "code generation",
         "project scaffolding",
-        "automation"
+        "automation",
+        "產生程式碼模板",
+        "建立專案目錄",
+        "生成 API 存根",
+        "自動化測試寫入",
+        "設定開發框架"
       ],
       "install": {
         "method": "none",
@@ -34449,7 +35255,12 @@
         "scroll-world",
         "3D landing page",
         "immersive brand experience",
-        "scroll-driven animation"
+        "scroll-driven animation",
+        "做3D品牌首頁",
+        "生成滾動導航頁面",
+        "製作沉浸式品牌網站",
+        "設計3D互動落地頁",
+        "建立可滾動的3D世界頁面"
       ],
       "install": {
         "method": "none",
@@ -34484,7 +35295,12 @@
         "gemma",
         "gemma4",
         "gemma4-26b-a4b",
-        "gpgpu"
+        "gpgpu",
+        "在 MacBook 上跑 LLM",
+        "用 Apple Silicon 跑大語言模型",
+        "本地部署 Gemma 模型",
+        "低記憶體執行大模型推理",
+        "在 Mac 上跑 Gemma 4"
       ],
       "install": {
         "method": "none",
@@ -34528,7 +35344,12 @@
         "optical-transfer-function",
         "imaging-system-analysis",
         "lens-performance",
-        "mtf-calculation"
+        "mtf-calculation",
+        "計算 MTF",
+        "分析光學傳遞函數",
+        "評估鏡頭解析度",
+        "模擬成像系統",
+        "計算反差遞減"
       ],
       "install": {
         "method": "none",
