@@ -245,8 +245,17 @@ export function retrieve(tools, query, options = {}) {
  * 融合檢索 + LLM rerank（async 版本）
  *
  * 為什麼需要較大的召回數：rerank 只能從候選中選，因此召回率就是它的天花板。
- * 實測 agent 引擎 top-5 召回率僅 33.3%，top-20 才有 54.8%。
- * 所以這裡先用 recallK（預設 20）召回，rerank 後再截斷回 topK。
+ *
+ * 實測（2026-09-16，trigger 擴充後）天花板隨 K 的變化：
+ *   top-10 → 64.3%　top-20 → 78.6%　**top-50 → 90.5%**　top-100 → 92.9%
+ * top-20 之後最大的躍升在 top-50（+5 筆），再往上邊際效益驟減。
+ *
+ * 對應的 rerank 實測 Hit@1：
+ *   top-20 → 57.1%　**top-50 → 73.8%**（達天花板 82%）
+ * 故 recallK 預設取 50——候選變多雖讓 prompt 變長，但換到 +16.7 個百分點。
+ *
+ * 注意：診斷顯示多數「失敗」其實是**排序問題而非召回問題**——
+ * 期望工具常落在第 33~73 名。擴大候選範圍比改架構更直接有效。
  *
  * 離線安全：無 API key 時 rerank 直接略過，回傳原順序（與 retrieve() 相同）。
  * API 失敗時亦同，絕不因 rerank 故障而讓整個檢索失效。
@@ -255,12 +264,12 @@ export function retrieve(tools, query, options = {}) {
  * @param {string} query
  * @param {object} [options]
  * @param {number} [options.topK=5] - 最終回傳筆數
- * @param {number} [options.recallK=20] - rerank 前的召回筆數（天花板）
+ * @param {number} [options.recallK=50] - rerank 前的召回筆數（天花板）
  * @param {boolean} [options.rerank] - 明確停用請傳 false；預設有 key 就啟用
  * @returns {Promise<object>} retrieve() 的結果，外加 rerank 欄位
  */
 export async function retrieveWithRerank(tools, query, options = {}) {
-  const { topK = 5, recallK = 20 } = options;
+  const { topK = 5, recallK = 50 } = options;
 
   // 1. 先用較大 K 召回，確保正確答案有機會進入候選
   const base = retrieve(tools, query, { ...options, topK: Math.max(topK, recallK) });
