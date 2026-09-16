@@ -2751,6 +2751,26 @@
     "freetube": {
       "at": "2026-09-16T13:12:49.719Z",
       "added": 5
+    },
+    "sqlitebrowser-sqlitebrowser": {
+      "at": "2026-09-16T13:21:16.088Z",
+      "added": 5
+    },
+    "humanlayer-skills": {
+      "at": "2026-09-16T13:21:16.089Z",
+      "added": 5
+    },
+    "qwen-code": {
+      "at": "2026-09-16T13:21:16.089Z",
+      "added": 5
+    },
+    "unlazy": {
+      "at": "2026-09-16T13:21:16.089Z",
+      "added": 5
+    },
+    "rtk": {
+      "at": "2026-09-16T13:22:34.084Z",
+      "added": 5
     }
   },
   "model": "agnes-2.5-flash"

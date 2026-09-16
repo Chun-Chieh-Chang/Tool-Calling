@@ -38315,7 +38315,12 @@
         "cost-reduction",
         "token-optimization",
         "cli-proxy",
-        "llm-cost"
+        "llm-cost",
+        "減少 LLM token 消耗",
+        "降低 Claude API 費用",
+        "壓縮提示詞 token",
+        "優化開發命令 token 用量",
+        "代理 LLM 請求節省成本"
       ],
       "install": {
         "method": "cargo",
@@ -41930,7 +41935,12 @@
         "db4s",
         "sqlite-gui",
         "database-browser",
-        "sqlite-manager"
+        "sqlite-manager",
+        "用圖形界面管理 SQLite 數據庫",
+        "在桌面應用打開 .sqlite 文件",
+        "寫 SQL 查询筛选表格數據",
+        "可視化設計數據庫表結構",
+        "将 CSV 或 Excel 導入 SQLite"
       ],
       "capabilities": [
         "sqlite-management",
@@ -44278,7 +44288,12 @@
         "claudemd-optimizer",
         "react-props-narrowing",
         "claude外掛",
-        "claude技能庫"
+        "claude技能庫",
+        "優化 CLAUDE.md 設定",
+        "設計 Agent 循環流程",
+        "重構 React 屬性類型",
+        "生成 HTML 視覺化圖",
+        "建立控制環路邏輯"
       ],
       "capabilities": [
         "claude-code",
@@ -45353,7 +45368,12 @@
         "ai-coding",
         "cli",
         "terminal",
-        "coding-agent"
+        "coding-agent",
+        "用 AI 撰寫腳本",
+        "在終端機裡生成程式碼",
+        "AI 輔助除錯",
+        "用 AI 修改程式碼",
+        "終端機裡的程式編輯助手"
       ],
       "install": {
         "method": "npm",
@@ -46734,7 +46754,12 @@
         "llm",
         "productivity",
         "prompt-engineering",
-        "skill"
+        "skill",
+        "讓 Claude 別偷懶",
+        "解決 AI 模型偷懶問題",
+        "讓 AI 思考更深入",
+        "防止 AI 過早結束任務",
+        "讓 LLM 深度分析程式碼"
       ],
       "capabilities": [
         "ai-agents",
