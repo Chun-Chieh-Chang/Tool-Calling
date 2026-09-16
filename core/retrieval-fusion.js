@@ -216,6 +216,23 @@ export function retrieve(tools, query, options = {}) {
     }
   }
 
+  // 3c. 決策已是 no-match 時，把 agent 的 top-1 提到首位。
+  //
+  // 實測（2026-09-16）：agent 對、fusion 錯的 5 筆，agent 的 confidence 都只有
+  // 21~29%，未達 0.35 門檻，所以 3b 不觸發，fusion 就回傳了 L2 的結果。
+  //
+  // 關鍵：decision 已是 no-match，代表**已經明示「不確定」**，
+  // 此時把最有希望的候選放前面並不損害誠實性——呼叫端本來就知道不可盡信。
+  // 這讓「誠實」與「有用」不再互斥：照樣說不知道，但給出最好的猜測。
+  // 空集查詢不受影響（decision 仍為 no-match，語意不變）。
+  if (decision === 'no-match' && agentTop1) {
+    const i = merged.findIndex((x) => x.id === agentTop1.id);
+    if (i > 0) {
+      const [hit] = merged.splice(i, 1);
+      merged.unshift(hit);
+    }
+  }
+
   // 重新排序：L2 結果保持原分數；agent 補充結果的 score 維持 0~1 量級
   // 用 source 標記讓调用端知道哪邊來的
   return {
