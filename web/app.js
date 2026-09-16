@@ -59,9 +59,6 @@ async function init() {
       setTimeout(warm, 0);
     }
     
-    // 初始化 Web Worker（離線計算）
-    initWorker();
-    
     // 初始化持久化快取
     persistCache.init().then(() => {
       console.log('[Cache] IndexedDB initialized');
@@ -673,86 +670,6 @@ function handleSearch() {
   }
 }
 
-// ─── Web Worker 搜尋引擎 ─────────────────────────────────────────────
-let searchWorker = null;
-let workerReady = false;
-let pendingWorkerSearch = null;
-
-function initWorker() {
-  if (typeof Worker === 'undefined') {
-    console.warn('[Search] Web Worker not supported, using main thread');
-    return;
-  }
-  
-  try {
-    searchWorker = new Worker('./search-worker.js');
-    
-    searchWorker.addEventListener('message', (e) => {
-      const { type, stats, results, timestamp } = e.data;
-      
-      switch (type) {
-        case 'ready':
-          workerReady = true;
-          console.log('[Search] Worker ready');
-          // 觸發待處理的搜尋
-          if (pendingWorkerSearch) {
-            const p = pendingWorkerSearch;
-            pendingWorkerSearch = null;
-            performWorkerSearch(p.query, p.options);
-          }
-          break;
-          
-        case 'warmup-complete':
-          console.log(`[Search] Worker warmup complete: ${stats.toolCount} tools indexed`);
-          break;
-          
-        case 'search-result':
-          // 記錄搜尋行為
-          const workerQuery = pendingWorkerSearch?.query || '';
-          if (workerQuery) {
-            behaviorTracker.recordSearch(workerQuery, results, 0);
-          }
-          
-          // 存入 IndexedDB
-          persistCache.set(buildWorkerCacheKey(workerQuery), results);
-          
-          // 渲染結果
-          const mappedResults = results.map(r => ({
-            tool: registryTools.find(t => t?.id === r.id) || { id: r.id, name: r.name },
-            score: r.score,
-            matchLevel: 'L3-worker',
-            matchedKeywords: []
-          }));
-          renderSearchResults(mappedResults);
-          break;
-          
-        case 'error':
-          const errMsg = e.data?.message || 'Unknown worker error';
-          console.error('[Search] Worker error:', errMsg);
-          // 回退到主线程搜索
-          const fallbackQuery = pendingWorkerSearch?.query || '';
-          if (fallbackQuery) {
-            const options = { topK: 100 };
-            const results = search(registryTools || [], fallbackQuery, options);
-            renderSearchResults(results);
-          }
-          break;
-      }
-    });
-    
-    // 啟動時預熱索引
-    setTimeout(() => {
-      searchWorker.postMessage({
-        type: 'warmup',
-        payload: { tools: registryTools }
-      });
-    }, 500);
-    
-  } catch (err) {
-    console.warn('[Search] Failed to init Worker:', err.message);
-  }
-}
-
 /**
  * 走 server 檢索（與 MCP / CLI 共用 core/ 引擎：agent 四維 + fusion 融合）
  *
@@ -794,24 +711,6 @@ async function serverSearch(query, options = {}) {
     console.warn('[Search] server unavailable, falling back:', err.message);
     return null;
   }
-}
-
-/**
- * 執行 Worker 搜尋
- */
-function performWorkerSearch(query, options) {
-  if (!searchWorker || !workerReady) {
-    pendingWorkerSearch = { query, options };
-    return;
-  }
-  
-  searchWorker.postMessage({
-    type: 'search',
-    payload: {
-      query,
-      threshold: 0.03
-    }
-  });
 }
 
 function syncAllViews() {
@@ -858,14 +757,9 @@ function syncAllViews() {
           return;
         }
 
-        // server 不可用 → 退回 Worker（如果就緒）
-        if (searchWorker && workerReady) {
-          console.log('[Search] Using Worker for semantic search');
-          performWorkerSearch(query, options);
-          return;
-        }
-
-        // 最後回退到主線程搜尋
+        // server 不可用 → 退回主線程 L2 關鍵字搜尋
+        // （原本還有一層 Web Worker TF-IDF，但那是與 core/ 重複的第三套實作，
+        //   且品質與 L2 同級，已移除）
         console.log('[Search] Using main thread search');
         const results = search(registryTools || [], query, options);
         setInMemoryCache(query, category, undefined, results, registryVersion);
@@ -882,12 +776,6 @@ function syncAllViews() {
   }
 }
 
-/**
- * 建構 Worker 快取鍵
- */
-function buildWorkerCacheKey(query) {
-  return `worker|${query}|${categorySelect?.value || ''}`;
-}
 
 // ─── 渲染：分類折疊 (Accordion) 模式 ──────────────────────────────────
 

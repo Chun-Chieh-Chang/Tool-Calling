@@ -39,9 +39,8 @@ console.log(`同義詞詞典已更新（${stats.totalTerms} 個詞彙，來自 $
 fs.copyFileSync(path.join(webDir, 'index.html'), path.join(distDir, 'index.html'));
 fs.copyFileSync(path.join(webDir, 'style.css'), path.join(distDir, 'style.css'));
 fs.copyFileSync(path.join(webDir, 'app.js'), path.join(distDir, 'app.js'));
-if (fs.existsSync(path.join(webDir, 'search-worker.js'))) {
-  fs.copyFileSync(path.join(webDir, 'search-worker.js'), path.join(distDir, 'search-worker.js'));
-}
+// search-worker.js 已移除：它是與 core/ 重複的第三套檢索實作，
+// 前端現已改走 /api/search（與 MCP/CLI 共用 core/ 引擎）。
 if (fs.existsSync(path.join(webDir, 'persist-cache.js'))) {
   fs.copyFileSync(path.join(webDir, 'persist-cache.js'), path.join(distDir, 'persist-cache.js'));
 }
