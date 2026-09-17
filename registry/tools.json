@@ -18270,15 +18270,20 @@
         "codegraph",
         "knowledge graph",
         "local ai",
-        "codebase context",
-        "關鍵字/短語："
+        "codebase context"
       ],
       "install": {
         "method": "git-clone",
         "command": "git clone https://github.com/colbymchenry/codegraph.git",
         "repoUrl": "https://github.com/colbymchenry/codegraph"
       },
-      "capabilities": [],
+      "capabilities": [
+        "code-knowledge-graph",
+        "static-analysis",
+        "codebase-visualization",
+        "cross-project-search",
+        "multi-language-parsing"
+      ],
       "addedAt": "2026-07-21T13:10:53.788Z",
       "status": "active",
       "useCase": "Enabling AI coding assistants to understand large codebases locally without excessive token usage.",
