@@ -680,7 +680,7 @@
           desc: '剖析任務關鍵詞、語言偏好與特性約束，產出結構化 Intent Context。'
         },
 
-        // ── Row 3: 平行三層混合檢索 (群組容器內) ──
+        // ── Row 3: 平行三路混合檢索 (群組容器內) ──
         {
           id: 'l1_exact',
           col: 0,
@@ -706,10 +706,10 @@
           col: 2,
           row: 3.4,
           type: 'process',
-          title: 'L3: TF-IDF 語意向量',
-          lines: ['415 雙語同義詞庫', '向量空間餘弦計算'],
-          module: 'core/synonyms.generated.js',
-          desc: '引入動態挖掘之 415 個雙語同義詞（如「免費」↔「free」）計算向量語意相似度。'
+          title: 'L3: Agent 四維檢索',
+          lines: ['身分/功能/情境/部署', '7441 雙語同義詞庫'],
+          module: 'core/agent-retrieval.js',
+          desc: '四維度身分與能力匹配（V1 身分／V2 功能／V3 情境／V4 部署），取最佳維度為置信度，並敢於回報「不知道」。'
         },
 
         // ── Row 4: 候選匯流 ──
@@ -719,9 +719,9 @@
           row: 4.6,
           type: 'data',
           title: '候選工具池 (Top-K)',
-          lines: ['聚合 L1/L2/L3 評分', 'MECE 18 分類領域約束'],
-          module: 'core/search-engine.js',
-          desc: '匯集三路檢索結果，套用領域先驗分類過濾。'
+          lines: ['融合 L2 + Agent 四維', 'MECE 18 分類領域約束'],
+          module: 'core/retrieval-fusion.js',
+          desc: '融合詞彙與四維檢索結果，決策 adopt／no-match；可選 LLM rerank 後處理。'
         },
 
         // ── Row 5: 任務型態決策菱形 ──
@@ -817,11 +817,11 @@
         }
       ],
 
-      // 群組容器（平行三層檢核，一進一出，內部不畫線）
+      // 群組容器（平行三路檢核，一進一出，內部不畫線）
       groups: [
         {
           id: 'grp_search',
-          title: '平行三層混合檢索系統 (3-Layer Hybrid Search)',
+          title: '平行三路混合檢索系統 (Hybrid Search)',
           members: ['l1_exact', 'l2_keyword', 'l3_semantic']
         }
       ],
