@@ -20082,30 +20082,6 @@ export const SYNONYM_MAP = {
     "ai-detector",
     "writing-style"
   ],
-  "關鍵字/短語：": [
-    "codegraph",
-    "knowledge graph",
-    "local ai",
-    "codebase context"
-  ],
-  "codegraph": [
-    "關鍵字/短語：",
-    "knowledge graph",
-    "local ai",
-    "codebase context"
-  ],
-  "local ai": [
-    "關鍵字/短語：",
-    "codegraph",
-    "knowledge graph",
-    "codebase context"
-  ],
-  "codebase context": [
-    "關鍵字/短語：",
-    "codegraph",
-    "knowledge graph",
-    "local ai"
-  ],
   "改善 ai 回覆品質": [
     "taste-skill",
     "quality-control",

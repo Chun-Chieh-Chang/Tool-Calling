@@ -1,12 +1,12 @@
 {
   "worldWeek": "2026-W37",
-  "lastUpdated": "2026-09-17T13:15:07.518Z",
+  "lastUpdated": "2026-09-17T13:17:33.726Z",
   "dateRange": "2026-09-07 ~ 2026-09-13",
   "statPeriod": {
     "start": "2026-09-07T00:00:00.000Z",
     "end": "2026-09-13T23:59:59.999Z"
   },
-  "scanTime": "2026-09-17T13:15:07.518Z",
+  "scanTime": "2026-09-17T13:17:33.726Z",
   "trackedPoolSize": 2488,
   "activeReposCount": 236,
   "scannedReposCount": 236,
@@ -1007,7 +1007,7 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1023,7 +1023,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1039,7 +1039,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1048,14 +1048,14 @@
         "fullName": "DietrichGebert/ponytail",
         "url": "https://github.com/DietrichGebert/ponytail",
         "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
-        "currentStars": 140990,
+        "currentStars": 140991,
         "prevStars": 137668,
-        "delta": 3322,
+        "delta": 3323,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1064,14 +1064,14 @@
         "fullName": "affaan-m/ECC",
         "url": "https://github.com/affaan-m/ECC",
         "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-        "currentStars": 260880,
+        "currentStars": 260884,
         "prevStars": 257934,
-        "delta": 2946,
+        "delta": 2950,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1080,14 +1080,14 @@
         "fullName": "eternity4719/HowToLiveBetter",
         "url": "https://github.com/eternity4719/HowToLiveBetter",
         "description": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
-        "currentStars": 2924,
+        "currentStars": 2926,
         "prevStars": 0,
-        "delta": 2924,
+        "delta": 2926,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1103,7 +1103,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1112,14 +1112,14 @@
         "fullName": "mattpocock/skills",
         "url": "https://github.com/mattpocock/skills",
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
-        "currentStars": 264075,
+        "currentStars": 264078,
         "prevStars": 261542,
-        "delta": 2533,
+        "delta": 2536,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1128,14 +1128,14 @@
         "fullName": "ai-sucks-butt/ai-sucks-butt",
         "url": "https://github.com/ai-sucks-butt/ai-sucks-butt",
         "description": "If you think AI sucks, star the repo.",
-        "currentStars": 2482,
+        "currentStars": 2485,
         "prevStars": 0,
-        "delta": 2482,
+        "delta": 2485,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1144,14 +1144,14 @@
         "fullName": "Graphify-Labs/graphify",
         "url": "https://github.com/Graphify-Labs/graphify",
         "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
-        "currentStars": 118844,
+        "currentStars": 118843,
         "prevStars": 116531,
-        "delta": 2313,
+        "delta": 2312,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       }
     ],
@@ -1169,7 +1169,7 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1185,7 +1185,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1201,7 +1201,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1210,14 +1210,14 @@
         "fullName": "DietrichGebert/ponytail",
         "url": "https://github.com/DietrichGebert/ponytail",
         "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
-        "currentStars": 140990,
+        "currentStars": 140991,
         "prevStars": 137668,
-        "delta": 3322,
+        "delta": 3323,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1226,14 +1226,14 @@
         "fullName": "affaan-m/ECC",
         "url": "https://github.com/affaan-m/ECC",
         "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
-        "currentStars": 260880,
+        "currentStars": 260884,
         "prevStars": 257934,
-        "delta": 2946,
+        "delta": 2950,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1242,14 +1242,14 @@
         "fullName": "eternity4719/HowToLiveBetter",
         "url": "https://github.com/eternity4719/HowToLiveBetter",
         "description": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
-        "currentStars": 2924,
+        "currentStars": 2926,
         "prevStars": 0,
-        "delta": 2924,
+        "delta": 2926,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1265,7 +1265,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1274,14 +1274,14 @@
         "fullName": "mattpocock/skills",
         "url": "https://github.com/mattpocock/skills",
         "description": "Skills for Real Engineers. Straight from my .agents directory.",
-        "currentStars": 264075,
+        "currentStars": 264078,
         "prevStars": 261542,
-        "delta": 2533,
+        "delta": 2536,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1290,14 +1290,14 @@
         "fullName": "ai-sucks-butt/ai-sucks-butt",
         "url": "https://github.com/ai-sucks-butt/ai-sucks-butt",
         "description": "If you think AI sucks, star the repo.",
-        "currentStars": 2482,
+        "currentStars": 2485,
         "prevStars": 0,
-        "delta": 2482,
+        "delta": 2485,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1306,14 +1306,14 @@
         "fullName": "Graphify-Labs/graphify",
         "url": "https://github.com/Graphify-Labs/graphify",
         "description": "Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store.",
-        "currentStars": 118844,
+        "currentStars": 118843,
         "prevStars": 116531,
-        "delta": 2313,
+        "delta": 2312,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1322,14 +1322,14 @@
         "fullName": "shadcn-ui/lint",
         "url": "https://github.com/shadcn-ui/lint",
         "description": "An agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
-        "currentStars": 2010,
+        "currentStars": 2011,
         "prevStars": 0,
-        "delta": 2010,
+        "delta": 2011,
         "category": "AI 代理",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1345,7 +1345,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1361,7 +1361,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1377,7 +1377,7 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1393,7 +1393,7 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1409,7 +1409,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1425,7 +1425,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1441,7 +1441,7 @@
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1450,14 +1450,14 @@
         "fullName": "public-apis/public-apis",
         "url": "https://github.com/public-apis/public-apis",
         "description": "A collective list of free APIs",
-        "currentStars": 481105,
+        "currentStars": 481106,
         "prevStars": 479834,
-        "delta": 1271,
+        "delta": 1272,
         "category": "API 整合",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       },
       {
@@ -1473,7 +1473,7 @@
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-14",
+        "startStarsAt": "2026-09-17",
         "endStarsAt": "2026-09-17"
       }
     ]
