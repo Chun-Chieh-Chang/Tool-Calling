@@ -42,6 +42,11 @@
         <select id="categorySelect">
           <option value="">所有領域分類 (All Categories)</option>
         </select>
+        <label id="deepSearchLabel" class="deep-search-toggle" title="用 LLM 重新排序候選工具，準確度較高但約需 5 秒">
+          <input type="checkbox" id="deepSearchToggle">
+          <span>深度搜尋</span>
+        </label>
+        <span id="deepSearchSpinner" class="deep-search-spinner" hidden aria-live="polite">重新排序中…</span>
       </div>
     </header>
 

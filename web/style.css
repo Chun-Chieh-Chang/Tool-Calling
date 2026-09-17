@@ -265,6 +265,52 @@ body {
   box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
 }
 
+/* 深度搜尋（LLM rerank）開關 — 啟用後約需 5 秒，故為手動選項而非預設 */
+.deep-search-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--surface-panel);
+  border: var(--border-precision);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.deep-search-toggle:hover {
+  color: var(--text-primary);
+}
+
+.deep-search-toggle input[type="checkbox"] {
+  accent-color: var(--brand-cobalt);
+  cursor: pointer;
+  margin: 0;
+}
+
+.deep-search-toggle:has(input:checked) {
+  color: var(--brand-cobalt);
+  border-color: var(--brand-cobalt);
+}
+
+.deep-search-spinner {
+  color: var(--brand-cobalt);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  animation: deep-search-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes deep-search-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
 .search-input-wrapper {
   display: flex;
   align-items: center;

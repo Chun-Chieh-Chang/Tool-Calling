@@ -10,6 +10,8 @@ let currentTab = 'dashboard';
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
+const deepSearchToggle = document.getElementById('deepSearchToggle');
+const deepSearchSpinner = document.getElementById('deepSearchSpinner');
 const resultsGrid = document.getElementById('resultsGrid');
 const resultCount = document.getElementById('resultCount');
 const toolCardTemplate = document.getElementById('toolCardTemplate');
@@ -69,6 +71,8 @@ async function init() {
     // 事件監聽
     searchInput.addEventListener('input', debounce(handleSearch, 300));
     categorySelect.addEventListener('change', handleSearch);
+    // 切換深度搜尋後立即以新模式重跑當前查詢，讓使用者能直接比較差異
+    if (deepSearchToggle) deepSearchToggle.addEventListener('change', handleSearch);
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
@@ -750,9 +754,18 @@ function syncAllViews() {
       }
       
       // 優先走 server 檢索（與 MCP / CLI 共用 core/ 引擎）
-      serverSearch(query, { topK: options.topK, category }).then(serverResults => {
+      // deep = 啟用 LLM rerank（約 5 秒），僅在使用者勾選「深度搜尋」時才用，
+      // 避免讓每次打字都等這麼久。
+      const deep = deepSearchToggle ? deepSearchToggle.checked : false;
+      if (deep && deepSearchSpinner) deepSearchSpinner.hidden = false;
+      const hideSpinner = () => { if (deepSearchSpinner) deepSearchSpinner.hidden = true; };
+
+      serverSearch(query, { topK: options.topK, category, deep }).then(serverResults => {
+        hideSpinner();
         if (serverResults) {
-          setInMemoryCache(query, category, undefined, serverResults, registryVersion);
+          // 深度搜尋的結果不寫入快取：它與快速路徑的排序不同，
+          // 混用會讓同一查詢在兩種模式下拿到不一致的結果。
+          if (!deep) setInMemoryCache(query, category, undefined, serverResults, registryVersion);
           renderSearchResults(serverResults);
           return;
         }
