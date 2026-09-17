@@ -12041,7 +12041,7 @@
     "owner": "Gitlawb",
     "repo": "openclaude",
     "category": "AI 代理",
-    "addedAt": "2026-09-17T11:51:06.761Z",
+    "addedAt": "2026-09-17T13:15:07.534Z",
     "status": "tracking"
   },
   "nocobase/nocobase": {
@@ -13959,7 +13959,7 @@
     "owner": "Imbad0202",
     "repo": "academic-research-skills",
     "category": "研究",
-    "addedAt": "2026-09-17T11:51:06.761Z",
+    "addedAt": "2026-09-17T13:15:07.534Z",
     "status": "tracking"
   },
   "mindsdb/mindshub": {
@@ -14500,7 +14500,7 @@
     "owner": "ChromeDevTools",
     "repo": "chrome-devtools-mcp",
     "category": "開發工具",
-    "addedAt": "2026-09-17T11:51:06.761Z",
+    "addedAt": "2026-09-17T13:15:07.534Z",
     "status": "tracking"
   },
   "modelcontextprotocol/python-sdk": {
@@ -24329,7 +24329,7 @@
     "owner": "google-research",
     "repo": "timesfm",
     "category": "數據分析",
-    "addedAt": "2026-09-17T11:51:06.761Z",
+    "addedAt": "2026-09-17T13:15:07.534Z",
     "status": "tracking"
   },
   "fmtlib/fmt": {
@@ -24337,7 +24337,7 @@
     "owner": "fmtlib",
     "repo": "fmt",
     "category": "開發工具",
-    "addedAt": "2026-09-17T11:51:06.761Z",
+    "addedAt": "2026-09-17T13:15:07.534Z",
     "status": "tracking"
   },
   "superlinked/sie": {
@@ -24345,7 +24345,7 @@
     "owner": "superlinked",
     "repo": "sie",
     "category": "AI 框架",
-    "addedAt": "2026-09-17T11:51:06.761Z",
+    "addedAt": "2026-09-17T13:15:07.534Z",
     "status": "tracking"
   },
   "h4ckf0r0day/obscura": {
@@ -25373,7 +25373,7 @@
     "total": 2486,
     "inRegistry": 660,
     "trackedOnly": 1826,
-    "lastGenerated": "2026-09-17T11:51:06.787Z"
+    "lastGenerated": "2026-09-17T13:15:07.551Z"
   },
-  "lastGenerated": "2026-09-17T11:51:06.787Z"
+  "lastGenerated": "2026-09-17T13:15:07.518Z"
 }
