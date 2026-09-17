@@ -12041,7 +12041,7 @@
     "owner": "Gitlawb",
     "repo": "openclaude",
     "category": "AI 代理",
-    "addedAt": "2026-09-14T07:36:03.742Z",
+    "addedAt": "2026-09-17T11:51:06.761Z",
     "status": "tracking"
   },
   "nocobase/nocobase": {
@@ -13959,7 +13959,7 @@
     "owner": "Imbad0202",
     "repo": "academic-research-skills",
     "category": "研究",
-    "addedAt": "2026-09-14T07:36:03.742Z",
+    "addedAt": "2026-09-17T11:51:06.761Z",
     "status": "tracking"
   },
   "mindsdb/mindshub": {
@@ -14500,7 +14500,7 @@
     "owner": "ChromeDevTools",
     "repo": "chrome-devtools-mcp",
     "category": "開發工具",
-    "addedAt": "2026-09-14T07:36:03.742Z",
+    "addedAt": "2026-09-17T11:51:06.761Z",
     "status": "tracking"
   },
   "modelcontextprotocol/python-sdk": {
@@ -24329,7 +24329,7 @@
     "owner": "google-research",
     "repo": "timesfm",
     "category": "數據分析",
-    "addedAt": "2026-09-14T07:36:03.742Z",
+    "addedAt": "2026-09-17T11:51:06.761Z",
     "status": "tracking"
   },
   "fmtlib/fmt": {
@@ -24337,7 +24337,7 @@
     "owner": "fmtlib",
     "repo": "fmt",
     "category": "開發工具",
-    "addedAt": "2026-09-14T07:36:03.742Z",
+    "addedAt": "2026-09-17T11:51:06.761Z",
     "status": "tracking"
   },
   "superlinked/sie": {
@@ -24345,7 +24345,7 @@
     "owner": "superlinked",
     "repo": "sie",
     "category": "AI 框架",
-    "addedAt": "2026-09-14T07:36:03.742Z",
+    "addedAt": "2026-09-17T11:51:06.761Z",
     "status": "tracking"
   },
   "h4ckf0r0day/obscura": {
@@ -24797,11 +24797,583 @@
     "addedAt": "2026-09-10",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2434,
-    "inRegistry": 660,
-    "trackedOnly": 1774,
-    "lastGenerated": "2026-09-14T07:36:03.760Z"
+  "sdli1995/dlssg_for_sm86": {
+    "fullName": "sdli1995/dlssg_for_sm86",
+    "owner": "sdli1995",
+    "repo": "dlssg_for_sm86",
+    "initialStars": 2515,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
   },
-  "lastGenerated": "2026-09-14T07:36:03.720Z"
+  "Albert-Weasker/niubigeo": {
+    "fullName": "Albert-Weasker/niubigeo",
+    "owner": "Albert-Weasker",
+    "repo": "niubigeo",
+    "initialStars": 2400,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "openai/NavierStokesAndEuler": {
+    "fullName": "openai/NavierStokesAndEuler",
+    "owner": "openai",
+    "repo": "NavierStokesAndEuler",
+    "initialStars": 1867,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "NVlabs/SoL-Pi": {
+    "fullName": "NVlabs/SoL-Pi",
+    "owner": "NVlabs",
+    "repo": "SoL-Pi",
+    "initialStars": 1788,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yang0/handraw-style": {
+    "fullName": "yang0/handraw-style",
+    "owner": "yang0",
+    "repo": "handraw-style",
+    "initialStars": 1694,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Edge0-AI/Edge0": {
+    "fullName": "Edge0-AI/Edge0",
+    "owner": "Edge0-AI",
+    "repo": "Edge0",
+    "initialStars": 1632,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xzf-thu/VoiceMem": {
+    "fullName": "xzf-thu/VoiceMem",
+    "owner": "xzf-thu",
+    "repo": "VoiceMem",
+    "initialStars": 1594,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "vinzdg/codenotch": {
+    "fullName": "vinzdg/codenotch",
+    "owner": "vinzdg",
+    "repo": "codenotch",
+    "initialStars": 1551,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "EverettFish/holo-card-studio": {
+    "fullName": "EverettFish/holo-card-studio",
+    "owner": "EverettFish",
+    "repo": "holo-card-studio",
+    "initialStars": 1513,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "tigerless-labs/agent-memory": {
+    "fullName": "tigerless-labs/agent-memory",
+    "owner": "tigerless-labs",
+    "repo": "agent-memory",
+    "initialStars": 1380,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "bojieli/ai-infra-book": {
+    "fullName": "bojieli/ai-infra-book",
+    "owner": "bojieli",
+    "repo": "ai-infra-book",
+    "initialStars": 1368,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Human-Agent-Society/reef": {
+    "fullName": "Human-Agent-Society/reef",
+    "owner": "Human-Agent-Society",
+    "repo": "reef",
+    "initialStars": 1331,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "sonicloudco/recorder": {
+    "fullName": "sonicloudco/recorder",
+    "owner": "sonicloudco",
+    "repo": "recorder",
+    "initialStars": 1265,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "FireRedTeam/FireRedAudio": {
+    "fullName": "FireRedTeam/FireRedAudio",
+    "owner": "FireRedTeam",
+    "repo": "FireRedAudio",
+    "initialStars": 1255,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "donvito/codex-astra-luna-orchestrator": {
+    "fullName": "donvito/codex-astra-luna-orchestrator",
+    "owner": "donvito",
+    "repo": "codex-astra-luna-orchestrator",
+    "initialStars": 1245,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Vincentwei1021/anything2explainer": {
+    "fullName": "Vincentwei1021/anything2explainer",
+    "owner": "Vincentwei1021",
+    "repo": "anything2explainer",
+    "initialStars": 1228,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "aminkheddache-dotcom/Ptero": {
+    "fullName": "aminkheddache-dotcom/Ptero",
+    "owner": "aminkheddache-dotcom",
+    "repo": "Ptero",
+    "initialStars": 1212,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Git-Agni/prod-FARM-IOS-Core": {
+    "fullName": "Git-Agni/prod-FARM-IOS-Core",
+    "owner": "Git-Agni",
+    "repo": "prod-FARM-IOS-Core",
+    "initialStars": 1203,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "danielblnc/DLSS-NR-on-AMD": {
+    "fullName": "danielblnc/DLSS-NR-on-AMD",
+    "owner": "danielblnc",
+    "repo": "DLSS-NR-on-AMD",
+    "initialStars": 1184,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "anthropics/fermats-last-theorem": {
+    "fullName": "anthropics/fermats-last-theorem",
+    "owner": "anthropics",
+    "repo": "fermats-last-theorem",
+    "initialStars": 1149,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "coldteadotai/pr-lens": {
+    "fullName": "coldteadotai/pr-lens",
+    "owner": "coldteadotai",
+    "repo": "pr-lens",
+    "initialStars": 1127,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "air-embodied-brain/Zetta-Embodiment": {
+    "fullName": "air-embodied-brain/Zetta-Embodiment",
+    "owner": "air-embodied-brain",
+    "repo": "Zetta-Embodiment",
+    "initialStars": 1086,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ZJU-REAL/Easel": {
+    "fullName": "ZJU-REAL/Easel",
+    "owner": "ZJU-REAL",
+    "repo": "Easel",
+    "initialStars": 1077,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jtydhr88/screenwriting-skills": {
+    "fullName": "jtydhr88/screenwriting-skills",
+    "owner": "jtydhr88",
+    "repo": "screenwriting-skills",
+    "initialStars": 1047,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "soirihiroka/shrimply": {
+    "fullName": "soirihiroka/shrimply",
+    "owner": "soirihiroka",
+    "repo": "shrimply",
+    "initialStars": 1037,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kajisho5/ffmpeg-skill": {
+    "fullName": "kajisho5/ffmpeg-skill",
+    "owner": "kajisho5",
+    "repo": "ffmpeg-skill",
+    "initialStars": 1036,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "HanyuanWang/LiveStream-Agent-Studio": {
+    "fullName": "HanyuanWang/LiveStream-Agent-Studio",
+    "owner": "HanyuanWang",
+    "repo": "LiveStream-Agent-Studio",
+    "initialStars": 1019,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "adtexterry-lgtm/unigit-ecosystem": {
+    "fullName": "adtexterry-lgtm/unigit-ecosystem",
+    "owner": "adtexterry-lgtm",
+    "repo": "unigit-ecosystem",
+    "initialStars": 1010,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Vincentwei1021/video-talkcraft": {
+    "fullName": "Vincentwei1021/video-talkcraft",
+    "owner": "Vincentwei1021",
+    "repo": "video-talkcraft",
+    "initialStars": 999,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "siknet/FreePEP": {
+    "fullName": "siknet/FreePEP",
+    "owner": "siknet",
+    "repo": "FreePEP",
+    "initialStars": 992,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "babygoton/WorkDaddy": {
+    "fullName": "babygoton/WorkDaddy",
+    "owner": "babygoton",
+    "repo": "WorkDaddy",
+    "initialStars": 991,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kunchenguid/backpass": {
+    "fullName": "kunchenguid/backpass",
+    "owner": "kunchenguid",
+    "repo": "backpass",
+    "initialStars": 980,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "achimala/dream-loop": {
+    "fullName": "achimala/dream-loop",
+    "owner": "achimala",
+    "repo": "dream-loop",
+    "initialStars": 973,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "KJGX66F/usque-custom-pro": {
+    "fullName": "KJGX66F/usque-custom-pro",
+    "owner": "KJGX66F",
+    "repo": "usque-custom-pro",
+    "initialStars": 959,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "liandu2024/Open-Box": {
+    "fullName": "liandu2024/Open-Box",
+    "owner": "liandu2024",
+    "repo": "Open-Box",
+    "initialStars": 953,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "larashero3-dotcom/lieflat-gongwen": {
+    "fullName": "larashero3-dotcom/lieflat-gongwen",
+    "owner": "larashero3-dotcom",
+    "repo": "lieflat-gongwen",
+    "initialStars": 939,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "hardbeat920/monocode": {
+    "fullName": "hardbeat920/monocode",
+    "owner": "hardbeat920",
+    "repo": "monocode",
+    "initialStars": 934,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "crwdla/tokentab": {
+    "fullName": "crwdla/tokentab",
+    "owner": "crwdla",
+    "repo": "tokentab",
+    "initialStars": 933,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yding-git/personal-edge-proxy": {
+    "fullName": "yding-git/personal-edge-proxy",
+    "owner": "yding-git",
+    "repo": "personal-edge-proxy",
+    "initialStars": 928,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "DenisSergeevitch/desktop-fly": {
+    "fullName": "DenisSergeevitch/desktop-fly",
+    "owner": "DenisSergeevitch",
+    "repo": "desktop-fly",
+    "initialStars": 925,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jlrouzies-fr/DLSS5-Feeder": {
+    "fullName": "jlrouzies-fr/DLSS5-Feeder",
+    "owner": "jlrouzies-fr",
+    "repo": "DLSS5-Feeder",
+    "initialStars": 921,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Mantitup-Org/vista": {
+    "fullName": "Mantitup-Org/vista",
+    "owner": "Mantitup-Org",
+    "repo": "vista",
+    "initialStars": 912,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "tradecatlabs/shulihuazixuecongshu": {
+    "fullName": "tradecatlabs/shulihuazixuecongshu",
+    "owner": "tradecatlabs",
+    "repo": "shulihuazixuecongshu",
+    "initialStars": 894,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "iAmCorey/Wake": {
+    "fullName": "iAmCorey/Wake",
+    "owner": "iAmCorey",
+    "repo": "Wake",
+    "initialStars": 891,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yejy53/Editable-Design": {
+    "fullName": "yejy53/Editable-Design",
+    "owner": "yejy53",
+    "repo": "Editable-Design",
+    "initialStars": 885,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dashdogy/RTX40MFG-Unlock": {
+    "fullName": "dashdogy/RTX40MFG-Unlock",
+    "owner": "dashdogy",
+    "repo": "RTX40MFG-Unlock",
+    "initialStars": 873,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "User0332/rewards-farmer": {
+    "fullName": "User0332/rewards-farmer",
+    "owner": "User0332",
+    "repo": "rewards-farmer",
+    "initialStars": 870,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "datawhalechina/zero-to-sglang": {
+    "fullName": "datawhalechina/zero-to-sglang",
+    "owner": "datawhalechina",
+    "repo": "zero-to-sglang",
+    "initialStars": 865,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "browser-use/macos-harness": {
+    "fullName": "browser-use/macos-harness",
+    "owner": "browser-use",
+    "repo": "macos-harness",
+    "initialStars": 863,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "furkankly/zoetrope": {
+    "fullName": "furkankly/zoetrope",
+    "owner": "furkankly",
+    "repo": "zoetrope",
+    "initialStars": 862,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "decioriolepartition/qgkknlvf": {
+    "fullName": "decioriolepartition/qgkknlvf",
+    "owner": "decioriolepartition",
+    "repo": "qgkknlvf",
+    "initialStars": 851,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "byJoey/warp-masque-actions": {
+    "fullName": "byJoey/warp-masque-actions",
+    "owner": "byJoey",
+    "repo": "warp-masque-actions",
+    "initialStars": 844,
+    "discoveredAt": "2026-09-14T07:36:03.720Z",
+    "sourceSnapshotWeek": "2026-W38",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2486,
+    "inRegistry": 660,
+    "trackedOnly": 1826,
+    "lastGenerated": "2026-09-17T11:51:06.787Z"
+  },
+  "lastGenerated": "2026-09-17T11:51:06.787Z"
 }
