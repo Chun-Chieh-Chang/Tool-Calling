@@ -615,7 +615,7 @@
         {
           id: 'llm_applied',
           col: 4,
-          row: 2.5,
+          row: 3.5,
           type: 'process',
           title: 'LLM 分類採納',
           lines: ['置信度 ≥ 0.5 更新分類',
@@ -660,7 +660,7 @@
         {
           id: 'clarify_loop',
           col: 2,
-          row: 1.5,
+          row: 2.2,
           type: 'process',
           title: '白話 3 問反向提問',
           lines: ['cli.js interview 獨立觸發', '消除未經檢驗的假設'],
@@ -839,19 +839,19 @@
         // LLM 不可用 -> 規則引擎 (同欄垂直向下，消除邏輯倒置)
         { from: 'dec_llm_category', to: 'rule_classify', route: 'v', label: '否: 無 API Key' },
         // LLM 分類決策 -> 規則引擎 (低置信度回退，側邊接入消除同軌重疊)
-        { from: 'llm_classify', to: 'rule_classify', route: 'sider', label: '< 0.5 (回退規則)' },
+        { from: 'llm_classify', to: 'rule_classify', route: 'sdown', label: '< 0.5 (回退規則)' },
         // LLM 分類決策 -> LLM 分類採納 (高置信度直接採用)
         { from: 'llm_classify', to: 'llm_applied', route: 'v', label: '≥ 0.5 (直接採用)' },
         // 規則引擎 -> hook-reclassify (規則兜底完成匯流)
         { from: 'rule_classify', to: 'hook_reclassify', route: 'v', label: '規則兜底完成' },
         // LLM 分類採納 -> hook-reclassify (LLM 採納完成匯流，側邊接入消除同軌重疊)
-        { from: 'llm_applied', to: 'hook_reclassify', route: 'sider', label: 'LLM 採納完成' },
+        { from: 'llm_applied', to: 'hook_reclassify', route: 'hl', label: 'LLM 採納完成' },
         // hook-reclassify -> 工具收錄完成 (終點收尾)
         { from: 'hook_reclassify', to: 'tool_saved', route: 'v', label: '人工覆核後 apply' },
         // 決策 1 -> 白話提問 (是: 模糊需釐清)
         { from: 'dec_ambiguity', to: 'clarify_loop', route: 'hdown', label: '是: 需釐清' },
         // 白話提問 -> 回流到意圖剖析 (側邊接入消除同軌重疊)
-        { from: 'clarify_loop', to: 'parse_intent', route: 'sider', label: '收斂回流' },
+        { from: 'clarify_loop', to: 'parse_intent', route: 'hl', label: '收斂回流' },
         // 決策 1 -> 意圖剖析 (否: 目標明確)
         { from: 'dec_ambiguity', to: 'parse_intent', route: 'v', label: '否: 目標明確' },
 
@@ -956,7 +956,7 @@
      * ══════════════════════════════════════════════════════════════════════════
      * 3. 邊線路徑計算器 (Explicit Route Engine)
      * ══════════════════════════════════════════════════════════════════════════
-     * 支援: v, h, h2, elbow, hdown, sdown, sider, gdown
+     * 支援: v, h, hl, h2, elbow, hdown, sdown, sider, gdown
      * 鐵律：路徑末端內縮 GAP=5，tip=4.8px，超出 border 0.2px 緊貼邊界不浮空
      */
     function calculateEdgePath(edge) {
@@ -995,13 +995,23 @@
           break;
         }
 
-        // h: 同列，右邊線中點 -> 左邊線中點
+        // h: 同列，右邊線中點 -> 左邊線中點（左來源往右）
         case 'h': {
           const x1 = f.right.x;
           const y = f.right.y;
           const x2 = t.left.x - GAP;
           d = `M ${x1} ${y} L ${x2} ${y}`;
           labelPt = { x: x1 + 16, y: y + 8 };
+          break;
+        }
+
+        // hl: 同列，左邊線中點 -> 右邊線中點（右來源往左）
+        case 'hl': {
+          const x1 = f.left.x;
+          const y = f.left.y;
+          const x2 = t.right.x + GAP;
+          d = `M ${x1} ${y} L ${x2} ${y}`;
+          labelPt = { x: (x1 + x2) / 2, y: y - 12 };
           break;
         }
 
