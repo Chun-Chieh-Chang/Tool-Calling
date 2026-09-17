@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parsePick, buildPrompt, rerankCandidates, promote } from '../core/llm-rerank.js';
+import { parsePick, parsePickList, buildPrompt, rerankCandidates, rerankTwoStage, promote } from '../core/llm-rerank.js';
 import { retrieveWithRerank } from '../core/retrieval-fusion.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -57,6 +57,49 @@ test('parsePick - 候選為空回傳 null', () => {
   assert.equal(parsePick('1', null), null);
 });
 
+// ── parsePick：NONE 棄權（2026-09-17）────────────────────────────────────
+// 動機：原本只要模型回了 id 就無條件替換，導致「詞彙引擎 top-1 本來就正確」
+// 的案例被換成錯的（實測 c02：正確答案就在第 1 名卻被換掉）。
+// 加入棄權出口後，單階段 Hit@1 由 58.3% 提升至 75.0%（12 筆樣本）。
+
+test('parsePick - NONE 各種大小寫皆視為不替換', () => {
+  for (const t of ['NONE', 'none', 'None', ' NONE ', 'NONE.']) {
+    assert.equal(parsePick(t, CANDS), null, `"${t}" 應回傳 null（不替換）`);
+  }
+});
+
+// ── parsePickList：多選（分批淘汰的第一階段用）────────────────────────────
+
+test('parsePickList - 解析逗號分隔的編號', () => {
+  assert.deepEqual(parsePickList('3, 1', CANDS, 2), ['gamma', 'alpha']);
+  assert.deepEqual(parsePickList('2,4', CANDS, 2), ['beta', 'delta']);
+});
+
+test('parsePickList - 解析中文頓號與換行', () => {
+  assert.deepEqual(parsePickList('3、1', CANDS, 2), ['gamma', 'alpha']);
+  assert.deepEqual(parsePickList('2\n4', CANDS, 2), ['beta', 'delta']);
+});
+
+test('parsePickList - 解析 id 字串', () => {
+  assert.deepEqual(parsePickList('gamma, alpha', CANDS, 2), ['gamma', 'alpha']);
+});
+
+test('parsePickList - 遵守 limit 且不重複', () => {
+  assert.deepEqual(parsePickList('1,2,3,4', CANDS, 2), ['alpha', 'beta']);
+  assert.deepEqual(parsePickList('1,1,1', CANDS, 3), ['alpha'], '重複應只算一次');
+});
+
+test('parsePickList - 只回一個時仍可解析（相容單一格式）', () => {
+  assert.deepEqual(parsePickList('beta', CANDS, 2), ['beta']);
+});
+
+test('parsePickList - 無法解析或空候選時回傳空陣列', () => {
+  assert.deepEqual(parsePickList('完全無法解析', CANDS, 2), []);
+  assert.deepEqual(parsePickList('', CANDS, 2), []);
+  assert.deepEqual(parsePickList('1', [], 2), []);
+  assert.deepEqual(parsePickList('1', null, 2), []);
+});
+
 // ── buildPrompt ───────────────────────────────────────────────────────────
 test('buildPrompt - 含需求、編號、id 與簡介', () => {
   const p = buildPrompt('需要畫圖表', [{ id: 'chart-x', description: 'chart tool' }]);
@@ -69,6 +112,47 @@ test('buildPrompt - 容許 id 字串陣列（向後相容）', () => {
   const p = buildPrompt('q', ['tool-a', 'tool-b']);
   assert.ok(p.includes('1. tool-a'));
   assert.ok(p.includes('2. tool-b'));
+});
+
+test('buildPrompt - 含 NONE 棄權規則', () => {
+  // 沒有這個出口，模型會勉強挑一個，把本來正確的 top-1 換掉
+  const p = buildPrompt('q', ['tool-a']);
+  assert.ok(p.includes('NONE'), '應告知模型可回傳 NONE');
+  assert.ok(p.includes('寧可回 NONE'), '應鼓勵模型在不確定時棄權');
+});
+
+// ── rerankTwoStage：分批淘汰 ──────────────────────────────────────────────
+// 註：實測顯示兩階段在此資料集上並未優於單階段（58.3% vs 58.3%），
+// 且成本較高，故未接入正式路徑。保留實作與測試以記錄這個結論。
+
+test('rerankTwoStage - 無候選時回傳 error 且不拋出', async () => {
+  const r = await rerankTwoStage('q', [], { apiKey: 'x' });
+  assert.equal(r.picked, null);
+  assert.equal(r.error, 'no candidates');
+});
+
+test('rerankTwoStage - 無 api key 時離線安全（不呼叫網路）', async () => {
+  const prev = process.env.AGNES_API_KEY;
+  delete process.env.AGNES_API_KEY;
+  try {
+    const cands = Array.from({ length: 25 }, (_, i) => ({ id: `t${i}`, description: 'd' }));
+    const r = await rerankTwoStage('q', cands);
+    assert.equal(r.picked, null);
+    assert.ok(r.error, '應回傳 error');
+  } finally {
+    if (prev !== undefined) process.env.AGNES_API_KEY = prev;
+  }
+});
+
+test('rerankTwoStage - 候選少於一批時退回單階段', async () => {
+  const prev = process.env.AGNES_API_KEY;
+  delete process.env.AGNES_API_KEY;
+  try {
+    const r = await rerankTwoStage('q', ['a', 'b'], { batchSize: 10 });
+    assert.equal(r.stages.mode, 'single', '不應為 2 個候選跑兩階段');
+  } finally {
+    if (prev !== undefined) process.env.AGNES_API_KEY = prev;
+  }
 });
 
 // ── rerankCandidates：離線安全與優雅降級 ────────────────────────────────────

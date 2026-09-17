@@ -83,10 +83,23 @@ export function buildPrompt(query, candidates) {
   const list = cands
     .map((c, i) => `${i + 1}. ${c.id} — ${String(c.description || '').slice(0, 120)}`)
     .join('\n');
+  // 提供 NONE 棄權選項（2026-09-17 新增）
+  //
+  // 動機：原本是「無條件替換」——只要模型回了 id 就 promote。
+  // 但實測發現 c02 這種案例：詞彙引擎的 top-1 本來就正確，rerank 卻把它
+  // 換成錯的。也就是 rerank 不只可能沒幫助，還可能造成傷害。
+  //
+  // 給模型一個「清單裡沒有明顯更好的」的出口，讓它在沒把握時保持原序，
+  // 把替換的門檻拉高到「模型確實認為有更好的選擇」。
   return `使用者的需求：${query}
 
 以下有 ${candidates.length} 個候選工具（格式：編號. id — 簡介）。
-請選出**最能滿足這個需求**的那一個。只回傳該工具的 id 或編號，不要任何解釋。
+請選出**最能滿足這個需求**的那一個。
+
+規則：
+- 只回傳該工具的 id 或編號，不要任何解釋。
+- 若清單中沒有任何一個明顯比其他更適合，請只回傳 NONE。
+- 寧可回 NONE，也不要勉強挑一個不確定的。
 
 ${list}`;
 }
@@ -176,6 +189,181 @@ export async function rerankCandidates(query, candidates, options = {}) {
     }
   }
   return { ...empty, error: lastError };
+}
+
+/**
+ * 兩階段挑選：先分批淘汰，再從勝出者精選。
+ *
+ * 為什麼需要（2026-09-17 診斷）
+ * ────────────────────────────
+ * 單階段把 50 個候選一次餵給模型時，prompt 約 5200 字元，模型要在這麼長的
+ * 清單中挑 1 個。實測候選越多越不準：
+ *   recallK=50  → 73.8%
+ *   recallK=100 → 69.0%（退步）
+ * 天花板雖然從 90.5% 升到 97.6%，rerank 卻變差——問題不在召回，在「挑選」。
+ *
+ * 策略
+ * ────
+ * 第一階段：把候選切成每批 batchSize 個，各批**並行**問「這批裡最相關的
+ *           topPerBatch 個是誰」。每批只需在 10 個中比較，遠比在 50 個中簡單。
+ * 第二階段：把各批勝出者（約 10 個）合成一份短清單，再問一次選出最終 1 個。
+ *
+ * 延遲：兩輪呼叫（第一階段並行），約為單階段的 2 倍而非 N 倍。
+ *
+ * 失敗處理：任一階段失敗即回傳 picked=null，由呼叫端維持原順序
+ * （與 rerankCandidates 一致的優雅降級）。
+ *
+ * @param {string} query
+ * @param {{id:string, description?:string}[]|string[]} candidates
+ * @param {object} [options] - 同 rerankCandidates，另加：
+ * @param {number} [options.batchSize=10] - 每批候選數
+ * @param {number} [options.topPerBatch=2] - 每批晉級數
+ * @returns {Promise<{picked:string|null, raw:string, error:string|null, stages?:object}>}
+ */
+export async function rerankTwoStage(query, candidates, options = {}) {
+  const empty = { picked: null, raw: '', error: null };
+  if (!Array.isArray(candidates) || candidates.length === 0) {
+    return { ...empty, error: 'no candidates' };
+  }
+  const cands = candidates.map((c) => (typeof c === 'string' ? { id: c } : c));
+  const batchSize = Math.max(2, options.batchSize ?? 10);
+  const topPerBatch = Math.max(1, options.topPerBatch ?? 2);
+
+  // 候選少於一批時，直接走單階段即可（避免無意義的多一次呼叫）
+  if (cands.length <= batchSize) {
+    const r = await rerankCandidates(query, cands, options);
+    return { ...r, stages: { mode: 'single', batches: 1 } };
+  }
+
+  // ── 第一階段：分批並行淘汰 ──────────────────────────────────────────
+  const batches = [];
+  for (let i = 0; i < cands.length; i += batchSize) {
+    batches.push(cands.slice(i, i + batchSize));
+  }
+
+  const askBatch = async (batch) => {
+    const ids = batch.map((c) => c.id);
+    const prompt = `使用者的需求：${query}
+
+以下是 ${batch.length} 個候選工具（格式：編號. id — 簡介）。
+請選出**最能滿足這個需求**的前 ${Math.min(topPerBatch, batch.length)} 個，由最相關到次相關排序。
+只回傳 id 或編號，以逗號分隔，不要任何解釋。
+
+${batch.map((c, i) => `${i + 1}. ${c.id} — ${String(c.description || '').slice(0, 120)}`).join('\n')}`;
+    const raw = await callLLM(prompt, options);
+    if (raw.error) return { ids: [], error: raw.error };
+    return { ids: parsePickList(raw.text, ids, topPerBatch), error: null };
+  };
+
+  const results = await Promise.all(batches.map(askBatch));
+  const failed = results.filter((r) => r.error);
+  if (failed.length === results.length) {
+    return { ...empty, error: `all batches failed: ${failed[0].error}` };
+  }
+
+  // 依原候選順序收集晉級者（維持詞彙引擎的相對排序作為 tie-break）
+  const advancedIds = new Set(results.flatMap((r) => r.ids));
+  const advanced = cands.filter((c) => advancedIds.has(c.id));
+  if (advanced.length === 0) {
+    return { ...empty, error: 'no candidates advanced' };
+  }
+
+  // ── 第二階段：從晉級者精選 ──────────────────────────────────────────
+  const final = await rerankCandidates(query, advanced, options);
+  return {
+    ...final,
+    stages: {
+      mode: 'two-stage',
+      batches: batches.length,
+      advanced: advanced.length,
+      failedBatches: failed.length,
+    },
+  };
+}
+
+/**
+ * 解析「多個」候選（用於分批淘汰的第一階段）。
+ * 依回傳順序取出最多 limit 個有效候選，容忍逗號、頓號、換行等分隔。
+ * @param {string} text
+ * @param {string[]} candidates
+ * @param {number} limit
+ * @returns {string[]}
+ */
+export function parsePickList(text, candidates, limit) {
+  if (!Array.isArray(candidates) || candidates.length === 0) return [];
+  const t = String(text || '').trim();
+  if (!t) return [];
+
+  const out = [];
+  const push = (id) => { if (id && !out.includes(id) && out.length < limit) out.push(id); };
+
+  // 以分隔符切開後逐段解析（模型常回「3, 7」或「3、7」或每行一個）
+  const parts = t.split(/[,，、\n;；]+/).map((s) => s.trim()).filter(Boolean);
+  for (const part of parts) {
+    const num = part.match(/^(\d+)\s*[.。)】]?$/);
+    if (num) {
+      const i = parseInt(num[1], 10) - 1;
+      if (i >= 0 && i < candidates.length) push(candidates[i]);
+      continue;
+    }
+    // 段落中含 id 字串（取最長匹配，避免短 id 誤中）
+    const hit = candidates.filter((id) => part.includes(id))
+      .reduce((best, id) => (!best || id.length > best.length ? id : best), null);
+    if (hit) push(hit);
+  }
+
+  // 整段解析不出東西時，退而用單一解析（相容模型只回一個 id 的情況）
+  if (out.length === 0) {
+    const one = parsePick(t, candidates);
+    if (one) push(one);
+  }
+  return out;
+}
+
+/**
+ * 呼叫 LLM 並回傳原始文字（供需要自訂 prompt 的呼叫端使用）。
+ * 重試與逾時策略與 rerankCandidates 一致。
+ * @returns {Promise<{text:string, error:string|null}>}
+ */
+async function callLLM(prompt, options = {}) {
+  const apiKey = options.apiKey ?? process.env.AGNES_API_KEY;
+  if (!apiKey) return { text: '', error: 'no api key (offline)' };
+
+  const apiBase = (options.apiBase ?? process.env.LLM_API_BASE ?? DEFAULT_API_BASE).replace(/\/$/, '');
+  const model = options.model ?? process.env.RERANK_MODEL ?? DEFAULT_MODEL;
+  const timeoutMs = options.timeoutMs ?? 20000;
+  const maxRetries = options.maxRetries ?? 2;
+  const baseBackoffMs = options.backoffMs ?? 1000;
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  let lastError = 'unknown';
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    if (attempt > 0) await sleep(baseBackoffMs * 2 ** (attempt - 1));
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const res = await fetch(`${apiBase}/chat/completions`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
+        body: JSON.stringify({ model, messages: [{ role: 'user', content: prompt }], temperature: 0 }),
+        signal: controller.signal,
+      });
+      if (!res.ok) {
+        lastError = `api ${res.status}`;
+        if ((res.status === 429 || res.status >= 500) && attempt < maxRetries) continue;
+        return { text: '', error: lastError };
+      }
+      const data = await res.json();
+      return { text: String(data?.choices?.[0]?.message?.content || '').trim(), error: null };
+    } catch (err) {
+      lastError = err?.name === 'AbortError' ? 'timeout' : String(err?.message || err).slice(0, 120);
+      if (attempt < maxRetries) continue;
+      return { text: '', error: lastError };
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+  return { text: '', error: lastError };
 }
 
 /**
