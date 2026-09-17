@@ -707,7 +707,7 @@
           row: 3.4,
           type: 'process',
           title: 'L3: Agent 四維檢索',
-          lines: ['身分/功能/情境/部署', '7441 雙語同義詞庫'],
+          lines: ['身分/功能/情境/部署', '雙語同義詞庫'],
           module: 'core/agent-retrieval.js',
           desc: '四維度身分與能力匹配（V1 身分／V2 功能／V3 情境／V4 部署），取最佳維度為置信度，並敢於回報「不知道」。'
         },
@@ -744,7 +744,7 @@
           type: 'process',
           title: '五維度競品重排矩陣',
           lines: ['環境/場景/禁忌/優勢/星數', '評選首選與候選競品'],
-          module: 'core/search-engine.js:disambiguateCandidates',
+          module: 'core/search-engine.js:rerankCandidates',
           desc: '5D 矩陣重排：相容性(+15%)、useCase(+20%)、禁忌排除(-30%)、優勢(+15%)、星數(+10%)。'
         },
         {
@@ -811,7 +811,7 @@
           row: 11.1,
           type: 'end',
           title: '任務達成：成果交付與自治演化',
-          lines: ['每週漲星探勘 + 2,333 追蹤池', 'Contract v2 守護 100 分品質'],
+          lines: ['每週漲星探勘 + 動態追蹤池', 'Contract v2 守護 100 分品質'],
           module: 'scripts/trending-weekly.js',
           desc: '交付任務產出，背景持續進行 GitHub 漲星探勘與品質門禁治理。'
         }
