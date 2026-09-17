@@ -13,55 +13,404 @@
       "semantic": "需語意跳躍，查詢用詞與工具 metadata 幾乎不重疊",
       "constrained": "含明確技術約束（平台、語言、部署方式、規模）",
       "empty-set": "工具庫無對應工具，引擎應誠實回報低置信度"
+    },
+    "alsoAcceptable": {
+      "note": "部分查詢存在多個合理答案。這些案例保留原始 expected，另以 alsoAcceptable 標註經查證確實滿足需求的替代工具。",
+      "criterion": "必須是「同一類工具且滿足查詢的全部限制」，非僅同分類或名稱相近。",
+      "rejected": [
+        "c23（查詢要『統一語法用遍各種套件』，remixicon 僅單一套件）",
+        "c14（查詢要『預訓練語言模型+完整程式碼』，實得為廣泛課程）"
+      ],
+      "count": 3
     }
   },
   "cases": [
-    { "id": "c01", "query": "把 Excel 試算表的內容轉成可以嵌入網頁的表格", "expected": ["xlsxtohtmlconverter"], "type": "direct" },
-    { "id": "c02", "query": "解釋這段程式碼在幹嘛，用圖解配上流程圖說明", "expected": ["show-me", "mermaid-syntax-skill"], "type": "semantic", "note": "mermaid-syntax-skill 專門產生流程圖，符合「用圖解配上流程圖說明」，原標註過嚴" },
-    { "id": "c03", "query": "我想要一個會自動整理的筆記系統，可以跟我常用的 AI 助手整合", "expected": ["claude-obsidian"], "type": "semantic" },
-    { "id": "c04", "query": "想自己架一個知識問答系統，讓它能從我自己的文件裡找答案", "expected": ["khoj"], "type": "constrained" },
-    { "id": "c05", "query": "做 binary 的逆向分析，找出可能的漏洞", "expected": ["reverse-skill"], "type": "direct" },
-    { "id": "c06", "query": "要一份資安攻防的知識庫，內容是給 AI 讀的", "expected": ["cybersecurity-skills-Hi-FullHouse"], "type": "semantic" },
-    { "id": "c07", "query": "找一份健身動作的資料集，每個動作最好有動畫可以看", "expected": ["exercises-dataset"], "type": "direct" },
-    { "id": "c08", "query": "有沒有看影片不會被廣告追蹤的播放器，我要裝在電腦上", "expected": ["freetube"], "type": "constrained" },
-    { "id": "c09", "query": "用擴散模型產生高解析度的圖片", "expected": ["stable-diffusion", "imaginairy"], "type": "direct", "note": "imaginairy 是文字轉圖／圖生圖的擴散模型套件，與 stable-diffusion 同生態，原標註過嚴" },
-    { "id": "c10", "query": "我想要有網頁介面可以玩文字轉圖片的模型，不用寫程式", "expected": ["stable-diffusion-webui"], "type": "constrained" },
-    { "id": "c11", "query": "我的 AI agent 回答都很敷衍，有沒有辦法逼它真的深入想過再答", "expected": ["unlazy"], "type": "semantic" },
-    { "id": "c12", "query": "幫寫程式的 agent 加上樹狀思考，還要有剪枝避免亂展開", "expected": ["adhd"], "type": "semantic" },
-    { "id": "c13", "query": "有沒有現成的自動化流程範本可以直接拿來改", "expected": ["awesome-n8n-templates"], "type": "direct" },
-    { "id": "c14", "query": "我想從零開始學怎麼预训练一個語言模型，要附完整程式碼那種", "expected": ["llms-from-scratch"], "type": "direct" },
-    { "id": "c15", "query": "教我的 AI 怎麼自己操作瀏覽器完成任務", "expected": ["openai-playwright-automation-skill"], "type": "semantic" },
-    { "id": "c16", "query": "用命令列錄製我在瀏覽器上的操作，然後幫我產生程式碼", "expected": ["microsoft-playwright-cli-skill"], "type": "constrained" },
-    { "id": "c17", "query": "有沒有那種可以一次串很多家語言模型、而且免錢的服務", "expected": ["freellmapi", "gpt4free"], "type": "semantic" },
-    { "id": "c18", "query": "Python 的函式庫，但要能用 OpenAI 那套介面去呼叫其他免費模型", "expected": ["gpt4free"], "type": "constrained" },
-    { "id": "c19", "query": "想很快弄一個給內部用的管理後台，最好不要寫太多程式", "expected": ["tooljet"], "type": "semantic" },
-    { "id": "c20", "query": "自動幫我審查 pull request，順便產生描述跟改進建議", "expected": ["pr-agent"], "type": "direct" },
-    { "id": "c21", "query": "要畫地圖來探索跟分析地理資料", "expected": ["geolibre"], "type": "direct" },
-    { "id": "c22", "query": "把數據變成漂亮的圖表，而且要能讓 AI agent 自己呼叫產生", "expected": ["lieflat-charts"], "type": "semantic" },
-    { "id": "c23", "query": "想要一套統一的語法就能用遍各種 icon 套件", "expected": ["iconify"], "type": "direct" },
-    { "id": "c24", "query": "幫我的 AI 模型加一個網頁管理介面，要有任務看板", "expected": ["dsh-web-ui"], "type": "semantic" },
-    { "id": "c25", "query": "讓好幾個 AI 扮演不同角色針對一個難題辯論，最後再彙整結論", "expected": ["council-of-high-intelligence"], "type": "semantic" },
-    { "id": "c26", "query": "需要一個模型可以同時處理文字、圖片還有聲音", "expected": ["minimax-h3"], "type": "semantic" },
-    { "id": "c27", "query": "手機上可以自己裝外掛又沒廣告的音樂播放器", "expected": ["musicfree"], "type": "constrained" },
-    { "id": "c28", "query": "用 Rust 寫的音樂播放程式，要很輕量那種", "expected": ["fastpotify"], "type": "constrained" },
-    { "id": "c29", "query": "給 AI agent 專門跑網頁自動化的瀏覽器環境，要隔離的", "expected": ["ego-lite"], "type": "constrained" },
-    { "id": "c30", "query": "每天自動去抓電商的特價商品然後發出來", "expected": ["best-deals-bot"], "type": "direct" },
-    { "id": "c31", "query": "想研究 Claude 那個模型裡面的系統提示詞是怎麼寫的", "expected": ["claude-opus-5md", "systempromptsleaks"], "type": "direct" },
-    { "id": "c32", "query": "收集各大 AI 模型外流出來的系統提示詞", "expected": ["systempromptsleaks"], "type": "direct" },
-    { "id": "c33", "query": "每天自動跑股票分析，結合新聞跟行情，然後推播給我", "expected": ["daily-stock-analysis"], "type": "direct" },
-    { "id": "c34", "query": "用 AI 做量化投資的平台，要能回測策略", "expected": ["qlib"], "type": "direct" },
-    { "id": "c35", "query": "有沒有現成的 3D 零件模型可以下載來直接用", "expected": ["freecad-library"], "type": "direct" },
-    { "id": "c36", "query": "參數式的 3D 建模工具，要能畫機械零件跟出工程圖", "expected": ["freecad"], "type": "direct" },
-    { "id": "c37", "query": "把一份 PDF 報告轉成 markdown 給 RAG 系統吃", "expected": ["markitdown", "anydoc"], "type": "direct" },
-    { "id": "c38", "query": "抓一個用 JavaScript 動態產生內容的網頁，還要把裡面的表格取出來", "expected": ["playwright"], "type": "semantic" },
-    { "id": "c39", "query": "從一份文件自動生出每週的簡報", "expected": ["ppt-master", "guizang-ppt-skill"], "type": "semantic" },
-    { "id": "c40", "query": "抓股票價格存成 csv 檔", "expected": ["go-stock", "tradingagents-astock"], "type": "direct" },
-    { "id": "c41", "query": "在沒有畫面的模式下跑瀏覽器的端到端測試", "expected": ["playwright"], "type": "constrained" },
-    { "id": "c42", "query": "把兩個小時的影片整理成 markdown 筆記", "expected": ["summarize"], "type": "semantic" },
-    { "id": "e01", "query": "幫我訂明天晚上七點兩個人日本料理的位子", "expected": [], "type": "empty-set" },
-    { "id": "e02", "query": "監測我家盆栽的土壤濕度，太乾的時候通知我", "expected": [], "type": "empty-set" },
-    { "id": "e03", "query": "把這份合約翻成有法律效力的英文版本並幫我公證", "expected": [], "type": "empty-set" },
-    { "id": "e04", "query": "清理並去重一個很大的 jsonl 資料集", "expected": [], "type": "empty-set" },
-    { "id": "e05", "query": "把一個 node.js 服務部署到 kubernetes 叢集上", "expected": [], "type": "empty-set" }
+    {
+      "id": "c01",
+      "query": "把 Excel 試算表的內容轉成可以嵌入網頁的表格",
+      "expected": [
+        "xlsxtohtmlconverter"
+      ],
+      "type": "direct",
+      "alsoAcceptable": [
+        "exceltohtml"
+      ],
+      "alsoAcceptableReason": "同為 Excel→HTML 轉換器，滿足需求"
+    },
+    {
+      "id": "c02",
+      "query": "解釋這段程式碼在幹嘛，用圖解配上流程圖說明",
+      "expected": [
+        "show-me",
+        "mermaid-syntax-skill"
+      ],
+      "type": "semantic",
+      "note": "mermaid-syntax-skill 專門產生流程圖，符合「用圖解配上流程圖說明」，原標註過嚴"
+    },
+    {
+      "id": "c03",
+      "query": "我想要一個會自動整理的筆記系統，可以跟我常用的 AI 助手整合",
+      "expected": [
+        "claude-obsidian"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c04",
+      "query": "想自己架一個知識問答系統，讓它能從我自己的文件裡找答案",
+      "expected": [
+        "khoj"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c05",
+      "query": "做 binary 的逆向分析，找出可能的漏洞",
+      "expected": [
+        "reverse-skill"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c06",
+      "query": "要一份資安攻防的知識庫，內容是給 AI 讀的",
+      "expected": [
+        "cybersecurity-skills-Hi-FullHouse"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c07",
+      "query": "找一份健身動作的資料集，每個動作最好有動畫可以看",
+      "expected": [
+        "exercises-dataset"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c08",
+      "query": "有沒有看影片不會被廣告追蹤的播放器，我要裝在電腦上",
+      "expected": [
+        "freetube"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c09",
+      "query": "用擴散模型產生高解析度的圖片",
+      "expected": [
+        "stable-diffusion",
+        "imaginairy"
+      ],
+      "type": "direct",
+      "note": "imaginairy 是文字轉圖／圖生圖的擴散模型套件，與 stable-diffusion 同生態，原標註過嚴"
+    },
+    {
+      "id": "c10",
+      "query": "我想要有網頁介面可以玩文字轉圖片的模型，不用寫程式",
+      "expected": [
+        "stable-diffusion-webui"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c11",
+      "query": "我的 AI agent 回答都很敷衍，有沒有辦法逼它真的深入想過再答",
+      "expected": [
+        "unlazy"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c12",
+      "query": "幫寫程式的 agent 加上樹狀思考，還要有剪枝避免亂展開",
+      "expected": [
+        "adhd"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c13",
+      "query": "有沒有現成的自動化流程範本可以直接拿來改",
+      "expected": [
+        "awesome-n8n-templates"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c14",
+      "query": "我想從零開始學怎麼预训练一個語言模型，要附完整程式碼那種",
+      "expected": [
+        "llms-from-scratch"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c15",
+      "query": "教我的 AI 怎麼自己操作瀏覽器完成任務",
+      "expected": [
+        "openai-playwright-automation-skill"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c16",
+      "query": "用命令列錄製我在瀏覽器上的操作，然後幫我產生程式碼",
+      "expected": [
+        "microsoft-playwright-cli-skill"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c17",
+      "query": "有沒有那種可以一次串很多家語言模型、而且免錢的服務",
+      "expected": [
+        "freellmapi",
+        "gpt4free"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c18",
+      "query": "Python 的函式庫，但要能用 OpenAI 那套介面去呼叫其他免費模型",
+      "expected": [
+        "gpt4free"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c19",
+      "query": "想很快弄一個給內部用的管理後台，最好不要寫太多程式",
+      "expected": [
+        "tooljet"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c20",
+      "query": "自動幫我審查 pull request，順便產生描述跟改進建議",
+      "expected": [
+        "pr-agent"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c21",
+      "query": "要畫地圖來探索跟分析地理資料",
+      "expected": [
+        "geolibre"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c22",
+      "query": "把數據變成漂亮的圖表，而且要能讓 AI agent 自己呼叫產生",
+      "expected": [
+        "lieflat-charts"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c23",
+      "query": "想要一套統一的語法就能用遍各種 icon 套件",
+      "expected": [
+        "iconify"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c24",
+      "query": "幫我的 AI 模型加一個網頁管理介面，要有任務看板",
+      "expected": [
+        "dsh-web-ui"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c25",
+      "query": "讓好幾個 AI 扮演不同角色針對一個難題辯論，最後再彙整結論",
+      "expected": [
+        "council-of-high-intelligence"
+      ],
+      "type": "semantic",
+      "alsoAcceptable": [
+        "llm-council"
+      ],
+      "alsoAcceptableReason": "同為多模型辯論彙整框架，滿足需求"
+    },
+    {
+      "id": "c26",
+      "query": "需要一個模型可以同時處理文字、圖片還有聲音",
+      "expected": [
+        "minimax-h3"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c27",
+      "query": "手機上可以自己裝外掛又沒廣告的音樂播放器",
+      "expected": [
+        "musicfree"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c28",
+      "query": "用 Rust 寫的音樂播放程式，要很輕量那種",
+      "expected": [
+        "fastpotify"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c29",
+      "query": "給 AI agent 專門跑網頁自動化的瀏覽器環境，要隔離的",
+      "expected": [
+        "ego-lite"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c30",
+      "query": "每天自動去抓電商的特價商品然後發出來",
+      "expected": [
+        "best-deals-bot"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c31",
+      "query": "想研究 Claude 那個模型裡面的系統提示詞是怎麼寫的",
+      "expected": [
+        "claude-opus-5md",
+        "systempromptsleaks"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c32",
+      "query": "收集各大 AI 模型外流出來的系統提示詞",
+      "expected": [
+        "systempromptsleaks"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c33",
+      "query": "每天自動跑股票分析，結合新聞跟行情，然後推播給我",
+      "expected": [
+        "daily-stock-analysis"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c34",
+      "query": "用 AI 做量化投資的平台，要能回測策略",
+      "expected": [
+        "qlib"
+      ],
+      "type": "direct",
+      "alsoAcceptable": [
+        "vnpy"
+      ],
+      "alsoAcceptableReason": "同為量化交易平台，支援回測"
+    },
+    {
+      "id": "c35",
+      "query": "有沒有現成的 3D 零件模型可以下載來直接用",
+      "expected": [
+        "freecad-library"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c36",
+      "query": "參數式的 3D 建模工具，要能畫機械零件跟出工程圖",
+      "expected": [
+        "freecad"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c37",
+      "query": "把一份 PDF 報告轉成 markdown 給 RAG 系統吃",
+      "expected": [
+        "markitdown",
+        "anydoc"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c38",
+      "query": "抓一個用 JavaScript 動態產生內容的網頁，還要把裡面的表格取出來",
+      "expected": [
+        "playwright"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c39",
+      "query": "從一份文件自動生出每週的簡報",
+      "expected": [
+        "ppt-master",
+        "guizang-ppt-skill"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "c40",
+      "query": "抓股票價格存成 csv 檔",
+      "expected": [
+        "go-stock",
+        "tradingagents-astock"
+      ],
+      "type": "direct"
+    },
+    {
+      "id": "c41",
+      "query": "在沒有畫面的模式下跑瀏覽器的端到端測試",
+      "expected": [
+        "playwright"
+      ],
+      "type": "constrained"
+    },
+    {
+      "id": "c42",
+      "query": "把兩個小時的影片整理成 markdown 筆記",
+      "expected": [
+        "summarize"
+      ],
+      "type": "semantic"
+    },
+    {
+      "id": "e01",
+      "query": "幫我訂明天晚上七點兩個人日本料理的位子",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e02",
+      "query": "監測我家盆栽的土壤濕度，太乾的時候通知我",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e03",
+      "query": "把這份合約翻成有法律效力的英文版本並幫我公證",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e04",
+      "query": "清理並去重一個很大的 jsonl 資料集",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e05",
+      "query": "把一個 node.js 服務部署到 kubernetes 叢集上",
+      "expected": [],
+      "type": "empty-set"
+    }
   ]
 }

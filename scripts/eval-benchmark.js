@@ -73,7 +73,12 @@ function emptySetHonest(q) {
 
 const stats = {};
 for (const name of Object.keys(engines)) {
-  stats[name] = { hit1: 0, hit3: 0, mrr: 0, n: 0, byType: {}, failures: [] };
+  stats[name] = {
+    hit1: 0, hit3: 0, mrr: 0, n: 0, byType: {}, failures: [],
+    // loose = 計入 alsoAcceptable（經查證確實滿足需求的近義工具）
+    // 保留嚴格分數同時呈現，避免放寬標註掩蓋真實能力
+    loose: { hit1: 0, hit3: 0, mrr: 0 },
+  };
 }
 
 const empties = [];
@@ -100,6 +105,18 @@ for (const c of cases) {
       s.mrr += rr;
       bt.mrr += rr;
     }
+
+    // 寬鬆判定：expected ∪ alsoAcceptable
+    if (c.alsoAcceptable?.length) {
+      const idxL = firstHitIndex(ids, [...c.expected, ...c.alsoAcceptable]);
+      if (idxL === 0) s.loose.hit1++;
+      if (idxL !== -1 && idxL < 3) s.loose.hit3++;
+      if (idxL !== -1) s.loose.mrr += 1 / (idxL + 1);
+    } else {
+      if (idx === 0) s.loose.hit1++;
+      if (idx !== -1 && idx < 3) s.loose.hit3++;
+      if (idx !== -1) s.loose.mrr += 1 / (idx + 1);
+    }
     if (idx !== 0 && name === 'fusion') {
       s.failures.push({ id: c.id, type: c.type, query: c.query, expected: c.expected, got: ids[0], idx });
     }
@@ -116,6 +133,18 @@ console.log('  引擎        Hit@1      Hit@3      MRR');
 console.log('  ─────────────────────────────────────────');
 for (const [name, s] of Object.entries(stats)) {
   console.log(`  ${name.padEnd(10)} ${pct(s.hit1, s.n).padStart(7)}   ${pct(s.hit3, s.n).padStart(7)}   ${(s.mrr / (s.n || 1)).toFixed(3).padStart(6)}`);
+}
+
+// 含近義：計入 alsoAcceptable。與嚴格分數並列，不取代它——
+// 放寬標註會讓分數上升，但那不等於能力提升，兩個數字都要看得到。
+const looseCases = cases.filter((c) => c.alsoAcceptable?.length).length;
+if (looseCases > 0) {
+  console.log(`\n【含近義（計入 ${looseCases} 筆 alsoAcceptable）】`);
+  console.log('  引擎        Hit@1      Hit@3      MRR');
+  console.log('  ─────────────────────────────────────────');
+  for (const [name, s] of Object.entries(stats)) {
+    console.log(`  ${name.padEnd(10)} ${pct(s.loose.hit1, s.n).padStart(7)}   ${pct(s.loose.hit3, s.n).padStart(7)}   ${(s.loose.mrr / (s.n || 1)).toFixed(3).padStart(6)}`);
+  }
 }
 
 console.log('\n【按類型分組 — fusion】');
