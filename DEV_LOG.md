@@ -1,5 +1,52 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-18 CI 修復：14 筆 Tier 1 分類違反清零，GitHub Pages 部署恢復
+
+### 需求
+GitHub Pages 部署工作流程（`.github/workflows/deploy-pages.yml`）自 #307 至 #311 連續 5 次失敗。
+每次推送至 `main` 後，CI 閘門 `node scripts/rescan-classification.js --ci` 以 exit code 1 退出，
+阻斷後續的 Build Web、Upload artifact 與 Deploy to GitHub Pages 步驟。
+
+### 根本原因
+`registry/tools.json` 中存在 **14 筆 Tier 1 分類違反**（規則 R2、R4、R5），具體為：
+- R5 × 5（AI code review 工具誤置於 `AI 代理`／`AI 框架` → 應為 `開發工具`）
+- R4 × 7（本地推理／模型服務工具 → 應為 `AI 框架`）
+- R2 × 2（書單工具誤置 → 應為 `學習資源`）
+
+### 修復內容
+執行 `node scripts/rescan-classification.js --apply` 自動修正 14 筆工具的 `category` 欄位。
+
+| 工具 ID | 修改前 | 修改後 | 規則 |
+|---|---|---|---|
+| `superpowers` | AI 代理 | 開發工具 | R5 |
+| `awesome-copilot` | AI 代理 | 開發工具 | R5 |
+| `claude-skills` | AI 代理 | 開發工具 | R5 |
+| `oh-my-pi` | AI 代理 | 開發工具 | R5 |
+| `agent-orchestrator` | AI 框架 | 開發工具 | R5 |
+| `openclaw` | 開發工具 | AI 框架 | R4 |
+| `jpeetz-hermes-studio` | AI 代理 | AI 框架 | R4 |
+| `nvidia-skills` | AI 代理 | AI 框架 | R4 |
+| `deepseek-harness-desktop` | AI 代理 | AI 框架 | R4 |
+| `deepseek-work` | AI 代理 | AI 框架 | R4 |
+| `openclaude` | AI 代理 | AI 框架 | R4 |
+| `dsh-desktop-anywhere` | 開發工具 | AI 框架 | R4 |
+| `reader3` | 文件生產力 | 學習資源 | R2 |
+| `awesome-systematic-trading` | 金融與投資 | 學習資源 | R2 |
+
+### 新增測試
+- `tests/tier1-violations-bugfix.test.js`（3 個探索測試，確認 bug 可重現）
+- `tests/tier1-preservation.test.js`（8 個 preservation 測試，確認 682 筆非違規工具不受影響）
+
+### 驗證結果
+| 檢查 | 結果 |
+|---|---|
+| `node scripts/rescan-classification.js --ci` | ✅ exit 0，Tier 1 violations = 0 |
+| `npm test` | ✅ 138 pass, 0 fail（含 11 個新 bugfix 測試） |
+| `node cli.js validate` | ✅ 0 errors |
+| `node scripts/check-mece.js` | ✅ 所有 MECE 檢查通過 |
+
+---
+
 ## 2026-09-16 檢索準確度工程：LLM rerank、trigger 擴充、三端統一、架構清理
 
 ### 需求

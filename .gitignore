@@ -27,3 +27,5 @@ docs/antigravity-global-rules.md
 registry/embeddings/
 # 寫入 tools.json 前的自動備份（每次執行都產生一份，屬還原點非原始碼）
 registry/backups/
+# Kiro IDE 工作目錄（spec 草稿、任務狀態，屬工具私有狀態，非專案原始碼）
+.kiro/

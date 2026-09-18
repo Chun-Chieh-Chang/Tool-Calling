@@ -1,4 +1,4 @@
-# HANDOFF — 交接文檔
+﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
 > 最後更新：2026-09-17
@@ -89,8 +89,8 @@ tokenize 把「瀏覽器」切成 瀏覽/覽器、「浏览器」切成 浏览/�
 ### Git
 
 ```
-最新提交：cf3d47a
-基準點：  v1.9-retrieval-accuracy（已推送）
+最新提交：afa0d91
+基準點：  v1.9-retrieval-accuracy + CI fix（待推送）
 遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git
 ```
 
@@ -106,7 +106,7 @@ tokenize 把「瀏覽器」切成 瀏覽/覽器、「浏览器」切成 浏览/�
 
 ### 測試
 
-`npm test` → **129 tests / 127 pass / 0 fail**（2 skipped 為需外部依賴者）
+`npm test` → **140 tests / 138 pass / 0 fail**（2 skipped 為需外部依賴者）
 
 ---
 
