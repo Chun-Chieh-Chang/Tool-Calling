@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-18T00:11:55.739Z",
+  "lastUpdated": "2026-09-18T13:00:05.267Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -8322,7 +8322,7 @@
     {
       "week": "2026-W38",
       "dateRange": "2026-09-14 ~ 2026-09-18",
-      "timestamp": "2026-09-18T00:11:55.739Z",
+      "timestamp": "2026-09-18T13:00:05.267Z",
       "isWeekStart": true,
       "repos": {
         "sapientinc/PRAXIST": 6712,
@@ -8527,5 +8527,6 @@
         "browser-use/browser-use": 114557
       }
     }
-  ]
+  ],
+  "browser-use/jev-ultrafast": 4149
 }
