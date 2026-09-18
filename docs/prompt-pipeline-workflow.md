@@ -266,6 +266,7 @@ SVG Marker 箭頭觸線公式（不可改動）：
 | Reset 視圖按鈕 | 重置 transform 回 `translate(0,0) scale(1)` |
 | 懸浮提示 | SVG `<title>` 原生 tooltip |
 | 點擊詳情面板 | 右側固定寬度抽屜，JS 動態填入 |
+| **邊線流動動畫** | `stroke-dasharray: 6 4` + `@keyframes flowDash { to { stroke-dashoffset: -20 } }`，1.2s 無限循環；預設所有邊線啟用，可透過 `cls` 欄位覆蓋為靜態樣式 |
 
 ### 7.2 可選功能
 
