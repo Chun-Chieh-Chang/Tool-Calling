@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **696 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
+- 收錄 **702 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -89,7 +89,7 @@ tokenize 把「瀏覽器」切成 瀏覽/覽器、「浏览器」切成 浏览/�
 ### Git
 
 ```
-最新提交：afa0d91
+最新提交：9ecc43b
 基準點：  v1.9-retrieval-accuracy + CI fix（待推送）
 遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git
 ```

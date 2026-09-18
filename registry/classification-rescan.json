@@ -1,21 +1,16 @@
 {
-  "generatedAt": "2026-09-18T12:06:48.201Z",
+  "generatedAt": "2026-09-18T13:30:13.817Z",
   "decisionTree": "docs/CLASSIFICATION.md",
-  "totalTools": 696,
+  "totalTools": 702,
   "summary": {
-    "tier1_violations": 14,
+    "tier1_violations": 1,
     "tier2_needsReview": 18,
     "tier3_domainHeuristic": 20,
-    "compliant": 185,
-    "noRuleMatched": 459
+    "compliant": 199,
+    "noRuleMatched": 464
   },
   "moves": {
-    "AI 代理 → 開發工具": 4,
-    "開發工具 → AI 框架": 2,
-    "文件生產力 → 學習資源": 1,
-    "AI 代理 → AI 框架": 5,
-    "金融與投資 → 學習資源": 1,
-    "AI 框架 → 開發工具": 1
+    "AI 代理 → 開發工具": 1
   },
   "compliant": [
     {
@@ -84,6 +79,11 @@
       "rule": "D12-T3"
     },
     {
+      "id": "superpowers",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
       "id": "agent-reach",
       "category": "瀏覽器自動化",
       "rule": "D8-T3"
@@ -102,6 +102,11 @@
       "id": "playwright-skill",
       "category": "測試與自動化",
       "rule": "R10"
+    },
+    {
+      "id": "awesome-copilot",
+      "category": "開發工具",
+      "rule": "R5"
     },
     {
       "id": "gh-address-comments",
@@ -229,6 +234,11 @@
       "rule": "D3-T1"
     },
     {
+      "id": "openclaw",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "public-apis",
       "category": "API 整合",
       "rule": "R1"
@@ -267,6 +277,11 @@
       "id": "the-book-of-secret-knowledge",
       "category": "學習資源",
       "rule": "R2"
+    },
+    {
+      "id": "claude-skills",
+      "category": "開發工具",
+      "rule": "R5"
     },
     {
       "id": "generative-media-skills",
@@ -324,6 +339,11 @@
       "rule": "D13-T3"
     },
     {
+      "id": "reader3",
+      "category": "學習資源",
+      "rule": "R2"
+    },
+    {
       "id": "awesome-auto-research-tools",
       "category": "研究",
       "rule": "R9"
@@ -347,6 +367,16 @@
       "id": "cybersecurity-skills-Hi-FullHouse",
       "category": "安全性",
       "rule": "R10"
+    },
+    {
+      "id": "oh-my-pi",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "jpeetz-hermes-studio",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "learn-claude-code",
@@ -589,6 +619,11 @@
       "rule": "R3"
     },
     {
+      "id": "awesome-systematic-trading",
+      "category": "學習資源",
+      "rule": "R2"
+    },
+    {
       "id": "awesome-solidity",
       "category": "學習資源",
       "rule": "R3"
@@ -789,6 +824,11 @@
       "rule": "D6-T3"
     },
     {
+      "id": "nvidia-skills",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "3b1b-manim",
       "category": "影片",
       "rule": "D11-T1"
@@ -829,6 +869,11 @@
       "rule": "D3-T3"
     },
     {
+      "id": "deepseek-harness-desktop",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "freedomain",
       "category": "學習資源",
       "rule": "D3-T3"
@@ -847,6 +892,11 @@
       "id": "ai-memory",
       "category": "AI 代理",
       "rule": "R6"
+    },
+    {
+      "id": "deepseek-work",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "scientific-agent-skills",
@@ -889,9 +939,19 @@
       "rule": "R9"
     },
     {
+      "id": "openclaude",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "obscura",
       "category": "瀏覽器自動化",
       "rule": "D8-T3"
+    },
+    {
+      "id": "agent-orchestrator",
+      "category": "開發工具",
+      "rule": "R5"
     },
     {
       "id": "freetoken",
@@ -905,6 +965,11 @@
     },
     {
       "id": "magnitude",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "dsh-desktop-anywhere",
       "category": "AI 框架",
       "rule": "R4"
     },
@@ -1403,176 +1468,25 @@
     "youtube-automation-agent",
     "freetube",
     "gpt4free",
-    "freellmapi"
+    "freellmapi",
+    "howtolivebetter",
+    "spotifast",
+    "my-girlfriend-jingtian-latex",
+    "ai-infra-book",
+    "jev-ultrafast"
   ],
   "tier1": [
     {
-      "id": "superpowers",
-      "name": "Superpowers",
-      "url": "https://github.com/obra/superpowers",
+      "id": "lint",
+      "name": "Lint",
+      "url": "https://github.com/shadcn-ui/lint",
       "current": "AI 代理",
       "proposed": "開發工具",
       "rule": "R5",
       "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
       "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
-      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
-      "stars": 276192
-    },
-    {
-      "id": "awesome-copilot",
-      "name": "Awesome Copilot",
-      "url": "https://github.com/github/awesome-copilot",
-      "current": "AI 代理",
-      "proposed": "開發工具",
-      "rule": "R5",
-      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
-      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
-      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
-      "stars": 38129
-    },
-    {
-      "id": "openclaw",
-      "name": "Openclaw",
-      "url": "https://github.com/openclaw/openclaw",
-      "current": "開發工具",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 387151
-    },
-    {
-      "id": "claude-skills",
-      "name": "Claude Skills",
-      "url": "https://github.com/alirezarezvani/claude-skills",
-      "current": "AI 代理",
-      "proposed": "開發工具",
-      "rule": "R5",
-      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
-      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
-      "why": "identity:code[- ]review",
-      "stars": 24817
-    },
-    {
-      "id": "reader3",
-      "name": "Reader3",
-      "url": "https://github.com/karpathy/reader3",
-      "current": "文件生產力",
-      "proposed": "學習資源",
-      "rule": "R2",
-      "ruleDesc": "書籍／書單／閱讀清單（主要價值為閱讀）→ 學習資源",
-      "step": "決策樹 §2-2 ／ §3 邊界「書籍閱讀清單」",
-      "why": "identity:書單|书单|书籍|書籍|電子書|电子书|讀書筆記|读书笔记",
-      "stars": 3841
-    },
-    {
-      "id": "oh-my-pi",
-      "name": "Oh My Pi",
-      "url": "https://github.com/can1357/oh-my-pi",
-      "current": "AI 代理",
-      "proposed": "開發工具",
-      "rule": "R5",
-      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
-      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
-      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
-      "stars": 26534
-    },
-    {
-      "id": "jpeetz-hermes-studio",
-      "name": "Hermes Studio (Orchestrator)",
-      "url": "https://github.com/JPeetz/Hermes-Studio",
-      "current": "AI 代理",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 331
-    },
-    {
-      "id": "awesome-systematic-trading",
-      "name": "Awesome Systematic Trading",
-      "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
-      "current": "金融與投資",
-      "proposed": "學習資源",
-      "rule": "R2",
-      "ruleDesc": "書籍／書單／閱讀清單（主要價值為閱讀）→ 學習資源",
-      "step": "決策樹 §2-2 ／ §3 邊界「書籍閱讀清單」",
-      "why": "identity:書單|书单|书籍|書籍|電子書|电子书|讀書筆記|读书笔记",
-      "stars": 13861
-    },
-    {
-      "id": "nvidia-skills",
-      "name": "skills",
-      "url": "https://github.com/NVIDIA/skills",
-      "current": "AI 代理",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 3066
-    },
-    {
-      "id": "deepseek-harness-desktop",
-      "name": "DeepSeek Harness Desktop",
-      "url": "https://github.com/steven-kid/deepseek-harness-desktop",
-      "current": "AI 代理",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 160
-    },
-    {
-      "id": "deepseek-work",
-      "name": "DeepSeek Work",
-      "url": "https://github.com/astraclawteam/deepseek-work",
-      "current": "AI 代理",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "why": "identity:lint|linter",
       "stars": 0
-    },
-    {
-      "id": "openclaude",
-      "name": "OpenClaude",
-      "url": "https://github.com/Gitlawb/openclaude",
-      "current": "AI 代理",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 31758
-    },
-    {
-      "id": "agent-orchestrator",
-      "name": "Agent Orchestrator",
-      "url": "https://github.com/Untrivial-ai/agent-orchestrator",
-      "current": "AI 框架",
-      "proposed": "開發工具",
-      "rule": "R5",
-      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
-      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
-      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
-      "stars": 10938
-    },
-    {
-      "id": "dsh-desktop-anywhere",
-      "name": "dsh-desktop",
-      "url": "https://github.com/anywhere-labs/dsh-desktop",
-      "current": "開發工具",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 22262
     }
   ],
   "tier2": [

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-18T12:06:48.219Z",
+  "lastUpdated": "2026-09-18T13:31:09.589Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -47898,6 +47898,201 @@
       "status": "active",
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 26794
+    },
+    {
+      "id": "howtolivebetter",
+      "name": "HowToLiveBetter",
+      "url": "https://github.com/eternity4719/HowToLiveBetter",
+      "description": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+      "category": "開發工具",
+      "language": "html",
+      "triggers": [
+        "howtolivebetter",
+        "開發工具"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/eternity4719/HowToLiveBetter.git",
+        "repoUrl": "https://github.com/eternity4719/HowToLiveBetter"
+      },
+      "capabilities": [],
+      "useCase": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-18T12:51:07.907Z",
+      "status": "experimental"
+    },
+    {
+      "id": "spotifast",
+      "name": "Spotifast",
+      "url": "https://github.com/crmne/spotifast",
+      "description": "Spotify, native and fast. One lightweight Rust app for your whole library, local playback, and Spotify Connect on Linux, macOS, and Windows.",
+      "category": "音訊",
+      "language": "rust",
+      "triggers": [
+        "spotifast",
+        "audio",
+        "cross-platform",
+        "desktop-app",
+        "egui",
+        "gui",
+        "librespot",
+        "linux"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/crmne/spotifast",
+        "repoUrl": "https://github.com/crmne/spotifast"
+      },
+      "capabilities": [
+        "audio",
+        "cross-platform",
+        "desktop-app",
+        "egui",
+        "gui"
+      ],
+      "useCase": "Spotify, native and fast. One lightweight Rust app for your whole library, local playback, and Spotify Connect on Linux, macOS, and Windows.",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-18T12:51:15.823Z",
+      "status": "experimental"
+    },
+    {
+      "id": "my-girlfriend-jingtian-latex",
+      "name": "My Girlfriend Jingtian Latex",
+      "url": "https://github.com/HEJustinSun/my-girlfriend-jingtian-latex",
+      "description": "HEJustinSun/my-girlfriend-jingtian-latex - 待補充描述",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "my-girlfriend-jingtian-latex",
+        "girlfriend",
+        "jingtian",
+        "latex"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/HEJustinSun/my-girlfriend-jingtian-latex.git",
+        "repoUrl": "https://github.com/HEJustinSun/my-girlfriend-jingtian-latex"
+      },
+      "capabilities": [],
+      "useCase": "HEJustinSun/my-girlfriend-jingtian-latex - 待補充描述",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-18T12:51:19.101Z",
+      "status": "experimental"
+    },
+    {
+      "id": "ai-infra-book",
+      "name": "Ai Infra Book",
+      "url": "https://github.com/bojieli/ai-infra-book",
+      "description": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "ai-infra-book",
+        "infra",
+        "book",
+        "accelerator",
+        "ai-infra",
+        "ai-infrastructure",
+        "datacenter-network",
+        "deepseek"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/bojieli/ai-infra-book.git",
+        "repoUrl": "https://github.com/bojieli/ai-infra-book"
+      },
+      "capabilities": [
+        "accelerator",
+        "ai-infra",
+        "ai-infrastructure",
+        "book",
+        "datacenter-network"
+      ],
+      "useCase": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-18T12:51:30.862Z",
+      "status": "experimental"
+    },
+    {
+      "id": "lint",
+      "name": "Lint",
+      "url": "https://github.com/shadcn-ui/lint",
+      "description": "An agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "lint",
+        "agents",
+        "ai",
+        "design",
+        "design-system",
+        "design-tools",
+        "shadcn",
+        "shadcn-ui"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx lint",
+        "repoUrl": "https://github.com/shadcn-ui/lint"
+      },
+      "capabilities": [
+        "agents",
+        "ai",
+        "design",
+        "design-system",
+        "design-tools"
+      ],
+      "useCase": "An agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-18T12:51:37.467Z",
+      "status": "experimental"
+    },
+    {
+      "id": "jev-ultrafast",
+      "name": "Jev Ultrafast",
+      "url": "https://github.com/browser-use/jev-ultrafast",
+      "description": "i. am. speed.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "jev-ultrafast",
+        "jev",
+        "ultrafast"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/browser-use/jev-ultrafast.git",
+        "repoUrl": "https://github.com/browser-use/jev-ultrafast"
+      },
+      "capabilities": [],
+      "useCase": "i. am. speed.",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-18T13:01:04.385Z",
+      "status": "experimental"
     }
   ]
 }
