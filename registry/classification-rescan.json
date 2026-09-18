@@ -1,15 +1,22 @@
 {
-  "generatedAt": "2026-09-12T13:15:58.437Z",
+  "generatedAt": "2026-09-18T12:06:48.201Z",
   "decisionTree": "docs/CLASSIFICATION.md",
   "totalTools": 696,
   "summary": {
-    "tier1_violations": 0,
-    "tier2_needsReview": 15,
-    "tier3_domainHeuristic": 17,
-    "compliant": 171,
-    "noRuleMatched": 493
+    "tier1_violations": 14,
+    "tier2_needsReview": 18,
+    "tier3_domainHeuristic": 20,
+    "compliant": 185,
+    "noRuleMatched": 459
   },
-  "moves": {},
+  "moves": {
+    "AI 代理 → 開發工具": 4,
+    "開發工具 → AI 框架": 2,
+    "文件生產力 → 學習資源": 1,
+    "AI 代理 → AI 框架": 5,
+    "金融與投資 → 學習資源": 1,
+    "AI 框架 → 開發工具": 1
+  },
   "compliant": [
     {
       "id": "ppt-master",
@@ -112,6 +119,11 @@
       "rule": "D13-T3"
     },
     {
+      "id": "awesome-notebooklm-prompts",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
       "id": "notebooklm2ppt",
       "category": "文件生產力",
       "rule": "D13-T3"
@@ -130,6 +142,16 @@
       "id": "awesome-notebooklm",
       "category": "學習資源",
       "rule": "R3"
+    },
+    {
+      "id": "notebooklm-slide-pipeline",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
+      "id": "markitdown-website",
+      "category": "文件生產力",
+      "rule": "D13-T3"
     },
     {
       "id": "openai-figma-implement-skill",
@@ -190,6 +212,11 @@
       "id": "nousresearch-hermes-coding-agent",
       "category": "AI 代理",
       "rule": "R6"
+    },
+    {
+      "id": "open-webui",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "yangshun-tech-interview-handbook",
@@ -257,6 +284,11 @@
       "rule": "R6"
     },
     {
+      "id": "mathmodelagent",
+      "category": "研究",
+      "rule": "R9"
+    },
+    {
       "id": "blender",
       "category": "3D工程繪圖",
       "rule": "D7-T1"
@@ -265,6 +297,11 @@
       "id": "hkuds-vibe-trading",
       "category": "金融與投資",
       "rule": "D6-T1"
+    },
+    {
+      "id": "open-llm-vtuber",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "tradingagents",
@@ -287,6 +324,11 @@
       "rule": "D13-T3"
     },
     {
+      "id": "awesome-auto-research-tools",
+      "category": "研究",
+      "rule": "R9"
+    },
+    {
       "id": "anthropic-cybersecurity-skills",
       "category": "安全性",
       "rule": "R10"
@@ -307,9 +349,9 @@
       "rule": "R10"
     },
     {
-      "id": "oh-my-pi",
-      "category": "AI 代理",
-      "rule": "R6"
+      "id": "learn-claude-code",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "moneyprinterturbo",
@@ -320,6 +362,11 @@
       "id": "codex",
       "category": "AI 代理",
       "rule": "R6"
+    },
+    {
+      "id": "officecli-officecli",
+      "category": "文件生產力",
+      "rule": "D13-T3"
     },
     {
       "id": "emil-design-skills",
@@ -437,6 +484,11 @@
       "rule": "D7-T3"
     },
     {
+      "id": "exceltohtml",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
       "id": "xlsxtohtmlconverter",
       "category": "文件生產力",
       "rule": "D13-T1"
@@ -497,7 +549,7 @@
       "rule": "R10"
     },
     {
-      "id": "crawl4ai",
+      "id": "crawlee",
       "category": "瀏覽器自動化",
       "rule": "D8-T3"
     },
@@ -535,11 +587,6 @@
       "id": "howtheytest",
       "category": "學習資源",
       "rule": "R3"
-    },
-    {
-      "id": "awesome-systematic-trading",
-      "category": "金融與投資",
-      "rule": "D6-T1"
     },
     {
       "id": "awesome-solidity",
@@ -622,6 +669,16 @@
       "rule": "R6"
     },
     {
+      "id": "turbo-fieldfare",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "bento",
+      "category": "文件生產力",
+      "rule": "D13-T3"
+    },
+    {
       "id": "cadam",
       "category": "3D工程繪圖",
       "rule": "D7-T3"
@@ -680,6 +737,16 @@
       "id": "best-deals-bot",
       "category": "瀏覽器自動化",
       "rule": "D8-T3"
+    },
+    {
+      "id": "comfyui",
+      "category": "多媒體生成",
+      "rule": "D10-T3"
+    },
+    {
+      "id": "h3-c",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "ai-hedge-fund",
@@ -794,7 +861,7 @@
     {
       "id": "awesome-scientific-skills",
       "category": "研究",
-      "rule": "R10"
+      "rule": "R9"
     },
     {
       "id": "ai-research-skills",
@@ -812,14 +879,19 @@
       "rule": "R3"
     },
     {
+      "id": "fastpotify",
+      "category": "音訊",
+      "rule": "R8"
+    },
+    {
       "id": "academic-research-skills",
       "category": "研究",
       "rule": "R9"
     },
     {
-      "id": "openclaude",
-      "category": "AI 代理",
-      "rule": "R6"
+      "id": "obscura",
+      "category": "瀏覽器自動化",
+      "rule": "D8-T3"
     },
     {
       "id": "freetoken",
@@ -830,6 +902,11 @@
       "id": "freebuff",
       "category": "AI 代理",
       "rule": "R6"
+    },
+    {
+      "id": "magnitude",
+      "category": "AI 框架",
+      "rule": "R4"
     },
     {
       "id": "web-llm",
@@ -906,29 +983,24 @@
     "openai-codex-skills",
     "openai-mcpkit",
     "html-deck-editor",
-    "superpowers",
     "claude-mem",
     "humanizer-zh",
     "mini-agent",
     "cl4r1t4s",
     "frontend-design",
     "react-best-practices",
-    "awesome-copilot",
     "kane-cli",
     "gh-fix-ci",
     "figma-generate-library",
     "notebooklm-obsidian-pipeline",
-    "awesome-notebooklm-prompts",
     "claude-world-notebooklm",
     "ai-short-video-engine",
     "ontology-playground",
     "ontology",
-    "notebooklm-slide-pipeline",
     "animejs-v4-ai-guidelines",
     "virgiliojr94-book-to-skill",
     "book2skills",
     "book-skill-generator",
-    "markitdown-website",
     "anthropic-claude-skills",
     "vercel-agent-skills",
     "book-to-skill-apple-ouyang",
@@ -941,14 +1013,12 @@
     "ruflo",
     "crewai",
     "maigret",
-    "open-webui",
     "aider",
     "awesome-selfhosted",
     "javascript-algorithms",
     "30-seconds-of-code",
     "gitignore",
     "n8n",
-    "openclaw",
     "system-design-primer",
     "the-art-of-command-line",
     "you-dont-know-js",
@@ -958,7 +1028,6 @@
     "agentic-awesome-skills",
     "claude-code-best-practice",
     "awesome-agent-skills-VoltAgent",
-    "claude-skills",
     "claude-code-guide",
     "continuous-claude-v3",
     "anime",
@@ -984,16 +1053,13 @@
     "shuorenhua",
     "de-ai-prompt-enhancer-writer-booster-skill",
     "writing-agent",
-    "mathmodelagent",
     "omniroute",
     "openthoughts-agent",
     "financial-services",
-    "knowledge-work-plugins",
     "claude-for-legal",
     "claude-legal-skill",
     "taiwan-claude-legal",
     "claude-for-legal-zh",
-    "open-llm-vtuber",
     "last30days-skill",
     "last30days-skill-cn",
     "skill",
@@ -1003,22 +1069,17 @@
     "baoyu-skills",
     "autoresearch",
     "llm-council",
-    "awesome-auto-research-tools",
     "clodex-ide",
     "speak-human-tw",
     "taste-skill",
     "paddleocr",
-    "open-notebook",
     "gemini-cli",
     "deer-flow",
     "ruview",
     "ai-engineering-from-scratch",
     "awesome-free-llm-apis",
     "free-llm-api-resources",
-    "jpeetz-hermes-studio",
     "hermes-studio-EKKOLearnAI",
-    "harness",
-    "learn-claude-code",
     "hermes-webui",
     "compound-engineering-plugin",
     "supermemory",
@@ -1026,7 +1087,6 @@
     "fff",
     "awesome-codex-subagents",
     "ponytail",
-    "officecli-officecli",
     "gstack",
     "presentation-report-preflight",
     "huashu-design",
@@ -1076,7 +1136,6 @@
     "kimi-k3-code-free-desktop-ai",
     "opencodex",
     "data-to-html",
-    "exceltohtml",
     "excel-to-html",
     "obsidian-skills",
     "claude-obsidian",
@@ -1114,7 +1173,6 @@
     "sfsafesymbols",
     "simple-icons",
     "selenium",
-    "crawlee",
     "beautifulsoup4",
     "splash",
     "deepspec",
@@ -1144,7 +1202,6 @@
     "ai-engineering-from-scratch-zh",
     "ontology-ontio",
     "oh-my-hermes",
-    "oh-my-hermes-salomondiei08",
     "design-md-chrome",
     "text2video",
     "computer",
@@ -1155,7 +1212,6 @@
     "tailwindcss",
     "crm",
     "generative-ai-for-beginners",
-    "cherry-studio",
     "goose",
     "sglang",
     "llamafactory",
@@ -1175,17 +1231,14 @@
     "qm",
     "anydoc",
     "aos-ce",
-    "kimi-k3",
     "x4g",
     "scroll-world",
-    "turbo-fieldfare",
     "decimen-optical-transfer",
     "gpt-5-6-instruct",
     "gc-minimal-zine-poster",
     "no-ai-slop",
     "video-shotcraft",
     "os-taxonomy",
-    "bento",
     "geolibre",
     "t3code",
     "trellis2",
@@ -1237,11 +1290,9 @@
     "open-saas",
     "theremotefreelancer",
     "qwen-mm-plugins",
-    "comfyui",
     "gathered-scenes-zine-skill",
     "phone-harness",
     "wechat-ai",
-    "h3-c",
     "openbb",
     "fincept-terminal",
     "fingpt",
@@ -1255,7 +1306,6 @@
     "trailofbits-skills",
     "mengto-skills",
     "microsoft-official-skills",
-    "nvidia-skills",
     "manim-ml",
     "3b1b-videos",
     "kronos",
@@ -1273,7 +1323,6 @@
     "stable-diffusion",
     "awesome-mac",
     "figures4papers",
-    "deepseek-harness-desktop",
     "photo-abstract-editorial",
     "zouyuxuan122-deepseek-harness-eac",
     "teableio-teable",
@@ -1283,7 +1332,6 @@
     "baserow-baserow",
     "apache-superset",
     "evidence-dev-evidence",
-    "sqlmesh-sqlmesh",
     "sqlitebrowser-sqlitebrowser",
     "deepseek-harness-desktop-anywhere",
     "dsh-routing-suite",
@@ -1294,7 +1342,6 @@
     "dsh-better-sidebar",
     "mattpocock-skills",
     "munder-difflin",
-    "deepseek-work",
     "react-bits",
     "pi2dsh",
     "unlimited-ocr",
@@ -1333,7 +1380,6 @@
     "figma-community-resources",
     "mono-color-skill",
     "praxist",
-    "fastpotify",
     "goldie",
     "delivery-harness",
     "stop-that-shit",
@@ -1343,8 +1389,6 @@
     "chrome-devtools-mcp",
     "sie",
     "openwiki",
-    "obscura",
-    "agent-orchestrator",
     "kunpeng",
     "unlazy",
     "cognicode",
@@ -1352,7 +1396,6 @@
     "everything-claude-code",
     "nvm",
     "opengym",
-    "dsh-desktop-anywhere",
     "grok-bot-0-18-reconstructed",
     "shiji-kb",
     "weread-hot-booklists",
@@ -1362,7 +1405,176 @@
     "gpt4free",
     "freellmapi"
   ],
-  "tier1": [],
+  "tier1": [
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "current": "AI 代理",
+      "proposed": "開發工具",
+      "rule": "R5",
+      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
+      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
+      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
+      "stars": 276192
+    },
+    {
+      "id": "awesome-copilot",
+      "name": "Awesome Copilot",
+      "url": "https://github.com/github/awesome-copilot",
+      "current": "AI 代理",
+      "proposed": "開發工具",
+      "rule": "R5",
+      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
+      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
+      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
+      "stars": 38129
+    },
+    {
+      "id": "openclaw",
+      "name": "Openclaw",
+      "url": "https://github.com/openclaw/openclaw",
+      "current": "開發工具",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 387151
+    },
+    {
+      "id": "claude-skills",
+      "name": "Claude Skills",
+      "url": "https://github.com/alirezarezvani/claude-skills",
+      "current": "AI 代理",
+      "proposed": "開發工具",
+      "rule": "R5",
+      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
+      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
+      "why": "identity:code[- ]review",
+      "stars": 24817
+    },
+    {
+      "id": "reader3",
+      "name": "Reader3",
+      "url": "https://github.com/karpathy/reader3",
+      "current": "文件生產力",
+      "proposed": "學習資源",
+      "rule": "R2",
+      "ruleDesc": "書籍／書單／閱讀清單（主要價值為閱讀）→ 學習資源",
+      "step": "決策樹 §2-2 ／ §3 邊界「書籍閱讀清單」",
+      "why": "identity:書單|书单|书籍|書籍|電子書|电子书|讀書筆記|读书笔记",
+      "stars": 3841
+    },
+    {
+      "id": "oh-my-pi",
+      "name": "Oh My Pi",
+      "url": "https://github.com/can1357/oh-my-pi",
+      "current": "AI 代理",
+      "proposed": "開發工具",
+      "rule": "R5",
+      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
+      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
+      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
+      "stars": 26534
+    },
+    {
+      "id": "jpeetz-hermes-studio",
+      "name": "Hermes Studio (Orchestrator)",
+      "url": "https://github.com/JPeetz/Hermes-Studio",
+      "current": "AI 代理",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 331
+    },
+    {
+      "id": "awesome-systematic-trading",
+      "name": "Awesome Systematic Trading",
+      "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
+      "current": "金融與投資",
+      "proposed": "學習資源",
+      "rule": "R2",
+      "ruleDesc": "書籍／書單／閱讀清單（主要價值為閱讀）→ 學習資源",
+      "step": "決策樹 §2-2 ／ §3 邊界「書籍閱讀清單」",
+      "why": "identity:書單|书单|书籍|書籍|電子書|电子书|讀書筆記|读书笔记",
+      "stars": 13861
+    },
+    {
+      "id": "nvidia-skills",
+      "name": "skills",
+      "url": "https://github.com/NVIDIA/skills",
+      "current": "AI 代理",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 3066
+    },
+    {
+      "id": "deepseek-harness-desktop",
+      "name": "DeepSeek Harness Desktop",
+      "url": "https://github.com/steven-kid/deepseek-harness-desktop",
+      "current": "AI 代理",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 160
+    },
+    {
+      "id": "deepseek-work",
+      "name": "DeepSeek Work",
+      "url": "https://github.com/astraclawteam/deepseek-work",
+      "current": "AI 代理",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 0
+    },
+    {
+      "id": "openclaude",
+      "name": "OpenClaude",
+      "url": "https://github.com/Gitlawb/openclaude",
+      "current": "AI 代理",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 31758
+    },
+    {
+      "id": "agent-orchestrator",
+      "name": "Agent Orchestrator",
+      "url": "https://github.com/Untrivial-ai/agent-orchestrator",
+      "current": "AI 框架",
+      "proposed": "開發工具",
+      "rule": "R5",
+      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
+      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
+      "why": "identity:代碼審查|代码审查|程式碼審查|代码评审",
+      "stars": 10938
+    },
+    {
+      "id": "dsh-desktop-anywhere",
+      "name": "dsh-desktop",
+      "url": "https://github.com/anywhere-labs/dsh-desktop",
+      "current": "開發工具",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
+      "stars": 22262
+    }
+  ],
   "tier2": [
     {
       "id": "impeccable",
@@ -1405,6 +1617,14 @@
       "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
+      "id": "knowledge-work-plugins",
+      "name": "Knowledge Work Plugins",
+      "current": "AI 代理",
+      "proposed": "研究",
+      "rule": "R9",
+      "reason": "學術研究／論文／文獻 → 研究"
+    },
+    {
       "id": "zarazhangrui-frontend-slides",
       "name": "Frontend Slides (Generator)",
       "current": "文件生產力",
@@ -1419,6 +1639,14 @@
       "proposed": "AI 代理",
       "rule": "R6",
       "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
+    },
+    {
+      "id": "open-notebook",
+      "name": "Open Notebook",
+      "current": "知識管理",
+      "proposed": "研究",
+      "rule": "R9",
+      "reason": "學術研究／論文／文獻 → 研究"
     },
     {
       "id": "beautiful-html-templates",
@@ -1453,6 +1681,22 @@
       "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
     },
     {
+      "id": "cherry-studio",
+      "name": "cherry-studio",
+      "current": "AI 框架",
+      "proposed": "研究",
+      "rule": "R9",
+      "reason": "學術研究／論文／文獻 → 研究"
+    },
+    {
+      "id": "kimi-k3",
+      "name": "Kimi-K3",
+      "current": "AI 框架",
+      "proposed": "研究",
+      "rule": "R9",
+      "reason": "學術研究／論文／文獻 → 研究"
+    },
+    {
       "id": "codexbar",
       "name": "CodexBar",
       "current": "開發工具",
@@ -1472,14 +1716,6 @@
       "id": "graft",
       "name": "Graft",
       "current": "API 整合",
-      "proposed": "AI 代理",
-      "rule": "R6",
-      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
-    },
-    {
-      "id": "magnitude",
-      "name": "Magnitude",
-      "current": "AI 框架",
       "proposed": "AI 代理",
       "rule": "R6",
       "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
@@ -1557,14 +1793,14 @@
       "stars": 153220
     },
     {
-      "id": "reader3",
-      "name": "Reader3",
-      "current": "文件生產力",
-      "proposed": "知識管理",
-      "rule": "D2-T3",
-      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
-      "why": "identity:\\brag\\b",
-      "stars": 3841
+      "id": "harness",
+      "name": "Harness",
+      "current": "開發工具",
+      "proposed": "測試與自動化",
+      "rule": "D14-T3",
+      "ruleDesc": "測試框架、CI/CD、自動化腳本 → 測試與自動化（敘述提及）",
+      "why": "identity:test (runner|framework|automation|ha",
+      "stars": 38083
     },
     {
       "id": "duckdb",
@@ -1577,6 +1813,16 @@
       "stars": 40536
     },
     {
+      "id": "crawl4ai",
+      "name": "Crawl4AI",
+      "current": "瀏覽器自動化",
+      "proposed": "知識管理",
+      "rule": "D2-T3",
+      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
+      "why": "identity:\\brag\\b",
+      "stars": 79131
+    },
+    {
       "id": "llmsherpa",
       "name": "Llmsherpa",
       "current": "文件生產力",
@@ -1585,6 +1831,16 @@
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
       "stars": 1749
+    },
+    {
+      "id": "oh-my-hermes-salomondiei08",
+      "name": "Oh My Hermes",
+      "current": "AI 代理",
+      "proposed": "測試與自動化",
+      "rule": "D14-T3",
+      "ruleDesc": "測試框架、CI/CD、自動化腳本 → 測試與自動化（敘述提及）",
+      "why": "identity:test (runner|framework|automation|ha",
+      "stars": 853
     },
     {
       "id": "hermes-plugins",
@@ -1645,6 +1901,16 @@
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
       "stars": 51802
+    },
+    {
+      "id": "sqlmesh-sqlmesh",
+      "name": "SQLMesh",
+      "current": "開發工具",
+      "proposed": "測試與自動化",
+      "rule": "D14-T3",
+      "ruleDesc": "測試框架、CI/CD、自動化腳本 → 測試與自動化（敘述提及）",
+      "why": "identity:test (runner|framework|automation|ha",
+      "stars": 3252
     },
     {
       "id": "figma-code-connect",
