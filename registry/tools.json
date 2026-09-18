@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-17T23:58:32.865Z",
+  "lastUpdated": "2026-09-18T12:06:48.219Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -3322,7 +3322,7 @@
       "name": "Superpowers",
       "url": "https://github.com/obra/superpowers",
       "description": "Agentic AI skills framework and structured methodology for software development workflows.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "shell",
       "triggers": [
         "superpowers",
@@ -3915,7 +3915,7 @@
       "name": "Awesome Copilot",
       "url": "https://github.com/github/awesome-copilot",
       "description": "Curated collection of prompts, agents, and configs to optimize GitHub Copilot workflows.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "github-copilot",
@@ -7051,7 +7051,7 @@
       "name": "Openclaw",
       "url": "https://github.com/openclaw/openclaw",
       "description": "Self-hosted personal AI assistant for any OS and platform.",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "openclaw",
@@ -8021,7 +8021,7 @@
       "name": "Claude Skills",
       "url": "https://github.com/alirezarezvani/claude-skills",
       "description": "345 skills, agents, and plugins for Claude Code, Codex, Gemini CLI, and Cursor.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "python",
       "triggers": [
         "claude-skills",
@@ -18074,7 +18074,7 @@
       "name": "Reader3",
       "url": "https://github.com/karpathy/reader3",
       "description": "Read books interactively with LLMs using retrieval-augmented generation.",
-      "category": "文件生產力",
+      "category": "學習資源",
       "language": "python",
       "triggers": [
         "reader3",
@@ -23171,7 +23171,7 @@
       "name": "Oh My Pi",
       "url": "https://github.com/can1357/oh-my-pi",
       "description": "Terminal AI coding agent with hash-anchored edits, LSP, and multi-agent support.",
-      "category": "AI 代理",
+      "category": "開發工具",
       "language": "typescript",
       "triggers": [
         "oh-my-pi",
@@ -23378,7 +23378,7 @@
       "name": "Hermes Studio (Orchestrator)",
       "url": "https://github.com/JPeetz/Hermes-Studio",
       "description": "Self-hosted web UI for Hermes Agent with chat, memory, and multi-agent orchestration.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "jpeetz-hermes-studio",
@@ -32846,7 +32846,7 @@
       "name": "Awesome Systematic Trading",
       "url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
       "description": "Curated GitHub list of libraries, strategies, books, and tutorials for systematic and algorithmic trading.",
-      "category": "金融與投資",
+      "category": "學習資源",
       "language": "python",
       "triggers": [
         "awesome-systematic-trading",
@@ -40036,7 +40036,7 @@
       "name": "skills",
       "url": "https://github.com/NVIDIA/skills",
       "description": "NVIDIA AI skills",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "markdown",
       "triggers": [
         "nvidia-skills",
@@ -41384,7 +41384,7 @@
       "name": "DeepSeek Harness Desktop",
       "url": "https://github.com/steven-kid/deepseek-harness-desktop",
       "description": "DeepSeek Harness 非官方社群桌面包裝器：Electron 跨平台（macOS/Windows/Linux）一鍵安裝包，自動啟動本地服務、系統托盤常駐、免 CLI 免管 port，開箱即用。",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "deepseek-harness-desktop",
@@ -42585,7 +42585,7 @@
       "name": "DeepSeek Work",
       "url": "https://github.com/astraclawteam/deepseek-work",
       "description": "Desktop AI agent harness with multi-agent, MCP, and skill management for Windows/macOS",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "javascript",
       "triggers": [
         "deepseek-work",
@@ -46415,7 +46415,7 @@
       "name": "OpenClaude",
       "url": "https://github.com/Gitlawb/openclaude",
       "description": "Open source alternative to Claude. Runs anywhere, uses anything. Flexible AI coding assistant.",
-      "category": "AI 代理",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "openclaude",
@@ -46532,7 +46532,7 @@
       "name": "Agent Orchestrator",
       "url": "https://github.com/Untrivial-ai/agent-orchestrator",
       "description": "Agent IDE that enables you to manage fleets of coding agents. It comes with an agentic orchestrator that plans tasks, spawns agents, and autonomously handles CI fixes, merge conflicts, and code reviews.",
-      "category": "AI 框架",
+      "category": "開發工具",
       "language": "go",
       "triggers": [
         "agent-orchestrator",
@@ -47072,7 +47072,7 @@
       "name": "dsh-desktop",
       "url": "https://github.com/anywhere-labs/dsh-desktop",
       "description": "為 DeepSeek Harness (DSH) 插件生態打造的現代化桌面端解決方案。萬物皆「插件」，桌面本身也是「插件」。",
-      "category": "開發工具",
+      "category": "AI 框架",
       "language": "typescript",
       "triggers": [
         "dsh-desktop-anywhere",

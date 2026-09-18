@@ -30,14 +30,14 @@
 
 | 分類 | 數量 | 定義 |
 |---|---:|---|
-| `AI 代理` | 149 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
-| `開發工具` | 91 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
-| `AI 框架` | 71 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
-| `學習資源` | 60 | 教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） |
-| `文件生產力` | 58 | 簡報／PPT、Office、PDF |
+| `AI 代理` | 140 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
+| `開發工具` | 94 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
+| `AI 框架` | 77 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
+| `學習資源` | 62 | 教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） |
+| `文件生產力` | 57 | 簡報／PPT、Office、PDF |
 | `UI/UX設計` | 54 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
 | `知識管理` | 34 | agent 記憶、RAG、知識圖譜、codebase 索引 |
-| `金融與投資` | 25 | 交易、量化、股票分析 |
+| `金融與投資` | 24 | 交易、量化、股票分析 |
 | `影片` | 24 | 影片編輯、影片串流、影片客戶端 |
 | `研究` | 21 | 學術研究、文獻、論文、學術資料集 |
 | `多媒體生成` | 18 | AI 圖像／影片生成 |
