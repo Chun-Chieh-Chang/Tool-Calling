@@ -217,24 +217,39 @@ test('Property 2b [Preservation]: check-mece.js exits 0 on unfixed code', { time
   );
 
   // 5. Subprocess check (best-effort — can race with guard tests)
-  const { exitCode, stdout, stderr } = runNode(['scripts/check-mece.js']);
-  if (exitCode !== 0) {
-    // Only fail if the failure is about MECE logic (not schema sync races)
-    const isSchemaSyncRace = stdout.includes('tool.schema.json') && stdout.includes('不一致');
-    if (!isSchemaSyncRace) {
-      assert.fail(
-        `check-mece.js failed for a non-sync reason (exit ${exitCode}).\n` +
-        `stdout:\n${stdout}\nstderr:\n${stderr}`
-      );
+  //
+  // category-guards.test.js writes the real schema file (with try/finally
+  // restore), so a concurrent run can observe a mutated schema. That race is
+  // transient, so retry rather than trying to recognise the failure by string
+  // matching — the previous version only tolerated failures whose stdout
+  // contained both 'tool.schema.json' and '不一致', which missed other
+  // shapes of the same race and produced spurious failures.
+  let exitCode = 1;
+  let stdout = '';
+  let stderr = '';
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt > 0) {
+      // Sleep synchronously — this test runs on the main thread
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
     }
-    // Schema sync issue caused by concurrent guard test mutation — not a MECE failure.
-    // The in-process invariants above already confirm MECE correctness.
-  } else {
-    assert.ok(
-      stdout.includes('✅ 所有 MECE 檢查通過'),
-      `Expected '✅ 所有 MECE 檢查通過' in stdout.\nstdout:\n${stdout}`
+    ({ exitCode, stdout, stderr } = runNode(['scripts/check-mece.js']));
+    if (exitCode === 0) break;
+  }
+
+  if (exitCode !== 0) {
+    // Retried and still failing — report it. The in-process invariants above
+    // already confirm MECE correctness, so this points at check-mece itself
+    // or a persistent environment problem rather than a transient race.
+    assert.fail(
+      `check-mece.js failed after 3 attempts (exit ${exitCode}).\n` +
+      `stdout:\n${stdout}\nstderr:\n${stderr}`
     );
   }
+
+  assert.ok(
+    stdout.includes('✅ 所有 MECE 檢查通過'),
+    `Expected '✅ 所有 MECE 檢查通過' in stdout.\nstdout:\n${stdout}`
+  );
 
   done();
 });
