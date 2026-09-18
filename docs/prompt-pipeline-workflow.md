@@ -133,7 +133,7 @@ route: 'h2'    底邊下行跨欄繞行   from.bottom → 下降 → 橫跨 → 
                用於：同側節點避開正面障礙（目標從下方接入）
 
 已廢棄（禁止使用）：
-route: 'vloop' ❌ 2026-09-02 廢棄。同軸折返導致兩條線重疊，動畫呈粗實線視覺 bug。
+route: 'vloop' ❌ 已廢棄。同軸折返導致兩條線重疊，動態虛線動畫呈粗實線視覺 bug。
 ```
 
 ### 路由選擇速查
@@ -181,7 +181,7 @@ SVG Marker 箭頭觸線公式（不可改動）：
 
 ### 5.2 UI 配色方案（選擇一種，或自訂）
 
-**方案 A：深藍科技風（Slate 調色系，Tool-Calling 原版）**
+**方案 A：深藍科技風（Slate 調色系）**
 ```css
 :root[data-theme="dark"] {
   --bg-base: #0F172A; --bg-surface: #1E293B;
@@ -289,7 +289,7 @@ AI 輸出一個可直接在瀏覽器開啟的 `.html` 檔，包含：
 
 ```html
 <!DOCTYPE html>
-<html lang="zh-TW" data-theme="dark">
+<html lang="{LANG}" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <title>{SYSTEM_NAME}</title>
