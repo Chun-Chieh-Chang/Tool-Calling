@@ -20,6 +20,7 @@
     "trending": "node scripts/trending-weekly.js",
     "daemon": "node scripts/sync-daemon.js",
     "mine-synonyms": "node scripts/mine-synonyms.js",
+    "translate:zh": "node scripts/translate-to-zh.js",
     "agents:init": "node scripts/generate-agents-md.js",
     "tracked-repos": "node scripts/tracked-repos.js",
     "rescan-classification": "node scripts/rescan-classification.js",
