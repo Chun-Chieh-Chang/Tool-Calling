@@ -662,15 +662,20 @@ function buildToolText(tool) {
     tool.name, tool.name, tool.name,
     // 觸發詞 ×2
     ...(tool.triggers || []), ...(tool.triggers || []),
-    // 描述 ×1
+    // 描述 ×1（原文）
     tool.description,
+    // 描述繁中譯文 ×1：查詢以繁中為主，而全庫 87% 描述為英文，
+    // 只索引原文會讓中文查詢系統性找不到這些工具（見下方說明）。
+    tool.description_zh || '',
     // 分類 ×2
     tool.category, tool.category,
     // 能力標籤 ×1
     ...(tool.capabilities || []).map(c => c.replace(/-/g, ' ')),
     // 場景與優勢
     tool.useCase || '',
+    tool.useCase_zh || '',
     ...(tool.advantages || []),
+    tool.advantages_zh || '',
     // 子工具（有長度預算保護，避免 monorepo 霸榜，見 MAX_TOOL_TEXT_LENGTH）
     ...(tool.subTools || []).map(st => `${st.name} ${st.description}`)
   ];

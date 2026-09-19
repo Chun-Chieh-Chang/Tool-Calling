@@ -190,9 +190,12 @@ function scoreV1Identity(q, tool, idf) {
 
 // V2 功能：capabilities 陣列 + description；IDF 加權。
 function scoreV2Capability(q, tool, idf) {
+  // description_zh：查詢以繁中為主，而全庫 87% 描述為英文，
+  // 只比對原文會讓中文查詢系統性找不到這些工具。譯文與原文並存。
   const capText = [
     ...(tool.capabilities || []),
     tool.description || '',
+    tool.description_zh || '',
   ].join(' ');
   const toolBag = bagOf(tokenize(capText));
   return { value: weightedSim(q.bag, toolBag, idf.idfIdentity, { weightA: 1, weightB: 1 }) };
@@ -202,6 +205,7 @@ function scoreV2Capability(q, tool, idf) {
 function scoreV3Scenario(q, tool, idf) {
   const scenarioText = [
     tool.useCase || '',
+    tool.useCase_zh || '',
     tool.category || '',
     ...(tool.negativeConstraints || []),
   ].join(' ');
