@@ -35,6 +35,13 @@
 import { neutralizeDelimiters } from './prompt-sanitize.js';
 
 const DEFAULT_API_BASE = 'https://apihub.agnes-ai.com/v1';
+// ⚠️ 2026-09-19 實測：換成 agnes-3.0-flash **沒有增益反而略差**。
+// 交叉順序對照（topK=50，各跑兩次，控制配額遞減的順序效應）：
+//   2.5-flash：64.3% / 73.8%（成功呼叫 40、40）
+//   3.0-flash：61.9% / 66.7%（成功呼叫 34、37）
+// 3.0 不只分數較低，API 失敗數也明顯較多。維持 2.5-flash。
+// 若日後要再試新模型，請用 `node scripts/eval-rerank.js --topK=50 --model=<name>`
+// 並**正反順序各跑一次**再比較，單次量測會被限流騙。
 const DEFAULT_MODEL = 'agnes-2.5-flash';
 
 /**
