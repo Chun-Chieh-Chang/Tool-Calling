@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **702 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **702 個頂尖開源 AI 工具與 Agent 技能**（截至 2026-09-19，實際數量以 `registry/tools.json` 為準）：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與檔案生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -30,7 +30,7 @@
 | ~~Web Worker~~ | 已移除 | 與 core/ 重複的第三套檢索實作，改用 `/api/search` |
 | IndexedDB | 冷啟動 <100ms | 跨頁面持久化快取 |
 | Fuzzy Matching | +15% 容錯率 | Levenshtein 距離模糊匹配 |
-| 同義詞擴充 | 7,437 個查找詞 | 41 個種子詞為基底，其餘由 trigger 共現自動挖掘（3,021 組同義詞群） |
+| 同義詞擴充 | 自動挖掘 | 41 個種子詞為基底，其餘由 trigger 共現自動挖掘；詞典由 `npm run build` 產生，規模會隨 registry 變動，請以 `core/synonyms.generated.js` 為準 |
 
 詳細報告請見 [docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md](./docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md)
 
@@ -151,7 +151,7 @@ Tool-Calling/
 ├── core/               # 核心模組
 │   ├── search-engine.js     # 三層檢索引擎 (L1-L3)
 │   ├── categories.js        # 分類單一來源載入器
-│   ├── synonyms.generated.js # 同義詞詞典 (7,437 個查找詞)
+│   ├── synonyms.generated.js # 同義詞詞典（由 mine-synonyms.js 自動產生）
 │   ├── telemetry.js         # 使用統計
 │   └── ...
 ├── web/                # 前端精密儀表數據工作台
@@ -203,7 +203,7 @@ node scripts/rescan-classification.js --ci  # 全庫重掃，Tier 1 必須為 0
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v2.0 - 702 Tools, 7,437 Synonym Terms, Live Refresh & Dual-Week Trending
+> Tool-Calling v2.0 - 702 個工具（截至 2026-09-19）、自動挖掘同義詞、即時更新與雙週趨勢
 ---
 
 ## 🌐 網頁版 UI
