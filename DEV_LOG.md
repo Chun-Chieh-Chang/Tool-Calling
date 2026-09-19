@@ -1,5 +1,72 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-19 Git 倉庫損毀修復 + Strix 資安修復落地 + 文件數字同步
+
+### 需求
+1. `git stash push -- core/llm-rerank.js` 被 SIGTERM 中斷後，倉庫完全無法使用。
+2. Strix 滲透掃描回報 5 項弱點，需依「風險 × 修復成本」排序修復（3 → 4 → 1 → 5 → 2）。
+3. 盤點發現 README 的統計數字與 registry 現況脫節。
+
+### 根本原因（Git 損毀）：兩層損壞疊加
+| 損壞 | 現象 | 說明 |
+|---|---|---|
+| `.git/refs/` 目錄消失 | `fatal: not a git repository` | Git 判定倉庫需同時具備 `HEAD` + `objects` + `refs`，缺一即不承認 |
+| `.pack` 全毀、只剩 `.idx` | `fatal: bad object HEAD` | 7 個未推送 commit 的物件**不可恢復** |
+
+`config`、`HEAD`、`logs/`、`FETCH_HEAD` 與**工作區檔案**皆完好。
+
+### 修復步驟（Git）
+1. 完整備份：`cp -r .git` + 原始碼 → `/tmp/tc-git-repair-20260919-124455`
+2. `mkdir -p .git/refs/{heads,tags,remotes/origin}` ← 讓 Git 重新識別倉庫
+3. 孤立 `.idx` / `multi-pack-index` / `commit-graph` 移至隔離區
+4. `git fetch origin` 重新取回物件（遠端 tip = `bfd63e18`）
+5. `printf` 直接寫 `refs/heads/main`（本環境寫不進含斜線的 ref）
+6. `git read-tree HEAD` 重建索引（`rm .git/index` 會被沙盒擋）
+
+遺失的 7 個 commit 內容全在工作區，重設索引後攤成修改，重新提交為 5 筆原子化 commit。
+
+### ⚠️ 過程中發現的漏洞：classifier 的 CWE-20 修復曾被掩蓋
+`core/classifier.js` 第 42-43 行直接把工具名稱／描述插值進 LLM prompt、未做任何中和。
+原修復在 commit `9c4a2d2`（訊息寫了 "rerank and classifier"），但**隨物件損毀一起消失且無人發現**。
+
+修法：新建 `core/prompt-sanitize.js` 作為淨化邏輯的 SSOT，`llm-rerank.js` 與 `classifier.js` 共用；
+新增 `tests/prompt-sanitize.test.js`（8 筆，含兩個「消費端測試」鎖住兩端都必須真的用上它）。
+
+### agnes-3.0-flash 換模型實測：無增益，維持 2.5-flash
+**方法論關鍵**：只跑一次會把「配額遞減的順序效應」誤判成模型差異，必須正反順序各跑一次。
+
+| 順序 | 2.5-flash | 3.0-flash |
+|---|---|---|
+| 先跑 | 64.3%（成功呼叫 40/42） | 66.7%（成功 37/42） |
+| 後跑 | **73.8%（成功 40/42）** | 61.9%（成功 34/42） |
+
+兩個順序下 2.5 都勝出，且 3.0 的 API 失敗數明顯較多 → 維持 `agnes-2.5-flash`，
+負面結果寫入 `core/llm-rerank.js` 註解（`e92a2a3`）避免日後重試。
+
+### 文件數字同步
+| 位置 | 舊值 | 新值 |
+|---|---|---|
+| README 工具數 | 696 | **702** |
+| README trigger 擴充覆蓋 | 693 筆 | **693/699 筆**（6 筆為擴充後才新增） |
+| README top-20 天花板 | 78.6%（擴充前舊值） | **81.0%**（實測） |
+| README 同義詞規模 | 620 詞彙 | **7,437 個查找詞**（3,021 組同義詞群） |
+| README 結構樹 | `web/server.js` 重複兩列 | 移除重複 |
+
+另移除死碼 `scripts/batch-add-20260912.js`（一次性匯入腳本，已執行完畢且無任何引用）。
+
+### 驗證結果
+- `npm test`：**148 tests / 146 pass / 0 fail** ✅
+- `npm run check-mece`：分類系統符合 MECE ✅
+- `npm run categories:check`：所有衍生檔與 `categories.json` 同步 ✅
+- `npm run rescan-classification --ci`：Tier 1 違反 **0** ✅
+- `node cli.js validate`：0 錯誤，metadata 品質 99.8/100 ✅
+- `node scripts/check-utf8.js`：0 個 U+FFFD ✅
+- 機密掃描：diff 內無金鑰／token／私鑰，專案內無 `.env` ✅
+
+### 已知待處理
+- `.agents/AGENTS.md` 為 2026-09-09 的過時副本（598 個工具，與根 `AGENTS.md` 差 586 行），
+  且無任何程式讀取它；`.agents/skills/` 仍有實際內容需保留。
+
 ## 2026-09-18 CI 修復：14 筆 Tier 1 分類違反清零，GitHub Pages 部署恢復
 
 ### 需求
