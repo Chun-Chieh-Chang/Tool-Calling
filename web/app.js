@@ -916,7 +916,8 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
   const article = clone.querySelector('article');
 
   clone.querySelector('.tool-name').textContent = tool.name;
-  clone.querySelector('.tool-desc').textContent = tool.description || '無描述';
+  // 顯示層優先繁中譯文（由 web/server.js 在 /api/search 補上），否則回退原文
+  clone.querySelector('.tool-desc').textContent = tool.description_zh || tool.description || '無描述';
   // 若卡片屬於多分類 section，顯示當前 section 的分類；否則顯示工具的分類
   const displayCat = currentCategory || getToolCategories(tool).join(' / ');
   clone.querySelector('.category-tag').textContent = displayCat;

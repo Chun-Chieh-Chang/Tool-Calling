@@ -26,6 +26,26 @@ export function getToolById(toolId) {
   return data.tools.find((t) => t.id === toolId) || null;
 }
 
+/**
+ * 顯示用文字：優先回傳繁體中文（台灣）譯文，沒有則回退原文。
+ *
+ * 譯文由 `scripts/translate-to-zh.js` 產生，存於 `*_zh` 欄位
+ * （description_zh / useCase_zh / advantages_zh）。
+ * ⚠️ 原文欄位**不可被覆寫**——它們同時是檢索索引與 rerank 提示的內容，
+ * 覆寫會讓既有準確度量測作廢。顯示層一律走這個函式，不要直接讀原文。
+ *
+ * @param {object} tool
+ * @param {'description'|'useCase'|'advantages'} field
+ * @returns {string}
+ */
+export function displayText(tool, field) {
+  if (!tool) return '';
+  const zh = tool[`${field}_zh`];
+  if (typeof zh === 'string' && zh.trim()) return zh;
+  if (typeof tool[field] === 'string') return tool[field];
+  return '';
+}
+
 export function generateId(name) {
   return name
     .toLowerCase()

@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { search, listAll, listByCategory, getById, planToolChain, extractQueryContext } from './core/search-engine.js';
 import { scanMonorepo } from './scripts/scan-monorepo.js';
-import { loadRegistry, saveRegistry, generateId } from './core/registry.js';
+import { loadRegistry, saveRegistry, generateId, displayText } from './core/registry.js';
 import { assessRegistryContract } from './core/registry-contract.js';
 import { 
   installSkill, 
@@ -77,7 +77,8 @@ function cmdList() {
           ? `${c.red}●${c.reset}`
           : `${c.yellow}●${c.reset}`;
       console.log(`  ${status} ${c.bold}${tool.name}${c.reset} ${c.dim}(${tool.id})${c.reset}`);
-      console.log(`    ${c.dim}${tool.description.slice(0, 70)}${tool.description.length > 70 ? '...' : ''}${c.reset}`);
+      const dList = displayText(tool, 'description');
+      console.log(`    ${c.dim}${dList.slice(0, 70)}${dList.length > 70 ? '...' : ''}${c.reset}`);
       console.log(`    ${c.blue}${tool.url}${c.reset}`);
       console.log(`    ${c.magenta}觸發:${c.reset} ${tool.triggers.slice(0, 5).join(', ')}${tool.triggers.length > 5 ? '...' : ''}`);
       console.log();
@@ -145,9 +146,10 @@ async function cmdSearch(query, options = {}) {
     const bar = '█'.repeat(Math.round(score * 20)).padEnd(20, '░');
     console.log(`${c.bold}#${i + 1}${c.reset} ${c.cyan}${tool.name}${c.reset} ${c.dim}(${tool.id})${c.reset}`);
     console.log(`   信心度: ${c.green}${bar}${c.reset} ${(score * 100).toFixed(0)}%  [${matchLevel}]`);
-    console.log(`   ${c.dim}${tool.description.slice(0, 80)}${c.reset}`);
-    if (tool.useCase) {
-      console.log(`   ${c.yellow}⭐ 場景:${c.reset} ${tool.useCase}`);
+    console.log(`   ${c.dim}${displayText(tool, 'description').slice(0, 80)}${c.reset}`);
+    const useCaseText = displayText(tool, 'useCase');
+    if (useCaseText) {
+      console.log(`   ${c.yellow}⭐ 場景:${c.reset} ${useCaseText}`);
     }
     if (tool.negativeConstraints?.length) {
       console.log(`   ${c.red}🚫 禁用場景:${c.reset} ${tool.negativeConstraints.join('、')}`);
@@ -494,19 +496,21 @@ function cmdInfo(id) {
   header(tool.name);
   console.log(`  ${c.bold}ID:${c.reset}       ${tool.id}`);
   console.log(`  ${c.bold}URL:${c.reset}      ${c.blue}${tool.url}${c.reset}`);
-  console.log(`  ${c.bold}描述:${c.reset}     ${tool.description}`);
+  console.log(`  ${c.bold}描述:${c.reset}     ${displayText(tool, 'description')}`);
   console.log(`  ${c.bold}分類:${c.reset}     ${tool.category}`);
   console.log(`  ${c.bold}語言:${c.reset}     ${tool.language}`);
   console.log(`  ${c.bold}狀態:${c.reset}     ${tool.status}`);
   console.log(`  ${c.bold}觸發詞:${c.reset}   ${tool.triggers.join(', ')}`);
-  if (tool.useCase) {
-    console.log(`  ${c.yellow}⭐ 場景:${c.reset}  ${tool.useCase}`);
+  const infoUseCase = displayText(tool, 'useCase');
+  if (infoUseCase) {
+    console.log(`  ${c.yellow}⭐ 場景:${c.reset}  ${infoUseCase}`);
   }
   if (tool.negativeConstraints?.length) {
     console.log(`  ${c.red}🚫 禁用場景:${c.reset} ${tool.negativeConstraints.join('、')}`);
   }
-  if (tool.advantages?.length) {
-    console.log(`  ${c.yellow}★ 優勢:${c.reset}   ${tool.advantages.join('、')}`);
+  const infoAdvantages = displayText(tool, 'advantages');
+  if (infoAdvantages) {
+    console.log(`  ${c.yellow}★ 優勢:${c.reset}   ${infoAdvantages}`);
   }
   if (tool.capabilities?.length) {
     console.log(`  ${c.bold}能力:${c.reset}     ${tool.capabilities.join(', ')}`);

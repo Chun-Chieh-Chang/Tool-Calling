@@ -5,7 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { z } from "zod";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { loadRegistry, getToolById } from "./core/registry.js";
+import { loadRegistry, getToolById, displayText } from "./core/registry.js";
 import { createJob, getJob, cancelJob, listJobs, getStats } from "./core/job-manager.js";
 import { 
   searchAllSkills, 
@@ -44,7 +44,7 @@ server.tool(
       }
       const result = filtered.map((t) => ({
         id: t.id, name: t.name, category: t.category,
-        description: t.description?.slice(0, 200), status: t.status,
+        description: displayText(t, 'description').slice(0, 200), status: t.status,
       }));
       return { content: [{ type: "text", text: JSON.stringify({ total: result.length, tools: result }, null, 2) }] };
     } catch (err) {
@@ -83,8 +83,8 @@ server.tool(
         });
         const output = results.map((r) => ({
           id: r.tool.id, name: r.tool.name, category: r.tool.category,
-          description: (r.tool.description || "").slice(0, 300), score: r.score,
-          matchLevel: r.matchLevel, advantages: r.tool.advantages || [],
+          description: displayText(r.tool, 'description').slice(0, 300), score: r.score,
+          matchLevel: r.matchLevel, advantages: displayText(r.tool, 'advantages'),
         }));
         return { content: [{ type: "text", text: JSON.stringify({
           total: output.length, mode: "lexical", results: output,
@@ -117,9 +117,10 @@ server.tool(
         telemetryStats,
         rerank: args.rerank,
       });
+      const byId = new Map(tools.map((t) => [t.id, t]));
       const output = r.results.map((x) => ({
         id: x.id, name: x.name, category: x.category,
-        description: x.description,
+        description: displayText(byId.get(x.id), 'description') || x.description,
         score: x.score, matchLevel: x.matchLevel, source: x.source,
         confidence: x.confidence ?? null,
         reasons: x.reasons,

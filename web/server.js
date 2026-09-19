@@ -206,13 +206,23 @@ const server = http.createServer(async (req, res) => {
 
       const t0 = Date.now();
       try {
-        const { loadRegistry } = await import('../core/registry.js');
+        const { loadRegistry, displayText } = await import('../core/registry.js');
         const { retrieveWithRerank } = await import('../core/retrieval-fusion.js');
         const registry = loadRegistry();
         const r = await retrieveWithRerank(registry.tools, String(query).trim(), {
           topK: Math.min(Math.max(Number(topK) || 30, 1), 100),
           category: category || undefined,
           rerank,   // undefined = 有 key 就啟用
+        });
+
+        // 補上繁中譯文供前端顯示（譯文是顯示層關注點，不進檢索核心）。
+        // 這裡用原文的**完整** registry 物件查表，故取得到 *_zh 欄位。
+        const byId = new Map(registry.tools.map((t) => [t.id, t]));
+        const results = r.results.map((x) => {
+          const full = byId.get(x.id);
+          return full
+            ? { ...x, description_zh: displayText(full, 'description'), useCase_zh: displayText(full, 'useCase') }
+            : x;
         });
 
         res.writeHead(200, {
@@ -226,7 +236,7 @@ const server = http.createServer(async (req, res) => {
           confidence: r.confidence,
           rerank: r.rerank ?? null,
           elapsedMs: Date.now() - t0,
-          results: r.results,
+          results,
         }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
