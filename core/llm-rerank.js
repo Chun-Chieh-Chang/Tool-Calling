@@ -74,7 +74,14 @@ export function buildCandidateText(tool, limit = 400) {
   return parts.join(' ｜ ').slice(0, limit);
 }
 
-/** rerank 候選描述的建議截斷上限（配合 buildCandidateText）。 */
+/**
+ * rerank 候選描述的建議截斷上限（配合 buildCandidateText）。
+ *
+ * 2026-09-19 曾實驗把工具的 subTools（45 個「大補帖」倉庫共 3,025 個子工具）
+ * 帶入 rerank，結果**完全無效且更貴**：Hit@1 78.6% vs 78.6%，
+ * 不一致對 3 vs 3（McNemar p=1.0），prompt 卻長了 14%。故不採用，
+ * subTools 仍僅供 L2（search-engine.js）使用。勿重試此路線。
+ */
 export const RICH_DESC_LIMIT = 400;
 
 /**
