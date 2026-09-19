@@ -42,6 +42,26 @@ function getCategoryColor(catName, index) {
 /**
  * 全自動動態數據驅動 2D / 3D 雙引擎知識圖譜生成器 (Obsidian Expansive Graph + Deep Zoom + Zero Border)
  */
+/**
+ * HTML 跳脫。
+ *
+ * 知識圖譜節點的 title 會被 vis.js 當成 **HTML** 渲染成 tooltip。
+ * 其中嵌入了 registry 的 name／description／useCase，而 registry 內容部分來自
+ * GitHub（/api/tools/add 會掃描外部 repo）。若某個工具的描述含 `<img onerror=...>`，
+ * 開啟圖譜時就會執行 —— 這是 Stored XSS（CWE-79）。
+ *
+ * @param {string} text
+ * @returns {string}
+ */
+function escapeHtml(text) {
+  return String(text ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export function generateKnowledgeGraph(registryInput = null) {
   let registry = registryInput;
   if (!registry) {
@@ -178,7 +198,7 @@ export function generateKnowledgeGraph(registryInput = null) {
           strokeWidth: 0,
           strokeColor: "transparent"
         },
-        title: `<b>${tool.name}</b><br/>分類: ${tool.category}<br/>描述: ${tool.description}<br/>⭐ 場景: ${tool.useCase || '無'}`,
+        title: `<b>${escapeHtml(tool.name)}</b><br/>分類: ${escapeHtml(tool.category)}<br/>描述: ${escapeHtml(tool.description)}<br/>⭐ 場景: ${escapeHtml(tool.useCase) || '無'}`,
         val: 10
       });
 
@@ -748,6 +768,30 @@ export function generateKnowledgeGraph(registryInput = null) {
     window.network2d = network2d;
     window.data2d = data2d;
     
+    // -- HTML 跳脫（客戶端）--
+    //
+    // 下方用 innerHTML 組 tooltip 與面板內容，其中含有 registry 的 name／description，
+    // 而 registry 內容部分來自 GitHub（/api/tools/add 會掃描外部 repo）。若某工具描述含
+    // 若某工具描述含惡意 HTML（例如 img 標籤帶 onerror），hover 或開啟側欄時就會執行 —— Stored XSS（CWE-79）。
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    // 只允許 http(s) 連結，擋掉 javascript: / data: 等偽協定（href 會被瀏覽器當成程式碼執行）
+    function isSafeUrl(u) {
+      try {
+        const proto = new URL(String(u)).protocol;
+        return proto === 'http:' || proto === 'https:';
+      } catch {
+        return false;
+      }
+    }
+
     // -- 2D Hover Tooltip (Obsidian Minimalist Popover) --
     function updateTooltip2d(node) {
       let tooltipEl = document.getElementById('graph-tooltip-2d');
@@ -768,25 +812,25 @@ export function generateKnowledgeGraph(registryInput = null) {
       }
       
       let html = '<div style="background:rgba(12,12,12,0.96); padding:10px 14px; border-radius:6px; border:1px solid #222222; border-left:3px solid ' + (node.colorHex || '#0284c7') + '; color:#f1f5f9; font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif; font-size:12px; min-width:180px; max-width:320px; box-shadow:0 8px 28px rgba(0,0,0,0.9);">';
-      html += '<div style="font-weight:700; font-size:13px; color:#ffffff; margin-bottom:3px;">' + node.label.replace(/\\n/g, ' ') + '</div>';
+      html += '<div style="font-weight:700; font-size:13px; color:#ffffff; margin-bottom:3px;">' + esc(node.label).replace(/\\n/g, ' ') + '</div>';
       
       if (node.categoryName) {
-        html += '<div style="color:#94a3b8; font-size:11px; margin-bottom:5px; font-weight:600;">' + node.categoryName + '</div>';
+        html += '<div style="color:#94a3b8; font-size:11px; margin-bottom:5px; font-weight:600;">' + esc(node.categoryName) + '</div>';
       }
       
       if (node.toolData && node.group === 'tool') {
         const t = node.toolData;
         if (t.description) {
-          html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; line-height:1.4; margin-bottom:5px;">' + t.description.slice(0, 90) + (t.description.length > 90 ? '...' : '') + '</div>';
+          html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; line-height:1.4; margin-bottom:5px;">' + esc(t.description).slice(0, 90) + (t.description.length > 90 ? '...' : '') + '</div>';
         }
         if (t.useCase) {
-          html += '<div style="color:#34d399; font-size:11px; font-weight:600; margin-bottom:3px;"><b>★ 場景:</b> ' + t.useCase.slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
+          html += '<div style="color:#34d399; font-size:11px; font-weight:600; margin-bottom:3px;"><b>★ 場景:</b> ' + esc(t.useCase).slice(0, 50) + (t.useCase.length > 50 ? '...' : '') + '</div>';
         }
         if (t.advantages && t.advantages.length > 0) {
-          html += '<div style="color:#38bdf8; font-size:11px; font-weight:600;"><b>◆ 優勢:</b> ' + t.advantages.slice(0, 2).join(', ') + '</div>';
+          html += '<div style="color:#38bdf8; font-size:11px; font-weight:600;"><b>◆ 優勢:</b> ' + esc(t.advantages.slice(0, 2).join(', ')) + '</div>';
         }
         if (t.capabilities && t.capabilities.length > 0) {
-          html += '<div style="color:#a855f7; font-size:11px; font-weight:500; margin-top:3px;">⚡ 能力: ' + t.capabilities.slice(0, 3).join(', ') + '</div>';
+          html += '<div style="color:#a855f7; font-size:11px; font-weight:500; margin-top:3px;">⚡ 能力: ' + esc(t.capabilities.slice(0, 3).join(', ')) + '</div>';
         }
       } else if (node.group === 'category') {
         html += '<div style="color:#cbd5e1; font-size:11px; font-weight:500;">收錄 <b>' + (node.toolCount || 0) + '</b> 個工具</div>';
@@ -1011,13 +1055,13 @@ export function generateKnowledgeGraph(registryInput = null) {
           if (node.group === 'tool' && node.toolData) {
             const t = node.toolData;
             if (t.description) {
-              html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; margin-bottom:3px;">' + t.description.slice(0, 70) + (t.description.length > 70 ? '...' : '') + '</div>';
+              html += '<div style="color:#cbd5e1; font-size:11px; font-weight:400; margin-bottom:3px;">' + esc(t.description).slice(0, 70) + (t.description.length > 70 ? '...' : '') + '</div>';
             }
             if (t.useCase) {
-              html += '<div style="color:#34d399; font-size:11px; font-weight:600; margin-bottom:2px;">★ ' + t.useCase + '</div>';
+              html += '<div style="color:#34d399; font-size:11px; font-weight:600; margin-bottom:2px;">★ ' + esc(t.useCase) + '</div>';
             }
             if (t.advantages && t.advantages.length > 0) {
-              html += '<div style="color:#38bdf8; font-size:11px; font-weight:600;">◆ ' + t.advantages[0] + '</div>';
+              html += '<div style="color:#38bdf8; font-size:11px; font-weight:600;">◆ ' + esc(t.advantages[0]) + '</div>';
             }
           } else if (node.group === 'category') {
             html += '<div style="color:#cbd5e1; font-size:11px; font-weight:500;">' + (node.toolCount || 0) + ' tools</div>';
@@ -1312,11 +1356,11 @@ export function generateKnowledgeGraph(registryInput = null) {
           '</div>';
       } else if (node.group === 'category') {
         const catTools = nodesData.filter(n => n.group === 'tool' && n.categoryName === node.categoryName);
-        const sampleTools = node.topTools ? node.topTools.map(t => '<span class="panel-badge-pill">' + t + '</span>').join('') : '';
-        const langs = node.languages && node.languages.length ? node.languages.join(', ') : '無特定語言標示';
+        const sampleTools = node.topTools ? node.topTools.map(t => '<span class="panel-badge-pill">' + esc(t) + '</span>').join('') : '';
+        const langs = node.languages && node.languages.length ? esc(node.languages.join(', ')) : '無特定語言標示';
 
         descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:8px;">' +
-          (node.description || '') +
+          esc(node.description || '') +
           '</div>' +
           '<div style="font-size:12px; color:#38bdf8; margin-top:6px; margin-bottom:4px; font-weight:600;">' +
           '📊 收錄工具: <b>' + (node.toolCount || catTools.length) + '</b> 個' +
@@ -1351,25 +1395,25 @@ export function generateKnowledgeGraph(registryInput = null) {
         }
 
         descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:8px;">' +
-          (t.description || '無詳細描述') +
+          esc(t.description || '無詳細描述') +
           '</div>' +
-          (t.useCase ? '<div style="font-size:12px; color:#34d399; margin-bottom:4px; line-height:1.4; font-weight:600;"><b>★ 推薦場景:</b> ' + t.useCase + '</div>' : '') +
-          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:12px; color:#f87171; margin-bottom:4px; line-height:1.4; font-weight:600;"><b>✕ 禁用場景:</b> ' + t.negativeConstraints.join(', ') + '</div>' : '') +
-          (t.language ? '<div style="font-size:11px; color:#94a3b8; margin-top:4px;">開發語言: ' + t.language + (t.stars ? ' | ⭐ ' + t.stars.toLocaleString() : '') + '</div>' : '') +
+          (t.useCase ? '<div style="font-size:12px; color:#34d399; margin-bottom:4px; line-height:1.4; font-weight:600;"><b>★ 推薦場景:</b> ' + esc(t.useCase) + '</div>' : '') +
+          (t.negativeConstraints && t.negativeConstraints.length ? '<div style="font-size:12px; color:#f87171; margin-bottom:4px; line-height:1.4; font-weight:600;"><b>✕ 禁用場景:</b> ' + esc(t.negativeConstraints.join(', ')) + '</div>' : '') +
+          (t.language ? '<div style="font-size:11px; color:#94a3b8; margin-top:4px;">開發語言: ' + esc(t.language) + (t.stars ? ' | ⭐ ' + t.stars.toLocaleString() : '') + '</div>' : '') +
           capsHtml +
           advHtml +
           subToolsHtml +
-          (t.url ? '<a href="' + t.url + '" target="_blank" class="panel-link-btn">🔗 開啟 GitHub 倉庫</a>' : '');
+          (isSafeUrl(t.url) ? '<a href="' + esc(t.url) + '" target="_blank" rel="noopener noreferrer" class="panel-link-btn">🔗 開啟 GitHub 倉庫</a>' : '');
       } else if (node.group === 'subtool') {
         descHtml = '<div style="font-size:12px; line-height:1.6; color:#cbd5e1; margin-bottom:6px;">' +
-          '所屬主工具: <b style="color:#38bdf8;">' + (node.parentToolName || '主工具') + '</b>' +
+          '所屬主工具: <b style="color:#38bdf8;">' + esc(node.parentToolName || '主工具') + '</b>' +
           '</div>' +
           '<div style="font-size:11px; color:#94a3b8; line-height:1.5;">' +
-          '微技能說明: ' + node.subDesc +
+          '微技能說明: ' + esc(node.subDesc) +
           '</div>';
       }
 
-      content.innerHTML = '<div class="panel-title">' + node.label.replace(/\\n/g, ' ') + '</div>' +
+      content.innerHTML = '<div class="panel-title">' + esc(node.label).replace(/\\n/g, ' ') + '</div>' +
         '<div class="panel-tag">' + node.group.toUpperCase() + '</div>' +
         descHtml;
       panel.classList.add('active');
