@@ -1403,12 +1403,12 @@
         "追踪AI編碼成本",
         "审計AI代理操作",
         "初始化編碼代理循环",
-        "管理Grok使用费用",
+        "管理Grok使用費用",
         "編排多步AI任務",
         "监控Codex消耗",
         "追踪MCP工具調用成本",
         "审查AI代理執行記錄",
-        "統計LLM API费用",
+        "統計LLM API費用",
         "自動化AI代理工作流"
       ],
       "install": {
@@ -1649,12 +1649,12 @@
         "llm範例",
         "agent範例",
         "找agent示例代碼",
-        "学做RAG系統",
+        "學做RAG系統",
         "參考多代理架構",
-        "找語音助手实現",
+        "找語音助手實現",
         "了解MCP協議應用",
         "找生成式UI範例",
-        "学寫AI代理技能",
+        "學寫AI代理技能",
         "找常駐AI代理",
         "找開源AI應用",
         "參考AI agent項目"
@@ -1804,13 +1804,13 @@
         "stitch-skills",
         "agent-skills",
         "mcp-server",
-        "跨Agent傳递代碼",
+        "跨Agent傳遞代碼",
         "讓不同Agent協同寫代碼",
         "Agent間共享上下文",
-        "把上下文傳给下一個Agent",
+        "把上下文傳給下一個Agent",
         "讓兩個Agent互相調用工具",
         "跨Agent复用技能",
-        "Agent之間傳递數據",
+        "Agent之間傳遞數據",
         "讓另一個Agent理解我的代碼",
         "跨Agent協作編程",
         "Agent互通代碼和結果"
@@ -2240,7 +2240,7 @@
         "mcp",
         "vscode",
         "agent-tutorials",
-        "学構建AI代理",
+        "學構建AI代理",
         "做agent開發教程",
         "接MCP協議",
         "VSCode里寫agent",
@@ -5415,7 +5415,7 @@
         "生成前端測試代碼",
         "抓取網頁表格資料",
         "自動點擊網頁按鈕",
-        "檢查網頁选擇器",
+        "檢查網頁選擇器",
         "瀏覽器操作回放",
         "網頁元素檢測",
         "錄制網頁操作轉代碼"
@@ -5604,7 +5604,7 @@
         "從書里提取決策規則",
         "将書籍轉成可執行工具",
         "把書的知識整理成skill",
-        "用書训练自動化決策",
+        "用書訓練自動化決策",
         "把電子書變成AI助手",
         "從書中抓方法論做成技能",
         "把書的內容轉成agent skill",
@@ -5879,7 +5879,7 @@
         "讓 ChatGPT 群聊解決复雜任務",
         "自動化 AI 代理工作流編排",
         "設計多 LLM 協作對話系統",
-        "用多代理框架实現任務自動化",
+        "用多代理框架實現任務自動化",
         "讓 AI 團隊分工處理編程任務",
         "搭建可自主協作的 AI 系統"
       ],
@@ -5978,7 +5978,7 @@
         "設定定時任務讓AI自動執行",
         "讓AI24小時在線工作",
         "編排多步驟的AI流程",
-        "监控AI任務进度",
+        "監控AI任務進度",
         "批量調度多個AI代理",
         "用AI技能自動化任務",
         "連接多個AI服務一起跑",
@@ -6393,7 +6393,7 @@
         "創建可協作的Agent團隊",
         "用多Agent架構執行串联任務",
         "設計AI代理角色扮演工作流",
-        "实現多步驟AI任務自動化",
+        "實現多步驟AI任務自動化",
         "構建自主Agent協同系統",
         "整合多個AI代理完成端到端流程",
         "搭建分工明确的多Agent平台"
@@ -7837,7 +7837,7 @@
         "改善AI編程輸出",
         "提升代碼質量",
         "優化模型表現",
-        "改进代碼生成效果"
+        "改進代碼生成效果"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -12650,8 +12650,8 @@
         "把代碼庫轉成知識圖谱",
         "用圖谱查看我的代碼",
         "分析我的代碼庫結構",
-        "给代碼庫建立知識庫",
-        "查询業務逻輯的知識圖谱",
+        "給代碼庫建立知識庫",
+        "查詢業務邏輯的知識圖譜",
         "讓代碼庫可以問答",
         "探索代碼之間的關系",
         "把代碼轉成可搜索的圖谱",
@@ -13121,7 +13121,7 @@
         "美化游戲界面",
         "集成游戲功能",
         "自定義游戲修改器UI",
-        "改进Wand界面交互",
+        "改進Wand界面交互",
         "擴展游戲工具功能",
         "優化游戲界面體驗"
       ],
@@ -13755,7 +13755,7 @@
         "本地化技術文檔",
         "润色机器翻譯",
         "修正程序注释",
-        "優化提示词表达",
+        "優化提示詞表達",
         "翻譯技術文件",
         "改寫英文文檔為中文",
         "消除AI腔調",
@@ -14824,7 +14824,7 @@
         "研究文献整理",
         "網頁表格提取",
         "文檔格式轉換",
-        "知識庫查询檢索",
+        "知識庫查詢檢索",
         "報告自動撰寫",
         "資料自動歸類",
         "數據格式轉換",
@@ -17475,15 +17475,15 @@
         "autonomous-trading",
         "llm-trading",
         "crypto-bot",
-        "用 AI 分析加密货幣行情",
+        "用 AI 分析加密貨幣行情",
         "AI 自動執行交易",
-        "讓 LLM 进行代幣買賣",
-        "自動监控加密货幣價格走勢",
+        "讓 LLM 進行代幣買賣",
+        "自動監控加密貨幣價格走勢",
         "AI 生成交易策略並執行",
-        "自動化執行加密货幣買賣",
+        "自動化執行加密貨幣買賣",
         "用 AI 追踪幣圈市場動態",
         "AI 自動下單交易",
-        "讓 AI 管理加密货幣投資組合",
+        "讓 AI 管理加密貨幣投資組合",
         "自動執行幣圈交易"
       ],
       "install": {
@@ -24036,8 +24036,8 @@
         "重構出冗余",
         "代碼瘦身",
         "刪掉重复逻輯",
-        "別寫过頭代碼",
-        "用更少代碼实現功能",
+        "別寫過頭代碼",
+        "用更少代碼實現功能",
         "清理注释代碼",
         "壓縮函數行數",
         "簡化复雜逻輯",
@@ -24133,7 +24133,7 @@
         "审查机械圖纸",
         "生成BOM清單",
         "做產品仿真分析",
-        "查询設計規範要求",
+        "查詢設計規範要求",
         "撰寫技術規格文檔",
         "做方案對比分析",
         "優化設計參數"
@@ -25088,10 +25088,10 @@
         "glm-5.2",
         "low-ram-inference",
         "pure-c-llm",
-        "在低內存設備上运行大語言模型",
+        "在低內存設備上運行大語言模型",
         "旧電脑跑 GLM-5.2",
-        "不用 GPU 运行 LLM 推理",
-        "树莓派上运行大模型",
+        "不用 GPU 運行 LLM 推理",
+        "樹莓派上運行大模型",
         "纯 CPU 跑大型語言模型"
       ],
       "install": {
@@ -28116,7 +28116,7 @@
         "parametric-parts",
         "用脚本建模 3D 零件",
         "參數化設計机械件",
-        "CSG 構造实體幾何",
+        "CSG 構造實體幾何",
         "代碼生成 CAD 模型",
         "導出 STL 3D 打印"
       ],
@@ -28303,7 +28303,7 @@
         "interview",
         "準備Java面試",
         "复習數據庫面試題",
-        "学習分布式系統",
+        "學習分佈式系統",
         "準備高並發編程面試",
         "复習系統設計"
       ],
@@ -28477,7 +28477,7 @@
       "id": "daily-stock-analysis",
       "name": "daily_stock_analysis",
       "url": "https://github.com/ZhuLinsen/daily_stock_analysis",
-      "description": "LLM 驅動的多市場股票智能分析系統：多源行情、实時新聞、決策看板與自動推送，支持零成本定時运行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-f",
+      "description": "LLM 驅動的多市場股票智能分析系統：多源行情、實時新聞、決策看板與自動推送，支持零成本定時運行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-f",
       "category": "金融與投資",
       "language": "python",
       "triggers": [
@@ -28491,7 +28491,7 @@
         "查看A股走勢",
         "监控股票新聞",
         "定時推送股票",
-        "多市場选股"
+        "多市場選股"
       ],
       "install": {
         "method": "none",
@@ -29506,7 +29506,7 @@
       "id": "ai-agent-book",
       "name": "Ai Agent Book",
       "url": "https://github.com/bojieli/ai-agent-book",
-      "description": "《深入理解 AI Agent：設計原理與工程实践》（李博杰 著）開源主倉庫：全書正文、編譯版 PDF 與按章配套代碼",
+      "description": "《深入理解 AI Agent：設計原理與工程實踐》（李博傑 著）開源主倉庫：全書正文、編譯版 PDF 與按章配套代碼",
       "category": "學習資源",
       "language": "python",
       "triggers": [
@@ -30304,7 +30304,7 @@
         "icon-pack",
         "添加圖標",
         "下載圖標",
-        "选擇圖標組件",
+        "選擇圖標組件",
         "導入圖標資源",
         "查找圖標素材"
       ],
@@ -30351,11 +30351,11 @@
         "langchain",
         "llamaindex",
         "smolagents",
-        "学習AI Agent教程",
+        "學習AI Agent教程",
         "了解LangChain入門",
-        "实践smolagents使用",
-        "查找HuggingFace Agent课程",
-        "学習LLM應用開發"
+        "實踐smolagents使用",
+        "查找HuggingFace Agent課程",
+        "學習LLM應用開發"
       ],
       "install": {
         "method": "git-clone",
@@ -31053,7 +31053,7 @@
         "生成代碼",
         "調試程序",
         "管理項目",
-        "執行终端命令",
+        "執行終端命令",
         "审查代碼"
       ],
       "install": {
@@ -32059,11 +32059,11 @@
         "agent design patterns",
         "agent framework learning",
         "ai-agents-for-beginners",
-        "学做 AI agent",
+        "學做 AI agent",
         "從零認識 AI agent",
         "了解 AI agent 設計模式",
-        "找 AI agent 入門课程",
-        "学構建智能體"
+        "找 AI agent 入門課程",
+        "學構建智能體"
       ],
       "install": {
         "method": "git-clone",
@@ -32260,7 +32260,7 @@
         "mcp server",
         "調用API接口",
         "連接MCP服務器",
-        "執行GraphQL查询",
+        "執行GraphQL查詢",
         "集成第三方API",
         "調用外部工具"
       ],
@@ -33151,7 +33151,7 @@
         "from",
         "scratch",
         "agent工程師",
-        "ai学習路徑",
+        "ai學習路徑",
         "學AI工程",
         "學習AI代理開發",
         "從零開始學AI",
@@ -33326,11 +33326,11 @@
         "ui/ux",
         "ai設計",
         "中文教程",
-        "学習AI辅助UI設計",
+        "學習AI輔助UI設計",
         "用AI生成APP界面",
         "AI制作網頁原型",
         "設計移動端組件",
-        "学習UX交互技巧"
+        "學習UX交互技巧"
       ],
       "install": {
         "method": "git-clone",
@@ -33342,14 +33342,14 @@
       "status": "active",
       "useCase": "中文开发者需要快速上手 AI 辅助 UI/UX 设计工作流时，使用本技能库获取完整中文教程和最佳实践。",
       "advantages": [
-        "完整翻譯並本地化原始 README，消除中文開發者的語言障碍",
-        "覆盖 UI/UX Pro Max 全部技能，提供系統化的 AI 設計学習路徑",
-        "針對中文開發者優化，降低上手門槛，提升学習效率"
+        "完整翻譯並本地化原始 README，消除中文開發者的語言障礙",
+        "覆蓋 UI/UX Pro Max 全部技能，提供系統化的 AI 設計學習路徑",
+        "針對中文開發者優化，降低上手門檻，提升學習效率"
       ],
       "negativeConstraints": [
-        "不适合需要英文原版或最新未翻譯內容的開發者",
-        "不适合非 UI/UX 設計領域的 AI 技能需求",
-        "不适合不需要中文本地化、直接使用英文資源的開發者"
+        "不適合需要英文原版或最新未翻譯內容的開發者",
+        "不適合非 UI/UX 設計領域的 AI 技能需求",
+        "不適合不需要中文本地化、直接使用英文資源的開發者"
       ],
       "stars": 1322
     },
@@ -34018,7 +34018,7 @@
         "chatgpt",
         "dall-e",
         "generative-ai",
-        "從零開始学Azure OpenAI",
+        "從零開始學Azure OpenAI",
         "ChatGPT入門指南",
         "DALL-E 畫圖教程",
         "生成式AI應用開發",
@@ -35901,7 +35901,7 @@
         "p2p-messaging",
         "發起群體讨論",
         "組織去中心化會議",
-        "进行匿名投票決策",
+        "進行匿名投票決策",
         "建立社群自治机制",
         "分發加密消息"
       ],
@@ -36381,7 +36381,7 @@
         "penetration-testing",
         "binary-analysis",
         "security-research",
-        "逆向分析二进制文件",
+        "逆向分析二進制文件",
         "渗透測試系統漏洞",
         "解構惡意軟件樣本",
         "分析可執行文件結構",
@@ -37452,8 +37452,8 @@
         "temperature prediction",
         "預報天气",
         "預測温度",
-        "查询降水概率",
-        "預報未来天气",
+        "查詢降水概率",
+        "預報未來天氣",
         "計算气温走勢"
       ],
       "install": {
@@ -38619,11 +38619,11 @@
         "jobs",
         "remote-work",
         "upwork",
-        "找远程自由职業工作",
-        "找合约開發职位",
+        "找遠程自由職業工作",
+        "找合約開發職位",
         "找設計兼职机會",
         "找Upwork平台",
-        "找远程工作机會"
+        "找遠程工作機會"
       ],
       "install": {
         "method": "none",
@@ -38665,10 +38665,10 @@
         "job",
         "awesome-list",
         "list",
-        "查找远程工作机會",
-        "瀏覽精选职位列表",
-        "收集远程工作資源",
-        "寻找远程工作平台",
+        "查找遠程工作機會",
+        "瀏覽精選職位列表",
+        "收集遠程工作資源",
+        "尋找遠程工作平臺",
         "搜尋在家工作機會"
       ],
       "install": {
@@ -38933,7 +38933,7 @@
         "developer-tools",
         "用AI操作手机屏幕",
         "讓agent自動控制手机app",
-        "AI幫我在手机上點选",
+        "AI幫我在手機上點選",
         "語音指令控制手机界面",
         "用AI自動化手机操作流程"
       ],
@@ -39247,10 +39247,10 @@
         "analytics",
         "qt",
         "查看股票行情",
-        "分析财務報表",
+        "分析財務報表",
         "追踪市場走勢",
         "生成投資報告",
-        "查询股價數據"
+        "查詢股價數據"
       ],
       "stars": 30491,
       "forks": 4105,
@@ -39556,9 +39556,9 @@
         "china",
         "ai",
         "查A股行情",
-        "选股推荐",
+        "選股推薦",
         "分析個股走勢",
-        "查询股票數據",
+        "查詢股票數據",
         "查看股市涨跌"
       ],
       "stars": 31308,
@@ -39769,11 +39769,11 @@
         "ai",
         "tutor",
         "learning",
-        "辅導數学題",
+        "輔導數學題",
         "講解物理概念",
-        "制定学習計划",
+        "制定學習計劃",
         "批改英文作文",
-        "练習英語口語"
+        "練習英語口語"
       ],
       "stars": 37119,
       "forks": 1100,
@@ -40086,7 +40086,7 @@
         "math-animation",
         "python",
         "visualization",
-        "做數学動畫",
+        "做數學動畫",
         "畫幾何圖形",
         "制作微积分可視化",
         "生成函數圖像動畫",
@@ -40550,11 +40550,11 @@
         "textbook",
         "義務教育",
         "人教版",
-        "下載小学课本PDF",
+        "下載小學課本PDF",
         "找人教版教材",
         "合並PDF文件",
-        "查找大学教材",
-        "找初中课本電子版"
+        "查找大學教材",
+        "找初中課本電子版"
       ],
       "install": {
         "method": "none",
@@ -40606,9 +40606,9 @@
         "xpath",
         "web-scraper",
         "mcp",
-        "绕过 Cloudflare 爬網頁",
+        "繞過 Cloudflare 爬網頁",
         "反檢測網頁爬虫",
-        "自适應抓取網站內容",
+        "自適應抓取網站內容",
         "全站數據爬取",
         "隱匿抓取網頁表格"
       ],
@@ -41314,7 +41314,7 @@
       "advantages": [
         "官方配套書籍（Build a LLM From Scratch）的完整代碼，學習路徑清晰",
         "涵蓋 pretraining → finetuning → 部署完整管線，非只做推理",
-        "PyTorch 實作，代碼量适中，可逐步執行理解"
+        "PyTorch 實作，代碼量適中，可逐步執行理解"
       ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
@@ -41953,7 +41953,7 @@
         "sqlite-manager",
         "用圖形界面管理 SQLite 數據庫",
         "在桌面應用打開 .sqlite 文件",
-        "寫 SQL 查询筛选表格數據",
+        "寫 SQL 查詢篩選表格數據",
         "可視化設計數據庫表結構",
         "将 CSV 或 Excel 導入 SQLite"
       ],
@@ -42089,7 +42089,7 @@
       "id": "awesome-dsh-plugin",
       "name": "awesome-dsh-plugin",
       "url": "https://github.com/awesome-dsh-plugin/awesome-dsh-plugin",
-      "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精选列表",
+      "description": "A curated list of plugins for DeepSeek Harness (dsh) · DeepSeek Harness 插件精選列表",
       "category": "學習資源",
       "language": "python",
       "triggers": [
@@ -42278,7 +42278,7 @@
       "id": "dsh-web-ui",
       "name": "dsh-web-ui",
       "url": "https://github.com/zhu1090093659/dsh-web-ui",
-      "description": "DeepSeek Harness（DSH）Web GUI 插件與皮肤生態：一切皆插件。任務看板、移動端远程與 SSH 运维構筑開發工作台；皮肤经 WebGL 深度優化，更支持 Wallpaper Engine 壁纸；皮肤、宠物、插件由 DSH 大市場一鍵安装，正迈向 DSH 創意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - T",
+      "description": "DeepSeek Harness（DSH）Web GUI 插件與皮膚生態：一切皆插件。任務看板、移動端遠程與 SSH 運維構築開發工作臺；皮膚經 WebGL 深度優化，更支持 Wallpaper Engine 壁紙；皮膚、寵物、插件由 DSH 大市場一鍵安裝，正邁向 DSH 創意工坊。A pluggable plugin-skin ecosystem for the DSH Web GUI - T",
       "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
@@ -42289,9 +42289,9 @@
         "dsh-plugin",
         "dsh-web",
         "DSH 任務看板操作",
-        "DeepSeek 移動端远程运维",
+        "DeepSeek 移動端遠程運維",
         "DSH Web GUI 插件安装",
-        "DeepSeek SSH 远程管理",
+        "DeepSeek SSH 遠程管理",
         "DSH 皮肤主題配置"
       ],
       "install": {
@@ -42377,7 +42377,7 @@
       "id": "dsh-better-sidebar",
       "name": "DSH-better-sidebar",
       "url": "https://github.com/omdsh-dev/DSH-better-sidebar",
-      "description": "開放的側邊栏底座，支持三方拓展注冊新側邊栏頁面。內置文件渲染編輯/终端/側邊對話/Git/子代理頁面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, ",
+      "description": "開放的側邊欄底座，支持三方拓展注冊新側邊欄頁面。內置文件渲染編輯/終端/側邊對話/Git/子代理頁面 ｜ Open sidebar foundation, supports third-party extensions to register new sidebar pages. Built-in file rendering/editing, terminal, side chat, Git, ",
       "category": "AI 代理",
       "language": "typescript",
       "triggers": [
@@ -42548,7 +42548,7 @@
         "cross-agent-context",
         "claude-code-memory",
         "跨工具共享記憶",
-        "不同AI助手間傳递上下文",
+        "不同AI助手間傳遞上下文",
         "Claude Code記憶持久化",
         "跨會話保留對話歷史",
         "Agent之間同步上下文"
@@ -44905,11 +44905,11 @@
         "automotive",
         "vehicle",
         "advertising",
-        "生成汽车廣告分鏡圖",
-        "做汽车商業廣告的Storyboard",
-        "畫汽车宣傳片的鏡頭設計",
-        "制作汽车廣告的分鏡脚本",
-        "畫出汽车廣告的分鏡草圖"
+        "生成汽車廣告分鏡圖",
+        "做汽車商業廣告的Storyboard",
+        "畫汽車宣傳片的鏡頭設計",
+        "製作汽車廣告的分鏡腳本",
+        "畫出汽車廣告的分鏡草圖"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -46114,7 +46114,7 @@
         "追踪配送位置",
         "調度配送人員",
         "管理即時配送流程",
-        "計算配送费用"
+        "計算配送費用"
       ],
       "install": {
         "method": "git-clone",
@@ -46500,7 +46500,7 @@
         "用headless browser抓取網頁資料",
         "做網頁自動化測試",
         "讓AI agent瀏覽網頁",
-        "绕过網站反爬檢測",
+        "繞過網站反爬檢測",
         "批量访問網頁"
       ],
       "capabilities": [
@@ -46724,7 +46724,7 @@
       "id": "kunpeng",
       "name": "Kunpeng",
       "url": "https://github.com/pengfeiqiao/kunpeng",
-      "description": "鲲鵬 Kunpeng — 跑在本地的中文 AIGC 創作工作台（Tauri + React + Rust，內嵌 DeepSeek Harness 引擎）。支持 macOS 與 Windows；Windows 版目前為測試版，可能存在問題，欢迎 Issue 反饋。Windows 移植由 @CocoSkyler 發起（PR #2）。",
+      "description": "鯤鵬 Kunpeng — 跑在本地的中文 AIGC 創作工作臺（Tauri + React + Rust，內嵌 DeepSeek Harness 引擎）。支持 macOS 與 Windows；Windows 版目前為測試版，可能存在問題，歡迎 Issue 反饋。Windows 移植由 @CocoSkyler 發起（PR #2）。",
       "category": "開發工具",
       "language": "typescript",
       "triggers": [
@@ -47184,7 +47184,7 @@
         "把古籍轉成知識圖谱",
         "整理歷史人物關系",
         "生成歷史事件時間線",
-        "提取史書人物实體",
+        "提取史書人物實體",
         "構建古代文献知識網絡"
       ],
       "install": {
@@ -47398,14 +47398,14 @@
       "language": "markdown",
       "triggers": [
         "free-api",
-        "免费api",
-        "免费接口",
+        "免費api",
+        "免費接口",
         "中文api",
         "api大全",
         "api-directory",
         "免費接口",
         "接口服務",
-        "免费接口服務",
+        "免費接口服務",
         "找免費API接口",
         "查天氣預報API",
         "找颱風路徑接口",
@@ -47455,11 +47455,11 @@
         "免費api",
         "api清單",
         "公開api",
-        "找免费API",
+        "找免費API",
         "查API清單",
         "搜公開數據接口",
         "找JSON API",
-        "查免费數據源"
+        "查免費數據源"
       ],
       "capabilities": [
         "api-directory",
@@ -47808,19 +47808,19 @@
       "language": "markdown",
       "triggers": [
         "free-books",
-        "免费書籍",
-        "免费電子書",
-        "互联網免费書籍",
+        "免費書籍",
+        "免費電子書",
+        "互聯網免費書籍",
         "ebooks",
         "free-ebooks",
         "免費書",
         "書單",
         "免費閱讀",
-        "找免费電子書",
-        "下載免费技術書籍",
-        "免费閱讀編程教材",
-        "搜集免费人文書籍",
-        "获取免费電子書資源"
+        "找免費電子書",
+        "下載免費技術書籍",
+        "免費閱讀編程教材",
+        "蒐集免費人文書籍",
+        "獲取免費電子書資源"
       ],
       "capabilities": [
         "ebook-index",
@@ -47903,12 +47903,17 @@
       "id": "howtolivebetter",
       "name": "HowToLiveBetter",
       "url": "https://github.com/eternity4719/HowToLiveBetter",
-      "description": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+      "description": "按性價比排序的循證生活指南：長壽防病、急救、省錢理財、法律紅線、失業與工傷、醫保社保、戀愛婚育、懷孕育兒、創業與做平臺合規、出國與技能。每條寫明成本、收益、證據等級和原始出處，只引期刊論文與官方文件。",
       "category": "開發工具",
       "language": "html",
       "triggers": [
         "howtolivebetter",
-        "開發工具"
+        "開發工具",
+        "查詢醫保報銷比例",
+        "了解急救處理步驟",
+        "申請失業金流程",
+        "查詢工傷賠償標準",
+        "了解婚前財產規定"
       ],
       "install": {
         "method": "git-clone",
@@ -47967,14 +47972,19 @@
       "id": "my-girlfriend-jingtian-latex",
       "name": "My Girlfriend Jingtian Latex",
       "url": "https://github.com/HEJustinSun/my-girlfriend-jingtian-latex",
-      "description": "HEJustinSun/my-girlfriend-jingtian-latex - 待補充描述",
+      "description": "5×8 吋的 XeLaTeX 排版專案，內含 main.tex 與編譯指令，可產出 PDF；需 XeLaTeX 與標準 TeX Live 發行版。",
       "category": "開發工具",
       "language": "other",
       "triggers": [
         "my-girlfriend-jingtian-latex",
         "girlfriend",
         "jingtian",
-        "latex"
+        "latex",
+        "排版",
+        "編譯",
+        "產出 PDF",
+        "編寫 LaTeX",
+        "設定字型"
       ],
       "install": {
         "method": "git-clone",
@@ -47982,7 +47992,7 @@
         "repoUrl": "https://github.com/HEJustinSun/my-girlfriend-jingtian-latex"
       },
       "capabilities": [],
-      "useCase": "HEJustinSun/my-girlfriend-jingtian-latex - 待補充描述",
+      "useCase": "需要以 XeLaTeX 製作 5×8 吋規格印刷品（寫真集、小冊子），想直接沿用現成排版設定時。",
       "advantages": [],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
@@ -47995,7 +48005,7 @@
       "id": "ai-infra-book",
       "name": "Ai Infra Book",
       "url": "https://github.com/bojieli/ai-infra-book",
-      "description": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
+      "description": "《深入理解 AI Infra：量化分析與系統設計》（李博傑 著）開源書稿：從硬件約束和模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗",
       "category": "AI 代理",
       "language": "python",
       "triggers": [
@@ -48006,7 +48016,12 @@
         "ai-infra",
         "ai-infrastructure",
         "datacenter-network",
-        "deepseek"
+        "deepseek",
+        "推導LLM推理系統設計",
+        "分析AI硬件約束",
+        "設計數據中心網絡",
+        "量化模型訓練開銷",
+        "理解加速器架構"
       ],
       "install": {
         "method": "pip",
@@ -48044,7 +48059,12 @@
         "design-system",
         "design-tools",
         "shadcn",
-        "shadcn-ui"
+        "shadcn-ui",
+        "檢查 Tailwind 設計系統規範",
+        "驗證 shadcn UI 元件一致性",
+        "Lint CSS class 命名規則",
+        "檢查 Tailwind 樣式錯誤",
+        "確認設計系統規格"
       ],
       "install": {
         "method": "npm",
@@ -48071,13 +48091,18 @@
       "id": "jev-ultrafast",
       "name": "Jev Ultrafast",
       "url": "https://github.com/browser-use/jev-ultrafast",
-      "description": "i. am. speed.",
+      "description": "以動態索引動作空間運作的極速瀏覽器代理：給定一個自然語言目標，由 TypeSafe 的 Jev 直接選出操作與元素，僅在需要輸入文字時才呼叫小型 LLM。官方實測 Google Flights 蘇黎世飛倫敦僅 7.1 秒。",
       "category": "開發工具",
       "language": "python",
       "triggers": [
         "jev-ultrafast",
         "jev",
-        "ultrafast"
+        "ultrafast",
+        "快速網頁操作",
+        "網頁搜尋代理",
+        "快速網頁爬蟲",
+        "航班搜尋自動化",
+        "網頁資料擷取"
       ],
       "install": {
         "method": "pip",
@@ -48085,7 +48110,7 @@
         "repoUrl": "https://github.com/browser-use/jev-ultrafast"
       },
       "capabilities": [],
-      "useCase": "i. am. speed.",
+      "useCase": "需要讓 AI 代理快速完成網頁操作任務（查票、填表、下單），且在乎單次任務耗時時。",
       "advantages": [],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
