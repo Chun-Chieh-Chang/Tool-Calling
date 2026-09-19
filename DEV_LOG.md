@@ -188,6 +188,35 @@ useCase／advantages **之上**沒有貢獻，故補做配對對照（B 全欄�
 **驗證**：連續 **12/12 次**全綠（149 pass / 0 fail）。
 **代價**：`npm test` 12.5s → 21.4s。
 
+### 標註放寬第二輪：改用 rerank 路徑的失敗清單
+
+🔴 **方法論修正**：第一輪標註審視用的是 `benchmark`（topK=5、fusion、不含 rerank）
+的失敗清單，但**實際上線路徑是 rerank（topK=50）**，兩者的失敗集合不同。
+結果是第一輪漏掉了 c04/c24/c31/c35/c04 等 rerank 特有的失敗案例。
+
+**本輪以 rerank 失敗清單為準，重新逐筆查證**，接受 5 筆：
+c04 `ragflow`、c09 `stable-diffusion-webui`、c19 `directus`、
+c31 `claude-system-prompt`、c40 `yfinance`；駁回 c24 `dashi-taskboard`
+（是 issue board，非「給 AI 模型的管理介面」）。alsoAcceptable 累計 10 筆。
+
+**同時修了一致性缺口**：`eval-rerank.js` 原本只看 `expected`、不計入
+alsoAcceptable，導致評測集有近義定義但生產路徑評測看不到。已補上寬鬆計分。
+
+**結果（topK=50，成功呼叫 42）**
+
+| 指標 | 數值 |
+|---|---|
+| 詞彙引擎 top-1 | 38.1% |
+| 天花板 | 95.2% |
+| rerank 後（嚴格） | **71.4%** |
+| rerank 後（含近義） | **85.7%** |
+
+⚠️ 嚴格與寬鬆相差 14.3pp，反映評測集的單一 `expected` 對「近義工具很多」
+的場景確實偏嚴。兩個數字都要看，不能只報寬鬆。
+
+**剩餘 6 筆嚴格失敗中**：2 筆是正確答案不在 top-50（天花板限制，rerank 救不到）、
+1 筆是 API 429（基礎設施），真正「選錯」的只有 3 筆。
+
 ### 已知待處理
 - `.agents/AGENTS.md` 為 2026-09-09 的過時副本（598 個工具，與根 `AGENTS.md` 差 586 行），
   且無任何程式讀取它；`.agents/skills/` 仍有實際內容需保留。
