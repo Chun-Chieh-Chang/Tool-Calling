@@ -6,7 +6,7 @@
     "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
-    "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。",
+    "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。",
     "baseline_2026_09_14": "fusion Hit@1=7.1% Hit@3=11.9% MRR=0.108；agent Hit@1=11.9% Hit@3=26.2% MRR=0.202。semantic 類型 Hit@1=0%（15 筆全敗）。空集誠實率 80%（4/5）。",
     "types": {
       "direct": "需求描述直白，詞彙與工具有部分重疊",
@@ -19,9 +19,16 @@
       "criterion": "必須是「同一類工具且滿足查詢的全部限制」，非僅同分類或名稱相近。",
       "rejected": [
         "c23（查詢要『統一語法用遍各種套件』，remixicon 僅單一套件）",
-        "c14（查詢要『預訓練語言模型+完整程式碼』，實得為廣泛課程）"
+        "c14（查詢要『預訓練語言模型+完整程式碼』，實得 ai-engineering-from-scratch-zh 為廣泛 AI 工程課）",
+        "c16（約束是『命令列錄製』，selenium 本身無 CLI 錄製能力，那是 Selenium IDE）",
+        "c15（需求是給 AI 用的操作指引，selenium 是給人用的測試框架）",
+        "c18（約束是『免費模型』，aisuite 統一介面但接的是付費 API）",
+        "c34（需求是『用 AI 做』，vnpy 有回測但無 AI 能力）",
+        "c17（需求是串接多家免費 LLM 的服務，freetoken 是本地模型執行環境）",
+        "c36（需求是參數式建模＋工程圖，cadam 為 text-to-CAD 且無工程圖能力）",
+        "c40（需求是抓價格存 CSV，daily-stock-analysis 為分析系統，無明確 CSV 匯出）"
       ],
-      "count": 3
+      "count": 5
     }
   },
   "cases": [
@@ -346,7 +353,11 @@
       "expected": [
         "playwright"
       ],
-      "type": "semantic"
+      "type": "semantic",
+      "alsoAcceptable": [
+        "firecrawl-skills"
+      ],
+      "alsoAcceptableReason": "metadata 明載「爬網頁表格」能力，且 Firecrawl 主打 JavaScript 動態渲染，同時滿足查詢的兩個要素"
     },
     {
       "id": "c39",
@@ -372,7 +383,11 @@
       "expected": [
         "playwright"
       ],
-      "type": "constrained"
+      "type": "constrained",
+      "alsoAcceptable": [
+        "selenium"
+      ],
+      "alsoAcceptableReason": "Selenium 為跨語言 E2E 測試框架並支援 headless 模式，滿足「無畫面 + 端到端測試」限制"
     },
     {
       "id": "c42",

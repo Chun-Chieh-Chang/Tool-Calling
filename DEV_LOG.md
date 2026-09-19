@@ -63,6 +63,24 @@
 - `node scripts/check-utf8.js`：0 個 U+FFFD ✅
 - 機密掃描：diff 內無金鑰／token／私鑰，專案內無 `.env` ✅
 
+### 評測集標註放寬：24 筆失敗全數審視，僅 2 筆通過判準
+
+**動機**：部分「失敗」其實選到了功能等價的工具，單一 `expected` 可能過嚴。
+
+**判準**（沿用 `methodology.alsoAcceptable.criterion`）：必須是「同一類工具且滿足查詢的**全部**限制」，
+非僅同分類或名稱相近。**逐筆查證 registry 的實際 metadata，不憑名稱推測。**
+
+**通過 2 筆**：
+- `c38` 加入 `firecrawl-skills` — metadata 明載「爬網頁表格」，且 Firecrawl 主打 JS 動態渲染，同時滿足查詢兩要素
+- `c41` 加入 `selenium` — E2E 測試框架並支援 headless，滿足「無畫面 + 端到端測試」
+
+**駁回 9 筆**（已寫入 `methodology.alsoAcceptable.rejected` 避免重複爭論）：
+c16（無 CLI 錄製）、c15（給人用非給 AI）、c18（接付費 API 非免費）、c34（無 AI 能力）、
+c17（本地執行環境非 API 聚合）、c36（非參數式、無工程圖）、c40（無 CSV 匯出）、c23、c14。
+
+**結果**：嚴格分數**完全不變**（agent Hit@1 38.1%），寬鬆分數 45.2% → **50.0%**。
+⚠️ 這是標註修正，不是能力提升——評測腳本同時印出兩組數字就是為了不讓放寬掩蓋真實能力。
+
 ### 已知待處理
 - `.agents/AGENTS.md` 為 2026-09-09 的過時副本（598 個工具，與根 `AGENTS.md` 差 586 行），
   且無任何程式讀取它；`.agents/skills/` 仍有實際內容需保留。
