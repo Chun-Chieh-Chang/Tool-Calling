@@ -31,7 +31,7 @@
 | 分類 | 數量 | 定義 |
 |---|---:|---|
 | `AI 代理` | 141 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
-| `開發工具` | 98 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
+| `開發工具` | 99 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
 | `AI 框架` | 77 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
 | `學習資源` | 62 | 教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） |
 | `文件生產力` | 57 | 簡報／PPT、Office、PDF |
@@ -49,7 +49,7 @@
 | `數據分析` | 11 | Pandas/Polars、資料框架、產品分析 |
 | `測試與自動化` | 10 | 測試框架、CI/CD、自動化腳本 |
 
-**合計**: 702 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
+**合計**: 703 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
 <!-- CATEGORIES:INVENTORY:END -->
 
 > 本表為**衍生內容**，由 `registry/tools.json` ＋ `registry/categories.json` 自動產生，
