@@ -63,13 +63,21 @@ const DEFAULT_MODEL = 'agnes-2.5-flash';
 export function buildCandidateText(tool, limit = 400) {
   if (!tool) return '';
   const parts = [];
-  const d = String(tool.description || '').trim();
+  // 優先繁中譯文（`*_zh`，由 scripts/translate-to-zh.js 產生），沒有才回退原文。
+  //
+  // 2026-09-19 配對 A/B（42 題 × 2 臂、交錯順序）：
+  //   英文原文 Hit@1 76.2% ／ 繁中譯文 76.2%，不一致對 2 vs 2（p=1.0），
+  //   且 direct／semantic／constrained 三類型分數**完全相同**。
+  //   準確度無差異，但繁中 prompt 只有英文的 **71%**（短 29%）→ 採用繁中。
+  //
+  // capabilities 是技術標籤（如 playwright、kubernetes），維持英文不翻。
+  const d = String(tool.description_zh || tool.description || '').trim();
   if (d) parts.push(d);
-  const u = String(tool.useCase || '').trim();
+  const u = String(tool.useCase_zh || tool.useCase || '').trim();
   if (u) parts.push(`適用情境：${u}`);
   const caps = (tool.capabilities || []).slice(0, 8);
   if (caps.length) parts.push(`能力：${caps.join('、')}`);
-  const adv = String(tool.advantages || '').trim();
+  const adv = String(tool.advantages_zh || tool.advantages || '').trim();
   if (adv) parts.push(`優勢：${adv}`);
   return parts.join(' ｜ ').slice(0, limit);
 }
