@@ -6,7 +6,7 @@
     "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
-    "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。",
+    "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。\n2026-09-19（第三輪）：譯文納入索引後重新審視失敗清單，接受 c32/c51/c15；駁回 c09/c37/c38（皆為描述未載明該能力，放行屬推測）。",
     "baseline_2026_09_14": "fusion Hit@1=7.1% Hit@3=11.9% MRR=0.108；agent Hit@1=11.9% Hit@3=26.2% MRR=0.202。semantic 類型 Hit@1=0%（15 筆全敗）。空集誠實率 80%（4/5）。",
     "types": {
       "direct": "需求描述直白，詞彙與工具有部分重疊",
@@ -27,9 +27,12 @@
         "c17（需求是串接多家免費 LLM 的服務，freetoken 是本地模型執行環境）",
         "c36（需求是參數式建模＋工程圖，cadam 為 text-to-CAD 且無工程圖能力）",
         "c40（需求是抓價格存 CSV，daily-stock-analysis 為分析系統，無明確 CSV 匯出）",
-        "c24（需求是「給 AI 模型加網頁管理介面」，dashi-taskboard 是 issue board，非 AI 模型管理介面）"
+        "c24（需求是「給 AI 模型加網頁管理介面」，dashi-taskboard 是 issue board，非 AI 模型管理介面）",
+        "c09（查詢要「擴散模型」，open-generative-ai 描述未提及，放行屬推測）",
+        "c37（查詢要轉成 markdown，llmsherpa 僅載明結構化解析，未明確輸出 markdown）",
+        "c38（查詢要取出表格，splash 能渲染 JS 但未明載表格擷取）"
       ],
-      "count": 10
+      "count": 13
     }
   },
   "cases": [
@@ -167,7 +170,11 @@
       "expected": [
         "openai-playwright-automation-skill"
       ],
-      "type": "semantic"
+      "type": "semantic",
+      "alsoAcceptable": [
+        "browser-harness"
+      ],
+      "alsoAcceptableReason": "讓 LLM 驅動瀏覽器自主執行網頁任務的自癒式自動化框架，滿足「教 AI 自己操作瀏覽器完成任務」"
     },
     {
       "id": "c16",
@@ -317,7 +324,11 @@
       "expected": [
         "systempromptsleaks"
       ],
-      "type": "direct"
+      "type": "direct",
+      "alsoAcceptable": [
+        "cl4r1t4s"
+      ],
+      "alsoAcceptableReason": "同樣是彙整各大 AI 模型外流系統提示詞的專案，定義與需求完全一致"
     },
     {
       "id": "c33",
@@ -527,7 +538,11 @@
         "text-to-cad"
       ],
       "type": "constrained",
-      "category": "3D工程繪圖"
+      "category": "3D工程繪圖",
+      "alsoAcceptable": [
+        "cadam"
+      ],
+      "alsoAcceptableReason": "開源 text-to-CAD，以自然語言生成 CAD/STL/OpenSCAD，專為機械工程與 3D 列印設計，完全吻合「自然語言產生工程設計 3D 模型」"
     },
     {
       "id": "c52",
