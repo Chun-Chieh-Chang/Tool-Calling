@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "created": "2026-09-14",
   "description": "工具選用評測集。查詢刻意避開工具名與 trigger 詞，以衡量真正的匹配能力。expected 為可接受答案集合，任一命中即算對。empty-set 類型用於衡量引擎是否誠實回報「無對應工具」。",
   "methodology": {
-    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）",
+    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
     "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。",
@@ -447,6 +447,205 @@
       "query": "把一個 node.js 服務部署到 kubernetes 叢集上",
       "expected": [],
       "type": "empty-set"
+    },
+    {
+      "id": "c43",
+      "query": "我想在本地克隆特定人的聲音，生成自然的旁白，不需要依賴雲端 API",
+      "expected": [
+        "voicebox"
+      ],
+      "type": "constrained",
+      "category": "音訊"
+    },
+    {
+      "id": "c44",
+      "query": "需要無網路環境下將會議錄音或影片轉為文字稿，並支援多語言翻譯",
+      "expected": [
+        "buzz"
+      ],
+      "type": "constrained",
+      "category": "音訊"
+    },
+    {
+      "id": "c45",
+      "query": "不用修改現有程式碼就能把文字轉語音功能整合到相容 OpenAI API 的應用程式裡",
+      "expected": [
+        "openai-edge-tts"
+      ],
+      "type": "semantic",
+      "category": "音訊"
+    },
+    {
+      "id": "c46",
+      "query": "快速製作社群媒體宣傳短片或 YouTube 開場動畫，不用註冊也不用錢",
+      "expected": [
+        "ai-animation-video-generator"
+      ],
+      "type": "direct",
+      "category": "影片"
+    },
+    {
+      "id": "c47",
+      "query": "想從文字描述直接生成高品質動畫影片，用於概念視覺化和創意短片",
+      "expected": [
+        "seedance-20"
+      ],
+      "type": "semantic",
+      "category": "影片"
+    },
+    {
+      "id": "c48",
+      "query": "讓 AI 代理能自動讀取 YouTube 影片逐字稿、搜尋影片和抓取播放清單做研究摘要",
+      "expected": [
+        "youtube-skills"
+      ],
+      "type": "constrained",
+      "category": "影片"
+    },
+    {
+      "id": "c49",
+      "query": "想免費建立角色動畫與電影級渲染場景，有什麼開源3D創作工具推薦",
+      "expected": [
+        "blender"
+      ],
+      "type": "direct",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c50",
+      "query": "需要寫程式碼生成精確參數化機械零件，並輸出3D列印檔案的工具",
+      "expected": [
+        "openscad"
+      ],
+      "type": "semantic",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c51",
+      "query": "想用自然語言描述快速產生工程設計或機器人組件的3D模型",
+      "expected": [
+        "text-to-cad"
+      ],
+      "type": "constrained",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c52",
+      "query": "想追蹤使用者行為路徑並執行A/B測試優化轉化漏斗的分析平台",
+      "expected": [
+        "posthog"
+      ],
+      "type": "direct",
+      "category": "數據分析"
+    },
+    {
+      "id": "c53",
+      "query": "處理多GB級資料集時需要超快效能與延遲評估查詢優化功能的函式庫",
+      "expected": [
+        "polars"
+      ],
+      "type": "direct",
+      "category": "數據分析"
+    },
+    {
+      "id": "c54",
+      "query": "需企業級BI平台支援多資料來源自助分析與互動式儀表板串接",
+      "expected": [
+        "apache-superset"
+      ],
+      "type": "constrained",
+      "category": "數據分析"
+    },
+    {
+      "id": "c55",
+      "query": "在 CI/CD 流程中自動掃描並修復 Web 應用程式的安全漏洞",
+      "expected": [
+        "strix"
+      ],
+      "type": "direct",
+      "category": "安全性"
+    },
+    {
+      "id": "c56",
+      "query": "讓 AI 編碼工具在生成程式碼時自動融入安全最佳實踐",
+      "expected": [
+        "cybersecurity-skills"
+      ],
+      "type": "semantic",
+      "category": "安全性"
+    },
+    {
+      "id": "c57",
+      "query": "想找支援各種主流編程助手的技能擴充清單",
+      "expected": [
+        "awesome-agent-skills-VoltAgent"
+      ],
+      "type": "semantic",
+      "category": "學習資源"
+    },
+    {
+      "id": "c58",
+      "query": "完全沒有基礎，想從零開始系統性學程式設計",
+      "expected": [
+        "freecodecamp"
+      ],
+      "type": "semantic",
+      "category": "學習資源"
+    },
+    {
+      "id": "c59",
+      "query": "想用 AI 助手產生響應式儀表板，且輸出要遵循統一的視覺設計系統",
+      "expected": [
+        "impeccable"
+      ],
+      "type": "direct",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c60",
+      "query": "在 React 應用中快速原型化帶有語音互動的 AI 代理介面",
+      "expected": [
+        "agents"
+      ],
+      "type": "direct",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c61",
+      "query": "尋找適合 Windows 和 Microsoft 生態的現代化系統圖示集",
+      "expected": [
+        "fluentui-system-icons"
+      ],
+      "type": "direct",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c62",
+      "query": "讓 AI 代理能安全查詢 PostgreSQL 資料庫結構，並在自動化維護流程中執行效能診斷",
+      "expected": [
+        "postgres-mcp"
+      ],
+      "type": "direct",
+      "category": "開發工具"
+    },
+    {
+      "id": "c63",
+      "query": "為 Linux 桌面環境的 polybar 狀態列尋找豐富的顏色與風格主題",
+      "expected": [
+        "polybar-themes"
+      ],
+      "type": "direct",
+      "category": "開發工具"
+    },
+    {
+      "id": "c64",
+      "query": "在符合 GDPR、HIPAA 和 SOC2 規範的前提下，快速搭建無程式碼資料庫和自動化流程",
+      "expected": [
+        "baserow-baserow"
+      ],
+      "type": "constrained",
+      "category": "開發工具"
     }
-  ]
+  ],
+  "updated": "2026-09-19"
 }
