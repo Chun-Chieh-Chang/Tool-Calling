@@ -166,6 +166,28 @@ useCase／advantages **之上**沒有貢獻，故補做配對對照（B 全欄�
 「50 個候選 × 400 字」。真正值錢的實驗是**減少候選數**（例如 top-30 配豐富描述），
 可省約 40%，遠比 8% 有意義。
 
+### 修復：間歇性測試失敗（根治，非加重試）
+
+**現象**：`npm test` 偶發 1 筆 fail（tier1-preservation Property 2b），重跑又綠。
+
+**根因（兩層）**：
+1. `category-guards.test.js` 必須寫**真實的** `categories.json` / `tool.schema.json`
+   才能驗證守衛生效（`check-mece.js` 讀寫死的 ROOT 路徑，無法導向暫存副本）；
+   而 `tier1-preservation.test.js` 會呼叫 `check-mece.js` 讀同一批檔案。
+   node:test 預設**跨檔平行**，兩者共用可變狀態 → 必然競爭。
+2. 🔴 **緩解機制本身有 bug**：退避重試總和 0.5+1+2+4+8 = **15.5 秒**，
+   但該測試 timeout 只有 **10 秒** → 一旦真的需要重試，會**先超時再跑完**，
+   把「競爭」誤報成「斷言失敗」。這就是為什麼加了重試仍會看到 fail。
+
+**修法**：
+- `npm test` / `test:integration` 改為 `--test-concurrency=1` 序列化。
+  共用可變狀態時序列化是**正確解法**，不是權宜之計（曾嘗試改用暫存副本，
+  但 check-mece 路徑寫死，需重構才能隔離）。
+- timeout 10s → 60s，確保重試不會自我擊敗。重試保留，但降為「單獨跑此檔」的保險。
+
+**驗證**：連續 **12/12 次**全綠（149 pass / 0 fail）。
+**代價**：`npm test` 12.5s → 21.4s。
+
 ### 已知待處理
 - `.agents/AGENTS.md` 為 2026-09-09 的過時副本（598 個工具，與根 `AGENTS.md` 差 586 行），
   且無任何程式讀取它；`.agents/skills/` 仍有實際內容需保留。
