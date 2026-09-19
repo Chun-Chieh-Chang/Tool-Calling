@@ -178,14 +178,16 @@ test('Property 2a-inverse [Preservation]: unfixed registry has exactly 14 Tier 1
  * (mutual-exclusivity, exhaustiveness, color uniqueness, enum compliance)
  * passes regardless of the specific valid category a tool is assigned.
  *
- * NOTE: This test invokes check-mece.js via spawnSync (isolated subprocess)
- * to avoid interference from other concurrent test files that mutate
- * tool.schema.json during their own guard tests (category-guards.test.js).
- * When run in isolation, check-mece.js exits 0 consistently.
+ * NOTE: category-guards.test.js 必須寫真實的 categories.json / tool.schema.json
+ * 才能驗證守衛（check-mece.js 讀寫死是 ROOT 路徑），因此兩個測試檔**共用可變狀態**。
+ * 2026-09-19 起 `npm test` 改為 `--test-concurrency=1` 序列化執行，從根本消除競爭。
+ * 下方的重試是「萬一有人單獨跑這個檔」的保險，不是主要機制。
  *
  * Validates: Requirements 3.2
  */
-test('Property 2b [Preservation]: check-mece.js exits 0 on unfixed code', { timeout: 10000 }, (_t, done) => {
+// ⚠️ timeout 必須大於重試的退避總和（0.5+1+2+4+8 = 15.5s）＋ 5 次 check-mece 執行時間。
+// 原本設 10s，一旦真的需要重試就會**先超時再跑完**，把「競爭」誤報成「斷言失敗」。
+test('Property 2b [Preservation]: check-mece.js exits 0 on unfixed code', { timeout: 60000 }, (_t, done) => {
   // Use spawnSync with a slight delay after the test file is loaded to reduce
   // the chance of racing with category-guards.test.js schema mutations.
   // The underlying MECE invariants (mutual exclusivity, exhaustiveness, etc.)
