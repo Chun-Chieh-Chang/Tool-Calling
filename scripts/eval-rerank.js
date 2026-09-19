@@ -37,6 +37,10 @@ const descOf = (id) => buildCandidateText(tools.find((x) => x.id === id));
 const hasKey = Boolean(process.env.AGNES_API_KEY);
 
 let baseHit = 0, inTopK = 0, rerankHit = 0, apiOk = 0;
+// 寬鬆計分：計入 alsoAcceptable（經查證確實滿足需求的近義工具）。
+// 與 eval-benchmark.js 一致——評測集已有 10 筆 alsoAcceptable，
+// 若這裡只看 expected，生產路徑的數字會與評測集定義脫節。
+let rerankLoose = 0, looseCases = 0;
 const misses = [];
 
 for (const c of cases) {
@@ -59,6 +63,11 @@ for (const c of cases) {
   );
   if (error) { misses.push({ ...c, why: `rerank error: ${error}` }); continue; }
   apiOk++;
+
+  const accept = [...c.expected, ...(c.alsoAcceptable || [])];
+  if (c.alsoAcceptable?.length) looseCases++;
+  if (picked && accept.includes(picked)) rerankLoose++;
+
   if (picked && c.expected.includes(picked)) rerankHit++;
   else misses.push({ ...c, picked, inCands: c.expected.some((e) => cands.includes(e)) });
 }
@@ -75,6 +84,10 @@ console.log(`  正確答案在 top-${K} 內   : ${String(inTopK).padStart(2)}/${
 if (hasKey) {
   console.log(`  LLM rerank 後         : ${String(rerankHit).padStart(2)}/${n}  ${pct(rerankHit)}   （成功呼叫 ${apiOk}）`);
   console.log(`\n  增益：${pct(baseHit)} → ${pct(rerankHit)}`);
+  if (looseCases > 0) {
+    console.log(`\n  【含近義】計入 ${looseCases} 筆 alsoAcceptable`);
+    console.log(`  LLM rerank 後         : ${String(rerankLoose).padStart(2)}/${n}  ${pct(rerankLoose)}`);
+  }
 } else {
   console.log('\n  未設定 AGNES_API_KEY，略過 rerank。');
 }

@@ -6,7 +6,7 @@
     "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
-    "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。",
+    "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。",
     "baseline_2026_09_14": "fusion Hit@1=7.1% Hit@3=11.9% MRR=0.108；agent Hit@1=11.9% Hit@3=26.2% MRR=0.202。semantic 類型 Hit@1=0%（15 筆全敗）。空集誠實率 80%（4/5）。",
     "types": {
       "direct": "需求描述直白，詞彙與工具有部分重疊",
@@ -26,9 +26,10 @@
         "c34（需求是『用 AI 做』，vnpy 有回測但無 AI 能力）",
         "c17（需求是串接多家免費 LLM 的服務，freetoken 是本地模型執行環境）",
         "c36（需求是參數式建模＋工程圖，cadam 為 text-to-CAD 且無工程圖能力）",
-        "c40（需求是抓價格存 CSV，daily-stock-analysis 為分析系統，無明確 CSV 匯出）"
+        "c40（需求是抓價格存 CSV，daily-stock-analysis 為分析系統，無明確 CSV 匯出）",
+        "c24（需求是「給 AI 模型加網頁管理介面」，dashi-taskboard 是 issue board，非 AI 模型管理介面）"
       ],
-      "count": 5
+      "count": 10
     }
   },
   "cases": [
@@ -68,7 +69,11 @@
       "expected": [
         "khoj"
       ],
-      "type": "constrained"
+      "type": "constrained",
+      "alsoAcceptable": [
+        "ragflow"
+      ],
+      "alsoAcceptableReason": "開源可自架的 RAG 引擎，能從自有文件檢索並回答，滿足「自己架＋從文件找答案」全部約束"
     },
     {
       "id": "c05",
@@ -110,7 +115,11 @@
         "imaginairy"
       ],
       "type": "direct",
-      "note": "imaginairy 是文字轉圖／圖生圖的擴散模型套件，與 stable-diffusion 同生態，原標註過嚴"
+      "note": "imaginairy 是文字轉圖／圖生圖的擴散模型套件，與 stable-diffusion 同生態，原標註過嚴",
+      "alsoAcceptable": [
+        "stable-diffusion-webui"
+      ],
+      "alsoAcceptableReason": "即 Stable Diffusion 的官方生態實作介面，支援 txt2img 等生圖，滿足「擴散模型產生圖片」"
     },
     {
       "id": "c10",
@@ -191,7 +200,11 @@
       "expected": [
         "tooljet"
       ],
-      "type": "semantic"
+      "type": "semantic",
+      "alsoAcceptable": [
+        "directus"
+      ],
+      "alsoAcceptableReason": "開源 headless CMS，提供免寫程式的管理後台（admin panels），滿足「很快弄一個內部管理後台」"
     },
     {
       "id": "c20",
@@ -292,7 +305,11 @@
         "claude-opus-5md",
         "systempromptsleaks"
       ],
-      "type": "direct"
+      "type": "direct",
+      "alsoAcceptable": [
+        "claude-system-prompt"
+      ],
+      "alsoAcceptableReason": "逆向取得的 Claude 系統提示詞，正是查詢要研究的對象"
     },
     {
       "id": "c32",
@@ -375,7 +392,11 @@
         "go-stock",
         "tradingagents-astock"
       ],
-      "type": "direct"
+      "type": "direct",
+      "alsoAcceptable": [
+        "yfinance"
+      ],
+      "alsoAcceptableReason": "抓取 Yahoo Finance 歷史與即時行情的標準套件，回傳 pandas 物件可直接存 CSV"
     },
     {
       "id": "c41",
