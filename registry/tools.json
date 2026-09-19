@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-19T14:20:45.562Z",
+  "lastUpdated": "2026-09-19T14:59:30.035Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -48117,6 +48117,34 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T13:01:04.385Z",
+      "status": "experimental"
+    },
+    {
+      "id": "fast-jev-compaction",
+      "name": "Fast Jev Compaction",
+      "url": "https://github.com/tamaratran/fast-jev-compaction",
+      "description": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbatim.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "fast-jev-compaction",
+        "fast",
+        "jev",
+        "compaction"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx fast-jev-compaction",
+        "repoUrl": "https://github.com/tamaratran/fast-jev-compaction"
+      },
+      "capabilities": [],
+      "useCase": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbati",
+      "advantages": [],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-19T14:59:30.034Z",
       "status": "experimental"
     }
   ]
