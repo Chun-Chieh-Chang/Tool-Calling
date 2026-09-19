@@ -224,13 +224,17 @@ test('Property 2b [Preservation]: check-mece.js exits 0 on unfixed code', { time
   // matching — the previous version only tolerated failures whose stdout
   // contained both 'tool.schema.json' and '不一致', which missed other
   // shapes of the same race and produced spurious failures.
+  //
+  // Exponential backoff (0.5s → 1s → 2s → 4s → 8s). A fixed 0.5s pause was
+  // not enough — the guard tests can hold the schema for longer under load.
+  const MAX_ATTEMPTS = 5;
   let exitCode = 1;
   let stdout = '';
   let stderr = '';
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     if (attempt > 0) {
       // Sleep synchronously — this test runs on the main thread
-      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500 * 2 ** (attempt - 1));
     }
     ({ exitCode, stdout, stderr } = runNode(['scripts/check-mece.js']));
     if (exitCode === 0) break;
@@ -241,7 +245,7 @@ test('Property 2b [Preservation]: check-mece.js exits 0 on unfixed code', { time
     // already confirm MECE correctness, so this points at check-mece itself
     // or a persistent environment problem rather than a transient race.
     assert.fail(
-      `check-mece.js failed after 3 attempts (exit ${exitCode}).\n` +
+      `check-mece.js failed after ${MAX_ATTEMPTS} attempts (exit ${exitCode}).\n` +
       `stdout:\n${stdout}\nstderr:\n${stderr}`
     );
   }
