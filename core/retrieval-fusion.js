@@ -301,16 +301,18 @@ export async function retrieveWithRerank(tools, query, options = {}) {
   if (base.results.length === 0) return skip('no candidates');
 
   // 2. LLM rerank（動態 import：離線時也不增加啟動成本）
-  const { rerankCandidates, promote } = await import('./llm-rerank.js');
-  const descOf = (id) => tools.find((t) => t.id === id)?.description || '';
+  const { rerankCandidates, promote, buildCandidateText, RICH_DESC_LIMIT } = await import('./llm-rerank.js');
+  // 2026-09-19：改餵完整 metadata（含適用情境/能力/優勢），實測 Hit@1 +8.0pp。
+  // 只給 120 字 description 時 LLM 判斷依據不足——這是「挑不準」的主因之一。
   const candidates = base.results.map((x) => ({
     id: x.id,
-    description: x.description || descOf(x.id),
+    description: buildCandidateText(tools.find((t) => t.id === x.id) || { description: x.description }),
   }));
 
   const { picked, error } = await rerankCandidates(query, candidates, {
     maxRetries: 1,
     timeoutMs: 12000,
+    descLimit: RICH_DESC_LIMIT,
   });
 
   if (!picked) return skip(error || 'no pick');

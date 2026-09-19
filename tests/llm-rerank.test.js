@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { parsePick, parsePickList, buildPrompt, rerankCandidates, rerankTwoStage, promote } from '../core/llm-rerank.js';
+import { parsePick, parsePickList, buildPrompt, buildCandidateText, RICH_DESC_LIMIT, rerankCandidates, rerankTwoStage, promote } from '../core/llm-rerank.js';
 import { retrieveWithRerank } from '../core/retrieval-fusion.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -119,6 +119,38 @@ test('buildPrompt - 含 NONE 棄權規則', () => {
   const p = buildPrompt('q', ['tool-a']);
   assert.ok(p.includes('NONE'), '應告知模型可回傳 NONE');
   assert.ok(p.includes('寧可回 NONE'), '應鼓勵模型在不確定時棄權');
+});
+
+// ── buildCandidateText：候選描述的豐富度 ───────────────────────────────────
+// 2026-09-19 三臂配對 A/B（126 次配對呼叫）：
+//   120 字 description → 73.0%；補齊情境/能力/優勢 → 81.0%；只補能力 → 73.8%。
+// 也就是**只加 capabilities 是沒有用的**，增益來自自然語言欄位。
+// 這段測試鎖住「四個欄位都要帶上」，避免日後重構悄悄退回到只給 description。
+
+test('buildCandidateText - 帶上描述、適用情境、能力與優勢', () => {
+  const t = buildCandidateText({
+    description: '跨瀏覽器 E2E 測試框架',
+    useCase: '需要跑前端自動化測試時',
+    capabilities: ['e2e-testing', 'cross-browser'],
+    advantages: '支援多語言',
+  });
+  assert.ok(t.includes('跨瀏覽器 E2E 測試框架'));
+  assert.ok(t.includes('適用情境：需要跑前端自動化測試時'));
+  assert.ok(t.includes('能力：e2e-testing、cross-browser'));
+  assert.ok(t.includes('優勢：支援多語言'));
+});
+
+test('buildCandidateText - 缺欄位時不產生空段', () => {
+  const t = buildCandidateText({ description: '只有描述' });
+  assert.equal(t, '只有描述');
+  assert.ok(!t.includes('｜'));
+});
+
+test('buildCandidateText - 空值安全且不超過上限', () => {
+  assert.equal(buildCandidateText(null), '');
+  assert.equal(buildCandidateText(undefined), '');
+  const long = buildCandidateText({ description: '描'.repeat(1000) }, 400);
+  assert.equal(long.length, 400);
 });
 
 // ── rerankTwoStage：分批淘汰 ──────────────────────────────────────────────

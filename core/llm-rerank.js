@@ -45,6 +45,39 @@ const DEFAULT_API_BASE = 'https://apihub.agnes-ai.com/v1';
 const DEFAULT_MODEL = 'agnes-2.5-flash';
 
 /**
+ * 把工具物件轉成餵給 rerank 的候選描述文字（單一來源，供呼叫端共用）。
+ *
+ * 背景（2026-09-19 三臂配對 A/B，126 次配對呼叫）：
+ *   只給 description 截 120 字        → Hit@1 73.0%
+ *   再補 useCase / capabilities / 優勢 → Hit@1 81.0%（+8.0pp，單尾 p≈0.044）
+ *   只補 capabilities（200 字）        → Hit@1 73.8%（**完全沒有效果**）
+ *
+ * 結論：增益來自 useCase／advantages 這類自然語言欄位，不是 capabilities 標籤。
+ * 代價是 prompt 從約 5.4k 字膨脹到約 20k 字（3.8 倍），但 rerank 每次查詢只跑一次，
+ * 且本專案真正的瓶頸正是「LLM 從 50 個候選裡挑不準」（天花板 95.2%、實得 73%）。
+ *
+ * @param {{description?:string, useCase?:string, advantages?:string, capabilities?:string[]}} tool
+ * @param {number} [limit=400]
+ * @returns {string}
+ */
+export function buildCandidateText(tool, limit = 400) {
+  if (!tool) return '';
+  const parts = [];
+  const d = String(tool.description || '').trim();
+  if (d) parts.push(d);
+  const u = String(tool.useCase || '').trim();
+  if (u) parts.push(`適用情境：${u}`);
+  const caps = (tool.capabilities || []).slice(0, 8);
+  if (caps.length) parts.push(`能力：${caps.join('、')}`);
+  const adv = String(tool.advantages || '').trim();
+  if (adv) parts.push(`優勢：${adv}`);
+  return parts.join(' ｜ ').slice(0, limit);
+}
+
+/** rerank 候選描述的建議截斷上限（配合 buildCandidateText）。 */
+export const RICH_DESC_LIMIT = 400;
+
+/**
  * 解析 LLM 回傳，取出被選中的候選。
  * 同時處理三種常見回傳格式（見上方「解析教訓」）。
  * @param {string} text - LLM 原始回傳
@@ -86,12 +119,13 @@ export function parsePick(text, candidates) {
  * 組合給 LLM 的 prompt。
  * @param {string} query - 使用者需求
  * @param {{id:string, description?:string}[]} candidates
+ * @param {number} [descLimit=120] - 每個候選描述的截斷上限
  */
-export function buildPrompt(query, candidates) {
+export function buildPrompt(query, candidates, descLimit = 120) {
   // 容許傳入純 id 字串陣列（與 rerankCandidates 行為一致）
   const cands = candidates.map((c) => (typeof c === 'string' ? { id: c } : c));
   const list = cands
-    .map((c, i) => `${i + 1}. ${neutralizeDelimiters(c.id)} — ${neutralizeDelimiters(String(c.description || '').slice(0, 120))}`)
+    .map((c, i) => `${i + 1}. ${neutralizeDelimiters(c.id)} — ${neutralizeDelimiters(String(c.description || '').slice(0, descLimit))}`)
     .join('\n');
   // 提供 NONE 棄權選項（2026-09-17 新增）
   //
@@ -174,7 +208,7 @@ export async function rerankCandidates(query, candidates, options = {}) {
         },
         body: JSON.stringify({
           model,
-          messages: [{ role: 'user', content: buildPrompt(query, cands) }],
+          messages: [{ role: 'user', content: buildPrompt(query, cands, options.descLimit ?? 120) }],
           temperature: 0,
         }),
         signal: controller.signal,

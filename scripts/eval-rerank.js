@@ -17,7 +17,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { agentRetrieve } from '../core/agent-retrieval.js';
 import { extractIntent, weightsForIntent } from '../core/query-intent.js';
-import { rerankCandidates } from '../core/llm-rerank.js';
+import { rerankCandidates, buildCandidateText, RICH_DESC_LIMIT } from '../core/llm-rerank.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const bench = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'eval-queries.json'), 'utf8'));
@@ -30,10 +30,9 @@ const K = Number(args.find((a) => a.startsWith('--topK='))?.split('=')[1]) || 20
 const MODEL = args.find((a) => a.startsWith('--model='))?.split('=')[1] || undefined;
 const verbose = args.includes('--verbose');
 
-const descOf = (id) => {
-  const t = tools.find((x) => x.id === id);
-  return (t?.description || t?.name || '').slice(0, 120);
-};
+// 與正式路徑（retrieval-fusion.js）共用同一份候選描述產生邏輯，
+// 否則評測數字會與實際上線行為脫節。
+const descOf = (id) => buildCandidateText(tools.find((x) => x.id === id));
 
 const hasKey = Boolean(process.env.AGNES_API_KEY);
 
@@ -56,7 +55,7 @@ for (const c of cases) {
   const { picked, error } = await rerankCandidates(
     c.query,
     cands.map((id) => ({ id, description: descOf(id) })),
-    MODEL ? { model: MODEL } : {},
+    { ...(MODEL ? { model: MODEL } : {}), descLimit: RICH_DESC_LIMIT },
   );
   if (error) { misses.push({ ...c, why: `rerank error: ${error}` }); continue; }
   apiOk++;
