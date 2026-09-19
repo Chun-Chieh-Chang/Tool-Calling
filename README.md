@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **696 個頂尖開源 AI 工具與 Agent 技能**：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **702 個頂尖開源 AI 工具與 Agent 技能**：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與檔案生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -30,7 +30,7 @@
 | ~~Web Worker~~ | 已移除 | 與 core/ 重複的第三套檢索實作，改用 `/api/search` |
 | IndexedDB | 冷啟動 <100ms | 跨頁面持久化快取 |
 | Fuzzy Matching | +15% 容錯率 | Levenshtein 距離模糊匹配 |
-| 同義詞擴充 | 620 詞彙 | 41 個種子詞 + 945 組配對自動挖掘 |
+| 同義詞擴充 | 7,437 個查找詞 | 41 個種子詞為基底，其餘由 trigger 共現自動挖掘（3,021 組同義詞群） |
 
 詳細報告請見 [docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md](./docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md)
 
@@ -49,8 +49,8 @@
 
 主要工作：
 
-- **LLM rerank 後處理**：詞彙檢索對「語意跳躍」型查詢完全無能為力（semantic 類型 Hit@1 = 0%）。改為先召回 top-50 候選，再由 LLM 從中挑選最適者。候選範圍即天花板，實測 top-20 → 78.6%、top-50 → 95.2%。
-- **trigger 詞彙擴充**：由工具自身描述產生「使用者會怎麼說」的檢索詞，覆蓋全部 693 筆工具。
+- **LLM rerank 後處理**：詞彙檢索對「語意跳躍」型查詢完全無能為力（semantic 類型 Hit@1 = 0%）。改為先召回 top-50 候選，再由 LLM 從中挑選最適者。候選範圍即天花板，實測 top-20 → 81.0%、top-50 → 95.2%。
+- **trigger 詞彙擴充**：由工具自身描述產生「使用者會怎麼說」的檢索詞，覆蓋 693/699 筆工具（其餘 6 筆為擴充完成後才新增）。
 - **鑑別力守門**：一個詞若已出現在多個工具，加入它只會稀釋區分力（實測擴充過度會使 Hit@1 從 11.9% 退步到 7.1%）。改以 document frequency 過濾，每批約剔除 50% 候選詞。
 - **簡繁正規化**：LLM 產生的簡體詞（「浏览器」）與繁體查詢的 bigram 完全不重疊，造成靜默召回失敗。已全數轉為繁體並在產生端防止復發。
 
@@ -61,7 +61,7 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 696 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - 整合 702 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
    - 支援 18 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
@@ -151,7 +151,7 @@ Tool-Calling/
 ├── core/               # 核心模組
 │   ├── search-engine.js     # 三層檢索引擎 (L1-L3)
 │   ├── categories.js        # 分類單一來源載入器
-│   ├── synonyms.generated.js # 同義詞詞典 (620 詞彙)
+│   ├── synonyms.generated.js # 同義詞詞典 (7,437 個查找詞)
 │   ├── telemetry.js         # 使用統計
 │   └── ...
 ├── web/                # 前端精密儀表數據工作台
@@ -159,7 +159,6 @@ Tool-Calling/
 │   ├── server.js           # 本地伺服器（/api/search 走 core/ 檢索引擎）
 │   ├── persist-cache.js    # IndexedDB 持久化快取
 │   ├── behavior-tracker.js # 使用者行為追蹤
-│   ├── server.js           # 零相依本地 HTTP 伺服器
 │   ├── style.css           # 精密儀表板高對比樣式
 │   └── index.html          # UI 介面
 ├── scripts/            # 自動化腳本
@@ -170,7 +169,7 @@ Tool-Calling/
 │   └── check-mece.js       # MECE 分類檢查 ＋ 來源一致性守衛
 ├── registry/           # 工具函式庫
 │   ├── categories.json   # 18 個分類的單一機器可讀來源
-│   └── tools.json        # 696 工具（單一真理來源）
+│   └── tools.json        # 702 工具（單一真理來源）
 ├── docs/               # 文件
 │   ├── CLASSIFICATION.md         # 分類判定規則（權威）
 │   ├── CATEGORY-SYSTEM.md        # 分類統計與重構機制
@@ -204,7 +203,7 @@ node scripts/rescan-classification.js --ci  # 全庫重掃，Tier 1 必須為 0
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v2.0 - 696 Tools, 620 Synonyms, Live Refresh & Dual-Week Trending
+> Tool-Calling v2.0 - 702 Tools, 7,437 Synonym Terms, Live Refresh & Dual-Week Trending
 ---
 
 ## 🌐 網頁版 UI
