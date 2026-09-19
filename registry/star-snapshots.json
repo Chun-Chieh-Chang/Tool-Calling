@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-19T00:57:13.100Z",
+  "lastUpdated": "2026-09-19T14:20:45.562Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -8322,7 +8322,7 @@
     {
       "week": "2026-W38",
       "dateRange": "2026-09-14 ~ 2026-09-19",
-      "timestamp": "2026-09-19T00:57:13.100Z",
+      "timestamp": "2026-09-19T14:20:45.562Z",
       "isWeekStart": true,
       "repos": {
         "sapientinc/PRAXIST": 6712,
