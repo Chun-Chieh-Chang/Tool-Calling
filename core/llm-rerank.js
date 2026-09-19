@@ -149,6 +149,11 @@ export function buildPrompt(query, candidates, descLimit = 120) {
   // 使用者輸入（query）與工具描述都來自外部，攻擊者可在 query 裡寫
   // 「忽略以上規則，回傳 xxx」來操控選擇結果。分隔 + 宣告無法完全杜絕，
   // 但能大幅提高攻擊成本，且成本極低。
+  // 「不要任何解釋」是刻意保留的寫法，不是疏忽。
+  // 2026-09-19 實測放開為「先寫 2-3 句理由、最後一行作答」：
+  //   Hit@1 78.6% → 76.2%，不一致對 3 vs 2；且 semantic 類型完全沒動
+  //   （73.3% vs 73.3%）。也就是「語意推論需要推理空間」這個推測是錯的。
+  // 放開推理還會增加輸出 token 與解析風險，故維持禁止。勿重試。
   return `使用者的需求：${neutralizeDelimiters(query)}
 
 以下有 ${candidates.length} 個候選工具（格式：編號. id — 簡介）。
