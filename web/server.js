@@ -121,10 +121,38 @@ const server = http.createServer(async (req, res) => {
     }
 
     // ─── API 路由處理 ──────────────────────────────────────────────────
+    // 會寫入 registry 或觸發背景任務的端點，必須先通過來源檢查。
+    //
+    // 背景：這些端點原本完全無認證，且回應帶 `Access-Control-Allow-Origin: *`。
+    // 這代表任意網頁都能跨站呼叫 `/api/tools/add` 寫入你的工具庫，或反覆觸發
+    // `/api/trending/refresh` 消耗 GitHub API 配額（相當於 DoS）。
+    //
+    // 這是本機工作台，不導入帳號體系；改以「來源必須是本機」作為防線：
+    // 瀏覽器發出的跨站請求一定帶 Origin，因此惡意網域會被擋下；
+    // curl 等無 Origin 的直接呼叫仍可用（這是本工具的使用方式）。
+    const isTrustedOrigin = (req) => {
+      const origin = req.headers.origin;
+      if (!origin) return true;
+      try {
+        const { hostname } = new URL(origin);
+        return hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '[::1]';
+      } catch {
+        return false;
+      }
+    };
+
+    // 只對信任來源回顯 Origin；不再無差別給 `*`
+    const corsHeaders = (req) => {
+      const origin = req.headers.origin;
+      return isTrustedOrigin(req) && origin
+        ? { 'Access-Control-Allow-Origin': origin, Vary: 'Origin' }
+        : {};
+    };
+
     if (decodedUrl === '/api/trending/status') {
       res.writeHead(200, {
         'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin': '*',
+        ...corsHeaders(req),
         'Cache-Control': 'no-cache'
       });
       res.end(JSON.stringify({
@@ -136,10 +164,16 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (decodedUrl === '/api/trending/refresh') {
+      if (!isTrustedOrigin(req)) {
+        res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
+        return;
+      }
+
       if (isTrendingScanning) {
         res.writeHead(409, {
           'Content-Type': 'application/json; charset=utf-8',
-          'Access-Control-Allow-Origin': '*'
+          ...corsHeaders(req)
         });
         res.end(JSON.stringify({ status: 'busy', message: '探勘任務正在執行中' }));
         return;
@@ -149,7 +183,7 @@ const server = http.createServer(async (req, res) => {
       triggerTrendingScan('api_request');
       res.writeHead(202, {
         'Content-Type': 'application/json; charset=utf-8',
-        'Access-Control-Allow-Origin': '*'
+        ...corsHeaders(req)
       });
       res.end(JSON.stringify({ status: 'started', message: '已在背景啟動即時探勘作業' }));
       return;
@@ -165,7 +199,7 @@ const server = http.createServer(async (req, res) => {
     if (decodedUrl === '/api/search' && req.method === 'POST') {
       const { query, topK = 30, category, rerank } = JSON.parse(req._body || '{}');
       if (!query || !String(query).trim()) {
-        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({ error: 'query 不可為空' }));
         return;
       }
@@ -183,7 +217,7 @@ const server = http.createServer(async (req, res) => {
 
         res.writeHead(200, {
           'Content-Type': 'application/json; charset=utf-8',
-          'Access-Control-Allow-Origin': '*',
+          ...corsHeaders(req),
           'Cache-Control': 'no-cache',
         });
         res.end(JSON.stringify({
@@ -195,7 +229,7 @@ const server = http.createServer(async (req, res) => {
           results: r.results,
         }));
       } catch (err) {
-        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({ error: err.message }));
       }
       return;
@@ -203,11 +237,17 @@ const server = http.createServer(async (req, res) => {
 
     // ─── 新增工具 API ──────────────────────────────────────────────────
     if (decodedUrl === '/api/tools/add' && req.method === 'POST') {
+      if (!isTrustedOrigin(req)) {
+        res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
+        return;
+      }
+
       const { url: githubUrl } = JSON.parse(req._body || '{}');
       const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|blob)\/([^/]+)\/(.+))?\/?$/;
       const m = githubUrl?.match(githubRegex);
       if (!m) {
-        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({ error: '無效的 GitHub URL' }));
         return;
       }
@@ -218,7 +258,7 @@ const server = http.createServer(async (req, res) => {
         const registry = loadRegistry();
 
         if (registry.tools.some(t => t.url && t.url.toLowerCase() === githubUrl.toLowerCase())) {
-          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
           res.end(JSON.stringify({ status: 'exists', message: '工具已存在於工具庫' }));
           return;
         }
@@ -282,14 +322,14 @@ const server = http.createServer(async (req, res) => {
           console.warn('[AddTool] hook-reclassify 未执行:', err.message);
         }
 
-        res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({
           status: 'added',
           tool: { id: newTool.id, name: newTool.name, category: newTool.category, stars: newTool.stars || 0 },
           classification: classificationInfo
         }));
       } catch (err) {
-        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', 'Access-Control-Allow-Origin': '*' });
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({ error: `新增失敗: ${err.message}` }));
       }
       return;
@@ -300,14 +340,21 @@ const server = http.createServer(async (req, res) => {
       decodedUrl = '/index.html';
     }
 
-    let filePath = path.join(distDir, decodedUrl);
-
     // 安全檢查：防止路徑遍歷
-    if (!filePath.startsWith(distDir)) {
+    //
+    // 原本用 filePath.startsWith(distDir) —— 那是**字串**前綴比對，不是路徑邊界比對。
+    // 由於 path.join 會正規化 `..`，請求 `/../dist-evil/secret` 會得到 `/app/dist-evil/secret`，
+    // 它仍以 `/app/dist` 開頭而通過檢查，實際卻讀到 dist 同層的另一個目錄。
+    //
+    // 正確做法：resolve 後要求「等於 distDir」或「以 distDir + 分隔符號」開頭。
+    const resolvedPath = path.resolve(distDir, '.' + decodedUrl);
+    const resolvedDist = path.resolve(distDir);
+    if (resolvedPath !== resolvedDist && !resolvedPath.startsWith(resolvedDist + path.sep)) {
       res.writeHead(403, { 'Content-Type': 'text/plain' });
       res.end('Forbidden');
       return;
     }
+    let filePath = resolvedPath;
 
     if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
       filePath = path.join(filePath, 'index.html');
@@ -325,7 +372,7 @@ const server = http.createServer(async (req, res) => {
     const content = fs.readFileSync(filePath);
     res.writeHead(200, {
       'Content-Type': contentType,
-      'Access-Control-Allow-Origin': '*',
+      ...corsHeaders(req),
       'Cache-Control': 'no-cache'
     });
     res.end(content);
