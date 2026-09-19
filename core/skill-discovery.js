@@ -4,7 +4,7 @@
  * Wraps npx skills CLI with local caching and GitHub API fallback.
  */
 
-import { execSync } from 'node:child_process';
+import { execSync, execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { homedir } from 'node:os';
@@ -177,11 +177,39 @@ export async function searchAllSkills(query, limit = 10) {
 
 // ─── Skill Installation ──────────────────────────────────────────────────────
 
+/**
+ * skillId 格式驗證（白名單）。
+ *
+ * 只接受 skill id 會用到的字元。擋掉空白、;`&|$()<> 等 shell 元字元，
+ * 因此 `foo; rm -rf /` 這類注入在進入執行層之前就會被拒絕。
+
+ * 這是第一道防線（縱深防禦）：即便底層改回用 shell 執行，也無法注入。
+ */
+const SAFE_SKILL_ID = /^[\w.@/-]+$/;
+
 export function installSkill(skillId) {
+  const id = String(skillId ?? '').trim();
+
+  if (!id) {
+    return { success: false, message: '缺少 skillId' };
+  }
+  if (!SAFE_SKILL_ID.test(id) || id.includes('..')) {
+    return { success: false, message: `無效的 skillId: ${id}` };
+  }
+
   try {
-    const command = `npx skills add ${skillId} --yes`;
-    execSync(command, { stdio: 'inherit', timeout: 60000 });
-    return { success: true, message: `Installed ${skillId}` };
+    // CWE-78 修復：原本是 execSync(`npx skills add ${skillId} --yes`) —— 把外部輸入直接
+    // 插值進 shell 命令字串，攻擊者傳 `foo; rm -rf /` 就能執行任意指令。
+    // 改為 execFileSync + 參數陣列，參數不經 shell 解析。Windows 上 npx 是 npx.cmd，需 shell: true，
+    // 但因為參數是陣列，Node 會正確 quote，仍不會被注入。
+
+    const bin = process.platform === 'win32' ? 'npx.cmd' : 'npx';
+    execFileSync(bin, ['skills', 'add', id, '--yes'], {
+      stdio: 'inherit',
+      timeout: 60000,
+      shell: process.platform === 'win32',
+    });
+    return { success: true, message: `Installed ${id}` };
   } catch (error) {
     return { success: false, message: error.message };
   }
