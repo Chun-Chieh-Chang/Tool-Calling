@@ -372,12 +372,21 @@ const server = http.createServer(async (req, res) => {
     // 例外：`/registry/*` 一律改從專案根的 `registry/` 讀取。
     // `dist/registry/` 只是建置時的副本，會過期（2026-09-20 就因此讓前端
     // 讀到少 10 筆譯文的舊 tools.json）。資料目錄不應該走建置副本。
-    const REGISTRY_PREFIX = '/registry/';
+    const ROOT_PREFIXES = [['/registry/', 'registry']];
+    if (DEV_MODE) {
+      // dev 模式直接服務 web/，但 web/core/ 不存在——那是 build 時才複製進去的。
+      // app.js 第 1 行 `import './core/search-engine.js'` 因此 404，整支 app.js 載入失敗
+      // （2026-09-20 的空白畫面事故）。dev 模式改從專案根的 core/ 讀原始模組。
+      ROOT_PREFIXES.push(['/core/', 'core']);
+    }
     let serveBase = distDir;
     let relUrl = decodedUrl;
-    if (relUrl.startsWith(REGISTRY_PREFIX)) {
-      serveBase = path.join(rootDir, 'registry');
-      relUrl = relUrl.slice('/registry'.length) || '/';
+    for (const [prefix, dir] of ROOT_PREFIXES) {
+      if (relUrl.startsWith(prefix)) {
+        serveBase = path.join(rootDir, dir);
+        relUrl = relUrl.slice(prefix.length - 1) || '/';
+        break;
+      }
     }
 
     const resolvedPath = path.resolve(serveBase, '.' + relUrl);
