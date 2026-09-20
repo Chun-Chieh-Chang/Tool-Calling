@@ -32,7 +32,8 @@
     "embed:build": "node scripts/embed-build.js",
     "benchmark": "node scripts/eval-benchmark.js",
     "eval:rerank": "node scripts/eval-rerank.js",
-    "lint": "echo \"No linter configured, skipping...\""
+    "lint": "echo \"No linter configured, skipping...\"",
+    "ceiling": "node scripts/ceiling-analysis.js"
   },
   "keywords": [
     "ai",
