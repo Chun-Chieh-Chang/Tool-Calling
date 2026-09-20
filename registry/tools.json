@@ -1597,13 +1597,13 @@
         "agent-orchestration",
         "mcp",
         "devtools",
-        "追踪AI編碼成本",
+        "追蹤AI編碼成本",
         "审計AI代理操作",
         "初始化編碼代理循环",
         "管理Grok使用費用",
         "編排多步AI任務",
         "监控Codex消耗",
-        "追踪MCP工具調用成本",
+        "追蹤MCP工具調用成本",
         "审查AI代理執行記錄",
         "統計LLM API費用",
         "自動化AI代理工作流"
@@ -16255,7 +16255,7 @@
         "research",
         "plugins",
         "自動化資料收集",
-        "研究文献整理",
+        "研究文獻整理",
         "網頁表格提取",
         "文檔格式轉換",
         "知識庫查詢檢索",
@@ -18995,7 +18995,7 @@
         "自動監控加密貨幣價格走勢",
         "AI 生成交易策略並執行",
         "自動化執行加密貨幣買賣",
-        "用 AI 追踪幣圈市場動態",
+        "用 AI 追蹤幣圈市場動態",
         "AI 自動下單交易",
         "讓 AI 管理加密貨幣投資組合",
         "自動執行幣圈交易"
@@ -19408,7 +19408,7 @@
         "輸出 agent 行為指令",
         "調整 AI 助手工作流",
         "建立 reusable prompts",
-        "生成編程辅助模板"
+        "生成編程輔助模板"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -29303,7 +29303,7 @@
         "matt-pocock-skills",
         "拆解大型項目為調查任務",
         "規划從想法到執行的路線圖",
-        "追踪技術決策的分支路徑",
+        "追蹤技術決策的分支路徑",
         "探索需求中的不确定領域",
         "識別技術方案的前鋒邊界"
       ],
@@ -36350,7 +36350,7 @@
       "id": "ui-ux-pro-max-skill-cn",
       "name": "Ui Ux Pro Max Skill Cn",
       "url": "https://github.com/bbylw/ui-ux-pro-max-skill-cn",
-      "description": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 辅助設計能力。",
+      "description": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 輔助設計能力。",
       "category": "UI/UX設計",
       "language": "html",
       "triggers": [
@@ -40528,7 +40528,7 @@
         "manychat alternative",
         "instagram automation",
         "dm automation",
-        "追踪Instagram評論",
+        "追蹤Instagram評論",
         "設置DM自動回复",
         "分析Instagram账號數據",
         "监控Instagram私信",
@@ -41000,7 +41000,7 @@
         "weibo-crawler",
         "social-media-scraper",
         "zhihu-scraper",
-        "抓小红書笔記",
+        "抓小紅書筆記",
         "爬抖音視頻",
         "采集微博數據",
         "抓取B站視頻",
@@ -43231,7 +43231,7 @@
         "qt",
         "查看股票行情",
         "分析財務報表",
-        "追踪市場走勢",
+        "追蹤市場走勢",
         "生成投資報告",
         "查詢股價數據"
       ],
@@ -45771,7 +45771,7 @@
       "id": "zouyuxuan122-deepseek-harness-eac",
       "name": "DeepSeek Harness EAC",
       "url": "https://github.com/zouyuxuan122/Deepseek-Harness-EAC",
-      "description": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮肤。EAC: Embracing All Creation 揽尽萬象。",
+      "description": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮膚。EAC: Embracing All Creation 揽尽萬象。",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -45800,7 +45800,7 @@
       "useCase": "當需要在 Windows/Linux 桌面環境中以一鍵啟動方式運行 DeepSeek Harness，並偏好內建多套 UI 皮肤的桌面體驗時使用。",
       "advantages": [
         "內建 Node.js + dsh CLI，無需額外安裝依賴即可一鍵啟動",
-        "提供 10 套預設 UI 皮肤，支援視覺客製化",
+        "提供 10 套預設 UI 皮膚，支援視覺客製化",
         "與 DeepSeek Harness 插件生態（dsh-plugin）完全相容"
       ],
       "negativeConstraints": [
@@ -46662,7 +46662,7 @@
         "DeepSeek 移動端遠程運維",
         "DSH Web GUI 插件安装",
         "DeepSeek SSH 遠程管理",
-        "DSH 皮肤主題配置"
+        "DSH 皮膚主題配置"
       ],
       "install": {
         "method": "none",
@@ -49043,7 +49043,7 @@
         "收窄 prop 類型",
         "精簡 React 組件屬性",
         "去掉多余 prop 類型",
-        "移除无用 prop",
+        "移除無用 prop",
         "修正 prop 類型範圍"
       ],
       "capabilities": [
@@ -50848,8 +50848,8 @@
         "delivery-harness",
         "delivery",
         "harness",
-        "處理配送订單",
-        "追踪配送位置",
+        "處理配送訂單",
+        "追蹤配送位置",
         "調度配送人員",
         "管理即時配送流程",
         "計算配送費用"
@@ -50877,7 +50877,7 @@
       "id": "stop-that-shit",
       "name": "Stop That Shit",
       "url": "https://github.com/lennney/stop-that-shit",
-      "description": "Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：拦截 AI coding agent 无需求的哈希、校驗和與任務範圍膨胀。 A multi-platform Hook + Skill Guard for AI coding agents in Codex/GPT workflows: stop unrequested hashes, checksums, and task-scope creep.",
+      "description": "Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：拦截 AI coding agent 無需求的哈希、校驗和與任務範圍膨胀。 A multi-platform Hook + Skill Guard for AI coding agents in Codex/GPT workflows: stop unrequested hashes, checksums, and task-scope creep.",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -52037,7 +52037,7 @@
         "整理歷史人物關系",
         "生成歷史事件時間線",
         "提取史書人物實體",
-        "構建古代文献知識網絡"
+        "構建古代文獻知識網絡"
       ],
       "install": {
         "method": "git",
@@ -52104,15 +52104,15 @@
       "triggers": [
         "weread-hot-booklists",
         "微信讀書",
-        "热門書單",
-        "讀書笔記",
+        "熱門書單",
+        "讀書筆記",
         "weread",
         "booklist",
         "reading-notes",
         "書單",
         "閱讀筆記",
-        "热門收藏",
-        "整理微信讀書热門書單",
+        "熱門收藏",
+        "整理微信讀書熱門書單",
         "匯出微信讀書書單為 Markdown",
         "查閱微信讀書熱門收藏書目",
         "生成微信讀書讀書筆記",
