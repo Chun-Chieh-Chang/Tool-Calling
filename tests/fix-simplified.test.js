@@ -71,3 +71,33 @@ test('S2T - 不含一簡對多繁的高歧義字', () => {
     assert.equal(S2T[ambiguous], undefined, `不應收高歧義字：${ambiguous}`);
   }
 });
+
+// ── 表外簡體字的循環盲區（2026-09-20 修復）─────────────────────────────────
+// 舊行為：toTraditional 拿 S2T_KEYS 當閘門，表外簡體字（如「没」）既不會
+// 被轉換，也因為 findSimplified 用同一張表而抓不到 → 轉換與偵測雙雙失明。
+
+test('toTraditional - 表外簡體字仍應被轉換（「没」曾整批漏網）', () => {
+  assert.equal(toTraditional('有没有'), '有沒有');
+  assert.equal(toTraditional('没問題'), '沒問題');
+  assert.equal(toTraditional('热门话题'), '熱門話題');
+});
+
+test('toTraditional - 表外簡體字不得觸發整串 opencc（避免誤改繁體）', () => {
+  // 這是關鍵：若為了修「没」而把整串丟給 opencc，
+  // 跨平台→跨平臺、群組→羣組、減少干擾→減少幹擾 全部會被改錯。
+  assert.equal(toTraditional('热 跨平台'), '熱 跨平台');
+  assert.equal(toTraditional('没 減少干擾'), '沒 減少干擾');
+  assert.equal(toTraditional('笔記群組'), '筆記群組');
+});
+
+test('toTraditional - 純繁體與含歧義字者維持不變', () => {
+  for (const s of ['跨平台', '台灣', '減少干擾', '群組', '漏斗', '緒論', '貢獻', '程式碼']) {
+    assert.equal(toTraditional(s), s, `不應改動：${s}`);
+  }
+});
+
+test('findSimplified - 表外簡體字也應被偵測出來（修掉循環盲區）', () => {
+  assert.ok(findSimplified('有没有').length > 0, '「没」應被偵測為簡體');
+  assert.equal(findSimplified('有沒有').length, 0, '繁體不應被誤報');
+  assert.equal(findSimplified('跨平台').length, 0, '繁體「台」不應被誤報');
+});

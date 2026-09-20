@@ -138,6 +138,31 @@ for (const k of Object.keys(S2T)) {
 
 const S2T_KEYS = new Set(Object.keys(S2T));
 
+// ── 安全單字對照表（S2T 的補充，不進偵測器）────────────────────────────────
+//
+// 🔴 2026-09-20 修掉一個循環盲區：
+//   `toTraditional()` 原本拿 S2T_KEYS 當**閘門**——只有偵測到明確簡體字，
+//   才把整串交給 opencc 做詞組級轉換。但 S2T 表不完整（缺「没」等字），
+//   於是「没」這類字**永遠轉不到**；更糟的是 `findSimplified()` 也用同一張表，
+//   所以複檢也抓不到 —— 偵測與轉換雙雙失明。
+//
+// 為什麼不能直接把這些字加進 S2T：一旦進了 S2T_KEYS，閘門就會為
+// 「含有『没』但其他部分是繁體」的字串打開，整串丟給 opencc，
+// 結果 opencc 會把已經是繁體的部分改錯：
+//     跨平台 → 跨平臺　群組 → 羣組　減少干擾 → 減少幹擾　漏斗 → 漏鬥
+//
+// 解法：這些字**只做單字對照**，不觸發 opencc。
+// 收錄條件（全部滿足）：
+//   1. opencc 單字轉換後與原字不同（確實是簡體）
+//   2. **無歧義**：該字在繁體裡不存在同樣字形（故排除 台/群/干/斗/里/
+//      面/发/只/松/向/系/布/并/谷/几/克/么/曲/升/术/折/准/适/复/于/后）
+//   3. 已實際出現在 registry 或知識詞檔中（不是憑空猜測）
+const S2T_SAFE = {
+  没: '沒', 热: '熱', 笔: '筆', 红: '紅', 无: '無', 渐: '漸',
+  订: '訂', 寿: '壽', 辅: '輔', 踪: '蹤', 遥: '遙', 绪: '緒',
+  献: '獻', 肤: '膚',
+};
+
 // ── opencc-js（優先）／內建表（備援） ──────────────────────────────────────
 // 2026-09-19：手維護的對照表註定補不完。實測 trigger 擴充連續產出
 // 「查询」「赔償」「训练」等漏網簡體——每次都是逐字補表，永遠有下一批。
@@ -167,7 +192,17 @@ export function toTraditional(str) {
   // 因此這裡用內建表的「安全子集」當作偵測器（刻意排除干/复/于/后 等歧義字），
   // 只有確認含明確簡體字時才交給 opencc 做詞組級轉換。
   const hasSimplified = [...s].some((ch) => S2T_KEYS.has(ch));
-  return hasSimplified ? openccConvert(s) : s;
+  if (hasSimplified) return openccConvert(s);
+  // 閘門沒開：絕大部分是「本來就全是繁體」，但不排除只有 S2T 表外簡體字
+  // （「没」就是這樣整批漏網的）。此時**不**整串交給 opencc（會誤改 台/群/干），
+  // 只做無歧義的單字對照。
+  let out = '';
+  let changed = false;
+  for (const ch of s) {
+    const mapped = S2T_SAFE[ch];
+    if (mapped) { out += mapped; changed = true; } else { out += ch; }
+  }
+  return changed ? out : s;
 }
 
 /**
@@ -179,7 +214,9 @@ export function toTraditional(str) {
  */
 export function findSimplified(str) {
   if (str == null) return [];
-  return [...String(str)].filter((ch) => S2T_KEYS.has(ch));
+  // 連 S2T_SAFE 一起查：這些字是無歧義簡體，但因不在主表內，
+  // 過去不論轉換或偵測都抓不到（「没」曾整批漏網且複檢也顯示 0）。
+  return [...String(str)].filter((ch) => S2T_KEYS.has(ch) || S2T_SAFE[ch]);
 }
 
 /** 目前是否使用 opencc-js（false 表示降級為內建對照表）。 */
