@@ -301,18 +301,28 @@ export async function retrieveWithRerank(tools, query, options = {}) {
   if (base.results.length === 0) return skip('no candidates');
 
   // 2. LLM rerank（動態 import：離線時也不增加啟動成本）
-  const { rerankCandidates, promote, buildCandidateText, RICH_DESC_LIMIT } = await import('./llm-rerank.js');
+  const { rerankCandidates, promote, buildCandidateText, RICH_DESC_LIMIT_WITH_INTENTS } = await import('./llm-rerank.js');
+  const { loadWikiCached } = await import('./wiki-matcher.js');
   // 2026-09-19：改餵完整 metadata（含適用情境/能力/優勢），實測 Hit@1 +8.0pp。
   // 只給 120 字 description 時 LLM 判斷依據不足——這是「挑不準」的主因之一。
+  //
+  // 2026-09-20：再加上知識編譯詞條的 intents（使用者情境句）。
+  // 上限由 RICH_DESC_LIMIT(400) 提到 RICH_DESC_LIMIT_WITH_INTENTS(550)——
+  // 實測加 intents 後中位 324 字、p90 459 字，若維持 400 會有 20.9% 被截斷。
+  const wikiDoc = loadWikiCached();
   const candidates = base.results.map((x) => ({
     id: x.id,
-    description: buildCandidateText(tools.find((t) => t.id === x.id) || { description: x.description }),
+    description: buildCandidateText(
+      tools.find((t) => t.id === x.id) || { description: x.description },
+      RICH_DESC_LIMIT_WITH_INTENTS,
+      { intents: wikiDoc?.entries?.[x.id]?.intents || [] },
+    ),
   }));
 
   const { picked, error } = await rerankCandidates(query, candidates, {
     maxRetries: 1,
     timeoutMs: 12000,
-    descLimit: RICH_DESC_LIMIT,
+    descLimit: RICH_DESC_LIMIT_WITH_INTENTS,
   });
 
   if (!picked) return skip(error || 'no pick');

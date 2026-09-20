@@ -33,16 +33,31 @@
 
 // CWE-20 淨化邏輯的單一來源（classifier.js 也用同一份）
 import { neutralizeDelimiters } from './prompt-sanitize.js';
+// 金鑰池：設了 AGNES_API_KEYS（多把、逗號分隔）就自動輪替並隔離 429 的金鑰
+import { nextKey, nextAvailableDelayMs, reportSuccess, reportFailure } from './llm-keys.js';
 
 const DEFAULT_API_BASE = 'https://apihub.agnes-ai.com/v1';
-// ⚠️ 2026-09-19 實測：換成 agnes-3.0-flash **沒有增益反而略差**。
-// 交叉順序對照（topK=50，各跑兩次，控制配額遞減的順序效應）：
-//   2.5-flash：64.3% / 73.8%（成功呼叫 40、40）
-//   3.0-flash：61.9% / 66.7%（成功呼叫 34、37）
-// 3.0 不只分數較低，API 失敗數也明顯較多。維持 2.5-flash。
-// 若日後要再試新模型，請用 `node scripts/eval-rerank.js --topK=50 --model=<name>`
-// 並**正反順序各跑一次**再比較，單次量測會被限流騙。
-const DEFAULT_MODEL = 'agnes-2.5-flash';
+//
+// 🔴 2026-09-20 **修正舊結論**：下面這段曾被寫成「3.0-flash 明顯較差、勿重試」，
+//    但那個結論是用「先跑一輪 A、再跑一輪 B」的順序設計量出來的，
+//    命中本專案的配額遞減順序效應。改用**配對 A/B**
+//    （`node scripts/eval-rerank.js --paired --variant=model`）重測後：
+//
+//      3.0-flash  79.5%（成功呼叫 156）
+//      2.5-flash  78.2%（成功呼叫 157）
+//      差異 +1.3pp，McNemar 不一致對僅 4 個，p = 0.625 → 無顯著差異
+//
+//    而且**沒有重現**「3.0 失敗數明顯較多」的說法（156 vs 157，幾乎相同）。
+//    → 結論：兩者在統計上不可區分；舊的「勿重試」是量測方法造成的假象。
+//
+//    ⚠️ 證據強度很弱（只有 4 個不一致對 = 兩者對 152/156 題判斷相同），
+//    所以換模型預期不會帶來實質改變。若要變更請用
+//    `node scripts/eval-rerank.js --paired --variant=model` 自行複測，
+//    不要用單次或順序式量測。
+//
+// 目前預設 3.0-flash（較新，且配對實測方向略優）。
+// 可用 `RERANK_MODEL` 環境變數覆寫。
+const DEFAULT_MODEL = 'agnes-3.0-flash';
 
 /**
  * 把工具物件轉成餵給 rerank 的候選描述文字（單一來源，供呼叫端共用）。
@@ -60,7 +75,7 @@ const DEFAULT_MODEL = 'agnes-2.5-flash';
  * @param {number} [limit=400]
  * @returns {string}
  */
-export function buildCandidateText(tool, limit = 400) {
+export function buildCandidateText(tool, limit = 400, options = {}) {
   if (!tool) return '';
   const parts = [];
   // 優先繁中譯文（`*_zh`，由 scripts/translate-to-zh.js 產生），沒有才回退原文。
@@ -79,6 +94,12 @@ export function buildCandidateText(tool, limit = 400) {
   if (caps.length) parts.push(`能力：${caps.join('、')}`);
   const adv = String(tool.advantages_zh || tool.advantages || '').trim();
   if (adv) parts.push(`優勢：${adv}`);
+  // 知識編譯詞條的 intents（「使用者會怎麼開口」的具體情境句）。
+  // 這是針對「rerank 挑選力」瓶頸的介入：候選名單不變，只讓 LLM 多了
+  // 一層與查詢同語言（使用者視角）的判斷依據。
+  // 實測（156 題配對 A/B）：有 intents 81.4% vs 無 78.2%（+3.2pp）。
+  const intents = (options.intents || []).slice(0, 3);
+  if (intents.length) parts.push(`使用者情境：${intents.join('；')}`);
   return parts.join(' ｜ ').slice(0, limit);
 }
 
@@ -91,6 +112,10 @@ export function buildCandidateText(tool, limit = 400) {
  * subTools 仍僅供 L2（search-engine.js）使用。勿重試此路線。
  */
 export const RICH_DESC_LIMIT = 400;
+// 加上知識詞條 intents 後的描述上限。實測加 intents 後中位 324 字、p90 459 字，
+// 維持 400 會有 20.9% 的候選被截掉（等於白加），故放寬到 550。
+// 換算成本：50 個候選 × 平均多 110 字 ≈ 每次查詢 +5.5k 字（約 +27%）。
+export const RICH_DESC_LIMIT_WITH_INTENTS = 550;
 
 /**
  * 解析 LLM 回傳，取出被選中的候選。
@@ -197,8 +222,11 @@ export async function rerankCandidates(query, candidates, options = {}) {
   // 容許傳入純 id 字串陣列
   const cands = candidates.map((c) => (typeof c === 'string' ? { id: c } : c));
 
-  const apiKey = options.apiKey ?? process.env.AGNES_API_KEY;
-  if (!apiKey) {
+  // 金鑰池（core/llm-keys.js）：設了多把金鑰就自動輪替，
+  // 拿到 429 的那把會被暫時隔離，下一次嘗試改用別把。
+  // ⚠️ 只有「限制綁定金鑰」時才有效；若綁帳號或 IP，多把金鑰沒有幫助
+  //    —— 用 scripts/llm-throughput.js 實測就知道屬於哪一種。
+  if (!options.apiKey && !nextKey()) {
     return { ...empty, error: 'no api key (offline)' };
   }
 
@@ -215,7 +243,16 @@ export async function rerankCandidates(query, candidates, options = {}) {
   let lastError = 'unknown';
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
-    if (attempt > 0) await sleep(baseBackoffMs * 2 ** (attempt - 1));
+    if (attempt > 0) {
+      // 退避時間取「指數退避」與「下一把金鑰解禁時間」的小者：
+      // 有多把金鑰時通常能立刻換一把，不必乾等。
+      const keyWait = options.apiKey ? 0 : nextAvailableDelayMs();
+      await sleep(Math.min(baseBackoffMs * 2 ** (attempt - 1), keyWait || Infinity));
+    }
+
+    // 每次嘗試都重新取一把金鑰，讓重試有機會換到沒被限流的那把
+    const apiKey = options.apiKey || nextKey();
+    if (!apiKey) { lastError = 'no api key available'; continue; }
 
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
@@ -237,6 +274,7 @@ export async function rerankCandidates(query, candidates, options = {}) {
       if (!res.ok) {
         const errText = await res.text();
         lastError = `api ${res.status}: ${errText.slice(0, 120)}`;
+        reportFailure(apiKey, res.status);
         // 429（限流）與 5xx 屬暫時性，值得重試；4xx 認證／參數錯誤不重試
         const retryable = res.status === 429 || res.status >= 500;
         if (retryable && attempt < maxRetries) continue;
@@ -244,6 +282,7 @@ export async function rerankCandidates(query, candidates, options = {}) {
       }
 
       const data = await res.json();
+      reportSuccess(apiKey);
       const raw = String(data?.choices?.[0]?.message?.content || '').trim();
       const picked = parsePick(raw, cands.map((c) => c.id));
       if (picked) return { picked, raw: raw.slice(0, 200), error: null };

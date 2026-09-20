@@ -56,6 +56,7 @@ import { fileURLToPath } from 'node:url';
 import { toTraditional } from './fix-simplified.js';
 import { tokenize, documentFrequency } from '../core/tokenize.js';
 import { buildWikiIndex, wikiGraphStats } from '../core/wiki-matcher.js';
+import { nextKey, reportSuccess, reportFailure } from '../core/llm-keys.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
@@ -140,7 +141,7 @@ const SYS = `你是「工具知識編譯器」。輸入是開源工具的技術�
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function compileBatch(batch, apiKey) {
+async function compileBatch(batch) {
   const body = {
     model: MODEL,
     messages: [
