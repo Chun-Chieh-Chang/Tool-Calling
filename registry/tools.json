@@ -46874,8 +46874,8 @@
       "useCase_zh": "當 AI 編碼代理需要結構化工程技能 —— TDD 循環、探索性規劃或對抗式設計審查 —— 直接應用於已驗證的真實工作流程時。",
       "advantages_zh": "技能經生產環境實戰驗證，非理論構想；透過 npx skills@latest 實現 CLI 原生整合；三個精選工程技能涵蓋規劃、測試與設計審查",
       "negativeConstraints_zh": [
-        "Shell-based skills require a Unix-like environment or WSL on Windows",
-        "Individual skill subpaths must be installed separately via npx skills@latest add"
+        "基於 Shell 的技能需要 Unix 相容環境或 Windows 上的 WSL",
+        "個別的技能子路徑需透過 npx skills@latest add 分別安裝"
       ]
     },
     {
@@ -46930,9 +46930,9 @@
       "useCase_zh": "同時運行多個 AI 助理的平行程式碼審查，以捕捉多元問題並針對程式碼庫產生比較性回饋。",
       "advantages_zh": "單一本地工作流程協調多個 AI 編碼模型（Claude、Gemini、Codex）進行平行任務執行；所有代理活動與資料保留於使用者機器，確保隱私且無需雲端依賴；支援 10+ 編碼 CLI，實現彈性的模型選擇與專門代理角色",
       "negativeConstraints_zh": [
-        "Not suitable for cloud-based collaborative workflows requiring remote team access",
-        "Avoid for simple single-task coding requests where a single CLI tool would suffice",
-        "Not ideal for environments with limited local compute resources due to multi-agent overhead"
+        "不適合需要遠端團隊存取權限的雲端協作工作流程",
+        "對於只需單一 CLI 工具即可完成的簡單單項編碼任務，建議避免使用",
+        "由於多代理架構的額外資源開銷，不太適合本機運算資源有限的使用環境"
       ]
     },
     {
@@ -46984,9 +46984,9 @@
       "useCase_zh": "專案進行中從 Claude Code 切換至 Gemini CLI，不遺失對話上下文也無需重新提示。",
       "advantages_zh": "跨不同 AI 編碼代理供應商持久化對話上下文；在不重新說明專案狀態的情況下實現代理間的無縫交接；透過 MCP 設定與生命週期鉤子整合，實現自動化的記憶管理",
       "negativeConstraints_zh": [
-        "Single-agent workflows where context persistence is unnecessary",
-        "Real-time collaborative coding sessions requiring instant shared state",
-        "Non-coding AI tasks that do not benefit from long-term memory"
+        "不需要上下文持久化的單一代理工作流程",
+        "需要即時共享狀態的即時協作編碼工作階段",
+        "不會從長期記憶中受益的非編碼 AI 任務"
       ]
     },
     {
