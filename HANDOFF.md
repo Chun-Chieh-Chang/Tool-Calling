@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-09-17
+> 最後更新：2026-09-20
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **702 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
+- 收錄 **705 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -110,46 +110,128 @@ tokenize 把「瀏覽器」切成 瀏覽/覽器、「浏览器」切成 浏览/�
 → **偵測用保守的內建表（排除歧義字），轉換才交給 opencc**，兩者職責不可顛倒。
 `findSimplified` 若改用 opencc 會把「減少干擾」「跨平台」誤報成簡體。
 
-### 11. 評測集已有 10 筆 alsoAcceptable，嚴格／寬鬆要分開看
+### 11. 評測集已有 13 筆 alsoAcceptable，嚴格／寬鬆要分開看
 
 放寬標註後嚴格分數**完全不變**，只有寬鬆上升。這是正確的——
 兩個數字並列就是為了不讓放寬掩蓋真實能力。**只報寬鬆數字是誤導。**
 
+### 12. 🔴 Git 倉庫會反覆損壞（已發生兩次，禁止 rebase / stash）
+
+`git stash` 或 `git rebase` 被 SIGTERM 中斷後，`.git/refs/` 與 `.git/logs/` 目錄會整個消失，且部分 commit 物件遺失。
+症狀：`fatal: not a git repository`、`Could not read <sha>`、`bad tree object HEAD`。
+
+**修復程序（已驗證兩次）：**
+1. 先備份工作區變更檔（工作區檔案不受 `.git` 損壞影響，一定先複製出來
+2. `mv .git /tmp/...`（保留損壞版本）
+3. 從 GitHub 重新 clone 到暫存目錄，`cp -r <clone>/.git ./.git`
+4. `git status` 應只剩自己的變更 → 重新提交
+
+⚠️ **此環境禁用 `git rebase` 與 `git stash`，改用 `git merge`，或先備份再操作。
+
+### 13. 🔴 Web 靜態根目錄：改動服務來源後必須枚舉所有依賴資源
+
+伺服器預設服務 `dist/`（**gitignored 的建置產物**）。這造成一整串連環陷阱：
+
+| 陷阱 | 症狀 |
+|---|---|
+| 改了 `web/*` 卻沒生效 | 因為伺服器服務 `dist/`，需 `npm run build` |
+| `--dev` 參數曾未實作 | 參數存在但沒作用，仍服務 `dist/` |
+| `/core/*` 未對應 | `app.js` import 404 → **畫面全白** |
+| `docs/*.html` 被 build 複製到 `dist/` 根目錄 | **全鏈路流程圖消失**（正式網址是 `/pipeline-workflow.html`，不是 `/docs/pipeline-workflow.html`）
+
+**版本**：`--dev` 模式已於 2026-09-20 修好（服務 `web/`，並把 `/core/`、`/docs/` 與兩個 build 複製的 html 對應回專案根。
+
+**健檢（改動後必跑）**：
+```bash
+for u in / /app.js /core/search-engine.js /registry/tools.json \
+         /pipeline-workflow.html /knowledge-graph.html /docs/pipeline-workflow.html; do
+  echo -n "$u → "; curl -s -o /dev/null -w "%{http_code}\n" "http://127.0.0.1:3000$u"
+done
+```
+
+### 14. `advantages` 必須是陣列
+
+`registry-contract.js` 檢查 `Array.isArray(tool.advantages)`。補成字串的話
+`cli.js validate` **照樣警告（692/705 工具都是陣列。轉成陣列後品質從 99.7 → 100。
+
+→ **補欄位前先看 `core/registry-contract.js` 的檢查條件。
+
+### 15. `batch-add` 不會寫 stars
+
+`node cli.js batch-add urls.txt` 收錄後 `stars` 是 `undefined`（其他 669/705 都有）。
+需另外用 GitHub API 補 `stargazers_count`，否則排行榜與 `getCategoryStarScore` 會當成 0。
+
+### 16. 🔴 模型「照抄」譯文（偷懶譯文）
+
+模型有時把英文原文原封不動當譯文回傳。log 顯示成功、`*_zh` 有值，但 UI 仍是英文——**完全不會在 log 顯現。
+
+偵測（只在原文為純英文時才算失敗；原文是中文時回傳相同為正確行為）：
+```js
+if (src && !hasZH(src) && zh === src && src !== t.id && src !== t.name) → 偷懶譯文
+```
+
+排除「原文剛好是 id／name」的無意義資料。**修法：單筆（batch=1）重呼叫；批次越大越容易照抄。
+skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
+
+### 17. 天花板缺口的根因是詞彙鴻溝，不是 metadata 太薄
+
+用 `npm run ceiling`（不需 API、幾秒）可區分：天花板低 = 召回問題；天花板高但 top1 低 = 排序問題。
+
+**v1.2.0 實測**：direct 天花板 100%、semantic **91.1%**、constrained 96.9%。
+
+8 題答案不在 top-50 的原因：使用者用日常語言描述**具體應用場景**，metadata 用技術分類描述**通用能力**。
+最極端 c111「齒輪的齒數跟模數一改整組尺寸自動跟著變」vs cadquery「參數化 3D CAD 腳本框架」——**bigram 重疊 0**，詞彙檢索原理上不可能找到。
+
+→ **別再假設「描述太短」**：實測 547/705 工具描述 < 60 字，短描述是全庫常態。
+→ 這 5% 缺口是真實限制，**不建議強修**（補 metadata 會變成針對評測答案調參 = overfitting）。
+
 ---
 
-## 三、目前狀態（2026-09-19）
+## 三、目前狀態（2026-09-20）
 
 ### Git
 
 ```
-最新提交：ae38ff0
-遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git（已同步）
-工具數：  702（tools.json）／699（active + experimental）
+最新提交：9ff0ede
+遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git（已同步，無未推送提交）
+工具數：  705（tools.json，active + experimental）
 ```
-2026-09-19 曾發生倉庫損毀（`.git/refs/` 消失 + packfile 全毀），已修復，
-詳見陷阱 8。7 個未推送 commit 的物件不可恢復，但內容全在工作區、已重新提交。
 
-### 檢索準確度（核心指標）
+倉庫損毀已發生**兩次**（09-19 與 09-20），修復程序見**陷阱 12**。
+`.git` 於 2026-09-20 從遠端重建過；本地 `origin/main` ref 需手動校正（見陷阱 5）。
+
+### 檢索準確度（核心指標，評測集 v1.2.0／169 題）
 
 **rerank 路徑（實際上線，topK=50）**
 
 | 指標 | 數值 |
 |---|---|
-| 詞彙引擎 top-1 | 38.1% |
-| 召回天花板 | 95.2% |
-| **rerank 後（嚴格）** | **71.4%** |
-| **rerank 後（含近義）** | **85.7%** |
-| 空集誠實率 | 100% |
+| 詞彙引擎 top-1 | 51.6% |
+| 召回天花板 | 95.0% |
+| **rerank 後（嚴格）** | **79.2%** |
+| **rerank 後（含近義）** | **81.8%** |
+| 空集誠實率 | 100%（10/10）|
 
-**benchmark 路徑（topK=5，不含 rerank）**：agent 38.1%（含近義 50.0%）。
+**benchmark 路徑（topK=5，不含 rerank）**：agent 51.6%（含近義 54.7%）。
 
-⚠️ 兩個數字都要看：嚴格與寬鬆差 14.3pp，反映單一 `expected` 對近義工具
-偏嚴。天花板依候選數而異：top-20=78.6%／30=85.7%／40=92.9%／50=95.2%。
+⚠️ **v1.2.0 與 v1.1.0 不可直接比較**：評測集從 69 擴充至 169 題，
+且 semantic 佔比由 33% 升至 50%（產生方法的偏差，見陷阱 11 與 DEV_LOG）。
+
+**分類型（fusion，topK=5）**：
+| 類型 | 筆數 | Hit@1 | 天花板 |
+|---|---|---|---|
+| direct | 48 | 64.6% | 100.0% |
+| semantic | 79 | **40.5%** | 91.1% |
+| constrained | 32 | 53.1% | 96.9% |
+
+→ semantic 是唯一有召回缺口的類型，根因是詞彙鴻溝（見**陷阱 17**）。
 
 ### 測試
 
 `npm test` → **151 tests / 149 pass / 0 fail**（2 skipped 為需外部依賴者）
 2026-09-19 起改為 `--test-concurrency=1` 序列化（見陷阱 9），耗時 12.5s → 21.4s。
+`cli.js validate` → **0 錯誤／0 警告／品質 100.0**。
+`npm run ceiling` → 天花板診斷（不需 API，見陷阱 17）。
 
 ---
 
@@ -184,9 +266,14 @@ CLI  ─┘
 
 | 路徑 | 用途 |
 |---|---|
-| `registry/tools.json` | **工具庫（單一真理來源）** 696 筆 |
+| `registry/tools.json` | **工具庫（單一真理來源）** 705 筆 |
 | `registry/categories.json` | **分類唯一來源**（機器可讀） |
-| `registry/eval-queries.json` | 評測集 47 筆（42 可命中 + 5 空集）|
+| `registry/eval-queries.json` | 評測集 v1.2.0 — 169 筆（159 可命中 + 10 空集）|
+| `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|
+| `scripts/translate-to-zh.js` | 產生 `*_zh` 欄位（`npm run translate:zh`）|
+| `scripts/ceiling-analysis.js` | 天花板診斷（`npm run ceiling`，見陷阱 17）|
+
+---
 | `core/retrieval-fusion.js` | 檢索融合（三端入口）|
 | `core/agent-retrieval.js` | 四維檢索 |
 | `core/llm-rerank.js` | LLM 重排（含兩階段實作，未接入）|
@@ -211,15 +298,23 @@ CLI  ─┘
 
 ```bash
 npm test                    # 單元測試（必須無外部依賴）
-npm run validate            # 詮釋資料驗證
+npm run validate            # 詮釋資料驗證（品質門禁）
 npm run check-mece          # MECE 分類檢查
 npm run categories:check    # 分類來源同步檢查
-npm run benchmark           # 檢索評測（離線）
-npm run eval:rerank         # rerank 評測（需 AGNES_API_KEY）
-npm run build               # 建置（同步 dist）
-npm start                   # 啟動 Web 伺服器（:3000）
+npm run benchmark           # 檢索評測（離線，topK=5）
+npm run eval:rerank         # rerank 評測（需 AGNES_API_KEY，topK=50）
+npm run ceiling             # 天花板診斷（不需 API，見陷阱 17）
+npm run translate:zh        # 產生繁中譯文欄位（需 AGNES_API_KEY，可續跑）
+npm run build               # 建置（同步 dist/ 與 docs/*.html）
+npm start                   # 啟動 Web 伺服器（:3000，服務 dist/）
+node web/server.js --dev    # 開發模式（服務 web/，前端改動即時生效）
 npm run mcp                 # 啟動 MCP server
 ```
+
+⚠️ 改了 `web/*` 要用 `--dev` 或跑 `npm run build`（見陷阱 13）。
+⚠️ `npm run validate` 的 `advantages` 必須是**陣列**（見陷阱 14）。
+
+---
 
 **改分類的唯一流程**：改 `categories.json` → `npm run categories:sync` → `npm run check-mece` → `npm test`
 
@@ -227,7 +322,19 @@ npm run mcp                 # 啟動 MCP server
 
 ## 七、待辦事項
 
-### 已完成（含 2026-09-19 本輪）
+### 已完成（含 2026-09-20 本輪）
+
+**2026-09-20 新增：**
+
+- ✅ **譯文納入檢索索引** — agent Hit@1 37.5%→53.1%、天花板 95.3%→98.4%。**本輪最大改善**
+- ✅ **評測集擴充至 v1.2.0（169 題）** — 標準誤 5.4pp→3.6pp，18 分類均衡、漏詞檢查、天花板驗證
+- ✅ 新增 `npm run ceiling` 天花板診斷工具（不需 API）
+- ✅ dev 模式三連修：空白頁（`/core/` 404）、改了沒生效（`dist/` 過期）、流程圖消失（`docs/*.html`）。
+- ✅ 批次收錄 5 個工具（stirling-pdf、kaggle-tpu-lab、security-audit-skill、openstock、claude-code 官方）
+- ✅ 補齊 `advantages`（轉陣列後品質 99.7→100/100、警告 13→0）
+- ✅ 修正模型「照抄」譯文（偷懶譯文，見陷阱 16）
+
+**2026-09-19 完成：
 
 - ✅ Web UI 深度搜尋開關
 - ✅ 能力圖譜評估（結論：不需要）
@@ -256,13 +363,20 @@ npm run mcp                 # 啟動 MCP server
 | 升級 agnes-3.0-flash | 無增益且 API 失敗率更高 |
 | 候選數降到 top-30 | 省 40% 但天花板**永久**鎖在 85.7% |
 | 移除 capabilities 省成本 | 只省 8%，不值得改 |
+| **HyDE 查詢改寫**（2026-09-20）| semantic 天花板 91.0%→93.6%（+2.6pp）但總計僅 +1.3pp，**低於雜訊 3.6pp**，且每次查詢多一次 LLM 呼叫（~6s）。不採用 |
 
 ### 尚未處理（經實測皆非有效槓桿，優先序低）
 
-1. **補齊 192 筆無 capabilities 的工具** — 實測 capabilities 對選用無貢獻
-2. **93 筆描述過短** — 但全部都有 `useCase`（更有效的欄位）
-3. **評測集擴充** — 42 筆樣本單次標準誤約 7pp，是量測雜訊的主因。
-   若日後要繼續做 A/B，這才是該先投資的（但目前無迫切需求）
+1. **補齊缺欄位** — 但注意：實測 547/705 工具描述 <60 字是全庫常態，且補欄位經實測非召回瓶頸（見陷阱 17
+2. **能力圖譜** — 2026-09-17 評估：top-200 天花板已 100%，瓶頸是 LLM 挑選力，非召回
+
+### 📌 下一步建議（若繼續投入）
+
+- **攻 semantic 缺口**（40.5%，唯一有召回缺口的類型）。已知無效：HyDE 簡單版、subTools、CoT。
+- **自適應 HyDE**：只對「初次檢索低信心」的查詢套用，成本只花在難題上——這是 HyDE 實驗後唯一還值得試的方向。
+- **天花板 5% 缺口**（8 題）：根因是詞彙鴻溝，乾淨解法是 embedding，但 API 端點無 embedding 模型可用（已查證）
+
+---
 
 ---
 
@@ -278,17 +392,36 @@ npm run mcp                 # 啟動 MCP server
 
 ## 九、接手建議
 
-1. 先跑 `npm test` 與 `npm run benchmark`，確認基線
+1. 先跑 `npm test`（確認基線）→ `npm run ceiling`（**不需 API，先看召回 vs 排序問題在哪）
 2. 讀 `DEV_LOG.md` 最上方條目（有完整的決策脈絡）
 3. 讀 `.workbuddy-ai/memory/MEMORY.md`（專案長期記憶，含所有陷阱）
-4. **動手前先診斷**——這是這個專案最重要的方法論
-5. **做 A/B 前先讀「量測方法論」**：42 筆樣本單次標準誤約 7pp，
+4. **動手前先診斷**——這是這個專案最重要的方法論。推薦順序：`npm run ceiling` → 分析失敗題 → 才做實驗
+5. **做 A/B 前先讀「量測方法論」**：v1.2.0（169 題）單次標準誤約 **3.6pp**。差異小於 3.6pp 視為雜訊。
    必須用**配對 + 輪替順序**，並看**不一致對與 McNemar**，
    而非比較兩個獨立比例或跑兩次比數字
+6. **善用確定性指標**（天花板、可解性）——不需 API、無雜訊，比 Hit@1 更適合快速判斷方向
 
 > 「先確認問題是什麼，再動手。」——多次診斷都推翻了原定計畫。
+>
+> 2026-09-20 的最佳實踐：先擴充評測集（讓量測可信）→ 用 `npm run ceiling` 定位 semantic 缺口
+> → 針對性實驗（HyDE）→ 得到「低於雜訊」的結論。雖然不採用，但避免了誤判。
 
-## 十、2026-09-19 的核心結論
+---
+
+## 十、重要資產
+
+### skill `i18n-coverage`（`~/.workbuddy-ai/skills/i18n-coverage.zip`）
+
+繁中顯示覆蓋率的完整工作流：**審計 → 翻譯 → 驗證**。收錄所有踩過的坑：
+`dist/` 服務陷阱、陣列欄位 `flush()`、模型照抄譯文、`/core/`、`/docs/` 對應、7-URL 健檢指令。
+附 `scripts/audit.js`（一鍵掃描缺翻譯欄位與偷懶譯文）。
+
+### 記憶檔
+
+- `.workbuddy-ai/memory/MEMORY.md` — 專案長期記憶（SSOT、檢索架構、13 個實驗結論、所有陷阱）
+- `.workbuddy-ai/memory/2026-09-19.md` — 本輪完整歷程（連同 09-20 補記）
+
+## 十一、2026-09-19 的核心結論
 
 當天跑了 **10 個實驗，只有 1 個成功**。這個分佈本身就是結論：
 
@@ -300,3 +433,22 @@ npm run mcp                 # 啟動 MCP server
 剩下的缺口（天花板 95.2% vs 實得 71.4%）來自「LLM 從 50 個候選裡挑不準」，
 且已證實**減少候選能提升挑選率**（77.5% → 83.3%）但會同步降低天花板。
 要再突破需要動排序演算法本身，那是架構改動而非微調。
+
+---
+
+## 十二、2026-09-20 的核心結論（最新）
+
+**兩輪共 13 個實驗，4 個有收穫。** 關鍵是那一輪先用評測集擴充（讓量測可信）+ `npm run ceiling` 定位。
+
+| 實驗 | 結果 |
+|---|---|
+| 🏆 **譯文納入檢索索引**（agent 維度）| semantic 天花板 91.1% → 93.6%、agent Hit@1 37.5%→53.1% |
+| ✅ rerank 餵完整 metadata | +5～8pp |
+| ✅ rerank 改餵繁中 | 準確度相同、prompt 省 29% |
+| ❌ HyDE 查詢改寫 | +1.3pp（低於雜訊 3.6pp），且多一次 LLM 呼叫 → 不採用
+|
+| ❌ 其餘 9 個（CoT、subTools、兩階段淘汰、agnes-3.0、top-30…）| 無效，已記錄防重試
+
+**剩下的 5% 天花板缺口是真實限制**（詞彙鴻溝，見陷阱 17），不建議強修（會變成 overfitting）。
+
+---
