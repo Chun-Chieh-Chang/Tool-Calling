@@ -6349,32 +6349,38 @@
       "skipped": "already zh or empty"
     },
     "spotifast": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-20T05:09:33.211Z",
+      "skipped": "already zh or empty",
+      "advantages_zh": "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect, 跨 Linux、macOS 與 Windows 三大平台, 無需依賴原生 Spotify 客戶端"
     },
     "my-girlfriend-jingtian-latex": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-20T05:09:33.211Z",
+      "skipped": "already zh or empty",
+      "advantages_zh": "提供可直接編譯的 XeLaTeX 專案結構（含 main.tex 與編譯指令）, 預設 5×8 吋排版尺寸, 相容標準 TeX Live 發行版"
     },
     "ai-infra-book": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-20T05:09:33.211Z",
+      "skipped": "already zh or empty",
+      "advantages_zh": "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計, 開源包含全書正文、PDF 與配套計算工具及實驗"
     },
     "lint": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-20T05:09:33.211Z",
+      "skipped": "already zh or empty",
+      "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造"
     },
     "jev-ultrafast": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-20T05:09:35.651Z",
+      "skipped": "already zh or empty",
+      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成"
     },
     "fast-jev-compaction": {
       "at": "2026-09-20T03:22:44.792Z",
       "skipped": "already zh or empty"
     },
     "gathered-scenes-zine-skill": {
-      "at": "2026-09-20T03:41:37.331Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-20T05:09:33.211Z",
+      "skipped": "already zh or empty",
+      "advantages_zh": "提供 zine-skill 相關功能"
     },
     "mattpocock-skills": {
       "at": "2026-09-20T03:43:42.958Z",
@@ -6401,6 +6407,36 @@
         "需要即時共享狀態的即時協作編碼工作階段",
         "不會從長期記憶中受益的非編碼 AI 任務"
       ]
+    },
+    "stirling-pdf": {
+      "description_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
+      "useCase_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
+      "at": "2026-09-20T05:09:35.651Z",
+      "advantages_zh": "GitHub #1 PDF 應用程式，可在任何裝置、任何地點編輯 PDF"
+    },
+    "kaggle-tpu-lab": {
+      "description_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、Codex、opencode 和 pi。",
+      "useCase_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、C",
+      "at": "2026-09-20T05:09:35.651Z",
+      "advantages_zh": "免費提供 Frontier-class 開源模型運行於 Kaggle TPU v5e-8，支援 262k 上下文長度與 prefix caching，兼容 Claude Code、Codex、opencode 與 pi"
+    },
+    "security-audit-skill": {
+      "description_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
+      "useCase_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
+      "at": "2026-09-20T05:09:35.651Z",
+      "advantages_zh": "多階段安全稽核能力，獨立驗證的發現結果，可機器讀取的結果"
+    },
+    "openstock": {
+      "description_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費。",
+      "useCase_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費",
+      "at": "2026-09-20T05:09:35.651Z",
+      "advantages_zh": "即時股價追蹤、個人化警示、無成本的詳細公司洞察"
+    },
+    "claude-code": {
+      "description_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼 — 全部透過自然語言指令完成。",
+      "useCase_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼",
+      "at": "2026-09-20T05:09:36.786Z",
+      "advantages_zh": "理解程式碼庫上下文，透過自然語言執行例行任務，並處理 git 工作流程"
     }
   },
   "failed": {}

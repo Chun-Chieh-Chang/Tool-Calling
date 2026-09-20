@@ -30,11 +30,11 @@
 
 | 分類 | 數量 | 定義 |
 |---|---:|---|
-| `AI 代理` | 141 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
+| `AI 代理` | 144 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
 | `開發工具` | 99 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
 | `AI 框架` | 77 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
 | `學習資源` | 62 | 教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） |
-| `文件生產力` | 57 | 簡報／PPT、Office、PDF |
+| `文件生產力` | 58 | 簡報／PPT、Office、PDF |
 | `UI/UX設計` | 54 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
 | `知識管理` | 34 | agent 記憶、RAG、知識圖譜、codebase 索引 |
 | `金融與投資` | 24 | 交易、量化、股票分析 |
@@ -43,13 +43,13 @@
 | `多媒體生成` | 18 | AI 圖像／影片生成 |
 | `瀏覽器自動化` | 18 | 爬蟲、Scraper、Headless 瀏覽器 |
 | `API 整合` | 16 | API 網關、整合工具、可直接調用的 API 端點目錄／聚合器 |
-| `安全性` | 14 | 滲透測試、漏洞掃描、資訊安全 |
+| `安全性` | 15 | 滲透測試、漏洞掃描、資訊安全 |
 | `音訊` | 12 | TTS/STT、音訊處理、音樂播放 |
 | `3D工程繪圖` | 11 | CAD、3D 建模、3D 資產／零件庫 |
 | `數據分析` | 11 | Pandas/Polars、資料框架、產品分析 |
 | `測試與自動化` | 10 | 測試框架、CI/CD、自動化腳本 |
 
-**合計**: 703 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
+**合計**: 708 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
 <!-- CATEGORIES:INVENTORY:END -->
 
 > 本表為**衍生內容**，由 `registry/tools.json` ＋ `registry/categories.json` 自動產生，

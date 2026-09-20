@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-20T00:11:41.037Z",
+  "lastUpdated": "2026-09-20T05:04:11.410Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -42843,7 +42843,9 @@
       },
       "capabilities": [],
       "useCase": "gathered-scenes-zine-skill",
-      "advantages": [],
+      "advantages": [
+        "提供 zine-skill 相關功能"
+      ],
       "negativeConstraints": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
@@ -42861,7 +42863,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "advantages_zh": "提供 zine-skill 相關功能"
     },
     {
       "id": "phone-harness",
@@ -52848,7 +52851,11 @@
       },
       "capabilities": [],
       "useCase": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
-      "advantages": [],
+      "advantages": [
+        "所有建議附有成本、收益、證據等級與期刊論文或官方文件原始出處",
+        "內容按性價比排序",
+        "涵蓋長壽防病、理財、法律、醫保、婚育、創業與出國等多個生活面向"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
@@ -52886,7 +52893,11 @@
         "gui"
       ],
       "useCase": "Spotify, native and fast. One lightweight Rust app for your whole library, local playback, and Spotify Connect on Linux, macOS, and Windows.",
-      "advantages": [],
+      "advantages": [
+        "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect",
+        "跨 Linux、macOS 與 Windows 三大平台",
+        "無需依賴原生 Spotify 客戶端"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
@@ -52894,7 +52905,8 @@
       "addedAt": "2026-09-18T12:51:15.823Z",
       "status": "experimental",
       "description_zh": "原生且快速的 Spotify 體驗。單一輕量 Rust 應用程式，提供完整音樂庫管理、本機播放與 Spotify Connect，支援 Linux、macOS 與 Windows。",
-      "useCase_zh": "Spotify，原生且快速。單一輕量級 Rust 應用程式，為你整個音樂庫提供本地播放與 Spotify Connect，於 Linux、macOS 和 Windows 上執行。"
+      "useCase_zh": "Spotify，原生且快速。單一輕量級 Rust 應用程式，為你整個音樂庫提供本地播放與 Spotify Connect，於 Linux、macOS 和 Windows 上執行。",
+      "advantages_zh": "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect, 跨 Linux、macOS 與 Windows 三大平台, 無需依賴原生 Spotify 客戶端"
     },
     {
       "id": "my-girlfriend-jingtian-latex",
@@ -52921,14 +52933,19 @@
       },
       "capabilities": [],
       "useCase": "需要以 XeLaTeX 製作 5×8 吋規格印刷品（寫真集、小冊子），想直接沿用現成排版設定時。",
-      "advantages": [],
+      "advantages": [
+        "提供可直接編譯的 XeLaTeX 專案結構（含 main.tex 與編譯指令）",
+        "預設 5×8 吋排版尺寸",
+        "相容標準 TeX Live 發行版"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T12:51:19.101Z",
       "status": "experimental",
-      "description_zh": "5×8 吋的 XeLaTeX 排版專案，內含 main.tex 與編譯指令，可產出 PDF；需 XeLaTeX 與標準 TeX Live 發行版。"
+      "description_zh": "5×8 吋的 XeLaTeX 排版專案，內含 main.tex 與編譯指令，可產出 PDF；需 XeLaTeX 與標準 TeX Live 發行版。",
+      "advantages_zh": "提供可直接編譯的 XeLaTeX 專案結構（含 main.tex 與編譯指令）, 預設 5×8 吋排版尺寸, 相容標準 TeX Live 發行版"
     },
     {
       "id": "ai-infra-book",
@@ -52965,7 +52982,10 @@
         "datacenter-network"
       ],
       "useCase": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
-      "advantages": [],
+      "advantages": [
+        "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計",
+        "開源包含全書正文、PDF 與配套計算工具及實驗"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
@@ -52973,7 +52993,8 @@
       "addedAt": "2026-09-18T12:51:30.862Z",
       "status": "experimental",
       "description_zh": "《深入理解 AI Infra：量化分析與系統設計》（李博傑 著）開源書稿：從硬體約束與模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗",
-      "useCase_zh": "《深入理解 AI Infra：量化分析與系統設計》（李博傑 著）開源書稿：從硬體約束與模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗"
+      "useCase_zh": "《深入理解 AI Infra：量化分析與系統設計》（李博傑 著）開源書稿：從硬體約束與模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗",
+      "advantages_zh": "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計, 開源包含全書正文、PDF 與配套計算工具及實驗"
     },
     {
       "id": "lint",
@@ -53010,7 +53031,10 @@
         "design-tools"
       ],
       "useCase": "An agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
-      "advantages": [],
+      "advantages": [
+        "Agent-first 架構，設計系統規則可由 agent 自動驗證",
+        "專為 Tailwind 設計系統打造"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
@@ -53018,7 +53042,8 @@
       "addedAt": "2026-09-18T12:51:37.467Z",
       "status": "experimental",
       "description_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。",
-      "useCase_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。"
+      "useCase_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。",
+      "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造"
     },
     {
       "id": "jev-ultrafast",
@@ -53044,14 +53069,19 @@
       },
       "capabilities": [],
       "useCase": "需要讓 AI 代理快速完成網頁操作任務（查票、填表、下單），且在乎單次任務耗時時。",
-      "advantages": [],
+      "advantages": [
+        "動態索引動作空間運作的極速瀏覽器代理",
+        "僅在需要輸入文字時才呼叫小型 LLM",
+        "官方實測 Google Flights 航線查詢僅 7.1 秒完成"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T13:01:04.385Z",
       "status": "experimental",
-      "description_zh": "以動態索引動作空間運作的極速瀏覽器代理：給定一個自然語言目標，由 TypeSafe 的 Jev 直接選出操作與元素，僅在需要輸入文字時才呼叫小型 LLM。官方實測 Google Flights 蘇黎世飛倫敦僅 7.1 秒。"
+      "description_zh": "以動態索引動作空間運作的極速瀏覽器代理：給定一個自然語言目標，由 TypeSafe 的 Jev 直接選出操作與元素，僅在需要輸入文字時才呼叫小型 LLM。官方實測 Google Flights 蘇黎世飛倫敦僅 7.1 秒。",
+      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成"
     },
     {
       "id": "fast-jev-compaction",
@@ -53073,7 +53103,11 @@
       },
       "capabilities": [],
       "useCase": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbati",
-      "advantages": [],
+      "advantages": [
+        "每筆工具呼叫與結果在一次快速請求中評分",
+        "過時項目可被截斷或捨棄",
+        "保留內容維持原文不變更"
+      ],
       "negativeConstraints": [
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
@@ -53082,6 +53116,213 @@
       "status": "experimental",
       "description_zh": "Claude Code 外掛，以 Jev 決策取代 compaction 摘要：在一次快速請求中對每個 tool call 和結果進行評分，過時的項目會被捨棄或截斷，保留的內容維持原文。",
       "useCase_zh": "Claude Code 外掛，以 Jev 決策取代 compaction 摘要：在一次快速請求中對每個 tool call 和結果進行評分，過時的項目會被捨棄或截斷，保留的內容維持原文。"
+    },
+    {
+      "id": "stirling-pdf",
+      "name": "Stirling Pdf",
+      "url": "https://github.com/Stirling-Tools/stirling-pdf",
+      "description": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere",
+      "category": "文件生產力",
+      "language": "java",
+      "triggers": [
+        "stirling-pdf",
+        "stirling",
+        "pdf",
+        "docker",
+        "hacktoberfest",
+        "java",
+        "pdf-converter",
+        "pdf-editor"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Stirling-Tools/stirling-pdf.git",
+        "repoUrl": "https://github.com/Stirling-Tools/stirling-pdf"
+      },
+      "capabilities": [
+        "docker",
+        "hacktoberfest",
+        "java",
+        "pdf",
+        "pdf-converter"
+      ],
+      "useCase": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere",
+      "advantages": [
+        "GitHub #1 PDF 應用",
+        "可在任何裝置、任何地點編輯 PDF"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-20T05:04:01.227Z",
+      "status": "experimental",
+      "description_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
+      "useCase_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
+      "stars": 92596,
+      "advantages_zh": "GitHub #1 PDF 應用程式，可在任何裝置、任何地點編輯 PDF"
+    },
+    {
+      "id": "kaggle-tpu-lab",
+      "name": "Kaggle Tpu Lab",
+      "url": "https://github.com/ARahim3/kaggle-tpu-lab",
+      "description": "Frontier-class open models on a free Kaggle TPU v5e-8: GLM-5.3-Flash 320B MoE (~64 tok/s, our own JAX engine) and Qwen3.8-27B bf16 (~130 tok/s), 262k context, prefix caching. Works with Claude Code, Codex, opencode and pi.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "kaggle-tpu-lab",
+        "kaggle",
+        "tpu",
+        "lab",
+        "anthropic-api",
+        "claude-code",
+        "coding-agents",
+        "free-gpu"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/ARahim3/kaggle-tpu-lab.git",
+        "repoUrl": "https://github.com/ARahim3/kaggle-tpu-lab"
+      },
+      "capabilities": [
+        "anthropic-api",
+        "claude-code",
+        "coding-agents",
+        "free-gpu",
+        "glm"
+      ],
+      "useCase": "Frontier-class open models on a free Kaggle TPU v5e-8: GLM-5.3-Flash 320B MoE (~64 tok/s, our own JAX engine) and Qwen3.8-27B bf16 (~130 tok/s), 262k context, prefix caching. Works with Claude Code, C",
+      "advantages": [
+        "免費提供 Frontier-class 開源模型運行於 Kaggle TPU v5e-8",
+        "支援 262k 上下文長度與 prefix caching",
+        "兼容 Claude Code、Codex、opencode 與 pi"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-20T05:04:01.938Z",
+      "status": "experimental",
+      "description_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、Codex、opencode 和 pi。",
+      "useCase_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、C",
+      "stars": 496,
+      "advantages_zh": "免費提供 Frontier-class 開源模型運行於 Kaggle TPU v5e-8，支援 262k 上下文長度與 prefix caching，兼容 Claude Code、Codex、opencode 與 pi"
+    },
+    {
+      "id": "security-audit-skill",
+      "name": "Security Audit Skill",
+      "url": "https://github.com/cloudflare/security-audit-skill",
+      "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "category": "安全性",
+      "language": "javascript",
+      "triggers": [
+        "security-audit-skill",
+        "security",
+        "audit",
+        "skill"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx security-audit-skill",
+        "repoUrl": "https://github.com/cloudflare/security-audit-skill"
+      },
+      "capabilities": [],
+      "useCase": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "advantages": [
+        "Multi-phase security audit capability",
+        "independently verified findings",
+        "machine-readable findings"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-20T05:04:02.717Z",
+      "status": "experimental",
+      "description_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
+      "useCase_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
+      "stars": 16712,
+      "advantages_zh": "多階段安全稽核能力，獨立驗證的發現結果，可機器讀取的結果"
+    },
+    {
+      "id": "openstock",
+      "name": "OpenStock",
+      "url": "https://github.com/Open-Dev-Society/OpenStock",
+      "description": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "openstock",
+        "coderabbit",
+        "inngest",
+        "nextjs",
+        "shadcn-ui",
+        "stock-market",
+        "tailwindcss"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx OpenStock",
+        "repoUrl": "https://github.com/Open-Dev-Society/OpenStock"
+      },
+      "capabilities": [
+        "coderabbit",
+        "inngest",
+        "nextjs",
+        "shadcn-ui",
+        "stock-market"
+      ],
+      "useCase": "OpenStock is an open-source alternative to expensive market platforms. Track real-time prices, set personalized alerts, and explore detailed company insights — built openly, for everyone, forever free",
+      "advantages": [
+        "Real-time price tracking",
+        "personalized alerts",
+        "detailed company insights with no cost"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-20T05:04:11.144Z",
+      "status": "experimental",
+      "description_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費。",
+      "useCase_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費",
+      "stars": 16211,
+      "advantages_zh": "即時股價追蹤、個人化警示、無成本的詳細公司洞察"
+    },
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "url": "https://github.com/anthropics/claude-code",
+      "description": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "claude-code",
+        "claude",
+        "code"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx claude-code",
+        "repoUrl": "https://github.com/anthropics/claude-code"
+      },
+      "capabilities": [],
+      "useCase": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows ",
+      "advantages": [
+        "Understands codebase context",
+        "executes routine tasks via natural language",
+        "handles git workflows"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-20T05:04:11.409Z",
+      "status": "experimental",
+      "description_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼 — 全部透過自然語言指令完成。",
+      "useCase_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼",
+      "stars": 146785,
+      "advantages_zh": "理解程式碼庫上下文，透過自然語言執行例行任務，並處理 git 工作流程"
     }
   ]
 }
