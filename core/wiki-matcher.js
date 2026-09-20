@@ -149,10 +149,15 @@ export function buildWikiIndex(wiki) {
   const intentBags = new Map();
   const facetBags = new Map();
   const intentsById = new Map();
+  // 認識論標記（Epistemic Markers，見 docs/LLM-WIKI-BLUEPRINT.md 第 10 頁）：
+  // V = 直接取自工具 metadata；S = LLM 綜合推論；? = 需人類覆核。
+  // 讓呼叫端知道這條比對依據的可信度。
+  const epistemicById = new Map();
   ids.forEach((id, i) => {
     intentBags.set(id, bagOf(tokenize(intentTexts[i])));
     facetBags.set(id, bagOf(tokenize(facetTexts[i])));
     intentsById.set(id, entries[id]?.intents || []);
+    epistemicById.set(id, entries[id]?.epistemic || '');
   });
 
   const COOC = buildCooccurrence(intentBags, idfIntent, dfIntent, N);
@@ -162,6 +167,7 @@ export function buildWikiIndex(wiki) {
     intentBags,
     facetBags,
     intentsById,
+    epistemicById,
     idfIntent,
     idfFacet,
     dfIntent,
@@ -420,6 +426,9 @@ export function wikiScore(query, index, options = {}) {
       V5: best,
       // 只在真的有訊號時才算最佳 intent（省下 705 × N 次斷詞）
       intent: best > 0 ? pickBestIntent(qBag, index.intentsById.get(id)) : '',
+      // 認識論標記：讓呼叫端知道這個比對依據的可信度
+      // （V=取自 metadata／S=LLM 推論／?=需人工覆核）
+      epistemic: index.epistemicById?.get(id) || '',
     });
   }
   return out;

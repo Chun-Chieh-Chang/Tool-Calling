@@ -254,3 +254,23 @@ test('wiki-matcher: getWikiIndex 對同一詞檔回傳同一份索引（有快�
   assert.equal(a, b, '同一份詞檔不該重建索引');
   __resetWikiCache();
 });
+
+// ── 認識論標記（Epistemic Markers）─────────────────────────────────────────
+// 來自 LLM Wiki Blueprint 第 10 頁「建立信任層」：AI 會產生幽靈連結，
+// 所以要標記內容是「直接取自來源」還是「AI 推論」，讓下游知道可信度。
+test('wiki-matcher: 比對結果帶出認識論標記（V=Sourced／S=Synthesized）', () => {
+  const wiki = {
+    version: '1.0.0',
+    entries: {
+      sourced: { intents: ['把 PDF 轉成 Markdown'], objects: [], actions: [], epistemic: 'V' },
+      synth: { intents: ['把 PDF 轉成 Markdown'], objects: [], actions: [], epistemic: 'S' },
+      unmarked: { intents: ['把 PDF 轉成 Markdown'], objects: [], actions: [] },
+    },
+  };
+  __resetWikiCache();
+  const r = wikiScore('把 PDF 轉成 Markdown', buildWikiIndex(wiki), { enableGraph: false });
+  assert.equal(r.get('sourced').epistemic, 'V', '取自 metadata 者應標 V');
+  assert.equal(r.get('synth').epistemic, 'S', 'LLM 推論者應標 S');
+  assert.equal(r.get('unmarked').epistemic, '', '未標記者應回傳空字串而非 undefined');
+  __resetWikiCache();
+});

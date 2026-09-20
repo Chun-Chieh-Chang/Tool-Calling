@@ -29,7 +29,9 @@
         "不適合製作網頁互動式簡報",
         "無法處理插畫級向量繪圖"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "graphify": {
       "intents": [
@@ -59,7 +61,9 @@
         "無法用於即時資料庫監控",
         "不適合純文字搜尋任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "strix": {
       "intents": [
@@ -88,7 +92,9 @@
         "不適用于未授權系統掃描",
         "無法替代人工深度威脅分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "ai-animation-video-generator": {
       "intents": [
@@ -121,7 +127,9 @@
         "即時串流或直播動畫需求",
         "複雜 3D 建模任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "open-generative-ai": {
       "intents": [
@@ -154,7 +162,9 @@
         "企業公開服務需要嚴格內容審核與合規",
         "硬體缺乏足夠 GPU 記憶體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "imaginairy": {
       "intents": [
@@ -188,7 +198,9 @@
         "純雲端託管且無本地 GPU 資源的輕量 Web 服務",
         "精確向量圖形或 3D 建模需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "vercel-ai-skills": {
       "intents": [
@@ -222,7 +234,9 @@
         "不適用於傳統非對話式 CRUD API 或無 AI 需求的工作流程",
         "無法取代需要高吞吐量的批次處理後端基礎設施"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "total-typescript-skills": {
       "intents": [
@@ -255,7 +269,9 @@
         "不適用於需要執行程式碼或互動式練習的環境",
         "不適合尋找 React、Vue 等前端框架特定教學的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "playwright": {
       "intents": [
@@ -288,7 +304,9 @@
         "不適用於模擬非瀏覽器環境，例如 IoT 裝置或桌面原生應用程式",
         "不建議用於高頻率的即時交易系統監控，因瀏覽器自動化延遲較高"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "flysystem": {
       "intents": [
@@ -322,7 +340,9 @@
         "只需單一後端且檔案量極小的專案，用 PHP 原生函式即可，不需要這套",
         "建構需要直接 POSIX 系統呼叫的低階系統工具時不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.958Z"
     },
     "tdd": {
       "intents": [
@@ -354,7 +374,9 @@
         "一次性腳本或臨時程式碼，不需長期維護的場景不適用",
         "專案優先速度勝過結構時，不建議強制使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "postgres-mcp": {
       "intents": [
@@ -386,7 +408,9 @@
         "直接暴露給不可信賴的使用者輸入而沒有額外驗證時不安全",
         "管理非關聯式資料結構或文件型儲存系統時不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "github-mcp-server": {
       "intents": [
@@ -412,7 +436,9 @@
         "不適用於 GitLab 或 Bitbucket 等其他版本控制平台",
         "不適合離線或無網路連線的環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "context7": {
       "intents": [
@@ -439,7 +465,9 @@
         "不適用於無網路連線的離線開發環境",
         "不適用於未公開的內部或專屬文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sequentialthinking": {
       "intents": [
@@ -465,7 +493,9 @@
         "不適用於簡單的事實查詢或單步算術運算",
         "不適用於即時串流資料處理或需要立即二元決策的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mcp-sequential-thinking": {
       "intents": [
@@ -497,7 +527,9 @@
         "需要次秒級回應的即時應用",
         "創意腦力激盪或需要非線性關聯的時段"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "memmy-agent": {
       "intents": [
@@ -529,7 +561,9 @@
         "需要立即回應且不接受額外記憶體開銷的即時應用",
         "單一次工作階段且不依賴歷史上下文的簡單任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "build-your-own-x": {
       "intents": [
@@ -562,7 +596,9 @@
         "缺乏基本程式設計基礎的初學者",
         "想要買現成的商業軟體解決方案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "posthog": {
       "intents": [
@@ -589,7 +625,9 @@
         "處理股票 tick 級即時資料",
         "分析純展示型靜態網站"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hallmark": {
       "intents": [
@@ -614,7 +652,9 @@
         "教學用途的範例程式",
         "需要詳細文件說明的 API 庫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "code-review-graph": {
       "intents": [
@@ -640,7 +680,9 @@
         "只有十個檔案的小型專案",
         "需要執行時期分析的動態流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "officecli": {
       "intents": [
@@ -674,7 +716,9 @@
         "執行需要完整 Office 圖形介面的複雜 VBA 巨集或自訂附加元件",
         "需要互動式 WYSIWYG 文件預覽或圖形編輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stablyai-orca": {
       "intents": [
@@ -707,7 +751,9 @@
         "偏好托管雲端訂閱服務而非自行使用 API 金鑰",
         "非程式設計工作流程（如資料分析或設計）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "herdr": {
       "intents": [
@@ -740,7 +786,9 @@
         "簡單單代理任務，標準 tmux 或 shell 腳本即可勝任",
         "無 tmux 支援的 Windows 原生環境（未透過 WSL 等方案）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "impeccable": {
       "intents": [
@@ -769,7 +817,9 @@
         "高度客製化、品牌專屬設計系統（需從頭打造）",
         "非網頁框架專案（如原生移動應用）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "slidesmaker": {
       "intents": [
@@ -798,7 +848,9 @@
         "純文字內容無視覺資料需要呈現",
         "需要即時多人協作編輯的簡報工作流"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lean-ctx": {
       "intents": [
@@ -827,7 +879,9 @@
         "偏好完整 SaaS 托管方案而非自架解決方案",
         "非程式設計情境的通用非結構化資料分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "loop-engineering": {
       "intents": [
@@ -859,7 +913,9 @@
         "無法取代 IDE 內建功能或常規專案架構工具",
         "若您不使用 Grok、Codex 等 AI 編碼代理，此工具不適用于您"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "loop-engineering-orange-book": {
       "intents": [
@@ -891,7 +947,9 @@
         "不適用於深入數學建模或形式化驗證等高度技術性任務",
         "無法取代完整的軟體文件或 API 參考手冊"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "guizang-ppt-skill": {
       "intents": [
@@ -923,7 +981,9 @@
         "在離線或無網路環境中無法正常使用",
         "不適合用於構建複雜資料儀表板或重度互動式動畫簡報"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-slide": {
       "intents": [
@@ -949,7 +1009,9 @@
         "生成無互動性的靜態 PDF",
         "影片或音訊編輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "html-ppt-skill": {
       "intents": [
@@ -975,7 +1037,9 @@
         "生成影片或螢幕擷取",
         "需即時連線資料庫的複雜儀表板"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-llm-apps": {
       "intents": [
@@ -1001,7 +1065,9 @@
         "合規敏感場景直接使用",
         "未經驗證的生產環境需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "desktopcommandermcp": {
       "intents": [
@@ -1031,7 +1097,9 @@
         "僅做簡單文字替換，用一般 IDE 功能即可處理",
         "涉及高風險生產資料庫的修改"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stitch-skills": {
       "intents": [
@@ -1060,7 +1128,9 @@
         "不需標準化技能定義的非編程代理工作流程",
         "從頭開始建立自訂的 MCP 伺服器實作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "designmd": {
       "intents": [
@@ -1089,7 +1159,9 @@
         "需要即時評估的動態執行階段樣式或 CSS-in-JS 解決方案",
         "沒有專屬 AI 編程助手的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "rag-anything": {
       "intents": [
@@ -1120,7 +1192,9 @@
         "需要亞毫秒級即時反應的即時控制系統",
         "希望完全託管的 SaaS，不想自己架設"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cli-anything": {
       "intents": [
@@ -1150,7 +1224,9 @@
         "只是寫基本的 shell 腳本，不涉及 AI 代理",
         "需要人機即時協作、無法容忍較高延遲的環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "addyosmani-agent-skills": {
       "intents": [
@@ -1181,7 +1257,9 @@
         "用於數據分析或創意寫作等非程式設計任務",
         "偏好 AI 完全自主、不接受策展行為指南的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "heilcheng-awesome-agent-skills": {
       "intents": [
@@ -1210,7 +1288,9 @@
         "不適合僅有離線資源且無法上網的使用者",
         "未經客製化整合前，不適合直接上線到生產環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "directus": {
       "intents": [
@@ -1239,7 +1319,9 @@
         "不適合不需要動態內容管理的簡單靜態網站",
         "不適用於嵌入式系統或低階硬體控制"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ui-ux-pro-max-skill": {
       "intents": [
@@ -1268,7 +1350,9 @@
         "不適用於數據分析、NLP 或系統管理等非視覺工作",
         "不適合建立光柵圖形、Logo 或照片編輯工作流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lanshu-animated-architecture-diagram": {
       "intents": [
@@ -1294,7 +1378,9 @@
         "需要精確按比例的工程藍圖",
         "用於即時監控儀表板視覺化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agency-agents": {
       "intents": [
@@ -1320,7 +1406,9 @@
         "單一簡單提示不需多角色協作",
         "需獨立執行的二進位程式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codebase-memory-mcp": {
       "intents": [
@@ -1346,7 +1434,9 @@
         "分析 PDF 或影像等非程式碼資產",
         "即時寫入檔案系統的協作編輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codebase-memory-mcp-pro": {
       "intents": [
@@ -1373,7 +1463,9 @@
         "非程式碼的 Wiki 或純文字文件",
         "需要即時協同編輯的工作流"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openmontage": {
       "intents": [
@@ -1401,7 +1493,9 @@
         "想要拖拉式介面、不想寫程式的非技術使用者",
         "需要即時串流或即時渲染的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "video-use": {
       "intents": [
@@ -1427,7 +1521,9 @@
         "只要處理單一檔案的手動剪接",
         "即時串流或低延遲廣播應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cognee": {
       "intents": [
@@ -1454,7 +1550,9 @@
         "不適合高頻交易式資料庫需求",
         "不適用於無需持久記憶的無狀態應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "caveman": {
       "intents": [
@@ -1480,7 +1578,9 @@
         "不適合正式文件撰寫情境",
         "不適用於需完整技術細節的複雜推理任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "caveman-code": {
       "intents": [
@@ -1506,7 +1606,9 @@
         "不適合需要大量內建工具鏈的企業級專案",
         "不適用於依賴導向式學習支援的初學者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex-plugin-cc": {
       "intents": [
@@ -1534,7 +1636,9 @@
         "需要嚴格手動合規檢查的安全關鍵模組",
         "外部 AI 程式碼生成有授權限制的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "whisper": {
       "intents": [
@@ -1561,7 +1665,9 @@
         "音訊中含有高度專業領域術語且未經微調",
         "需要辨識個別說話者身份的語者辨別任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-agents-js": {
       "intents": [
@@ -1589,7 +1695,9 @@
         "沒有 agent 邏輯的簡單單輪聊天機器人",
         "基於 Python 的後端系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-codex-skills": {
       "intents": [
@@ -1616,7 +1724,9 @@
         "非技術性的文案撰寫需求",
         "需要人工審核的安全敏感程式碼"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-mcpkit": {
       "intents": [
@@ -1642,7 +1752,9 @@
         "單純查詢天氣或新聞等公開資訊",
         "不涉及外部工具呼叫的對話任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "html-deck-editor": {
       "intents": [
@@ -1669,7 +1781,9 @@
         "需要多人即時同步編輯的簡報",
         "企圖轉成影片或動畫格式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "superpowers": {
       "intents": [
@@ -1701,7 +1815,9 @@
         "全 agent 工作流程中負擔不需要的瑣碎一次性腳本",
         "需要取代專用 CI/CD 管線或自動化測試框架的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-mem": {
       "intents": [
@@ -1733,7 +1849,9 @@
         "需要內建雲端同步功能的應用程式",
         "儲存敏感憑證或個人資料的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-reach": {
       "intents": [
@@ -1765,7 +1883,9 @@
         "即時串流或基於 WebSocket 的即時資訊需求",
         "針對有嚴格反機器人措施平台的爬取"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gitnexus": {
       "intents": [
@@ -1797,7 +1917,9 @@
         "無法執行後端服務、CI/CD 流程或部署應用程式",
         "不適用於即時多人協作編輯或工作階段管理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "humanizer-zh": {
       "intents": [
@@ -1827,7 +1949,9 @@
         "避免用於需要精準術語且不可更改的技術或法律文件",
         "不適合需要嚴格事實驗證的內容"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mini-agent": {
       "intents": [
@@ -1857,7 +1981,9 @@
         "避免用於需要分散式擴展的高吞吐量企業部署",
         "不適用於需要進階記憶體管理或長上下文持久化的應用程式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "terax-ai": {
       "intents": [
@@ -1885,7 +2011,9 @@
         "需要大量資源消耗的本地模型訓練的專案",
         "無法連線網際網路以使用雲端 AI 功能的使用環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cl4r1t4s": {
       "intents": [
@@ -1912,7 +2040,9 @@
         "惡意利用或未授權的系統入侵",
         "生成未經驗證的訓練資料用於微調模型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "frontend-design": {
       "intents": [
@@ -1941,7 +2071,9 @@
         "無障礙合規稽核或執行時期效能最佳化",
         "生成點陣圖、圖示或靜態媒體素材"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-design": {
       "intents": [
@@ -1970,7 +2102,9 @@
         "即時多人協作編輯的工作流程",
         "複雜元件程式庫的生產級設計系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "react-best-practices": {
       "intents": [
@@ -1998,7 +2132,9 @@
         "與效能無關的一般 UI 樣式或 CSS 排版問題",
         "Next.js 伺服器端情境以外的後端開發"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "playwright-skill": {
       "intents": [
@@ -2027,7 +2163,9 @@
         "簡單的 API 呼叫需求",
         "需要超越瀏覽器效能的大量資料爬蟲任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-copilot": {
       "intents": [
@@ -2061,7 +2199,9 @@
         "非 Copilot AI 助手",
         "基礎程式設計學習教材"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kane-cli": {
       "intents": [
@@ -2095,7 +2235,9 @@
         "高度專有或缺乏網路連線的隔離環境",
         "需要嚴格遵守非 AI 產生測試文件標準的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gh-fix-ci": {
       "intents": [
@@ -2128,7 +2270,9 @@
         "本地端觸發的建置或測試失敗",
         "需要立即自動化修改程式碼而無需審查的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gh-address-comments": {
       "intents": [
@@ -2154,7 +2298,9 @@
         "無法建立新issue或管理已關閉的PR",
         "不適用非目前分支的留言檢視"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figma-generate-library": {
       "intents": [
@@ -2180,7 +2326,9 @@
         "不適用缺乏底層程式結構的單次模擬設計",
         "不適用與UI元件無關的純藝術插畫任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-notebooklm-workflows": {
       "intents": [
@@ -2205,7 +2353,9 @@
         "不適用官方Google支援或企業級功能",
         "不適用於繞過受版權保護內容的安全控制"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "notebooklm-obsidian-pipeline": {
       "intents": [
@@ -2233,7 +2383,9 @@
         "不適用於需要即時雙向同步而不依賴腳本的場景",
         "不適用於非文字媒體檔案（如音訊或圖片）的直接同步"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "aippt": {
       "intents": [
@@ -2262,7 +2414,9 @@
         "不適用於需要企業級專屬供應商支援或 SLA 保證的部署情境",
         "不適合需要原生即時多人協作的簡報場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-notebooklm-prompts": {
       "intents": [
@@ -2290,7 +2444,9 @@
         "不適用於產生非投影片類型的產出物，如程式碼、文章或試算表",
         "不建議用於需要嚴格合規或引用格式規範的受監管產業"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "notebooklm2ppt": {
       "intents": [
@@ -2318,7 +2474,9 @@
         "來源是 Word 文件的簡報",
         "只需要檢視簡報而沒有編輯需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-world-notebooklm": {
       "intents": [
@@ -2347,7 +2505,9 @@
         "只需簡單文字編輯不需要多來源研究的任務",
         "想繞過 NotebookLM 基於來源的上下文限制"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nblm2pptx": {
       "intents": [
@@ -2376,7 +2536,9 @@
         "需要進階動畫或內嵌多媒體的簡報",
         "非 NotebookLM 來源文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-short-video-engine": {
       "intents": [
@@ -2406,7 +2568,9 @@
         "不適用于即時串流或互動式影片",
         "無法取代人類在複雜敘事上的創意指導"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mineru2ppt": {
       "intents": [
@@ -2433,7 +2597,9 @@
         "只需複製貼上文字即可完成的任務",
         "需要多人即時協作編輯簡報的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-notebooklm": {
       "intents": [
@@ -2462,7 +2628,9 @@
         "不適用于存取官方 Google 文件或客戶支援",
         "不建議作為技術問題排除或錯誤修復的主要來源"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ontology-playground": {
       "intents": [
@@ -2492,7 +2660,9 @@
         "需要基於角色的存取控制或後端身份驗證的企業工作流程",
         "需要程式化 API 或用於 CI/CD 整合的自動化驗證管線"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ontology": {
       "intents": [
@@ -2522,7 +2692,9 @@
         "需要用此存放庫當作原始數值能源測量的通用資料庫",
         "需要管理非標準化格式的專有或封閉原始碼能源資料"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "notebooklm-slide-pipeline": {
       "intents": [
@@ -2551,7 +2723,9 @@
         "沒有預先準備好來源筆記卻想用來即時協作編輯",
         "內容包含大量需要手動調整圖表的複雜資料視覺化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "animejs-v4-ai-guidelines": {
       "intents": [
@@ -2583,7 +2757,9 @@
         "不適用於純 CSS 動畫專案",
         "不適用於非動畫相關的網頁開發任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "virgiliojr94-book-to-skill": {
       "intents": [
@@ -2615,7 +2791,9 @@
         "不適用於無適當授權的版權著作",
         "不適用於 OCR 品質差或複雜多欄排版的 PDF"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "book2skills": {
       "intents": [
@@ -2646,7 +2824,9 @@
         "不適用於與投資無關的書籍類型",
         "不適用於無法取得原始書籍或 API 的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "book-skill-generator": {
       "intents": [
@@ -2679,7 +2859,9 @@
         "動態數據查詢",
         "創意寫作任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "markitdown": {
       "intents": [
@@ -2712,7 +2894,9 @@
         "音訊轉譯",
         "二元可執行檔生成"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "markitdown-website": {
       "intents": [
@@ -2745,7 +2929,9 @@
         "專有字型文件",
         "大規模檔案處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "anthropic-claude-skills": {
       "intents": [
@@ -2772,7 +2958,9 @@
         "不適合用於資料庫管理或系統操作等非 AI 代理任務",
         "若需要專有、封閉原始碼的技能實作則不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-figma-implement-skill": {
       "intents": [
@@ -2799,7 +2987,9 @@
         "不適用於後端邏輯、API 開發或資料庫架構設計",
         "不適合原生行動應用程式開發或非網頁框架"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "vercel-web-design-guidelines-skill": {
       "intents": [
@@ -2826,7 +3016,9 @@
         "不適合用於後端邏輯、資料庫架構設計或非網頁任務",
         "不適用於圖形設計素材（如圖片或影片）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nexu-prototype-generator-skill": {
       "intents": [
@@ -2860,7 +3052,9 @@
         "不適用於後端基礎設施、資料庫架構設計或非 UI 系統架構任務",
         "不適合需要雲端即時多人協作的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "vercel-agent-skills": {
       "intents": [
@@ -2893,7 +3087,9 @@
         "缺少代理執行框架時無法使用",
         "不適合簡單內容生成任務，無需代理推理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "microsoft-playwright-cli-skill": {
       "intents": [
@@ -2926,7 +3122,9 @@
         "不適用沒有 UI 元件的後端 API 測試",
         "不適合原生行動應用程式開發"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-playwright-automation-skill": {
       "intents": [
@@ -2958,7 +3156,9 @@
         "不適用行動應用測試或桌面 GUI 互動等非基於瀏覽器的自動化",
         "需要嚴格型別安全或編譯式語言功能時避免使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "github-copilot-playwright-test-skill": {
       "intents": [
@@ -2989,7 +3189,9 @@
         "不適合需要嚴格安全合規性的生產環境部署腳本",
         "不適合作為即時系統監控或基礎架構管理任務之用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-figma-generate-skill": {
       "intents": [
@@ -3021,7 +3223,9 @@
         "對於不需要結構化代理指引的簡單一次性查詢應避免使用",
         "不適合需要無預設規則的開放式人類創意判斷的任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "book-to-skill-apple-ouyang": {
       "intents": [
@@ -3050,7 +3254,9 @@
         "需要即時同步的高頻更新內容",
         "創意寫作或主觀文學分析任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "anthropic-pdf-analysis-skill": {
       "intents": [
@@ -3080,7 +3286,9 @@
         "依賴專有或非公開模型微調的任務",
         "安全性關鍵的認證或存取控制邏輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "browser-use": {
       "intents": [
@@ -3110,7 +3318,9 @@
         "無網頁介面的後端資料庫操作",
         "有嚴格的防機器人驗證挑戰的環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "browserbase-web-automation-skills": {
       "intents": [
@@ -3141,7 +3351,9 @@
         "非瀏覽器環境的本機桌面應用程式",
         "純資料庫查詢或 API 呼叫任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "autogen": {
       "intents": [
@@ -3172,7 +3384,9 @@
         "需完全確定性輸出的延遲敏感系統",
         "不需協作 AI 代理的基礎流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "metagpt": {
       "intents": [
@@ -3203,7 +3417,9 @@
         "需嚴格手動控制每個開發步驟",
         "非軟體任務如資料分析或創意寫作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lobehub": {
       "intents": [
@@ -3237,7 +3453,9 @@
         "需要即時低延遲的應用程式，反應時間低於 1 毫秒",
         "嚴格隔離網路的環境，無法依賴外部網路資源"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "transformers": {
       "intents": [
@@ -3271,7 +3489,9 @@
         "要自己設計全新的神經網路架構，而不是使用現有模型類別",
         "在記憶體非常有限的嵌入式裝置上執行即時推論"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cocoindex": {
       "intents": [
@@ -3305,7 +3525,9 @@
         "簡單的關鍵字搜尋任務，不需要複雜的狀態追蹤",
         "需要作為一般關聯式資料庫執行 SQL 查詢"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stable-diffusion-webui": {
       "intents": [
@@ -3339,7 +3561,9 @@
         "不適合需要高併發無頭 API 部署",
         "不適合微服務架構"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stable-diffusion-webui-localization-zhtw": {
       "intents": [
@@ -3366,7 +3590,9 @@
         "不會自動翻譯使用者輸入的提示或生成圖像",
         "不支援簡體中文"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "langflow": {
       "intents": [
@@ -3397,7 +3623,9 @@
         "不適合簡單的腳本任務",
         "可能不符合嚴格的閉源合規需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mem0": {
       "intents": [
@@ -3427,7 +3655,9 @@
         "不需要歷史上下文的 stateless 應用（例如一次性換算、純格式轉換）",
         "與 AI 代理記憶無關的簡單 CRUD 或檔案讀寫任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ruflo": {
       "intents": [
@@ -3458,7 +3688,9 @@
         "輕量獨立 CLI 工具，沒有蜂群或編排需求",
         "基礎對話機器人，接不上蜂群能力反而增加複雜度"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "crewai": {
       "intents": [
@@ -3488,7 +3720,9 @@
         "低延遲即時推論應用，多 agent 編排開銷太高",
         "非 AI 相關的後端服務或標準 CRUD 操作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nousresearch-hermes-coding-agent": {
       "intents": [
@@ -3521,7 +3755,9 @@
         "不適用於沒有外部模型存取權限的環境",
         "不適用於僅需一般性聊天輔助的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "maigret": {
       "intents": [
@@ -3554,7 +3790,9 @@
         "不適用於需要身份驗證或阻擋自動化請求的平台",
         "不適用將結果作為獨立法律證據的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-webui": {
       "intents": [
@@ -3587,7 +3825,9 @@
         "不適用於記憶體少於 4GB 的邊緣裝置或資源受限環境",
         "不適用於有嚴格 HIPAA 或金融合規要求但不願意進行重度自定義的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "aider": {
       "intents": [
@@ -3617,7 +3857,9 @@
         "避免使用於需要圖形化 IDE 介面的使用者",
         "不適合與其他使用者進行即時協作編輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "yangshun-tech-interview-handbook": {
       "intents": [
@@ -3646,7 +3888,9 @@
         "不適用於產品經理或業務等非技術職務的面試準備",
         "無法單獨作為完整的演練方式，仍需搭配實作練習"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tech-interview-handbook-Avishkar201": {
       "intents": [
@@ -3675,7 +3919,9 @@
         "不應取代實際編程練習或真實世界專案經驗",
         "不適合用於進階研究或學術論文撰寫指導"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-selfhosted": {
       "intents": [
@@ -3701,7 +3947,9 @@
         "不適合尋找商業托管服務提供商",
         "不提供安裝支援或客戶服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "javascript-algorithms": {
       "intents": [
@@ -3726,7 +3974,9 @@
         "不適用生產環境效能優化基準測試",
         "不作為 Python 或 C++ 等非 JavaScript 語言的主要學習資源"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "30-seconds-of-code": {
       "intents": [
@@ -3750,7 +4000,9 @@
         "不適用於企業級說明文件或正式 API 參考文件",
         "不適合初學者需要逐步教學或影片課程的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gitignore": {
       "intents": [
@@ -3778,7 +4030,9 @@
         "不適用於管理倉庫權限或金鑰",
         "不適合替代專用憑證管理工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "langchain": {
       "intents": [
@@ -3808,7 +4062,9 @@
         "極簡單的單一 API 呼叫可能過度設計",
         "不適合微秒級超低延遲情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "n8n": {
       "intents": [
@@ -3838,7 +4094,9 @@
         "不適合微秒級高頻交易系統",
         "單一簡單排程任務改用輕量腳本更合適"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openclaw": {
       "intents": [
@@ -3866,7 +4124,9 @@
         "依賴雲端 SLA 保證的服務場景",
         "需透過審核認證的監管產業"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dify": {
       "intents": [
@@ -3893,7 +4153,9 @@
         "希望直接使用託管型 SaaS 服務而不願自架",
         "開發底層系統程式或嵌入式裝置控制軟體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "public-apis": {
       "intents": [
@@ -3920,7 +4182,9 @@
         "依賴單一來源的可用性保證",
         "用於 API 閘道治理或監控等進階功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "developer-roadmap": {
       "intents": [
@@ -3952,7 +4216,9 @@
         "無法取代正式技術認證或實作專案的經驗",
         "避免當作單一垂直領域（如僅限某套框架）的教學資源"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "the-evolution-of-a-go-programmer": {
       "intents": [
@@ -3984,7 +4250,9 @@
         "不適合產生直接投入生產的程式碼或自動化測試框架",
         "無法取代實際編碼練習或互動式除錯工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dotnet-developer-roadmap": {
       "intents": [
@@ -4016,7 +4284,9 @@
         "不適合需要專有或付費企業訓練平台的開發者",
         "不適合需要 IDE 互動編碼環境的初學者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "free-programming-books": {
       "intents": [
@@ -4046,7 +4316,9 @@
         "商業出版書籍需求",
         "特定框架官方文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "system-design-primer": {
       "intents": [
@@ -4075,7 +4347,9 @@
         "尋找生產系統實作",
         "快速查閱特定框架 API"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "coding-interview-university": {
       "intents": [
@@ -4103,7 +4377,9 @@
         "需要模擬面試回饋",
         "快速學習特定框架語法"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "the-art-of-command-line": {
       "intents": [
@@ -4133,7 +4409,9 @@
         "圖形化開發工具需求",
         "深入探索 man 頁面"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "project-based-learning": {
       "intents": [
@@ -4161,7 +4439,9 @@
         "互動式編程環境要求",
         "學術論文檢索"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "you-dont-know-js": {
       "intents": [
@@ -4190,7 +4470,9 @@
         "React/Vue 框架教學",
         "互動式程式驗證"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "the-book-of-secret-knowledge": {
       "intents": [
@@ -4220,7 +4502,9 @@
         "對於需要互動式、逐步引導教程的初學者",
         "當需要自動化部署或執行階段執行而非文件時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cc-switch": {
       "intents": [
@@ -4253,7 +4537,9 @@
         "若僅使用單一特定 AI 工具且不需要多 Provider 切換則效益較低",
         "不適用於行動端或純瀏覽器 Web 環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codexplusplus": {
       "intents": [
@@ -4284,7 +4570,9 @@
         "用於非 CodexApp 相關任務或獨立編碼環境",
         "依賴它來提供核心模型功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claudemd": {
       "intents": [
@@ -4312,7 +4600,9 @@
         "需要替代人工審查或測試流程的任務",
         "行為限制無關的非編碼任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agentic-awesome-skills": {
       "intents": [
@@ -4341,7 +4631,9 @@
         "依賴雲端托管解決方案而非本地工具的場景",
         "無需技能發現功能的通用編碼輔助需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code-best-practice": {
       "intents": [
@@ -4369,7 +4661,9 @@
         "需完全依賴人工程式碼審查的合規專案",
         "無法相容現代 AI 編碼助理的舊版系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-agent-skills-VoltAgent": {
       "intents": [
@@ -4398,7 +4692,9 @@
         "需要自動化依賴注入與版本控制的生產環境",
         "要求即時維護與安全性審查的第三方項目"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-skills": {
       "intents": [
@@ -4427,7 +4723,9 @@
         "需嚴格專有資料隔離且未經審查本地部署的專案",
         "非 AI 輔助之手動程式設計任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code-guide": {
       "intents": [
@@ -4456,7 +4754,9 @@
         "適用於其他 AI 程式設計助手（如 GitHub Copilot 或 Cursor）的參考",
         "Claude Code 擴充功能以外之 VS Code 問題排除"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "continuous-claude-v3": {
       "intents": [
@@ -4483,7 +4783,9 @@
         "不需持久狀態的一次性簡單查詢",
         "無 Claude Code 或 MCP 整合的開發環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "generative-media-skills": {
       "intents": [
@@ -4511,7 +4813,9 @@
         "編輯或修改既有的媒體檔案",
         "即時影片串流或即時渲染需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "anime": {
       "intents": [
@@ -4538,7 +4842,9 @@
         "複雜的 3D WebGL 渲染或重度影片影格操作",
         "原生行動裝置或桌面應用程式的 UI 開發"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "understand-anything": {
       "intents": [
@@ -4568,7 +4874,9 @@
         "即時資料串流監控",
         "標準 IDE 導航已足夠的簡單單檔專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "andrej-karpathy-skills": {
       "intents": [
@@ -4598,7 +4906,9 @@
         "應由判斷力主導的簡單任務",
         "單一行為技能規範需深思熟慮整合"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "eigenflux-arena": {
       "intents": [
@@ -4628,7 +4938,9 @@
         "需要微秒級延遲的應用",
         "需要嚴格集中式資料治理的系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "council-of-high-intelligence": {
       "intents": [
@@ -4656,7 +4968,9 @@
         "不適合成本極低且可立即撤銷的選擇",
         "不應為了背書既定決策而使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "grok-build": {
       "intents": [
@@ -4684,7 +4998,9 @@
         "不適用於簡易問答查詢",
         "非為生產環境後端API設計"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex-dream-skin": {
       "intents": [
@@ -4711,7 +5027,9 @@
         "可能缺乏專業開發工具相容性",
         "較不適合團隊統一環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lingbot-map": {
       "intents": [
@@ -4740,7 +5058,9 @@
         "只有一張靜態照片想生成立體模型",
         "要輸出網格或 CAD 繪圖檔的製程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opencut": {
       "intents": [
@@ -4769,7 +5089,9 @@
         "企業多人同時在雲端協作編輯的場景",
         "低階裝置處理 8K RAW 影片並啟用硬體加速"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "voicebox": {
       "intents": [
@@ -4797,7 +5119,9 @@
         "要把語音功能當雲端 API 或無伺服器服務使用",
         "處理圖像生成或程式編譯等非音訊流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "wand-enhancer": {
       "intents": [
@@ -4824,7 +5148,9 @@
         "不適合追求官方 WeMod 穩定性與封閉源支援的用戶",
         "不建議在 WeMod 生態系外作為獨立遊戲模組管理器使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "memos": {
       "intents": [
@@ -4853,7 +5179,9 @@
         "不適合需要細粒度許可角色或企業 SSO 整合的協作工作區",
         "不適合需要進階搜尋索引或 AI 摘要的高容量知識庫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "memos-MemTensor": {
       "intents": [
@@ -4882,7 +5210,9 @@
         "不適合基於 LLM 之外的傳統軟體系統",
         "不適合需要立即回應且無需上下文的一步查詢"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "metaharness": {
       "intents": [
@@ -4913,7 +5243,9 @@
         "偏好雲端託管服務而非本地架構",
         "非 AI 相關的軟體開發專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "self-harness": {
       "intents": [
@@ -4941,7 +5273,9 @@
         "傾向使用預先建構的代理框架",
         "非 AI 軟體開發任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "browser-harness": {
       "intents": [
@@ -4972,7 +5306,9 @@
         "僅需 HTTP 請求的靜態頁面",
         "嚴格封鎖外部 CDP 連線的安全環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openharness": {
       "intents": [
@@ -5001,7 +5337,9 @@
         "不適合低延遲服務部署",
         "不適用於無需 LLM 推理的簡單自動化腳本"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "humanizer": {
       "intents": [
@@ -5030,7 +5368,9 @@
         "不適合需要精確術語的技術手冊",
         "無法處理程式碼產生任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "humanizer-zh-tw": {
       "intents": [
@@ -5059,7 +5399,9 @@
         "不適合高度結構化資料格式",
         "無法處理程式碼或技術文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stop-slop": {
       "intents": [
@@ -5087,7 +5429,9 @@
         "數據分析報告",
         "嚴格技術文件編撰"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-flavor-remover": {
       "intents": [
@@ -5115,7 +5459,9 @@
         "醫療說明文件",
         "需精確術語的技術規格書"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "remove-ai-flavor-writing-skill": {
       "intents": [
@@ -5142,7 +5488,9 @@
         "創意小說寫作",
         "學術論文格式規範"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "shuorenhua": {
       "intents": [
@@ -5169,7 +5517,9 @@
         "不適用于需要嚴格術語的法律或醫療文件",
         "不用于外文翻譯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "de-ai-prompt-enhancer-writer-booster-skill": {
       "intents": [
@@ -5196,7 +5546,9 @@
         "不適用于需要精確術語的嚴格技術文件",
         "不適用于事實性資料分析或數學推理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "writing-agent": {
       "intents": [
@@ -5223,7 +5575,9 @@
         "不適用于即時協作編輯的工作流程",
         "不適用于需要可驗證原始文獻引用的學術研究"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mathmodelagent": {
       "intents": [
@@ -5253,7 +5607,9 @@
         "不適用於純文學、藝術或非數學領域的寫作需求",
         "不適用於需要人工驗證數學證明或邏輯一致性的最終定稿"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "blender": {
       "intents": [
@@ -5284,7 +5640,9 @@
         "不適用於需要高精度 CAD 或製造級公差的參數化機械設計",
         "不適用於對應用程式體積與執行資源極為敏感的行動裝置優先遊戲開發"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hkuds-vibe-trading": {
       "intents": [
@@ -5315,7 +5673,9 @@
         "不適用於要求保證獲利或不可預測性極低的金融策略",
         "不適用於非金融領域的通用自動化任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "omniroute": {
       "intents": [
@@ -5346,7 +5706,9 @@
         "完全不想做任何本地設定、希望直接由廠商託管的全代管服務需求",
         "企業合規要求嚴格資料停留地域且無法自行客製化設定"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openthoughts-agent": {
       "intents": [
@@ -5377,7 +5739,9 @@
         "希望直接拿預訓練好且可立即部署的 agent 方案",
         "想用傳統基於規則的自動化工作流程，而非 LLM 驅動的 agent"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "financial-services": {
       "intents": [
@@ -5408,7 +5772,9 @@
         "希望完全取代持牌財務顧問做個人化投資決策的情境",
         "需要直接進行法規裁決而非輔助分析的場合"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "knowledge-work-plugins": {
       "intents": [
@@ -5440,7 +5806,9 @@
         "嵌入式系統或硬體控制",
         "離線環境無 API 連線"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-for-legal": {
       "intents": [
@@ -5472,7 +5840,9 @@
         "提供具拘束力法律建議",
         "缺乏特定訓練資料之非英語管轄區"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-legal-skill": {
       "intents": [
@@ -5504,7 +5874,9 @@
         "法院文件準備",
         "非合約監管合規分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "taiwan-claude-legal": {
       "intents": [
@@ -5536,7 +5908,9 @@
         "中國民法典適用案件",
         "香港法律諮詢"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-for-legal-zh": {
       "intents": [
@@ -5569,7 +5943,9 @@
         "台灣法律問題",
         "取代執業律師最終法律意見"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-llm-vtuber": {
       "intents": [
@@ -5601,7 +5977,9 @@
         "純雲端托管需求",
         "無本地計算設備"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "last30days-skill": {
       "intents": [
@@ -5630,7 +6008,9 @@
         "不適合 30 天以上的歷史分析",
         "進行深度學術文獻回顧或專有資料庫查詢時避免使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "last30days-skill-cn": {
       "intents": [
@@ -5659,7 +6039,9 @@
         "搜尋中國大陸以外的西方社交媒體平台時避免",
         "不適合擷取超過 30 天範圍的歷史資料"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "skill": {
       "intents": [
@@ -5689,7 +6071,9 @@
         "請避免從頭開始生成新的自訂技能",
         "不適合在 GitHub 生態系統之外尋找技能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tradingagents": {
       "intents": [
@@ -5718,7 +6102,9 @@
         "微秒級低延遲高頻交易",
         "非金融領域的自動化任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-trader": {
       "intents": [
@@ -5748,7 +6134,9 @@
         "保證報酬零風險要求的場景",
         "高頻交易"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-vibe-trading-personal": {
       "intents": [
@@ -5778,7 +6166,9 @@
         "機構級嚴格合規需求",
         "手動裁量不打算自動化的交易者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "zarazhangrui-frontend-slides": {
       "intents": [
@@ -5806,7 +6196,9 @@
         "複雜列印排版需求",
         "影片剪輯或動畫製作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "frontend-slides-editable": {
       "intents": [
@@ -5834,7 +6226,9 @@
         "需後端整合的儀表板",
         "動畫導向的簡報"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ecc": {
       "intents": [
@@ -5862,7 +6256,9 @@
         "完全隔離的工作階段",
         "獨立 LLM 應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "frontend-slides-Kelemani": {
       "intents": [
@@ -5889,7 +6285,9 @@
         "不適用於後端 API 設計教學",
         "無法匯出靜態 PDF 給非 JS 背景學員"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "slidev": {
       "intents": [
@@ -5916,7 +6314,9 @@
         "非專屬離線格式偏好者不宜",
         "不適合預錄影片製作流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "baoyu-skills": {
       "intents": [
@@ -5943,7 +6343,9 @@
         "非該生態系專屬提示詞格式者不適用",
         "不需 AI 輔助的純手動開發流程不適合"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "autoresearch": {
       "intents": [
@@ -5969,7 +6371,9 @@
         "多節點分散式訓練大型語言模型",
         "需要人工逐步驟確認的嚴格實驗流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "llm-council": {
       "intents": [
@@ -5995,7 +6399,9 @@
         "單純的事實查詢（如天氣/新聞）",
         "要求秒級回應的即時系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "reader3": {
       "intents": [
@@ -6021,7 +6427,9 @@
         "純圖片掃描版PDF（無文字層）",
         "短於10頁的簡易文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-auto-research-tools": {
       "intents": [
@@ -6055,7 +6463,9 @@
         "希望透過單一 APP 直接執行完整實驗（非僅工具推薦）",
         "需要即時協作編輯或團隊共享專案的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "clodex-ide": {
       "intents": [
@@ -6089,7 +6499,9 @@
         "專案部署必須依賴雲端 CI/CD 管線或遠端伺服器",
         "使用者習慣直接使用受管理的 SaaS AI 服務，不想處理本地設定"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "speak-human-tw": {
       "intents": [
@@ -6122,7 +6534,9 @@
         "文稿屬於正式公文、法律文件、學術論文等需嚴格保留格式與用語的場景",
         "不需要校正 AI 痕跡，僅需一般語法檢查或拼字更正"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codegraph": {
       "intents": [
@@ -6146,7 +6560,9 @@
         "即時多人協作編輯",
         "處理文件/維基等非程式碼庫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "taste-skill": {
       "intents": [
@@ -6171,7 +6587,9 @@
         "需要嚴格事實準確性的任務",
         "簡單資料格式化需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "anthropic-cybersecurity-skills": {
       "intents": [
@@ -6196,7 +6614,9 @@
         "即時網路流量分析",
         "傳統系統滲透測試"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cybersecurity-skills": {
       "intents": [
@@ -6227,7 +6647,9 @@
         "不適合用於非技術性的通用問題或一般文件查詢",
         "無法取代完整的手動安全審計與人工審查"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code-cybersecurity-skill": {
       "intents": [
@@ -6260,7 +6682,9 @@
         "不適用於需要即時人工介入的緊急事件回應情境",
         "不適用於嚴格合規環境下未經人工審查的自動化安全動作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cybersecurity-skills-Hi-FullHouse": {
       "intents": [
@@ -6292,7 +6716,9 @@
         "無法取代商業級 SIEM 或 EDR 平台的即時監控能力",
         "不適用於需要法律合規稽核的正式報告生成"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "paddleocr": {
       "intents": [
@@ -6318,7 +6744,9 @@
         "筆跡模糊難辨的手寫筆記",
         "需要語意翻譯的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-notebook": {
       "intents": [
@@ -6345,7 +6773,9 @@
         "希望免設定直接使用的雲端服務",
         "缺乏技術背景維護系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gemini-cli": {
       "intents": [
@@ -6373,7 +6803,9 @@
         "無法承擔潛在 API 費用",
         "不需 AI 輔助的簡單指令操作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deer-flow": {
       "intents": [
@@ -6404,7 +6836,9 @@
         "不適合有嚴格即時延遲要求的任務",
         "缺乏適當的安全沙盒隔離時，不應用於高度管制的資料處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ruview": {
       "intents": [
@@ -6435,7 +6869,9 @@
         "在極端射頻干擾的環境中無效",
         "無法取代高精確度的醫療診斷設備"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-engineering-from-scratch": {
       "intents": [
@@ -6466,7 +6902,9 @@
         "不適合那些在不理解內部運作的情況下尋求高級抽象的使用者",
         "無法取代企業級的受管理 AI 服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "oh-my-pi": {
       "intents": [
@@ -6494,7 +6932,9 @@
         "不適合非程式設計的行政任務",
         "不適合需要嚴格非 AI 人工程式碼審查流程的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-free-llm-apis": {
       "intents": [
@@ -6520,7 +6960,9 @@
         "不適合高流量或需 SLA 保證的生產環境",
         "免費額度與政策隨時可能變動，清單不保證長期有效"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "free-llm-api-resources": {
       "intents": [
@@ -6549,7 +6991,9 @@
         "不適合對延遲有嚴格要求的商業應用",
         "不提供託管基礎設施或專屬支援"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "beautiful-html-templates": {
       "intents": [
@@ -6578,7 +7022,9 @@
         "不適合生成非簡報型靜態網站或登入頁面",
         "不支援即時協作編輯功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "jpeetz-hermes-studio": {
       "intents": [
@@ -6607,7 +7053,9 @@
         "不適合需要預建企業支援 SLA 的使用者",
         "不適合不需 agent 複雜度的簡單單一任務自動化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hermes-studio-EKKOLearnAI": {
       "intents": [
@@ -6636,7 +7084,9 @@
         "缺乏後端支援時不適合低延遲即時推論",
         "未設計用於獨立的 CLI 自動化任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "harness": {
       "intents": [
@@ -6664,7 +7114,9 @@
         "希望完全不用管維運、直接用 SaaS 就能上線的團隊",
         "缺乏伺服器資源來支撐自架架構"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "learn-claude-code": {
       "intents": [
@@ -6693,7 +7145,9 @@
         "需要內建雲端整合或託管服務的場景",
         "追求流暢商業 IDE 體驗的開發者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hermes-webui": {
       "intents": [
@@ -6722,7 +7176,9 @@
         "內部高安規網路阻擋外部 UI 連線",
         "只需要純 API 整合、不需要網頁介面的情況"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "headroom": {
       "intents": [
@@ -6752,7 +7208,9 @@
         "輸入 token 極少，壓縮開銷反而更浪費",
         "下游系統不支援壓縮或未壓縮格式的互換"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "compound-engineering-plugin": {
       "intents": [
@@ -6782,7 +7240,9 @@
         "尚未建立或配置 Compound Engineering 專案",
         "使用較舊版且不支援 plugin 的程式設計工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "moneyprinterturbo": {
       "intents": [
@@ -6812,7 +7272,9 @@
         "企圖取代專業劇情長片剪輯流程",
         "本機無 GPU 且無法使用雲端推論服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "supermemory": {
       "intents": [
@@ -6842,7 +7304,9 @@
         "企業規定必須使用托管資料庫",
         "要求內建備份監控功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "trivy": {
       "intents": [
@@ -6872,7 +7336,9 @@
         "替代專業滲透測試",
         "掃瞄封閉源頭的商業軟體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fff": {
       "intents": [
@@ -6901,7 +7367,9 @@
         "需複雜正則表達式",
         "僅需列出目錄基礎需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex": {
       "intents": [
@@ -6931,7 +7399,9 @@
         "需要逐步視覺化除錯流程的專案",
         "多儲存庫且依賴情境感知的大型重構"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-codex-subagents": {
       "intents": [
@@ -6961,7 +7431,9 @@
         "非程式開發領域的創意寫作或分析任務",
         "需要嚴格隔離且不想依賴外部儲存庫的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ponytail": {
       "intents": [
@@ -6990,7 +7462,9 @@
         "為了教學目的偏好冗長明確程式碼的學習環境",
         "必須嚴格遵循現有複雜架構模式的系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "officecli-officecli": {
       "intents": [
@@ -7022,7 +7496,9 @@
         "無法產生影片等二進位媒體",
         "無內建 GUI，非技術使用者難以操作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "emil-design-skills": {
       "intents": [
@@ -7053,7 +7529,9 @@
         "無法為純非技術團隊提供幫助",
         "不取代大型專案管理軟體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex-ppt-skill": {
       "intents": [
@@ -7084,7 +7562,9 @@
         "僅限於基於圖片的版面配置",
         "需要 API 金鑰才能使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "minimax-ppt-skills": {
       "intents": [
@@ -7114,7 +7594,9 @@
         "不適合需要完整後端邏輯的獨立應用程式",
         "不適合與 AI 代理程式技能擴展或模組增強無關的任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gstack": {
       "intents": [
@@ -7145,7 +7627,9 @@
         "不適合需要高度客製化、無既定偏見的開發工具鏈的專案",
         "如果您偏好手動監督而非自動化的 AI 工作流程，請避免使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "presentation-report-preflight": {
       "intents": [
@@ -7176,7 +7660,9 @@
         "不適合即時簡報交付支援",
         "無法取代詳細簡報設計工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "huashu-design": {
       "intents": [
@@ -7205,7 +7691,9 @@
         "無法產出 APK/IPA 等行動應用程式二進位檔",
         "不能取代 Figma 製作向量圖形資產"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "archify": {
       "intents": [
@@ -7231,7 +7719,9 @@
         "不支援多使用者即時同步編輯",
         "不適合製作需統計分析的複雜資料視覺化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code-infrastructure-showcase": {
       "intents": [
@@ -7259,7 +7749,9 @@
         "需要企業級資安防護合規且未經驗證的專案",
         "誤以為這是獨立可安裝工具的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "airllm": {
       "intents": [
@@ -7292,7 +7784,9 @@
         "推理速度比全 GPU 部署慢",
         "不適合即時串流推論"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ui-skills": {
       "intents": [
@@ -7325,7 +7819,9 @@
         "不適合未適應的手機原生應用程式開發",
         "無法取代完整前端框架"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ossie": {
       "intents": [
@@ -7359,7 +7855,9 @@
         "不適用於儲存原始二進位資產，如圖片或影片檔案",
         "無法取代實際資料儲存系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "skill-creator": {
       "intents": [
@@ -7388,7 +7886,9 @@
         "不適合用於直接的客服互動場景",
         "無法建立獨立的軟體函式庫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "workbuddyguide": {
       "intents": [
@@ -7417,7 +7917,9 @@
         "完全沒有程式基礎的初學者效果較差",
         "無法直接提供安裝好的成品軟體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "destructivecommandguard": {
       "intents": [
@@ -7447,7 +7949,9 @@
         "對非Shell類型的攻擊向量無效",
         "無法防護安全指令中的邏輯錯誤"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gnome-orca": {
       "intents": [
@@ -7473,7 +7977,9 @@
         "非 GNOME 桌面環境",
         "僅依賴盲文顯示且未設定語音合成"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ds4": {
       "intents": [
@@ -7498,7 +8004,9 @@
         "需要多用戶雲端部署",
         "非 DeepSeek 模型架構"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-job-search": {
       "intents": [
@@ -7525,7 +8033,9 @@
         "無需本機設定的使用者",
         "不依賴 Claude API 服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "colibri": {
       "intents": [
@@ -7557,7 +8067,9 @@
         "不適合需要立即完整載入模型至記憶體的工作",
         "不適合缺乏足夠磁碟 I/O 輸送量的系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openhands": {
       "intents": [
@@ -7589,7 +8101,9 @@
         "不適合需要嚴格人工審核的工作",
         "不適合只需產生簡單靜態網站且無需邏輯的工作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "antigravity-notebooklm-mcp": {
       "intents": [
@@ -7622,7 +8136,9 @@
         "僅限文字檔案處理功能",
         "需要額外工具才能操作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "khunotebooklmmcp": {
       "intents": [
@@ -7652,7 +8168,9 @@
         "不適合離線時的即時協作編輯",
         "不應用於未加密的敏感個人資料處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pi": {
       "intents": [
@@ -7681,7 +8199,9 @@
         "不適合高吞吐量生產環境推理服務",
         "不適合尋求簡單聊天機器人但無編程經驗的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "notebooklm-skill-PleasePrompto": {
       "intents": [
@@ -7708,7 +8228,9 @@
         "不適合即時網頁瀏覽或一般知識查詢",
         "不適合生成與原始資料無關的創意內容"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dbskill": {
       "intents": [
@@ -7741,7 +8263,9 @@
         "不適用於純技術除錯場景",
         "缺乏診斷情境時不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-pulse-skills": {
       "intents": [
@@ -7774,7 +8298,9 @@
         "低延遲直接執行更重要的情境",
         "非代理應用程式如網頁爬蟲"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tapestry-skills-for-claude-code": {
       "intents": [
@@ -7807,7 +8333,9 @@
         "對即時資料串流或即時串流無效",
         "無法處理圖片或音訊等文字以外媒體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "marketingskills": {
       "intents": [
@@ -7841,7 +8369,9 @@
         "電視/印刷等非數位管道",
         "需要人工策略監督的品牌核心語氣"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-toolkit": {
       "intents": [
@@ -7873,7 +8403,9 @@
         "純 IDE 原生功能需求",
         "非開發相關的自動化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agents": {
       "intents": [
@@ -7906,7 +8438,9 @@
         "純文字不需要音訊的簡單聊天機器人",
         "獨立音訊播放器需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "rigorpilot-skills": {
       "intents": [
@@ -7934,7 +8468,9 @@
         "不適合用於撰寫小說或開放式創意討論",
         "簡單的查天氣問答不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "qu-integration-skills": {
       "intents": [
@@ -7964,7 +8500,9 @@
         "不適合用於離線設備的直控任務",
         "單一網站查詢不需要串接多個App時不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "web-quality-skills": {
       "intents": [
@@ -7991,7 +8529,9 @@
         "不適合用於後端API的吞吐量調校",
         "原生iOS/Android應用程式最佳化無效"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "convex-agent-skills": {
       "intents": [
@@ -8025,7 +8565,9 @@
         "只需要基本增刪改查的傳統資料庫功能",
         "不需要 AI 代理行為的單純後端 CRUD 服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agentspace-skill-manager": {
       "intents": [
@@ -8059,7 +8601,9 @@
         "對延遲要求極高的即時硬體控制與感測器串接",
         "資源受限的微型嵌入式裝置或輕量級腳本"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "github-copilot-for-azure": {
       "intents": [
@@ -8092,7 +8636,9 @@
         "需人工嚴格把關的金鑰管理與敏感憑證安全審查",
         "純前端專案、非 Azure 的通用程式設計任務或離線環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "elevenlabs-voice-skills": {
       "intents": [
@@ -8119,7 +8665,9 @@
         "不需任何語音互動的文字聊天機器人",
         "要求完全離線運作的語音處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "browser-act-automation": {
       "intents": [
@@ -8146,7 +8694,9 @@
         "只需抓取單一靜態網頁內容",
         "業務場景嚴格禁止自動化瀏覽行為"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "runcomfy-intent-skills": {
       "intents": [
@@ -8172,7 +8722,9 @@
         "通用無特定任務導向的聊天機器人",
         "直接結合非 RunComfy 模型的應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "doany-comfyui-skills": {
       "intents": [
@@ -8203,7 +8755,9 @@
         "即時影片串流處理",
         "取代核心渲染節點的需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "notebooklm-antigravity-skill": {
       "intents": [
@@ -8233,7 +8787,9 @@
         "超批量文件處理（超過限制）",
         "多人即時共同編輯需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "img2threejs": {
       "intents": [
@@ -8262,7 +8818,9 @@
         "高多邊形複雜生物模型",
         "需 FBX/GLB 等其他匯出格式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "wayfinder": {
       "intents": [
@@ -8292,7 +8850,9 @@
         "團隊已有完整且清晰的專案計畫，不需要以探索為主的規劃方式",
         "單人快速執行、不需協作與逐步驗證的工作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agentic-inbox": {
       "intents": [
@@ -8323,7 +8883,9 @@
         "必須離線部署或無法使用 Cloudflare Workers 的組織",
         "經常處理大型附件或富含媒體內容的郵件，超出一般 worker 限制"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-higgsfield-ai": {
       "intents": [
@@ -8353,7 +8915,9 @@
         "需要企業級支援、SLA 或合規認證的生產環境",
         "要求即時 API 存取且保證低延遲回應的應用場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "shepherd": {
       "intents": [
@@ -8383,7 +8947,9 @@
         "單純呼叫 LLM API 進行一次性回應",
         "無需記錄執行歷史的簡單聊天應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hyperframes": {
       "intents": [
@@ -8413,7 +8979,9 @@
         "即時視訊串流或直播需求",
         "純剪輯現有影片檔不產生新內容"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hy3": {
       "intents": [
@@ -8444,7 +9012,9 @@
         "需毫秒級即時回應的低延遲應用",
         "資源受限的邊緣裝置部署"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mimo-v25-asr": {
       "intents": [
@@ -8471,7 +9041,9 @@
         "音樂轉錄或非語音音訊分類",
         "多個說話者同時講話的聲源分離"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "minimax-m3": {
       "intents": [
@@ -8498,7 +9070,9 @@
         "醫療診斷或法律建議等無人監督的高監管領域",
         "運算資源受限的邊緣裝置部署"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "glm-5": {
       "intents": [
@@ -8525,7 +9099,9 @@
         "需要即時低延遲回應的應用",
         "需要嚴格法規合規且不能有人類審核的領域"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "step-37-flash": {
       "intents": [
@@ -8554,7 +9130,9 @@
         "需要深度推理或複雜多步驟分析的任務",
         "沒有 GPU 加速的低資源環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ppt-agent-skills": {
       "intents": [
@@ -8584,7 +9162,9 @@
         "偏好 PowerPoint 或 Google 簡報等圖形化編輯器的非技術使用者",
         "只要產生一次簡報，不想投入程式自動化流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gpt-api-free": {
       "intents": [
@@ -8613,7 +9193,9 @@
         "需要 SLA 保證的正式生產環境",
         "對免費端點的穩定性和速率限制有嚴格要求的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pandas-ai": {
       "intents": [
@@ -8643,7 +9225,9 @@
         "不適合無需 LLM 介入的確定性即時資料串流",
         "簡單的靜態 CSV 過濾用基本 pandas 索引更快，不應使用此工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "duckdb": {
       "intents": [
@@ -8671,7 +9255,9 @@
         "不適合需要頻繁單列寫入的高併發交易型 OLTP 網頁應用程式",
         "需要 PB 級聚簇的分佈式多節點雲端資料倉儲工作負載不應使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "polars": {
       "intents": [
@@ -8701,7 +9287,9 @@
         "不適合受限於舊版 pandas 特定第三方插件生態系的專案",
         "當簡單的輕量字典轉換已足夠時，不應引入 DataFrame 額外負荷"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pygwalker": {
       "intents": [
@@ -8730,7 +9318,9 @@
         "不適合無頭背景自動化批次報告且無需 GUI 的情境",
         "不適合需要亞秒級 websocket 推送的即時串流儀表板渲染"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ydata-profiling": {
       "intents": [
@@ -8758,7 +9348,9 @@
         "不建議用於對延遲敏感的即時生產推論管線",
         "避免在大型多 TB 資料集上進行記憶體密集型的完整分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "shadcn-ui": {
       "intents": [
@@ -8786,7 +9378,9 @@
         "不適合使用 Vanilla JS、Vue 等非 React/Tailwind 網頁堆疊的情境",
         "不適合沒有前端使用者介面的後端 API 微服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "storybook": {
       "intents": [
@@ -8817,7 +9411,9 @@
         "純後端邏輯服務開發",
         "無需多個元件狀態的簡單表單"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tldraw": {
       "intents": [
@@ -8848,7 +9444,9 @@
         "3D WebGL 遊戲引擎開發",
         "無需互動的固定版面排版"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freecad": {
       "intents": [
@@ -8879,7 +9477,9 @@
         "角色動畫製作",
         "簡單 2D 向量繪圖需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openscad": {
       "intents": [
@@ -8906,7 +9506,9 @@
         "不適合拖曳式互動 CAD 操作需求",
         "不適合藝術雕刻或無數學基礎的高多邊形角色建模"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cadquery": {
       "intents": [
@@ -8934,7 +9536,9 @@
         "純圖形化 WYSIWYG CAD 介面需求者不適用",
         "不需要 3D CAD 幾何、只想處理 2D 位圖的需求不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tensorflow": {
       "intents": [
@@ -8962,7 +9566,9 @@
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ohmyzsh": {
       "intents": [
@@ -8995,7 +9601,9 @@
         "不適合需要極度微控每行 shell 設定的進階情境",
         "不適用於 Windows 原生命令提示字元或 PowerShell 環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "javaguide": {
       "intents": [
@@ -9028,7 +9636,9 @@
         "不適用於尋找進階學術論文或源碼分析的需求",
         "不適合完全沒有程式基礎的初學者直接作為唯一教材"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "worldmonitor": {
       "intents": [
@@ -9061,7 +9671,9 @@
         "不適用於對即時性要求極高（秒級）的金融交易情境",
         "不適合需要深入原始檔案或付費牆內容的深度研究"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-claude-skills": {
       "intents": [
@@ -9086,7 +9698,9 @@
       "negative": [
         "非 LLM 模型訓練場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ktransformers": {
       "intents": [
@@ -9113,7 +9727,9 @@
         "不適用純 CPU 環境",
         "非傳統統計模型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "daily-stock-analysis": {
       "intents": [
@@ -9140,7 +9756,9 @@
         "不適用真實投資決策",
         "單市場限縮需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opencodex": {
       "intents": [
@@ -9167,7 +9785,9 @@
         "需要單一供應商 SLA 保證的生產環境",
         "必須直接對接特定提供者客服或需特定合規認證的使用情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "data-to-html": {
       "intents": [
@@ -9191,7 +9811,9 @@
         "非數據表格轉網頁的場景",
         "要把二進位檔案轉換成其他格式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "exceltohtml": {
       "intents": [
@@ -9214,7 +9836,9 @@
         "非 Excel 格式的檔案轉換",
         "需要渲染複雜 3D 圖表的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "excel-to-html": {
       "intents": [
@@ -9242,7 +9866,9 @@
         "即時資料庫同步需求",
         "PDF/圖片轉檔處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "xlsxtohtmlconverter": {
       "intents": [
@@ -9270,7 +9896,9 @@
         "PDF檔案處理",
         "圖像格式轉換"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "obsidian-skills": {
       "intents": [
@@ -9298,7 +9926,9 @@
         "非Obsidian筆記系統",
         "密集SQL資料庫查詢"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-obsidian": {
       "intents": [
@@ -9329,7 +9959,9 @@
         "不適合需要同步到一般雲端資料庫的情境",
         "不適合處理非 Markdown 格式的檔案編輯需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "premium-frontend-ui-skill": {
       "intents": [
@@ -9360,7 +9992,9 @@
         "不適合製作資料視覺化儀表板",
         "避免和其他 UI 框架混用造成樣式衝突"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "seedance-20": {
       "intents": [
@@ -9391,7 +10025,9 @@
         "不適合需要精確逐幀控制的需求",
         "不適合商業級影片後製編輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "seedance2-skill": {
       "intents": [
@@ -9422,7 +10058,9 @@
         "不適合非影片生成的通用任務",
         "不適合無 LLM 代理的直接呼叫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "remotion": {
       "intents": [
@@ -9453,7 +10091,9 @@
         "不適合非程式設計師的純 GUI 影片編輯",
         "不適合需要 GPU 硬體加速渲染的 4K/8K 長片"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opencv": {
       "intents": [
@@ -9484,7 +10124,9 @@
         "不適合即時高畫質影片串流處理",
         "不適合需要 GPU 大規模平行計算的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "frame": {
       "intents": [
@@ -9511,7 +10153,9 @@
         "伺服器上無圖形介面的環境",
         "要手動寫複雜濾鏡鏈的高階用戶"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ffmpeg": {
       "intents": [
@@ -9541,7 +10185,9 @@
         "即時直播推播到平台的純新手",
         "非技術背景使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pdf2md-agent-skill": {
       "intents": [
@@ -9571,7 +10217,9 @@
         "加密或權限受限制的檔案",
         "浮動版面雜誌的精確複製需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "exercises-dataset": {
       "intents": [
@@ -9601,7 +10249,9 @@
         "用於醫療復健診斷或病患治療決策",
         "非健身領域的通用影像分類任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-agent-book": {
       "intents": [
@@ -9631,7 +10281,9 @@
         "已熟悉 Agent 實作的高階工程師seek進階議題",
         "希望內容永遠跟最新框架版本同步（可能隨演進而過時）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opencode-acp": {
       "intents": [
@@ -9661,7 +10313,9 @@
         "非 OpenCode 的通用聊天或對話場景",
         "追求絕對語意保留、不需控制 token 消耗的任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-opus-5md": {
       "intents": [
@@ -9686,7 +10340,9 @@
         "不應視為官方文件，來源非 Anthropic 官方發布",
         "不得用於規避模型的安全限制"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opus-5md": {
       "intents": [
@@ -9710,7 +10366,9 @@
         "不應用於生產級系統提示設計",
         "僅供學術研究與教育目的，不宜直接複製使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "systempromptsleaks": {
       "intents": [
@@ -9738,7 +10396,9 @@
         "不應作為官方 API 行為的唯一依據",
         "僅供研究參考，不得用於逆向工程規避限制"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-system-prompt": {
       "intents": [
@@ -9767,7 +10427,9 @@
         "逆向工程結果可能不完全精確",
         "提示詞會隨產品更新而變動"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "i-have-adhd": {
       "intents": [
@@ -9796,7 +10458,9 @@
         "非 ADHD 醫療相關工具",
         "效果依賴底層 Agent 能力"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pi-web": {
       "intents": [
@@ -9823,7 +10487,9 @@
         "僅支援 Pi Coding Agent",
         "不適合 CLI 環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "phosphor-icons": {
       "intents": [
@@ -9850,7 +10516,9 @@
         "不適合需要手繪或插畫風格的場合",
         "檔案大小依引入方式而異，需注意"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "remixicon": {
       "intents": [
@@ -9877,7 +10545,9 @@
         "不適合需要強烈品牌識別或客製化圖示語意的場合",
         "部分圖示細節較少，語意可能不夠明確"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "iconoir": {
       "intents": [
@@ -9905,7 +10575,9 @@
         "不適合需要填色插圖或手繪風格的場合",
         "部分框架需要手動配置整合"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pi-web-agegr": {
       "intents": [
@@ -9932,7 +10604,9 @@
         "大型專案管理",
         "需要完整IDE功能的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hugging-multi-agent": {
       "intents": [
@@ -9959,7 +10633,9 @@
         "生產級系統部署",
         "單智能體應用需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lucide": {
       "intents": [
@@ -9986,7 +10662,9 @@
         "需要照片級真實感圖像",
         "動態圖示動畫需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "text-to-cad": {
       "intents": [
@@ -10014,7 +10692,9 @@
         "藝術家自由創作需求",
         "需要手動調整細節的精密建模"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "bootstrap-icons": {
       "intents": [
@@ -10042,7 +10722,9 @@
         "非網頁型桌面軟體",
         "需要填色複雜圖形的設計"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tabler-icons": {
       "intents": [
@@ -10069,7 +10751,9 @@
         "填色風格插圖需求",
         "行動裝置APP專用圖標"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agents-course": {
       "intents": [
@@ -10096,7 +10780,9 @@
         "不適合只學一般 ML 模型訓練，不是 Agent 專向內容",
         "不適合完全沒有程式基礎的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hugagentos": {
       "intents": [
@@ -10124,7 +10810,9 @@
         "不適合只做簡單任務、不需要本體論的輕量級應用",
         "不適合小型團隊或個人開發者使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "adhd": {
       "intents": [
@@ -10152,7 +10840,9 @@
         "不適合非程式設計的通用推理任務",
         "不適合不依賴 ToT 架構的簡單 Agent 場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "heroicons": {
       "intents": [
@@ -10179,7 +10869,9 @@
         "不適合複雜圖形示意需求",
         "非 Tailwind 專案整合較麻煩"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "radix-ui-icons": {
       "intents": [
@@ -10206,7 +10898,9 @@
         "不適合大尺寸圖示展示",
         "圖標數量較有限"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ant-design-icons": {
       "intents": [
@@ -10233,7 +10927,9 @@
         "非 Ant Design 專案需額外適配",
         "不適合非網頁環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "polybar-themes": {
       "intents": [
@@ -10262,7 +10958,9 @@
         "Windows 或 macOS 作業系統",
         "不使用 polybar 的狀態列工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "welovesvg": {
       "intents": [
@@ -10292,7 +10990,9 @@
         "需要自行繪製原始圖示",
         "尋找 PNG 或 JPG 格式的圖示"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "polaris-react": {
       "intents": [
@@ -10322,7 +11022,9 @@
         "非電商相關的網站開發",
         "不使用 Shopify 平台的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "iconify": {
       "intents": [
@@ -10350,7 +11052,9 @@
         "離線靜態網站",
         "需要固定圖示尺寸的傳統字型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "font-awesome": {
       "intents": [
@@ -10376,7 +11080,9 @@
         "非UI圖示需求（如資料視覺化）",
         "Retina螢幕高精度顯示"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "material-design-icons": {
       "intents": [
@@ -10402,7 +11108,9 @@
         "非Material設計風格專案",
         "需要真實感或復古圖形"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fluentui-system-icons": {
       "intents": [
@@ -10429,7 +11137,9 @@
         "非 Microsoft 生態的專案不適用",
         "需要與其他設計語言（如 Material Design）混用的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sfsafesymbols": {
       "intents": [
@@ -10457,7 +11167,9 @@
         "非 Apple 平台（如 Android、Web）無法使用",
         "需要自訂或非系統提供的圖示"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "simple-icons": {
       "intents": [
@@ -10484,7 +11196,9 @@
         "需要一般 UI 圖示（如箭頭、按鈕、狀態圖示）的情境",
         "涉及未列入集合的品牌或自訂標誌"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agnescode": {
       "intents": [
@@ -10514,7 +11228,9 @@
         "不適合需要整合 CI/CD 的生產部署自動化",
         "不適合需要多人即時協作的 IDE 工作階段"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agnescode-ViviQuan": {
       "intents": [
@@ -10541,7 +11257,9 @@
         "不適用於依賴圖形介面開發或視覺設計的工作流",
         "僅限 AI 輔助編程，不支援完整專案管理功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "firecrawl-cli-skills": {
       "intents": [
@@ -10570,7 +11288,9 @@
         "不適合單純解析靜態 HTML 的簡單需求",
         "不適用於非 Firecrawl 環境或無 CLI 權限的系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "firecrawl-skills": {
       "intents": [
@@ -10597,7 +11317,9 @@
         "不適合只爬純靜態網頁的輕量需求",
         "不支援即時影音串流的大流量抓取"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "crawl4ai": {
       "intents": [
@@ -10624,7 +11346,9 @@
         "不適合只做簡單 REST API 呼叫的場景",
         "不適合不需要 AI 處理的傳統爬蟲需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "selenium": {
       "intents": [
@@ -10650,7 +11374,9 @@
         "不適合追求極輕量且只須無頭模式的單純資料抓取",
         "不適合在無法安裝 WebDriver 的受限環境中使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "crawlee": {
       "intents": [
@@ -10681,7 +11407,9 @@
         "單次簡單網頁請求",
         "無需防封鎖機制的基礎爬蟲"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "scrapy": {
       "intents": [
@@ -10712,7 +11440,9 @@
         "單一網頁靜態內容",
         "無需資料管道處理的簡單爬取"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "llmsherpa": {
       "intents": [
@@ -10743,7 +11473,9 @@
         "無結構化內容",
         "傳統網頁爬蟲任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "beautifulsoup4": {
       "intents": [
@@ -10772,7 +11504,9 @@
         "動態 JavaScript 渲染的網頁",
         "需要完整瀏覽器環境的頁面"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "splash": {
       "intents": [
@@ -10798,7 +11532,9 @@
         "對 Chromium 新功能有需求的場景",
         "無需動態渲染的靜態網頁"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deepspec": {
       "intents": [
@@ -10826,7 +11562,9 @@
         "一般生產環境的端對端應用",
         "無充足 GPU 資源的開發者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openworker": {
       "intents": [
@@ -10859,7 +11597,9 @@
         "不支援非 Python 專案的 Worker 架構",
         "不適用於單一節點的高併發場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "aisuite": {
       "intents": [
@@ -10892,7 +11632,9 @@
         "不支援非聊天 Completion 類型 API",
         "不適用於需要高度客製化參數的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "context-hub": {
       "intents": [
@@ -10925,7 +11667,9 @@
         "不支援非文字類型的上下文",
         "不適用於極大型 Monorepo 且未設定 ignore 規則"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "context-hub-skill": {
       "intents": [
@@ -10948,7 +11692,9 @@
       "negative": [
         "封閉式沙盒環境無 CLI 權限"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "translation-agent": {
       "intents": [
@@ -10972,7 +11718,9 @@
       "negative": [
         "毫秒級即時對話翻譯需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "optmem": {
       "intents": [
@@ -10996,7 +11744,9 @@
       "negative": [
         "需要 PB 級海量資料庫檢索"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex-security": {
       "intents": [
@@ -11023,7 +11773,9 @@
       "negative": [
         "不完全替代傳統 SAST/DAST 工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "langgraph": {
       "intents": [
@@ -11050,7 +11802,9 @@
       "negative": [
         "不適用於極簡單的單次提示或工具調用任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "buzz": {
       "intents": [
@@ -11077,7 +11831,9 @@
         "不適合即時低延遲的生產系統（如電話客服）",
         "不適用於需要企業級水平協議保證的部署"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ego-lite": {
       "intents": [
@@ -11105,7 +11861,9 @@
         "無頭伺服器環境或 CI/CD 管道中的純 CLI 測試",
         "需要精確控制特定瀏覽器版本的自動化測試場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-code-review": {
       "intents": [
@@ -11133,7 +11891,9 @@
         "使用非 Git 版本控制系統的專案",
         "離線環境或無法呼叫外部 LLM API 的受限網路"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-agents-for-beginners": {
       "intents": [
@@ -11160,7 +11920,9 @@
         "需要深入研究特定框架原始碼的進階開發者",
         "非 Python 開發者（大部分範例以 Python 為主）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-claude-code-subagents": {
       "intents": [
@@ -11193,7 +11955,9 @@
         "不適用於非Claude Code平台的AI工具",
         "無法替代可直接安裝的npm/pip軟體套件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code-debug-mode": {
       "intents": [
@@ -11225,7 +11989,9 @@
         "不適用於生產環境緊急熱修復",
         "無法替代純靜態分析工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-plugins-official": {
       "intents": [
@@ -11257,7 +12023,9 @@
         "不適用於非Claude Code平台的插件需求",
         "無法替代需深度修改官方插件行為的進階用例"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "executor": {
       "intents": [
@@ -11288,7 +12056,9 @@
         "必須完全離線、無法額外部署中間層服務的受限環境",
         "對端到端延遲要求極高的即時控制系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "howtheytest": {
       "intents": [
@@ -11319,7 +12089,9 @@
         "需要特定語言測試教學或互動練習課程的使用者",
         "想要直接套用即插即用測試套件的實作型開發者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "code-review-skill": {
       "intents": [
@@ -11351,7 +12123,9 @@
         "希望直接透過 npm/pip 套件無縫串入 CI 管線的自動化需求",
         "需要單一工具完全承擔安全合規把關的嚴格的生產審計流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "first-principles-skill": {
       "intents": [
@@ -11378,7 +12152,9 @@
         "問題已有標準化最佳實踐",
         "需要執行程式碼的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "5-whys-skill": {
       "intents": [
@@ -11405,7 +12181,9 @@
         "隨機性硬體故障",
         "需要直接提供修復程式碼的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mermaid-syntax-skill": {
       "intents": [
@@ -11433,7 +12211,9 @@
         "需要直接匯出 PNG 或 SVG 圖片",
         "需要互動式圖表編輯功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-skills-manager": {
       "intents": [
@@ -11464,7 +12244,9 @@
         "需要為不同代理維護差異化技能集",
         "依賴 Windows 原生路徑解析的環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "reactphp-filesystem": {
       "intents": [
@@ -11494,7 +12276,9 @@
         "Laravel/Symfony 傳統請求-回應架構",
         "單一檔案批次處理的低併發需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sequential-thinking-skill": {
       "intents": [
@@ -11524,7 +12308,9 @@
         "非 Claude Code 生態系的整合",
         "不需要保留跨次對話記憶的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "appkit": {
       "intents": [
@@ -11556,7 +12342,9 @@
         "要完全自行實作錢包邏輯且不使用 SDK 的專案",
         "原生行動應用程式（無網頁檢視層）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tencentdb-agent-memory": {
       "intents": [
@@ -11586,7 +12374,9 @@
         "需要次秒級即時響應的串流應用",
         "agent 之間不需要跨會話共享記憶的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "react-d3-tree": {
       "intents": [
@@ -11616,7 +12406,9 @@
         "非階層資料的網路圖或流程圖",
         "只需靜態展示且不需要互動的簡單樹狀顯示"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-systematic-trading": {
       "intents": [
@@ -11646,7 +12438,9 @@
         "已有完整後測結果需求的使用者",
         "尋求即刻部署交鑰匙系統者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-solidity": {
       "intents": [
@@ -11674,7 +12468,9 @@
         "查詢即時鏈上數據的場景",
         "替代官方文件與編譯器工具的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-for-beginners": {
       "intents": [
@@ -11703,7 +12499,9 @@
         "追求生產級部署指導的使用者",
         "專攻 NLP 或強化學習的特定領域需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kaneo": {
       "intents": [
@@ -11729,7 +12527,9 @@
         "需要完整的資源管理與進階報告",
         "不想自己維護伺服器"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "jcode": {
       "intents": [
@@ -11758,7 +12558,9 @@
         "生產環境的多 Agent 協調",
         "需要在 IDE 裡有 GUI 介面的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "evolver": {
       "intents": [
@@ -11784,7 +12586,9 @@
         "不需要記錄 agent 變更歷程",
         "靜態部署、沒有自我改進目標的 agent"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-engineering-from-scratch-zh": {
       "intents": [
@@ -11816,7 +12620,9 @@
         "不適合僅追求前沿研究主題的進階從業者",
         "不適合尋找基於專案的實作教程而非結構化課程的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ontology-ontio": {
       "intents": [
@@ -11848,7 +12654,9 @@
         "輕量級區塊鏈如 Hyperledger Fabric 已能满足需求時不建議使用",
         "因基礎設施和節點需求，不適合低資源環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "oh-my-hermes": {
       "intents": [
@@ -11880,7 +12688,9 @@
         "使用非 Hermes 代理框架或不相容系統的專案",
         "需要確定性單執行緒執行的即時系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "oh-my-hermes-salomondiei08": {
       "intents": [
@@ -11906,7 +12716,9 @@
         "僅需執行一次性腳本或簡單自動化任務",
         "專案技術架構不包含 Hermes Agent"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ui-ux-pro-max-skill-cn": {
       "intents": [
@@ -11932,7 +12744,9 @@
         "需要英文原版或尚未翻譯的最新功能說明",
         "非 UI/UX 設計領域的學習需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gsap-skills": {
       "intents": [
@@ -11958,7 +12772,9 @@
         "僅需簡單的 CSS 過渡或動畫即可達成效果",
         "專案依賴未包含 GSAP 庫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "design-md-chrome": {
       "intents": [
@@ -11992,7 +12808,9 @@
         "無法取代 Figma 或 Sketch 等專業設計工具處理視覺設計",
         "不適用於行動應用程式設計系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "edge-tts": {
       "intents": [
@@ -12026,7 +12844,9 @@
         "因基於 HTTP 請求而有延遲，不適合即時串流應用",
         "若需嚴格符合資料隱私規範則不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "easyvoice": {
       "intents": [
@@ -12060,7 +12880,9 @@
         "無法在離線或隔離網路環境中運作",
         "不應用於產生受版權保護的語音複製或模擬特定個人"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openai-edge-tts": {
       "intents": [
@@ -12091,7 +12913,9 @@
         "需要保證 SLA 可用度的正式生產環境",
         "需要語音克隆或客製化語音訓練的需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "text2video": {
       "intents": [
@@ -12121,7 +12945,9 @@
         "需要逐幀手動微調控制力的製作需求",
         "涉及特定授權素材或受版權保護內容的影片"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "computer": {
       "intents": [
@@ -12153,7 +12979,9 @@
         "需要超過 Durable Object 生命週期限制的長期持久進程",
         "需要直接存取傳統 VM 層級資源或核心功能的工作負載"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "loopx": {
       "intents": [
@@ -12184,7 +13012,9 @@
         "只會跑一次的任務",
         "循環間要維持狀態的應用程式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pdf-inspector": {
       "intents": [
@@ -12215,7 +13045,9 @@
         "PDF 高度加密或已損毀",
         "要直接做 OCR 辨識（不支援，需路由外部服務）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deepseek-reasonix": {
       "intents": [
@@ -12243,7 +13075,9 @@
         "單純分類、不需要推理的任務",
         "要求延遲低於 100ms 的即時應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "supervision": {
       "intents": [
@@ -12274,7 +13108,9 @@
         "不適用於模型訓練或微調工作流程",
         "不適合需要客製化最佳化的即時影片處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "next.js": {
       "intents": [
@@ -12305,7 +13141,9 @@
         "需要 iOS/Android 特定功能的原生行動應用程式開發",
         "需要持久 WebSocket 連線的即時協作應用程式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tailwindcss": {
       "intents": [
@@ -12336,7 +13174,9 @@
         "對於樣式需求簡單的靜態網頁來說過於複雜",
         "當開發者偏好語意化 CSS 類別命名時並非理想選擇"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "karpathy-llm-wiki": {
       "intents": [
@@ -12363,7 +13203,9 @@
         "需要最新的官方文件替代方案",
         "想要即時互動的 LLM 實驗環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "jetbrains-cc-gui": {
       "intents": [
@@ -12389,7 +13231,9 @@
         "需要即時協作編輯的回覆情境",
         "只要靜態分析、不需要 AI 解讀功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "crm": {
       "intents": [
@@ -12416,7 +13260,9 @@
         "只需要輕量電子表格或簡易聯絡人管理就夠了",
         "沒有客製化開發能力卻需要大量第三方整合"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "generative-ai-for-beginners": {
       "intents": [
@@ -12443,7 +13289,9 @@
         "已經熟悉生成式 AI 需要進階研究的經驗者",
         "沒有 Azure 雲端環境不想用 Azure 生態的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cherry-studio": {
       "intents": [
@@ -12470,7 +13318,9 @@
         "只想用單一 AI 工具、不需要多元模型切換的使用者",
         "不需要自主代理功能、只要簡單對話的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "goose": {
       "intents": [
@@ -12497,7 +13347,9 @@
         "不需要 AI 實際執行命令、只想要文字建議的使用者",
         "沒有本地開發環境、純網頁端使用的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sglang": {
       "intents": [
@@ -12522,7 +13374,9 @@
         "不適合需要微調模型的場景",
         "不適合 CPU -only 的運行環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "llamafactory": {
       "intents": [
@@ -12547,7 +13401,9 @@
         "不適合已經完美的模型",
         "不適合不需要微調的應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "qlib": {
       "intents": [
@@ -12572,7 +13428,9 @@
         "不適合沒有量化背景的初學者",
         "不適合不需要自動化交易的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-n8n-templates": {
       "intents": [
@@ -12599,7 +13457,9 @@
       "negative": [
         "沒有 n8n 執行環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "qwenpaw": {
       "intents": [
@@ -12624,7 +13484,9 @@
       "negative": [
         "不想自行維護伺服器"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kimi-k3-in-c": {
       "intents": [
@@ -12650,7 +13512,9 @@
       "negative": [
         "需要 GPU 加速推論"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "khoj": {
       "intents": [
@@ -12682,7 +13546,9 @@
         "不需要自行託管、願意直接用商業服務的場景",
         "只需要簡單問答、不需要代理自動化能力的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome": {
       "intents": [
@@ -12709,7 +13575,9 @@
         "需要實際安裝或執行某項工具的場景",
         "需要即時答案而非資源導航的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freecodecamp": {
       "intents": [
@@ -12737,7 +13605,9 @@
         "已經有一定基礎、不需要入門課程的學習者",
         "付費線上課程平台才能滿足的進階主題"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-python": {
       "intents": [
@@ -12763,7 +13633,9 @@
       "negative": [
         "不適用需要商業授權的封閉函式庫搜尋"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "996-icu": {
       "intents": [
@@ -12786,7 +13658,9 @@
       "negative": [
         "不適用尋找技術解決方案或程式碼開發需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "react": {
       "intents": [
@@ -12812,7 +13686,9 @@
       "negative": [
         "不適用需要直接操作 DOM 的低層級控制需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "linux": {
       "intents": [
@@ -12840,7 +13716,9 @@
         "不需編譯、不想設定環境的即用型 OS 需求",
         "Windows 或 macOS 原生開發環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "python": {
       "intents": [
@@ -12868,7 +13746,9 @@
         "需要保證實作完全由人工審核的高風險產線環境",
         "不需要 Python 語法的演算法需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "vue": {
       "intents": [
@@ -12897,7 +13777,9 @@
         "後端或資料庫相關開發",
         "完全不涉及前端 UI 的純後端服務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "computer-science": {
       "intents": [
@@ -12925,7 +13807,9 @@
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "system-prompts-and-models-of-ai-tools": {
       "intents": [
@@ -12952,7 +13836,9 @@
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "autogpt": {
       "intents": [
@@ -12981,7 +13867,9 @@
         "不適合需要低延遲即時響應的線上 API 服務",
         "不適合單一問答或簡單文字分類等輕量任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "minimax-h3": {
       "intents": [
@@ -13013,7 +13901,9 @@
         "需要專家級精準度且未經過微調的高度專業領域任務",
         "需要嚴格符合監管行業標準的使用情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "prime-agent": {
       "intents": [
@@ -13043,7 +13933,9 @@
         "需要嚴格確定性輸出且不容許迭代空間的任務",
         "對延遲極其敏感的即時系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "qm": {
       "intents": [
@@ -13073,7 +13965,9 @@
         "即時高頻交易系統",
         "不需要基於代理自動化的需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "anydoc": {
       "intents": [
@@ -13105,7 +13999,9 @@
         "不適合需要保留複雜版面或視覺格式時使用",
         "不適合已具備專屬文件管線的大規模批量處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "aos-ce": {
       "intents": [
@@ -13135,7 +14031,9 @@
         "不適合單一用途的非代理工作流",
         "不推薦在合規要求指定使用專有或閉源代理框架時採用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kimi-k3": {
       "intents": [
@@ -13164,7 +14062,9 @@
         "避免用於對延遲有嚴格要求的即時應用程式",
         "不建議用於需要小眾專業知識的高度專門化領域"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "x4g": {
       "intents": [
@@ -13195,7 +14095,9 @@
         "不建議用於只要寫幾行的一次性腳本",
         "不適用於缺乏現代化相依性管理的舊系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "scroll-world": {
       "intents": [
@@ -13226,7 +14128,9 @@
         "不適用於只需展示文字圖片的簡易資訊頁",
         "行動裝置優先的網站不適用，滾動 3D 渲染可能拖慢效能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "turbo-fieldfare": {
       "intents": [
@@ -13257,7 +14161,9 @@
         "不適用於超過 26B 參數的更大規模模型",
         "不支援非 Apple Silicon 架構的電腦"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "decimen-optical-transfer": {
       "intents": [
@@ -13288,7 +14194,9 @@
         "非光學訊號處理",
         "參數不完整時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gpt-5-6-instruct": {
       "intents": [
@@ -13318,7 +14226,9 @@
         "跨模型測試",
         "未經驗證的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gc-minimal-zine-poster": {
       "intents": [
@@ -13348,7 +14258,9 @@
         "強烈視覺效果的企業品牌",
         "複雜多元素構圖"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "no-ai-slop": {
       "intents": [
@@ -13376,7 +14288,9 @@
         "需要保留原始 AI 生成內容供對照分析時",
         "技術文件包含必須精確保留的專業術語時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "video-shotcraft": {
       "intents": [
@@ -13406,7 +14320,9 @@
         "需要手動微調細節而非依賴模板時",
         "環境不支援 AI Agent 自動呼叫技能時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "os-taxonomy": {
       "intents": [
@@ -13435,7 +14351,9 @@
         "用於硬體規格管理時",
         "用於授權合規追蹤時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "bento": {
       "intents": [
@@ -13462,7 +14380,9 @@
         "需要高度客製化的企業級權限控管與複雜工作流程自動化作業",
         "依賴大型社群插件生態或特定雲端整合功能（如與大量第三方 SaaS 深度串接）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "geolibre": {
       "intents": [
@@ -13492,7 +14412,9 @@
         "用於大型企業級空間資料庫的正式部署，且對權限控管與系統整合有嚴格要求",
         "需要即時GPS追蹤或高精度測繪的嵌入式系統應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "t3code": {
       "intents": [
@@ -13524,7 +14446,9 @@
         "沒有任何已安裝的支援代理，或代理環境尚未正確設定",
         "需要完全離線的本地化控制，且無法容忍任何網路依賴"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cadam": {
       "intents": [
@@ -13552,7 +14476,9 @@
         "需要嚴密公差標註的製圖需求",
         "複雜有機曲面的造型設計"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "trellis2": {
       "intents": [
@@ -13579,7 +14505,9 @@
         "需要符合工程規範的尺寸精度",
         "即時運算的嵌入式裝置部署"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "block-buzz": {
       "intents": [
@@ -13606,7 +14534,9 @@
         "需要通過企業資安稽核的正式通訊",
         "要求即時加密通話的商業應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hermes-plugins": {
       "intents": [
@@ -13636,7 +14566,9 @@
         "不適合對穩定性要求極高的生產環境",
         "不建議一次安裝全部 33 個 plugin"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hermes-skill-factory": {
       "intents": [
@@ -13665,7 +14597,9 @@
         "不適合用於一次性、不會重複執行的任務",
         "複雜多步驟流程可能產生品質不佳的 skill"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hermesskill": {
       "intents": [
@@ -13693,7 +14627,9 @@
         "不適合用於關鍵生產流程",
         "skill 內容有限，複雜自動化需求不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "youtube-skills": {
       "intents": [
@@ -13727,7 +14663,9 @@
         "大量批次抓取影片資料（需遵守API配額）",
         "處理即時直播串流內容"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "oh-my-hermes-rlaope": {
       "intents": [
@@ -13758,7 +14696,9 @@
         "同時安裝witt3rd/Salomondiei08版本的oh-my-hermes",
         "需要深度自訂非記憶功能的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "skills": {
       "intents": [
@@ -13790,7 +14730,9 @@
         "純離線或僅本地執行的應用",
         "不需要即時API存取的需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ladybird": {
       "intents": [
@@ -13819,7 +14761,9 @@
         "不適合用於日常生產環境的網頁瀏覽",
         "需要完整支援所有現代網頁應用程式與擴充功能的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "celld": {
       "intents": [
@@ -13848,7 +14792,9 @@
         "不適合完全無狀態的簡單應用",
         "團隊缺乏分散式系統實戰經驗的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fanqiang": {
       "intents": [
@@ -13877,7 +14823,9 @@
         "企業生產環境需符合資安防護規範的情境",
         "公共電腦或共享裝置上的使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "reverse-skill": {
       "intents": [
@@ -13904,7 +14852,9 @@
         "即時事件回應需要人工接手的情境",
         "與安全研究無關的通用軟體開發"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codexbar": {
       "intents": [
@@ -13931,7 +14881,9 @@
         "需要跨 Windows 或 Linux 平台使用",
         "需要即時趨勢圖表"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-scripts": {
       "intents": [
@@ -13958,7 +14910,9 @@
         "需要完全無外部依賴的自包含腳本",
         "需要企業級 SLA 保證的生產系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "summarize": {
       "intents": [
@@ -13989,7 +14943,9 @@
         "不適合生成原創內容或創意寫作",
         "總結高度技術性或專業性檔案時可能遺漏細微語境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "repobar": {
       "intents": [
@@ -14020,7 +14976,9 @@
         "不適合需要團隊協作的企業級 CI/CD 儀表板",
         "非 GitHub 平臺如 GitLab、Bitbucket 或 Azure DevOps 不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "labs-oo-agents": {
       "intents": [
@@ -14048,7 +15006,9 @@
       "negative": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dashi-taskboard": {
       "intents": [
@@ -14081,7 +15041,9 @@
         "不適合需要雲端同步的大團隊",
         "不適合需要複雜權限管理的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "conversation-steganography": {
       "intents": [
@@ -14114,7 +15076,9 @@
         "需要一定的技術背景才能使用",
         "可能涉及倫理疑慮"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nativ": {
       "intents": [
@@ -14147,7 +15111,9 @@
         "需要一定的硬體規格",
         "不適合需要雲端擴展性的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex-router": {
       "intents": [
@@ -14179,7 +15145,9 @@
         "沒有切換 DeepSeek / Kimi 需求時不必要",
         "非 OpenAI 相容格式的環境不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "story-to-handdrawn-video": {
       "intents": [
@@ -14211,7 +15179,9 @@
         "非手繪風格的動畫需求不適用",
         "不是中文故事文案的輸入不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "findphone": {
       "intents": [
@@ -14243,7 +15213,9 @@
         "Windows / Linux 環境不適用",
         "需要即時 GPS 高精度定位時不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openreply": {
       "intents": [
@@ -14269,7 +15241,9 @@
         "不適用於需要多平台統一中繼的商業級系統",
         "無法替代付費方案的人工客服整合功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openmouse": {
       "intents": [
@@ -14295,7 +15269,9 @@
         "不適用於未支援的藍牙無線滑鼠",
         "無法進行微動開關壽命檢測等進階診斷"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "axisagentic": {
       "intents": [
@@ -14321,7 +15297,9 @@
         "不適用單一對話窗口的簡單問答場景",
         "無法直接整合非標準化的商業 API"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "moviebox-tui": {
       "intents": [
@@ -14350,7 +15328,9 @@
         "需要圖形桌面環境才能使用的場景",
         "偏好滑鼠操作的用戶"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "penguin-harness": {
       "intents": [
@@ -14380,7 +15360,9 @@
         "需要訓練模型本身的場景",
         "依賴 SaaS 訂閱服務的使用情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cue": {
       "intents": [
@@ -14408,7 +15390,9 @@
         "Windows 或 Linux 環境",
         "需要完整雲端會議記錄服務的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "firecrawl": {
       "intents": [
@@ -14437,7 +15421,9 @@
         "不適用於離線環境",
         "不需要處理大量歷史資料存檔"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "diagram-design": {
       "intents": [
@@ -14467,7 +15453,9 @@
         "不適用於即時互動儀表板",
         "不需要 3D 渲染或照片編輯"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "semantica": {
       "intents": [
@@ -14496,7 +15484,9 @@
         "不適用於對延遲敏感的微任務",
         "不需要圖遍歷開銷的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mediacrawler": {
       "intents": [
@@ -14529,7 +15519,9 @@
         "不適合未經同意爬取個人隱私資料",
         "高頻爬取可能違反平台服務條款"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "paperclip": {
       "intents": [
@@ -14560,7 +15552,9 @@
         "不適用於單一 Agent 的個人生產力任務",
         "對於簡單自動化需求過於龐大"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lifeos": {
       "intents": [
@@ -14590,7 +15584,9 @@
         "不適用於需要立即決策的緊急情境",
         "不適合需要非迭代一次性解決的方案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "weathernext": {
       "intents": [
@@ -14623,7 +15619,9 @@
         "若你的應用要求次公里級別的微氣候細節，如城市熱島效應，此工具不適用。",
         "如果你的作業依賴即時雷達或衛星資料的數據融合，這個工具並非為此設計。"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "code-graph-rag": {
       "intents": [
@@ -14655,7 +15653,9 @@
         "需要即時偵錯或動態追蹤執行階段狀態的除錯情境。",
         "處理的是非程式碼知識庫，如技術文件或無結構化文字。"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dopamine": {
       "intents": [
@@ -14688,7 +15688,9 @@
         "設備執行低於 iOS 15 或高於 26.0.1 的系統版本。",
         "裝置內存有無法承受遺失風險的關鍵個人或商業資料。"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "comfyui-mcp": {
       "intents": [
@@ -14715,7 +15717,9 @@
         "純雲端影像生成平台",
         "偏好純節點手動操作的流程"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codex-autorunner": {
       "intents": [
@@ -14741,7 +15745,9 @@
         "需要即時互動的程式設計協作",
         "單一簡單的查詢修正"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "plannotator": {
       "intents": [
@@ -14767,7 +15773,9 @@
         "即時配對編程會議",
         "僅單檔案輕微修改的非複雜任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "firstmate": {
       "intents": [
@@ -14797,7 +15805,9 @@
         "任務之間有嚴格先後順序、不能並行處理",
         "電腦運算資源有限、跑不起多個代理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "delegate-skills": {
       "intents": [
@@ -14826,7 +15836,9 @@
         "希望 AI 完全自主提交、不需要人工確認",
         "需要即時回饋、不能等 AI 慢慢做完"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "rapid-mlx": {
       "intents": [
@@ -14856,7 +15868,9 @@
         "需要多台機器水平擴展的生產環境",
         "要跑超過 70B 參數的超大模型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "yfinance": {
       "intents": [
@@ -14887,7 +15901,9 @@
         "要求高可用性與 SLA 保證的生產級金融系統",
         "要存取非 Yahoo Finance 的專有資料源"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "grill-with-docs": {
       "intents": [
@@ -14917,7 +15933,9 @@
         "處於實作階段、需要編寫或修改程式碼",
         "沒有現成的專案上下文或設計草案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "moonshine": {
       "intents": [
@@ -14948,7 +15966,9 @@
         "需要企業級支援與 SLA 保證的生產系統",
         "涉及多語言語音處理且未額外訓練模型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "harness-sdk": {
       "intents": [
@@ -14979,7 +15999,9 @@
         "只需要單輪對話的簡單聊天機器人",
         "不需跨平台或跨模型協調的基礎 API 整合專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "smolagents": {
       "intents": [
@@ -15010,7 +16032,9 @@
         "非 Python 語言環境",
         "需要視覺 GUI 介面的複雜應用程式"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cockpit-tools": {
       "intents": [
@@ -15042,7 +16066,9 @@
         "需要深入 IDE 原生整合而非帳號層級管理的使用者",
         "需嚴格合規與稽核日誌記錄的企業環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "hello-agents": {
       "intents": [
@@ -15076,7 +16102,9 @@
         "不適合尋找嶄新agent架構研究論文的進階研究人員",
         "不適合已對agent系統有深入認識，僅需快速參考的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "500-ai-agents-projects": {
       "intents": [
@@ -15108,7 +16136,9 @@
         "不適合缺乏程式設計經驗的初學者",
         "不適合需要即時支援、服務水準協議或企業級托管服務的情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tree-sitter": {
       "intents": [
@@ -15139,7 +16169,9 @@
         "對於單純一次性的文字解析任務來說過於龐大",
         "需要事前撰寫文法，對於臨時性或很少使用的語言而言不切實際"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sqlite": {
       "intents": [
@@ -15169,7 +16201,9 @@
         "需透過網路存取的分散式系統",
         "需要儲存程序或觸發程序等進階功能的應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "rtk": {
       "intents": [
@@ -15197,7 +16231,9 @@
         "除錯 token 層級 LLM 行為或提示工程",
         "指令本身 token 使用量已很少"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "threejs": {
       "intents": [
@@ -15227,7 +16263,9 @@
         "伺服器端渲染或非瀏覽器環境",
         "不需要即時 3D 渲染的基本視覺化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "imgtothree": {
       "intents": [
@@ -15255,7 +16293,9 @@
         "高精度建築空間建模",
         "醫療影像分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ghost": {
       "intents": [
@@ -15283,7 +16323,9 @@
         "多權限協同編稿平台",
         "企業級多子網域架構"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "moneyprinterv2": {
       "intents": [
@@ -15311,7 +16353,9 @@
         "需要人工逐幀剪輯的專案",
         "非Twitter平台的內容發布"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "open-saas": {
       "intents": [
@@ -15344,7 +16388,9 @@
         "不遵循 SaaS 或訂閱商業模式的應用程式",
         "需要在全託管框架層之外對基礎設施擁有完全控制權"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "theremotefreelancer": {
       "intents": [
@@ -15374,7 +16420,9 @@
         "尋找非技術類工作機會",
         "需要直接申請工作而非資源列表"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-remote-job": {
       "intents": [
@@ -15403,7 +16451,9 @@
         "高度專業或利基型職位需求",
         "需要即時工作提醒通知"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "best-deals-bot": {
       "intents": [
@@ -15432,7 +16482,9 @@
         "主營中文小衆電商平臺",
         "需私有網域或品牌官網部署"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "qwen-mm-plugins": {
       "intents": [
@@ -15459,7 +16511,9 @@
         "需深度客製化多模態處理邏輯",
         "不依賴 Qwen 模型生態的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "comfyui": {
       "intents": [
@@ -15488,7 +16542,9 @@
         "無需複雜參數調整的簡單繪圖",
         "非 Stable Diffusion 架構的生圖任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "warp": {
       "intents": [
@@ -15515,7 +16571,9 @@
         "常規 RAM 伺服器且無 NVMe/NVM 可用",
         "需要依賴 Python 或 JVM 生態系的應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gathered-scenes-zine-skill": {
       "intents": [
@@ -15541,7 +16599,9 @@
         "非 Claude 系 agent 框架",
         "不需要外部技能模組的純文字對話應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "phone-harness": {
       "intents": [
@@ -15569,7 +16629,9 @@
         "純網頁或後端伺服器自動化",
         "不需要操作實體手機螢幕的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "oil-motion": {
       "intents": [
@@ -15595,7 +16657,9 @@
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "wechat-ai": {
       "intents": [
@@ -15622,7 +16686,9 @@
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "h3-c": {
       "intents": [
@@ -15648,7 +16714,9 @@
       "negative": [
         "不支援 Windows 或 Linux"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openbb": {
       "intents": [
@@ -15677,7 +16745,9 @@
         "不適合用於高頻交易系統即時決策",
         "不直接提供券商API串接"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-hedge-fund": {
       "intents": [
@@ -15706,7 +16776,9 @@
         "不建議用於真實資金操作",
         "不支援即時市場數據饋線"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "vnpy": {
       "intents": [
@@ -15735,7 +16807,9 @@
         "不支援非Python語言擴充",
         "不適合缺乏技術支援的小型投資者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fincept-terminal": {
       "intents": [
@@ -15762,7 +16836,9 @@
         "需要實時交易接口",
         "依賴Web技術棧"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "backtrader": {
       "intents": [
@@ -15789,7 +16865,9 @@
         "依賴持續更新的專案維護",
         "需要商業級技術支援"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lean": {
       "intents": [
@@ -15817,7 +16895,9 @@
         "需要簡易配置的入門工具",
         "不需要實盤交易功能的純回測需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fingpt": {
       "intents": [
@@ -15848,7 +16928,9 @@
         "不進行金融情緒分析或預測的場景",
         "不需要預訓練模型自行訓練"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "finrobot": {
       "intents": [
@@ -15879,7 +16961,9 @@
         "不需要 AI 代理平台或自動化交易",
         "對系統穩定性要求極高，無法接受新功能測試階段的不確定性"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nofx": {
       "intents": [
@@ -15910,7 +16994,9 @@
         "不進行自動化交易或只需手動執行",
         "不需要支援多個交易所或加密貨幣市場"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-berkshire": {
       "intents": [
@@ -15936,7 +17022,9 @@
       "negative": [
         "不適用短線交易或技術分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tradingagents-cn": {
       "intents": [
@@ -15960,7 +17048,9 @@
       "negative": [
         "不適用非中國大陸股市"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tradingagents-astock": {
       "intents": [
@@ -15984,7 +17074,9 @@
       "negative": [
         "不支援進階策略或演算法交易"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "go-stock": {
       "intents": [
@@ -16015,7 +17107,9 @@
         "不適合需要官方認證交易系統的環境",
         "不適合沒有編譯環境的 Windows 純圖形操作者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mars": {
       "intents": [
@@ -16046,7 +17140,9 @@
         "不適合需要商業支援合約的企業專案",
         "不適合要求即時上線運作的交易系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "avernet": {
       "intents": [
@@ -16077,7 +17173,9 @@
         "不適合要求高穩定度與完整 SLA 的商業系統",
         "不適合單一單體式應用架構的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deeptutor": {
       "intents": [
@@ -16102,7 +17200,9 @@
         "快速查資料用",
         "大量批量處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "slavingia-skills": {
       "intents": [
@@ -16127,7 +17227,9 @@
         "需要專業教育導向輔導",
         "需要瀏覽器自動化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-openclaw-skills": {
       "intents": [
@@ -16151,7 +17253,9 @@
         "需要教育類輔導",
         "需要翻譯或寫作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "huggingface-skills": {
       "intents": [
@@ -16176,7 +17280,9 @@
       "negative": [
         "非機器學習相關的常規檔案轉換"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "trailofbits-skills": {
       "intents": [
@@ -16201,7 +17307,9 @@
       "negative": [
         "非安全相關的效能優化任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mengto-skills": {
       "intents": [
@@ -16226,7 +17334,9 @@
       "negative": [
         "後端資料庫設計或系統運維任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "microsoft-official-skills": {
       "intents": [
@@ -16251,7 +17361,9 @@
         "不支援 Mac 系統",
         "無法處理非文字型資料"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nvidia-skills": {
       "intents": [
@@ -16276,7 +17388,9 @@
         "不支援 AMD 顯卡",
         "無法用於 CPU 純運算場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "3b1b-manim": {
       "intents": [
@@ -16301,7 +17415,9 @@
         "不適用商業影片製作",
         "無法直接匯出高畫質 MP4"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "manim-community": {
       "intents": [
@@ -16331,7 +17447,9 @@
         "不適合需要與原始 Manim API 完全相容的遷移專案",
         "不適用於非數學類的通用動畫製作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "manim-ml": {
       "intents": [
@@ -16360,7 +17478,9 @@
         "不適合非機器學習領域的通用動畫需求",
         "不適用於需要獨立完整 Manim 功能的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "3b1b-videos": {
       "intents": [
@@ -16390,7 +17510,9 @@
         "不適合需要商業授權或修改後公開使用的專案",
         "不適用於不需要 Manim 環境的獨立動畫製作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kronos": {
       "intents": [
@@ -16418,7 +17540,9 @@
         "不適合處理非金融領域的自然語言任務",
         "不適用於即時自動化實盤交易（未經風險防護前）"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ragflow": {
       "intents": [
@@ -16446,7 +17570,9 @@
         "不適合在僅限瀏覽器的輕量級環境中使用",
         "不適合資源極有限的伺服器"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "everyone-can-use-english": {
       "intents": [
@@ -16474,7 +17600,9 @@
         "不是可以直接呼叫的 API 或程式函式庫",
         "無法自動幫你做練習，需人工主動投入時間"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sdkmate": {
       "intents": [
@@ -16504,7 +17632,9 @@
         "需要管理 Terraform、CMake 等數百種工具鏈時不適用，建議改用 mise",
         "僅需單一語言版本管理的輕量場景，用 nvm 等單一工具更簡單"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deepseek-harness": {
       "intents": [
@@ -16528,7 +17658,9 @@
       "negative": [
         "目前為開發者預覽版，API 可能隨時破壞性變更，不適合直接用於生產環境依賴"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "codewiki": {
       "intents": [
@@ -16558,7 +17690,9 @@
         "單一檔案的簡短註解生成不適用，這種需求直接用 JSDoc 或 docstring 即可",
         "不需要跨模組互動分析的極小型專案不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "chinatextbook": {
       "intents": [
@@ -16584,7 +17718,9 @@
         "不是可執行工具，無法做程式化處理",
         "部分檔案受版權限制，僅限個人學習與教育研究"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "scrapling": {
       "intents": [
@@ -16612,7 +17748,9 @@
         "不適用於需要嚴格遵循 robots.txt 的合規抓取場景",
         "高頻率大規模爬取需自行處理代理輪替"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code-skill-scrapling": {
       "intents": [
@@ -16639,7 +17777,9 @@
         "不適用於分散式大規模爬取，應改用 Scrapling Spiders",
         "繞過 Cloudflare 僅供合法授權網站使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "spec-kit": {
       "intents": [
@@ -16672,7 +17812,9 @@
         "一次性小型任務不需要",
         "其他 IDE 支援有限"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "watermarks-remover": {
       "intents": [
@@ -16705,7 +17847,9 @@
         "不適用於 DRM 保護內容",
         "不得用於規避他人版權保護"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-deepseek-agent": {
       "intents": [
@@ -16737,7 +17881,9 @@
         "不適用於其他 LLM 提供商的整合需求",
         "部分第三方工具設定可能隨版本演進而過時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "janus": {
       "intents": [
@@ -16770,7 +17916,9 @@
         "只需文字對話或文本生成，不需要視覺理解或影像生成的情境",
         "無 GPU 設備，無法運行較大規模多模態模型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-desktop": {
       "intents": [
@@ -16803,7 +17951,9 @@
         "行動端環境（iOS / Android）無法使用",
         "純終端機 CLI 工作流不適合，這是桌面級應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-desktop-bruc3van": {
       "intents": [
@@ -16836,7 +17986,9 @@
         "純無頭伺服器（Headless Server）部署不適合",
         "遇到執行時核心 Bug 不能回報此客戶端，需回報官方"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kilocode": {
       "intents": [
@@ -16869,7 +18021,9 @@
         "無需 AI 功能的純輕量文字編輯器（僅語法高亮）",
         "未配置沙盒防護、直接給予生產伺服器最高執行權限的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "llama-index": {
       "intents": [
@@ -16902,7 +18056,9 @@
         "只需簡單字串替換或極輕量正則處理的任務",
         "無需構建檢索系統的基礎文字編輯需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stable-diffusion": {
       "intents": [
@@ -16935,7 +18091,9 @@
         "只需簡單圖像編輯、不需底層控制的場景",
         "依賴豐富外掛生態與即時優化加速庫（如 TensorRT）的需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opencode": {
       "intents": [
@@ -16967,7 +18125,9 @@
         "不具備技術背景、不會改設定的人",
         "希望被單一廠商全面兜底的用戶"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-mac": {
       "intents": [
@@ -16998,7 +18158,9 @@
         "想要單一完整軟體包而非工具清單的人",
         "不需要分類導航、只想快速下載的用戶"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "llms-from-scratch": {
       "intents": [
@@ -17030,7 +18192,9 @@
         "缺乏機器學習基礎、看不懂數學推導的讀者",
         "沒有 GPU 卻想實作完整訓練流程的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figures4papers": {
       "intents": [
@@ -17062,7 +18226,9 @@
         "以 3D、GIS 地圖或 Illustrator / Figma 為主的工作流",
         "純探索性 EDA 繪圖，沒有出版目標"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deepseek-harness-desktop": {
       "intents": [
@@ -17093,7 +18259,9 @@
         "macOS 未 Apple 公證、Windows 未商業簽章，企業或嚴謹環境可能被攔截",
         "僅是桌面宿主，不提供官方 Harness 以外的額外 Agent 功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freedomain": {
       "intents": [
@@ -17121,7 +18289,9 @@
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "photo-abstract-editorial": {
       "intents": [
@@ -17148,7 +18318,9 @@
         "商業用途不適用",
         "沒有 API 可供整合"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "zouyuxuan122-deepseek-harness-eac": {
       "intents": [
@@ -17175,7 +18347,9 @@
         "不支援 macOS 系統",
         "進階設定功能較簡化"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "teableio-teable": {
       "intents": [
@@ -17202,7 +18376,9 @@
         "百萬行以上大量資料效能未驗證",
         "企業級權限管控仍不成熟"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nocodb-nocodb": {
       "intents": [
@@ -17235,7 +18411,9 @@
         "大量併發寫入的高效能需求",
         "需要高度客製化 UI 的企業應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "simonw-datasette": {
       "intents": [
@@ -17267,7 +18445,9 @@
         "需要處理大量併發 Web 流量的公開服務",
         "GB 以上大型 SQLite 檔案的高效能匯入需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gristlabs-grist-core": {
       "intents": [
@@ -17299,7 +18479,9 @@
         "需要處理超大型電子表格的效能需求",
         "需要豐富第三方插件生態的擴充場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "baserow-baserow": {
       "intents": [
@@ -17328,7 +18510,9 @@
         "需要進階報表視覺化功能",
         "業務邏輯過於複雜需程式邏輯支援"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "apache-superset": {
       "intents": [
@@ -17357,7 +18541,9 @@
         "需要即時大數據處理",
         "高度客製化視覺設計需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "evidence-dev-evidence": {
       "intents": [
@@ -17385,7 +18571,9 @@
         "非技術背景使用者",
         "需要進階視覺化特效"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sqlmesh-sqlmesh": {
       "intents": [
@@ -17408,7 +18596,9 @@
         "生態系較小，範例與插件有限",
         "學習曲線略陡，不適合追求零門檻的工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sqlitebrowser-sqlitebrowser": {
       "intents": [
@@ -17430,7 +18620,9 @@
         "缺乏進階功能如復原日誌分析、遠端連線",
         "不適合需要高併發或集群管理的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dashi-ppt-skill": {
       "intents": [
@@ -17453,7 +18645,9 @@
         "不適合需要精細版面控制的專業印刷需求",
         "生態系較小，自訂模板與插件功能受限"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deepseek-harness-desktop-anywhere": {
       "intents": [
@@ -17487,7 +18681,9 @@
         "未經過充分人工測試，可能存在相容性問題",
         "僅限 DeepSeek Harness 生態內使用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-dsh-plugin": {
       "intents": [
@@ -17520,7 +18716,9 @@
         "不適用於非 DeepSeek Harness 生態的 AI 工具",
         "內容來源為自動收集，建議人工審查後再採用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-routing-suite": {
       "intents": [
@@ -17554,7 +18752,9 @@
         "不適合需要手動逐步安裝的使用者",
         "內容可能包含未經驗證的組合，建議人工審查後啟用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "arc-task-gen": {
       "intents": [
@@ -17580,7 +18780,9 @@
         "需要人工逐題設計邏輯的場景",
         "即時互動式謎題生成需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-anchored-standard": {
       "intents": [
@@ -17606,7 +18808,9 @@
         "純 Python 技術棧的專案",
         "無需分階段啟用的簡單場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-web-ui": {
       "intents": [
@@ -17632,7 +18836,9 @@
         "純命令行操作環境",
         "無網路連線的離線場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "anti-slop": {
       "intents": [
@@ -17662,7 +18868,9 @@
         "不適合完全沒有型別註解的純 JS 專案",
         "不適用沒有整合 lint 流程的小型實驗性專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-better-sidebar": {
       "intents": [
@@ -17693,7 +18901,9 @@
         "不適合直接使用 VS Code 或 JetBrains 內建側邊欄的使用者",
         "不適用未安裝或未啟用 DSH 的開發環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mattpocock-skills": {
       "intents": [
@@ -17724,7 +18934,9 @@
         "不適合完全不用指令列或只想靠圖形介面操作的使用者",
         "不適用於完全不需要測試與設計審查的速成型原型"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "munder-difflin": {
       "intents": [
@@ -17754,7 +18966,9 @@
         "只需單一 CLI 工具即可完成的簡單編碼任務",
         "本機運算資源有限的环境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-memory": {
       "intents": [
@@ -17784,7 +18998,9 @@
         "需要即時共享狀態的即時協作編碼",
         "非編碼類的 AI 任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "deepseek-work": {
       "intents": [
@@ -17814,7 +19030,9 @@
         "需要 iOS/Android 原生支援的行動優先應用程式",
         "無需圖形介面的無頭伺服器環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "react-bits": {
       "intents": [
@@ -17845,7 +19063,9 @@
         "需要完整設計系統 token 規範的企業級 UI",
         "追求最小 bundle 大小的輕量頁面"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pi2dsh": {
       "intents": [
@@ -17875,7 +19095,9 @@
         "插件本身高度依賴 Pi 專屬進階功能的修改需求",
         "效能瓶頸會直接影響核心業務的即時處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "unlimited-ocr": {
       "intents": [
@@ -17905,7 +19127,9 @@
         "對處理時間有嚴格秒數限制的即時應用",
         "完全純英文文件且預算無法負擔模型部署成本"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tooljet": {
       "intents": [
@@ -17932,7 +19156,9 @@
       "negative": [
         "不適合需要高互動效能的公開客戶端應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "scientific-agent-skills": {
       "intents": [
@@ -17959,7 +19185,9 @@
       "negative": [
         "不適用於電商網站或一般商業網頁開發"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "google-deepmind-science-skills": {
       "intents": [
@@ -17985,7 +19213,9 @@
       "negative": [
         "不適合文字創作或非生命科學領域的通用開發任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-scientific-skills": {
       "intents": [
@@ -18015,7 +19245,9 @@
         "不適合需要單一穩定生產管線、不容許更新頻率參差不一的環境",
         "不適合追求一體成型、免維護的閉源軟體套件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-research-skills": {
       "intents": [
@@ -18046,7 +19278,9 @@
         "不適用於與 AI/ML 演算法研究無關的一般應用開發",
         "產生之研究假說與論文草稿仍需研究者親自驗證"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "humanlayer-skills": {
       "intents": [
@@ -18077,7 +19311,9 @@
         "不適用於純獨立封閉環境或非 Claude Code 的開發工具",
         "若只需單純代碼補齊而不需要 Agent 流程控制則效益有限"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "improve-claude-md": {
       "intents": [
@@ -18104,7 +19340,9 @@
         "極小型臨時專案（無自訂規範需求）",
         "非 Claude Code 體系之專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "build-iterated-agentic-loop": {
       "intents": [
@@ -18131,7 +19369,9 @@
         "一次性探勘性除錯任務",
         "缺乏 CI/CD 環境的本地封閉系統"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "design-control-loop": {
       "intents": [
@@ -18158,7 +19398,9 @@
         "模糊業務開發（無明確收斂目標）",
         "架構極度不穩定的初期專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "narrow-react-prop-types": {
       "intents": [
@@ -18188,7 +19430,9 @@
         "沒有型別系統的 JavaScript 專案",
         "需要動態開放多型傳參的無障礙容器組件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "show-me": {
       "intents": [
@@ -18217,7 +19461,9 @@
         "僅需行內代碼補齊的編輯場景",
         "需要高精度圖形設計的專業繪圖需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "free-claude-code": {
       "intents": [
@@ -18249,7 +19495,9 @@
         "嚴格依賴 Anthropic 官方商業 SLA 的場景",
         "無法允許本地開放埠號的受限網路環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-gpt-image-2": {
       "intents": [
@@ -18276,7 +19524,9 @@
         "不適合即時生成未經提示準備的圖片",
         "無法替代專業排版設計軟體"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "omarchy": {
       "intents": [
@@ -18302,7 +19552,9 @@
         "不適合無頭伺服器或最小化部署",
         "不適用於需完全掌控系統組件的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openlogi": {
       "intents": [
@@ -18328,7 +19580,9 @@
         "不支援非 HID++ 裝置或微軟/羅技其他品牌",
         "無法進行韌體更新或 Flow 跨裝置同步"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openhuman": {
       "intents": [
@@ -18353,7 +19607,9 @@
       "negative": [
         "需要多人即時同步協作的雲端團隊"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "canvas-project-manager": {
       "intents": [
@@ -18377,7 +19633,9 @@
       "negative": [
         "只需單一步驟的簡單繪圖操作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "car-commercial-storyboard": {
       "intents": [
@@ -18402,7 +19660,9 @@
       "negative": [
         "非汽車相關的產品廣告"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "car-model-skill": {
       "intents": [
@@ -18430,7 +19690,9 @@
         "不能計算貸款月供金額",
         "無法提供車輛事故記錄"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "film-master": {
       "intents": [
@@ -18457,7 +19719,9 @@
         "無法製作需要動態效果的動畫片段",
         "不適合單純設計Logo或icon"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "geography-video-effects": {
       "intents": [
@@ -18484,7 +19748,9 @@
         "不支援真實地形3D渲染需求",
         "不適合純抽象藝術創作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "internet-ad-director": {
       "intents": [
@@ -18514,7 +19780,9 @@
         "不適用於長篇 TVC 製作",
         "非靜態印刷或戶外廣告設計"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "jimeng-cli": {
       "intents": [
@@ -18543,7 +19811,9 @@
         "僅需文字生成任務",
         "無法連網環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lark-cli": {
       "intents": [
@@ -18572,7 +19842,9 @@
         "依賴視覺化介面的管理任務",
         "需完整 Lark API 功能場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "minimax-docx": {
       "intents": [
@@ -18600,7 +19872,9 @@
         "生成含複雜數學公式的科學文件",
         "大量批次處理數十萬份文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cognicode-core": {
       "intents": [
@@ -18628,7 +19902,9 @@
         "進行靜態程式碼品質檢查",
         "處理非程式碼的文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cognicode-mcp-driven": {
       "intents": [
@@ -18655,7 +19931,9 @@
         "進行代碼品質檢查",
         "處理非程式碼的存儲庫"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "eli5": {
       "intents": [
@@ -18686,7 +19964,9 @@
         "法律合約或醫療診斷的說明",
         "工程師技術規格文件"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "qwen-code": {
       "intents": [
@@ -18719,7 +19999,9 @@
         "沙盒化或受限的容器環境",
         "多人即時協作的程式設計會議"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "free-for-dev": {
       "intents": [
@@ -18750,7 +20032,9 @@
         "合規認證要求嚴格的金融或醫療系統",
         "需要供應商技術支援的商業級部署"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "3d-web-experience": {
       "intents": [
@@ -18781,7 +20065,9 @@
         "沒有 TypeScript 經驗的新手想快速上手的專案",
         "不需要即時協作與聊天功能的單純 3D 網頁"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "generative-ui": {
       "intents": [
@@ -18812,7 +20098,9 @@
         "想要直接使用、不需要自行修改或理解原理的成品",
         "非 React 技術棧的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "awesome-agentic-patterns": {
       "intents": [
@@ -18844,7 +20132,9 @@
         "需要特定程式語言實作的 pattern，本資源不包含程式碼",
         "搜尋時需要包含「awesome」字眼的資源清單"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figma-sds": {
       "intents": [
@@ -18877,7 +20167,9 @@
         "不使用 Figma Code Connect 的旧版流程",
         "只需要設計而不需要程式碼同步"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figma-mcp-server-guide": {
       "intents": [
@@ -18910,7 +20202,9 @@
         "使用不支援 MCP 的舊版 AI 工具",
         "想要直接修改 Figma 檔案內容"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figma-plugin-samples": {
       "intents": [
@@ -18943,7 +20237,9 @@
         "想要開發瀏覽器端擴充功能而非 Figma 內嵌外掛",
         "不需要學習只想直接套用成品"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figma-code-connect": {
       "intents": [
@@ -18974,7 +20270,9 @@
         "不適用于無Figma設計稿的純程式開發需求",
         "無法處理需要高度客製化的複雜動畫與互動"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "figma-community-resources": {
       "intents": [
@@ -19002,7 +20300,9 @@
         "不適用於需要實際編譯或執行功能的工具需求",
         "不適合尋找Figma官方文件以外的技術支援管道"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "mono-color-skill": {
       "intents": [
@@ -19032,7 +20332,9 @@
         "不適用於全彩印刷或多色階的影像處理需求",
         "不適合沒有特定印刷風格目標的一般用途"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "praxist": {
       "intents": [
@@ -19062,7 +20364,9 @@
         "不適合一次性、非結構化的探索型任務",
         "不適用沒有明確輸出指標的定性研究"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fastpotify": {
       "intents": [
@@ -19089,7 +20393,9 @@
         "只想要網頁版或行動 app，不需要桌面程式",
         "不想自己編譯或安裝依赖"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "goldie": {
       "intents": [
@@ -19119,7 +20425,9 @@
         "不適用非 App Store 平台的截圖需求（如 Google Play）",
         "不適合需要完全手動畫設計圖的客製化場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "delivery-harness": {
       "intents": [
@@ -19145,7 +20453,9 @@
       "negative": [
         "非 Java 技術棧（如 Python、Node.js）專案不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stop-that-shit": {
       "intents": [
@@ -19170,7 +20480,9 @@
       "negative": [
         "非 AI coding agent 場景（如單純文件生成、數據分析）不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "tokentab": {
       "intents": [
@@ -19195,7 +20507,9 @@
       "negative": [
         "不使用 Claude Code、Codex 或 Gemini CLI 等指定工具的專案不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "timesfm": {
       "intents": [
@@ -19222,7 +20536,9 @@
         "不適用於一般分類/迴歸等非時間序列任務",
         "記憶體需求高，不適合輕量環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fmt": {
       "intents": [
@@ -19249,7 +20565,9 @@
         "不適用於 C、Python 等其他程式語言",
         "不適合需要執行時期動態連結管理的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "chrome-devtools-mcp": {
       "intents": [
@@ -19277,7 +20595,9 @@
         "不適用於非瀏覽器上下文的除錯情境",
         "不支援其他瀏覽器或離線環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "sie": {
       "intents": [
@@ -19309,7 +20629,9 @@
         "單一模型、簡單的部署需求可能過度設計",
         "無法處理低頻繁呼叫的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "academic-research-skills": {
       "intents": [
@@ -19341,7 +20663,9 @@
         "不需要自動化作業的簡短報告",
         "無法接受 AI 協助的研究倫理情境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openclaude": {
       "intents": [
@@ -19373,7 +20697,9 @@
         "需要完整 Claude 功能且不接受早期版本限制",
         "不願承擔自行部署與排錯成本的使用者"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openwiki": {
       "intents": [
@@ -19400,7 +20726,9 @@
         "不是用來爬網頁或抓資料",
         "不支援 Python / JavaScript 以外的語言專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "obscura": {
       "intents": [
@@ -19427,7 +20755,9 @@
         "不涉及前端畫面渲染或 CSS 驗證",
         "不需要處理多國語言內容"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "agent-orchestrator": {
       "intents": [
@@ -19454,7 +20784,9 @@
         "不適用於單一 AI 助手情境",
         "不需要視覺化專案介面"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freetoken": {
       "intents": [
@@ -19483,7 +20815,9 @@
         "不適用於筆記型電腦低階顯示卡環境",
         "無法用於模型微調或訓練任務"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "graft": {
       "intents": [
@@ -19511,7 +20845,9 @@
         "不使用上述 AI 編程助手的專案",
         "非 TypeScript 環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freebuff": {
       "intents": [
@@ -19538,7 +20874,9 @@
         "需要 IDE 整合或圖形介面的使用者",
         "處理高度敏感機密專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kunpeng": {
       "intents": [
@@ -19565,7 +20903,9 @@
       "negative": [
         "需要雲端 API 串接的跨平台工具"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "unlazy": {
       "intents": [
@@ -19592,7 +20932,9 @@
       "negative": [
         "只需單一簡易指令的純文字處理"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "cognicode": {
       "intents": [
@@ -19619,7 +20961,9 @@
       "negative": [
         "純非程式碼型數據分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lieflat-charts": {
       "intents": [
@@ -19645,7 +20989,9 @@
         "不適合需要桌面應用程式圖表的場景",
         "不適用純文字輸出需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "everything-claude-code": {
       "intents": [
@@ -19672,7 +21018,9 @@
         "不適用其他 AI 編程工具（如 Cline）",
         "不需要子 agent 或自動化流程的專案"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "magnitude": {
       "intents": [
@@ -19697,7 +21045,9 @@
         "不適用雲端模型推理需求",
         "硬體不支援本地模型運行的裝置"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "nvm": {
       "intents": [
@@ -19725,7 +21075,9 @@
         "Windows cmd/PowerShell 不支援",
         "無法管理 Python/Go 等其他語言版本"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "opengym": {
       "intents": [
@@ -19754,7 +21106,9 @@
         "不熟悉技術操作的使用者難以啟用",
         "不需要隱私控制權的用戶可能不適用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "dsh-desktop-anywhere": {
       "intents": [
@@ -19782,7 +21136,9 @@
         "Windows cmd/PowerShell 不支援",
         "無法管理 Python/Go 等其他語言版本"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "grok-bot-0-18-reconstructed": {
       "intents": [
@@ -19811,7 +21167,9 @@
         "不適合直接部署到生產環境",
         "非官方版本，穩定性未保證"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "shiji-kb": {
       "intents": [
@@ -19843,7 +21201,9 @@
         "不適合沒有 API 預算的小型專案",
         "非通用 NLP 框架，無法直接套用到其他語料"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "weread-hot-booklists": {
       "intents": [
@@ -19871,7 +21231,9 @@
         "不提供完整電子書內容",
         "榜單反映平台熱度，不代表專業書評意見"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "m3e-canvas": {
       "intents": [
@@ -19898,7 +21260,9 @@
         "使用非 Material 3 設計系統時",
         "需要多人協作或版本控管時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "web-llm": {
       "intents": [
@@ -19926,7 +21290,9 @@
         "需要運行大型未量化模型時",
         "要求即時冷啟動效能時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "free-api": {
       "intents": [
@@ -19953,7 +21319,9 @@
         "依賴的第三方服務不穩定時",
         "要求嚴格的生產環境可用性時"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "public-api-lists": {
       "intents": [
@@ -19984,7 +21352,9 @@
         "僅為索引不保證端點可用性",
         "與 public-apis 工具高度重疊"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "pr-agent": {
       "intents": [
@@ -20015,7 +21385,9 @@
         "敏感專案需注意資料外洩風險",
         "非人工 code review 的完全替代"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "youtube-automation-agent": {
       "intents": [
@@ -20046,7 +21418,9 @@
         "內容品質仍需人工把關",
         "不適合完全無人監督的運作"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freecad-library": {
       "intents": [
@@ -20079,7 +21453,9 @@
         "需要官方核心專案的品質保證",
         "需要離線下載大量零件資料"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freetube": {
       "intents": [
@@ -20111,7 +21487,9 @@
         "需要下載影片離線觀看",
         "需要留言互動或直播相關功能"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "gpt4free": {
       "intents": [
@@ -20143,7 +21521,9 @@
         "需要符合合規稽核的供應鏈",
         "需要官方授權的模型存取與服務條款遵守"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "freellmapi": {
       "intents": [
@@ -20171,7 +21551,9 @@
         "不適合商業或生產環境上線",
         "免費方案的額度不保證穩定可用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "free-books": {
       "intents": [
@@ -20197,7 +21579,9 @@
         "不提供書籍檔案下載，只提供索引連結",
         "連結可能失效，需自行確認授權狀態"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "musicfree": {
       "intents": [
@@ -20224,7 +21608,9 @@
         "播放器本體不含任何音樂內容，完全依賴外掛",
         "外掛品質參差，穩定性不保證"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "howtolivebetter": {
       "intents": [
@@ -20255,7 +21641,9 @@
         "不適用不需要循證或引用出處的隨意生活建議",
         "不適用於非經濟效益優先的生活決策"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "spotifast": {
       "intents": [
@@ -20286,7 +21674,9 @@
         "不適用於 iOS 或 Android 行動裝置",
         "不適用於需要在商店內直接安裝的場景"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "my-girlfriend-jingtian-latex": {
       "intents": [
@@ -20316,7 +21706,9 @@
         "不適用於需要 Word 或一般 WYSIWYG 排版工具的用戶",
         "不適用於不需要 5×8 吋規格的其他尺寸印刷需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "ai-infra-book": {
       "intents": [
@@ -20346,7 +21738,9 @@
         "不適合尋找高階 AI 應用開發指南的使用者",
         "不適用於純軟體層級而不涉及硬體約束的分析"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "lint": {
       "intents": [
@@ -20374,7 +21768,9 @@
         "不適用於非 Tailwind 的樣式框架",
         "不需要 agent 驗證功能的使用者可能覺得過度設計"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "jev-ultrafast": {
       "intents": [
@@ -20402,7 +21798,9 @@
         "不適合需要複雜邏輯判斷或長篇文字輸入的任務",
         "對速度需求不高時可能殺雞用牛刀"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "fast-jev-compaction": {
       "intents": [
@@ -20431,7 +21829,9 @@
         "不使用 Claude Code 的開發環境",
         "需要完整保留所有 tool call 紀錄的審計需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "stirling-pdf": {
       "intents": [
@@ -20460,7 +21860,9 @@
         "需要進階排版或簽章功能的專業出版需求",
         "無法使用 Docker 的限制環境"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "kaggle-tpu-lab": {
       "intents": [
@@ -20491,7 +21893,9 @@
         "不屬於 Kaggle 生態的開發流程",
         "需要私有化部署的商業應用"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "security-audit-skill": {
       "intents": [
@@ -20517,7 +21921,9 @@
         "初次使用建議先人工審查最新版本文檔與依賴環境",
         "非通用工具，請先確認專案環境符合需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "openstock": {
       "intents": [
@@ -20542,7 +21948,9 @@
       "negative": [
         "非通用工具，請確認專案環境符合需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     },
     "claude-code": {
       "intents": [
@@ -20568,7 +21976,9 @@
         "初次使用建議先人工審查最新版本文檔與依賴環境",
         "非通用工具，請先確認專案環境符合需求"
       ],
-      "tier": 1
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-09-20T14:47:37.959Z"
     }
   },
   "generatedBy": "compile-wiki LLM (Tier 1, agnes-2.5-flash)"

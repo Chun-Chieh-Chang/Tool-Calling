@@ -67,6 +67,9 @@ const OFFLINE = args.includes('--offline');
 const DRY = args.includes('--dry');
 const RESET = args.includes('--reset');
 const STATS = args.includes('--stats');
+// 只為既有詞條補上認識論標記（epistemic / compiled_at），不重新編譯內容。
+// 用於標記機制上線時回溯既有資料，避免為了加欄位而重跑 700+ 次 LLM。
+const BACKFILL_EPISTEMIC = args.includes('--backfill-epistemic');
 const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) || Infinity;
 const IDS_ARG = args.find((a) => a.startsWith('--ids='))?.split('=')[1];
 const BATCH = Number(args.find((a) => a.startsWith('--batch='))?.split('=')[1]) || 3;
@@ -254,6 +257,16 @@ if (STATS) {
   console.log(`詞條數        : ${Object.keys(entries).length} / 工具數 ${tools.length}`);
   console.log(`有 intents    : ${withIntents}`);
   console.log(`Tier 1（LLM） : ${tier1}`);
+  // 認識論標記分佈（信任層）
+  const epi = Object.values(entries).reduce((m, x) => {
+    const k = x?.epistemic || '（未標記）'; m[k] = (m[k] || 0) + 1; return m;
+  }, {});
+  const epiText = Object.entries(epi)
+    .map(([k, v]) => `${k}=${v}${k === 'V' ? '（取自 metadata）' : k === 'S' ? '（LLM 推論）' : ''}`)
+    .join('  ');
+  console.log(`信任標記      : ${epiText || '—'}`);
+  const stamps = Object.values(entries).map((x) => x?.compiled_at).filter(Boolean).sort();
+  if (stamps.length) console.log(`編譯時間      : ${stamps[0]} ~ ${stamps[stamps.length - 1]}`);
   console.log(`知識圖譜      : ${g.nodes} 節點 / ${g.edges} 條邊`);
   process.exit(0);
 }
@@ -275,9 +288,44 @@ if (IDS_ARG) {
 }
 targets = targets.slice(0, LIMIT);
 
+// 認識論標記（Epistemic Markers）
+//
+// 來自 The LLM Wiki Blueprint 第 10 頁「建立信任層」：
+// AI 生成的內容會產生「幽靈連結」，解法是強制標記來源性質：
+//   [V] Verified（已證實）：直接引用原始來源
+//   [S] Synthesized（綜合）：AI 結合來源生成，可追溯但連結由 AI 建立
+//   [?] Speculative（推測）：超出上下文，需人類覆核
+//
+// 對應到本專案：
+//   Tier 0（規則式，直接取用既有 metadata）→ [V]
+//   Tier 1（LLM 從 metadata 推論出的使用情境）→ [S]
+// 目前不產生 [?]（編譯時一律有 metadata 當依據）；若日後允許模型
+// 補充 metadata 沒有的資訊，那些就該標成 [?]。
+const EPISTEMIC_BY_TIER = { 0: 'V', 1: 'S' };
+
+function withEpistemic(entry, tier) {
+  return { ...entry, tier, epistemic: EPISTEMIC_BY_TIER[tier] || '?', compiled_at: new Date().toISOString() };
+}
+
+if (BACKFILL_EPISTEMIC) {
+  let n = 0;
+  for (const [id, e] of Object.entries(out.entries)) {
+    if (!e || e.epistemic) continue;
+    out.entries[id] = withEpistemic(e, e.tier === 1 ? 1 : 0);
+    n++;
+  }
+  const dist = Object.values(out.entries).reduce((m, e) => {
+    const k = e?.epistemic || '?'; m[k] = (m[k] || 0) + 1; return m;
+  }, {});
+  console.log(`補標認識論標記：${n} 筆`);
+  console.log(`標記分佈：${JSON.stringify(dist)}（V=取自 metadata，S=LLM 綜合推論）`);
+  writeFileSync(OUT_PATH, JSON.stringify(out, null, 2));
+  process.exit(0);
+}
+
 if (OFFLINE) {
   for (const t of targets) {
-    out.entries[t.id] = { ...compileOffline(t), tier: 0 };
+    out.entries[t.id] = withEpistemic(compileOffline(t), 0);
   }
   console.log(`Tier 0 規則式編譯：${targets.length} 筆`);
 } else {
@@ -316,14 +364,13 @@ if (OFFLINE) {
           }
           // Tier 0 的 facets 若已存在且 LLM 沒給，就保留
           const prev = out.entries[b.id] || {};
-          out.entries[b.id] = {
+          out.entries[b.id] = withEpistemic({
             intents: entry.intents,
             objects: entry.objects.length ? entry.objects : (prev.objects || []),
             actions: entry.actions.length ? entry.actions : (prev.actions || []),
             constraints: entry.constraints.length ? entry.constraints : (prev.constraints || []),
             negative: entry.negative.length ? entry.negative : (prev.negative || []),
-            tier: 1,
-          };
+          }, 1);
           okN++;
         }
       }
