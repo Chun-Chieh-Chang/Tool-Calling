@@ -34,7 +34,8 @@
     "eval:rerank": "node scripts/eval-rerank.js",
     "lint": "echo \"No linter configured, skipping...\"",
     "ceiling": "node scripts/ceiling-analysis.js",
-    "compile:wiki": "node scripts/compile-wiki.js"
+    "compile:wiki": "node scripts/compile-wiki.js",
+    "ablate:v5": "node scripts/v5-ablate.js"
   },
   "keywords": [
     "ai",
