@@ -961,11 +961,17 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
       tag.textContent = '⭐ ' + (tool.useCase_zh || tool.useCase);
       tagsContainer.appendChild(tag);
     }
-    if (tool.negativeConstraints && tool.negativeConstraints.length > 0) {
-      const tag = document.createElement('span');
-      tag.className = 'tag highlight';
-      tag.textContent = '🚫 ' + tool.negativeConstraints[0] + (tool.negativeConstraints.length > 1 ? '...' : '');
-      tagsContainer.appendChild(tag);
+    if ((tool.negativeConstraints && tool.negativeConstraints.length > 0) || (tool.negativeConstraints_zh && tool.negativeConstraints_zh.length > 0)) {
+      // 顯示層優先繁中（同 useCase 處理方式）；null 取首項
+      const ncSource = (Array.isArray(tool.negativeConstraints_zh) && tool.negativeConstraints_zh.length > 0)
+        ? tool.negativeConstraints_zh
+        : (tool.negativeConstraints || []);
+      if (ncSource.length > 0) {
+        const tag = document.createElement('span');
+        tag.className = 'tag highlight';
+        tag.textContent = '🚫 ' + ncSource[0] + (ncSource.length > 1 ? '...' : '');
+        tagsContainer.appendChild(tag);
+      }
     }
     if (matchedKeywords && matchedKeywords.length > 0) {
       const tag = document.createElement('span');

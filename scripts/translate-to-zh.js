@@ -72,8 +72,19 @@ if (!RESET && existsSync(STATE_PATH)) {
 }
 // 規則放寬後（例如改為「中英夾雜也要翻」），用 --redo-skipped 重跑那批
 if (REDO_SKIPPED) {
+  // 不只清掉 `skipped` 標記——也要清掉「缺少新欄位」的紀錄，
+  // 否則修了 pending 邏輯後仍會被 done 紀錄跳過。
+  const reg2 = JSON.parse(readFileSync(REGISTRY, 'utf-8'));
+  const toolsById = new Map(reg2.tools.map((t) => [t.id, t]));
   for (const [id, v] of Object.entries(state.done)) {
-    if (v && v.skipped) delete state.done[id];
+    if (v && v.skipped) { delete state.done[id]; continue; }
+    if (v && v.negativeConstraints_zh) continue;
+    const t = toolsById.get(id);
+    if (!t) continue;
+    if (Array.isArray(t.negativeConstraints) && t.negativeConstraints.length > 0
+        && (!Array.isArray(t.negativeConstraints_zh) || t.negativeConstraints_zh.length < t.negativeConstraints.length)) {
+      delete state.done[id];
+    }
   }
 }
 
@@ -109,6 +120,10 @@ function flush() {
     if (d.description_zh) t.description_zh = d.description_zh;
     if (d.useCase_zh) t.useCase_zh = d.useCase_zh;
     if (d.advantages_zh) t.advantages_zh = d.advantages_zh;
+    // negativeConstraints 是陣列，獨立處理（2026-09-20 漏寫導致 0 個有 negativeConstraints_zh）
+    if (Array.isArray(d.negativeConstraints_zh)) {
+      t.negativeConstraints_zh = d.negativeConstraints_zh;
+    }
     n++;
   }
   writeFileSync(REGISTRY, JSON.stringify(j, null, 2) + '\n');
@@ -139,6 +154,21 @@ for (const t of tools) {
     //   - 純中文（hasZH=true 且幾無英文）→ 不翻（避免無意義空翻）
     const latinWords = (v.match(/[A-Za-z]{2,}/g) || []).length;
     if (!hasZH(v) || latinWords >= 2) { job[f] = v.slice(0, 400); need++; }
+  }
+  // negativeConstraints 是字串陣列（「Not suitable for X / Y / Z」這種列舉）。
+  // 翻譯整個陣列——少一個就破壞「禁用情境」的語意。
+  if (Array.isArray(t.negativeConstraints) && t.negativeConstraints.length > 0) {
+    const missing = t.negativeConstraints.some((s) => {
+      const v = String(s || '').trim();
+      if (!v) return false;
+      if (Array.isArray(t.negativeConstraints_zh) && t.negativeConstraints_zh.length >= t.negativeConstraints.length) return false;
+      const isMixed = /[一-鿿]/.test(v) && /[A-Za-z]{2,}/.test(v);
+      return !/[一-鿿]/.test(v) || isMixed;
+    });
+    if (missing) {
+      job.negativeConstraints = t.negativeConstraints.filter((s) => String(s || '').trim()).slice(0, 8);
+      need++;
+    }
   }
   if (need > 0) { pending.push(job); continue; }
   // 三個欄位都已是中文或為空 → 沒有可翻內容，直接標記完成，
@@ -231,6 +261,12 @@ for (let i = 0; i < targets.length; i += BATCH) {
       for (const k of ['description', 'useCase', 'advantages']) {
         const v = String(r[`${k}_zh`] || r[k] || r[k.toLowerCase()] || '').trim();
         if (v) rec[`${k}_zh`] = toTraditional(v);
+      }
+      // negativeConstraints 是陣列：模型應回 negativeConstraints_zh (陣列)
+      const ncRaw = r['negativeConstraints_zh'] ?? r['negativeConstraints'];
+      if (Array.isArray(ncRaw)) {
+        const nc = ncRaw.map((s) => toTraditional(String(s ?? '').trim())).filter(Boolean);
+        if (nc.length) rec['negativeConstraints_zh'] = nc;
       }
       if (Object.keys(rec).length === 0) { state.failed[b.id] = { at: new Date().toISOString(), why: 'empty fields' }; failN++; continue; }
       rec.at = new Date().toISOString();
