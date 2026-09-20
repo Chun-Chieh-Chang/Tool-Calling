@@ -33,7 +33,8 @@
     "benchmark": "node scripts/eval-benchmark.js",
     "eval:rerank": "node scripts/eval-rerank.js",
     "lint": "echo \"No linter configured, skipping...\"",
-    "ceiling": "node scripts/ceiling-analysis.js"
+    "ceiling": "node scripts/ceiling-analysis.js",
+    "compile:wiki": "node scripts/compile-wiki.js"
   },
   "keywords": [
     "ai",
