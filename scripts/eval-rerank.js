@@ -70,6 +70,8 @@ const PAIRED = args.includes('--paired');
 const VARIANT = args.find((a) => a.startsWith('--variant='))?.split('=')[1] || 'wiki';
 const MODEL_A = args.find((a) => a.startsWith('--modelA='))?.split('=')[1] || 'agnes-3.0-flash';
 const MODEL_B = args.find((a) => a.startsWith('--modelB='))?.split('=')[1] || 'agnes-2.5-flash';
+const K_A = Number(args.find((a) => a.startsWith('--ka='))?.split('=')[1]) || 30;
+const K_B = Number(args.find((a) => a.startsWith('--kb='))?.split('=')[1]) || 50;
 const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) || Infinity;
 
 // 與正式路徑（retrieval-fusion.js）共用同一份候選描述產生邏輯，
@@ -144,12 +146,15 @@ if (PAIRED) {
       } else if (VARIANT === 'model') {
         // 候選名單與提示詞都相同，只差模型
         arm = { wiki: WIKI, withIntents: true, model: on ? MODEL_A : MODEL_B };
+      } else if (VARIANT === 'topk') {
+        // 提示詞格式相同，只差候選數：A 臂 K_A、B 臂 K_B
+        arm = { wiki: WIKI, withIntents: true, topK: on ? K_A : K_B };
       } else {
         arm = { wiki: on ? WIKI : null, withIntents: false };
       }
 
       const cands = agentRetrieve(tools, c.query, {
-        topK: K, intentWeights: weightsForIntent(intent), wiki: arm.wiki,
+        topK: arm.topK || K, intentWeights: weightsForIntent(intent), wiki: arm.wiki,
       }).topK.map((x) => x.id);
       if (cands.length === 0) continue;
 

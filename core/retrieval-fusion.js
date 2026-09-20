@@ -281,12 +281,30 @@ export function retrieve(tools, query, options = {}) {
  * @param {string} query
  * @param {object} [options]
  * @param {number} [options.topK=5] - 最終回傳筆數
- * @param {number} [options.recallK=50] - rerank 前的召回筆數（天花板）
+ * @param {number} [options.recallK=30] - rerank 前的召回筆數（天花板）
  * @param {boolean} [options.rerank] - 明確停用請傳 false；預設有 key 就啟用
  * @returns {Promise<object>} retrieve() 的結果，外加 rerank 欄位
  */
 export async function retrieveWithRerank(tools, query, options = {}) {
-  const { topK = 5, recallK = 50 } = options;
+  // recallK 由 50 降為 30（2026-09-20，配對 A/B，157 題）：
+  //
+  //   recallK   天花板   Hit@1    挑選準確率   prompt 成本
+  //   30       95.0%    80.3%    84.5%       16.5k 字
+  //   50       96.9%    80.9%    83.5%       27.5k 字
+  //   差異     -1.9pp   -0.6pp                -40%
+  //
+  //   McNemar：都對 121／只 30 對 5／只 50 對 6／都錯 25，p = 1.000 → 無差異
+  //
+  // 天花板確實低了 1.9pp，但 **LLM 在較短名單上的挑選準確率反而更高**
+  // （84.5% vs 83.5%），兩者正好抵銷 → 端到端準確率相同，成本省 40%。
+  //
+  // 🔴 注意：這個結論是 V5 上線**之後**才成立的。
+  //    2026-09-19 曾用 top-30 而否決，理由是「天花板被鎖在 85.7%」——
+  //    那是 V5 之前的數字。V5 讓 top-30 的天花板升到 95.0%，取捨因此翻轉。
+  //    → 召回引擎改善後，**既有的成本／品質取捨要重新量**，不能直接沿用舊結論。
+  //
+  // 省下的 token 直接轉換成更少的 429（本端點限制是 TPM，見 HANDOFF 陷阱 21）。
+  const { topK = 5, recallK = 30 } = options;
 
   // 1. 先用較大 K 召回，確保正確答案有機會進入候選
   const base = retrieve(tools, query, { ...options, topK: Math.max(topK, recallK) });
