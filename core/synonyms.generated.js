@@ -3066,29 +3066,29 @@ export const SYNONYM_MAP = {
     "lean-ctx",
     "token-reduction"
   ],
-  "追踪ai編碼成本": [
+  "追蹤ai編碼成本": [
     "loop-engineering",
     "agent-orchestration",
     "devtools"
   ],
   "loop-engineering": [
-    "追踪ai編碼成本",
+    "追蹤ai編碼成本",
     "审計ai代理操作",
     "初始化編碼代理循环",
     "管理grok使用費用",
     "編排多步ai任務",
     "监控codex消耗",
-    "追踪mcp工具調用成本",
+    "追蹤mcp工具調用成本",
     "审查ai代理執行記錄"
   ],
   "agent-orchestration": [
-    "追踪ai編碼成本",
+    "追蹤ai編碼成本",
     "审計ai代理操作",
     "初始化編碼代理循环",
     "管理grok使用費用",
     "編排多步ai任務",
     "监控codex消耗",
-    "追踪mcp工具調用成本",
+    "追蹤mcp工具調用成本",
     "审查ai代理執行記錄"
   ],
   "审計ai代理操作": [
@@ -3116,7 +3116,7 @@ export const SYNONYM_MAP = {
     "agent-orchestration",
     "devtools"
   ],
-  "追踪mcp工具調用成本": [
+  "追蹤mcp工具調用成本": [
     "loop-engineering",
     "agent-orchestration",
     "devtools"
@@ -17689,7 +17689,7 @@ export const SYNONYM_MAP = {
   ],
   "knowledge-work-plugins": [
     "自動化資料收集",
-    "研究文献整理",
+    "研究文獻整理",
     "網頁表格提取",
     "文檔格式轉換",
     "知識庫查詢檢索",
@@ -17699,7 +17699,7 @@ export const SYNONYM_MAP = {
   ],
   "claude-cowork": [
     "自動化資料收集",
-    "研究文献整理",
+    "研究文獻整理",
     "網頁表格提取",
     "文檔格式轉換",
     "知識庫查詢檢索",
@@ -17709,7 +17709,7 @@ export const SYNONYM_MAP = {
   ],
   "research": [
     "自動化資料收集",
-    "研究文献整理",
+    "研究文獻整理",
     "網頁表格提取",
     "文檔格式轉換",
     "知識庫查詢檢索",
@@ -17719,7 +17719,7 @@ export const SYNONYM_MAP = {
   ],
   "plugins": [
     "自動化資料收集",
-    "研究文献整理",
+    "研究文獻整理",
     "網頁表格提取",
     "文檔格式轉換",
     "知識庫查詢檢索",
@@ -17727,7 +17727,7 @@ export const SYNONYM_MAP = {
     "資料自動歸類",
     "數據格式轉換"
   ],
-  "研究文献整理": [
+  "研究文獻整理": [
     "knowledge-work-plugins",
     "claude-cowork",
     "research",
@@ -18803,7 +18803,7 @@ export const SYNONYM_MAP = {
     "自動監控加密貨幣價格走勢",
     "ai 生成交易策略並執行",
     "自動化執行加密貨幣買賣",
-    "用 ai 追踪幣圈市場動態",
+    "用 ai 追蹤幣圈市場動態",
     "ai 自動下單交易"
   ],
   "trader": [
@@ -18813,7 +18813,7 @@ export const SYNONYM_MAP = {
     "自動監控加密貨幣價格走勢",
     "ai 生成交易策略並執行",
     "自動化執行加密貨幣買賣",
-    "用 ai 追踪幣圈市場動態",
+    "用 ai 追蹤幣圈市場動態",
     "ai 自動下單交易"
   ],
   "autonomous-trading": [
@@ -18823,7 +18823,7 @@ export const SYNONYM_MAP = {
     "自動監控加密貨幣價格走勢",
     "ai 生成交易策略並執行",
     "自動化執行加密貨幣買賣",
-    "用 ai 追踪幣圈市場動態",
+    "用 ai 追蹤幣圈市場動態",
     "ai 自動下單交易"
   ],
   "crypto-bot": [
@@ -18833,7 +18833,7 @@ export const SYNONYM_MAP = {
     "自動監控加密貨幣價格走勢",
     "ai 生成交易策略並執行",
     "自動化執行加密貨幣買賣",
-    "用 ai 追踪幣圈市場動態",
+    "用 ai 追蹤幣圈市場動態",
     "ai 自動下單交易"
   ],
   "ai 自動執行交易": [
@@ -18871,7 +18871,7 @@ export const SYNONYM_MAP = {
     "llm-trading",
     "crypto-bot"
   ],
-  "用 ai 追踪幣圈市場動態": [
+  "用 ai 追蹤幣圈市場動態": [
     "ai-trader",
     "trader",
     "autonomous-trading",
@@ -19566,7 +19566,7 @@ export const SYNONYM_MAP = {
     "openclaw-skills",
     "agent-prompts"
   ],
-  "生成編程辅助模板": [
+  "生成編程輔助模板": [
     "baoyu-skills",
     "claude-skills",
     "codex-skills",
@@ -25481,7 +25481,7 @@ export const SYNONYM_MAP = {
   "wayfinder": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "large-planning",
@@ -25491,7 +25491,7 @@ export const SYNONYM_MAP = {
   "large-planning": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
@@ -25501,7 +25501,7 @@ export const SYNONYM_MAP = {
   "investigation-tickets": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
@@ -25511,7 +25511,7 @@ export const SYNONYM_MAP = {
   "fog-of-war": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
@@ -25521,7 +25521,7 @@ export const SYNONYM_MAP = {
   "issue-tracker": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "追蹤程式問題",
@@ -25531,7 +25531,7 @@ export const SYNONYM_MAP = {
   "frontier-discovery": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
@@ -25541,7 +25541,7 @@ export const SYNONYM_MAP = {
   "matt-pocock-skills": [
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
-    "追踪技術決策的分支路徑",
+    "追蹤技術決策的分支路徑",
     "探索需求中的不确定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
@@ -25557,7 +25557,7 @@ export const SYNONYM_MAP = {
     "frontier-discovery",
     "matt-pocock-skills"
   ],
-  "追踪技術決策的分支路徑": [
+  "追蹤技術決策的分支路徑": [
     "wayfinder",
     "large-planning",
     "investigation-tickets",
@@ -43167,7 +43167,7 @@ export const SYNONYM_MAP = {
     "mac 指令列定位藍牙",
     "訊號強度找藍牙設備"
   ],
-  "追踪instagram評論": [
+  "追蹤instagram評論": [
     "openreply",
     "manychat alternative",
     "instagram automation",
@@ -43178,7 +43178,7 @@ export const SYNONYM_MAP = {
     "自動化instagram互動"
   ],
   "openreply": [
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "分析instagram账號數據",
     "监控instagram私信",
@@ -43188,7 +43188,7 @@ export const SYNONYM_MAP = {
     "dm automation"
   ],
   "manychat alternative": [
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "分析instagram账號數據",
     "监控instagram私信",
@@ -43198,7 +43198,7 @@ export const SYNONYM_MAP = {
     "dm automation"
   ],
   "instagram automation": [
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "分析instagram账號數據",
     "监控instagram私信",
@@ -43208,7 +43208,7 @@ export const SYNONYM_MAP = {
     "dm automation"
   ],
   "dm automation": [
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "分析instagram账號數據",
     "监控instagram私信",
@@ -43222,7 +43222,7 @@ export const SYNONYM_MAP = {
     "manychat alternative",
     "instagram automation",
     "dm automation",
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "分析instagram账號數據",
     "监控instagram私信",
     "自動化instagram互動"
@@ -43232,7 +43232,7 @@ export const SYNONYM_MAP = {
     "manychat alternative",
     "instagram automation",
     "dm automation",
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "监控instagram私信",
     "自動化instagram互動"
@@ -43242,7 +43242,7 @@ export const SYNONYM_MAP = {
     "manychat alternative",
     "instagram automation",
     "dm automation",
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "分析instagram账號數據",
     "自動化instagram互動"
@@ -43252,7 +43252,7 @@ export const SYNONYM_MAP = {
     "manychat alternative",
     "instagram automation",
     "dm automation",
-    "追踪instagram評論",
+    "追蹤instagram評論",
     "設置dm自動回复",
     "分析instagram账號數據",
     "监控instagram私信"
@@ -43948,7 +43948,7 @@ export const SYNONYM_MAP = {
     "ai-infrastructure",
     "graph-rag"
   ],
-  "抓小红書笔記": [
+  "抓小紅書筆記": [
     "mediacrawler",
     "xiaohongshu-scraper",
     "douyin-crawler",
@@ -43958,7 +43958,7 @@ export const SYNONYM_MAP = {
     "zhihu-scraper"
   ],
   "mediacrawler": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -43968,7 +43968,7 @@ export const SYNONYM_MAP = {
     "bilibili-scraper"
   ],
   "xiaohongshu-scraper": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -43978,7 +43978,7 @@ export const SYNONYM_MAP = {
     "bilibili-scraper"
   ],
   "douyin-crawler": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -43988,7 +43988,7 @@ export const SYNONYM_MAP = {
     "bilibili-scraper"
   ],
   "bilibili-scraper": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -43998,7 +43998,7 @@ export const SYNONYM_MAP = {
     "douyin-crawler"
   ],
   "weibo-crawler": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -44008,7 +44008,7 @@ export const SYNONYM_MAP = {
     "douyin-crawler"
   ],
   "social-media-scraper": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -44018,7 +44018,7 @@ export const SYNONYM_MAP = {
     "douyin-crawler"
   ],
   "zhihu-scraper": [
-    "抓小红書笔記",
+    "抓小紅書筆記",
     "爬抖音視頻",
     "采集微博數據",
     "抓取b站視頻",
@@ -47367,14 +47367,14 @@ export const SYNONYM_MAP = {
     "analytics",
     "qt",
     "分析財務報表",
-    "追踪市場走勢",
+    "追蹤市場走勢",
     "生成投資報告",
     "查詢股價數據"
   ],
   "fincept-terminal": [
     "查看股票行情",
     "分析財務報表",
-    "追踪市場走勢",
+    "追蹤市場走勢",
     "生成投資報告",
     "查詢股價數據",
     "finceptterminal",
@@ -47384,7 +47384,7 @@ export const SYNONYM_MAP = {
   "finceptterminal": [
     "查看股票行情",
     "分析財務報表",
-    "追踪市場走勢",
+    "追蹤市場走勢",
     "生成投資報告",
     "查詢股價數據",
     "fincept-terminal",
@@ -47394,14 +47394,14 @@ export const SYNONYM_MAP = {
   "qt": [
     "查看股票行情",
     "分析財務報表",
-    "追踪市場走勢",
+    "追蹤市場走勢",
     "生成投資報告",
     "查詢股價數據",
     "fincept-terminal",
     "finceptterminal",
     "analytics"
   ],
-  "追踪市場走勢": [
+  "追蹤市場走勢": [
     "fincept-terminal",
     "finceptterminal",
     "analytics",
@@ -47418,7 +47418,7 @@ export const SYNONYM_MAP = {
     "qt",
     "查看股票行情",
     "分析財務報表",
-    "追踪市場走勢",
+    "追蹤市場走勢",
     "查詢股價數據"
   ],
   "查詢股價數據": [
@@ -47428,7 +47428,7 @@ export const SYNONYM_MAP = {
     "qt",
     "查看股票行情",
     "分析財務報表",
-    "追踪市場走勢",
+    "追蹤市場走勢",
     "生成投資報告"
   ],
   "回測交易策略": [
@@ -52554,14 +52554,14 @@ export const SYNONYM_MAP = {
     "deepseek 移動端遠程運維",
     "dsh web gui 插件安装",
     "deepseek ssh 遠程管理",
-    "dsh 皮肤主題配置"
+    "dsh 皮膚主題配置"
   ],
   "dsh-web-ui": [
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
     "dsh web gui 插件安装",
     "deepseek ssh 遠程管理",
-    "dsh 皮肤主題配置",
+    "dsh 皮膚主題配置",
     "cordis",
     "dsh-web"
   ],
@@ -52570,7 +52570,7 @@ export const SYNONYM_MAP = {
     "deepseek 移動端遠程運維",
     "dsh web gui 插件安装",
     "deepseek ssh 遠程管理",
-    "dsh 皮肤主題配置",
+    "dsh 皮膚主題配置",
     "dsh-web-ui",
     "cordis"
   ],
@@ -52581,7 +52581,7 @@ export const SYNONYM_MAP = {
     "dsh 任務看板操作",
     "dsh web gui 插件安装",
     "deepseek ssh 遠程管理",
-    "dsh 皮肤主題配置"
+    "dsh 皮膚主題配置"
   ],
   "dsh web gui 插件安装": [
     "dsh-web-ui",
@@ -52590,7 +52590,7 @@ export const SYNONYM_MAP = {
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
     "deepseek ssh 遠程管理",
-    "dsh 皮肤主題配置"
+    "dsh 皮膚主題配置"
   ],
   "deepseek ssh 遠程管理": [
     "dsh-web-ui",
@@ -52599,9 +52599,9 @@ export const SYNONYM_MAP = {
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
     "dsh web gui 插件安装",
-    "dsh 皮肤主題配置"
+    "dsh 皮膚主題配置"
   ],
-  "dsh 皮肤主題配置": [
+  "dsh 皮膚主題配置": [
     "dsh-web-ui",
     "cordis",
     "dsh-web",
@@ -54368,7 +54368,7 @@ export const SYNONYM_MAP = {
     "收窄 prop 類型",
     "精簡 react 組件屬性",
     "去掉多余 prop 類型",
-    "移除无用 prop",
+    "移除無用 prop",
     "修正 prop 類型範圍"
   ],
   "react-types": [
@@ -54378,7 +54378,7 @@ export const SYNONYM_MAP = {
     "收窄 prop 類型",
     "精簡 react 組件屬性",
     "去掉多余 prop 類型",
-    "移除无用 prop",
+    "移除無用 prop",
     "修正 prop 類型範圍"
   ],
   "prop-types-narrowing": [
@@ -54388,7 +54388,7 @@ export const SYNONYM_MAP = {
     "收窄 prop 類型",
     "精簡 react 組件屬性",
     "去掉多余 prop 類型",
-    "移除无用 prop",
+    "移除無用 prop",
     "修正 prop 類型範圍"
   ],
   "typescript-react": [
@@ -54398,7 +54398,7 @@ export const SYNONYM_MAP = {
     "收窄 prop 類型",
     "精簡 react 組件屬性",
     "去掉多余 prop 類型",
-    "移除无用 prop",
+    "移除無用 prop",
     "修正 prop 類型範圍"
   ],
   "component-refactoring": [
@@ -54408,7 +54408,7 @@ export const SYNONYM_MAP = {
     "收窄 prop 類型",
     "精簡 react 組件屬性",
     "去掉多余 prop 類型",
-    "移除无用 prop",
+    "移除無用 prop",
     "修正 prop 類型範圍"
   ],
   "clean-props": [
@@ -54418,7 +54418,7 @@ export const SYNONYM_MAP = {
     "收窄 prop 類型",
     "精簡 react 組件屬性",
     "去掉多余 prop 類型",
-    "移除无用 prop",
+    "移除無用 prop",
     "修正 prop 類型範圍"
   ],
   "props精簡": [
@@ -54461,7 +54461,7 @@ export const SYNONYM_MAP = {
     "component-refactoring",
     "clean-props"
   ],
-  "移除无用 prop": [
+  "移除無用 prop": [
     "narrow-react-prop-types",
     "react-types",
     "prop-types-narrowing",
@@ -57336,18 +57336,18 @@ export const SYNONYM_MAP = {
     "設計 app 商店宣傳圖",
     "產生 app 展示畫面"
   ],
-  "處理配送订單": [
+  "處理配送訂單": [
     "delivery-harness",
     "delivery",
     "harness",
-    "追踪配送位置",
+    "追蹤配送位置",
     "調度配送人員",
     "管理即時配送流程",
     "計算配送費用"
   ],
   "delivery-harness": [
-    "處理配送订單",
-    "追踪配送位置",
+    "處理配送訂單",
+    "追蹤配送位置",
     "調度配送人員",
     "管理即時配送流程",
     "計算配送費用",
@@ -57355,19 +57355,19 @@ export const SYNONYM_MAP = {
     "harness"
   ],
   "delivery": [
-    "處理配送订單",
-    "追踪配送位置",
+    "處理配送訂單",
+    "追蹤配送位置",
     "調度配送人員",
     "管理即時配送流程",
     "計算配送費用",
     "delivery-harness",
     "harness"
   ],
-  "追踪配送位置": [
+  "追蹤配送位置": [
     "delivery-harness",
     "delivery",
     "harness",
-    "處理配送订單",
+    "處理配送訂單",
     "調度配送人員",
     "管理即時配送流程",
     "計算配送費用"
@@ -57376,8 +57376,8 @@ export const SYNONYM_MAP = {
     "delivery-harness",
     "delivery",
     "harness",
-    "處理配送订單",
-    "追踪配送位置",
+    "處理配送訂單",
+    "追蹤配送位置",
     "管理即時配送流程",
     "計算配送費用"
   ],
@@ -57385,8 +57385,8 @@ export const SYNONYM_MAP = {
     "delivery-harness",
     "delivery",
     "harness",
-    "處理配送订單",
-    "追踪配送位置",
+    "處理配送訂單",
+    "追蹤配送位置",
     "調度配送人員",
     "計算配送費用"
   ],
@@ -57394,8 +57394,8 @@ export const SYNONYM_MAP = {
     "delivery-harness",
     "delivery",
     "harness",
-    "處理配送订單",
-    "追踪配送位置",
+    "處理配送訂單",
+    "追蹤配送位置",
     "調度配送人員",
     "管理即時配送流程"
   ],
@@ -59174,7 +59174,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "ancient text processing": [
     "知識圖譜",
@@ -59183,7 +59183,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "agentic ontology": [
     "知識圖譜",
@@ -59192,7 +59192,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "knowledge engineering": [
     "知識圖譜",
@@ -59201,7 +59201,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "autonomous wiki agent": [
     "知識圖譜",
@@ -59210,7 +59210,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "entity extraction": [
     "知識圖譜",
@@ -59219,7 +59219,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "historical knowledge graph": [
     "知識圖譜",
@@ -59228,7 +59228,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "ontology from corpus": [
     "知識圖譜",
@@ -59237,7 +59237,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "butler agent": [
     "知識圖譜",
@@ -59246,7 +59246,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "wiki automation": [
     "知識圖譜",
@@ -59255,7 +59255,7 @@ export const SYNONYM_MAP = {
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
-    "構建古代文献知識網絡"
+    "構建古代文獻知識網絡"
   ],
   "古籍處理": [
     "knowledge graph from text",
@@ -59307,7 +59307,7 @@ export const SYNONYM_MAP = {
     "historical knowledge graph",
     "ontology from corpus"
   ],
-  "構建古代文献知識網絡": [
+  "構建古代文獻知識網絡": [
     "knowledge graph from text",
     "ancient text processing",
     "agentic ontology",
@@ -59325,51 +59325,51 @@ export const SYNONYM_MAP = {
   ],
   "weread-hot-booklists": [
     "微信讀書",
-    "热門書單",
-    "讀書笔記",
+    "熱門書單",
+    "讀書筆記",
     "書單",
     "閱讀筆記",
-    "热門收藏",
-    "整理微信讀書热門書單",
+    "熱門收藏",
+    "整理微信讀書熱門書單",
     "匯出微信讀書書單為 markdown"
   ],
   "weread": [
     "微信讀書",
-    "热門書單",
-    "讀書笔記",
+    "熱門書單",
+    "讀書筆記",
     "書單",
     "閱讀筆記",
-    "热門收藏",
-    "整理微信讀書热門書單",
+    "熱門收藏",
+    "整理微信讀書熱門書單",
     "匯出微信讀書書單為 markdown"
   ],
   "booklist": [
     "微信讀書",
-    "热門書單",
-    "讀書笔記",
+    "熱門書單",
+    "讀書筆記",
     "書單",
     "閱讀筆記",
-    "热門收藏",
-    "整理微信讀書热門書單",
+    "熱門收藏",
+    "整理微信讀書熱門書單",
     "匯出微信讀書書單為 markdown"
   ],
   "reading-notes": [
     "微信讀書",
-    "热門書單",
-    "讀書笔記",
+    "熱門書單",
+    "讀書筆記",
     "書單",
     "閱讀筆記",
-    "热門收藏",
-    "整理微信讀書热門書單",
+    "熱門收藏",
+    "整理微信讀書熱門書單",
     "匯出微信讀書書單為 markdown"
   ],
-  "热門書單": [
+  "熱門書單": [
     "weread-hot-booklists",
     "weread",
     "booklist",
     "reading-notes"
   ],
-  "讀書笔記": [
+  "讀書筆記": [
     "weread-hot-booklists",
     "weread",
     "booklist",
@@ -59390,13 +59390,13 @@ export const SYNONYM_MAP = {
     "booklist",
     "reading-notes"
   ],
-  "热門收藏": [
+  "熱門收藏": [
     "weread-hot-booklists",
     "weread",
     "booklist",
     "reading-notes"
   ],
-  "整理微信讀書热門書單": [
+  "整理微信讀書熱門書單": [
     "weread-hot-booklists",
     "weread",
     "booklist",
