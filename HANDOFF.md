@@ -184,6 +184,17 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 → **別再假設「描述太短」**：實測 547/705 工具描述 < 60 字，短描述是全庫常態。
 → 這 5% 缺口是真實限制，**不建議強修**（補 metadata 會變成針對評測答案調參 = overfitting）。
+→ 2026-09-20 起改由「知識編譯器」正面處理，見 `docs/WIKI-COMPILER.md`。
+
+### 18. 🔴 同一個檔案不要在同一次回應裡連續下兩次編輯
+
+實測兩次：對**同一個檔案**在**同一則訊息**裡發出兩個 Edit，
+第一個 Edit 會被第二個覆蓋而**靜默消失**（工具回報成功，但內容沒進去）。
+
+症狀：後續引用該函式/常數時報「找不到」，或行為與預期不符。
+
+→ **一個檔案一次只下一次 Edit**，改第二處要等下一次訊息。
+→ 改完務必 `grep` 或 `git diff` 確認真的寫進去了，不要信任工具的「成功」回報。
 
 ---
 
@@ -204,31 +215,38 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 **rerank 路徑（實際上線，topK=50）**
 
-| 指標 | 數值 |
-|---|---|
-| 詞彙引擎 top-1 | 51.6% |
-| 召回天花板 | 95.0% |
-| **rerank 後（嚴格）** | **79.2%** |
-| **rerank 後（含近義）** | **81.8%** |
-| 空集誠實率 | 100%（10/10）|
+| 指標 | 數值 | 備註 |
+|---|---|---|
+| 詞彙引擎 top-1 | 54.7% | 知識編譯器 V5 啟用後（Tier 0） |
+| 召回天花板 | 95.6% | 同上；停用時為 95.0% |
+| **rerank 後（嚴格）** | **79.2%** | ⚠️ 2026-09-20 測於 V5 導入**前**，導入後尚未重測（需 AGNES_API_KEY） |
+| **rerank 後（含近義）** | **81.8%** | 同上 |
+| 空集誠實率 | 100%（10/10）| V5 啟用前後皆為 100% |
 
-**benchmark 路徑（topK=5，不含 rerank）**：agent 51.6%（含近義 54.7%）。
+**benchmark 路徑（topK=5，不含 rerank）**：
+agent **54.7%**（含近義 57.2%）／fusion **53.5%**（含近義 56.0%）。
+停用 V5 時為 agent 51.6%／fusion 50.3% → **+3.1pp／+3.2pp**。
+數字為**確定性**的（不含 LLM 隨機性），天花板診斷不需 API。
 
 ⚠️ **v1.2.0 與 v1.1.0 不可直接比較**：評測集從 69 擴充至 169 題，
 且 semantic 佔比由 33% 升至 50%（產生方法的偏差，見陷阱 11 與 DEV_LOG）。
 
-**分類型（fusion，topK=5）**：
+**分類型（fusion，topK=5，V5 啟用）**：
 | 類型 | 筆數 | Hit@1 | 天花板 |
 |---|---|---|---|
 | direct | 48 | 64.6% | 100.0% |
-| semantic | 79 | **40.5%** | 91.1% |
-| constrained | 32 | 53.1% | 96.9% |
+| semantic | 79 | **44.3%** | 92.4% |
+| constrained | 32 | 59.4% | 96.9% |
 
-→ semantic 是唯一有召回缺口的類型，根因是詞彙鴻溝（見**陷阱 17**）。
+→ semantic 仍是唯一有召回缺口的類型，根因是詞彙鴻溝（見**陷阱 17**）。
+→ 正面處理方式是「知識編譯器」（`docs/WIKI-COMPILER.md`）：
+   離線把工具 metadata 編譯成使用者語言的詞條，查詢時比對詞條而非原始描述。
+   Tier 0（純規則、無新詞彙）就已讓天花板 95.0% → 95.6%、top1 +3.1pp；
+   **Tier 1（LLM 語意編譯，705 筆）尚未執行**——需要 AGNES_API_KEY。
 
 ### 測試
 
-`npm test` → **151 tests / 149 pass / 0 fail**（2 skipped 為需外部依賴者）
+`npm test` → **170 tests / 168 pass / 0 fail**（2 skipped 為需外部依賴者）
 2026-09-19 起改為 `--test-concurrency=1` 序列化（見陷阱 9），耗時 12.5s → 21.4s。
 `cli.js validate` → **0 錯誤／0 警告／品質 100.0**。
 `npm run ceiling` → 天花板診斷（不需 API，見陷阱 17）。
@@ -272,10 +290,12 @@ CLI  ─┘
 | `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|
 | `scripts/translate-to-zh.js` | 產生 `*_zh` 欄位（`npm run translate:zh`）|
 | `scripts/ceiling-analysis.js` | 天花板診斷（`npm run ceiling`，見陷阱 17）|
-
----
+| `registry/compiled-entries.json` | 知識編譯詞檔（705 筆，由 compile-wiki 產生）|
+| `scripts/compile-wiki.js` | **工具知識編譯器**（解析邏輯，`npm run compile:wiki`）|
+| `core/wiki-matcher.js` | 詞條配對 + 知識圖譜擴散（配對邏輯，V5）|
+| `core/tokenize.js` | 共用斷詞／IDF（agent-retrieval 與 wiki-matcher 必須同源）|
 | `core/retrieval-fusion.js` | 檢索融合（三端入口）|
-| `core/agent-retrieval.js` | 四維檢索 |
+| `core/agent-retrieval.js` | 五維檢索（V1 身分／V2 功能／V3 情境／V4 部署／**V5 知識詞條**）|
 | `core/llm-rerank.js` | LLM 重排（含兩階段實作，未接入）|
 | `core/search-engine.js` | L2 詞彙引擎 |
 | `scripts/eval-benchmark.js` | 評測（嚴格／含近義兩種分數）|
@@ -304,6 +324,8 @@ npm run categories:check    # 分類來源同步檢查
 npm run benchmark           # 檢索評測（離線，topK=5）
 npm run eval:rerank         # rerank 評測（需 AGNES_API_KEY，topK=50）
 npm run ceiling             # 天花板診斷（不需 API，見陷阱 17）
+npm run compile:wiki -- --offline    # 知識詞檔 Tier 0 編譯（不需 API）
+npm run compile:wiki -- --stats      # 詞檔覆蓋率與知識圖譜統計
 npm run translate:zh        # 產生繁中譯文欄位（需 AGNES_API_KEY，可續跑）
 npm run build               # 建置（同步 dist/ 與 docs/*.html）
 npm start                   # 啟動 Web 伺服器（:3000，服務 dist/）
