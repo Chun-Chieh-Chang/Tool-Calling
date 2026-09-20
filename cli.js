@@ -950,6 +950,87 @@ async function cmdIngest(source) {
   console.log(`\n${plan.summary}\n`);
 }
 
+/**
+ * 互動式需求收斂（Requirement Clarifier）
+ *
+ * 與 MCP clarify_requirement、Web /api/clarify 共用 core/clarifier.js。
+ *
+ * 舊版是 core/interactive-approximator.js，題目**寫死的爬蟲三題**
+ * （語言／爬蟲情境／是否防爬），對非爬蟲需求完全沒用；已於 2026-09-20 移除。
+ * 新版改成：
+ *   - 題目由候選集的實際差異動態產生（哪個維度 entropy 最高就問哪個）
+ *   - 只在系統不確定時才提問（承襲 no-match 棄權的誠實原則）
+ *   - 每次回答後重新檢索，逐步收斂
+ */
+async function cmdInterview(query) {
+  if (!query) {
+    error('請提供需求。用法: node cli.js interview "<需求>"');
+    process.exit(1);
+  }
+
+  header('🎯 需求收斂追問 (Requirement Clarifier)');
+  const registry = loadRegistry();
+  const tools = registry.tools;
+  const { retrieve } = await import('./core/retrieval-fusion.js');
+  const { planClarification, applyAnswer, ANY_VALUE } = await import('./core/clarifier.js');
+  const readline = await import('node:readline');
+
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const ask = (q) => new Promise((resolve) => rl.question(q, resolve));
+
+  const answers = {};
+  let finalCandidates = [];
+  let finalNote = '';
+
+  console.log(`${c.cyan}${c.bold}原始需求:${c.reset} ${query}`);
+  console.log(`${c.dim}（最多問 3 題，或直接按 Enter 選「都可以」跳過）${c.reset}\n`);
+
+  for (let round = 1; round <= 3; round++) {
+    // 把已回答的維度併進查詢，讓檢索本身也吃到約束
+    const suffix = Object.values(answers).filter((v) => v && v !== ANY_VALUE).join(' ');
+    const effective = suffix ? `${query} ${suffix}` : query;
+    const r = retrieve(tools, effective, { topK: 5 });
+
+    let cands = r.results;
+    for (const [dim, val] of Object.entries(answers)) {
+      cands = applyAnswer(cands, tools, dim, val).candidates;
+    }
+    finalCandidates = cands;
+
+    const confident = r.decision === 'adopt' && (r.confidence ?? 0) >= 0.35;
+    const plan = planClarification(cands, tools, { asked: Object.keys(answers), decision: r.decision });
+
+    if (confident || !plan.shouldAsk) {
+      finalNote = confident
+        ? `已達高置信度（${(r.confidence * 100).toFixed(0)}%），不再追問`
+        : plan.reason;
+      break;
+    }
+
+    const q = plan.question;
+    // 注意：clarifier 回傳的欄位叫 question，不是 prompt（MCP 端有做映射，這裡別搞混）
+    console.log(`${c.yellow}${c.bold}Q${round}. ${q.question || q.prompt}${c.reset}`);
+    console.log(`    ${c.dim}${plan.reason}${c.reset}`);
+    console.log(`    選項：${q.options.map((o) => (o.value === ANY_VALUE ? '都可以（跳過）' : o.value)).join('  /  ')}`);
+    const raw = (await ask(`    ${c.cyan}你的選擇：${c.reset}`)).trim();
+
+    const matched = q.options.find((o) => o.value === raw);
+    answers[q.key] = matched ? matched.value : (raw || ANY_VALUE);
+    console.log('');
+  }
+
+  rl.close();
+
+  console.log(`${c.dim}${finalNote || '已用完追問次數'}${c.reset}\n`);
+  console.log(`${c.blue}${c.bold}收斂結果:${c.reset}`);
+  finalCandidates.slice(0, 5).forEach((x, i) => {
+    const t = tools.find((tt) => tt.id === x.id);
+    console.log(`  ${i + 1}. ${c.green}${t?.name || x.id}${c.reset} (${x.id}) — ${c.dim}${t?.category || ''}${c.reset}`);
+    if (t?.useCase_zh || t?.useCase) console.log(`     ${String(t.useCase_zh || t.useCase).slice(0, 80)}`);
+  });
+  console.log();
+}
+
 // ─── 主程式 ─────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -1050,11 +1131,9 @@ async function main() {
     case 'compare':
       cmdCompare(args.join(' '));
       break;
-    case 'interview': {
-      const { runInteractiveInterview } = await import('./core/interactive-approximator.js');
-      await runInteractiveInterview(args.join(' '));
+    case 'interview':
+      await cmdInterview(args.join(' '));
       break;
-    }
     case 'health-check':
       await cmdHealthCheck();
       break;
