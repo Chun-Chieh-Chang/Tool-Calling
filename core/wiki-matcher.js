@@ -77,6 +77,28 @@ const MIN_COOC = Number(process.env.WIKI_MIN_COOC || 2);
 const MAX_NEIGHBORS = 6;
 // 擴散進來的詞的衰減係數（<1：間接證據不該跟直接命中等值）
 const GRAPH_DECAY = 0.6;
+
+// ── PPR（Personalized PageRank）參數 ───────────────────────────────────────
+// 靈感來自 The LLM Wiki Blueprint 第 7 頁「零向量檢索」：
+//   拋棄傳統 RAG 的切塊，利用雙向連結做**蒙地卡羅隨機漫步**（PPR）
+//   找出語意關聯；純本地、速度極快、成本與語料總量無關。
+//
+// 我們原本做的是「一階共現擴散」：查詢詞 → 直接鄰居，只走一步。
+// 實測只貢獻 +0.7pp，原因很可能就是走不遠（圖很稀疏）。
+// PPR 等於多階、加權、帶重啟機率的擴散，正好補上這個弱點。
+const PPR_DAMPING = Number(process.env.WIKI_PPR_DAMPING || 0.85);
+const PPR_ITERATIONS = Number(process.env.WIKI_PPR_ITER || 20);
+const PPR_MAX_NODES = Number(process.env.WIKI_PPR_NODES || 40);
+// 擴散出來的詞相對於查詢原詞的權重（1 = 同等重要）。
+//
+// 原理上取 1.0：PPR 分數本身已隨圖上距離衰減，不需要再額外打折一層
+// （原本的 GRAPH_DECAY 就是這種多餘的二次折扣）。
+//
+// 實測敏感度（w=0.20，天花板恆為 96.9%）：
+//   0.3 → 61.0%　0.6 → 61.6%　0.9 → 62.3%　1.0 → 62.3%　1.3 → 62.3%
+//   0.9 以後是**高原**而非單一峰值 → 不是雜訊，取 1.0（高原中段且有原理依據）。
+// ⚠️ 0.9~1.3 只差 0~2 題，不要為了這點差異繼續調（避免對評測集過擬合）。
+const PPR_WEIGHT = Number(process.env.WIKI_PPR_WEIGHT || 1.0);
 // 只有 df 落在這個區間的詞才做擴散：太罕見（df<2）沒有共現統計可言，
 // 太常見（df > MAX_EXPAND_DF_RATIO × N）則是萬用詞，擴散它只會加雜訊。
 const MAX_EXPAND_DF_RATIO = 0.06;
@@ -133,6 +155,7 @@ export function buildWikiIndex(wiki) {
     intentsById.set(id, entries[id]?.intents || []);
   });
 
+  const COOC = buildCooccurrence(intentBags, idfIntent, dfIntent, N);
   return {
     ids,
     N,
@@ -142,7 +165,8 @@ export function buildWikiIndex(wiki) {
     idfIntent,
     idfFacet,
     dfIntent,
-    cooc: buildCooccurrence(intentBags, idfIntent, dfIntent, N),
+    cooc: COOC,
+    adj: buildTokenGraph(COOC),
   };
 }
 
@@ -268,6 +292,81 @@ function pickBestIntent(qBag, intents) {
 }
 
 /**
+ * 把共現邊轉成「轉移機率」鄰接表（每個節點的出邊權重加總 = 1）
+ *
+ * @param {Map<string, Array<[string, number]>>} cooc - buildCooccurrence 的結果
+ * @returns {Map<string, Map<string, number>>}
+ */
+export function buildTokenGraph(cooc) {
+  const adj = new Map();
+  for (const [tok, list] of cooc) {
+    let total = 0;
+    for (const [, c] of list) total += c;
+    if (total <= 0) continue;
+    const probs = new Map();
+    for (const [nb, c] of list) probs.set(nb, c / total);
+    adj.set(tok, probs);
+  }
+  return adj;
+}
+
+/**
+ * Personalized PageRank：以查詢詞為「重啟分布」在詞圖上隨機漫步
+ *
+ * 為什麼要用它：一階共現擴散只看得見直接鄰居，在稀疏圖上幾乎擴不出去。
+ * PPR 每一輪都把機率沿著邊往外推（damping 控制推多遠），
+ * 同時保留 (1-damping) 的機率回到查詢詞，避免飄到無關區域。
+ *
+ * @param {string[]} seeds - 查詢詞（只保留圖上有的）
+ * @param {Map<string, Map<string, number>>} adj
+ * @param {{damping?: number, iterations?: number}} [options]
+ * @returns {Map<string, number>|null} 每個詞的 PPR 分數；圖上沒有種子詞時回傳 null
+ */
+export function personalizedPageRank(seeds, adj, options = {}) {
+  const { damping = PPR_DAMPING, iterations = PPR_ITERATIONS } = options;
+  if (!adj || adj.size === 0) return null;
+  const seedSet = [...new Set(seeds)].filter((t) => adj.has(t));
+  if (seedSet.length === 0) return null;
+
+  const seedMass = (1 - damping) / seedSet.length;
+  let r = new Map(seedSet.map((t) => [t, 1 / seedSet.length]));
+
+  for (let i = 0; i < iterations; i++) {
+    const next = new Map();
+    for (const t of seedSet) next.set(t, seedMass);
+    for (const [u, ru] of r) {
+      const nbrs = adj.get(u);
+      if (!nbrs || ru <= 0) continue;
+      for (const [v, p] of nbrs) next.set(v, (next.get(v) || 0) + damping * ru * p);
+    }
+    r = next;
+  }
+  return r;
+}
+
+/**
+ * 加權餘弦相似度（查詢端帶權重版）
+ *
+ * 為什麼要另一個版本：`weightedSim` 只看 token **有沒有出現**，
+ * 不看權重——這讓原本的 GRAPH_DECAY 形同虛設（衰減根本沒作用）。
+ * PPR 的價值在於「擴散出來的詞重要程度不同」，必須用帶權重的版本才吃得到。
+ */
+function weightedCosine(queryWeights, toolBag, idf) {
+  let dot = 0;
+  let nq = 0;
+  for (const [t, w] of queryWeights) {
+    const iw = idf.get(t) || 1;
+    if (toolBag.has(t)) dot += w * iw * iw;
+    nq += w * w * iw * iw;
+  }
+  if (dot === 0 || nq === 0) return 0;
+  let nt = 0;
+  for (const t of toolBag.keys()) { const iw = idf.get(t) || 1; nt += iw * iw; }
+  if (nt === 0) return 0;
+  return dot / (Math.sqrt(nq) * Math.sqrt(nt));
+}
+
+/**
  * 計算所有工具的 V5 分數
  *
  * @param {string} query
@@ -281,18 +380,27 @@ export function wikiScore(query, index, options = {}) {
   const qBag = bagOf(tokenize(query));
   if (qBag.size === 0) return null;
 
-  // 圖譜擴散：把查詢詞在知識圖譜上的鄰居詞以衰減權重加進詞袋
-  let expanded = null;
-  if (enableGraph && index.cooc && index.cooc.size > 0) {
-    expanded = new Map(qBag);
-    const maxDf = Math.max(2, Math.floor(index.N * MAX_EXPAND_DF_RATIO));
-    for (const [tok, w] of qBag) {
-      if ((index.dfIntent.get(tok) || 0) > maxDf) continue; // 萬用詞不擴散
-      const nbrs = index.cooc.get(tok);
-      if (!nbrs) continue;
-      for (const [n] of nbrs) {
-        if (expanded.has(n)) continue;
-        expanded.set(n, w * graphDecay);
+  // 圖譜擴散：以查詢詞為重啟分布做 PPR 隨機漫步（多階）
+  //
+  // 舊做法是「一階共現」：只把直接鄰居加進詞袋，衰減係數還因為
+  // weightedSim 不看權重而形同虛設。PPR 讓機率沿邊多輪傳遞，
+  // 且用帶權重的 weightedCosine 讓「擴散越遠的詞權重越低」真正生效。
+  let pprWeights = null;
+  if (enableGraph && index.adj && index.adj.size > 0) {
+    const seeds = [...qBag.keys()].filter((t) => index.adj.has(t));
+    if (seeds.length > 0) {
+      const r = personalizedPageRank(seeds, index.adj);
+      if (r) {
+        const ranked = [...r.entries()].sort((a, b) => b[1] - a[1]).slice(0, PPR_MAX_NODES);
+        const nonSeedMax = ranked.reduce((m, [t, v]) => (!qBag.has(t) && v > m ? v : m), 0);
+        pprWeights = new Map();
+        for (const t of qBag.keys()) pprWeights.set(t, 1);
+        if (nonSeedMax > 0) {
+          for (const [t, v] of ranked) {
+            if (qBag.has(t)) continue;
+            pprWeights.set(t, Math.min(1, (v / nonSeedMax) * PPR_WEIGHT));
+          }
+        }
       }
     }
   }
@@ -302,8 +410,8 @@ export function wikiScore(query, index, options = {}) {
     const intentBag = index.intentBags.get(id);
     const direct = weightedSim(qBag, intentBag, index.idfIntent);
     let best = direct;
-    if (expanded && expanded.size > qBag.size) {
-      const viaGraph = weightedSim(expanded, intentBag, index.idfIntent);
+    if (pprWeights && pprWeights.size > qBag.size) {
+      const viaGraph = weightedCosine(pprWeights, intentBag, index.idfIntent);
       if (viaGraph > best) best = viaGraph;
     }
     const facet = weightedSim(qBag, index.facetBags.get(id), index.idfFacet);
