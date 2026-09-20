@@ -133,16 +133,26 @@ for (const k of keyStats().keys) {
 }
 
 console.log(`\n  判讀：`);
+console.log(`  🔴 唯一可信的指標是「成功數」，**不要看吞吐（req/s）**——`);
+console.log(`     429 會瞬間失敗，失敗越多 req/s 反而越高，極度誤導。`);
 if (rate429 === 0 && otherFail === 0) {
-  console.log(`    ✅ 完全沒被限流。瓶頸是單次延遲（中位 ${pctl(0.5)}ms），`);
-  console.log(`       加金鑰不會更快 —— 該提高併發（--concurrency）。`);
+  console.log(`\n    ✅ 完全沒被限流（額度充足）。瓶頸是單次延遲（中位 ${pctl(0.5)}ms）。`);
+  console.log(`       加金鑰不會更快 —— 要提高速度請加大 --concurrency（直到出現 429）。`);
 } else if (rate429 > 0) {
-  console.log(`    ⚠️ 有 ${rate429} 次 429，確實被限流。`);
-  console.log(`       請用多把金鑰重跑同一個設定（AGNES_API_KEYS=k1,k2,...），`);
-  console.log(`       比較吞吐（req/s）：等比例上升 → 綁金鑰，值得加；`);
-  console.log(`       幾乎沒變 → 綁帳號或 IP，加金鑰無效。`);
+  console.log(`\n    ⚠️ 有 ${rate429} 次 429，確實被限流。本次成功 ${ok}/${REQUESTS}。`);
+  console.log(`\n    【如何判斷加金鑰有沒有用】`);
+  console.log(`      1. 記下本次的「成功數 ${ok}」`);
+  console.log(`      2. 等 90~120 秒讓額度窗重置，用多把金鑰重跑**完全相同**的設定：`);
+  console.log(`         AGNES_API_KEYS=k1,k2 node scripts/llm-throughput.js --big --requests=${REQUESTS} --concurrency=${CONCURRENCY}`);
+  console.log(`      3. 比較「成功數」：`);
+  console.log(`         明顯上升（約等比例）→ 限制綁金鑰 ✅ 加金鑰有效`);
+  console.log(`         幾乎相同         → 限制綁帳號或 IP ❌ 加金鑰無效，別花錢`);
+  console.log(`\n    📌 2026-09-20 已在本專案的端點實測過（同一端點的兩把金鑰）：`);
+  console.log(`         1 把 → 成功 23/40、429 共 17 次`);
+  console.log(`         2 把 → 成功 23/40、429 共 17 次（k1 8 次 + k2 9 次）`);
+  console.log(`         **成功數完全相同** → 額度是帳號／IP 共享，**加金鑰無效**。`);
 } else {
-  console.log(`    ⚠️ 失敗都不是 429（可能是逾時或網路）。`);
+  console.log(`\n    ⚠️ 失敗都不是 429（可能是逾時或網路）。`);
   console.log(`       這不是限流問題，加金鑰沒用，請檢查 timeout／網路。`);
 }
 console.log();

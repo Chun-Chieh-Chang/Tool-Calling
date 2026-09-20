@@ -325,10 +325,21 @@ CLI  ─┘
 3. **Fusion**（`core/retrieval-fusion.js`）— 融合上述，決策 adopt／no-match
 4. **LLM rerank**（`core/llm-rerank.js`）— 可選後處理，recallK=50
 
+### 三個對外能力（2026-09-20 起，Web／MCP／CLI 三端皆有）
+
+1. **單一工具檢索**（原本就有）：`search_tools` ／ `/api/search`
+2. **多工具鏈**（`plan_tool_chain` ／ `/api/chain`）：
+   專案型需求多半要數支工具接力。把任務拆步驟，每步給主力 + 備選 + 資料流向。
+   走融合引擎（`core/tool-chain.js`），不是舊的 L2 版。
+3. **需求收斂追問**（`clarify_requirement` ／ `/api/clarify`）：
+   **只在系統不確定時才提問**；題目由候選集在語言／安裝／領域哪個維度
+   `entropy` 最高動態決定，不是寫死題庫。`no-match` 時優先問「用途領域」。
+
 ### 重要設計決策
 
 - **rerank 預設關閉**：詞彙引擎 119ms vs rerank 5365ms，故做成選項
   （Web 有「深度搜尋」開關、CLI 有 `--deep`）
+- **rerank 只跑序列**：實測併發 3 會讓 58% 呼叫失敗（限制是 TPM，見陷阱 21）
 - **rerank 可棄權**：prompt 允許回 `NONE`，避免把已正確的 top-1 換掉
 - **no-match 時仍給最佳猜測**：已明示不確定，不損害誠實性
 - **深度搜尋結果不寫快取**：與快速路徑排序不同，共用快取鍵會不一致
@@ -348,6 +359,11 @@ CLI  ─┘
 | `registry/compiled-entries.json` | 知識編譯詞檔（705 筆，由 compile-wiki 產生）|
 | `scripts/compile-wiki.js` | **工具知識編譯器**（解析邏輯，`npm run compile:wiki`）|
 | `core/wiki-matcher.js` | 詞條配對 + 知識圖譜擴散（配對邏輯，V5）|
+| `core/clarifier.js` | 需求收斂追問引擎（純函式，題目由候選差異動態產生）|
+| `core/tool-chain.js` | 多工具鏈規劃（走融合引擎版，`planToolSet`）|
+| `core/llm-keys.js` | API 金鑰池（輪替 + 429 隔離 + 統計）|
+| `scripts/llm-throughput.js` | 限流實測：判斷限制是綁金鑰／帳號／IP |
+| `scripts/v5-ablate.js` | V5 權重消融（確定性，不需 API）|
 | `core/tokenize.js` | 共用斷詞／IDF（agent-retrieval 與 wiki-matcher 必須同源）|
 | `core/retrieval-fusion.js` | 檢索融合（三端入口）|
 | `core/agent-retrieval.js` | 五維檢索（V1 身分／V2 功能／V3 情境／V4 部署／**V5 知識詞條**）|
