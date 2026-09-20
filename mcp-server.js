@@ -446,6 +446,55 @@ server.tool(
   }
 );
 
+server.tool(
+  "plan_ingestion",
+  "規劃『素材 → 可用筆記』的擷取管線（LLM Wiki 的 Capture 層）。" +
+  "適合「我有一堆 PDF／網頁／錄音，要怎麼變成知識庫」這類需求。",
+  {
+    source: z.string().min(1).describe("素材類型：pdf / web / audio / video / book"),
+    topK: z.number().min(1).max(10).optional().describe("每個階段保留幾個備選工具（預設 3）"),
+  },
+  async (args) => {
+    try {
+      const tools = loadRegistry().tools;
+      const { planIngestion } = await import("./core/ingestion.js");
+      const plan = planIngestion(tools, args.source, { topK: args.topK || 3 });
+      if (!plan) {
+        return server.createToolError(
+          `不支援的素材類型：${args.source}。可用：${['pdf','web','audio','video','book'].join(' / ')}`
+        );
+      }
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            sourceType: plan.sourceType,
+            label: plan.label,
+            hint: plan.hint,
+            totalSteps: plan.totalSteps,
+            asciiPipeline: plan.asciiPipeline,
+            stages: plan.stages.map((s) => ({
+              step: s.stepIndex,
+              stage: s.label,
+              tool: s.recommendedTool ? {
+                id: s.recommendedTool.id,
+                name: s.recommendedTool.name,
+                category: s.recommendedTool.category,
+                install: s.recommendedTool.install,
+              } : null,
+              warning: s.warning,
+              alternatives: s.alternatives,
+            })),
+            summary: plan.summary,
+          }, null, 2),
+        }],
+      };
+    } catch (err) {
+      return server.createToolError(`擷取管線規劃失敗: ${err.message}`);
+    }
+  }
+);
+
 async function main() {
   try {
     const transport = new StdioServerTransport();

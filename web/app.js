@@ -23,6 +23,7 @@ const clarifyOptions = document.getElementById('clarifyOptions');
 const chainResult = document.getElementById('chainResult');
 const chainPipeline = document.getElementById('chainPipeline');
 const chainSteps = document.getElementById('chainSteps');
+const ingestSourceSelect = document.getElementById('ingestSourceSelect');
 
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
@@ -82,6 +83,7 @@ async function init() {
     // 切換深度搜尋後立即以新模式重跑當前查詢，讓使用者能直接比較差異
     if (deepSearchToggle) deepSearchToggle.addEventListener('change', handleSearch);
     if (chainModeToggle) chainModeToggle.addEventListener('change', handleSearch);
+    if (ingestSourceSelect) ingestSourceSelect.addEventListener('change', handleSearch);
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
@@ -671,7 +673,7 @@ function populateCategories() {
 
 // ─── 統一四視圖連動同步引擎 (Unified 4-View Sync Engine) ────────────────────
 
-function handleSearch() {
+async function handleSearch() {
   const startTime = Date.now();
   syncAllViews();
   const duration = Date.now() - startTime;
@@ -688,10 +690,20 @@ function handleSearch() {
     }
 
     const chainMode = chainModeToggle ? chainModeToggle.checked : false;
+    // 素材來源選單只在多工具鏈模式出現
+    if (ingestSourceSelect) ingestSourceSelect.hidden = !chainMode;
     if (chainMode) {
       if (clarifyBar) clarifyBar.hidden = true;
-      runChain(query);
+      const source = ingestSourceSelect ? ingestSourceSelect.value : '';
+      if (source) {
+        // 擷取管線：素材 → 可用筆記
+        const plan = await serverIngest(source);
+        if (plan) renderIngest(plan);
+      } else {
+        runChain(query);
+      }
     } else {
+      if (ingestSourceSelect) ingestSourceSelect.value = '';
       if (chainResult) chainResult.hidden = true;
       runClarify(query);
     }
@@ -833,6 +845,42 @@ async function runChain(query) {
 async function runClarify(query) {
   const data = await serverClarify(query, clarifyAnswers);
   renderClarify(data);
+}
+
+// 擷取管線（Capture 層）：素材 → 可用筆記
+async function serverIngest(source, topK = 3) {
+  try {
+    const res = await fetch('/api/ingest', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ source, topK }),
+    });
+    if (!res.ok) throw new Error(`api ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('[Ingest] unavailable:', err.message);
+    return null;
+  }
+}
+
+function renderIngest(plan) {
+  if (!chainResult || !plan) return;
+  chainPipeline.textContent = plan.asciiPipeline || '';
+  chainSteps.innerHTML = plan.stages.map((s) => {
+    const t = s.recommendedTool;
+    const alt = (s.alternatives || []).map((a) => escapeHtml(a.name || a.id)).join('、');
+    return `
+      <div class="chain-step">
+        <span class="chain-step-no">${s.stepIndex}</span>
+        <div class="chain-step-body">
+          <div><span class="chain-step-action">${escapeHtml(s.label)} →</span>
+            <span class="chain-step-tool">${t ? escapeHtml(t.name) : '（無高置信度工具）'}</span></div>
+          ${s.warning ? `<div class="chain-step-alt">⚠ ${escapeHtml(s.warning)}</div>`
+                      : (alt ? `<div class="chain-step-alt">備選：${alt}</div>` : '')}
+        </div>
+      </div>`;
+  }).join('');
+  chainResult.hidden = false;
 }
 
 function syncAllViews() {

@@ -288,6 +288,44 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── 擷取管線 API ──────────────────────────────────────────────────
+    // LLM Wiki 的 Capture 層：把「素材 → 可用筆記」拆成步驟。
+    // 這正是 The LLM Wiki Blueprint 警告的「輸入瓶頸」——
+    // 多數人只做創作與檢索，卻忽略了資料怎麼進來。
+    if (decodedUrl === '/api/ingest' && req.method === 'POST') {
+      const { source, topK = 2 } = JSON.parse(req._body || '{}');
+      if (!source || !String(source).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: 'source 不可為空' }));
+        return;
+      }
+      try {
+        const { loadRegistry, displayText } = await import('../core/registry.js');
+        const { planIngestion } = await import('../core/ingestion.js');
+        const registry = loadRegistry();
+        const plan = planIngestion(registry.tools, String(source).trim(), { topK: Math.min(Number(topK) || 2, 10) });
+        if (!plan) {
+          res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+          res.end(JSON.stringify({ error: `不支援的素材來源：${source}` }));
+          return;
+        }
+        const byId = new Map(registry.tools.map((t) => [t.id, t]));
+        const stages = plan.stages.map((s) => ({
+          ...s,
+          recommendedTool: s.recommendedTool ? {
+            ...s.recommendedTool,
+            description_zh: displayText(byId.get(s.recommendedTool.id), 'description'),
+          } : null,
+        }));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ ...plan, stages }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
+
     // ─── 需求收斂追問 API ──────────────────────────────────────────────
     // 只在系統不確定時才提問（decision 不是 adopt、或置信度不足）。
     // 題目由候選集的實際差異動態產生，不是寫死的題庫。
