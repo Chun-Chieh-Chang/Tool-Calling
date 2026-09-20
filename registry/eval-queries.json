@@ -1,9 +1,9 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "created": "2026-09-14",
   "description": "工具選用評測集。查詢刻意避開工具名與 trigger 詞，以衡量真正的匹配能力。expected 為可接受答案集合，任一命中即算對。empty-set 類型用於衡量引擎是否誠實回報「無對應工具」。",
   "methodology": {
-    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。",
+    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。\n2026-09-20 擴充至 v1.3.0：以 scripts/expand-eval-set.js **可重現地**新增 98 題（依分類輪替取樣、優先補薄分類；題型比例維持 direct 28%／semantic 50%／constrained 22%，以免類型分佈再次改變）。四道關卡：漏詞檢查（剔除 1）→ 天花板驗證（答案需在 top-50，剔除 1）→ 去重（0）→ 人工未介入。**新基線與舊基線不可直接比較**（題數改變，標準誤由 ~3.6pp 降至 ~3.0pp）。\n⚠️ v1.3.0 已知偏差（使用時必須知道）：\n  1. 新增題目的天花板通過率 99.0%，高於 v1.2.0 的 92.6% —— 代表新題目\n     在「召回」上偏簡單（答案幾乎都在 top-50），但在「排序」上不一定：\n     實測 semantic 天花板 93.7% → 96.1%，但 top1 並未同步提升。\n     成因：題目由工具 metadata 反推，詞彙仍比真實使用者查詢更接近語料庫。\n  2. 因此 v1.3.0 的基線**不能**與 v1.2.0 直接比較（題數、難度分佈皆已改變）：\n     agent Hit@1 62.3% → 58.8%、fusion 61.0% → 58.0%。\n  3. 17/98 題與工具 trigger 用詞重疊（既有評測集亦有此情形），保留但應留意。\n\n  後續若再擴充，建議改用「真人實際問句」或「跨工具混淆題」以提高難度，\n  而不是繼續由 metadata 反推。",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
     "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。\n2026-09-19（第三輪）：譯文納入索引後重新審視失敗清單，接受 c32/c51/c15；駁回 c09/c37/c38（皆為描述未載明該能力，放行屬推測）。",
@@ -33,6 +33,19 @@
         "c38（查詢要取出表格，splash 能渲染 JS 但未明載表格擷取）"
       ],
       "count": 13
+    },
+    "baseline_2026_09_20_v1_3_0": {
+      "note": "v1.3.0 基線（267 題）：agent 58.8% / fusion 58.0% / L2 9.7%；標準誤 ~3.0pp。空集誠實率 100%。",
+      "ceiling": {
+        "direct": "100.0%",
+        "semantic": "96.1%",
+        "constrained": "100.0%"
+      },
+      "not_comparable_with": [
+        "v1.2.0",
+        "v1.1.0",
+        "v1.0.0"
+      ]
     }
   },
   "cases": [
@@ -1545,6 +1558,986 @@
       "query": "幫我預約下週二的牙醫洗牙",
       "expected": [],
       "type": "empty-set"
+    },
+    {
+      "id": "c160",
+      "query": "讓 AI 寫程式時能自動查詢最新版本的函式庫文件",
+      "expected": [
+        "context7"
+      ],
+      "type": "direct",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c161",
+      "query": "希望 AI 助手能記住之前聊過的內容，不要每次重開都要重新說明",
+      "expected": [
+        "memmy-agent"
+      ],
+      "type": "semantic",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c162",
+      "query": "幫現有的 MySQL 資料庫產生安全的 API 和管理後台介面",
+      "expected": [
+        "directus"
+      ],
+      "type": "direct",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c163",
+      "query": "讓 AI 能直接在 GitHub 上處理 Issue 和合併請求，輔助程式碼審查",
+      "expected": [
+        "github-mcp-server"
+      ],
+      "type": "constrained",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c164",
+      "query": "想建立一個問答系統，能同時理解並檢索 PDF、圖片和影片的內容",
+      "expected": [
+        "rag-anything"
+      ],
+      "type": "semantic",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c165",
+      "query": "寫指令批次產出 Excel 和 PPT，不用裝 Office 也能跑。",
+      "expected": [
+        "officecli"
+      ],
+      "type": "direct",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c166",
+      "query": "要把不同平台資料自動同步，不想寫程式，用畫面拖曳就能搞定。",
+      "expected": [
+        "n8n"
+      ],
+      "type": "semantic",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c167",
+      "query": "想讓 AI 自動看盤並執行交易策略，不用手動介入。",
+      "expected": [
+        "hkuds-vibe-trading"
+      ],
+      "type": "semantic",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c168",
+      "query": "只想用 TypeScript 寫專案，要一本進階型別技巧的參考手冊。",
+      "expected": [
+        "total-typescript-skills"
+      ],
+      "type": "constrained",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c169",
+      "query": "想一次跑好多個 AI 助手同時寫程式，桌面或手機都能用。",
+      "expected": [
+        "stablyai-orca"
+      ],
+      "type": "semantic",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c170",
+      "query": "我要建立一個能快速搜尋所有程式碼邏輯的索引系統",
+      "expected": [
+        "codebase-memory-mcp"
+      ],
+      "type": "direct",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c171",
+      "query": "幫我把這堆技術文件自動轉成可編輯的簡報檔，但不能用付費雲端服務",
+      "expected": [
+        "slidesmaker"
+      ],
+      "type": "constrained",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c172",
+      "query": "想找一些不用花錢、可以長期拿去用的 AI 模型接入方式",
+      "expected": [
+        "awesome-free-llm-apis"
+      ],
+      "type": "semantic",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c173",
+      "query": "我要用 TypeScript 寫一個能同時運行多個 AI 助理並即時對話的後端程式",
+      "expected": [
+        "openai-agents-js"
+      ],
+      "type": "direct",
+      "category": "AI 框架",
+      "note": "v1.3.0 新增（AI 框架）"
+    },
+    {
+      "id": "c174",
+      "query": "我想看看各家 AI 系統背後隱藏的指令到底是怎麼設計的，有沒有公開資料？",
+      "expected": [
+        "cl4r1t4s"
+      ],
+      "type": "semantic",
+      "category": "研究",
+      "note": "v1.3.0 新增（研究）"
+    },
+    {
+      "id": "c175",
+      "query": "幫我把瀏覽器自動化的功能整合進 AI 技能，要能穩定操作網頁。",
+      "expected": [
+        "browserbase-web-automation-skills"
+      ],
+      "type": "direct",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c176",
+      "query": "我想在本地跑繪圖介面，但要繁體中文版本，方便我看懂選單。",
+      "expected": [
+        "stable-diffusion-webui-localization-zhtw"
+      ],
+      "type": "constrained",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c177",
+      "query": "希望有個系統能自動分工，讓不同角色負責看盤、控風險和執行交易。",
+      "expected": [
+        "tradingagents"
+      ],
+      "type": "semantic",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c178",
+      "query": "我要用 Python 寫端對端測試，得能在 Chrome 和 Firefox 上跑自動化腳本。",
+      "expected": [
+        "selenium"
+      ],
+      "type": "direct",
+      "category": "測試與自動化",
+      "note": "v1.3.0 新增（測試與自動化）"
+    },
+    {
+      "id": "c179",
+      "query": "別只給我成品，我要一份清單，告訴我怎麼從零手動寫出這些核心功能。",
+      "expected": [
+        "build-your-own-x"
+      ],
+      "type": "semantic",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c180",
+      "query": "同時跑幾個 AI 在改程式，畫面太亂了，想要一個介面統整管理它們。",
+      "expected": [
+        "herdr"
+      ],
+      "type": "semantic",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c181",
+      "query": "我的程式碼庫很大很亂，想要一個開源方案讓 AI 能快速理解結構並搜尋。",
+      "expected": [
+        "codebase-memory-mcp-pro"
+      ],
+      "type": "constrained",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c182",
+      "query": "讓 AI 自動根據我的內容生成簡報，而且要做成互動式網頁版。",
+      "expected": [
+        "open-slide"
+      ],
+      "type": "semantic",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c183",
+      "query": "幫我找到一個免費的 API 端點，可以同時存取 GPT 和其他主流模型，不用裝 SDK。",
+      "expected": [
+        "gpt-api-free"
+      ],
+      "type": "direct",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c184",
+      "query": "想要一個極輕量、能獨立部署的 AI 框架，專門用來處理簡單的任務規劃。",
+      "expected": [
+        "mini-agent"
+      ],
+      "type": "constrained",
+      "category": "AI 框架",
+      "note": "v1.3.0 新增（AI 框架）"
+    },
+    {
+      "id": "c185",
+      "query": "最近大家都在網上熱烈討論什麼？幫我快速整理一下近來的輿論重點和熱議話題。",
+      "expected": [
+        "last30days-skill"
+      ],
+      "type": "semantic",
+      "category": "研究",
+      "note": "v1.3.0 新增（研究）"
+    },
+    {
+      "id": "c186",
+      "query": "我需要一個能自主跑網頁流程的自動化工具，要會自己處理頁面的突發狀況，不用我手動去維護那些脆弱的腳本。",
+      "expected": [
+        "browser-harness"
+      ],
+      "type": "direct",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c187",
+      "query": "我想要系統能自動分辨我今天想用哪種 AI 模型，別讓我去選單裡手動切換，它得讀懂我的意圖直接幫我導向對的工具。",
+      "expected": [
+        "runcomfy-intent-skills"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c188",
+      "query": "有沒有那種能幫我自動盯盤、根據我的策略去買賣股票的 AI 助手？我想把個人的交易流程完全自動化。",
+      "expected": [
+        "agent-vibe-trading-personal"
+      ],
+      "type": "semantic",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c189",
+      "query": "我在終端機裡寫程式時，能不能直接用自然語言叫 AI 幫我跑安全掃描或分析日誌？不要跳轉到網頁介面。",
+      "expected": [
+        "claude-code-cybersecurity-skill"
+      ],
+      "type": "constrained",
+      "category": "安全性",
+      "note": "v1.3.0 新增（安全性）"
+    },
+    {
+      "id": "c190",
+      "query": "想要一份容易理解的資料，讓團隊成員搞懂反覆試錯的設計邏輯，不用看很深奧的理論。",
+      "expected": [
+        "loop-engineering-orange-book"
+      ],
+      "type": "semantic",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c191",
+      "query": "我要一個命令列工具，能直接跑出 AI 寫程式時的審計報告跟成本統計，不用手動算。",
+      "expected": [
+        "loop-engineering"
+      ],
+      "type": "direct",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c192",
+      "query": "希望 AI 助手能記住我之前交代過的事情，不用每次對話都重述背景，像是有長久記憶一樣。",
+      "expected": [
+        "cognee"
+      ],
+      "type": "semantic",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c193",
+      "query": "別用 PowerPoint 了，請直接生成可以放進網頁、好看又有動效的簡報內容。",
+      "expected": [
+        "html-ppt-skill"
+      ],
+      "type": "semantic",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c194",
+      "query": "需要一個安全的中間層，讓多個 AI 能共用同一組外部工具，而且要能統一管理登入權限。",
+      "expected": [
+        "executor"
+      ],
+      "type": "direct",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c195",
+      "query": "我想要做一個手機和電腦都能看、給客戶用的官方網站，介面要漂亮且符合無障礙標準",
+      "expected": [
+        "ui-ux-pro-max-skill"
+      ],
+      "type": "semantic",
+      "category": "UI/UX設計",
+      "note": "v1.3.0 新增（UI/UX設計）"
+    },
+    {
+      "id": "c196",
+      "query": "我的 AI 助手要能自動去特定網站抓最新的新聞內容，但不能只給它連結，要能直接讀懂裡面的文字",
+      "expected": [
+        "firecrawl-cli-skills"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c197",
+      "query": "我需要在自己的伺服器上部署開源軟體，讓我可以用 Flux 模型自行生成圖片和短片，不依賴外部雲端",
+      "expected": [
+        "open-higgsfield-ai"
+      ],
+      "type": "direct",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c198",
+      "query": "我想知道某個股票過去五年來的股價走勢，有沒有辦法讓 AI 幫忙把這些數據抓下來讓我用表格分析？",
+      "expected": [
+        "yfinance"
+      ],
+      "type": "semantic",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c199",
+      "query": "我在學校的校內網路上連不到某些網站，想找到好用的方法讓我的手機和電腦都能恢復正常瀏覽網頁。",
+      "expected": [
+        "fanqiang"
+      ],
+      "type": "semantic",
+      "category": "安全性",
+      "note": "v1.3.0 新增（安全性）"
+    },
+    {
+      "id": "c200",
+      "query": "我需要一個免費的網頁工具，讓我輸入「一個 M8 螺絲」這種文字，就能產生出檔案，並且檔案要能直接拿去 3D 印表機印出來。",
+      "expected": [
+        "cadam"
+      ],
+      "type": "constrained",
+      "category": "3D工程繪圖",
+      "note": "v1.3.0 新增（3D工程繪圖）"
+    },
+    {
+      "id": "c201",
+      "query": "使用某個 AI 工具幫我做影片摘要，結果產出的檔上面都有浮水印，想問有沒有方法可以把那些浮水印清掉，或者有其他好方法讓 AI 處理資料。",
+      "expected": [
+        "awesome-notebooklm-workflows"
+      ],
+      "type": "semantic",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c202",
+      "query": "請幫我找一份包含多種免費 AI 應用的程式碼清單，裡面要有從簡單到複雜的各種範例，我想直接複製過來改一改就能跑。",
+      "expected": [
+        "awesome-llm-apps"
+      ],
+      "type": "direct",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c203",
+      "query": "我想自建一個記憶庫，讓 AI 在多次對話中都能記得之前討論過的專案細節。",
+      "expected": [
+        "claude-mem"
+      ],
+      "type": "constrained",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c204",
+      "query": "面對複雜除錯時，希望 AI 能像人一樣把問題拆解成小步驟，一步步分析並驗證結論。",
+      "expected": [
+        "mcp-sequential-thinking"
+      ],
+      "type": "semantic",
+      "category": "開發工具",
+      "note": "v1.3.0 新增（開發工具）"
+    },
+    {
+      "id": "c205",
+      "query": "請將這些簡報內容轉成本地 HTML 檔案，讓我可以直接在瀏覽器開啟並修改字體與顏色。",
+      "expected": [
+        "html-deck-editor"
+      ],
+      "type": "direct",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c206",
+      "query": "要在 React 專案裡讓使用者方便地連上各種常見的錢包，並且在頁面上顯示他們鏈上的資產狀況。",
+      "expected": [
+        "appkit"
+      ],
+      "type": "semantic",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c207",
+      "query": "需要一張看起來像手繪的系統架構圖，裡面的模組要能動起來，方便我在簡報裡展示給客戶看。",
+      "expected": [
+        "lanshu-animated-architecture-diagram"
+      ],
+      "type": "semantic",
+      "category": "UI/UX設計",
+      "note": "v1.3.0 新增（UI/UX設計）"
+    },
+    {
+      "id": "c208",
+      "query": "我想寫個腳本自動剪輯一堆素材，但不能用雲端，要能本地離線跑。",
+      "expected": [
+        "video-use"
+      ],
+      "type": "constrained",
+      "category": "影片",
+      "note": "v1.3.0 新增（影片）"
+    },
+    {
+      "id": "c209",
+      "query": "把一句話的點子變成整個軟體專案，包含寫程式碼和文件都要自動做好。",
+      "expected": [
+        "metagpt"
+      ],
+      "type": "semantic",
+      "category": "AI 框架",
+      "note": "v1.3.0 新增（AI 框架）"
+    },
+    {
+      "id": "c210",
+      "query": "把「研究」、「原型」這類工單分類建好，用來規劃大型專案的開發流程。",
+      "expected": [
+        "wayfinder"
+      ],
+      "type": "direct",
+      "category": "研究",
+      "note": "v1.3.0 新增（研究）"
+    },
+    {
+      "id": "c211",
+      "query": "怎麼讓 AI 自己去抓那些動態網頁的內容，整理乾淨後喂給它讀？",
+      "expected": [
+        "firecrawl-skills"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c212",
+      "query": "我直接講話就能在 AI 繪圖軟體裡生成圖片，不用手動拉那些節點連線。",
+      "expected": [
+        "comfyui-mcp"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c213",
+      "query": "想寫個程式模擬投資團隊決策，但只能開源免費，且必須離線跑不依賴外部API",
+      "expected": [
+        "ai-hedge-fund"
+      ],
+      "type": "constrained",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c214",
+      "query": "讓手機重開後不用連電腦就能繼續裝自訂功能，不用重複操作",
+      "expected": [
+        "dopamine"
+      ],
+      "type": "semantic",
+      "category": "安全性",
+      "note": "v1.3.0 新增（安全性）"
+    },
+    {
+      "id": "c215",
+      "query": "要一個輕量跨平台應用，能本機播放串流音樂並支援多裝置同步控制",
+      "expected": [
+        "spotifast"
+      ],
+      "type": "direct",
+      "category": "音訊",
+      "note": "v1.3.0 新增（音訊）"
+    },
+    {
+      "id": "c216",
+      "query": "找一份社群整理的AI播客工具清單，要求是免費開源且可離線檢視",
+      "expected": [
+        "awesome-notebooklm"
+      ],
+      "type": "constrained",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c217",
+      "query": "讓AI助手能直接操作我的終端指令與修改專案檔案，不用人工複製貼上",
+      "expected": [
+        "desktopcommandermcp"
+      ],
+      "type": "semantic",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c218",
+      "query": "想直接在瀏覽器裡用互動式圖譜分析程式碼間的相依性，不用再架伺服器",
+      "expected": [
+        "gitnexus"
+      ],
+      "type": "direct",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c219",
+      "query": "AI 產生的程式碼太囉嗦了，想讓它寫出乾淨精簡、能直接上線的程式",
+      "expected": [
+        "hallmark"
+      ],
+      "type": "semantic",
+      "category": "開發工具",
+      "note": "v1.3.0 新增（開發工具）"
+    },
+    {
+      "id": "c220",
+      "query": "這封用 AI 寫的信讀起來死板板，幫我改寫得自然點，不要被 AI 偵測系統抓出來",
+      "expected": [
+        "humanizer-zh"
+      ],
+      "type": "semantic",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c221",
+      "query": "我們團隊現在用著 Codex，但想讓它可以彈性切換其他模型來控制成本，最好是能隨時回頭",
+      "expected": [
+        "codex-router"
+      ],
+      "type": "constrained",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c222",
+      "query": "這個儀表板看起來都太普通了，想幫它重塑出一套獨特好看的視覺識別，排版也要更清楚",
+      "expected": [
+        "frontend-design"
+      ],
+      "type": "semantic",
+      "category": "UI/UX設計",
+      "note": "v1.3.0 新增（UI/UX設計）"
+    },
+    {
+      "id": "c223",
+      "query": "幫我把部落格文章自動轉成 TikTok 用的 9:16 直式短片。",
+      "expected": [
+        "ai-short-video-engine"
+      ],
+      "type": "direct",
+      "category": "影片",
+      "note": "v1.3.0 新增（影片）"
+    },
+    {
+      "id": "c224",
+      "query": "想在本地跑個開源的 NLP 模型，做文本分類時能自己控制訓練細節。",
+      "expected": [
+        "transformers"
+      ],
+      "type": "constrained",
+      "category": "AI 框架",
+      "note": "v1.3.0 新增（AI 框架）"
+    },
+    {
+      "id": "c225",
+      "query": "我想看看那些流出的系統提示詞，當作寫指令時的參考範本。",
+      "expected": [
+        "opus-5md"
+      ],
+      "type": "semantic",
+      "category": "研究",
+      "note": "v1.3.0 新增（研究）"
+    },
+    {
+      "id": "c226",
+      "query": "用 Node.js 寫個爬蟲，要支援無頭瀏覽器跟 IP 輪換，避免被擋。",
+      "expected": [
+        "crawlee"
+      ],
+      "type": "direct",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c227",
+      "query": "有沒有單一模型能同時做視覺問答和產生圖片，不用分開兩個模型？",
+      "expected": [
+        "janus"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c228",
+      "query": "我需要用 Python 寫一個能同時下單到不同交易所的開源交易系統",
+      "expected": [
+        "vnpy"
+      ],
+      "type": "direct",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c229",
+      "query": "有沒有那種專門教怎麼找漏洞、抓安全問題的教學資源，最好能自己架設不用依賴雲端",
+      "expected": [
+        "trailofbits-skills"
+      ],
+      "type": "constrained",
+      "category": "安全性",
+      "note": "v1.3.0 新增（安全性）"
+    },
+    {
+      "id": "c230",
+      "query": "我想準備去應徵頂級科技公司，需要一份能讓我有效率複習算題和系統設計的指南",
+      "expected": [
+        "yangshun-tech-interview-handbook"
+      ],
+      "type": "semantic",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c231",
+      "query": "請設定我的編碼代理，讓它能直接讀取並操作 Stitch 提供的標準化技能清單",
+      "expected": [
+        "stitch-skills"
+      ],
+      "type": "direct",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c232",
+      "query": "我想找個不用裝伺服器、直接開網頁就能畫關係圖並匯出檔案的工具，給學生教學用",
+      "expected": [
+        "ontology-playground"
+      ],
+      "type": "semantic",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c233",
+      "query": "審查大型專案時 AI 總是抓錯重點，想讓它只讀相關的檔案來提建議。",
+      "expected": [
+        "code-review-graph"
+      ],
+      "type": "semantic",
+      "category": "開發工具",
+      "note": "v1.3.0 新增（開發工具）"
+    },
+    {
+      "id": "c234",
+      "query": "想把線上 AI 筆記自動存到本機資料夾，方便離線編輯，且必須是用開源軟體。",
+      "expected": [
+        "notebooklm-obsidian-pipeline"
+      ],
+      "type": "constrained",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c235",
+      "query": "舊的擴充功能換到新平台不能用，想直接搬過來繼續用，不要重寫。",
+      "expected": [
+        "pi2dsh"
+      ],
+      "type": "semantic",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c236",
+      "query": "用命令行寫語句畫網頁原型，最後匯出成檔案，要開源的。",
+      "expected": [
+        "open-design"
+      ],
+      "type": "direct",
+      "category": "UI/UX設計",
+      "note": "v1.3.0 新增（UI/UX設計）"
+    },
+    {
+      "id": "c237",
+      "query": "輸入關鍵字自動產短影片，要能離線跑，別依賴外部雲端 API。",
+      "expected": [
+        "moneyprinterturbo"
+      ],
+      "type": "constrained",
+      "category": "影片",
+      "note": "v1.3.0 新增（影片）"
+    },
+    {
+      "id": "c238",
+      "query": "我沒時間寫一堆串接腳本，想拖曳元件就拼出完整的自動化流程",
+      "expected": [
+        "langflow"
+      ],
+      "type": "semantic",
+      "category": "AI 框架",
+      "note": "v1.3.0 新增（AI 框架）"
+    },
+    {
+      "id": "c239",
+      "query": "幫我提取 Claude 系統提示詞中關於安全規範的原文段落",
+      "expected": [
+        "claude-system-prompt"
+      ],
+      "type": "direct",
+      "category": "研究",
+      "note": "v1.3.0 新增（研究）"
+    },
+    {
+      "id": "c240",
+      "query": "抓到一堆網頁原始碼，想直接擷取裡面的標題和連結不用手動清",
+      "expected": [
+        "beautifulsoup4"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c241",
+      "query": "幫新車廣告生成分鏡圖，要確保每幀車子的外觀造型完全一致",
+      "expected": [
+        "car-commercial-storyboard"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c242",
+      "query": "想架個開源終端機看市場行情，程式碼必須全部在我本地離線跑",
+      "expected": [
+        "fincept-terminal"
+      ],
+      "type": "constrained",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c243",
+      "query": "把圖片和文件裡那些證明是機器做的痕迹都洗掉，我要乾淨一點。",
+      "expected": [
+        "watermarks-remover"
+      ],
+      "type": "semantic",
+      "category": "安全性",
+      "note": "v1.3.0 新增（安全性）"
+    },
+    {
+      "id": "c244",
+      "query": "給我一份結構化的面試題庫，包含程式題和系統設計，準備去大廠面試。",
+      "expected": [
+        "tech-interview-handbook-Avishkar201"
+      ],
+      "type": "direct",
+      "category": "學習資源",
+      "note": "v1.3.0 新增（學習資源）"
+    },
+    {
+      "id": "c245",
+      "query": "讓 AI 助手自動遵守團隊的編碼規範，不用我每次都要特別交代。",
+      "expected": [
+        "addyosmani-agent-skills"
+      ],
+      "type": "semantic",
+      "category": "AI 代理",
+      "note": "v1.3.0 新增（AI 代理）"
+    },
+    {
+      "id": "c246",
+      "query": "讓 AI 能即時讀到最新更新的資料庫內容，不用每次重新掃描。",
+      "expected": [
+        "cocoindex"
+      ],
+      "type": "semantic",
+      "category": "知識管理",
+      "note": "v1.3.0 新增（知識管理）"
+    },
+    {
+      "id": "c247",
+      "query": "幫我寫個本地程式，自動過濾程式碼，讓 AI 只看相關部分省 token。",
+      "expected": [
+        "lean-ctx"
+      ],
+      "type": "direct",
+      "category": "開發工具",
+      "note": "v1.3.0 新增（開發工具）"
+    },
+    {
+      "id": "c248",
+      "query": "我想讓 AI 幫忙把我的研究筆記變成那種很精緻的簡報，有沒有好用的提示詞可以加速這個過程？",
+      "expected": [
+        "awesome-notebooklm-prompts"
+      ],
+      "type": "semantic",
+      "category": "文件生產力",
+      "note": "v1.3.0 新增（文件生產力）"
+    },
+    {
+      "id": "c249",
+      "query": "我要找免費的中文字串加密跟颱風軌跡查詢 API，最好有明確的端點可以直接呼叫。",
+      "expected": [
+        "free-api"
+      ],
+      "type": "direct",
+      "category": "API 整合",
+      "note": "v1.3.0 新增（API 整合）"
+    },
+    {
+      "id": "c250",
+      "query": "我們前端團隊想用開源工具，自動把 React 元件和 CSS 變數同步到 Figma，不想要手動重畫。",
+      "expected": [
+        "figma-generate-library"
+      ],
+      "type": "constrained",
+      "category": "UI/UX設計",
+      "note": "v1.3.0 新增（UI/UX設計）"
+    },
+    {
+      "id": "c251",
+      "query": "希望 AI 能讀懂我的網頁設計，直接產出動態影片，不用我再去剪片軟體裡手動剪輯。",
+      "expected": [
+        "hyperframes"
+      ],
+      "type": "semantic",
+      "category": "影片",
+      "note": "v1.3.0 新增（影片）"
+    },
+    {
+      "id": "c252",
+      "query": "我要建構一個多 Agent 協作系統，讓不同 AI 角色自動分工完成研究與報告撰寫。",
+      "expected": [
+        "crewai"
+      ],
+      "type": "direct",
+      "category": "AI 框架",
+      "note": "v1.3.0 新增（AI 框架）"
+    },
+    {
+      "id": "c253",
+      "query": "想讓 AI 幫我在開發前徹底檢查設計漏洞，並產出決策紀錄和術語表，不要直接寫程式。",
+      "expected": [
+        "grill-with-docs"
+      ],
+      "type": "semantic",
+      "category": "研究",
+      "note": "v1.3.0 新增（研究）"
+    },
+    {
+      "id": "c254",
+      "query": "讓 AI 能直接去網路上搜尋最新資訊並整理給我看，不用我手動複製貼上。",
+      "expected": [
+        "firecrawl"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化",
+      "note": "v1.3.0 新增（瀏覽器自動化）"
+    },
+    {
+      "id": "c255",
+      "query": "把劇本轉成分鏡圖，限開源工具，要能產出圖片讓 AI 生成動畫用。",
+      "expected": [
+        "film-master"
+      ],
+      "type": "constrained",
+      "category": "多媒體生成",
+      "note": "v1.3.0 新增（多媒體生成）"
+    },
+    {
+      "id": "c256",
+      "query": "想驗證我的買賣策略在過去表現如何，用 Python 程式模擬看看賺不賺錢。",
+      "expected": [
+        "backtrader"
+      ],
+      "type": "semantic",
+      "category": "金融與投資",
+      "note": "v1.3.0 新增（金融與投資）"
+    },
+    {
+      "id": "c257",
+      "query": "對專案做安全稽核，找出漏洞，產出機器可讀的 JSON 報告。",
+      "expected": [
+        "security-audit-skill"
+      ],
+      "type": "direct",
+      "category": "安全性",
+      "note": "v1.3.0 新增（安全性）"
     }
   ],
   "updated": "2026-09-20"
