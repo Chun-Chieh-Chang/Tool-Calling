@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-19T14:57:57.748Z",
+  "lastUpdated": "2026-09-20T00:11:41.037Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -8321,8 +8321,8 @@
     },
     {
       "week": "2026-W38",
-      "dateRange": "2026-09-14 ~ 2026-09-19",
-      "timestamp": "2026-09-19T14:57:57.748Z",
+      "dateRange": "2026-09-14 ~ 2026-09-20",
+      "timestamp": "2026-09-20T00:11:41.037Z",
       "isWeekStart": true,
       "repos": {
         "sapientinc/PRAXIST": 6712,
@@ -8527,6 +8527,5 @@
         "browser-use/browser-use": 114557
       }
     }
-  ],
-  "tamaratran/fast-jev-compaction": 3905
+  ]
 }

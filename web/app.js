@@ -926,7 +926,7 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
   const badge = clone.querySelector('.match-badge');
   if (score !== null) {
     const percentage = Math.round(score * 100);
-    badge.textContent = `${percentage}% Match`;
+    badge.textContent = `${percentage}% 匹配`;
     const progressBar = article.querySelector('.progress-bar');
     if (progressBar) progressBar.style.width = `${percentage}%`;
 
@@ -954,10 +954,11 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
       deltaTag.textContent = `🔥 當週漲星 +${formatStarCount(tool.delta)}`;
       tagsContainer.appendChild(deltaTag);
     }
-    if (tool.useCase) {
+    if (tool.useCase || tool.useCase_zh) {
       const tag = document.createElement('span');
       tag.className = 'tag usecase';
-      tag.textContent = '⭐ ' + tool.useCase;
+      // 顯示層優先繁中（與 useCase/description 共用同一個原則）
+      tag.textContent = '⭐ ' + (tool.useCase_zh || tool.useCase);
       tagsContainer.appendChild(tag);
     }
     if (tool.negativeConstraints && tool.negativeConstraints.length > 0) {
@@ -969,7 +970,7 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
     if (matchedKeywords && matchedKeywords.length > 0) {
       const tag = document.createElement('span');
       tag.className = 'tag';
-      tag.textContent = '匹配: ' + matchedKeywords.slice(0, 2).join(', ');
+      tag.textContent = '匹配：' + matchedKeywords.slice(0, 2).join('、');
       tagsContainer.appendChild(tag);
     }
   }

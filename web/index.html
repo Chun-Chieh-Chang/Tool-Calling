@@ -20,17 +20,17 @@
       <div class="header-status-bar">
         <div class="system-status">
           <span class="status-indicator-dot pulse-green"></span>
-          <span class="status-indicator-text">SYSTEM ONLINE // PRECISION WORKBENCH</span>
+          <span class="status-indicator-text">系統上線 // 精密工作台</span>
         </div>
         <div class="header-telemetry-badge">
-          <span class="telemetry-label">STATUS:</span> <span class="telemetry-value">READY</span>
+          <span class="telemetry-label">狀態：</span> <span class="telemetry-value">就緒</span>
         </div>
       </div>
 
       <div class="logo-area">
         <h1>Tool-Calling <span class="logo-badge">WORKBENCH</span></h1>
         <p class="subtitle">全自動工具調用效能外掛系統 • 精密數據與工具檢索工作台</p>
-        <p class="author-tag">Developed by Wesley Chang, July-2026.</p>
+        <p class="author-tag">由 Wesley Chang 開發於 2026 年 7 月</p>
       </div>
 
       <!-- 全域通用搜尋與分類過濾列 (語意階層：User 淺鈷藍底 + 鈷藍左邊框) -->
@@ -130,7 +130,7 @@
         <div class="chart-card">
           <div class="chart-header">
             <h3 class="chart-title">
-              <span class="chart-icon-pill">DIST</span>
+              <span class="chart-icon-pill">分佈</span>
               各分類工具數量分佈
             </h3>
             <span class="chart-subtitle">點擊柱狀圖可直接篩選列表</span>
@@ -143,10 +143,10 @@
         <div class="chart-card">
           <div class="chart-header">
             <h3 class="chart-title">
-              <span class="chart-icon-pill">LANG</span>
+              <span class="chart-icon-pill">語言</span>
               工具開發語言占比
             </h3>
-            <span class="chart-subtitle">Language Breakdown</span>
+            <span class="chart-subtitle">程式語言分佈</span>
           </div>
           <div class="chart-wrapper">
             <canvas id="languageChart"></canvas>
@@ -157,7 +157,7 @@
       <!-- 各分類概覽條目面板 (4 欄) -->
       <div class="section-title-bar">
         <h2>
-          <span class="section-badge">INDEX</span>
+          <span class="section-badge">索引</span>
           分類條目與數據概覽
         </h2>
       </div>
@@ -170,7 +170,7 @@
     <div id="toolsView" style="display: none;">
       <div class="section-title-bar">
         <h2>
-          <span class="section-badge">REGISTRY</span>
+          <span class="section-badge">工具庫</span>
           所有工具條目與檢索結果
         </h2>
         <div class="stats-bar-controls">
@@ -214,7 +214,7 @@
       <!-- ── 上週完整數據（正式，列入入庫判斷）── -->
       <div class="section-title-bar">
         <h2>
-          <span class="section-badge">LAST WEEK</span>
+          <span class="section-badge">上週</span>
           上週漲星排行榜 (World Week · 已完結 · 正式)
         </h2>
         <span class="chart-subtitle" id="lastWeekDateRangeLabel">依近一週 Star 增加量 (Delta) 精確排序 · 已列入工具箱納入判斷</span>
@@ -226,7 +226,7 @@
             <tr>
               <th style="width: 70px; text-align: center;">名次</th>
               <th>工具專案名稱</th>
-              <th>GitHub Repository</th>
+              <th>GitHub 倉庫</th>
               <th>⭐ 累積總 Star 數</th>
               <th>🔥 當週漲星數 (Delta)</th>
               <th>領域分類</th>
@@ -242,7 +242,7 @@
       <!-- ── 本週迄今數據（進行中，不列入判斷）── -->
       <div class="section-title-bar current-week-title-bar" style="margin-top: 32px;">
         <h2>
-          <span class="section-badge section-badge-wip">THIS WEEK</span>
+          <span class="section-badge section-badge-wip">本週</span>
           本週迄今排行榜 (進行中 · 統計未完結)
         </h2>
         <span class="chart-subtitle" id="currentWeekDateRangeLabel">載入中...</span>
@@ -264,7 +264,7 @@
             <tr>
               <th style="width: 70px; text-align: center;">名次</th>
               <th>工具專案名稱</th>
-              <th>GitHub Repository</th>
+              <th>GitHub 倉庫</th>
               <th>⭐ 累積總 Star 數</th>
               <th>🔥 本週迄今漲星數 (Delta)</th>
               <th>領域分類</th>
@@ -279,7 +279,7 @@
 
       <div class="section-title-bar" style="margin-top: 32px;">
         <h2>
-          <span class="section-badge">NEW</span>
+          <span class="section-badge">新進</span>
           上週自動納入工具箱特寫
         </h2>
       </div>
@@ -311,7 +311,7 @@
         <span class="category-tag"></span>
         <a class="github-link" href="#" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          View Source
+          查看原始碼
         </a>
       </div>
       <div class="progress-bar-container">
