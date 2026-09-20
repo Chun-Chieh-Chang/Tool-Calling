@@ -10,7 +10,18 @@ import { classifyTool } from '../core/classifier.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
-const distDir = path.join(rootDir, 'dist');
+
+// 🔴 重要：靜態檔案的來源目錄。
+//
+// 預設（以及長久以來的唯一行為）是 `dist/`，但它有兩個陷阱：
+//   1. `dist/` 在 .gitignore 內，不受版控，是 `npm run build` 的產物。
+//   2. 因此**任何對 `web/` 的修改都必須先跑 `npm run build` 才會生效**——
+//      2026-09-20 就是因為不知道這點，改了 `web/index.html` 與 `web/app.js`
+//      卻一直看到舊畫面，白白繞了一大圈。
+//
+// `--dev` 現在會改為直接服務 `web/`，讓前端改動即時生效。
+const DEV_MODE = process.argv.includes('--dev');
+const distDir = DEV_MODE ? path.join(__dirname) : path.join(rootDir, 'dist');
 const trendingJsonPath = path.join(rootDir, 'registry', 'weekly-trending.json');
 
 const MIME_TYPES = {
@@ -357,8 +368,20 @@ const server = http.createServer(async (req, res) => {
     // 它仍以 `/app/dist` 開頭而通過檢查，實際卻讀到 dist 同層的另一個目錄。
     //
     // 正確做法：resolve 後要求「等於 distDir」或「以 distDir + 分隔符號」開頭。
-    const resolvedPath = path.resolve(distDir, '.' + decodedUrl);
-    const resolvedDist = path.resolve(distDir);
+    //
+    // 例外：`/registry/*` 一律改從專案根的 `registry/` 讀取。
+    // `dist/registry/` 只是建置時的副本，會過期（2026-09-20 就因此讓前端
+    // 讀到少 10 筆譯文的舊 tools.json）。資料目錄不應該走建置副本。
+    const REGISTRY_PREFIX = '/registry/';
+    let serveBase = distDir;
+    let relUrl = decodedUrl;
+    if (relUrl.startsWith(REGISTRY_PREFIX)) {
+      serveBase = path.join(rootDir, 'registry');
+      relUrl = relUrl.slice('/registry'.length) || '/';
+    }
+
+    const resolvedPath = path.resolve(serveBase, '.' + relUrl);
+    const resolvedDist = path.resolve(serveBase);
     if (resolvedPath !== resolvedDist && !resolvedPath.startsWith(resolvedDist + path.sep)) {
       res.writeHead(403, { 'Content-Type': 'text/plain' });
       res.end('Forbidden');
