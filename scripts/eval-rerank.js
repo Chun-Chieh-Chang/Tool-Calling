@@ -146,6 +146,9 @@ if (PAIRED) {
       } else if (VARIANT === 'model') {
         // 候選名單與提示詞都相同，只差模型
         arm = { wiki: WIKI, withIntents: true, model: on ? MODEL_A : MODEL_B };
+      } else if (VARIANT === 'strategy') {
+        // 候選名單相同，只差決策程序：直接挑選 vs 先排除再挑選
+        arm = { wiki: WIKI, withIntents: true, strategy: on ? 'exclude' : 'direct' };
       } else if (VARIANT === 'topk') {
         // 提示詞格式相同，只差候選數：A 臂 K_A、B 臂 K_B
         arm = { wiki: WIKI, withIntents: true, topK: on ? K_A : K_B };
@@ -162,7 +165,7 @@ if (PAIRED) {
       else { if (c.expected.includes(cands[0])) baseOff.v++; if (c.expected.some((e) => cands.includes(e))) ceilOff.v++; }
 
       if (!hasKey) continue;
-      const { picked, error } = await rerankOnce(c.query, cands, { withIntents: arm.withIntents });
+      const { picked, error } = await rerankOnce(c.query, cands, { withIntents: arm.withIntents, strategy: arm.strategy });
       if (error) continue;
       if (on) st.okOn++; else st.okOff++;
       res[on ? 'on' : 'off'] = Boolean(picked && c.expected.includes(picked));
