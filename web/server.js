@@ -378,9 +378,24 @@ const server = http.createServer(async (req, res) => {
       // app.js 第 1 行 `import './core/search-engine.js'` 因此 404，整支 app.js 載入失敗
       // （2026-09-20 的空白畫面事故）。dev 模式改從專案根的 core/ 讀原始模組。
       ROOT_PREFIXES.push(['/core/', 'core']);
+      ROOT_PREFIXES.push(['/docs/', 'docs']);
     }
+    // 檔案層級對應：build-web.js 會把 docs/*.html 複製到 **dist/ 根目錄**
+    // （不是 dist/docs/），所以正式網址是 `/pipeline-workflow.html`。
+    // dev 模式沒有這層複製，需直接指回 docs/——否則全鏈路流程圖與知識圖譜 404
+    // （2026-09-20：「流程圖被修沒了」）。
+    const FILE_MAP = DEV_MODE ? {
+      '/pipeline-workflow.html': path.join(rootDir, 'docs', 'pipeline-workflow.html'),
+      '/knowledge-graph.html': path.join(rootDir, 'docs', 'knowledge-graph.html'),
+    } : {};
     let serveBase = distDir;
     let relUrl = decodedUrl;
+    // 需在 serveBase / relUrl 宣告之後才指派
+    if (FILE_MAP[decodedUrl]) {
+      const target = FILE_MAP[decodedUrl];
+      serveBase = path.dirname(target);
+      relUrl = '/' + path.basename(target);
+    }
     for (const [prefix, dir] of ROOT_PREFIXES) {
       if (relUrl.startsWith(prefix)) {
         serveBase = path.join(rootDir, dir);
