@@ -1187,7 +1187,18 @@ export function getById(registryTools, id) {
  * @param {string} taskDescription 
  * @returns {object} 包含 steps, asciiPipeline, summary
  */
-export function planToolChain(registryTools, taskDescription) {
+/**
+ * 多步驟任務的工具鏈規劃
+ *
+ * @param {object[]} registryTools
+ * @param {string} taskDescription
+ * @param {{findTools?: (seg:string)=>object[]}} [options]
+ *   findTools：可注入的「單步驟 → 工具」對應函式。
+ *   預設走 L2 詞彙引擎（`search`）；呼叫端可注入融合引擎
+ *   （見 core/tool-chain.js 的 planToolSet）以吃到知識編譯器 V5 的紅利——
+ *   這是 2026-09-20 的改善：原本 L2 讓工具鏈規劃落後主檢索 +8pp。
+ */
+export function planToolChain(registryTools, taskDescription, options = {}) {
   if (!taskDescription || typeof taskDescription !== 'string') {
     return { steps: [], asciiPipeline: '', summary: '無效的任務描述' };
   }
@@ -1204,12 +1215,15 @@ export function planToolChain(registryTools, taskDescription) {
   segments.forEach((seg, idx) => {
     // 扣除常見動詞前綴以提升關鍵字命中率
     const cleanedSeg = seg.replace(/^(抓取|爬取|下載|解析|提取|生成|製作|發送|處理|分析|建立)\s*/i, '').trim();
-    let matches = search(registryTools, cleanedSeg.length > 0 ? cleanedSeg : seg, { topK: 3 });
-    if (matches.length === 0) {
-      matches = search(registryTools, seg, { topK: 3 });
-    }
-    const primary = matches[0] ? matches[0].tool : null;
-    const alternatives = matches.slice(1).map(m => m.tool);
+    const matchedTools = (options.findTools
+      ? options.findTools(seg)
+      : (() => {
+        let m = search(registryTools, cleanedSeg.length > 0 ? cleanedSeg : seg, { topK: 3 });
+        if (m.length === 0) m = search(registryTools, seg, { topK: 3 });
+        return m.map((x) => x.tool);
+      })());
+    const primary = matchedTools[0] || null;
+    const alternatives = matchedTools.slice(1);
 
     let inputFormat = '原始數據 / 指令 Prompt';
     let outputFormat = '結構化資料 / 檔案';

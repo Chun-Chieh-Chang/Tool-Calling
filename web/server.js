@@ -256,6 +256,105 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── 多工具鏈規劃 API ──────────────────────────────────────────────
+    // 專案型需求通常不是單一工具能解決（例：「抓網頁資料然後做成簡報」）。
+    // 這個端點把任務拆成步驟，每步給主力工具 + 備選，並標出資料怎麼接力。
+    if (decodedUrl === '/api/chain' && req.method === 'POST') {
+      const { task, topK = 3 } = JSON.parse(req._body || '{}');
+      if (!task || !String(task).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: 'task 不可為空' }));
+        return;
+      }
+      try {
+        const { loadRegistry, displayText } = await import('../core/registry.js');
+        const { planToolSet } = await import('../core/tool-chain.js');
+        const registry = loadRegistry();
+        const plan = planToolSet(registry.tools, String(task).trim(), { topK: Math.min(Number(topK) || 3, 10) });
+        const byId = new Map(registry.tools.map((t) => [t.id, t]));
+        const steps = plan.steps.map((s) => ({
+          ...s,
+          recommendedTool: s.recommendedTool ? {
+            ...s.recommendedTool,
+            description_zh: displayText(byId.get(s.recommendedTool.id), 'description'),
+          } : null,
+        }));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ task: plan.task, totalSteps: plan.totalSteps, engine: plan.engine, asciiPipeline: plan.asciiPipeline, steps, summary: plan.summary }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
+
+    // ─── 需求收斂追問 API ──────────────────────────────────────────────
+    // 只在系統不確定時才提問（decision 不是 adopt、或置信度不足）。
+    // 題目由候選集的實際差異動態產生，不是寫死的題庫。
+    if (decodedUrl === '/api/clarify' && req.method === 'POST') {
+      const { query, answers = {}, topK = 5 } = JSON.parse(req._body || '{}');
+      if (!query || !String(query).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: 'query 不可為空' }));
+        return;
+      }
+      try {
+        const { loadRegistry, displayText } = await import('../core/registry.js');
+        const { retrieve } = await import('../core/retrieval-fusion.js');
+        const { planClarification, applyAnswer, CLARIFY_DIMENSIONS } = await import('../core/clarifier.js');
+        const registry = loadRegistry();
+        const tools = registry.tools;
+        const byId = new Map(tools.map((t) => [t.id, t]));
+
+        // 已回答的維度值併進查詢，讓檢索本身也吃到約束
+        const suffix = Object.values(answers).filter((v) => v && v !== '__any__').join(' ');
+        const effectiveQuery = suffix ? `${String(query).trim()} ${suffix}` : String(query).trim();
+        const r = retrieve(tools, effectiveQuery, { topK: Math.min(Number(topK) || 5, 20) });
+
+        let candidates = r.results;
+        const applied = [];
+        for (const [dim, val] of Object.entries(answers)) {
+          if (!CLARIFY_DIMENSIONS.some((d) => d.key === dim)) continue;
+          const out = applyAnswer(candidates, tools, dim, val);
+          candidates = out.candidates;
+          applied.push({ dimension: dim, value: val, dropped: out.dropped });
+        }
+
+        const confident = r.decision === 'adopt' && (r.confidence ?? 0) >= 0.35;
+        const plan = planClarification(candidates, tools, {
+          asked: Object.keys(answers), topN: Math.min(Number(topK) || 5, 20), decision: r.decision,
+        });
+
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({
+          query: String(query).trim(),
+          effectiveQuery,
+          decision: r.decision,
+          confidence: r.confidence,
+          shouldAsk: !confident && plan.shouldAsk,
+          skipReason: confident ? '已達高置信度，直接給答案' : plan.reason,
+          question: (!confident && plan.shouldAsk) ? {
+            dimension: plan.question.key,
+            label: plan.question.label,
+            prompt: plan.question.question,
+            options: plan.question.options.map((o) => o.value),
+          } : null,
+          appliedAnswers: applied,
+          candidates: candidates.slice(0, Math.min(Number(topK) || 5, 20)).map((x) => ({
+            id: x.id,
+            name: byId.get(x.id)?.name || x.name,
+            category: x.category,
+            description_zh: displayText(byId.get(x.id), 'description'),
+            score: x.score,
+          })),
+        }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
+
     // ─── 新增工具 API ──────────────────────────────────────────────────
     if (decodedUrl === '/api/tools/add' && req.method === 'POST') {
       if (!isTrustedOrigin(req)) {

@@ -15,6 +15,14 @@ const deepSearchSpinner = document.getElementById('deepSearchSpinner');
 const resultsGrid = document.getElementById('resultsGrid');
 const resultCount = document.getElementById('resultCount');
 const toolCardTemplate = document.getElementById('toolCardTemplate');
+// 多工具鏈與需求收斂（2026-09-20）
+const chainModeToggle = document.getElementById('chainModeToggle');
+const clarifyBar = document.getElementById('clarifyBar');
+const clarifyLabel = document.getElementById('clarifyLabel');
+const clarifyOptions = document.getElementById('clarifyOptions');
+const chainResult = document.getElementById('chainResult');
+const chainPipeline = document.getElementById('chainPipeline');
+const chainSteps = document.getElementById('chainSteps');
 
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
@@ -73,6 +81,7 @@ async function init() {
     categorySelect.addEventListener('change', handleSearch);
     // 切換深度搜尋後立即以新模式重跑當前查詢，讓使用者能直接比較差異
     if (deepSearchToggle) deepSearchToggle.addEventListener('change', handleSearch);
+    if (chainModeToggle) chainModeToggle.addEventListener('change', handleSearch);
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
@@ -671,6 +680,24 @@ function handleSearch() {
   const query = searchInput ? searchInput.value.trim() : '';
   if (query.length > 0) {
     behaviorTracker.recordSearch(query, [], duration);
+
+    // 查詢變了就清空先前的追問答案（否則會拿上一題的約束來問這一題）
+    if (query !== lastQueryForClarify) {
+      clarifyAnswers = {};
+      lastQueryForClarify = query;
+    }
+
+    const chainMode = chainModeToggle ? chainModeToggle.checked : false;
+    if (chainMode) {
+      if (clarifyBar) clarifyBar.hidden = true;
+      runChain(query);
+    } else {
+      if (chainResult) chainResult.hidden = true;
+      runClarify(query);
+    }
+  } else {
+    if (clarifyBar) clarifyBar.hidden = true;
+    if (chainResult) chainResult.hidden = true;
   }
 }
 
@@ -715,6 +742,97 @@ async function serverSearch(query, options = {}) {
     console.warn('[Search] server unavailable, falling back:', err.message);
     return null;
   }
+}
+
+// ── 多工具鏈與需求收斂（2026-09-20）──────────────────────────────────────
+//
+// 兩個既有功能原本只接在 CLI，Web 與 MCP 都看不到：
+//   planToolChain（多步驟 → 工具鏈）與需求引導問答。
+// 這裡一方面把它們接到前端，另一方面把工具鏈升級成走融合引擎（見 core/tool-chain.js），
+// 並把寫死的題庫換成由候選差異動態產生的問題（見 core/clarifier.js）。
+
+let clarifyAnswers = {};   // 已回答的維度 → 值
+let lastQueryForClarify = '';
+
+async function serverChain(task, topK = 3) {
+  try {
+    const res = await fetch('/api/chain', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ task, topK }),
+    });
+    if (!res.ok) throw new Error(`api ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('[Chain] unavailable:', err.message);
+    return null;
+  }
+}
+
+async function serverClarify(query, answers) {
+  try {
+    const res = await fetch('/api/clarify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, answers }),
+    });
+    if (!res.ok) throw new Error(`api ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.warn('[Clarify] unavailable:', err.message);
+    return null;
+  }
+}
+
+function renderChain(plan) {
+  if (!chainResult || !plan) return;
+  if (!plan.steps || plan.steps.length === 0) { chainResult.hidden = true; return; }
+  chainPipeline.textContent = plan.asciiPipeline || '';
+  chainSteps.innerHTML = plan.steps.map((s) => {
+    const t = s.recommendedTool;
+    const alt = (s.alternatives || []).map((a) => escapeHtml(a.name || a.id)).join('、');
+    return `
+      <div class="chain-step">
+        <span class="chain-step-no">${s.stepIndex}</span>
+        <div class="chain-step-body">
+          <div><span class="chain-step-action">${escapeHtml(s.action)} →</span>
+            <span class="chain-step-tool">${t ? escapeHtml(t.name) : '（找不到合適工具）'}</span></div>
+          <div class="chain-step-io">${escapeHtml(s.inputFormat)} → ${escapeHtml(s.outputFormat)}</div>
+          ${alt ? `<div class="chain-step-alt">備選：${alt}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+  chainResult.hidden = false;
+}
+
+function renderClarify(data) {
+  if (!clarifyBar) return;
+  if (!data || !data.shouldAsk || !data.question) { clarifyBar.hidden = true; return; }
+  const q = data.question;
+  clarifyLabel.textContent = `不確定你要的是哪一個 — ${q.prompt}`;
+  clarifyOptions.innerHTML = '';
+  for (const value of q.options) {
+    const btn = document.createElement('button');
+    btn.className = 'clarify-opt';
+    btn.textContent = value === '__any__' ? '都可以／跳過' : value;
+    btn.addEventListener('click', () => {
+      clarifyAnswers[q.dimension] = value;
+      clarifyBar.hidden = true;
+      handleSearch();   // 帶著答案重新搜尋
+    });
+    clarifyOptions.appendChild(btn);
+  }
+  clarifyBar.hidden = false;
+}
+
+async function runChain(query) {
+  const plan = await serverChain(query);
+  if (plan) renderChain(plan);
+}
+
+async function runClarify(query) {
+  const data = await serverClarify(query, clarifyAnswers);
+  renderClarify(data);
 }
 
 function syncAllViews() {

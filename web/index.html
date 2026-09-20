@@ -47,6 +47,22 @@
           <span>深度搜尋</span>
         </label>
         <span id="deepSearchSpinner" class="deep-search-spinner" hidden aria-live="polite">重新排序中…</span>
+        <label id="chainModeLabel" class="deep-search-toggle" title="把多步驟任務拆成一組可搭配的工具鏈（例如：抓取網頁資料然後做成簡報）">
+          <input type="checkbox" id="chainModeToggle">
+          <span>多工具鏈</span>
+        </label>
+      </div>
+
+      <!-- 需求收斂追問：只在系統不確定時出現 -->
+      <div id="clarifyBar" class="clarify-bar" hidden>
+        <span class="clarify-label" id="clarifyLabel"></span>
+        <span class="clarify-options" id="clarifyOptions"></span>
+      </div>
+
+      <!-- 多工具鏈結果 -->
+      <div id="chainResult" class="chain-result" hidden>
+        <div class="chain-pipeline" id="chainPipeline"></div>
+        <div id="chainSteps"></div>
       </div>
     </header>
 

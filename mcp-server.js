@@ -318,6 +318,134 @@ server.tool(
   }
 );
 
+server.tool(
+  "plan_tool_chain",
+  "把多步驟任務拆解成一組可搭配使用的工具鏈（走融合引擎，非單一最佳解）。" +
+  "適合「抓資料然後做成簡報」這類需要多個工具接力完成的專案型需求。",
+  {
+    task: z.string().min(1).describe("多步驟任務描述（用『然後／接著／轉成』等連接詞分隔，例如：抓取網頁資料然後轉成簡報）"),
+    topK: z.number().min(1).max(10).optional().describe("每個步驟保留幾個備選工具（預設 3）"),
+  },
+  async (args) => {
+    try {
+      const tools = loadRegistry().tools;
+      const { planToolSet } = await import("./core/tool-chain.js");
+      const plan = planToolSet(tools, args.task, { topK: args.topK || 3 });
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            task: plan.task,
+            totalSteps: plan.totalSteps,
+            engine: plan.engine,
+            asciiPipeline: plan.asciiPipeline,
+            steps: plan.steps.map((s) => ({
+              step: s.stepIndex,
+              action: s.action,
+              tool: s.recommendedTool ? {
+                id: s.recommendedTool.id,
+                name: s.recommendedTool.name,
+                category: s.recommendedTool.category,
+                useCase: displayText(
+                  tools.find((t) => t.id === s.recommendedTool.id), 'useCase'
+                ) || s.recommendedTool.useCase,
+                install: s.recommendedTool.install,
+              } : null,
+              inputFormat: s.inputFormat,
+              outputFormat: s.outputFormat,
+              alternatives: s.alternatives,
+            })),
+            summary: plan.summary,
+          }, null, 2),
+        }],
+      };
+    } catch (err) {
+      return server.createToolError(`工具鏈規劃失敗: ${err.message}`);
+    }
+  }
+);
+
+server.tool(
+  "clarify_requirement",
+  "需求收斂追問：當工具選用不確定時，回傳一個最能有效區分候選的問題。" +
+  "使用者回答後把答案帶回本工具，可逐步收斂到正確工具。" +
+  "若系統已經有高置信度答案，就不會提問（shouldAsk=false）。",
+  {
+    query: z.string().min(1).describe("需求描述"),
+    answers: z.record(z.string()).optional().describe(
+      "已回答的維度與值，例如 { language: 'Python' }、{ install: 'npm' }。" +
+      "值可用 '__any__' 表示不限。"
+    ),
+    topK: z.number().min(2).max(20).optional().describe("納入考量的候選數（預設 5）"),
+  },
+  async (args) => {
+    try {
+      const tools = loadRegistry().tools;
+      const { retrieve } = await import("./core/retrieval-fusion.js");
+      const { planClarification, applyAnswer, CLARIFY_DIMENSIONS } = await import("./core/clarifier.js");
+
+      // 1. 先把已回答的維度併進查詢，讓檢索本身也吃到這些約束
+      const answers = args.answers || {};
+      const suffix = Object.entries(answers)
+        .filter(([, v]) => v && v !== '__any__')
+        .map(([, v]) => v).join(' ');
+      const query = suffix ? `${args.query} ${suffix}` : args.query;
+
+      const r = retrieve(tools, query, { topK: args.topK || 5 });
+      const byId = new Map(tools.map((t) => [t.id, t]));
+
+      // 2. 收斂：依已回答的維度過濾候選（高置信時不做，避免誤殺）
+      let candidates = r.results;
+      const applied = [];
+      for (const [dim, val] of Object.entries(answers)) {
+        if (!CLARIFY_DIMENSIONS.some((d) => d.key === dim)) continue;
+        const res = applyAnswer(candidates, tools, dim, val);
+        candidates = res.candidates;
+        applied.push({ dimension: dim, value: val, dropped: res.dropped });
+      }
+
+      // 3. 高置信 → 不提問，直接給答案
+      const confident = r.decision === 'adopt' && (r.confidence ?? 0) >= 0.35;
+      const plan = planClarification(candidates, tools, {
+        asked: Object.keys(answers),
+        topN: args.topK || 5,
+        decision: r.decision,
+      });
+
+      return {
+        content: [{
+          type: "text",
+          text: JSON.stringify({
+            query: args.query,
+            effectiveQuery: query,
+            decision: r.decision,
+            confidence: r.confidence,
+            // 不確定時才提問——這是本工具的核心設計
+            shouldAsk: !confident && plan.shouldAsk,
+            skipReason: confident ? '已達高置信度，直接給答案' : plan.reason,
+            question: (!confident && plan.shouldAsk) ? {
+              dimension: plan.question.key,
+              label: plan.question.label,
+              prompt: plan.question.question,
+              options: plan.question.options.map((o) => o.value),
+            } : null,
+            appliedAnswers: applied,
+            candidates: candidates.slice(0, args.topK || 5).map((x) => ({
+              id: x.id,
+              name: byId.get(x.id)?.name || x.name,
+              category: x.category,
+              description: displayText(byId.get(x.id), 'description').slice(0, 200),
+              score: x.score,
+            })),
+          }, null, 2),
+        }],
+      };
+    } catch (err) {
+      return server.createToolError(`需求收斂失敗: ${err.message}`);
+    }
+  }
+);
+
 async function main() {
   try {
     const transport = new StdioServerTransport();

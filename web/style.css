@@ -1412,3 +1412,121 @@ select:focus {
   }
 }
 
+
+/* ── 需求收斂追問列 ─────────────────────────────────────────────────────
+   只在系統不確定時出現（core/clarifier.js 決定要不要問）。
+   目的：與其給一個沒把握的答案，不如問一個能真正區分候選的問題。 */
+.clarify-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--surface-panel);
+  border: 1px solid var(--brand-amber, #d99b2b);
+  border-left: 3px solid var(--brand-amber, #d99b2b);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.clarify-label {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.clarify-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.clarify-opt {
+  padding: 4px 10px;
+  background: transparent;
+  border: var(--border-precision);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 12px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.clarify-opt:hover {
+  color: var(--text-primary);
+  border-color: var(--brand-cobalt);
+}
+
+/* ── 多工具鏈結果 ───────────────────────────────────────────────────────
+   專案型需求多半需要數支工具接力，這裡把每一步與資料流向畫出來。 */
+.chain-result {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--surface-panel);
+  border: var(--border-precision);
+  border-radius: var(--radius-md, 8px);
+}
+
+.chain-pipeline {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 8px 10px;
+  background: var(--surface-raised, rgba(128, 128, 128, 0.06));
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.chain-step {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-top: var(--border-precision);
+  font-size: 13px;
+}
+
+.chain-step:first-child {
+  border-top: none;
+}
+
+.chain-step-no {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--brand-cobalt);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.chain-step-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.chain-step-action {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.chain-step-tool {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.chain-step-io {
+  color: var(--text-tertiary, var(--text-secondary));
+  font-size: 11px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
+
+.chain-step-alt {
+  color: var(--text-tertiary, var(--text-secondary));
+  font-size: 11px;
+}
