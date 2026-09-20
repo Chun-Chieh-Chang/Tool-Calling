@@ -167,7 +167,8 @@
         "不適合用於即時高併發生產環境的直接壓力測試",
         "無法替代專業安全顧問的深度威脅建模與人工驗證"
       ],
-      "stars": 57087
+      "stars": 57087,
+      "useCase_zh": "開發團隊可在 CI/CD 流程中自動偵測 Web 應用程式弱點並產生修復建議。"
     },
     {
       "id": "ai-animation-video-generator",
@@ -338,7 +339,10 @@
         "不適用於依賴純雲端託管且無本地 GPU 資源的輕量 Web 服務。",
         "無法滿足精確向量圖形或 3D 建模需求。"
       ],
-      "stars": 8178
+      "stars": 8178,
+      "description_zh": "Pythonic AI 影像生成與編輯套件，支援文字轉圖、圖生圖及影片建立。",
+      "useCase_zh": "開發者可透過 Python 腳本批次產生或修改 AI 圖片，快速整合至自動化設計流程。",
+      "advantages_zh": "提供統一 API 串接多種 AI 模型，降低多模型切換成本。支援批次處理與程式化編輯，適合自動化影像工作流。可於本地環境離線部署，保障資料隱私與運算彈性。"
     },
     {
       "id": "vercel-ai-skills",
@@ -443,7 +447,9 @@
         "不適用於需要執行程式碼或互動式練習的環境",
         "不適合尋找 React、Vue 等前端框架特定教學的使用者"
       ],
-      "stars": 232045
+      "stars": 232045,
+      "description_zh": "Matt Pocock 的 TypeScript 進階型別與技能參考資源，涵蓋型別體操與實戰技巧。",
+      "advantages_zh": "由 TypeScript 專家 Matt Pocock 整理，內容權威且貼近實務；涵蓋從基礎到進階的完整型別技巧與型別體操範例；提供結構化的學習路徑與即時參考指南"
     },
     {
       "id": "playwright",
@@ -1822,7 +1828,8 @@
       ],
       "stars": 137265,
       "description_zh": "100 多種免費開源的 AI 代理、代理技能與 RAG 應用範例——從入門到進階的多代理系統、常駐代理、MCP 代理、語音代理與生成式 UI 代理。",
-      "advantages_zh": "100+ 個可運行範例，涵蓋 starter 到 advanced multi-agent 完整梯度,同時提供 Agent Skills 與 Generative UI 範例，緊跟 2026 年主流範式,每個子專案皆可獨立 clone 運行，學習與複製成本低"
+      "advantages_zh": "100+ 個可運行範例，涵蓋 starter 到 advanced multi-agent 完整梯度,同時提供 Agent Skills 與 Generative UI 範例，緊跟 2026 年主流範式,每個子專案皆可獨立 clone 運行，學習與複製成本低",
+      "useCase_zh": "當需要快速取得可運行的 Agent／RAG 範例作為專案起點或教學素材時使用，涵蓋入門到進階多 Agent 架構。"
     },
     {
       "id": "desktopcommandermcp",
@@ -8441,7 +8448,8 @@
       ],
       "stars": 33178,
       "description_zh": "匯聚超過 1000+ 個由官方與社群打造的 AI Agent Skills 綜合資源清單，相容 Claude Code、Cursor、Gemini CLI 與 Codex 等主流行星級 Coding 代理環境。",
-      "advantages_zh": "收錄超過 1000+ 經社群與官方驗證的 Agent Skills,涵蓋 Claude Code、Cursor、Codex 等主流 AI 開發環境,模組化分類清楚，便於快速查閱與引入各領域現成技能"
+      "advantages_zh": "收錄超過 1000+ 經社群與官方驗證的 Agent Skills,涵蓋 Claude Code、Cursor、Codex 等主流 AI 開發環境,模組化分類清楚，便於快速查閱與引入各領域現成技能",
+      "useCase_zh": "當開發者需要廣泛探索、尋找各領域現成的 AI Agent Skills 與工作流提示詞，並評估跨平臺工具生態時使用。"
     },
     {
       "id": "claude-skills",
@@ -18859,7 +18867,8 @@
         "無法處理非中文語言的內容"
       ],
       "stars": 878,
-      "advantages_zh": "偵測 38 種 AI 寫作痕跡,自動校正中國用語與半形標點,支援 Claude Code、Codex、Cursor 等編輯器"
+      "advantages_zh": "偵測 38 種 AI 寫作痕跡,自動校正中國用語與半形標點,支援 Claude Code、Codex、Cursor 等編輯器",
+      "description_zh": "繁體中文 AI 去味改寫工具，偵測 38 種 AI 痕跡並校正用語與標點"
     },
     {
       "id": "codegraph",
@@ -29225,7 +29234,9 @@
         "source": "trending-weekly",
         "week": "2026-W30",
         "weeklyDelta": 157281
-      }
+      },
+      "description_zh": "Java 面試 & 後端通用面試指南，涵蓋計算機基礎、資料庫、分散式、高併發、系統設計與 AI 應用開發",
+      "useCase_zh": "Java 面試 & 後端通用面試指南，涵蓋計算機基礎、資料庫、分散式、高併發、系統設計與 AI 應用開發"
     },
     {
       "id": "worldmonitor",
@@ -29653,7 +29664,8 @@
         "無第三方依賴"
       ],
       "stars": 4,
-      "description_zh": "將 Clojure 資料轉換為 HTML"
+      "description_zh": "將 Clojure 資料轉換為 HTML",
+      "useCase_zh": "將結構化資料（JSON/CSV）轉換為 HTML 表格或網頁視圖"
     },
     {
       "id": "exceltohtml",
@@ -29700,7 +29712,8 @@
       ],
       "stars": 34,
       "description_zh": "Excel 轉 HTML 函式庫與主控台應用程式",
-      "useCase_zh": "將 Excel 試算表 (.xlsx/.xls) 直接轉換為 HTML 表格"
+      "useCase_zh": "將 Excel 試算表 (.xlsx/.xls) 直接轉換為 HTML 表格",
+      "advantages_zh": "保留 Excel 表格格式,簡易 CLI 操作"
     },
     {
       "id": "excel-to-html",
@@ -29737,7 +29750,8 @@
         "語法導向轉換"
       ],
       "stars": 0,
-      "description_zh": "此軟體可讀取原始 Excel 檔案輸入，並產生自訂 HTML 文件。"
+      "description_zh": "此軟體可讀取原始 Excel 檔案輸入，並產生自訂 HTML 文件。",
+      "useCase_zh": "Excel 檔案至 HTML 靜態網頁與組件的轉換"
     },
     {
       "id": "xlsxtohtmlconverter",
@@ -29785,7 +29799,9 @@
         "輸出乾淨 HTML 碼"
       ],
       "stars": 32,
-      "description_zh": "快速、多功能且強大的 XLSX 轉 HTML 轉換器。支援廣泛的儲存格樣式與附加元素。可將試算表有效轉換為結構良好的網頁文件。提供進度回調功能，讓您輕鬆自訂轉換程序的每個環節。僅依賴 Open XML SDK。"
+      "description_zh": "快速、多功能且強大的 XLSX 轉 HTML 轉換器。支援廣泛的儲存格樣式與附加元素。可將試算表有效轉換為結構良好的網頁文件。提供進度回調功能，讓您輕鬆自訂轉換程序的每個環節。僅依賴 Open XML SDK。",
+      "useCase_zh": "XLSX 格式試算表精確轉換為語意化 HTML",
+      "advantages_zh": "支援大量 XLSX 批次轉換,輸出乾淨 HTML 碼"
     },
     {
       "id": "obsidian-skills",
@@ -29990,7 +30006,8 @@
       ],
       "stars": 11143,
       "description_zh": "專為 Obsidian + Claude Code 設計的自我組織 AI 第二大腦。將任何來源拖入後，Claude 會讀取、關聯並整理成您擁有的純 Markdown 連接知識圖譜。提供 AI 筆記、個人知識管理（PKM）功能，並作為開源的 Notion 替代方案。基於 Karpathy 的 LLM Wiki 架構。",
-      "advantages_zh": "支援 Claude Desktop 原生整合,提供 Obsidian 插件與 MCP 雙重操作介面,筆記圖譜與標籤搜尋"
+      "advantages_zh": "支援 Claude Desktop 原生整合,提供 Obsidian 插件與 MCP 雙重操作介面,筆記圖譜與標籤搜尋",
+      "useCase_zh": "讓 Claude 與 Obsidian 深度整合，進行個人知識管理、筆記檢索與內容雙向同步"
     },
     {
       "id": "premium-frontend-ui-skill",
@@ -30042,7 +30059,8 @@
         "避免與其他 UI 框架混用造成樣式衝突"
       ],
       "stars": 38129,
-      "description_zh": "由社群貢獻的提示、智慧體、技能與設定，協助您充分發揮 GitHub Copilot 的功能。"
+      "description_zh": "由社群貢獻的提示、智慧體、技能與設定，協助您充分發揮 GitHub Copilot 的功能。",
+      "useCase_zh": "提供高級前端 UI 元件技能，適合快速建構 Morandi 風格的現代化網頁介面"
     },
     {
       "id": "seedance-20",
@@ -30129,7 +30147,8 @@
         "不適合無 LLM 代理的直接呼叫"
       ],
       "stars": 3403,
-      "description_zh": "用於建立最佳提示的技能，協助您搭配 seedance2.0 生成影片。"
+      "description_zh": "用於建立最佳提示的技能，協助您搭配 seedance2.0 生成影片。",
+      "advantages_zh": "封裝複雜 API 為可複用技能,預設最佳參數降低試錯成本,與 Tool-Calling 生態無縫整合"
     },
     {
       "id": "remotion",
@@ -30271,7 +30290,10 @@
         "不適合伺服器端無頭環境",
         "不適合需要自訂複雜濾鏡鏈（filter graph）的高階用戶"
       ],
-      "stars": 1942
+      "stars": 1942,
+      "description_zh": "FFmpeg GUI 圖形化介面，提供影片轉檔、剪輯與參數設定的視覺化操作，無需記憶指令",
+      "useCase_zh": "提供 FFmpeg 的圖形化介面（GUI），讓非指令行使用者也能進行影片轉檔、剪輯與參數設定",
+      "advantages_zh": "圖形化操作，無需記憶 FFmpeg 指令參數,跨平台支援（Linux 為主）,基於 GPUI 框架，介面反應迅速"
     },
     {
       "id": "ffmpeg",
@@ -30371,7 +30393,8 @@
         "不適合複雜浮動版面報告的精確還原"
       ],
       "stars": 6,
-      "description_zh": "讓 LLM agent 高效讀懂任何文檔：PDF/Word/PPT/Excel 轉 Markdown，PDF 智能分流（文本頁 PyMuPDF + 公式頁/掃描頁視覺 OCR）"
+      "description_zh": "讓 LLM agent 高效讀懂任何文檔：PDF/Word/PPT/Excel 轉 Markdown，PDF 智能分流（文本頁 PyMuPDF + 公式頁/掃描頁視覺 OCR）",
+      "useCase_zh": "將 PDF 檔案自動轉換為 Markdown 格式，適合檔案數位化與知識庫匯入"
     },
     {
       "id": "exercises-dataset",
@@ -30421,7 +30444,8 @@
         "避免用於醫療復健診斷（未經醫學驗證）"
       ],
       "stars": 20619,
-      "description_zh": "1,324 項運動健身資料集——包含動畫 GIF、180×180 縮圖、肌群與設備資料，以及六種語言的分步說明。為 LogPress 應用程式背後的運動資料層。"
+      "description_zh": "1,324 項運動健身資料集——包含動畫 GIF、180×180 縮圖、肌群與設備資料，以及六種語言的分步說明。為 LogPress 應用程式背後的運動資料層。",
+      "useCase_zh": "提供 1,324 筆健身動作資料集（含動畫 GIF 與肌肉群分類），適合健身 App 開發、運動科學分析與教學平台"
     },
     {
       "id": "ai-agent-book",
@@ -30470,7 +30494,9 @@
         "不適合已熟悉 Agent 開發的高階工程師",
         "內容可能隨框架版本演進而過時"
       ],
-      "stars": 40937
+      "stars": 40937,
+      "description_zh": "《深入理解 AI Agent：設計原理與工程實踐》（李博傑 著）開源主倉庫：全書正文、編譯版 PDF 與按章配套程式",
+      "useCase_zh": "系統性學習 AI Agent 開發的書籍資源，適合從理論到實作的全方位參考"
     },
     {
       "id": "opencode-acp",
@@ -30510,7 +30536,8 @@
       ],
       "stars": 199,
       "description_zh": "Active Context Pruning — 為 OpenCode 打造的模型驅動上下文管理，200K token 已足夠，主動壓縮上下文。",
-      "useCase_zh": "針對 OpenCode 的模型驅動上下文管理，透過 Active Context Pruning 壓縮對話歷史以節省 Token。"
+      "useCase_zh": "針對 OpenCode 的模型驅動上下文管理，透過 Active Context Pruning 壓縮對話歷史以節省 Token。",
+      "advantages_zh": "主動剪枝無關上下文，減少 Token 消耗，模型驅動的智能保留策略，專為 OpenCode 開發流程最佳化"
     },
     {
       "id": "claude-opus-5md",
@@ -30562,7 +30589,9 @@
         "僅供研究參考，不得用於規避安全限制"
       ],
       "stars": 63374,
-      "description_zh": "從 Anthropic 提取的系統提示詞：Claude Fable 5、Opus 4.8、Claude Code、Claude Design。OpenAI：ChatGPT GPT-5.6、Codex GPT-5.6、GPT-5.5。Google：Gemini 3.5 Flash、3.1 Pro、Antigravity。xAI：Grok、Cursor、Copilot、VS Code、Perplexity 等。定期更新。"
+      "description_zh": "從 Anthropic 提取的系統提示詞：Claude Fable 5、Opus 4.8、Claude Code、Claude Design。OpenAI：ChatGPT GPT-5.6、Codex GPT-5.6、GPT-5.5。Google：Gemini 3.5 Flash、3.1 Pro、Antigravity。xAI：Grok、Cursor、Copilot、VS Code、Perplexity 等。定期更新。",
+      "useCase_zh": "研究 Claude Opus 5 的系統提示詞結構與安全限制設計",
+      "advantages_zh": "完整收錄 Claude Opus 5 系統提示詞原文，涵蓋安全限制、行為規範與產品資訊，可作為提示工程逆向分析素材"
     },
     {
       "id": "opus-5md",
@@ -30603,7 +30632,9 @@
         "僅供學術研究與教育目的"
       ],
       "stars": 350,
-      "description_zh": "被洩露的 prompt 集合"
+      "description_zh": "被洩露的 prompt 集合",
+      "useCase_zh": "取得 Anthropic Opus 5 洩漏的系統提示詞作為提示工程參考",
+      "advantages_zh": "提供 Anthropic Opus 5 的洩漏提示詞快照，可對比官方行為理解安全對齊機制，適合提示工程與模型行為研究"
     },
     {
       "id": "systempromptsleaks",
@@ -30753,7 +30784,8 @@
       ],
       "stars": 14,
       "description_zh": "反向工程自 Claude (claude.ai) 與 Claude Code CLI 的系統 prompt，並經 Anthropic 官方發布的 prompt 驗證。",
-      "advantages_zh": "經逆向工程驗證的 Claude 系統提示詞,涵蓋 claude.ai 與 Claude Code CLI,與 Anthropic 官方公佈版本比對確認"
+      "advantages_zh": "經逆向工程驗證的 Claude 系統提示詞,涵蓋 claude.ai 與 Claude Code CLI,與 Anthropic 官方公佈版本比對確認",
+      "useCase_zh": "逆向工程 Claude 官網與 CLI 的系統提示詞，了解安全對齊機制"
     },
     {
       "id": "i-have-adhd",
@@ -30803,7 +30835,8 @@
         "效果依賴底層 Agent 能力"
       ],
       "stars": 23241,
-      "description_zh": "讓編碼代理停止埋沒答案的技能，提供對 ADHD 友善的輸出。"
+      "description_zh": "讓編碼代理停止埋沒答案的技能，提供對 ADHD 友善的輸出。",
+      "useCase_zh": "防止 Coding Agent 在大量檔案專案中埋沒答案，提升開發效率"
     },
     {
       "id": "pi-web",
@@ -31000,7 +31033,8 @@
         "部分框架整合需手動配置"
       ],
       "stars": 4526,
-      "description_zh": "開源圖示函式庫，收錄 1600+ 圖示，支援 React、React Native、Flutter、Vue、Figma 與 Framer。"
+      "description_zh": "開源圖示函式庫，收錄 1600+ 圖示，支援 React、React Native、Flutter、Vue、Figma 與 Framer。",
+      "useCase_zh": "1600+ 開源圖示庫，支援 React/Native/Vue 等多種框架匯出"
     },
     {
       "id": "pi-web-agegr",
@@ -31039,7 +31073,8 @@
       ],
       "stars": 5061,
       "description_zh": "pi 編碼代理工具的 Web 使用者介面",
-      "useCase_zh": "Pi Coding Agent 的輕量 Web UI，提供程式碼代理的基本網頁操作介面"
+      "useCase_zh": "Pi Coding Agent 的輕量 Web UI，提供程式碼代理的基本網頁操作介面",
+      "advantages_zh": "輕量化設計，快速部署，專為 Pi Agent 設計"
     },
     {
       "id": "hugging-multi-agent",
@@ -31079,7 +31114,8 @@
         "不適合單 Agent 場景"
       ],
       "stars": 1410,
-      "description_zh": "基於 MetaGPT 的多智能體入門與開發教程，快速幫助你理解 agent 與 multi-agent 的概念並開始程式設計。"
+      "description_zh": "基於 MetaGPT 的多智能體入門與開發教程，快速幫助你理解 agent 與 multi-agent 的概念並開始程式設計。",
+      "useCase_zh": "基於 MetaGPT 的多智能體教學，適合快速理解多 Agent 協作架構"
     },
     {
       "id": "lucide",
@@ -31129,7 +31165,8 @@
         "不具備動畫功能"
       ],
       "stars": 24089,
-      "description_zh": "由社群打造的精美且一致的圖示工具包。開源專案，為 Feather Icons 的分支版本。"
+      "description_zh": "由社群打造的精美且一致的圖示工具包。開源專案，為 Feather Icons 的分支版本。",
+      "advantages_zh": "社羣驅動持續更新,一致的設計風格,支援 Tree Shaking 最佳化"
     },
     {
       "id": "text-to-cad",
@@ -31179,7 +31216,9 @@
         "生成結果需人工驗證"
       ],
       "stars": 13779,
-      "description_zh": "用於 CAD、機器人與硬體設計的 agent 技能集合"
+      "description_zh": "用於 CAD、機器人與硬體設計的 agent 技能集合",
+      "useCase_zh": "提供 CAD、機器人與硬體設計的 Agent Skills 集合，適合文字轉 3D 模型與工程設計自動化",
+      "advantages_zh": "涵蓋 CAD 與機器人領域,Skills 模組化設計,支援多種工程格式"
     },
     {
       "id": "bootstrap-icons",
@@ -31229,7 +31268,8 @@
       ],
       "stars": 11,
       "description_zh": "Bootstrap 的官方開源 SVG 圖標庫。",
-      "useCase_zh": "Bootstrap 官方 SVG 圖示庫，適合 Bootstrap 框架專案的 UI 開發"
+      "useCase_zh": "Bootstrap 官方 SVG 圖示庫，適合 Bootstrap 框架專案的 UI 開發",
+      "advantages_zh": "Bootstrap 官方維護,與 Bootstrap 框架無縫整合,SVG 格式彈性使用"
     },
     {
       "id": "tabler-icons",
@@ -31279,7 +31319,8 @@
         "不適合填色風格設計"
       ],
       "stars": 21469,
-      "description_zh": "一套超過 6000 個免費 MIT 授權的高品質 SVG 圖標，可供您在網頁專案中使用。"
+      "description_zh": "一套超過 6000 個免費 MIT 授權的高品質 SVG 圖標，可供您在網頁專案中使用。",
+      "useCase_zh": "超過 6000 個免費 MIT 授權 SVG 圖示，適合大規模 UI 系統的圖示需求"
     },
     {
       "id": "agents-course",
@@ -31330,7 +31371,8 @@
       ],
       "stars": 31268,
       "description_zh": "本儲存庫包含 Hugging Face Agents Course。",
-      "useCase_zh": "系統性學習 Hugging Face Agent 框架與工具鏈，適合 AI Agent 開發入門與進階"
+      "useCase_zh": "系統性學習 Hugging Face Agent 框架與工具鏈，適合 AI Agent 開發入門與進階",
+      "advantages_zh": "Hugging Face 官方課程,涵蓋架構設計與實作,附程式範例"
     },
     {
       "id": "hugagentos",
@@ -31369,7 +31411,8 @@
         "不適合非本體論的簡單任務"
       ],
       "stars": 470,
-      "description_zh": "HugAgentOS：企業級 AgentOS，專為基於語義網的可靠推理而設計"
+      "description_zh": "HugAgentOS：企業級 AgentOS，專為基於語義網的可靠推理而設計",
+      "useCase_zh": "企業級本體論驅動的 Agent 作業系統，適合大型組織的 AI Agent 部署與治理"
     },
     {
       "id": "adhd",
@@ -31420,7 +31463,8 @@
       ],
       "stars": 3904,
       "description_zh": "ADHD — 專為程式設計代理而設計的技能。基於 Claude 與 Codex Agent SDK 實作的樹狀思維剪枝技術。在不同認知框架下並行發散思考、評分、剪除陷阱、深化存活選項。創意與跨領域工作的基礎技能。",
-      "useCase_zh": "為 Coding Agent 提供思維樹（Tree-of-Thoughts）搭配剪枝策略，提升程式碼生成品質"
+      "useCase_zh": "為 Coding Agent 提供思維樹（Tree-of-Thoughts）搭配剪枝策略，提升程式碼生成品質",
+      "advantages_zh": "Tree-of-Thoughts 推理增強,內建剪枝減少無效路徑,提升程式生成準確率"
     },
     {
       "id": "heroicons",
@@ -31460,7 +31504,8 @@
       ],
       "stars": 23754,
       "description_zh": "一套免費 MIT 授權的高品質 SVG 圖示，適用於 UI 開發。",
-      "useCase_zh": "Tailwind Labs 出品的高品質 SVG 圖示集，適合 Tailwind CSS 專案的 UI 開發"
+      "useCase_zh": "Tailwind Labs 出品的高品質 SVG 圖示集，適合 Tailwind CSS 專案的 UI 開發",
+      "advantages_zh": "Tailwind 官方維護,MIT 授權免費使用,設計簡潔適合現代 UI"
     },
     {
       "id": "radix-ui-icons",
@@ -31507,7 +31552,9 @@
         "不適合一般用途的圖示需求"
       ],
       "stars": 2662,
-      "description_zh": "由 @workos 團隊設計的 15×15 精細圖示集。"
+      "description_zh": "由 @workos 團隊設計的 15×15 精細圖示集。",
+      "useCase_zh": "Radix UI 出品的 15×15 精簡圖示集，適合緊湊型 UI 與按鈕級別使用",
+      "advantages_zh": "極小尺寸 15×15,專為 UI 元件設計,WorkOS 團隊設計品質"
     },
     {
       "id": "ant-design-icons",
@@ -31558,7 +31605,8 @@
       ],
       "stars": 1089,
       "description_zh": "⭐ Ant Design SVG 圖示",
-      "useCase_zh": "Ant Design 官方 SVG 圖示集，適合 Ant Design React/Vue 專案的 UI 開發"
+      "useCase_zh": "Ant Design 官方 SVG 圖示集，適合 Ant Design React/Vue 專案的 UI 開發",
+      "advantages_zh": "Ant Design 生態原生支援, SVG 格式彈性使用, 一致的設計語言"
     },
     {
       "id": "polybar-themes",
@@ -31608,7 +31656,8 @@
         "需手動調整以配合個人配置"
       ],
       "stars": 6231,
-      "description_zh": "包含不同風格、色彩與變體的 polybar 主題大型集合。"
+      "description_zh": "包含不同風格、色彩與變體的 polybar 主題大型集合。",
+      "useCase_zh": "Polybar 狀態列主題大全，適合 Linux 桌面環境的客製化美化"
     },
     {
       "id": "welovesvg",
@@ -31703,7 +31752,8 @@
       ],
       "stars": 6174,
       "description_zh": "Shopify 的 Polaris Design System - React 實作（已棄用）",
-      "useCase_zh": "Shopify Polaris 設計系統的 React 實作，適合 Shopify App 與電商後台開發"
+      "useCase_zh": "Shopify Polaris 設計系統的 React 實作，適合 Shopify App 與電商後台開發",
+      "advantages_zh": "Shopify 官方設計系統, 完整的 React 元件庫, 與 Shopify 生態無縫整合"
     },
     {
       "id": "iconify",
@@ -31804,7 +31854,8 @@
         "bundle 體積較大需按需載入"
       ],
       "stars": 76857,
-      "description_zh": "經典的 SVG、字型與 CSS 工具組"
+      "description_zh": "經典的 SVG、字型與 CSS 工具組",
+      "advantages_zh": "業界標準廣泛使用, Font 與 SVG 雙模式, 豐富的圖示庫涵蓋各領域"
     },
     {
       "id": "material-design-icons",
@@ -32206,7 +32257,8 @@
       "status": "active",
       "stars": 170975,
       "description_zh": "Firecrawl AI Web Scraping Skills 集合，提供 LLM 友善的網頁擷取與轉 Markdown 技能。",
-      "advantages_zh": "原生支援 LLM / RAG 資料清洗、動態網頁轉 Markdown 效率高、整合 AI Agent 技能機制。"
+      "advantages_zh": "原生支援 LLM / RAG 資料清洗、動態網頁轉 Markdown 效率高、整合 AI Agent 技能機制。",
+      "useCase_zh": "適用於建構 LLM/RAG 系統時需要將複雜動態網頁轉為乾淨 Markdown 的自動化流程。"
     },
     {
       "id": "crawl4ai",
@@ -32249,7 +32301,9 @@
       "addedAt": "2026-07-29T13:59:30.232Z",
       "status": "active",
       "stars": 79131,
-      "description_zh": "開源 LLM 友善之網頁爬蟲與資料擷取框架，支援 RAG 與 AI Agent。"
+      "description_zh": "開源 LLM 友善之網頁爬蟲與資料擷取框架，支援 RAG 與 AI Agent。",
+      "useCase_zh": "適用於需要高速抓取動態網頁並直接輸出高品質 Markdown / JSON 給 LLM 處理的場景。",
+      "advantages_zh": "專利級 LLM 友善 Markdown 提取,支援 Playwright 頁面渲染與非同步抓取,完全開源且高度可修飾擴充"
     },
     {
       "id": "selenium",
@@ -32294,7 +32348,8 @@
       "addedAt": "2026-07-29T13:59:31.978Z",
       "status": "active",
       "stars": 34386,
-      "advantages_zh": "支援 Java、Python、C#、JS、Ruby 等多語言，業界標準之 W3C WebDriver 協議，成熟生態系與廣泛社群資源"
+      "advantages_zh": "支援 Java、Python、C#、JS、Ruby 等多語言，業界標準之 W3C WebDriver 協議，成熟生態系與廣泛社群資源",
+      "useCase_zh": "適用於跨瀏覽器 (Chrome/Firefox/Edge) 之端對端自動化測試與複雜使用者互動模擬。"
     },
     {
       "id": "crawlee",
@@ -32343,7 +32398,8 @@
       "status": "active",
       "stars": 25468,
       "description_zh": "Node.js 高可靠度網頁爬蟲與瀏覽器自動化函式庫，支援 Puppeteer、Playwright 與 HTTP",
-      "advantages_zh": "內建代理 IP 輪換與 Header 偽裝防封鎖，無縫切換 HTTP (Cheerio) 與 Headless 瀏覽器 (Playwright)，高效率的 URL 佇列與併發控制器"
+      "advantages_zh": "內建代理 IP 輪換與 Header 偽裝防封鎖，無縫切換 HTTP (Cheerio) 與 Headless 瀏覽器 (Playwright)，高效率的 URL 佇列與併發控制器",
+      "useCase_zh": "適用於 Node.js / TypeScript 生態下需要自動代理輪換、佇列管理與防封鎖機制的爬蟲。"
     },
     {
       "id": "scrapy",
@@ -32436,7 +32492,8 @@
         "知識管理"
       ],
       "description_zh": "LLM Sherpa 研發者 API，提供 Layout-aware 複雜 PDF / 文件結構化解析",
-      "advantages_zh": "Layout-Aware Smart Chunking（版面感知智慧切片），精準表格與段落階層提取，大幅提升 RAG 檢索精準度"
+      "advantages_zh": "Layout-Aware Smart Chunking（版面感知智慧切片），精準表格與段落階層提取，大幅提升 RAG 檢索精準度",
+      "useCase_zh": "適用於 RAG 系統解析含有複雜表格、標題階層之 PDF / HTML 文檔並進行段落分塊。"
     },
     {
       "id": "beautifulsoup4",
@@ -32480,7 +32537,8 @@
       "status": "active",
       "stars": 222,
       "description_zh": "Python 經典 HTML / XML 標籤解析與 DOM 樹導航函式庫",
-      "advantages_zh": "語法極度直覺易用（find / find_all），容錯率高，可輕鬆解析不規範之 HTML，輕量級且無複雜外部相依套件"
+      "advantages_zh": "語法極度直覺易用（find / find_all），容錯率高，可輕鬆解析不規範之 HTML，輕量級且無複雜外部相依套件",
+      "useCase_zh": "適用於 Python 中對已有 HTML 原始碼進行靈活之 DOM 節點搜尋與屬性提取。"
     },
     {
       "id": "splash",
@@ -32563,7 +32621,10 @@
       ],
       "addedAt": "2026-07-30T13:36:55.529Z",
       "status": "active",
-      "stars": 7022
+      "stars": 7022,
+      "description_zh": "DeepSeek 開源的全棧推測解碼（Speculative Decoding）演算法訓練與評估框架",
+      "useCase_zh": "當需要訓練與評估 LLM 推測解碼（Speculative Decoding）模型以提升大模型推理速度與降低延遲時使用。",
+      "advantages_zh": "提供完整的 LLM 推測解碼草稿模型訓練與推理評估全流程，針對 DeepSeek 系列模型優化推測解碼效能與加速比，支援靈活的草稿模型架構與自訂解碼策略"
     },
     {
       "id": "openworker",
@@ -32603,7 +32664,8 @@
       "status": "active",
       "stars": 14943,
       "description_zh": "Andrew Ng 開源的輕量級分佈式 Agent Worker 執行框架與任務排程器",
-      "advantages_zh": "簡潔直覺的 Python 異步 Worker 架構，適合構建分佈式 Agent 系統,易於與主流 LLM API 及 Agent 工作流框架整合,極低的啟動與配置開銷"
+      "advantages_zh": "簡潔直覺的 Python 異步 Worker 架構，適合構建分佈式 Agent 系統,易於與主流 LLM API 及 Agent 工作流框架整合,極低的啟動與配置開銷",
+      "useCase_zh": "當需要將 AI Agent 任務分發至多個獨立運行的 Worker 節點並管理非同步任務流時使用。"
     },
     {
       "id": "aisuite",
@@ -32643,7 +32705,8 @@
       "status": "active",
       "stars": 16121,
       "description_zh": "Andrew Ng 團隊開發的統一跨供應商（OpenAI, Anthropic, Gemini 等）生成式 AI 調用 SDK",
-      "useCase_zh": "當需要在 Python 應用中以統一 API 無縫切換 OpenAI、Anthropic、Google Gemini、Ollama 等不同 LLM 供應商時使用。"
+      "useCase_zh": "當需要在 Python 應用中以統一 API 無縫切換 OpenAI、Anthropic、Google Gemini、Ollama 等不同 LLM 供應商時使用。",
+      "advantages_zh": "統一的介面格式，切換不同模型供應商只需修改模型名稱字串，無需改寫程式邏輯即可進行多模型對比與基準測試，輕量無冗餘，專注於 LLM Chat Completion 基礎調用"
     },
     {
       "id": "context-hub",
@@ -32684,7 +32747,8 @@
       "status": "active",
       "stars": 13939,
       "description_zh": "Andrew Ng 團隊打造的 AI Agent 上下文與文檔/程式庫動態打包與檢索 Hub (chub)",
-      "advantages_zh": "命令列工具 chub 可快速提取與組織專案檔案架構與關鍵內容,可與各類 Agent 框架及開發者工作流高度整合,支援動態過濾與 Token 預估，防止 Prompt 溢出"
+      "advantages_zh": "命令列工具 chub 可快速提取與組織專案檔案架構與關鍵內容,可與各類 Agent 框架及開發者工作流高度整合,支援動態過濾與 Token 預估，防止 Prompt 溢出",
+      "useCase_zh": "當需要迅速將專案原始碼、文件或線上資源封裝成適合 LLM 閱讀的最佳化 Prompt 上下文時使用。"
     },
     {
       "id": "context-hub-skill",
@@ -32764,7 +32828,8 @@
       "addedAt": "2026-07-30T13:36:59.992Z",
       "status": "active",
       "stars": 5802,
-      "description_zh": "Andrew Ng 提出基於 LLM 反思機制（Reflection Workflow）的高品質多語言翻譯 Agent"
+      "description_zh": "Andrew Ng 提出基於 LLM 反思機制（Reflection Workflow）的高品質多語言翻譯 Agent",
+      "advantages_zh": "採用初譯 -> 反思修訂 -> 最終優化的 Reflection 流程，翻譯品質高於單次 Prompt 直出，支援專有詞彙表與專業領域風格設定，支援長文本自動切分與上下文保持一致性"
     },
     {
       "id": "optmem",
@@ -33004,7 +33069,8 @@
       ],
       "stars": 12757,
       "description_zh": "基於Chromium的瀏覽器，專為AI代理設計，可在隔離環境中執行網頁自動化，並共享已登入的瀏覽器狀態，不干擾使用者操作。",
-      "useCase_zh": "讓 Claude Code、Codex 等 AI Agent 在獨立瀏覽器空間內執行網頁自動化任務，同時與使用者共享登入狀態，不干擾日常瀏覽。"
+      "useCase_zh": "讓 Claude Code、Codex 等 AI Agent 在獨立瀏覽器空間內執行網頁自動化任務，同時與使用者共享登入狀態，不干擾日常瀏覽。",
+      "advantages_zh": "AI Agent 在獨立 Space 執行，人類瀏覽不受干擾，直接共享已登入的帳號狀態，無需重新設定認證，零成本、零設定，開箱即用"
     },
     {
       "id": "open-code-review",
@@ -33113,7 +33179,8 @@
         "不適合非 Python 開發者，大部分範例以 Python 為主"
       ],
       "stars": 73020,
-      "description_zh": "微軟18課開源課程，涵蓋AI代理基礎、設計模式、框架與生產環境部署。"
+      "description_zh": "微軟18課開源課程，涵蓋AI代理基礎、設計模式、框架與生產環境部署。",
+      "useCase_zh": "適合開發者系統性學習 AI Agent 設計模式、主流框架與生產部署最佳實踐的入門課程。"
     },
     {
       "id": "awesome-claude-code-subagents",
@@ -33165,7 +33232,8 @@
       ],
       "stars": 24547,
       "description_zh": "精選100多個專業Claude Code子代理收藏，涵蓋後端、前端、安全、資料、研究等多種開發任務。",
-      "advantages_zh": "100+ 預建子代理涵蓋全端開發、安全、資料、研究等多個領域,每個子代理均為 Markdown 格式，可直接複製到 Claude Code 使用,由 VoltAgent 社群維護，持續更新新增子代理"
+      "advantages_zh": "100+ 預建子代理涵蓋全端開發、安全、資料、研究等多個領域,每個子代理均為 Markdown 格式，可直接複製到 Claude Code 使用,由 VoltAgent 社群維護，持續更新新增子代理",
+      "useCase_zh": "快速為 Claude Code 找到並部署特定領域的專業子代理，如後端開發者、安全審計員或資料分析師。"
     },
     {
       "id": "claude-code-debug-mode",
@@ -33267,7 +33335,9 @@
         "不適合需要自訂或修改官方插件行為的進階用例"
       ],
       "stars": 33831,
-      "description_zh": "Anthropic 官方維護的高品質 Claude Code 外掛目錄，包含技能、指令、Agent、Hook 和 MCP 伺服器。"
+      "description_zh": "Anthropic 官方維護的高品質 Claude Code 外掛目錄，包含技能、指令、Agent、Hook 和 MCP 伺服器。",
+      "useCase_zh": "當需要為 Claude Code 快速找到官方認可的高品質插件（包含技能、命令、代理與 MCP 伺服器）時瀏覽此目錄。",
+      "advantages_zh": "Anthropic 官方維護，品質有保證，涵蓋技能、命令、代理、hooks 與 MCP 伺服器等多種插件類型，提供官方認可的插件生態系統，降低尋找可信插件的成本"
     },
     {
       "id": "executor",
@@ -33373,7 +33443,8 @@
       ],
       "stars": 6864,
       "description_zh": "精選公開資源合集，介紹 Amazon、Airbnb 和 Apple 等領導級軟體公司如何測試軟體與打造品質文化。",
-      "useCase_zh": "當工程師或 QA 想了解 Amazon、Google、Airbnb 等頂尖科技公司如何建立測試文化與品質工程實踐時參考。"
+      "useCase_zh": "當工程師或 QA 想了解 Amazon、Google、Airbnb 等頂尖科技公司如何建立測試文化與品質工程實踐時參考。",
+      "advantages_zh": "收錄來自全球頂尖科技公司的公開測試文章、影片與部落格，涵蓋功能測試、CI/CD、混沌工程、生產監控等多個面向，持續更新的社群貢獻資源庫"
     },
     {
       "id": "code-review-skill",
@@ -33474,7 +33545,8 @@
       ],
       "stars": 107,
       "description_zh": "Claude Code Agent 技能，用於系統性地進行第一原理思考：將複雜問題拆解為根本真相，並避免類比推理陷阱。",
-      "advantages_zh": "系統化的第一性原理方法論，避免類比推理陷阱，幫助 AI Agent 在架構設計與技術選型時挑戰隱性假設，輕量 Markdown Skill，相容所有支援 Agent Skills 標準的工具"
+      "advantages_zh": "系統化的第一性原理方法論，避免類比推理陷阱，幫助 AI Agent 在架構設計與技術選型時挑戰隱性假設，輕量 Markdown Skill，相容所有支援 Agent Skills 標準的工具",
+      "useCase_zh": "當面對複雜技術決策或需要挑戰既有設計假設時，使用此 Skill 引導 AI Agent 從基本原理出發重新評估方案。"
     },
     {
       "id": "5-whys-skill",
@@ -33681,7 +33753,8 @@
       ],
       "stars": 139,
       "description_zh": "基於 ReactPHP 事件迴圈建構的事件驅動非阻塞式檔案系統存取，支援非同步讀取、寫入與狀態檢查操作。",
-      "advantages_zh": "完全非阻塞設計，與 ReactPHP 事件迴圈深度整合，不影響並發效能，支援 Promise 鏈式呼叫，讓非同步檔案操作程式碼可讀性佳，官方 ReactPHP 生態系元件，維護積極且與其他 react/* 套件相容"
+      "advantages_zh": "完全非阻塞設計，與 ReactPHP 事件迴圈深度整合，不影響並發效能，支援 Promise 鏈式呼叫，讓非同步檔案操作程式碼可讀性佳，官方 ReactPHP 生態系元件，維護積極且與其他 react/* 套件相容",
+      "useCase_zh": "在 ReactPHP 應用中以非阻塞方式讀寫大量檔案，避免 I/O 操作阻斷事件迴圈，適合高併發的 PHP 非同步服務。"
     },
     {
       "id": "sequential-thinking-skill",
@@ -34443,7 +34516,8 @@
       ],
       "stars": 1322,
       "description_zh": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 辅助設計能力。",
-      "advantages_zh": "完整翻譯並本地化原始 README，消除中文開發者的語言障礙,覆蓋 UI/UX Pro Max 全部技能，提供系統化的 AI 設計學習路徑,針對中文開發者優化，降低上手門檻，提升學習效率"
+      "advantages_zh": "完整翻譯並本地化原始 README，消除中文開發者的語言障礙,覆蓋 UI/UX Pro Max 全部技能，提供系統化的 AI 設計學習路徑,針對中文開發者優化，降低上手門檻，提升學習效率",
+      "useCase_zh": "中文開發者需要快速上手 AI 輔助 UI/UX 設計工作流時，使用本技能庫獲取完整中文教程與最佳實踐。"
     },
     {
       "id": "gsap-skills",
@@ -35440,7 +35514,8 @@
       "addedAt": "2026-08-05T14:41:05.240Z",
       "status": "active",
       "description_zh": "Qlib 是一款以 AI 為導向的量化投資平臺，旨在利用 AI 技術賦能量化研究，從構思到部署實作。Qlib 支援多種 ML 建模範式，包含",
-      "useCase_zh": "Qlib 是一款以 AI 為導向的量化投資平臺，旨在利用 AI 技術賦能量化研究，從構思到部署實作。Qlib 支援多種 ML 建模範式，包含"
+      "useCase_zh": "Qlib 是一款以 AI 為導向的量化投資平臺，旨在利用 AI 技術賦能量化研究，從構思到部署實作。Qlib 支援多種 ML 建模範式，包含",
+      "advantages_zh": "Microsoft 官方維護，支援監督學習、市場動態建模、強化學習，內建 RD-Agent 自動化研究。"
     },
     {
       "id": "awesome-n8n-templates",
@@ -35797,7 +35872,8 @@
         "week": "2026-W31",
         "weeklyDelta": 312338
       },
-      "description_zh": "精選的 Python 框架、函式庫、工具和資源清單"
+      "description_zh": "精選的 Python 框架、函式庫、工具和資源清單",
+      "useCase_zh": "開發者需要快速尋找某個特定領域（如 Web 框架、資料視覺化）的 Python 函式庫時，可直接透過此清單篩選並比較熱門選擇。"
     },
     {
       "id": "996-icu",
@@ -36134,7 +36210,8 @@
         "weeklyDelta": 5
       },
       "description_zh": "完整的 Augment Code、Claude Code、Cluely、CodeBuddy、Comet、Cursor、Devin AI、Junie、Kiro、Leap.new、Lovable、Manus、NotionAI、Orchids.app、Perplexity、Poke、Qoder、Replit、Same.dev、Trae、Traycer AI、V（及其他 AI 工具）的系統提示與模型",
-      "advantages_zh": "收錄大量主流 AI 工具（Cursor、Claude Code、Copilot 等）的系統提示詞，是逆向工程提示工程的珍貴語料；涵蓋多家廠商的模型版本，可比較不同工具的設計哲學差異；持續更新，跟得上工具快速迭代的速度。"
+      "advantages_zh": "收錄大量主流 AI 工具（Cursor、Claude Code、Copilot 等）的系統提示詞，是逆向工程提示工程的珍貴語料；涵蓋多家廠商的模型版本，可比較不同工具的設計哲學差異；持續更新，跟得上工具快速迭代的速度。",
+      "useCase_zh": "研究或改進自身 AI Agent 的系統提示詞時，參照成熟工具的設計模式。"
     },
     {
       "id": "autogpt",
@@ -36596,7 +36673,8 @@
         "weeklyDelta": 5403
       },
       "description_zh": "在僅需約 2 GB RAM 的任何 M 系列 MacBook 上執行 Gemma 4 26B-A4B 推理。",
-      "advantages_zh": "在 M-series Mac 上以 ~2GB 記憶體跑 26B 參數模型，對低記憶體筆電極友好,利用 Apple GPU（GPGPU）加速推論，速度明顯優於純 CPU,支援 Gemma 4 26B-A4B 模型，可離線運行、資料不經第三方"
+      "advantages_zh": "在 M-series Mac 上以 ~2GB 記憶體跑 26B 參數模型，對低記憶體筆電極友好,利用 Apple GPU（GPGPU）加速推論，速度明顯優於純 CPU,支援 Gemma 4 26B-A4B 模型，可離線運行、資料不經第三方",
+      "useCase_zh": "在 Apple Silicon 筆電上離線運行大模型，避免雲端 API 延遲與資料外洩風險。"
     },
     {
       "id": "decimen-optical-transfer",
@@ -36813,7 +36891,8 @@
         "weeklyDelta": 4153
       },
       "description_zh": "Claude Code 與 Codex 的 AI 影片技能——使用 Remotion 製作電影感產品影片：106 張鏡頭配方卡、161 個動態預覽、一個可直接投入生產的模板",
-      "advantages_zh": "106 張鏡頭配方卡 + 161 個動作預覽，提供可直接套用的拍片框架,整合 Remotion 產生 MP4，輸出即最終產物，無需額外剪輯軟體,以 Claude Code / Codex 技能格式提供，可直接被 AI Agent 呼叫"
+      "advantages_zh": "106 張鏡頭配方卡 + 161 個動作預覽，提供可直接套用的拍片框架,整合 Remotion 產生 MP4，輸出即最終產物，無需額外剪輯軟體,以 Claude Code / Codex 技能格式提供，可直接被 AI Agent 呼叫",
+      "useCase_zh": "產品團隊用 AI Agent 自動產製具有電影感的產品展示影片。"
     },
     {
       "id": "os-taxonomy",
@@ -37063,7 +37142,8 @@
       ],
       "stars": 5010,
       "description_zh": "Open-source text-to-CAD web application：以自然語言描述直接生成可下載的 CAD / STL / OpenSCAD 模型，專為機械工程與 3D 列印設計。",
-      "advantages_zh": "支援 WebAssembly 於瀏覽器內直接運行，無需安裝重型 CAD 軟體，結合 LLM 代理生成 OpenSCAD 參數化模型，可產出 STL 供 3D 列印，開源且提供完整 Web 應用，方便嵌入現有設計工作流程"
+      "advantages_zh": "支援 WebAssembly 於瀏覽器內直接運行，無需安裝重型 CAD 軟體，結合 LLM 代理生成 OpenSCAD 參數化模型，可產出 STL 供 3D 列印，開源且提供完整 Web 應用，方便嵌入現有設計工作流程",
+      "useCase_zh": "當機械工程師或 Maker 想要用一句自然語言描述（如「一個 M8 螺栓的螺帽」）快速產生可 3D 列印的 CAD / STL 模型時使用。"
     },
     {
       "id": "trellis2",
@@ -37113,7 +37193,8 @@
         "不適用於需要拓撲潔淨、可直接用於動畫綁定（rigging）的遊戲級模型"
       ],
       "stars": 10757,
-      "description_zh": "Microsoft 開源的 3D 生成框架：以「原生且緊湊的結構化潛變數（Structured Latents）」從文字或圖片生成高品質 3D 資產，可輸出 GLB 等格式。"
+      "description_zh": "Microsoft 開源的 3D 生成框架：以「原生且緊湊的結構化潛變數（Structured Latents）」從文字或圖片生成高品質 3D 資產，可輸出 GLB 等格式。",
+      "useCase_zh": "當遊戲、動畫或 XR 開發者需要從單張圖片或文字描述快速生成可用的 3D 資產（GLB）時使用。"
     },
     {
       "id": "block-buzz",
@@ -37161,7 +37242,8 @@
         "不適合需要端到端加密保障的機密商業溝通（請改用 Signal / Matrix 等成熟方案）"
       ],
       "stars": 29785,
-      "description_zh": "Block 開源的「蜂巢思維（hive mind）」去中心化溝通平台，以 Rust 打造，聚焦於群體智慧協作與分散式訊息交換基礎設施。"
+      "description_zh": "Block 開源的「蜂巢思維（hive mind）」去中心化溝通平台，以 Rust 打造，聚焦於群體智慧協作與分散式訊息交換基礎設施。",
+      "advantages_zh": "由 Block（Square 母公司）開源，具備企業級程式品質與社群背書，以 Rust 實作，效能與記憶體安全俱佳，適合分散式節點部署，作為「蜂巢思維」通訊架構的參考實作，具學術與研究價值"
     },
     {
       "id": "hermes-plugins",
@@ -37225,7 +37307,8 @@
       ],
       "stars": 417,
       "description_zh": "hermes-agent 的 33 個自訂 plugin 集合（evey 系列）：目標管理、跨代理橋接、模型選擇、成本控管、記憶整合、RAG、研究、排程器、Telegram UX 與守衛等。",
-      "advantages_zh": "33 個模組化 plugin 涵蓋自主代理完整生命週期：目標、記憶、研究、排程、守衛,包含 evey-cost-guard 成本控管與 evey-delegate-model 模型選擇等企業級治理能力,提供 evey-telegram-ux、evey-mqtt、evey-email-guard 等多通道整合"
+      "advantages_zh": "33 個模組化 plugin 涵蓋自主代理完整生命週期：目標、記憶、研究、排程、守衛,包含 evey-cost-guard 成本控管與 evey-delegate-model 模型選擇等企業級治理能力,提供 evey-telegram-ux、evey-mqtt、evey-email-guard 等多通道整合",
+      "useCase_zh": "當使用 hermes-agent 且需要擴充目標管理、跨代理橋接、成本控管、記憶整合或 RAG 等 33 種即插即用外掛能力時使用。"
     },
     {
       "id": "hermes-skill-factory",
@@ -37379,7 +37462,8 @@
       ],
       "stars": 549,
       "advantages_zh": "一次安裝即獲得 12 個互相搭配的 YouTube 技能，涵蓋逐字稿、搜尋、頻道與播放清單,跨代理相容：OpenClaw、Hermes-Agent、Claude Code、Cursor、Windsurf 皆可掛載,基於 YouTube Transcript API 與官方 Data API，免自建爬蟲",
-      "description_zh": "12 個 YouTube 技能集合（transcript、captions、搜尋、頻道、播放清單、資料 API）：為 AI 代理提供 YouTube Transcript API、影片搜尋與頻道瀏覽能力，相容 OpenClaw、Hermes-Agent、Claude Code、Cursor、Windsurf。"
+      "description_zh": "12 個 YouTube 技能集合（transcript、captions、搜尋、頻道、播放清單、資料 API）：為 AI 代理提供 YouTube Transcript API、影片搜尋與頻道瀏覽能力，相容 OpenClaw、Hermes-Agent、Claude Code、Cursor、Windsurf。",
+      "useCase_zh": "當 AI 代理需要讀取 YouTube 影片逐字稿、搜尋影片、瀏覽頻道或抓取播放清單作為研究／摘要輸入時使用。"
     },
     {
       "id": "oh-my-hermes-rlaope",
@@ -37431,7 +37515,8 @@
       ],
       "stars": 1084,
       "description_zh": "一鍵安裝即可專業化使用 hermes-agent 的整合套件：提供強大的智慧與記憶系統（含 skills、roles、omh 模組、多國語言文件與安裝腳本）。",
-      "advantages_zh": "提供 install.sh / install.ps1 一鍵安裝腳本，Windows 與 Unix 皆可快速部署,內建記憶、skills、roles 與 omh 模組，開箱即用的專業代理配置,支援中/英/日/韓多語言文件，降低上手門檻"
+      "advantages_zh": "提供 install.sh / install.ps1 一鍵安裝腳本，Windows 與 Unix 皆可快速部署,內建記憶、skills、roles 與 omh 模組，開箱即用的專業代理配置,支援中/英/日/韓多語言文件，降低上手門檻",
+      "useCase_zh": "當使用者想以「安裝一次即專業化」的方式快速部署 hermes-agent，並獲得記憶系統、技能庫與角色定義等完整配套時使用。"
     },
     {
       "id": "skills",
@@ -37956,7 +38041,8 @@
         "weeklyDelta": 1298
       },
       "description_zh": "一款本地優先的問題看板，於瀏覽器中執行，可透過獨立 CDP 啟動器或其注入腳本嵌入 Codex。相同的 HTTP API 同時驅動 React UI 與 `taskctl` CLI",
-      "advantages_zh": "本地優先設計，資料不離開裝置，無外部雲端依賴,可嵌入 Codex，Agent 與人類共用同一個任務面板，協作無縫,純瀏覽器執行，無需安裝 Node.js 或資料庫"
+      "advantages_zh": "本地優先設計，資料不離開裝置，無外部雲端依賴,可嵌入 Codex，Agent 與人類共用同一個任務面板，協作無縫,純瀏覽器執行，無需安裝 Node.js 或資料庫",
+      "useCase_zh": "開發者需要輕量、隱私友善的個人或小型團隊任務管理，並與 AI Agent 協同工作。"
     },
     {
       "id": "conversation-steganography",
@@ -38001,7 +38087,8 @@
         "week": "2026-W32",
         "weeklyDelta": 1208
       },
-      "description_zh": "使用 LLM 將訊息隱藏在看似正常的對話中"
+      "description_zh": "使用 LLM 將訊息隱藏在看似正常的對話中",
+      "advantages_zh": "利用 LLM 產生看似自然的對話內容隱含訊息，難以被傳統內容過濾偵測,Go 實作，編譯後為單檔二進位，部署無依賴,概念上可應用於安全研究與隱私測試場景"
     },
     {
       "id": "nativ",
@@ -38045,7 +38132,8 @@
         "weeklyDelta": 1177
       },
       "description_zh": "原生於 Mac 的本地 AI。透過單一 macOS 應用程式進行聊天、服務、監控並連接 MLX 模型",
-      "advantages_zh": "純 macOS 原生 App，與 MLX 框架原生整合，效能優於跨平台方案,一介面整合 LLM 聊天、模型管理、效能監控，無需切換多個工具,本地推理，資料不出裝置，隱私完整"
+      "advantages_zh": "純 macOS 原生 App，與 MLX 框架原生整合，效能優於跨平台方案,一介面整合 LLM 聊天、模型管理、效能監控，無需切換多個工具,本地推理，資料不出裝置，隱私完整",
+      "useCase_zh": "Mac 開發者想在本地跑 LLM 並監控效能，不想依賴雲端 API 的場景。"
     },
     {
       "id": "codex-router",
@@ -38097,7 +38185,8 @@
         "weeklyDelta": 1176
       },
       "description_zh": "針對 Codex 的外層模型路由，提供引導式 Kimi OAuth/API、DeepSeek，支援安全遷移與回滾。",
-      "advantages_zh": "支援 Kimi OAuth 與 DeepSeek API，提供 Codex 之外更多模型選擇,內建安全遷移與回滾機制，切換模型不會中斷現有工作流,以 LiteLLM 為底層，統一 API 格式，程式碼遷移成本低"
+      "advantages_zh": "支援 Kimi OAuth 與 DeepSeek API，提供 Codex 之外更多模型選擇,內建安全遷移與回滾機制，切換模型不會中斷現有工作流,以 LiteLLM 為底層，統一 API 格式，程式碼遷移成本低",
+      "useCase_zh": "團隊使用 Codex 但需要依成本或能力切換 DeepSeek / Kimi 等替代模型。"
     },
     {
       "id": "story-to-handdrawn-video",
@@ -38140,7 +38229,8 @@
         "week": "2026-W32",
         "weeklyDelta": 1166
       },
-      "description_zh": "Agent 技能：將中文故事文案或順序圖片轉換為手繪日記漫畫動畫（無聲 MP4 圖片軌）。"
+      "description_zh": "Agent 技能：將中文故事文案或順序圖片轉換為手繪日記漫畫動畫（無聲 MP4 圖片軌）。",
+      "advantages_zh": "直接從中文故事文案產出手繪日記風動畫 MP4，全過程無需手繪或剪輯,靜止圖片序列轉動的影片，製作成本低且風格一致,以 Agent 技能格式提供，可嵌入現有 AI 工作流"
     },
     {
       "id": "findphone",
@@ -38184,7 +38274,8 @@
         "weeklyDelta": 1125
       },
       "description_zh": "透過信號強度定位附近藍芽裝置，由 macOS 命令列操作 —— 適用於 Find My 無法使用的情境。",
-      "advantages_zh": "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位,依賴藍牙信號強度（RSSI），無需 GPS 或網路連線,Swift 原生 macOS 開發，無額外依賴"
+      "advantages_zh": "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位,依賴藍牙信號強度（RSSI），無需 GPS 或網路連線,Swift 原生 macOS 開發，無額外依賴",
+      "useCase_zh": "Find My 網頁版慢或離線時，快速從終端機找到附近藍牙裝置的位置。"
     },
     {
       "id": "openreply",
@@ -38227,7 +38318,9 @@
         "week": "2026-W32",
         "weeklyDelta": 1122
       },
-      "description_zh": "開源 ManyChat 替代品：留言・DM 自動化 + 帳號分析。注意：下方連結不支援 OAuth；須自行架設並使用自己的 API keys。"
+      "description_zh": "開源 ManyChat 替代品：留言・DM 自動化 + 帳號分析。注意：下方連結不支援 OAuth；須自行架設並使用自己的 API keys。",
+      "useCase_zh": "品牌或內容創作者自架 Instagram 留言/DM 自動回應系統，降低 SaaS 訂閱成本。",
+      "advantages_zh": "開源自架替代 ManyChat，免月費，資料完整掌握在自己手上，同時處理 Instagram 留言與 DM 自動化，減少多工具切換，內建帳號分析，可直接追蹤互動轉化率"
     },
     {
       "id": "openmouse",
@@ -38420,7 +38513,8 @@
         "weeklyDelta": 1099
       },
       "description_zh": "🐧 自動化 Agent 建構工具。一鍵建立自我演化的 Agent（DeepSeek/Kimi/GPT/Claude/Gemini）",
-      "advantages_zh": "一鍵生成自演化 Agent，支援 DeepSeek / Kimi / GPT / Claude / Gemini 多模型切換，Agent 可自我改進策略，減少反覆手動調整，開源，無 SaaS 訂閱費用"
+      "advantages_zh": "一鍵生成自演化 Agent，支援 DeepSeek / Kimi / GPT / Claude / Gemini 多模型切換，Agent 可自我改進策略，減少反覆手動調整，開源，無 SaaS 訂閱費用",
+      "useCase_zh": "快速原型化 AI Agent，並讓它在執行中自我優化任務執行策略。"
     },
     {
       "id": "cue",
@@ -38463,7 +38557,8 @@
         "week": "2026-W32",
         "weeklyDelta": 1076
       },
-      "description_zh": "開源的 macOS AI copilot，漂浮於螢幕之上，能看見/聽見您的會議，且在畫面分享時保持隱藏。Cluely 的替代方案，bring-your-own-key。"
+      "description_zh": "開源的 macOS AI copilot，漂浮於螢幕之上，能看見/聽見您的會議，且在畫面分享時保持隱藏。Cluely 的替代方案，bring-your-own-key。",
+      "useCase_zh": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓對方看到 AI 介面的場景。"
     },
     {
       "id": "firecrawl",
@@ -38516,7 +38611,8 @@
         "weeklyDelta": 1062
       },
       "description_zh": "可大規模搜尋、爬取並與網路互動的 context API。🔥",
-      "advantages_zh": "一次 API 同時完成搜尋、爬取、互動，省去多工具拼接，專為 AI Agent 優化，輸出格式直接可餵給 LLM，支援大規模爬取，遠比手動寫 crawler 穩定"
+      "advantages_zh": "一次 API 同時完成搜尋、爬取、互動，省去多工具拼接，專為 AI Agent 優化，輸出格式直接可餵給 LLM，支援大規模爬取，遠比手動寫 crawler 穩定",
+      "useCase_zh": "建構需要即時網頁資料的 RAG 系統或 AI Agent，無需自己維護爬蟲基礎設施。"
     },
     {
       "id": "diagram-design",
@@ -40277,7 +40373,8 @@
         "weeklyDelta": 2086
       },
       "description_zh": "透過從 NVMe 直接串流已激活的權重，在可用 RAM 之外執行完整的 2.78 兆參數 Kimi K3 模型。一個無需依賴、可嵌入的 C 推理引擎。",
-      "advantages_zh": "以串流方式載入 2.78T 參數模型權重，讓超出 RAM 容量的模型也可執行\nC 語言實作，效能極高，無 JVM / Python 開銷\n結合 NVM（新型記憶體）直接讀取，繞過傳統磁碟瓶頸"
+      "advantages_zh": "以串流方式載入 2.78T 參數模型權重，讓超出 RAM 容量的模型也可執行\nC 語言實作，效能極高，無 JVM / Python 開銷\n結合 NVM（新型記憶體）直接讀取，繞過傳統磁碟瓶頸",
+      "useCase_zh": "在配有 NVM 的伺服器上執行超大型語言模型，突破 RAM 容量限制。"
     },
     {
       "id": "gathered-scenes-zine-skill",
@@ -40369,7 +40466,8 @@
         "weeklyDelta": 1580
       },
       "description_zh": "讓您的 agent 控制您的手機",
-      "advantages_zh": "讓 AI Agent 直接操控手機，跨越純文字/網頁操作的侷限\nPython 實作，易於整合至現有 Agent 管線\n開源，不受廠商 API 鎖定"
+      "advantages_zh": "讓 AI Agent 直接操控手機，跨越純文字/網頁操作的侷限\nPython 實作，易於整合至現有 Agent 管線\n開源，不受廠商 API 鎖定",
+      "useCase_zh": "需要 AI Agent 自動操作手機 App（填表、點按、截圖）的自動化場景。"
     },
     {
       "id": "oil-motion",
@@ -40415,7 +40513,8 @@
         "weeklyDelta": 1556
       },
       "description_zh": "建立流暢、響應式互動網頁動畫。",
-      "advantages_zh": "Python API 即可產生流暢互動網頁動畫，無需手寫 CSS/JS 動畫\n支援響應式與互動觸發，非純影片匯出\n生成結果可直接嵌入現行網頁專案"
+      "advantages_zh": "Python API 即可產生流暢互動網頁動畫，無需手寫 CSS/JS 動畫\n支援響應式與互動觸發，非純影片匯出\n生成結果可直接嵌入現行網頁專案",
+      "useCase_zh": "網頁開發者需要高品質互動動畫效果，但不想手寫大量 CSS keyframes。"
     },
     {
       "id": "wechat-ai",
@@ -40460,7 +40559,9 @@
         "week": "2026-W32",
         "weeklyDelta": 1507
       },
-      "description_zh": "自架的微信角色扮演聊天機器人服務，連接騰訊 iLink 以進行 AI 驅動的對話。"
+      "description_zh": "自架的微信角色扮演聊天機器人服務，連接騰訊 iLink 以進行 AI 驅動的對話。",
+      "useCase_zh": "在微信生態中部署具特定角色性格的 AI 對話服務，不依賴外部 SaaS。",
+      "advantages_zh": "自架部署，對話數據不經第三方，隱私可控；直接連接騰訊 iLink 官方通道，相容性佳；角色扮演導向，可直接產生特定角色語氣與人格的 AI 對話。"
     },
     {
       "id": "h3-c",
@@ -40507,7 +40608,8 @@
         "weeklyDelta": 1499
       },
       "description_zh": "適用於 Mac 電腦的 MiniMax H3 推理引擎",
-      "advantages_zh": "C 語言實作，零依賴、無垃圾回收，開銷極低\n支援 MiniMax H3 模型在 Mac 上原生推理\nantirez（Redis 作者）開發，程式碼品質與設計哲學可靠"
+      "advantages_zh": "C 語言實作，零依賴、無垃圾回收，開銷極低\n支援 MiniMax H3 模型在 Mac 上原生推理\nantirez（Redis 作者）開發，程式碼品質與設計哲學可靠",
+      "useCase_zh": "在 Mac 上以極低資源開銷運行 MiniMax H3 模型，追求最高效能。"
     },
     {
       "id": "openbb",
@@ -40552,7 +40654,8 @@
         "支援多種資料來源整合",
         "內建AI Agent整合能力"
       ],
-      "description_zh": "供分析師、量化分析師與 AI 代理使用的開放資料平台"
+      "description_zh": "供分析師、量化分析師與 AI 代理使用的開放資料平台",
+      "advantages_zh": "OpenBB 官方維護，社群活躍（71K+ 星）；支援多種資料來源整合；內建 AI Agent 整合能力。"
     },
     {
       "id": "ai-hedge-fund",
@@ -40869,7 +40972,9 @@
         "統合多種AI技術",
         "學術研究基礎"
       ],
-      "description_zh": "FinRobot：開放原始碼 AI 代理平台，專為金融應用設計"
+      "description_zh": "FinRobot：開放原始碼 AI 代理平台，專為金融應用設計",
+      "useCase_zh": "適合需要AI Agent平台的金融應用場景，統合LLM、強化學習與量化分析",
+      "advantages_zh": "全方位金融AI Agent平台，統合多種AI技術，學術研究基礎"
     },
     {
       "id": "nofx",
@@ -40960,7 +41065,8 @@
         "AI Agent輔助研究",
         "適合個人投資者"
       ],
-      "description_zh": "AI 時代的伯克夏：基於 Claude Code/Codex 的價值投資研究 Skill 合集"
+      "description_zh": "AI 時代的伯克夏：基於 Claude Code/Codex 的價值投資研究 Skill 合集",
+      "advantages_zh": "4位大師方法論系統化，AI Agent輔助研究，適合個人投資者"
     },
     {
       "id": "tradingagents-cn",
@@ -41137,7 +41243,8 @@
         "Microsoft官方",
         "先進研究技術"
       ],
-      "description_zh": "Microsoft Research 金融 AI 平台"
+      "description_zh": "Microsoft Research 金融 AI 平台",
+      "useCase_zh": "適合Microsoft Research金融AI研究場景"
     },
     {
       "id": "avernet",
@@ -41179,7 +41286,8 @@
         "創新架構",
         "開源"
       ],
-      "description_zh": "AI agent 網路架構"
+      "description_zh": "AI agent 網路架構",
+      "useCase_zh": "適合需要AI Agent網絡化運作的場景"
     },
     {
       "id": "deeptutor",
@@ -41224,7 +41332,8 @@
         "AI驅動教學",
         "多語言支援"
       ],
-      "description_zh": "AI 驅動個人化學習導師"
+      "description_zh": "AI 驅動個人化學習導師",
+      "advantages_zh": "HKU學術研究，AI驅動教學，多語言支援"
     },
     {
       "id": "slavingia-skills",
@@ -41262,7 +41371,8 @@
       "advantages": [
         "特色內容"
       ],
-      "description_zh": "Slavingia 技能集"
+      "description_zh": "Slavingia 技能集",
+      "useCase_zh": "Slavingia 的 openclaw 技能集合"
     },
     {
       "id": "awesome-openclaw-skills",
@@ -41300,7 +41410,8 @@
       "advantages": [
         "精選合集"
       ],
-      "description_zh": "Awesome OpenClaw 技能"
+      "description_zh": "Awesome OpenClaw 技能",
+      "useCase_zh": "Awesome OpenClaw 技能收藏"
     },
     {
       "id": "huggingface-skills",
@@ -41423,7 +41534,8 @@
         "視覺設計",
         "UI動畫與現代組件"
       ],
-      "description_zh": "MengTo 開源的設計師專用 AI 輔助 UI/UX、動畫與視覺設計技能庫集合（DesignCode 創辦人開源）"
+      "description_zh": "MengTo 開源的設計師專用 AI 輔助 UI/UX、動畫與視覺設計技能庫集合（DesignCode 創辦人開源）",
+      "useCase_zh": "MengTo 設計師專用 UI/UX 與視覺設計技能集合"
     },
     {
       "id": "microsoft-official-skills",
@@ -41463,7 +41575,8 @@
       "advantages": [
         "官方"
       ],
-      "description_zh": "Microsoft 官方技能儲存庫"
+      "description_zh": "Microsoft 官方技能儲存庫",
+      "useCase_zh": "Microsoft 官方的技能集合"
     },
     {
       "id": "nvidia-skills",
@@ -41551,7 +41664,8 @@
         "88K+ 星數認可度最高",
         "用於 3Blue1Brown 所有YouTube影片"
       ],
-      "description_zh": "解說數學影片動畫引擎 — 由 3Blue1Brown 創作者 Grant Sanderson 開發的原始版本"
+      "description_zh": "解說數學影片動畫引擎 — 由 3Blue1Brown 創作者 Grant Sanderson 開發的原始版本",
+      "advantages_zh": "原始版本，官方維護，88K+ 星數認可度最高，用於 3Blue1Brown 所有 YouTube 影片"
     },
     {
       "id": "manim-community",
@@ -41645,7 +41759,8 @@
         "適合 AI/ML 課程教學",
         "開源且易用"
       ],
-      "description_zh": "使用 Manim Community Library 對常見機器學習概念進行動畫與視覺化"
+      "description_zh": "使用 Manim Community Library 對常見機器學習概念進行動畫與視覺化",
+      "advantages_zh": "專注於 ML 概念視覺化，適合 AI/ML 課程教學，開源且易用"
     },
     {
       "id": "3b1b-videos",
@@ -41688,7 +41803,9 @@
         "包含所有 3Blue1Brown 影片的完整代碼",
         "學習數學視覺化的最佳範例"
       ],
-      "description_zh": "Code for the manim-generated scenes used in 3blue1brown videos — 10K+ 星數，包含所有 YouTube 影片的動畫腳本"
+      "description_zh": "Code for the manim-generated scenes used in 3blue1brown videos — 10K+ 星數，包含所有 YouTube 影片的動畫腳本",
+      "useCase_zh": "適合需要參考或學習 3Blue1Brown YouTube 影片動畫腳本的場景",
+      "advantages_zh": "官方維護的原始動畫腳本，包含所有 3Blue1Brown 影片的完整程式，學習數學視覺化的最佳範例"
     },
     {
       "id": "kronos",
@@ -42038,7 +42155,8 @@
         "內容可能涉及版權教材，僅建議用於個人學習與教育研究"
       ],
       "stars": 80561,
-      "advantages_zh": "79.6k+ stars 的大型開放教育資源庫，涵蓋小學到大學各學段與主要出版社,提供 mergePDFs 合併工具處理 GitHub 50MB 拆分限制的大檔案,促進義務教育資源普及，海外華人亦可取得國內教材"
+      "advantages_zh": "79.6k+ stars 的大型開放教育資源庫，涵蓋小學到大學各學段與主要出版社,提供 mergePDFs 合併工具處理 GitHub 50MB 拆分限制的大檔案,促進義務教育資源普及，海外華人亦可取得國內教材",
+      "description_zh": "中國小學/初中/高中/大學 PDF 教材開放資源庫（人教版等，79.6k stars），含 >50MB 檔案合併工具支援"
     },
     {
       "id": "scrapling",
@@ -42209,7 +42327,8 @@
       ],
       "stars": 130838,
       "description_zh": "💫 GitHub 官方 Spec-Driven Development 工具包，透過 specify CLI 與 /speckit 斜線指令建立規格驅動的 AI 開發工作流",
-      "advantages_zh": "GitHub 官方維護，與 Copilot 及 AI coding agent 深度整合；提供 constitution/specify/plan/tasks 斜線指令，標準化規格驅動流程；支援從既有 PRD 自動生成規格文件與任務拆解"
+      "advantages_zh": "GitHub 官方維護，與 Copilot 及 AI coding agent 深度整合；提供 constitution/specify/plan/tasks 斜線指令，標準化規格驅動流程；支援從既有 PRD 自動生成規格文件與任務拆解",
+      "useCase_zh": "需要以規格（Spec）驅動 AI 開發流程時，將 PRD 轉化為可執行的任務清單與驗收標準"
     },
     {
       "id": "watermarks-remover",
@@ -42375,7 +42494,8 @@
       ],
       "stars": 17751,
       "description_zh": "DeepSeek 官方 Janus-Series 統一多模態理解與生成模型（Janus-Pro / JanusFlow），單一框架同時支援視覺問答與影像生成",
-      "advantages_zh": "統一多模態架構：單一模型同時支援理解與生成，Janus-Pro 於 2025.01 發布並顯著提升兩者效能，提供 1.3B / 7B 多種規模模型，Hugging Face 線上 Demo 可直接體驗，基於 transformers 標準介面，pip install -e . 後即可快速推理"
+      "advantages_zh": "統一多模態架構：單一模型同時支援理解與生成，Janus-Pro 於 2025.01 發布並顯著提升兩者效能，提供 1.3B / 7B 多種規模模型，Hugging Face 線上 Demo 可直接體驗，基於 transformers 標準介面，pip install -e . 後即可快速推理",
+      "useCase_zh": "當需要以單一模型同時進行多模態理解（視覺問答）與視覺生成（影像生成），或研究統一多模態架構（Janus-Pro/JanusFlow）時使用"
     },
     {
       "id": "dsh-desktop",
@@ -42679,7 +42799,8 @@
       ],
       "stars": 73336,
       "description_zh": "CompVis、Stability AI 和 Runway 開發的高解析度影像合成潛在和擴散模型官方開原始碼庫。",
-      "advantages_zh": "由 CompVis 與 Stability AI 官方維護的原汁原味潛在擴散模型參考實作,完整開源模型訓練配置、Autoencoder 與 UNet 結構定義，適合學術研究與客製化訓練,提供乾淨純粹的 Python CLI 腳本（txt2img.py, img2img.py）無多餘介面依賴"
+      "advantages_zh": "由 CompVis 與 Stability AI 官方維護的原汁原味潛在擴散模型參考實作,完整開源模型訓練配置、Autoencoder 與 UNet 結構定義，適合學術研究與客製化訓練,提供乾淨純粹的 Python CLI 腳本（txt2img.py, img2img.py）無多餘介面依賴",
+      "useCase_zh": "適用於機器學習研究員與後端工程師直接使用原始潛在擴散模型 (Latent Diffusion Models) 程式碼庫進行演算法研究、權重調試與底層模型推論整合的場景。"
     },
     {
       "id": "opencode",
@@ -42721,7 +42842,9 @@
         "week": "2026-W32",
         "weeklyDelta": 1443
       },
-      "description_zh": "開源編程代理。"
+      "description_zh": "開源編程代理。",
+      "useCase_zh": "開發者想在本機運行 AI 編碼助理，但不想訂閱閉源 SaaS。",
+      "advantages_zh": "開源編碼 Agent，無月費，可自架自訂,模型中立：支援多家 LLM 後端，不綁定單一廠商,可嵌入現有開發工具鏈，不替代 IDE 而是補充"
     },
     {
       "id": "awesome-mac",
@@ -42773,7 +42896,9 @@
         "week": "2026-W32",
         "weeklyDelta": 1396
       },
-      "description_zh": " 本專案致力於收集高品質的 macOS 軟體，並按不同類別系統化整理，方便搜尋與使用。"
+      "description_zh": " 本專案致力於收集高品質的 macOS 軟體，並按不同類別系統化整理，方便搜尋與使用。",
+      "useCase_zh": "Mac 用戶重新整理作業系統時，系統性找齊各類型工具的最佳 macOS 原生替代。",
+      "advantages_zh": "專為 macOS 挑選，跨平台清單中不會出現不支援 Mac 的項目,系統性分類整理，可快速找到特定類別的最佳選擇,社群持續更新，工具上下線跟得上"
     },
     {
       "id": "llms-from-scratch",
@@ -42816,7 +42941,8 @@
         "weeklyDelta": 1227
       },
       "description_zh": "本儲存庫包含開發、預訓練和微調 GPT 風格 LLM 的程式碼，也是《Build a Large Language Model (From Scratch)》一書的官方程式碼儲存庫。",
-      "advantages_zh": "官方配套書籍（Build a LLM From Scratch）的完整程式，學習路徑清晰,涵蓋 pretraining → finetuning → 部署完整管線，非只做推理,PyTorch 實作，程式量適中，可逐步執行理解"
+      "advantages_zh": "官方配套書籍（Build a LLM From Scratch）的完整程式，學習路徑清晰,涵蓋 pretraining → finetuning → 部署完整管線，非只做推理,PyTorch 實作，程式量適中，可逐步執行理解",
+      "useCase_zh": "想真正理解 LLM 內部運作，而非僅呼叫 API 的研究者或開發者。"
     },
     {
       "id": "figures4papers",
@@ -43111,7 +43237,8 @@
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 21695,
       "description_zh": "✨ AI Spreadsheet for Business — 後端基於 PostgreSQL，前端結合 NoSQL 效能的新一代 AI 表格平台，Airtable 開源替代品",
-      "advantages_zh": "基於 PostgreSQL 提供企業級資料完整性與 ACID 保障，結合 NoSQL 效能實現快速查詢與欄位互動，原生 AI Agent 整合，支援智慧欄位建議與自動分類"
+      "advantages_zh": "基於 PostgreSQL 提供企業級資料完整性與 ACID 保障，結合 NoSQL 效能實現快速查詢與欄位互動，原生 AI Agent 整合，支援智慧欄位建議與自動分類",
+      "useCase_zh": "當需要一款 AI 增強型雲端表格，用於構建內部工具、資料管理或替代 Airtable 且希望後端使用 PostgreSQL 時使用。"
     },
     {
       "id": "nocodb-nocodb",
@@ -43160,7 +43287,8 @@
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 64651,
       "description_zh": "🔥🔥🔥 免費且可自架的 Airtable 替代品 — 將任何 MySQL/PostgreSQL/SQL Server 資料庫瞬間轉為智慧表格介面，支援 REST API 與 Swagger 自動生成。",
-      "advantages_zh": "支援 MySQL、PostgreSQL、SQL Server、SQLite 等多種後端，自動產生 Swagger 相容的 RESTful API，自架免費，無使用者數量限制，符合 GDPR/SOC2"
+      "advantages_zh": "支援 MySQL、PostgreSQL、SQL Server、SQLite 等多種後端，自動產生 Swagger 相容的 RESTful API，自架免費，無使用者數量限制，符合 GDPR/SOC2",
+      "useCase_zh": "當需要快速將既有資料庫轉換為可編輯的表格介面，同時自動生成 REST API 供前端或第三方應用消費時使用。"
     },
     {
       "id": "simonw-datasette",
@@ -43257,7 +43385,8 @@
       "status": "active",
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 11594,
-      "description_zh": "Grist 是試算表的演進 — 結合資料庫關聯性與試算表直覺介面的下一代資料平台，支援 Python 公式引擎與自動關聯。"
+      "description_zh": "Grist 是試算表的演進 — 結合資料庫關聯性與試算表直覺介面的下一代資料平台，支援 Python 公式引擎與自動關聯。",
+      "advantages_zh": "試算表介面 + 資料庫關聯性的獨特結合,Python 公式引擎支援，可處理複雜資料轉換,內建協作功能與 API，適合團隊資料管理"
     },
     {
       "id": "baserow-baserow",
@@ -43355,7 +43484,8 @@
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 74403,
       "description_zh": "Apache Superset 是資料視覺化與探索平台 — 企業級 BI 平台，支援多資料來源、自助式分析和互動式儀表板，CNCF 孵化項目。",
-      "useCase_zh": "當需要企業級 BI 平台支援自助式資料探索、建立互動式儀表板，並對接多種資料來源（SQL、Spark、Presto 等）時使用。"
+      "useCase_zh": "當需要企業級 BI 平台支援自助式資料探索、建立互動式儀表板，並對接多種資料來源（SQL、Spark、Presto 等）時使用。",
+      "advantages_zh": "Apache 基金會專案，企業級穩定性與社群支援,支援 30+ 種資料來源後端,靈活的 SQL 編輯器與視覺化元件庫"
     },
     {
       "id": "evidence-dev-evidence",
@@ -43404,7 +43534,8 @@
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 6874,
       "description_zh": "以程式碼驅動 BI：用 SQL 與 Markdown 快速構建互動式資料視覺化 — 結合 DuckDB 直接在 Markdown 中查詢與視覺化。",
-      "advantages_zh": "SQL + Markdown 即可構建完整儀表板，內建 DuckDB 支援，零配置即可完成資料分析，WASM 渲染帶來極快的頁面加載速度"
+      "advantages_zh": "SQL + Markdown 即可構建完整儀表板，內建 DuckDB 支援，零配置即可完成資料分析，WASM 渲染帶來極快的頁面加載速度",
+      "useCase_zh": "當開發者希望以 Markdown + SQL 程式碼方式快速建立互動式資料儀表板，不需要拖拽式 BI 工具的複雜度時使用。"
     },
     {
       "id": "sqlmesh-sqlmesh",
@@ -43453,7 +43584,8 @@
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 3252,
       "description_zh": "可擴展且高效能的資料轉換框架——dbt 的向下相容替代品，支援 Plan/Apply 兩階段執行、時間旅行與大規模資料建模。",
-      "advantages_zh": "Plan/Apply 兩階段模式避免意外覆蓋生產資料，內建時間旅行，可回溯至任意歷史狀態，完全相容 dbt SQL 語法，遷移成本低"
+      "advantages_zh": "Plan/Apply 兩階段模式避免意外覆蓋生產資料，內建時間旅行，可回溯至任意歷史狀態，完全相容 dbt SQL 語法，遷移成本低",
+      "useCase_zh": "當需要比 dbt 更具擴充性與安全性的資料轉換框架，特別是涉及大規模資料建模、CI/CD 整合或時間旅行需求時使用。"
     },
     {
       "id": "sqlitebrowser-sqlitebrowser",
@@ -43501,7 +43633,8 @@
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 24506,
       "description_zh": "DB Browser for SQLite (DB4S) 專案的官方主頁——跨平台 SQLite 圖形化管理工具，支援 SQL 編輯、視覺化建表、匯入匯出與資料瀏覽。",
-      "advantages_zh": "官方維護、完全免費且無廣告，跨平台（Windows/macOS/Linux），無需安裝執行環境，直觀的視覺化表設計器與 SQL 編輯器"
+      "advantages_zh": "官方維護、完全免費且無廣告，跨平台（Windows/macOS/Linux），無需安裝執行環境，直觀的視覺化表設計器與 SQL 編輯器",
+      "useCase_zh": "當需要一款輕量級、跨平台的 SQLite 資料庫圖形化管理工具，用於設計資料表結構、執行 SQL 查詢或匯入匯出資料時使用。"
     },
     {
       "id": "dashi-ppt-skill",
@@ -43553,7 +43686,8 @@
       "addedAt": "2026-08-17T13:30:03.910Z",
       "stars": 6804,
       "description_zh": "用於從多種視覺主題生成瀏覽器可編輯簡報的 AI-agent 技能，支援匯出為 HTML、PDF 與 PPTX。",
-      "advantages_zh": "多視覺主題選單，支援 HTML、PDF、PPTX 三種匯出格式,輸出為瀏覽器可編輯的 HTML，便於後續微調,適合非設計師快速產出高品質簡報"
+      "advantages_zh": "多視覺主題選單，支援 HTML、PDF、PPTX 三種匯出格式,輸出為瀏覽器可編輯的 HTML，便於後續微調,適合非設計師快速產出高品質簡報",
+      "useCase_zh": "當需要從自然語言描述快速生成多主題、可瀏覽器編輯的專業簡報，並支援 HTML/PDF/PPTX 多格式匯出時使用。"
     },
     {
       "id": "deepseek-harness-desktop-anywhere",
@@ -43605,7 +43739,9 @@
         "week": "2026-W34",
         "weeklyDelta": 1825
       },
-      "advantages_zh": "將 DeepSeek Harness 從純插件擴展為桌面級方案，能力覆蓋全螢幕場景，Cordis 插件架構，可與既有 DSH 插件生態互換，桌面本身即插件，可組合出多種工作空間配置"
+      "advantages_zh": "將 DeepSeek Harness 從純插件擴展為桌面級方案，能力覆蓋全螢幕場景，Cordis 插件架構，可與既有 DSH 插件生態互換，桌面本身即插件，可組合出多種工作空間配置",
+      "description_zh": "為 DeepSeek Harness (DSH) 插件生態打造的現代化桌面端解決方案。萬物皆「插件」，桌面本身也是「插件」。",
+      "useCase_zh": "開發者希望把 DeepSeek Harness 的 AI 能力從終端機擴展到桌面全工作流。"
     },
     {
       "id": "awesome-dsh-plugin",
@@ -43656,7 +43792,9 @@
         "week": "2026-W34",
         "weeklyDelta": 1820
       },
-      "description_zh": "DeepSeek Harness (dsh) 插件精選列表"
+      "description_zh": "DeepSeek Harness (dsh) 插件精選列表",
+      "useCase_zh": "評估 DeepSeek Harness 插件生態時，快速找出現有可用的插件方案。",
+      "advantages_zh": "收錄 DeepSeek Harness 生態系統全部插件，一站式瀏覽，按功能分類，快速找到符合需求的插件；社群維護，新插件上線可及時追蹤"
     },
     {
       "id": "dsh-routing-suite",
@@ -43751,7 +43889,9 @@
         "week": "2026-W34",
         "weeklyDelta": 512
       },
-      "description_zh": "生成符合 ARC-AGI-1 風格的原始任務，其分佈與公開評估集相符。"
+      "description_zh": "生成符合 ARC-AGI-1 風格的原始任務，其分佈與公開評估集相符。",
+      "useCase_zh": "ARC-AGI 模型評估時，需要大量新任務以測試泛化能力。",
+      "advantages_zh": "自動產生與公開 ARC-AGI-1 評測集分佈匹配的新任務，可擴展測試集規模；Python 實作，易於嵌入現有評估管線；任務產生無需人工介入，可大量產生邊界案例"
     },
     {
       "id": "dsh-anchored-standard",
@@ -43801,7 +43941,8 @@
         "weeklyDelta": 494
       },
       "description_zh": "兩階段 DeepSeek Harness 預設配置：先進行最小對齊引導，接著使用完整標準工具（Project2 98/99）。",
-      "advantages_zh": "兩階段 preset 設計：先最小化 bootstrap，再啟用完整標準工具，依序降風險,經 Project2 98/99 實測驗證，穩定度有據,JavaScript 實作，跨平台部署無阻礙"
+      "advantages_zh": "兩階段 preset 設計：先最小化 bootstrap，再啟用完整標準工具，依序降風險,經 Project2 98/99 實測驗證，穩定度有據,JavaScript 實作，跨平台部署無阻礙",
+      "useCase_zh": "需要 DeepSeek Harness 最大能力但無法承受全量工具不穩定風險的開發者。"
     },
     {
       "id": "dsh-web-ui",
@@ -43854,7 +43995,8 @@
         "weeklyDelta": 478
       },
       "description_zh": "DeepSeek Harness（DSH）Web GUI 插件與皮膚生態：一切皆插件。任務看板、行動裝置遠端與 SSH 運維構築開發工作臺；皮膚經 WebGL 深度優化，更支援 Wallpaper Engine 壁紙；皮膚、寵物、插件由 DSH 大市場一鍵安裝，正邁向 DSH 創意工坊。DSH Web GUI 的可插拔插件-皮膚生態系統。",
-      "advantages_zh": "Web GUI 讓 DSH 無需終端機即可操作，降低使用門檻，皮膚經 WebGL 深度優化，視覺效果與效能兼顧，支援任務看板、遠端 SSH 運維、Wallpaper Engine 等多場景"
+      "advantages_zh": "Web GUI 讓 DSH 無需終端機即可操作，降低使用門檻，皮膚經 WebGL 深度優化，視覺效果與效能兼顧，支援任務看板、遠端 SSH 運維、Wallpaper Engine 等多場景",
+      "useCase_zh": "希望以瀏覽器為主要介面操作 DeepSeek Harness 的開發者。"
     },
     {
       "id": "anti-slop",
@@ -43954,7 +44096,9 @@
         "week": "2026-W34",
         "weeklyDelta": 235
       },
-      "description_zh": "開放的側邊欄底座，支援三方拓展註冊新側邊欄頁面。內建檔案渲染編輯、終端、側邊對話、Git、子代理頁面"
+      "description_zh": "開放的側邊欄底座，支援三方拓展註冊新側邊欄頁面。內建檔案渲染編輯、終端、側邊對話、Git、子代理頁面",
+      "useCase_zh": "需要在 DSH 側邊欄中整合自訂工作流頁面（如 Jira 儀表板、CI 狀態）的開發者。",
+      "advantages_zh": "開放側邊欄底座，支援第三方註冊新頁面，擴展性遠超封閉方案，內建檔案編輯、終端、Git、子代理等實用頁面，開箱即用，TypeScript 實作，易於二次開發"
     },
     {
       "id": "mattpocock-skills",
@@ -45237,7 +45381,8 @@
         }
       ],
       "description_zh": "全球領先的科研 AI Agent 技能庫，涵蓋生物學、化學、醫藥、藥物研發與物理計算等 160+ 個已驗證專業科學技能與 100+ 科學資料庫對接，相容 Cursor、Claude Code、Codex 與 Antigravity",
-      "advantages_zh": "內建超過 160+ 經過實戰驗證的科研技能與 100+ 科學資料庫串接，覆蓋生物、化學、醫學、材料與藥物發現等全領域科學計算，廣泛支援 Claude Code、Cursor、Antigravity 等主流開放標準"
+      "advantages_zh": "內建超過 160+ 經過實戰驗證的科研技能與 100+ 科學資料庫串接，覆蓋生物、化學、醫學、材料與藥物發現等全領域科學計算，廣泛支援 Claude Code、Cursor、Antigravity 等主流開放標準",
+      "useCase_zh": "當需要將 AI Agent 轉化為具備生物醫學、化學模擬、分子對接、單細胞分析或藥物研發能力的 AI 科學家時使用。"
     },
     {
       "id": "google-deepmind-science-skills",
@@ -45683,7 +45828,8 @@
         }
       ],
       "description_zh": "由 InternScience 社群策劃的開源科研 Agent 技能聚合庫，整合學術論文寫作、神經科學、計算生物學、深度研究等多個科研 Agent Skills 倉庫",
-      "advantages_zh": "集合多個科研技能先驅專案（如 AcademicForge、SciCraft、Deep-Research 等），提供跨領域（神經科學、計算科學、論文寫作）的整合視角，以開源標準組織，支援社群共同維護與擴展"
+      "advantages_zh": "集合多個科研技能先驅專案（如 AcademicForge、SciCraft、Deep-Research 等），提供跨領域（神經科學、計算科學、論文寫作）的整合視角，以開源標準組織，支援社群共同維護與擴展",
+      "useCase_zh": "當科研人員或開發者需要一站式查閱、克隆或擴展不同團隊開源的科學 Agent Skills 集合時使用。"
     },
     {
       "id": "ai-research-skills",
@@ -46040,7 +46186,8 @@
       "addedAt": "2026-08-30T03:23:32.664Z",
       "stars": 612,
       "description_zh": "建置倉庫本機技能，並安裝匹配的迭代之編碼代理 GitHub Actions 工作流、提示語、記憶檔與參考範本。",
-      "advantages_zh": "一鍵生成完整的 Agent 記憶體、模板與 GitHub Actions CI/CD 自動化工作流，支援排程、手動或即時觸發等多種閉環模式，兼顧自動化與人機協同，提供標準化的任務收斂與狀態維護機制，避免 Agent 無限迴圈"
+      "advantages_zh": "一鍵生成完整的 Agent 記憶體、模板與 GitHub Actions CI/CD 自動化工作流，支援排程、手動或即時觸發等多種閉環模式，兼顧自動化與人機協同，提供標準化的任務收斂與狀態維護機制，避免 Agent 無限迴圈",
+      "useCase_zh": "適用於將重複性編碼任務轉化為本地可執行 Agent 閉環，並自動部署 GitHub Actions 排程與持續維護工作流的場景。"
     },
     {
       "id": "design-control-loop",
@@ -46195,7 +46342,8 @@
       "status": "active",
       "addedAt": "2026-08-30T03:23:32.664Z",
       "stars": 612,
-      "description_zh": "產生精簡的視覺化說明、偽程式碼邏輯流程、架構草圖與獨立互動式 HTML 產物，以降低認知負荷。"
+      "description_zh": "產生精簡的視覺化說明、偽程式碼邏輯流程、架構草圖與獨立互動式 HTML 產物，以降低認知負荷。",
+      "useCase_zh": "適用於 AI 助理需要以最小認知負擔向使用者視覺化展示算法邏輯、架構草圖或可互動 HTML 頁面的場景。"
     },
     {
       "id": "free-claude-code",
@@ -48324,7 +48472,8 @@
       "addedAt": "2026-09-05T06:13:34.157Z",
       "stars": 12501,
       "description_zh": "FreeToken 將資料中心規模的模型服務帶到您的桌面——在本機快速且高效地執行大型 MoE 模型（Qwen、GLM、DeepSeek、MiniMax）。",
-      "useCase_zh": "當需要在個人電腦上高效運行大型 MoE 模型（如 Qwen、GLM、DeepSeek、MiniMax）並取得接近資料中心等級的推理吞吐時使用。"
+      "useCase_zh": "當需要在個人電腦上高效運行大型 MoE 模型（如 Qwen、GLM、DeepSeek、MiniMax）並取得接近資料中心等級的推理吞吐時使用。",
+      "advantages_zh": "把資料中心等級的模型服務能力帶到桌機，無需昂貴硬體,針對 MoE 架構最佳化，大型模型推理吞吐顯著提升,Apache-2.0 授權，商業使用友善"
     },
     {
       "id": "graft",
@@ -48422,7 +48571,8 @@
       "status": "active",
       "addedAt": "2026-09-05T06:13:34.158Z",
       "stars": 11963,
-      "description_zh": "來自 Codebuff 的免費 CLI 編程智能體——能讀取您的程式庫，並根據自然語言請求跨多個檔案撰寫程式碼，後端由 Codebuff 的模型路由驅動。"
+      "description_zh": "來自 Codebuff 的免費 CLI 編程智能體——能讀取您的程式庫，並根據自然語言請求跨多個檔案撰寫程式碼，後端由 Codebuff 的模型路由驅動。",
+      "advantages_zh": "npx 一鍵啟動，無需複雜安裝與設定,由 Codebuff 模型路由後端驅動，免費使用,CLI 原生體驗，易於融入既有終端機工作流"
     },
     {
       "id": "kunpeng",
@@ -48838,7 +48988,9 @@
         "week": "2026-W36",
         "weeklyDelta": 2689
       },
-      "advantages_zh": "與 deepseek-harness-desktop-anywhere 同源，支援完整桌面級 DSH 方案；插件架構，可與既有 DSH 插件互換；TypeScript 實作，易於修改與擴展"
+      "advantages_zh": "與 deepseek-harness-desktop-anywhere 同源，支援完整桌面級 DSH 方案；插件架構，可與既有 DSH 插件互換；TypeScript 實作，易於修改與擴展",
+      "description_zh": "為 DeepSeek Harness (DSH) 插件生態打造的現代化桌面端解決方案。萬物皆「插件」，桌面本身也是「插件」。",
+      "useCase_zh": "需要把 DeepSeek Harness 的完整 AI 能力部署到桌面工作環境（非僅終端機）。"
     },
     {
       "id": "grok-bot-0-18-reconstructed",
@@ -49011,7 +49163,8 @@
       "status": "active",
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 762,
-      "description_zh": "WeRead（微信讀書）最受歡迎的書單與讀者標記精選彙整，已整理成可直接閱讀的 Markdown 筆記，並附上每本書的收藏數。"
+      "description_zh": "WeRead（微信讀書）最受歡迎的書單與讀者標記精選彙整，已整理成可直接閱讀的 Markdown 筆記，並附上每本書的收藏數。",
+      "advantages_zh": "書單以 Markdown 整理，每本書附熱度數據與讀者金句，可直接離線閱讀，涵蓋大學生必讀、商業、心理等多個主題榜單，選書成本低；以 Go 工具定期更新，榜單具時效性。"
     },
     {
       "id": "m3e-canvas",
@@ -49064,7 +49217,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 6184,
       "description_zh": "基於瀏覽器的 Material 3 Expressive 畫面草圖繪製工具——可串接畫面、點擊瀏覽原型，並匯出結構化提示詞供 AI 編程工具使用。",
-      "advantages_zh": "瀏覽器內即開即用，另有官方線上 Demo，無需本地安裝；內建 Material 3 Expressive 設計規範元件，草圖即符合規範；可將原型直接轉換為 AI 編碼提示詞，縮短設計到實作的落差"
+      "advantages_zh": "瀏覽器內即開即用，另有官方線上 Demo，無需本地安裝；內建 Material 3 Expressive 設計規範元件，草圖即符合規範；可將原型直接轉換為 AI 編碼提示詞，縮短設計到實作的落差",
+      "useCase_zh": "當需要快速繪製 Material 3 Expressive 介面草圖、串接多頁可點擊原型，並一鍵導出給 AI 編碼工具的結構化提示詞時使用。"
     },
     {
       "id": "web-llm",
@@ -49119,7 +49273,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 19094,
       "description_zh": "高效能的瀏覽器內 LLM 推論引擎，透過 WebGPU 在用戶端完整執行量化模型，提供與 OpenAI 相容的串流 API 及 Web Worker 支援，無需伺服器。",
-      "advantages_zh": "由 MLC-LLM／TVM 團隊維護，推論效能與量化支援業界領先；完全客戶端執行，零伺服器成本且資料不外流；提供 OpenAI 相容串流 API，既有程式幾乎無痛遷移"
+      "advantages_zh": "由 MLC-LLM／TVM 團隊維護，推論效能與量化支援業界領先；完全客戶端執行，零伺服器成本且資料不外流；提供 OpenAI 相容串流 API，既有程式幾乎無痛遷移",
+      "useCase_zh": "當需要在瀏覽器端以 WebGPU 完全離線運行 LLM（無需伺服器、推論資料不出本機）時使用，特別適合隱私敏感的邊緣推理與前端 AI 應用。"
     },
     {
       "id": "free-api",
@@ -49220,7 +49375,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 15791,
       "description_zh": "精選且由社群維護的免費公共 API 清單，支援搜尋、對初學者友善，並透過免費 JSON API 提供程式化查詢功能。",
-      "advantages_zh": "本身即提供免費 JSON API，可用程式自動檢索而非人工翻閱；標示新手友善（beginner-friendly）與認證需求，降低挑選門檻；社群持續維護，條目經人工審核"
+      "advantages_zh": "本身即提供免費 JSON API，可用程式自動檢索而非人工翻閱；標示新手友善（beginner-friendly）與認證需求，降低挑選門檻；社群持續維護，條目經人工審核",
+      "useCase_zh": "當需要以程式化方式（免費 JSON API）或人工瀏覽檢索公開免費 API 清單，為原型或系統整合挑選端點時使用。"
     },
     {
       "id": "pr-agent",
@@ -49438,7 +49594,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 21901,
       "description_zh": "以隱私為主的開源桌面 YouTube 客戶端 — 無廣告、無需 Google 帳戶，具備本地訂閱、播放清單、SponsorBlock，可選配 Tor/SOCKS5 代理。",
-      "advantages_zh": "不需 Google 帳號即可訂閱與管理頻道，訂閱資料僅存本機；內建 SponsorBlock 與廣告阻擋，觀看體驗乾淨；支援 Tor / SOCKS5 代理，可進一步隱藏來源 IP"
+      "advantages_zh": "不需 Google 帳號即可訂閱與管理頻道，訂閱資料僅存本機；內建 SponsorBlock 與廣告阻擋，觀看體驗乾淨；支援 Tor / SOCKS5 代理，可進一步隱藏來源 IP",
+      "useCase_zh": "當需要在桌面端觀看 YouTube 但避免廣告與 Google 追蹤、並以本機儲存訂閱與播放清單時使用。"
     },
     {
       "id": "gpt4free",
@@ -49491,7 +49648,9 @@
       "status": "active",
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 66685,
-      "description_zh": "Python 程式庫與 OpenAI 相容端點，整合數十個免費或逆向工程的 LLM 供應商（GPT、DeepSeek、Gemini、Claude、Grok 等），透過單一統一介面。"
+      "description_zh": "Python 程式庫與 OpenAI 相容端點，整合數十個免費或逆向工程的 LLM 供應商（GPT、DeepSeek、Gemini、Claude、Grok 等），透過單一統一介面。",
+      "useCase_zh": "當需要以免費方式存取多家 LLM 供應商、並以統一 OpenAI 相容介面呼叫（含圖像生成）時使用，適合個人實驗與原型驗證。",
+      "advantages_zh": "單一介面聚合數十家供應商，供應商失效可快速切換，提供 Python 套件與 Web UI 兩種使用方式，社群規模大、更新頻繁，新模型支援速度快"
     },
     {
       "id": "freellmapi",
@@ -49544,7 +49703,8 @@
       "status": "active",
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 25587,
-      "description_zh": "自架路由器，將 34 個 LLM 提供者與 635 個模型端點的免費方案聚合為單一 OpenAI 相容的 /v1 API，具備智慧模型路由、自動故障切換、加密金鑰儲存與依金鑰用量追蹤功能。"
+      "description_zh": "自架路由器，將 34 個 LLM 提供者與 635 個模型端點的免費方案聚合為單一 OpenAI 相容的 /v1 API，具備智慧模型路由、自動故障切換、加密金鑰儲存與依金鑰用量追蹤功能。",
+      "advantages_zh": "聚合 34 家供應商、635 個模型端點於單一 OpenAI 相容端點，內建智慧路由、速率限制自動容錯與每把金鑰用量追蹤，金鑰加密儲存，Docker 一鍵自架，資料自控"
     },
     {
       "id": "free-books",
@@ -49645,7 +49805,8 @@
       "status": "active",
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 26794,
-      "description_zh": "基於外掛程式、可自訂且無廣告的免費音樂播放器，適用於 Android 與桌上型電腦。音樂來源由社群外掛提供，因此播放器本身不內建任何內容。"
+      "description_zh": "基於外掛程式、可自訂且無廣告的免費音樂播放器，適用於 Android 與桌上型電腦。音樂來源由社群外掛提供，因此播放器本身不內建任何內容。",
+      "advantages_zh": "插件化架構，音源可自行擴充與替換，不被單一平台綁定，完全無廣告，介面與主題可高度自訂，基於 React Native，同時支援 Android 與桌面端"
     },
     {
       "id": "howtolivebetter",

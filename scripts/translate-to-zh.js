@@ -133,11 +133,12 @@ for (const t of tools) {
     // 已有譯文的欄位不再重翻（避免重複花費），但**其他欄位仍要補**——
     // 早期版本只翻了部分欄位，若整筆跳過會留下永遠補不完的洞。
     if (t[`${f}_zh`]) continue;
-    // 純中文（幾乎無英文）→ 不重翻。
-    // 含實質英文者一律翻，**包含中英夾雜**——那正是要解決的顯示問題
-    // （例如「AI 簡報生成工具：AI turns documents into ...」）。
+    // 翻譯條件：
+    //   - 純英文（hasZH=false）→ 一律翻
+    //   - 中英夾雜（含 ≥2 個拉丁詞）→ 翻（原本設 4 太嚴，2026-09-19 實測漏掉 13 個混雜工具）
+    //   - 純中文（hasZH=true 且幾無英文）→ 不翻（避免無意義空翻）
     const latinWords = (v.match(/[A-Za-z]{2,}/g) || []).length;
-    if (!hasZH(v) || latinWords >= 4) { job[f] = v.slice(0, 400); need++; }
+    if (!hasZH(v) || latinWords >= 2) { job[f] = v.slice(0, 400); need++; }
   }
   if (need > 0) { pending.push(job); continue; }
   // 三個欄位都已是中文或為空 → 沒有可翻內容，直接標記完成，
