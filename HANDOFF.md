@@ -277,6 +277,28 @@ McNemar：都對 109／只開對 11／只關對 10／都錯 27 → p = 1.000 不
    已實作為 `node scripts/eval-rerank.js --paired`。
 → V5 的價值在**詞彙／融合路徑**（快速搜尋，+8pp，確定性）。
 
+### 22. 🔴 跑完 `npm test` 一定要看完整計數（tail -4 會漏掉失敗）
+
+TAP 輸出的順序是：
+
+```
+# tests N
+# suites N
+# pass N
+# fail N        ← tail -4 剛好把這行切掉
+# cancelled N
+# skipped N
+# todo N
+# duration_ms
+```
+
+實測踩過：用 `npm test | tail -4` 只看到 `cancelled/skipped/todo/duration`，
+誤以為全綠，結果**深度搜尋整個壞掉（ReferenceError）卻沒發現**——
+因為編輯註解時誤刪了 `const DEFAULT_MODEL = ...` 這一行。
+
+→ **至少 `tail -8`，或直接 `npm test 2>&1 | grep -E "^# (tests|pass|fail)"`。**
+→ 同理：任何「只看尾部 N 行」的驗證都要確認關鍵行沒被截掉。
+
 ### 21. 🔴 API 限流是 TPM，而且多把金鑰對本專案**沒有效果**
 
 實測（同一端點 apihub.agnes-ai.com 的兩把金鑰，相同設定、中間等 100 秒）：
