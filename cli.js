@@ -806,7 +806,8 @@ ${c.bold}執行命令:${c.reset}
   ${c.cyan}cleanup${c.reset}                  移除所有臨時工具，復歸系統
 
 ${c.bold}分析命令:${c.reset}
-  ${c.cyan}plan${c.reset} "<任務描述>"           多工具鏈自動規劃
+  ${c.cyan}plan${c.reset} "<任務描述>"           多工具鏈自動規劃（走融合引擎）
+  ${c.cyan}ingest${c.reset} <pdf|web|audio|video|book>  擷取管線規劃（素材 → 可用筆記）
   ${c.cyan}compare${c.reset} "<需求>"            相似工具競品選型對比
   ${c.cyan}interview${c.reset} "<需求>"           互動式需求釐清問答
   ${c.cyan}verify-environment${c.reset} <id>     沙盒環境預檢報告
@@ -816,7 +817,7 @@ ${c.bold}觸發咒語:${c.reset}
 `);
 }
 
-function cmdPlan(taskDescription) {
+async function cmdPlan(taskDescription) {
   if (!taskDescription) {
     error('請提供任務描述。用法: node cli.js plan "<長任務描述>"');
     process.exit(1);
@@ -824,7 +825,12 @@ function cmdPlan(taskDescription) {
 
   header('🤖 多工具鏈自動規劃 (Tool Chain Planner)');
   const registry = loadRegistry();
-  const plan = planToolChain(registry.tools, taskDescription);
+  // 改走融合引擎版（core/tool-chain.js 的 planToolSet）。
+  // 原本直接用 planToolChain（L2 詞彙引擎），落後主檢索很多——
+  // 實例：「抓取網頁資料然後做成簡報」第二步從 officecli 改選 codex-ppt-skill。
+  // 三端（CLI／MCP／Web）必須用同一條路徑，否則引擎改善無法反映到 CLI。
+  const { planToolSet } = await import('./core/tool-chain.js');
+  const plan = planToolSet(registry.tools, taskDescription);
 
   console.log(`${c.cyan}${c.bold}原始長任務:${c.reset} ${plan.task}\n`);
   console.log(`${c.yellow}${c.bold}🗺️ 執行流程圖:${c.reset}`);
@@ -894,6 +900,56 @@ function cmdCompare(query) {
   });
 }
 
+/**
+ * 擷取管線規劃（LLM Wiki 的 Capture 層）
+ *
+ * 與 MCP plan_ingestion、Web /api/ingest 共用 core/ingestion.js。
+ * 藍圖第 3 頁警告的「輸入瓶頸」就是這一層。
+ */
+async function cmdIngest(source) {
+  const { listIngestionSources, planIngestion } = await import('./core/ingestion.js');
+  if (!source) {
+    header('📥 擷取管線規劃 (Ingestion Planner)');
+    console.log('用法: node cli.js ingest <pdf|web|audio|video|book>\n');
+    console.log('可用素材來源：');
+    for (const s of listIngestionSources()) {
+      console.log(`  ${c.green}${s.key.padEnd(6)}${c.reset} ${s.label} — ${c.dim}${s.hint}${c.reset}`);
+    }
+    console.log();
+    return;
+  }
+
+  const registry = loadRegistry();
+  const plan = planIngestion(registry.tools, source);
+  if (!plan) {
+    error(`不支援的素材來源：${source}`);
+    console.log(`可用：${listIngestionSources().map((s) => s.key).join(' / ')}`);
+    process.exit(1);
+  }
+
+  header('📥 擷取管線規劃 (Ingestion Planner)');
+  console.log(`${c.cyan}${c.bold}素材來源:${c.reset} ${plan.label} — ${c.dim}${plan.hint}${c.reset}\n`);
+  console.log(`${c.yellow}${c.bold}🗺️ 執行流程圖:${c.reset}`);
+  console.log(`  ${c.green}${plan.asciiPipeline}${c.reset}\n`);
+
+  console.log(`${c.blue}${c.bold}📋 步驟詳細指引:${c.reset}`);
+  plan.stages.forEach((s) => {
+    console.log(`\n  ${c.bold}【步驟 ${s.stepIndex}】${c.reset} ${c.cyan}${s.label}${c.reset}`);
+    if (s.recommendedTool) {
+      console.log(`    ⭐ 首選工具: ${c.green}${c.bold}${s.recommendedTool.name}${c.reset} (${s.recommendedTool.id}) — ${c.dim}${s.recommendedTool.category}${c.reset}`);
+      if (s.recommendedTool.install?.command) {
+        console.log(`    💻 安裝: ${s.recommendedTool.install.command}`);
+      }
+      if (s.alternatives?.length) {
+        console.log(`    🔄 備選: ${s.alternatives.map((a) => a.id).join(', ')}`);
+      }
+    } else {
+      console.log(`    ${c.yellow}⚠ ${s.warning}${c.reset}`);
+    }
+  });
+  console.log(`\n${plan.summary}\n`);
+}
+
 // ─── 主程式 ─────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -904,7 +960,10 @@ async function main() {
       cmdList();
       break;
     case 'plan':
-      cmdPlan(args.join(' '));
+      await cmdPlan(args.join(' '));
+      break;
+    case 'ingest':
+      await cmdIngest(args[0]);
       break;
     case 'search': {
       const searchArgs = [];
