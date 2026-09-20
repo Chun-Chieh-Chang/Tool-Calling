@@ -17,6 +17,11 @@
  * V2  capability    capabilities 陣列 + description（功能欄位；需 ≥2 個不同信號）
  * V3  scenario      useCase + category + negativeConstraints（情境欄位）
  * V4  constraint    install.method + language + negativeConstraints（部署欄位）
+ * V5  wiki          知識編譯詞條（core/wiki-matcher.js）
+ *                   由 scripts/compile-wiki.js 離線把工具 metadata 「編譯」成
+ *                   使用者語言的應用場景句（intents）+ 物件／動作（facets），
+ *                   查詢時比對詞條並做知識圖譜一階擴散。
+ *                   詞檔不存在 → 停用，「零回歸」退化成原四維引擎。
  *
  * 每個維度對 (query, tool) 回傳 0~1 的評分；融合時採用「取最佳維度」策略
  * （類比 classify 端的投票取最佳，把邊界工具拖回正區），再加權平均作為
@@ -37,62 +42,17 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadVectors, cosine } from './embedding.js';
+import { getWikiIndex, wikiScore, loadWikiCached } from './wiki-matcher.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-// ── Tokeniser（中英混合，與 measure-multidimensional.js 一致）────────────
-const STOP = new Set(['the', 'and', 'for', 'with', 'that', 'this', 'from', 'are', 'you', 'can', 'use', 'using', 'your', 'not', 'all', 'any', 'has', 'have', 'was', 'were', 'its', 'to', 'of', 'in', 'on', 'a', 'an', 'is', 'as', 'by', 'or', 'be', 'at', 'we', 'no', 'do', 'if', 'so', 'up', 'out', 'new', 'one', 'two', 'via', 'per', 'etc', 'based', 'into', 'over', 'more', 'than', 'other']);
-function tokenize(text) {
-  const t = String(text || '').toLowerCase();
-  const out = [];
-  for (const m of t.matchAll(/[a-z][a-z0-9+.#_-]{1,}/g)) if (!STOP.has(m[0])) out.push(m[0]);
-  for (const run of t.match(/[\u4e00-\u9fff]+/g) || []) {
-    if (run.length === 1) out.push(run);
-    else for (let i = 0; i < run.length - 1; i++) out.push(run.slice(i, i + 2));
-  }
-  return out;
-}
-function bagOf(tokens) {
-  const b = new Map();
-  for (const t of tokens) b.set(t, (b.get(t) || 0) + 1);
-  return b;
-}
-// IDF 加權 bag：把「所有工具都有」的詞（如 ai、tool、agent、markdown）壓低，
-// 讓罕見詞（如 playwright、kubernetes、stock）有更高鑑別力。
-// 回傳 (idfMap) 讓評分端可用 idf 加權。
-function buildIdf(tools) {
-  // 身分欄位（triggers + name + id）的 IDF：用於 V1
-  const dfId = new Map();
-  for (const t of tools) {
-    const text = [t.id, t.name, ...(t.triggers || [])].join(' ');
-    for (const tok of new Set(tokenize(text))) dfId.set(tok, (dfId.get(tok) || 0) + 1);
-  }
-  const N = tools.length;
-  const idf = (df) => {
-    const m = new Map();
-    for (const [tok, d] of df) m.set(tok, Math.log((N + 1) / (d + 1)) + 1);
-    return m;
-  };
-  return { idfIdentity: idf(dfId), dfIdentity: dfId, identityDocumentCount: N };
-}
-// 加權 bag 相似度：sum(idf[共詞] * wA * wB) / (sqrt(sum(idf^2 * wA^2)) * sqrt(sum(idf^2 * wB^2)))
-// w 預設 1；身分欄位可用更高權重放大 token 命中。
-function weightedSim(a, b, idfMap, { weightA = 1, weightB = 1 } = {}) {
-  if (a.size === 0 || b.size === 0) return 0;
-  let dot = 0;
-  const [small, big] = a.size <= b.size ? [a, b] : [b, a];
-  for (const k of small.keys()) {
-    if (big.has(k)) {
-      const w = idfMap.get(k) || 1;
-      dot += w * w * weightA * weightB;
-    }
-  }
-  if (dot === 0) return 0;
-  let na = 0, nb = 0;
-  for (const k of a.keys()) { const w = idfMap.get(k) || 1; na += w * w * weightA; }
-  for (const k of b.keys()) { const w = idfMap.get(k) || 1; nb += w * w * weightB; }
-  return dot / (Math.sqrt(na) * Math.sqrt(nb));
-}
+// ── Tokeniser ────────────────────────────────────────────────────────────
+// 斷詞／詞袋／IDF／加權相似度改由 core/tokenize.js 共用供應。
+// 原因：wiki-matcher.js（知識編譯器配對端，V5）必須與本引擎用**同一套**
+// 斷詞與相似度定義，否則兩邊的分數不能放在同一個加權公式裡比較。
+// 抽出的同時保留既有行為（停用詞、bigram、IDF 公式完全不變）。
+import { tokenize, bagOf, buildIdentityIdf, weightedSim } from './tokenize.js';
+
 // 身分欄位的「完整 trigger 命中」：query 內的某 trigger 整段出現 → 強信號
 // 這是 V1 的核心：agent 寫 query 時常直接包含 trigger 字串。
 function triggerHit(queryBag, tool) {
@@ -232,46 +192,93 @@ function scoreV4Constraint(q, tool, idf) {
 
 const BEST_DIM_THRESHOLD = 0.35;
 const NO_MATCH_THRESHOLD = 0.15;
-const DIM_WEIGHTS = { V1: 0.30, V2: 0.35, V3: 0.20, V4: 0.15 };
+// V5（知識編譯詞條 + 知識圖譜）由 core/wiki-matcher.js 供應。
+//
+// 權重切分方式：V1~V4 維持原始比例（0.30 : 0.35 : 0.20 : 0.15）整體縮放 0.85，
+// V5 拿剩下的 0.15。這麼切是為了**零回歸**：沒有編譯詞檔時 V5 = 0，
+// V1~V4 只是被等比縮小 0.85，彼此相對大小完全不變 → 排序結果不變。
+// 0.10 是消融實測的結果（scripts/_tmp-v5-ablate.mjs，v1.2.0、Tier 0 詞檔、確定性）：
+//
+//   V5 權重   天花板    平均排名   top1
+//   停用      95.0%     54.4      51.6%   ← 基線
+//   0.10     95.6%     48.1      54.7%   ← 三個指標同時優於基線
+//   0.15     94.3%     60.2      55.3%
+//   0.20     93.7%     66.8      52.2%
+//   0.25     93.1%     73.2      52.2%
+//
+// 趨勢單調：V5 給越多，天花板掉越多（V5 擠壓 V1~V4 的召回貢獻）。
+// 0.10 是唯一「天花板不降反升」的設定，故採用。
+// ⚠️ 換成 Tier 1（LLM）詞檔後必須重新跑一次消融，最適權重可能不同。
+const V5_WEIGHT = 0.10;
+const DIM_WEIGHTS = { V1: 0.27, V2: 0.315, V3: 0.18, V4: 0.135, V5: V5_WEIGHT };
+
+/**
+ * 把外部傳入的意圖權重（Option C，只調整 V1~V4、加總 = 1）轉成五維權重。
+ *
+ * 為什麼不能在 query-intent.js 裡面直接加 V5：
+ *   weightsForIntent() 的調整是「絕對量」（V2 += 0.10），若基準從 0.35 改成
+ *   0.2975，同樣加 0.10 會讓 V2 的**相對**權重變大 → 即使 V5 = 0 也會改變
+ *   排序 → 就不是零回歸了。
+ * 正確做法是先在四維空間裡算完（維持原契約），再把 V1~V4 整體縮放到
+ * (1 - V5_WEIGHT)，剩下的給 V5。這樣 V5 = 0 時，V1~V4 彼此的比例與
+ * 原引擎**完全相同**，排序結果必然不變。
+ *
+ * @param {object|null} weights - 四維或五維權重表；null → 用 DIM_WEIGHTS
+ * @returns {{V1:number,V2:number,V3:number,V4:number,V5:number}}
+ */
+function withV5(weights, v5Weight = V5_WEIGHT) {
+  if (!weights) return DIM_WEIGHTS;
+  if (typeof weights.V5 === 'number') return weights; // 已是五維
+  const rest = 1 - v5Weight;
+  return {
+    V1: weights.V1 * rest,
+    V2: weights.V2 * rest,
+    V3: weights.V3 * rest,
+    V4: weights.V4 * rest,
+    V5: v5Weight,
+  };
+}
 // V2 capability 權重最高：對 agent 選工具而言「能做什麼」比「怎麼裝」重要。
 // V0 semantic（語意 embedding）：預設權重 0。只有當提供 vectors 與查詢向量
 // 時才啟用，啟用後 V0 取代部分 V2 權重（語意已涵蓋功能端接）。
 const V0_WEIGHT = 0.25;
 
-function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null) {
+function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null) {
   const s1 = scoreV1Identity(q, tool, idf);
   const s2 = scoreV2Capability(q, tool, idf);
   const s3 = scoreV3Scenario(q, tool, idf);
   const s4 = scoreV4Constraint(q, tool, idf);
   const per = { V1: s1.value, V2: s2.value, V3: s3.value, V4: s4.value };
-  if (v0 !== null) per.V0 = v0; // 僅當提供查詢向量時才有 V0
+  if (v0 !== null) per.V0 = v0;       // 僅當提供查詢向量時才有 V0
+  if (v5 !== null) per.V5 = v5;       // 僅當有知識編譯詞檔時才有 V5
 
   const dims = Object.keys(per);
   const bestDim = Math.max(...dims.map((k) => per[k]));
+  // V5 權重若權重表沒給（例如外部傳入的舊版 intentWeights）就用預設值
+  const w5 = weights.V5 ?? V5_WEIGHT;
+  const base = per.V1 * weights.V1 + per.V2 * weights.V2 + per.V3 * weights.V3 + per.V4 * weights.V4
+    + (v5 !== null ? per.V5 * w5 : 0);
   // 加權：V0 啟用時把它當獨立維度計入（權重 V0_WEIGHT，剩餘按原比例縮放）
   let weighted;
   if (v0 !== null) {
     const restSum = 1 - V0_WEIGHT;
-    const baseSum = weights.V1 + weights.V2 + weights.V3 + weights.V4;
-    weighted =
-      per.V0 * V0_WEIGHT +
-      (per.V1 * weights.V1 + per.V2 * weights.V2 + per.V3 * weights.V3 + per.V4 * weights.V4) *
-        (restSum / (baseSum || 1));
+    const baseSum = weights.V1 + weights.V2 + weights.V3 + weights.V4 + (v5 !== null ? w5 : 0);
+    weighted = per.V0 * V0_WEIGHT + base * (restSum / (baseSum || 1));
   } else {
-    weighted =
-      per.V1 * weights.V1 + per.V2 * weights.V2 + per.V3 * weights.V3 + per.V4 * weights.V4;
+    weighted = base;
   }
   const topDimKey = dims.reduce((a, b) => (per[a] >= per[b] ? a : b));
   return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit };
 }
 
-function reasons(q, tool, fuseResult) {
+function reasons(q, tool, fuseResult, matchedIntent = '') {
   const r = [];
   if (fuseResult.trigHit) r.push(`✓ Trigger 命中：「${fuseResult.trigHit}」`);
   else if (fuseResult.per.V1 >= 0.4) r.push(`✓ 身分相似：${(tool.triggers || []).slice(0, 3).join(' / ')}`);
   if (fuseResult.per.V2 >= 0.4) r.push(`✓ 功能吻合：${(tool.capabilities || []).slice(0, 4).join(' / ')}`);
   if (fuseResult.per.V3 >= 0.4) r.push(`✓ 情境吻合：${tool.useCase?.slice(0, 80)}`);
   if (fuseResult.per.V4 >= 0.4) r.push(`✓ 部署吻合：${tool.install?.method} / ${tool.language}`);
+  if (fuseResult.per.V5 >= 0.4) r.push(`✓ 知識詞條吻合：${(matchedIntent || '').slice(0, 60)}`);
   if (fuseResult.bestDim < NO_MATCH_THRESHOLD) r.push('⚠ 所有維度皆無有效信號');
   return r;
 }
@@ -283,16 +290,24 @@ function reasons(q, tool, fuseResult) {
 //   - queryVector：查詢文字的 embedding（number[]）。由呼叫端算好傳入；
 //     為 null / undefined 時 V0 停用，完全退化成原四維引擎（離線安全）。
 // 兩者皆提供時，V0 = cosine(queryVector, vectors[tool.id])，權重 V0_WEIGHT。
-export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors = null, queryVector = null } = {}) {
+export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors = null, queryVector = null, wiki, v5Weight, wikiGraph = true } = {}) {
   const q = extractQuery(query);
-  const idf = buildIdf(tools);
-  const w = intentWeights ?? DIM_WEIGHTS;
+  const idf = buildIdentityIdf(tools);
+  const w = withV5(intentWeights, v5Weight);
   const v0Enabled = vectors !== null && queryVector !== null && Array.isArray(queryVector) && queryVector.length > 0;
+  // V5：知識編譯詞條（wiki-matcher）。
+  //   wiki 未指定 → 自動載入詞檔（mtime 快取，不會每次查詢重讀）
+  //   詞檔不存在 → null → 整條維度停用，完全退化成原四維引擎
+  //   明確傳 null / false → 強制停用（評測對照組用）
+  const wikiDoc = wiki === undefined ? loadWikiCached() : (wiki || null);
+  const wikiMap = wikiDoc ? wikiScore(query, getWikiIndex(wikiDoc), { enableGraph: wikiGraph }) : null;
   const scored = tools.map((tool) => {
     const v0 = v0Enabled
       ? (vectors?.tools?.[tool.id] ? cosine(queryVector, vectors.tools[tool.id]) : 0)
       : null;
-    return { tool, ...fuse(q, tool, idf, w, v0) };
+    const wv = wikiMap ? wikiMap.get(tool.id) : null;
+    const v5 = wikiMap ? (wv?.V5 ?? 0) : null;
+    return { tool, ...fuse(q, tool, idf, w, v0, v5), matchedIntent: wv?.intent || '' };
   }).filter((x) => x.bestDim > 0);
 
   // 按 weighted 分數排序（意圖權重已反映在 w 中；V0 啟用時已納入 weighted）
@@ -335,12 +350,15 @@ export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors =
   };
 }
 
+export { DIM_WEIGHTS, V5_WEIGHT, withV5 };
+
 // ── CLI 入口（僅在直接執行時）────────────────────────────────────────────
 const isDirect = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (isDirect) {
   const j = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8'));
   const tools = j.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
   const args = process.argv.slice(2);
+  const wikiArg = loadWikiCached();
   if (args.length === 0) {
     // 預設 smoke test
     const samples = [
@@ -367,7 +385,7 @@ if (isDirect) {
       console.log();
     }
   } else {
-    const r = agentRetrieve(tools, args.join(' '), { topK: 10 });
+    const r = agentRetrieve(tools, args.join(' '), { topK: 10, wiki: wikiArg });
     console.log(JSON.stringify(r, null, 2));
   }
 }
