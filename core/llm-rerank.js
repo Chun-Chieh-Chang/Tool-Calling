@@ -69,6 +69,7 @@ const DEFAULT_API_BASE = 'https://apihub.agnes-ai.com/v1';
 // ✅ 剩下約 17% 的失誤是**系統性判斷錯誤**，不是抖動。
 //    要突破就得換「挑選機制」本身（例如逐一評分、pairwise 比較、
 //    或讓模型先排除再選擇），加取樣或加金鑰都沒有用。
+const DEFAULT_MODEL = 'agnes-3.0-flash';
 
 /**
  * 把工具物件轉成餵給 rerank 的候選描述文字（單一來源，供呼叫端共用）。
