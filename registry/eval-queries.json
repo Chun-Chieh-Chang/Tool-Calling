@@ -1,9 +1,9 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "created": "2026-09-14",
   "description": "工具選用評測集。查詢刻意避開工具名與 trigger 詞，以衡量真正的匹配能力。expected 為可接受答案集合，任一命中即算對。empty-set 類型用於衡量引擎是否誠實回報「無對應工具」。",
   "methodology": {
-    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。",
+    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
     "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。\n2026-09-19（第三輪）：譯文納入索引後重新審視失敗清單，接受 c32/c51/c15；駁回 c09/c37/c38（皆為描述未載明該能力，放行屬推測）。",
@@ -660,7 +660,892 @@
       ],
       "type": "constrained",
       "category": "開發工具"
+    },
+    {
+      "id": "c65",
+      "query": "如何讓我開發的聊天機器人能呼叫外部服務？",
+      "expected": [
+        "vercel-ai-skills"
+      ],
+      "type": "direct",
+      "category": "AI 代理"
+    },
+    {
+      "id": "c66",
+      "query": "有沒有辦法讓多個AI代理協同完成長期研究專案？",
+      "expected": [
+        "ruflo"
+      ],
+      "type": "semantic",
+      "category": "AI 代理"
+    },
+    {
+      "id": "c67",
+      "query": "怎樣能即時監控AI對話紀錄與使用統計資料？",
+      "expected": [
+        "hermes-studio-EKKOLearnAI"
+      ],
+      "type": "constrained",
+      "category": "AI 代理"
+    },
+    {
+      "id": "c68",
+      "query": "想用清楚簡潔的方式取得程式碼解答，避免資訊淹沒",
+      "expected": [
+        "i-have-adhd"
+      ],
+      "type": "semantic",
+      "category": "AI 代理"
+    },
+    {
+      "id": "c69",
+      "query": "想要一個可一鍵啟動且帶界面選擇的桌面版DeepSeek客戶端",
+      "expected": [
+        "zouyuxuan122-deepseek-harness-eac"
+      ],
+      "type": "constrained",
+      "category": "AI 代理"
+    },
+    {
+      "id": "c70",
+      "query": "希望能讓 AI 助理自動幫我執行各類指令腳本，不必每次都手動切換工具。",
+      "expected": [
+        "cli-anything"
+      ],
+      "type": "semantic",
+      "category": "AI 框架"
+    },
+    {
+      "id": "c71",
+      "query": "想快速做出支援文件查詢的客服機器人，但又不想寫後端程式碼。",
+      "expected": [
+        "dify"
+      ],
+      "type": "semantic",
+      "category": "AI 框架"
+    },
+    {
+      "id": "c72",
+      "query": "想在 AI 程式編輯器裡設定自動觸發的規則，並掛上自訂的功能模組。",
+      "expected": [
+        "claude-code-infrastructure-showcase"
+      ],
+      "type": "semantic",
+      "category": "AI 框架"
+    },
+    {
+      "id": "c73",
+      "query": "想要加速模型推理速度，同時也能在微調時維持高效能運作。",
+      "expected": [
+        "ktransformers"
+      ],
+      "type": "semantic",
+      "category": "AI 框架"
+    },
+    {
+      "id": "c74",
+      "query": "想用一個統一平台訓練各種大語言模型和視覺模型，省得一套一套安裝。",
+      "expected": [
+        "llamafactory"
+      ],
+      "type": "direct",
+      "category": "AI 框架"
+    },
+    {
+      "id": "c75",
+      "query": "想開發能跨不同雲端供應商協作的多人工智慧代理系統，並方便監控與除錯。",
+      "expected": [
+        "harness-sdk"
+      ],
+      "type": "constrained",
+      "category": "AI 框架"
+    },
+    {
+      "id": "c76",
+      "query": "請幫我一步一步拆解這個演算法的複雜度分析，邊想邊修正假設。",
+      "expected": [
+        "sequentialthinking"
+      ],
+      "type": "semantic",
+      "category": "開發工具"
+    },
+    {
+      "id": "c77",
+      "query": "我想讓那個 AI 編碼助手的介面更流暢，有什麼办法可以優化嗎？",
+      "expected": [
+        "codexplusplus"
+      ],
+      "type": "semantic",
+      "category": "開發工具"
+    },
+    {
+      "id": "c78",
+      "query": "我們想把 AI 自動化審查整合到部署流程裡，能逐行標註問題嗎？",
+      "expected": [
+        "open-code-review"
+      ],
+      "type": "constrained",
+      "category": "開發工具"
+    },
+    {
+      "id": "c79",
+      "query": "希望能有个常驻桌面的小工具，同时監控好幾個團隊專案的建置狀況和未處理事項。",
+      "expected": [
+        "repobar"
+      ],
+      "type": "constrained",
+      "category": "開發工具"
+    },
+    {
+      "id": "c80",
+      "query": "我需要把幾張攝影作品排成類似時尚雜誌的視覺故事版面。",
+      "expected": [
+        "photo-abstract-editorial"
+      ],
+      "type": "semantic",
+      "category": "開發工具"
+    },
+    {
+      "id": "c81",
+      "query": "我想在瀏覽器裡搭建一個多人同時進入的虛擬空間，還能聊天互動。",
+      "expected": [
+        "3d-web-experience"
+      ],
+      "type": "constrained",
+      "category": "開發工具"
+    },
+    {
+      "id": "c82",
+      "query": "幫我為新專案整理一套完整的UI設計規範文件",
+      "expected": [
+        "designmd"
+      ],
+      "type": "semantic",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c83",
+      "query": "有沒有標準化的原型設計最佳實踐可以快速套用？",
+      "expected": [
+        "emil-design-skills"
+      ],
+      "type": "semantic",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c84",
+      "query": "用GitHub助手快速產出低飽和度配色的現代網頁元件",
+      "expected": [
+        "premium-frontend-ui-skill"
+      ],
+      "type": "constrained",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c85",
+      "query": "需要提供免費授權的高品質圖示資源給前端團隊使用",
+      "expected": [
+        "heroicons"
+      ],
+      "type": "constrained",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c86",
+      "query": "撰寫複雜時間軸動畫時如何避免常見效能問題？",
+      "expected": [
+        "gsap-skills"
+      ],
+      "type": "semantic",
+      "category": "UI/UX設計"
+    },
+    {
+      "id": "c87",
+      "query": "剛接手同事留下的老專案，程式碼複雜到看不懂，想快速建立架構地圖並進行跨專案搜尋。",
+      "expected": [
+        "graphify"
+      ],
+      "type": "semantic",
+      "category": "知識管理"
+    },
+    {
+      "id": "c88",
+      "query": "想定義能源系統與元件之間的標準化語意關係，實現互操作性資料整合。",
+      "expected": [
+        "ontology"
+      ],
+      "type": "direct",
+      "category": "知識管理"
+    },
+    {
+      "id": "c89",
+      "query": "希望 AI 代理能在多個工作階段中保留長期使用者偏好與可復用的技能，不要每次重新對話。",
+      "expected": [
+        "memos-MemTensor"
+      ],
+      "type": "semantic",
+      "category": "知識管理"
+    },
+    {
+      "id": "c90",
+      "query": "想提升AI程式碼建議的精準度，該怎麼辦？",
+      "expected": [
+        "claude-code-best-practice"
+      ],
+      "type": "semantic",
+      "category": "學習資源"
+    },
+    {
+      "id": "c91",
+      "query": "想系統性學習如何建構AI代理工具鏈",
+      "expected": [
+        "agents-course"
+      ],
+      "type": "semantic",
+      "category": "學習資源"
+    },
+    {
+      "id": "c92",
+      "query": "希望有入門課程，能從零開始學會製作生成式AI應用",
+      "expected": [
+        "generative-ai-for-beginners"
+      ],
+      "type": "direct",
+      "category": "學習資源"
+    },
+    {
+      "id": "c93",
+      "query": "想把這個開源模型整合到開發工具裡，有設定教學嗎？",
+      "expected": [
+        "awesome-deepseek-agent"
+      ],
+      "type": "semantic",
+      "category": "學習資源"
+    },
+    {
+      "id": "c94",
+      "query": "我要參加數學建模比賽，能幫我快速寫出一篇可直接提交的完整論文嗎？",
+      "expected": [
+        "mathmodelagent"
+      ],
+      "type": "direct",
+      "category": "研究"
+    },
+    {
+      "id": "c95",
+      "query": "最近一個月小紅書與抖音有什麼病毒式傳播的趨勢？給我一份附出處的調研報告。",
+      "expected": [
+        "last30days-skill-cn"
+      ],
+      "type": "semantic",
+      "category": "研究"
+    },
+    {
+      "id": "c96",
+      "query": "需要一個能長期運行的智能助手，自動完成複雜編碼任務與多步驟工作流程。",
+      "expected": [
+        "deer-flow"
+      ],
+      "type": "constrained",
+      "category": "研究"
+    },
+    {
+      "id": "c97",
+      "query": "想了解主流程式設計AI助手背後的系統提示詞設計模式。",
+      "expected": [
+        "system-prompts-and-models-of-ai-tools"
+      ],
+      "type": "direct",
+      "category": "研究"
+    },
+    {
+      "id": "c98",
+      "query": "準備投稿頂級會議，需要產出符合學術出版品質的科學圖表。",
+      "expected": [
+        "figures4papers"
+      ],
+      "type": "constrained",
+      "category": "研究"
+    },
+    {
+      "id": "c99",
+      "query": "希望AI具備生物醫學研究與藥物開發的專業能力，該如何設定？",
+      "expected": [
+        "scientific-agent-skills"
+      ],
+      "type": "semantic",
+      "category": "研究"
+    },
+    {
+      "id": "c100",
+      "query": "可以幫我找一下，某個使用者名稱在哪些網站上註冊過嗎",
+      "expected": [
+        "maigret"
+      ],
+      "type": "semantic",
+      "category": "安全性"
+    },
+    {
+      "id": "c101",
+      "query": "能不能幫我檢查雲端服務的安全設定，對照主流資安框架做審查",
+      "expected": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "type": "semantic",
+      "category": "安全性"
+    },
+    {
+      "id": "c102",
+      "query": "有沒有辦法在容器部署前自動掃描安全弱點",
+      "expected": [
+        "trivy"
+      ],
+      "type": "direct",
+      "category": "安全性"
+    },
+    {
+      "id": "c103",
+      "query": "能不能請AI程式碼助手檢查專案的安全性漏洞",
+      "expected": [
+        "codex-security"
+      ],
+      "type": "semantic",
+      "category": "安全性"
+    },
+    {
+      "id": "c104",
+      "query": "想用Go開發高效率的分散式帳本應用程式",
+      "expected": [
+        "ontology-ontio"
+      ],
+      "type": "constrained",
+      "category": "安全性"
+    },
+    {
+      "id": "c105",
+      "query": "把這本書的投資觀點轉成能直接呼叫 Claude 分析個股的結構化指令",
+      "expected": [
+        "book2skills"
+      ],
+      "type": "semantic",
+      "category": "金融與投資"
+    },
+    {
+      "id": "c106",
+      "query": "幫我檢視这份市場報告並確認符合监管要求",
+      "expected": [
+        "financial-services"
+      ],
+      "type": "semantic",
+      "category": "金融與投資"
+    },
+    {
+      "id": "c107",
+      "query": "用 AI 全天候自動執行我的加密貨幣交易策略",
+      "expected": [
+        "ai-trader"
+      ],
+      "type": "semantic",
+      "category": "金融與投資"
+    },
+    {
+      "id": "c108",
+      "query": "整合公開財經資料並自動算出我的投資組合報酬率",
+      "expected": [
+        "openbb"
+      ],
+      "type": "direct",
+      "category": "金融與投資"
+    },
+    {
+      "id": "c109",
+      "query": "判斷財經新聞文字裡的市場情緒走勢",
+      "expected": [
+        "fingpt"
+      ],
+      "type": "semantic",
+      "category": "金融與投資"
+    },
+    {
+      "id": "c110",
+      "query": "我手上有張角色概念圖，想變成瀏覽器裡能跑的動態素材，不用手動建",
+      "expected": [
+        "img2threejs"
+      ],
+      "type": "semantic",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c111",
+      "query": "我想寫段程式，讓齒輪的齒數跟模數一改，整組尺寸就自動跟著變",
+      "expected": [
+        "cadquery"
+      ],
+      "type": "semantic",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c112",
+      "query": "我有一段文字描述科幻城市，想直接產出能匯進 Blender 的立體檔案",
+      "expected": [
+        "trellis2"
+      ],
+      "type": "direct",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c113",
+      "query": "我要在網頁上做一個能旋轉縮放看產品外觀的互動展示，不用裝 App",
+      "expected": [
+        "threejs"
+      ],
+      "type": "direct",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c114",
+      "query": "店裡賣的鞋只有平面照，想讓顧客能在頁面上翻來看立體樣",
+      "expected": [
+        "imgtothree"
+      ],
+      "type": "semantic",
+      "category": "3D工程繪圖"
+    },
+    {
+      "id": "c115",
+      "query": "想自動盯幾個社群平台某產品討論熱度，但不想花錢買 API",
+      "expected": [
+        "agent-reach"
+      ],
+      "type": "constrained",
+      "category": "瀏覽器自動化"
+    },
+    {
+      "id": "c116",
+      "query": "想同時用幾個帳號登入網站做操作，但不能被系統偵測到。",
+      "expected": [
+        "browser-act-automation"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化"
+    },
+    {
+      "id": "c117",
+      "query": "把那些動態載入的網頁內容抓下來，整理成文字給 AI 分析。",
+      "expected": [
+        "crawl4ai"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化"
+    },
+    {
+      "id": "c118",
+      "query": "要從很多網站同時抓商品價格，速度要快。",
+      "expected": [
+        "scrapy"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化"
+    },
+    {
+      "id": "c119",
+      "query": "抓那種要等 JavaScript 執行完才能顯示內容的網頁。",
+      "expected": [
+        "splash"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化"
+    },
+    {
+      "id": "c120",
+      "query": "自動收集小紅書和微博上的貼文留言，方便後續分析。",
+      "expected": [
+        "mediacrawler"
+      ],
+      "type": "semantic",
+      "category": "瀏覽器自動化"
+    },
+    {
+      "id": "c121",
+      "query": "開發時用本機儲存，上線時自動切到 S3，不用改程式碼。",
+      "expected": [
+        "flysystem"
+      ],
+      "type": "semantic",
+      "category": "API 整合"
+    },
+    {
+      "id": "c122",
+      "query": "有沒有可以參考的免費 API 清單？",
+      "expected": [
+        "public-apis"
+      ],
+      "type": "direct",
+      "category": "API 整合"
+    },
+    {
+      "id": "c123",
+      "query": "我想自動化跨 Google Calendar、Slack 與 Notion 的工作流程，該怎麼辦？",
+      "expected": [
+        "qu-integration-skills"
+      ],
+      "type": "semantic",
+      "category": "API 整合"
+    },
+    {
+      "id": "c124",
+      "query": "怎樣讓 Claude Code、Cursor 等工具更快且更省成本？",
+      "expected": [
+        "graft"
+      ],
+      "type": "direct",
+      "category": "API 整合"
+    },
+    {
+      "id": "c125",
+      "query": "如何跨不同 BI 與 AI 平台同步語意層資料格式？",
+      "expected": [
+        "ossie"
+      ],
+      "type": "constrained",
+      "category": "數據分析"
+    },
+    {
+      "id": "c126",
+      "query": "我有一堆 Excel 資料，能不能用說話的方式幫我分析並畫出圖表？",
+      "expected": [
+        "pandas-ai"
+      ],
+      "type": "semantic",
+      "category": "數據分析"
+    },
+    {
+      "id": "c127",
+      "query": "在 Jupyter 裡想直接拖曳欄位來探索資料集，像 Tableau 那樣",
+      "expected": [
+        "pygwalker"
+      ],
+      "type": "semantic",
+      "category": "數據分析"
+    },
+    {
+      "id": "c128",
+      "query": "能不能跑一個指令就自動產生完整的資料品質報告網頁？",
+      "expected": [
+        "ydata-profiling"
+      ],
+      "type": "semantic",
+      "category": "數據分析"
+    },
+    {
+      "id": "c129",
+      "query": "用 SQL 搭配 Markdown 快速做出可以互動的數據儀表板，不用 BI 工具的複雜功能",
+      "expected": [
+        "evidence-dev-evidence"
+      ],
+      "type": "semantic",
+      "category": "數據分析"
+    },
+    {
+      "id": "c130",
+      "query": "想預測接下來的銷售趨勢，不用從頭訓練模型，直接用好已有的預訓練模型",
+      "expected": [
+        "timesfm"
+      ],
+      "type": "semantic",
+      "category": "數據分析"
+    },
+    {
+      "id": "c131",
+      "query": "需要在本地無限制地生成圖片和影片，測試多種開源模型",
+      "expected": [
+        "open-generative-ai"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成"
+    },
+    {
+      "id": "c132",
+      "query": "幫我在程式編輯器裡直接產生專案需要的圖片、影片跟音訊素材",
+      "expected": [
+        "generative-media-skills"
+      ],
+      "type": "direct",
+      "category": "多媒體生成"
+    },
+    {
+      "id": "c133",
+      "query": "想把一堆固定的操作步驟串在一起，自動幫我跑出一連串的圖",
+      "expected": [
+        "doany-comfyui-skills"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成"
+    },
+    {
+      "id": "c134",
+      "query": "想找人幫我設計一張低調安靜、有獨立刊物風格的活動海報",
+      "expected": [
+        "gc-minimal-zine-poster"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成"
+    },
+    {
+      "id": "c135",
+      "query": "我要用節點方式自己搭一套圖像生成流程，最好能精確控制每一步",
+      "expected": [
+        "comfyui"
+      ],
+      "type": "direct",
+      "category": "多媒體生成"
+    },
+    {
+      "id": "c136",
+      "query": "有沒有現成的提示詞可以參考，讓我快速做出品牌宣傳用的商業插圖",
+      "expected": [
+        "awesome-gpt-image-2"
+      ],
+      "type": "semantic",
+      "category": "多媒體生成"
+    },
+    {
+      "id": "c137",
+      "query": "我有一個開源的影片製作平台，想用 AI 幫我把整個剪片流程自動化",
+      "expected": [
+        "openmontage"
+      ],
+      "type": "constrained",
+      "category": "影片"
+    },
+    {
+      "id": "c138",
+      "query": "我想在電腦上自己製作短片，不希望檔案上傳到雲端服務",
+      "expected": [
+        "opencut"
+      ],
+      "type": "direct",
+      "category": "影片"
+    },
+    {
+      "id": "c139",
+      "query": "我想要優化給AI影片模型的指令，讓生成效果更好",
+      "expected": [
+        "seedance2-skill"
+      ],
+      "type": "semantic",
+      "category": "影片"
+    },
+    {
+      "id": "c140",
+      "query": "請根據我寫的腳本製作一段展示產品的影片",
+      "expected": [
+        "text2video"
+      ],
+      "type": "direct",
+      "category": "影片"
+    },
+    {
+      "id": "c141",
+      "query": "在沒有圖形介面的伺服器上，用命令列看電影和追劇",
+      "expected": [
+        "moviebox-tui"
+      ],
+      "type": "semantic",
+      "category": "影片"
+    },
+    {
+      "id": "c142",
+      "query": "我需要用開源框架製作數學視覺化，需要最新功能與渲染效果",
+      "expected": [
+        "manim-community"
+      ],
+      "type": "semantic",
+      "category": "影片"
+    },
+    {
+      "id": "c143",
+      "query": "把有雜音的播客錄音轉成精確的文字稿",
+      "expected": [
+        "whisper"
+      ],
+      "type": "direct",
+      "category": "音訊"
+    },
+    {
+      "id": "c144",
+      "query": "想让 AI 助理能开口说话，也能听懂我的语音指令？",
+      "expected": [
+        "elevenlabs-voice-skills"
+      ],
+      "type": "semantic",
+      "category": "音訊"
+    },
+    {
+      "id": "c145",
+      "query": "能把广东话或闽南语的客服电话都转写成文字吗？",
+      "expected": [
+        "mimo-v25-asr"
+      ],
+      "type": "semantic",
+      "category": "音訊"
+    },
+    {
+      "id": "c146",
+      "query": "想把这篇文章变成语音朗读，不用装任何软件就行？",
+      "expected": [
+        "edge-tts"
+      ],
+      "type": "constrained",
+      "category": "音訊"
+    },
+    {
+      "id": "c147",
+      "query": "要用有声书的方式把长篇小说念出来，还要区分不同角色的声音？",
+      "expected": [
+        "easyvoice"
+      ],
+      "type": "semantic",
+      "category": "音訊"
+    },
+    {
+      "id": "c148",
+      "query": "想做个客服机器人，能听懂顾客语音并自动回答？",
+      "expected": [
+        "moonshine"
+      ],
+      "type": "direct",
+      "category": "音訊"
+    },
+    {
+      "id": "c149",
+      "query": "幫我根據這段內容製作一頁專業簡報，要包含標題和重點列點。",
+      "expected": [
+        "aippt"
+      ],
+      "type": "direct",
+      "category": "文件生產力"
+    },
+    {
+      "id": "c150",
+      "query": "我需要把一份 PDF 報告轉成 Markdown 格式，但不能上傳到外部伺服器。",
+      "expected": [
+        "markitdown-website"
+      ],
+      "type": "constrained",
+      "category": "文件生產力"
+    },
+    {
+      "id": "c151",
+      "query": "這段文字感覺太機械化，請幫我改寫得更像真人寫的。",
+      "expected": [
+        "shuorenhua"
+      ],
+      "type": "semantic",
+      "category": "文件生產力"
+    },
+    {
+      "id": "c152",
+      "query": "用指令列跑一段腳本，自動產出一份結構化的 Word 報告。",
+      "expected": [
+        "officecli-officecli"
+      ],
+      "type": "direct",
+      "category": "文件生產力"
+    },
+    {
+      "id": "c153",
+      "query": "幫我把這份試算表輸出成網頁表格，方便嵌入網站。",
+      "expected": [
+        "excel-to-html"
+      ],
+      "type": "constrained",
+      "category": "文件生產力"
+    },
+    {
+      "id": "c154",
+      "query": "請先幫我寫測試案例，確認功能失敗後再開始實作。",
+      "expected": [
+        "tdd"
+      ],
+      "type": "semantic",
+      "category": "測試與自動化"
+    },
+    {
+      "id": "c155",
+      "query": "請自動化測試網頁應用程式的登入流程，並驗證各步驟是否正常運作。",
+      "expected": [
+        "playwright-skill"
+      ],
+      "type": "semantic",
+      "category": "測試與自動化"
+    },
+    {
+      "id": "c156",
+      "query": "幫我將口頭描述的測試場景轉化為可直接執行的驗證程式碼。",
+      "expected": [
+        "kane-cli"
+      ],
+      "type": "semantic",
+      "category": "測試與自動化"
+    },
+    {
+      "id": "c157",
+      "query": "想要在 IDE 中透過 AI 技能範本加速測試腳本的生成。",
+      "expected": [
+        "github-copilot-playwright-test-skill"
+      ],
+      "type": "semantic",
+      "category": "測試與自動化"
+    },
+    {
+      "id": "c158",
+      "query": "請用自然語言指令讓電腦自動操作瀏覽器，從需登入的網站擷取資料。",
+      "expected": [
+        "browser-use"
+      ],
+      "type": "semantic",
+      "category": "測試與自動化"
+    },
+    {
+      "id": "c159",
+      "query": "幫我檢測網站載入速度與無障礙性，並提供優化建議。",
+      "expected": [
+        "web-quality-skills"
+      ],
+      "type": "semantic",
+      "category": "測試與自動化"
+    },
+    {
+      "id": "e06",
+      "query": "幫我查詢台北市明天上午的垃圾車清運路線",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e07",
+      "query": "想找一家會修理機械錶的鐘錶行",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e08",
+      "query": "幫我訂一束花送到朋友家，今天下午前要到",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e09",
+      "query": "想知道這個週末哪裡有大型演唱會",
+      "expected": [],
+      "type": "empty-set"
+    },
+    {
+      "id": "e10",
+      "query": "幫我預約下週二的牙醫洗牙",
+      "expected": [],
+      "type": "empty-set"
     }
   ],
-  "updated": "2026-09-19"
+  "updated": "2026-09-20"
 }
