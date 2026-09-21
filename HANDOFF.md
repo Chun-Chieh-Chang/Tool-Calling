@@ -399,6 +399,18 @@ CLI  ─┘
 4. **擷取管線**（`plan_ingestion` ／ `/api/ingest`）：
    `素材 → 可用筆記`。藍圖警告的「輸入瓶頸」就是這一層。
    每個階段用融合引擎挑工具，**置信度 < 0.20 就明說找不到**，不硬湊。
+5. **加入工具（兩階段）**：
+   - 第一階段 `scripts/scan-tool.js`（同步、免 LLM）：
+     GitHub API 取 description／language／topics→capabilities，並抓 README
+     取得更完整的描述（會清掉 Markdown 標記）。
+   - 第二階段 `core/tool-enricher.js`（非同步、需 LLM）：
+     讀 README 產生 `useCase`（真實情境）、`advantages`、`capabilities`
+     （topics 為空時才補）與三者的 `*_zh`。
+   - 接入：Web `/api/tools/add`（背景補齊、不阻塞回應）、
+     `node cli.js add <url>`（同步補齊）、批次 `npm run enrich:new`。
+   - 🔴 **硬規則**：必須基於 README，**不可憑名稱推測**；
+     README 不足時**寧可留白**也不要填推測內容。
+     不要用 `scripts/enrich-registry.js`（它的 prompt 明寫「依 Name 與 URL 猜測」）。
 
 ### 重要設計決策
 
@@ -426,6 +438,9 @@ CLI  ─┘
 | `core/wiki-matcher.js` | 詞條配對 + 知識圖譜擴散（配對邏輯，V5）|
 | `core/clarifier.js` | 需求收斂追問引擎（純函式，題目由候選差異動態產生）|
 | `core/tool-chain.js` | 多工具鏈規劃（走融合引擎版，`planToolSet`）|
+| `core/ingestion.js` | 擷取層管線（素材 → 可用筆記）|
+| `core/tool-enricher.js` | 加入工具第二階段：讀 README 產生語意欄位（需 LLM）|
+| `scripts/enrich-new-tools.js` | 批次補齊語意欄位（`npm run enrich:new`）|
 | `core/llm-keys.js` | API 金鑰池（輪替 + 429 隔離 + 統計）|
 | `scripts/llm-throughput.js` | 限流實測：判斷限制是綁金鑰／帳號／IP |
 | `scripts/v5-ablate.js` | V5 權重消融（確定性，不需 API）|
