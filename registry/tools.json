@@ -112,7 +112,14 @@
         "不適用於單純的文字搜尋或檔案瀏覽需求",
         "無法直接生成新的程式碼或執行腳本"
       ],
-      "stars": 109570
+      "stars": 109570,
+      "useCase_zh": "開發者在需要理解大型專案結構時，用它將程式碼與文件映射成互動式知識圖譜，以便視覺化檢視相依關係並追蹤概念間的連結，取代手動搜尋檔案。",
+      "advantages_zh": [
+        "利用 tree-sitter AST 進行確定性的程式碼解析，完全在地執行，不需使用 LLM 也不需上傳資料。",
+        "採用可追蹤的圖結構而非向量嵌入儲存，允許使用者精確追蹤概念之間的路徑。",
+        "明確標註每一條連結是「擷取（EXTRACTED）」或「推斷（INFERRED）」，清楚區分直接讀取與系統推導的內容。"
+      ],
+      "description_zh": "將程式碼、文件、PDF 與多媒體資料轉化為可查詢的知識圖譜，強化專案理解與跨專案搜尋能力。"
     },
     {
       "id": "strix",
@@ -172,7 +179,14 @@
         "無法替代專業安全顧問的深度威脅建模與人工驗證"
       ],
       "stars": 57087,
-      "useCase_zh": "開發團隊可在 CI/CD 流程中自動偵測 Web 應用程式弱點並產生修復建議。"
+      "useCase_zh": "開發團隊可在 CI/CD 流程中自動偵測 Web 應用程式弱點並產生修復建議。",
+      "advantages_zh": [
+        "動態執行程式碼以產生可用的概念驗證（PoC）漏洞利用，消除傳統靜態分析工具的誤報。",
+        "具備多智能體編排功能，協作擴充滲透測試任務。",
+        "無縫整合 CI/CD 管道與 GitHub Actions，自動執行 Pull Request 的安全檢查。",
+        "產生符合資安規範的滲透測試報告，並將 AI 生成的安全修補以可直接合併的 Pull Request 形式提供。"
+      ],
+      "description_zh": "開源 AI 滲透測試工具，透過自主 AI 智能體動態執行程式碼，自動掃描、驗證並修復應用程式安全漏洞。"
     },
     {
       "id": "ai-animation-video-generator",
@@ -478,7 +492,8 @@
         "不適合初學者建立 JavaScript 或 TypeScript 基礎語法概念",
         "不適用於需要執行程式碼或互動式練習的環境",
         "不適合尋找 React、Vue 等前端框架特定教學的使用者"
-      ]
+      ],
+      "useCase_zh": "一位在處理複雜 TypeScript 型別時遇到困難的開發者，可以執行 npm run exercise 來嘗試特定的型別挑戰、查看提供的解決方案，並透過互動式問題解決學習進階型別操作技巧。"
     },
     {
       "id": "playwright",
@@ -547,7 +562,9 @@
         "不適合用於純後端 API 單元測試或資料庫效能基準測試。",
         "不適用於需要模擬非瀏覽器環境，例如 IoT 裝置或桌面原生應用程式的場景。",
         "不建議用於高頻率的即時交易系統監控，因瀏覽器自動化延遲較高。"
-      ]
+      ],
+      "useCase_zh": "QA 工程師使用 Playwright 執行跨瀏覽器回歸測試，AI 代理則透過 CLI 或 MCP 伺服器控制網頁介面。",
+      "description_zh": "Playwright 是一個網頁自動化與測試框架，能以單一 API 驅動 Chromium、Firefox 和 WebKit，適用於測試、腳本以及 AI 代理工具。"
     },
     {
       "id": "flysystem",
@@ -8228,7 +8245,8 @@
         "僅為索引，不保證任何第三方 API 的可用性或服務水準",
         "不含付費、私有或企業內部 API",
         "不具備 API 閘道或治理功能，無法取代內部 API 管理"
-      ]
+      ],
+      "useCase_zh": "開發者在需要外部數據（如天氣或股票報價）時，利用此倉庫快速找到免費且有文件的公開 API 端點，無須單獨搜尋多家供應商。"
     },
     {
       "id": "developer-roadmap",
@@ -19877,7 +19895,8 @@
       ],
       "stars": 878,
       "advantages_zh": "偵測 38 種 AI 寫作痕跡,自動校正中國用語與半形標點,支援 Claude Code、Codex、Cursor 等編輯器",
-      "description_zh": "繁體中文 AI 去味改寫工具，偵測 38 種 AI 痕跡並校正用語與標點"
+      "description_zh": "繁體中文 AI 去味改寫工具，偵測 38 種 AI 痕跡並校正用語與標點",
+      "useCase_zh": "一位繁體中文內容創作者在發布電子報前，使用此工具檢查 AI 生成的初稿，移除 35 種以上 AI 寫作痕跡，並將中國用語與標點校正為台灣標準，確保內容讀起來像人話。"
     },
     {
       "id": "codegraph",
@@ -30588,7 +30607,7 @@
         "ml",
         "neural-network"
       ],
-      "useCase": "An Open Source Machine Learning Framework for Everyone",
+      "useCase": "ML developers use TensorFlow to build and deploy end-to-end machine learning applications, leveraging its comprehensive ecosystem of tools and libraries to create models and serve predictions.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-07-25)"
       ],
@@ -30609,6 +30628,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "端到端平台，涵蓋從研究到部署的完整機器學習生命週期。",
+        "具備全面且靈活的工具、函式庫與社群資源生態系。",
+        "提供穩定的 Python 與 C++ API，並支援其他語言。",
+        "支援 Ubuntu 與 Windows 上的 CUDA GPU，以及 DirectX 與 MacOS-metal 裝置。"
       ]
     },
     {
@@ -30751,7 +30776,7 @@
         "mcp",
         "mcp-server"
       ],
-      "useCase": "Real-time global intelligence dashboard. AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface",
+      "useCase": "Security analysts use World Monitor to track real-time geopolitical instability and infrastructure disruptions by correlating AI-synthesized news briefs with the Country Instability Index on a unified dashboard.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-07-25)"
       ],
@@ -30772,6 +30797,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "透過 Ollama 實現完全本地化的 AI 分析，無需外部 API 金鑰。",
+        "提供獨特的雙重地圖引擎，結合 3D 地球儀（globe.gl）與 WebGL 平面地圖（deck.gl），並共用圖層目錄。",
+        "提供 31 個一線國家的國家不穩定指數（CII v8）即時評分與 24 小時趨勢追蹤。",
+        "提供統一的態勢感知介面，可對軍事、經濟與災難訊號進行跨串流關聯分析。"
       ]
     },
     {
@@ -30851,8 +30882,14 @@
         "method": "none",
         "repoUrl": "https://github.com/kvcache-ai/ktransformers"
       },
-      "capabilities": [],
-      "useCase": "A Flexible Framework for Experiencing Heterogeneous LLM Inference/Fine-tune Optimizations",
+      "capabilities": [
+        "heterogeneous-inference",
+        "cpu-gpu-offloading",
+        "moe-fine-tuning",
+        "quantized-kernels",
+        "long-context"
+      ],
+      "useCase": "An AI engineer needs to run and fine-tune large MoE models like DeepSeek-V3 on a workstation with a consumer GPU and a high-core-count CPU, using KTransformers to offload expert layers to the CPU to enable inference and training that would otherwise exceed VRAM limits.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-07-24)"
       ],
@@ -30873,6 +30910,11 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "允許在消費者硬體上進行大型 MoE 模型的 CPU-GPU 異構推理與微調",
+        "支援 RAWINT4、AMX-Int8 與 FP8 等高階量化格式，以優化記憶體使用",
+        "對 DeepSeek-V3/R1、Kimi-K2 與 GLM-5 等領先開源模型提供首日支援"
       ]
     },
     {
@@ -30920,7 +30962,13 @@
       "stars": 63637,
       "addedAt": "2026-07-25T03:41:05.133Z",
       "status": "active",
-      "description_zh": "LLM 驅動的多市場股票智能分析系統：多源行情、實時新聞、決策看板與自動推送，支持零成本定時運行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-f"
+      "description_zh": "LLM 驅動的多市場股票智能分析系統：多源行情、實時新聞、決策看板與自動推送，支持零成本定時運行。  LLM-powered multi-market stock analysis system with multi-source market data, real-time news, decision dashboard, automated notifications, and cost-f",
+      "useCase_zh": "零售投資者在非交易時段，透過排程自動化地生成跨市場個股決策儀表板並推送至通訊軟體，以制定次日投資策略。",
+      "advantages_zh": [
+        "支援零成本部署，可透過 GitHub Actions 執行，無需維護伺服器成本。",
+        "整合多種通訊管道（如 WeCom、Slack），可直接推送決策報告，無需手動複製貼上。",
+        "內建 15 種策略（包含纏論、波浪理論等）的 Agent 問股功能，支援多輪追問。"
+      ]
     },
     {
       "id": "kimi-k3-code-free-desktop-ai",
@@ -31604,7 +31652,13 @@
         "command": "pip install git+https://github.com/Emily2040/seedance-2.0.git",
         "repoUrl": "https://github.com/Emily2040/seedance-2.0"
       },
-      "capabilities": [],
+      "capabilities": [
+        "quad-modal-prompting",
+        "reference-binding",
+        "continuity-planning",
+        "agent-skill-integration",
+        "shot-directing"
+      ],
       "addedAt": "2026-07-26T13:09:25.556Z",
       "status": "active",
       "useCase": "AI 影片生成模型，適合文字轉影片、動畫創作與概念視覺化",
@@ -31619,7 +31673,14 @@
         "不適合商業級影片後製編輯"
       ],
       "stars": 6840,
-      "description_zh": "搭配 Seedance 2.0 進行四模態 AI 電影製作的完整生產管線。"
+      "description_zh": "搭配 Seedance 2.0 進行四模態 AI 電影製作的完整生產管線。",
+      "useCase_zh": "一位影片創作者使用該代理工具來規劃 Seedance 2.0 的鏡頭序列，透過綁定參考素材與結構化提示詞，確保從已接受的片段延續到下一個動作時具有視覺連貫性。",
+      "advantages_zh": [
+        "專為 Seedance 2.0 的_quad-modal_多模態製作管線設計，提供經過規劃的影片製作，而非通用的單鏡頭生成",
+        "支援透過分析已接受片段的觀察結果來規劃下一階段動作，實現工作流程的延續性",
+        "作為 Agent Skill 安裝，相容於 Codex 與 Claude Code 等多種編碼環境",
+        "允許草擬並修改提示詞，而不會立即觸發付費的生成請求"
+      ]
     },
     {
       "id": "seedance2-skill",
@@ -31673,7 +31734,8 @@
         "不支援 Seedance 1 代舊模型",
         "不適合非影片生成的通用任務",
         "不適合無 LLM 代理的直接呼叫"
-      ]
+      ],
+      "useCase_zh": "內容創作者或開發者在 Claude Code、Cursor 等 AI Agent 中，需要為 Seedance 2.0 撰寫高品質的影片提示詞（用於廣告或劇集），並透過此技能庫確保語法正確與攝影機語言規範。"
     },
     {
       "id": "remotion",
@@ -31723,7 +31785,8 @@
         "不適合即時串流直播場景",
         "不適合非程式設計師的純 GUI 影片編輯",
         "不適合需要 GPU 硬體加速渲染的 4K/8K 長片"
-      ]
+      ],
+      "useCase_zh": "開發團隊使用 AI 代理根據創意生成個人化行銷影片，並透過 React 元件直接連接數據管線進行大規模渲染。"
     },
     {
       "id": "opencv",
@@ -31776,7 +31839,8 @@
         "不適合深度學習端到端訓練（應使用 PyTorch/TensorFlow）",
         "不適合即時高畫質影片串流處理",
         "不適合需要 GPU 大規模平行計算的場景"
-      ]
+      ],
+      "useCase_zh": "開發人員或研究人員透過呼叫 C++ API 建構即時影像處理與分析應用程式，例如物件追蹤或場景分割。"
     },
     {
       "id": "frame",
@@ -31888,6 +31952,12 @@
         "不適合圖形化操作（應使用 GUI 前端）",
         "不適合即時直播串流（需搭配其他串流伺服器）",
         "不適合非技術用戶的直覺操作"
+      ],
+      "useCase_zh": "後端開發人員在 CI/CD 管線中使用 FFmpeg，將原始影片錄製批次轉碼為最佳化的 H.264 MP4 檔案，並壓縮音訊以進行串流傳輸。",
+      "advantages_zh": [
+        "提供一組可重複使用的 C 語言程式庫（如 libavcodec、libavformat），可直接連結至自訂應用程式中，這與僅限獨立運行的工具不同。",
+        "具備強大的有向圖濾鏡引擎（libavfilter），允許在單一行程中執行複雜的鏈式音訊與影片處理工作流程。",
+        "核心採用 LGPL 授權，確保商業軟體整合的法律彈性，並提供選用的 GPL 元件以支援特定進階功能。"
       ]
     },
     {
@@ -32563,7 +32633,14 @@
         "部分圖示語意模糊"
       ],
       "stars": 8291,
-      "description_zh": "開源中性風格圖示系統"
+      "description_zh": "開源中性風格圖示系統",
+      "useCase_zh": "前端開發人員在開發 React 或 Vue 應用程式時，使用 RemixIcon 為導覽列與操作按鈕套用一致的中性風格圖示。",
+      "advantages_zh": [
+        "擁有超過 3200 枚圖示，嚴格遵循 24x24 網格設計，確保高可讀性與像素級一致性",
+        "每枚圖示均提供「描邊」與「填充」兩種樣式，支持彈性的視覺狀態切換",
+        "支援透過「複製 SVG」功能，直接在 Figma、Sketch 等設計工具中貼上使用",
+        "提供 React 與 Vue 的專用元件包，並支援 Webfont、SVG Sprite 及 CDN 等多種整合方式"
+      ]
     },
     {
       "id": "iconoir",
@@ -32761,7 +32838,8 @@
         "不適合照片級真實感圖形",
         "僅提供 SVG 格式",
         "不具備動畫功能"
-      ]
+      ],
+      "useCase_zh": "一位 Web 開發者在建立 React 應用程式時，使用 lucide-react 套件快速為使用者介面加入一致且可自訂的 SVG 圖示。"
     },
     {
       "id": "text-to-cad",
@@ -33331,7 +33409,13 @@
         "更新頻率不固定"
       ],
       "stars": 338,
-      "description_zh": "熱門圖示專案的 SVG 集合編譯"
+      "description_zh": "熱門圖示專案的 SVG 集合編譯",
+      "useCase_zh": "網頁開發者希望在不進行上傳、重新生成或維護獨立雪碧圖的情況下，快速將特定圖示整合到網頁中。",
+      "advantages_zh": [
+        "僅載入所需的圖示，避免載入不必要的資料。",
+        "無需上傳、重新生成或進行其他額外程序。",
+        "相比其他圖示配送方式，提供更輕量且快速的嵌入方法。"
+      ]
     },
     {
       "id": "polaris-react",
@@ -33722,6 +33806,12 @@
         "僅限品牌圖示",
         "不適合一般 UI 需求",
         "商標使用需注意授權"
+      ],
+      "useCase_zh": "前端開發者在建立儀表板或網站時，透過 npm 套件或 CDN 連結，將數以千計的品牌 SVG 圖示整合到介面上，並使用自訂十六進位顏色代碼搭配深色模式以符合 UI 主題。",
+      "advantages_zh": [
+        "提供超過 3400 個標準化的 SVG 圖示，可透過 npm 以單一檔案格式匯入。",
+        "內建 CDN 服務支援動態顏色設定（十六進位代碼）及自動深色模式支援。",
+        "相容於主要套件管理系統，包括 npm 與 Composer（Packagist）。"
       ]
     },
     {
@@ -34040,7 +34130,8 @@
       "negativeConstraints_zh": [
         "不適合追求極致輕量與無頭執行速度之單純資料抓取",
         "不適合無 WebDriver 相容瀏覽器的受限環境"
-      ]
+      ],
+      "description_zh": "跨平台與多語言支援的瀏覽器自動化與 UI 端對端測試框架"
     },
     {
       "id": "crawlee",
@@ -34143,7 +34234,9 @@
       "negativeConstraints_zh": [
         "不適合單頁重度渲染且未搭配 Headless Browser 的 SPA 頁面",
         "不適合無 Python 環境的系統"
-      ]
+      ],
+      "useCase_zh": "Python 開發者在需要大規模提取非公開 API 的網頁結構化資料時，使用 Scrapy 撰寫非同步爬蟲以加速資料擷取。",
+      "description_zh": "Scrapy 是一個跨平台的 Python 網頁爬蟲與資料擷取框架，專為提取網站結構化資料而設計，目前需要 Python 3.10 以上版本。"
     },
     {
       "id": "llmsherpa",
@@ -34545,7 +34638,14 @@
         "command": "pip install git+https://github.com/andrewyng/translation-agent.git",
         "repoUrl": "https://github.com/andrewyng/translation-agent"
       },
-      "capabilities": [],
+      "capabilities": [
+        "agentic-translation",
+        "reflection-workflow",
+        "llm-based-mt",
+        "glossary-support",
+        "style-control",
+        "regional-dialect-specification"
+      ],
       "useCase": "當需要進行長篇大論、高專業度或跨文化語境的長文字高精度翻譯時使用。",
       "advantages": [
         "採用初譯 -> 反思修訂 -> 最終優化的 Reflection 流程，翻譯品質高於單次 Prompt 直出",
@@ -34564,7 +34664,8 @@
       "negativeConstraints_zh": [
         "因包含多次 LLM 反思輪次，Token 消耗與回應時間高於傳統 API 翻譯",
         "不適合毫秒級即時對話翻譯情境"
-      ]
+      ],
+      "useCase_zh": "開發者或內容團隊在需要針對特定地區或方言（如墨西哥西班牙文與卡斯提爾西班牙文）進行高品質翻譯，並需透過自訂詞彙表與風格指令確保技術術語與成語一致性時使用此工具。"
     },
     {
       "id": "optmem",
@@ -34765,7 +34866,14 @@
         "不適合處理超長時間音訊串流的自動化管道"
       ],
       "stars": 21080,
-      "description_zh": "離線音訊轉錄與翻譯桌面應用程式，基於 OpenAI Whisper，支援Speaker識別與1000多種語言。"
+      "description_zh": "離線音訊轉錄與翻譯桌面應用程式，基於 OpenAI Whisper，支援Speaker識別與1000多種語言。",
+      "useCase_zh": "播客主持人在本機轉錄並翻譯訪談節目，無需上傳資料至雲端，確保隱私並可在直播時即時產出字幕。",
+      "advantages_zh": [
+        "完全離線處理，確保資料隱私且不需依賴網路連線。",
+        "支援多種後端加速，包括 Nvidia GPU 的 CUDA、Apple Silicon 以及整合式 GPU 的 Vulkan。",
+        "包含即時即時轉錄功能，並具備專為活動中無障礙存取設計之簡報視窗。",
+        "提供進階後處理功能，如針對雜音的語音分離與講者識別。"
+      ]
     },
     {
       "id": "ego-lite",
@@ -37262,7 +37370,7 @@
         "codex",
         "deepseek"
       ],
-      "useCase": "AI productivity studio with smart chat, autonomous agents, and 300+ assistants. Unified access to frontier LLMs",
+      "useCase": "Power users needing a unified desktop workspace to interact with multiple LLM providers and local models while managing documents and running autonomous agents simultaneously",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
@@ -37283,6 +37391,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "支援多種 LLM 供應商，包括主要雲端服務（OpenAI、Gemini、Anthropic）以及透過 Ollama 和 LM Studio 的本地模型",
+        "提供「開箱即用」體驗，跨平台部署於 Windows、Mac 和 Linux 無需環境設定",
+        "內建 300 多個預設 AI 助手，並支援 MCP（Model Context Protocol）伺服器整合以增強工具使用",
+        "提供進階文檔處理能力，支援文字、圖片、Office 和 PDF 格式，並具備 Mermaid 圖表視覺化功能"
       ]
     },
     {
@@ -37313,7 +37427,7 @@
         "ai-agents",
         "mcp"
       ],
-      "useCase": "an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with any LLM",
+      "useCase": "A developer automates a complex multi-step data analysis workflow by connecting local Ollama models and MCP extensions to process files, edit code, and execute tests within a single session.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
@@ -37334,6 +37448,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "支援超過 15 種 LLM 供應商，包括 Anthropic、OpenAI、Google、Ollama 及 Azure。",
+        "透過 Model Context Protocol (MCP) 開放標準連接 70 多個擴充功能。",
+        "使用 Rust 編寫，在 macOS、Linux 和 Windows 上具備高效能與可攜性。",
+        "隸屬於 Linux Foundation 下的 Agentic AI Foundation (AAIF)。"
       ]
     },
     {
@@ -37368,7 +37488,7 @@
         "diffusion",
         "glm"
       ],
-      "useCase": "SGLang is a high-performance serving framework for large language models and multimodal models.",
+      "useCase": "ML engineers deploy high-concurrency LLM or multimodal inference endpoints by serving models like DeepSeek-R1 or GLM5.2 on NVIDIA/AMD GPUs or TPUs to maximize throughput and token velocity.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
@@ -37389,6 +37509,11 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "在 NVIDIA GB300 NVL72 上可釋放 25 倍推論效能，並能為 GLM5.2 智能代理工作負載達到 500 TPS。",
+        "提供最新開放權重模型的首日支援，包括 Kimi K3、DeepSeek-V4 與 Nemotron 3 Ultra。",
+        "支援跨節點集群的大規模專家並行（EP）與預填/解碼分離（PD Disaggregation）。"
       ]
     },
     {
@@ -37422,7 +37547,7 @@
         "gemma",
         "gpt"
       ],
-      "useCase": "Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)",
+      "useCase": "A data scientist fine-tunes a Llama 3 or Mistral model using a custom dataset via the zero-code Web UI or CLI without writing manual PyTorch training scripts.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-08-04)"
       ],
@@ -37443,6 +37568,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "支援 100+ LLM 與 VLM（包含 DeepSeek、Gemma、Llama）的統一框架",
+        "提供零程式碼微調體驗，支援 CLI 與 Gradio Web UI",
+        "ACL 2024 收錄專案，引用次數超過 1000 次，並被 Amazon 與 NVIDIA 採用",
+        "支援多種部署環境，包含 Colab、PAI-DSW 與 NVIDIA Spark"
       ]
     },
     {
@@ -37581,7 +37712,7 @@
         "ai-agents",
         "chatbot"
       ],
-      "useCase": "Your Personal AI Assistant; easy to install, deploy on your own machine or on the cloud; supports multiple chat apps with easily extensible capabilities.",
+      "useCase": "Developers deploy QwenPaw on their local machine or private cloud to act as a personal AI assistant that connects to multiple chat apps (like Discord or Telegram) while keeping all data and sensitive operations within a secure, sandboxed environment.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-08-05)"
       ],
@@ -37602,6 +37733,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "內建本地執行環境與 QwenPaw-Flash 模型，無需 API 金鑰或依賴雲端服務即可運作。",
+        "提供 kernel 級別的安全防護，包括沙盒、工具與檔案監控，以阻擋危險指令。",
+        "支援透過 Agent 通訊協定（ACP）進行多 Agent 編排與並行子 Agent 運作。",
+        "具備由 ReMe 驅動的三層記憶系統，可將對話轉化為可搜尋的 Markdown 知識庫。"
       ]
     },
     {
@@ -37636,7 +37773,7 @@
         "from-scratch",
         "inference-engine"
       ],
-      "useCase": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU.",
+      "useCase": "Developers or researchers on a laptop with 8 GB RAM who need to run a massive 2.78-trillion-parameter Kimi K3 model for inference without a GPU or specialized hardware.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-08-01)"
       ],
@@ -37657,6 +37794,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "advantages_zh": [
+        "能在單一 CPU 上以低至 8.24 GB 的記憶體運行 2.78 兆參數模型",
+        "可攜式 C99 實現，無須依賴 BLAS、框架或 GPU",
+        "透過串流架構，在不同記憶體配置（8 GB 至 224 GB）下產生完全相同位元組的輸出",
+        "推論引擎僅 176 KB，極簡資源佔用"
       ]
     },
     {
@@ -37765,6 +37908,11 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "開發者想要快速尋找特定主題（例如 Node.js、iOS 或 AWS）的高品質、精選資源與工具。",
+      "advantages_zh": [
+        "匯總了數千個主題特定的 Awesome 清單索引。",
+        "涵蓋廣泛的類別，包括平台、程式語言、資料庫與商業領域。"
       ]
     },
     {
@@ -37821,6 +37969,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "初級開發者或轉職人士透過完成免費的程式設計挑戰並提交專案，來獲得可驗證的網頁開發或語言能力認證。",
+      "advantages_zh": [
+        "提供完全免費、自訂步調的全端課程，並附帶數千道互動式程式設計挑戰。",
+        "提供永久有效的可驗證認證，使用者可隨時連結至履歷或 LinkedIn 供招募者查看。",
+        "提供專門針對開發者的英文及其他專業語言（如西班牙文、中文）的專業能力認證。"
       ]
     },
     {
@@ -37980,7 +38134,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "前端工程師需要建構複雜、互動式的單頁網頁應用，當使用者互動或資料更新時，介面會動態變化。"
     },
     {
       "id": "linux",
@@ -38083,6 +38238,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "學生與開發者查找排序、圖論或動態規劃等演算法的參考實作，以理解其底層邏輯，而非直接用於生產環境。",
+      "advantages_zh": [
+        "提供龐大且由社群維護的演算法目錄，涵蓋廣泛的計算機科學主題",
+        "包含互動式目錄（DIRECTORY.md），方便使用者導航與總覽現有演算法",
+        "提供 Gitpod 雲端開發環境徽章，使用者無需本地設定即可立即貢獻或學習"
       ]
     },
     {
@@ -38136,7 +38297,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "前端開發人員在維護一個基於 Vue 2 的傳統單頁應用程式時，需要符合資安合規要求且不立即遷移至 Vue 3 的情況。"
     },
     {
       "id": "computer-science",
@@ -38320,7 +38482,8 @@
         "不適用於需要確定性低延遲（<100ms）即時響應的線上 API 服務",
         "未經沙盒隔離時避免直接賦予全權執行高風險系統或未受控之生產環境",
         "對於單一問答或簡單文字分類任務顯得過度複雜且 Token 消耗較大"
-      ]
+      ],
+      "useCase_zh": "非技術背景的商業使用者以自然語言描述每週報告任務，AutoGPT 自動建構並部署多步驟代理，在排程時間點自動擷取數據、彙整報告並透過電子郵件發送。"
     },
     {
       "id": "minimax-h3",
@@ -39101,6 +39264,13 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "講者與設計師需要分享專業簡報，且希望不安裝軟體或不依賴雲端帳號也能保留完整編輯功能，因此使用 Bento 建立單一自含的 HTML 檔案，讓任何收件者直接在瀏覽器中開啟、檢視與編輯。",
+      "advantages_zh": [
+        "單一 HTML 檔案包含檢視器、簡報模式與編輯器，無需安裝、帳號或後端伺服器。",
+        "文件資料以可讀 JSON 儲存，讓 AI 代理可透過檔案系統或對話往返直接編輯簡報，無需外掛或 API。",
+        "內建 CRDT 支援字元級文字合併與 E2EE 協作，金鑰儲存在本地檔案中，確保離線優先的安全性。",
+        "具備無相依性的圖表引擎與簽名自我更新機制（寫入新檔案以備回滾），總應用程式大小約 560 KB。"
       ]
     },
     {
@@ -39384,7 +39554,8 @@
         "不適用於需要集中式審計、法規合規與身分 KYC 的正式企業通訊",
         "避免用於成熟的團隊協作需求——此專案偏向實驗性/研究性，非生產級通訊軟體",
         "不適合需要端到端加密保障的機密商業溝通（請改用 Signal / Matrix 等成熟方案）"
-      ]
+      ],
+      "useCase_zh": "技術主管部署自架 Buzz 實例，讓工程團隊與 AI 代理在單一可稽核的事件日誌中協作處理功能分支、程式碼審查與發佈流程。"
     },
     {
       "id": "hermes-plugins",
@@ -40311,7 +40482,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "資安研究者或記者需要在 WhatsApp、Telegram 等主流通訊軟體上交換敏感座標或指示，且必須避免因發送加密訊息而觸發異常流量分析或元數據標記，透過此工具將內容偽裝成自然的 LLM 生成對話。"
     },
     {
       "id": "nativ",
@@ -40441,7 +40613,14 @@
         "method": "none",
         "repoUrl": "https://github.com/gnipbao/story-to-handdrawn-video"
       },
-      "capabilities": [],
+      "capabilities": [
+        "story-to-video-conversion",
+        "hand-drawn-illustration",
+        "animated-diary-comic",
+        "agent-skill-integration",
+        "remotion-rendering",
+        "style-customization"
+      ],
       "useCase": "內容創作者將文字故事快速轉為具手繪風格的動畫短片，用於社群媒體發布。",
       "advantages": [
         "直接從中文故事文案產出手繪日記風動畫 MP4，全過程無需手繪或剪輯",
@@ -40465,7 +40644,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "內容創作者在需要將中文故事或手繪圖片轉為直向無聲 MP4 動畫時，利用此工具快速產出手繪日記風格的影片。"
     },
     {
       "id": "findphone",
@@ -40587,7 +40767,14 @@
         "method": "none",
         "repoUrl": "https://github.com/OpenMouse-Project/openmouse"
       },
-      "capabilities": [],
+      "capabilities": [
+        "webhid-control",
+        "dpi-polling-rate-management",
+        "bridge-transport",
+        "device-discovery",
+        "vendor-driver-registry",
+        "linux-permission-handling"
+      ],
       "useCase": "使用受支援電競滑鼠時，在不安裝廠商驅動的情況下調整設定。",
       "advantages": [
         "瀏覽器操控，無需安裝專有驅動程式，跨平台兼容",
@@ -40610,6 +40797,13 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "遊戲玩家或開發者在 Linux 或桌機系統上透過瀏覽器連接相容的遊戲滑鼠，並使用 OpenMouse 調整 DPI 或輪詢率設定，而無需安裝廠商專屬軟體。",
+      "advantages_zh": [
+        "以單一瀏覽器應用程式取代多款廠商專屬的控制面板。",
+        "支援透過 OpenMouse Bridge 的環回原生 HID 傳輸，在 Chrome 153+ 上繞過瀏覽器保護機制以支援 Razer 裝置。",
+        "採用模組化架構，將封包編碼器與驅動程式分離至獨立的 @openmouse/protocol 程式庫，便於貢獻與重用。",
+        "包含手動更新檢查機制，可驗證 Bridge 元件的版本與變更紀錄，而不會在背景自動安裝更新。"
       ]
     },
     {
@@ -40634,7 +40828,13 @@
         "method": "none",
         "repoUrl": "https://github.com/XYZ-AI-Lab/AxisAgentic"
       },
-      "capabilities": [],
+      "capabilities": [
+        "agent-runtime",
+        "trajectory-collection",
+        "context-management",
+        "sft-export",
+        "tool-orchestration"
+      ],
       "useCase": "研究團隊需要收集大量 Agent 行為軌跡用於模型訓練或評估。",
       "advantages": [
         "專為長時間 Agent 任務設計，內建軌跡收集（trajectory collection）機制",
@@ -40658,7 +40858,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "ML 工程師在構建長期網路搜尋代理時，使用 AxisAgentic 執行多輪軌跡，自動收集唯追加執行日誌，並匯出狀態忠實的 SFT 數據集，用於外部大型語言模型的微調。"
     },
     {
       "id": "moviebox-tui",
@@ -40715,7 +40916,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "開發者可以在無圖形介面的 Linux 伺服器上，透過該工具串流或下載 Stremio 插補提供的動漫內容，而無需開啟傳統媒體播放器。"
     },
     {
       "id": "penguin-harness",
@@ -42684,7 +42886,14 @@
         "method": "none",
         "repoUrl": "https://github.com/QwenLM/Qwen-MM-Plugins"
       },
-      "capabilities": [],
+      "capabilities": [
+        "native-multimodal-reading",
+        "hardware-control",
+        "video-memory",
+        "spatial-reasoning",
+        "agent-plugin-extension",
+        "cross-harness-compatibility"
+      ],
       "useCase": "現有 Agent 應用需要理解使用者上傳的圖片或影片，快速加入多模態輸入能力。",
       "advantages": [
         "讓任何 Agent harness 一行程式碼接入多模態能力（圖片、影片理解）",
@@ -42708,7 +42917,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "開發者在將 Qwen 多模態模型整合到 Agent 架構時，使用此套件啟用原生圖片、影片及硬體控制功能，無需撰寫自訂 API 路由邏輯。"
     },
     {
       "id": "comfyui",
@@ -42764,7 +42974,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "視覺專業人士使用 ComfyUI 透過建立圖形化節點流程來執行特定的影片生成管線，並利用內建的佇列系統在本地端處理輸出。"
     },
     {
       "id": "warp",
@@ -43119,7 +43330,8 @@
         "內建AI Agent整合能力"
       ],
       "description_zh": "供分析師、量化分析師與 AI 代理使用的開放資料平台",
-      "advantages_zh": "OpenBB 官方維護，社群活躍（71K+ 星）；支援多種資料來源整合；內建 AI Agent 整合能力。"
+      "advantages_zh": "OpenBB 官方維護，社群活躍（71K+ 星）；支援多種資料來源整合；內建 AI Agent 整合能力。",
+      "useCase_zh": "一位量化開發者將私有與公開金融資料源整合進 Python 環境，以餾送給用於研究分析的 AI 副駕駛。"
     },
     {
       "id": "ai-hedge-fund",
@@ -43164,7 +43376,13 @@
         "AI驅動的交易流程模擬",
         "多模型協作模式"
       ],
-      "description_zh": "AI 對沖基金團隊 - AI 驅動對沖基金交易系統的概念驗證"
+      "description_zh": "AI 對沖基金團隊 - AI 驅動對沖基金交易系統的概念驗證",
+      "useCase_zh": "財務工程師使用它來回測 AI 投資策略並模擬組合再平衡，而無需執行實際交易。",
+      "advantages_zh": [
+        "支援 Anthropic、OpenAI、DeepSeek、Google、xAI、Kimi 和 TypeSafe (Jev) 等多種 LLM 供應商作為投資者代理。",
+        "提供持久化的「基金」實體，可進行回測、模擬交易及選用的實盤運行。",
+        "自動化 API 金鑰管理，首次提示後將憑證儲存至本機環境檔案。"
+      ]
     },
     {
       "id": "vnpy",
@@ -43213,7 +43431,14 @@
       "negativeConstraints_zh": [
         "主要支援Python環境",
         "需要自行部署與維護"
-      ]
+      ],
+      "useCase_zh": "基金經理使用 CTA 策略引擎與圖形介面回測工具，對國內期貨的高頻交易演算法進行細粒度微調與參數最佳化。",
+      "advantages_zh": [
+        "內建 vnpy.alpha 模組，提供整合 Lasso、LightGBM 與 MLP 模型的一站式多因子機器學習策略開發流程。",
+        "提供圖形介面進行 CTA 回測與參數最佳化，免於依賴 Jupyter Notebook 手動操作。",
+        "CTA 策略引擎支援訂單報撤行為的細粒度控制，有助於降低高頻交易中的滑點。"
+      ],
+      "description_zh": "基於 Python 的開源量化交易系統開發框架，支援多因子機器學習策略開發與跨市場交易介面整合。"
     },
     {
       "id": "fincept-terminal",
@@ -43259,7 +43484,14 @@
         "支援多資產類別",
         "免費開源的終端替代方案"
       ],
-      "description_zh": "開源財務分析平台 - 具備先進市場分析的現代金融應用程式"
+      "description_zh": "開源財務分析平台 - 具備先進市場分析的現代金融應用程式",
+      "useCase_zh": "金融分析師使用該桌面應用來執行機構級市場分析，並透過 AI 自動化工作流程處理無限制的數據連接。",
+      "advantages_zh": [
+        "採用 C++ 與 Qt6 開發，提供高效能的桌面執行體驗",
+        "支援無限制的數據連接，適合大規模市場分析",
+        "整合 AI 自動化功能，提升研究工作流程效率",
+        "採用 AGPL-3.0 授權，確保核心平台保持開源免費"
+      ]
     },
     {
       "id": "backtrader",
@@ -43304,7 +43536,14 @@
         "廣泛的社群支援",
         "多資料來源支援"
       ],
-      "description_zh": "用於交易策略的 Python 後測程式庫"
+      "description_zh": "用於交易策略的 Python 後測程式庫",
+      "useCase_zh": "量化交易員使用 Backtrader 在 Python 中回測均線交叉策略於微軟歷史數據上，並評估其夏普比率後透過 Interactive Brokers 部署實盤。",
+      "advantages_zh": [
+        "支援與 Interactive Brokers、Oanda 及 Visual Chart 的即時交易，同時具備回測功能。",
+        "可同時處理多重數據源與多重時間框架，並內建重新取樣與重放機制。",
+        "核心功能無外部相依套件，與強制要求特定數據結構的框架不同，部署更輕量。",
+        "內建 122 種指標並支援自訂指標開發，亦可整合 TA-Lib。"
+      ]
     },
     {
       "id": "lean",
@@ -43349,7 +43588,14 @@
         "支援多市場多資產",
         "完整的回測到實盤流程"
       ],
-      "description_zh": "由 QuantConnect 開發的 Lean 演算法交易引擎 - 開放式、機構級多資產引擎"
+      "description_zh": "由 QuantConnect 開發的 Lean 演算法交易引擎 - 開放式、機構級多資產引擎",
+      "useCase_zh": "量化開發者使用 Lean 在本地或雲端環境中撰寫、回測並部署多資產演算法交易策略，透過 CLI 與 Docker 整合工作流程。",
+      "advantages_zh": [
+        "內建替代資料與即時交易支援，無需額外設定",
+        "模組化架構，所有主要元件皆可插拔與自訂",
+        "機構級效能，專為深度量化概念建模而設計",
+        "透過 Docker、NuGet 與 Lean CLI 提供無縫的本地與雲端工作流"
+      ]
     },
     {
       "id": "fingpt",
@@ -43395,7 +43641,8 @@
         "支援多種下游任務"
       ],
       "description_zh": "FinGPT：開放原始碼金融大型語言模型，用於情緒分析、預測等",
-      "advantages_zh": "AI4Finance Foundation 官方維護\n開源的金融 LLM\n支援多種下游任務"
+      "advantages_zh": "AI4Finance Foundation 官方維護\n開源的金融 LLM\n支援多種下游任務",
+      "useCase_zh": "金融分析師使用它來對新聞文章進行情緒分析，或使用微調後的 LLM 預測資產價格，而非支付專有的 BloombergGPT API 費用。"
     },
     {
       "id": "finrobot",
@@ -43495,6 +43742,12 @@
       "negativeConstraints_zh": [
         "需要設定API金鑰",
         "有實際交易風險"
+      ],
+      "useCase_zh": "個人交易者在本地機器上部署自動交易系統，讓 AI 持續掃描市場結構並執行交易，同時確保所有訂單都經過程式碼層級的風險限制管控，且資料不離開本機。",
+      "advantages_zh": [
+        "採用本機優先架構，交易所憑證以靜態加密方式儲存，確保資料絕不離開使用者機器。",
+        "Go 執行時環境強制執行硬性風險限制（如持倉上限、槓桿夾具），這些限制是 AI 模型無法覆蓋的。",
+        "支援並行運行多個策略，並透過公開排行榜依據已實現報酬進行比較。"
       ]
     },
     {
@@ -43546,7 +43799,8 @@
       "negativeConstraints_zh": [
         "需要Claude Code/Codex工具",
         "僅供價值投資研究使用"
-      ]
+      ],
+      "useCase_zh": "個人投資者使用 Claude Code 或 Codex 執行 /investment-team 技能，對特定公司生成結構化、多視角的價值投資報告，強制產出最終結論與價格區間，而非平衡陳述。"
     },
     {
       "id": "tradingagents-cn",
@@ -43590,7 +43844,14 @@
         "A股專為優化",
         "中文支援完善"
       ],
-      "description_zh": "支援 A 股的中國股票交易代理"
+      "description_zh": "支援 A 股的中國股票交易代理",
+      "useCase_zh": "中國散戶投資者使用此平台對 A 股股票進行多智能體 LLM 分析，以教育目的生成專業研究報告。",
+      "advantages_zh": [
+        "原生支援中國股市（A股、港股、美股）並本地化整合 Tushare、AkShare 等數據源",
+        "採用 FastAPI 與 Vue 3 現代架構，搭配 MongoDB/Redis 雙資料庫，效能較原版 Streamlit 提升 10 倍",
+        "支援 OpenAI、Google AI、火山方舟等多種 LLM 供應商，並可根據任務動態選擇最佳模型",
+        "Docker 多架構支援（amd64 + arm64），可部署於 Apple Silicon、樹莓派及 AWS Graviton 等平台"
+      ]
     },
     {
       "id": "tradingagents-astock",
@@ -43634,7 +43895,13 @@
         "輕量級",
         "易於上手"
       ],
-      "description_zh": "專注 A 股的交易代理"
+      "description_zh": "專注 A 股的交易代理",
+      "useCase_zh": "研究人員或教育者希望在中國 A 股市場情境下，針對 T+1 結算、漲跌停板等特定制度，研究多代理 LLM 框架如何適應並生成投資決策。",
+      "advantages_zh": [
+        "針對 A 股深度特化，新增政策分析、游資追蹤與解禁監控等專屬分析角色",
+        "零外部服務依賴，無需 API Key，透過免費的直連 HTTP/TCP 協定獲取數據",
+        "交易邏輯完整覆蓋 A 股特有約束，包括 T+1 交割、漲跌停限制與最小手數規範"
+      ]
     },
     {
       "id": "go-stock",
@@ -43683,6 +43950,12 @@
       "negativeConstraints_zh": [
         "Go 語言需編譯",
         "社群較小"
+      ],
+      "useCase_zh": "個資交易者用它來分析 A 股市場、檢視 K 線並接收 AI 每日操作計劃與預警推送。",
+      "advantages_zh": [
+        "內建 150+ 個 AI 資料工具，支援多種 AI 代理模式。",
+        "提供視覺化 AI 對話，可分析 K 線圖截圖。",
+        "整合交易日誌、策略回測工具，並支援飛書或釘釘定時預警推送。"
       ]
     },
     {
@@ -43817,7 +44090,8 @@
         "多語言支援"
       ],
       "description_zh": "AI 驅動個人化學習導師",
-      "advantages_zh": "HKU學術研究，AI驅動教學，多語言支援"
+      "advantages_zh": "HKU學術研究，AI驅動教學，多語言支援",
+      "useCase_zh": "教育者與自學者可利用 DeepTutor 匯入課程材料，並生成個人化的持續輔導課程與練習題。"
     },
     {
       "id": "slavingia-skills",
@@ -44162,7 +44436,8 @@
       "negativeConstraints_zh": [
         "僅供教育用途，不建議用於商業影片製作",
         "需要 Python 3.9+ 環境"
-      ]
+      ],
+      "useCase_zh": "教育者利用 ManimGL 程式化地產生逐步幾何動畫，為微積分課程將複雜的 3D 向量場渲染成高解析度影片供學生觀看。"
     },
     {
       "id": "manim-community",
@@ -44213,6 +44488,12 @@
       "negativeConstraints_zh": [
         "API 與原始版本略有差異，存在遷移成本",
         "需使用較新版本的 Python"
+      ],
+      "useCase_zh": "教育者與內容創作者使用 Manim Community，透過程式化方式產生高品質的影片，以解釋複雜的數學概念。",
+      "advantages_zh": [
+        "提供 Docker 映像檔與線上 Jupyter 環境，可免去本地端依賴管理、快速上手。",
+        "相較於原本由 3b1b 維護的分支，社群版在功能與文件方面有更持續的更新與維護。",
+        "內建 IPython 魔法命令，能直接在 JupyterLab 或一般 Jupyter 筆記本中無縫整合使用。"
       ]
     },
     {
@@ -44637,7 +44918,9 @@
         "需要 LLM API 存取或 Claude Code/Codex 訂閱，無 AI 服務時無法生成",
         "不適用於單一檔案的簡短註解生成，此類需求用 JSDoc/docstring 即可",
         "Mermaid 圖表驗證需要 Node.js 環境"
-      ]
+      ],
+      "useCase_zh": "當開發團隊需要讓新成員快速上手大型多語言程式庫時，使用 CodeWiki 從專案的相依性圖中自動生成結構化文件，包含架構圖與資料流。",
+      "description_zh": "ACL 2026 開源框架：自動生成大型多語言程式庫的整體結構化文件（架構圖、資料流、序列圖與跨模組互動分析）"
     },
     {
       "id": "chinatextbook",
@@ -44696,7 +44979,8 @@
         "資源為 PDF 教材檔案而非可執行工具，不適用於程式化任務",
         "部分 >50MB 檔案被拆分，需先以 mergePDFs 合併才能使用",
         "內容可能涉及版權教材，僅建議用於個人學習與教育研究"
-      ]
+      ],
+      "useCase_zh": "海外華人家長在當地無法取得標準中國課程教材時，使用此資源庫為子女下載人教版等 K12 及大學課程的 PDF 教材。"
     },
     {
       "id": "scrapling",
@@ -44762,7 +45046,8 @@
         "需要 Python ≥3.10 環境，且 StealthyFetcher 首次使用需執行 scrapling install 下載瀏覽器依賴",
         "不適用於需要嚴格遵循 robots.txt 或合規要求的網站抓取",
         "高頻率大規模爬取需自行處理代理輪換與速率限制"
-      ]
+      ],
+      "useCase_zh": "資料工程師在 Python 工作流中整合 Scrapling，以規避 Cloudflare Turnstile 等反爬機制，並針對目標網站的 DOM 結構變更自動重新映射選擇器。"
     },
     {
       "id": "claude-code-skill-scrapling",
@@ -44945,7 +45230,8 @@
         "僅適用於處理使用者自己擁有或已獲授權的內容，不得用於規避他人版權保護",
         "不適用於移除可見的浮水印圖片（非溯源標記）或 DRM 保護內容",
         "統計式文字浮水印需依賴 Agent 重寫或 rewrite_text.py 鉤子，無法保證 100% 清除"
-      ]
+      ],
+      "useCase_zh": "開發者使用 AI 助手生成程式碼後，在將檔案提交到私人專案前，需要移除其中的不可見 Unicode 標記與溯源 metadata。"
     },
     {
       "id": "awesome-deepseek-agent",
@@ -45719,6 +46005,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "對希望在不產生網域註冊費用的情況下學習 DNS 基礎的學生或教育者而言，可使用提供的圖書式學習指南與免費網域儀表板來練習設定。",
+      "advantages_zh": [
+        "提供多種后缀（如 .DPPDNS.ORG 和 .US.KG）的免費網域註冊。",
+        "包含涵蓋 DNS 設定、網站部署與進階運作的綜合圖書式學習指南。",
+        "允許使用者透過自訂 nameserver 連接偏好的 DNS 供應商，具備更高彈性。"
       ]
     },
     {
@@ -45742,7 +46034,13 @@
         "method": "none",
         "repoUrl": "https://github.com/ZzzLc0405/photo-abstract-editorial"
       },
-      "capabilities": [],
+      "capabilities": [
+        "image-to-layout-conversion",
+        "abstract-panel-generation",
+        "color-extraction",
+        "editorial-design",
+        "prompt-templatization"
+      ],
       "useCase": "社群創作者需要快速產出具藝術感的照片編輯內容系列。",
       "advantages": [
         "一張照片即可產出含「原始攝影區 + 抽象記憶面板 + 詩意標題」的完整編輯作品",
@@ -45765,6 +46063,13 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "內容創作者上傳一張照片，生成結合原始影像、源自其構圖與色彩的抽象記憶面板以及詩意英文標題的直式編輯版式，用於社群媒體貼文。",
+      "advantages_zh": [
+        "專門從原始照片的空間關係、構圖節奏與色彩調板中提取抽象記憶面板，確保視覺一致性",
+        "保留原始照片的真實內容，無重繪、擴展或改寫，維持攝影完整性",
+        "支援版式參數的全面自訂，包括照片與面板比例、色彩飽和度、抽象母題及 typography 樣式",
+        "個人及非商業用途免費，採用 CC BY-NC-SA 4.0 授權"
       ]
     },
     {
@@ -46036,7 +46341,8 @@
         "學習曲線高於傳統 Excel/Google Sheets",
         "大型電子表格效能有待改善",
         "社群規模較小，插件生態不如 OpenRefine"
-      ]
+      ],
+      "useCase_zh": "資料分析師使用 Grist 管理複雜資料集，透過跨表格連結相關記錄並套用 Python 公式來自動化計算與資料轉換，無需離開試算表介面。"
     },
     {
       "id": "baserow-baserow",
@@ -46753,6 +47059,13 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "資深的 TypeScript 開發者希望透過將 anti-slop 規則複製到專案中並整合進 Oxlint 設定，來強制執行團隊嚴格的編碼標準，以捕捉低訊號的程式碼模式。",
+      "advantages_zh": [
+        "採用 vendor 模式，讓團隊能根據自身偏好和品味完全自訂並維護規則，而非受制於固定的外部相依。",
+        "自動化 agent 技能處理安裝、版本匹配相依解析及設定合併，確保與現有 Oxlint 環境相容。",
+        "在更新時透過三方合併策略保留本地自訂內容，避免強制替換已 vendor 的目錄。",
+        "包含可選的 Effect 專用規則，僅在使用 Effect 函式庫的專案中啟用，避免在其他專案中施加多餘的政策限制。"
       ]
     },
     {
@@ -49021,7 +49334,13 @@
       "status": "active",
       "addedAt": "2026-08-30T03:23:32.664Z",
       "stars": 612,
-      "description_zh": "透過訪談開發者，設計客製化的代理式控制迴路（感知器、控制器、致動器應對干擾），並產出可執行組件與排程工作流。"
+      "description_zh": "透過訪談開發者，設計客製化的代理式控制迴路（感知器、控制器、致動器應對干擾），並產出可執行組件與排程工作流。",
+      "useCase_zh": "團隊負責人用於在導入新編碼代理以稽核程式庫時，自動產生自訂的控制迴路工作流，排程執行代理以偵測並修復回歸問題。",
+      "advantages_zh": [
+        "建立專案專屬、可在本地運行的控制迴路元件，而非使用通用範本",
+        "自動生成排程式的 GitHub Actions 工作流，用於持續執行代理",
+        "透過引導式訪談流程，量身調整感測器、控制器與執行器邏輯以適應現有程式碼庫"
+      ]
     },
     {
       "id": "narrow-react-prop-types",
@@ -51528,7 +51847,8 @@
         "免費額度與模型選擇受 Codebuff 服務政策限制",
         "僅提供 CLI 介面，無 IDE 整合或圖形化操作",
         "程式碼內容會送至雲端模型，敏感專案需評估後使用"
-      ]
+      ],
+      "useCase_zh": "開發人員在大型儲存庫中，希望根據自然語言請求更新多個檔案並執行自動化檢查，且不需要付費訂閱或設定 API 金鑰，使用 Freebuff CLI 或桌面應用完成工作。"
     },
     {
       "id": "kunpeng",
@@ -51881,7 +52201,14 @@
         "method": "none",
         "repoUrl": "https://github.com/arvids-unavailable/openGym"
       },
-      "capabilities": [],
+      "capabilities": [
+        "self-hosting",
+        "bodyweight-tracking",
+        "progression-algorithms",
+        "workout-logging",
+        "passkey-authentication",
+        "offline-support"
+      ],
       "useCase": "健身愛好者需要自架、完全掌握個人數據的訓練追蹤系統。",
       "advantages": [
         "完全自架，健康數據不經第三方，隱私完整",
@@ -51904,6 +52231,12 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
+      ],
+      "useCase_zh": "一位健身愛好者希望用私人、擁有資料主權的方案取代訂閱制的商業運動 App，透過 Docker 在自管伺服器上執行 openGym，以跨裝置追蹤體重並管理引導式健身房課程。",
+      "advantages_zh": [
+        "資料主權：透過 Docker Compose 完全自我託管，使用者資料儲存在本地資料夾中，無第三方伺服器、無訂閱費、無廣告或遙測。",
+        "完整的進度演算法：支援 Greyskull LP、線性進度及雙重進度等特定肌力訓練方法，能自動調整重量，並在停滯時觸發減量。",
+        "詳細的動作記錄：處理複雜記錄情境，包括計時動作（如平板支撐）、超級組、單側 reps 分割，以及可選的 RIR/RPE esforço 評分，且不干擾 1RM 計算。"
       ]
     },
     {
@@ -51987,7 +52320,13 @@
         "method": "none",
         "repoUrl": "https://github.com/b-nnett/grok-bot-0.18-reconstructed"
       },
-      "capabilities": [],
+      "capabilities": [
+        "reverse-engineering",
+        "inference-routing",
+        "docker-sandbox",
+        "electron-reconstruction",
+        "usage-tracking"
+      ],
       "useCase": "研究 Grok 模型推理架構或逆向工程研究的開發者與研究者。",
       "advantages": [
         "基於 0.18.0 逆向重建，可研究 Grok Bot 內部架構與推理路徑設計",
@@ -52011,7 +52350,8 @@
       "negativeConstraints_zh": [
         "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
         "詳細安裝指令需依官方 README 為準"
-      ]
+      ],
+      "useCase_zh": "macOS Apple Silicon 的研究人員使用它在本地運行的重建版 Grok Bot 0.18 應用程式中，將 AI 推論路由至 Cursor、Claude Code、Codex 或 OpenRouter，同時在本地 Docker 沙箱中執行任務。"
     },
     {
       "id": "shiji-kb",
@@ -52319,6 +52659,13 @@
         "部分介面來自第三方，需自行至對方平台註冊取得金鑰",
         "第三方介面的穩定性與可用性無任何保證",
         "不適合需要 SLA 與商業授權的生產環境"
+      ],
+      "useCase_zh": "一位開發者在建構網頁應用程式時，尋找現成的免費端點（例如颱風追蹤或字串加密），以便快速整合，而無需針對多個第三方 API 服務進行註冊。",
+      "advantages_zh": [
+        "將來自不同提供者的 600 多個免費公開端點聚合為單一目錄，減少尋找個別 API 服務的需求。",
+        "提供每月更新日誌，讓使用者能輕鬆追蹤新功能與已棄用的端點。",
+        "許多服務提供可直接在線上呼叫的端點，允許立即測試與整合，無須複雜的本地設定。",
+        "專注於中文生態系統與情境（例如本地新聞、颱風、百度趨勢），提供國際 API 目錄中不一定找得到的相關資料來源。"
       ]
     },
     {
@@ -52556,7 +52903,8 @@
         "倉庫體積巨大（數 GB），下載與附加元件管理員可能長時間無回應",
         "非 FreeCAD 官方核心專案，零件品質由貢獻者自行負責",
         "零件為通用標準件，不含特定廠牌型號或客製設計"
-      ]
+      ],
+      "useCase_zh": "機械工程師在 FreeCAD 中開啟 PartsLibrary 巨集，瀏覽社群庫並雙擊選擇一個參數化接合件，將其插入目前的組裝模型中。"
     },
     {
       "id": "freetube",
@@ -52724,7 +53072,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 25587,
       "description_zh": "自架路由器，將 34 個 LLM 提供者與 635 個模型端點的免費方案聚合為單一 OpenAI 相容的 /v1 API，具備智慧模型路由、自動故障切換、加密金鑰儲存與依金鑰用量追蹤功能。",
-      "advantages_zh": "聚合 34 家供應商、635 個模型端點於單一 OpenAI 相容端點，內建智慧路由、速率限制自動容錯與每把金鑰用量追蹤，金鑰加密儲存，Docker 一鍵自架，資料自控"
+      "advantages_zh": "聚合 34 家供應商、635 個模型端點於單一 OpenAI 相容端點，內建智慧路由、速率限制自動容錯與每把金鑰用量追蹤，金鑰加密儲存，Docker 一鍵自架，資料自控",
+      "useCase_zh": "開發者將應用程式中 OpenAI 相容的客戶端指向本地自託管的伺服器，該伺服器會透明地在多家供應商的免費額度間路由請求。"
     },
     {
       "id": "free-books",
@@ -52773,7 +53122,13 @@
       ],
       "status": "active",
       "addedAt": "2026-09-12T05:23:23.915Z",
-      "stars": 15998
+      "stars": 15998,
+      "advantages_zh": [
+        "提供高品質技術書籍的合法免費索引，無需付費購買商業出版物。",
+        "依據 Web 開發、系統管理、程式語言等特定技術領域分類整理資源，便於針對性學習。",
+        "收錄多項主要語言與主題的雙語資源及中文翻譯，降低中文開發者的語言障礙。"
+      ],
+      "description_zh": "阮一峰整理的互聯網免費書籍索引，按語言與主題分類收錄可合法免費閱讀的技術與人文書目，並提供原文連結。"
     },
     {
       "id": "musicfree",
@@ -52826,7 +53181,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 26794,
       "description_zh": "基於外掛程式、可自訂且無廣告的免費音樂播放器，適用於 Android 與桌上型電腦。音樂來源由社群外掛提供，因此播放器本身不內建任何內容。",
-      "advantages_zh": "插件化架構，音源可自行擴充與替換，不被單一平台綁定，完全無廣告，介面與主題可高度自訂，基於 React Native，同時支援 Android 與桌面端"
+      "advantages_zh": "插件化架構，音源可自行擴充與替換，不被單一平台綁定，完全無廣告，介面與主題可高度自訂，基於 React Native，同時支援 Android 與桌面端",
+      "useCase_zh": "行動裝置使用者希望在播放網路音樂時避免訂閱費用與廣告干擾，透過在播放器中安裝社群提供的插件來實現搜尋與播放功能。"
     },
     {
       "id": "howtolivebetter",
@@ -52849,7 +53205,14 @@
         "command": "git clone https://github.com/eternity4719/HowToLiveBetter.git",
         "repoUrl": "https://github.com/eternity4719/HowToLiveBetter"
       },
-      "capabilities": [],
+      "capabilities": [
+        "evidence-based-living-advice",
+        "cost-effectiveness-ranking",
+        "medical-literacy",
+        "legal-risk-avoidance",
+        "financial-planning",
+        "offline-access"
+      ],
       "useCase": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
       "advantages": [
         "所有建議附有成本、收益、證據等級與期刊論文或官方文件原始出處",
@@ -52861,7 +53224,15 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T12:51:07.907Z",
-      "status": "experimental"
+      "status": "experimental",
+      "useCase_zh": "當使用者想依據證據與成本效益，從 599 條生活建議中篩選並決定該採取哪些健康、財務或法律行動時。",
+      "advantages_zh": [
+        "每條建議均明確列出成本、收益及證據等級（A/B/C），並附帶 1,237 個原始文獻連結。",
+        "依成本效益排序，讓使用者能優先執行投入最少、回報最大的行動。",
+        "提供專為 Claude Code 和 Codex 設計的 AI 技能，可依據書中的核算邏輯回答具體生活決策問題。",
+        "僅引用同儕審查期刊論文與官方文件，確保資訊來源的權威性與嚴謹度。"
+      ],
+      "description_zh": "一份按成本效益排序的循證生活指南，涵蓋長壽、急救、理財、法律、醫療與創業等 599 個主題，每條建議均標明成本、收益與證據等級，並引用期刊論文與官方文件。"
     },
     {
       "id": "spotifast",
@@ -52892,7 +53263,7 @@
         "egui",
         "gui"
       ],
-      "useCase": "Spotify, native and fast. One lightweight Rust app for your whole library, local playback, and Spotify Connect on Linux, macOS, and Windows.",
+      "useCase": "A developer or audiophile with a Spotify Premium account wants to listen to their library on a Linux laptop, macOS desktop, or Windows PC with minimal resource overhead, using native controls and Spotify Connect device switching without opening a heavy web-based client.",
       "advantages": [
         "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect",
         "跨 Linux、macOS 與 Windows 三大平台",
@@ -53030,7 +53401,7 @@
         "design-system",
         "design-tools"
       ],
-      "useCase": "An agent-first linter for Tailwind design systems. Write design system rules that agents can verify.",
+      "useCase": "Frontend developers use this tool to prevent AI coding agents from breaking UI consistency by enforcing specific Tailwind design system rules during code generation.",
       "advantages": [
         "Agent-first 架構，設計系統規則可由 agent 自動驗證",
         "專為 Tailwind 設計系統打造"
@@ -53067,7 +53438,13 @@
         "command": "pip install git+https://github.com/browser-use/jev-ultrafast.git",
         "repoUrl": "https://github.com/browser-use/jev-ultrafast"
       },
-      "capabilities": [],
+      "capabilities": [
+        "dynamic-indexed-action-space",
+        "structured-dom-snapshotting",
+        "speculative-target-prediction",
+        "fast-natural-language-agent-loop",
+        "safe-json-action-execution"
+      ],
       "useCase": "需要讓 AI 代理快速完成網頁操作任務（查票、填表、下單），且在乎單次任務耗時時。",
       "advantages": [
         "動態索引動作空間運作的極速瀏覽器代理",
@@ -53081,7 +53458,8 @@
       "addedAt": "2026-09-18T13:01:04.385Z",
       "status": "experimental",
       "description_zh": "以動態索引動作空間運作的極速瀏覽器代理：給定一個自然語言目標，由 TypeSafe 的 Jev 直接選出操作與元素，僅在需要輸入文字時才呼叫小型 LLM。官方實測 Google Flights 蘇黎世飛倫敦僅 7.1 秒。",
-      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成"
+      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成",
+      "useCase_zh": "網頁自動化開發者在需要快速操作基於瀏覽器的前端功能（如 Google Flights 搜尋）時，用它來執行搜尋與資料擷取任務，而無需撰寫脆弱且專屬於該網站的定位腳本。"
     },
     {
       "id": "fast-jev-compaction",
@@ -53146,7 +53524,7 @@
         "pdf",
         "pdf-converter"
       ],
-      "useCase": "#1 PDF Application on GitHub that lets you edit PDFs on any device anywhere",
+      "useCase": "A company IT admin needs to securely process and edit sensitive legal documents on-premises without sending them to external SaaS providers, utilizing the private API for automation.",
       "advantages": [
         "GitHub #1 PDF 應用",
         "可在任何裝置、任何地點編輯 PDF"
@@ -53226,8 +53604,14 @@
         "command": "npx security-audit-skill",
         "repoUrl": "https://github.com/cloudflare/security-audit-skill"
       },
-      "capabilities": [],
-      "useCase": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
+      "capabilities": [
+        "security-audit",
+        "vulnerability-hunting",
+        "code-analysis",
+        "report-generation",
+        "findings-validation"
+      ],
+      "useCase": "A security engineer uses this skill to orchestrate a coding agent for performing a structured, multi-phase vulnerability assessment of a JavaScript codebase, generating machine-readable findings for verification.",
       "advantages": [
         "Multi-phase security audit capability",
         "independently verified findings",
@@ -53513,7 +53897,7 @@
         "interactive-explorer",
         "search"
       ],
-      "useCase": "Open-source 3D anatomy explorer: 2,234 selectable BodyParts3D meshes, system layers, search, and exploded views.",
+      "useCase": "Medical students use the interactive 3D model to dissect and visualize 15 anatomical systems via search and exploded views during self-study.",
       "advantages": [
         "2,234 individually selectable meshes from the BodyParts3D reference",
         "15 anatomical systems with skeleton and organ presets",
@@ -53570,7 +53954,7 @@
         "model-context-protocol",
         "oauth"
       ],
-      "useCase": "ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.",
+      "useCase": "Developers who are already paying for ChatGPT Plus/Pro subscriptions but want to avoid consuming extra API quotas for planning tasks use this tool to leverage the web-based ChatGPT interface as a 'brain' to direct the Codex agent, keeping the agent strictly on execution tasks.",
       "advantages": [
         "Puts idle ChatGPT web-subscription quota to work driving Codex",
         "Splits work by strength - ChatGPT reasons, Codex executes",
