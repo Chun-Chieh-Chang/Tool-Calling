@@ -29,10 +29,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          # 只提交 registry 與 core 的變更。dist/ 是建置產物（.gitignore 已排除），
+          # 由 deploy-pages.yml 在部署時自行產生，不進版控。
+          # （2026-09-21：原本這裡有 `git add -f dist/`，-f 會無視 .gitignore，
+          #   導致每次排程都提交 5 萬行的建置產物並造成反覆衝突，已移除。）
           git add registry/ core/
-          if [ -d dist ]; then
-            git add -f dist/
-          fi
           if git diff --staged --quiet; then
             echo "No trending changes detected."
           else
