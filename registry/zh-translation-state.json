@@ -6437,6 +6437,58 @@
       "useCase_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼",
       "at": "2026-09-20T05:09:36.786Z",
       "advantages_zh": "理解程式碼庫上下文，透過自然語言執行例行任務，並處理 git 工作流程"
+    },
+    "laya": {
+      "at": "2026-09-21T12:36:37.342Z",
+      "skipped": "already zh or empty"
+    },
+    "zcode": {
+      "at": "2026-09-21T12:36:37.343Z",
+      "skipped": "already zh or empty"
+    },
+    "niubigeo": {
+      "at": "2026-09-21T12:36:37.343Z",
+      "skipped": "already zh or empty"
+    },
+    "aircard": {
+      "at": "2026-09-21T12:36:37.343Z",
+      "skipped": "already zh or empty"
+    },
+    "laya-mlx": {
+      "at": "2026-09-21T12:36:37.343Z",
+      "skipped": "already zh or empty"
+    },
+    "kev": {
+      "at": "2026-09-21T12:36:37.343Z",
+      "skipped": "already zh or empty"
+    },
+    "amagine3d": {
+      "negativeConstraints_zh": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "at": "2026-09-21T12:36:43.051Z"
+    },
+    "dlss5-swapper": {
+      "negativeConstraints_zh": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "at": "2026-09-21T12:36:43.051Z"
+    },
+    "human-atlas": {
+      "negativeConstraints_zh": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "at": "2026-09-21T12:36:43.051Z"
+    },
+    "codex-with-chatgpt": {
+      "negativeConstraints_zh": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "at": "2026-09-21T12:36:43.051Z"
     }
   },
   "failed": {}
