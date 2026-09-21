@@ -167,18 +167,24 @@ Tool-Calling/
 │   ├── build-web.js        # 建構 dist（同步知識圖譜與資產）
 │   ├── generate-knowledge-graph.js # 100% OLED 純黑實心知識圖譜產生器
 │   └── check-mece.js       # MECE 分類檢查 ＋ 來源一致性守衛
-├── registry/           # 工具函式庫
+├── registry/           # 工具函式庫（單一真理來源）
 │   ├── categories.json   # 18 個分類的單一機器可讀來源
-│   └── tools.json        # 702 工具（單一真理來源）
-├── docs/               # 文件
-│   ├── CLASSIFICATION.md         # 分類判定規則（權威）
-│   ├── CATEGORY-SYSTEM.md        # 分類統計與重構機制
-│   ├── SEARCH-ENGINE-OPTIMIZATION-REPORT.md  # 檢索引擎優化報告
-│   ├── category-conventions.md    # 分類慣例（領域優先 + AI 框架/代理邊界）
-│   └── category-audit-2026-08-16.md # 分類全面稽核報告（255 項修正）
+│   ├── tools.json        # 705 工具（截至 2026-09-21）
+│   ├── eval-queries.json # 評測集 v1.3.0（267 題）
+│   └── compiled-entries.json # 知識編譯詞條（Tier 1，705 筆）
+├── docs/               # 文件（依主題分類的索引見 docs/README.md）
+│   ├── README.md               # ⭐ docs 索引（現行／研究／歷史三類）
+│   ├── WIKI-COMPILER.md         # 知識編譯器：解析邏輯 + 配對邏輯
+│   ├── LLM-WIKI-BLUEPRINT.md    # 外部藍圖全文對照
+│   ├── CLASSIFICATION.md        # 分類判定規則（衍生檔，勿手改）
+│   └── CATEGORY-SYSTEM.md       # 分類統計（衍生檔，勿手改）
 └── tests/              # 測試
-    └── *.test.js       # 15 個測試檔、56 項單元測試
+    └── *.test.js       # 27 個測試檔，跑 `npm test` 看最新計數
 ```
+
+> 各目錄的完整說明與文件清單，請見 [docs/README.md](./docs/README.md)。
+> 根目錄另有 `HANDOFF.md`（交接：現況、陷阱、設計決策）與
+> `DEV_LOG.md`（依時間排序的開發日誌）。
 
 ---
 
