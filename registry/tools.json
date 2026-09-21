@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-20T23:49:57.326Z",
+  "lastUpdated": "2026-09-21T11:35:22.305Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -53370,6 +53370,457 @@
         "以嚴格適當評分規則（RLCD）做強化學習訓練，輸出經過校準",
         "內建 router 依每次請求挑選合適檢查點",
         "Apache 2.0 授權，可從 PyPI 安裝"
+      ]
+    },
+    {
+      "id": "amagine3d",
+      "name": "Amagine3D",
+      "url": "https://github.com/amagine-ai/Amagine3D",
+      "description": "Open-source 3D capability layer for hardware creation: give it a product description, reference images and key dimensions, and it designs an enclosure and assembly structures around the internal components while producing editable source code.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "amagine3d",
+        "硬體外殼設計",
+        "產品外殼 3d 建模",
+        "依尺寸產生組裝結構",
+        "3d enclosure design",
+        "hardware case modeling",
+        "parametric enclosure",
+        "匯出 step stl 3mf"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/amagine-ai/Amagine3D"
+      },
+      "capabilities": [
+        "3d-modeling",
+        "parametric-design",
+        "enclosure-design",
+        "code-generation",
+        "step-export",
+        "stl-export",
+        "3mf-export"
+      ],
+      "useCase": "Amagine3D",
+      "advantages": [
+        "Turns a product description plus dimensions into enclosure and assembly geometry",
+        "Produces editable source code instead of a locked binary model",
+        "Exports STEP, STL and 3MF for downstream manufacturing",
+        "Apache 2.0, runs on Node.js 22.19+"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 4542,
+      "addedAt": "2026-09-21T00:37:46.547Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W38",
+        "starsAtIngest": 4542,
+        "weeklyDelta": 1949,
+        "ingestedAt": "2026-09-21T00:37:46.547Z"
+      },
+      "description_zh": "開源的硬體創作 3D 能力層：輸入產品描述、參考圖片與關鍵尺寸，它會圍繞內部元件設計外殼與組裝結構，並產出可編輯的原始碼。",
+      "useCase_zh": "依產品描述、參考圖與尺寸設計外殼與組裝結構，並匯出 STEP／STL／3MF 供後續製造。",
+      "advantages_zh": [
+        "把產品描述與尺寸轉成外殼與組裝幾何",
+        "產出可編輯的原始碼，而非鎖死的二進位模型",
+        "可匯出 STEP、STL、3MF 供後續製造使用",
+        "Apache 2.0 授權，需 Node.js 22.19+"
+      ]
+    },
+    {
+      "id": "dlss5-swapper",
+      "name": "DLSS5-Swapper",
+      "url": "https://github.com/rakanki911/DLSS5-Swapper",
+      "description": "Install, tune and restore DLSS 5 in your games with one click. Native RenoDX, DLSS5-Feeder for games without DLSS, OptiScaler and multipass routes; DirectX 8/9/11/12, Vulkan, OpenGL, DirectDraw and em",
+      "category": "3D工程繪圖",
+      "language": "javascript",
+      "triggers": [
+        "dlss5-swapper",
+        "dlss 5 安裝",
+        "遊戲畫質提升",
+        "dlss 切換管理",
+        "neural rendering",
+        "遊戲 升頻",
+        "emulator dlss"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/rakanki911/DLSS5-Swapper"
+      },
+      "capabilities": [
+        "dlss",
+        "neural-rendering",
+        "upscaling",
+        "game-modding"
+      ],
+      "useCase": "Install, tune and restore DLSS 5 in your games with one click. Native RenoDX, DLSS5-Feeder for games without DLSS, OptiScaler and multipass routes; DirectX 8/9/11/12, Vulkan, OpenGL, DirectDraw and emulators. In-game F8 overlay, automatic backups, and a community page showing what works on your games and your graphics card.",
+      "advantages": [
+        "Installs and manages DLSS 5 Neural Rendering",
+        "Works with compatible games and emulators",
+        "Windows 10/11 support",
+        "UI localized into 38 languages"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 4326,
+      "addedAt": "2026-09-21T00:37:46.547Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W38",
+        "starsAtIngest": 4326,
+        "weeklyDelta": 1903,
+        "ingestedAt": "2026-09-21T00:37:46.547Z"
+      },
+      "description_zh": "為支援的遊戲與模擬器安裝並管理 DLSS 5 神經渲染。",
+      "useCase_zh": "在 Windows 上為支援的遊戲或模擬器安裝、切換與更新 DLSS 5 神經渲染元件。",
+      "advantages_zh": [
+        "安裝並管理 DLSS 5 神經渲染",
+        "支援相容的遊戲與模擬器",
+        "支援 Windows 10／11",
+        "介面提供 38 種語言"
+      ]
+    },
+    {
+      "id": "human-atlas",
+      "name": "human-atlas",
+      "url": "https://github.com/ashemag/human-atlas",
+      "description": "Open-source 3D anatomy explorer: 2,234 selectable BodyParts3D meshes, system layers, search, and exploded views.",
+      "category": "3D工程繪圖",
+      "language": "typescript",
+      "triggers": [
+        "human-atlas",
+        "3d 解剖圖",
+        "人體構造 探索",
+        "anatomy explorer",
+        "解剖模型 互動檢視",
+        "器官 3d 檢視"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ashemag/human-atlas"
+      },
+      "capabilities": [
+        "3d-visualization",
+        "anatomy",
+        "interactive-explorer",
+        "search"
+      ],
+      "useCase": "Open-source 3D anatomy explorer: 2,234 selectable BodyParts3D meshes, system layers, search, and exploded views.",
+      "advantages": [
+        "2,234 individually selectable meshes from the BodyParts3D reference",
+        "15 anatomical systems with skeleton and organ presets",
+        "Search across 3,432 named concepts",
+        "Built with React, Three.js and shadcn/ui"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 3380,
+      "addedAt": "2026-09-21T00:37:46.547Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W38",
+        "starsAtIngest": 3380,
+        "weeklyDelta": 1837,
+        "ingestedAt": "2026-09-21T00:37:46.547Z"
+      },
+      "description_zh": "互動式 3D 解剖探索器，以 React、Three.js 與 shadcn/ui 打造。",
+      "useCase_zh": "需要互動探索人體解剖構造、逐塊檢視器官與系統時使用。",
+      "advantages_zh": [
+        "以 BodyParts3D 為基礎，提供 2,234 個可個別選取的網格",
+        "15 個解剖系統，內建骨骼與器官預設視角",
+        "可搜尋 3,432 個具名解剖概念",
+        "以 React、Three.js 與 shadcn/ui 打造"
+      ]
+    },
+    {
+      "id": "codex-with-chatgpt",
+      "name": "codex-with-chatgpt",
+      "url": "https://github.com/XiaoDuoYa/codex-with-chatgpt",
+      "description": "ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "codex-with-chatgpt",
+        "ai-agents",
+        "chatgpt",
+        "codex",
+        "mcp",
+        "model-context-protocol"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/XiaoDuoYa/codex-with-chatgpt"
+      },
+      "capabilities": [
+        "ai-agents",
+        "chatgpt",
+        "codex",
+        "mcp",
+        "model-context-protocol",
+        "oauth"
+      ],
+      "useCase": "ChatGPT thinks. Codex works. Use ChatGPT as the planning brain while keeping the Codex harness.",
+      "advantages": [
+        "Puts idle ChatGPT web-subscription quota to work driving Codex",
+        "Splits work by strength - ChatGPT reasons, Codex executes",
+        "Self-update flow inside Codex resolves most known issues"
+      ],
+      "negativeConstraints": [
+        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
+        "詳細安裝指令需依官方 README 為準"
+      ],
+      "stars": 4246,
+      "addedAt": "2026-09-21T00:37:46.547Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W38",
+        "starsAtIngest": 4246,
+        "weeklyDelta": 1673,
+        "ingestedAt": "2026-09-21T00:37:46.547Z"
+      },
+      "description_zh": "把 ChatGPT 網頁版訂閱的閒置額度接到 Codex 上：ChatGPT 負責思考，Codex 負責執行。",
+      "useCase_zh": "ChatGPT 訂閱額度大量閒置、但 Codex 額度吃緊時，把兩者接起來分工使用。",
+      "advantages_zh": [
+        "把 ChatGPT 網頁版閒置的訂閱額度拿來驅動 Codex",
+        "依所長分工：ChatGPT 負責思考、Codex 負責執行",
+        "可在 Codex 內自我更新，解決大多數已知問題"
+      ]
+    },
+    {
+      "id": "zcode",
+      "name": "ZCode",
+      "url": "https://github.com/zai-org/ZCode",
+      "description": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "zcode",
+        "ai 代理"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx ZCode",
+        "repoUrl": "https://github.com/zai-org/ZCode"
+      },
+      "capabilities": [
+        "ai-coding",
+        "agent-cli",
+        "desktop-app",
+        "web-ui",
+        "runtime"
+      ],
+      "useCase": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
+      "advantages": [
+        "AI coding workbench with desktop app, browser UI and terminal agent",
+        "Single repository covering client, backend service, shared UI, plus Agent CLI and runtime source"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T11:32:40.278Z",
+      "status": "experimental",
+      "description_zh": "AI 程式開發工作台，提供桌面應用、瀏覽器介面與終端 Agent。",
+      "useCase_zh": "需要整合式 AI 開發環境，或想在終端以 Agent 方式操作程式碼時使用。",
+      "advantages_zh": [
+        "AI 程式開發工作台，同時提供桌面應用、瀏覽器介面與終端 Agent",
+        "單一倉庫涵蓋客戶端、後端服務、共用 UI，以及 Agent CLI 與執行環境原始碼"
+      ]
+    },
+    {
+      "id": "niubigeo",
+      "name": "Niubigeo",
+      "url": "https://github.com/Albert-Weasker/niubigeo",
+      "description": "Open-source AI brand visibility and competitor reports. Official website: https://niubigeo.ai/ | Paid services: AI testing by real people and GEO optimization. Pricing: https://niubigeo.ai/pricing",
+      "category": "數據分析",
+      "language": "typescript",
+      "triggers": [
+        "niubigeo",
+        "測試與自動化"
+      ],
+      "install": {
+        "method": "npm",
+        "command": "npx niubigeo",
+        "repoUrl": "https://github.com/Albert-Weasker/niubigeo"
+      },
+      "capabilities": [
+        "ai-visibility",
+        "brand-monitoring",
+        "competitor-analysis",
+        "geo",
+        "self-hosted"
+      ],
+      "useCase": "Open-source AI brand visibility and competitor reports. Official website: https://niubigeo.ai/ | Paid services: AI testing by real people and GEO optimization. Pricing: https://niubigeo.ai/pricing",
+      "advantages": [
+        "Tracks how AI models describe your product and which competitors they name",
+        "Shows the sources cited in AI answers so you can inspect the evidence",
+        "Self-hosted (Docker) under Apache 2.0",
+        "UI available in English, Simplified Chinese and Brazilian Portuguese"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T11:34:56.102Z",
+      "status": "experimental",
+      "stars": 4285,
+      "description_zh": "開源的 AI 能見度追蹤工具：看各家模型怎麼描述你的產品、推薦了誰、引用了哪些來源。",
+      "useCase_zh": "想知道 AI 回答裡有沒有提到自家產品、競品是誰、依據哪些來源時使用。",
+      "advantages_zh": [
+        "追蹤各家 AI 模型如何描述你的產品、又推薦了哪些競品",
+        "顯示 AI 回答引用的來源，可直接檢視證據",
+        "可自架（Docker），Apache 2.0 授權",
+        "介面支援英文、簡體中文與巴西葡萄牙文"
+      ]
+    },
+    {
+      "id": "aircard",
+      "name": "AirCard",
+      "url": "https://github.com/Mak5er/AirCard",
+      "description": "Apple Wallet Card Skinner for iOS 18+ (No Jailbreak Required)",
+      "category": "AI 代理",
+      "language": "swift",
+      "triggers": [
+        "aircard",
+        "ai 代理"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Mak5er/AirCard.git",
+        "repoUrl": "https://github.com/Mak5er/AirCard"
+      },
+      "capabilities": [
+        "apple-wallet",
+        "ios-theming",
+        "lockscreen-customization",
+        "no-jailbreak"
+      ],
+      "useCase": "Apple Wallet Card Skinner for iOS 18+ (No Jailbreak Required)",
+      "advantages": [
+        "Assigns custom artwork, textures or bank logos to Apple Pay and Wallet cards",
+        "Themes the lockscreen passcode on iOS 18+",
+        "No jailbreak required - works via the airlift AirTraffic sync exploit"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T11:35:05.273Z",
+      "status": "experimental",
+      "description_zh": "iOS 18+ 的 Apple Wallet 卡片外觀與鎖定畫面密碼主題工具，透過 airlift AirTraffic 同步漏洞達成，無需越獄。",
+      "useCase_zh": "在未越獄的 iOS 18+ 裝置上自訂 Apple Wallet 卡片外觀與鎖定畫面密碼樣式。",
+      "advantages_zh": [
+        "可為 Apple Pay 與 Wallet 卡片指定自訂圖樣、材質或銀行標誌",
+        "可自訂 iOS 18+ 的鎖定畫面密碼樣式",
+        "無需越獄，透過 airlift AirTraffic 同步漏洞運作"
+      ]
+    },
+    {
+      "id": "laya-mlx",
+      "name": "Laya Mlx",
+      "url": "https://github.com/mizorewww/laya-mlx",
+      "description": "Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyTorch, or cloud API.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "laya-mlx",
+        "laya",
+        "mlx",
+        "apple-silicon",
+        "decision-model",
+        "inference",
+        "local-ai",
+        "machine-learning"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/mizorewww/laya-mlx.git",
+        "repoUrl": "https://github.com/mizorewww/laya-mlx"
+      },
+      "capabilities": [
+        "apple-silicon",
+        "decision-model",
+        "inference",
+        "laya",
+        "local-ai"
+      ],
+      "useCase": "Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyTorch, or cloud API.",
+      "advantages": [
+        "Runs Laya natively on Apple Silicon via MLX",
+        "13.4 ms median end-to-end for a short English typed decision; 7.4 ms with the multilingual checkpoint",
+        "Zero output tokens per decision",
+        "No PyTorch, Transformers runtime or cloud API required"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T11:35:16.003Z",
+      "status": "experimental",
+      "description_zh": "在 Apple Silicon 上以 MLX 原生執行 Laya 的結構化決策模型。",
+      "useCase_zh": "需要在 Mac（Apple Silicon）上以極低延遲、完全離線地做結構化決策推論時。",
+      "advantages_zh": [
+        "透過 MLX 在 Apple Silicon 上原生執行 Laya",
+        "短英文結構化決策端到端中位數 13.4 毫秒；多語言檢查點為 7.4 毫秒",
+        "每次決策輸出零 token",
+        "不需 PyTorch、Transformers 執行環境或雲端 API"
+      ]
+    },
+    {
+      "id": "kev",
+      "name": "Kev",
+      "url": "https://github.com/jaredpalmer/kev",
+      "description": "tiny Jev-like family of decision models built on top of Qwen3.5 you can train and run on your own",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "kev",
+        "decision-model",
+        "jev",
+        "qwen3"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/jaredpalmer/kev.git",
+        "repoUrl": "https://github.com/jaredpalmer/kev"
+      },
+      "capabilities": [
+        "decision-model",
+        "jev",
+        "qwen3"
+      ],
+      "useCase": "tiny Jev-like family of decision models built on top of Qwen3.5 you can train and run on your own",
+      "advantages": [
+        "Small decision models in 0.8B, 4B and 9B sizes that you can train or run yourself",
+        "Built on Qwen3.5 following the architecture described in Jev's Architecture Unmasked",
+        "API matches TypeSafe System One, so their Python SDK can point at your local server",
+        "Apache 2.0 with frozen evaluation suites"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T11:35:22.305Z",
+      "status": "experimental",
+      "description_zh": "可自行訓練與執行的輕量決策模型（Jev 風格）。",
+      "useCase_zh": "需要可自行訓練、自行託管的小型決策模型，且想沿用 TypeSafe System One 的 API 介面時。",
+      "advantages_zh": [
+        "提供 0.8B／4B／9B 三種小型決策模型，可自行訓練或執行",
+        "基於 Qwen3.5，採用 Jev 架構解析文中描述的架構",
+        "API 與 TypeSafe System One 相容，可直接把對方的 Python SDK 指向本機伺服器",
+        "Apache 2.0 授權，附凍結的評測套件"
       ]
     }
   ]
