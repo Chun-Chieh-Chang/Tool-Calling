@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-20T11:21:21.075Z",
+  "lastUpdated": "2026-09-20T23:49:57.326Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -53323,6 +53323,54 @@
       "useCase_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼",
       "stars": 146785,
       "advantages_zh": "理解程式碼庫上下文，透過自然語言執行例行任務，並處理 git 工作流程"
+    },
+    {
+      "id": "laya",
+      "name": "Laya",
+      "url": "https://github.com/NandhaKishorM/laya",
+      "description": "Multilingual, non-autoregressive System 1 decision engine: typed decisions over 100+ languages in a single forward pass (~33 ms), trained with reinforcement learning against strictly proper scoring rules (RLCD), with a router that picks the right checkpoint per request.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "laya",
+        "開發工具"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/NandhaKishorM/laya.git",
+        "repoUrl": "https://github.com/NandhaKishorM/laya"
+      },
+      "capabilities": [
+        "decision-engine",
+        "multilingual",
+        "non-autoregressive",
+        "classification",
+        "calibration",
+        "model-routing"
+      ],
+      "useCase": "Low-latency multilingual decision/classification — e.g. routing, intent detection or triage that must return typed output in ~33 ms across 100+ languages.",
+      "advantages": [
+        "Non-autoregressive single forward pass - typed decisions in ~33 ms",
+        "Multilingual checkpoint covering 100+ languages",
+        "RL-trained against strictly proper scoring rules (RLCD) for calibrated outputs",
+        "Built-in router selects the right checkpoint per request",
+        "Apache 2.0 licensed and installable from PyPI"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-20T23:50:28.034Z",
+      "status": "experimental",
+      "description_zh": "多語言、非自回歸的 System 1 決策引擎：單次前向傳遞即可對 100 多種語言輸出結構化決策（約 33 毫秒），以強化學習搭配嚴格適當評分規則（RLCD）訓練，內建 router 依請求挑選合適檢查點。",
+      "useCase_zh": "需要極低延遲的多語言決策／分類場景，例如路由、意圖判斷或分流，必須在約 33 毫秒內對 100 多種語言回傳結構化結果。",
+      "advantages_zh": [
+        "非自回歸架構，單次前向傳遞約 33 毫秒即輸出結構化決策",
+        "多語言檢查點支援 100 種以上語言",
+        "以嚴格適當評分規則（RLCD）做強化學習訓練，輸出經過校準",
+        "內建 router 依每次請求挑選合適檢查點",
+        "Apache 2.0 授權，可從 PyPI 安裝"
+      ]
     }
   ]
 }
