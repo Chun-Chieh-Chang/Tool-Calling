@@ -244,10 +244,13 @@ for (let i = 0; i < targets.length; i += BATCH) {
   } else {
     const out = normalizeResponse(res.ok);
     for (const b of batch) {
-      // 模型不一定聽話，實測有三種跑版：
+      // 模型不一定聽話，實測有四種跑版：
       //   1. 巢狀（正確）：{ "id": { "description_zh": "..." } }
       //   2. 扁平加後綴：{ "id_zh": "譯文" }   ← 只有一個欄位要翻時最常見
       //   3. 直接給字串：{ "id": "譯文" }
+      //   4. 扁平且 key 帶欄位名：{ "id_description_zh": "譯文" }
+      //      ← 當同一批次裡每個工具各自只缺「不同」欄位時幾乎必然出現
+      //        （實例：一支缺 description、另一支缺 negativeConstraints）
       const fields = ['description', 'useCase', 'advantages'].filter((f) => b[f]);
       let r = out[b.id] || out[b.id.toLowerCase()] || out[b.id.toUpperCase()];
       if (r === undefined && typeof out[`${b.id}_zh`] === 'string') r = out[`${b.id}_zh`];
@@ -255,7 +258,24 @@ for (let i = 0; i < targets.length; i += BATCH) {
         // 扁平形式：只有一個待翻欄位時可直接對應，否則歸給 description
         r = fields.length === 1 ? { [`${fields[0]}_zh`]: r } : { description_zh: r };
       }
-      if (!r) { state.failed[b.id] = { at: new Date().toISOString(), why: 'missing id in response' }; failN++; continue; }
+      // 第 4 種跑版：整個回應被壓平，key 變成 `<id>_<欄位>_zh`
+      if (!r || typeof r !== 'object') {
+        const flat = {};
+        for (const f of fields) {
+          const v = out[`${b.id}_${f}_zh`];
+          if (typeof v === 'string' && v.trim()) flat[`${f}_zh`] = v;
+        }
+        const nc = out[`${b.id}_negativeConstraints_zh`];
+        if (Array.isArray(nc) && nc.length) flat.negativeConstraints_zh = nc;
+        if (Object.keys(flat).length > 0) r = flat;
+      }
+      if (!r) {
+        // 記錄實際收到的 key，否則只看到「missing id」無從診斷模型跑版成什麼樣子
+        const gotKeys = Object.keys(out || {}).slice(0, 6).join(', ') || '(no keys)';
+        state.failed[b.id] = { at: new Date().toISOString(), why: `missing id in response; got: ${gotKeys}` };
+        failN++;
+        continue;
+      }
       const rec = {};
       // 同理：模型可能回 `description` 而非指定的 `description_zh`，兩種都收
       for (const k of ['description', 'useCase', 'advantages']) {
