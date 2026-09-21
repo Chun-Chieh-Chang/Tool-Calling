@@ -1,5 +1,77 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-21 修復「加入工具」管線的資料品質缺陷 + 補上語法守門
+
+### 需求
+批量加入 6 個 GitHub 網址（`Z-Anatomy/Models-of-human-anatomy`、`thebuggeddev/anatomy`、
+`ashemag/human-atlas`、`naver/anny`、`oracle/fusion-ai-studio`、`rtk-ai/rtk`），
+並檢查是否需要拆解為多筆工具。
+
+加入過程中發現四個**既有缺陷**，全部修掉。
+
+### 缺陷 1：`guessInstall()` 憑「語言」猜安裝方式 → 產生必定失敗的指令
+舊版只看 GitHub 偵測到的語言：`typescript → npx <repo>`、`python → pip install git+<url>`。
+但語言不等於可安裝套件：
+
+| repo | 舊指令 | 為什麼錯 |
+|---|---|---|
+| `thebuggeddev/anatomy` | `npx anatomy` | Next.js 應用（`package.json` 為 `private: true`），npm 上沒這個套件 |
+| `Z-Anatomy/Models-of-human-anatomy` | `pip install git+…` | Blender 範本，無 `setup.py`／`pyproject.toml` |
+
+→ 改為 `detectInstall()`：**先讀 repo 根目錄的封裝檔，有證據才給套件指令**。
+`package.json` 有 `bin` 且非 private → `npx`；其餘 → `git clone`。
+`pyproject.toml`／`setup.py` → `pip`；`Cargo.toml` → `cargo`；`composer.json` → `composer`。
+查不到檔案清單（限流）→ 直接 `git clone`，不猜。
+
+### 缺陷 2：README 首段常不是功能說明（樣板文／更新公告／H1 標題）
+enricher 讀 README 第一段產生 useCase／advantages，但第一段經常是別的東西：
+
+| repo | 首段實際內容 | 後果 |
+|---|---|---|
+| `thebuggeddev/anatomy` | 未修改的 `vinext-starter` 樣板文 | useCase／advantages／capabilities 全描述成 Cloudflare 樣板 |
+| `oracle/fusion-ai-studio` | 「The repository has been restructured…」 | description 變成更新公告 |
+| `Z-Anatomy/Models-of-human-anatomy` | `# Z-Anatomy` H1 與內文被軟換行黏成同段 | description 以 `# Z-Anatomy` 開頭 |
+
+→ 三處修法：
+1. `stripMarkdown()` 增加**ATX 標題整行移除**（要求「`#` + 空白」，避免誤刪 `#1 工具`）
+2. 新增 `isBoilerplateParagraph()`：公告式開頭黑名單（只收明確樣式，精度優先）
+3. `truncateAtWord()`：**詞邊界截斷**，取代 `slice(0, 200)`
+   （原本把 Z-Anatomy 的描述切成 `…Gauthier Kervyn (de`，看起來像資料損毀）
+
+### 缺陷 3：`translate:zh` 的第四種跑版未被解析
+當同批次每個工具各自只缺**不同**欄位時，模型回的是**扁平且 key 帶欄位名**：
+
+```json
+{ "models-of-human-anatomy_description_zh": "…", "anatomy_negativeConstraints_zh": […] }
+```
+
+舊版只認 `id` / `id_zh`，兩筆全被判失敗。→ 已補第 4 種解析，
+並讓失敗訊息附上**實際收到的 key**（原本只寫「missing id」無從診斷）。
+
+順帶掃出並修正一處**韓文污染**（`允許自由 재배포與二次創作`）。
+
+### 缺陷 4：`core/tool-enricher.js` 語法錯誤（template literal 內用反引號）
+在 prompt 這類 template literal 裡寫了 `` `npm run translate:zh` ``，
+反引號提前結束字串 → `SyntaxError` → 整個模組載入失敗。
+因為只有 `tests/tool-enricher.test.js` import 它，其他測試照常全綠。
+
+→ 新增 `scripts/check-syntax.js`（全部 .js 跑 `node --check`，約 1 秒），
+   接進 `npm test` 第一道關卡。這是**第二次**「沒被測試覆蓋的檔案語法壞掉」。
+
+### 拆解判定：`oracle/fusion-ai-studio` **不拆解**
+底下有 `aiapps/{scm,prc,hcm}`、`extensions`、`how-to`、`.agents/skills`，看似多個工具。
+實際查證：全部是**同一產品（Oracle Fusion AI Agent Studio）的樣板與領域實例**，
+且按產品 release 分支（`release-26C`）發佈。
+→ 判準：子目錄是「獨立工具」還是「同一產品的樣板／領域實例」？**後者不拆。**
+
+### 驗證
+- `npm test` → 248 tests / 246 pass / **0 fail**（新增 `tests/scan-tool.test.js` 26 個測試）
+- `cli.js validate` → 722 支工具，**0 錯誤 / 0 警告 / 品質 100.0**
+- `npm run check-mece` → 通過
+- 語法守門以「故意放壞檔 → exit 1」驗證過（**守門機制必須能失敗才算數**）
+
+---
+
 ## 2026-09-20 新增「工具知識編譯器」：新的解析邏輯 + 配對邏輯
 
 ### 需求

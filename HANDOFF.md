@@ -235,14 +235,14 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（2026-09-20）
+## 三、目前狀態（2026-09-21）
 
 ### Git
 
 ```
-最新提交：9ff0ede
-遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git（已同步，無未推送提交）
-工具數：  705（tools.json，active + experimental）
+最新提交：c7ca58a
+遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git
+工具數：  722（tools.json，active + experimental 719）
 ```
 
 倉庫損毀已發生**兩次**（09-19 與 09-20），修復程序見**陷阱 12**。
@@ -308,6 +308,30 @@ TAP 輸出的順序是：
 → **至少 `tail -8`，或直接 `npm test 2>&1 | grep -E "^# (tests|pass|fail)"`。**
 → 同理：任何「只看尾部 N 行」的驗證都要確認關鍵行沒被截掉。
 
+### 23. 🔴 反引號寫進 template literal 會提前結束字串（2026-09-21）
+
+`core/tool-enricher.js` 的 LLM prompt 是一整段 template literal（`` const SYS = `...` ``）。
+在裡面寫了 markdown 反引號：
+
+```js
+const SYS = `...
+🔴 **不要產生 description_zh**：描述的中文由 `npm run translate:zh` 負責。
+...`;
+//                                    ↑ 這個反引號把字串提前結束了
+```
+
+結果：`npm run translate:zh` 被當成程式碼 → `SyntaxError: Unexpected identifier 'npm'`
+→ **整個模組載入失敗**。而且因為只有 `tests/tool-enricher.test.js` import 它，
+其他測試照常全綠，很容易誤判沒事。
+
+**這已經是第二次「沒被測試覆蓋的檔案語法壞掉」**（第一次是誤刪 `const DEFAULT_MODEL`，
+見陷阱 22）。兩次的共同點：**編輯註解／prompt 這類「看起來不是程式碼」的區域**。
+
+→ 已加 `scripts/check-syntax.js`（對 core/、scripts/、web/、tests/、根目錄所有 .js
+   跑 `node --check`，約 1 秒），並接進 `npm test` 的第一道關卡。
+→ 寫進 template literal 的內容，**絕對不要用反引號**（改用引號或直接不加標記）。
+→ 改完 prompt／註解後，`node -e "import('./core/xxx.js')"` 是最快的自我檢查。
+
 ### 21. 🔴 API 限流是 TPM，而且多把金鑰對本專案**沒有效果**
 
 實測（同一端點 apihub.agnes-ai.com 的兩把金鑰，相同設定、中間等 100 秒）：
@@ -363,9 +387,10 @@ agent **59.7%**（含近義 61.6%）／fusion **58.5%**（含近義 60.4%）。
 
 ### 測試
 
-`npm test` → **170 tests / 168 pass / 0 fail**（2 skipped 為需外部依賴者）
-2026-09-19 起改為 `--test-concurrency=1` 序列化（見陷阱 9），耗時 12.5s → 21.4s。
-`cli.js validate` → **0 錯誤／0 警告／品質 100.0**。
+`npm test` → **248 tests / 246 pass / 0 fail**（2 skipped 為需外部依賴者）
+2026-09-19 起改為 `--test-concurrency=1` 序列化（見陷阱 9），耗時 12.5s → 21.4s → 29s。
+2026-09-21 起 `npm test` 第一道關卡是 `scripts/check-syntax.js`（見陷阱 23）。
+`cli.js validate` → **0 錯誤／0 警告／品質 100.0**（722 支工具）。
 `npm run ceiling` → 天花板診斷（不需 API，見陷阱 17）。
 
 ---
@@ -427,11 +452,13 @@ CLI  ─┘
 
 | 路徑 | 用途 |
 |---|---|
-| `registry/tools.json` | **工具庫（單一真理來源）** 705 筆 |
+| `registry/tools.json` | **工具庫（單一真理來源）** 722 筆 |
 | `registry/categories.json` | **分類唯一來源**（機器可讀） |
 | `registry/eval-queries.json` | 評測集 **v1.3.0 — 267 筆**（257 可命中 + 10 空集），標準誤 ~3.0pp |
 | `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|
 | `scripts/translate-to-zh.js` | 產生 `*_zh` 欄位（`npm run translate:zh`）|
+| `scripts/check-syntax.js` | **語法守門**：全部 .js 跑 `node --check`（`npm test` 第一關，見陷阱 23）|
+| `scripts/scan-tool.js` | 加入工具第一階段：解析 GitHub repo（無 LLM）；`detectInstall` 依封裝檔判斷安裝方式 |
 | `scripts/ceiling-analysis.js` | 天花板診斷（`npm run ceiling`，見陷阱 17）|
 | `registry/compiled-entries.json` | 知識編譯詞檔（705 筆，由 compile-wiki 產生）|
 | `scripts/compile-wiki.js` | **工具知識編譯器**（解析邏輯，`npm run compile:wiki`）|
@@ -627,3 +654,88 @@ npm run mcp                 # 啟動 MCP server
 **剩下的 5% 天花板缺口是真實限制**（詞彙鴻溝，見陷阱 17），不建議強修（會變成 overfitting）。
 
 ---
+
+## 十三、2026-09-21 的核心結論（最新）
+
+本輪主軸是**「加入工具」這條路的資料品質**，以及一個潛伏的語法錯誤。
+
+### 1. 兩階段解析已上線，但**第二階段的輸入源是 README 首段，會踩到樣板文**
+
+`scan-tool.js`（第一階段，無 LLM）+ `core/tool-enricher.js`（第二階段，LLM）分工明確。
+本輪實測發現：**enricher 讀的是 README 的第一段**，而第一段經常不是功能說明。
+
+實際踩到的三個案例（全部在本輪修掉）：
+
+| repo | README 首段實際內容 | 後果 |
+|---|---|---|
+| `thebuggeddev/anatomy` | 未修改的 `vinext-starter` 樣板文 | useCase／advantages／capabilities **全部描述成 Cloudflare 樣板**，與 3D 解剖完全無關 |
+| `oracle/fusion-ai-studio` | 「The repository has been restructured…」更新公告 | description 變成公告文 |
+| `Z-Anatomy/Models-of-human-anatomy` | `# Z-Anatomy` H1 與內文被軟換行黏成同一段 | description 以 `# Z-Anatomy` 開頭 |
+
+→ 三處修法：**description 優先序**（GitHub 描述可用就用）、**標題行整行移除**、
+   **樣板文開頭黑名單**（`isBoilerplateParagraph`，只收明確公告式開頭，精度優先）。
+→ 🔴 **教訓：加入工具後必須人工核對 useCase 與 description 是否同一主題。**
+   自動化只能保證「有值」，不能保證「值是對的」。
+
+### 2. 🔴 安裝指令曾經是「憑語言猜的」，會產生**照著做必定失敗**的指令
+
+舊版 `guessInstall()` 只看 GitHub 偵測到的語言：
+
+```js
+if (language === 'typescript') return { method:'npm', command: `npx ${repo}` };
+if (language === 'python')     return { method:'pip', command: `pip install git+${url}.git` };
+```
+
+但「語言」不等於「可安裝套件」：
+
+- `thebuggeddev/anatomy`（Next.js 應用，`package.json` 是 `private: true`）→ 產生 `npx anatomy`，**npm 上沒這個套件**
+- `Z-Anatomy/Models-of-human-anatomy`（Blender 範本，無 `setup.py`／`pyproject.toml`）→ 產生 `pip install git+…`，**裝不起來**
+
+→ 改為 `detectInstall()`：**讀 repo 根目錄的封裝檔才給套件指令**。
+   `package.json` 有 `bin` 且非 private → `npx`；其餘（應用程式／樣板）→ `git clone`。
+   有 `pyproject.toml`／`setup.py` → `pip`；`Cargo.toml` → `cargo`；`composer.json` → `composer`。
+   **查不到檔案清單（限流）時直接 `git clone`，不猜。**
+→ 誠實的下界：`git clone` 對任何 GitHub repo 都成立，**給錯的指令比留白更糟**。
+
+### 3. 🔴 `translate:zh` 的第四種跑版：扁平且 key 帶欄位名
+
+當同一批次裡每個工具各自只缺**不同**欄位時，模型會回：
+
+```json
+{ "models-of-human-anatomy_description_zh": "…", "anatomy_negativeConstraints_zh": […] }
+```
+
+而不是巢狀的 `{ "id": { "description_zh": … } }`。舊版只認 `id` / `id_zh` 兩種扁平形式，
+於是兩筆全被判「missing id in response」而失敗。
+
+→ 已補第 4 種解析；並且**失敗訊息會附上實際收到的 key**
+   （原本只寫「missing id」根本無從診斷）。
+→ 另外發現 `translate:zh` 曾產出**韓文**（`允許自由 재배포與二次創作`）——
+   已掃全庫確認只有這 1 處，並修正。
+
+### 4. 本輪加入的 4 支工具與「是否需要拆解」的判定
+
+| repo | 判定 |
+|---|---|
+| `Z-Anatomy/Models-of-human-anatomy` | 單一工具（Blender 範本）|
+| `thebuggeddev/anatomy` | 單一工具（Next.js + three.js 應用）|
+| `ashemag/human-atlas` | 已在庫中（僅修正 install）|
+| `naver/anny` | 單一工具（PyTorch 人體網格模型，有 `pyproject.toml` → pip）|
+| `oracle/fusion-ai-studio` | **不拆解**——見下 |
+| `rtk-ai/rtk` | 已在庫中 |
+
+**`oracle/fusion-ai-studio` 為何不拆解**：它底下有 `aiapps/{scm,prc,hcm}`、`extensions`、
+`how-to`、`.agents/skills`，看起來像多個工具。但實際查證後：
+所有內容都是**同一個產品（Oracle Fusion AI Agent Studio）的樣板與範例**，
+且**按產品 release 分支**（`release-26C`）發佈。
+拆成 N 筆只會得到 N 筆「用 Oracle Fusion AI Agent Studio 做 X」的重複條目。
+→ **判準：子目錄是「獨立的工具」還是「同一產品的樣板／領域實例」？**
+   後者不拆。
+
+### 5. 語法守門 `scripts/check-syntax.js`
+
+見陷阱 23。已接進 `npm test` 第一道關卡（109 個 .js 檔，約 1 秒）。
+驗證方式：故意放一個壞檔 → exit 1；移除後 → exit 0（**守門機制必須能失敗才算數**）。
+
+---
+

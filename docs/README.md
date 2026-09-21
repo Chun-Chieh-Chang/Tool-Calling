@@ -8,7 +8,7 @@
 >
 > | 資料 | 檔案 |
 > |---|---|
-> | 工具庫（705 筆）| `registry/tools.json` |
+> | 工具庫（722 筆）| `registry/tools.json` |
 > | 分類定義與色碼 | `registry/categories.json` |
 > | 評測集（v1.3.0，267 題）| `registry/eval-queries.json` |
 > | 知識編譯詞條 | `registry/compiled-entries.json` |

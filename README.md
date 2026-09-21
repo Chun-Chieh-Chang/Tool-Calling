@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **702 個頂尖開源 AI 工具與 Agent 技能**（截至 2026-09-19，實際數量以 `registry/tools.json` 為準）：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **722 個頂尖開源 AI 工具與 Agent 技能**（截至 2026-09-21，實際數量以 `registry/tools.json` 為準）：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與檔案生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -62,7 +62,7 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 702 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - 整合 722 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
    - 支援 18 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
@@ -138,8 +138,8 @@ node cli.js interview "網頁爬蟲"
 | `npm run trending` | `node scripts/trending-weekly.js` | 每週漲星探勘 |
 | `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精靈 |
 | `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同義詞詞典 |
-| `npm test` | `node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test tests/*.test.js` | 執行單元測試（56 項，無外部依賴） |
-| `npm run test:integration` | `node --test tests/*.test.js` | 含整合測試（76 項，需 `npx skills` CLI 與網路） |
+| `npm test` | `node scripts/check-syntax.js && node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node --test --test-concurrency=1 tests/*.test.js` | 執行單元測試（無外部依賴） |
+| `npm run test:integration` | `node --test --test-concurrency=1 tests/*.test.js` | 含整合測試（需 `npx skills` CLI 與網路） |
 | `npm start` | `node web/server.js` | 啟動精密儀表數據工作台 (http://localhost:3000) |
 | `npm run mcp` | `node mcp-server.js` | 啟動 MCP 伺服器 |
 
@@ -170,9 +170,9 @@ Tool-Calling/
 │   └── check-mece.js       # MECE 分類檢查 ＋ 來源一致性守衛
 ├── registry/           # 工具函式庫（單一真理來源）
 │   ├── categories.json   # 18 個分類的單一機器可讀來源
-│   ├── tools.json        # 705 工具（截至 2026-09-21）
+│   ├── tools.json        # 722 工具（截至 2026-09-21）
 │   ├── eval-queries.json # 評測集 v1.3.0（267 題）
-│   └── compiled-entries.json # 知識編譯詞條（Tier 1，705 筆）
+│   └── compiled-entries.json # 知識編譯詞條（Tier 1，705 筆；新工具需重跑 compile:wiki）
 ├── docs/               # 文件（依主題分類的索引見 docs/README.md）
 │   ├── README.md               # ⭐ docs 索引（現行／研究／歷史三類）
 │   ├── WIKI-COMPILER.md         # 知識編譯器：解析邏輯 + 配對邏輯
@@ -180,7 +180,7 @@ Tool-Calling/
 │   ├── CLASSIFICATION.md        # 分類判定規則（衍生檔，勿手改）
 │   └── CATEGORY-SYSTEM.md       # 分類統計（衍生檔，勿手改）
 └── tests/              # 測試
-    └── *.test.js       # 27 個測試檔，跑 `npm test` 看最新計數
+    └── *.test.js       # 29 個測試檔，跑 `npm test` 看最新計數
 ```
 
 > 各目錄的完整說明與文件清單，請見 [docs/README.md](./docs/README.md)。
@@ -194,7 +194,8 @@ Tool-Calling/
 提交前必須通過：
 
 ```bash
-npm test                          # 單元測試（56 項，無外部依賴）
+npm test                          # 單元測試（無外部依賴，項數以實際輸出為準）
+node scripts/check-syntax.js      # 語法守門：全部 .js 跑 node --check
 node scripts/check-utf8.js        # UTF-8 編碼物理防護門禁 (0 個 U+FFFD)
 node scripts/check-duplicate-ids.js # 全站 HTML ID 唯一性門禁 (0 個重複)
 node cli.js validate              # 工具庫 100/100 詮釋資料品質門禁 (0 錯誤)
@@ -204,13 +205,13 @@ node scripts/rescan-classification.js --ci  # 全庫重掃，Tier 1 必須為 0
 ```
 
 > 📌 **測試分層（2026-09-12 起）**：`npm test` 已與外部依賴切開，不呼叫 `npx`、不打網路，
-> 因此可在離線與沙盒環境中穩定執行。需要 `npx skills` CLI 與 GitHub API 的 20 項整合測試
-> 另以 `npm run test:integration` 執行（共 76 項）。
+> 因此可在離線與沙盒環境中穩定執行。需要 `npx skills` CLI 與 GitHub API 的整合測試
+> 另以 `npm run test:integration` 執行（項數以實際輸出為準）。
 
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v2.0 - 702 個工具（截至 2026-09-19）、自動挖掘同義詞、即時更新與雙週趨勢
+> Tool-Calling v2.0 - 722 個工具（截至 2026-09-21）、自動挖掘同義詞、即時更新與雙週趨勢
 ---
 
 ## 🌐 網頁版 UI
