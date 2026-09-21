@@ -59,8 +59,7 @@
 
 | 文件 | 內容 |
 |---|---|
-| [SEARCH-ENGINE-OPTIMIZATION-REPORT.md](./SEARCH-ENGINE-OPTIMIZATION-REPORT.md) | 檢索引擎優化報告 v1.1（2026-08-10） |
-| [search-engine-optimization-proposal.md](./search-engine-optimization-proposal.md) | 後續優化提案（2026-09-12），承接上者 |
+| [search-engine-optimization.md](./search-engine-optimization.md) | 檢索引擎優化：提案 → 執行結果（2026-08-10）。原為「提案」與「報告 v1.1」兩份，2026-09-21 合併，含「建議 vs 實際」對照；開頭有現況註記（其後主路徑已改為融合引擎） |
 | [OPTIMIZATION-PLAN.md](./OPTIMIZATION-PLAN.md) | 優化計畫 |
 | [triz-dynamic-classification-analysis.md](./triz-dynamic-classification-analysis.md) | 以 TRIZ 分析動態分類 |
 | [agnes-vs-antigravity-comparison.md](./agnes-vs-antigravity-comparison.md) | 兩個 AI IDE 的比較 |

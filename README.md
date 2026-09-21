@@ -32,7 +32,8 @@
 | Fuzzy Matching | +15% 容錯率 | Levenshtein 距離模糊匹配 |
 | 同義詞擴充 | 自動挖掘 | 41 個種子詞為基底，其餘由 trigger 共現自動挖掘；詞典由 `npm run build` 產生，規模會隨 registry 變動，請以 `core/synonyms.generated.js` 為準 |
 
-詳細報告請見 [docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md](./docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md)
+詳細報告請見 [docs/search-engine-optimization.md](./docs/search-engine-optimization.md)
+（原為「優化提案」與「優化報告」兩份，已於 2026-09-21 合併，含「建議 vs 實際」對照）
 
 ---
 
