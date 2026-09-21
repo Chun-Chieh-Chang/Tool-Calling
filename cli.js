@@ -291,6 +291,34 @@ async function cmdAdd(url, isBatch = false) {
     registry.tools.push(newTool);
     saveRegistry(registry);
 
+    // 第二階段：補齊語意欄位（useCase／advantages／*_zh）。
+    // 與 Web 的加入流程一致——scan 只能填機器可得的欄位，
+    // 語意欄位需要讀 README 後由 LLM 產生。沒 key 就跳過（工具仍已加入）。
+    if (process.env.AGNES_API_KEY) {
+      try {
+        console.log(`${c.dim}正在讀取 README 補齊語意欄位…${c.reset}`);
+        const { enrichToolFromReadme } = await import('./core/tool-enricher.js');
+        const patch = await enrichToolFromReadme(newTool);
+        if (patch) {
+          const fresh = loadRegistry();
+          const t = fresh.tools.find(x => x.id === newTool.id);
+          if (t) {
+            for (const [k, v] of Object.entries(patch)) {
+              if (k === 'useCase' && t.useCase === t.description) t[k] = v;
+              else if (!t[k] || (Array.isArray(t[k]) && t[k].length === 0)) t[k] = v;
+            }
+            saveRegistry(fresh);
+            Object.assign(newTool, patch);
+            console.log(`  ${c.green}✓ 已補齊: ${Object.keys(patch).join(', ')}${c.reset}`);
+          }
+        } else {
+          console.log(`  ${c.yellow}⚠ README 資訊不足，語意欄位維持留白（不填推測內容）${c.reset}`);
+        }
+      } catch (err) {
+        console.log(`  ${c.yellow}⚠ 語意欄位補齊失敗: ${err.message}${c.reset}`);
+      }
+    }
+
     // 即時取得該工具的 GitHub Stars 並寫入快照（供下週 trending 計算 delta）
     try {
       const { loadSnapshot, saveSnapshot, parseOwnerRepo } = await import('./core/snapshot.js');

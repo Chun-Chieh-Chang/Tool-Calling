@@ -119,6 +119,57 @@ function checkAndAutoUpdateOnStartup() {
   }
 }
 
+/**
+ * 背景補齊單一工具的「語意欄位」（加入流程的第二階段）
+ *
+ * 為什麼要分兩階段
+ * ────────────────
+ * `scan-tool.js`（第一階段）只能填機器可得的欄位：
+ * description、language、topics→capabilities。但 useCase（真實使用情境）、
+ * advantages（優勢）、`*_zh`（繁中）是**語意欄位**，規則做不到——
+ * 掃描階段的 useCase 只是複製 description，advantages 一律留空。
+ *
+ * 為什麼要背景執行
+ * ────────────────
+ * 讀 README ＋ LLM 呼叫約需 2~10 秒。不該讓「加入」按鈕等這麼久，
+ * 所以先回 201「已加入」，補齊完成後再寫回 registry。
+ *
+ * 失敗處理
+ * ────────
+ * 一律靜默：工具**已經加入成功**，只是欄位維持留白。
+ * README 資訊不足時 enrichToolFromReadme 會回傳 null——
+ * 這時寧可留白，也不要為了消 validate 警告而填推測內容。
+ */
+async function enrichToolInBackground(toolId) {
+  if (!process.env.AGNES_API_KEY) return;   // 沒 key 就只做第一階段
+  try {
+    const { loadRegistry, saveRegistry } = await import('../core/registry.js');
+    const { enrichToolFromReadme } = await import('../core/tool-enricher.js');
+    const tool = loadRegistry().tools.find((t) => t.id === toolId);
+    if (!tool) return;
+
+    const patch = await enrichToolFromReadme(tool);
+    if (!patch) return;
+
+    // 寫回前重讀：期間可能已被其他程序（sync-daemon、trending）更新
+    const fresh = loadRegistry();
+    const t2 = fresh.tools.find((t) => t.id === toolId);
+    if (!t2) return;
+    const mergedKeys = [];
+    for (const [k, v] of Object.entries(patch)) {
+      // useCase 例外：掃描階段的複製品要換掉
+      if (k === 'useCase' && t2.useCase === t2.description) { t2[k] = v; mergedKeys.push(k); }
+      else if (!t2[k] || (Array.isArray(t2[k]) && t2[k].length === 0)) { t2[k] = v; mergedKeys.push(k); }
+    }
+    if (mergedKeys.length === 0) return;
+    saveRegistry(fresh);
+    try { syncRegistryToDist(); } catch {}
+    console.log(`[AddTool] 背景補齊語意欄位完成: ${toolId} → ${mergedKeys.join(', ')}`);
+  } catch (err) {
+    console.warn(`[AddTool] 背景補齊失敗（工具已加入，欄位維持留白）: ${err.message}`);
+  }
+}
+
 const server = http.createServer(async (req, res) => {
   try {
     const rawUrl = req.url.split('?')[0];
@@ -480,11 +531,16 @@ const server = http.createServer(async (req, res) => {
           console.warn('[AddTool] hook-reclassify 未执行:', err.message);
         }
 
+        // 第二階段：背景補齊語意欄位（useCase／advantages／*_zh）。
+        // 不 await——使用者立刻看到「已加入」，補齊在背景完成。
+        setImmediate(() => enrichToolInBackground(newTool.id));
+
         res.writeHead(201, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({
           status: 'added',
           tool: { id: newTool.id, name: newTool.name, category: newTool.category, stars: newTool.stars || 0 },
-          classification: classificationInfo
+          classification: classificationInfo,
+          enriching: Boolean(process.env.AGNES_API_KEY),
         }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });

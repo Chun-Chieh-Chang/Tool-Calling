@@ -114,6 +114,25 @@ function guessInstall(url, language, description, topics) {
   return { method: 'git-clone', command: `git clone ${url}.git`, repoUrl: url };
 }
 
+/**
+ * 去掉 Markdown 標記，讓描述能直接顯示。
+ *
+ * README 的首段常含 `**粗體**`、`[連結](url)`、`` `程式碼` `` 等標記，
+ * 直接寫進 registry 會讓工具卡片顯示出一堆星號與網址。
+ * 純字串操作，不用正則回溯風險高的寫法。
+ */
+function stripMarkdown(text) {
+  let s = String(text || '');
+  s = s.replace(/\*\*(.+?)\*\*/g, '$1');   // 粗體
+  s = s.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1$2'); // 斜體
+  s = s.replace(/`([^`]+)`/g, '$1');        // 行內程式碼
+  s = s.replace(/!\[[^\]]*\]\([^)]*\)/g, ''); // 圖片
+  s = s.replace(/\[([^\]]+)\]\([^)]*\)/g, '$1'); // 連結 → 只留文字
+  s = s.replace(/<[^>]+>/g, '');            // HTML 標籤
+  s = s.replace(/\s+/g, ' ');               // 壓縮空白（含換行）
+  return s.trim();
+}
+
 // ─── 主程式 ─────────────────────────────────────────────────────────────────
 
 async function scan(url, options = {}) {
@@ -154,36 +173,44 @@ async function scan(url, options = {}) {
 
     let description = meta.description;
 
-    // 若有子目錄，嘗試抓取其專屬 README.md 或 SKILL.md
-    if (subpath) {
-      const candidates = ['SKILL.md', 'README.md'];
-      for (const file of candidates) {
-        const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${subpath}/${file}`;
-        const rawRes = await fetch(rawUrl);
-        if (rawRes.ok) {
-          const readmeText = await rawRes.text();
-          let content = readmeText;
-          if (content.startsWith('---')) {
-            const endIdx = content.indexOf('---', 3);
-            if (endIdx > -1) {
-              const fm = content.substring(3, endIdx);
-              const descMatch = fm.match(/description:\s*(.+)/);
-              if (descMatch) {
-                description = descMatch[1].trim().replace(/^['"]|['"]$/g, '');
-                break;
-              }
-              content = content.substring(endIdx + 3).trim();
-            }
-          }
-
-          // 抓取第一段非標題段落
-          const paragraphs = content.split('\n\n');
-          const firstP = paragraphs.find(p => p.trim() && !p.startsWith('#') && !p.startsWith('!') && !p.startsWith('<') && !p.startsWith('-'));
-          if (firstP) {
-            description = firstP.replace(/\n/g, ' ').trim().slice(0, 200);
+    // 抓 README／SKILL.md 以取得比 GitHub 一行簡介更完整的描述。
+    //
+    // 🔴 2026-09-21 修正：原本**只在有 subpath 時**才抓，
+    //    導致一般 repo（絕大多數）的 description 永遠只有 GitHub 那一行
+    //    ——那通常是行銷標語而非功能說明，於是 useCase 也只能複製它。
+    //    現在兩種情況都會嘗試：
+    //      有 subpath → 先試 subpath 下的 SKILL.md，再試 README.md
+    //      無 subpath → 試根目錄 README.md
+    //    ref 用 `HEAD`：raw.githubusercontent 支援，可避開 main/master 猜測。
+    const ref = branch || 'HEAD';
+    const readmeCandidates = subpath
+      ? [`${subpath}/SKILL.md`, `${subpath}/README.md`]
+      : ['README.md', 'readme.md'];
+    for (const relPath of readmeCandidates) {
+      const rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${ref}/${relPath}`;
+      const rawRes = await fetch(rawUrl);
+      if (!rawRes.ok) continue;
+      const readmeText = await rawRes.text();
+      let content = readmeText;
+      // YAML frontmatter 的 description 優先（SKILL.md 常用這種格式）
+      if (content.startsWith('---')) {
+        const endIdx = content.indexOf('---', 3);
+        if (endIdx > -1) {
+          const fm = content.substring(3, endIdx);
+          const descMatch = fm.match(/description:\s*(.+)/);
+          if (descMatch) {
+            description = descMatch[1].trim().replace(/^['"]|['"]$/g, '');
             break;
           }
+          content = content.substring(endIdx + 3).trim();
         }
+      }
+      // 取第一段「非標題／非圖片／非 HTML／非清單」的段落
+      const paragraphs = content.split('\n\n');
+      const firstP = paragraphs.find(p => p.trim() && !p.startsWith('#') && !p.startsWith('!') && !p.startsWith('<') && !p.startsWith('-'));
+      if (firstP) {
+        description = stripMarkdown(firstP).slice(0, 200);
+        break;
       }
     }
 
