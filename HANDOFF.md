@@ -177,13 +177,15 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 用 `npm run ceiling`（不需 API、幾秒）可區分：天花板低 = 召回問題；天花板高但 top1 低 = 排序問題。
 
-**v1.2.0 實測**：direct 天花板 100%、semantic **91.1%**、constrained 96.9%。
+**v1.3.0 實測（停用 V5）**：direct 天花板 100%、semantic **90.7%**、constrained 98.1%。
+**啟用 V5 後**：direct 100%、semantic **96.1%**、constrained 100%——
+知識編譯器把 semantic 的召回缺口從 9.3% 縮到 3.9%（見陷阱 17 以下的知識編譯器章節）。
 
-8 題答案不在 top-50 的原因：使用者用日常語言描述**具體應用場景**，metadata 用技術分類描述**通用能力**。
+答案不在 top-50 的原因：使用者用日常語言描述**具體應用場景**，metadata 用技術分類描述**通用能力**。
 最極端 c111「齒輪的齒數跟模數一改整組尺寸自動跟著變」vs cadquery「參數化 3D CAD 腳本框架」——**bigram 重疊 0**，詞彙檢索原理上不可能找到。
 
 → **別再假設「描述太短」**：實測 547/705 工具描述 < 60 字，短描述是全庫常態。
-→ 這 5% 缺口是真實限制，**不建議強修**（補 metadata 會變成針對評測答案調參 = overfitting）。
+→ 剩餘缺口是真實限制，**不建議強修**（補 metadata 會變成針對評測答案調參 = overfitting）。
 → 2026-09-20 起改由「知識編譯器」正面處理，見 `docs/WIKI-COMPILER.md`。
 
 ### 18. 🔴 同一個檔案不要在同一次回應裡連續下兩次編輯
@@ -214,14 +216,18 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 → 判定某字能否進 `S2T_SAFE`：opencc 單字轉換後不同、**且**該字在繁體裡
 不存在同樣字形（排除 台/群/干/斗/里/面/发/只/松/适/复/于/后…）。
 
-### 20. ⚠️ eval-rerank 預設 topK=20，上線 recallK=50（兩者不一致）
+### 20. ⚠️ eval-rerank 預設 topK=20，上線 recallK=30（兩者不一致）
 
 `scripts/eval-rerank.js` 的 `K` 預設是 **20**，
-但上線的 `retrieval-fusion.js` 的 `retrieveWithRerank()` 用 `recallK = 50`。
+但上線的 `retrieval-fusion.js` 的 `retrieveWithRerank()` 用 `recallK = 30`。
 
 → 直接跑 `npm run eval:rerank` 得到的數字**低估了上線表現**
-   （top-20 天花板 90.6% vs top-50 天花板 96.9%）。
-→ 要量「實際上線表現」必須明確加 `--topK=50`（成本約 2.5 倍）。
+   （v1.3.0：top-20 天花板 93.0% vs top-30 天花板 95.7%）。
+→ 要量「實際上線表現」必須明確加 `--topK=30`。
+
+ℹ️ recallK 原本是 50，2026-09-20 改為 30：配對 A/B 顯示兩者端到端準確率
+   **完全相同**（v1.3.0 皆為 80.4%，差異 0.0pp，McNemar 不一致對 11:11 對稱，p=1.000），
+   但 top-30 省 40% token。詳見 `core/retrieval-fusion.js` 的註解。
 
 這與既有的「評測必須與正式路徑一致」原則衝突（同一條原則讓 `buildCandidateText()`
 在評測與上線共用）。之所以維持預設 20，是為了與歷史數字可比較；
@@ -242,17 +248,20 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 倉庫損毀已發生**兩次**（09-19 與 09-20），修復程序見**陷阱 12**。
 `.git` 於 2026-09-20 從遠端重建過；本地 `origin/main` ref 需手動校正（見陷阱 5）。
 
-### 檢索準確度（核心指標，評測集 v1.2.0／169 題）
+### 檢索準確度（核心指標，評測集 **v1.3.0／267 題**，標準誤 ~3.0pp）
 
-**rerank 路徑（實際上線，topK=50）**
+**rerank 路徑（實際上線，recallK=30）**
 
 | 指標 | 數值 | 備註 |
 |---|---|---|
-| 詞彙引擎 top-1 | 59.7% | 知識編譯器 V5 啟用（Tier 1 LLM 詞檔） |
-| 召回天花板（top-50） | 96.9% | 停用時 95.0% |
-| rerank 天花板（top-20） | 90.6% | 停用時 89.3% |
-| **rerank 後（嚴格）** | **76.4%** ⚠️ | 配對 A/B：V5 開 76.4% vs 關 75.8%，**p=1.000 無差異** |
+| 詞彙引擎 top-1 | **58.8%** | 知識編譯器 V5 啟用（Tier 1 LLM 詞檔）；停用 V5 則 49.4% |
+| 召回天花板（top-30） | 95.7% | 停用 V5 時 94.9%（top-50 為 98.1%）|
+| **rerank 後（嚴格）** | **80.4%** | 配對 A/B：top-30 與 top-50 皆 80.4%，差異 0.0pp（p=1.000）|
 | 空集誠實率 | 100%（10/10）| V5 啟用前後皆為 100% |
+
+⚠️ **v1.3.0 的數字不能與 v1.2.0 直接比較**（題數與難度分佈皆已改變）。
+v1.2.0 的舊值：詞彙 top-1 62.3%、天花板 96.9%、rerank 74.2%。見 `registry/eval-queries.json`
+的 `methodology.generation`。
 
 ⚠️ **rerank 路徑統計上無差異**（2026-09-20，交替配對 A/B）：
 
@@ -334,20 +343,21 @@ agent **59.7%**（含近義 61.6%）／fusion **58.5%**（含近義 60.4%）。
 停用 V5 時為 agent 51.6%／fusion 50.3% → **+8.1pp／+8.2pp**。
 這些數字是**確定性的**（不呼叫 LLM，不含隨機誤差）。
 
-⚠️ **v1.2.0 與 v1.1.0 不可直接比較**：評測集從 69 擴充至 169 題，
-且 semantic 佔比由 33% 升至 50%（產生方法的偏差，見陷阱 11 與 DEV_LOG）。
+⚠️ **各版本評測集互不可比較**：v1.0.0(47) → v1.1.0(69) → v1.2.0(169) → **v1.3.0(267)**。
+每次擴充都會改變題數與難度分佈（v1.2.0 時 semantic 佔比由 33% 升至 50%，
+是產生方法的偏差，見陷阱 11 與 DEV_LOG）。
 
-**分類型（fusion，topK=5，V5 啟用）**：
-| 類型 | 筆數 | Hit@1 | 天花板 | 停用時 Hit@1 / 天花板 |
-|---|---|---|---|---|
-| direct | 48 | 70.8% | 100.0% | 64.6% / 100.0% |
-| semantic | 79 | **49.4%** | 93.7% | 40.5% / 91.1% |
-| constrained | 32 | 62.5% | 100.0% | 53.1% / 96.9% |
+**分類型（fusion，topK=5，V5 啟用，v1.3.0）**：
+| 類型 | 筆數 | Hit@1 | 天花板 |
+|---|---|---|---|
+| direct | 76 | 71.1% | 100.0% |
+| semantic | 129 | **50.4%** | 96.1% |
+| constrained | 52 | 61.5% | 100.0% |
 
-→ semantic 仍是唯一有召回缺口的類型（93.7%），根因是詞彙鴻溝（見**陷阱 17**）。
+→ semantic 仍是唯一有召回缺口的類型（96.1%），根因是詞彙鴻溝（見**陷阱 17**）。
 → 正面處理方式是「知識編譯器」（`docs/WIKI-COMPILER.md`），**Tier 1 已全量完成**：
    離線把 705 支工具的 metadata 用 LLM 編譯成使用者語言的詞條，
-   查詢時比對詞條而非原始描述。天花板 95.0% → 96.9%、agent Hit@1 +8.1pp。
+   查詢時比對詞條而非原始描述。天花板 94.9% → 98.1%、agent Hit@1 49.4% → 58.8%（+9.4pp）。
    🔑 `AGNES_API_KEY` 不在環境變數裡，但在
    `~/.workbuddy-ai/models.json`（找 url 含 agnes-ai.com 的項目）。
 
@@ -375,7 +385,7 @@ CLI  ─┘
 1. **L2 詞彙**（`core/search-engine.js`）— 關鍵字與觸發詞
 2. **Agent 四維**（`core/agent-retrieval.js`）— V1 身分／V2 功能／V3 情境／V4 部署
 3. **Fusion**（`core/retrieval-fusion.js`）— 融合上述，決策 adopt／no-match
-4. **LLM rerank**（`core/llm-rerank.js`）— 可選後處理，recallK=50
+4. **LLM rerank**（`core/llm-rerank.js`）— 可選後處理，recallK=30（原為 50，2026-09-20 改）
 
 ### 三個對外能力（2026-09-20 起，Web／MCP／CLI 三端皆有）
 
@@ -407,7 +417,7 @@ CLI  ─┘
 |---|---|
 | `registry/tools.json` | **工具庫（單一真理來源）** 705 筆 |
 | `registry/categories.json` | **分類唯一來源**（機器可讀） |
-| `registry/eval-queries.json` | 評測集 v1.2.0 — 169 筆（159 可命中 + 10 空集）|
+| `registry/eval-queries.json` | 評測集 **v1.3.0 — 267 筆**（257 可命中 + 10 空集），標準誤 ~3.0pp |
 | `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|
 | `scripts/translate-to-zh.js` | 產生 `*_zh` 欄位（`npm run translate:zh`）|
 | `scripts/ceiling-analysis.js` | 天花板診斷（`npm run ceiling`，見陷阱 17）|
@@ -448,7 +458,8 @@ npm run validate            # 詮釋資料驗證（品質門禁）
 npm run check-mece          # MECE 分類檢查
 npm run categories:check    # 分類來源同步檢查
 npm run benchmark           # 檢索評測（離線，topK=5）
-npm run eval:rerank         # rerank 評測（需 AGNES_API_KEY，topK=50）
+npm run eval:rerank         # rerank 評測（需 AGNES_API_KEY；預設 topK=20，
+                            #   要對齊上線請加 --topK=30，見陷阱 20）
 npm run ceiling             # 天花板診斷（不需 API，見陷阱 17）
 npm run compile:wiki -- --offline    # 知識詞檔 Tier 0 編譯（不需 API）
 npm run compile:wiki -- --stats      # 詞檔覆蓋率與知識圖譜統計
@@ -475,7 +486,8 @@ npm run mcp                 # 啟動 MCP server
 **2026-09-20 新增：**
 
 - ✅ **譯文納入檢索索引** — agent Hit@1 37.5%→53.1%、天花板 95.3%→98.4%。**本輪最大改善**
-- ✅ **評測集擴充至 v1.2.0（169 題）** — 標準誤 5.4pp→3.6pp，18 分類均衡、漏詞檢查、天花板驗證
+- ✅ **評測集擴充至 v1.3.0（267 題）** — 標準誤 5.4pp→3.6pp→**3.0pp**；18 分類均衡（多數 13 題）、
+  漏詞檢查、天花板驗證；擴充流程已腳本化（`scripts/expand-eval-set.js`，可重現）
 - ✅ 新增 `npm run ceiling` 天花板診斷工具（不需 API）
 - ✅ dev 模式三連修：空白頁（`/core/` 404）、改了沒生效（`dist/` 過期）、流程圖消失（`docs/*.html`）。
 - ✅ 批次收錄 5 個工具（stirling-pdf、kaggle-tpu-lab、security-audit-skill、openstock、claude-code 官方）
@@ -544,7 +556,7 @@ npm run mcp                 # 啟動 MCP server
 2. 讀 `DEV_LOG.md` 最上方條目（有完整的決策脈絡）
 3. 讀 `.workbuddy-ai/memory/MEMORY.md`（專案長期記憶，含所有陷阱）
 4. **動手前先診斷**——這是這個專案最重要的方法論。推薦順序：`npm run ceiling` → 分析失敗題 → 才做實驗
-5. **做 A/B 前先讀「量測方法論」**：v1.2.0（169 題）單次標準誤約 **3.6pp**。差異小於 3.6pp 視為雜訊。
+5. **做 A/B 前先讀「量測方法論」**：v1.3.0（267 題）單次標準誤約 **3.0pp**。差異小於 3.0pp 視為雜訊。
    必須用**配對 + 輪替順序**，並看**不一致對與 McNemar**，
    而非比較兩個獨立比例或跑兩次比數字
 6. **善用確定性指標**（天花板、可解性）——不需 API、無雜訊，比 Hit@1 更適合快速判斷方向
