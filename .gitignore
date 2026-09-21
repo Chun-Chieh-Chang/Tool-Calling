@@ -29,3 +29,17 @@ registry/embeddings/
 registry/backups/
 # Kiro IDE 工作目錄（spec 草稿、任務狀態，屬工具私有狀態，非專案原始碼）
 .kiro/
+
+# ── 機密與憑證（預防性規則）─────────────────────────────────────────────
+# 本專案的 API 金鑰一律走環境變數（AGNES_API_KEY / AGNES_API_KEYS），
+# 不進版控。以下規則是防止日後誤建 .env 或匯出憑證檔時被 git 提交。
+# 2026-09-21 資安盤點時發現原本完全沒有這類規則，故補上。
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials*.json
+service-account*.json
