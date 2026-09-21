@@ -46,7 +46,9 @@ export async function fetchReadmeText(repoUrl) {
   const m = String(repoUrl || '').match(/github\.com\/([^/]+)\/([^/]+)/);
   if (!m) return null;
   const [, owner, repo] = m;
-  for (const file of ['README.md', 'readme.md', 'README.rst']) {
+  // 檔名大小寫在 GitHub 上真的不一致（實例：Z-Anatomy 用的是 `Readme.md`），
+  // 只試全大寫會漏掉整份 README，導致「資訊不足」的誤判。
+  for (const file of ['README.md', 'Readme.md', 'readMe.md', 'readme.md', 'README.MD', 'README.rst', 'readme.rst']) {
     try {
       const res = await fetch(`https://raw.githubusercontent.com/${owner}/${repo}/HEAD/${file}`, {
         headers: { 'User-Agent': 'Tool-Calling-Enricher/1.0' },
@@ -71,11 +73,18 @@ const SYS = `你是工具庫的 metadata 編譯器。我會給你一個開源專
   🔴 不要寫「開源」「免費」這類所有工具都成立的廢話，也不要寫「支援 X 語言」（那是 install 的事）。
   若 README 沒有足以支撐的內容，給空陣列。
 - capabilities（3~6 個）：kebab-case 的技術標籤，描述它「能做什麼」。
-- description_zh / useCase_zh / advantages_zh：上面欄位的繁體中文（台灣）版本。
+- useCase_zh / advantages_zh：上面兩個欄位的繁體中文（台灣）版本。
 
 🔴 語言分工（不可搞混）：
   useCase / advantages / capabilities 一律用**英文**；
-  只有 *_zh 三個欄位用繁體中文。實測模型會兩個都給中文，那是錯的。
+  只有 *_zh 欄位用繁體中文。實測模型會兩個都給中文，那是錯的。
+
+🔴 **不要產生 description_zh**：描述的中文由 npm run translate:zh 負責。
+  原因：本階段是「讀 README 產生語意欄位」，而 description 可能來自 GitHub
+  的一行簡介（不是 README）。若這裡用 README 產生 description_zh，
+  會出現「英文描述說 A、中文描述說 B」的不一致。
+  實例：Z-Anatomy 的英文是 "Human male model"（GitHub），
+  中文卻是 README 的長描述——兩者對不上。
 
 台灣用語：檔案、程式碼、網路、影片、專案、軟體。
 輸出格式：
@@ -206,8 +215,9 @@ function normalize(out, tool) {
   if (caps.length && (!tool.capabilities || tool.capabilities.length === 0)) {
     rec.capabilities = caps;   // 只在原本是空的時候補，不覆蓋 GitHub topics
   }
-  const dzh = zh(out?.description_zh);
-  if (dzh && !tool.description_zh) rec.description_zh = dzh.slice(0, 300);
+  // ⚠️ 刻意不處理 description_zh：描述的中文一律由 translate:zh 產生，
+  //    它翻譯的是真正的 description 欄位，不會出現「中英不一致」。
+  //    （模型仍可能回傳 description_zh，這裡直接忽略。）
 
   return Object.keys(rec).length ? rec : null;
 }
