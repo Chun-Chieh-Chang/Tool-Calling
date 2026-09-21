@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {
   getKeyPool, nextKey, availableCount, nextAvailableDelayMs,
   reportSuccess, reportFailure, keyStats, resetKeyPool,
+  setRuntimeKeys, getKeyStatus,
 } from '../core/llm-keys.js';
 
 // 測試之間必須重置，因為金鑰池是模組層級的單例
@@ -98,4 +99,57 @@ test('llm-keys: 金鑰標籤不洩漏完整金鑰', () => {
   for (const k of s.keys) {
     assert.ok(!k.label.includes('secret'), `標籤不該含金鑰中段：${k.label}`);
   }
+});
+
+// ── 執行期注入（UI 輸入金鑰）──────────────────────────────────────────────
+// 使用者不一定會在啟動伺服器時設好環境變數，所以 UI 可以注入金鑰。
+// 這些金鑰只存在記憶體，重啟即失效。
+
+test('llm-keys: setRuntimeKeys 可注入金鑰並反映在狀態中', () => {
+  resetKeyPool();
+  assert.equal(getKeyStatus().configured, false);
+  assert.equal(getKeyStatus().source, 'runtime'); // 沒 env 時預設標成 runtime
+
+  const r = setRuntimeKeys('k1,k2');
+  assert.equal(r.added, 2);
+  assert.equal(r.total, 2);
+
+  const s = getKeyStatus();
+  assert.equal(s.configured, true);
+  assert.equal(s.count, 2);
+  assert.equal(s.available, 2);
+  assert.equal(s.labels.length, 2);
+});
+
+test('llm-keys: 狀態查詢不回傳完整金鑰（只回遮罩標籤）', () => {
+  resetKeyPool();
+  setRuntimeKeys('sk-super-secret-value-1234');
+  const s = getKeyStatus();
+  const dump = JSON.stringify(s);
+  assert.ok(!dump.includes('super-secret'), '狀態不得洩漏金鑰中段');
+  assert.ok(!dump.includes('value-1234'), '狀態不得洩漏金鑰尾段');
+});
+
+test('llm-keys: 重複注入同一把金鑰不會重複計算', () => {
+  resetKeyPool();
+  setRuntimeKeys('k1');
+  const r = setRuntimeKeys('k1');
+  assert.equal(r.added, 0);
+  assert.equal(r.total, 1);
+});
+
+test('llm-keys: resetKeyPool 會清掉執行期注入的金鑰', () => {
+  resetKeyPool();
+  setRuntimeKeys('k1');
+  assert.equal(getKeyStatus().count, 1);
+  resetKeyPool();
+  assert.equal(getKeyStatus().count, 0, '重設後應回到乾淨狀態');
+});
+
+test('llm-keys: 環境變數與執行期注入可並存（env 優先）', () => {
+  process.env.AGNES_API_KEY = 'from-env';
+  resetKeyPool();
+  const r = setRuntimeKeys('from-ui');
+  assert.equal(r.total, 2);
+  assert.equal(getKeyStatus().source, 'env+runtime');
 });

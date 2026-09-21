@@ -28,6 +28,9 @@
  */
 
 import { toTraditional } from '../scripts/fix-simplified.js';
+// 金鑰池：支援環境變數與「UI 執行期注入」兩種來源，
+// 並在 429 時自動隔離該把金鑰、下次重試換一把。
+import { nextKey, reportSuccess, reportFailure } from './llm-keys.js';
 
 const DEFAULT_API_BASE = 'https://apihub.agnes-ai.com/v1';
 const DEFAULT_MODEL = 'agnes-3.0-flash';
@@ -89,8 +92,8 @@ const SYS = `你是工具庫的 metadata 編譯器。我會給你一個開源專
  * @returns {Promise<object|null>} 可直接合併進 tool 的欄位；失敗回傳 null
  */
 export async function enrichToolFromReadme(tool, options = {}) {
-  const apiKey = options.apiKey ?? process.env.AGNES_API_KEY;
-  if (!apiKey) return null;
+  // 金鑰來源：明確傳入 > 金鑰池（環境變數 + UI 執行期注入）
+  if (!options.apiKey && !nextKey()) return null;
 
   const repoUrl = tool.install?.repoUrl || tool.url;
   const readme = options.readme ?? await fetchReadmeText(repoUrl);
@@ -110,6 +113,9 @@ export async function enrichToolFromReadme(tool, options = {}) {
 
   for (let attempt = 0; attempt < 3; attempt++) {
     if (attempt > 0) await new Promise((r) => setTimeout(r, 1500 * 2 ** (attempt - 1)));
+    // 每次嘗試重新取一把，讓重試有機會換到沒被限流的那把
+    const apiKey = options.apiKey ?? nextKey();
+    if (!apiKey) return null;
     try {
       const res = await fetch(`${apiBase}/chat/completions`, {
         method: 'POST',
@@ -124,7 +130,8 @@ export async function enrichToolFromReadme(tool, options = {}) {
         }),
         signal: AbortSignal.timeout(60000),
       });
-      if (!res.ok) continue;
+      if (!res.ok) { reportFailure(apiKey, res.status); continue; }
+      reportSuccess(apiKey);
       const j = await res.json();
       const raw = String(j?.choices?.[0]?.message?.content || '').trim();
       const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
@@ -143,6 +150,30 @@ function stripMd(s) {
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/**
+ * 判斷工具是否已「補齊完成」——這是 experimental → active 的升級判準
+ *
+ * 定義（與 `scripts/enrich-new-tools.js` 的 needsEnrich() 互補）：
+ *   - useCase 存在，且**不是** description 的複製品（複製品等於沒資訊）
+ *   - advantages 非空陣列
+ *   - description_zh 與 useCase_zh 都在（顯示層需要）
+ *
+ * ⚠️ 刻意**不要求** capabilities：全庫有 195 支沒有 capabilities
+ *    （因為它們的 GitHub repo 沒設 topics），那些工具仍然是 active。
+ *    把 capabilities 列入判準會讓大量既有工具被誤判為未完成。
+ *
+ * @param {object} tool
+ * @returns {boolean}
+ */
+export function isFullyEnriched(tool) {
+  return Boolean(
+    tool
+    && tool.useCase && tool.useCase !== tool.description
+    && Array.isArray(tool.advantages) && tool.advantages.length > 0
+    && tool.description_zh && tool.useCase_zh,
+  );
 }
 
 /** 正規化：去 Markdown、限制長度、簡轉繁、確保 advantages 是陣列 */

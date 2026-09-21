@@ -35,7 +35,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { enrichToolFromReadme } from '../core/tool-enricher.js';
+import { enrichToolFromReadme, isFullyEnriched } from '../core/tool-enricher.js';
 import { nextKey, reportSuccess, reportFailure } from '../core/llm-keys.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -85,7 +85,7 @@ const apiKey = process.env.AGNES_API_KEY;
 if (!apiKey) { console.error('\n需要 AGNES_API_KEY（或加 --dry 只看清單）'); process.exit(1); }
 
 const byId = new Map(reg.tools.map((t) => [t.id, t]));
-let ok = 0, skip = 0, fail = 0, cursor = 0;
+let ok = 0, skip = 0, fail = 0, upgraded = 0, cursor = 0;
 const SAVE_EVERY = 10;
 
 function flush() {
@@ -114,6 +114,12 @@ async function worker() {
     }
     if (Object.keys(merged).length === 0) { skip++; process.stdout.write('-'); continue; }
     Object.assign(byId.get(t.id), merged);
+    // 生命週期：補齊完成才升級為 active（與 Web／CLI 共用同一判準）
+    if (isFullyEnriched(byId.get(t.id)) && byId.get(t.id).status === 'experimental') {
+      merged.status = 'active';
+      byId.get(t.id).status = 'active';
+      upgraded++;
+    }
     applied.set(t.id, merged);
     ok++;
     process.stdout.write('✓');
@@ -125,5 +131,6 @@ await Promise.all(Array.from({ length: Math.min(CONCURRENCY, targets.length) }, 
 flush();
 
 console.log(`\n\n完成：成功 ${ok}／無足夠資訊 ${skip}／失敗 ${fail}`);
+console.log(`其中 ${upgraded} 支語意欄位補齊 → 狀態由 experimental 升級為 active`);
 console.log(`已寫入 ${REGISTRY}`);
 console.log('建議接著執行：npm run validate 與 npm run translate:zh（補齊剩餘 *_zh）');

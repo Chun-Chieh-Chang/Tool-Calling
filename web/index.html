@@ -61,6 +61,14 @@
         </select>
       </div>
 
+      <!-- API 金鑰提示：未設定時才出現（背景補齊語意欄位需要） -->
+      <div id="keyPanel" class="key-panel" hidden>
+        <span class="key-panel-label">加入工具後要自動補齊中文描述與使用情境，需要 API 金鑰</span>
+        <input type="password" id="keyInput" placeholder="貼上 AGNES_API_KEY（多把用逗號分隔）" autocomplete="off">
+        <button type="button" id="keySaveBtn">儲存</button>
+        <span class="key-panel-hint" id="keyPanelHint">只存在伺服器記憶體，不寫入磁碟；重啟後需重新輸入</span>
+      </div>
+
       <!-- 需求收斂追問：只在系統不確定時出現 -->
       <div id="clarifyBar" class="clarify-bar" hidden>
         <span class="clarify-label" id="clarifyLabel"></span>

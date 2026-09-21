@@ -1530,3 +1530,39 @@ select:focus {
   color: var(--text-tertiary, var(--text-secondary));
   font-size: 11px;
 }
+
+/* ── API 金鑰提示面板 ───────────────────────────────────────────────────
+   只在伺服器沒有金鑰時出現（背景補齊語意欄位需要 LLM）。
+   金鑰只存在伺服器記憶體，不落地；這裡用 password 欄位避免肩窺。 */
+.key-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: var(--surface-panel);
+  border: 1px solid var(--brand-amber, #d99b2b);
+  border-left: 3px solid var(--brand-amber, #d99b2b);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+}
+
+.key-panel-label {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.key-panel input[type="password"] {
+  flex: 1;
+  min-width: 220px;
+  padding: 6px 10px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 12px;
+}
+
+.key-panel-hint {
+  color: var(--text-tertiary, var(--text-secondary));
+  font-size: 11px;
+  width: 100%;
+}

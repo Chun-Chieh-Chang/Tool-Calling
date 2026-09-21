@@ -141,15 +141,24 @@ function checkAndAutoUpdateOnStartup() {
  * 這時寧可留白，也不要為了消 validate 警告而填推測內容。
  */
 async function enrichToolInBackground(toolId) {
-  if (!process.env.AGNES_API_KEY) return;   // 沒 key 就只做第一階段
   try {
+    const { getKeyStatus } = await import('../core/llm-keys.js');
+    // 金鑰可能來自環境變數，也可能是使用者剛在 UI 上輸入的（執行期注入）
+    if (!getKeyStatus().configured) {
+      console.log(`[AddTool] 未設定 API 金鑰，${toolId} 維持 experimental（僅完成第一階段）`);
+      return;
+    }
+
     const { loadRegistry, saveRegistry } = await import('../core/registry.js');
     const { enrichToolFromReadme } = await import('../core/tool-enricher.js');
     const tool = loadRegistry().tools.find((t) => t.id === toolId);
     if (!tool) return;
 
     const patch = await enrichToolFromReadme(tool);
-    if (!patch) return;
+    if (!patch) {
+      console.log(`[AddTool] README 資訊不足，${toolId} 維持 experimental（不填推測內容）`);
+      return;
+    }
 
     // 寫回前重讀：期間可能已被其他程序（sync-daemon、trending）更新
     const fresh = loadRegistry();
@@ -162,9 +171,21 @@ async function enrichToolInBackground(toolId) {
       else if (!t2[k] || (Array.isArray(t2[k]) && t2[k].length === 0)) { t2[k] = v; mergedKeys.push(k); }
     }
     if (mergedKeys.length === 0) return;
+
+    // ── 生命週期：補齊完成才升級 ──────────────────────────────────
+    // 掃描階段一律進 experimental；只有語意欄位真的齊了才升 active。
+    // 判準集中在 core/tool-enricher.js 的 isFullyEnriched()（單一真理來源），
+    // 與 CLI、批次腳本共用同一份定義。
+    const { isFullyEnriched } = await import('../core/tool-enricher.js');
+    const complete = isFullyEnriched(t2);
+    if (complete && t2.status === 'experimental') {
+      t2.status = 'active';
+      console.log(`[AddTool] ${toolId} 語意欄位補齊完成 → 升級為 active`);
+    }
+
     saveRegistry(fresh);
     try { syncRegistryToDist(); } catch {}
-    console.log(`[AddTool] 背景補齊語意欄位完成: ${toolId} → ${mergedKeys.join(', ')}`);
+    console.log(`[AddTool] 背景補齊完成: ${toolId} → ${mergedKeys.join(', ')}${complete ? '（status → active）' : '（仍為 experimental）'}`);
   } catch (err) {
     console.warn(`[AddTool] 背景補齊失敗（工具已加入，欄位維持留白）: ${err.message}`);
   }
@@ -437,6 +458,49 @@ const server = http.createServer(async (req, res) => {
             score: x.score,
           })),
         }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
+
+    // ─── API 金鑰管理（背景補齊語意欄位用）─────────────────────────────
+    // 為什麼需要這個端點：使用者不一定會在啟動伺服器時就設好 AGNES_API_KEY，
+    // 但「加入工具後背景補齊語意欄位」（core/tool-enricher.js）需要 LLM。
+    // 與其要他們重啟伺服器，不如在 UI 上提示輸入。
+    //
+    // 🔒 安全設計：
+    //   - 金鑰**只存在伺服器記憶體**，不寫入磁碟、不進版控、不寫 log
+    //   - 狀態查詢只回「遮罩後的標籤」，不回完整金鑰
+    //   - 寫入端點受 isTrustedOrigin 保護（與 /api/tools/add 同等級）
+    //   - 重啟即失效；要持久化請設環境變數（伺服器啟動時讀取）
+    if (decodedUrl === '/api/keys/status' && req.method === 'GET') {
+      const { getKeyStatus } = await import('../core/llm-keys.js');
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req), 'Cache-Control': 'no-cache' });
+      res.end(JSON.stringify(getKeyStatus()));
+      return;
+    }
+
+    if (decodedUrl === '/api/keys' && req.method === 'POST') {
+      if (!isTrustedOrigin(req)) {
+        res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
+        return;
+      }
+      const { keys } = JSON.parse(req._body || '{}');
+      if (!keys || !String(keys).trim()) {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: 'keys 不可為空' }));
+        return;
+      }
+      try {
+        const { setRuntimeKeys, getKeyStatus } = await import('../core/llm-keys.js');
+        const r = setRuntimeKeys(String(keys));
+        // ⚠️ 只記數量，不記金鑰內容
+        console.log(`[Keys] UI 注入 ${r.added} 把金鑰（目前共 ${r.total} 把，僅存記憶體）`);
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ ok: true, added: r.added, ...getKeyStatus() }));
       } catch (err) {
         res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify({ error: err.message }));

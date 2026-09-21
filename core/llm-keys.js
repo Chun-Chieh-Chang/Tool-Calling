@@ -44,15 +44,18 @@ const QUARANTINE_MS = Number(process.env.LLM_KEY_QUARANTINE_MS || 60000);
 
 let pool = null;
 let cursor = 0;
+// 執行期注入的金鑰（由 UI 輸入）。**只存在記憶體**，不寫入磁碟、不進版控。
+// 伺服器重啟後消失——要持久化請設環境變數 AGNES_API_KEY / AGNES_API_KEYS。
+let runtimeKeys = [];
 
 function initPool() {
   const raw = process.env.AGNES_API_KEYS || process.env.AGNES_API_KEY || '';
-  const keys = String(raw)
+  const envKeys = String(raw)
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean);
-  // 同一把金鑰重複出現沒有意義，去掉
-  pool = [...new Set(keys)].map((k) => ({
+  // 同一把金鑰重複出現沒有意義，去掉；環境變數優先，其次才是執行期注入的
+  pool = [...new Set([...envKeys, ...runtimeKeys])].map((k) => ({
     key: k,
     label: `key_${mask(k)}`,
     ok: 0,
@@ -62,6 +65,50 @@ function initPool() {
   }));
   cursor = 0;
   return pool;
+}
+
+/**
+ * 由 UI 注入金鑰（執行期，僅記憶體）
+ *
+ * 為什麼需要：使用者不一定會在啟動伺服器時就設好環境變數，
+ * 但「加入工具後背景補齊語意欄位」需要 LLM。與其要他們重啟伺服器，
+ * 不如在 UI 上提示輸入。
+ *
+ * ⚠️ 安全設計：
+ *   - 只存記憶體，不落地（重啟即失效）
+ *   - 不寫 log、不回傳完整金鑰（狀態查詢只回遮罩後的標籤）
+ *   - 端點仍受 isTrustedOrigin 保護
+ *
+ * @param {string|string[]} keys - 逗號分隔字串或字串陣列
+ * @returns {{added:number, total:number}}
+ */
+export function setRuntimeKeys(keys) {
+  const list = (Array.isArray(keys) ? keys : String(keys || '').split(','))
+    .map((s) => String(s).trim())
+    .filter(Boolean);
+  const before = getKeyPool().length;
+  runtimeKeys = [...new Set([...runtimeKeys, ...list])];
+  initPool();
+  return { added: pool.length - before, total: pool.length };
+}
+
+/**
+ * 金鑰狀態（給 UI 判斷是否要提示輸入）
+ * @returns {{configured:boolean, count:number, available:number, labels:string[], source:string}}
+ */
+export function getKeyStatus() {
+  const p = getKeyPool();
+  const envRaw = process.env.AGNES_API_KEYS || process.env.AGNES_API_KEY || '';
+  const envCount = envRaw ? new Set(String(envRaw).split(',').map((s) => s.trim()).filter(Boolean)).size : 0;
+  return {
+    configured: p.length > 0,
+    count: p.length,
+    available: availableCount(),
+    labels: p.map((e) => e.label),
+    // 讓 UI 知道金鑰是「環境變數」還是「本次工作階段輸入的」——
+    // 後者重啟後會消失，值得提醒使用者
+    source: envCount === 0 ? 'runtime' : (runtimeKeys.length > 0 ? 'env+runtime' : 'env'),
+  };
 }
 
 function mask(k) {
@@ -149,5 +196,6 @@ export function keyStats() {
 export function resetKeyPool() {
   pool = null;
   cursor = 0;
+  runtimeKeys = [];   // 重設＝連執行期注入的一起清掉
   return initPool();
 }

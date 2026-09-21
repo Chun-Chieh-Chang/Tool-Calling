@@ -24,6 +24,11 @@ const chainResult = document.getElementById('chainResult');
 const chainPipeline = document.getElementById('chainPipeline');
 const chainSteps = document.getElementById('chainSteps');
 const ingestSourceSelect = document.getElementById('ingestSourceSelect');
+// API 金鑰提示面板（背景補齊語意欄位用）
+const keyPanel = document.getElementById('keyPanel');
+const keyInput = document.getElementById('keyInput');
+const keySaveBtn = document.getElementById('keySaveBtn');
+const keyPanelHint = document.getElementById('keyPanelHint');
 
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
@@ -84,6 +89,10 @@ async function init() {
     if (deepSearchToggle) deepSearchToggle.addEventListener('change', handleSearch);
     if (chainModeToggle) chainModeToggle.addEventListener('change', handleSearch);
     if (ingestSourceSelect) ingestSourceSelect.addEventListener('change', handleSearch);
+    // API 金鑰：未設定時顯示提示面板
+    if (keySaveBtn) keySaveBtn.addEventListener('click', saveKeys);
+    if (keyInput) keyInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') saveKeys(); });
+    checkKeyStatus();
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
@@ -618,6 +627,15 @@ function setupAddToRegistryButtons() {
       } else if (data.status === 'added') {
         btn.textContent = '✅ 已加入';
         btn.classList.add('added');
+        // 沒設金鑰時，背景補齊不會發生（工具會停在 experimental）——
+        // 這時把金鑰輸入面板叫出來，讓使用者知道可以補上
+        if (data.enriching === false && keyPanel) {
+          keyPanel.hidden = false;
+          if (keyPanelHint) {
+            keyPanelHint.textContent =
+              `「${toolName}」已加入，但沒有 API 金鑰，中文描述與使用情境尚未補齊（狀態為 experimental）。輸入金鑰後可再執行 npm run enrich:new 補齊。`;
+          }
+        }
       } else {
         btn.textContent = '❌ 失敗';
         btn.classList.add('failed');
@@ -845,6 +863,61 @@ async function runChain(query) {
 async function runClarify(query) {
   const data = await serverClarify(query, clarifyAnswers);
   renderClarify(data);
+}
+
+// ── API 金鑰（背景補齊語意欄位用）────────────────────────────────────────
+//
+// 為什麼要在 UI 提示輸入：加入工具後會背景補齊 useCase／advantages／*_zh，
+// 那需要 LLM。若伺服器啟動時沒有設 AGNES_API_KEY，與其要使用者重啟伺服器，
+// 不如在這裡提示輸入——金鑰只存在伺服器記憶體，不落地。
+//
+// 生命週期：工具加入時一律 experimental；補齊完成才升級為 active。
+
+async function checkKeyStatus() {
+  if (!keyPanel) return;
+  try {
+    const res = await fetch('/api/keys/status');
+    if (!res.ok) return;
+    const s = await res.json();
+    keyPanel.hidden = Boolean(s.configured);
+    if (s.configured && keyPanelHint) {
+      keyPanelHint.textContent =
+        `已設定 ${s.count} 把金鑰（來源：${s.source === 'env' ? '環境變數' : s.source === 'runtime' ? '本次工作階段輸入' : '環境變數＋工作階段輸入'}）`;
+    }
+  } catch { /* 伺服器不可用時靜默，不影響其他功能 */ }
+}
+
+async function saveKeys() {
+  if (!keyInput || !keySaveBtn) return;
+  const keys = keyInput.value.trim();
+  if (!keys) { keyInput.focus(); return; }
+
+  keySaveBtn.disabled = true;
+  const original = keySaveBtn.textContent;
+  keySaveBtn.textContent = '儲存中…';
+  try {
+    const res = await fetch('/api/keys', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ keys }),
+    });
+    const data = await res.json();
+    if (res.ok && data.ok) {
+      keyInput.value = '';           // 不在前端留存金鑰
+      keyPanel.hidden = true;
+      console.log(`[Keys] 已設定 ${data.count} 把金鑰`);
+    } else {
+      keySaveBtn.textContent = '❌ 失敗';
+      setTimeout(() => { keySaveBtn.textContent = original; }, 2000);
+    }
+  } catch (err) {
+    console.warn('[Keys] 儲存失敗:', err.message);
+    keySaveBtn.textContent = '❌ 網路錯誤';
+    setTimeout(() => { keySaveBtn.textContent = original; }, 2000);
+  } finally {
+    keySaveBtn.disabled = false;
+    if (keySaveBtn.textContent === '儲存中…') keySaveBtn.textContent = original;
+  }
 }
 
 // 擷取管線（Capture 層）：素材 → 可用筆記

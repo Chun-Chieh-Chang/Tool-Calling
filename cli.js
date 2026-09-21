@@ -294,7 +294,10 @@ async function cmdAdd(url, isBatch = false) {
     // 第二階段：補齊語意欄位（useCase／advantages／*_zh）。
     // 與 Web 的加入流程一致——scan 只能填機器可得的欄位，
     // 語意欄位需要讀 README 後由 LLM 產生。沒 key 就跳過（工具仍已加入）。
-    if (process.env.AGNES_API_KEY) {
+    // 用金鑰池判斷（而不是只看 AGNES_API_KEY）——
+    // 否則使用者用 AGNES_API_KEYS 設多把金鑰時，這裡會誤判成「沒有 key」而跳過補齊。
+    const { getKeyStatus: keyStatus } = await import('./core/llm-keys.js');
+    if (keyStatus().configured) {
       try {
         console.log(`${c.dim}正在讀取 README 補齊語意欄位…${c.reset}`);
         const { enrichToolFromReadme } = await import('./core/tool-enricher.js');
@@ -307,9 +310,15 @@ async function cmdAdd(url, isBatch = false) {
               if (k === 'useCase' && t.useCase === t.description) t[k] = v;
               else if (!t[k] || (Array.isArray(t[k]) && t[k].length === 0)) t[k] = v;
             }
+            // 生命週期：補齊完成才升級為 active（與 Web 端同一判準）
+            const { isFullyEnriched } = await import('./core/tool-enricher.js');
+            const complete = isFullyEnriched(t);
+            if (complete && t.status === 'experimental') t.status = 'active';
             saveRegistry(fresh);
             Object.assign(newTool, patch);
+            if (complete) newTool.status = 'active';
             console.log(`  ${c.green}✓ 已補齊: ${Object.keys(patch).join(', ')}${c.reset}`);
+            if (complete) console.log(`  ${c.green}✓ 狀態升級為 active${c.reset}`);
           }
         } else {
           console.log(`  ${c.yellow}⚠ README 資訊不足，語意欄位維持留白（不填推測內容）${c.reset}`);
