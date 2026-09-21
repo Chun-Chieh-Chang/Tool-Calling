@@ -53621,7 +53621,7 @@
         "web-ui",
         "runtime"
       ],
-      "useCase": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
+      "useCase": "Software developers use ZCode as an integrated AI workbench to manage projects and run coding agents via an Electron desktop app, a browser-based interface, or a terminal CLI.",
       "advantages": [
         "AI coding workbench with desktop app, browser UI and terminal agent",
         "Single repository covering client, backend service, shared UI, plus Agent CLI and runtime source"
@@ -53662,7 +53662,7 @@
         "geo",
         "self-hosted"
       ],
-      "useCase": "Open-source AI brand visibility and competitor reports. Official website: https://niubigeo.ai/ | Paid services: AI testing by real people and GEO optimization. Pricing: https://niubigeo.ai/pricing",
+      "useCase": "Marketing teams wanting to verify if their product is cited in AI search results (GEO) should deploy this self-hosted tool to run keyword tests and audit competitor rankings across different LLMs.",
       "advantages": [
         "Tracks how AI models describe your product and which competitors they name",
         "Shows the sources cited in AI answers so you can inspect the evidence",
@@ -53707,7 +53707,7 @@
         "lockscreen-customization",
         "no-jailbreak"
       ],
-      "useCase": "Apple Wallet Card Skinner for iOS 18+ (No Jailbreak Required)",
+      "useCase": "An iOS user with a Mac wants to customize their Apple Wallet card artwork and apply specific passcode button themes to their lock screen without jailbreaking their device.",
       "advantages": [
         "Assigns custom artwork, textures or bank logos to Apple Pay and Wallet cards",
         "Themes the lockscreen passcode on iOS 18+",
@@ -53756,7 +53756,7 @@
         "laya",
         "local-ai"
       ],
-      "useCase": "Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyTorch, or cloud API.",
+      "useCase": "Developers running Apple Silicon Macs need to classify customer support tickets or assign departments locally without using a cloud API or generating text.",
       "advantages": [
         "Runs Laya natively on Apple Silicon via MLX",
         "13.4 ms median end-to-end for a short English typed decision; 7.4 ms with the multilingual checkpoint",
@@ -53801,7 +53801,7 @@
         "jev",
         "qwen3"
       ],
-      "useCase": "tiny Jev-like family of decision models built on top of Qwen3.5 you can train and run on your own",
+      "useCase": "Customer service teams deploy Kev locally to automatically triage support tickets, determining the correct department, urgency level, and customer sentiment in a single request.",
       "advantages": [
         "Small decision models in 0.8B, 4B and 9B sizes that you can train or run yourself",
         "Built on Qwen3.5 following the architecture described in Jev's Architecture Unmasked",
