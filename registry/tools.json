@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-21T11:35:22.305Z",
+  "lastUpdated": "2026-09-21T13:07:59.139Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -53896,7 +53896,8 @@
         "器官 3d 檢視"
       ],
       "install": {
-        "method": "none",
+        "method": "git-clone",
+        "command": "git clone https://github.com/ashemag/human-atlas.git",
         "repoUrl": "https://github.com/ashemag/human-atlas"
       },
       "capabilities": [
@@ -54222,6 +54223,188 @@
         "API 與 TypeSafe System One 相容，可直接把對方的 Python SDK 指向本機伺服器",
         "Apache 2.0 授權，附凍結的評測套件"
       ]
+    },
+    {
+      "id": "models-of-human-anatomy",
+      "name": "Models Of Human Anatomy",
+      "url": "https://github.com/Z-Anatomy/Models-of-human-anatomy",
+      "description": "This repository contains the Blender template of the Z-Anatomy Project. It includes models derived from 'BodyParts3D' and definitions that heavily rely on Wikipedia. It was made by Gauthier Kervyn…",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "models-of-human-anatomy",
+        "models",
+        "human",
+        "anatomy"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Z-Anatomy/Models-of-human-anatomy.git",
+        "repoUrl": "https://github.com/Z-Anatomy/Models-of-human-anatomy"
+      },
+      "capabilities": [
+        "blender-template",
+        "3d-anatomy-atlas",
+        "bodyparts3d-models",
+        "anatomical-terminology",
+        "interactive-navigation"
+      ],
+      "useCase": "Anatomy students or medical illustrators open Blender, navigate the Z-Anatomy template to inspect 3D human body structures with integrated definitions from Wikipedia.",
+      "advantages": [
+        "Functions as a navigable 3D atlas directly within Blender",
+        "Integrates anatomical definitions sourced from Wikipedia",
+        "Derived from the open-source BodyParts3D database",
+        "Licensed under Creative Commons Attribution-ShareAlike 4.0"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T12:56:31.313Z",
+      "status": "active",
+      "useCase_zh": "醫學系學生或解剖學研究者在 Blender 中開啟 Z-Anatomy 範本，以互動式 3D 介面檢視人體結構，並隨時查閱整合在內的解剖學定義。",
+      "advantages_zh": [
+        "可作為 Blender 內互動式 3D 解剖學圖譜",
+        "內建引用 Wikipedia 的解剖學定義",
+        "模型基礎源自開放源 BodyParts3D 資料庫",
+        "採用 CC BY-SA 4.0 授權，允許自由散布與二次創作"
+      ],
+      "description_zh": "此儲存庫包含 Z-Anatomy Project 的 Blender 模板。它包含源自 'BodyParts3D' 的模型，以及高度依賴 Wikipedia 的定義。由 Gauthier Kervyn 製作…"
+    },
+    {
+      "id": "anatomy",
+      "name": "Anatomy",
+      "url": "https://github.com/thebuggeddev/anatomy",
+      "description": "An interactive 3D human anatomy explorer built with three.js and GPT 5.6 Sol.",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "anatomy",
+        "開發工具"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/thebuggeddev/anatomy.git",
+        "repoUrl": "https://github.com/thebuggeddev/anatomy"
+      },
+      "capabilities": [
+        "threejs-3d-rendering",
+        "human-anatomy-visualization",
+        "nextjs-app-router",
+        "i18n-multilingual",
+        "gpt-sol-integration"
+      ],
+      "useCase": "A developer building a medical-education or anatomy-learning site needs a working reference for browsing human anatomy in 3D: the app renders anatomical structures in the browser with three.js, layers AI assistance from GPT 5.6 Sol on top, and ships a locale-routed Next.js shell for multilingual audiences.",
+      "advantages": [
+        "Renders anatomical structures interactively in the browser with three.js, so users need no desktop 3D software",
+        "Pairs the 3D viewer with GPT 5.6 Sol for AI-assisted explanation of anatomical content",
+        "Ships a locale-routed Next.js shell (app/[locale]) with i18n tooling, making localization to non-English audiences direct",
+        "Includes GSAP-driven animation and lucide-react icons for a polished, presentation-ready viewer"
+      ],
+      "negativeConstraints": [
+        "非可安裝套件：package.json 為 private，需 clone 後自行建置與部署（Next.js 應用程式）",
+        "本專案未宣稱醫療用途，不可用於臨床診斷或任何醫療決策"
+      ],
+      "addedAt": "2026-09-21T12:56:33.810Z",
+      "status": "active",
+      "useCase_zh": "開發醫學教育或解剖學學習網站時，需要一個可用的 3D 人體解剖瀏覽範例：應用程式以 three.js 在瀏覽器端渲染解剖構造，搭配 GPT 5.6 Sol 提供 AI 輔助解說，並內建以 locale 路由的 Next.js 外殼以支援多語系。",
+      "advantages_zh": [
+        "以 three.js 在瀏覽器端互動渲染解剖構造，使用者無需安裝桌面 3D 軟體",
+        "在 3D 檢視器之上串接 GPT 5.6 Sol，提供解剖內容的 AI 輔助解說",
+        "內建以 locale 路由的 Next.js 外殼（app/[locale]）與 i18n 工具，便於在地化為非英語語系",
+        "整合 GSAP 動畫與 lucide-react 圖示，適合直接用於成果展示"
+      ],
+      "description_zh": "一個使用 three.js 和 GPT 5.6 Sol 建構的互動式 3D 人體解剖探索器。",
+      "negativeConstraints_zh": [
+        "非可安裝套件：package.json 為 private，須 clone 後自行建置與部署（Next.js 應用程式）",
+        "本專案未宣稱醫療用途，不可用於臨床診斷或任何醫療決策"
+      ]
+    },
+    {
+      "id": "anny",
+      "name": "Anny",
+      "url": "https://github.com/naver/anny",
+      "description": "Anny is a differentiable human body mesh model written in PyTorch. Anny models a large variety of human body shapes, from infants to elders, using a common topology and parameter space.",
+      "category": "開發工具",
+      "language": "python",
+      "triggers": [
+        "anny",
+        "開發工具"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/naver/anny.git",
+        "repoUrl": "https://github.com/naver/anny"
+      },
+      "capabilities": [
+        "differentiable-body-mesh",
+        "human-shape-modeling",
+        "facial-expression-generation",
+        "pose-parameterization",
+        "tensor-based-mesh-generation"
+      ],
+      "useCase": "3D content developers integrate Anny into their PyTorch pipelines to generate diverse human meshes for characters ranging from infants to elders with specific facial expressions.",
+      "advantages": [
+        "Supports SOMA rig and SMPL-X topology for interoperability with other standard models",
+        "Includes part-specific models for hands and faces alongside the full body",
+        "Apache 2.0 licensed with free and non-commercial installation options"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T12:56:43.483Z",
+      "status": "active",
+      "useCase_zh": "3D 內容開發人員將 Anny 整合至 PyTorch 程式中，以生成從嬰幼兒到老人、且具備特定 facial expression 的多樣人體網格模型。",
+      "advantages_zh": [
+        "支援 SOMA 骨架與 SMPL-X 拓撲，提升與其他標準模型的互操作性",
+        "包含針對手部與臉部的獨立模組，並與全身模型搭配",
+        "採用 Apache 2.0 授權，提供免費或僅限非商業用途的安裝選項"
+      ],
+      "description_zh": "Anny 是一個使用 PyTorch 編寫的差異化人體網格模型。Anny 透過統一的拓撲結構和參數空間，模擬了從嬰幼兒到老人各種多樣化的人體形狀。"
+    },
+    {
+      "id": "fusion-ai-studio",
+      "name": "Fusion Ai Studio",
+      "url": "https://github.com/oracle/fusion-ai-studio",
+      "description": "Oracle Fusion AI Studio: Oracle-authored AI Studio skills plus template applications and workflows for Fusion modules (financials, supply chain, procurement, HCM).",
+      "category": "AI 代理",
+      "language": "shell",
+      "triggers": [
+        "fusion-ai-studio",
+        "fusion",
+        "studio"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/oracle/fusion-ai-studio.git",
+        "repoUrl": "https://github.com/oracle/fusion-ai-studio"
+      },
+      "capabilities": [
+        "agentic-app-scaffolding",
+        "workflow-testing",
+        "git-release-management",
+        "business-object-templates"
+      ],
+      "useCase": "Oracle Fusion developers clone the release-specific branch to pull the latest agentic skills and test AI workflows using the ATLAS framework.",
+      "advantages": [
+        "Restructured Git-based distribution eliminates the manual extraction and organization of legacy ZIP files",
+        "Includes the ATLAS agentic testing infrastructure for lifecycle automation of workflows",
+        "Organized template applications and workflows by business function (SCM, PRC, HCM) ready for immediate use"
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-21T12:56:50.931Z",
+      "status": "active",
+      "useCase_zh": "Oracle Fusion 開發者透過 Git 複製特定 release 分支，直接拉取最新的 agentic skills 與 ATLAS 測試框架，以簡化專案建立與驗證流程。",
+      "advantages_zh": [
+        "採用 Git 分發結構，免除早期手動解壓與整理 ZIP 檔案的繁瑣步驟",
+        "內含 ATLAS 代理測試基礎架構，支援 agentic 工作流程的自動測試",
+        "提供依業務模組（庫存、採購、人力）分類的標準範本，可直接載入使用"
+      ],
+      "description_zh": "Oracle Fusion AI Studio：Oracle 撰寫的 AI Studio 技能，以及針對 Fusion 模組（財務、供應鏈、採購、HCM）的範例應用程式和工作流程。"
     }
   ]
 }

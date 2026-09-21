@@ -6489,6 +6489,27 @@
         "詳細安裝指令需依官方 README 為準"
       ],
       "at": "2026-09-21T12:36:43.051Z"
+    },
+    "models-of-human-anatomy": {
+      "at": "2026-09-21T13:08:22.370Z",
+      "skipped": "already zh or empty",
+      "description_zh": "此儲存庫包含 Z-Anatomy Project 的 Blender 模板。它包含源自 'BodyParts3D' 的模型，以及高度依賴 Wikipedia 的定義。由 Gauthier Kervyn 製作…"
+    },
+    "anny": {
+      "at": "2026-09-21T12:58:25.369Z",
+      "skipped": "already zh or empty"
+    },
+    "anatomy": {
+      "description_zh": "一個使用 three.js 和 GPT 5.6 Sol 建構的互動式 3D 人體解剖探索器。",
+      "at": "2026-09-21T13:07:27.224Z",
+      "negativeConstraints_zh": [
+        "非可安裝套件：package.json 為 private，須 clone 後自行建置與部署（Next.js 應用程式）",
+        "本專案未宣稱醫療用途，不可用於臨床診斷或任何醫療決策"
+      ]
+    },
+    "fusion-ai-studio": {
+      "description_zh": "Oracle Fusion AI Studio：Oracle 撰寫的 AI Studio 技能，以及針對 Fusion 模組（財務、供應鏈、採購、HCM）的範例應用程式和工作流程。",
+      "at": "2026-09-21T12:58:31.859Z"
     }
   },
   "failed": {}
