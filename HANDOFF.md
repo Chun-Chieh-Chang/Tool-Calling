@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **705 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
+- 收錄 **722 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -531,21 +531,25 @@ npm run mcp                 # 啟動 MCP server
   - 問題診斷：HyDE 失敗揭露真根因——26 筆 no-match 實際命中（agent 已找到答案）
   - 修正方案：新增 `agentModerate` 路徑（1-2 筆高置信 + L2 有候選 → adopt-with-warning）
   - **結果：fusion Hit@1 37.0% → 56.8% (+19.8pp)，空集誠實率 30% → 100%** ✓
-  - 副產品：`scripts/diagnose-decision.mjs` 診斷工具
+  - 副產品：`scripts/diagnose-decision.mjs` 診斷工具（2026-09-22 清理：無引用已刪）
 
 **2026-09-22 完成：**
 
 - ✅ **Adaptive HyDE 完整評測**（Hit@1，38 題觸發子集，1 輪）— **結論：終止。** 0 改善、3 退步（c19/c185/c244）。根因：agent-retrieval 已補語意橋，HyDE 的 expanded query 反而稀釋訊號。`retrieveWithAdaptiveHyDE` 留在 codebase 但不接入任何端點。詳見 DEV_LOG。
-- ✅ 新增 `scripts/eval-hyde.js`（HyDE 評測腳本，帶 `--dry-run`）
+- ✅ 新增 `scripts/eval-hyde.js`（HyDE 評測腳本，帶 `--dry-run`）（2026-09-22 清理：HyDE 終止後腳本已刪）
 - ✅ 補 `tests/llm-keys.test.js` `beforeEach` — 修正測試在環境有真實 API key 時第一個 case 失敗的問題
 - ✅ `docs/pipeline-workflow.html` 修正 2 個節點 `module` 欄位（`core/interactive-approximator.js` → `core/clarifier.js`）
 - ✅ `HANDOFF.md` 日期 header 更新至 2026-09-22
+- ✅ **Web 工作台新增 3 項 UI 功能**：`POST /api/shutdown` 端點（本機 origin 白名單 + confirm 字串雙重防護）；header 加「關閉系統」紅色按鈕；logo 與搜尋列之間加入 6 步「操作流程」可點擊步驟條（`.workflow-steps`，點擊 → scrollIntoView + focus + `wf-pulse` 光暈）；搜尋列每個控件包進 `.hint-cell` 顯示 ① ② ③ ④ 常駐微提示。詳見 DEV_LOG 2026-09-22 Session 2。
+- ✅ **`toTraditional()` 修正 opencc 缺席回退**：`scripts/fix-simplified.js:187` 補 `|| S2T_SAFE[ch]`，讓「沒/熱/紅/筆/無/漸」等表外簡體字在無 opencc 環境也能正確轉換（解掉 2 個長期紅燈測試）。
+- ✅ **`knowledge-graph.test.js` playwright 改為可選**：頂層 dynamic `await import('playwright')` + try/catch，缺依賴時 `describe(..., { skip: true })`，`npm test` 可在離線沙盒全綠。
+- ✅ **全面盤點清理**：刪 7 支無引用一次性腳本（apply-categories / batch-add-20260908 / aurora-multidimensional / eval-hyde / expand-eval-set / verify-flowchart-spec / diagnose-decision.mjs）、孤兒 `web/fonts.css` + `web/fonts/` woff2（100 KB+，早已於 DEV_LOG 標記刪除但未實刪）、7 份日期戳記 docs；修 `package.json` 696 → 722；`scripts/generate-agents-md.js` 6 處 62/62 → 247 tests 並重生成 AGENTS.md。
 
 **2026-09-20 新增：**
 
 - ✅ **譯文納入檢索索引** — agent Hit@1 37.5%→53.1%、天花板 95.3%→98.4%。**本輪最大改善**
 - ✅ **評測集擴充至 v1.3.0（267 題）** — 標準誤 5.4pp→3.6pp→**3.0pp**；18 分類均衡（多數 13 題）、
-  漏詞檢查、天花板驗證；擴充流程已腳本化（`scripts/expand-eval-set.js`，可重現）
+  漏詞檢查、天花板驗證；擴充流程已腳本化（`scripts/expand-eval-set.js`，可重現）（2026-09-22 清理：一次性腳本已刪，擴充流程見 DEV_LOG）
 - ✅ 新增 `npm run ceiling` 天花板診斷工具（不需 API）
 - ✅ dev 模式三連修：空白頁（`/core/` 404）、改了沒生效（`dist/` 過期）、流程圖消失（`docs/*.html`）。
 - ✅ 批次收錄 5 個工具（stirling-pdf、kaggle-tpu-lab、security-audit-skill、openstock、claude-code 官方）

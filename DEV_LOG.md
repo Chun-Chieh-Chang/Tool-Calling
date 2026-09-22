@@ -4860,3 +4860,62 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
 - 空集誠實率：agent 100% / fusion 100%（完美一致）
 
 
+
+
+---
+
+## 2026-09-22 (Session 2) — UI 內嵌引導 + 關閉系統按鈕 + 全面盤點清理
+
+### 需求內容
+
+1. 重啟本地伺服器並開啟前端頁面
+2. 建立「關閉系統」按鈕：一鍵關閉後端 Node 程序並退出工作台
+3. 在介面中加入逐步操作引導（初次誤做獨立 modal tour，用戶糾正後改為「直接在操作元素下方內嵌常駐提示」）
+4. 加入操作流程（1→2→3→4→5→6）可視步驟條，點擊聚焦對應控件
+5. 全面盤點清理：死碼/孤兒資源移除、過時文件同步、SSOT/MECE 檢查、原子化提交並推遠端
+
+### 問題與原因分析（RCA）
+
+- **`toTraditional()` 表外簡體字漏轉**：`scripts/fix-simplified.js` 在 opencc 未安裝時的回退路徑（第 187 行）僅查主表 `S2T[ch] || ch`，完全跳過 `S2T_SAFE`（沒/熱/紅/筆/無/漸…）。這造成 `npm test` 長期存在 2 個 `fix-simplified.test.js` 紅燈（本 session 之前就存在）。
+- **`knowledge-graph.test.js` 硬性依賴 playwright**：頂層靜態 `import { chromium } from 'playwright'`，未安裝即崩潰整個 test file（1 fail）。playwright 属 devDependency 但 CI/本機常缺，應改為「可選 e2e、缺即 skip」。
+- **孤兒資源未清**：`web/fonts.css` 與 `web/fonts/*.woff2` 早在 `2026-09-XX` 的 DEV_LOG 標記刪除，但檔案一直留在 repo；`scripts/build-web.js` 也從未複製它們，`index.html` 沒 `<link>`、`style.css` 沒 `@import`。
+- **一次性 snapshot 文件殘留**：7 份日期戳記文件（`docs/*-2026-XX-XX.md`、`docs/reports/batch-add-report-*.md`）DEV_LOG 聲稱已刪但仍存於磁碟。
+- **package.json 工具數停在 696**：實際 registry 已達 722。
+- **AGENTS.md 測試數停在 62/62**：實際 247 tests；由 `scripts/generate-agents-md.js` 產生，源頭 6 處 hardcoded 都需更新。
+- **7 支無引用腳本**：`apply-categories.js`、`batch-add-20260908.js`、`aurora-multidimensional.js`、`eval-hyde.js`、`expand-eval-set.js`、`verify-flowchart-spec.js`、`diagnose-decision.mjs`；僅 DEV_LOG/docs 提及，无 package.json script、无代码引用。
+
+### 矯正與預防措施（CAPA）
+
+**功能新增**：
+- `web/server.js`：`POST /api/shutdown`，僅准 local origin（`isTrustedOrigin`）+ body `{confirm:"SHUTDOWN"}` 雙重防護，回應先 flush 再 `server.close() → process.exit(0)`，3 秒安全網防未斷連線。
+- `web/index.html`：header 加「關閉系統」紅色按鈕；logo 與 search 間新增 `.workflow-steps` 6 步膠囊條（輸入需求 › 篩選領域 › 深度搜尋(選) › 多工具鏈(選) › 切換視圖 › 關閉系統）；搜尋列每個控件包進 `.hint-cell` 顯示 ① ② ③ ④ 常駐微提示。
+- `web/style.css`：新增 `.shutdown-btn / .header-status-right / .hint-cell / .hint / .hint-num / .hint-tabs / .workflow-steps / .wf-step / .wf-num / .wf-arrow / .wf-pulse`；@media 640px 響應式。
+- `web/app.js`：`setupShutdownButton()` 帶 confirm dialog + `showShutdownOverlay()` 覆蓋層（因瀏覽器不允許指令關閉用戶開啟分頁）；`setupWorkflowSteps()` 事件委派，點擊 → `scrollIntoView` + `focus()` + `wf-pulse` 動畫。
+
+**Bug 修正**：
+- `scripts/fix-simplified.js:187` 回退路徑補 `|| S2T_SAFE[ch]`，讓 opencc 缺席環境也能轉「沒/熱/紅/筆/無/漸」。
+- `tests/knowledge-graph.test.js` 改 dynamic `await import('playwright')` + try/catch，缺依赖時 `describe(..., { skip: 'playwright 未安裝' }, ...)`。
+
+**清理**：
+- `rm` 7 支死碼腳本、7 份日期快照 docs、孤兒 `web/fonts.css` + `web/fonts/`（100 KB+）。
+- 修正 `package.json:4` 696 → 722。
+- 更新 `scripts/generate-agents-md.js` 6 處 "62/62" → 精確「247 tests, 245 pass + 2 optional e2e skip」；重跑 `npm run agents:init` 重生成 `AGENTS.md`。
+
+**預防**：AGENTS.md 由 `scripts/generate-agents-md.js` 生成；未來測試數變動只需調整源頭模板，不再各文件散修。
+
+### 驗證結果
+
+- `npm test`：**247 tests / 245 pass / 2 skipped / 0 fail** ✅（vs 之前 245 pass + 3 fail）
+- `node cli.js validate`：**100/100 quality, 0 errors, 0 warnings** ✅
+- `node scripts/check-mece.js`：**通過** ✅
+- `node scripts/check-duplicate-ids.js`：**全部 ID 唯一**（web/index.html 45 IDs / docs/knowledge-graph 12 IDs / dist/knowledge-graph 12 IDs）✅
+- `node scripts/check-syntax.js` + `check-utf8.js`：**通過** ✅
+- `npm run build`：**dist 重建成功，722 tools sync** ✅
+- `/api/shutdown` curl 實測：錯誤 confirm → 400；正確 confirm + local origin → 200 `shutting_down` + 進程 exit 0 ✅
+- 「操作流程」步驟條點擊 6 個 wf-step：全部對齊真實 DOM 元素（`#searchInput`、`#categorySelect`、`#deepSearchToggle`、`#chainModeToggle`、`.view-tabs`、`#shutdownBtn`），觸發 scrollIntoView + focus + wf-pulse ✅
+
+### 已知殘留（超出本次範圍）
+
+- `docs/edge-diagnostic.cjs` 位在 `docs/` 而非 `scripts/`，僅 AGENTS.md 引用；未來可遷移至 `scripts/` 以對齊職責分層。
+- `scripts/dynamic-k.js`、`scripts/llm-throughput.js` 只出現在 `core/agent-retrieval.js` 與 `core/llm-rerank.js` 的註解中，無代碼引用，本次保守未刪。
+- `.backup-20260912/` (7 MB) 已被 gitignore 忽略，未進 repo。
