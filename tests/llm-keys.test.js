@@ -7,11 +7,14 @@ import {
 } from '../core/llm-keys.js';
 
 // 測試之間必須重置，因為金鑰池是模組層級的單例
-test.afterEach(() => {
+// beforeEach 確保第一個測試也從乾淨狀態出發（afterEach 只覆蓋後續測試）
+function cleanPool() {
   delete process.env.AGNES_API_KEYS;
   delete process.env.AGNES_API_KEY;
   resetKeyPool();
-});
+}
+test.beforeEach(cleanPool);
+test.afterEach(cleanPool);
 
 test('llm-keys: 沒有任何金鑰時 nextKey() 回傳 null（離線安全）', () => {
   assert.equal(nextKey(), null);

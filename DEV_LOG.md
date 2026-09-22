@@ -4700,3 +4700,90 @@ GitHub 推送時回報預設分支有 6 個依賴漏洞（4 high、2 moderate）
 2. **`decision` 是完美的一級過濾器** — high-confidence 的 48 題天花板 100%，是完全不需要任何改寫的「安全區」。
 3. **semantic 是唯一值得改寫的類型**（+7.9pp 平均，三回合一致正向）。未來若要優化，應針對 semantic 設計觸發條件（例如「查詢與 top1 metadata 零詞彙重疊」），避開 direct。
 
+## 評測集擴充至 v1.3.0 + Adaptive HyDE Hit@1 評測（2026-09-21～22）
+
+### 評測集 v1.3.0（2026-09-21）
+
+在 v1.2.0（169 題）基礎上新增 98 題，達 **267 題**（空集 10 題 + 可命中 257 題）。
+
+- direct 76 / semantic 130 / constrained 51 / empty-set 10
+- 標準誤進一步降至 ~3.1pp
+- 天花板保持 95%+ 水準
+
+### 診斷：L2 score 雙峰分佈與 HyDE 觸發閾值（2026-09-22）
+
+**背景**：前回合（2026-09-20）自適應 HyDE 的觸發條件 `decision != adopt` 傷害了 direct 類型（-2.4pp）。根因：direct 查詢雖然 `decision != adopt`，但仍有詞彙重疊，不需 HyDE。
+
+**方法**：在 257 題上跑 `retrieve()`，收集 `l2Top.score` 分佈。
+
+**結果（雙峰間隙）**：
+
+| 分桶 | direct | semantic | constrained |
+|------|--------|----------|-------------|
+| [0.00, 0.05) | 9.2% | 96.2% | 7.8% |
+| [0.05, 0.17) | **0%** | **0%** | **0%** |
+| [0.18+) | 90.8% | 3.8% | 92.2% |
+
+[0.05, 0.17) 區間**完全空白**，形成天然分界。`0.10` 是乾淨的閾值：
+- `l2Score < 0.10`：direct 9% / semantic 96% / constrained 8%
+- `l2Score ≥ 0.10`：其餘全部
+
+結論：**`decision != adopt && l2Score < 0.10`** 是比前回合更精準的觸發條件，可把 HyDE 觸發率從 ~70% 降至 ~15%，理論上應能避開 direct。
+
+### 實作：`retrieveWithAdaptiveHyDE`（2026-09-22）
+
+在 [`core/retrieval-fusion.js`](core/retrieval-fusion.js) 新增 `retrieveWithAdaptiveHyDE(tools, query, options)`：
+
+1. 先跑 `retrieve()`（基線）
+2. 若 `decision === 'adopt'` → 直接返回（不觸發）
+3. 若 `l2Top.score >= 0.10` → 直接返回（有詞彙重疊，不需 HyDE）
+4. 否則：lazy import `llm-keys.js`，呼叫 LLM 生成 60 字以內的假想工具描述
+5. `expandedQuery = original + hypothetical`，重跑 `retrieve()`
+6. 只有 `secondPass.decision rank > firstPass.decision rank` 才採用 secondPass
+7. 回傳結果附帶 `hyde.*` 元資料
+
+預計觸發率：38 / 257（14.8%）；其中 semantic:25、direct:9、constrained:4。
+
+### 實驗：Adaptive HyDE Hit@1 評測（2026-09-22 結論：終止）
+
+**評測工具**：[`scripts/eval-hyde.js`](scripts/eval-hyde.js)（新建）
+
+**做法**：對 38 題觸發子集各呼叫一次 LLM（delay 800ms），比較 `retrieve` vs `retrieveWithAdaptiveHyDE`。
+
+**結果**：
+
+| 子集 | 基線 Hit@1 | HyDE Hit@1 | Δ Hit@1 | Δ MRR |
+|------|-----------|------------|---------|-------|
+| 全部 (257) | 56.4% | 56.0% | **−0.4pp** | −0.006 |
+| HyDE 觸發 (38) | 57.9% | 55.3% | **−2.6pp** | −0.044 |
+| HyDE 未觸發 (219) | 56.2% | 56.2% | +0.0pp | 0.000 |
+
+- **改善：0 筆**（33 次成功觸發中）
+- **退步：3 筆**（c19、c185、c244）
+- LLM 呼叫失敗：5 筆（429 / key 耗盡）
+
+**根因分析**：
+
+HyDE 的理論前提在本專案失效，原因有三：
+
+1. **agent-retrieval 已補橋**：觸發子集的基線 Hit@1 已有 57.9%。問題不在無法命中，而是 `decision` 閾值過保守——很多 `no-match` 決策其實已把正確答案排在前幾名，只是融合引擎不敢說「採納」。HyDE 踩到的是**排序信心問題**，不是**召回問題**。
+
+2. **expanded query 稀釋語意訊號**：`original + hypothetical` 把查詢膨脹成技術段落，反而把 agent-retrieval 對口語需求的語意匹配能力破壞掉。c19（rank 2→miss）和 c185（rank 1→miss）即為此類退步。
+
+3. **觸發條件仍有誤傷**：即使加了 `l2Score < 0.10` 二級過濾，direct 子集中仍有 9 題進入觸發集（基線已有高命中），HyDE 在這些題目上製造雜訊。
+
+**🔴 被推翻的假說**：「`l2Score < 0.10` = 語意橋斷裂，需要 LLM 補字。」實際上 `l2Score` 反映的是 L2 引擎的詞彙命中，**不代表** agent-retrieval 的語意命中情況。L2 分低的查詢，agent-retrieval 照樣可能找到正確答案——兩者的語意空間不同。
+
+**決策：終止 HyDE 方向。**
+- `retrieveWithAdaptiveHyDE` 留在 codebase（代碼完整、有安全防護），但不接入任何端點
+- 不增加 `--hyde` flag
+- 再做 HyDE 需要先解決「如何用指標區分 agent-retrieval 已命中 vs 真正未命中」，否則任何觸發條件都會傷到已命中的查詢
+
+**真正的提升路徑**：修正 `decision` 閾值（`no-match` 判定過於保守），讓融合引擎在已有正確答案的情況下更敢回報 `adopt`。這是純邏輯改動，不需 LLM 呼叫。
+
+**副產品**：
+1. `scripts/eval-hyde.js` — 帶 `--dry-run` 的 HyDE 評測腳本，可重用於未來任何查詢改寫實驗
+2. L2 score 雙峰診斷腳本（`l2-score-dist.mjs`）— 確認了 0.10 閾值的可靠性
+3. `tests/llm-keys.test.js` 補 `beforeEach` — 修正第一個測試在環境有真實 API key 時失敗的問題（與本實驗無關，但本次發現並修正）
+
+

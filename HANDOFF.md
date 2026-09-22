@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-09-20
+> 最後更新：2026-09-22
 
 ---
 
@@ -523,7 +523,15 @@ npm run mcp                 # 啟動 MCP server
 
 ## 七、待辦事項
 
-### 已完成（含 2026-09-20 本輪）
+### 已完成（含 2026-09-22 本輪）
+
+**2026-09-22 新增：**
+
+- ✅ **Adaptive HyDE 完整評測**（Hit@1，38 題觸發子集，1 輪）— **結論：終止。** 0 改善、3 退步（c19/c185/c244）。根因：agent-retrieval 已補語意橋，HyDE 的 expanded query 反而稀釋訊號。`retrieveWithAdaptiveHyDE` 留在 codebase 但不接入任何端點。詳見 DEV_LOG。
+- ✅ 新增 `scripts/eval-hyde.js`（HyDE 評測腳本，帶 `--dry-run`）
+- ✅ 補 `tests/llm-keys.test.js` `beforeEach` — 修正測試在環境有真實 API key 時第一個 case 失敗的問題
+- ✅ `docs/pipeline-workflow.html` 修正 2 個節點 `module` 欄位（`core/interactive-approximator.js` → `core/clarifier.js`）
+- ✅ `HANDOFF.md` 日期 header 更新至 2026-09-22
 
 **2026-09-20 新增：**
 
@@ -566,6 +574,7 @@ npm run mcp                 # 啟動 MCP server
 | 候選數降到 top-30 | 省 40% 但天花板**永久**鎖在 85.7% |
 | 移除 capabilities 省成本 | 只省 8%，不值得改 |
 | **HyDE 查詢改寫**（2026-09-20）| semantic 天花板 91.0%→93.6%（+2.6pp）但總計僅 +1.3pp，**低於雜訊 3.6pp**，且每次查詢多一次 LLM 呼叫（~6s）。不採用 |
+| **自適應 HyDE v2**（`decision != adopt && l2Score < 0.10`，2026-09-22）| Hit@1 評測：全部 −0.4pp，觸發子集 −2.6pp，**改善 0 筆、退步 3 筆**。根因：agent-retrieval 已補語意橋，expanded query 稀釋訊號。`retrieveWithAdaptiveHyDE` 留在 codebase 但不接入任何端點。**HyDE 方向終止** |
 
 ### 尚未處理（經實測皆非有效槓桿，優先序低）
 
@@ -574,8 +583,8 @@ npm run mcp                 # 啟動 MCP server
 
 ### 📌 下一步建議（若繼續投入）
 
-- **攻 semantic 缺口**（40.5%，唯一有召回缺口的類型）。已知無效：HyDE 簡單版、subTools、CoT。
-- **自適應 HyDE**：只對「初次檢索低信心」的查詢套用，成本只花在難題上——這是 HyDE 實驗後唯一還值得試的方向。
+- **修正 `decision` 閾值（優先）**：觸發子集的基線 Hit@1 已有 57.9%，但大量查詢被判定為 `no-match`。融合引擎「明明答案在前幾名，卻不敢說 adopt」是真正的排序信心問題，純邏輯改動，不需 LLM 呼叫。
+- **攻 semantic 缺口**（46.5%，唯一有召回缺口的類型）。已知無效：HyDE 簡單版、HyDE v2（`l2Score < 0.10`）、subTools、CoT。
 - **天花板 5% 缺口**（8 題）：根因是詞彙鴻溝，乾淨解法是 embedding，但 API 端點無 embedding 模型可用（已查證）
 
 ---

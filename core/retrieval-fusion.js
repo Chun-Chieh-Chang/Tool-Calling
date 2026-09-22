@@ -19,6 +19,7 @@ import { search } from './search-engine.js';
 import { agentRetrieve } from './agent-retrieval.js';
 import { extractIntent, weightsForIntent } from './query-intent.js';
 import { loadVectors, cosine } from './embedding.js';
+import { neutralizeDelimiters } from './prompt-sanitize.js';
 
 // ── 融合參數 ─────────────────────────────────────────────────────────────
 //
@@ -362,6 +363,113 @@ export async function retrieveWithRerank(tools, query, options = {}) {
     results: promote(base.results, picked).slice(0, topK),
     rerank: { applied: true, picked },
   };
+}
+
+// ── 自適應 HyDE 參數 ──────────────────────────────────────────────────────
+//
+// L2 score 分佈有一個清晰的雙峰間隙（2026-09-22 實測，v1.3.0，257 筆非空集）：
+//   [0.00, 0.04]：真零詞彙命中（38 筆：9 direct / 25 semantic / 4 constrained）
+//   [0.05, 0.17]：完全沒有任何查詢落在這個區間（gap）
+//   [0.18, ∞  ]：有詞彙命中的查詢（219 筆）
+//
+// 故 0.10 是完全乾淨的切割線：低於它 = 語意查詢，高於它 = 有詞彙基礎的查詢。
+const HYDE_L2_THRESHOLD = 0.10;
+const HYDE_API_BASE = 'https://apihub.agnes-ai.com/v1';
+const HYDE_MODEL = process.env.RERANK_MODEL || 'agnes-3.0-flash';
+const _DECISION_RANK = { adopt: 3, 'adopt-with-warning': 2, ambiguous: 1, 'no-match': 0 };
+
+/**
+ * 自適應 HyDE（Hypothetical Document Expansion）
+ *
+ * 只對「詞彙真空」查詢套用假想文件擴充，避開 direct / constrained 查詢。
+ *
+ * 觸發條件（雙重閾值，缺一不可）：
+ *   1. decision !== 'adopt'（融合層未給出確定答案）
+ *   2. l2Top.score < 0.10（L2 近乎零詞彙命中 = 真正的語意跳躍查詢）
+ *
+ * 為什麼要第二個條件：
+ *   前次實驗（2026-09-20，三回合）僅用條件 1 觸發，導致 direct 查詢也跑 HyDE，
+ *   direct 天花板 -2.4pp。根因是 direct 查詢雖然 decision 可能是 no-match，
+ *   但 L2 score 仍有詞彙命中（≥ 0.10）——HyDE 反而干擾正確方向。
+ *   加條件 2 後，只有「真零詞彙」查詢觸發，覆蓋 38/257 = 15%（vs 原來 ~70%）。
+ *
+ * 保守替換策略：secondPass.decision 必須**嚴格優於** firstPass 才替換，
+ * 避免 LLM 改寫的隨機抖動把已成功的查詢改壞。
+ *
+ * @param {object[]} tools
+ * @param {string} query
+ * @param {object} [options] — 同 retrieve()
+ * @returns {Promise<object>} retrieve() 的結果，外加 hyde.* 欄位
+ */
+export async function retrieveWithAdaptiveHyDE(tools, query, options = {}) {
+  const firstPass = retrieve(tools, query, options);
+
+  if (firstPass.decision === 'adopt') {
+    return { ...firstPass, hyde: { triggered: false, reason: 'adopt' } };
+  }
+
+  const l2Score = firstPass.l2Top?.score ?? 0;
+  if (l2Score >= HYDE_L2_THRESHOLD) {
+    return { ...firstPass, hyde: { triggered: false, reason: 'l2-match', l2Score } };
+  }
+
+  const { nextKey, reportSuccess, reportFailure } = await import('./llm-keys.js');
+  const hypothetical = await _generateHypotheticalDoc(query, { nextKey, reportSuccess, reportFailure });
+  if (!hypothetical) {
+    return { ...firstPass, hyde: { triggered: false, reason: 'no-key-or-error' } };
+  }
+
+  const expandedQuery = `${query} ${hypothetical}`;
+  const secondPass = retrieve(tools, expandedQuery, options);
+
+  const firstRank  = _DECISION_RANK[firstPass.decision]  ?? 0;
+  const secondRank = _DECISION_RANK[secondPass.decision] ?? 0;
+  const best = secondRank > firstRank ? secondPass : firstPass;
+
+  return {
+    ...best,
+    hyde: {
+      triggered: true,
+      improved: secondRank > firstRank,
+      firstDecision: firstPass.decision,
+      secondDecision: secondPass.decision,
+      hypothetical,
+    },
+  };
+}
+
+async function _generateHypotheticalDoc(query, { nextKey, reportSuccess, reportFailure }) {
+  const key = nextKey();
+  if (!key) return null;
+
+  const prompt =
+    '你是一個 AI 工具資料庫的編目員。使用者用口語描述了一個需求，請把它改寫成一段' +
+    '假想工具的技術描述（2～3 句），就像這個工具的 GitHub README 第一段：' +
+    '用工具本身的技術術語，描述它的功能與用途。\n\n' +
+    '注意：直接輸出技術描述，不要加「這個工具」「假想工具」「根據您的需求」等前綴；' +
+    '使用可能出現在工具 metadata 的術語；不要超過 60 字。\n\n' +
+    `使用者需求：${neutralizeDelimiters(query)}`;
+
+  try {
+    const res = await fetch(`${HYDE_API_BASE}/chat/completions`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: HYDE_MODEL,
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 120,
+        temperature: 0.3,
+      }),
+      signal: AbortSignal.timeout(12000),
+    });
+    if (!res.ok) { reportFailure(key); return null; }
+    reportSuccess(key);
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content?.trim() || null;
+  } catch {
+    reportFailure(key);
+    return null;
+  }
 }
 
 // ── CLI 入口（僅在直接執行時）────────────────────────────────────────────

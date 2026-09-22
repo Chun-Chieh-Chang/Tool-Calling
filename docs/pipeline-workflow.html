@@ -654,8 +654,8 @@
           type: 'decision',
           title: '需求邊界\n是否模糊？',
           lines: [],
-          module: 'core/interactive-approximator.js',
-          desc: '按需觸發（cli.js interview）：使用者主動執行 interview 命令才進入此分支；一般 search / invoke 路徑不自動觸發。功能為第一性原理防禦——對模糊需求展開白話 3 問，防止盲目輸出。'
+          module: 'core/clarifier.js',
+          desc: '按需觸發（cli.js interview）：使用者主動執行 interview 命令才進入此分支；一般 search / invoke 路徑不自動觸發。功能為第一性原理防禦——對模糊需求動態追問，防止盲目輸出。'
         },
         {
           id: 'clarify_loop',
@@ -664,8 +664,8 @@
           type: 'process',
           title: '白話 3 問反向提問',
           lines: ['cli.js interview 獨立觸發', '消除未經檢驗的假設'],
-          module: 'core/interactive-approximator.js:runInteractiveInterview',
-          desc: '僅在 cli.js interview 命令下執行（cli.js:991）。主動向用戶確認語言環境、核心用途與畫面需求，收斂模糊需求後回流至意圖剖析。'
+          module: 'core/clarifier.js:clarify',
+          desc: '僅在 cli.js interview 命令下執行（cli.js:1002）。按 top-N 候選集的 entropy 動態生成追問題（取分歧最大的維度），收斂模糊需求後回流至意圖剖析。取代舊版寫死爬蟲三題的 interactive-approximator.js（2026-09-20 移除）。'
         },
 
         // ── Row 2: 意圖剖析 ──
