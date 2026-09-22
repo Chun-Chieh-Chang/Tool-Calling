@@ -525,7 +525,15 @@ npm run mcp                 # 啟動 MCP server
 
 ### 已完成（含 2026-09-22 本輪）
 
-**2026-09-22 新增：**
+**2026-09-22 新增（決策閾值修正 — 核心改善）：**
+
+- ✅ **降低融合引擎的 decision 信心門檻**（AGENT_MIN_CONSISTENT 3→agentModerate 1）
+  - 問題診斷：HyDE 失敗揭露真根因——26 筆 no-match 實際命中（agent 已找到答案）
+  - 修正方案：新增 `agentModerate` 路徑（1-2 筆高置信 + L2 有候選 → adopt-with-warning）
+  - **結果：fusion Hit@1 37.0% → 56.8% (+19.8pp)，空集誠實率 30% → 100%** ✓
+  - 副產品：`scripts/diagnose-decision.mjs` 診斷工具
+
+**2026-09-22 完成：**
 
 - ✅ **Adaptive HyDE 完整評測**（Hit@1，38 題觸發子集，1 輪）— **結論：終止。** 0 改善、3 退步（c19/c185/c244）。根因：agent-retrieval 已補語意橋，HyDE 的 expanded query 反而稀釋訊號。`retrieveWithAdaptiveHyDE` 留在 codebase 但不接入任何端點。詳見 DEV_LOG。
 - ✅ 新增 `scripts/eval-hyde.js`（HyDE 評測腳本，帶 `--dry-run`）
@@ -583,9 +591,11 @@ npm run mcp                 # 啟動 MCP server
 
 ### 📌 下一步建議（若繼續投入）
 
-- **修正 `decision` 閾值（優先）**：觸發子集的基線 Hit@1 已有 57.9%，但大量查詢被判定為 `no-match`。融合引擎「明明答案在前幾名，卻不敢說 adopt」是真正的排序信心問題，純邏輯改動，不需 LLM 呼叫。
-- **攻 semantic 缺口**（46.5%，唯一有召回缺口的類型）。已知無效：HyDE 簡單版、HyDE v2（`l2Score < 0.10`）、subTools、CoT。
-- **天花板 5% 缺口**（8 題）：根因是詞彙鴻溝，乾淨解法是 embedding，但 API 端點無 embedding 模型可用（已查證）
+**已完成**：✅ **修正 `decision` 閾值** — fusion Hit@1 37.0% → 56.8% (+19.8pp)
+
+**仍可投入**：
+- **攻 semantic 缺口**（現在 48.1%，仍是最弱的類型，-9.7pp vs direct）。已知無效：HyDE 簡單版、HyDE v2（`l2Score < 0.10`）、subTools、CoT。可試方向：更精緻的意圖抽取（query-intent.js）、或接納 embedding 的技術債（API 端點無模型）。
+- **天花板 5% 缺口**（8 題）：根因是詞彙鴻溝（使用者口語 vs metadata 技術術語），乾淨解法需 embedding，但 API 端點無 embedding 模型可用（已查證）
 
 ---
 

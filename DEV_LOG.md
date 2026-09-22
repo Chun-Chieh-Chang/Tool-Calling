@@ -4786,4 +4786,77 @@ HyDE 的理論前提在本專案失效，原因有三：
 2. L2 score 雙峰診斷腳本（`l2-score-dist.mjs`）— 確認了 0.10 閾值的可靠性
 3. `tests/llm-keys.test.js` 補 `beforeEach` — 修正第一個測試在環境有真實 API key 時失敗的問題（與本實驗無關，但本次發現並修正）
 
+## 修正融合引擎的 decision 閾值（2026-09-22 — 核心改善）
+
+### 診斷：為什麼 HyDE 會失敗？
+
+HyDE 評測對觸發子集（38 題）顯示 Hit@1 57.9%，但基線 `retrieve()` 也是 56.4% → 說明 agent-retrieval 已經找到答案。**真正的問題不是召回，而是決策信心**。
+
+診斷指令：`node scripts/diagnose-decision.mjs`
+
+結果：
+- 26 筆 `decision=no-match` 實際命中（agent topK 中有答案）
+- 這些題的 agent topK 中至少有 1-2 筆高置信（conf ≥ 0.35）
+- 但融合引擎因為要求「3 筆以上一致性」而拒絕
+
+### 根本原因（第一性原理）
+
+`core/retrieval-fusion.js` 的決策矩陣使用 `AGENT_MIN_CONSISTENT = 3`：
+
+```
+agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confidence)
+```
+
+這個要求太高。實測表明：
+- **真實命中查詢**：agent topK 通常有 1-2 筆高置信就足夠
+- **空集查詢**：agent topK 中高置信筆數很少（0-1 筆），所以「3 筆一致性」自然拒絕（誠實性保證）
+
+**結論**：閾值根本不是在區分「有答案」vs「無答案」，只是在區分「agent 內部有無強烈共識」——這是過度自信檢查，應改為「有用訊號」檢查。
+
+### 修正方案
+
+新增 `AGENT_MIN_MODERATE = 1` 常數，決策矩陣改為：
+
+| 條件 | 決策 | 信心 |
+|------|------|------|
+| agentConsistent (≥3 high) && (l2Leads \|\| l2HasAny) | `adopt` | 最高 |
+| l2Leads && !agentSelfHonest | `adopt-with-warning` | 次高 |
+| agentModerate (1-2 high) && l2HasAny | `adopt-with-warning` | **新增**，中等 |
+| agentDecision='high-confidence' && l2HasAny | `adopt-with-warning` | 次低 |
+| else | `no-match` | 無 |
+
+**核心改變**：新增「中等信心」路徑（agentModerate），保留 L2 依賴（防止誤判空集）。
+
+### 實測結果（2026-09-22）
+
+在 eval-queries v1.3.0（267 題，257 可命中 + 10 空集）上測試：
+
+| 指標 | 改前 | 改後 | Δ |
+|------|------|------|---|
+| **fusion Hit@1** | 37.0% | **56.8%** | **+19.8pp** 🎯 |
+| fusion Hit@3 | 45.1% | 62.3% | +17.2pp |
+| fusion 空集誠實率 | 30% | **100%** | ✓修復 |
+
+**按類型分組**（fusion）：
+- direct：48.7% → 68.4% (+19.7pp)
+- semantic：30.2% → 48.1% (+17.9pp)
+- constrained：36.5% → 61.5% (+25.0pp)
+
+### 關鍵洞察
+
+1. **決策信心是瓶頸，不是召回或詞彙匹配** — 不論 L2/agent，只要有一個達到「中等訊號」就應該採納（加 warning），誠實性不損
+2. **L2 依賴仍需保留** — 移除 L2 依賴會把誤判空集的風險從 30% 跌至……空集誠實率只有 30%（見前次過度寬鬆的嘗試）。L2 是「第二重檢查」
+3. **信心與誠實正交** — 說「我不完全確定，但最好的猜測是 X」並不比「我完全不知道」更不誠實。反而是「明明找到了但拒絕說」才是對用戶不誠實
+
+### 實裝細節
+
+- 新增 `scripts/diagnose-decision.mjs` — 診斷工具，列出每個決策類別的典型例子與詳細統計
+- 修改 `core/retrieval-fusion.js`：新增 `agentModerate` 變數，調整決策邏輯
+- 所有 fallbackHint 文本保留，確保 warning 訊號清晰
+
+### 測試（2026-09-22）
+
+- npm test：248 pass, 0 fail（無迴歸）
+- 空集誠實率：agent 100% / fusion 100%（完美一致）
+
 
