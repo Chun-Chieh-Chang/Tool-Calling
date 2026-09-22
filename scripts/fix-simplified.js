@@ -184,7 +184,7 @@ try {
 export function toTraditional(str) {
   if (str == null) return '';
   const s = String(str);
-  if (!openccConvert) return [...s].map((ch) => S2T[ch] || ch).join('');
+  if (!openccConvert) return [...s].map((ch) => S2T[ch] || S2T_SAFE[ch] || ch).join('');
 
   // ⚠️ 不可無條件交給 opencc：實測它會把**已經是繁體**的字串改錯
   // （「減少干擾」→「減少幹擾」）。原因是干擾已是繁體、不在簡轉繁詞庫內，
