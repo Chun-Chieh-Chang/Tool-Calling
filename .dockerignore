@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+README.md
+HANDOFF.md
+DEV_LOG.md
+.env.local
+.env.*.local
+.DS_Store
+*.log
+.vscode
+.idea
+dist
+scripts/diagnostic-*.mjs
+*.test.js
+tests/
