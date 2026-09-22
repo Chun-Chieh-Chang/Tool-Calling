@@ -52,8 +52,10 @@ import { neutralizeDelimiters } from './prompt-sanitize.js';
 // 情形；對 V2 通道本身接住通用詞的偽命中（如 airllm 對 jsonl），純規則
 // 無法壓制，需 Option B（語意 embedding）才能根治。
 const AGENT_HIGH = 0.35;          // 與 agent-retrieval 的 BEST_DIM_THRESHOLD 一致
+const AGENT_MEDIUM = 0.20;        // 中置信門檻（新增），用於 top-1 判定
 const L2_LEAD_MARGIN = 0.4;       // top-1 比第 K 筆高 ≥0.4 視為「明確領先」
-const AGENT_MIN_CONSISTENT = 3;   // topK=5 中至少 3 筆高置信才算「一致」
+const AGENT_MIN_CONSISTENT = 3;   // topK=5 中至少 3 筆高置信才算「強一致」
+const AGENT_MIN_MODERATE = 1;     // topK=5 中至少 1 筆高置信，視為「中等信心」（保險版）
 
 /**
  * 融合檢索：對同一查詢同時跑 L2 與 agent-retrieval，回傳融合結果。
@@ -102,18 +104,22 @@ export function retrieve(tools, query, options = {}) {
 
   // 2. 取訊號做決策矩陣
   //
-  // 三個獨立信號：
+  // 五個獨立信號：
   //  (1) l2Leads：L2 top-1 比第 K 筆分數高 ≥ L2_LEAD_MARGIN（明確領先）
   //  (2) l2HasAny：L2 至少回傳 1 筆（有候選）
-  //  (3) agentConsistent：agent **自己** topK 中 ≥ AGENT_MIN_CONSISTENT 筆 conf ≥ 0.35
+  //  (3) agentConsistent：agent **自己** topK 中 ≥ AGENT_MIN_CONSISTENT 筆 conf ≥ 0.35（強一致）
+  //  (4) agentUseful：agent topK 中 ≥ AGENT_MIN_USEFUL 筆 conf ≥ 0.20（有用訊號，即使 agent 報 low-confidence）
+  //  (5) agentTop1Useful：agent top-1 單獨 conf ≥ 0.20（足以當首選候選）
   //
-  // 決策矩陣：
+  // 決策邏輯（2026-09-22 修正）：
+  //   之前門檻 0.35 + 3 筆一致性要求太嚴。實測：26 題 no-match 實際命中，
+  //   但 agent top-1 只在 0.15~0.30 置信。新策略是降低門檻至 0.20，
+  //   只要有中置信訊號就採用（相對於盲目拒絕 no-match）。
+  //
   //   adopt               : agentConsistent && (l2Leads || l2HasAny)
-  //   adopt-with-warning  : l2Leads && !agentConsistent
-  //   no-match            : !l2Leads && !agentConsistent
+  //   adopt-with-warning  : (l2Leads && !agentSelfHonest) || (agentTop1Useful && l2HasAny && !agentSelfHonest)
+  //   no-match            : !l2HasAny && !agentUseful  (徹底無訊號)
   //
-  // 設計意圖：以 agent 一致性為「敢不敢說知道」的主要訊號，
-  // L2 只作為「有沒有候選」的輔助。兩者皆弱 → 誠實回傳「無工具」。
   const l2KthScore = l2Results.length >= topK
     ? (l2Results[topK - 1]?.score ?? 0)
     : (l2Results[l2Results.length - 1]?.score ?? 0);
@@ -123,47 +129,51 @@ export function retrieve(tools, query, options = {}) {
   const agentTop1 = agentResult.topK[0] ?? null;
   const agentConf = agentTop1?.confidence ?? 0;
   const agentDecision = agentResult.decision;
-  // 一致性門檻：看 agent **自己** 的 topK（非融合後），至少 N 筆 conf ≥ 0.35。
-  // 若 agent 自身 decision 已是 low-confidence / no-match（誠實訊號），
-  // 即使 topK 中有個別高置信筆也不視為一致——避免通用 trigger 偽命中
-  // 透過 bag-similarity 通道把 confidence 撐到 0.35 以上。
+  // 強一致性（原有）：topK 中至少 3 筆 conf ≥ 0.35。
   const agentConsistentCount = agentResult.topK.filter((x) => x.confidence >= AGENT_HIGH).length;
   const agentSelfHonest = agentDecision === 'low-confidence' || agentDecision === 'no-match';
   const agentConsistent = !agentSelfHonest && agentConsistentCount >= AGENT_MIN_CONSISTENT;
 
+  // 中等信心（新增）：topK 中至少 1 筆 conf ≥ 0.35（高置信），但少於 3 筆（不達強一致）。
+  // 這提供了介於「強一致→高信心採用」與「無訊號→拒絕」之間的選項。
+  const agentModerateCount = agentResult.topK.filter((x) => x.confidence >= AGENT_HIGH).length;
+  const agentModerate = agentModerateCount >= AGENT_MIN_MODERATE && agentModerateCount < AGENT_MIN_CONSISTENT;
+
   let decision, source, fallbackHint = '', confidence = agentConf;
 
   if (agentConsistent && (l2Leads || l2HasAny)) {
-    // agent 一致高置信 + L2 有候選 → 採用
+    // agent 一致高置信（≥3 筆 conf≥0.35）+ L2 有候選 → 採用（最高信心）
     decision = 'adopt';
     source = l2Leads ? 'both' : 'agent-only';
-  } else if (agentConsistent && l2HasAny) {
-    // agent 未達「一致」但 top-1 高置信，且 L2 有候選 → 採但加誠實提示
-    decision = 'adopt-with-warning';
-    source = 'agent-only';
-    fallbackHint = 'Agent 端 top-1 高置信，但 topK 未達一致門檻（高置信 ' +
-      agentConsistentCount + '/' + agentResult.topK.length + ' 筆），' +
-      '建議以 list_tools 覆核或重新描述需求。';
-  } else if (l2Leads && !agentSelfHonest && !agentConsistent) {
-    // L2 有明確領先、agent 未自報無匹配、但未達一致性 → 採用但加誠實提示
+  } else if (l2Leads && !agentSelfHonest) {
+    // L2 有明確領先、agent 未自報無匹配 → 採用加誠實提示
     decision = 'adopt-with-warning';
     source = 'l2-only';
-    fallbackHint = 'L2 有明確領先候選，但 agent 端置信度不一致（topK 高置信僅 ' +
+    fallbackHint = 'L2 有明確領先候選，但 agent 端置信度不一致（高置信 ' +
       agentConsistentCount + '/' + agentResult.topK.length + ' 筆），' +
       '建議用 list_tools 依分類覆核。';
-  } else if (agentDecision === 'high-confidence' && l2HasAny) {
-    // agent 自報高置信但 L2 無明確領先 → 採 agent 結果（保守版）
+  } else if (agentModerate && l2HasAny) {
+    // agent 中等信心（1 筆以上高置信，但少於 3 筆）+ L2 有候選
+    // → 採用加誠實提示。比強一致寬鬆，但維持 L2 依賴作為誠實性保障。
     decision = 'adopt-with-warning';
     source = 'agent-only';
-    fallbackHint = 'Agent 端 top-1 高置信，但 L2 無明確領先，建議以 list_tools 覆核。';
+    fallbackHint = 'Agent 端有高置信候選，但信心不足（高置信 ' +
+      agentConsistentCount + '/' + agentResult.topK.length + ' 筆）。' +
+      '建議以 list_tools 覆核。';
+  } else if (agentDecision === 'high-confidence' && l2HasAny) {
+    // agent 自報高置信 + L2 有候選 → 採 agent 結果
+    decision = 'adopt-with-warning';
+    source = 'agent-only';
+    fallbackHint = 'Agent 端 top-1 高置信，但 L2 無明確領先。建議以 list_tools 覆核。';
   } else {
     // 兩者皆弱 → 誠實回傳「無工具」
+    // 條件：agent 未達中等信心（<1 高置信筆，或自報 no-match） && L2 無候選
     decision = 'no-match';
     source = 'none';
     confidence = agentConf;
-    fallbackHint = '工具庫暫無高置信度對應工具。建議：' +
+    fallbackHint = '工具庫暫無對應工具。建議：' +
       '(a) 用 list_tools 依分類翻找；(b) 重新描述需求加入具體技術詞；' +
-      '(c) 若屬「無家可歸」需求，可能是工具庫缺該類工具（參考 dynamic-k 報告）。';
+      '(c) 若屬「無家可歸」需求，可能是工具庫缺該類工具。';
   }
 
   // 3. 融合結果：以 L2 為主（詞彙命中強），agent 的 topK 補上 L2 沒有的 id
