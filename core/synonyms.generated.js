@@ -28269,9 +28269,9 @@ export const SYNONYM_MAP = {
     "kv cache 最佳化",
     "大模型微調加速",
     "降低 gpu 顯存占用",
-    "開發工具",
     "離線跑 llm",
-    "本機部署大語言模型"
+    "本機部署大語言模型",
+    "測試裝置能跑什麼模型"
   ],
   "優化 transformers 訓練效能": [
     "ktransformers",
@@ -54846,18 +54846,16 @@ export const SYNONYM_MAP = {
     "commercial-illustration",
     "ai-prompts"
   ],
-  "開發工具": [
+  "找好看的 linux 發行版": [
     "omarchy",
     "linux distro",
     "aesthetic linux",
-    "kunpeng",
-    "magnitude",
-    "inference-server",
-    "local-models",
-    "llm-inference"
+    "找美觀易用的 linux 系統",
+    "換一套好看的 linux",
+    "找開箱即用的 linux",
+    "找現代化 linux 發行版"
   ],
   "omarchy": [
-    "開發工具",
     "找好看的 linux 發行版",
     "找美觀易用的 linux 系統",
     "換一套好看的 linux",
@@ -54867,7 +54865,6 @@ export const SYNONYM_MAP = {
     "aesthetic linux"
   ],
   "linux distro": [
-    "開發工具",
     "找好看的 linux 發行版",
     "找美觀易用的 linux 系統",
     "換一套好看的 linux",
@@ -54877,7 +54874,6 @@ export const SYNONYM_MAP = {
     "aesthetic linux"
   ],
   "aesthetic linux": [
-    "開發工具",
     "找好看的 linux 發行版",
     "找美觀易用的 linux 系統",
     "換一套好看的 linux",
@@ -54886,21 +54882,10 @@ export const SYNONYM_MAP = {
     "omarchy",
     "linux distro"
   ],
-  "找好看的 linux 發行版": [
-    "omarchy",
-    "linux distro",
-    "aesthetic linux",
-    "開發工具",
-    "找美觀易用的 linux 系統",
-    "換一套好看的 linux",
-    "找開箱即用的 linux",
-    "找現代化 linux 發行版"
-  ],
   "找美觀易用的 linux 系統": [
     "omarchy",
     "linux distro",
     "aesthetic linux",
-    "開發工具",
     "找好看的 linux 發行版",
     "換一套好看的 linux",
     "找開箱即用的 linux",
@@ -54910,7 +54895,6 @@ export const SYNONYM_MAP = {
     "omarchy",
     "linux distro",
     "aesthetic linux",
-    "開發工具",
     "找好看的 linux 發行版",
     "找美觀易用的 linux 系統",
     "找開箱即用的 linux",
@@ -54920,7 +54904,6 @@ export const SYNONYM_MAP = {
     "omarchy",
     "linux distro",
     "aesthetic linux",
-    "開發工具",
     "找好看的 linux 發行版",
     "找美觀易用的 linux 系統",
     "換一套好看的 linux",
@@ -54930,7 +54913,6 @@ export const SYNONYM_MAP = {
     "omarchy",
     "linux distro",
     "aesthetic linux",
-    "開發工具",
     "找好看的 linux 發行版",
     "找美觀易用的 linux 系統",
     "換一套好看的 linux",
@@ -57282,6 +57264,8 @@ export const SYNONYM_MAP = {
   ],
   "ai 代理": [
     "goldie",
+    "zcode",
+    "aircard",
     "製作 app store 截圖",
     "生成 app 預覽圖",
     "設計 app 商店宣傳圖",
@@ -57294,7 +57278,9 @@ export const SYNONYM_MAP = {
     "生成 app 預覽圖",
     "設計 app 商店宣傳圖",
     "產生 app 展示畫面",
-    "製作 app 截圖"
+    "製作 app 截圖",
+    "zcode",
+    "aircard"
   ],
   "製作 app store 截圖": [
     "goldie",
@@ -57302,7 +57288,9 @@ export const SYNONYM_MAP = {
     "生成 app 預覽圖",
     "設計 app 商店宣傳圖",
     "產生 app 展示畫面",
-    "製作 app 截圖"
+    "製作 app 截圖",
+    "zcode",
+    "aircard"
   ],
   "生成 app 預覽圖": [
     "goldie",
@@ -57310,7 +57298,9 @@ export const SYNONYM_MAP = {
     "製作 app store 截圖",
     "設計 app 商店宣傳圖",
     "產生 app 展示畫面",
-    "製作 app 截圖"
+    "製作 app 截圖",
+    "zcode",
+    "aircard"
   ],
   "設計 app 商店宣傳圖": [
     "goldie",
@@ -57318,7 +57308,9 @@ export const SYNONYM_MAP = {
     "製作 app store 截圖",
     "生成 app 預覽圖",
     "產生 app 展示畫面",
-    "製作 app 截圖"
+    "製作 app 截圖",
+    "zcode",
+    "aircard"
   ],
   "產生 app 展示畫面": [
     "goldie",
@@ -57326,7 +57318,9 @@ export const SYNONYM_MAP = {
     "製作 app store 截圖",
     "生成 app 預覽圖",
     "設計 app 商店宣傳圖",
-    "製作 app 截圖"
+    "製作 app 截圖",
+    "zcode",
+    "aircard"
   ],
   "製作 app 截圖": [
     "goldie",
@@ -57334,7 +57328,9 @@ export const SYNONYM_MAP = {
     "製作 app store 截圖",
     "生成 app 預覽圖",
     "設計 app 商店宣傳圖",
-    "產生 app 展示畫面"
+    "產生 app 展示畫面",
+    "zcode",
+    "aircard"
   ],
   "處理配送訂單": [
     "delivery-harness",
@@ -57810,9 +57806,9 @@ export const SYNONYM_MAP = {
     "跑大模型api",
     "提供模型推理接口",
     "搭建agent推理基础設施",
-    "開發工具",
     "離線跑 llm",
-    "本機部署大語言模型"
+    "本機部署大語言模型",
+    "測試裝置能跑什麼模型"
   ],
   "superlinked": [
     "部署llm推理服務",
@@ -58433,17 +58429,15 @@ export const SYNONYM_MAP = {
     "codebuff",
     "free-coding-agent"
   ],
-  "kunpeng": [
-    "開發工具",
-    "生成行銷文案",
+  "生成行銷文案": [
+    "kunpeng",
     "創建產品圖片",
     "撰寫程式碼片段",
     "摘要會議記錄",
     "發想商業名稱"
   ],
-  "生成行銷文案": [
-    "kunpeng",
-    "開發工具",
+  "kunpeng": [
+    "生成行銷文案",
     "創建產品圖片",
     "撰寫程式碼片段",
     "摘要會議記錄",
@@ -58451,7 +58445,6 @@ export const SYNONYM_MAP = {
   ],
   "創建產品圖片": [
     "kunpeng",
-    "開發工具",
     "生成行銷文案",
     "撰寫程式碼片段",
     "摘要會議記錄",
@@ -58459,7 +58452,6 @@ export const SYNONYM_MAP = {
   ],
   "撰寫程式碼片段": [
     "kunpeng",
-    "開發工具",
     "生成行銷文案",
     "創建產品圖片",
     "摘要會議記錄",
@@ -58467,7 +58459,6 @@ export const SYNONYM_MAP = {
   ],
   "摘要會議記錄": [
     "kunpeng",
-    "開發工具",
     "生成行銷文案",
     "創建產品圖片",
     "撰寫程式碼片段",
@@ -58475,7 +58466,6 @@ export const SYNONYM_MAP = {
   ],
   "發想商業名稱": [
     "kunpeng",
-    "開發工具",
     "生成行銷文案",
     "創建產品圖片",
     "撰寫程式碼片段",
@@ -58754,79 +58744,70 @@ export const SYNONYM_MAP = {
     "slash-commands",
     "tdd-workflow"
   ],
-  "magnitude": [
-    "開發工具",
-    "離線跑 llm",
-    "本機部署大語言模型",
-    "測試裝置能跑什麼模型",
-    "自動推薦合適本地模型",
-    "架設離線推理伺服器"
-  ],
-  "local-models": [
-    "開發工具",
-    "離線跑 llm",
-    "本機部署大語言模型",
-    "測試裝置能跑什麼模型",
-    "自動推薦合適本地模型",
-    "架設離線推理伺服器"
-  ],
-  "offline-llm": [
-    "開發工具",
-    "離線跑 llm",
-    "本機部署大語言模型",
-    "測試裝置能跑什麼模型",
-    "自動推薦合適本地模型",
-    "架設離線推理伺服器"
-  ],
   "離線跑 llm": [
     "magnitude",
     "inference-server",
     "local-models",
     "llm-inference",
-    "offline-llm",
-    "開發工具",
+    "offline-llm"
+  ],
+  "magnitude": [
+    "離線跑 llm",
     "本機部署大語言模型",
-    "測試裝置能跑什麼模型"
+    "測試裝置能跑什麼模型",
+    "自動推薦合適本地模型",
+    "架設離線推理伺服器",
+    "inference-server",
+    "local-models",
+    "llm-inference"
+  ],
+  "local-models": [
+    "離線跑 llm",
+    "本機部署大語言模型",
+    "測試裝置能跑什麼模型",
+    "自動推薦合適本地模型",
+    "架設離線推理伺服器",
+    "magnitude",
+    "inference-server",
+    "llm-inference"
+  ],
+  "offline-llm": [
+    "離線跑 llm",
+    "本機部署大語言模型",
+    "測試裝置能跑什麼模型",
+    "自動推薦合適本地模型",
+    "架設離線推理伺服器",
+    "magnitude",
+    "inference-server",
+    "local-models"
   ],
   "本機部署大語言模型": [
     "magnitude",
     "inference-server",
     "local-models",
     "llm-inference",
-    "offline-llm",
-    "開發工具",
-    "離線跑 llm",
-    "測試裝置能跑什麼模型"
+    "offline-llm"
   ],
   "測試裝置能跑什麼模型": [
     "magnitude",
     "inference-server",
     "local-models",
     "llm-inference",
-    "offline-llm",
-    "開發工具",
-    "離線跑 llm",
-    "本機部署大語言模型"
+    "offline-llm"
   ],
   "自動推薦合適本地模型": [
     "magnitude",
     "inference-server",
     "local-models",
     "llm-inference",
-    "offline-llm",
-    "開發工具",
-    "離線跑 llm",
-    "本機部署大語言模型"
+    "offline-llm"
   ],
   "架設離線推理伺服器": [
     "magnitude",
     "inference-server",
     "local-models",
     "llm-inference",
-    "offline-llm",
-    "開發工具",
-    "離線跑 llm",
-    "本機部署大語言模型"
+    "offline-llm"
   ],
   "安裝 node.js 版本": [
     "nvm",
@@ -60766,17 +60747,15 @@ export const SYNONYM_MAP = {
     "ad-free-music",
     "react-native"
   ],
-  "howtolivebetter": [
-    "開發工具",
-    "查詢醫保報銷比例",
+  "查詢醫保報銷比例": [
+    "howtolivebetter",
     "了解急救處理步驟",
     "申請失業金流程",
     "查詢工傷賠償標準",
     "了解婚前財產規定"
   ],
-  "查詢醫保報銷比例": [
-    "howtolivebetter",
-    "開發工具",
+  "howtolivebetter": [
+    "查詢醫保報銷比例",
     "了解急救處理步驟",
     "申請失業金流程",
     "查詢工傷賠償標準",
@@ -60784,7 +60763,6 @@ export const SYNONYM_MAP = {
   ],
   "了解急救處理步驟": [
     "howtolivebetter",
-    "開發工具",
     "查詢醫保報銷比例",
     "申請失業金流程",
     "查詢工傷賠償標準",
@@ -60792,7 +60770,6 @@ export const SYNONYM_MAP = {
   ],
   "申請失業金流程": [
     "howtolivebetter",
-    "開發工具",
     "查詢醫保報銷比例",
     "了解急救處理步驟",
     "查詢工傷賠償標準",
@@ -60800,7 +60777,6 @@ export const SYNONYM_MAP = {
   ],
   "查詢工傷賠償標準": [
     "howtolivebetter",
-    "開發工具",
     "查詢醫保報銷比例",
     "了解急救處理步驟",
     "申請失業金流程",
@@ -60808,7 +60784,6 @@ export const SYNONYM_MAP = {
   ],
   "了解婚前財產規定": [
     "howtolivebetter",
-    "開發工具",
     "查詢醫保報銷比例",
     "了解急救處理步驟",
     "申請失業金流程",
@@ -61110,6 +61085,202 @@ export const SYNONYM_MAP = {
     "網頁搜尋代理",
     "快速網頁爬蟲",
     "航班搜尋自動化"
+  ],
+  "硬體外殼設計": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure",
+    "產品外殼 3d 建模",
+    "依尺寸產生組裝結構",
+    "匯出 step stl 3mf"
+  ],
+  "amagine3d": [
+    "硬體外殼設計",
+    "產品外殼 3d 建模",
+    "依尺寸產生組裝結構",
+    "匯出 step stl 3mf",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure"
+  ],
+  "3d enclosure design": [
+    "硬體外殼設計",
+    "產品外殼 3d 建模",
+    "依尺寸產生組裝結構",
+    "匯出 step stl 3mf",
+    "amagine3d",
+    "hardware case modeling",
+    "parametric enclosure"
+  ],
+  "hardware case modeling": [
+    "硬體外殼設計",
+    "產品外殼 3d 建模",
+    "依尺寸產生組裝結構",
+    "匯出 step stl 3mf",
+    "amagine3d",
+    "3d enclosure design",
+    "parametric enclosure"
+  ],
+  "parametric enclosure": [
+    "硬體外殼設計",
+    "產品外殼 3d 建模",
+    "依尺寸產生組裝結構",
+    "匯出 step stl 3mf",
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling"
+  ],
+  "產品外殼 3d 建模": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure",
+    "硬體外殼設計",
+    "依尺寸產生組裝結構",
+    "匯出 step stl 3mf"
+  ],
+  "依尺寸產生組裝結構": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure",
+    "硬體外殼設計",
+    "產品外殼 3d 建模",
+    "匯出 step stl 3mf"
+  ],
+  "匯出 step stl 3mf": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure",
+    "硬體外殼設計",
+    "產品外殼 3d 建模",
+    "依尺寸產生組裝結構"
+  ],
+  "dlss 5 安裝": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss",
+    "遊戲畫質提升",
+    "dlss 切換管理",
+    "遊戲 升頻"
+  ],
+  "dlss5-swapper": [
+    "dlss 5 安裝",
+    "遊戲畫質提升",
+    "dlss 切換管理",
+    "遊戲 升頻",
+    "neural rendering",
+    "emulator dlss"
+  ],
+  "neural rendering": [
+    "dlss 5 安裝",
+    "遊戲畫質提升",
+    "dlss 切換管理",
+    "遊戲 升頻",
+    "dlss5-swapper",
+    "emulator dlss"
+  ],
+  "emulator dlss": [
+    "dlss 5 安裝",
+    "遊戲畫質提升",
+    "dlss 切換管理",
+    "遊戲 升頻",
+    "dlss5-swapper",
+    "neural rendering"
+  ],
+  "遊戲畫質提升": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss",
+    "dlss 5 安裝",
+    "dlss 切換管理",
+    "遊戲 升頻"
+  ],
+  "dlss 切換管理": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss",
+    "dlss 5 安裝",
+    "遊戲畫質提升",
+    "遊戲 升頻"
+  ],
+  "遊戲 升頻": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss",
+    "dlss 5 安裝",
+    "遊戲畫質提升",
+    "dlss 切換管理"
+  ],
+  "3d 解剖圖": [
+    "human-atlas",
+    "anatomy explorer",
+    "人體構造 探索",
+    "解剖模型 互動檢視",
+    "器官 3d 檢視"
+  ],
+  "human-atlas": [
+    "3d 解剖圖",
+    "人體構造 探索",
+    "解剖模型 互動檢視",
+    "器官 3d 檢視",
+    "anatomy explorer"
+  ],
+  "anatomy explorer": [
+    "3d 解剖圖",
+    "人體構造 探索",
+    "解剖模型 互動檢視",
+    "器官 3d 檢視",
+    "human-atlas"
+  ],
+  "人體構造 探索": [
+    "human-atlas",
+    "anatomy explorer",
+    "3d 解剖圖",
+    "解剖模型 互動檢視",
+    "器官 3d 檢視"
+  ],
+  "解剖模型 互動檢視": [
+    "human-atlas",
+    "anatomy explorer",
+    "3d 解剖圖",
+    "人體構造 探索",
+    "器官 3d 檢視"
+  ],
+  "器官 3d 檢視": [
+    "human-atlas",
+    "anatomy explorer",
+    "3d 解剖圖",
+    "人體構造 探索",
+    "解剖模型 互動檢視"
+  ],
+  "zcode": [
+    "ai 代理",
+    "goldie",
+    "aircard",
+    "製作 app store 截圖",
+    "生成 app 預覽圖",
+    "設計 app 商店宣傳圖",
+    "產生 app 展示畫面",
+    "製作 app 截圖"
+  ],
+  "測試與自動化": [
+    "niubigeo"
+  ],
+  "niubigeo": [
+    "測試與自動化"
+  ],
+  "aircard": [
+    "ai 代理",
+    "goldie",
+    "zcode",
+    "製作 app store 截圖",
+    "生成 app 預覽圖",
+    "設計 app 商店宣傳圖",
+    "產生 app 展示畫面",
+    "製作 app 截圖"
   ],
   "翻譯": [
     "translate",
