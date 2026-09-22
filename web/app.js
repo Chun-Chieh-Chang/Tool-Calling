@@ -104,10 +104,89 @@ async function init() {
     // 綁定「加入工具庫」按鈕事件委派
     setupAddToRegistryButtons();
 
+    // 綁定「關閉系統」按鈕
+    setupShutdownButton();
+
+    // 綁定「操作流程」步驟條：點擊 .wf-step → 聚焦目標控件並閃高亮
+    setupWorkflowSteps();
+
   } catch (err) {
     console.error(err);
     if (resultCount) resultCount.textContent = '載入失敗，請稍後再試。';
   }
+}
+
+// ─── 操作流程步驟條 ──────────────────────────────────────────────────────
+function setupWorkflowSteps() {
+  const bar = document.querySelector('.workflow-steps');
+  if (!bar) return;
+  bar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.wf-step');
+    if (!btn) return;
+    const sel = btn.dataset.focus;
+    if (!sel) return;
+    const target = document.querySelector(sel);
+    if (!target) return;
+    target.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    try { target.focus({ preventScroll: true }); } catch { target.focus(); }
+    target.classList.remove('wf-pulse');
+    // 觸發 reflow 讓 animation 可重複播放
+    void target.offsetWidth;
+    target.classList.add('wf-pulse');
+    setTimeout(() => target.classList.remove('wf-pulse'), 2000);
+  });
+}
+
+// ─── 關閉系統 ─────────────────────────────────────────────────────────────
+// 呼叫後端 /api/shutdown 讓 Node 程序優雅退出，並嘗試關閉分頁。
+// 瀏覽器出於安全限制通常不允許指令關閉使用者開啟的分頁，
+// 因此若 window.close() 無效，改用全螢幕覆蓋提示用戶手動關閉。
+function setupShutdownButton() {
+  const btn = document.getElementById('shutdownBtn');
+  if (!btn) return;
+  btn.addEventListener('click', async () => {
+    const ok = window.confirm('確定要關閉本地伺服器並離開工作台嗎？\n未完成的背景任務將中斷。');
+    if (!ok) return;
+    btn.disabled = true;
+    const label = btn.querySelector('span');
+    if (label) label.textContent = '關閉中…';
+    try {
+      await fetch('/api/shutdown', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ confirm: 'SHUTDOWN' }),
+        credentials: 'same-origin',
+      });
+    } catch (e) {
+      // 伺服器退出時 fetch 可能抛錯，這是預期行為
+    }
+    showShutdownOverlay();
+    window.close();
+  });
+}
+
+function showShutdownOverlay() {
+  if (document.getElementById('shutdownOverlay')) return;
+  const overlay = document.createElement('div');
+  overlay.id = 'shutdownOverlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,0.94);color:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;z-index:99999;font-family:system-ui,-apple-system,sans-serif;text-align:center;padding:24px;';
+  const icon = document.createElement('div');
+  icon.style.fontSize = '32px';
+  icon.textContent = '⏹';
+  const title = document.createElement('div');
+  title.style.cssText = 'font-size:20px;font-weight:700;letter-spacing:1px;';
+  title.textContent = '伺服器已關閉';
+  const body = document.createElement('div');
+  body.style.cssText = 'font-size:14px;opacity:0.85;line-height:1.6;';
+  body.append('您可以關閉此分頁。');
+  body.appendChild(document.createElement('br'));
+  body.append('如需重新啟動，請於終端機執行 ');
+  const code = document.createElement('code');
+  code.style.cssText = 'background:rgba(255,255,255,0.12);padding:2px 6px;border-radius:4px;';
+  code.textContent = 'npm start';
+  body.appendChild(code);
+  overlay.append(icon, title, body);
+  document.body.appendChild(overlay);
 }
 
 // ─── 分頁切換 (Tab Switcher) ──────────────────────────────────────────────

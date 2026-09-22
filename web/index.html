@@ -22,8 +22,14 @@
           <span class="status-indicator-dot pulse-green"></span>
           <span class="status-indicator-text">系統上線 // 精密工作台</span>
         </div>
-        <div class="header-telemetry-badge">
-          <span class="telemetry-label">狀態：</span> <span class="telemetry-value">就緒</span>
+        <div class="header-status-right">
+          <div class="header-telemetry-badge">
+            <span class="telemetry-label">狀態：</span> <span class="telemetry-value">就緒</span>
+          </div>
+          <button type="button" id="shutdownBtn" class="shutdown-btn" title="關閉本地伺服器並離開工作台" aria-label="關閉系統">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path><line x1="12" y1="2" x2="12" y2="12"></line></svg>
+            <span>關閉系統</span>
+          </button>
         </div>
       </div>
 
@@ -33,24 +39,73 @@
         <p class="author-tag">由 Wesley Chang 開發於 2026 年 7 月</p>
       </div>
 
+      <!-- 標準操作流程條（1→2→3→4→5）：點擊任一環節跳轉並聚焦對應控件 -->
+      <div class="workflow-steps" role="group" aria-label="標準操作流程">
+        <span class="wf-legend">
+          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          操作流程
+        </span>
+        <button type="button" class="wf-step" data-focus="#searchInput" aria-label="步驟 1：輸入需求">
+          <span class="wf-num">1</span>
+          <span class="wf-label">輸入需求</span>
+        </button>
+        <span class="wf-arrow" aria-hidden="true">›</span>
+        <button type="button" class="wf-step" data-focus="#categorySelect" aria-label="步驟 2：篩選領域">
+          <span class="wf-num">2</span>
+          <span class="wf-label">篩選領域</span>
+        </button>
+        <span class="wf-arrow" aria-hidden="true">›</span>
+        <button type="button" class="wf-step wf-step-opt" data-focus="#deepSearchToggle" aria-label="步驟 3：深度搜尋（選配）">
+          <span class="wf-num">3</span>
+          <span class="wf-label">深度搜尋 <em>選</em></span>
+        </button>
+        <span class="wf-arrow" aria-hidden="true">›</span>
+        <button type="button" class="wf-step wf-step-opt" data-focus="#chainModeToggle" aria-label="步驟 4：多工具鏈（選配）">
+          <span class="wf-num">4</span>
+          <span class="wf-label">多工具鏈 <em>選</em></span>
+        </button>
+        <span class="wf-arrow" aria-hidden="true">›</span>
+        <button type="button" class="wf-step" data-focus=".view-tabs" aria-label="步驟 5：切換視圖">
+          <span class="wf-num">5</span>
+          <span class="wf-label">切換視圖</span>
+        </button>
+        <span class="wf-arrow" aria-hidden="true">›</span>
+        <button type="button" class="wf-step wf-step-end" data-focus="#shutdownBtn" aria-label="步驟 6：關閉系統">
+          <span class="wf-num">6</span>
+          <span class="wf-label">關閉系統</span>
+        </button>
+      </div>
+
       <!-- 全域通用搜尋與分類過濾列 (語意階層：User 淺鈷藍底 + 鈷藍左邊框) -->
       <div class="search-container user-semantic-panel">
-        <div class="search-input-wrapper">
-          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-          <input type="text" id="searchInput" placeholder="檢索工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
+        <div class="hint-cell hint-cell-search">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" placeholder="檢索工具名稱、ID、關鍵詞或觸發詞 (例如: ppt-master, security, video)..." autocomplete="off">
+          </div>
+          <div class="hint"><span class="hint-num">①</span> 輸入自然語言需求 → 系統以 L1 精確、L2 關鍵字、L3 語意三層檢索 722 個工具</div>
         </div>
-        <select id="categorySelect">
-          <option value="">所有領域分類 (All Categories)</option>
-        </select>
-        <label id="deepSearchLabel" class="deep-search-toggle" title="用 LLM 重新排序候選工具，準確度較高但約需 5 秒">
-          <input type="checkbox" id="deepSearchToggle">
-          <span>深度搜尋</span>
-        </label>
+        <div class="hint-cell">
+          <select id="categorySelect">
+            <option value="">所有領域分類 (All Categories)</option>
+          </select>
+          <div class="hint"><span class="hint-num">②</span> 依 18 個領域縮小候選範圍</div>
+        </div>
+        <div class="hint-cell">
+          <label id="deepSearchLabel" class="deep-search-toggle" title="用 LLM 重新排序候選工具，準確度較高但約需 5 秒">
+            <input type="checkbox" id="deepSearchToggle">
+            <span>深度搜尋</span>
+          </label>
+          <div class="hint"><span class="hint-num">③</span> LLM 重排：準確度 ↑／速度 ↓（+5s）</div>
+        </div>
         <span id="deepSearchSpinner" class="deep-search-spinner" hidden aria-live="polite">重新排序中…</span>
-        <label id="chainModeLabel" class="deep-search-toggle" title="把多步驟任務拆成一組可搭配的工具鏈（例如：抓取網頁資料然後做成簡報）">
-          <input type="checkbox" id="chainModeToggle">
-          <span>多工具鏈</span>
-        </label>
+        <div class="hint-cell">
+          <label id="chainModeLabel" class="deep-search-toggle" title="把多步驟任務拆成一組可搭配的工具鏈（例如：抓取網頁資料然後做成簡報）">
+            <input type="checkbox" id="chainModeToggle">
+            <span>多工具鏈</span>
+          </label>
+          <div class="hint"><span class="hint-num">④</span> 拆解長任務 → 自動產出工具 DAG</div>
+        </div>
         <select id="ingestSourceSelect" title="選擇素材來源，規劃「素材 → 可用筆記」的擷取管線" hidden>
           <option value="">素材來源（擷取管線）…</option>
           <option value="pdf">PDF／研究文獻</option>
@@ -106,6 +161,7 @@
           <span>全鏈路流程圖</span>
         </a>
       </nav>
+      <div class="hint hint-tabs"><span class="hint-num">⑤</span> 切換視圖 · 「儀表板」看統計／「目錄」看檢索結果／「漲星榜」追蹤 GitHub 新星／「圖譜・流程圖」開新分頁深入探索</div>
     </div>
 
     <!-- 儀表板視圖 (Dashboard View) -->

@@ -613,6 +613,41 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── 關閉系統 API ──────────────────────────────────────────────────
+    // 前端「關閉系統」按鈕呼叫此端點：回應先送回瀏覽器，再於下一個
+    // event loop tick 優雅關閉 HTTP server 並結束程序。
+    // 僅允許本機來源 + 需帶確認字串，避免任意網頁或 curl 誤關。
+    if (decodedUrl === '/api/shutdown' && req.method === 'POST') {
+      if (!isTrustedOrigin(req)) {
+        res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
+        return;
+      }
+      let payload = {};
+      try { payload = JSON.parse(req._body || '{}'); } catch { payload = {}; }
+      if (payload.confirm !== 'SHUTDOWN') {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: '確認字串不符' }));
+        return;
+      }
+
+      console.log('⏹ 收到關閉系統請求，伺服器即將結束...');
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        ...corsHeaders(req),
+        'Cache-Control': 'no-cache'
+      });
+      res.end(JSON.stringify({ status: 'shutting_down' }));
+
+      // 讓回應先 flush 出去，再關閉監聽並退出
+      setTimeout(() => {
+        server.close(() => process.exit(0));
+        // 安全網：3 秒內若有連線未斷，強制退出
+        setTimeout(() => process.exit(0), 3000).unref();
+      }, 200);
+      return;
+    }
+
     // ─── 靜態資源處理 ──────────────────────────────────────────────────
     if (decodedUrl === '/') {
       decodedUrl = '/index.html';
