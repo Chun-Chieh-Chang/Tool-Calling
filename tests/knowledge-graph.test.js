@@ -1,6 +1,5 @@
 import { test, describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { chromium } from 'playwright';
 import path from 'path';
 import fs from 'fs';
 import http from 'node:http';
@@ -8,6 +7,15 @@ import { promisify } from 'node:util';
 import { fileURLToPath } from 'url';
 import { loadRegistry } from '../core/registry.js';
 import { generateKnowledgeGraph } from '../scripts/generate-knowledge-graph.js';
+
+// playwright 為可選 devDependency（e2e 瀏覽器自動化，本機 CI 常常未安裝）。
+// 未安裝時讓整個 describe 走 skip 分支，避免 `npm test` 因為可選整合測試而紅燈。
+let chromium = null;
+try {
+  ({ chromium } = await import('playwright'));
+} catch {
+  chromium = null;
+}
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -47,7 +55,7 @@ function createStaticServer(rootDir) {
   });
 }
 
-describe('知識圖譜 2D/3D 雙視角與平移驗證', () => {
+describe('知識圖譜 2D/3D 雙視角與平移驗證', { skip: !chromium ? 'playwright 未安裝（可選 e2e 測試）' : false }, () => {
   it('應能正確載入 HTML 並切換至 3D 視角且無 Console Error', async () => {
     // 若 HTML 不存在（CI 環境因 .gitignore 未追蹤），先即時生成
     const htmlPath = path.resolve(__dirname, '../docs/knowledge-graph.html');
