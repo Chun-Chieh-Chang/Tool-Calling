@@ -2721,6 +2721,74 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
   - `trending-weekly.yml`: 同樣分離 `git add` 並加上 `git add -f dist/` 條件防禦。
 - **預防**: 遵循 CI/CD 防禦原則 (Deployment Defense Meta-Rule)，在自動化腳本寫入 git add 包含 build 產出物時，必須先確認是否包含在 `.gitignore` 中並加上 `-f` 強制加入或專屬判斷。
 
+---
+
+## 2026-09-23 — Web 工作台全面套用「Inset Focus」Neumorphism 設計系統
+
+### 需求內容
+
+深度解析使用者提供之參考截圖的介面風格，並將該設計語言套用到本專案前端（`web/` 工作台全站）。
+
+### 風格解析（截圖 → 設計規格）
+
+- **Soft UI / Neumorphism「Inset Focus」變體**：元素底色與頁面底色相同（#e8ecf3 系淺灰藍），僅靠雙向光源陰影表現立體（左上白光 + 右下暗影）。
+- **Inset 內凹表面**：所有輸入框、select、進度軌道、選中狀態 Tab 一律「凹陷」（inset shadow），視為挖入軟材質的凹槽。
+- **零硬邊框**：移除深色實線 border，改用陰影描邊（低透明度 1px 陰影當邊框）。
+- **膠囊大圓角**：卡片 24px、控制件 16px、小元件全膠囊（pill）。
+- **單一強調藍**：整站只用一個品牌藍（連結、KPI 數字、選中 Tab、進度條、主按鈕）；success/warning/error 語意色改為柔和 tint 底，不再高飽和。
+- **字體層級不變**（Noto Sans TC），僅調整字色對比以符合新底色。
+
+### 問題與原因分析（RCA）
+
+- **首次 Playwright 截圖顯示舊版樣式**：`web/server.js` 正式模式服務的是 `dist/` 建置產物而非 `web/` 原始碼，改了 `web/` 沒跑 `npm run build` → 截圖誤判。重建後正常。
+- **品牌藍對比不足**：原 `#0284c7` 在 #e8ecf3 底上對比約 3.4:1，不過 WCAG AA；改為 `#3564d4`（4.48:1）。
+
+### 矯正與預防措施（CAPA）
+
+- `web/style.css`：`:root` 設計令牌整段重寫 — 新增 `--neu-bg/--neu-dark/--neu-light/--shadow-raised/--shadow-raised-sm/--shadow-inset/--shadow-inset-soft/--shadow-focus`，`surface` 統一等於底色，圓角升級為 10/16/24/pill 階梯；約 40 處元件硬編碼色改 token 化（搜尋面板與輸入框 inset、view-tabs 選中 inset、工具卡 raised、匹配徽章 pill 化、KPI 數字品牌藍、進度條 inset 軌道 + 藍色漸層、clarify-bar 柔和琥珀 tint、focus 環改柔光暈等）。
+- `web/app.js`：Chart.js 圖表主色同步 `#3564d4`。
+- 保留語意階層與所有既有 DOM class，純樣式層改造，JS 邏輯零變動（僅色碼常數）。
+
+### 驗證結果
+
+- `npm test`：**264 tests / 262 pass / 0 fail**（2 playwright e2e skip）— 零回歸。
+- `npm run build`：dist 重建，722 tools 同步。
+- Playwright 實機截圖驗證（儀表板 / 分類卡牆 / 搜尋「ppt」結果頁）：inset 搜尋框、凸起卡片牆、藍色 KPI、inset 選中 Tab、pill 匹配徽章、柔和琥珀 API 金鑰提示列皆正確呈現，Console 零錯誤。
+- 截圖驗證後清理暫存檔（neu-*.png、.playwright-cli/），並 revert `npm run build` 對 `registry/*.json` 的時間戳副作用，保持本次變更原子化（僅 `web/style.css` + `web/app.js`）。
+
+
+
+---
+
+## 2026-09-23 — Web 工作台全面套用「Inset Focus」Neumorphism 設計系統
+
+### 需求內容
+使用者提供參考截圖，要求「深度解析截圖的介面風格並套用到本專案」。截圖為 Soft UI / Neumorphism 的「Inset Focus」變體。
+
+### 風格解析（截圖證據 → 技術實現）
+- **單色浮雕底**：背景與卡片無色差（~#e8ecf1），深度全靠陰影 → 元素底色 = 頁面底色
+- **雙向光源陰影**：左上白光 + 右下暗影 → `8px 8px 16px rgba(163,177,198,.5), -8px -8px 16px rgba(255,255,255,.9)`
+- **Inset 按壓感**：搜尋框、進度軌道、選中 Tab「All 24」→ inset 雙向陰影
+- **零硬邊框**：全部件無 1px 線框，狀態用柔和 tint pill（Active 藍 / Pending 琥珀 / Done 綠）
+- **單一強調藍** + 膠囊大圓角（卡片 16–24px，元件全圓角）
+
+### 變更內容
+- `web/style.css`：
+  - `:root` 設計令牌整段重寫 — surface tokens 統一至底色 #e8ecf3；新增 `--neu-dark` / `--neu-light` / `--shadow-inset-soft`；圓角 4/6/8 → 10/16/24；品牌藍 #0284c7 → `#3564d4`（對底色對比 4.48:1，保 WCAG AA）；邊框 tokens 透明化
+  - 約 40 處元件硬編碼改 token / 新擬物化：搜尋面板改 inset 凹槽（截圖核心）、Tab 選中態改 inset 藍字（原實心藍）、卡片進度條改 inset 軌道 + 藍漸層填充（新增 `.progress-bar` 樣式，原本無 CSS）、KPI 數字改藍色 + 圖標井 inset、所有徽章/標籤 pill 化去硬邊框、workflow 步驟條改 inset 容器 + 凸起步驟鈕、WIP banner / clarify-bar / key-panel 改柔和琥珀 tint
+  - 保留語意階層設計：success / warning / error 語意色不動，僅改為柔和 tint 底
+- `web/app.js`：Chart.js 主色同步（#0284c7 → #3564d4，hover #2a52b8）
+
+### 問題與原因分析 (RCA)
+- **首次 Playwright 截圖仍為舊版**：`web/server.js:24` 正式模式服務 `dist/` 而非 `web/`，需先 `npm run build`。重建後正常。
+- **`npm run build` 副作用**：auto-sync 會更新 `registry/*.json` 時間戳與排序（293+/293- 平衡變動），與本次 UI 任務無關，已 `git checkout -- registry/` 還原以保持原子化變更。
+
+### 驗證結果
+- `npm test`：**264 tests / 262 pass / 0 fail**（2 playwright e2e skip）— 零回歸（測試不斷言 CSS）
+- Playwright 實機截圖 ×3（儀表板 / 分類卡牆 / 搜尋「ppt」結果頁）：inset 搜尋框、浮雕卡片、藍色 KPI 數字、inset 選中 Tab、pill 徽章、琥珀追問列皆正確呈現
+- 工作樹最終僅 `web/app.js` + `web/style.css` 兩檔變更
+
+
 ## 2026-07-26 — Strix 安全掃描修復 (Security Hardening)
 
 ### 需求

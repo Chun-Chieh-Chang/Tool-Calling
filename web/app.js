@@ -270,11 +270,11 @@ function renderCategoryChart(categoryCounts) {
       datasets: [{
         label: '工具數量',
         data: dataValues,
-        backgroundColor: 'rgba(2, 132, 199, 0.8)',
-        borderColor: '#0284c7',
+        backgroundColor: 'rgba(53, 100, 212, 0.75)',
+        borderColor: '#3564d4',
         borderWidth: 1,
         borderRadius: 4,
-        hoverBackgroundColor: '#0369a1'
+        hoverBackgroundColor: '#2a52b8'
       }]
     },
     options: {
@@ -328,7 +328,7 @@ function renderLanguageChart(languageCounts) {
   const dataValues = sortedLangs.map(item => item[1]);
 
   const palette = [
-    '#0284c7', '#06b6d4', '#0d9488', '#10b981', 
+    '#3564d4', '#06b6d4', '#0d9488', '#10b981', 
     '#f59e0b', '#6366f1', '#8b5cf6', '#64748b'
   ];
 
