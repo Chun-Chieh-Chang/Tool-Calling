@@ -142,6 +142,23 @@ node cli.js interview "網頁爬蟲"
 | `npm run test:integration` | `node --test --test-concurrency=1 tests/*.test.js` | 含整合測試（需 `npx skills` CLI 與網路） |
 | `npm start` | `node web/server.js` | 啟動精密儀表數據工作台 (http://localhost:3000) |
 | `npm run mcp` | `node mcp-server.js` | 啟動 MCP 伺服器 |
+| `npm run plugin:install` | `node scripts/install-plugin.js` | 一鍵安裝為各 Agentic IDE 的外掛（`--list` 查看支援矩陣） |
+
+---
+
+## 🔌 作為 Agentic IDE 外掛（任意 IDE 通用）
+
+本專案可作為外掛掛載到 **任何支援 MCP 的 Agentic IDE**（Claude Code、Cursor、Gemini CLI、Codex、Windsurf、Antigravity、VS Code、Kiro、Zed、Trae、Roo Code、OpenCode 等）：
+
+```bash
+npm run plugin:install -- --list                              # 查看支援矩陣
+npm run plugin:install -- --ide all --scope global --dry-run  # 預覽
+npm run plugin:install -- --ide all --scope global            # 全域安裝
+npm run plugin:install -- --ide claude --scope project --with-skills  # 專案級 + 行為 SOP
+```
+
+安裝後重啟 IDE 即可使用 13 個 MCP 工具（搜尋工具庫、多工具鏈規劃、需求釐清等）。
+完整矩陣與手動設定方式請見 [docs/PLUGIN-INSTALL.md](./docs/PLUGIN-INSTALL.md)。
 
 ---
 

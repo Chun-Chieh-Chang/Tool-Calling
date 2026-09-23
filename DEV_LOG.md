@@ -2298,6 +2298,50 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
 ### 處理結果
 - **重複性解析與優化取代**：
   - `cc-switch` (https://github.com/farion1231/cc-switch)：既有條目星數過舊 (7,243 ⭐，現已成長至 127,345 ⭐)，功能描述原僅限 Claude Code 與 Gemini CLI。新版重新解析升級為多模型 Provider Desktop Hub，全面支援 Claude Code, Codex, OpenCode, OpenClaw, Grok Build, Hermes Agent、視覺化 Skills Management 與 WSL 支援，**全量以優化後新 metadata 取代舊條目**。
+
+---
+
+## 2026-09-23 — 任意 Agentic IDE 外掛化（MCP + Skill 雙介面）
+
+### 需求內容
+將本專案變成「任意 agentic IDE 工具的外掛」。
+
+### 分析與設計決策
+- **現況盤點**：MCP server（13 tools）、AGENTS.md、`.agents/skills/` 均已存在；缺口是「沒有統一的外掛安裝入口與各 IDE 設定產生器」，使用者需手工查各 IDE 的 MCP 設定格式。
+- **前置假設（明示）**：不發布 npm registry，以本地絕對路徑安裝為主；「任意 IDE」以 MCP 生態系為最大公約數（Claude Code / Cursor / Gemini CLI / Codex / Windsurf / Antigravity / VS Code）。
+- **雙介面架構**：MCP = 功能介面（13 個工具）；Agent Skill = 行為介面（四階段 SOP，含 MCP 優先 / CLI 後備兩種調用方式）。
+
+### 變更內容
+- 新增 `scripts/install-plugin.js`：7 個 IDE 的設定檔產生器，合併寫入（不覆蓋既有 MCP 設定）、`--dry-run`、`--uninstall`、`--with-skills`、JSON/TOML 雙格式（Codex TOML 以最小手寫邏輯處理，零新依賴）。核心 `buildPlan()`/`applyPlan()` 為純函式可測。
+- 新增 `skills/tool-calling/SKILL.md`（agentskills 標準的頂層 Skill 單一來源）。
+- 新增根目錄 `.mcp.json`（Claude Code / Cursor 開啟本倉庫即自動偵測）。
+- 新增 `docs/PLUGIN-INSTALL.md`（支援矩陣 + 手動設定 + 架構圖），並登錄 `docs/README.md` 索引。
+- `package.json`：新增 `plugin:install` script 與 `tool-calling-mcp` bin。
+- `scripts/generate-agents-md.js` + `AGENTS.md`：同步新指令（避免重新生成時遺失）。
+- 新增 `tests/install-plugin.test.js`（13 tests：合併保留既有設定、卸載只移除自身、vscode servers 鍵、codex TOML、dry-run 不寫碟、冪等性等）。
+
+### 驗證結果
+- `npm test`：**260 tests / 258 pass / 2 skipped (playwright e2e) / 0 fail** ✅
+- `node cli.js validate`：0 errors, 0 warnings ✅
+- `node scripts/check-mece.js`：通過 ✅
+- E2E 冒煙：temp 目錄實裝 claude+cursor+vscode（含 skill 複製）→ 檔案驗證 → 卸載回復，全綠 ✅
+
+### 追加（同日）：IDE 覆蓋缺口補齊
+經官方文件查證後，安裝器新增 4 個 IDE：
+- **Kiro**：`~/.kiro/settings/mcp.json`（global）/ `.kiro/settings/mcp.json`（project），`mcpServers` 鍵
+- **Zed**：`~/.config/zed/settings.json`（Win 為 `%APPDATA%\Zed\settings.json`）/ `.zed/settings.json`，使用 **`context_servers`** 鍵（非 mcpServers）
+- **Trae**：僅專案級 `.trae/mcp.json`（全域僅能 UI 手動貼上，無文件化檔案路徑）
+- **Roo Code**：僅專案級 `.roo/mcp.json`（全域在 VS Code 擴充 globalStorage，路徑隨安裝而異）
+
+查證結論（2026-09）：JetBrains Junie 支援 MCP（GUI/Junie CLI 設定）；Continue 支援（config.yaml）；Cline 全域路徑不穩定但專案級可走 VS Code 原生 mcp.json；Aider 無原生 MCP 支援。文件已記錄於 PLUGIN-INSTALL.md 支援矩陣。新增 3 個測試案例（kiro 路徑 / zed context_servers 鍵 / trae+roo project-only skip），測試總計 **263 tests / 261 pass / 0 fail**。
+
+### 追加（同日第二批）：OpenCode + 新興工具查證
+- **OpenCode**：✅ 加入安裝器。`~/.config/opencode/opencode.json`（global）/ `<proj>/opencode.json`（project），rootKey 為 `mcp` 且 local server 採 `{ type: 'local', command: [...], enabled: true }` 特殊格式 → 新增 `entryTransform` 機制處理各 IDE 的 entry 差異。
+- **Qoder**：支援 STDIO/SSE MCP，但僅能 GUI 貼上 JSON（無文件化設定檔路徑）→ 歸類手動。
+- **AgnesCode**：官方文件有 Configuring MCP Servers 章節（確認支援），但設定檔路徑未能查證 → 歸類手動。
+- **HermesAgents / WorkBuddy**：公開文件僅見 model provider/Skills 設定，未見 MCP 章節 → 未能確認，建議 AGENTS.md + CLI 整合。
+- **DSH Desktop / ZCode**：查無公開技術文件，無法查證。
+
 - **同名不同倉庫解析與雙版本獨立入庫**：
   - `dsh-desktop` (DataElement, https://github.com/dataelement/dsh-desktop, 214 ⭐)：主打支援多第三方模型 Provider (Ollama, SiliconFlow, OpenAI 等) 與本機 DeepSeek Harness。
   - `dsh-desktop-bruc3van` (Bruc3van, https://github.com/bruc3van/dsh-desktop, 24 ⭐)：主打內建固定版本 `@deepseek-ai/dsh` 運行時，免裝 Node.js/pnpm，支援系統托盤常駐與運行緒守護。

@@ -42,6 +42,7 @@
 |---|---|
 | [USAGE-GUIDE.md](./USAGE-GUIDE.md) | 三端（CLI／MCP／Web）使用說明 |
 | [AGENTS-Integration-Guide.md](./AGENTS-Integration-Guide.md) | 如何把本專案 `AGENTS.md` 與 IDE 全域規則整合 |
+| [PLUGIN-INSTALL.md](./PLUGIN-INSTALL.md) | 🔌 一鍵安裝為各 Agentic IDE 外掛（MCP + Skill 雙介面） |
 | [batch-add-automation.md](./batch-add-automation.md) | 「批次加入工具庫」的自動化流程（解析 → 分類 → 寫入） |
 
 ## 4. 資產（prompt 範本與診斷工具）

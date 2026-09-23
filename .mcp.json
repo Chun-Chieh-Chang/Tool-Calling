@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "tool-calling": {
+      "command": "node",
+      "args": ["mcp-server.js"]
+    }
+  }
+}

@@ -5,7 +5,8 @@
   "main": "cli.js",
   "type": "module",
   "bin": {
-    "tool-calling": "./cli.js"
+    "tool-calling": "./cli.js",
+    "tool-calling-mcp": "./mcp-server.js"
   },
   "scripts": {
     "start": "node web/server.js",
@@ -29,6 +30,7 @@
     "categories:sync": "node scripts/sync-categories.js",
     "categories:check": "node scripts/sync-categories.js --check",
     "mcp": "node mcp-server.js",
+    "plugin:install": "node scripts/install-plugin.js",
     "embed:build": "node scripts/embed-build.js",
     "benchmark": "node scripts/eval-benchmark.js",
     "eval:rerank": "node scripts/eval-rerank.js",

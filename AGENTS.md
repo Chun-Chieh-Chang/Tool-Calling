@@ -92,6 +92,7 @@ npm run tracked-repos     # 重建追蹤池 (2535 repos)
 npm test                  # 執行所有測試 (247 tests, 245 pass + 2 optional e2e skip)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
+npm run plugin:install    # 一鍵安裝為各 Agentic IDE 外掛 (MCP + Skill)
 
 # CLI 命令 (開發者互動)
 node cli.js search "<需求>"           # 三層檢索工具
