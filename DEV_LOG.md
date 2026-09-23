@@ -1,5 +1,25 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-23 前端工作台防 autofill：搜尋框與 API 金鑰欄位不再被瀏覽器自動填入
+
+### 需求
+使用者回報工作台頂部搜尋框與 API 金鑰欄位出現瀏覽器密碼管理器自動填入的預設值（帳號字串 / 圓點密碼），欲移除。
+
+### 原因分析 (RCA)
+- 程式碼內兩欄位皆無預設 `value`；填入來自瀏覽器 autofill（針對無 `name`、或忽略 `autocomplete="off"` 的欄位）。
+- `#keyInput` 為 `type="password"`，更易被密碼管理器鎖定。
+
+### 修正 (CAPA)
+- `web/index.html` L84 `#searchInput`：補 `name="tc-global-search"`，加 `readonly onfocus="this.removeAttribute('readonly')"`。
+- `web/index.html` L122 `#keyInput`：`autocomplete="off"` → `autocomplete="new-password"`，加同樣 readonly/onfocus 技巧。
+- 原理：初始 `readonly` 讓瀏覽器 autofill 跳過該欄位；focus 時移除，不影響正常輸入。
+
+### 驗證
+- `npm run build` 重建 dist（`dist/` 為 gitignore，不入版控），產物含新屬性；`npm test` 全綠。
+- Playwright 實機驗證（port 3000）：兩欄位初始值皆空、Console 零錯誤；click 後 readonly 移除可輸入，
+  搜尋 "ppt" 正常回傳 100 個匹配；截圖確認兩欄位僅顯示 placeholder。
+- `registry/*.json` 的 build 時間戳副作用已 revert，本次 commit 僅含 `web/index.html` + `DEV_LOG.md`。
+
 ## 2026-09-21 修復「加入工具」管線的資料品質缺陷 + 補上語法守門
 
 ### 需求
