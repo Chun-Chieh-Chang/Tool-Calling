@@ -1790,9 +1790,65 @@ select:focus {
 .key-panel input[type="password"] {
   flex: 1;
   min-width: 220px;
-  padding: 6px 10px;
+  padding: 8px 16px;
+  background: var(--surface-inset);
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-inset-soft);
+  color: var(--text-primary);
   font-family: var(--font-mono, ui-monospace, monospace);
   font-size: 12px;
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.key-panel input[type="password"]:focus {
+  box-shadow: var(--shadow-inset-soft), 0 0 0 2px rgba(53, 100, 212, 0.25);
+}
+
+.key-panel input[type="password"]::placeholder {
+  color: var(--text-muted);
+}
+
+/* 儲存按鈕 — 與 .refresh-trending-btn 同一套浮雕膠囊語言：
+   凸起 (shadow-micro) + 鈷藍字，hover 反白為實心鈷藍 */
+#keySaveBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+  min-height: 36px;
+  background: var(--surface-panel);
+  border: none;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-micro);
+  color: var(--brand-cobalt);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+
+#keySaveBtn:hover:not(:disabled) {
+  background: var(--brand-cobalt);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(53, 100, 212, 0.35);
+  transform: translateY(-1px);
+}
+
+#keySaveBtn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-inset-soft);
+}
+
+#keySaveBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-inset-soft);
+  transform: none;
 }
 
 .key-panel-hint {

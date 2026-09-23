@@ -1,5 +1,27 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-23 API 金鑰面板控件融入 Inset Focus 設計系統
+
+### 需求
+使用者回報「加入工具後要自動補齊中文描述與使用情境，需要 API 金鑰」面板右側的
+`#keyInput` 輸入框與「儲存」按鈕是瀏覽器原生樣式，與 Neumorphism 工作台格格不入。
+
+### 原因分析 (RCA)
+- `style.css` 只為 input 設了 padding/字體，邊框、圓角、陰影全是瀏覽器預設；`#keySaveBtn` 完全無樣式。
+- 與既有控件（搜尋框 inset 凹槽、`.refresh-trending-btn` 浮雕膠囊鈕）語言不一致。
+
+### 修正 (CAPA)
+- `.key-panel input[type="password"]`：改為 inset 膠囊（`--shadow-inset-soft` + `--radius-full` + `border: none`），
+  focus 加鈷藍光暈（同 `select:focus`），placeholder 用 `--text-muted`。
+- 新增 `#keySaveBtn` 樣式：沿用 `.refresh-trending-btn` 同一套語言 —— 凸起 `--shadow-micro` + 鈷藍粗體字，
+  hover 反白為實心鈷藍（`translateY(-1px)`），active/disabled 為 inset 按壓態（配合 app.js 的「儲存中…」disabled 狀態）。
+
+### 驗證
+- `npm run build` 重建 dist；`npm test` 264 tests 全綠（262 pass + 2 optional e2e skip）。
+- Playwright 實機截圖（port 3000，強制顯示面板）：預設 / focus（鈷藍光暈）/ hover（實心鈷藍反白）三態皆符合設計系統，Console 零錯誤。
+- `registry/*.json` 的 build 時間戳副作用已 revert，本次 commit 僅含 `web/style.css` + `DEV_LOG.md`。
+
+
 ## 2026-09-23 前端工作台防 autofill：搜尋框與 API 金鑰欄位不再被瀏覽器自動填入
 
 ### 需求
