@@ -5,7 +5,7 @@
  *
  * 假說：如果 capabilities 維度的類別鑑別率（平均邊際）顯著高於
  *       description 維度，就能證明「換維度 / 多維度分類」能解開
- *       現行单一 category 造成的 333 筆大叢。
+ *       現行單一 category 造成的 333 筆大叢。
  */
 
 import { readFileSync } from 'node:fs';

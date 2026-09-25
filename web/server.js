@@ -552,7 +552,7 @@ const server = http.createServer(async (req, res) => {
         // 同步到 dist
         try { syncRegistryToDist(); } catch {}
 
-        // LLM 分类优化（使用 AGNES_API_KEY 时触发）
+        // LLM 分類優化（使用 AGNES_API_KEY 時觸發）
         let classificationInfo = { source: 'rule', confidence: 0.6 };
         try {
           const llmResult = await classifyTool(newTool.name, newTool.description || '', newTool.topics || []);
@@ -564,18 +564,18 @@ const server = http.createServer(async (req, res) => {
             classificationInfo = llmResult;
           }
         } catch (err) {
-          console.warn('[AddTool] LLM 分类失败，保留规则分类:', err.message);
+          console.warn('[AddTool] LLM 分類失敗，保留規則分類:', err.message);
         }
 
-        // 触发 hook-reclassify dry-run，提示是否需要人工覆核
+        // 觸發 hook-reclassify dry-run，提示是否需要人工覆核
         try {
           const { main: runHook } = await import('../scripts/hook-reclassify.js');
           const hookResult = await runHook({ dryRun: true });
           if (hookResult.recommendations?.length > 0) {
-            console.log('[AddTool] hook-reclassify 建议:', JSON.stringify(hookResult.recommendations.slice(0, 3)));
+            console.log('[AddTool] hook-reclassify 建議:', JSON.stringify(hookResult.recommendations.slice(0, 3)));
           }
         } catch (err) {
-          console.warn('[AddTool] hook-reclassify 未执行:', err.message);
+          console.warn('[AddTool] hook-reclassify 未執行:', err.message);
         }
 
         // 第二階段：背景補齊語意欄位（useCase／advantages／*_zh）。

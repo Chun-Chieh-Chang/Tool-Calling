@@ -22,7 +22,7 @@ const { search } = await import(pathToFileURL(path.join(ROOT, 'core', 'search-en
 const { agentRetrieve } = await import(pathToFileURL(path.join(ROOT, 'core', 'agent-retrieval.js')).href);
 const { retrieve } = await import(pathToFileURL(path.join(ROOT, 'core', 'retrieval-fusion.js')).href);
 
-// 人工標註的评测集（8 筆）
+// 人工標註的評測集（8 筆）
 const EVAL_SET = [
   {
     q: 'I need to convert a PDF report to markdown for RAG',

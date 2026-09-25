@@ -39,7 +39,7 @@
 {DOMAIN_CONFIG}  = {
   graph_type: "tree" | "graph" | "hierarchy" | "hybrid",
   custom_fields: ["field_a", "field_b"],      // 領域特有欄位
-  category_color_overrides: {                 // 可选：覆蓋特定分類色（HSL hex）
+  category_color_overrides: {                 // 可選：覆蓋特定分類色（HSL hex）
     "分類A": "#dc2626",
     "分類B": "#0284c7"
   }
@@ -240,7 +240,7 @@ FILENAME           = {輸出 HTML 檔名，例：knowledge-graph.html}
 DOMAIN_CONTEXT     = {領域描述，例：653 個 AI 工具，18 分類，支援 L1/L2/L3 檢索}
 ENTITY             = {節點本體名稱，例：工具 / 料號 / 知識條目 / 論文}
 CUSTOM_FIELDS      = {領域特有欄位，例：["language","stars","url"] 或 ["料號","規格書","單價","供應商"]}
-CATEGORY_COLOR_OVERRIDES = {可选，例：{"安全性":"#dc2626"} 或留空 {}}
+CATEGORY_COLOR_OVERRIDES = {可選，例：{"安全性":"#dc2626"} 或留空 {}}
 GRAPH_TYPE         = tree | graph | hierarchy | hybrid
 DATA_SOURCE        = {資料來源說明，例：registry/tools.json 或 ERP 資料庫匯出}
 TOTAL_COUNT        = {總節點數，例：653}

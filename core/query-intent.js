@@ -58,7 +58,7 @@ const CONSTRAINT_TERMS = new Set([
   'headless', 'offline', 'local', 'serverless', 'edge',
   'realtime', 'batch', 'streaming', 'async', 'synchronous',
   'encrypted', 'signed', 'versioned', 'immutable',
-  // 规模約束
+  // 規模約束
   'large', 'small', 'fast', 'slow', 'low-latency', 'high-throughput',
   'real-time', 'memory-efficient',
 ]);

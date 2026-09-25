@@ -18,11 +18,11 @@
  *       每維各算一個 leave-one-out TF-IDF 邊際，投票取最佳維度作為該工具的
  *       正式邊際 → 比單一維度更能救回被單一維度拖垮的多身分工具。
  *
- * 輸出：registry/category-proposals.json（**供人工核准**，不改寫 tools.json）
+ * 輸出：registry/category-proposals.json（**供人工核準**，不改寫 tools.json）
  *   每筆工具含 primary / secondary / dimMargins / votedMargin /
  *   coreCandidate（三維邊際皆負 → 結構性問題）/ proposedCategories。
  *
- * 這是唯讀推斷：只產出提案，人工核准後才落盤為 schema 的 `categories[]`。
+ * 這是唯讀推斷：只產出提案，人工核準後才落盤為 schema 的 `categories[]`。
  *
  * 用法：
  *   node scripts/infer-multidimensional.js            # 產出 registry/category-proposals.json

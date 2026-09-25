@@ -32,7 +32,7 @@ import { neutralizeDelimiters } from './prompt-sanitize.js';
 //   「通用 trigger 被多筆工具同時命中」一律回 flat 列表。
 //
 // 關鍵訊號改看 **agent 端的一致性**：
-//   agent 的四維獨立評分對「通用 trigger 偽命中」會把多数工具壓低
+//   agent 的四維獨立評分對「通用 trigger 偽命中」會把多數工具壓低
 //   （confidence < 0.15），對「真正相關群」會讓 3+ 筆達 high-confidence。
 //   實測：
 //   - 空集「k8s 部署」→ agent topK=5 中只有 2 筆 conf≥0.35
@@ -245,7 +245,7 @@ export function retrieve(tools, query, options = {}) {
   }
 
   // 重新排序：L2 結果保持原分數；agent 補充結果的 score 維持 0~1 量級
-  // 用 source 標記讓调用端知道哪邊來的
+  // 用 source 標記讓調用端知道哪邊來的
   return {
     query,
     decision,

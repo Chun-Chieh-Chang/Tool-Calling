@@ -158,7 +158,7 @@ function setupShutdownButton() {
         credentials: 'same-origin',
       });
     } catch (e) {
-      // 伺服器退出時 fetch 可能抛錯，這是預期行為
+      // 伺服器退出時 fetch 可能拋錯，這是預期行為
     }
     showShutdownOverlay();
     window.close();
