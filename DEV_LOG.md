@@ -53,8 +53,8 @@
 ### 驗證結果
 
 - `node scripts/check-traditional.js --full --code`：**116 檔 0 違規** ✅（`--full` 僅剩 27 行文件歷史引用，如設計）
-- `node scripts/check-traditional.js --commits HEAD~4..HEAD`：掃出本輪 4 條 commit 訊息的 5 行違規（2 瑕疵＋3 引用）→ 由此確認「只看檔案」會漏掉 commit message；後續新增的 commit 一律以全繁訊息撰寫
-- `npm test`：**309 tests / 307 pass / 2 skipped（playwright e2e 未裝）/ 0 fail** ✅（新增 15 個門禁自身測試：誤報防線、豁免邊界、diff 行號、綠色鎖）
+- `node scripts/check-traditional.js --commits HEAD~4..HEAD`：掃出本輪 4 條 commit 訊息的 5 行違規（2 瑕疵＋3 引用）→ 由此確認「只看檔案」會漏掉 commit message。後續 commit 一律以全繁訊息撰寫：實測 `--commits HEAD~5..HEAD` 的 5 行全數落在舊 4 條，新增那條 0 違規
+- `npm test`：**311 tests / 309 pass / 2 skipped（playwright e2e 未裝）/ 0 fail** ✅（新增 15 個門禁自身測試：誤報防線、豁免邊界、diff 行號、綠色鎖）
 - `node cli.js validate`：725 筆全通過，metadata quality 100/100，contract 0 errors 0 warnings ✅
 - `node scripts/check-mece.js` 通過 ✅／`check-duplicate-ids.js` ID 全唯一 ✅／`check-utf8.js` 0 個 U+FFFD ✅
 - `npm run build`：`dist/registry/tools.json` 與 `registry/tools.json` 逐位元組相同（725 筆）；重建後 `synonyms.generated.js` 簡體 0 ✅
