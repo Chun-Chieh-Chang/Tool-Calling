@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-22T12:28:39.890Z",
+  "lastUpdated": "2026-09-25T01:48:49.048Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -51035,7 +51035,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T10:45:50.000Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "單色編輯印刷圖像技能 — 暖色紙張、半調攝影、積極運用負空間，以及節制排字。",
       "useCase_zh": "適用於 AI 代理 領域之相關任務需求：One-ink editorial print image skill — warm paper, halftone photography, active n"
     },
@@ -51070,7 +51070,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T11:10:12.821Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "自主研究系統，專為可測量、電腦可執行研究而設計。",
       "useCase_zh": "適用於 研究 領域之相關任務需求：自主研究系統，用於可測量且可由電腦執行的研究。"
     },
@@ -51117,7 +51117,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T11:10:24.308Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "Spotify 原生且快速。一款輕量級 Rust 應用程式，適用於完整音樂庫、本地播放，以及支援 Linux、macOS 和 Windows 的 Spotify Connect。",
       "useCase_zh": "適用於 音訊 領域之相關任務需求：Spotify，原生且快速。一個輕量的 Rust 應用程式，供您的整個資料庫在本地使用。"
     },
@@ -51152,7 +51152,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T11:10:28.186Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "✨ agentic 應用程式預覽與截圖",
       "useCase_zh": "適用於 AI 代理 領域之相關任務需求：✨ agentic app store 預覽和截圖"
     },
@@ -51188,7 +51188,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T11:10:33.447Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "AI harness 參考實作，用於按需配送工作流程",
       "useCase_zh": "適用於 AI 代理 領域之相關任務需求：AI harness 參考實現，用於按需配送工作流程"
     },
@@ -51235,7 +51235,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T11:10:49.783Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：攔截 AI coding agent 無需求的雜湊、校驗和與任務範圍膨脹。",
       "useCase_zh": "適用於 AI 代理領域之相關任務需求：Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：攔截 AI coding agent"
     },
@@ -51282,7 +51282,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-02T11:10:52.855Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "一款 CLI 工具，讀取 Claude Code、Codex 和 Gemini CLI 的會話日誌，計算依模型、專案和日期分類的 API 成本。",
       "useCase_zh": "適用於 AI 代理 領域之相關任務需求：一個 CLI，可讀取 Claude Code、Codex 和 Gemini CLI 工作階段日誌，並從中計算成本"
     },
@@ -51583,7 +51583,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.152Z",
       "stars": 16129,
       "description_zh": "OpenWiki 是一個 CLI 工具，為您的程式碼庫撰寫並維護代理檔案。",
@@ -51631,7 +51631,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.154Z",
       "stars": 24998,
       "description_zh": "專為 AI 代理與網頁爬蟲設計的無頭瀏覽器",
@@ -51679,7 +51679,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.156Z",
       "stars": 10938,
       "description_zh": "Agent IDE，讓您能管理編程智能體群組。內建智能體編排器，可規劃任務、產生智能體，並自動處理 CI 修復、合併衝突與程式碼審查。",
@@ -51787,7 +51787,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.158Z",
       "stars": 5569,
       "description_zh": "為 Claude Code、Cursor、Codex、Gemini 與所有編程智能體加速：更快、更省成本，並提供針對您程式庫的語境理解。",
@@ -51880,7 +51880,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.159Z",
       "stars": 89,
       "description_zh": "鯤鵬 Kunpeng — 跑在本地的中文 AIGC 創作工作臺（Tauri + React + Rust，內嵌 DeepSeek Harness 引擎）。支援 macOS 與 Windows；Windows 版目前為測試版，可能存在問題，歡迎 Issue 回饋。Windows 移植由 @CocoSkyler 發起（PR #2）。",
@@ -51928,7 +51928,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.159Z",
       "stars": 3059,
       "description_zh": "AI 智能體的抗惰性技能。核心為深度樹方法，將任務拆解至 N 層深度，並讓每個葉節點分配整個任務的完整時間預算，使努力程度隨深度倍增。本研究紮根於 2025–2026 年關於模型惰性、思考不足與提前完成的論述。",
@@ -51976,7 +51976,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.161Z",
       "stars": 4,
       "description_zh": "AI 驅動的程式智慧 MCP 伺服器 — 17 個工具，支援跨 6 種語言的程式分析、搜尋、重構與呼叫圖視覺化",
@@ -52024,7 +52024,7 @@
         "初次收錄建議人工審查其最新版本文檔與依賴環境",
         "非通用型工具，請確認專案環境符合需求"
       ],
-      "status": "experimental",
+      "status": "active",
       "addedAt": "2026-09-05T06:13:34.163Z",
       "stars": 4662,
       "description_zh": "Data visualization Skill for AI Agents，turning data into polished, interactive HTML charts. 面向 AI Agents 的資料可視化 Skill，將資料快速生成精緻、可互動的 HTML 圖表。",
@@ -52070,7 +52070,7 @@
         "Opinionated workflows; teams may want to prune or adapt commands and rules to their conventions"
       ],
       "addedAt": "2026-09-06T01:02:56.799Z",
-      "status": "experimental",
+      "status": "active",
       "stars": 2358,
       "description_zh": "Claude Code 工具包 — 為高效 AI 輔助開發提供 agents、指令、技能、規則與 hooks",
       "useCase_zh": "將經過驗證的 Claude Code 子 agents（規劃器、TDD 指南、安全審查員）、技能、hooks 和斜線指令植入真實產品程式碼庫，實現有紀律的 AI 輔助開發。",
@@ -52115,7 +52115,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-06T01:03:00.811Z",
-      "status": "experimental",
+      "status": "active",
       "stars": 3208,
       "description_zh": "開源本地模型推理伺服器，可分析您的硬體規格、推薦/下載/調校最佳本地模型，並將其服務給 OpenClaw、Claude Code、Codex 與 Cline 等 agents。",
       "useCase_zh": "透過自動匹配最佳模型到您的 GPU/CPU 硬體，為您現有的程式設計 agent（OpenClaw/Claude Code/Codex/Cline）提供免費、私密、離線的本地模型。"
@@ -52168,7 +52168,7 @@
         "Only manages Node.js versions — not a general-purpose package or runtime manager"
       ],
       "addedAt": "2026-09-06T01:03:01.685Z",
-      "status": "experimental",
+      "status": "active",
       "stars": 94919,
       "description_zh": "Node 版本管理器 — 符合 POSIX 規範的 bash 腳本，用於管理多個正在執行的 Node.js 版本，透過 .nvmrc 切換專案版本，並安裝 LTS 或 nightly Node 版本。",
       "useCase_zh": "在 POSIX shell 中透過 `nvm use` 和 .nvmrc 切換各專案的 Node.js 版本（例如舊版儲存庫用 Node 18，新專案用 Node 22）。",
@@ -53224,7 +53224,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T12:51:07.907Z",
-      "status": "experimental",
+      "status": "active",
       "useCase_zh": "當使用者想依據證據與成本效益，從 599 條生活建議中篩選並決定該採取哪些健康、財務或法律行動時。",
       "advantages_zh": [
         "每條建議均明確列出成本、收益及證據等級（A/B/C），並附帶 1,237 個原始文獻連結。",
@@ -53274,7 +53274,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T12:51:15.823Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "原生且快速的 Spotify 體驗。單一輕量 Rust 應用程式，提供完整音樂庫管理、本機播放與 Spotify Connect，支援 Linux、macOS 與 Windows。",
       "useCase_zh": "Spotify，原生且快速。單一輕量級 Rust 應用程式，為你整個音樂庫提供本地播放與 Spotify Connect，於 Linux、macOS 和 Windows 上執行。",
       "advantages_zh": "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect, 跨 Linux、macOS 與 Windows 三大平台, 無需依賴原生 Spotify 客戶端"
@@ -53362,7 +53362,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T12:51:30.862Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "《深入理解 AI Infra：量化分析與系統設計》（李博傑 著）開源書稿：從硬體約束與模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗",
       "useCase_zh": "《深入理解 AI Infra：量化分析與系統設計》（李博傑 著）開源書稿：從硬體約束與模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗",
       "advantages_zh": "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計, 開源包含全書正文、PDF 與配套計算工具及實驗"
@@ -53411,7 +53411,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T12:51:37.467Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。",
       "useCase_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。",
       "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造"
@@ -53456,7 +53456,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-18T13:01:04.385Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "以動態索引動作空間運作的極速瀏覽器代理：給定一個自然語言目標，由 TypeSafe 的 Jev 直接選出操作與元素，僅在需要輸入文字時才呼叫小型 LLM。官方實測 Google Flights 蘇黎世飛倫敦僅 7.1 秒。",
       "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成",
       "useCase_zh": "網頁自動化開發者在需要快速操作基於瀏覽器的前端功能（如 Google Flights 搜尋）時，用它來執行搜尋與資料擷取任務，而無需撰寫脆弱且專屬於該網站的定位腳本。"
@@ -53491,7 +53491,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-19T14:59:30.034Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "Claude Code 外掛，以 Jev 決策取代 compaction 摘要：在一次快速請求中對每個 tool call 和結果進行評分，過時的項目會被捨棄或截斷，保留的內容維持原文。",
       "useCase_zh": "Claude Code 外掛，以 Jev 決策取代 compaction 摘要：在一次快速請求中對每個 tool call 和結果進行評分，過時的項目會被捨棄或截斷，保留的內容維持原文。"
     },
@@ -53534,7 +53534,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-20T05:04:01.227Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
       "useCase_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
       "stars": 92596,
@@ -53580,7 +53580,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-20T05:04:01.938Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、Codex、opencode 和 pi。",
       "useCase_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、C",
       "stars": 496,
@@ -53622,7 +53622,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-20T05:04:02.717Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
       "useCase_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
       "stars": 16712,
@@ -53667,7 +53667,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-20T05:04:11.144Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費。",
       "useCase_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費",
       "stars": 16211,
@@ -53702,7 +53702,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-20T05:04:11.409Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼 — 全部透過自然語言指令完成。",
       "useCase_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼",
       "stars": 146785,
@@ -53745,7 +53745,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-20T23:50:28.034Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "多語言、非自回歸的 System 1 決策引擎：單次前向傳遞即可對 100 多種語言輸出結構化決策（約 33 毫秒），以強化學習搭配嚴格適當評分規則（RLCD）訓練，內建 router 依請求挑選合適檢查點。",
       "useCase_zh": "需要極低延遲的多語言決策／分類場景，例如路由、意圖判斷或分流，必須在約 33 毫秒內對 100 多種語言回傳結構化結果。",
       "advantages_zh": [
@@ -54032,7 +54032,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-21T11:32:40.278Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "AI 程式開發工作台，提供桌面應用、瀏覽器介面與終端 Agent。",
       "useCase_zh": "需要整合式 AI 開發環境，或想在終端以 Agent 方式操作程式碼時使用。",
       "advantages_zh": [
@@ -54075,7 +54075,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-21T11:34:56.102Z",
-      "status": "experimental",
+      "status": "active",
       "stars": 4285,
       "description_zh": "開源的 AI 能見度追蹤工具：看各家模型怎麼描述你的產品、推薦了誰、引用了哪些來源。",
       "useCase_zh": "想知道 AI 回答裡有沒有提到自家產品、競品是誰、依據哪些來源時使用。",
@@ -54119,7 +54119,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-21T11:35:05.273Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "iOS 18+ 的 Apple Wallet 卡片外觀與鎖定畫面密碼主題工具，透過 airlift AirTraffic 同步漏洞達成，無需越獄。",
       "useCase_zh": "在未越獄的 iOS 18+ 裝置上自訂 Apple Wallet 卡片外觀與鎖定畫面密碼樣式。",
       "advantages_zh": [
@@ -54169,7 +54169,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-21T11:35:16.003Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "在 Apple Silicon 上以 MLX 原生執行 Laya 的結構化決策模型。",
       "useCase_zh": "需要在 Mac（Apple Silicon）上以極低延遲、完全離線地做結構化決策推論時。",
       "advantages_zh": [
@@ -54214,7 +54214,7 @@
         "非通用型工具，請確認專案環境符合需求"
       ],
       "addedAt": "2026-09-21T11:35:22.305Z",
-      "status": "experimental",
+      "status": "active",
       "description_zh": "可自行訓練與執行的輕量決策模型（Jev 風格）。",
       "useCase_zh": "需要可自行訓練、自行託管的小型決策模型，且想沿用 TypeSafe System One 的 API 介面時。",
       "advantages_zh": [
@@ -54405,6 +54405,198 @@
         "提供依業務模組（庫存、採購、人力）分類的標準範本，可直接載入使用"
       ],
       "description_zh": "Oracle Fusion AI Studio：Oracle 撰寫的 AI Studio 技能，以及針對 Fusion 模組（財務、供應鏈、採購、HCM）的範例應用程式和工作流程。"
+    },
+    {
+      "id": "esearch",
+      "name": "eSearch",
+      "url": "https://github.com/xushengfeng/eSearch",
+      "description": "Cross-platform desktop screenshot tool (Windows / Linux / macOS) with offline OCR, screen translation and search, reverse image search, screen pinning, screen recording and omnidirectional scrolling capture.",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "esearch",
+        "screenshot",
+        "offline-ocr",
+        "screen-translation",
+        "reverse-image-search",
+        "screen-recorder",
+        "scrolling-screenshot",
+        "paddleocr",
+        "electron",
+        "截圖辨識文字",
+        "螢幕翻譯",
+        "離線 OCR",
+        "以圖搜圖",
+        "捲動截圖",
+        "圖片貼在螢幕"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/xushengfeng/eSearch.git",
+        "repoUrl": "https://github.com/xushengfeng/eSearch"
+      },
+      "capabilities": [
+        "screen-capture",
+        "offline-ocr",
+        "translation",
+        "reverse-image-search",
+        "screen-recording",
+        "cross-platform"
+      ],
+      "useCase": "Cross-platform users who switch between Windows, Linux, and macOS trigger a global hotkey to capture a specific screen region, run offline OCR, and immediately search or translate the extracted text without opening a web browser.",
+      "advantages": [
+        "Runs offline OCR using PaddleOCR-based models to recognize text locally without sending data to external servers.",
+        "Supports omnidirectional scrolling capture and frame-level editing features for screen recording.",
+        "Integrates reverse image search engines and multimodal large model interfaces for AI-based image analysis.",
+        "Provides localized AI models for large character sets, including rare Chinese characters and multiple Asian scripts."
+      ],
+      "negativeConstraints": [
+        "初次收錄建議人工審查其最新版本文檔與依賴環境",
+        "非通用型工具，請確認專案環境符合需求"
+      ],
+      "addedAt": "2026-09-25T01:07:02.031Z",
+      "status": "active",
+      "useCase_zh": "跨平台使用者在切換 Windows、Linux 與 macOS 環境時，透過全域快捷鍵擷取特定螢幕區域，執行離線 OCR 並立即搜尋或翻譯擷取的文字，無需開啟瀏覽器。",
+      "advantages_zh": [
+        "使用基於 PaddleOCR 的模型進行離線 OCR，在地端辨識文字而無需將資料傳送至外部伺服器。",
+        "支援全方向捲動截圖與影格層級的編輯功能，讓螢幕錄製更靈活。",
+        "整合逆向圖片搜尋引擎與多模態大型模型介面，進行 AI 圖片分析。",
+        "提供在地化 AI 模型，支援包含生僻字在內的大字符集及多種亞洲文字。"
+      ],
+      "description_zh": "跨平台桌上型截圖工具（Windows / Linux / macOS），支援離線 OCR、螢幕翻譯與搜尋、反向圖片搜尋、螢幕釘選、螢幕錄影及全方向捲動截圖。",
+      "stars": 7206
+    },
+    {
+      "id": "genoffice",
+      "name": "GenOffice",
+      "url": "https://github.com/genspark-ai/genoffice",
+      "description": "Open-source AI Office suite for macOS, Windows and Linux: Docs, Sheets, Slides, PDF, Markdown and HTML editors with a built-in AI agent that edits native .docx / .xlsx / .pptx byte-preservingly, plus a genoffice CLI, an agent skill and an MCP server. Bring your own key.",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "genoffice",
+        "office-suite",
+        "ai-office",
+        "docx",
+        "xlsx",
+        "pptx",
+        "pdf-editor",
+        "markdown-editor",
+        "local-first",
+        "microsoft-office-alternative",
+        "尋找免費 Office 替代方案",
+        "用 AI 編輯 Word 文件",
+        "PDF 轉 Word",
+        "Markdown 轉 Word",
+        "本地編輯 Excel 公式"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/genspark-ai/genoffice.git",
+        "repoUrl": "https://github.com/genspark-ai/genoffice"
+      },
+      "capabilities": [
+        "office-suite",
+        "ai-agent",
+        "docx-xlsx-pptx-editing",
+        "pdf-conversion",
+        "local-first",
+        "bring-your-own-key"
+      ],
+      "useCase": "Developers use the genoffice CLI and agent skills to automate the creation, conversion, and byte-preserving editing of native Office files within coding agents without opening a GUI.",
+      "advantages": [
+        "Byte-preserving editing that rewrites only modified sections to maintain native .docx/.xlsx/.pptx compatibility",
+        "Local-first operation for opening, editing, and file conversion, with AI processing handled by user-specified providers",
+        "Full agent integration via MCP server and CLI skills for autonomous document management"
+      ],
+      "negativeConstraints": [
+        "AI 功能需要自行取得模型金鑰或登入 Genspark，無法離線完成生成與編輯",
+        "不提供雲端協同編輯與共用連結，團隊即時合作場景不適用",
+        "不適用於純 Markdown / HTML 工作流，Office 二進位格式不是它的產出目標"
+      ],
+      "addedAt": "2026-09-25T01:07:20.836Z",
+      "status": "active",
+      "useCase_zh": "開發人員使用 genoffice CLI 和代理技能，在程式代理中自動化建立、轉換及保留位元組地編輯原生 Office 檔案，無需開啟圖形介面。",
+      "advantages_zh": [
+        "保留位元組編輯技術，僅重新撰寫修改過的區段，維持 .docx/.xlsx/.pptx 原生格式相容性",
+        "本機優先架構，檔案開啟、編輯與轉換均在裝置上執行，AI 處理由使用者指定供應商",
+        "完整的代理整合，透過 MCP 伺服器和 CLI 技能實現自主文件管理"
+      ],
+      "description_zh": "開源 AI 文書辦公套裝，支援 macOS、Windows 與 Linux：包含文字文件、試算表、簡報、PDF、Markdown 與 HTML 編輯器，內建 AI 代理程式可保真編輯原生 .docx / .xlsx / .pptx 檔案，另附 genoffice CLI、代理技能與 MCP 伺服器。需自行準備金鑰。",
+      "negativeConstraints_zh": [
+        "AI 功能需自行取得模型金鑰或登入 Genspark，無法離線完成生成與編輯",
+        "不提供雲端協同編輯與共用連結，團隊即時合作場景不適用",
+        "不適用於純 Markdown / HTML 工作流，Office 二進位格式不是它的產出目標"
+      ],
+      "stars": 7675
+    },
+    {
+      "id": "genoffice-skill",
+      "name": "GenOffice Agent Skill",
+      "url": "https://github.com/genspark-ai/genoffice/tree/main/skills/genoffice",
+      "description": "Agent skill that teaches coding agents to drive the genoffice command line: create, convert, read and edit real .docx / .xlsx / .pptx, PDF, Markdown and HTML files locally, working through a checked outline, per-page specs and a render pipeline.",
+      "category": "文件生產力",
+      "language": "typescript",
+      "triggers": [
+        "genoffice-skill",
+        "genoffice",
+        "agent-skill",
+        "office-document-generation",
+        "docx",
+        "xlsx",
+        "pptx",
+        "pdf",
+        "format-conversion",
+        "用 AI 產生 PPT 簡報",
+        "讓 agent 寫出 Word 文件",
+        "生成 Excel 工作簿",
+        "批次轉換文件格式",
+        "編輯既有 Office 文件",
+        "輸出真實 Office 檔案"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx skills add genspark-ai/genoffice",
+        "repoUrl": "https://github.com/genspark-ai/genoffice",
+        "branch": "main",
+        "subpath": "skills/genoffice",
+        "requirements": [
+          "node>=18"
+        ]
+      },
+      "capabilities": [
+        "agent-skill",
+        "office-document-generation",
+        "format-conversion",
+        "cli-driven",
+        "local-first"
+      ],
+      "useCase": "A developer integrates this skill into an LLM-based coding agent to allow it to programmatically generate structured PowerPoint presentations, Excel spreadsheets, and Word documents from Markdown or JSON inputs locally.",
+      "advantages": [
+        "Process Office documents locally using the app's own engines, sending data off-machine only for specific search or media tasks.",
+        "Provides machine-readable JSON output with specific exit codes and error suggestions for robust programmatic integration.",
+        "Supports a structured pipeline for content generation including checked outlines, per-page specs, and rendering."
+      ],
+      "negativeConstraints": [
+        "需先安裝 GenOffice 桌面版才能取得 genoffice 命令，此 skill 本身不附帶引擎",
+        "不適用於 Google Docs / Notion 等線上協同文件，只處理本機 Office 檔案",
+        "不適合只需要 Markdown 或 HTML 輸出、不需還原為二進位 Office 格式的場景"
+      ],
+      "addedAt": "2026-09-25T01:07:33.181Z",
+      "status": "active",
+      "useCase_zh": "開發者將此技能整合進 LLM 編碼代理，使其能透過本地化處理，從 Markdown 或 JSON 輸入中程式化生成結構化的 PowerPoint 簡報、Excel 試算表與 Word 文件。",
+      "advantages_zh": [
+        "使用應用程式自身的引擎在本地處理 Office 文件，僅將搜尋或媒體資料傳送至雲端。",
+        "提供具機器可讀性的 JSON 輸出與特定錯誤碼，支援健壯的程式化整合。",
+        "支援包含檢查大綱、逐頁規格與渲染管線的結構化內容生成流程。"
+      ],
+      "description_zh": "代理技能，教導編碼代理驅動 genoffice 命令列：建立、轉換、讀取與編輯本機端的 .docx / .xlsx / .pptx、PDF、Markdown 與 HTML 檔案，透過已確認的大綱、逐頁規格與渲染管線執行。",
+      "negativeConstraints_zh": [
+        "需先安裝 GenOffice 桌面版才能取得 genoffice 命令，此技能本身不附帶引擎",
+        "不適用於 Google Docs / Notion 等線上協同文件，只處理本機 Office 檔案",
+        "不適合只需要 Markdown 或 HTML 輸出、不需還原為二進位 Office 格式的場景"
+      ],
+      "stars": 7675
     }
   ]
 }

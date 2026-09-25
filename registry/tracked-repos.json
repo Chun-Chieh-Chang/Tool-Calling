@@ -21047,12 +21047,12 @@
     "fullName": "genspark-ai/genoffice",
     "owner": "genspark-ai",
     "repo": "genoffice",
+    "category": "文件生產力",
+    "addedAt": "2026-09-25T01:07:20.836Z",
+    "status": "tracking",
     "initialStars": 2231,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-08-02T23:59:59.999Z"
   },
   "yynxxxxx/Codex-X": {
     "fullName": "yynxxxxx/Codex-X",
@@ -25830,11 +25830,19 @@
     "addedAt": "2026-09-21T12:56:50.931Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2535,
-    "inRegistry": 686,
-    "trackedOnly": 1849,
-    "lastGenerated": "2026-09-22T12:28:39.932Z"
+  "xushengfeng/eSearch": {
+    "fullName": "xushengfeng/eSearch",
+    "owner": "xushengfeng",
+    "repo": "eSearch",
+    "category": "文件生產力",
+    "addedAt": "2026-09-25T01:07:02.031Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-09-22T12:28:39.890Z"
+  "_meta": {
+    "total": 2536,
+    "inRegistry": 688,
+    "trackedOnly": 1848,
+    "lastGenerated": "2026-09-25T01:47:56.032Z"
+  },
+  "lastGenerated": "2026-09-25T01:47:56.032Z"
 }

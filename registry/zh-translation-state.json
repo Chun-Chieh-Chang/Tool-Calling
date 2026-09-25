@@ -6510,6 +6510,28 @@
     "fusion-ai-studio": {
       "description_zh": "Oracle Fusion AI Studio：Oracle 撰寫的 AI Studio 技能，以及針對 Fusion 模組（財務、供應鏈、採購、HCM）的範例應用程式和工作流程。",
       "at": "2026-09-21T12:58:31.859Z"
+    },
+    "esearch": {
+      "description_zh": "跨平台桌上型截圖工具（Windows / Linux / macOS），支援離線 OCR、螢幕翻譯與搜尋、反向圖片搜尋、螢幕釘選、螢幕錄影及全方向捲動截圖。",
+      "at": "2026-09-25T01:12:12.006Z"
+    },
+    "genoffice": {
+      "description_zh": "開源 AI 文書辦公套裝，支援 macOS、Windows 與 Linux：包含文字文件、試算表、簡報、PDF、Markdown 與 HTML 編輯器，內建 AI 代理程式可保真編輯原生 .docx / .xlsx / .pptx 檔案，另附 genoffice CLI、代理技能與 MCP 伺服器。需自行準備金鑰。",
+      "negativeConstraints_zh": [
+        "AI 功能需自行取得模型金鑰或登入 Genspark，無法離線完成生成與編輯",
+        "不提供雲端協同編輯與共用連結，團隊即時合作場景不適用",
+        "不適用於純 Markdown / HTML 工作流，Office 二進位格式不是它的產出目標"
+      ],
+      "at": "2026-09-25T01:12:12.007Z"
+    },
+    "genoffice-skill": {
+      "description_zh": "代理技能，教導編碼代理驅動 genoffice 命令列：建立、轉換、讀取與編輯本機端的 .docx / .xlsx / .pptx、PDF、Markdown 與 HTML 檔案，透過已確認的大綱、逐頁規格與渲染管線執行。",
+      "negativeConstraints_zh": [
+        "需先安裝 GenOffice 桌面版才能取得 genoffice 命令，此技能本身不附帶引擎",
+        "不適用於 Google Docs / Notion 等線上協同文件，只處理本機 Office 檔案",
+        "不適合只需要 Markdown 或 HTML 輸出、不需還原為二進位 Office 格式的場景"
+      ],
+      "at": "2026-09-25T01:12:12.007Z"
     }
   },
   "failed": {}
