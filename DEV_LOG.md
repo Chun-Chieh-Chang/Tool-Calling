@@ -1,5 +1,100 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-25 批量加入 GenOffice + eSearch（含 monorepo 拆解判定）
+
+### 需求
+批量加入 2 個 GitHub URL（`genspark-ai/genoffice`、`xushengfeng/eSearch`），並檢查是否需要拆解。
+
+### 處理結果（722 → 725 筆）
+
+| URL | id | 分類 | Stars | 拆解判定 |
+|-----|----|------|-------|----------|
+| xushengfeng/eSearch | `esearch` | 文件生產力 | 7,206 | **不拆解**：`pnpm-workspace.yaml` 只有 `onlyBuiltDependencies`、無 `packages:`，是單體 electron-vite 應用；截圖／離線 OCR／翻譯全部隨同一個安裝檔交付 |
+| genspark-ai/genoffice | `genoffice` | 文件生產力 | 7,675 | **拆解**：`apps/`（docs·sheets·slides·pdf·markdown·html·shell）+ `packages/`（18 個引擎與 CLI）是兩套完全不同的採用表面 |
+| …/tree/main/skills/genoffice | `genoffice-skill` | 文件生產力 | 7,675 | 子筆：面向 coding agent 的 `SKILL.md`（`npx skills add genspark-ai/genoffice`），與桌面套件的觸發詞／使用情境不同，獨立入庫 |
+
+- 未再拆出第三筆 CLI／MCP：`packages/cli`（`@genoffice/cli`）隨桌面版安裝、`genoffice mcp` 與 skill 共用同一命令表面，拆開只會產生同質重複筆（與既有 28 筆 `/tree/` 子路徑筆的粒度一致）。
+- `genoffice-skill` 的語意欄位改以 `skills/genoffice/SKILL.md` 為來源餵給 enricher，而非 repo 根 README。
+- 三筆均補齊 `useCase`／`advantages`／`*_zh`／`negativeConstraints`（禁用場景依官方文件寫實：需先裝桌面版才有 `genoffice` 命令、不處理雲端協同文件、AI 呼叫需自備金鑰）。
+
+### 問題與原因分析（RCA）
+- **子筆掃描沿用父筆描述**：`scan-tool.js` 對 `/tree/<branch>/<subpath>` 仍抓 repo 的 GitHub 一行簡介，造成子筆的 name／description／triggers／capabilities 與父筆 100% 重複，檢索時互相搶位。→ 拆解後必須手動改寫子筆身份。
+- **子筆 id 變成 `genoffice-genspark-ai`**：`cli.js:287` 的碰撞後綴規則（`${id}-${owner}`）對 skill 子路徑不語意。→ 手動更名為 `genoffice-skill`。
+- **補齊完成卻仍是 experimental**：`isFullyEnriched()` 要求 `description_zh`，而 `translate-to-zh.js` 不負責狀態升級、`enrich-new-tools.js` 的 `needsEnrich()` 又不會把已補齊的筆撿回來 → 形成「欄位齊但狀態卡住」的死區。
+- **stars 沒落進 tools.json**：`cli.js:344` 設了 `newTool.stars` 卻只 `saveSnapshot()`，之後沒有再 `saveRegistry()`，所以快照有 star、資料筆沒有（回填前本庫 725 筆中有 44 筆缺 stars，含這 3 筆）。→ 本次依 star-snapshots 回填 3 筆。
+- **eSearch 誤歸開發工具**：掃描只看 topics（electron/linux/cross-platform）。它是給一般使用者用的截圖識屏工具，同類 `unlimited-ocr` 落在文件生產力。
+
+### 矯正與預防措施（CAPA）
+- 以一次性腳本（`.temp/`，用完即刪）修正身份欄位，再走正規管線：`enrich-new-tools.js --ids` → `translate-to-zh.js` → 依 `isFullyEnriched()` 升級 `active`，不繞過任何欄位防呆。
+- 狀態升級一律用 `isFullyEnriched()` 當門檻（不手寫欄位清單），避免與 enrich 管線的定義走樣。
+- 未來對 `/tree/` 子路徑入庫的固定動作：先確認 enricher 讀的是子路徑檔（SKILL.md／子 README），再手動改 name／description／triggers，否則子筆不可入庫。
+
+### 後續修正（同次 session）：兩個既有程式缺陷
+使用者確認後一併修掉上述 RCA 的程式面根因，並順帶清掉同缺陷留下的資料死區。
+
+**修正 1：stars 只進快照、不進 tools.json（`cli.js` + `web/server.js`）**
+- 根因：兩個加入管線都是先 `saveRegistry(registry)`（push 當下存檔），之後才把 `stargazers_count` 掛在 `newTool` 上；而語意補齊階段會 `loadRegistry()` 重載磁碟內容覆寫回去，事後修改的記憶體物件永遠不落盤。`sync-daemon.js` 是正確的（迴圈跑完才寫檔），所以缺口只出現在「新加入的當下」，要等背景同步才補得回來。
+- 修法：把 stars 取得動作**移到 `registry.tools.push(newTool)` 之前**（而不是在事後多補一次重載存檔），讓原本那一次存檔自然涵蓋 stars；CLI／Web 兩處同步調整並補上原因註解。
+
+**修正 2：欄位補齊卻永久卡 `experimental`（`scripts/translate-to-zh.js`）**
+- 根因：`isFullyEnriched()` 要求 `description_zh`，但該欄由 `translate-to-zh.js` 產生；`enrich-new-tools.js` 跑在它之前，當時判定必定為 false，而翻譯腳本從不負責生命週期 → 形成誰都不接手升級的死區（`needsEnrich()` 也不會再把已補齊的筆撿回來）。
+- 修法：在 `translate-to-zh.js` 的 `flush()`（唯一寫入 `description_zh` 的最後一站）套用譯文後，依 **`isFullyEnriched()` 同一判準**升級 `experimental → active`，並印出升級筆數與 id。
+- 附帶回填：因為 `flush()` 會重跑全部 `state.done`，這次執行直接把歷史死區一次清乾淨——**35 筆**既有工具由 experimental 升級為 active。
+
+**實測驗證（非只讀程式碼）**
+- CLI 管線：`node cli.js add https://github.com/tj/n` → tools.json 中 `stars: 19514` **有落盤**（修正前為 undefined）；狀態維持 experimental（此時尚無 `description_zh`，符合生命週期定義）。
+- Web 管線：`PORT=3457 node web/server.js --dev` + `POST /api/tools/add`（本機 origin）→ 回應與 tools.json 皆帶 `stars: 19514`；背景補齊完成後仍為 experimental，待 `translate:zh` 才升級，順序正確。
+- 兩筆測試資料已完整回滾：`cli.js remove n`、刪除 `star-snapshots.json` 的 `tj/n` 鍵、知識圖譜重載回 725 筆、測試服務經 `/api/shutdown` 優雅結束（port 3457 僅剩 TIME_WAIT）。
+
+**生命週期現況**：725 筆 → active 721／experimental 1／deprecated 1／archived 2。剩下的 1 筆（`my-girlfriend-jingtian-latex`）是**真的**還沒補齊，不是卡死——門禁沒有為了消 warning 而放水。
+
+**修正 3：追蹤池重建會抹掉漲星基線、且不冪等（`scripts/tracked-repos.js`）**
+> 這條是在驗證修正 1 時，用真實啟動工作台順帶揪出來的——不修的話，今天修回的資料下次開機又被抹掉。
+
+- 觸發鏈路（事先不知道，看 `web/server.js` 啟動日誌才確認）：工作台啟動時會做「跨日檢查」，`已跨日 → 自動觸發 scripts/trending-weekly.js`，而它第一步就是 `buildTrackedRepos()` 覆寫 `registry/tracked-repos.json`（`trending-weekly.js:255`）。也就是說**每次跨日開機都會重寫追蹤池**。
+- 後果 1（資料遺失）：合併迴圈（`tracked-repos.js:120-128`）只繼承 `note`／`notes`／`category`。倉庫從 `tracked_not_in_registry` 升格為 `tracking` 時，新的物件是 Step 1 的形狀、**沒有** `initialStars`／`discoveredAt`／`sourceSnapshotWeek`，舊值隨整筆被覆寫消失。實例：`genspark-ai/genoffice` 的 `initialStars: 2231`（W31 基線）被抹掉，隔週報表會把它當成從零起算的新倉庫。
+- 後果 2（不冪等）：Step 1 對「registry 裡沒有 `addedAt` 的舊工具」會Stamp `new Date()`，Step 2 的 `discoveredAt` 探「先命中先贏」，快照陣列一增加就把舊值往後推 → 同資料重跑兩次得到兩份檔案。實測一次重建改寫 38 筆 `addedAt`／`discoveredAt`。
+- 修法：
+  - Step 1 的 `addedAt` 改 `tool.addedAt || null`（來源不明就留 null，不Stamp「現在」）；
+  - 合併迴圈補上發現期繼承：`initialStars`／`sourceSnapshotWeek` 缺值時從舊檔撿回；`discoveredAt` 取**較早**者（它的語意是「首次被發現」）；`addedAt` 在新值為空時繼承舊值；
+  - `_meta.inRegistry` 改用 `status === 'tracking'` 計算——`addedAt` 不再是可靠的入庫訊號（且 `trending-weekly.js:437` 還會寫 `in_registry` 第三種狀態）。
+- 冪等性實證：修完連續重建兩次，比對「排除 `lastGenerated` 後」的整份 JSON **完全相同**；並把非本次範圍的 38 筆來源欄位依 HEAD 復原後再重建，最終 `tracked-repos.json` 相對 HEAD 只剩**兩筆**變動（`xushengfeng/eSearch` 新增、`genspark-ai/genoffice` 升格且 `initialStars: 2231` 保住了）。
+- 測試過程中被 auto-trending 改寫的檔案已全部檢回：`tracked-repos.json`（來源欄位復原）、`star-snapshots.json`（移除測試用 `tj/n` 鍵）。週報本身未受污染——探勘在 Step 1 後就卡在 GitHub rate limit，我關閉伺服器時它還沒寫到 `weekly-reports/`，該目錄與 `tools.json` 的週報產物皆無新增變更。
+
+### 使用者追加要求：把三處行為修正抽成可匯入的測試縫隙
+修正 1–3 當時只有實測、沒有迴歸測試，原因是 `cmdAdd()` 與兩個 `flush()` 都是腳本內部流程、無法匯入。本輪把「可以純化的判斷」搬出腳本，只做了**抽取＋接回**，沒有改變任何管線行為。
+
+| 匯出點 | 所在模組 | 取代的複製貼上 | 接回的站點 |
+|--------|----------|----------------|------------|
+| `activateIfComplete(tool)` | `core/tool-lifecycle.js`（新增） | 「完整就升 active」的內聯判斷 | `cli.js`、`web/server.js`、`scripts/enrich-new-tools.js`、`scripts/translate-to-zh.js`（共 4 站） |
+| `fetchRepoStars()`／`applyRepoStars()`／`attachStarsToTool()` | `core/stars.js`（新增） | 「查星數 → 寫快照 → 掛 `newTool.stars`」在 CLI 與 Web 各一份 | `cli.js cmdAdd()`、`web/server.js POST /api/tools/add` |
+| `mergeTrackedProvenance(info, existing)` | `scripts/tracked-repos.js`（改為匯出） | `buildTrackedRepos()` 內的溯源合併迴圈 | 同檔；`trending-weekly.js` 透過 `buildTrackedRepos()` 間接使用 |
+
+- 網路與磁碟 I/O 改為由引數注入（`fetchImpl`／`loadSnapshotImpl`／`saveSnapshotImpl`），所以 32 個新測試全程離線執行、不會動到 `registry/` 任何檔案。
+- `core/stars.js` 拆成三層的理由寫在檔首：呼叫端必須在 `registry.tools.push(newTool)` **之前**呼叫，因為它靠「原地修改同一個物件引用」生效——這正是修正 1 的順序契約，現在有測試鎖住。
+- **抽取過程中被測試抓到的真實漏洞**：`typeof NaN === 'number'` 成立，所以 `stargazers_count` 一旦是 `NaN` 會一路寫進 `tools.json`，而 `JSON.stringify(NaN)` 落盤成 `null`（把「沒有星數」變成「星數是 null」的髒資料）。→ `fetchRepoStars()` 與 `applyRepoStars()` 兩處改用 `Number.isFinite()`。
+- **抽取過程中踩到的重構自傷**：`web/server.js` 結尾那行 log 仍引用被移除的 `complete` 變數，`ReferenceError` 會被外層 `catch` 吞成「背景補齊失敗」而看不出真因。→ 改讀新的區域變數 `upgraded`，語意也更準（只有真的升級才宣告升級）。
+- **架構鎖**（`tests/tool-lifecycle.test.js`）：四個站點都必須匯入 `activateIfComplete`，且原始碼不得再出現 `isFullyEnriched(` 呼叫——防止「某站自己內聯判準」再度形成沒人接手升級的死區。已反向驗證該正規表達式確實抓得到內聯寫法（不是空測試）。
+
+### 驗證結果
+- `npm test`：**296 tests / 294 pass / 2 skipped（playwright e2e 未裝）/ 0 fail** ✅（新增 32 個迴歸測試：生命週期 10、星數 14、追蹤池溯源 8）
+- 抽取後現場重跑（不只單元測試）：
+  - `node cli.js add https://github.com/tj/n` → `tools.json` 拿到 `stars: 19514`、狀態維持 `experimental`（此時無 `description_zh`，符合生命週期定義）；終端也不再誤印「狀態升級為 active」。測後即以 `cli.js remove n` 回滾，`tj/n` 從 `star-snapshots.json` 刪除，`tools.json` 回到 725 筆 ✅
+  - `node scripts/tracked-repos.js` 重建 → 與重建前整份比對：**變更筆數 0**（`_meta` 之外），2536 筆 = 688 已入庫 ＋ 1848 僅追蹤 ✅
+- `node cli.js validate`：**725 筆全通過，metadata quality 100/100，contract 0 errors 0 warnings** ✅
+- `node scripts/check-mece.js`：通過（無殘留分類）✅
+- `node scripts/check-duplicate-ids.js`：ID 全唯一 ✅
+- `node scripts/check-utf8.js`：0 個 U+FFFD ✅
+- `npm run build`：`dist/registry/tools.json` 同步至 725 筆（原為 09-23 的 722 筆）✅
+- 檢索實測：「截圖離線OCR辨識文字」→ eSearch **#1**；「PDF 轉 Word」→ GenOffice **#2**；「讓 Claude Code 幫我在本機產生真實的 Office 檔案 skill」→ GenOffice Agent Skill **#1** ✅
+
+### 已知殘留（超出本次範圍）
+- `status` 詞彙不一致：`tracked-repos.js` 寫 `tracking`／`tracked_not_in_registry`，而 `trending-weekly.js:437` 會寫第三種 `in_registry`。本次 `_meta.inRegistry` 只認 `tracking`，所以被 trending 改寫過的筆會漏計（老問題，非本次引入）；要根治得先統一這三種狀態的定義與寫入者。
+- 跨日開機自動跑 `trending-weekly.js`（含覆寫追蹤池與 GitHub API 配額消耗）是既有設計，本次未改；但它是「隱藏的寫檔者」，日後排查追蹤池變動要第一個懷疑它。
+- 上述三個缺陷是**行為修正**，當時只以實測驗證（真實 add → 檢查落盤 → 回滾、重建兩次比對），因為 `cmdAdd()`／`flush()` 未匯出。→ 已在本輪抽出測試縫隙後補上 32 個迴歸測試（見上一節）。
+- `node cli.js batch-add` 完全不取 stars（只靠 `sync-daemon.js` 背景補），本次未動；若要統一，應把「掃描 → 存檔 → 補 star → 補語意」抽成 CLI 與 Web 共用的一條管線，而不是再複製一次順序陷阱。
+- `AGENTS.md` 仍寫「247 tests」，實際為 296 tests（本輪 +32）；`README.md`／`HANDOFF.md`／`package.json` 的工具數仍寫 722，實際 725。這些數字由 `scripts/generate-agents-md.js` 的樣板寫死，需改源頭模板後重跑 `npm run agents:init`，其餘三份得手動同步。
+
 ## 2026-09-23 API 金鑰面板控件融入 Inset Focus 設計系統
 
 ### 需求
