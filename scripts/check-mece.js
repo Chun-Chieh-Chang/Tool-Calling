@@ -285,7 +285,8 @@ function checkMECE() {
     }
 
     // 5i. CATEGORY-SYSTEM.md 的分類清單必須與 categories.json 集合相等
-    //     （只驗「有提到」不夠 —— 該檔歷史上曾殘留已不存在的 `UI/UX设计` 分類，
+    //     （只驗「有提到」不夠 —— 該檔歷史上曾殘留已不存在的簡體分類
+    //       `UI/UX设计`（allow-simplified：引用該檔原始字樣），
     //       所以必須同時抓「缺少」與「幽靈」兩種情況）
     try {
       const cs = readFileSync(join(ROOT, 'docs', 'CATEGORY-SYSTEM.md'), 'utf8');

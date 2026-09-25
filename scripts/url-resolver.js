@@ -13,19 +13,19 @@ const RESOURCE_SIGNALS = [
   'handbook', 'reference-guide', 'catalog', 'directory',
   // 書單 / 書籍索引（含中文描述，避免非英文倉庫被誤判為 tool）
   'free-books', 'free-ebook', 'booklist', 'book-list', 'books',
-  '免费书籍', '免费电子书', '书单', '书籍', '電子書',
+  '免费书籍', '免费电子书', '书单', '书籍', '電子書', // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
   // 免費額度 / 精選清單
   'free-tier', 'free tier', 'curated list', 'curated-list',
   'free-for-dev', 'free-for-developers',
   // 中文免費資源目錄
-  '免费接口', '免費接口', 'api大全'
+  '免费接口', '免費接口', 'api大全' // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
 ];
 
 /**
  * 解析 GitHub monorepo URL，回傳子模組列表
  * 只有當子目錄符合「工具集合」模式時才拆解：
  *   - 目錄名含 skills/agents/tools/providers 等關鍵詞
- *   - 或根目錄有明确的多工具結構（如 package.json workspace）
+ *   - 或根目錄有明確的多工具結構（如 package.json workspace）
  */
 export async function resolveMonorepo(url, options = {}) {
   const githubRegex = /^https?:\/\/github\.com\/([^/]+)\/([^/]+)(?:\/(?:tree|blob)\/([^/]+))?\/?$/;

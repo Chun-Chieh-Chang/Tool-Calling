@@ -6,7 +6,7 @@
 
 // ─── 停用詞（語境詞）過濾 ─────────────────────────────────────────────
 //
-// 這些詞幾乎出现在所有 AI/開發工具的 trigger、description 裡，
+// 這些詞幾乎出現在所有 AI/開發工具的 trigger、description 裡，
 // 對「這個工具能做什麼」的鑑別力接近 0。L2 的 token 比對與 L3 的
 // TF-IDF 都應先剔除，避免「ai / tool / agent / code / 自動化」這類
 // 語境詞把不相關工具推到前面（實測：k8s 部署查詢被 crm 偽命中）。
@@ -14,7 +14,7 @@ const GENERIC_STOPWORDS = new Set([
   'a', 'an', 'the', 'and', 'for', 'to', 'of', 'in', 'on', 'with', 'or', 'is', 'are',
   // 真·語境詞：出現在極多工具的 trigger/desc 中，鑑別力接近 0
   'ai', 'agent', 'agents', 'llm', 'llms', 'mcp', 'gpt',
-  'open', 'open-source', 'open-source-project', 'free', '开源',
+  'open', 'open-source', 'open-source-project', 'free', '开源', // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
   'skill', 'skills', 'plugin', 'plugins', 'agent-skill',
 ]);
 
@@ -27,7 +27,7 @@ const GENERIC_STOPWORDS = new Set([
 function subTokensOf(token) {
   const t = String(token || '').toLowerCase();
   const out = new Set();
-  // 英文：整 token + 去掉常见後綴
+  // 英文：整 token + 去掉常見後綴
   out.add(t);
   for (const m of t.matchAll(/[a-z][a-z0-9+.#_-]{2,}/g)) out.add(m[0]);
   // 中文：bigram
@@ -445,7 +445,7 @@ function keywordMatch(tools, query) {
     // 4 個跟資料庫遷移無關的憑證竊取/機密管理子工具，"migration" 又命中了
     // 1 個後量子加密遷移的子工具——湊在一起讓整個工具被誤判為高相關。
     // 修正做法：多詞查詢時，要求同一個子工具「同時」命中所有查詢詞
-    // （詞語共現），才視為真正相关；單詞查詢則維持原本行為。
+    // （詞語共現），才視為真正相關；單詞查詢則維持原本行為。
     if (tool.subTools) {
       let subToolScore = 0;
       for (const subTool of tool.subTools) {

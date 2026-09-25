@@ -154,11 +154,11 @@ test('守衛：衍生檔同步檢查必須在脫節時失敗', () => {
   });
 });
 
-test('守衛：CATEGORY-SYSTEM.md 出現幽靈分類必須被攔下（曾殘留簡體 `UI/UX设计`）', () => {
+test('守衛：CATEGORY-SYSTEM.md 出現幽靈分類必須被攔下（曾殘留簡體 `UI/UX设计`）', () => { // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
   withRestore([CAT_SYS], () => {
     const md = readFileSync(CAT_SYS, 'utf8').replace(
       '<!-- CATEGORIES:INVENTORY:END -->',
-      '| `UI/UX设计` | 1 | 幽靈分類 |\n<!-- CATEGORIES:INVENTORY:END -->'
+      '| `UI/UX设计` | 1 | 幽靈分類 |\n<!-- CATEGORIES:INVENTORY:END -->' // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     );
     writeFileSync(CAT_SYS, md);
     const { code, out } = runMece();

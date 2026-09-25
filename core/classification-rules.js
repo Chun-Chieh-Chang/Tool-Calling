@@ -151,7 +151,7 @@ export const RULES = [
       /multi[- ]provider (router|gateway|failover|endpoint)/,
       /openai[- ]compatible (api|endpoint|\/v1)/,
       /\/v1 endpoint/,
-      /免費api|免费api|免費接口|免费接口|api大全/
+      /免費api|免费api|免費接口|免费接口|api大全/ // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     ],
     exclusions: [EX.runtime]
   },
@@ -172,7 +172,7 @@ export const RULES = [
       /books?\b.{0,24}(index|list|collection|directory|catalog)/,
       /(index|list|collection|directory|catalog).{0,24}\bbooks?\b/,
       /book of .{0,20}(knowledge|secret|tips|patterns)/,
-      /書單|书单|书籍|書籍|電子書|电子书|讀書筆記|读书笔记/
+      /書單|书单|书籍|書籍|電子書|电子书|讀書筆記|读书笔记/ // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     ],
     exclusions: [EX.notebook, EX.iconFont, /book[- ]?to[- ]?skill|book.{0,10}skill|skill.{0,10}book/, /\breader\b|reader app|閱讀器/]
   },
@@ -188,7 +188,7 @@ export const RULES = [
       /curated (list|collection|directory) of/,
       /a (curated )?list of/,
       /collection of .{0,20}(resources|tools|links|examples|projects|guides)/,
-      /精選|精选/
+      /精選|精选/ // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     ],
     exclusions: [EX.iconFont, EX.runtime, EX.proxy, /\bskills?\b/, /subagents?/]
   },
@@ -223,7 +223,7 @@ export const RULES = [
       /static analysis|static analyzer/,
       /lint|linter/,
       /unit test|test (framework|runner|automation)/,
-      /代碼審查|代码审查|程式碼審查|代码评审/
+      /代碼審查|代码审查|程式碼審查|代码评审/ // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     ],
     // 排除：TDD 方法論／工作流（純流程指引，非 code review 工具）、
     //       agent skill 包（R5 不應介入 §2-4 的 skill 包裁決）、
@@ -271,7 +271,7 @@ export const RULES = [
     desc: '音樂播放器 → 音訊',
     tier: 1,
     required: '音訊',
-    signals: [/music player/, /audio player/, /音樂播放器|音乐播放器/],
+    signals: [/music player/, /audio player/, /音樂播放器|音乐播放器/], // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     exclusions: []
   },
   {
@@ -285,7 +285,7 @@ export const RULES = [
       /research paper|academic (paper|research)/,
       /literature review|systematic review/,
       /preprint|peer[- ]reviewed/,
-      /论文|論文|文献|學術|学术/
+      /论文|論文|文献|學術|学术/ // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     ],
     exclusions: [/\bskill\b|skill\.md/]
   },

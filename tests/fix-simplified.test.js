@@ -1,3 +1,4 @@
+// check-traditional: skip-file —— fixture 必須是簡體原文，否則測不到轉換與偵測
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { toTraditional, findSimplified, S2T } from '../scripts/fix-simplified.js';

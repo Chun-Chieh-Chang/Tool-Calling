@@ -27,12 +27,12 @@ const ROOT = join(__dirname, '..');
 const HOOK_LOG_PATH = join(ROOT, '.agnes', 'hooks', 'classifier-log.json');
 
 // 18 個正規分類 — 單一來源：registry/categories.json
-// 不可在此硬編碼清單。歷史上這裡曾寫成簡體中文（'开发工具'）而 registry 用繁體（'開發工具'），
+// 不可在此硬編碼清單。歷史上這裡曾寫成簡體中文（'开发工具'）而 registry 用繁體（'開發工具'），（allow-simplified：刻意引用的歷史範例）
 // 導致 LLM 回傳的分類因驗證失敗被靜默丟棄、悄悄退回規則引擎 —— 是隱形故障。
 const VALID_CATEGORIES = categoryNames();
 
 /**
- * 调用 LLM 进行分类
+ * 調用 LLM 進行分類
  */
 async function classifyWithLLM(name, description, topics) {
   const apiKey = process.env.AGNES_API_KEY;
@@ -78,14 +78,14 @@ ${promptDecisionTree()}
     });
 
     if (!res.ok) {
-      console.warn('[Classifier] LLM API 错误:', res.status);
+      console.warn('[Classifier] LLM API 錯誤:', res.status);
       return null;
     }
 
     const data = await res.json();
     const content = data.choices?.[0]?.message?.content || '';
 
-    // 解析JSON响应
+    // 解析JSON響應
     const match = content.match(/\{[^}]+\}/);
     if (!match) return null;
 
@@ -93,26 +93,26 @@ ${promptDecisionTree()}
     const category = result.category;
     const confidence = parseFloat(result.confidence) || 0.5;
 
-    // 验证分类是否合法
+    // 驗證分類是否合法
     if (!VALID_CATEGORIES.includes(category)) {
-      console.warn('[Classifier] 无效分类:', category, '回退到规则引擎');
+      console.warn('[Classifier] 無效分類:', category, '回退到規則引擎');
       return null;
     }
 
     return { category, confidence, reason: result.reason };
   } catch (err) {
-    console.warn('[Classifier] LLM 调用失败:', err.message);
+    console.warn('[Classifier] LLM 調用失敗:', err.message);
     return null;
   }
 }
 
 /**
- * 规则引擎分类（兜底方案）
+ * 規則引擎分類（兜底方案）
  */
 function classifyByRules(name, description, topics) {
   const text = `${name} ${description} ${topics ? topics.join(' ') : ''}`.toLowerCase();
 
-  // 按优先级匹配规则
+  // 按優先級匹配規則
   const rules = [
     { pattern: /\b(autonomous-agent|assistant\.?bot|copilot)\b/i, cat: 'AI 代理', weight: 100 },
     { pattern: /\b(agent|mcp-server)\b/i, cat: 'AI 代理', weight: 90 },
@@ -121,7 +121,7 @@ function classifyByRules(name, description, topics) {
     // 圖標庫 / SVG 資源：registry 無獨立「圖文資源」分類，依決策樹歸入 UI/UX設計
     { pattern: /\b(lucide|heroicons|font-awesome|tabler-icons|iconify|simple-icons|remix-icon|iconoir)\b/i, cat: 'UI/UX設計', weight: 100 },
     { pattern: /\b(rag|retrieval|embedding|knowledge.?graph|second.?brain|persistent.?memory)\b/i, cat: '知識管理', weight: 95 },
-    { pattern: /\b(tutorial|course|education|bootcamp|roadmap|awesome-list|awesome|curriculum|handbook|interview|面试|booklist|free-books|ebook)\b/i, cat: '學習資源', weight: 90 },
+    { pattern: /\b(tutorial|course|education|bootcamp|roadmap|awesome-list|awesome|curriculum|handbook|interview|面试|booklist|free-books|ebook)\b/i, cat: '學習資源', weight: 90 }, // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     { pattern: /\b(research|paper|arxiv|science|survey)\b/i, cat: '研究', weight: 80 },
     { pattern: /\b(security|vuln|pentest|hack|owasp|cryptography)\b/i, cat: '安全性', weight: 90 },
     { pattern: /\b(trading|stock|quant|portfolio|backtest|financial market|finance)\b/i, cat: '金融與投資', weight: 85 },
@@ -157,18 +157,18 @@ function classifyByRules(name, description, topics) {
 }
 
 /**
- * 主分类函数 - LLM + 规则引擎混合
+ * 主分類函數 - LLM + 規則引擎混合
  * @param {string} name - 工具名称
  * @param {string} description - 工具描述
- * @param {string[]} topics - 相关标签
+ * @param {string[]} topics - 相關標簽
  * @returns {{ category: string, confidence: number, source: string }}
  */
 export async function classifyTool(name, description, topics = []) {
-  // 尝试 LLM 分类
+  // 嘗試 LLM 分類
   const llmResult = await classifyWithLLM(name, description, topics);
 
   if (llmResult && llmResult.confidence >= 0.5) {
-    // 记录分类结果
+    // 記錄分類結果
     const logEntry = {
       timestamp: new Date().toISOString(),
       tool: name,
@@ -178,7 +178,7 @@ export async function classifyTool(name, description, topics = []) {
       reason: llmResult.reason
     };
 
-    // 确保目录存在
+    // 確保目錄存在
     const hooksDir = join(ROOT, '.agnes', 'hooks');
     if (!existsSync(hooksDir)) {
       mkdirSync(hooksDir, { recursive: true });
@@ -189,7 +189,7 @@ export async function classifyTool(name, description, topics = []) {
       });
     } catch {}
 
-    console.log(`[Classifier] LLM分类: ${name} → ${llmResult.category} (confidence: ${llmResult.confidence.toFixed(2)})`);
+    console.log(`[Classifier] LLM分類: ${name} → ${llmResult.category} (confidence: ${llmResult.confidence.toFixed(2)})`);
     return { category: llmResult.category, confidence: llmResult.confidence, source: 'llm' };
   }
 
