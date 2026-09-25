@@ -61,6 +61,12 @@ test('歧義字（簡繁同形或一對多）絕不誤報 —— 否則門禁會
   }
 });
 
+test('TW 官方用法「核准」「獲准」不得被誤報（簡體把准當準的簡化字，但繁體自己會寫准）', () => {
+  for (const s of ['該案已獲上級核准。', '申請已獲准，可以續辦。']) {
+    assert.equal(checkLine(s, 1), null, `不應回報：${s}`);
+  }
+});
+
 // ── 豁免機制 ──────────────────────────────────────────────────────────────
 test('行內 allow-simplified 標記豁免該行，但不影響別行', () => {
   const line = `const KW = ['${SIMP_KW}']; // allow-simplified：L2 檢索關鍵字`;
@@ -156,6 +162,17 @@ test('CLI：--range 對最近一次提交可正常執行（不只 exit 0，也�
     encoding: 'utf8',
   });
   assert.match(out, /新增行/);
+});
+
+test('CLI：--commits 掃最近一筆 commit 的訊息 —— commit message 也必須全繁', () => {
+  // 這是一條會「自己往前走」的鎖：每次提交後，HEAD~1..HEAD 就是剛寫的那條訊息，
+  // 只要有人在 commit message 裡打簡體字（本輪就真的打進過 2 個），這裡會紅。
+  const out = execFileSync(process.execPath, [SCRIPT, '--commits', 'HEAD~1..HEAD'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.match(out, /commit 訊息/);
+  assert.match(out, /未發現簡體字/);
 });
 
 test('文件未被納入 --code，但 --full 仍抓得到（記錄 --code 排除文件的理由）', () => {

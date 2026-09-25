@@ -38,12 +38,14 @@
 | `--range <ref>` | 指定 git 範圍的新增行 | 提交後複核 |
 | `--full` | 整檔掃描 168 檔 | 全庫稽核（含文件） |
 | `--full --code` | 整檔掃描 116 支原始碼 | **常年零違規的強門禁** |
+| `--commits <range>` | commit 訊息（subject ＋ body） | git log 也是專案裡的長期文字；**無豁免機制** |
 
 設計上三個關鍵取捨：
 
 - **偵測器不另起爐灶**：直接沿用 `fix-simplified.js` 的 `findSimplified()`（主表 ＋ `S2T_SAFE`），專案內「什麼算簡體字」維持單一來源。它刻意保守，所以「跨平台」「群組」「減少干擾」「漏斗」這類正確繁體不會被誤報——誤報的代價是工程師直接把門禁關掉。
 - **豁免寫在被豁免的檔裡**：行內 `// allow-simplified：原因`（40 行／10 檔）、檔頭 `// check-traditional: skip-file`（對照表本體與它的測試）。標記會出現在 diff 中，因此豁免本身可稽核，而不是藏在門禁腳本的黑名單裡。
 - **文件不進 `--code`**：`--full` 仍列出 27 行（70 字），全部是 DEV_LOG／HANDOFF／README／docs 裡「引用簡體 bug 本身」的歷史文字——那是證據，塗掉等於抹去紀錄；但它們的**新增行**仍受預設模式管轄。
+- **commit 訊息也納入**（`--commits`）：本輪實測證明這是漏洞所在——程式碼與 DEV_LOG 都全綠之後，剛寫的 4 條 commit message 裡仍有 2 個書寫瑕疵與 3 行簡體字形引用。commit 訊息**沒有**豁免（歷史不應塗改），所以引用簡體字時一律改用描述寫法。
 - 本輪同時依 `S2T_SAFE` 收字規則補 5 個無歧義簡體字（`败/级/确/触/试`），並註明刻意不收歧義字「尝」（對應 嘗／嚐）。<!-- allow-simplified：引用簡體字形作為證據 -->
 
 **4. `npm test` 掛兩條**：預設模式 ＋ `--full --code`；另提供 `npm run check:lang`／`check:lang:full` 單獨執行。
@@ -51,7 +53,8 @@
 ### 驗證結果
 
 - `node scripts/check-traditional.js --full --code`：**116 檔 0 違規** ✅（`--full` 僅剩 27 行文件歷史引用，如設計）
-- `npm test`：**309 tests / 307 pass / 2 skipped（playwright e2e 未裝）/ 0 fail** ✅（新增 13 個門禁自身測試：誤報防線、豁免邊界、diff 行號、綠色鎖）
+- `node scripts/check-traditional.js --commits HEAD~4..HEAD`：掃出本輪 4 條 commit 訊息的 5 行違規（2 瑕疵＋3 引用）→ 由此確認「只看檔案」會漏掉 commit message；後續新增的 commit 一律以全繁訊息撰寫
+- `npm test`：**309 tests / 307 pass / 2 skipped（playwright e2e 未裝）/ 0 fail** ✅（新增 15 個門禁自身測試：誤報防線、豁免邊界、diff 行號、綠色鎖）
 - `node cli.js validate`：725 筆全通過，metadata quality 100/100，contract 0 errors 0 warnings ✅
 - `node scripts/check-mece.js` 通過 ✅／`check-duplicate-ids.js` ID 全唯一 ✅／`check-utf8.js` 0 個 U+FFFD ✅
 - `npm run build`：`dist/registry/tools.json` 與 `registry/tools.json` 逐位元組相同（725 筆）；重建後 `synonyms.generated.js` 簡體 0 ✅
@@ -60,9 +63,12 @@
 
 ### 已知殘留（超出本次範圍）
 
-- 27 行文件內的簡體引用刻意保留；若日後要讓 `--full`（含文件）也綠燈，需逐行加 `<!-- allow-simplified -->`，但部分位於 code fence 內，註解標記會显性显示，得不償失。
+- 27 行文件內的簡體引用刻意保留；若日後要讓 `--full`（含文件）也綠燈，需逐行加 `<!-- allow-simplified -->`，但部分位於 code fence 內，註解標記會直接顯示在畫面上，得不償失。
+- **門禁首輪即抓到一個誤報**：主表把「准」當成「準」的簡化字，但 TW 公文本身寫「核准」「獲准」——照報下去就是我一直擔心的那類「誤報到讓人想關掉門禁」的情況。已在門禁內加 `GATE_AMBIGUOUS`（只影響報警、不改動 `toTraditional()` 的轉換行為，避免動到 registry 資料），並補一條測試鎖住「核准／獲准」不報。
 - `scripts/check-mece.js` 與 `core/classifier.js`、`core/tokenize.js` 的引用範例改用**行尾括號標記**豁免，讀起來略打斷句子；屬可接受的代價（換來「引用原文」與「門禁綠燈」同時成立）。
 - 本輪 `fix-simplified.js --apply` 順帶把 `registry/tools.json` 檔尾補上換行符（`saveRegistry()` 本來就寫 `\n`，此前該檔是少數沒結尾換行的狀態）。
+- 「显」原本不在 `S2T_SAFE`，所以門禁對 `显性显示` 這類寫法**視而不見**（本輪 DEV_LOG 自己踩到）。已依收字規則入表（`显→顯`，無歧義、繁體不存在同形字）。這類漏網只能靠「踩到一次補一個字」，是保守偵測器的固有代價。<!-- allow-simplified：引用簡體字形作為證據 -->
+- 本輪前 4 條 commit message 含 5 行簡體（1 個動詞與「檢索」各 1 處屬書寫瑕疵，其餘 3 行是引用當時那批問題資料裡的簡體原字）。commit 訊息無法加豁免，而改寫歷史需要明確授權 → **尚未處理**，`npm run check:lang:commits` 會持續列出它們，直到獲准重寫或接受為既成事實。
 
 
 

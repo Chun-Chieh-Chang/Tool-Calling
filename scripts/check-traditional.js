@@ -13,17 +13,18 @@
  * （簡繁同形字不報、歧義字 台/干/后/復… 不報），所以不會把「跨平台」
  * 「減少干擾」這類正確繁體誤判成違規。
  *
- * 兩種模式 ＋ 一個範圍選項
+ * 三種範圍 ＋ 一個範圍選項
  * ───────────────────────
  *   （預設）       檢查相對 HEAD 的新增行 ＋ 未追蹤檔全文 → 抓剛寫出來的瑕疵
  *   --range <rev>  改比對指定 git 範圍，例：--range HEAD~5..HEAD
  *   --full [路徑]  整檔掃描（不給路徑＝所有原始碼與文件）→ 最嚴格
- *   --code         兩者通用的範圍選項：只留 core/ scripts/ web/ tests/
+ *   --commits <r>  掃 commit 範圍的訊息（git log 也是專案內長期留存的文字）
+ *   --code         通用範圍選項：只留 core/ scripts/ web/ tests/
  *
  * npm test 跑的兩條：預設模式（文件的新增行也在內）＋ `--full --code`。
- * 文件不進 `--full` 的理由：DEV_LOG／HANDOFF／docs 裡殘留的簡體字**全部**是
- * 「引用簡體字 bug 本身」的歷史文字（例如某節錄的簡體分類名、簡體寫的
- * 「瀏覽器」三字），改了等於塗掉紀錄；但它們的新增行仍受預設模式管轄。
+ * 文件不進 `--code` 的理由：DEV_LOG／HANDOFF／docs 裡殘留的簡體字**全部**是
+ * 「引用簡體 bug 本身」的歷史文字（節錄的簡體分類名、簡體字形對照等），
+ * 改了等於塗掉紀錄；但它們的新增行仍受預設模式管轄。
  *
  * 豁免機制（刻意引用簡體字的情況）
  * ──────────────────────────────
@@ -45,6 +46,12 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const LINE_ESCAPE = 'allow-simplified';
 const FILE_ESCAPE = 'check-traditional: skip-file';
+
+// 繁體官方用語本身就會這樣寫的字，額外從報警名單排除。
+// 「准」在簡體是「準」的簡化字，但 TW 公文寫「核准」「獲准」——沿用
+// fix-simplified 的主表會把它報成簡體，屬於誤報。門禁的原則是一定不能誤報：
+// 一旦誤報，開發者就會把門禁關掉。
+const GATE_AMBIGUOUS = new Set(['准']);
 
 // 整檔豁免的目錄／檔案：資料檔（工具庫本身含刻意收錄的簡體檢索詞）與
 // 巨檔（打包產物、依賴），掃描它們只會產生噪音。
@@ -81,7 +88,7 @@ export function isLineExempt(lineText, fileHeader = '') {
  */
 export function checkLine(lineText, lineNumber, fileHeader = '') {
   if (isLineExempt(lineText, fileHeader)) return null;
-  const chars = findSimplified(lineText);
+  const chars = findSimplified(lineText).filter((ch) => !GATE_AMBIGUOUS.has(ch));
   return chars.length ? { line: lineNumber, chars, text: lineText } : null;
 }
 
@@ -175,11 +182,36 @@ function runDiffMode(ref) {
   return findings;
 }
 
+/**
+ * commit 訊息模式：掃 range 內每筆 commit 的 subject ＋ body。
+ *
+ * 為什麼也要管：commit message 同屬「本專案用的中文字」，而且 git log 是長期
+ * 紀錄。本輪實測踩到——程式碼與 DEV_LOG 全綠之後，commit 訊息裡仍有兩個瑕疵：
+ * 一個動詞的簡體寫法（掛）與「檢索」二字的簡體寫法，都是書寫層面的手誤。
+ *
+ * commit 訊息**沒有**豁免機制（歷史不應塗改），所以引用簡體字形時改用描述
+ * 寫法（例如把簡體的「明確」寫成繁體再加註說明），不要把簡體字本身打進去。
+ */
+function runCommitsMode(range) {
+  const hashes = git(['rev-list', range]).trim().split('\n').filter(Boolean);
+  const findings = [];
+  for (const h of hashes) {
+    const short = h.slice(0, 7);
+    const body = git(['log', '-1', '--format=%B', h]);
+    body.split('\n').forEach((line, i) => {
+      const hit = checkLine(line, i + 1, '');
+      if (hit) findings.push({ path: `commit ${short}`, ...hit });
+    });
+  }
+  return { findings, label: `commit 訊息（${range}，${hashes.length} 筆）` };
+}
+
 function parseArgv(argv) {
   const opts = { mode: 'diff', ref: 'HEAD', paths: [], codeOnly: false };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--full') opts.mode = 'full';
+    else if (a === '--commits') { opts.mode = 'commits'; opts.ref = argv[++i] ?? 'HEAD~1..HEAD'; }
     else if (a === '--code') opts.codeOnly = true;
     else if (a === '--range') { opts.ref = argv[++i] ?? 'HEAD'; }
     else if (a === '--help' || a === '-h') opts.help = true;
@@ -194,6 +226,7 @@ function usage() {
   （無選項）        檢查相對 HEAD 的新增行 ＋ 未追蹤檔（預設）
   --range <ref>     檢查指定 git 範圍的新增行，例：--range HEAD~5..HEAD
   --full [路徑...]  整檔掃描（不給路徑＝所有原始碼與文件）
+  --commits <range> 掃 range 內每筆 commit 的訊息（歷史無豁免）
   --code            只限 core/ scripts/ web/ tests/（不含文件與資料檔）
 
 豁免：行內 \`// ${LINE_ESCAPE}：原因\`；檔頭 \`// ${FILE_ESCAPE}\``);
@@ -236,6 +269,10 @@ function main() {
     if (opts.codeOnly) targets = targets.filter((p) => CODE_PATH.test(p));
     for (const p of targets) findings.push(...scanFile(p).map((h) => ({ path: p, ...h })));
     modeLabel = `整檔掃描 ${targets.length} 個檔案${opts.codeOnly ? '（僅原始碼）' : ''}`;
+  } else if (opts.mode === 'commits') {
+    const r = runCommitsMode(opts.ref);
+    findings = r.findings;
+    modeLabel = r.label;
   } else {
     findings = runDiffMode(opts.ref);
     if (opts.codeOnly) findings = findings.filter((f) => CODE_PATH.test(f.path));

@@ -16,6 +16,7 @@
     "test:integration": "node --test --test-concurrency=1 tests/*.test.js",
     "check:lang": "node scripts/check-traditional.js",
     "check:lang:full": "node scripts/check-traditional.js --full",
+    "check:lang:commits": "node scripts/check-traditional.js --commits HEAD~5..HEAD",
     "validate": "node cli.js validate",
     "check-mece": "node scripts/check-mece.js",
     "enrich": "node scripts/enrich-registry.js",
