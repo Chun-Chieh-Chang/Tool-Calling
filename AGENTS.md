@@ -32,11 +32,11 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 722 個工具
-追蹤 repos: 2535 個
-總 star 數: 28,265,373 ⭐
-平均 star 數: 39,149 ⭐
-最後更新: 2026/9/22
+工具庫規模: 725 個工具
+追蹤 repos: 2536 個
+總 star 數: 28,287,929 ⭐
+平均 star 數: 39,018 ⭐
+最後更新: 2026/9/25
 ```
 
 ### Top 5 分類
@@ -44,11 +44,11 @@
 - `開發工具`: 105 個工具
 - `AI 框架`: 77 個工具
 - `學習資源`: 62 個工具
-- `文件生產力`: 58 個工具
+- `文件生產力`: 61 個工具
 
 ### Top 5 語言
 - `python`: 254 個工具
-- `typescript`: 171 個工具
+- `typescript`: 174 個工具
 - `javascript`: 68 個工具
 - `other`: 55 個工具
 - `rust`: 33 個工具
@@ -88,8 +88,8 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2535 repos)
-npm test                  # 執行所有測試 (247 tests, 245 pass + 2 optional e2e skip)
+npm run tracked-repos     # 重建追蹤池 (2536 repos)
+npm test                  # 執行所有測試 (311 tests, 309 pass + 2 optional e2e skip)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 npm run plugin:install    # 一鍵安裝為各 Agentic IDE 外掛 (MCP + Skill)
@@ -100,14 +100,14 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (722+)
+node cli.js list                      # 列出所有工具 (725+)
 ```
 
 ### Git 工作流
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 247 測試全綠（其中 2 個 playwright e2e 需 npm i）
+npm test           # 確保 311 測試全綠（其中 2 個 playwright e2e 需 npm i）
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -123,7 +123,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：247 tests 全綠 (245 pass + 2 optional e2e skip), 0 fail
+npm test  # 目標：311 tests 全綠 (309 pass + 2 optional e2e skip), 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -133,8 +133,8 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (247/247)
-- [ ] 工具庫驗證通過 (722+ 工具)
+- [ ] 所有測試通過 (311/311)
+- [ ] 工具庫驗證通過 (725+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -213,7 +213,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 722 and add new features
+fix(README): update tool count from 381 to 725 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -244,8 +244,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 722+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2535 追蹤 repos
+│   ├── tools.json      # 725+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2536 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -287,7 +287,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (247 tests)
+### 單元測試 (311 tests)
 ```bash
 npm test
 ```
@@ -307,7 +307,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (247/247 pass)
+1. `npm test` (311/311 pass)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -475,4 +475,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-22T13:41:04.311Z
+> **最後更新**：2026-09-25T03:02:20.985Z

@@ -49,7 +49,7 @@
 | `數據分析` | 12 | Pandas/Polars、資料框架、產品分析 |
 | `測試與自動化` | 10 | 測試框架、CI/CD、自動化腳本 |
 
-**合計**: 722 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
+**合計**: 725 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
 <!-- CATEGORIES:INVENTORY:END -->
 
 > 本表為**衍生內容**，由 `registry/tools.json` ＋ `registry/categories.json` 自動產生，

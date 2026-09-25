@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **722 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
+- 收錄 **725 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -240,9 +240,9 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 ### Git
 
 ```
-最新提交：c7ca58a
+最新提交：以 `git log --oneline -1` 為準（此欄先前釘死 hash，每提交必過期，已改不釘）
 遠端：    github.com:Chun-Chieh-Chang/Tool-Calling.git
-工具數：  722（tools.json，active + experimental 719）
+工具數：  725（tools.json，active + experimental 722）
 ```
 
 倉庫損毀已發生**兩次**（09-19 與 09-20），修復程序見**陷阱 12**。
@@ -387,10 +387,13 @@ agent **59.7%**（含近義 61.6%）／fusion **58.5%**（含近義 60.4%）。
 
 ### 測試
 
-`npm test` → **248 tests / 246 pass / 0 fail**（2 skipped 為需外部依賴者）
+`npm test` → **311 tests / 309 pass / 0 fail**（2 skipped 為需外部依賴者）
 2026-09-19 起改為 `--test-concurrency=1` 序列化（見陷阱 9），耗時 12.5s → 21.4s → 29s。
 2026-09-21 起 `npm test` 第一道關卡是 `scripts/check-syntax.js`（見陷阱 23）。
-`cli.js validate` → **0 錯誤／0 警告／品質 100.0**（722 支工具）。
+2026-09-25 起 `npm test` 多了兩道語言關卡：`check-traditional.js`（預設＝相對 HEAD 的新增行＋未追蹤檔）
+與 `--full --code`（原始碼整檔綠燈鎖）。`--commits <range>` 另可查 commit 訊息——該處無法豁免，
+只能改寫歷史，所以本專案的 commit 訊息自此必須全繁體。
+`cli.js validate` → **0 錯誤／0 警告／品質 100.0**（725 支工具）。
 `npm run ceiling` → 天花板診斷（不需 API，見陷阱 17）。
 
 ---
@@ -452,7 +455,7 @@ CLI  ─┘
 
 | 路徑 | 用途 |
 |---|---|
-| `registry/tools.json` | **工具庫（單一真理來源）** 722 筆 |
+| `registry/tools.json` | **工具庫（單一真理來源）** 725 筆 |
 | `registry/categories.json` | **分類唯一來源**（機器可讀） |
 | `registry/eval-queries.json` | 評測集 **v1.3.0 — 267 筆**（257 可命中 + 10 空集），標準誤 ~3.0pp |
 | `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|

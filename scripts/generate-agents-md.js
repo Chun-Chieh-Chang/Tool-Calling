@@ -11,6 +11,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const ROOT = join(__dirname, '..');
 
+// npm test 的實測數字。曾在 6 處各自硬編碼，結果測試增加後全部過期。
+// 改動測試後在此更新即可（跑 `npm test` 可看到 tests/pass/skipped 三行）。
+const TEST_STATS = { total: 311, pass: 309, skipped: 2 };
+
 // 載入工具庫
 function loadRegistry() {
   const path = join(ROOT, 'registry', 'tools.json');
@@ -144,7 +148,7 @@ ${topLangs.map(([lang, count]) => `- \`${lang}\`: ${count} 個工具`).join('\n'
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
 npm run tracked-repos     # 重建追蹤池 (${trackedCount} repos)
-npm test                  # 執行所有測試 (247 tests, 245 pass + 2 optional e2e skip)
+npm test                  # 執行所有測試 (${TEST_STATS.total} tests, ${TEST_STATS.pass} pass + ${TEST_STATS.skipped} optional e2e skip)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 npm run plugin:install    # 一鍵安裝為各 Agentic IDE 外掛 (MCP + Skill)
@@ -162,7 +166,7 @@ node cli.js list                      # 列出所有工具 (${totalTools}+)
 \`\`\`bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 247 測試全綠（其中 2 個 playwright e2e 需 npm i）
+npm test           # 確保 ${TEST_STATS.total} 測試全綠（其中 ${TEST_STATS.skipped} 個 playwright e2e 需 npm i）
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -178,7 +182,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 \`\`\`bash
 # Phase 1: 單元測試
-npm test  # 目標：247 tests 全綠 (245 pass + 2 optional e2e skip), 0 fail
+npm test  # 目標：${TEST_STATS.total} tests 全綠 (${TEST_STATS.pass} pass + ${TEST_STATS.skipped} optional e2e skip), 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -188,7 +192,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 \`\`\`
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (247/247)
+- [ ] 所有測試通過 (${TEST_STATS.total}/${TEST_STATS.total})
 - [ ] 工具庫驗證通過 (${totalTools}+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
@@ -342,7 +346,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (247 tests)
+### 單元測試 (${TEST_STATS.total} tests)
 \`\`\`bash
 npm test
 \`\`\`
@@ -362,7 +366,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. \`npm test\` (247/247 pass)
+1. \`npm test\` (${TEST_STATS.total}/${TEST_STATS.total} pass)
 2. \`node cli.js validate\` (100% 工具通過)
 3. \`node scripts/check-mece.js\` (無殘留分類)
 

@@ -1,6 +1,6 @@
 ---
 name: tool-calling
-description: 全自動工具調用外掛。當用戶說「啟動全自動工具調用模式」、使用 /tc 或 /tool-calling、詢問「有什麼工具可以…」、或需要多工具協同開發時觸發。提供 722+ AI 工具庫的三層檢索、五維度競品重排、多工具鏈 DAG 規劃、白話需求釐清，與任務完成後的自動解耦清理。
+description: 全自動工具調用外掛。當用戶說「啟動全自動工具調用模式」、使用 /tc 或 /tool-calling、詢問「有什麼工具可以…」、或需要多工具協同開發時觸發。提供 725+ AI 工具庫的三層檢索、五維度競品重排、多工具鏈 DAG 規劃、白話需求釐清，與任務完成後的自動解耦清理。
 ---
 
 # Tool-Calling — 全自動工具調用與多工具協同開發
@@ -15,7 +15,7 @@ description: 全自動工具調用外掛。當用戶說「啟動全自動工具�
 
 | MCP 工具 | 用途 |
 |---------|------|
-| `search_tools` | 融合檢索 722+ 工具庫（含誠實訊號與 LLM rerank） |
+| `search_tools` | 融合檢索 725+ 工具庫（含誠實訊號與 LLM rerank） |
 | `list_tools` / `get_tool_detail` | 瀏覽分類與工具詳情 |
 | `plan_tool_chain` | 長任務 → 多工具鏈 DAG 規劃 |
 | `clarify_requirement` | 低置信時產生白話釐清問題 |

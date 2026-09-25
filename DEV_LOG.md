@@ -50,6 +50,8 @@
 
 **4. `npm test` 掛兩條**：預設模式 ＋ `--full --code`；另提供 `npm run check:lang`／`check:lang:full` 單獨執行。
 
+**5. 文件數字同步（順帶治它的過期來源）**：`AGENTS.md` 的工具數／star 數本來就由 `generate-agents-md.js` 從 `tools.json` 即時計算（重跑即正確），但**測試數字在範本裡硬編碼了 6 份**，測試一增加就全部過期 → 收斂成單一 `TEST_STATS` 常數（要改只改一處）。其餘是手寫文件的人工同步：README／HANDOFF／`package.json`／docs／`skills/` 的 722 全數改為 725，測試數改為 311/309，並把 HANDOFF「最新提交：c7ca58a」這種**每次提交必然過期**的欄位改成指引查 `git log --oneline -1`，不再釘死 hash。歷史條目中的「696 → 722」「62/62 → 247 tests」屬當時事實，保留不動。
+
 ### 驗證結果
 
 - `node scripts/check-traditional.js --full --code`：**116 檔 0 違規** ✅（`--full` 僅剩 27 行文件歷史引用，如設計）
@@ -68,7 +70,7 @@
 - `scripts/check-mece.js` 與 `core/classifier.js`、`core/tokenize.js` 的引用範例改用**行尾括號標記**豁免，讀起來略打斷句子；屬可接受的代價（換來「引用原文」與「門禁綠燈」同時成立）。
 - 本輪 `fix-simplified.js --apply` 順帶把 `registry/tools.json` 檔尾補上換行符（`saveRegistry()` 本來就寫 `\n`，此前該檔是少數沒結尾換行的狀態）。
 - 「显」原本不在 `S2T_SAFE`，所以門禁對 `显性显示` 這類寫法**視而不見**（本輪 DEV_LOG 自己踩到）。已依收字規則入表（`显→顯`，無歧義、繁體不存在同形字）。這類漏網只能靠「踩到一次補一個字」，是保守偵測器的固有代價。<!-- allow-simplified：引用簡體字形作為證據 -->
-- 本輪前 4 條 commit message 含 5 行簡體（1 個動詞與「檢索」各 1 處屬書寫瑕疵，其餘 3 行是引用當時那批問題資料裡的簡體原字）。commit 訊息無法加豁免，而改寫歷史需要明確授權 → **尚未處理**，`npm run check:lang:commits` 會持續列出它們，直到獲准重寫或接受為既成事實。
+- 本輪前 4 條 commit message 有 3 條含 5 行簡體（1 個動詞與「檢索」各 1 處屬書寫瑕疵，其餘 3 行是引用當時那批問題資料裡的簡體原字）。commit 訊息無法加豁免標記，而改寫歷史需要明確授權 → 獲准後以 `git commit-tree` 逐筆重放這 6 支「未推送」提交（僅 3 條換訊息，tree hash 全數比對一致＝內容與時間戳零變動，並先留 `backup/pre-lang-rewrite` 備援 ref），訊息內的簡體引用改寫為「轉繁後為 ○○」的寫法以保留語意。實測 `--commits 1f375ac..HEAD` → 0 違規。
 
 
 
