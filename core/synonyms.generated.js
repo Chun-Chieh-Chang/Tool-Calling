@@ -10971,7 +10971,7 @@ export const SYNONYM_MAP = {
     "crewai",
     "llm-orchestration"
   ],
-  "搭建分工明确的多agent平台": [
+  "搭建分工明確的多agent平台": [
     "crewai",
     "llm-orchestration"
   ],
@@ -13800,7 +13800,7 @@ export const SYNONYM_MAP = {
   "claude.md": [
     "優化代碼生成",
     "修复llm常見錯誤",
-    "提升編程準确率",
+    "提升編程準確率",
     "解決代碼幻覺",
     "修正逻輯漏洞",
     "減少編碼錯誤",
@@ -13810,7 +13810,7 @@ export const SYNONYM_MAP = {
   "llm coding pitfalls": [
     "優化代碼生成",
     "修复llm常見錯誤",
-    "提升編程準确率",
+    "提升編程準確率",
     "解決代碼幻覺",
     "修正逻輯漏洞",
     "減少編碼錯誤",
@@ -13820,7 +13820,7 @@ export const SYNONYM_MAP = {
   "karpathy skills": [
     "優化代碼生成",
     "修复llm常見錯誤",
-    "提升編程準确率",
+    "提升編程準確率",
     "解決代碼幻覺",
     "修正逻輯漏洞",
     "減少編碼錯誤",
@@ -13833,7 +13833,7 @@ export const SYNONYM_MAP = {
     "llm coding pitfalls",
     "karpathy skills"
   ],
-  "提升編程準确率": [
+  "提升編程準確率": [
     "claude.md",
     "claude code",
     "llm coding pitfalls",
@@ -25452,7 +25452,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "large-planning",
     "investigation-tickets",
@@ -25462,7 +25462,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
     "investigation-tickets",
@@ -25472,7 +25472,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
     "large-planning",
@@ -25482,7 +25482,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
     "large-planning",
@@ -25492,7 +25492,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "追蹤程式問題",
     "管理專案進度",
@@ -25502,7 +25502,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
     "large-planning",
@@ -25512,7 +25512,7 @@ export const SYNONYM_MAP = {
     "拆解大型項目為調查任務",
     "規划從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
-    "探索需求中的不确定領域",
+    "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
     "wayfinder",
     "large-planning",
@@ -25536,7 +25536,7 @@ export const SYNONYM_MAP = {
     "frontier-discovery",
     "matt-pocock-skills"
   ],
-  "探索需求中的不确定領域": [
+  "探索需求中的不確定領域": [
     "wayfinder",
     "large-planning",
     "investigation-tickets",
