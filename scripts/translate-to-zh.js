@@ -23,6 +23,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { toTraditional } from './fix-simplified.js';
+import { activateIfComplete } from '../core/tool-lifecycle.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
@@ -114,6 +115,7 @@ function flush() {
   if (DRY) return;
   const j = JSON.parse(readFileSync(REGISTRY, 'utf8'));
   let n = 0;
+  const activated = [];
   for (const t of j.tools) {
     const d = state.done[t.id];
     if (!d) continue;
@@ -124,10 +126,17 @@ function flush() {
     if (Array.isArray(d.negativeConstraints_zh)) {
       t.negativeConstraints_zh = d.negativeConstraints_zh;
     }
+    // 生命週期：description_zh 是升級判準的最後一塊拼圖，而它由本腳本產生——
+    // enrich 階段跑在翻譯之前，當時判定必定為 false，所以升級只能在這裡補，
+    // 否則工具會永久卡在 experimental（2026-09-25 清掉 35 筆這類死區）。
+    if (activateIfComplete(t)) activated.push(t.id);
     n++;
   }
   writeFileSync(REGISTRY, JSON.stringify(j, null, 2) + '\n');
   saveState();
+  if (activated.length > 0) {
+    console.log(`\n狀態升級 experimental → active：${activated.length} 筆（${activated.slice(0, 6).join(', ')}${activated.length > 6 ? ' …' : ''}）`);
+  }
   return n;
 }
 

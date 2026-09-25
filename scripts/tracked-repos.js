@@ -47,6 +47,42 @@ function writeJSON(path, data) {
 }
 
 // ──────────────────────────────────────────────
+// 溯源欄位合併（純函式，供測試直接呼叫）
+// ──────────────────────────────────────────────
+
+/**
+ * 把舊追蹤檔的「溯源欄位」合併進本次掃描結果（原地修改 info 並回傳）。
+ *
+ * 追蹤池每週由 trending-weekly.js 重建，重建結果只含 tools.json 看得到的欄位。
+ * note／initialStars／discoveredAt／sourceSnapshotWeek／addedAt 只存在於舊檔，
+ * 不繼承就會被抹除：
+ *   - initialStars 是漲星 delta 的基線，遺失等於把舊倉庫當從零起算的新倉庫
+ *     （倉庫從「僅追蹤」升格為「已入庫」時最容易踩到）
+ *   - discoveredAt 語意是「首次被發現」，但 Step 2 是先命中先贏，快照陣列一
+ *     增加就會把舊值往後推（2026-09-25 實測 32 筆漂移 18 分鐘）→ 取較早者
+ *   - addedAt 在來源不明時留 null，這裡繼承舊值，重建才會冪等
+ *
+ * @param {object} info 本次掃描出的 repo 條目（會被原地修改）
+ * @param {object} existing tracked-repos.json 中同 key 的舊條目
+ * @returns {object} info（便於串接與斷言）
+ */
+function mergeTrackedProvenance(info, existing) {
+  if (!info || !existing) return info;
+  if (existing.note) info.note = existing.note;
+  if (existing.notes) info.notes = existing.notes;
+  if (existing.category && !info.category) info.category = existing.category;
+  for (const f of ['initialStars', 'sourceSnapshotWeek']) {
+    if (info[f] === undefined && existing[f] !== undefined) info[f] = existing[f];
+  }
+  const prevDiscovered = existing.discoveredAt;
+  if (prevDiscovered && (!info.discoveredAt || prevDiscovered < info.discoveredAt)) {
+    info.discoveredAt = prevDiscovered;
+  }
+  if (!info.addedAt && existing.addedAt) info.addedAt = existing.addedAt;
+  return info;
+}
+
+// ──────────────────────────────────────────────
 // 建立追蹤池（從 tools.json + 歷史快照合併）
 // ──────────────────────────────────────────────
 
@@ -74,7 +110,10 @@ function buildTrackedRepos({ forceRegenerate = false } = {}) {
         owner: parsed.owner,
         repo: parsed.repo,
         category: tool.category || null,
-        addedAt: tool.addedAt || new Date().toISOString(),
+        // 不可在重建時Stamp「現在」：舊工具沒有 addedAt 時，每次重建都會拿到
+        // 新的時間戳，追蹤池因此永遠不冪等（2026-09-25 實測 38 筆被改寫）。
+        // 沒有來源時間就留 null，由下面的合併從舊檔繼承。
+        addedAt: tool.addedAt || null,
         status: 'tracking'
       });
     }
@@ -117,14 +156,9 @@ function buildTrackedRepos({ forceRegenerate = false } = {}) {
     }
   }
 
-  // 合併：保留已存在的註解
+  // 合併：保留舊檔的註記與溯源欄位（規則見 mergeTrackedProvenance()）
   for (const [key, info] of reposMap.entries()) {
-    if (existingTracked[key]) {
-      // 保留原有註解
-      if (existingTracked[key].note) info.note = existingTracked[key].note;
-      if (existingTracked[key].notes) info.notes = existingTracked[key].notes;
-      if (existingTracked[key].category && !info.category) info.category = existingTracked[key].category;
-    }
+    if (existingTracked[key]) mergeTrackedProvenance(info, existingTracked[key]);
   }
   reposMap.forEach((v, k) => { existingTracked[k] = v; });
 
@@ -136,7 +170,8 @@ function buildTrackedRepos({ forceRegenerate = false } = {}) {
     .map(([, v]) => v);
   const _meta = {
     total: repoArray.length,
-    inRegistry: repoArray.filter(r => r.addedAt).length,
+    // 以 status 判定「已入庫」——addedAt 不再是可靠訊號（來源不明的舊工具會留 null）
+    inRegistry: repoArray.filter(r => r.status === 'tracking').length,
     trackedOnly: repoArray.filter(r => r.status === 'tracked_not_in_registry').length,
     lastGenerated: new Date().toISOString()
   };
@@ -210,4 +245,11 @@ if (process.argv[1] && fileURLToPath(import.meta.url).toLowerCase() === process.
   buildTrackedRepos({ forceRegenerate: force });
 }
 
-export { buildTrackedRepos, getTrackedRepos, getTrackedRepoList, addTrackedRepo, TRACKED_PATH };
+export {
+  buildTrackedRepos,
+  getTrackedRepos,
+  getTrackedRepoList,
+  addTrackedRepo,
+  mergeTrackedProvenance,
+  TRACKED_PATH
+};

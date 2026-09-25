@@ -288,6 +288,12 @@ async function cmdAdd(url, isBatch = false) {
       newTool.id = `${newTool.id}-${owner}`;
     }
 
+    // 即時取得該工具的 GitHub Stars（快照供下週 trending 算 delta，
+    // stars 必須在 push 之前寫進 newTool——push 之後的存檔只發生一次，
+    // 而語意補齊階段會重新 loadRegistry，事後再改 newTool 不會落盤）。
+    const { attachStarsToTool } = await import('./core/stars.js');
+    await attachStarsToTool(newTool, url);
+
     registry.tools.push(newTool);
     saveRegistry(registry);
 
@@ -310,15 +316,14 @@ async function cmdAdd(url, isBatch = false) {
               if (k === 'useCase' && t.useCase === t.description) t[k] = v;
               else if (!t[k] || (Array.isArray(t[k]) && t[k].length === 0)) t[k] = v;
             }
-            // 生命週期：補齊完成才升級為 active（與 Web 端同一判準）
-            const { isFullyEnriched } = await import('./core/tool-enricher.js');
-            const complete = isFullyEnriched(t);
-            if (complete && t.status === 'experimental') t.status = 'active';
+            // 生命週期：補齊完成才升級為 active（與 Web／批次管線同一實作）
+            const { activateIfComplete } = await import('./core/tool-lifecycle.js');
+            const upgraded = activateIfComplete(t);
             saveRegistry(fresh);
             Object.assign(newTool, patch);
-            if (complete) newTool.status = 'active';
+            if (upgraded) newTool.status = 'active';
             console.log(`  ${c.green}✓ 已補齊: ${Object.keys(patch).join(', ')}${c.reset}`);
-            if (complete) console.log(`  ${c.green}✓ 狀態升級為 active${c.reset}`);
+            if (upgraded) console.log(`  ${c.green}✓ 狀態升級為 active${c.reset}`);
           }
         } else {
           console.log(`  ${c.yellow}⚠ README 資訊不足，語意欄位維持留白（不填推測內容）${c.reset}`);
@@ -327,26 +332,6 @@ async function cmdAdd(url, isBatch = false) {
         console.log(`  ${c.yellow}⚠ 語意欄位補齊失敗: ${err.message}${c.reset}`);
       }
     }
-
-    // 即時取得該工具的 GitHub Stars 並寫入快照（供下週 trending 計算 delta）
-    try {
-      const { loadSnapshot, saveSnapshot, parseOwnerRepo } = await import('./core/snapshot.js');
-      const snap = loadSnapshot();
-      const parsed = parseOwnerRepo(url);
-      if (parsed) {
-        const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}`;
-        const res = await fetch(apiUrl, { headers: { 'User-Agent': 'Tool-Calling-Add-Agent' }, signal: AbortSignal.timeout(5000) });
-        if (res.ok) {
-          const data = await res.json();
-          if (typeof data.stargazers_count === 'number') {
-            const fullName = `${parsed.owner}/${parsed.repo}`;
-            snap[fullName] = data.stargazers_count;
-            newTool.stars = data.stargazers_count;
-            saveSnapshot(snap);
-          }
-        }
-      }
-    } catch { /* snapshot 非必要，失敗不影響主要流程 */ }
 
     success(`已新增工具: ${c.bold}${newTool.name}${c.reset} (${newTool.id})`);
     console.log(`  ${c.blue}${url}${c.reset}`);

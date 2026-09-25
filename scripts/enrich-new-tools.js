@@ -35,7 +35,8 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { enrichToolFromReadme, isFullyEnriched } from '../core/tool-enricher.js';
+import { enrichToolFromReadme } from '../core/tool-enricher.js';
+import { activateIfComplete } from '../core/tool-lifecycle.js';
 import { nextKey, reportSuccess, reportFailure } from '../core/llm-keys.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -114,10 +115,11 @@ async function worker() {
     }
     if (Object.keys(merged).length === 0) { skip++; process.stdout.write('-'); continue; }
     Object.assign(byId.get(t.id), merged);
-    // 生命週期：補齊完成才升級為 active（與 Web／CLI 共用同一判準）
-    if (isFullyEnriched(byId.get(t.id)) && byId.get(t.id).status === 'experimental') {
+    // 生命週期：補齊完成才升級為 active（與 Web／CLI 共用同一實作）。
+    // merged 才是落盤的載體（flush() 會重讀磁碟再 Object.assign(patch)），
+    // 所以新狀態必須同時記在 merged 上，不只要改記憶體那份。
+    if (activateIfComplete(byId.get(t.id))) {
       merged.status = 'active';
-      byId.get(t.id).status = 'active';
       upgraded++;
     }
     applied.set(t.id, merged);

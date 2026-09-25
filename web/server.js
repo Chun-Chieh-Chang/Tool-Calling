@@ -174,18 +174,15 @@ async function enrichToolInBackground(toolId) {
 
     // ── 生命週期：補齊完成才升級 ──────────────────────────────────
     // 掃描階段一律進 experimental；只有語意欄位真的齊了才升 active。
-    // 判準集中在 core/tool-enricher.js 的 isFullyEnriched()（單一真理來源），
-    // 與 CLI、批次腳本共用同一份定義。
-    const { isFullyEnriched } = await import('../core/tool-enricher.js');
-    const complete = isFullyEnriched(t2);
-    if (complete && t2.status === 'experimental') {
-      t2.status = 'active';
-      console.log(`[AddTool] ${toolId} 語意欄位補齊完成 → 升級為 active`);
-    }
+    // 轉換與完整度判準都收在 core/tool-lifecycle.js，
+    // 與 CLI、批次腳本共用同一份定義（勿在此內聯判準）。
+    const { activateIfComplete } = await import('../core/tool-lifecycle.js');
+    const upgraded = activateIfComplete(t2);
+    if (upgraded) console.log(`[AddTool] ${toolId} 語意欄位補齊完成 → 升級為 active`);
 
     saveRegistry(fresh);
     try { syncRegistryToDist(); } catch {}
-    console.log(`[AddTool] 背景補齊完成: ${toolId} → ${mergedKeys.join(', ')}${complete ? '（status → active）' : '（仍為 experimental）'}`);
+    console.log(`[AddTool] 背景補齊完成: ${toolId} → ${mergedKeys.join(', ')}${upgraded ? '（status → active）' : '（仍為 experimental）'}`);
   } catch (err) {
     console.warn(`[AddTool] 背景補齊失敗（工具已加入，欄位維持留白）: ${err.message}`);
   }
@@ -544,27 +541,13 @@ const server = http.createServer(async (req, res) => {
         if (registry.tools.some(t => t.id === id)) id = `${id}-${owner}`;
         newTool.id = id;
 
+        // 更新 star snapshot（stars 必須在 push 之前寫進 newTool：
+        // 下面只有一次無條件存檔，事後補的欄位不會落盤）
+        const { attachStarsToTool } = await import('../core/stars.js');
+        await attachStarsToTool(newTool, githubUrl);
+
         registry.tools.push(newTool);
         saveRegistry(registry);
-
-        // 更新 star snapshot
-        try {
-          const { loadSnapshot, saveSnapshot, parseOwnerRepo } = await import('../core/snapshot.js');
-          const snap = loadSnapshot();
-          const parsed = parseOwnerRepo(githubUrl);
-          if (parsed) {
-            const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}`;
-            const res2 = await fetch(apiUrl, { headers: { 'User-Agent': 'Tool-Calling-Add-Agent' }, signal: AbortSignal.timeout(5000) });
-            if (res2.ok) {
-              const data = await res2.json();
-              if (typeof data.stargazers_count === 'number') {
-                snap[`${parsed.owner}/${parsed.repo}`] = data.stargazers_count;
-                newTool.stars = data.stargazers_count;
-                saveSnapshot(snap);
-              }
-            }
-          }
-        } catch { /* snapshot 非必要 */ }
 
         // 同步到 dist
         try { syncRegistryToDist(); } catch {}
