@@ -1,6 +1,70 @@
 # Tool-Calling 開發日誌
 
-## 2026-09-25 批量加入 GenOffice + eSearch（含 monorepo 拆解判定）
+## 2026-09-25 全專案中文改為繁體（TW）＋ 語言門禁常態化
+
+### 需求
+
+「確保你在本專案用的中文字都是繁體中文(TW)」。
+
+### 問題與原因分析（RCA）
+
+先做**性質判定**再動手，因為「看到簡體就轉」會造成真實故障：
+
+1. 本輪新增內容（前 5 個 commit 的新增行與 commit 訊息）實測已是 0 個簡體字；違規全部來自**既有**註解、log 訊息與文件。
+2. 專案裡的簡體字有兩種完全不同的性質，處置相反：
+   - **刻意引用的資料**：L2/L3 檢索關鍵字（`core/search-engine.js` 收了 open-source 的簡體寫法）、`core/classification-rules.js` 的簡繁雙寫正字串、`scripts/compile-wiki.js` 匹配使用者簡體輸入的 regex、測試 fixture、以及 `fix-simplified.js` 自己的對照表。**轉繁＝直接破壞比對**（繁體查詢與簡體詞經 tokenize 後 bigram 零重疊，正是這支對照表存在的原因）。
+   - **書寫瑕疵**：註解與 log 裡混入的簡體字形（「失败」「调試」「知识」等），零語意價值，該清。<!-- allow-simplified：引用簡體字形作為證據 -->
+3. 根本問題是**沒有常態檢查**：2026-09-16 清 triggers、09-19 補對照表、09-25 清註解——每次都要人工重跑，且每次都會冒出下一批。
+
+### 矯正與預防措施（CAPA）
+
+**1. 書寫瑕疵清零（51 行）**
+
+| 範圍 | 檔數 | 行數 | 處理方式 |
+|------|------|------|----------|
+| 程式碼註解與 log 訊息 | 10 | 37 | 註解行／console 行規則轉換，`尝试` 因 opencc 缺席＋`S2T_SAFE` 缺字而手修為 `嘗試` <!-- allow-simplified：引用簡體字形作為證據 --> |
+| DEV_LOG 歷史條目 | 1 | 10 | 逐字忠實轉換（`万路徑`→`萬路徑`），不改寫語意 <!-- allow-simplified：引用簡體字形作為證據 --> |
+| docs 文件 | 3 | 4 | `知識库`→`知識庫`、`可选`→`可選`、`没問題`→`沒問題` <!-- allow-simplified：引用簡體字形作為證據 --> |
+
+**2. 源頭資料修正（走正統管線，不手改產物）**
+
+`registry/tools.json` 有 3 筆 trigger 是繁簡混寫（`搭建分工明确…`、`…準确率`、`…不确定領域`）。處理順序：`fix-simplified.js --apply` 修源頭 → `mine-synonyms.js` 重建 `core/synonyms.generated.js`（14 行跟隨乾淨）。**這不只是美化——繁簡混寫讓繁體查詢永遠命中不到**：實測「提升編程準確率」由無命中變成 `#1 claudemd [L1.5-trigger-exact]`，另兩條（`探索需求中的不確定領域`、`搭建分工明確的多Agent平台`）同樣取得 trigger 精確命中。<!-- allow-simplified：引用簡體字形作為證據 -->
+
+**3. 新增 `scripts/check-traditional.js` 常態門禁**
+
+| 模式 | 範圍 | 用途 |
+|------|------|------|
+| 預設 | 相對 HEAD 的新增行 ＋ 未追蹤檔全文 | 抓剛寫出來的瑕疵（文件也在內） |
+| `--range <ref>` | 指定 git 範圍的新增行 | 提交後複核 |
+| `--full` | 整檔掃描 168 檔 | 全庫稽核（含文件） |
+| `--full --code` | 整檔掃描 116 支原始碼 | **常年零違規的強門禁** |
+
+設計上三個關鍵取捨：
+
+- **偵測器不另起爐灶**：直接沿用 `fix-simplified.js` 的 `findSimplified()`（主表 ＋ `S2T_SAFE`），專案內「什麼算簡體字」維持單一來源。它刻意保守，所以「跨平台」「群組」「減少干擾」「漏斗」這類正確繁體不會被誤報——誤報的代價是工程師直接把門禁關掉。
+- **豁免寫在被豁免的檔裡**：行內 `// allow-simplified：原因`（40 行／10 檔）、檔頭 `// check-traditional: skip-file`（對照表本體與它的測試）。標記會出現在 diff 中，因此豁免本身可稽核，而不是藏在門禁腳本的黑名單裡。
+- **文件不進 `--code`**：`--full` 仍列出 27 行（70 字），全部是 DEV_LOG／HANDOFF／README／docs 裡「引用簡體 bug 本身」的歷史文字——那是證據，塗掉等於抹去紀錄；但它們的**新增行**仍受預設模式管轄。
+- 本輪同時依 `S2T_SAFE` 收字規則補 5 個無歧義簡體字（`败/级/确/触/试`），並註明刻意不收歧義字「尝」（對應 嘗／嚐）。<!-- allow-simplified：引用簡體字形作為證據 -->
+
+**4. `npm test` 掛兩條**：預設模式 ＋ `--full --code`；另提供 `npm run check:lang`／`check:lang:full` 單獨執行。
+
+### 驗證結果
+
+- `node scripts/check-traditional.js --full --code`：**116 檔 0 違規** ✅（`--full` 僅剩 27 行文件歷史引用，如設計）
+- `npm test`：**309 tests / 307 pass / 2 skipped（playwright e2e 未裝）/ 0 fail** ✅（新增 13 個門禁自身測試：誤報防線、豁免邊界、diff 行號、綠色鎖）
+- `node cli.js validate`：725 筆全通過，metadata quality 100/100，contract 0 errors 0 warnings ✅
+- `node scripts/check-mece.js` 通過 ✅／`check-duplicate-ids.js` ID 全唯一 ✅／`check-utf8.js` 0 個 U+FFFD ✅
+- `npm run build`：`dist/registry/tools.json` 與 `registry/tools.json` 逐位元組相同（725 筆）；重建後 `synonyms.generated.js` 簡體 0 ✅
+- 檢索實測 3 條繁體 query 全部取得 trigger 命中 ✅
+- 門禁自我驗證：新測試檔初稿自己寫進一個「否则」，被 `--full --code` 擋下 → 改為 \uXXXX fixture，測試檔本身不使用任何豁免標記 ✅<!-- allow-simplified：引用簡體字形作為證據 -->
+
+### 已知殘留（超出本次範圍）
+
+- 27 行文件內的簡體引用刻意保留；若日後要讓 `--full`（含文件）也綠燈，需逐行加 `<!-- allow-simplified -->`，但部分位於 code fence 內，註解標記會显性显示，得不償失。
+- `scripts/check-mece.js` 與 `core/classifier.js`、`core/tokenize.js` 的引用範例改用**行尾括號標記**豁免，讀起來略打斷句子；屬可接受的代價（換來「引用原文」與「門禁綠燈」同時成立）。
+- 本輪 `fix-simplified.js --apply` 順帶把 `registry/tools.json` 檔尾補上換行符（`saveRegistry()` 本來就寫 `\n`，此前該檔是少數沒結尾換行的狀態）。
+
+
 
 ### 需求
 批量加入 2 個 GitHub URL（`genspark-ai/genoffice`、`xushengfeng/eSearch`），並檢查是否需要拆解。
@@ -1383,7 +1447,7 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
   | 預熱刻度 | `60` | `100` | 增加初始模擬步數 |
   | 冷卻刻度 | `300` | `600` | 延長穩定化過程 |
 - **縮放範圍擴展**：`minDistance: 15→8`，`maxDistance: 6000→10000`（20x → 60x）
-- **縮放步長提升**：`0.12/0.136` → `0.20/0.25`（灵敏度 +70-80%）
+- **縮放步長提升**：`0.12/0.136` → `0.20/0.25`（靈敏度 +70-80%）
 
 #### Phase 2: 2D 圖譜視角優化
 - **問題診斷**：stabilization 後使用固定 `scale: 1.0`，無法適配 695 個節點
@@ -1660,9 +1724,9 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
 分類數量過多（22個）且部分分類工具數過少（資料庫 4、行銷 3、基礎設施 6），導致辨識度下降。執行合併與重新分配。
 
 ### 處理結果 (PDCA)
-- **刪除「圖標與視覺資源」(16)**：全部并入 UI/UX設計（Lucide/Heroicons/Phosphor 等即為 UI 元素）
-- **刪除「資料庫」(4)**：postgres-mcp/duckdb/sqlite 等并入開發工具
-- **刪除「行銷」(3)**：marketingskills/openreply/internet-ad-director 本質為 Agent 技能，并入 AI 代理
+- **刪除「圖標與視覺資源」(16)**：全部併入 UI/UX設計（Lucide/Heroicons/Phosphor 等即為 UI 元素）
+- **刪除「資料庫」(4)**：postgres-mcp/duckdb/sqlite 等併入開發工具
+- **刪除「行銷」(3)**：marketingskills/openreply/internet-ad-director 本質為 Agent 技能，併入 AI 代理
 - **重新分配「基礎設施」(6)**：
   - awesome-selfhosted → 學習資源（自架清單屬參考資源）
   - ontology-ontio → 安全性（區塊鏈安全相關）
@@ -1680,7 +1744,7 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
 - 圖標庫（如 Lucide/Heroicons）與 UI/UX 的邊界模糊，不應各自獨立
 
 ### 矯正與預防措施 (CAPA)
-- 建立「最小分類閾值」規則：單一分類 < 5 工具時強制并入相鄰領域
+- 建立「最小分類閾值」規則：單一分類 < 5 工具時強制併入相鄰領域
 - reclassify-tools.js 加入自動合併提示邏輯
 
 ### 驗證結果
@@ -4653,7 +4717,7 @@ Workflow 腳本中使用了 `git add registry/tools.json dist/` 指令，但專�
 | ChenLiu-1996/figures4papers | **不在列表中**（上一輪 v1.5 記錄應已入庫，本次未見） | 待查 |
 
 **分類檢討**：
-- `Huashu Design`：原屬「UI/UX設計」，GitHub topics 含 `presentation`，功能涵蓋 HTML 簡報生成（5 維评审 + 20 設計哲學 + MP4 匯出）。與 PPT Master、Guizang 同屬簡報生成範疇，移入「文件生產力」。
+- `Huashu Design`：原屬「UI/UX設計」，GitHub topics 含 `presentation`，功能涵蓋 HTML 簡報生成（5 維評審 + 20 設計哲學 + MP4 匯出）。與 PPT Master、Guizang 同屬簡報生成範疇，移入「文件生產力」。
 - `dashi-ppt-skill`：直接歸入「文件生產力」。
 - `DeepSeek Harness Desktop (Anywhere Labs)`：官方 DSH 桌面殼層，歸入「AI 代理」（非 DeepSeek 模型相關，屬 Agent 執行環境）。
 
@@ -4787,7 +4851,7 @@ ode scripts/check-mece.js：通過
 | URL | 分類 | Stars | 備註 |
 |-----|------|-------|------|
 | WorldFlowAI/everything-claude-code | AI 代理 | 2,358 | Claude Code 插件型工具集；agents/commands 為 .md、skills 為知識型 → 不拆解；安裝修正為 /plugin marketplace add（npm 同名包為空佔位） |
-| magnitudedev/magnitude | AI 框架 | 3,208 | 本地模型推論伺服器；單一產品 monorepo（turbo 万路徑）→ 不拆解；掃描誤歸開發工具已修；安裝修正為 @magnitudedev/cli（npm 的 magnitude 是他人向量數學套件） |
+| magnitudedev/magnitude | AI 框架 | 3,208 | 本地模型推論伺服器；單一產品 monorepo（turbo 萬路徑）→ 不拆解；掃描誤歸開發工具已修；安裝修正為 @magnitudedev/cli（npm 的 magnitude 是他人向量數學套件） |
 | nvm-sh/nvm | 開發工具 | 94,919 | Node 版本管理器；GitHub 描述含迷因幣地址汙染，已清除並補 useCase/優勢/禁用場景 |
 
 **重複重新解析**：
@@ -5126,17 +5190,17 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
 ### 問題與原因分析（RCA）
 
 - **`toTraditional()` 表外簡體字漏轉**：`scripts/fix-simplified.js` 在 opencc 未安裝時的回退路徑（第 187 行）僅查主表 `S2T[ch] || ch`，完全跳過 `S2T_SAFE`（沒/熱/紅/筆/無/漸…）。這造成 `npm test` 長期存在 2 個 `fix-simplified.test.js` 紅燈（本 session 之前就存在）。
-- **`knowledge-graph.test.js` 硬性依賴 playwright**：頂層靜態 `import { chromium } from 'playwright'`，未安裝即崩潰整個 test file（1 fail）。playwright 属 devDependency 但 CI/本機常缺，應改為「可選 e2e、缺即 skip」。
+- **`knowledge-graph.test.js` 硬性依賴 playwright**：頂層靜態 `import { chromium } from 'playwright'`，未安裝即崩潰整個 test file（1 fail）。playwright 屬 devDependency 但 CI/本機常缺，應改為「可選 e2e、缺即 skip」。
 - **孤兒資源未清**：`web/fonts.css` 與 `web/fonts/*.woff2` 早在 `2026-09-XX` 的 DEV_LOG 標記刪除，但檔案一直留在 repo；`scripts/build-web.js` 也從未複製它們，`index.html` 沒 `<link>`、`style.css` 沒 `@import`。
 - **一次性 snapshot 文件殘留**：7 份日期戳記文件（`docs/*-2026-XX-XX.md`、`docs/reports/batch-add-report-*.md`）DEV_LOG 聲稱已刪但仍存於磁碟。
 - **package.json 工具數停在 696**：實際 registry 已達 722。
 - **AGENTS.md 測試數停在 62/62**：實際 247 tests；由 `scripts/generate-agents-md.js` 產生，源頭 6 處 hardcoded 都需更新。
-- **7 支無引用腳本**：`apply-categories.js`、`batch-add-20260908.js`、`aurora-multidimensional.js`、`eval-hyde.js`、`expand-eval-set.js`、`verify-flowchart-spec.js`、`diagnose-decision.mjs`；僅 DEV_LOG/docs 提及，无 package.json script、无代码引用。
+- **7 支無引用腳本**：`apply-categories.js`、`batch-add-20260908.js`、`aurora-multidimensional.js`、`eval-hyde.js`、`expand-eval-set.js`、`verify-flowchart-spec.js`、`diagnose-decision.mjs`；僅 DEV_LOG/docs 提及，無 package.json script、無程式碼引用。
 
 ### 矯正與預防措施（CAPA）
 
 **功能新增**：
-- `web/server.js`：`POST /api/shutdown`，僅准 local origin（`isTrustedOrigin`）+ body `{confirm:"SHUTDOWN"}` 雙重防護，回應先 flush 再 `server.close() → process.exit(0)`，3 秒安全網防未斷連線。
+- `web/server.js`：`POST /api/shutdown`，僅限 local origin（`isTrustedOrigin`）+ body `{confirm:"SHUTDOWN"}` 雙重防護，回應先 flush 再 `server.close() → process.exit(0)`，3 秒安全網防未斷連線。
 - `web/index.html`：header 加「關閉系統」紅色按鈕；logo 與 search 間新增 `.workflow-steps` 6 步膠囊條（輸入需求 › 篩選領域 › 深度搜尋(選) › 多工具鏈(選) › 切換視圖 › 關閉系統）；搜尋列每個控件包進 `.hint-cell` 顯示 ① ② ③ ④ 常駐微提示。
 - `web/style.css`：新增 `.shutdown-btn / .header-status-right / .hint-cell / .hint / .hint-num / .hint-tabs / .workflow-steps / .wf-step / .wf-num / .wf-arrow / .wf-pulse`；@media 640px 響應式。
 - `web/app.js`：`setupShutdownButton()` 帶 confirm dialog + `showShutdownOverlay()` 覆蓋層（因瀏覽器不允許指令關閉用戶開啟分頁）；`setupWorkflowSteps()` 事件委派，點擊 → `scrollIntoView` + `focus()` + `wf-pulse` 動畫。
