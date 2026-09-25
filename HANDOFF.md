@@ -387,7 +387,7 @@ agent **59.7%**（含近義 61.6%）／fusion **58.5%**（含近義 60.4%）。
 
 ### 測試
 
-`npm test` → **311 tests / 309 pass / 0 fail**（2 skipped 為需外部依賴者）
+`npm test` → **315 tests / 313 pass / 0 fail**（2 skipped 為需外部依賴者）
 2026-09-19 起改為 `--test-concurrency=1` 序列化（見陷阱 9），耗時 12.5s → 21.4s → 29s。
 2026-09-21 起 `npm test` 第一道關卡是 `scripts/check-syntax.js`（見陷阱 23）。
 2026-09-25 起 `npm test` 多了兩道語言關卡：`check-traditional.js`（預設＝相對 HEAD 的新增行＋未追蹤檔）

@@ -19,6 +19,7 @@ import {
   isLineExempt,
   isSkippedPath,
   parseAddedLines,
+  expandTargets,
   scanFile,
 } from '../scripts/check-traditional.js';
 
@@ -182,4 +183,38 @@ test('文件未被納入 --code，但 --full 仍抓得到（記錄 --code 排除
   const hits = scanFile('DEV_LOG.md');
   assert.ok(hits.length > 0, 'DEV_LOG 的歷史引用應仍可被 --full 列出');
   assert.ok(hits.every((h) => typeof h.line === 'number' && h.chars.length > 0));
+});
+
+// ── 路徑展開：目錄也是合法輸入 ───────────────────────────────────────────
+// 這組鎖的是一個真實崩潰：`--full docs/` 過去把目錄字串直接交給 readFileSync，
+// 結果不是退出碼 1 而是 uncaught EISDIR。目錄寫法太直覺，必須能遞迴。
+test('expandTargets：目錄遞迴展開成檔案清單，不外溢、不含跳過路徑', () => {
+  const files = expandTargets(['scripts/']);
+  assert.ok(files.length > 10, `scripts/ 應展開出數十支檔，實得 ${files.length}`);
+  assert.ok(files.includes('scripts/check-traditional.js'));
+  assert.ok(files.every((f) => f.startsWith('scripts/')), '不應溢出到其他目錄');
+  assert.ok(files.every((f) => !isSkippedPath(f)), '跳過路徑不可出現');
+});
+
+test('expandTargets：目錄與檔案混給；跳過目錄與鎖檔仍被擋', () => {
+  const files = expandTargets(['.agents/', 'registry/tools.json', 'package-lock.json']);
+  assert.ok(files.includes('.agents/AGENTS.md'), '.agents/ 應遞迴到根那支 AGENTS.md');
+  assert.ok(!files.some((f) => f.startsWith('registry/')), 'registry/ 應被 isSkippedPath 擋掉');
+  assert.ok(!files.includes('package-lock.json'), '鎖檔永不掃描');
+});
+
+test('expandTargets：不存在的路段只跳過，不拖累同批其他路徑', () => {
+  assert.deepEqual(
+    expandTargets(['no-such-dir/', 'scripts/check-traditional.js']),
+    ['scripts/check-traditional.js'],
+  );
+});
+
+test('CLI：--full 給目錄能跑完（防 EISDIR 復發）', () => {
+  const out = execFileSync(process.execPath, [SCRIPT, '--full', 'scripts/'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.match(out, /整檔掃描 \d+ 個檔案/);
+  assert.match(out, /未發現簡體字/);
 });

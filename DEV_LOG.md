@@ -52,6 +52,8 @@
 
 **5. 文件數字同步（順帶治它的過期來源）**：`AGENTS.md` 的工具數／star 數本來就由 `generate-agents-md.js` 從 `tools.json` 即時計算（重跑即正確），但**測試數字在範本裡硬編碼了 6 份**，測試一增加就全部過期 → 收斂成單一 `TEST_STATS` 常數（要改只改一處）。其餘是手寫文件的人工同步：README／HANDOFF／`package.json`／docs／`skills/` 的 722 全數改為 725，測試數改為 311/309，並把 HANDOFF「最新提交：c7ca58a」這種**每次提交必然過期**的欄位改成指引查 `git log --oneline -1`，不再釘死 hash。歷史條目中的「696 → 722」「62/62 → 247 tests」屬當時事實，保留不動。
 
+**6. 入庫未追蹤檔時，抓到門禁自身的一個崩潰**：把 4 支長期未入庫的真實資產（`.agents/AGENTS.md`、`scripts/enrich-triggers.js`、`scripts/add-user-requested-tools.js`、`scripts/batch-add-20260912.js`）加入版本控制時，用 `--full scripts/` 檢查新檔的標記，結果**不是**報 0 違規而是 uncaught `EISDIR`——`--full` 的顯式路徑參數只吃檔案字串，直接把目錄交給 `readFileSync`。「傳目錄」是最直覺的寫法，這個洞必須補：新增 `expandTargets()` 做目錄遞迴（按目錄名剪枝 `.git`/`node_modules`/`dist`/`.temp`），不存在的路段改為只警告並跳過，並補 4 條測試（含一條 CLI 綠燈鎖）。另 3 支未追蹤檔刻意**不**入庫：`core/interactive-approximator.js` 已被 `core/clarifier.js` 取代（兩處註解均以過去式稱它為舊版），`docs/SEARCH-ENGINE-OPTIMIZATION-REPORT.md` 與 `docs/search-engine-optimization-proposal.md` 已由 `docs/search-engine-optimization.md` 於 2026-09-21 合併取代——入庫會與 README 的現況說明互相矛盾，故留在工作區等決定。實測：`npm test` → **315 tests / 313 pass / 0 fail**（本節上方 311/309 是補 `expandTargets` 之前那輪的數字）；`--full scripts/` 展開 44 檔 0 違規，`--full docs/` 展開 31 檔並如預期抓出 4 行歷史引用。
+
 ### 驗證結果
 
 - `node scripts/check-traditional.js --full --code`：**116 檔 0 違規** ✅（`--full` 僅剩 27 行文件歷史引用，如設計）

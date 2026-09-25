@@ -13,11 +13,11 @@
  * （簡繁同形字不報、歧義字 台/干/后/復… 不報），所以不會把「跨平台」
  * 「減少干擾」這類正確繁體誤判成違規。
  *
- * 三種範圍 ＋ 一個範圍選項
+ * 四種範圍 ＋ 一個範圍選項
  * ───────────────────────
  *   （預設）       檢查相對 HEAD 的新增行 ＋ 未追蹤檔全文 → 抓剛寫出來的瑕疵
  *   --range <rev>  改比對指定 git 範圍，例：--range HEAD~5..HEAD
- *   --full [路徑]  整檔掃描（不給路徑＝所有原始碼與文件）→ 最嚴格
+ *   --full [路徑]  整檔掃描（不給路徑＝所有原始碼與文件；路徑可為目錄）→ 最嚴格
  *   --commits <r>  掃 commit 範圍的訊息（git log 也是專案內長期留存的文字）
  *   --code         通用範圍選項：只留 core/ scripts/ web/ tests/
  *
@@ -37,7 +37,7 @@
  */
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { findSimplified, usingOpenCC } from './fix-simplified.js';
@@ -156,6 +156,44 @@ function listUntracked() {
   return git(['ls-files', '--others', '--exclude-standard']).split('\n').filter((p) => p && !isSkippedPath(p) && matchExt(p));
 }
 
+// 目錄遞迴時要跳過的目錄名（用名字剪枝，避免走進 .git 與依賴叢林）
+const PRUNE_DIR_NAMES = new Set(['.git', 'node_modules', 'dist', '.temp']);
+
+function normalizeRel(p) {
+  return p.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
+}
+
+/** 遞迴收集目錄下的檔案（相對路徑，一律用 `/`）。 */
+function walkDir(rel, out) {
+  for (const entry of readdirSync(path.join(ROOT, rel), { withFileTypes: true })) {
+    const child = rel ? `${rel}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) {
+      if (!PRUNE_DIR_NAMES.has(entry.name)) walkDir(child, out);
+    } else if (entry.isFile()) {
+      out.push(child);
+    }
+  }
+}
+
+/**
+ * 把命令列給定的路徑展開成檔案清單：**目錄**會遞迴掃描。
+ * 此前只吃檔案路徑，`--full docs/` 這種直覺寫法會直接 EISDIR 崩潰。
+ */
+export function expandTargets(paths) {
+  const out = [];
+  for (const raw of paths) {
+    const rel = normalizeRel(raw);
+    const full = path.join(ROOT, rel);
+    if (!existsSync(full)) {
+      console.error(`⚠️ 路徑不存在，已跳過：${rel}`);
+      continue;
+    }
+    if (statSync(full).isDirectory()) walkDir(rel, out);
+    else out.push(rel);
+  }
+  return [...new Set(out)].filter((p) => !isSkippedPath(p) && matchExt(p));
+}
+
 /** diff 模式：只檢查新增行。檔頭標記可能在本次未改動的前 10 行，需另從工作樹補讀。 */
 function runDiffMode(ref) {
   const diffText = git(['diff', ref, '--unified=0', '--no-color']);
@@ -225,7 +263,7 @@ function usage() {
 
   （無選項）        檢查相對 HEAD 的新增行 ＋ 未追蹤檔（預設）
   --range <ref>     檢查指定 git 範圍的新增行，例：--range HEAD~5..HEAD
-  --full [路徑...]  整檔掃描（不給路徑＝所有原始碼與文件）
+  --full [路徑...]  整檔掃描（不給路徑＝所有原始碼與文件；路徑可為目錄，會遞迴）
   --commits <range> 掃 range 內每筆 commit 的訊息（歷史無豁免）
   --code            只限 core/ scripts/ web/ tests/（不含文件與資料檔）
 
@@ -265,7 +303,7 @@ function main() {
   let findings = [];
   let modeLabel = '';
   if (opts.mode === 'full') {
-    let targets = opts.paths.length ? opts.paths.filter((p) => !isSkippedPath(p)) : listSources();
+    let targets = opts.paths.length ? expandTargets(opts.paths) : listSources();
     if (opts.codeOnly) targets = targets.filter((p) => CODE_PATH.test(p));
     for (const p of targets) findings.push(...scanFile(p).map((h) => ({ path: p, ...h })));
     modeLabel = `整檔掃描 ${targets.length} 個檔案${opts.codeOnly ? '（僅原始碼）' : ''}`;

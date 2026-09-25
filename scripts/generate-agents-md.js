@@ -13,7 +13,7 @@ const ROOT = join(__dirname, '..');
 
 // npm test 的實測數字。曾在 6 處各自硬編碼，結果測試增加後全部過期。
 // 改動測試後在此更新即可（跑 `npm test` 可看到 tests/pass/skipped 三行）。
-const TEST_STATS = { total: 311, pass: 309, skipped: 2 };
+const TEST_STATS = { total: 315, pass: 313, skipped: 2 };
 
 // 載入工具庫
 function loadRegistry() {
