@@ -5670,7 +5670,6 @@ export const SYNONYM_MAP = {
   "將ai生成轉換成可編輯html": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "deck": [
@@ -5693,16 +5692,6 @@ export const SYNONYM_MAP = {
     "本地處理演示文稿檔案",
     "轉換幻燈片為zip格式"
   ],
-  "local-first": [
-    "將ai生成轉換成可編輯html",
-    "下載演示文稿為zip",
-    "離線編輯html簡報",
-    "轉換ai幻燈片為本地文件",
-    "打開html格式的演示文稿",
-    "將簡報匯出為可編輯版本",
-    "本地處理演示文稿檔案",
-    "轉換幻燈片為zip格式"
-  ],
   "ai-slides": [
     "將ai生成轉換成可編輯html",
     "下載演示文稿為zip",
@@ -5716,55 +5705,46 @@ export const SYNONYM_MAP = {
   "下載演示文稿為zip": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "離線編輯html簡報": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "轉換ai幻燈片為本地文件": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "打開html格式的演示文稿": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "將簡報匯出為可編輯版本": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "本地處理演示文稿檔案": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "轉換幻燈片為zip格式": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "編輯ai生成的演示內容": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "轉存演示稿為本地html": [
     "deck",
     "editor",
-    "local-first",
     "ai-slides"
   ],
   "ai幫寫程式碼": [
@@ -19890,8 +19870,7 @@ export const SYNONYM_MAP = {
   ],
   "本地使用 ai 寫程式碼": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "clodex-ide": [
     "本地使用 ai 寫程式碼",
@@ -19915,48 +19894,39 @@ export const SYNONYM_MAP = {
   ],
   "安全審查程式碼": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "離線 ai 編程環境": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "本機跑 ai 代理開發": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "驗證程式碼安全性": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "本地優先 ide": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "ai 自主編譯執行": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "隱私保護型編程": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "本地端 ai 輔助開發": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "零信任編程工具": [
     "clodex-ide",
-    "zero-trust",
-    "local-first"
+    "zero-trust"
   ],
   "speak-human-tw": [
     "改寫 ai 文章",
@@ -35583,7 +35553,6 @@ export const SYNONYM_MAP = {
     "tencentdb",
     "memory",
     "embedding",
-    "local-first",
     "knowledge-reuse"
   ],
   "tencentdb-agent-memory": [
@@ -35631,7 +35600,6 @@ export const SYNONYM_MAP = {
     "tencentdb",
     "memory",
     "embedding",
-    "local-first",
     "knowledge-reuse"
   ],
   "為多代理程式建立共享知識庫": [
@@ -35639,7 +35607,6 @@ export const SYNONYM_MAP = {
     "tencentdb",
     "memory",
     "embedding",
-    "local-first",
     "knowledge-reuse"
   ],
   "將程式碼轉換成可搜尋的記憶資產": [
@@ -35647,7 +35614,6 @@ export const SYNONYM_MAP = {
     "tencentdb",
     "memory",
     "embedding",
-    "local-first",
     "knowledge-reuse"
   ],
   "從團隊討論中提取可複用的經驗記憶": [
@@ -35655,7 +35621,6 @@ export const SYNONYM_MAP = {
     "tencentdb",
     "memory",
     "embedding",
-    "local-first",
     "knowledge-reuse"
   ],
   "畫树状圖": [
@@ -40784,9 +40749,9 @@ export const SYNONYM_MAP = {
     "製作簡報投影片",
     "轉換 office 文件格式",
     "編輯 powerpoint 簡報",
-    "bento",
-    "mit-license",
-    "office"
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word"
   ],
   "office-tools": [
     "編輯 word 文件",
@@ -50227,9 +50192,12 @@ export const SYNONYM_MAP = {
   "deepseek桌面版": [
     "dsh-desktop",
     "deepseek-desktop",
-    "local-first",
     "electron",
-    "model-providers"
+    "model-providers",
+    "本地運行ai模型",
+    "多模型ai對話",
+    "桌面端ai助手",
+    "跨平台ai客戶端"
   ],
   "dsh-desktop": [
     "deepseek桌面版",
@@ -50248,8 +50216,8 @@ export const SYNONYM_MAP = {
     "桌面端ai助手",
     "跨平台ai客戶端",
     "dsh-desktop",
-    "local-first",
-    "electron"
+    "electron",
+    "model-providers"
   ],
   "electron": [
     "deepseek桌面版",
@@ -50257,9 +50225,9 @@ export const SYNONYM_MAP = {
     "多模型ai對話",
     "桌面端ai助手",
     "跨平台ai客戶端",
-    "dsh-desktop",
-    "deepseek-desktop",
-    "local-first"
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr"
   ],
   "model-providers": [
     "deepseek桌面版",
@@ -50269,35 +50237,47 @@ export const SYNONYM_MAP = {
     "跨平台ai客戶端",
     "dsh-desktop",
     "deepseek-desktop",
-    "local-first"
+    "electron"
   ],
   "本地運行ai模型": [
     "dsh-desktop",
     "deepseek-desktop",
-    "local-first",
     "electron",
-    "model-providers"
+    "model-providers",
+    "deepseek桌面版",
+    "多模型ai對話",
+    "桌面端ai助手",
+    "跨平台ai客戶端"
   ],
   "多模型ai對話": [
     "dsh-desktop",
     "deepseek-desktop",
-    "local-first",
     "electron",
-    "model-providers"
+    "model-providers",
+    "deepseek桌面版",
+    "本地運行ai模型",
+    "桌面端ai助手",
+    "跨平台ai客戶端"
   ],
   "桌面端ai助手": [
     "dsh-desktop",
     "deepseek-desktop",
-    "local-first",
     "electron",
-    "model-providers"
+    "model-providers",
+    "deepseek桌面版",
+    "本地運行ai模型",
+    "多模型ai對話",
+    "跨平台ai客戶端"
   ],
   "跨平台ai客戶端": [
     "dsh-desktop",
     "deepseek-desktop",
-    "local-first",
     "electron",
-    "model-providers"
+    "model-providers",
+    "deepseek桌面版",
+    "本地運行ai模型",
+    "多模型ai對話",
+    "桌面端ai助手"
   ],
   "用 deepseek 桌面版": [
     "dsh-desktop-embedded",
@@ -54924,9 +54904,9 @@ export const SYNONYM_MAP = {
     "gpui",
     "hid",
     "hidpp",
-    "local-first",
     "logitech",
-    "logitech-mouse"
+    "logitech-mouse",
+    "mouse-remap"
   ],
   "openlogi": [
     "重映射鼠標按鍵",
@@ -54990,9 +54970,9 @@ export const SYNONYM_MAP = {
     "gpui",
     "hid",
     "hidpp",
-    "local-first",
     "logitech",
-    "logitech-mouse"
+    "logitech-mouse",
+    "mouse-remap"
   ],
   "配置logitech鼠標": [
     "openlogi",
@@ -55000,9 +54980,9 @@ export const SYNONYM_MAP = {
     "gpui",
     "hid",
     "hidpp",
-    "local-first",
     "logitech",
-    "logitech-mouse"
+    "logitech-mouse",
+    "mouse-remap"
   ],
   "修改鼠標按鈕功能": [
     "openlogi",
@@ -55010,9 +54990,9 @@ export const SYNONYM_MAP = {
     "gpui",
     "hid",
     "hidpp",
-    "local-first",
     "logitech",
-    "logitech-mouse"
+    "logitech-mouse",
+    "mouse-remap"
   ],
   "設定鼠標靈敏度": [
     "openlogi",
@@ -55020,9 +55000,9 @@ export const SYNONYM_MAP = {
     "gpui",
     "hid",
     "hidpp",
-    "local-first",
     "logitech",
-    "logitech-mouse"
+    "logitech-mouse",
+    "mouse-remap"
   ],
   "知識管理": [
     "openhuman",
@@ -61281,6 +61261,304 @@ export const SYNONYM_MAP = {
     "設計 app 商店宣傳圖",
     "產生 app 展示畫面",
     "製作 app 截圖"
+  ],
+  "截圖辨識文字": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "esearch": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "screenshot": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "offline-ocr": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "screen-translation": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "reverse-image-search": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "screen-recorder": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "scrolling-screenshot": [
+    "截圖辨識文字",
+    "螢幕翻譯",
+    "離線 ocr",
+    "以圖搜圖",
+    "捲動截圖",
+    "圖片貼在螢幕"
+  ],
+  "螢幕翻譯": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "離線 ocr": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "以圖搜圖": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "捲動截圖": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "圖片貼在螢幕": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "尋找免費 office 替代方案": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "genoffice": [
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word",
+    "markdown 轉 word",
+    "本地編輯 excel 公式",
+    "用 ai 產生 ppt 簡報",
+    "讓 agent 寫出 word 文件",
+    "生成 excel 工作簿"
+  ],
+  "ai-office": [
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word",
+    "markdown 轉 word",
+    "本地編輯 excel 公式"
+  ],
+  "xlsx": [
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word",
+    "markdown 轉 word",
+    "本地編輯 excel 公式",
+    "用 ai 產生 ppt 簡報",
+    "讓 agent 寫出 word 文件",
+    "生成 excel 工作簿"
+  ],
+  "pdf-editor": [
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word",
+    "markdown 轉 word",
+    "本地編輯 excel 公式"
+  ],
+  "markdown-editor": [
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word",
+    "markdown 轉 word",
+    "本地編輯 excel 公式"
+  ],
+  "microsoft-office-alternative": [
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word",
+    "markdown 轉 word",
+    "本地編輯 excel 公式"
+  ],
+  "用 ai 編輯 word 文件": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "pdf 轉 word": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "markdown 轉 word": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "本地編輯 excel 公式": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "用 ai 產生 ppt 簡報": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "genoffice-skill": [
+    "用 ai 產生 ppt 簡報",
+    "讓 agent 寫出 word 文件",
+    "生成 excel 工作簿",
+    "批次轉換文件格式",
+    "編輯既有 office 文件",
+    "輸出真實 office 檔案"
+  ],
+  "office-document-generation": [
+    "用 ai 產生 ppt 簡報",
+    "讓 agent 寫出 word 文件",
+    "生成 excel 工作簿",
+    "批次轉換文件格式",
+    "編輯既有 office 文件",
+    "輸出真實 office 檔案"
+  ],
+  "format-conversion": [
+    "用 ai 產生 ppt 簡報",
+    "讓 agent 寫出 word 文件",
+    "生成 excel 工作簿",
+    "批次轉換文件格式",
+    "編輯既有 office 文件",
+    "輸出真實 office 檔案"
+  ],
+  "讓 agent 寫出 word 文件": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "生成 excel 工作簿": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "批次轉換文件格式": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "編輯既有 office 文件": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "輸出真實 office 檔案": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
   ],
   "翻譯": [
     "translate",
