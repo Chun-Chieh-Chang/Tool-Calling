@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-25T04:27:36.875Z",
+  "lastUpdated": "2026-09-27T08:34:08.271Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -8529,8 +8529,8 @@
     },
     {
       "week": "2026-W39",
-      "dateRange": "2026-09-21 ~ 2026-09-25",
-      "timestamp": "2026-09-25T04:27:36.875Z",
+      "dateRange": "2026-09-21 ~ 2026-09-27",
+      "timestamp": "2026-09-27T08:34:08.271Z",
       "isWeekStart": true,
       "repos": {
         "browser-use/jev-ultrafast": 11844,
@@ -8735,10 +8735,5 @@
         "browser-use/browser-use": 115556
       }
     }
-  ],
-  "jev-chat/jev-chat-jarvis": 6202,
-  "NVIDIA/Model-Optimizer": 4791,
-  "anthropics/claude-code-action": 9118,
-  "openbao/openbao": 8035,
-  "vectorize-io/hindsight": 32551
+  ]
 }
