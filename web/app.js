@@ -235,6 +235,8 @@ function renderDashboard() {
   }
 
   if (kpiTotalTools) kpiTotalTools.textContent = totalTools;
+  const hintToolCount = document.getElementById('hintToolCount');
+  if (hintToolCount) hintToolCount.textContent = totalTools;
   if (kpiTotalCategories) kpiTotalCategories.textContent = categoriesSet.size;
   if (kpiTotalSubtools) kpiTotalSubtools.textContent = `~${totalSubtools}+`;
 
