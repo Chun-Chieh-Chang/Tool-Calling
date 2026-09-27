@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-18T13:30:13.817Z",
+  "generatedAt": "2026-09-27T05:37:24.349Z",
   "decisionTree": "docs/CLASSIFICATION.md",
-  "totalTools": 702,
+  "totalTools": 731,
   "summary": {
     "tier1_violations": 1,
-    "tier2_needsReview": 18,
+    "tier2_needsReview": 17,
     "tier3_domainHeuristic": 20,
-    "compliant": 199,
-    "noRuleMatched": 464
+    "compliant": 209,
+    "noRuleMatched": 484
   },
   "moves": {
-    "AI 代理 → 開發工具": 1
+    "AI 代理 → AI 框架": 1
   },
   "compliant": [
     {
@@ -514,6 +514,11 @@
       "rule": "D7-T3"
     },
     {
+      "id": "ktransformers",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "exceltohtml",
       "category": "文件生產力",
       "rule": "D13-T3"
@@ -779,6 +784,11 @@
       "rule": "D10-T3"
     },
     {
+      "id": "warp",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "h3-c",
       "category": "AI 框架",
       "rule": "R4"
@@ -1007,6 +1017,46 @@
       "id": "musicfree",
       "category": "音訊",
       "rule": "R8"
+    },
+    {
+      "id": "lint",
+      "category": "開發工具",
+      "rule": "R5"
+    },
+    {
+      "id": "kaggle-tpu-lab",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "claude-code",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "zcode",
+      "category": "AI 代理",
+      "rule": "R6"
+    },
+    {
+      "id": "genoffice-skill",
+      "category": "文件生產力",
+      "rule": "R10"
+    },
+    {
+      "id": "semif-openjev",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "model-optimizer",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
+      "id": "claude-code-action",
+      "category": "開發工具",
+      "rule": "R5"
     }
   ],
   "noRuleMatched": [
@@ -1121,6 +1171,7 @@
     "omniroute",
     "openthoughts-agent",
     "financial-services",
+    "knowledge-work-plugins",
     "claude-for-legal",
     "claude-legal-skill",
     "taiwan-claude-legal",
@@ -1196,7 +1247,6 @@
     "javaguide",
     "worldmonitor",
     "awesome-claude-skills",
-    "ktransformers",
     "daily-stock-analysis",
     "kimi-k3-code-free-desktop-ai",
     "opencodex",
@@ -1473,19 +1523,39 @@
     "spotifast",
     "my-girlfriend-jingtian-latex",
     "ai-infra-book",
-    "jev-ultrafast"
+    "jev-ultrafast",
+    "fast-jev-compaction",
+    "stirling-pdf",
+    "security-audit-skill",
+    "openstock",
+    "laya",
+    "amagine3d",
+    "dlss5-swapper",
+    "human-atlas",
+    "codex-with-chatgpt",
+    "niubigeo",
+    "aircard",
+    "kev",
+    "anatomy",
+    "anny",
+    "fusion-ai-studio",
+    "esearch",
+    "genoffice",
+    "jev-chat-jarvis",
+    "openbao",
+    "hindsight"
   ],
   "tier1": [
     {
-      "id": "lint",
-      "name": "Lint",
-      "url": "https://github.com/shadcn-ui/lint",
+      "id": "laya-mlx",
+      "name": "Laya Mlx",
+      "url": "https://github.com/mizorewww/laya-mlx",
       "current": "AI 代理",
-      "proposed": "開發工具",
-      "rule": "R5",
-      "ruleDesc": "AI 代碼審查／PR 審查工具 → 開發工具",
-      "step": "決策樹 §2-6 ／ §3 邊界「AI code review」",
-      "why": "identity:lint|linter",
+      "proposed": "AI 框架",
+      "rule": "R4",
+      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
+      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
+      "why": "identity:本地推理|本地模型|本地部署|模型服務",
       "stars": 0
     }
   ],
@@ -1529,14 +1599,6 @@
       "proposed": "AI 代理",
       "rule": "R6",
       "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
-    },
-    {
-      "id": "knowledge-work-plugins",
-      "name": "Knowledge Work Plugins",
-      "current": "AI 代理",
-      "proposed": "研究",
-      "rule": "R9",
-      "reason": "學術研究／論文／文獻 → 研究"
     },
     {
       "id": "zarazhangrui-frontend-slides",
@@ -1787,16 +1849,6 @@
       "stars": 74222
     },
     {
-      "id": "warp",
-      "name": "warp",
-      "current": "AI 框架",
-      "proposed": "知識管理",
-      "rule": "D2-T3",
-      "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
-      "why": "identity:vector (db|database|store)",
-      "stars": 2236
-    },
-    {
       "id": "oil-motion",
       "name": "oil-motion",
       "current": "UI/UX設計",
@@ -1835,6 +1887,16 @@
       "ruleDesc": "前端框架、設計系統、網頁動畫、原型、圖標庫 → UI/UX設計（敘述提及）",
       "why": "identity:figma (plugin|api|library|sdk|widget",
       "stars": 1568
+    },
+    {
+      "id": "models-of-human-anatomy",
+      "name": "Models Of Human Anatomy",
+      "current": "開發工具",
+      "proposed": "3D工程繪圖",
+      "rule": "D7-T3",
+      "ruleDesc": "CAD、3D 建模、3D 資產／零件庫 → 3D工程繪圖（敘述提及）",
+      "why": "identity:\\bcad\\b|parametric (3d|model)|opensc",
+      "stars": 0
     }
   ]
 }

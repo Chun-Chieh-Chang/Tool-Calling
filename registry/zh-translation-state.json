@@ -2349,46 +2349,48 @@
     "tensorflow": {
       "description_zh": "人人可用的開源機器學習框架",
       "useCase_zh": "人人可用的開源機器學習框架",
-      "at": "2026-09-20T03:05:44.854Z",
+      "at": "2026-09-27T05:18:03.125Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "非 Python 與 C++ 的 API 不保證相容性，且可能向后不相容。",
+        "Nightly 二進位檔僅供測試使用，不適用於生產環境的穩定性。"
       ]
     },
     "ohmyzsh": {
       "description_zh": "🙃   一個由社群驅動（擁有 2,500+ 貢獻者）的 zsh 配置管理框架，包含 300+ 個可選外掛程式（rails、git、macOS、hub、docker、homebrew、node、php、python 等）",
       "useCase_zh": "🙃   一個由社群驅動（擁有 2,500+ 貢獻者）的 zsh 配置管理框架，包含 300+ 個可選外掛程式（rails、git、macOS、hub、docker、homebrew、node、php、python 等）、140+ 個主題來點綴你的早晨，以及自動更新工具讓你輕鬆跟上社群的最新更新。",
-      "at": "2026-09-20T03:05:44.854Z",
+      "at": "2026-09-27T05:18:03.127Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要已安裝並啟用 Zsh v4.3.9 或更新版本。",
+        "不原生支援 OS/2 Warp。"
       ]
     },
     "worldmonitor": {
       "description_zh": "即時全球情報儀表板。AI驅動的新聞聚合、地緣政治監控與基礎設施追蹤，整合於統一的情境感知介面中",
       "useCase_zh": "即時全球情報儀表板。AI驅動的新聞聚合、地緣政治監控與基礎設施追蹤，整合於統一的情境感知介面中",
-      "at": "2026-09-20T03:05:50.206Z",
+      "at": "2026-09-27T05:18:03.127Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "AGPL v3 授權要求衍生作品遵守 copyleft 義務。",
+        "Country Instability Index 評分僅限 Tier-1 國家。",
+        "原生 Tauri 應用程式需特定的桌面作業系統環境。"
       ]
     },
     "awesome-claude-skills": {
       "description_zh": "精選的 Claude Skills、資源與工具列表，用於自訂 Claude AI 工作流程",
       "useCase_zh": "精選的 Claude Skills、資源與工具列表，用於自訂 Claude AI 工作流程",
-      "at": "2026-09-20T03:05:50.206Z",
+      "at": "2026-09-27T05:18:03.127Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "作為精選列表／存放庫運作，並非獨立軟體工具或執行引擎。",
+        "依賴真實世界操作的進階自動化功能需要額外設定 Composio MCP Gateway 與 API 金鑰。"
       ]
     },
     "ktransformers": {
       "description_zh": "體驗異構 LLM 推理/微調優化的靈活框架",
       "useCase_zh": "體驗異構 LLM 推理/微調優化的靈活框架",
-      "at": "2026-09-20T03:05:50.206Z",
+      "at": "2026-09-27T05:18:47.812Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要特定 CPU 指令集支援（AMX、AVX2 或 AVX512）以達到最佳效能；沒有這些功能的標準 x86 CPU 可能無法實現預期的加速。",
+        "主要為 MoE 模型設計；對於具有足夠 VRAM 的密集模型，可能無法相對於標準僅限 GPU 的框架提供顯著的優勢。",
+        "相較於標準推理框架，需要複雜的設定來配置 CPU-GPU 排程和量化核心。"
       ]
     },
     "opencodex": {
@@ -2815,46 +2817,50 @@
     "generative-ai-for-beginners": {
       "description_zh": "21 堂課程，從零開始學習建構生成式 AI",
       "useCase_zh": "21 堂課程，從零開始學習建構生成式 AI",
-      "at": "2026-09-20T03:13:00.650Z",
+      "at": "2026-09-27T05:18:47.812Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不是用於建構應用程式的生產就緒 SDK 或函式庫；它僅為教育資源。",
+        "標準的複製操作可能因包含 50 多種語言的翻譯資料夾而導致下載尺寸顯著增大。",
+        "主要專注於 Azure 和 Microsoft 服務，這可能與嚴格致力於非 Microsoft 雲端供應商的開發者不符。"
       ]
     },
     "cherry-studio": {
       "description_zh": "具有智慧對話、自主代理和 300+ 助理的 AI 生產力工作室，統一存取前沿 LLM",
       "useCase_zh": "具有智慧對話、自主代理和 300+ 助理的 AI 生產力工作室，統一存取前沿 LLM",
-      "at": "2026-09-20T03:13:00.650Z",
+      "at": "2026-09-27T05:18:47.812Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適合用於生產級高並發 API 服務，因為它是桌面客戶端。",
+        "需要在本地作業系統（Windows/Mac/Linux）上安裝，而非僅限網頁的解決方案。"
       ]
     },
     "goose": {
       "description_zh": "開源、可擴展的 AI 代理，超越代碼建議——使用任何 LLM 安裝、執行、編輯和測試",
       "useCase_zh": "開源、可擴展的 AI 代理，超越代碼建議——使用任何 LLM 安裝、執行、編輯和測試",
-      "at": "2026-09-20T03:13:00.650Z",
+      "at": "2026-09-27T05:18:47.812Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要在具有支援作業系統（macOS、Linux 或 Windows）的本機機器上安裝。",
+        "依賴外部 LLM 提供者或 API 金鑰/訂閱，意味著預設不包含內建本地模型。",
+        "不是雲端託管服務；使用者必須在本機管理代理程式的執行環境。"
       ]
     },
     "sglang": {
       "description_zh": "SGLang 是一款高效能大語言模型與多模態模型服務框架",
       "useCase_zh": "SGLang 是一款高效能大語言模型與多模態模型服務框架",
-      "at": "2026-09-20T03:13:00.650Z",
+      "at": "2026-09-27T05:18:47.812Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要高階 GPU/TPU 硬體以達到最佳效能基準測試。",
+        "由於強調大規模 EP 和 PD 分離，不適合單 GPU 消費者部署。",
+        "依賴特定的模型架構以獲得 Day 0 支援最佳化。"
       ]
     },
     "llamafactory": {
       "description_zh": "100+ LLMs 與 VLMs 的統一高效微調（ACL 2024）",
       "useCase_zh": "100+ LLMs 與 VLMs 的統一高效微調（ACL 2024）",
-      "at": "2026-09-20T03:13:04.886Z",
+      "at": "2026-09-27T05:18:56.118Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要本地 GPU 資源或特定雲端整合（Colab/PAI/NVIDIA）才能有效執行訓練",
+        "非設計用於從零開始的預訓練或從零到一建立模型",
+        "較新且尚未發布的模型架構支援可能落後於模型發布週期"
       ]
     },
     "awesome-n8n-templates": {
@@ -2931,11 +2937,11 @@
     },
     "react": {
       "description_zh": "用於網頁和本機使用者介面的函式庫。",
-      "at": "2026-09-20T03:13:10.893Z",
+      "at": "2026-09-27T05:18:56.118Z",
       "advantages_zh": "宣告式 UI 模型大幅降低狀態管理的認知負荷，組件可組合性高；Virtual DOM diffing 使 UI 更新高效，無需手動操作 DOM；生態系成熟：Hooks、Server Components、Next.js 等配套完整，大型專案可持續維護。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適合需要零 JavaScript 執行或純靜態內容產生而無需 JS 執行階段的情境",
+        "不限定其餘技術堆疊，開發者須自行處理與其他程式庫或框架的整合"
       ]
     },
     "linux": {
@@ -3038,12 +3044,12 @@
     },
     "video-shotcraft": {
       "description_zh": "Claude Code 與 Codex 的 AI 影片技能——使用 Remotion 製作電影感產品影片：106 張鏡頭配方卡、161 個動態預覽、一個可直接投入生產的模板",
-      "at": "2026-09-20T03:13:56.522Z",
+      "at": "2026-09-27T05:19:10.775Z",
       "advantages_zh": "106 張鏡頭配方卡 + 161 個動作預覽，提供可直接套用的拍片框架,整合 Remotion 產生 MP4，輸出即最終產物，無需額外剪輯軟體,以 Claude Code / Codex 技能格式提供，可直接被 AI Agent 呼叫",
       "useCase_zh": "產品團隊用 AI Agent 自動產製具有電影感的產品展示影片。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要本機 Node.js 環境來執行 Remotion 渲染器與 workbench 腳本。",
+        "自動化工作流程依賴特定的 AI agent 介面（Claude Code 或 Codex）。"
       ]
     },
     "os-taxonomy": {
@@ -3059,10 +3065,11 @@
     },
     "bento": {
       "description_zh": "Bento，裝進一個檔案的辦公室套件",
-      "at": "2026-09-20T03:14:20.621Z",
+      "at": "2026-09-27T05:19:10.775Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "編輯功能以桌面端為主；行動裝置可良好地瀏覽與展示內容，但缺乏完整的編輯能力。",
+        "企業級的身分驗證功能尚未內建；顯示名稱為未驗證的聲明，適用於信任的共享密鑰房間，但不適合高安全性公開環境。",
+        "即時協作時的復原功能基於快照機制，可能會回覆協作者對同一屬性的並行編輯。"
       ]
     },
     "geolibre": {
@@ -3154,12 +3161,13 @@
     },
     "dashi-taskboard": {
       "description_zh": "一款本地優先的問題看板，於瀏覽器中執行，可透過獨立 CDP 啟動器或其注入腳本嵌入 Codex。相同的 HTTP API 同時驅動 React UI 與 `taskctl` CLI",
-      "at": "2026-09-20T02:39:58.826Z",
+      "at": "2026-09-27T05:19:10.776Z",
       "advantages_zh": "本地優先設計，資料不離開裝置，無外部雲端依賴,可嵌入 Codex，Agent 與人類共用同一個任務面板，協作無縫,純瀏覽器執行，無需安裝 Node.js 或資料庫",
       "useCase_zh": "開發者需要輕量、隱私友善的個人或小型團隊任務管理，並與 AI Agent 協同工作。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要 Node.js 22.5 或更新版本方可在本機執行。",
+        "建構 macOS 與 Windows 桌面應用程式需要特定的 Rust 工具鏈與目標設定。",
+        "Linux 支援僅限於 Ubuntu 24.04 x64 套件。"
       ]
     },
     "conversation-steganography": {
@@ -3173,12 +3181,13 @@
     },
     "nativ": {
       "description_zh": "原生於 Mac 的本地 AI。透過單一 macOS 應用程式進行聊天、服務、監控並連接 MLX 模型",
-      "at": "2026-09-20T02:39:58.826Z",
+      "at": "2026-09-27T05:19:10.776Z",
       "advantages_zh": "純 macOS 原生 App，與 MLX 框架原生整合，效能優於跨平台方案,一介面整合 LLM 聊天、模型管理、效能監控，無需切換多個工具,本地推理，資料不出裝置，隱私完整",
       "useCase_zh": "Mac 開發者想在本地跑 LLM 並監控效能，不想依賴雲端 API 的場景。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要 macOS 26 以上版本與 Apple silicon（不支援 Intel Mac）。",
+        "初始模型下載與建置相依性需要網路連線；推理為本地執行，但預設情況下設定並非完全離線可用。",
+        "效能與穩定性高度依賴可用的統一記憶體；若模型組合超出硬體限制會出現明確警告。"
       ]
     },
     "weathernext": {
@@ -3876,19 +3885,20 @@
     },
     "python": {
       "description_zh": "以 Python 實作的所有演算法",
-      "at": "2026-09-20T03:13:30.910Z",
+      "at": "2026-09-27T05:18:56.118Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適合生產環境，因為實作方式可能不如 Python 標準程式庫有效率",
+        "主要著重於學習而非效能最佳化"
       ]
     },
     "vue": {
       "description_zh": "這是 Vue 2 的存放庫。如需 Vue 3，請前往 https://github.com/vuejs/core",
-      "at": "2026-09-20T03:13:30.910Z",
+      "at": "2026-09-27T05:18:56.119Z",
       "advantages_zh": "單檔組件（SFC）整合 template/script/style，開發效率與可讀性兼顧；響應式系統自動追蹤依賴，無需手動宣告響應式變數；輕量核心設計，可搭配 Vite 構建極快的開發與打包體驗。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適合新專案，Vue 2 已於 2023 年 12 月 31 日終止支援且不再獲得更新或修復",
+        "不支援 Internet Explorer 8 或更早版本",
+        "缺乏現代 ES6+ 特性，僅針對符合 ES5 的瀏覽器"
       ]
     },
     "computer-science": {
@@ -3901,12 +3911,11 @@
     },
     "system-prompts-and-models-of-ai-tools": {
       "description_zh": "完整的 Augment Code、Claude Code、Cluely、CodeBuddy、Comet、Cursor、Devin AI、Junie、Kiro、Leap.new、Lovable、Manus、NotionAI、Orchids.app、Perplexity、Poke、Qoder、Replit、Same.dev、Trae、Traycer AI、V（及其他 AI 工具）的系統提示與模型",
-      "at": "2026-09-20T03:13:30.910Z",
+      "at": "2026-09-27T05:18:56.119Z",
       "advantages_zh": "收錄大量主流 AI 工具（Cursor、Claude Code、Copilot 等）的系統提示詞，是逆向工程提示工程的珍貴語料；涵蓋多家廠商的模型版本，可比較不同工具的設計哲學差異；持續更新，跟得上工具快速迭代的速度。",
       "useCase_zh": "研究或改進自身 AI Agent 的系統提示詞時，參照成熟工具的設計模式。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "並非開發工具或框架，而是包含洩漏系統提示的靜態資料存放庫"
       ]
     },
     "autogpt": {
@@ -3958,12 +3967,13 @@
     },
     "firecrawl": {
       "description_zh": "可大規模搜尋、爬取並與網路互動的 context API。🔥",
-      "at": "2026-09-20T03:15:01.226Z",
+      "at": "2026-09-27T05:19:27.455Z",
       "advantages_zh": "一次 API 同時完成搜尋、爬取、互動，省去多工具拼接，專為 AI Agent 優化，輸出格式直接可餵給 LLM，支援大規模爬取，遠比手動寫 crawler 穩定",
       "useCase_zh": "建構需要即時網頁資料的 RAG 系統或 AI Agent，無需自己維護爬蟲基礎設施。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要 API key，設計為託管服務或自行架設後端，非瀏覽器擴充功能",
+        "依賴對目標的網路存取；若無特定憑證設定，嚴格認證或私人內網網站可能失敗",
+        "依賴即時網路互動，不適合離線資料處理"
       ]
     },
     "obsidian-skills": {
@@ -4187,12 +4197,13 @@
     },
     "codex-router": {
       "description_zh": "針對 Codex 的外層模型路由，提供引導式 Kimi OAuth/API、DeepSeek，支援安全遷移與回滾。",
-      "at": "2026-09-20T03:14:53.874Z",
+      "at": "2026-09-27T05:19:27.455Z",
       "advantages_zh": "支援 Kimi OAuth 與 DeepSeek API，提供 Codex 之外更多模型選擇,內建安全遷移與回滾機制，切換模型不會中斷現有工作流,以 LiteLLM 為底層，統一 API 格式，程式碼遷移成本低",
       "useCase_zh": "團隊使用 Codex 但需要依成本或能力切換 DeepSeek / Kimi 等替代模型。",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "非 OpenAI 相容的訂閱代理；不實作 token 到模型端點的行為，也不在其他客戶端選擇器中加入假訂閱模型",
+        "第三方軟體中直接使用 Gemini CLI OAuth tokens 未實作，且 Google 條款明文禁止",
+        "未宣傳檔案系統與終端機功能，且在 Control Center 提供前台審核介面前，預設拒絕權限請求"
       ]
     },
     "story-to-handdrawn-video": {
@@ -4503,10 +4514,10 @@
     "javaguide": {
       "description_zh": "Java 面試 & 後端通用面試指南，涵蓋計算機基礎、資料庫、分散式、高併發、系統設計與 AI 應用開發",
       "useCase_zh": "Java 面試 & 後端通用面試指南，涵蓋計算機基礎、資料庫、分散式、高併發、系統設計與 AI 應用開發",
-      "at": "2026-09-20T03:05:50.206Z",
+      "at": "2026-09-27T05:18:03.127Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "主要內容為簡體中文，非中文使用者需翻譯或具備語言能力才能使用。",
+        "專注於 Java 與後端技術，不適合前端或非 JVM 語言的面試準備。"
       ]
     },
     "frame": {
@@ -4968,10 +4979,11 @@
     },
     "turbo-fieldfare": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要 macOS 26、Metal 4 與 Xcode 26；無法在較舊的 macOS 版本或 Intel Mac 上執行。",
+        "僅限 Apple Silicon arm64 架構，且為針對 Gemma 4 26B-A4B 的模型專用實作，並非適用於所有模型的通用推理引擎。",
+        "需要網路連線，且初始模型下載與安裝約佔用 14.3 GB 儲存空間。"
       ],
-      "at": "2026-09-20T03:13:51.175Z"
+      "at": "2026-09-27T05:19:10.775Z"
     },
     "theremotefreelancer": {
       "negativeConstraints_zh": [
@@ -4999,45 +5011,49 @@
     },
     "qwen-mm-plugins": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "「core」插件依賴本地多模態模型能力進行原生讀取；使用僅支援文字、缺乏視覺輸入基礎模型的代理不適用",
+        "透過「mhs」插件進行硬體控制需存取真實物理硬體或特定模擬環境，純軟體部署且無此基礎設施的情境不適用"
       ],
-      "at": "2026-09-20T03:16:12.238Z"
+      "at": "2026-09-27T05:19:27.455Z"
     },
     "comfyui": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要本地 GPU 硬體或付費雲端訂閱；無足夠運算資源存取的使用者不適用",
+        "與簡單網頁 UI 相比，基於節點的圖形介面學習曲線較陡峭，對不需微調控制的使用者效果較差"
       ],
-      "at": "2026-09-20T03:16:12.238Z"
+      "at": "2026-09-27T05:19:27.455Z"
     },
     "warp": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "實用 Kimi K3 效能需要 64 GB RAM；32 GB 機器會大量換頁",
+        "不適合高吞吐量伺服，若因換頁錯誤導致專家快取超出最佳範圍，吞吐量會顯著下降",
+        "限用於支援混合專家架構的模型以達磁碟串流效率"
       ],
-      "at": "2026-09-20T03:16:17.927Z"
+      "at": "2026-09-27T05:19:27.455Z"
     },
     "phone-harness": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "無法處理多點觸控、相機輸入或 Face ID 生物辨識流程",
+        "無法處理受 DRM 保護的影片，會顯示為黑畫面",
+        "OCR 僅限文字識別；未標籤圖示需搭配具視覺能力的模型"
       ],
-      "at": "2026-09-20T03:16:17.927Z"
+      "at": "2026-09-27T05:19:32.940Z"
     },
     "oil-motion": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需依賴外部 AI 影片生成服務與 API keys，因此生成階段並非純粹本地或離線可用。",
+        "對於標準 CSS transitions 即可應付的靜態或簡單懸停效果並不適合，此管線對低複雜度動畫而言屬過度設計。",
+        "相依套件包含 Python、FFmpeg 及特定憑證儲存系統（keyring），可能在受限環境中增加部署難度。"
       ],
-      "at": "2026-09-20T03:16:17.927Z"
+      "at": "2026-09-27T05:19:32.940Z"
     },
     "wechat-ai": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需嚴格遵守騰訊微信 iLink 條款，個人 bot 有頻率限制與下架風險。",
+        "依賴外部 LLM API，角色扮演內容會離開本地環境，引發隱私疑慮。",
+        "iLink 協議基於行為觀察建立，可能變更，需調整客戶端層。"
       ],
-      "at": "2026-09-20T03:16:17.927Z"
+      "at": "2026-09-27T05:19:32.940Z"
     },
     "go-stock": {
       "negativeConstraints_zh": [
@@ -5231,10 +5247,11 @@
     },
     "freedomain": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "僅提供特定免費網域（.DPDNS.ORG、.US.KG、.QZZ.IO、.XX.KG、.QD.JE）；不提供標準高級或國家代碼網域。",
+        "此倉庫主要用於文件與學習；實際應用程式原始碼在另一個倉庫中維護。",
+        "檢舉處理時間可能從數小時到數日不等，視案件複雜度而定。"
       ],
-      "at": "2026-09-20T03:17:26.075Z"
+      "at": "2026-09-27T05:22:18.979Z"
     },
     "photo-abstract-editorial": {
       "negativeConstraints_zh": [
@@ -5652,24 +5669,27 @@
     },
     "opengym": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要手動設定與維護 Docker Compose 環境，對於偏好零配置雲端服務的使用者並不適合。",
+        "AGPL v3 授權條款施加嚴格的 copyleft 義務，使其不適合嵌入專有商業應用或閉源產品中。",
+        "跨裝置同步、管理後台與通行金鑰登入等進階功能僅在自我託管實例中提供，不包含在靜態瀏覽器演示中。"
       ],
-      "at": "2026-09-20T03:19:36.894Z"
+      "at": "2026-09-27T05:22:18.982Z"
     },
     "dsh-desktop-anywhere": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "僅限於 Windows x64 與 macOS Universal 平台；不支援 Linux 桌面環境。",
+        "嚴格依賴 DeepSeek Harness；未經外掛調整，無法與其他 LLM 後端搭配使用。",
+        "本為社群專案，與 DeepSeek 無隸屬關係，亦無官方背書。"
       ],
-      "at": "2026-09-20T02:46:02.163Z"
+      "at": "2026-09-27T05:22:18.983Z"
     },
     "grok-bot-0-18-reconstructed": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需 macOS 搭配 Apple Silicon；不支援 Intel Mac、Windows 或 Linux",
+        "本地 Docker 沙箱需執行中的 Docker Desktop 或相容的本地 Docker daemon",
+        "Claude Code 與 Codex 的路由選項需這些客戶端已設定的本地認證；此兩種模式不支援獨立 API 金鑰"
       ],
-      "at": "2026-09-20T02:46:02.163Z"
+      "at": "2026-09-27T05:23:51.618Z"
     },
     "shiji-kb": {
       "negativeConstraints_zh": [
@@ -5901,10 +5921,11 @@
     },
     "h3-c": {
       "negativeConstraints_zh": [
-        "由自動化搜尋收錄，建議人工審查確認適用情境後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需 Apple Silicon 與特定圖形終端協議方能支援即時預覽功能",
+        "SSD 串流容易受散熱降頻影響，效能相較全 residency 模式最多下降 84%",
+        "不支援在同一工作階段中混用 Ref2VA 條件影像與首/末幀錨點"
       ],
-      "at": "2026-09-20T03:16:32.920Z"
+      "at": "2026-09-27T05:19:32.940Z"
     },
     "vnpy": {
       "negativeConstraints_zh": [
@@ -5997,17 +6018,19 @@
     },
     "dsh-anchored-standard": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "本專案已凍結，不再接受或處理新的問題或拉取請求。",
+        "預設值針對 DeepSeek V4 Pro 調整，該模型已退役並轉至 V4.1 Flash；後繼模型的首輪軌跡尚未測量，因此效能可能是推測而非驗證。",
+        "這些預設值所依賴的評估循環（Project2 類執行與多試次滾動/探測實驗）在維護模式下已無法負擔。"
       ],
-      "at": "2026-09-20T03:17:56.653Z"
+      "at": "2026-09-27T05:22:18.982Z"
     },
     "dsh-web-ui": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需要一個正在執行的 DeepSeek Harness (DSH) 實例（CLI dsh web 或官方桌面客戶端）作為主機環境",
+        "在封鎖 SSE 的網路環境（如預設的 Cloudflare 快速隧道或 Tailscale Serve 設定）中，Server-Sent Events (SSE) 即時串流可能降級為高頻率輪詢。",
+        "此倉庫不再以獨立桌面安裝程式分發；安裝僅限透過 DSH 外掛管理器。"
       ],
-      "at": "2026-09-20T03:17:56.653Z"
+      "at": "2026-09-27T05:22:18.982Z"
     },
     "improve-claude-md": {
       "negativeConstraints_zh": [
@@ -6257,28 +6280,56 @@
       "skipped": "already zh or empty"
     },
     "mono-color-skill": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:04:51.672Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "不適合生成高擬真度、多色寫實藝術或需完整 CMYK 或 RGB 色彩範圍的標準商業圖形。",
+        "預設不套用復古效果；需經使用者明確要求，否則輸出採當代編輯風格。"
+      ]
     },
     "praxist": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:04:51.674Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要一個已可執行且具有可衡量目標的專案；不從頭設計專案。",
+        "需要 Python 3.11+。",
+        "針對使用開源模型 API 或 Codex 訂閱的持續研究進行優化，而非一次性簡單查詢。"
+      ]
     },
     "fastpotify": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:04:51.674Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要 Spotify Premium 訂閱才能播放音訊；免費帳號僅能瀏覽和搜尋。",
+        "特定的本地 Seek 操作可能會遭遇解碼器、下載及裝置緩衝區延遲。",
+        "無法官方更改 Spotify 播放清單的播放順序；拖曳時會自動切換至本地安排。"
+      ]
     },
     "goldie": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:04:51.674Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要 Node 20+ 及 PATH 中的 ffmpeg；取得 App Store 螢幕截圖必須使用 macOS，而 Google Play 需要特定的 Android 模擬器硬體設定（Pixel 10/9 Pro）。",
+        "除錯建置會導致 LogBox 橫幅出現在截圖中；必須使用 Release 建置才能取得乾淨輸出。",
+        "App Store 預覽影片必須嚴格遵守 15-30 秒時長限制，而 Google Play 則不強制此限制。"
+      ]
     },
     "delivery-harness": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:04:51.674Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "不適合用真實個人或訂單資料進行生產用途，因為它是使用合成資料和記憶體狀態的教育性 MVP。",
+        "不得暴露於公共網際網路，或未經身份驗證、政策執行及人工審核即用於執行報酬決策。",
+        "缺乏持久化、向量嵌入、身份驗證及限流等生產級功能，使其不適合高風險操作環境。"
+      ]
     },
     "stop-that-shit": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:00.276Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "一般主機需 Node.js 18+，Pi 0.84.4 需 Node.js 22.19+。",
+        "僅在透過特定指令或鉤子明確呼叫時執行防護，不會在無使用者提示的情況下自動監控所有 agent 動作。"
+      ]
     },
     "tokentab": {
       "at": "2026-09-20T03:22:44.791Z",
@@ -6289,24 +6340,47 @@
       "skipped": "already zh or empty"
     },
     "openwiki": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:00.276Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需 Node.js 22.22.0 或更新版本。",
+        "在 Windows 上透過 `bun` 安裝時，需安裝含 C++ 桌面開發負載的 Visual Studio Build Tools，以編譯 better-sqlite3。",
+        "使用者必須主動與支援的程式設計 agent 互動，才能順利初始化或執行該工具。"
+      ]
     },
     "obscura": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:00.277Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "目前依賴 V8 引擎執行 JavaScript，與其它 JS 引擎相比，可能產生特定的授權或整合限制。",
+        "作為即插即用替代品，假設目標自動化腳本與 Obscura 實作的 CDP 子集相容；對於小眾使用情境，該子集可能與完整 Chrome CDP 有所差異。",
+        "README 強調記憶體與啟動速度上的優勢，但未提供複雜重度 DOM 操作任務的基準資料，暗示在極端情況下與成熟 Chromium 相比可能有限制。"
+      ]
     },
     "agent-orchestrator": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:00.277Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需在 macOS、Windows 或 Linux 上安裝本機桌面版本；不作為伺服器端或雲端原生服務運作。",
+        "專為基於 Git 的原始碼控管而設計；使用非 Git VCS 或純檔案型專案的倉庫可能不相容。"
+      ]
     },
     "graft": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:00.277Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需本機檔案系統存取權限來建置並維護程式碼圖形快取。",
+        "圖形資料為本地端且可重新產生，因此無法直接透過 Git 共享，每位團隊成員都需執行重新建置。"
+      ]
     },
     "kunpeng": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:15.843Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "不適合需要零維護、開箱即用的商業 SaaS 工具的使用者，因為它需要基本的程式設計和 AI 工作流程知識。",
+        "Windows 版本正在測試中，可能遇到問題；由於缺乏硬體加速支援，Windows 上的影片編碼會回退到 libx264。",
+        "高精度商業級編輯仍有侷限，需要外部專業編輯軟體進行最終修飾。"
+      ]
     },
     "unlazy": {
       "at": "2026-09-20T03:22:44.792Z",
@@ -6321,8 +6395,12 @@
       "skipped": "already zh or empty"
     },
     "magnitude": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:15.843Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "不適合僅限雲端環境且不允许本地執行的情況",
+        "需要大量的本機記憶體或運算資源才能有效運行大型模型"
+      ]
     },
     "weread-hot-booklists": {
       "at": "2026-09-20T03:22:44.792Z",
@@ -6345,23 +6423,43 @@
       "skipped": "already zh or empty"
     },
     "howtolivebetter": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:15.843Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "如果需要特定 608 個列出的情境或更新後的醫療標準以外的建議，使用者需要手動驗證事實",
+        "Unlicense 代表無保修或責任，使其不適合在高風險法律或醫療依賴中作為主要來源，除非經過專業諮詢",
+        "非英文翻譯版本是非官方的，可能與原始中文內容的新增項目或變更不同步"
+      ]
     },
     "spotifast": {
-      "at": "2026-09-20T05:09:33.211Z",
+      "at": "2026-09-27T05:05:15.843Z",
       "skipped": "already zh or empty",
-      "advantages_zh": "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect, 跨 Linux、macOS 與 Windows 三大平台, 無需依賴原生 Spotify 客戶端"
+      "advantages_zh": "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect, 跨 Linux、macOS 與 Windows 三大平台, 無需依賴原生 Spotify 客戶端",
+      "negativeConstraints_zh": [
+        "無法使用 Spotify Free 帳號播放音樂；播放嚴格需要 Spotify Premium",
+        "不支援 audiobook 的本機播放，當啟用本地播放時，它們在 Podcasts 檢視中會被隱藏",
+        "在名稱從 Fastpotify 變更為 Spotifast 期間遷移 Flatpak 安裝可能需要手動干預以保留設定"
+      ]
     },
     "my-girlfriend-jingtian-latex": {
-      "at": "2026-09-20T05:09:33.211Z",
+      "at": "2026-09-27T05:05:15.843Z",
       "skipped": "already zh or empty",
-      "advantages_zh": "提供可直接編譯的 XeLaTeX 專案結構（含 main.tex 與編譯指令）, 預設 5×8 吋排版尺寸, 相容標準 TeX Live 發行版"
+      "advantages_zh": "提供可直接編譯的 XeLaTeX 專案結構（含 main.tex 與編譯指令）, 預設 5×8 吋排版尺寸, 相容標準 TeX Live 發行版",
+      "negativeConstraints_zh": [
+        "需要 XeLaTeX 和標準 TeX Live 發行版來編譯。",
+        "輸出固定的 5x8 英吋 PDF 版面，不適合變數尺寸或動態內容生成。"
+      ],
+      "useCase_zh": "需要以 XeLaTeX 製作 5×8 吋規格印刷品（寫真集、小冊子），想直接沿用現成排版設定時。"
     },
     "ai-infra-book": {
-      "at": "2026-09-20T05:09:33.211Z",
+      "at": "2026-09-27T05:10:46.078Z",
       "skipped": "already zh or empty",
-      "advantages_zh": "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計, 開源包含全書正文、PDF 與配套計算工具及實驗"
+      "advantages_zh": "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計, 開源包含全書正文、PDF 與配套計算工具及實驗",
+      "negativeConstraints_zh": [
+        "需要線性代數、Python 和電腦系統方面的基礎知識；不適合沒有軟體工程或系統設計技術背景的讀者。",
+        "由於 Git LFS 追蹤的文件（包含論文和實驗資料）導致倉儲體積龐大（約 20GB），若 LFS 未正確設定，初始 clone 可能緩慢或困難。",
+        "實驗復現需要特定的硬體設定（GPU/加速器）和依賴項，這些在標準開發環境中未必都可用。"
+      ]
     },
     "lint": {
       "at": "2026-09-20T05:09:33.211Z",
@@ -6378,9 +6476,13 @@
       "skipped": "already zh or empty"
     },
     "gathered-scenes-zine-skill": {
-      "at": "2026-09-20T05:09:33.211Z",
+      "at": "2026-09-27T05:19:32.940Z",
       "skipped": "already zh or empty",
-      "advantages_zh": "提供 zine-skill 相關功能"
+      "advantages_zh": "提供 zine-skill 相關功能",
+      "negativeConstraints_zh": [
+        "嚴格限於個人、非商業用途；禁止銷售、訂閱、代理業務或 SaaS/API 整合。",
+        "需 Codex 環境才能運作；技能須手動複製至 ~/.codex/skills 目錄並重新啟動應用程式方能載入。"
+      ]
     },
     "mattpocock-skills": {
       "at": "2026-09-20T03:43:42.958Z",
@@ -6411,26 +6513,46 @@
     "stirling-pdf": {
       "description_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
       "useCase_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
-      "at": "2026-09-20T05:09:35.651Z",
-      "advantages_zh": "GitHub #1 PDF 應用程式，可在任何裝置、任何地點編輯 PDF"
+      "at": "2026-09-27T05:10:46.078Z",
+      "advantages_zh": "GitHub #1 PDF 應用程式，可在任何裝置、任何地點編輯 PDF",
+      "negativeConstraints_zh": [
+        "由於包含 50 多個工具和企業功能，需要大量伺服器資源或在本機安裝。",
+        "授權為 open-core 模式，進階功能或特定企業支援可能需付費，而非完全開源。",
+        "不適合需要雲端託管 PDF 處理的情境，因為主要設計用於自建或本機桌面環境。"
+      ]
     },
     "kaggle-tpu-lab": {
       "description_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、Codex、opencode 和 pi。",
       "useCase_zh": "免費 Kaggle TPU v5e-8 上的前沿級開放模型：GLM-5.3-Flash 320B MoE（約 64 tok/s，我們的 JAX 引擎）和 Qwen3.8-27B bf16（約 130 tok/s），262k 上下文，前綴快取。支援 Claude Code、C",
-      "at": "2026-09-20T05:09:35.651Z",
-      "advantages_zh": "免費提供 Frontier-class 開源模型運行於 Kaggle TPU v5e-8，支援 262k 上下文長度與 prefix caching，兼容 Claude Code、Codex、opencode 與 pi"
+      "at": "2026-09-27T05:10:46.078Z",
+      "advantages_zh": "免費提供 Frontier-class 開源模型運行於 Kaggle TPU v5e-8，支援 262k 上下文長度與 prefix caching，兼容 Claude Code、Codex、opencode 與 pi",
+      "negativeConstraints_zh": [
+        "每週僅限 Kaggle 免費配額約 20 小時 TPU 使用量，不適合大量生產工作負載。",
+        "每次執行僅能持續不到九小時，Kaggle 環境就會終止，需要手動重新初始化以維持持續運作。",
+        "需要經過電話驗證的 Kaggle 帳戶才能使用 TPU，這會排除沒有特定地區或帳戶權限的使用者。"
+      ]
     },
     "security-audit-skill": {
       "description_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
       "useCase_zh": "用於多階段安全稽核的編碼代理技能，具有獨立驗證的機器可讀發現",
-      "at": "2026-09-20T05:09:35.651Z",
-      "advantages_zh": "多階段安全稽核能力，獨立驗證的發現結果，可機器讀取的結果"
+      "at": "2026-09-27T05:10:46.078Z",
+      "advantages_zh": "多階段安全稽核能力，獨立驗證的發現結果，可機器讀取的結果",
+      "negativeConstraints_zh": [
+        "需要支援工具使用和並行子代理的編碼代理模型。",
+        "需要作業系統強制執行的沙箱，以禁用目標構建和處理的外部網路。",
+        "需要 Node.js 來運行零依賴的發現與覆蓋度歸檔驗證器。"
+      ]
     },
     "openstock": {
       "description_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費。",
       "useCase_zh": "OpenStock 是昂貴市場平台的開源替代方案。追蹤即時價格、設定個人化警示，並探索詳細公司洞察 — 公開建構，為每個人，永遠免費",
-      "at": "2026-09-20T05:09:35.651Z",
-      "advantages_zh": "即時股價追蹤、個人化警示、無成本的詳細公司洞察"
+      "at": "2026-09-27T05:10:46.078Z",
+      "advantages_zh": "即時股價追蹤、個人化警示、無成本的詳細公司洞察",
+      "negativeConstraints_zh": [
+        "非券商；無法執行交易。",
+        "市場數據可能因提供者規則而有延遲。",
+        "AGPL-3.0 授權要求若修改後作為服務部署時需釋放原始碼。"
+      ]
     },
     "claude-code": {
       "description_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼 — 全部透過自然語言指令完成。",
@@ -6447,12 +6569,22 @@
       "skipped": "already zh or empty"
     },
     "niubigeo": {
-      "at": "2026-09-21T12:36:37.343Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:39.447Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要個人 OpenRouter API key 才能運作",
+        "取決於透過 OpenRouter 支援的特定 LLM 的準確性和可用性",
+        "需要 Node.js 22.13+ 或 Docker 進行自託管部署"
+      ]
     },
     "aircard": {
-      "at": "2026-09-21T12:36:37.343Z",
-      "skipped": "already zh or empty"
+      "at": "2026-09-27T05:05:39.447Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要透過 USB 連接 iPhone 的 macOS 電腦（Apple Silicon 或 Intel）；無法直接在 iPhone 上執行",
+        "僅適用於 iOS 18+ 裝置；並非為較舊的 iOS 版本設計或測試",
+        "依賴 'airlift' 漏洞，表示相較於標準系統修改，可能存在潛在的安全風險或不穩定性"
+      ]
     },
     "laya-mlx": {
       "at": "2026-09-21T12:36:37.343Z",
@@ -6464,24 +6596,27 @@
     },
     "amagine3d": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "需 Node.js 22.19.0+ 與特定版本的 Vite",
+        "視覺檢視功能取決於配置的模型提供者支援影像辨識",
+        "專注於可列印的智慧硬體外殼，非通用藝術性 3D 建模"
       ],
-      "at": "2026-09-21T12:36:43.051Z"
+      "at": "2026-09-27T05:23:51.619Z"
     },
     "dlss5-swapper": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "僅限 Windows 10/11；不支援 macOS 或 Linux。",
+        "DLSS 滑桿的遊戲內覆蓋控制僅限 DLSS5-Feeder 與 RenoDX v4.7 路線。",
+        "預設為停用全硬碟掃描；使用者必須手動新增資料夾或啟用此設定。"
       ],
-      "at": "2026-09-21T12:36:43.051Z"
+      "at": "2026-09-27T05:20:05.185Z"
     },
     "human-atlas": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不得用於醫療診斷或手術規劃，因該工具明確為教育用途。",
+        "不涵蓋女性解剖學或兒科變異，因其採用成人男性參考模型。",
+        "尚未測試實體裝置效能或真實多點觸控硬體。"
       ],
-      "at": "2026-09-21T12:36:43.051Z"
+      "at": "2026-09-27T05:20:05.185Z"
     },
     "codex-with-chatgpt": {
       "negativeConstraints_zh": [
@@ -6509,11 +6644,21 @@
     },
     "fusion-ai-studio": {
       "description_zh": "Oracle Fusion AI Studio：Oracle 撰寫的 AI Studio 技能，以及針對 Fusion 模組（財務、供應鏈、採購、HCM）的範例應用程式和工作流程。",
-      "at": "2026-09-21T12:58:31.859Z"
+      "at": "2026-09-27T05:05:39.447Z",
+      "negativeConstraints_zh": [
+        "需要特定的 Oracle Fusion 產品發行版本分支（例如 release-26C），不具版本通用性",
+        "基於先前儲存庫結構的本地副本使用者必須檢閱新結構以避免衝突，但 src 資料夾的 artifacts 不受影響",
+        "僅限 Oracle Fusion 模組（財務、供應鏈、採購、HCM），不支援其他 ERP 或雲端平台"
+      ]
     },
     "esearch": {
       "description_zh": "跨平台桌上型截圖工具（Windows / Linux / macOS），支援離線 OCR、螢幕翻譯與搜尋、反向圖片搜尋、螢幕釘選、螢幕錄影及全方向捲動截圖。",
-      "at": "2026-09-25T01:12:12.006Z"
+      "at": "2026-09-27T05:05:39.448Z",
+      "negativeConstraints_zh": [
+        "不支援 Windows 7 或 Windows 8，因為 Electron 已棄用",
+        "Gnome 桌面環境需要 'appindicator' 擴充功能才能在系統列中使用",
+        "由於內建 ONNX runtime、AI 模型和 FFmpeg，安裝體積龐大，對輕量級工具需求而言可能過於冗餘"
+      ]
     },
     "genoffice": {
       "description_zh": "開源 AI 文書辦公套裝，支援 macOS、Windows 與 Linux：包含文字文件、試算表、簡報、PDF、Markdown 與 HTML 編輯器，內建 AI 代理程式可保真編輯原生 .docx / .xlsx / .pptx 檔案，另附 genoffice CLI、代理技能與 MCP 伺服器。需自行準備金鑰。",
@@ -6532,6 +6677,57 @@
         "不適合只需要 Markdown 或 HTML 輸出、不需還原為二進位 Office 格式的場景"
       ],
       "at": "2026-09-25T01:12:12.007Z"
+    },
+    "semif-openjev": {
+      "description_zh": "使用開放模型從家用 3090 取得語義分割。獨立運作；與 Jev 或 TypeSafe 無關。",
+      "at": "2026-09-27T05:05:39.448Z",
+      "negativeConstraints_zh": [
+        "需要本地硬體來執行 4B BF16 模型（NVIDIA GPU、Apple Silicon MLX 或支援 GGUF 的 CPU）；不適合無 GPU 支援的無伺服器或輕量級雲端函式",
+        "輸出為輸入選項的原始 logit 機率值，不會產生自然語言解釋，因此不適用於需要詳細推理或人類可讀說明的情境",
+        "不同後端（例如 Torch 與 llama.cpp）之間會因量化與評估路徑而產生些微數值差異，因此無法保證跨硬體後端的 logit 輸出完全一致"
+      ]
+    },
+    "jev-chat-jarvis": {
+      "description_zh": "裝在手機上的對話副駕：在 QQ / X / 飛書裡讀懂對方、提供候選回覆、一鍵填入輸入框，發不發由你決定。非侵入式，僅讀取螢幕，不 hook 或修改套件。",
+      "at": "2026-09-27T05:05:49.327Z",
+      "negativeConstraints_zh": [
+        "需 Android 11+ 和 ARM64 架構；不支援其他 Android 版本或架構。",
+        "不支援 Android 版微信，因為專案已不再收集和處理微信內容。",
+        "需啟用無障礙服務、浮動視窗覆蓋和自動啟動權限；小米/HyperOS 裝置的後台凍結會阻止訊息讀取。"
+      ]
+    },
+    "model-optimizer": {
+      "description_zh": "統一的 SOTA 模型最佳化工具庫，涵蓋量化、知識蒸餾、剪枝、神經網路架構搜尋、推測解碼等技術。可壓縮深度學習模型，以利部署至 TensorRT-LLM、TensorRT、vLLM 等下游部署框架，優化推論速度。",
+      "at": "2026-09-27T05:05:49.327Z",
+      "negativeConstraints_zh": [
+        "非推理執行時 — 匯出最佳化檢查點；提供服務仍需 TensorRT-LLM、vLLM 或 SGLang。",
+        "避免用於無法透過 Hugging Face、PyTorch 或 ONNX 輸入載入的模型。"
+      ]
+    },
+    "claude-code-action": {
+      "description_zh": "適用於 GitHub PR 與問題的通用 Claude Code 操作，能回答問題並實作程式碼變更。此操作會根據工作流程智慧偵測啟動時機…",
+      "at": "2026-09-27T05:05:49.327Z",
+      "negativeConstraints_zh": [
+        "需先設定儲存庫憑證和 Claude 提供者（Anthropic API、Bedrock、Vertex AI 或 Microsoft Foundry）。",
+        "非本機 IDE 助手 — 僅在 GitHub Actions 內的自訂 runner 上執行。",
+        "/install-github-app 快速入門需儲存庫管理員權限。"
+      ]
+    },
+    "openbao": {
+      "description_zh": "OpenBao 是一套軟體解決方案，用於管理、儲存與分發敏感資料，包含機密、憑證與金鑰。",
+      "at": "2026-09-27T05:05:49.327Z",
+      "negativeConstraints_zh": [
+        "需自行架設金鑰基礎設施伺服器 — 非可匯入的函式庫或 agent 工具。",
+        "未先設計其驗證、權限和儲存後端則無用。"
+      ]
+    },
+    "hindsight": {
+      "description_zh": "Hindsight 是一個智能體記憶系統，旨在建立隨時間學習的更智慧智能體。大多數智能體記憶系統著重於回憶對話歷史；Hindsight 則專注於讓智能體學習，而不只是記憶。",
+      "at": "2026-09-27T05:05:49.327Z",
+      "negativeConstraints_zh": [
+        "需專屬伺服器（Docker）或嵌入模式的 LLM API 金鑰。",
+        "非通用向量資料庫或對話歷史備份 — 以 agent 記憶體操作為核心組織。"
+      ]
     }
   },
   "failed": {}

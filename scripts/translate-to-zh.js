@@ -263,6 +263,12 @@ for (let i = 0; i < targets.length; i += BATCH) {
       const fields = ['description', 'useCase', 'advantages'].filter((f) => b[f]);
       let r = out[b.id] || out[b.id.toLowerCase()] || out[b.id.toUpperCase()];
       if (r === undefined && typeof out[`${b.id}_zh`] === 'string') r = out[`${b.id}_zh`];
+      // 跑版 #2/#3 的**陣列**版：整批只翻 negativeConstraints 時，模型會把譯文陣列
+      // 直接掛在 `<id>` 或 `<id>_zh` 底下（實測 2026-09-27：字串版上面接得住，
+      // 陣列版兩條路都落空 → 整批被誤判為 missing id，10 支白燒一次呼叫）。
+      const ncArr = Array.isArray(r) ? r
+        : (r === undefined && Array.isArray(out[`${b.id}_zh`]) ? out[`${b.id}_zh`] : null);
+      if (ncArr && b.negativeConstraints) r = { negativeConstraints_zh: ncArr };
       if (typeof r === 'string') {
         // 扁平形式：只有一個待翻欄位時可直接對應，否則歸給 description
         r = fields.length === 1 ? { [`${fields[0]}_zh`]: r } : { description_zh: r };
@@ -296,8 +302,22 @@ for (let i = 0; i < targets.length; i += BATCH) {
       if (Array.isArray(ncRaw)) {
         const nc = ncRaw.map((s) => toTraditional(String(s ?? '').trim())).filter(Boolean);
         if (nc.length) rec['negativeConstraints_zh'] = nc;
+      } else if (typeof ncRaw === 'string' && ncRaw.trim()) {
+        // 模型偶爾把整個陣列壓成一條字串。只有切分後**筆數正好等於**原文才收下，
+        // 否則寧可留空（web/app.js:1285 會退回英文）——憑猜測切分會切錯句子。
+        const want = Array.isArray(b.negativeConstraints) ? b.negativeConstraints.length : 0;
+        const parts = ncRaw.split(/[；;]/).map((s) => toTraditional(s.trim())).filter(Boolean);
+        if (want && parts.length === want) rec['negativeConstraints_zh'] = parts;
       }
-      if (Object.keys(rec).length === 0) { state.failed[b.id] = { at: new Date().toISOString(), why: 'empty fields' }; failN++; continue; }
+      if (Object.keys(rec).length === 0) {
+        // 只寫「empty fields」無從診斷：模型常把唯一待翻欄位壓成陣列或換 key，
+        // 這裡記下實際收到的 shape，下次重跑就知道要補哪一種跑版。
+        const shape = Array.isArray(r) ? `array(${r.length})`
+          : typeof r === 'object' ? Object.keys(r).join(',') || '(no keys)' : typeof r;
+        state.failed[b.id] = { at: new Date().toISOString(), why: `empty fields; got: ${shape}` };
+        failN++;
+        continue;
+      }
       rec.at = new Date().toISOString();
       // 合併而非覆蓋：同一工具可能分批翻不同欄位
       state.done[b.id] = { ...(state.done[b.id] || {}), ...rec };

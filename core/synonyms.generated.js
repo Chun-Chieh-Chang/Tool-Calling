@@ -272,12 +272,12 @@ export const SYNONYM_MAP = {
   "漏洞掃描": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "pentest": [
     "漏洞掃描",
@@ -290,16 +290,6 @@ export const SYNONYM_MAP = {
     "檢查代碼安全漏洞"
   ],
   "penetration test": [
-    "漏洞掃描",
-    "安全測試",
-    "滲透測試",
-    "掃描網頁漏洞",
-    "檢測應用程式漏洞",
-    "自動修復安全漏洞",
-    "滲透測試網站",
-    "檢查代碼安全漏洞"
-  ],
-  "security": [
     "漏洞掃描",
     "安全測試",
     "滲透測試",
@@ -372,122 +362,122 @@ export const SYNONYM_MAP = {
   "安全測試": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "滲透測試": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "掃描網頁漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "檢測應用程式漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "自動修復安全漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "滲透測試網站": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "檢查代碼安全漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "掃描 api 漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "檢測系統漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "修復應用程序漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "檢查網站安全性": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "掃描資料庫漏洞": [
     "pentest",
     "penetration test",
-    "security",
     "vulnerability",
     "scanning",
     "security scan",
     "auto-fix",
-    "compliance-check"
+    "compliance-check",
+    "penetration-testing"
   ],
   "卡通": [
     "animate",
@@ -4635,7 +4625,6 @@ export const SYNONYM_MAP = {
   "記住我的程式碼上下文": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4651,16 +4640,6 @@ export const SYNONYM_MAP = {
     "分析程式碼結構"
   ],
   "codebase": [
-    "記住我的程式碼上下文",
-    "增量索引程式碼",
-    "搜尋程式碼知識圖",
-    "追蹤程式碼變化",
-    "語意搜尋原始碼",
-    "程式碼脈絡記憶",
-    "記憶我寫過的程式",
-    "分析程式碼結構"
-  ],
-  "memory": [
     "記住我的程式碼上下文",
     "增量索引程式碼",
     "搜尋程式碼知識圖",
@@ -4703,7 +4682,6 @@ export const SYNONYM_MAP = {
   "增量索引程式碼": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4711,7 +4689,6 @@ export const SYNONYM_MAP = {
   "搜尋程式碼知識圖": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4719,7 +4696,6 @@ export const SYNONYM_MAP = {
   "追蹤程式碼變化": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4727,7 +4703,6 @@ export const SYNONYM_MAP = {
   "語意搜尋原始碼": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4735,7 +4710,6 @@ export const SYNONYM_MAP = {
   "程式碼脈絡記憶": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4743,7 +4717,6 @@ export const SYNONYM_MAP = {
   "記憶我寫過的程式": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4751,7 +4724,6 @@ export const SYNONYM_MAP = {
   "分析程式碼結構": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4759,7 +4731,6 @@ export const SYNONYM_MAP = {
   "儲存開發歷程": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -4767,7 +4738,6 @@ export const SYNONYM_MAP = {
   "程式碼關聯圖": [
     "codebase-memory-mcp-pro",
     "codebase",
-    "memory",
     "pro",
     "c-server",
     "incremental-indexing"
@@ -9880,7 +9850,6 @@ export const SYNONYM_MAP = {
   "讓多個 ai 代理協作完成任務": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
@@ -9895,16 +9864,6 @@ export const SYNONYM_MAP = {
     "用多代理框架實現任務自動化"
   ],
   "llm-framework": [
-    "讓多個 ai 代理協作完成任務",
-    "編排多步驟 llm 對話流程",
-    "自動讓 ai 分角色讨論問題",
-    "構建多智能體編程助手",
-    "讓 chatgpt 群聊解決复雜任務",
-    "自動化 ai 代理工作流編排",
-    "設計多 llm 協作對話系統",
-    "用多代理框架實現任務自動化"
-  ],
-  "agentic-ai": [
     "讓多個 ai 代理協作完成任務",
     "編排多步驟 llm 對話流程",
     "自動讓 ai 分角色讨論問題",
@@ -9937,63 +9896,54 @@ export const SYNONYM_MAP = {
   "編排多步驟 llm 對話流程": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "自動讓 ai 分角色讨論問題": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "構建多智能體編程助手": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "讓 chatgpt 群聊解決复雜任務": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "自動化 ai 代理工作流編排": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "設計多 llm 協作對話系統": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "用多代理框架實現任務自動化": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "讓 ai 團隊分工處理編程任務": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
   "搭建可自主協作的 ai 系統": [
     "autogen",
     "llm-framework",
-    "agentic-ai",
     "chatgpt",
     "microsoft"
   ],
@@ -10677,7 +10627,6 @@ export const SYNONYM_MAP = {
   ],
   "保存對話記錄": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
@@ -10713,55 +10662,46 @@ export const SYNONYM_MAP = {
   ],
   "記住用戶偏好": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "跨會話記憶檢索": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "持久化ai狀態": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "管理聊天上下文": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "存儲ai記憶": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "會話間數據同步": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "ai記憶緩存": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "跟蹤用戶歷史": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
   "維護聊天狀態": [
     "mem0",
-    "memory",
     "chatbots",
     "langchain"
   ],
@@ -13514,7 +13454,6 @@ export const SYNONYM_MAP = {
   "查找 linux 指令參考": [
     "cheatsheets",
     "devops",
-    "security",
     "cli-tools",
     "查 devops 快速指南",
     "找安全工具清單",
@@ -13528,7 +13467,6 @@ export const SYNONYM_MAP = {
     "搜尋 cli 實用工具",
     "查開發者 cheat sheet",
     "devops",
-    "security",
     "cli-tools"
   ],
   "devops": [
@@ -13548,13 +13486,11 @@ export const SYNONYM_MAP = {
     "搜尋 cli 實用工具",
     "查開發者 cheat sheet",
     "cheatsheets",
-    "devops",
-    "security"
+    "devops"
   ],
   "查 devops 快速指南": [
     "cheatsheets",
     "devops",
-    "security",
     "cli-tools",
     "查找 linux 指令參考",
     "找安全工具清單",
@@ -13564,7 +13500,6 @@ export const SYNONYM_MAP = {
   "找安全工具清單": [
     "cheatsheets",
     "devops",
-    "security",
     "cli-tools",
     "查找 linux 指令參考",
     "查 devops 快速指南",
@@ -13574,7 +13509,6 @@ export const SYNONYM_MAP = {
   "搜尋 cli 實用工具": [
     "cheatsheets",
     "devops",
-    "security",
     "cli-tools",
     "查找 linux 指令參考",
     "查 devops 快速指南",
@@ -13584,7 +13518,6 @@ export const SYNONYM_MAP = {
   "查開發者 cheat sheet": [
     "cheatsheets",
     "devops",
-    "security",
     "cli-tools",
     "查找 linux 指令參考",
     "查 devops 快速指南",
@@ -14422,7 +14355,6 @@ export const SYNONYM_MAP = {
   ],
   "把代碼庫轉成知識圖谱": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
@@ -14458,55 +14390,46 @@ export const SYNONYM_MAP = {
   ],
   "用圖谱查看我的代碼": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "分析我的代碼庫結構": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "給代碼庫建立知識庫": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "查詢業務邏輯的知識圖譜": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "讓代碼庫可以問答": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "探索代碼之間的關系": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "把代碼轉成可搜索的圖谱": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "可視化我的代碼知識": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
   "分析整個項目的代碼結構": [
     "codebase-visualization",
-    "memory",
     "business-knowledge",
     "code-exploration"
   ],
@@ -15834,21 +15757,6 @@ export const SYNONYM_MAP = {
     "docker",
     "note-taking",
     "sqlite"
-  ],
-  "保存 ai 對話記錄": [
-    "memory"
-  ],
-  "記住對話上下文": [
-    "memory"
-  ],
-  "儲存 agent 經驗": [
-    "memory"
-  ],
-  "複用 ai 技能模組": [
-    "memory"
-  ],
-  "持久化記憶知識": [
-    "memory"
   ],
   "搭建 ai agent 框架": [
     "metaharness",
@@ -21978,7 +21886,6 @@ export const SYNONYM_MAP = {
   ],
   "掃描容器漏洞": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
@@ -22015,63 +21922,54 @@ export const SYNONYM_MAP = {
   ],
   "檢查鏡像安全": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "審查kubernetes配置": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "掃描terraform代碼": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "檢測依賴漏洞": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "掃描docker鏡像": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "檢查程式碼安全": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "掃描漏洞": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "審查基礎設施": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
   ],
   "檢查容器安全": [
     "trivy",
-    "security",
     "vulnerability",
     "containers",
     "devsecops"
@@ -30801,7 +30699,6 @@ export const SYNONYM_MAP = {
   "學習ai agent教程": [
     "agents-course",
     "course",
-    "agentic-ai",
     "huggingface",
     "langchain",
     "llamaindex",
@@ -30814,8 +30711,8 @@ export const SYNONYM_MAP = {
     "查找huggingface agent課程",
     "學習llm應用開發",
     "course",
-    "agentic-ai",
-    "huggingface"
+    "huggingface",
+    "langchain"
   ],
   "course": [
     "學習ai agent教程",
@@ -30824,8 +30721,8 @@ export const SYNONYM_MAP = {
     "查找huggingface agent課程",
     "學習llm應用開發",
     "agents-course",
-    "agentic-ai",
-    "huggingface"
+    "huggingface",
+    "langchain"
   ],
   "huggingface": [
     "學習ai agent教程",
@@ -30860,7 +30757,6 @@ export const SYNONYM_MAP = {
   "了解langchain入門": [
     "agents-course",
     "course",
-    "agentic-ai",
     "huggingface",
     "langchain",
     "llamaindex",
@@ -30869,7 +30765,6 @@ export const SYNONYM_MAP = {
   "實踐smolagents使用": [
     "agents-course",
     "course",
-    "agentic-ai",
     "huggingface",
     "langchain",
     "llamaindex",
@@ -30878,7 +30773,6 @@ export const SYNONYM_MAP = {
   "查找huggingface agent課程": [
     "agents-course",
     "course",
-    "agentic-ai",
     "huggingface",
     "langchain",
     "llamaindex",
@@ -30887,7 +30781,6 @@ export const SYNONYM_MAP = {
   "學習llm應用開發": [
     "agents-course",
     "course",
-    "agentic-ai",
     "huggingface",
     "langchain",
     "llamaindex",
@@ -33004,8 +32897,8 @@ export const SYNONYM_MAP = {
     "降低 llm 延遲",
     "比較解碼算法",
     "測試推測解碼速度",
-    "deepspec",
-    "llm-acceleration"
+    "模型量化壓縮",
+    "推理加速"
   ],
   "llm-acceleration": [
     "推測解碼",
@@ -35551,9 +35444,12 @@ export const SYNONYM_MAP = {
   "儲存對話紀錄供ai代理程式記憶": [
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory",
     "embedding",
-    "knowledge-reuse"
+    "knowledge-reuse",
+    "把文件轉成可復用的向量記憶",
+    "為多代理程式建立共享知識庫",
+    "將程式碼轉換成可搜尋的記憶資產",
+    "從團隊討論中提取可複用的經驗記憶"
   ],
   "tencentdb-agent-memory": [
     "儲存對話紀錄供ai代理程式記憶",
@@ -35562,8 +35458,8 @@ export const SYNONYM_MAP = {
     "將程式碼轉換成可搜尋的記憶資產",
     "從團隊討論中提取可複用的經驗記憶",
     "tencentdb",
-    "memory",
-    "embedding"
+    "embedding",
+    "knowledge-reuse"
   ],
   "tencentdb": [
     "儲存對話紀錄供ai代理程式記憶",
@@ -35572,8 +35468,8 @@ export const SYNONYM_MAP = {
     "將程式碼轉換成可搜尋的記憶資產",
     "從團隊討論中提取可複用的經驗記憶",
     "tencentdb-agent-memory",
-    "memory",
-    "embedding"
+    "embedding",
+    "knowledge-reuse"
   ],
   "embedding": [
     "儲存對話紀錄供ai代理程式記憶",
@@ -35583,7 +35479,7 @@ export const SYNONYM_MAP = {
     "從團隊討論中提取可複用的經驗記憶",
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory"
+    "knowledge-reuse"
   ],
   "knowledge-reuse": [
     "儲存對話紀錄供ai代理程式記憶",
@@ -35593,35 +35489,47 @@ export const SYNONYM_MAP = {
     "從團隊討論中提取可複用的經驗記憶",
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory"
+    "embedding"
   ],
   "把文件轉成可復用的向量記憶": [
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory",
     "embedding",
-    "knowledge-reuse"
+    "knowledge-reuse",
+    "儲存對話紀錄供ai代理程式記憶",
+    "為多代理程式建立共享知識庫",
+    "將程式碼轉換成可搜尋的記憶資產",
+    "從團隊討論中提取可複用的經驗記憶"
   ],
   "為多代理程式建立共享知識庫": [
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory",
     "embedding",
-    "knowledge-reuse"
+    "knowledge-reuse",
+    "儲存對話紀錄供ai代理程式記憶",
+    "把文件轉成可復用的向量記憶",
+    "將程式碼轉換成可搜尋的記憶資產",
+    "從團隊討論中提取可複用的經驗記憶"
   ],
   "將程式碼轉換成可搜尋的記憶資產": [
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory",
     "embedding",
-    "knowledge-reuse"
+    "knowledge-reuse",
+    "儲存對話紀錄供ai代理程式記憶",
+    "把文件轉成可復用的向量記憶",
+    "為多代理程式建立共享知識庫",
+    "從團隊討論中提取可複用的經驗記憶"
   ],
   "從團隊討論中提取可複用的經驗記憶": [
     "tencentdb-agent-memory",
     "tencentdb",
-    "memory",
     "embedding",
-    "knowledge-reuse"
+    "knowledge-reuse",
+    "儲存對話紀錄供ai代理程式記憶",
+    "把文件轉成可復用的向量記憶",
+    "為多代理程式建立共享知識庫",
+    "將程式碼轉換成可搜尋的記憶資產"
   ],
   "畫树状圖": [
     "react-d3-tree",
@@ -38610,9 +38518,9 @@ export const SYNONYM_MAP = {
     "搜尋本地知識庫",
     "進行深度研究",
     "整合不同ai模型",
-    "khoj",
-    "assistant",
-    "chatgpt"
+    "自動回覆",
+    "輔助回覆",
+    "對話建議"
   ],
   "分析網頁內容": [
     "khoj",
@@ -39365,7 +39273,6 @@ export const SYNONYM_MAP = {
   "爬網頁抓資料": [
     "autogpt",
     "autonomous-agent",
-    "agentic-ai",
     "agent-platform",
     "goal-driven-agent",
     "agbenchmark",
@@ -39378,8 +39285,8 @@ export const SYNONYM_MAP = {
     "訓練和測試ai代理人",
     "多個ai助手分工協作",
     "autonomous-agent",
-    "agentic-ai",
-    "agent-platform"
+    "agent-platform",
+    "goal-driven-agent"
   ],
   "agent-platform": [
     "爬網頁抓資料",
@@ -39389,7 +39296,7 @@ export const SYNONYM_MAP = {
     "多個ai助手分工協作",
     "autogpt",
     "autonomous-agent",
-    "agentic-ai"
+    "goal-driven-agent"
   ],
   "goal-driven-agent": [
     "爬網頁抓資料",
@@ -39399,7 +39306,7 @@ export const SYNONYM_MAP = {
     "多個ai助手分工協作",
     "autogpt",
     "autonomous-agent",
-    "agentic-ai"
+    "agent-platform"
   ],
   "agbenchmark": [
     "爬網頁抓資料",
@@ -39409,7 +39316,7 @@ export const SYNONYM_MAP = {
     "多個ai助手分工協作",
     "autogpt",
     "autonomous-agent",
-    "agentic-ai"
+    "agent-platform"
   ],
   "agent-forge": [
     "爬網頁抓資料",
@@ -39419,12 +39326,11 @@ export const SYNONYM_MAP = {
     "多個ai助手分工協作",
     "autogpt",
     "autonomous-agent",
-    "agentic-ai"
+    "agent-platform"
   ],
   "用終端機自動跑指令": [
     "autogpt",
     "autonomous-agent",
-    "agentic-ai",
     "agent-platform",
     "goal-driven-agent",
     "agbenchmark",
@@ -39433,7 +39339,6 @@ export const SYNONYM_MAP = {
   "把目標拆成小步驟一步步執行": [
     "autogpt",
     "autonomous-agent",
-    "agentic-ai",
     "agent-platform",
     "goal-driven-agent",
     "agbenchmark",
@@ -39442,7 +39347,6 @@ export const SYNONYM_MAP = {
   "訓練和測試ai代理人": [
     "autogpt",
     "autonomous-agent",
-    "agentic-ai",
     "agent-platform",
     "goal-driven-agent",
     "agbenchmark",
@@ -39451,7 +39355,6 @@ export const SYNONYM_MAP = {
   "多個ai助手分工協作": [
     "autogpt",
     "autonomous-agent",
-    "agentic-ai",
     "agent-platform",
     "goal-driven-agent",
     "agbenchmark",
@@ -41716,9 +41619,9 @@ export const SYNONYM_MAP = {
     "配置 hermes 角色權限",
     "一鍵部署 ai 智能體",
     "整合 skills 插件系統",
-    "oh-my-hermes",
-    "ai-tools",
-    "agent-setup"
+    "agent-長期記憶",
+    "跨會話記憶",
+    "讓 agent 學習"
   ],
   "agent-setup": [
     "安裝 hermes agent",
@@ -43476,7 +43379,6 @@ export const SYNONYM_MAP = {
   ],
   "一鍵建立 ai agent": [
     "penguin-harness",
-    "agentic-ai",
     "ai-product",
     "build-tool",
     "自動生成 ai 代理",
@@ -43490,7 +43392,6 @@ export const SYNONYM_MAP = {
     "打造可自我進化的 agent",
     "快速搭建 ai 助手",
     "整合多個 llm 的 agent",
-    "agentic-ai",
     "ai-product",
     "build-tool"
   ],
@@ -43501,7 +43402,6 @@ export const SYNONYM_MAP = {
     "快速搭建 ai 助手",
     "整合多個 llm 的 agent",
     "penguin-harness",
-    "agentic-ai",
     "build-tool"
   ],
   "build-tool": [
@@ -43511,12 +43411,10 @@ export const SYNONYM_MAP = {
     "快速搭建 ai 助手",
     "整合多個 llm 的 agent",
     "penguin-harness",
-    "agentic-ai",
     "ai-product"
   ],
   "自動生成 ai 代理": [
     "penguin-harness",
-    "agentic-ai",
     "ai-product",
     "build-tool",
     "一鍵建立 ai agent",
@@ -43526,7 +43424,6 @@ export const SYNONYM_MAP = {
   ],
   "打造可自我進化的 agent": [
     "penguin-harness",
-    "agentic-ai",
     "ai-product",
     "build-tool",
     "一鍵建立 ai agent",
@@ -43536,7 +43433,6 @@ export const SYNONYM_MAP = {
   ],
   "快速搭建 ai 助手": [
     "penguin-harness",
-    "agentic-ai",
     "ai-product",
     "build-tool",
     "一鍵建立 ai agent",
@@ -43546,7 +43442,6 @@ export const SYNONYM_MAP = {
   ],
   "整合多個 llm 的 agent": [
     "penguin-harness",
-    "agentic-ai",
     "ai-product",
     "build-tool",
     "一鍵建立 ai agent",
@@ -44803,9 +44698,9 @@ export const SYNONYM_MAP = {
     "轉成 openai api",
     "呼叫工具函數",
     "蘋果晶片加速",
-    "rapid-mlx",
-    "apple-silicon",
-    "fastapi"
+    "在mac上運行模型",
+    "蘋果芯片本地推理",
+    "快速決策模型"
   ],
   "fastapi": [
     "本機跑大模型",
@@ -45194,7 +45089,6 @@ export const SYNONYM_MAP = {
   "建立ai代理": [
     "harness-sdk",
     "agent-framework",
-    "agentic-ai",
     "production-ai",
     "用python和typescript開發ai代理",
     "管理多個ai代理",
@@ -45208,7 +45102,6 @@ export const SYNONYM_MAP = {
     "在生產環境部署ai代理",
     "整合ai代理工作流",
     "agent-framework",
-    "agentic-ai",
     "production-ai"
   ],
   "agent-framework": [
@@ -45218,7 +45111,6 @@ export const SYNONYM_MAP = {
     "在生產環境部署ai代理",
     "整合ai代理工作流",
     "harness-sdk",
-    "agentic-ai",
     "production-ai"
   ],
   "production-ai": [
@@ -45228,13 +45120,11 @@ export const SYNONYM_MAP = {
     "在生產環境部署ai代理",
     "整合ai代理工作流",
     "harness-sdk",
-    "agent-framework",
-    "agentic-ai"
+    "agent-framework"
   ],
   "用python和typescript開發ai代理": [
     "harness-sdk",
     "agent-framework",
-    "agentic-ai",
     "production-ai",
     "建立ai代理",
     "管理多個ai代理",
@@ -45244,7 +45134,6 @@ export const SYNONYM_MAP = {
   "管理多個ai代理": [
     "harness-sdk",
     "agent-framework",
-    "agentic-ai",
     "production-ai",
     "建立ai代理",
     "用python和typescript開發ai代理",
@@ -45254,7 +45143,6 @@ export const SYNONYM_MAP = {
   "在生產環境部署ai代理": [
     "harness-sdk",
     "agent-framework",
-    "agentic-ai",
     "production-ai",
     "建立ai代理",
     "用python和typescript開發ai代理",
@@ -45264,7 +45152,6 @@ export const SYNONYM_MAP = {
   "整合ai代理工作流": [
     "harness-sdk",
     "agent-framework",
-    "agentic-ai",
     "production-ai",
     "建立ai代理",
     "用python和typescript開發ai代理",
@@ -47934,8 +47821,9 @@ export const SYNONYM_MAP = {
     "查詢股票行情",
     "篩選潛力股",
     "追蹤股市新聞",
-    "go-stock",
-    "stock"
+    "密鑰管理",
+    "資料庫憑證",
+    "管理 api 金鑰"
   ],
   "查看k線圖": [
     "go-stock",
@@ -48302,7 +48190,6 @@ export const SYNONYM_MAP = {
   ],
   "審視程式碼安全性": [
     "trailofbits-skills",
-    "security",
     "crypto",
     "檢查加密實作",
     "測試系統弱點",
@@ -48315,12 +48202,10 @@ export const SYNONYM_MAP = {
     "測試系統弱點",
     "分析密碼演算法",
     "評估資安風險",
-    "security",
     "crypto"
   ],
   "檢查加密實作": [
     "trailofbits-skills",
-    "security",
     "crypto",
     "審視程式碼安全性",
     "測試系統弱點",
@@ -48329,7 +48214,6 @@ export const SYNONYM_MAP = {
   ],
   "測試系統弱點": [
     "trailofbits-skills",
-    "security",
     "crypto",
     "審視程式碼安全性",
     "檢查加密實作",
@@ -48338,7 +48222,6 @@ export const SYNONYM_MAP = {
   ],
   "分析密碼演算法": [
     "trailofbits-skills",
-    "security",
     "crypto",
     "審視程式碼安全性",
     "檢查加密實作",
@@ -48347,7 +48230,6 @@ export const SYNONYM_MAP = {
   ],
   "評估資安風險": [
     "trailofbits-skills",
-    "security",
     "crypto",
     "審視程式碼安全性",
     "檢查加密實作",
@@ -55303,9 +55185,9 @@ export const SYNONYM_MAP = {
     "查詢汽車參數",
     "看車款配置",
     "對比車系性能",
-    "car-model-skill",
-    "car",
-    "vehicle"
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾"
   ],
   "car comparison": [
     "查車型規格",
@@ -57182,9 +57064,9 @@ export const SYNONYM_MAP = {
     "用 rust 寫的 spotify 客戶端",
     "跨平台音樂播放器",
     "用 egui 建構的桌面應用",
-    "fastpotify",
-    "audio",
-    "desktop-app"
+    "播放本機音樂庫",
+    "串流 spotify 播放",
+    "投屏到 spotify"
   ],
   "egui": [
     "播放 spotify 音樂",
@@ -57192,9 +57074,9 @@ export const SYNONYM_MAP = {
     "用 rust 寫的 spotify 客戶端",
     "跨平台音樂播放器",
     "用 egui 建構的桌面應用",
-    "fastpotify",
-    "audio",
-    "cross-platform"
+    "播放本機音樂庫",
+    "串流 spotify 播放",
+    "投屏到 spotify"
   ],
   "librespot": [
     "播放 spotify 音樂",
@@ -57202,9 +57084,9 @@ export const SYNONYM_MAP = {
     "用 rust 寫的 spotify 客戶端",
     "跨平台音樂播放器",
     "用 egui 建構的桌面應用",
-    "fastpotify",
-    "audio",
-    "cross-platform"
+    "播放本機音樂庫",
+    "串流 spotify 播放",
+    "投屏到 spotify"
   ],
   "播放本地音訊檔案": [
     "fastpotify",
@@ -60769,6 +60651,61 @@ export const SYNONYM_MAP = {
     "申請失業金流程",
     "查詢工傷賠償標準"
   ],
+  "播放本機音樂庫": [
+    "spotifast",
+    "audio",
+    "cross-platform",
+    "desktop-app",
+    "egui",
+    "gui",
+    "librespot"
+  ],
+  "spotifast": [
+    "播放本機音樂庫",
+    "串流 spotify 播放",
+    "投屏到 spotify",
+    "控制遠端 spotify",
+    "本地播放點歌單",
+    "audio",
+    "cross-platform",
+    "desktop-app"
+  ],
+  "串流 spotify 播放": [
+    "spotifast",
+    "audio",
+    "cross-platform",
+    "desktop-app",
+    "egui",
+    "gui",
+    "librespot"
+  ],
+  "投屏到 spotify": [
+    "spotifast",
+    "audio",
+    "cross-platform",
+    "desktop-app",
+    "egui",
+    "gui",
+    "librespot"
+  ],
+  "控制遠端 spotify": [
+    "spotifast",
+    "audio",
+    "cross-platform",
+    "desktop-app",
+    "egui",
+    "gui",
+    "librespot"
+  ],
+  "本地播放點歌單": [
+    "spotifast",
+    "audio",
+    "cross-platform",
+    "desktop-app",
+    "egui",
+    "gui",
+    "librespot"
+  ],
   "排版": [
     "my-girlfriend-jingtian-latex",
     "girlfriend",
@@ -61018,8 +60955,9 @@ export const SYNONYM_MAP = {
     "快速網頁爬蟲",
     "航班搜尋自動化",
     "網頁資料擷取",
-    "jev-ultrafast",
-    "ultrafast"
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "快速壓縮對話摘要"
   ],
   "ultrafast": [
     "快速網頁操作",
@@ -61066,201 +61004,1200 @@ export const SYNONYM_MAP = {
     "快速網頁爬蟲",
     "航班搜尋自動化"
   ],
+  "壓縮對話歷史": [
+    "fast-jev-compaction",
+    "fast",
+    "jev",
+    "compaction",
+    "清理過期的tool call",
+    "快速壓縮對話摘要",
+    "丟棄舊的上下文",
+    "截斷舊的工具調用"
+  ],
+  "fast-jev-compaction": [
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "快速壓縮對話摘要",
+    "丟棄舊的上下文",
+    "截斷舊的工具調用",
+    "fast",
+    "jev",
+    "compaction"
+  ],
+  "fast": [
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "快速壓縮對話摘要",
+    "丟棄舊的上下文",
+    "截斷舊的工具調用",
+    "fast-jev-compaction",
+    "jev",
+    "compaction"
+  ],
+  "compaction": [
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "快速壓縮對話摘要",
+    "丟棄舊的上下文",
+    "截斷舊的工具調用",
+    "fast-jev-compaction",
+    "fast",
+    "jev"
+  ],
+  "清理過期的tool call": [
+    "fast-jev-compaction",
+    "fast",
+    "jev",
+    "compaction",
+    "壓縮對話歷史",
+    "快速壓縮對話摘要",
+    "丟棄舊的上下文",
+    "截斷舊的工具調用"
+  ],
+  "快速壓縮對話摘要": [
+    "fast-jev-compaction",
+    "fast",
+    "jev",
+    "compaction",
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "丟棄舊的上下文",
+    "截斷舊的工具調用"
+  ],
+  "丟棄舊的上下文": [
+    "fast-jev-compaction",
+    "fast",
+    "jev",
+    "compaction",
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "快速壓縮對話摘要",
+    "截斷舊的工具調用"
+  ],
+  "截斷舊的工具調用": [
+    "fast-jev-compaction",
+    "fast",
+    "jev",
+    "compaction",
+    "壓縮對話歷史",
+    "清理過期的tool call",
+    "快速壓縮對話摘要",
+    "丟棄舊的上下文"
+  ],
+  "合併 pdf 檔案": [
+    "stirling-pdf",
+    "stirling",
+    "pdf",
+    "docker",
+    "hacktoberfest",
+    "java",
+    "pdf-converter",
+    "pdf-editor"
+  ],
+  "stirling-pdf": [
+    "合併 pdf 檔案",
+    "將 pdf 轉成 word",
+    "壓縮 pdf 大小",
+    "分割 pdf 文件",
+    "移除 pdf 密碼",
+    "stirling",
+    "pdf",
+    "docker"
+  ],
+  "stirling": [
+    "合併 pdf 檔案",
+    "將 pdf 轉成 word",
+    "壓縮 pdf 大小",
+    "分割 pdf 文件",
+    "移除 pdf 密碼",
+    "stirling-pdf",
+    "pdf",
+    "docker"
+  ],
+  "java": [
+    "合併 pdf 檔案",
+    "將 pdf 轉成 word",
+    "壓縮 pdf 大小",
+    "分割 pdf 文件",
+    "移除 pdf 密碼",
+    "stirling-pdf",
+    "stirling",
+    "pdf"
+  ],
+  "pdf-editor": [
+    "合併 pdf 檔案",
+    "將 pdf 轉成 word",
+    "壓縮 pdf 大小",
+    "分割 pdf 文件",
+    "移除 pdf 密碼",
+    "尋找免費 office 替代方案",
+    "用 ai 編輯 word 文件",
+    "pdf 轉 word"
+  ],
+  "將 pdf 轉成 word": [
+    "stirling-pdf",
+    "stirling",
+    "pdf",
+    "docker",
+    "hacktoberfest",
+    "java",
+    "pdf-converter",
+    "pdf-editor"
+  ],
+  "壓縮 pdf 大小": [
+    "stirling-pdf",
+    "stirling",
+    "pdf",
+    "docker",
+    "hacktoberfest",
+    "java",
+    "pdf-converter",
+    "pdf-editor"
+  ],
+  "分割 pdf 文件": [
+    "stirling-pdf",
+    "stirling",
+    "pdf",
+    "docker",
+    "hacktoberfest",
+    "java",
+    "pdf-converter",
+    "pdf-editor"
+  ],
+  "移除 pdf 密碼": [
+    "stirling-pdf",
+    "stirling",
+    "pdf",
+    "docker",
+    "hacktoberfest",
+    "java",
+    "pdf-converter",
+    "pdf-editor"
+  ],
+  "使用免費gpu": [
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu",
+    "lab",
+    "anthropic-api",
+    "coding-agents",
+    "free-gpu"
+  ],
+  "kaggle-tpu-lab": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle",
+    "tpu",
+    "lab"
+  ],
+  "kaggle": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle-tpu-lab",
+    "tpu",
+    "lab"
+  ],
+  "tpu": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle-tpu-lab",
+    "kaggle",
+    "lab"
+  ],
+  "lab": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu"
+  ],
+  "anthropic-api": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu"
+  ],
+  "coding-agents": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu"
+  ],
+  "free-gpu": [
+    "使用免費gpu",
+    "調用api",
+    "執行coding agents",
+    "跑大型語言模型",
+    "部署ai模型",
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu"
+  ],
+  "調用api": [
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu",
+    "lab",
+    "anthropic-api",
+    "coding-agents",
+    "free-gpu"
+  ],
+  "執行coding agents": [
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu",
+    "lab",
+    "anthropic-api",
+    "coding-agents",
+    "free-gpu"
+  ],
+  "跑大型語言模型": [
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu",
+    "lab",
+    "anthropic-api",
+    "coding-agents",
+    "free-gpu"
+  ],
+  "部署ai模型": [
+    "kaggle-tpu-lab",
+    "kaggle",
+    "tpu",
+    "lab",
+    "anthropic-api",
+    "coding-agents",
+    "free-gpu"
+  ],
+  "审查程式碼安全": [
+    "security-audit-skill",
+    "audit",
+    "檢查代碼弱點",
+    "找出程式缺陷",
+    "分析安全漏洞",
+    "审計系統風險"
+  ],
+  "security-audit-skill": [
+    "审查程式碼安全",
+    "檢查代碼弱點",
+    "找出程式缺陷",
+    "分析安全漏洞",
+    "审計系統風險",
+    "audit"
+  ],
+  "audit": [
+    "审查程式碼安全",
+    "檢查代碼弱點",
+    "找出程式缺陷",
+    "分析安全漏洞",
+    "审計系統風險",
+    "security-audit-skill"
+  ],
+  "檢查代碼弱點": [
+    "security-audit-skill",
+    "audit",
+    "审查程式碼安全",
+    "找出程式缺陷",
+    "分析安全漏洞",
+    "审計系統風險"
+  ],
+  "找出程式缺陷": [
+    "security-audit-skill",
+    "audit",
+    "审查程式碼安全",
+    "檢查代碼弱點",
+    "分析安全漏洞",
+    "审計系統風險"
+  ],
+  "分析安全漏洞": [
+    "security-audit-skill",
+    "audit",
+    "审查程式碼安全",
+    "檢查代碼弱點",
+    "找出程式缺陷",
+    "审計系統風險"
+  ],
+  "审計系統風險": [
+    "security-audit-skill",
+    "audit",
+    "审查程式碼安全",
+    "檢查代碼弱點",
+    "找出程式缺陷",
+    "分析安全漏洞"
+  ],
+  "監控股票即時價格": [
+    "openstock",
+    "coderabbit",
+    "inngest",
+    "nextjs",
+    "shadcn-ui",
+    "stock-market",
+    "tailwindcss"
+  ],
+  "openstock": [
+    "監控股票即時價格",
+    "設定個人化股價提醒",
+    "追蹤投資組合表現",
+    "探索公司財務資料",
+    "找免費股票追蹤工具",
+    "coderabbit",
+    "inngest",
+    "nextjs"
+  ],
+  "coderabbit": [
+    "監控股票即時價格",
+    "設定個人化股價提醒",
+    "追蹤投資組合表現",
+    "探索公司財務資料",
+    "找免費股票追蹤工具",
+    "openstock",
+    "inngest",
+    "nextjs"
+  ],
+  "inngest": [
+    "監控股票即時價格",
+    "設定個人化股價提醒",
+    "追蹤投資組合表現",
+    "探索公司財務資料",
+    "找免費股票追蹤工具",
+    "openstock",
+    "coderabbit",
+    "nextjs"
+  ],
+  "tailwindcss": [
+    "監控股票即時價格",
+    "設定個人化股價提醒",
+    "追蹤投資組合表現",
+    "探索公司財務資料",
+    "找免費股票追蹤工具",
+    "openstock",
+    "coderabbit",
+    "inngest"
+  ],
+  "設定個人化股價提醒": [
+    "openstock",
+    "coderabbit",
+    "inngest",
+    "nextjs",
+    "shadcn-ui",
+    "stock-market",
+    "tailwindcss"
+  ],
+  "追蹤投資組合表現": [
+    "openstock",
+    "coderabbit",
+    "inngest",
+    "nextjs",
+    "shadcn-ui",
+    "stock-market",
+    "tailwindcss"
+  ],
+  "探索公司財務資料": [
+    "openstock",
+    "coderabbit",
+    "inngest",
+    "nextjs",
+    "shadcn-ui",
+    "stock-market",
+    "tailwindcss"
+  ],
+  "找免費股票追蹤工具": [
+    "openstock",
+    "coderabbit",
+    "inngest",
+    "nextjs",
+    "shadcn-ui",
+    "stock-market",
+    "tailwindcss"
+  ],
+  "多語言文本分類": [
+    "laya"
+  ],
+  "laya": [
+    "多語言文本分類",
+    "快速文字類型判斷",
+    "一次性判讀百種語言",
+    "單次推論完成大量分類",
+    "跨語言決策分析",
+    "在mac上運行模型",
+    "蘋果芯片本地推理",
+    "快速決策模型"
+  ],
+  "快速文字類型判斷": [
+    "laya"
+  ],
+  "一次性判讀百種語言": [
+    "laya"
+  ],
+  "單次推論完成大量分類": [
+    "laya"
+  ],
+  "跨語言決策分析": [
+    "laya"
+  ],
   "硬體外殼設計": [
     "amagine3d",
     "3d enclosure design",
     "hardware case modeling",
-    "parametric enclosure",
-    "產品外殼 3d 建模",
-    "依尺寸產生組裝結構",
-    "匯出 step stl 3mf"
+    "parametric enclosure"
   ],
   "amagine3d": [
     "硬體外殼設計",
     "產品外殼 3d 建模",
     "依尺寸產生組裝結構",
     "匯出 step stl 3mf",
-    "3d enclosure design",
-    "hardware case modeling",
-    "parametric enclosure"
+    "用尺寸設計硬體外殼",
+    "依內部元件產出機殼模型",
+    "根據產品規格生成 3d 外殼",
+    "將 pcb 板轉成適配封裝"
   ],
   "3d enclosure design": [
     "硬體外殼設計",
     "產品外殼 3d 建模",
     "依尺寸產生組裝結構",
     "匯出 step stl 3mf",
-    "amagine3d",
-    "hardware case modeling",
-    "parametric enclosure"
+    "用尺寸設計硬體外殼",
+    "依內部元件產出機殼模型",
+    "根據產品規格生成 3d 外殼",
+    "將 pcb 板轉成適配封裝"
   ],
   "hardware case modeling": [
     "硬體外殼設計",
     "產品外殼 3d 建模",
     "依尺寸產生組裝結構",
     "匯出 step stl 3mf",
-    "amagine3d",
-    "3d enclosure design",
-    "parametric enclosure"
+    "用尺寸設計硬體外殼",
+    "依內部元件產出機殼模型",
+    "根據產品規格生成 3d 外殼",
+    "將 pcb 板轉成適配封裝"
   ],
   "parametric enclosure": [
     "硬體外殼設計",
     "產品外殼 3d 建模",
     "依尺寸產生組裝結構",
     "匯出 step stl 3mf",
-    "amagine3d",
-    "3d enclosure design",
-    "hardware case modeling"
+    "用尺寸設計硬體外殼",
+    "依內部元件產出機殼模型",
+    "根據產品規格生成 3d 外殼",
+    "將 pcb 板轉成適配封裝"
   ],
   "產品外殼 3d 建模": [
     "amagine3d",
     "3d enclosure design",
     "hardware case modeling",
-    "parametric enclosure",
-    "硬體外殼設計",
-    "依尺寸產生組裝結構",
-    "匯出 step stl 3mf"
+    "parametric enclosure"
   ],
   "依尺寸產生組裝結構": [
     "amagine3d",
     "3d enclosure design",
     "hardware case modeling",
-    "parametric enclosure",
-    "硬體外殼設計",
-    "產品外殼 3d 建模",
-    "匯出 step stl 3mf"
+    "parametric enclosure"
   ],
   "匯出 step stl 3mf": [
     "amagine3d",
     "3d enclosure design",
     "hardware case modeling",
-    "parametric enclosure",
-    "硬體外殼設計",
-    "產品外殼 3d 建模",
-    "依尺寸產生組裝結構"
+    "parametric enclosure"
+  ],
+  "用尺寸設計硬體外殼": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure"
+  ],
+  "依內部元件產出機殼模型": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure"
+  ],
+  "根據產品規格生成 3d 外殼": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure"
+  ],
+  "將 pcb 板轉成適配封裝": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure"
+  ],
+  "用參考圖片設計硬件外殼": [
+    "amagine3d",
+    "3d enclosure design",
+    "hardware case modeling",
+    "parametric enclosure"
   ],
   "dlss 5 安裝": [
     "dlss5-swapper",
     "neural rendering",
-    "emulator dlss",
-    "遊戲畫質提升",
-    "dlss 切換管理",
-    "遊戲 升頻"
+    "emulator dlss"
   ],
   "dlss5-swapper": [
     "dlss 5 安裝",
     "遊戲畫質提升",
     "dlss 切換管理",
     "遊戲 升頻",
-    "neural rendering",
-    "emulator dlss"
+    "開啟dlss",
+    "安裝dlss5",
+    "調整遊戲畫質",
+    "升級遊戲解析度"
   ],
   "neural rendering": [
     "dlss 5 安裝",
     "遊戲畫質提升",
     "dlss 切換管理",
     "遊戲 升頻",
-    "dlss5-swapper",
-    "emulator dlss"
+    "開啟dlss",
+    "安裝dlss5",
+    "調整遊戲畫質",
+    "升級遊戲解析度"
   ],
   "emulator dlss": [
     "dlss 5 安裝",
     "遊戲畫質提升",
     "dlss 切換管理",
     "遊戲 升頻",
-    "dlss5-swapper",
-    "neural rendering"
+    "開啟dlss",
+    "安裝dlss5",
+    "調整遊戲畫質",
+    "升級遊戲解析度"
   ],
   "遊戲畫質提升": [
     "dlss5-swapper",
     "neural rendering",
-    "emulator dlss",
-    "dlss 5 安裝",
-    "dlss 切換管理",
-    "遊戲 升頻"
+    "emulator dlss"
   ],
   "dlss 切換管理": [
     "dlss5-swapper",
     "neural rendering",
-    "emulator dlss",
-    "dlss 5 安裝",
-    "遊戲畫質提升",
-    "遊戲 升頻"
+    "emulator dlss"
   ],
   "遊戲 升頻": [
     "dlss5-swapper",
     "neural rendering",
-    "emulator dlss",
-    "dlss 5 安裝",
-    "遊戲畫質提升",
-    "dlss 切換管理"
+    "emulator dlss"
+  ],
+  "開啟dlss": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss"
+  ],
+  "安裝dlss5": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss"
+  ],
+  "調整遊戲畫質": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss"
+  ],
+  "升級遊戲解析度": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss"
+  ],
+  "啟用神經渲染": [
+    "dlss5-swapper",
+    "neural rendering",
+    "emulator dlss"
   ],
   "3d 解剖圖": [
     "human-atlas",
-    "anatomy explorer",
-    "人體構造 探索",
-    "解剖模型 互動檢視",
-    "器官 3d 檢視"
+    "anatomy explorer"
   ],
   "human-atlas": [
     "3d 解剖圖",
     "人體構造 探索",
     "解剖模型 互動檢視",
     "器官 3d 檢視",
-    "anatomy explorer"
+    "查看人體器官3d模型",
+    "瀏覽人體構造互動檢視",
+    "拆解人體器官爆炸圖",
+    "搜尋身體部位3d解剖圖"
   ],
   "anatomy explorer": [
     "3d 解剖圖",
     "人體構造 探索",
     "解剖模型 互動檢視",
     "器官 3d 檢視",
-    "human-atlas"
+    "查看人體器官3d模型",
+    "瀏覽人體構造互動檢視",
+    "拆解人體器官爆炸圖",
+    "搜尋身體部位3d解剖圖"
   ],
   "人體構造 探索": [
     "human-atlas",
-    "anatomy explorer",
-    "3d 解剖圖",
-    "解剖模型 互動檢視",
-    "器官 3d 檢視"
+    "anatomy explorer"
   ],
   "解剖模型 互動檢視": [
     "human-atlas",
-    "anatomy explorer",
-    "3d 解剖圖",
-    "人體構造 探索",
-    "器官 3d 檢視"
+    "anatomy explorer"
   ],
   "器官 3d 檢視": [
     "human-atlas",
-    "anatomy explorer",
-    "3d 解剖圖",
-    "人體構造 探索",
-    "解剖模型 互動檢視"
+    "anatomy explorer"
+  ],
+  "查看人體器官3d模型": [
+    "human-atlas",
+    "anatomy explorer"
+  ],
+  "瀏覽人體構造互動檢視": [
+    "human-atlas",
+    "anatomy explorer"
+  ],
+  "拆解人體器官爆炸圖": [
+    "human-atlas",
+    "anatomy explorer"
+  ],
+  "搜尋身體部位3d解剖圖": [
+    "human-atlas",
+    "anatomy explorer"
+  ],
+  "按系統查看器官層": [
+    "human-atlas",
+    "anatomy explorer"
+  ],
+  "串接多個 ai 工具協作": [
+    "codex-with-chatgpt",
+    "chatgpt",
+    "model-context-protocol",
+    "用 ai agents 自動處理複雜任務",
+    "用 mcp 協議整合各種 ai 服務",
+    "用 ai 自動執行程式碼任務",
+    "讓 ai 幫你自動管理 oauth 認證"
+  ],
+  "codex-with-chatgpt": [
+    "串接多個 ai 工具協作",
+    "用 ai agents 自動處理複雜任務",
+    "用 mcp 協議整合各種 ai 服務",
+    "用 ai 自動執行程式碼任務",
+    "讓 ai 幫你自動管理 oauth 認證",
+    "chatgpt",
+    "model-context-protocol"
+  ],
+  "用 ai agents 自動處理複雜任務": [
+    "codex-with-chatgpt",
+    "chatgpt",
+    "model-context-protocol",
+    "串接多個 ai 工具協作",
+    "用 mcp 協議整合各種 ai 服務",
+    "用 ai 自動執行程式碼任務",
+    "讓 ai 幫你自動管理 oauth 認證"
+  ],
+  "用 mcp 協議整合各種 ai 服務": [
+    "codex-with-chatgpt",
+    "chatgpt",
+    "model-context-protocol",
+    "串接多個 ai 工具協作",
+    "用 ai agents 自動處理複雜任務",
+    "用 ai 自動執行程式碼任務",
+    "讓 ai 幫你自動管理 oauth 認證"
+  ],
+  "用 ai 自動執行程式碼任務": [
+    "codex-with-chatgpt",
+    "chatgpt",
+    "model-context-protocol",
+    "串接多個 ai 工具協作",
+    "用 ai agents 自動處理複雜任務",
+    "用 mcp 協議整合各種 ai 服務",
+    "讓 ai 幫你自動管理 oauth 認證"
+  ],
+  "讓 ai 幫你自動管理 oauth 認證": [
+    "codex-with-chatgpt",
+    "chatgpt",
+    "model-context-protocol",
+    "串接多個 ai 工具協作",
+    "用 ai agents 自動處理複雜任務",
+    "用 mcp 協議整合各種 ai 服務",
+    "用 ai 自動執行程式碼任務"
   ],
   "zcode": [
     "ai 代理",
+    "除錯 bug",
+    "轉換程式語言",
+    "優化演算法",
+    "產生測試用例",
+    "自動化工單",
     "goldie",
-    "aircard",
-    "製作 app store 截圖",
-    "生成 app 預覽圖",
-    "設計 app 商店宣傳圖",
-    "產生 app 展示畫面",
-    "製作 app 截圖"
+    "aircard"
+  ],
+  "除錯 bug": [
+    "zcode"
+  ],
+  "轉換程式語言": [
+    "zcode"
+  ],
+  "優化演算法": [
+    "zcode"
+  ],
+  "產生測試用例": [
+    "zcode"
+  ],
+  "自動化工單": [
+    "zcode"
   ],
   "測試與自動化": [
-    "niubigeo"
+    "niubigeo",
+    "查看ai搜索中品牌出現次數",
+    "监控ai對話里品牌提及",
+    "分析竞品在ai平台表現",
+    "優化ai搜索引擎品牌排名",
+    "追蹤ai回答中品牌曝光"
   ],
   "niubigeo": [
-    "測試與自動化"
+    "測試與自動化",
+    "查看ai搜索中品牌出現次數",
+    "监控ai對話里品牌提及",
+    "分析竞品在ai平台表現",
+    "優化ai搜索引擎品牌排名",
+    "追蹤ai回答中品牌曝光"
+  ],
+  "查看ai搜索中品牌出現次數": [
+    "niubigeo",
+    "測試與自動化",
+    "监控ai對話里品牌提及",
+    "分析竞品在ai平台表現",
+    "優化ai搜索引擎品牌排名",
+    "追蹤ai回答中品牌曝光"
+  ],
+  "监控ai對話里品牌提及": [
+    "niubigeo",
+    "測試與自動化",
+    "查看ai搜索中品牌出現次數",
+    "分析竞品在ai平台表現",
+    "優化ai搜索引擎品牌排名",
+    "追蹤ai回答中品牌曝光"
+  ],
+  "分析竞品在ai平台表現": [
+    "niubigeo",
+    "測試與自動化",
+    "查看ai搜索中品牌出現次數",
+    "监控ai對話里品牌提及",
+    "優化ai搜索引擎品牌排名",
+    "追蹤ai回答中品牌曝光"
+  ],
+  "優化ai搜索引擎品牌排名": [
+    "niubigeo",
+    "測試與自動化",
+    "查看ai搜索中品牌出現次數",
+    "监控ai對話里品牌提及",
+    "分析竞品在ai平台表現",
+    "追蹤ai回答中品牌曝光"
+  ],
+  "追蹤ai回答中品牌曝光": [
+    "niubigeo",
+    "測試與自動化",
+    "查看ai搜索中品牌出現次數",
+    "监控ai對話里品牌提及",
+    "分析竞品在ai平台表現",
+    "優化ai搜索引擎品牌排名"
   ],
   "aircard": [
     "ai 代理",
+    "自定義錢包卡片樣式",
+    "修改apple pay外觀",
+    "鎖屏卡片主題定制",
+    "換掉錢包卡面",
+    "自定義ios錢包界面",
     "goldie",
-    "zcode",
-    "製作 app store 截圖",
-    "生成 app 預覽圖",
-    "設計 app 商店宣傳圖",
-    "產生 app 展示畫面",
-    "製作 app 截圖"
+    "zcode"
+  ],
+  "自定義錢包卡片樣式": [
+    "aircard"
+  ],
+  "修改apple pay外觀": [
+    "aircard"
+  ],
+  "鎖屏卡片主題定制": [
+    "aircard"
+  ],
+  "換掉錢包卡面": [
+    "aircard"
+  ],
+  "自定義ios錢包界面": [
+    "aircard"
+  ],
+  "在mac上運行模型": [
+    "laya-mlx",
+    "laya",
+    "mlx",
+    "apple-silicon",
+    "decision-model",
+    "inference",
+    "local-ai",
+    "machine-learning"
+  ],
+  "laya-mlx": [
+    "在mac上運行模型",
+    "蘋果芯片本地推理",
+    "快速決策模型",
+    "離線運行ai模型",
+    "m3 max推理加速",
+    "laya",
+    "mlx",
+    "apple-silicon"
+  ],
+  "decision-model": [
+    "在mac上運行模型",
+    "蘋果芯片本地推理",
+    "快速決策模型",
+    "離線運行ai模型",
+    "m3 max推理加速",
+    "訓練決策模型",
+    "本地微調qwen模型",
+    "打造自訂ai agent"
+  ],
+  "蘋果芯片本地推理": [
+    "laya-mlx",
+    "laya",
+    "mlx",
+    "apple-silicon",
+    "decision-model",
+    "inference",
+    "local-ai",
+    "machine-learning"
+  ],
+  "快速決策模型": [
+    "laya-mlx",
+    "laya",
+    "mlx",
+    "apple-silicon",
+    "decision-model",
+    "inference",
+    "local-ai",
+    "machine-learning"
+  ],
+  "離線運行ai模型": [
+    "laya-mlx",
+    "laya",
+    "mlx",
+    "apple-silicon",
+    "decision-model",
+    "inference",
+    "local-ai",
+    "machine-learning"
+  ],
+  "m3 max推理加速": [
+    "laya-mlx",
+    "laya",
+    "mlx",
+    "apple-silicon",
+    "decision-model",
+    "inference",
+    "local-ai",
+    "machine-learning"
+  ],
+  "訓練決策模型": [
+    "kev",
+    "decision-model",
+    "jev",
+    "qwen3",
+    "本地微調qwen模型",
+    "打造自訂ai agent",
+    "自建jev決策系統",
+    "訓練並部署模型"
+  ],
+  "kev": [
+    "訓練決策模型",
+    "本地微調qwen模型",
+    "打造自訂ai agent",
+    "自建jev決策系統",
+    "訓練並部署模型",
+    "decision-model",
+    "jev",
+    "qwen3"
+  ],
+  "qwen3": [
+    "訓練決策模型",
+    "本地微調qwen模型",
+    "打造自訂ai agent",
+    "自建jev決策系統",
+    "訓練並部署模型",
+    "kev",
+    "decision-model",
+    "jev"
+  ],
+  "本地微調qwen模型": [
+    "kev",
+    "decision-model",
+    "jev",
+    "qwen3",
+    "訓練決策模型",
+    "打造自訂ai agent",
+    "自建jev決策系統",
+    "訓練並部署模型"
+  ],
+  "打造自訂ai agent": [
+    "kev",
+    "decision-model",
+    "jev",
+    "qwen3",
+    "訓練決策模型",
+    "本地微調qwen模型",
+    "自建jev決策系統",
+    "訓練並部署模型"
+  ],
+  "自建jev決策系統": [
+    "kev",
+    "decision-model",
+    "jev",
+    "qwen3",
+    "訓練決策模型",
+    "本地微調qwen模型",
+    "打造自訂ai agent",
+    "訓練並部署模型"
+  ],
+  "訓練並部署模型": [
+    "kev",
+    "decision-model",
+    "jev",
+    "qwen3",
+    "訓練決策模型",
+    "本地微調qwen模型",
+    "打造自訂ai agent",
+    "自建jev決策系統"
+  ],
+  "建立3d人體模型": [
+    "models-of-human-anatomy",
+    "models",
+    "human",
+    "anatomy",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型"
+  ],
+  "models-of-human-anatomy": [
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型",
+    "models",
+    "human",
+    "anatomy"
+  ],
+  "models": [
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型",
+    "models-of-human-anatomy",
+    "human",
+    "anatomy"
+  ],
+  "human": [
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型",
+    "models-of-human-anatomy",
+    "models",
+    "anatomy"
+  ],
+  "anatomy": [
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型",
+    "旋轉 3d 人體模型",
+    "查看器官結構",
+    "互動式解剖學圖"
+  ],
+  "導出器官3d檔案": [
+    "models-of-human-anatomy",
+    "models",
+    "human",
+    "anatomy",
+    "建立3d人體模型",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型"
+  ],
+  "用blender渲染解剖結構": [
+    "models-of-human-anatomy",
+    "models",
+    "human",
+    "anatomy",
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "製作醫學教學3d素材",
+    "下載人體器官網格模型"
+  ],
+  "製作醫學教學3d素材": [
+    "models-of-human-anatomy",
+    "models",
+    "human",
+    "anatomy",
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "下載人體器官網格模型"
+  ],
+  "下載人體器官網格模型": [
+    "models-of-human-anatomy",
+    "models",
+    "human",
+    "anatomy",
+    "建立3d人體模型",
+    "導出器官3d檔案",
+    "用blender渲染解剖結構",
+    "製作醫學教學3d素材"
+  ],
+  "旋轉 3d 人體模型": [
+    "anatomy"
+  ],
+  "查看器官結構": [
+    "anatomy"
+  ],
+  "互動式解剖學圖": [
+    "anatomy"
+  ],
+  "d 肌肉系統": [
+    "anatomy"
+  ],
+  "翻轉查看骨骼": [
+    "anatomy"
+  ],
+  "生成3d人體模型": [
+    "anny",
+    "驅動人體姿勢",
+    "製作臉部表情",
+    "建立不同年齡的人體網格",
+    "設定人形形狀參數"
+  ],
+  "anny": [
+    "生成3d人體模型",
+    "驅動人體姿勢",
+    "製作臉部表情",
+    "建立不同年齡的人體網格",
+    "設定人形形狀參數"
+  ],
+  "驅動人體姿勢": [
+    "anny",
+    "生成3d人體模型",
+    "製作臉部表情",
+    "建立不同年齡的人體網格",
+    "設定人形形狀參數"
+  ],
+  "製作臉部表情": [
+    "anny",
+    "生成3d人體模型",
+    "驅動人體姿勢",
+    "建立不同年齡的人體網格",
+    "設定人形形狀參數"
+  ],
+  "建立不同年齡的人體網格": [
+    "anny",
+    "生成3d人體模型",
+    "驅動人體姿勢",
+    "製作臉部表情",
+    "設定人形形狀參數"
+  ],
+  "設定人形形狀參數": [
+    "anny",
+    "生成3d人體模型",
+    "驅動人體姿勢",
+    "製作臉部表情",
+    "建立不同年齡的人體網格"
+  ],
+  "建立 fusion 工作流程": [
+    "fusion-ai-studio",
+    "fusion",
+    "studio",
+    "測試 fusion 應用程式流程",
+    "製作業務物件模板",
+    "管理供應鏈自動化流程",
+    "設定採購模組工作流"
+  ],
+  "fusion-ai-studio": [
+    "建立 fusion 工作流程",
+    "測試 fusion 應用程式流程",
+    "製作業務物件模板",
+    "管理供應鏈自動化流程",
+    "設定採購模組工作流",
+    "fusion",
+    "studio"
+  ],
+  "fusion": [
+    "建立 fusion 工作流程",
+    "測試 fusion 應用程式流程",
+    "製作業務物件模板",
+    "管理供應鏈自動化流程",
+    "設定採購模組工作流",
+    "fusion-ai-studio",
+    "studio"
+  ],
+  "studio": [
+    "建立 fusion 工作流程",
+    "測試 fusion 應用程式流程",
+    "製作業務物件模板",
+    "管理供應鏈自動化流程",
+    "設定採購模組工作流",
+    "fusion-ai-studio",
+    "fusion"
+  ],
+  "測試 fusion 應用程式流程": [
+    "fusion-ai-studio",
+    "fusion",
+    "studio",
+    "建立 fusion 工作流程",
+    "製作業務物件模板",
+    "管理供應鏈自動化流程",
+    "設定採購模組工作流"
+  ],
+  "製作業務物件模板": [
+    "fusion-ai-studio",
+    "fusion",
+    "studio",
+    "建立 fusion 工作流程",
+    "測試 fusion 應用程式流程",
+    "管理供應鏈自動化流程",
+    "設定採購模組工作流"
+  ],
+  "管理供應鏈自動化流程": [
+    "fusion-ai-studio",
+    "fusion",
+    "studio",
+    "建立 fusion 工作流程",
+    "測試 fusion 應用程式流程",
+    "製作業務物件模板",
+    "設定採購模組工作流"
+  ],
+  "設定採購模組工作流": [
+    "fusion-ai-studio",
+    "fusion",
+    "studio",
+    "建立 fusion 工作流程",
+    "測試 fusion 應用程式流程",
+    "製作業務物件模板",
+    "管理供應鏈自動化流程"
   ],
   "截圖辨識文字": [
     "esearch",
@@ -61278,7 +62215,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "screenshot": [
     "截圖辨識文字",
@@ -61286,7 +62225,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "offline-ocr": [
     "截圖辨識文字",
@@ -61294,7 +62235,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "screen-translation": [
     "截圖辨識文字",
@@ -61302,7 +62245,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "reverse-image-search": [
     "截圖辨識文字",
@@ -61310,7 +62255,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "screen-recorder": [
     "截圖辨識文字",
@@ -61318,7 +62265,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "scrolling-screenshot": [
     "截圖辨識文字",
@@ -61326,7 +62275,9 @@ export const SYNONYM_MAP = {
     "離線 ocr",
     "以圖搜圖",
     "捲動截圖",
-    "圖片貼在螢幕"
+    "圖片貼在螢幕",
+    "把截圖中的文字轉成可編輯文件",
+    "即時翻譯螢幕上的外文"
   ],
   "螢幕翻譯": [
     "esearch",
@@ -61378,6 +62329,56 @@ export const SYNONYM_MAP = {
     "scrolling-screenshot",
     "paddleocr"
   ],
+  "把截圖中的文字轉成可編輯文件": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "即時翻譯螢幕上的外文": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "用圖片搜尋網路相似影像": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "把應用程式視窗釘在桌面上": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
+  "錄製電腦螢幕操作過程": [
+    "esearch",
+    "screenshot",
+    "offline-ocr",
+    "screen-translation",
+    "reverse-image-search",
+    "screen-recorder",
+    "scrolling-screenshot",
+    "paddleocr"
+  ],
   "尋找免費 office 替代方案": [
     "genoffice",
     "office-suite",
@@ -61394,16 +62395,19 @@ export const SYNONYM_MAP = {
     "pdf 轉 word",
     "markdown 轉 word",
     "本地編輯 excel 公式",
-    "用 ai 產生 ppt 簡報",
-    "讓 agent 寫出 word 文件",
-    "生成 excel 工作簿"
+    "ai 編輯 word 文件",
+    "excel 公式自動修正",
+    "ppt 大綱直接生成"
   ],
   "ai-office": [
     "尋找免費 office 替代方案",
     "用 ai 編輯 word 文件",
     "pdf 轉 word",
     "markdown 轉 word",
-    "本地編輯 excel 公式"
+    "本地編輯 excel 公式",
+    "ai 編輯 word 文件",
+    "excel 公式自動修正",
+    "ppt 大綱直接生成"
   ],
   "xlsx": [
     "尋找免費 office 替代方案",
@@ -61411,30 +62415,29 @@ export const SYNONYM_MAP = {
     "pdf 轉 word",
     "markdown 轉 word",
     "本地編輯 excel 公式",
-    "用 ai 產生 ppt 簡報",
-    "讓 agent 寫出 word 文件",
-    "生成 excel 工作簿"
-  ],
-  "pdf-editor": [
-    "尋找免費 office 替代方案",
-    "用 ai 編輯 word 文件",
-    "pdf 轉 word",
-    "markdown 轉 word",
-    "本地編輯 excel 公式"
+    "ai 編輯 word 文件",
+    "excel 公式自動修正",
+    "ppt 大綱直接生成"
   ],
   "markdown-editor": [
     "尋找免費 office 替代方案",
     "用 ai 編輯 word 文件",
     "pdf 轉 word",
     "markdown 轉 word",
-    "本地編輯 excel 公式"
+    "本地編輯 excel 公式",
+    "ai 編輯 word 文件",
+    "excel 公式自動修正",
+    "ppt 大綱直接生成"
   ],
   "microsoft-office-alternative": [
     "尋找免費 office 替代方案",
     "用 ai 編輯 word 文件",
     "pdf 轉 word",
     "markdown 轉 word",
-    "本地編輯 excel 公式"
+    "本地編輯 excel 公式",
+    "ai 編輯 word 文件",
+    "excel 公式自動修正",
+    "ppt 大綱直接生成"
   ],
   "用 ai 編輯 word 文件": [
     "genoffice",
@@ -61476,6 +62479,56 @@ export const SYNONYM_MAP = {
     "pdf-editor",
     "markdown-editor"
   ],
+  "ai 編輯 word 文件": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "excel 公式自動修正": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "ppt 大綱直接生成": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "word 轉 markdown": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
+  "html 轉 pdf": [
+    "genoffice",
+    "office-suite",
+    "ai-office",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf-editor",
+    "markdown-editor"
+  ],
   "用 ai 產生 ppt 簡報": [
     "genoffice-skill",
     "genoffice",
@@ -61492,7 +62545,9 @@ export const SYNONYM_MAP = {
     "生成 excel 工作簿",
     "批次轉換文件格式",
     "編輯既有 office 文件",
-    "輸出真實 office 檔案"
+    "輸出真實 office 檔案",
+    "生成 word 文件",
+    "製作 ppt 簡報"
   ],
   "office-document-generation": [
     "用 ai 產生 ppt 簡報",
@@ -61500,7 +62555,9 @@ export const SYNONYM_MAP = {
     "生成 excel 工作簿",
     "批次轉換文件格式",
     "編輯既有 office 文件",
-    "輸出真實 office 檔案"
+    "輸出真實 office 檔案",
+    "生成 word 文件",
+    "製作 ppt 簡報"
   ],
   "format-conversion": [
     "用 ai 產生 ppt 簡報",
@@ -61508,7 +62565,9 @@ export const SYNONYM_MAP = {
     "生成 excel 工作簿",
     "批次轉換文件格式",
     "編輯既有 office 文件",
-    "輸出真實 office 檔案"
+    "輸出真實 office 檔案",
+    "生成 word 文件",
+    "製作 ppt 簡報"
   ],
   "讓 agent 寫出 word 文件": [
     "genoffice-skill",
@@ -61559,6 +62618,707 @@ export const SYNONYM_MAP = {
     "xlsx",
     "pptx",
     "pdf"
+  ],
+  "生成 word 文件": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "製作 ppt 簡報": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "建立 excel 表格": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "讀取 office 文件": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "編輯既有 word 文件": [
+    "genoffice-skill",
+    "genoffice",
+    "agent-skill",
+    "office-document-generation",
+    "docx",
+    "xlsx",
+    "pptx",
+    "pdf"
+  ],
+  "用本地模型做語義判斷": [
+    "semif-openjev",
+    "semif",
+    "openjev",
+    "在家跑開源模型讀取logits",
+    "本機部署語義決策工具",
+    "用3090做條件判斷",
+    "本地推理進行邏輯評估"
+  ],
+  "semif-openjev": [
+    "用本地模型做語義判斷",
+    "在家跑開源模型讀取logits",
+    "本機部署語義決策工具",
+    "用3090做條件判斷",
+    "本地推理進行邏輯評估",
+    "semif",
+    "openjev"
+  ],
+  "semif": [
+    "用本地模型做語義判斷",
+    "在家跑開源模型讀取logits",
+    "本機部署語義決策工具",
+    "用3090做條件判斷",
+    "本地推理進行邏輯評估",
+    "semif-openjev",
+    "openjev"
+  ],
+  "openjev": [
+    "用本地模型做語義判斷",
+    "在家跑開源模型讀取logits",
+    "本機部署語義決策工具",
+    "用3090做條件判斷",
+    "本地推理進行邏輯評估",
+    "semif-openjev",
+    "semif"
+  ],
+  "在家跑開源模型讀取logits": [
+    "semif-openjev",
+    "semif",
+    "openjev",
+    "用本地模型做語義判斷",
+    "本機部署語義決策工具",
+    "用3090做條件判斷",
+    "本地推理進行邏輯評估"
+  ],
+  "本機部署語義決策工具": [
+    "semif-openjev",
+    "semif",
+    "openjev",
+    "用本地模型做語義判斷",
+    "在家跑開源模型讀取logits",
+    "用3090做條件判斷",
+    "本地推理進行邏輯評估"
+  ],
+  "用3090做條件判斷": [
+    "semif-openjev",
+    "semif",
+    "openjev",
+    "用本地模型做語義判斷",
+    "在家跑開源模型讀取logits",
+    "本機部署語義決策工具",
+    "本地推理進行邏輯評估"
+  ],
+  "本地推理進行邏輯評估": [
+    "semif-openjev",
+    "semif",
+    "openjev",
+    "用本地模型做語義判斷",
+    "在家跑開源模型讀取logits",
+    "本機部署語義決策工具",
+    "用3090做條件判斷"
+  ],
+  "自動回覆": [
+    "jev-chat-jarvis",
+    "jev",
+    "chat",
+    "jarvis",
+    "accessibility-service",
+    "android",
+    "chat-assistant"
+  ],
+  "jev-chat-jarvis": [
+    "自動回覆",
+    "輔助回覆",
+    "對話建議",
+    "聊天寫手",
+    "訊息草稿",
+    "jev",
+    "chat",
+    "jarvis"
+  ],
+  "jarvis": [
+    "自動回覆",
+    "輔助回覆",
+    "對話建議",
+    "聊天寫手",
+    "訊息草稿",
+    "jev-chat-jarvis",
+    "jev",
+    "chat"
+  ],
+  "accessibility-service": [
+    "自動回覆",
+    "輔助回覆",
+    "對話建議",
+    "聊天寫手",
+    "訊息草稿",
+    "jev-chat-jarvis",
+    "jev",
+    "chat"
+  ],
+  "chat-assistant": [
+    "自動回覆",
+    "輔助回覆",
+    "對話建議",
+    "聊天寫手",
+    "訊息草稿",
+    "jev-chat-jarvis",
+    "jev",
+    "chat"
+  ],
+  "輔助回覆": [
+    "jev-chat-jarvis",
+    "jev",
+    "chat",
+    "jarvis",
+    "accessibility-service",
+    "android",
+    "chat-assistant"
+  ],
+  "對話建議": [
+    "jev-chat-jarvis",
+    "jev",
+    "chat",
+    "jarvis",
+    "accessibility-service",
+    "android",
+    "chat-assistant"
+  ],
+  "聊天寫手": [
+    "jev-chat-jarvis",
+    "jev",
+    "chat",
+    "jarvis",
+    "accessibility-service",
+    "android",
+    "chat-assistant"
+  ],
+  "訊息草稿": [
+    "jev-chat-jarvis",
+    "jev",
+    "chat",
+    "jarvis",
+    "accessibility-service",
+    "android",
+    "chat-assistant"
+  ],
+  "模型量化壓縮": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "model-optimizer": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "optimizer": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "nvfp4": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "quantization-aware-training": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "quantization": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "pruning": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "distillation": [
+    "模型量化壓縮",
+    "推理加速",
+    "模型蒸餾",
+    "模型剪枝",
+    "壓縮模型",
+    "減少模型大小",
+    "加速模型推理",
+    "模型量化工具"
+  ],
+  "推理加速": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "模型蒸餾": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "模型剪枝": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "壓縮模型": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "減少模型大小": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "加速模型推理": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "模型量化工具": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "轉換 nvidia nvfp4": [
+    "model-optimizer",
+    "model",
+    "optimizer",
+    "nvfp4",
+    "speculative-decoding",
+    "quantization-aware-training",
+    "quantization",
+    "pruning"
+  ],
+  "自動程式碼審查": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "claude-code-action": [
+    "自動程式碼審查",
+    "定時維護任務",
+    "審查 github pr",
+    "分類 github 問題",
+    "實作代碼修改",
+    "追蹤工作流程進度",
+    "執行定時維護任務",
+    "action"
+  ],
+  "action": [
+    "自動程式碼審查",
+    "定時維護任務",
+    "審查 github pr",
+    "分類 github 問題",
+    "實作代碼修改",
+    "追蹤工作流程進度",
+    "執行定時維護任務",
+    "claude-code-action"
+  ],
+  "pr-code-review": [
+    "自動程式碼審查",
+    "定時維護任務",
+    "審查 github pr",
+    "分類 github 問題",
+    "實作代碼修改",
+    "追蹤工作流程進度",
+    "執行定時維護任務",
+    "claude-code-action"
+  ],
+  "issue-triage": [
+    "自動程式碼審查",
+    "定時維護任務",
+    "審查 github pr",
+    "分類 github 問題",
+    "實作代碼修改",
+    "追蹤工作流程進度",
+    "執行定時維護任務",
+    "claude-code-action"
+  ],
+  "定時維護任務": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "審查 github pr": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "分類 github 問題": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "實作代碼修改": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "追蹤工作流程進度": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "執行定時維護任務": [
+    "claude-code-action",
+    "action",
+    "github-actions",
+    "pr-code-review",
+    "issue-triage"
+  ],
+  "密鑰管理": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "openbao": [
+    "密鑰管理",
+    "資料庫憑證",
+    "管理 api 金鑰",
+    "儲存 tls 憑證",
+    "動態產生密碼",
+    "自動輪替密鑰",
+    "儲存資料庫連線字串",
+    "go"
+  ],
+  "secret-management": [
+    "密鑰管理",
+    "資料庫憑證",
+    "管理 api 金鑰",
+    "儲存 tls 憑證",
+    "動態產生密碼",
+    "自動輪替密鑰",
+    "儲存資料庫連線字串",
+    "openbao"
+  ],
+  "dynamic-secrets": [
+    "密鑰管理",
+    "資料庫憑證",
+    "管理 api 金鑰",
+    "儲存 tls 憑證",
+    "動態產生密碼",
+    "自動輪替密鑰",
+    "儲存資料庫連線字串",
+    "openbao"
+  ],
+  "key-rolling": [
+    "密鑰管理",
+    "資料庫憑證",
+    "管理 api 金鑰",
+    "儲存 tls 憑證",
+    "動態產生密碼",
+    "自動輪替密鑰",
+    "儲存資料庫連線字串",
+    "openbao"
+  ],
+  "secrets-storage": [
+    "密鑰管理",
+    "資料庫憑證",
+    "管理 api 金鑰",
+    "儲存 tls 憑證",
+    "動態產生密碼",
+    "自動輪替密鑰",
+    "儲存資料庫連線字串",
+    "openbao"
+  ],
+  "資料庫憑證": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "管理 api 金鑰": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "儲存 tls 憑證": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "動態產生密碼": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "自動輪替密鑰": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "儲存資料庫連線字串": [
+    "openbao",
+    "go",
+    "secret-management",
+    "dynamic-secrets",
+    "key-rolling",
+    "secrets-storage"
+  ],
+  "agent-長期記憶": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "hindsight": [
+    "agent-長期記憶",
+    "跨會話記憶",
+    "讓 agent 學習",
+    "讓 agent 從歷史學習",
+    "長期記憶檢索",
+    "agent 記憶系統",
+    "讓 ai 記住之前的對話",
+    "跨會話記憶 ai 助手"
+  ],
+  "longmemeval": [
+    "agent-長期記憶",
+    "跨會話記憶",
+    "讓 agent 學習",
+    "讓 agent 從歷史學習",
+    "長期記憶檢索",
+    "agent 記憶系統",
+    "讓 ai 記住之前的對話",
+    "跨會話記憶 ai 助手"
+  ],
+  "retain-recall-reflect": [
+    "agent-長期記憶",
+    "跨會話記憶",
+    "讓 agent 學習",
+    "讓 agent 從歷史學習",
+    "長期記憶檢索",
+    "agent 記憶系統",
+    "讓 ai 記住之前的對話",
+    "跨會話記憶 ai 助手"
+  ],
+  "cross-session-memory": [
+    "agent-長期記憶",
+    "跨會話記憶",
+    "讓 agent 學習",
+    "讓 agent 從歷史學習",
+    "長期記憶檢索",
+    "agent 記憶系統",
+    "讓 ai 記住之前的對話",
+    "跨會話記憶 ai 助手"
+  ],
+  "跨會話記憶": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "讓 agent 學習": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "讓 agent 從歷史學習": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "長期記憶檢索": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "agent 記憶系統": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "讓 ai 記住之前的對話": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "跨會話記憶 ai 助手": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "讓 agent 從歷史中學習": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "讓 ai 記住使用者偏好": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
+  ],
+  "ai 長期記憶系統": [
+    "hindsight",
+    "ai-memory",
+    "longmemeval",
+    "retain-recall-reflect",
+    "long-term-memory",
+    "memory-system",
+    "cross-session-memory"
   ],
   "翻譯": [
     "translate",

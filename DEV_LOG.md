@@ -5242,3 +5242,138 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
 - `docs/edge-diagnostic.cjs` 位在 `docs/` 而非 `scripts/`，僅 AGENTS.md 引用；未來可遷移至 `scripts/` 以對齊職責分層。
 - `scripts/dynamic-k.js`、`scripts/llm-throughput.js` 只出現在 `core/agent-retrieval.js` 與 `core/llm-rerank.js` 的註解中，無代碼引用，本次保守未刪。
 - `.backup-20260912/` (7 MB) 已被 gitignore 忽略，未進 repo。
+
+## 2026-09-27 批量加入 4 個工具 + 入庫管線四項缺陷修正（描述／分類／useCase／觸發詞）
+
+### 需求
+批量加入 7 個 GitHub URL（NVIDIA/Model-Optimizer、zhaoxuya520/reverse-skill、anthropics/claude-code-action、openbao/openbao、tensorflow/tensorflow、vectorize-io/hindsight、paperclipai/paperclip），逐一檢查是否需要拆解。
+
+### 處理結果
+**批量新增**（4 支，727 → 731 總計）：
+
+| URL | 分類 | Stars | 拆解判定 |
+|-----|------|-------|---------|
+| NVIDIA/Model-Optimizer | AI 框架 | 4,791 | 不拆解：`tools/`=CI 工具、`plugins/`、`.agents/`=倉庫內部代理設定，非可獨立安裝產品；本體為單一 pip 套件 `nvidia-modelopt` |
+| anthropics/claude-code-action | 開發工具 | 9,118 | 不拆解：`base-action/`、`agent-approval-check/` 是 `action.yml` 內部的複合動作組成件 |
+| openbao/openbao | 安全性 | 8,035 | 不拆解：單一 Go 服務，`api/`、`sdk/`、`ui/` 為內部套件 |
+| vectorize-io/hindsight | 知識管理 | 32,551 | 不拆解：`hindsight-all/-api/-cli/-embed` 是同產品的包裝與部署變體，拆開會產生近重複條目、稀釋檢索鑑別力 |
+
+**跳過**（3 支已在庫，URL 完全相符）：tensorflow、reverse-skill、paperclip。
+
+**解析器盲點（本次未改，僅記錄）**：`scripts/url-resolver.js:93` 只在「信號目錄恰好 1 個」時才下探一層。hindsight 根目錄有 3 個信號目錄（`hindsight-extensions`、`hindsight-tools`、`skills`），因此 `skills/` 底下 5 個 Claude skill（architect/cloud/docs/local/self-hosted）從未被檢查。本次結論不受影響（該 5 者為部署變體，不適合入庫）；日後若要收錄可用 `node cli.js index-subtools hindsight`。
+
+**入庫管線缺陷修正**（4 項皆為既有管線問題，非輸入資料錯誤）：
+1. **描述被 README 導覽列蓋掉**：`scripts/scan-tool.js:350` 的 `ghUsable = ghDesc.length >= 40` 門檻，讓 hindsight 官方 35 字描述被判「不可用」而退回 README 首段，結果寫成「Documentation • Integrations • Cookbook • Benchmarks …」。已換回 README 首段實質說明（維持「短但正確」原則，不編造）。
+2. **分類誤判 2 支**：`reclassify-tools.js:202` 明示 agent 記憶屬「知識管理」且優先級高於其他規則，hindsight 卻落在「研究」（該類應只收文獻／實驗／洩漏提示詞研究）；model-optimizer 依同儕 airllm/ktransformers/sglang/llamafactory 一致歸「AI 框架」。皆已修正並重跑 `npm run categories:sync`，並照 2026-09-06 慣例在 `docs/category-conventions.md` 增補「模型優化／量化庫 → AI 框架」條文。
+3. **useCase 是描述截斷複製品**：`scan-tool.js:457` 寫入 `useCase: truncateAtWord(description, 200)`，而 `enrich-new-tools.js:113` 與 `isFullyEnriched()` 都以「完全相等」判定複製品，截斷版（帶省略號）比對永不成立 → 該欄位等於零資訊卻能瞞過升級檢查變 active。已改採 `enrich-triggers.js` 的「人工查證＋附 evidence」模式實質重寫。
+4. **觸發詞嚴重不足**：新入庫僅 3–5 個（這批倉庫 GitHub topics 多為空），同儕 sglang/mem0/llamafactory 為 10–16 個，導致完全查不到。依 README 證據補齊至 9–16 個，全程套用 `enrich-triggers-llm.js` 的 df ≤ 3 鑑別力守門（候選詞 `claude-code` 因 df=39 被拒收）。
+
+**檢索實測**（同一查詢、修正前 vs 修正後；「前」為觸發詞補齊前的實測記錄）：
+
+| 查詢 | 修正前 | 修正後 |
+|------|--------|--------|
+| 模型量化壓縮推理加速 | Model Optimizer 未進前 5 | **#1** ✅ |
+| 開源密鑰管理 secrets | Openbao #2 | **#1** ✅ |
+| 讓我把模型蒸餾與剪枝 | 未進前 5（Blender #1） | **#1** ✅ |
+| 在 GitHub PR 自動程式碼審查 | 未進前 5 | **#1** ✅ |
+| agent 長期記憶檢索 | 未進前 5 | **#2** ✅ |
+| quantization pruning model optimization | 未進前 5 | 仍未進前 3 ❌ |
+| github actions claude code review | 未進前 5 | 仍未進前 3 ❌ |
+| 讓 agent 有跨會話長期記憶 | 未進前 5 | 仍未進前 5 ❌（同詞形下 mem0/cognee 亦未進） |
+
+三項失敗查詢的共同成因：`model`、`code`、`action`、`memory` 屬高 df 泛用觸發詞，會把大批不相關工具以 L1.5-trigger-exact 同分推上前列（實測 213%/182% 同分群），本輪補的高鑑別力詞反而被同分稀釋。這屬排序層問題（同分時的次級判準），繼續加觸發詞只會製造更多同分，故本輪停在「中文白話意圖可命中」，把英文泛詞同分留給排序層處理。
+
+### 驗證結果
+- `node cli.js validate`：731/731 通過，metadata quality 100/100，0 errors 0 warnings ✅
+- `npm test`：**315 tests / 313 pass / 2 skipped（選配 playwright e2e）/ 0 fail** ✅
+- `node scripts/check-mece.js`：18 分類通過，無殘留分類 ✅
+- `node scripts/sync-categories.js --check`：3 個衍生檔全同步 ✅
+- `node scripts/check-utf8.js`：0 個 U+FFFD ✅
+- `npm run build`：dist 重建成功，同義詞詞典 7,552 詞更新 ✅
+- 星數基準線：4 支皆已寫入 `star-snapshots.json` 扁平鍵（`core/stars.js:63` 註明此為刻意設計，trending 讀扁平鍵），下週 delta 可正常計算 ✅
+
+### 已知殘留（超出本次範圍）
+- 全庫仍有 **44 支**（含本輪 4 支原本）的 `negativeConstraints` 是「初次收錄建議人工審查…」佔位樣板。
+- `enrich-triggers-llm.js` 待處理 **30 支**（本輪 6 支之外尚有 24 支）。
+- `my-girlfriend-jingtian-latex` 因缺 `useCase_zh` 卡在 experimental（前輪遺留，`translate:zh` 已標記完成故不再處理）。
+- `enrich-triggers-llm.js --dry` 未寫檔卻印「完成：共寫入 26 筆」，易誤導為已落盤。
+- 中文「量化」同形異義：「把 LLM 量化後部署到 vLLM」讓 qlib（量化金融）壓過 model-optimizer 排第一，屬跨語言詞義歧視問題，需詞義層而非觸發詞層處理。
+- 本輪 `translate:zh` 順帶補完前輪未提交的 2 支（semif-openjev、jev-chat-jarvis）中文欄位並升為 active。
+
+## 2026-09-27 負邊界佔位樣板根治（108 支）＋ 觸發詞補齊收斂 ＋ 分類連帶修正
+
+### 需求
+承接同日上午的「批量加入 4 個工具」，選用選項 3「清存量」：清掉以佔位樣板充數的 `negativeConstraints`、補齊待處理觸發詞、解開卡在 `experimental` 的工具，並對照檢索基線驗證改動沒有讓排序變差。
+
+### 關鍵校正：佔位規模是 108 支，不是 44 支
+本輪一開始依 `scripts/scan-tool.js` 的寫入內容盤點出 44 支。**這個盤點是錯的**——它只覆蓋第一個產生器。實測全庫掃兩種字串後：
+
+| 佔位樣板 | 產生器 | 受污染工具數 |
+|----------|--------|--------------|
+| 「初次收錄建議人工審查…」 | `scripts/scan-tool.js`（上午已根治） | 40 |
+| 「由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用」＋「詳細安裝指令需依官方 README 為準」 | `scripts/trending-weekly.js:412`（本輪根治） | 68 |
+| **合計** | 兩個產生器 | **108** |
+
+教訓：同一個缺陷類別可能有多個寫入點。只讀一支掃描器就宣稱「全庫清乾淨」等於用樣本數 1 推全總體。
+
+### 處理結果
+
+**一、佔位樣板源頭根治**（`scripts/trending-weekly.js:411-415`）
+`negativeConstraints` 由兩條寫死字串改為 `[]`，理由與上午 `scan-tool.js` 的修法相同，也和該檔既有註解對 `advantages` 的處理一致：空陣列會觸發 contract 警告（penalty），**這是誠實的訊號**；用對任何工具都成立的話填滿欄位，等於讓假文字一路進到檢索向量。
+
+**二、108 支回補**（`scripts/enrich-new-tools.js --ids=…`，依 README 實譯）
+| 輪次 | 送進 | 補到真實內容 | 無足夠資訊（誠實留空） | API 失敗 |
+|------|------|--------------|------------------------|----------|
+| 第一輪（scan-tool 樣板） | 40 | 26 | 14 | 0 |
+| 第二輪（trending 樣板） | 68 | 42 | 26 | 0 |
+| 合計 | 108 | **68** | **40** | 0 |
+
+抽檢 5 支（tensorflow／ohmyzsh／javaguide／worldmonitor／awesome-claude-skills）內容均為 README 可查證的具體邊界（API 語言保證範圍、Zsh 版本下限、AGPL copyleft 義務、需外部 MCP Gateway 才能自動化），不再是萬用句。
+
+**三、中文譯文**（`scripts/translate-to-zh.js`）
+108 支清完後重翻。過程中抓到三個真問題並修掉：
+1. **診斷資訊不足**：失敗原因只寫 `empty fields`，無從判斷模型跑版成什麼樣子 → 改為一併記錄實際收到的 key／shape（與既有 `missing id` 分支同樣的做法）。
+2. **跑版 #2/#3 的陣列版沒被接住**（實測 10 支白燒）：整批只翻 `negativeConstraints` 時，模型回 `{"<id>_zh": ["…","…"]}`。原碼 `if (typeof out[`${id}_zh`] === 'string')` 只認字串，陣列直接掉到 `missing id`。已補陣列分支。
+3. **模型把陣列壓成一條字串**（2 支）：新增「以全形/半形分號切分，且**切完筆數必須正好等於原文筆數**才收下」的防呆；數量不吻合就留空，因為 `scripts/compile-wiki.js:117` 與 `web/app.js:1284` 都假設這是陣列，且憑猜測切分會切錯句子。
+
+最終 `negativeConstraints_zh` 收斂為：642 支譯文齊全、46 支原文本身就是中文（免譯，符合「已是中文的欄位不重翻」）、3 支為 `deprecated`/`archived`（翻譯器只處理 active/experimental，屬設計行為），**待翻清單為 0**。
+
+**四、解開最後一支 `experimental`**
+`my-girlfriend-jingtian-latex` 卡住的真正原因不是翻譯漏跑：它的 `useCase` 原文就是繁中，翻譯器依規則跳過，於是 `useCase_zh` 永遠不會被產出，而 `isFullyEnriched()` 把它列為必要欄位 → 死迴圈。依管線對 `description_zh` 的既有做法做**恆等映射**（來源即繁中，不造新內容）後升級為 active。全庫 `experimental` 由 1 支降為 **0** 支。
+（同欄位組合另有 5 支 active 工具：`font-awesome`、`computer-science`、`manim-ml`、`weread-hot-booklists`、`free-books`。牠們不在升級路徑上，故未連動；若要全面同形，應改的是 `isFullyEnriched()` 本身，屬另一個決策。）
+
+**五、觸發詞補齊收斂**（`scripts/enrich-triggers-llm.js`）
+30 支待處理 → 首輪 28 支成功、2 支 API 失敗；重試後 30 支全數完成，守門（df ≤ 3、每筆 ≤ 5 詞）從 221→115、47→25、20→10 詞。現況 728 支在庫工具平均 12.7 個觸發詞，`<5` 詞者 1 支、`0` 詞者 0 支，`trigger-enrich-state.json` 的 failed 為空。
+
+**六、連帶分類修正：`laya-mlx` AI 代理 → AI 框架**
+補齊觸發詞後 `npm test` 的 4 支 Tier 1 保留測試轉紅。根因不是測試過時：新加的中文觸發詞「蘋果芯片本地推理」命中 `core/classification-rules.js` 的 R4（本地／推理引擎、模型運行時 → AI 框架，tier 1），而 `fields()` 的 `identity` 本來就把 triggers 當分類證據。比對同儕——`rapid-mlx`（Apple Silicon 本地推論引擎）、`airllm`、`ktransformers`、`sglang` 全數為 AI 框架——`laya-mlx` 描述自己就是「Native MLX **runtime**」，歸在 AI 代理（149 支）從頭就是錯的。改分類而非改規則、也未回退觸發詞。`rescan-classification.js --ci` 現為 exit 0。
+
+### 驗證結果
+- `npm test`：320 tests / 318 pass / **0 fail** / 2 skipped（playwright e2e 需 `npm i`）✅
+- `node cli.js validate`：731 工具，Contract **0 errors**；40 warnings 全部來自「缺少禁用場景」的誠實留空；metadata quality **98.9/100**（清掉假樣板前是 100，掉下來的 1.1 分正是那 108 支用假文字換來的虛高）✅
+- `node scripts/rescan-classification.js --ci`：Tier 1 違反 0，exit 0 ✅
+- `node scripts/check-mece.js`：731 工具 / 18 分類通過 ✅
+- `npm run categories:check`：3 個衍生檔全同步 ✅
+- `check-utf8` / `check-traditional`（新增行＋整檔掃描）/ `check-duplicate-ids`：全綠 ✅
+- `npm run build`：知識圖譜與同義詞詞典重建（731 工具、7738 詞）✅
+- `npm run agents:init`：AGENTS.md 統計同步為 731 工具 ✅
+
+### 檢索基準對照（`scripts/eval-benchmark.js`，267 筆＝257 可命中＋10 空集）
+| 引擎／分組 | 指標 | before（108 支帶佔位） | after | 換算成查詢筆數 |
+|------------|------|------------------------|-------|----------------|
+| agent | Hit@1 / Hit@3 | 57.6% / 71.6% | 58.0% / 72.8% | +1 / +2 |
+| fusion | Hit@1 / Hit@3 / MRR | 57.2% / 62.6% / 0.612 | 57.2% / 63.0% / 0.613 | 0 / +1 / ≈0 |
+| fusion 含近義 | Hit@1 / Hit@3 / MRR | 58.8% / 63.8% / 0.624 | 58.8% / 64.2% / 0.625 | 0 / +1 / ≈0 |
+| direct (76) | Hit@1 / Hit@3 | 68.4% / 75.0% | 69.7% / 76.3% | +1 / +1 |
+| semantic (129) | Hit@1 / Hit@3 | 48.8% / 55.0% | 48.8% / 55.8% | 0 / +1 |
+| constrained (52) | Hit@1 / Hit@3 | 61.5% / 63.5% | 59.6% / 61.5% | −1 / −1 |
+| 空集誠實率 | agent / fusion | 10/10 / 10/10 | 10/10 / 10/10 | 0 |
+
+**判讀：所有差異都正好是 1～2 筆查詢**（constrained 一筆＝1.9pp、direct 一筆＝1.3pp），落在取樣噪音地板。**淨效果為中性**，這是預期結果：移除的文字本來不帶資訊，補上的文字帶資訊但很少與用戶查詢字面重疊。
+
+### 已知殘留（如實記錄，本輪未處理）
+1. **40 支 `negativeConstraints` 為空**：README 給不出可查證的邊界情境。contract 每支 warning 1 筆、總分 98.9，這是刻意保留的誠實訊號，不得用樣板字句填平。
+2. **V3／V4 把負邊界當「正向相似」加分**（`core/agent-retrieval.js:165-185` 呼叫 `weightedSim`，無任何扣分值）：`negativeConstraints` 越真實，當用戶查詢正好描述「被排除的那個情境」時，反而越容易把該工具推高。上午填的假句子因為千篇一律所以不會命中；**本輪把它換成真實內容，等於把這個排序層缺陷從休眠改為可觸發**。要修的是維度符號（命中禁用場景應扣分），屬檢索引擎改造，不在本次「清存量」範圍。
+3. **L1.5 高 df 萬用觸發詞並列**（`model`/`code`/`action`/`memory`）：英文查詢會出現 213%/182% 的大規模同分群而埋沒正解。上次已向用戶回報、未選擇處理，狀態不變。
+4. `isFullyEnriched()` 的「複製品」判斷用**全等**比較，`useCase` 只要被截斷一個字就被視為合法（本輪 `model-optimizer` 實測踩到）。
+5. `scripts/enrich-registry.js`（`npm run enrich`）仍是危險路徑：prompt 明令「猜用途」、整批覆寫 `triggers`、直接 `status = 'active'` 繞過 `activateIfComplete`。本輪未使用它，也未修。

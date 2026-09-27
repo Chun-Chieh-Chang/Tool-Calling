@@ -32,23 +32,23 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 725 個工具
+工具庫規模: 731 個工具
 追蹤 repos: 2536 個
-總 star 數: 28,287,929 ⭐
-平均 star 數: 39,018 ⭐
-最後更新: 2026/9/25
+總 star 數: 28,352,876 ⭐
+平均 star 數: 38,786 ⭐
+最後更新: 2026/9/27
 ```
 
 ### Top 5 分類
 - `AI 代理`: 149 個工具
-- `開發工具`: 105 個工具
-- `AI 框架`: 77 個工具
+- `開發工具`: 106 個工具
+- `AI 框架`: 80 個工具
 - `學習資源`: 62 個工具
 - `文件生產力`: 61 個工具
 
 ### Top 5 語言
-- `python`: 254 個工具
-- `typescript`: 174 個工具
+- `python`: 257 個工具
+- `typescript`: 175 個工具
 - `javascript`: 68 個工具
 - `other`: 55 個工具
 - `rust`: 33 個工具
@@ -100,7 +100,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (725+)
+node cli.js list                      # 列出所有工具 (731+)
 ```
 
 ### Git 工作流
@@ -134,7 +134,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (315/315)
-- [ ] 工具庫驗證通過 (725+ 工具)
+- [ ] 工具庫驗證通過 (731+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] DEV_LOG.md 已更新
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -213,7 +213,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 725 and add new features
+fix(README): update tool count from 381 to 731 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -244,7 +244,7 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 725+ 工具 (單一真理來源)
+│   ├── tools.json      # 731+ 工具 (單一真理來源)
 │   ├── tracked-repos.json  # 2536 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
@@ -475,4 +475,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-09-25T03:28:00.803Z
+> **最後更新**：2026-09-27T05:40:00.212Z

@@ -409,10 +409,11 @@ export async function discoverTrendingTools() {
       // 空陣列會觸發 registry-contract 的警告(penalty 15)—— 這是誠實的訊號,
       // 提醒這一筆尚未完成解析。先前填入星數只是為了消警告,反而污染了語意。
       advantages: [],
-      negativeConstraints: [
-        '由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用',
-        '詳細安裝指令需依官方 README 為準'
-      ],
+      // 同 advantages：佔位樣板會一路餵進檢索的 V3／V4／D1 維度
+      // （core/agent-retrieval.js、core/multidimensional.js），
+      // 等於用對任何工具都成立的話污染排序向量。
+      // 留空 → 由 enrich 管線依 README 補真實內容。
+      negativeConstraints: [],
       stars: repo.currentStars,
       addedAt: now.toISOString(),
       status: 'active',

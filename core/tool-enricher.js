@@ -73,7 +73,12 @@ const SYS = `你是工具庫的 metadata 編譯器。我會給你一個開源專
   🔴 不要寫「開源」「免費」這類所有工具都成立的廢話，也不要寫「支援 X 語言」（那是 install 的事）。
   若 README 沒有足以支撐的內容，給空陣列。
 - capabilities（3~6 個）：kebab-case 的技術標籤，描述它「能做什麼」。
+- negativeConstraints（1~3 條）：這個工具**不該被使用**、或效益極低的邊界情境
+  （部署前提、授權/維運成本、能力範圍外的用途）。
+  🔴 同樣只寫 README 明確支持的事實。不要寫「建議人工審查」「請確認環境符合需求」
+     這類對任何工具都成立、因此毫無資訊量的話。
 - useCase_zh / advantages_zh：上面兩個欄位的繁體中文（台灣）版本。
+  ⚠️ 不要產生 negativeConstraints_zh —— 由 npm run translate:zh 統一負責。
 
 🔴 語言分工（不可搞混）：
   useCase / advantages / capabilities 一律用**英文**；
@@ -88,7 +93,7 @@ const SYS = `你是工具庫的 metadata 編譯器。我會給你一個開源專
 
 台灣用語：檔案、程式碼、網路、影片、專案、軟體。
 輸出格式：
-{ "useCase": "", "advantages": [], "capabilities": [], "description_zh": "", "useCase_zh": "", "advantages_zh": [] }`;
+{ "useCase": "", "advantages": [], "capabilities": [], "negativeConstraints": [], "description_zh": "", "useCase_zh": "", "advantages_zh": [] }`;
 
 /**
  * 用 LLM 從 README 產生語意欄位
@@ -145,7 +150,7 @@ export async function enrichToolFromReadme(tool, options = {}) {
       const raw = String(j?.choices?.[0]?.message?.content || '').trim();
       const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
       const out = JSON.parse(cleaned);
-      return normalize(out, tool);
+      return normalizeEnrichment(out, tool);
     } catch { /* 重試 */ }
   }
   return null;
@@ -186,7 +191,7 @@ export function isFullyEnriched(tool) {
 }
 
 /** 正規化：去 Markdown、限制長度、簡轉繁、確保 advantages 是陣列 */
-function normalize(out, tool) {
+export function normalizeEnrichment(out, tool) {
   const zh = (v) => toTraditional(stripMd(v));
   const en = (v) => stripMd(v);
   const arr = (v, max, conv) => (Array.isArray(v) ? v : [])
@@ -215,6 +220,9 @@ function normalize(out, tool) {
   if (caps.length && (!tool.capabilities || tool.capabilities.length === 0)) {
     rec.capabilities = caps;   // 只在原本是空的時候補，不覆蓋 GitHub topics
   }
+  // 禁用場景：只在模型真的從 README 給出內容時才收（佔位樣板由掃描器端根治，見 scan-tool.js）
+  const neg = arr(out?.negativeConstraints, 3, en);
+  if (neg.length) rec.negativeConstraints = neg;
   // ⚠️ 刻意不處理 description_zh：描述的中文一律由 translate:zh 產生，
   //    它翻譯的是真正的 description 欄位，不會出現「中英不一致」。
   //    （模型仍可能回傳 description_zh，這裡直接忽略。）

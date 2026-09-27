@@ -460,10 +460,11 @@ async function scan(url, options = {}) {
       // 先前填入這些只是為了消 validate 警告,反而污染了語意。
       // 留空 → 誠實地表示「此工具的優勢尚未查證」。
       advantages: [],
-      negativeConstraints: [
-        '初次收錄建議人工審查其最新版本文檔與依賴環境',
-        '非通用型工具，請確認專案環境符合需求'
-      ],
+      // 同 advantages：佔位樣板會一路餵進檢索的 V3／V4／D1 維度
+      // （core/agent-retrieval.js、core/multidimensional.js），
+      // 等於用無意義文字污染排序向量，而且讓 39 支 active 工具帶著假邊界。
+      // 留空 → 由 enrich 管線依 README 補真實內容。
+      negativeConstraints: [],
       addedAt: new Date().toISOString(),
       status: 'experimental'
     };
