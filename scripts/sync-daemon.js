@@ -54,7 +54,7 @@ async function syncOnce() {
 
   saveSnapshot(snap);
   registry.lastUpdated = new Date().toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf-8');
+  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf-8');
 
   const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
   console.log(`[${now}] ✅ 同步完成 — ${updated}/${registry.tools.length} 個工具已更新`);

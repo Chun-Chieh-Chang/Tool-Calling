@@ -439,7 +439,7 @@ export async function reclassifyAllTools({ apply = false } = {}) {
 
   if (apply) {
     // 寫回檔案
-    writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
+    writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf8');
     console.log(`\n📁 已更新:${REGISTRY_PATH}\n`);
   } else {
     console.log('\n📁 DRY-RUN:未寫入任何檔案(加上 --apply 參數才會寫入)\n');

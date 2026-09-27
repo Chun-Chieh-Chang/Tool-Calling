@@ -440,7 +440,7 @@ export async function discoverTrendingTools() {
   }
 
   registry.lastUpdated = now.toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2), 'utf8');
+  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf8');
   console.log(`   ✅ 新增 ${addedCount} 個工具入庫（現有庫存：${registry.tools.length} 個）\n`);
 
   // Step 6: 更新歷史快照（存本週即時數據，作為下次執行的「上週基準線」）

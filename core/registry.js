@@ -13,7 +13,9 @@ export function loadRegistry() {
 
 export function saveRegistry(data) {
   data.lastUpdated = new Date().toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(data, null, 2), 'utf-8');
+  // 尾端換行是 tools.json 的版控慣例；漏掉會讓每次存檔都多一行
+  // "\ No newline at end of file" 的噪音 diff，蓋掉真正的欄位變動。
+  writeFileSync(REGISTRY_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
   try {
     generateKnowledgeGraph(data);
   } catch (err) {
