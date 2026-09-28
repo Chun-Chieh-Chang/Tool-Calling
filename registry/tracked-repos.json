@@ -4330,12 +4330,12 @@
     "fullName": "NVIDIA/Model-Optimizer",
     "owner": "NVIDIA",
     "repo": "Model-Optimizer",
+    "category": "AI 框架",
+    "addedAt": "2026-09-27T03:57:40.434Z",
+    "status": "tracking",
     "initialStars": 3385,
-    "discoveredAt": "2026-07-26T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W30",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-07-26T23:59:59.999Z"
   },
   "i-am-bee/beeai-framework": {
     "fullName": "i-am-bee/beeai-framework",
@@ -24082,8 +24082,8 @@
     "discoveredAt": "2026-09-03T11:55:00.944Z",
     "sourceSnapshotWeek": "2026-W36",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-09-28T08:16:28.494Z",
+    "status": "in_registry"
   },
   "bryllim/workout-guide": {
     "fullName": "bryllim/workout-guide",
@@ -24899,8 +24899,8 @@
     "discoveredAt": "2026-09-20T23:49:57.326Z",
     "sourceSnapshotWeek": "2026-W38",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-09-28T08:16:28.494Z",
+    "status": "in_registry"
   },
   "sonicloudco/recorder": {
     "fullName": "sonicloudco/recorder",
@@ -25492,7 +25492,7 @@
     "fullName": "mizorewww/laya-mlx",
     "owner": "mizorewww",
     "repo": "laya-mlx",
-    "category": "AI 代理",
+    "category": "AI 框架",
     "addedAt": "2026-09-21T11:35:16.003Z",
     "status": "tracking"
   },
@@ -25838,11 +25838,51 @@
     "addedAt": "2026-09-25T01:07:02.031Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2536,
-    "inRegistry": 688,
-    "trackedOnly": 1848,
-    "lastGenerated": "2026-09-25T04:27:36.907Z"
+  "TheoLeeCJ/SemIf-OpenJev": {
+    "fullName": "TheoLeeCJ/SemIf-OpenJev",
+    "owner": "TheoLeeCJ",
+    "repo": "SemIf-OpenJev",
+    "category": "AI 框架",
+    "addedAt": "2026-09-25T04:27:52.619Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-09-25T04:27:36.875Z"
+  "jev-chat/jev-chat-jarvis": {
+    "fullName": "jev-chat/jev-chat-jarvis",
+    "owner": "jev-chat",
+    "repo": "jev-chat-jarvis",
+    "category": "AI 代理",
+    "addedAt": "2026-09-25T04:28:16.527Z",
+    "status": "tracking"
+  },
+  "anthropics/claude-code-action": {
+    "fullName": "anthropics/claude-code-action",
+    "owner": "anthropics",
+    "repo": "claude-code-action",
+    "category": "開發工具",
+    "addedAt": "2026-09-27T03:57:49.641Z",
+    "status": "tracking"
+  },
+  "openbao/openbao": {
+    "fullName": "openbao/openbao",
+    "owner": "openbao",
+    "repo": "openbao",
+    "category": "安全性",
+    "addedAt": "2026-09-27T03:57:59.989Z",
+    "status": "tracking"
+  },
+  "vectorize-io/hindsight": {
+    "fullName": "vectorize-io/hindsight",
+    "owner": "vectorize-io",
+    "repo": "hindsight",
+    "category": "知識管理",
+    "addedAt": "2026-09-27T03:58:06.266Z",
+    "status": "tracking"
+  },
+  "_meta": {
+    "total": 2541,
+    "inRegistry": 694,
+    "trackedOnly": 1847,
+    "lastGenerated": "2026-09-28T08:16:28.543Z"
+  },
+  "lastGenerated": "2026-09-28T08:16:28.494Z"
 }
