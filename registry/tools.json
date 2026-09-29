@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-27T08:34:08.271Z",
+  "lastUpdated": "2026-09-28T08:16:28.494Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -55354,6 +55354,76 @@
         "需專屬伺服器（Docker）或嵌入模式的 LLM API 金鑰。",
         "非通用向量資料庫或對話歷史備份 — 以 agent 記憶體操作為核心組織。"
       ]
+    },
+    {
+      "id": "reef",
+      "name": "reef",
+      "url": "https://github.com/Human-Agent-Society/reef",
+      "description": "Infrastructure for continually self‑improving agents",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "reef",
+        "agent-infrastructure",
+        "ai-agents",
+        "continual-learning",
+        "inference",
+        "llm"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Human-Agent-Society/reef"
+      },
+      "capabilities": [
+        "agent-infrastructure",
+        "ai-agents",
+        "continual-learning",
+        "inference",
+        "llm",
+        "llm-training"
+      ],
+      "useCase": "Infrastructure for continually self‑improving agents",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 3781,
+      "addedAt": "2026-09-28T08:16:28.494Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W39",
+        "starsAtIngest": 3781,
+        "weeklyDelta": 2450,
+        "ingestedAt": "2026-09-28T08:16:28.494Z"
+      }
+    },
+    {
+      "id": "open-higgsfield",
+      "name": "open-higgsfield",
+      "url": "https://github.com/wide-trace/open-higgsfield",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "open-higgsfield"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/wide-trace/open-higgsfield"
+      },
+      "capabilities": [],
+      "useCase": "open-higgsfield",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 3445,
+      "addedAt": "2026-09-28T08:16:28.494Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W39",
+        "starsAtIngest": 3445,
+        "weeklyDelta": 1944,
+        "ingestedAt": "2026-09-28T08:16:28.494Z"
+      }
     }
   ]
 }

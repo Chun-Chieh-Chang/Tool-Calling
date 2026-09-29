@@ -24082,8 +24082,8 @@
     "discoveredAt": "2026-09-03T11:55:00.944Z",
     "sourceSnapshotWeek": "2026-W36",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-09-28T08:16:28.494Z",
+    "status": "in_registry"
   },
   "bryllim/workout-guide": {
     "fullName": "bryllim/workout-guide",
@@ -24899,8 +24899,8 @@
     "discoveredAt": "2026-09-20T23:49:57.326Z",
     "sourceSnapshotWeek": "2026-W38",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-09-28T08:16:28.494Z",
+    "status": "in_registry"
   },
   "sonicloudco/recorder": {
     "fullName": "sonicloudco/recorder",
@@ -25882,7 +25882,7 @@
     "total": 2541,
     "inRegistry": 694,
     "trackedOnly": 1847,
-    "lastGenerated": "2026-09-27T08:34:08.305Z"
+    "lastGenerated": "2026-09-28T08:16:28.543Z"
   },
-  "lastGenerated": "2026-09-27T08:34:08.271Z"
+  "lastGenerated": "2026-09-28T08:16:28.494Z"
 }
