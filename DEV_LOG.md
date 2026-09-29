@@ -1,5 +1,51 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-30 批次：新增 3 筆、4 筆去重與拆解判定；修復 2 支管線腳本、補齊 W40 遺留
+
+### 一、批量新增（3 筆；其餘 4 筆已在庫，去重排除）
+
+| URL | id | 型態 | 分類 | Stars | 拆解判定 |
+|---|---|---|---|---|---|
+| `tmstack/awesome-persona-skills` | `awesome-persona-skills` | resource（僅 README 的清單） | 學習資源 | 4,053 | 不拆（清單型，無可執行子項） |
+| `LottieFiles/motion-design-skill` | `motion-design-skill` | tool（單一 skill） | UI/UX設計 | 1,821 | 不拆 |
+| `nolangz/pixel2motion` | `pixel2motion` | tool（單一 skill） | UI/UX設計 | 2,358 | 不拆 |
+
+已在庫 4 筆之處置：
+
+- `story-to-handdrawn-video`（08-10 入庫）、`video-shotcraft`（08-08 入庫）——單一 skill 產品，不拆。
+- `gsap-skills`（08-05 入庫）——8 個主題子技能，以 `index-subtools` 索引 **8 筆 subTools**（不新增 8 筆近似條目）。
+- `hyperframes`（07-24 入庫）——掃出 134 筆子目錄後**人工收斂為 33 筆技能單元**：僅保留 `skills/`、`.agents/skills/`、`.claude/skills/` 頂層（21＋6＋6），排除 packages／registry 素材元件／examples／plans／releases 等雜訊與嵌套子目錄。
+
+**為何不讓 batch-add 自動拆 entry**：gsap／hyperframes 屬「同一產品的主題模組」；依 09-21 判準（獨立工具 vs 同產品領域實例）與陷阱 3（擴充過度會退步），拆成 N 筆近似條目會稀釋鑑別力。改採 `subTools` 機制——外層查詢可命中內層子技能，主條目單一。
+
+### 二、分類修正
+
+- `motion-design-skill`：scan 判「影片」→ rescan Tier 1 規則 R10（領域專屬 skill 包）判 **UI/UX設計** → `rescan-classification.js --apply` 修正（全庫 Tier 1：1 → 0）。
+- `pixel2motion`：scan 誤判「測試與自動化」（描述含 "motion QA evidence" 觸發自動化啟發式；無規則覆蓋）→ 人工判 **UI/UX設計**（比照 `oil-motion` 等 UI 動畫類先例）。
+
+### 三、管線修復（皆為既存 bug，順手挖出）
+
+1. **`compile-wiki.js`：`apiKey` 未定義**（該 const 位於 `else` block 內、函式在 module 頂層）＋ `compileBatch(batch)` 簽名漏收呼叫端已提供的 `apiKey`——導致**所有新工具的 LLM 編譯必然失敗**（實測 28 筆待編譯全滅，含先前 10 筆卡住的舊隊列：laya／aircard／zcode／kev 等）。簽名補參數（1 行）後重跑：**28／28 成功**。
+2. **`enrich-new-tools.js`：寫回漏尾端換行**——5656ac6「四個寫入者」的稽核漏網（實為第 5 個寫入者），補 `+ '\n'`。
+3. **W40 遺留資料修復**：`reef`／`open-higgsfield` 補跑 enrich；`open-higgsfield` 的 `language: unknown` 修正為 `typescript`（schema enum；此即 check-mece 全庫唯一失敗項）、`description` 由「No description provided.」補為現行 GitHub 描述、useCase／triggers 一併修正；兩筆 wiki 詞條重編。
+4. 附帶：enrich 待補隊列 8 筆（含 6 筆舊漏網：font-awesome／computer-science／manim-ml／weread-hot-booklists／free-books／awesome-claude-skills）全數補齊；translate:zh 兩輪共 8 筆；新增 3 筆全數 `active`。
+
+### 四、驗證（收斂時重跑）
+
+- `npm test`：**320 tests／318 pass／0 fail**（含繁體門禁 `--full --code`）
+- `node cli.js validate`：exit 0；**Low quality tools: 0**；contract 0 errors（39 筆既存欄位建議）
+- `npm run check-mece`：exit 0（語言 enum 修復後全綠）
+- `npm run categories:check`：exit 0（CATEGORY-SYSTEM.md 已 sync）
+- `node scripts/rescan-classification.js --ci`：exit 0（Tier 1 = 0）
+- `npm run compile:wiki`：28／28（+2 筆重編）成功
+
+工具庫總數：733 → **736**；compiled entries：705 → **733**。
+
+### 五、備註
+
+- 本機與 origin/main 之分歧（本機 3 筆未推送 vs W40 自動入庫）已以 merge 化解：本批基底為 `fafbf03`。
+- 依 HANDOFF「破壞性操作、push 需先取得明確許可」：本批**僅本機 commit，未推送**。
+
 ## 2026-09-25 全專案中文改為繁體（TW）＋ 語言門禁常態化
 
 ### 需求

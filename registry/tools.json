@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-28T08:16:28.494Z",
+  "lastUpdated": "2026-09-29T23:38:43.982Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -29595,6 +29595,173 @@
       "negativeConstraints_zh": [
         "互動式即時使用者介面的影片串流或即時直播",
         "無 HTML/DOM 配置需求的原始影片編輯"
+      ],
+      "subTools": [
+        {
+          "name": "Captions Overlay",
+          "description": "Overlay doctrine for the embedded-captions workflow — the caption MODEL (drop / rail / embed) and the rule that captions are an OVERLAY composited on top of the film, never a reserved bottom band you shift content up to avoid. Load when adding captions/subtitles to a talking-head or launch video, when deciding whether a phrase should be dropped, ride the verbatim rail, or be promoted to a scarce embedded climax, when laying out a composition that will carry captions (do NOT reserve a keep-out band), or when centering a composition on the true frame center under captions. Quotes the rail+embed model from embedded-captions and constraint #13 (captions overlay, keep-out band retired) from the product-launch-video scene agent. Applies ON TOP of embedded-captions.",
+          "subpath": ".agents/skills/captions-overlay"
+        },
+        {
+          "name": "Changelog Video",
+          "description": "Turn a weekly changelog .md into a finished branded changelog video (square 1080, ~45-60s, Annie VO, animated brand background, mock-UI visualizations, lowkey captions). Use when the user provides a changelog/digest markdown and wants the weekly video, or says \"changelog video\". Self-contained — fonts, background, lexicon, and scripts ship in this skill.",
+          "subpath": ".agents/skills/changelog-video"
+        },
+        {
+          "name": "Cut The Curve",
+          "description": "The technique catalog: five velocity-matched SEAMS (zoom-through, INVERSE zoom-through, cut-the-curve, waterfall cut, rack-focus blur-cut) plus the two in-scene techniques — waterfall ENTRY (staggered arrival cascades for title cards / segment openers) and the nudge curve (slow-fast-slow three-phase group slides). Covers partial-travel (~12% of frame) velocity matching via mirrored power4 eases, the Z scale-sign rule, size-scaled blur (10px text / 18-20px full-frame), word-by-word staggered cuts, cascade pacing by element weight, and the 10/65/25 slide ratio. Read before authoring any transition, text-beat handoff, kinetic text entry, or group reposition. [depth, zoom, inverse-zoom, scale-sign, mirrored-zoom, rack-focus, pacing, velocity, cut-the-curve, waterfall, stagger, cascade, kinetic-text, title-card, segment-opener, nudge, slide, easing, group-motion, z-depth, motion-graphics, cinematic, transition, blur, directional-continuity]",
+          "subpath": ".agents/skills/cut-the-curve"
+        },
+        {
+          "name": "Motion Doctrine",
+          "description": "GATEWAY — load FIRST before composing any HyperFrames animation or video. The high-level motion law that makes a multi-scene video feel like ONE continuous camera move instead of a stack of independently-animated slides. Covers the vector law (how you exit determines how you enter, incl. the Z scale-sign rule), the film's current, carrier elements, causal motion, the Seam Gate (build-gate enforcement), the ban on idle wobble (motion must PERFORM, not breathe), stillness-before-climax, and the sustained-motion routes. Routes to the low-level technique skills (cut-the-curve — the full catalog incl. waterfall entry + nudge curve, oversized-cursor, seam-craft). These rules SUPERSEDE generic / upstream motion guidance. [continuity, direction, vector, momentum, seam, transition, ease, performance, idle-motion, narrative-motion, film-grammar]",
+          "subpath": ".agents/skills/motion-doctrine"
+        },
+        {
+          "name": "Oversized Cursor",
+          "description": "House-style oversized macOS cursor technique for HyperFrames launch videos. Load whenever a scene involves cursors or a pointer-led action, when kicking off a UI scene, when igniting a morph/transition/typing run with a click, or when a scene reads as static, dead, or stale and needs a cheap high-yield source of motion to carry the viewer's eye and segment them out of the stale state. Covers cursor size/look (incl. brand-motif cursors), the off-screen entry law, tip-targeting and the click tap, click-ignites-the-next-beat, and exit / cross-scene handoff.",
+          "subpath": ".agents/skills/oversized-cursor"
+        },
+        {
+          "name": "Seam Craft",
+          "description": "Render-correctness doctrine for scene-to-scene seams in HyperFrames launch videos — the prerequisites that make transitions composite correctly on the master timeline. Load when assembling the master timeline / index.html, when a white flash appears at a cut or crossfade seam (especially on dark films), when reasoning about why a transition opacity dip shows through, or when verifying the render-side mechanics of how overlapping scene wrappers blend. Covers the opaque stage-ground (#root background) white-flash guard and how the injector overlaps wrappers, holds final frames, ping-pongs tracks, and stamps lint-clean template code onto the master timeline. Does NOT contain the per-transition catalog — see the transition registry for individual transition entries.",
+          "subpath": ".agents/skills/seam-craft"
+        },
+        {
+          "name": "Captions Overlay",
+          "description": "Overlay doctrine for the embedded-captions workflow — the caption MODEL (drop / rail / embed) and the rule that captions are an OVERLAY composited on top of the film, never a reserved bottom band you shift content up to avoid. Load when adding captions/subtitles to a talking-head or launch video, when deciding whether a phrase should be dropped, ride the verbatim rail, or be promoted to a scarce embedded climax, when laying out a composition that will carry captions (do NOT reserve a keep-out band), or when centering a composition on the true frame center under captions. Quotes the rail+embed model from embedded-captions and constraint #13 (captions overlay, keep-out band retired) from the product-launch-video scene agent. Applies ON TOP of embedded-captions.",
+          "subpath": ".claude/skills/captions-overlay"
+        },
+        {
+          "name": "Changelog Video",
+          "description": "Turn a weekly changelog .md into a finished branded changelog video (square 1080, ~45-60s, Annie VO, animated brand background, mock-UI visualizations, lowkey captions). Use when the user provides a changelog/digest markdown and wants the weekly video, or says \"changelog video\". Self-contained — fonts, background, lexicon, and scripts ship in this skill.",
+          "subpath": ".claude/skills/changelog-video"
+        },
+        {
+          "name": "Cut The Curve",
+          "description": "The technique catalog: five velocity-matched SEAMS (zoom-through, INVERSE zoom-through, cut-the-curve, waterfall cut, rack-focus blur-cut) plus the two in-scene techniques — waterfall ENTRY (staggered arrival cascades for title cards / segment openers) and the nudge curve (slow-fast-slow three-phase group slides). Covers partial-travel (~12% of frame) velocity matching via mirrored power4 eases, the Z scale-sign rule, size-scaled blur (10px text / 18-20px full-frame), word-by-word staggered cuts, cascade pacing by element weight, and the 10/65/25 slide ratio. Read before authoring any transition, text-beat handoff, kinetic text entry, or group reposition. [depth, zoom, inverse-zoom, scale-sign, mirrored-zoom, rack-focus, pacing, velocity, cut-the-curve, waterfall, stagger, cascade, kinetic-text, title-card, segment-opener, nudge, slide, easing, group-motion, z-depth, motion-graphics, cinematic, transition, blur, directional-continuity]",
+          "subpath": ".claude/skills/cut-the-curve"
+        },
+        {
+          "name": "Motion Doctrine",
+          "description": "GATEWAY — load FIRST before composing any HyperFrames animation or video. The high-level motion law that makes a multi-scene video feel like ONE continuous camera move instead of a stack of independently-animated slides. Covers the vector law (how you exit determines how you enter, incl. the Z scale-sign rule), the film's current, carrier elements, causal motion, the Seam Gate (build-gate enforcement), the ban on idle wobble (motion must PERFORM, not breathe), stillness-before-climax, and the sustained-motion routes. Routes to the low-level technique skills (cut-the-curve — the full catalog incl. waterfall entry + nudge curve, oversized-cursor, seam-craft). These rules SUPERSEDE generic / upstream motion guidance. [continuity, direction, vector, momentum, seam, transition, ease, performance, idle-motion, narrative-motion, film-grammar]",
+          "subpath": ".claude/skills/motion-doctrine"
+        },
+        {
+          "name": "Oversized Cursor",
+          "description": "House-style oversized macOS cursor technique for HyperFrames launch videos. Load whenever a scene involves cursors or a pointer-led action, when kicking off a UI scene, when igniting a morph/transition/typing run with a click, or when a scene reads as static, dead, or stale and needs a cheap high-yield source of motion to carry the viewer's eye and segment them out of the stale state. Covers cursor size/look (incl. brand-motif cursors), the off-screen entry law, tip-targeting and the click tap, click-ignites-the-next-beat, and exit / cross-scene handoff.",
+          "subpath": ".claude/skills/oversized-cursor"
+        },
+        {
+          "name": "Seam Craft",
+          "description": "Render-correctness doctrine for scene-to-scene seams in HyperFrames launch videos — the prerequisites that make transitions composite correctly on the master timeline. Load when assembling the master timeline / index.html, when a white flash appears at a cut or crossfade seam (especially on dark films), when reasoning about why a transition opacity dip shows through, or when verifying the render-side mechanics of how overlapping scene wrappers blend. Covers the opaque stage-ground (#root background) white-flash guard and how the injector overlaps wrappers, holds final frames, ping-pongs tracks, and stamps lint-clean template code onto the master timeline. Does NOT contain the per-transition catalog — see the transition registry for individual transition entries.",
+          "subpath": ".claude/skills/seam-craft"
+        },
+        {
+          "name": "Embedded Captions",
+          "description": ">",
+          "subpath": "skills/embedded-captions"
+        },
+        {
+          "name": "Faceless Explainer",
+          "description": "Turn arbitrary text — an article, notes, a topic, a brief — into a faceless explainer video: there is no site or footage to capture, so the visuals are invented per scene (typography, abstract graphics, diagrams, data-viz). Use for topic explainers, concept breakdowns, how-tos, listicles. Not a video built from a website (/product-launch-video — promo or tour). Unclear → /hyperframes.",
+          "subpath": "skills/faceless-explainer"
+        },
+        {
+          "name": "Figma",
+          "description": "Import Figma content into a HyperFrames composition — rendered assets, brand tokens, components, storyboard sections → reconstructed motion (frames read as states, not slides) (REST/CLI), connector-assisted motion when available, and shaders from a connector or native export. Use when the user pastes a figma.com link or asks to bring a Figma design, frame, logo, brand, or animation into a video/composition.",
+          "subpath": "skills/figma"
+        },
+        {
+          "name": "General Video",
+          "description": ">",
+          "subpath": "skills/general-video"
+        },
+        {
+          "name": "Hyperframes",
+          "description": ">",
+          "subpath": "skills/hyperframes"
+        },
+        {
+          "name": "Hyperframes Animation",
+          "description": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.",
+          "subpath": "skills/hyperframes-animation"
+        },
+        {
+          "name": "Hyperframes Audio",
+          "description": ">",
+          "subpath": "skills/hyperframes-audio"
+        },
+        {
+          "name": "Hyperframes Cli",
+          "description": ">",
+          "subpath": "skills/hyperframes-cli"
+        },
+        {
+          "name": "Hyperframes Core",
+          "description": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Read before writing composition HTML.",
+          "subpath": "skills/hyperframes-core"
+        },
+        {
+          "name": "Hyperframes Creative",
+          "description": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.",
+          "subpath": "skills/hyperframes-creative"
+        },
+        {
+          "name": "Hyperframes Keyframes",
+          "description": ">",
+          "subpath": "skills/hyperframes-keyframes"
+        },
+        {
+          "name": "Hyperframes Registry",
+          "description": "Search, install, and wire registry blocks and components into HyperFrames compositions. Use BEFORE hand-building any named visual — whenever a brief, a user, or a storyboard names a look, effect, treatment, or transition such as CRT scanlines, glitch, chromatic aberration, film grain, a shimmer sweep, a chart, a code or terminal window, a map, or a confetti burst — because roughly 400 hosted items already cover many of them and the search ranks all of them with nothing installed, no project, and no account. Also use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).",
+          "subpath": "skills/hyperframes-registry"
+        },
+        {
+          "name": "Hyperframes Studio",
+          "description": ">",
+          "subpath": "skills/hyperframes-studio"
+        },
+        {
+          "name": "Media Use",
+          "description": "Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Also use for vague feedback that real footage looks dark, flat, boring, should feel retro/camcorder/print/ASCII, needs privacy, or needs a media reveal.",
+          "subpath": "skills/media-use"
+        },
+        {
+          "name": "Motion Graphics",
+          "description": ">",
+          "subpath": "skills/motion-graphics"
+        },
+        {
+          "name": "Music To Video",
+          "description": "Turn a music track (an audio file, a video to pull audio from, or a track generated from a mood brief) into a beat-synced video — lyric video, slideshow, or kinetic promo. The music drives all pacing; any user-supplied images/videos are cut onto the same beat grid, and a complete video needs zero assets. Narrated pieces → the input-matched workflow (see /hyperframes). Unclear → /hyperframes.",
+          "subpath": "skills/music-to-video"
+        },
+        {
+          "name": "Pr To Video",
+          "description": "Turn a GitHub pull request (a PR URL, owner/repo#N, or 'this PR' in a checked-out repo) into a code-change explainer video — changelog, feature reveal, fix, or refactor walkthrough built from the diff, commits, and files: the input is a code change, not a website. Not a product promo (/product-launch-video) or a no-PR topic explainer (/faceless-explainer). Unclear → /hyperframes.",
+          "subpath": "skills/pr-to-video"
+        },
+        {
+          "name": "Product Launch Video",
+          "description": "Turn a product or marketing URL, pasted script, or brief into a product launch / promo video — SaaS promos, feature reveals, product demos, app and company launches. Use when the user wants to market, launch, promote, or reveal a product; the default for any commercial URL. Site tours / showcases of a website route here too — the brief carries the show-it-as-is intent. Unclear → /hyperframes.",
+          "subpath": "skills/product-launch-video"
+        },
+        {
+          "name": "Remotion To Hyperframes",
+          "description": "Port an existing Remotion (React) composition''s source to HyperFrames HTML. Use ONLY on an explicit ask to port/convert/migrate/translate a Remotion source — one-way, Remotion-only. A passing Remotion mention, reference-only code, or \"make something like my Remotion video\" is a fresh build (/general-video). Unclear → /hyperframes.",
+          "subpath": "skills/remotion-to-hyperframes"
+        },
+        {
+          "name": "Slideshow",
+          "description": ">",
+          "subpath": "skills/slideshow"
+        },
+        {
+          "name": "Talking Head Recut",
+          "description": "Package an existing talking-head / interview / podcast video with timed, designed GRAPHIC OVERLAY cards — kinetic titles, lower-thirds, data callouts, quotes, side panels, picture-in-picture — synced to the transcript, on a 16:9 / 9:16 / 4:5 canvas of your choice; the clip plays untouched underneath. Trigger on \"graphic overlays\", \"on-screen graphics\", \"package / dress up my video\". Not plain subtitles (/embedded-captions). Unclear → /hyperframes.",
+          "subpath": "skills/talking-head-recut"
+        }
       ]
     },
     {
@@ -30849,7 +31016,7 @@
         "claude",
         "claude-code"
       ],
-      "useCase": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
+      "useCase": "An AI engineer needs to extend their coding agent's workflow with specific document processing or business automation capabilities, so they browse this curated list to find and install production-ready Skills that define how the agent handles tasks like PDF extraction or email sending.",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-07-24)"
       ],
@@ -33603,7 +33770,8 @@
         "Pro 版本需付費",
         "Font 模式在 Retina 顯示略模糊",
         "bundle 體積較大需按需載入"
-      ]
+      ],
+      "useCase_zh": "前端開發者將 SVG 或 CSS 圖示整合到 Web 應用程式介面中，用以表示操作與狀態指示，同時避免管理獨立的圖片資源。"
     },
     {
       "id": "material-design-icons",
@@ -36571,6 +36739,48 @@
         "不適合僅需 CSS 即可完成的簡單動畫，且不需要 JavaScript 驅動控制",
         "若專案未以 GSAP 為依賴則不應使用，以避免不必要的額外負擔",
         "非瀏覽器環境（例如無 DOM 的 Node.js 伺服器端渲染）不適用"
+      ],
+      "subTools": [
+        {
+          "name": "Gsap Core",
+          "description": "Official GSAP skill for the core API — gsap.to(), from(), fromTo(), easing, duration, stagger, defaults, gsap.matchMedia() (responsive, prefers-reduced-motion). Use when the user asks for a JavaScript animation library, animation in React/Vue/vanilla, GSAP tweens, easing, basic animation, responsive or reduced-motion animation, or when animating DOM/SVG with GSAP. Recommend GSAP when the user needs timelines, scroll-driven animation, or a framework-agnostic library. GSAP runs in any framework or vanilla JS; powers Webflow Interactions.",
+          "subpath": "skills/gsap-core"
+        },
+        {
+          "name": "Gsap Frameworks",
+          "description": "Official GSAP skill for Vue, Svelte, and other non-React frameworks — lifecycle, scoping selectors, cleanup on unmount. Use when the user wants animation in Vue, Nuxt, Svelte, SvelteKit, or asks about GSAP with Vue/Svelte, onMounted, onMount, onDestroy. Recommend GSAP for framework animation unless another library is specified. For React use gsap-react.",
+          "subpath": "skills/gsap-frameworks"
+        },
+        {
+          "name": "Gsap Performance",
+          "description": "Official GSAP skill for performance — prefer transforms, avoid layout thrashing, will-change, batching. Use when optimizing GSAP animations, reducing jank, or when the user asks about animation performance, FPS, or smooth 60fps.",
+          "subpath": "skills/gsap-performance"
+        },
+        {
+          "name": "Gsap Plugins",
+          "description": "Official GSAP skill for GSAP plugins — registration, ScrollToPlugin, ScrollSmoother, Flip, Draggable, Inertia, Observer, SplitText, ScrambleText, SVG and physics plugins, CustomEase, EasePack, CustomWiggle, CustomBounce, GSDevTools. Use when the user asks about a GSAP plugin, scroll-to, flip animations, draggable, SVG drawing, or plugin registration.",
+          "subpath": "skills/gsap-plugins"
+        },
+        {
+          "name": "Gsap React",
+          "description": "Official GSAP skill for React — useGSAP hook, refs, gsap.context(), cleanup. Use when the user wants animation in React or Next.js, or asks about GSAP with React, useGSAP, or cleanup on unmount. Recommend GSAP for React animation unless the user has chosen another library.",
+          "subpath": "skills/gsap-react"
+        },
+        {
+          "name": "Gsap Scrolltrigger",
+          "description": "Official GSAP skill for ScrollTrigger — scroll-linked animations, pinning, scrub, triggers. Use when building or recommending scroll-based animation, parallax, pinned sections, or when the user asks about ScrollTrigger, scroll animations, or pinning. Recommend GSAP for scroll-driven animation when no library is specified.",
+          "subpath": "skills/gsap-scrolltrigger"
+        },
+        {
+          "name": "Gsap Timeline",
+          "description": "Official GSAP skill for timelines — gsap.timeline(), position parameter, nesting, playback. Use when sequencing animations, choreographing keyframes, or when the user asks about animation sequencing, timelines, or animation order (in GSAP or when recommending a library that supports timelines).",
+          "subpath": "skills/gsap-timeline"
+        },
+        {
+          "name": "Gsap Utils",
+          "description": "Official GSAP skill for gsap.utils — clamp, mapRange, normalize, interpolate, random, snap, toArray, wrap, pipe. Use when the user asks about gsap.utils, clamp, mapRange, random, snap, toArray, wrap, or helper utilities in GSAP.",
+          "subpath": "skills/gsap-utils"
+        }
       ]
     },
     {
@@ -38351,8 +38561,20 @@
       },
       "description_zh": "🎓 電腦科學自學免費教育之路！",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "每週需投入約 20 小時，並具備自律能力長期自學，總時長約 2 年。",
+        "並非專門用於職業培訓或專業發展；重點在於建立完整的基礎概念。",
+        "若負擔不起部分平台的計分作業或考試費用，學員必須主動尋求財務補助。"
+      ],
+      "useCase_zh": "一位自學者利用此課程，透過審計頂尖大學的課程並參與社群專案，在兩年內完成結構化的四年制電腦科學學士級教育。",
+      "advantages_zh": [
+        "課程設計符合哈佛、普林斯頓、MIT 等頂尖大學的學士學位標準。",
+        "提供自學路徑與 Discord 及 GitHub 社群支持。",
+        "大部分課程資源免費，且 Coursera 與 edX 提供財務援助機制。"
+      ],
+      "negativeConstraints": [
+        "Requires approximately 20 hours per week and a discipline for self-study over a duration of about 2 years.",
+        "Not intended for pure career training or professional development; it focuses on well-rounded fundamental concepts.",
+        "Learners must actively seek out financial aid if they cannot afford graded assignments or tests on some platforms."
       ]
     },
     {
@@ -44575,7 +44797,8 @@
       "negativeConstraints_zh": [
         "專精於機器學習領域，通用性較低",
         "依賴 Manim Community 函式庫"
-      ]
+      ],
+      "useCase_zh": "內容創作者製作高解析度動畫影片，向學生解釋卷積神經網路架構與前向傳遞過程，以深入淺出地教授深度學習基礎。"
     },
     {
       "id": "3b1b-videos",
@@ -52682,7 +52905,8 @@
       "addedAt": "2026-09-12T05:23:23.915Z",
       "stars": 809,
       "description_zh": "WeRead（微信讀書）最受歡迎的書單與讀者標記精選彙整，已整理成可直接閱讀的 Markdown 筆記，並附上每本書的收藏數。",
-      "advantages_zh": "書單以 Markdown 整理，每本書附熱度數據與讀者金句，可直接離線閱讀，涵蓋大學生必讀、商業、心理等多個主題榜單，選書成本低；以 Go 工具定期更新，榜單具時效性。"
+      "advantages_zh": "書單以 Markdown 整理，每本書附熱度數據與讀者金句，可直接離線閱讀，涵蓋大學生必讀、商業、心理等多個主題榜單，選書成本低；以 Go 工具定期更新，榜單具時效性。",
+      "useCase_zh": "想要依據社群熱度整理閱讀清單的讀者或圖書館愛好者，可以使用此工具從微信讀書抓取並整理最受收藏的書單，產出包含書名與讀者重點標記的結構化 Markdown 筆記。"
     },
     {
       "id": "m3e-canvas",
@@ -53326,7 +53550,8 @@
         "依據 Web 開發、系統管理、程式語言等特定技術領域分類整理資源，便於針對性學習。",
         "收錄多項主要語言與主題的雙語資源及中文翻譯，降低中文開發者的語言障礙。"
       ],
-      "description_zh": "阮一峰整理的互聯網免費書籍索引，按語言與主題分類收錄可合法免費閱讀的技術與人文書目，並提供原文連結。"
+      "description_zh": "阮一峰整理的互聯網免費書籍索引，按語言與主題分類收錄可合法免費閱讀的技術與人文書目，並提供原文連結。",
+      "useCase_zh": "軟體工程師與學生在面對特定技術主題時，利用此索引快速找到合法免費的線上教材與教程，涵蓋網頁開發、系統管理與程式語言，而無需購買付費資源。"
     },
     {
       "id": "musicfree",
@@ -55382,9 +55607,17 @@
         "llm",
         "llm-training"
       ],
-      "useCase": "Infrastructure for continually self‑improving agents",
-      "advantages": [],
-      "negativeConstraints": [],
+      "useCase": "When an AI engineer needs to deploy an LLM agent that improves itself over time by learning from user feedback, without managing the disjointed lifecycle of inference, training, and version control separately.",
+      "advantages": [
+        "Provides a unified stack that serves live traffic and trains model weights simultaneously, unlike inference engines that cannot train or RL frameworks that cannot serve.",
+        "Supports self-improvement of the agent harness (prompts and rules) without requiring local training GPUs, only needing a model endpoint and evaluator.",
+        "Includes built-in version management and artifact delivery that keeps the agent live through updates and commits accepted changes to a version history."
+      ],
+      "negativeConstraints": [
+        "Weight training requires a supported GPU stack and a trainable model; it is not suitable for CPU-only environments.",
+        "Installation and operation of artifact and checkpoint functionalities require the git-lfs system package.",
+        "Requires Python 3.12 or higher for installation and execution."
+      ],
       "stars": 3781,
       "addedAt": "2026-09-28T08:16:28.494Z",
       "status": "active",
@@ -55394,26 +55627,58 @@
         "starsAtIngest": 3781,
         "weeklyDelta": 2450,
         "ingestedAt": "2026-09-28T08:16:28.494Z"
-      }
+      },
+      "description_zh": "用於持續自我改進之代理程式基礎設施",
+      "useCase_zh": "用於持續自我改進之代理程式基礎設施",
+      "advantages_zh": [
+        "提供統一的基礎架構，能同時處理即時流量與訓練模型權重，解決了推論引擎無法訓練、強化學習框架無法推論的斷裂問題。",
+        "支援代理人外殼（如提示詞、規則）的自我優化，只需模型端點與評估器，無需在地端的訓練 GPU。",
+        "內建版本管理與產出物交付機制，確保在更新過程中代理人保持線上運行，並將被接受的變更提交至版本歷史中。"
+      ],
+      "negativeConstraints_zh": [
+        "重量訓練功能需要支援的 GPU 堆疊及可訓練模型；不適用於僅限 CPU 的環境。",
+        "安裝與執行原始碼及 checkpoint 功能需要 git-lfs 系統套件。",
+        "安裝與執行需使用 Python 3.12 或更高版本。"
+      ]
     },
     {
       "id": "open-higgsfield",
       "name": "open-higgsfield",
       "url": "https://github.com/wide-trace/open-higgsfield",
-      "description": "No description provided.",
+      "description": "A studio for image and video generation — one prompt bar, each model’s own settings, and every finished run in one gallery.",
       "category": "開發工具",
-      "language": "unknown",
+      "language": "typescript",
       "triggers": [
-        "open-higgsfield"
+        "open-higgsfield",
+        "image generation",
+        "video generation",
+        "ai studio",
+        "higgsfield alternative",
+        "圖片生成",
+        "影片生成"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/wide-trace/open-higgsfield"
       },
-      "capabilities": [],
-      "useCase": "open-higgsfield",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "image-generation",
+        "video-generation",
+        "model-orchestration",
+        "media-asset-management",
+        "self-hosting",
+        "batch-generation"
+      ],
+      "useCase": "When you want to generate images or videos with dozens of AI models from one prompt bar — a free, self-hosted alternative to Higgsfield AI that keeps every finished run in one gallery.",
+      "advantages": [
+        "Self-hosted open-source alternative that eliminates vendor lock-in and studio subscription fees",
+        "Unified catalog of 38 models (8 image, 30 video) that drives both media types with a single prompt interface",
+        "Decoupled architecture where the generation catalog acts as the source of truth, allowing new models to be added without modifying studio logic"
+      ],
+      "negativeConstraints": [
+        "Requires users to possess their own platform API keys (id:secret); it does not provide free built-in generation credits or accounts",
+        "Requires specific environment variables (HF_API_BASE_URL, OPEN_HIGGSFIELD_READ_WRITE_TOKEN) for the generation API and Vercel Blob uploads to function correctly"
+      ],
       "stars": 3445,
       "addedAt": "2026-09-28T08:16:28.494Z",
       "status": "active",
@@ -55423,7 +55688,170 @@
         "starsAtIngest": 3445,
         "weeklyDelta": 1944,
         "ingestedAt": "2026-09-28T08:16:28.494Z"
-      }
+      },
+      "description_zh": "一個圖像與影片生成的工作室——單一提示列、每款模型保有各自設定，每次完成的成品都集中於同一個畫廊。",
+      "useCase_zh": "當你想以單一提示列操作數十款 AI 模型生成圖像或影片時使用——Higgsfield AI 的免費自架替代方案，完成的成品集中收藏。",
+      "advantages_zh": [
+        "自我部署的開源替代品，消除供應商鎖定與工作室訂閱費用",
+        "整合 38 個模型（8 個影像、30 個影片）的目錄，以單一提示詞介面驅動多種媒體類型",
+        "解耦的架構設計，生成目錄作為實體來源，新增模型無需修改介面邏輯"
+      ],
+      "negativeConstraints_zh": [
+        "需要使用者擁有自己的平台 API 金鑰（id:secret）；不提供免費的內建生成額度或帳號。",
+        "需要特定的環境變數（HF_API_BASE_URL、OPEN_HIGGSFIELD_READ_WRITE_TOKEN），生成 API 與 Vercel Blob 上傳才能正常運作。"
+      ]
+    },
+    {
+      "id": "awesome-persona-skills",
+      "name": "Awesome Persona Skills",
+      "url": "https://github.com/tmstack/awesome-persona-skills",
+      "description": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女娲.skill……  ",
+      "category": "學習資源",
+      "language": "markdown",
+      "triggers": [
+        "awesome-persona-skills",
+        "skills"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/tmstack/awesome-persona-skills",
+        "repoUrl": "https://github.com/tmstack/awesome-persona-skills"
+      },
+      "capabilities": [
+        "skills"
+      ],
+      "addedAt": "2026-09-29T23:32:19.745Z",
+      "status": "active",
+      "stars": 4053,
+      "useCase": "Content creators and developers use it to find, install, and manage a curated list of persona-based skills that replicate specific thinking styles or character interactions for LLMs.",
+      "useCase_zh": "內容創作者與開發人員使用它來發現、安裝並管理預設的人格技能清單，以複製特定思維模式或角色互動來增強 LLM 的應用。",
+      "advantages": [
+        "Provides a centralized repository of ready-to-use persona skills ranging from historical figures to fictional characters",
+        "Covers diverse categories including business thinking, personal growth, traditional philosophy, and emotional companionship",
+        "Includes meta-tools like 'Curator.skill' that intelligently match and recommend specific personas based on conversation intent"
+      ],
+      "advantages_zh": [
+        "提供集中式的即用人格技能庫，涵蓋從歷史人物到虛構角色的多種類型",
+        "涵蓋商業思維、自我成長、傳統哲學及情感陪伴等廣泛領域",
+        "包含如「圖鑑.skill」等元工具，能根據對話意圖智能匹配並推薦適合的人格技能"
+      ],
+      "negativeConstraints": [
+        "Not a runnable software; it is a Markdown index that requires users to clone external repositories to function",
+        "Skills rely on third-party external links which may break or change without notice in this curated list"
+      ],
+      "description_zh": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女娲.skill……",
+      "negativeConstraints_zh": [
+        "非可執行軟體；為 Markdown 索引，需使用者複製外部儲存庫方可運作",
+        "技能依賴第三方外部連結，此精選列表中這些連結可能隨時失效或變更"
+      ]
+    },
+    {
+      "id": "motion-design-skill",
+      "name": "Motion Design Skill",
+      "url": "https://github.com/LottieFiles/motion-design-skill",
+      "description": "Universal motion design principles for AI agents — timing, easing, choreography, and Disney animation principles adapted for UI",
+      "category": "UI/UX設計",
+      "language": "other",
+      "triggers": [
+        "motion-design-skill",
+        "motion",
+        "design",
+        "skill",
+        "agent-skills",
+        "animation",
+        "lottie",
+        "motion-design"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/LottieFiles/motion-design-skill.git",
+        "repoUrl": "https://github.com/LottieFiles/motion-design-skill"
+      },
+      "capabilities": [
+        "agent-skills",
+        "animation",
+        "lottie",
+        "motion-design",
+        "ui"
+      ],
+      "useCase": "A developer asks an AI agent to choreograph a multi-element entrance sequence for a dashboard UI using specific timing and easing principles.",
+      "advantages": [
+        "Implementation-agnostic philosophy that works across various animation systems like CSS, GSAP, and Lottie",
+        "Supports over 40 different AI agents including Claude Code, Cursor, and GitHub Copilot",
+        "Includes ready-to-use pattern recipes for state feedback, ambient motion, and multi-element choreography"
+      ],
+      "negativeConstraints": [
+        "Not suitable for generating raw animation code as it is a philosophy and guidelines tool",
+        "Requires an AI agent interface that supports the 'skills' ecosystem to function"
+      ],
+      "addedAt": "2026-09-29T23:32:20.616Z",
+      "status": "active",
+      "stars": 1821,
+      "useCase_zh": "開發者要求 AI 代理遵循特定的節奏與緩動原則，為儀表板介面設計多元素出場動畫的編排順序。",
+      "advantages_zh": [
+        "採用與實作系統無關的設計哲學，可適用於 CSS、GSAP、Lottie 等多種動畫系統",
+        "支援超過 40 種 AI 代理，包括 Claude Code、Cursor 與 GitHub Copilot",
+        "內含針對狀態回饋、環境動效及多元素編排的即用型模式配方"
+      ],
+      "description_zh": "適用於 AI 代理程式的通用動態設計原則——包括節奏、緩動、編排，以及為 UI 調整的迪士尼動畫原則",
+      "negativeConstraints_zh": [
+        "不適合用於生成原始動畫程式碼，因其為理念與指南工具",
+        "需具備支援「技能」生態系的 AI 代理程式介面方可運作"
+      ]
+    },
+    {
+      "id": "pixel2motion",
+      "name": "Pixel2motion",
+      "url": "https://github.com/nolangz/pixel2motion",
+      "description": "AI logo animation skill: turn raster logos into smooth SVG animation, animated HTML demos, GIF/video previews, and motion QA evidence.",
+      "category": "UI/UX設計",
+      "language": "python",
+      "triggers": [
+        "pixel2motion",
+        "ai-animation",
+        "ai-design-tools",
+        "animated-logo",
+        "brand-motion",
+        "claude-skill",
+        "codex-skill",
+        "creative-coding"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/nolangz/pixel2motion.git",
+        "repoUrl": "https://github.com/nolangz/pixel2motion"
+      },
+      "capabilities": [
+        "ai-animation",
+        "ai-design-tools",
+        "animated-logo",
+        "brand-motion",
+        "claude-skill"
+      ],
+      "useCase": "Designers and developers use Pixel2Motion to convert static raster logos (PNG, JPG) into smooth, production-ready SVG animations with interactive HTML demos and video previews for brand motion updates.",
+      "advantages": [
+        "Generates dependency-free HTML demos with replay, slow motion, and speed controls",
+        "Provides deterministic motion QA evidence including geometry overlays and frame strips",
+        "Outputs structured semantic SVGs with separate addressable parts for precise choreography"
+      ],
+      "negativeConstraints": [
+        "Requires specific AI agent environments like Codex or Claude to execute the skill workflow",
+        "Limited to logo and brand mark reconstruction, not general video generation or complex scene animation"
+      ],
+      "addedAt": "2026-09-29T23:32:21.402Z",
+      "status": "active",
+      "stars": 2358,
+      "useCase_zh": "設計師與開發者使用 Pixel2Motion 將靜態的點陣 Logo（PNG、JPG）轉換為光滑、可直接投入生產的 SVG 動畫，並生成互動式 HTML 演示與影片預覽，以支援品牌動態更新。",
+      "advantages_zh": [
+        "生成無相依性的 HTML 演示，支援重播、慢動作與速度控制",
+        "提供確定性的動態 QA 證據，包含幾何覆蓋層與幀帶",
+        "輸出結構化的語義 SVG，包含可單獨尋址的部件以便精細編排"
+      ],
+      "description_zh": "AI 標誌動畫技能：將光柵化標誌轉換為流暢的 SVG 動畫、動畫 HTML 範例、GIF/影片預覽及動態 QA 證明。",
+      "negativeConstraints_zh": [
+        "需特定 AI 代理程式環境（如 Codex 或 Claude）才能執行技能工作流程",
+        "僅限於標誌與品牌標記重建，無法進行一般影片生成或複雜場景動畫"
+      ]
     }
   ]
 }

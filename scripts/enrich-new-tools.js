@@ -97,7 +97,7 @@ function flush() {
     const t = freshById.get(id);
     if (t) Object.assign(t, patch);
   }
-  writeFileSync(REGISTRY, JSON.stringify(fresh, null, 2));
+  writeFileSync(REGISTRY, JSON.stringify(fresh, null, 2) + '\n');
 }
 
 const applied = new Map();

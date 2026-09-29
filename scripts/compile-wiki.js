@@ -144,7 +144,7 @@ const SYS = `你是「工具知識編譯器」。輸入是開源工具的技術�
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-async function compileBatch(batch) {
+async function compileBatch(batch, apiKey) {
   const body = {
     model: MODEL,
     messages: [

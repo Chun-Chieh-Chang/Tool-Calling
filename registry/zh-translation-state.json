@@ -3903,10 +3903,11 @@
     },
     "computer-science": {
       "description_zh": "🎓 電腦科學自學免費教育之路！",
-      "at": "2026-09-20T03:13:30.910Z",
+      "at": "2026-09-29T23:52:16.664Z",
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "每週需投入約 20 小時，並具備自律能力長期自學，總時長約 2 年。",
+        "並非專門用於職業培訓或專業發展；重點在於建立完整的基礎概念。",
+        "若負擔不起部分平台的計分作業或考試費用，學員必須主動尋求財務補助。"
       ]
     },
     "system-prompts-and-models-of-ai-tools": {
@@ -6728,6 +6729,49 @@
         "需專屬伺服器（Docker）或嵌入模式的 LLM API 金鑰。",
         "非通用向量資料庫或對話歷史備份 — 以 agent 記憶體操作為核心組織。"
       ]
+    },
+    "reef": {
+      "description_zh": "用於持續自我改進之代理程式基礎設施",
+      "useCase_zh": "用於持續自我改進之代理程式基礎設施",
+      "at": "2026-09-29T23:52:16.666Z",
+      "negativeConstraints_zh": [
+        "重量訓練功能需要支援的 GPU 堆疊及可訓練模型；不適用於僅限 CPU 的環境。",
+        "安裝與執行原始碼及 checkpoint 功能需要 git-lfs 系統套件。",
+        "安裝與執行需使用 Python 3.12 或更高版本。"
+      ]
+    },
+    "open-higgsfield": {
+      "description_zh": "無提供說明。",
+      "useCase_zh": "open-higgsfield",
+      "at": "2026-09-29T23:52:16.666Z",
+      "negativeConstraints_zh": [
+        "需要使用者擁有自己的平台 API 金鑰（id:secret）；不提供免費的內建生成額度或帳號。",
+        "需要特定的環境變數（HF_API_BASE_URL、OPEN_HIGGSFIELD_READ_WRITE_TOKEN），生成 API 與 Vercel Blob 上傳才能正常運作。"
+      ]
+    },
+    "awesome-persona-skills": {
+      "description_zh": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女娲.skill……",
+      "negativeConstraints_zh": [
+        "非可執行軟體；為 Markdown 索引，需使用者複製外部儲存庫方可運作",
+        "技能依賴第三方外部連結，此精選列表中這些連結可能隨時失效或變更"
+      ],
+      "at": "2026-09-29T23:41:31.607Z"
+    },
+    "motion-design-skill": {
+      "description_zh": "適用於 AI 代理程式的通用動態設計原則——包括節奏、緩動、編排，以及為 UI 調整的迪士尼動畫原則",
+      "negativeConstraints_zh": [
+        "不適合用於生成原始動畫程式碼，因其為理念與指南工具",
+        "需具備支援「技能」生態系的 AI 代理程式介面方可運作"
+      ],
+      "at": "2026-09-29T23:41:31.608Z"
+    },
+    "pixel2motion": {
+      "description_zh": "AI 標誌動畫技能：將光柵化標誌轉換為流暢的 SVG 動畫、動畫 HTML 範例、GIF/影片預覽及動態 QA 證明。",
+      "negativeConstraints_zh": [
+        "需特定 AI 代理程式環境（如 Codex 或 Claude）才能執行技能工作流程",
+        "僅限於標誌與品牌標記重建，無法進行一般影片生成或複雜場景動畫"
+      ],
+      "at": "2026-09-29T23:41:31.608Z"
     }
   },
   "failed": {}

@@ -1,17 +1,15 @@
 {
-  "generatedAt": "2026-09-27T05:37:24.349Z",
+  "generatedAt": "2026-09-29T23:34:02.728Z",
   "decisionTree": "docs/CLASSIFICATION.md",
-  "totalTools": 731,
+  "totalTools": 736,
   "summary": {
-    "tier1_violations": 1,
+    "tier1_violations": 0,
     "tier2_needsReview": 17,
     "tier3_domainHeuristic": 20,
-    "compliant": 209,
-    "noRuleMatched": 484
+    "compliant": 211,
+    "noRuleMatched": 488
   },
-  "moves": {
-    "AI 代理 → AI 框架": 1
-  },
+  "moves": {},
   "compliant": [
     {
       "id": "ppt-master",
@@ -1039,6 +1037,11 @@
       "rule": "R6"
     },
     {
+      "id": "laya-mlx",
+      "category": "AI 框架",
+      "rule": "R4"
+    },
+    {
       "id": "genoffice-skill",
       "category": "文件生產力",
       "rule": "R10"
@@ -1057,6 +1060,11 @@
       "id": "claude-code-action",
       "category": "開發工具",
       "rule": "R5"
+    },
+    {
+      "id": "motion-design-skill",
+      "category": "UI/UX設計",
+      "rule": "R10"
     }
   ],
   "noRuleMatched": [
@@ -1543,22 +1551,13 @@
     "genoffice",
     "jev-chat-jarvis",
     "openbao",
-    "hindsight"
+    "hindsight",
+    "reef",
+    "open-higgsfield",
+    "awesome-persona-skills",
+    "pixel2motion"
   ],
-  "tier1": [
-    {
-      "id": "laya-mlx",
-      "name": "Laya Mlx",
-      "url": "https://github.com/mizorewww/laya-mlx",
-      "current": "AI 代理",
-      "proposed": "AI 框架",
-      "rule": "R4",
-      "ruleDesc": "本地／推理引擎、模型運行時 → AI 框架",
-      "step": "決策樹 §2-5 ／ §3 邊界「本地推理引擎」",
-      "why": "identity:本地推理|本地模型|本地部署|模型服務",
-      "stars": 0
-    }
-  ],
+  "tier1": [],
   "tier2": [
     {
       "id": "impeccable",
@@ -1706,7 +1705,7 @@
       "rule": "D8-T3",
       "ruleDesc": "爬蟲、Scraper、Headless 瀏覽器 → 瀏覽器自動化（敘述提及）",
       "why": "identity:\\bscrap(e|er|ing)\\b|web crawler|craw",
-      "stars": 94973
+      "stars": 96713
     },
     {
       "id": "heilcheng-awesome-agent-skills",
@@ -1716,7 +1715,7 @@
       "rule": "D3-T3",
       "ruleDesc": "教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） → 學習資源（敘述提及）",
       "why": "identity:tutorial",
-      "stars": 6127
+      "stars": 6232
     },
     {
       "id": "markitdown",
@@ -1726,7 +1725,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 175512
+      "stars": 187187
     },
     {
       "id": "browser-use",
@@ -1736,7 +1735,7 @@
       "rule": "D8-T3",
       "ruleDesc": "爬蟲、Scraper、Headless 瀏覽器 → 瀏覽器自動化（敘述提及）",
       "why": "identity:\\bscrap(e|er|ing)\\b|web crawler|craw",
-      "stars": 110146
+      "stars": 116421
     },
     {
       "id": "langflow",
@@ -1746,7 +1745,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 153567
+      "stars": 155287
     },
     {
       "id": "langchain",
@@ -1756,7 +1755,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 144789
+      "stars": 147121
     },
     {
       "id": "dify",
@@ -1766,7 +1765,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 153220
+      "stars": 157293
     },
     {
       "id": "harness",
@@ -1776,7 +1775,7 @@
       "rule": "D14-T3",
       "ruleDesc": "測試框架、CI/CD、自動化腳本 → 測試與自動化（敘述提及）",
       "why": "identity:test (runner|framework|automation|ha",
-      "stars": 38083
+      "stars": 38443
     },
     {
       "id": "duckdb",
@@ -1786,7 +1785,7 @@
       "rule": "D9-T3",
       "ruleDesc": "Pandas/Polars、資料框架、產品分析 → 數據分析（敘述提及）",
       "why": "identity:\\bpandas\\b|\\bpolars\\b|dataframe|expl",
-      "stars": 40536
+      "stars": 41721
     },
     {
       "id": "crawl4ai",
@@ -1796,7 +1795,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 79131
+      "stars": 84312
     },
     {
       "id": "llmsherpa",
@@ -1806,7 +1805,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 1749
+      "stars": 1753
     },
     {
       "id": "oh-my-hermes-salomondiei08",
@@ -1816,7 +1815,7 @@
       "rule": "D14-T3",
       "ruleDesc": "測試框架、CI/CD、自動化腳本 → 測試與自動化（敘述提及）",
       "why": "identity:test (runner|framework|automation|ha",
-      "stars": 853
+      "stars": 864
     },
     {
       "id": "hermes-plugins",
@@ -1826,7 +1825,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 417
+      "stars": 523
     },
     {
       "id": "yfinance",
@@ -1836,7 +1835,7 @@
       "rule": "D9-T3",
       "ruleDesc": "Pandas/Polars、資料框架、產品分析 → 數據分析（敘述提及）",
       "why": "identity:\\bpandas\\b|\\bpolars\\b|dataframe|expl",
-      "stars": 25054
+      "stars": 25377
     },
     {
       "id": "hello-agents",
@@ -1846,7 +1845,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 74222
+      "stars": 80910
     },
     {
       "id": "oil-motion",
@@ -1856,7 +1855,7 @@
       "rule": "D11-T3",
       "ruleDesc": "影片編輯、影片串流、影片客戶端 → 影片（敘述提及）",
       "why": "identity:video (edit|editor|generation|pipeli",
-      "stars": 1980
+      "stars": 2438
     },
     {
       "id": "llama-index",
@@ -1866,7 +1865,7 @@
       "rule": "D2-T3",
       "ruleDesc": "agent 記憶、RAG、知識圖譜、codebase 索引 → 知識管理（敘述提及）",
       "why": "identity:\\brag\\b",
-      "stars": 51802
+      "stars": 52325
     },
     {
       "id": "sqlmesh-sqlmesh",
@@ -1876,7 +1875,7 @@
       "rule": "D14-T3",
       "ruleDesc": "測試框架、CI/CD、自動化腳本 → 測試與自動化（敘述提及）",
       "why": "identity:test (runner|framework|automation|ha",
-      "stars": 3252
+      "stars": 3297
     },
     {
       "id": "figma-code-connect",
@@ -1886,7 +1885,7 @@
       "rule": "D1-T3",
       "ruleDesc": "前端框架、設計系統、網頁動畫、原型、圖標庫 → UI/UX設計（敘述提及）",
       "why": "identity:figma (plugin|api|library|sdk|widget",
-      "stars": 1568
+      "stars": 1587
     },
     {
       "id": "models-of-human-anatomy",
@@ -1896,7 +1895,7 @@
       "rule": "D7-T3",
       "ruleDesc": "CAD、3D 建模、3D 資產／零件庫 → 3D工程繪圖（敘述提及）",
       "why": "identity:\\bcad\\b|parametric (3d|model)|opensc",
-      "stars": 0
+      "stars": 207
     }
   ]
 }
