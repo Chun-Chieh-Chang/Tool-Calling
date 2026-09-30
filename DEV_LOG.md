@@ -1,5 +1,30 @@
 # Tool-Calling 開發日誌
 
+## 2026-09-30 修復 Deploy GitHub Pages 連續失敗（#397～#401）：淺 clone 沒有 HEAD~1
+
+### 需求
+
+Actions 頁面顯示 Deploy GitHub Pages 自 2026-09-25 起連續紅燈（#397／#398／#399／#401 failure；#400 為被 #401 以 concurrency 取消，非失敗），網站已 5 天未部署。
+
+### 問題與原因分析（RCA）
+
+- **失敗點**：四次失敗的步驟完全相同——`Run Tests`（`npm test`）exit code 1；其後的 check-mece／build-web／deploy 全被 skipped。最後一次成功是 #396（a728f9c）。
+- **根因**：8679b2f／44baf17 新增的 `tests/check-traditional.test.js` 有兩條測試執行 `--range HEAD~1..HEAD` 與 `--commits HEAD~1..HEAD`，前提是「repo 至少有 2 筆提交」。CI 的 `actions/checkout` 預設 `fetch-depth: 1`（淺 clone，只有 1 筆提交），git 回 `fatal: ambiguous argument 'HEAD~1..HEAD': unknown revision`，`execFileSync` 拋錯，測試失敗。
+- **為何本機沒發現**：本機有完整歷史，`HEAD~1` 恆存在；本機 `npm test` 全綠（318 pass／0 fail），DEV_LOG 前一條的驗證數字因此與 CI 現況脫節。
+- **重現方式**：`git clone --depth 1` 後跑 `npm test` → 恰好這 2 條失敗（321 tests／317 pass／2 fail）；完整 clone 則 0 fail。已排除其他嫌疑：opencc-js 有無安裝（乾淨 clone＋`npm install` 仍全綠）、Playwright e2e（本機可跑且通過）。
+
+### 矯正與預防措施（CAPA）
+
+1. **矯正（測試）**：`tests/check-traditional.test.js` 新增 `NO_PARENT_SKIP`——偵測 `git rev-parse --verify --quiet HEAD~1`，無父提交時這 2 條 `skip`（附原因），有歷史時照常執行。測試從此不再依賴 clone 深度。
+2. **矯正（CI）**：`deploy-pages.yml` 的 checkout 加 `fetch-depth: 2`（經使用者同意修改受保護路徑，僅此一處），讓 CI 上這 2 條鎖也真的執行，而不是永遠 skip。
+3. **預防**：凡測試依賴 git 歷史，一律先用淺 clone（`git clone --depth 1`）驗證一次再推送；驗收清單新增「淺 clone 跑完整 `npm test`」。
+
+### 驗證結果
+
+- 淺 clone（`--depth 1`）完整 `npm test`：修復前 2 fail → 修復後 0 fail（見下方收斂數字）。
+- 完整 clone `npm test`：0 fail，tests 總數不變、skipped 不增加。
+- 推送後 GitHub 上 Deploy GitHub Pages 新一輪 run 的結果，於推送後補記。
+
 ## 2026-09-30 批次：新增 3 筆、4 筆去重與拆解判定；修復 2 支管線腳本、補齊 W40 遺留
 
 ### 一、批量新增（3 筆；其餘 4 筆已在庫，去重排除）

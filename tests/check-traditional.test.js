@@ -26,6 +26,19 @@ import {
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPT = path.join(ROOT, 'scripts', 'check-traditional.js');
 
+// --range / --commits 這兩條鎖要比對 HEAD~1..HEAD，需要至少 2 筆提交的歷史。
+// 淺 clone（actions/checkout 預設 fetch-depth: 1）與全新 repo 的首筆提交都沒有 HEAD~1，
+// git 會報 unknown revision；這是環境限制而非門禁失效，因此無歷史時 skip（本機與
+// fetch-depth >= 2 的 CI 仍照常執行）。
+const NO_PARENT_SKIP = (() => {
+  try {
+    execFileSync('git', ['rev-parse', '--verify', '--quiet', 'HEAD~1'], { cwd: ROOT, stdio: 'ignore' });
+    return false;
+  } catch {
+    return '無 HEAD~1（淺 clone 或首筆提交），略過需要提交歷史的測試';
+  }
+})();
+
 // 本檔是門禁自己的測試，因此刻意**不使用**豁免標記：需要簡體輸入時一律用
 // \uXXXX 重組，讓本檔在 `--full --code` 下維持零違規。
 const SIMP_SENTENCE = '\u8fd9\u6761\u6ce8\u91ca\u5199\u9519\u4e86\uff0c\u5e94\u8be5\u89e6\u53d1\u68c0\u67e5\u3002'; // = 這條註解寫錯了（簡體寫法）
@@ -157,7 +170,7 @@ test('CLI：--full --code 對原始碼目錄必須零違規', () => {
   assert.match(out, /未發現簡體字/);
 });
 
-test('CLI：--range 對最近一次提交可正常執行（不只 exit 0，也要真的掃描到東西）', () => {
+test('CLI：--range 對最近一次提交可正常執行（不只 exit 0，也要真的掃描到東西）', { skip: NO_PARENT_SKIP }, () => {
   const out = execFileSync(process.execPath, [SCRIPT, '--range', 'HEAD~1..HEAD'], {
     cwd: ROOT,
     encoding: 'utf8',
@@ -165,7 +178,7 @@ test('CLI：--range 對最近一次提交可正常執行（不只 exit 0，也�
   assert.match(out, /新增行/);
 });
 
-test('CLI：--commits 掃最近一筆 commit 的訊息 —— commit message 也必須全繁', () => {
+test('CLI：--commits 掃最近一筆 commit 的訊息 —— commit message 也必須全繁', { skip: NO_PARENT_SKIP }, () => {
   // 這是一條會「自己往前走」的鎖：每次提交後，HEAD~1..HEAD 就是剛寫的那條訊息，
   // 只要有人在 commit message 裡打簡體字（本輪就真的打進過 2 個），這裡會紅。
   const out = execFileSync(process.execPath, [SCRIPT, '--commits', 'HEAD~1..HEAD'], {
