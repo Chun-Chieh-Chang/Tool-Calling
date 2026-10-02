@@ -972,9 +972,13 @@ export function search(registryTools, query, options = {}) {
         // 2026-10-02 量尺對齊：L1.5 原回傳 3*discrim（0~3 量級），與 L2 的 0~0.99
         // 不一致，融合與顯示層乘 100 後出現「213%」。改回 discrim 本身（0~1），
         // 單調轉換不改變排序；觸發詞鑑別度即為信心度的誠實表達。
+        // 同分破解：高 df 萬用 trigger（model/code/youtube）會讓多支工具同分。
+        // trigger 出現在 id/name（工具以此為名）比出現在 context triggers 證據強，
+        // 加權 0.017 遠小於不同 trigger 間的最小 IDF 間距，不會翻轉跨 trigger 排序。
+        const inIdentity = normalize(tool.id).includes(tNorm) || normalize(tool.name).includes(tNorm);
         triggerExactHits.push({
           tool,
-          score: Math.round(discrim * 100) / 100,
+          score: Math.round(Math.min(1, discrim + (inIdentity ? 0.017 : 0)) * 100) / 100,
           matchLevel: 'L1.5-trigger-exact',
           matchedKeywords: [trig],
         });
