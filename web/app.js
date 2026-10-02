@@ -1245,7 +1245,7 @@ function createToolCard(tool, score = null, matchLevel = null, matchedKeywords =
 
   const badge = clone.querySelector('.match-badge');
   if (score !== null) {
-    const percentage = Math.round(score * 100);
+    const percentage = Math.min(100, Math.round(score * 100));
     badge.textContent = `${percentage}% 匹配`;
     const progressBar = article.querySelector('.progress-bar');
     if (progressBar) progressBar.style.width = `${percentage}%`;

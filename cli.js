@@ -143,9 +143,11 @@ async function cmdSearch(query, options = {}) {
 
   for (let i = 0; i < results.length; i++) {
     const { tool, score, matchLevel, matchedKeywords } = results[i];
-    const bar = '█'.repeat(Math.round(score * 20)).padEnd(20, '░');
+    // 防禦性蓋帽：任何上游量尺疏漏都不該把信心度畫出量尺外
+    const pct = Math.min(100, Math.round(score * 100));
+    const bar = '█'.repeat(Math.round(pct / 5)).padEnd(20, '░');
     console.log(`${c.bold}#${i + 1}${c.reset} ${c.cyan}${tool.name}${c.reset} ${c.dim}(${tool.id})${c.reset}`);
-    console.log(`   信心度: ${c.green}${bar}${c.reset} ${(score * 100).toFixed(0)}%  [${matchLevel}]`);
+    console.log(`   信心度: ${c.green}${bar}${c.reset} ${pct}%  [${matchLevel}]`);
     console.log(`   ${c.dim}${displayText(tool, 'description').slice(0, 80)}${c.reset}`);
     const useCaseText = displayText(tool, 'useCase');
     if (useCaseText) {

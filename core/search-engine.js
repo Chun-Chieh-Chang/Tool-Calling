@@ -969,9 +969,12 @@ export function search(registryTools, query, options = {}) {
         if (!qNorm.includes(tNorm)) continue;      // 查詢必須整段包含 trigger
         const discrim = triggerDiscriminativeScore(trig, idfMap);
         if (discrim <= 0) continue;               // 停用 trigger 不計
+        // 2026-10-02 量尺對齊：L1.5 原回傳 3*discrim（0~3 量級），與 L2 的 0~0.99
+        // 不一致，融合與顯示層乘 100 後出現「213%」。改回 discrim 本身（0~1），
+        // 單調轉換不改變排序；觸發詞鑑別度即為信心度的誠實表達。
         triggerExactHits.push({
           tool,
-          score: Math.round((3 * discrim) * 100) / 100,
+          score: Math.round(discrim * 100) / 100,
           matchLevel: 'L1.5-trigger-exact',
           matchedKeywords: [trig],
         });
