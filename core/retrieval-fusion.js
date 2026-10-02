@@ -40,6 +40,17 @@ import { neutralizeDelimiters } from './prompt-sanitize.js';
 //     agent 端仍無法區分；這是詞彙空間天花板，需 embedding 才能突破）
 //   - HIT「summarize video」→ 5 筆 conf≥0.35
 //
+// ── 2026-10-02 量尺對齊後記 ─────────────────────────────────────────
+// L1.5 分數已從 0~3 正規化為 0~1（見 search-engine.js L1.5 區塊），
+// 因此本區引用的舊量尺實測值（2.17/2.36/2.72/1.83）僅存歷史意義。
+// 連帶效應：L2_LEAD_MARGIN = 0.4 對 L1.5 命中實質不可達（0~1 量級下
+// 首名與第五名差距 < 0.4），排序主導權移向 3b 的 agent 高置信晉升規則。
+// 以 267 題評測驗證為淨改善：c45/c50 兩筆 semantic 翻正、零回歸。
+// 另：HyDE 的 L2 命中門檻 0.10 目前與 L1.5 最小分尚有間距
+// （全庫 7,827 個 trigger 實測最小 ≈0.38；理論下限 df=N 時 ≈0.13，
+// 見 search-engine.js triggerDiscriminativeScore 註解），
+// registry 擴增至 ~8k 筆前安全；超過時需重新校準。
+//
 // 決策矩陣（最終）：
 //   agentConsistent : agent topK 中 ≥ AGENT_MIN_CONSISTENT 筆 conf ≥ 0.35
 //   adopt           : agentConsistent && (l2Leads || l2HasAny)

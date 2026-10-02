@@ -12,6 +12,10 @@ const tools = registry.tools.filter((t) => t.status === 'active' || t.status ===
 test('L1.5 分數必須落在 0~1（修復信心度 213%）', () => {
   const r = search(tools, '我想把 YouTube 影片轉成逐字稿', { topK: 10 });
   assert.ok(r.length > 0, '此查詢在現行工具庫應有 L1.5 命中');
+  assert.ok(
+    r.some((x) => x.matchLevel === 'L1.5-trigger-exact'),
+    '此查詢應觸發 L1.5 層；若 registry 變動使 L1.5 不再命中，請更換測試查詢，不可刪除此斷言'
+  );
   for (const x of r) {
     assert.ok(x.score <= 1.0, `分數 ${x.score} 超過 1.0（matchLevel=${x.matchLevel}）`);
     assert.ok(x.score > 0, `分數 ${x.score} 不應為 0`);

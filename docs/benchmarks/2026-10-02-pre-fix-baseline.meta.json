@@ -3,5 +3,6 @@
   "command": "node scripts/eval-benchmark.js",
   "captured": "2026-10-02",
   "outputFile": "docs/benchmarks/2026-10-02-pre-fix-baseline.txt",
+  "missListFile": "docs/benchmarks/2026-10-02-pre-fix-baseline-misses.txt",
   "note": "pre-fix baseline; fusion Hit@1 56.0%, semantic 47.3%, empty-set honesty 10/10"
 }

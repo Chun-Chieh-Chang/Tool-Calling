@@ -907,7 +907,9 @@ function cmdCompare(query) {
     const t = res.tool;
     const isBest = idx === 0;
     const prefix = isBest ? `${c.green}${c.bold}🥇 [首選最佳匹配]${c.reset}` : `${c.blue}🥈 [候選競品 #${idx + 1}]${c.reset}`;
-    console.log(`${prefix} ${c.bold}${t.name}${c.reset} (${t.id}) — ${c.dim}${t.category}${c.reset} | Match Score: ${c.bold}${Math.round(res.score * 100)}%${c.reset}`);
+    // 防禦性蓋帽：同 cmdSearch，避免上游量尺疏漏把 Match Score 畫出量尺外
+    const pct = Math.min(100, Math.round(res.score * 100));
+    console.log(`${prefix} ${c.bold}${t.name}${c.reset} (${t.id}) — ${c.dim}${t.category}${c.reset} | Match Score: ${c.bold}${pct}%${c.reset}`);
     console.log(`   🌐 專案網址: ${t.url}`);
     console.log(`   💻 程式語言: ${t.language || 'Unspecified'} | ⭐ Stars: ${t.stars || 'N/A'}`);
     console.log(`   🎯 推薦場景: ${t.useCase || t.description}`);
