@@ -178,7 +178,7 @@ git commit -m "fix(search): normalize L1.5 score to 0-1 scale and clamp confiden
 
 ### Task 3: L1.5 同分群破解（萬用觸發詞並列）
 
-**根因**：同一查詢整串命中多支工具的同一 trigger（如 `youtube`、`model`）時，L1.5 給**完全相同**的分數，形成大規模同分群（DEV_LOG 已記錄 213%/182% 群）。破解法：以「身分強度」做次要排序——trigger 出現在工具的 id/name（工具以此為名）比出現在 context triggers 證據更強。加權 0.017 遠小於不同 trigger 間的最小 IDF 間距，不會翻轉不同 trigger 之間的排序。
+**根因**：同一查詢整串命中多支工具的同一 trigger（如 `youtube`、`model`）時，L1.5 給**完全相同**的分數，形成大規模同分群（DEV_LOG 已記錄 213%/182% 群）。破解法：以「身分強度」做次要排序——trigger 出現在工具的 id/name（工具以此為名）比出現在 context triggers 證據更強。加權 0.017 的保證範圍（2026-10-02 實測）：重排僅可能發生在 discrim 差 < 0.017 的「近等價 trigger」之間（df ≥ 7 的相鄰 IDF 階梯間距可小於 0.017，存在嚴格翻轉案例）；df ≤ 6 的最小間距 0.0176 大於 boost，絕對安全。267 題評測實證零跨 trigger 回歸（13 個 top-1 變化皆同分群內部重排或翻正）。
 
 **Files:**
 - Modify: `core/search-engine.js:965-980`（Task 2 修改後的 L1.5 區塊）
@@ -262,12 +262,15 @@ Expected: FAIL（三支工具同分，排序取決於 registry 順序，`alpha-t
         // 不一致，融合與顯示層乘 100 後出現「213%」。改回 discrim 本身（0~1），
         // 單調轉換不改變排序；觸發詞鑑別度即為信心度的誠實表達。
         // 同分破解：高 df 萬用 trigger（model/code/youtube）會讓多支工具同分。
-        // trigger 出現在 id/name（工具以此為名）比出現在 context triggers 證據強，
-        // 加權 0.017 遠小於不同 trigger 間的最小 IDF 間距，不會翻轉跨 trigger 排序。
+        // trigger 出現在 id/name（工具以此為名）比出現在 context triggers 證據強。
+        // ⚠️ 保證範圍（2026-10-02 實測）：重排僅可能發生在 discrim 差 < 0.017 的
+        // 「近等價 trigger」之間（df ≥ 7 的相鄰階梯間距可小於 0.017，存在嚴格翻轉
+        // 案例）；df ≤ 6 的最小間距 0.0176 大於 boost，絕對安全。267 題評測實證
+        // 零跨 trigger 回歸（13 個 top-1 變化皆同分群內部重排或翻正）。
         const inIdentity = normalize(tool.id).includes(tNorm) || normalize(tool.name).includes(tNorm);
         triggerExactHits.push({
           tool,
-          score: Math.round(Math.min(1, discrim + (inIdentity ? 0.017 : 0)) * 100) / 100,
+          score: Math.round(Math.min(1, discrim + (inIdentity ? L15_IDENTITY_BOOST : 0)) * 100) / 100,
           matchLevel: 'L1.5-trigger-exact',
           matchedKeywords: [trig],
         });
@@ -1311,6 +1314,7 @@ git commit -m "docs(devlog): record calibration fixes, telemetry loop, and gover
 2. `negativeConstraints` 結構化試點：top-100 熱門工具加機器可讀的 `{facet, value}` 約束欄位，`negativePenalty()` 改讀結構欄位（散文留作顯示），重跑 benchmark——當天可證偽。
 3. V0 語意 embedding 實測：`npm run embed:build` 建向量檔（需 API key），查詢端在 server/CLI 有 key 時計算 queryVector 傳入 `retrieveWithRerank`，benchmark 對照 V0 開/關。
 4. `retrieveWithAdaptiveHyDE`（core/retrieval-fusion.js:414，已實作未評測）納入 benchmark 對照組。
+5. `triggerIdfCache` 為 module 層級、由程序中第一個 corpus 建置——多 registry 共存情境（測試/工具）會重用過期 IDF，列為 Batch 2 觀察項。
 
 **Batch 3 — 專家資產（門檻：Batch 2 的結構化約束落地）**
 1. 意圖原型表：267 題評測集聚類出 20~50 個任務原型（「轉逐字稿」「做簡報」…），疊在 query-intent.js 的三元組上。

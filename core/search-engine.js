@@ -229,6 +229,10 @@ const triggerIdfCache = new Map();   // normTrigger → idfScore
 let triggerIdfBuilt = false;
 let triggerIdfMax = 0;              // 全庫最大 IDF，首次建置時填入
 
+// L1.5 同分破解的身分加權：0.017 ≈ df ≤ 6 相鄰 IDF 階梯的最小間距下限，
+// 足以破同分、又只可能重排「近等價 trigger」（保證範圍見 search() 內 L1.5 註解）。
+const L15_IDENTITY_BOOST = 0.017;
+
 /**
  * 建立 / 回傳 trigger IDF 表（首次呼叫時建置，之後快取）。
  * @param {object[]} tools
@@ -973,12 +977,15 @@ export function search(registryTools, query, options = {}) {
         // 不一致，融合與顯示層乘 100 後出現「213%」。改回 discrim 本身（0~1），
         // 單調轉換不改變排序；觸發詞鑑別度即為信心度的誠實表達。
         // 同分破解：高 df 萬用 trigger（model/code/youtube）會讓多支工具同分。
-        // trigger 出現在 id/name（工具以此為名）比出現在 context triggers 證據強，
-        // 加權 0.017 遠小於不同 trigger 間的最小 IDF 間距，不會翻轉跨 trigger 排序。
+        // trigger 出現在 id/name（工具以此為名）比出現在 context triggers 證據強。
+        // ⚠️ 保證範圍（2026-10-02 實測）：重排僅可能發生在 discrim 差 < 0.017 的
+        // 「近等價 trigger」之間（df ≥ 7 的相鄰階梯間距可小於 0.017，存在嚴格翻轉
+        // 案例）；df ≤ 6 的最小間距 0.0176 大於 boost，絕對安全。267 題評測實證
+        // 零跨 trigger 回歸（13 個 top-1 變化皆同分群內部重排或翻正）。
         const inIdentity = normalize(tool.id).includes(tNorm) || normalize(tool.name).includes(tNorm);
         triggerExactHits.push({
           tool,
-          score: Math.round(Math.min(1, discrim + (inIdentity ? 0.017 : 0)) * 100) / 100,
+          score: Math.round(Math.min(1, discrim + (inIdentity ? L15_IDENTITY_BOOST : 0)) * 100) / 100,
           matchLevel: 'L1.5-trigger-exact',
           matchedKeywords: [trig],
         });
