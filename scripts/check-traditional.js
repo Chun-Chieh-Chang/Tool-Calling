@@ -61,6 +61,8 @@ const SKIP_PATH_PATTERNS = [
   /^node_modules\//,
   /^package-lock\.json$/,
   /^\.temp\//,
+  // 評測輸出檔是 harness 產物（tee 擷取的機器輸出，內含評測集刻意保留的簡體查詢字串），非代碼散文。
+  /^docs\/benchmarks\/.*\.txt$/,
 ];
 
 // --full 的副檔名範圍
