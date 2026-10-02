@@ -20,7 +20,8 @@ test('查詢命中禁用場景的工具應被扣分、排到乾淨工具之後',
     mkTool('tool-with-neg', ['Not designed for batch convert video workloads']),
     mkTool('tool-clean', []),
   ];
-  const r = agentRetrieve(tools, 'batch convert video files', { topK: 2 });
+  // wiki: false：讓測試與 registry/compiled-entries.json 是否存在無關（hermetic）
+  const r = agentRetrieve(tools, 'batch convert video files', { topK: 2, wiki: false });
   assert.equal(r.topK.length, 2);
   assert.equal(r.topK[0].id, 'tool-clean', `實際排序：${r.topK.map((x) => x.id).join(', ')}`);
   assert.equal(r.topK[1].id, 'tool-with-neg');

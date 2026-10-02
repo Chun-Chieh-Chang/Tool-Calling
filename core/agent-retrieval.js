@@ -277,6 +277,11 @@ const V0_WEIGHT = 0.25;
 // 該工具越不該被推薦。重疊 ≤ 0.25 不罰（避免誤傷只共享一個語境詞的情形），
 // 重疊 1.0 時扣 0.15（約等於 V2 權重的一半，足以把命中的工具拉出 top-1，
 // 但不至於把其他維度的強證據完全歸零）。
+// ⚠️ 已知極限（2026-10-02）：bag-of-words 對否定語句盲——若禁用文本含
+// 「不適合非 X」這類雙重否定，共享詞仍會被當成禁用重疊（實例：評測 c61
+// 懲罰了正解 fluentui-system-icons 0.06，因其「不適合非 Microsoft 生態」
+// 與查詢「Microsoft 生態」共享詞彙）。結構化 {facet, value} 約束
+//（Batch 2）才是根治；本函式在該重工前屬「寧可扣錯少數、不可漏扣多數」的取捨。
 function negativePenalty(q, tool, idf) {
   const negs = tool.negativeConstraints || [];
   if (negs.length === 0) return 0;
@@ -325,7 +330,8 @@ function reasons(q, tool, fuseResult, matchedIntent = '') {
   if (fuseResult.per.V3 >= 0.4) r.push(`✓ 情境吻合：${tool.useCase?.slice(0, 80)}`);
   if (fuseResult.per.V4 >= 0.4) r.push(`✓ 部署吻合：${tool.install?.method} / ${tool.language}`);
   if (fuseResult.per.V5 >= 0.4) r.push(`✓ 知識詞條吻合：${(matchedIntent || '').slice(0, 60)}`);
-  if (fuseResult.negPenalty > 0) r.push(`🚫 命中禁用場景，已扣分 ${fuseResult.negPenalty.toFixed(2)}`);
+  // 扣分 ≥ 0.01 才顯示：sub-cent 扣分渲染成「已扣分 0.00」是雜訊
+  if (fuseResult.negPenalty >= 0.01) r.push(`🚫 命中禁用場景，已扣分 ${fuseResult.negPenalty.toFixed(2)}`);
   if (fuseResult.bestDim < NO_MATCH_THRESHOLD) r.push('⚠ 所有維度皆無有效信號');
   return r;
 }

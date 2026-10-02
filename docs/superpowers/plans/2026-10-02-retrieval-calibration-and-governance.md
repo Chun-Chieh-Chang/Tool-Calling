@@ -1315,6 +1315,7 @@ git commit -m "docs(devlog): record calibration fixes, telemetry loop, and gover
 3. V0 語意 embedding 實測：`npm run embed:build` 建向量檔（需 API key），查詢端在 server/CLI 有 key 時計算 queryVector 傳入 `retrieveWithRerank`，benchmark 對照 V0 開/關。
 4. `retrieveWithAdaptiveHyDE`（core/retrieval-fusion.js:414，已實作未評測）納入 benchmark 對照組。
 5. `triggerIdfCache` 為 module 層級、由程序中第一個 corpus 建置——多 registry 共存情境（測試/工具）會重用過期 IDF，列為 Batch 2 觀察項。
+6. `core/multidimensional.js:88` 分類端 D1 仍將 negativeConstraints 折入聚類文本（與檢索端同一符號缺陷的分類側）；隨結構化約束一併處理。連同 c61 雙重否定案例，是結構化 {facet, value} 約束的具體論據。
 
 **Batch 3 — 專家資產（門檻：Batch 2 的結構化約束落地）**
 1. 意圖原型表：267 題評測集聚類出 20~50 個任務原型（「轉逐字稿」「做簡報」…），疊在 query-intent.js 的三元組上。
