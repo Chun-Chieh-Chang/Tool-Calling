@@ -1,0 +1,277 @@
+
+═══ 工具選用基準評測 ═══
+評測集 v1.3.0　共 267 筆（257 可命中 + 10 空集）　topK=5
+
+【整體】
+  引擎        Hit@1      Hit@3      MRR
+  ─────────────────────────────────────────
+  L2            9.7%     14.8%    0.128
+  agent        56.8%     72.4%    0.661
+  fusion       56.0%     61.9%    0.599
+
+【含近義（計入 13 筆 alsoAcceptable）】
+  引擎        Hit@1      Hit@3      MRR
+  ─────────────────────────────────────────
+  L2           10.1%     16.0%    0.134
+  agent        58.4%     74.7%    0.676
+  fusion       57.6%     63.0%    0.613
+
+【按類型分組 — fusion】
+  類型          筆數   Hit@1      Hit@3      MRR
+  ──────────────────────────────────────────────────
+  direct         76     68.4%     75.0%    0.730
+  semantic      129     47.3%     54.3%    0.518
+  constrained    52     59.6%     61.5%    0.612
+
+【空集誠實率（越高越好）】
+  agent-retrieval : 10/10  100.0%
+  fusion          : 10/10  100.0%
+   ✓ e01 幫我訂明天晚上七點兩個人日本料理的位子
+      agent=low-confidence  fusion=no-match
+   ✓ e02 監測我家盆栽的土壤濕度，太乾的時候通知我
+      agent=low-confidence  fusion=no-match
+   ✓ e03 把這份合約翻成有法律效力的英文版本並幫我公證
+      agent=low-confidence  fusion=no-match
+   ✓ e04 清理並去重一個很大的 jsonl 資料集
+      agent=low-confidence  fusion=no-match
+   ✓ e05 把一個 node.js 服務部署到 kubernetes 叢集上
+      agent=low-confidence  fusion=no-match
+   ✓ e06 幫我查詢台北市明天上午的垃圾車清運路線
+      agent=low-confidence  fusion=no-match
+   ✓ e07 想找一家會修理機械錶的鐘錶行
+      agent=low-confidence  fusion=no-match
+   ✓ e08 幫我訂一束花送到朋友家，今天下午前要到
+      agent=low-confidence  fusion=no-match
+   ✓ e09 想知道這個週末哪裡有大型演唱會
+      agent=low-confidence  fusion=no-match
+   ✓ e10 幫我預約下週二的牙醫洗牙
+      agent=low-confidence  fusion=no-match
+
+【fusion 未命中 top-1 的查詢】
+  c01 [direct] 把 Excel 試算表的內容轉成可以嵌入網頁的表格
+     期望 xlsxtohtmlconverter　實得 exceltohtml（第 4 名）
+  c02 [semantic] 解釋這段程式碼在幹嘛，用圖解配上流程圖說明
+     期望 show-me/mermaid-syntax-skill　實得 claude-code（第 2 名）
+  c03 [semantic] 我想要一個會自動整理的筆記系統，可以跟我常用的 AI 助手整合
+     期望 claude-obsidian　實得 obsidian-skills（前 5 皆未中）
+  c06 [semantic] 要一份資安攻防的知識庫，內容是給 AI 讀的
+     期望 cybersecurity-skills-Hi-FullHouse　實得 antigravity-notebooklm-mcp（第 2 名）
+  c08 [constrained] 有沒有看影片不會被廣告追蹤的播放器，我要裝在電腦上
+     期望 freetube　實得 musicfree（前 5 皆未中）
+  c10 [constrained] 我想要有網頁介面可以玩文字轉圖片的模型，不用寫程式
+     期望 stable-diffusion-webui　實得 imaginairy（第 4 名）
+  c11 [semantic] 我的 AI agent 回答都很敷衍，有沒有辦法逼它真的深入想過再答
+     期望 unlazy　實得 niubigeo（前 5 皆未中）
+  c13 [direct] 有沒有現成的自動化流程範本可以直接拿來改
+     期望 awesome-n8n-templates　實得 claude-code-infrastructure-showcase（前 5 皆未中）
+  c14 [direct] 我想從零開始學怎麼预训练一個語言模型，要附完整程式碼那種
+     期望 llms-from-scratch　實得 generative-ai-for-beginners（第 4 名）
+  c15 [semantic] 教我的 AI 怎麼自己操作瀏覽器完成任務
+     期望 openai-playwright-automation-skill　實得 selenium（前 5 皆未中）
+  c16 [constrained] 用命令列錄製我在瀏覽器上的操作，然後幫我產生程式碼
+     期望 microsoft-playwright-cli-skill　實得 selenium（前 5 皆未中）
+  c17 [semantic] 有沒有那種可以一次串很多家語言模型、而且免錢的服務
+     期望 freellmapi/gpt4free　實得 sglang（前 5 皆未中）
+  c18 [constrained] Python 的函式庫，但要能用 OpenAI 那套介面去呼叫其他免費模型
+     期望 gpt4free　實得 awesome-python（前 5 皆未中）
+  c19 [semantic] 想很快弄一個給內部用的管理後台，最好不要寫太多程式
+     期望 tooljet　實得 directus（第 2 名）
+  c25 [semantic] 讓好幾個 AI 扮演不同角色針對一個難題辯論，最後再彙整結論
+     期望 council-of-high-intelligence　實得 wechat-ai（前 5 皆未中）
+  c26 [semantic] 需要一個模型可以同時處理文字、圖片還有聲音
+     期望 minimax-h3　實得 janus（前 5 皆未中）
+  c32 [direct] 收集各大 AI 模型外流出來的系統提示詞
+     期望 systempromptsleaks　實得 system-prompts-and-models-of-ai-tools（前 5 皆未中）
+  c34 [direct] 用 AI 做量化投資的平台，要能回測策略
+     期望 qlib　實得 vnpy（前 5 皆未中）
+  c38 [semantic] 抓一個用 JavaScript 動態產生內容的網頁，還要把裡面的表格取出來
+     期望 playwright　實得 react（前 5 皆未中）
+  c39 [semantic] 從一份文件自動生出每週的簡報
+     期望 ppt-master/guizang-ppt-skill　實得 open-slide（前 5 皆未中）
+  c40 [direct] 抓股票價格存成 csv 檔
+     期望 go-stock/tradingagents-astock　實得 openstock（前 5 皆未中）
+  c41 [constrained] 在沒有畫面的模式下跑瀏覽器的端到端測試
+     期望 playwright　實得 selenium（前 5 皆未中）
+  c42 [semantic] 把兩個小時的影片整理成 markdown 筆記
+     期望 summarize　實得 weread-hot-booklists（前 5 皆未中）
+  c45 [semantic] 不用修改現有程式碼就能把文字轉語音功能整合到相容 OpenAI API 的應用程式裡
+     期望 openai-edge-tts　實得 transformers（前 5 皆未中）
+  c50 [semantic] 需要寫程式碼生成精確參數化機械零件，並輸出3D列印檔案的工具
+     期望 openscad　實得 freecad-library（第 3 名）
+  c51 [constrained] 想用自然語言描述快速產生工程設計或機器人組件的3D模型
+     期望 text-to-cad　實得 comfyui-mcp（第 3 名）
+  c55 [direct] 在 CI/CD 流程中自動掃描並修復 Web 應用程式的安全漏洞
+     期望 strix　實得 awesome-persona-skills（前 5 皆未中）
+  c56 [semantic] 讓 AI 編碼工具在生成程式碼時自動融入安全最佳實踐
+     期望 cybersecurity-skills　實得 the-art-of-command-line（第 5 名）
+  c57 [semantic] 想找支援各種主流編程助手的技能擴充清單
+     期望 awesome-agent-skills-VoltAgent　實得 agent-skills-manager（前 5 皆未中）
+  c58 [semantic] 完全沒有基礎，想從零開始系統性學程式設計
+     期望 freecodecamp　實得 generative-ai-for-beginners（第 2 名）
+  c66 [semantic] 有沒有辦法讓多個AI代理協同完成長期研究專案？
+     期望 ruflo　實得 langgraph（前 5 皆未中）
+  c67 [constrained] 怎樣能即時監控AI對話紀錄與使用統計資料？
+     期望 hermes-studio-EKKOLearnAI　實得 codexbar（前 5 皆未中）
+  c68 [semantic] 想用清楚簡潔的方式取得程式碼解答，避免資訊淹沒
+     期望 i-have-adhd　實得 andrej-karpathy-skills（前 5 皆未中）
+  c70 [semantic] 希望能讓 AI 助理自動幫我執行各類指令腳本，不必每次都手動切換工具。
+     期望 cli-anything　實得 nvm（前 5 皆未中）
+  c72 [semantic] 想在 AI 程式編輯器裡設定自動觸發的規則，並掛上自訂的功能模組。
+     期望 claude-code-infrastructure-showcase　實得 opencode（前 5 皆未中）
+  c73 [semantic] 想要加速模型推理速度，同時也能在微調時維持高效能運作。
+     期望 ktransformers　實得 sglang（第 3 名）
+  c76 [semantic] 請幫我一步一步拆解這個演算法的複雜度分析，邊想邊修正假設。
+     期望 sequentialthinking　實得 first-principles-skill（第 5 名）
+  c77 [semantic] 我想讓那個 AI 編碼助手的介面更流暢，有什麼办法可以優化嗎？
+     期望 codexplusplus　實得 ai-memory（前 5 皆未中）
+  c79 [constrained] 希望能有个常驻桌面的小工具，同时監控好幾個團隊專案的建置狀況和未處理事項。
+     期望 repobar　實得 figma-community-resources（前 5 皆未中）
+  c82 [semantic] 幫我為新專案整理一套完整的UI設計規範文件
+     期望 designmd　實得 mengto-skills（前 5 皆未中）
+  c83 [semantic] 有沒有標準化的原型設計最佳實踐可以快速套用？
+     期望 emil-design-skills　實得 m3e-canvas（第 3 名）
+  c90 [semantic] 想提升AI程式碼建議的精準度，該怎麼辦？
+     期望 claude-code-best-practice　實得 goose（前 5 皆未中）
+  c91 [semantic] 想系統性學習如何建構AI代理工具鏈
+     期望 agents-course　實得 openai-agents-js（前 5 皆未中）
+  c96 [constrained] 需要一個能長期運行的智能助手，自動完成複雜編碼任務與多步驟工作流程。
+     期望 deer-flow　實得 hermes-skill-factory（前 5 皆未中）
+  c110 [semantic] 我手上有張角色概念圖，想變成瀏覽器裡能跑的動態素材，不用手動建
+     期望 img2threejs　實得 selenium（前 5 皆未中）
+  c111 [semantic] 我想寫段程式，讓齒輪的齒數跟模數一改，整組尺寸就自動跟著變
+     期望 cadquery　實得 amagine3d（前 5 皆未中）
+  c112 [direct] 我有一段文字描述科幻城市，想直接產出能匯進 Blender 的立體檔案
+     期望 trellis2　實得 blender（第 4 名）
+  c113 [direct] 我要在網頁上做一個能旋轉縮放看產品外觀的互動展示，不用裝 App
+     期望 threejs　實得 anatomy（前 5 皆未中）
+  c115 [constrained] 想自動盯幾個社群平台某產品討論熱度，但不想花錢買 API
+     期望 agent-reach　實得 last30days-skill（前 5 皆未中）
+  c117 [semantic] 把那些動態載入的網頁內容抓下來，整理成文字給 AI 分析。
+     期望 crawl4ai　實得 firecrawl-skills（第 3 名）
+  c119 [semantic] 抓那種要等 JavaScript 執行完才能顯示內容的網頁。
+     期望 splash　實得 ghost（前 5 皆未中）
+  c122 [direct] 有沒有可以參考的免費 API 清單？
+     期望 public-apis　實得 public-api-lists（第 2 名）
+  c123 [semantic] 我想自動化跨 Google Calendar、Slack 與 Notion 的工作流程，該怎麼辦？
+     期望 qu-integration-skills　實得 awesome-notebooklm-prompts（第 4 名）
+  c126 [semantic] 我有一堆 Excel 資料，能不能用說話的方式幫我分析並畫出圖表？
+     期望 pandas-ai　實得 exceltohtml（第 5 名）
+  c133 [semantic] 想把一堆固定的操作步驟串在一起，自動幫我跑出一連串的圖
+     期望 doany-comfyui-skills　實得 canvas-project-manager（前 5 皆未中）
+  c138 [direct] 我想在電腦上自己製作短片，不希望檔案上傳到雲端服務
+     期望 opencut　實得 openclaw（第 2 名）
+  c144 [semantic] 想让 AI 助理能开口说话，也能听懂我的语音指令？
+     期望 elevenlabs-voice-skills　實得 openclaw（前 5 皆未中）
+  c146 [constrained] 想把这篇文章变成语音朗读，不用装任何软件就行？
+     期望 edge-tts　實得 easyvoice（前 5 皆未中）
+  c147 [semantic] 要用有声书的方式把长篇小说念出来，还要区分不同角色的声音？
+     期望 easyvoice　實得 oh-my-hermes-rlaope（第 4 名）
+  c148 [direct] 想做个客服机器人，能听懂顾客语音并自动回答？
+     期望 moonshine　實得 dify（前 5 皆未中）
+  c149 [direct] 幫我根據這段內容製作一頁專業簡報，要包含標題和重點列點。
+     期望 aippt　實得 html-ppt-skill（前 5 皆未中）
+  c151 [semantic] 這段文字感覺太機械化，請幫我改寫得更像真人寫的。
+     期望 shuorenhua　實得 humanizer-zh（前 5 皆未中）
+  c152 [direct] 用指令列跑一段腳本，自動產出一份結構化的 Word 報告。
+     期望 officecli-officecli　實得 minimax-docx（第 4 名）
+  c153 [constrained] 幫我把這份試算表輸出成網頁表格，方便嵌入網站。
+     期望 excel-to-html　實得 exceltohtml（前 5 皆未中）
+  c155 [semantic] 請自動化測試網頁應用程式的登入流程，並驗證各步驟是否正常運作。
+     期望 playwright-skill　實得 playwright（前 5 皆未中）
+  c156 [semantic] 幫我將口頭描述的測試場景轉化為可直接執行的驗證程式碼。
+     期望 kane-cli　實得 hermes-skill-factory（前 5 皆未中）
+  c164 [semantic] 想建立一個問答系統，能同時理解並檢索 PDF、圖片和影片的內容
+     期望 rag-anything　實得 janus（前 5 皆未中）
+  c166 [semantic] 要把不同平台資料自動同步，不想寫程式，用畫面拖曳就能搞定。
+     期望 n8n　實得 langflow（前 5 皆未中）
+  c167 [semantic] 想讓 AI 自動看盤並執行交易策略，不用手動介入。
+     期望 hkuds-vibe-trading　實得 ai-trader（前 5 皆未中）
+  c172 [semantic] 想找一些不用花錢、可以長期拿去用的 AI 模型接入方式
+     期望 awesome-free-llm-apis　實得 free-llm-api-resources（前 5 皆未中）
+  c174 [semantic] 我想看看各家 AI 系統背後隱藏的指令到底是怎麼設計的，有沒有公開資料？
+     期望 cl4r1t4s　實得 maigret（前 5 皆未中）
+  c175 [direct] 幫我把瀏覽器自動化的功能整合進 AI 技能，要能穩定操作網頁。
+     期望 browserbase-web-automation-skills　實得 browser-act-automation（第 5 名）
+  c177 [semantic] 希望有個系統能自動分工，讓不同角色負責看盤、控風險和執行交易。
+     期望 tradingagents　實得 nofx（前 5 皆未中）
+  c178 [direct] 我要用 Python 寫端對端測試，得能在 Chrome 和 Firefox 上跑自動化腳本。
+     期望 selenium　實得 rigorpilot-skills（前 5 皆未中）
+  c181 [constrained] 我的程式碼庫很大很亂，想要一個開源方案讓 AI 能快速理解結構並搜尋。
+     期望 codebase-memory-mcp-pro　實得 openwiki（前 5 皆未中）
+  c182 [semantic] 讓 AI 自動根據我的內容生成簡報，而且要做成互動式網頁版。
+     期望 open-slide　實得 zarazhangrui-frontend-slides（前 5 皆未中）
+  c186 [direct] 我需要一個能自主跑網頁流程的自動化工具，要會自己處理頁面的突發狀況，不用我手動去維護那些脆弱的腳本。
+     期望 browser-harness　實得 openwiki（前 5 皆未中）
+  c189 [constrained] 我在終端機裡寫程式時，能不能直接用自然語言叫 AI 幫我跑安全掃描或分析日誌？不要跳轉到網頁介面。
+     期望 claude-code-cybersecurity-skill　實得 gemini-cli（前 5 皆未中）
+  c190 [semantic] 想要一份容易理解的資料，讓團隊成員搞懂反覆試錯的設計邏輯，不用看很深奧的理論。
+     期望 loop-engineering-orange-book　實得 lint（前 5 皆未中）
+  c192 [semantic] 希望 AI 助手能記住我之前交代過的事情，不用每次對話都重述背景，像是有長久記憶一樣。
+     期望 cognee　實得 memmy-agent（前 5 皆未中）
+  c193 [semantic] 別用 PowerPoint 了，請直接生成可以放進網頁、好看又有動效的簡報內容。
+     期望 html-ppt-skill　實得 aippt（第 5 名）
+  c195 [semantic] 我想要做一個手機和電腦都能看、給客戶用的官方網站，介面要漂亮且符合無障礙標準
+     期望 ui-ux-pro-max-skill　實得 phone-harness（第 2 名）
+  c196 [semantic] 我的 AI 助手要能自動去特定網站抓最新的新聞內容，但不能只給它連結，要能直接讀懂裡面的文字
+     期望 firecrawl-cli-skills　實得 context7（第 5 名）
+  c197 [direct] 我需要在自己的伺服器上部署開源軟體，讓我可以用 Flux 模型自行生成圖片和短片，不依賴外部雲端
+     期望 open-higgsfield-ai　實得 openmontage（第 4 名）
+  c198 [semantic] 我想知道某個股票過去五年來的股價走勢，有沒有辦法讓 AI 幫忙把這些數據抓下來讓我用表格分析？
+     期望 yfinance　實得 go-stock（前 5 皆未中）
+  c199 [semantic] 我在學校的校內網路上連不到某些網站，想找到好用的方法讓我的手機和電腦都能恢復正常瀏覽網頁。
+     期望 fanqiang　實得 phone-harness（前 5 皆未中）
+  c200 [constrained] 我需要一個免費的網頁工具，讓我輸入「一個 M8 螺絲」這種文字，就能產生出檔案，並且檔案要能直接拿去 3D 印表機印出來。
+     期望 cadam　實得 jev-ultrafast（前 5 皆未中）
+  c203 [constrained] 我想自建一個記憶庫，讓 AI 在多次對話中都能記得之前討論過的專案細節。
+     期望 claude-mem　實得 hindsight（前 5 皆未中）
+  c204 [semantic] 面對複雜除錯時，希望 AI 能像人一樣把問題拆解成小步驟，一步步分析並驗證結論。
+     期望 mcp-sequential-thinking　實得 codex（前 5 皆未中）
+  c205 [direct] 請將這些簡報內容轉成本地 HTML 檔案，讓我可以直接在瀏覽器開啟並修改字體與顏色。
+     期望 html-deck-editor　實得 frontend-slides-editable（第 3 名）
+  c208 [constrained] 我想寫個腳本自動剪輯一堆素材，但不能用雲端，要能本地離線跑。
+     期望 video-use　實得 ds4（第 4 名）
+  c212 [semantic] 我直接講話就能在 AI 繪圖軟體裡生成圖片，不用手動拉那些節點連線。
+     期望 comfyui-mcp　實得 comfyui（第 4 名）
+  c213 [constrained] 想寫個程式模擬投資團隊決策，但只能開源免費，且必須離線跑不依賴外部API
+     期望 ai-hedge-fund　實得 learn-claude-code（前 5 皆未中）
+  c215 [direct] 要一個輕量跨平台應用，能本機播放串流音樂並支援多裝置同步控制
+     期望 spotifast　實得 fastpotify（第 3 名）
+  c225 [semantic] 我想看看那些流出的系統提示詞，當作寫指令時的參考範本。
+     期望 opus-5md　實得 claude-opus-5md（第 5 名）
+  c229 [constrained] 有沒有那種專門教怎麼找漏洞、抓安全問題的教學資源，最好能自己架設不用依賴雲端
+     期望 trailofbits-skills　實得 openclaw（前 5 皆未中）
+  c232 [semantic] 我想找個不用裝伺服器、直接開網頁就能畫關係圖並匯出檔案的工具，給學生教學用
+     期望 ontology-playground　實得 claude-plugins-official（前 5 皆未中）
+  c233 [semantic] 審查大型專案時 AI 總是抓錯重點，想讓它只讀相關的檔案來提建議。
+     期望 code-review-graph　實得 pr-agent（前 5 皆未中）
+  c234 [constrained] 想把線上 AI 筆記自動存到本機資料夾，方便離線編輯，且必須是用開源軟體。
+     期望 notebooklm-obsidian-pipeline　實得 html-deck-editor（前 5 皆未中）
+  c235 [semantic] 舊的擴充功能換到新平台不能用，想直接搬過來繼續用，不要重寫。
+     期望 pi2dsh　實得 design-md-chrome（前 5 皆未中）
+  c236 [direct] 用命令行寫語句畫網頁原型，最後匯出成檔案，要開源的。
+     期望 open-design　實得 lucide（前 5 皆未中）
+  c238 [semantic] 我沒時間寫一堆串接腳本，想拖曳元件就拼出完整的自動化流程
+     期望 langflow　實得 baserow-baserow（前 5 皆未中）
+  c239 [direct] 幫我提取 Claude 系統提示詞中關於安全規範的原文段落
+     期望 claude-system-prompt　實得 claude-opus-5md（前 5 皆未中）
+  c240 [semantic] 抓到一堆網頁原始碼，想直接擷取裡面的標題和連結不用手動清
+     期望 beautifulsoup4　實得 grok-bot-0-18-reconstructed（前 5 皆未中）
+  c242 [constrained] 想架個開源終端機看市場行情，程式碼必須全部在我本地離線跑
+     期望 fincept-terminal　實得 gemini-cli（前 5 皆未中）
+  c243 [semantic] 把圖片和文件裡那些證明是機器做的痕迹都洗掉，我要乾淨一點。
+     期望 watermarks-remover　實得 anydoc（前 5 皆未中）
+  c244 [direct] 給我一份結構化的面試題庫，包含程式題和系統設計，準備去大廠面試。
+     期望 tech-interview-handbook-Avishkar201　實得 yangshun-tech-interview-handbook（第 3 名）
+  c245 [semantic] 讓 AI 助手自動遵守團隊的編碼規範，不用我每次都要特別交代。
+     期望 addyosmani-agent-skills　實得 hallmark（前 5 皆未中）
+  c246 [semantic] 讓 AI 能即時讀到最新更新的資料庫內容，不用每次重新掃描。
+     期望 cocoindex　實得 baserow-baserow（前 5 皆未中）
+  c248 [semantic] 我想讓 AI 幫忙把我的研究筆記變成那種很精緻的簡報，有沒有好用的提示詞可以加速這個過程？
+     期望 awesome-notebooklm-prompts　實得 claude-opus-5md（前 5 皆未中）
+  c251 [semantic] 希望 AI 能讀懂我的網頁設計，直接產出動態影片，不用我再去剪片軟體裡手動剪輯。
+     期望 hyperframes　實得 vercel-web-design-guidelines-skill（前 5 皆未中）
+  c252 [direct] 我要建構一個多 Agent 協作系統，讓不同 AI 角色自動分工完成研究與報告撰寫。
+     期望 crewai　實得 labs-oo-agents（前 5 皆未中）
+  c254 [semantic] 讓 AI 能直接去網路上搜尋最新資訊並整理給我看，不用我手動複製貼上。
+     期望 firecrawl　實得 last30days-skill（前 5 皆未中）
+
