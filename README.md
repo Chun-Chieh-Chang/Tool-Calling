@@ -102,7 +102,7 @@ node cli.js interview "網頁爬蟲"
 
 | 功能類別 | CLI 指令 | 說明 |
 |---------|----------|------|
-| 核心指令 | `node cli.js search "<查詢>" [-c 分類]` | 搜尋最適工具（支援自然語言與分類過濾） |
+| 核心指令 | `node cli.js search "<查詢>" [-c 分類] [--no-rerank]` | 搜尋最適工具（自然語言 + 分類過濾；設定 API key 時自動啟用 LLM rerank，`--no-rerank` 可停用） |
 | 核心指令 | `node cli.js plan "<長任務>"` | 多工具鏈 DAG 規劃 |
 | 核心指令 | `node cli.js interview "<需求>"` | 白話互動問答 |
 | 核心指令 | `node cli.js compare <id1> <id2>` | 工具比較 |

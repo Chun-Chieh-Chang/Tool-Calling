@@ -115,8 +115,9 @@ async function cmdSearch(query, options = {}) {
     topK: options.topK || 5,
     category: options.category,
     telemetryStats,
-    // 預設走快速路徑（詞彙引擎 ~119ms）；--deep 才啟用 LLM rerank（~5s）
-    rerank: options.deep ? undefined : false,
+    // 三端對齊（2026-10-02）：rerank 預設「有 key 就啟用」（與 web/server.js 同語意，
+    // 由 retrieval-fusion 內部判定；無 key 時自動略過、離線安全）。--no-rerank 可強制停用。
+    rerank: options.noRerank ? false : undefined,
   });
 
   // 轉為既有輸出格式（tool / score / matchLevel / matchedKeywords）
@@ -1076,18 +1077,22 @@ async function main() {
       const searchArgs = [];
       let searchCat = undefined;
       let searchDeep = false;
+      let searchNoRerank = false;
       for (let i = 0; i < args.length; i++) {
         if (args[i] === '-c' || args[i] === '--category') {
           searchCat = args[i + 1];
           i++;
         } else if (args[i] === '--deep') {
-          // 啟用 LLM rerank（較準但約需 5 秒）
+          // 保留相容：等價於新預設行為（有 key 就啟用 rerank）
           searchDeep = true;
+        } else if (args[i] === '--no-rerank') {
+          // 停用 LLM rerank（預設：有 key 就啟用，與 web / MCP 端一致）
+          searchNoRerank = true;
         } else {
           searchArgs.push(args[i]);
         }
       }
-      await cmdSearch(searchArgs.join(' '), { category: searchCat, deep: searchDeep });
+      await cmdSearch(searchArgs.join(' '), { category: searchCat, deep: searchDeep, noRerank: searchNoRerank });
       break;
     }
     case 'info':
