@@ -15,8 +15,9 @@
  * ─────────────────────────────────────────────────────
  * V1  identity      triggers + name + id（身分欄位；命中一次即成立）
  * V2  capability    capabilities 陣列 + description（功能欄位；需 ≥2 個不同信號）
- * V3  scenario      useCase + category + negativeConstraints（情境欄位）
- * V4  constraint    install.method + language + negativeConstraints（部署欄位）
+ * V3  scenario      useCase + category（情境欄位；negativeConstraints 為反證據，
+ *                   由 fuse() 的 negativePenalty() 統一扣分，不折入正向文本）
+ * V4  constraint    install.method + language（部署欄位；negativeConstraints 同上）
  * V5  wiki          知識編譯詞條（core/wiki-matcher.js）
  *                   由 scripts/compile-wiki.js 離線把工具 metadata 「編譯」成
  *                   使用者語言的應用場景句（intents）+ 物件／動作（facets），
@@ -161,24 +162,25 @@ function scoreV2Capability(q, tool, idf) {
   return { value: weightedSim(q.bag, toolBag, idf.idfIdentity, { weightA: 1, weightB: 1 }) };
 }
 
-// V3 情境：useCase + category + negativeConstraints。
+// V3 情境：useCase + category。
+// 2026-10-02 符號修復：negativeConstraints 是「反證據」，不得折進正向文本
+// （舊實作讓查詢越符合「明文不支援的情境」分數越高，DEV_LOG 2026-09-27 殘留 #2）。
+// 禁用場景改由 fuse() 內的 negativePenalty() 統一扣分。
 function scoreV3Scenario(q, tool, idf) {
   const scenarioText = [
     tool.useCase || '',
     tool.useCase_zh || '',
     tool.category || '',
-    ...(tool.negativeConstraints || []),
   ].join(' ');
   const toolBag = bagOf(tokenize(scenarioText));
   return { value: weightedSim(q.bag, toolBag, idf.idfIdentity, { weightA: 1, weightB: 1 }) };
 }
 
-// V4 部署：install.method + language + negativeConstraints。
+// V4 部署：install.method + language。（negativeConstraints 改由 negativePenalty 扣分，見 V3 註解）
 function scoreV4Constraint(q, tool, idf) {
   const constraintText = [
     tool.install?.method || '',
     tool.language || '',
-    ...(tool.negativeConstraints || []),
   ].join(' ');
   const toolBag = bagOf(tokenize(constraintText));
   return { value: weightedSim(q.bag, toolBag, idf.idfIdentity, { weightA: 1, weightB: 1 }) };
@@ -271,6 +273,19 @@ function withV5(weights, v5Weight = V5_WEIGHT) {
 // 時才啟用，啟用後 V0 取代部分 V2 權重（語意已涵蓋功能端接）。
 const V0_WEIGHT = 0.25;
 
+// 2026-10-02 符號修復：查詢與禁用場景的詞彙重疊度越高（0~1），
+// 該工具越不該被推薦。重疊 ≤ 0.25 不罰（避免誤傷只共享一個語境詞的情形），
+// 重疊 1.0 時扣 0.15（約等於 V2 權重的一半，足以把命中的工具拉出 top-1，
+// 但不至於把其他維度的強證據完全歸零）。
+function negativePenalty(q, tool, idf) {
+  const negs = tool.negativeConstraints || [];
+  if (negs.length === 0) return 0;
+  const negBag = bagOf(tokenize(negs.join(' ')));
+  const sim = weightedSim(q.bag, negBag, idf.idfIdentity, { weightA: 1, weightB: 1 });
+  if (sim <= 0.25) return 0;
+  return Math.min(0.15, (sim - 0.25) * 0.5);
+}
+
 function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null) {
   const s1 = scoreV1Identity(q, tool, idf);
   const s2 = scoreV2Capability(q, tool, idf);
@@ -295,8 +310,11 @@ function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null) {
   } else {
     weighted = base;
   }
+  // 符號修復：命中禁用場景扣分（只影響排序，不改變 bestDim／decision 門檻）
+  const negPenalty = negativePenalty(q, tool, idf);
+  if (negPenalty > 0) weighted = Math.max(0, weighted - negPenalty);
   const topDimKey = dims.reduce((a, b) => (per[a] >= per[b] ? a : b));
-  return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit };
+  return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit, negPenalty };
 }
 
 function reasons(q, tool, fuseResult, matchedIntent = '') {
@@ -307,6 +325,7 @@ function reasons(q, tool, fuseResult, matchedIntent = '') {
   if (fuseResult.per.V3 >= 0.4) r.push(`✓ 情境吻合：${tool.useCase?.slice(0, 80)}`);
   if (fuseResult.per.V4 >= 0.4) r.push(`✓ 部署吻合：${tool.install?.method} / ${tool.language}`);
   if (fuseResult.per.V5 >= 0.4) r.push(`✓ 知識詞條吻合：${(matchedIntent || '').slice(0, 60)}`);
+  if (fuseResult.negPenalty > 0) r.push(`🚫 命中禁用場景，已扣分 ${fuseResult.negPenalty.toFixed(2)}`);
   if (fuseResult.bestDim < NO_MATCH_THRESHOLD) r.push('⚠ 所有維度皆無有效信號');
   return r;
 }
