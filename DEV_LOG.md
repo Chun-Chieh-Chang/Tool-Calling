@@ -1,5 +1,75 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-03（第六批）validate 門禁誠實化——結束碼回報錯誤＋兩道假綠測試修正
+
+### 需求
+接手建議的基線檢查（`npm test` → `npm run ceiling`）發現 HANDOFF 的
+「validate 0 錯誤／品質 100」已是過期數字：`node cli.js validate` 實際報
+**39 個錯誤**（全是缺 `negativeConstraints`），品質 **98.9/100**。
+更嚴重的是兩道測試全綠——門禁其實沒有在守門。
+（本批結束時：門禁已誠實、`anny` 已回補驗證，存量留空 38 支。）
+
+### 診斷（先診斷再動手）
+1. **39 錯誤的來源**：2026-09-27 佔位樣板根治（`80fe5db`）清掉 108 支假負邊界後，
+   其中 40 支因 README 給不出可查證邊界而誠實留空（DEV_LOG 當時如實記錄，
+   且預期 contract 以 warning 呈現）。此後新收錄 11 支全數帶真負邊界，
+   存量 39 支留空至今。逐 commit 回放確認：`57f5a4a`（09-27 清理前）missingNC=0，
+   `80fe5db` 起 40 → 之後 39～42 → HEAD 39。
+2. **門禁失效的機制**：`cli.js` 的 `case 'validate'` 忽略 `cmdValidate()` 回傳值，
+   永遠 exit 0（用法對照：`verify-environment` 失敗時有 `process.exit(1)`）；
+   `tests/cli-validate.test.js` 只斷言 status 0；`Property 2c` 的
+   `stdout.includes('0 errors')` 誤命中 Contract 摘要行
+   （`Contract issues: 0 errors, 39 warnings`），與 CLI 本體的「39 個錯誤」無關。
+3. **測試基線更正**：全套件實際為 354 tests（非 HANDOFF 記的 355），
+   Node v26 的 TAP 摘要前綴是 `ℹ` 而非 `#`（HANDOFF 陷阱 22 的 grep 要同步更新）。
+4. **enrich 工具盤點**：核准路徑的 `enrich-new-tools.js` 不認 `negativeConstraints`
+   為補齊目標，且其 `flush()` 繞過 `saveRegistry` 直接 `writeFileSync`
+   （並行寫檔競態，見 HANDOFF 新增陷阱 5）——跑全量前應先修。
+
+### 修復內容
+1. **`cli.js`**：`case 'validate'` 改為
+   `process.exitCode = cmdValidate() ? 0 : 1`（紅燈就是紅燈）。
+2. **`tests/tier1-preservation.test.js`（Property 2c）**：改斷言「CLI 本體
+   `N 個錯誤` 行的數字與結束碼一致」，並用 regex 限定 CLI 摘要行，
+   不再讓 Contract 行的 `0 errors` 蒙混過關。
+3. **`tests/cli-validate.test.js`**：同上的一致性斷言，取代裸 `status === 0`。
+4. **`scripts/enrich-new-tools.js`**（核准路徑的三處修補）：
+   `needsEnrich()` 認 `negativeConstraints` 為補齊目標（此前缺負邊界的工具
+   永遠排不進待補清單）；`flush()` 改走 `saveRegistry` 原子寫入
+   （此前直接 `writeFileSync`，並行測試可能讀到截斷 JSON）；
+   強制序列（此前 `ENRICH_CONCURRENCY` 預設 2，但限制是 TPM，
+   大 prompt 併發即整批 429）；`--dry` 印出缺 `negativeConstraints` 的原因。
+5. **資料**：以核准路徑回補 `anny` 的 `negativeConstraints`（3 條，
+   README 字面覆核通過），`zh-translation-state.json` 未動（待重譯時自然推進）。
+
+### 驗證結果
+- `node cli.js validate`：exit **1**、**38** 個錯誤（基線 39，`anny` 已回補；
+  門禁現在會失敗，且失敗數與數據一致）。
+- 兩測試檔：9 tests / 9 pass / 0 fail（含修正後的 Property 2c）。
+- 完整 `npm test`：354 tests / 352 pass / **0 fail** / 2 skip（exit 0；
+  validate 的 38 錯誤不在 `npm test` 內——它是獨立門禁，現在 exit 1 會擋提交）。
+- `npm run ceiling`：direct 天花板 100%／semantic 96.1%／constrained 100%，
+  與 09-27 清理後的基準一致（數據只動了 `anny` 一支的負邊界，未進召回向量核心）。
+- 附註：本批中段曾遇到 `check-syntax` 超時——查證是 port 3000 被兩個舊 server
+  佔用（上一個未知專案 + 本專案舊實例；HANDOFF 新增陷阱 1 的活案例），
+  與本次改動無關；改用 PORT=3457 驗證實例與既有健檢流程處理。
+
+### 已知殘留
+1. **存量 `negativeConstraints` 留空 38 支**（基線 39，已用核准路徑回補 `anny`
+   並以 README 字面覆核通過：smplx 非商用限制、免費安裝會下載非商用素材、
+   預設 rig 與 MakeHuman 完整骨架不相容——三條的關鍵 token 全可在 README 查到；
+   `*_zh` 尚未重譯）。
+   全量回補的可行路徑已驗證：raw.githubusercontent README 可達、
+   AGNES 端點正常、`core/tool-enricher.js` 已產 `negativeConstraints`、
+   `scripts/translate-to-zh.js` 本來就認 `negativeConstraints` 為翻譯目標。
+   但有兩個限流事實擋住全量：① 限流是 **TPM**——大 README（37KB～159KB）
+   單次呼叫就燒掉整整一分鐘額度，單支 4 支合計超時；② LLM 會潤飾
+   （試點 KEV「80GB GPU／L40S／H100」README 並無此等數字，被加強覆核擋下後
+   只收一條）。因此本批只收 `anny` 一支，其餘 38 支待分批（建議一次 1～2 支、
+   間隔 60～70 秒）逐支修→重譯→重跑全門禁。
+2. `enrich-new-tools.js` 的 `needsEnrich()` 與 `flush()` 兩處待修（見診斷 4）。
+3. HANDOFF 的「validate 0 錯誤／品質 100／355 tests」三個數字已過期，待數據修復後同步更新。
+
 ## 2026-10-03（第五批）tracked-repos.json schema 統一——混種異類移除，防復發門禁上線
 
 ### 需求

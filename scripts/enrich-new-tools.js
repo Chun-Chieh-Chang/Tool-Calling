@@ -32,11 +32,12 @@
  * 本腳本**不會**為了消 warning 而填入推測內容——寧可維持留白。
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { enrichToolFromReadme } from '../core/tool-enricher.js';
 import { activateIfComplete } from '../core/tool-lifecycle.js';
+import { loadRegistry, saveRegistry } from '../core/registry.js';
 import { nextKey, reportSuccess, reportFailure } from '../core/llm-keys.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -47,16 +48,25 @@ const DRY = args.includes('--dry');
 const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) || Infinity;
 const IDS = args.find((a) => a.startsWith('--ids='))?.split('=')[1]?.split(',').map((s) => s.trim());
 const MODEL = args.find((a) => a.startsWith('--model='))?.split('=')[1];
-const CONCURRENCY = Number(process.env.ENRICH_CONCURRENCY || 2);
+// CONCURRENCY 保留為相容別名但不再使用（2026-10-03 起強制序列，見下方）。
+// 若未來 TPM 額度放寬，要恢復併發請同時重跑限流實測並更新 HANDOFF 陷阱 21。
+// 2026-10-03 限流紀律：API 限制是 TPM，每分鐘 token 數，不是併發數。
+// 實測大 prompt 併發 3 即 58% 失敗（見 HANDOFF 陷阱 21），且失敗越多 req/s 越高、
+// 極度誤導。本腳本自此強制序列（concurrency=1）；TPM 窗口恢復（60~70 秒）
+// 後重跑即可，腳本冪等（只補缺欄、不覆蓋既有），已完成的不會重燒額度。
+const EFFECTIVE_CONCURRENCY = 1;
 
 const reg = JSON.parse(readFileSync(REGISTRY, 'utf8'));
 const tools = reg.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
-/** 這個工具需要補嗎？ */
+/** 這個工具需要補嗎？（2026-10-03 補：negativeConstraints 也是補齊目標；
+ * 09-27 佔位樣板清理後，誠實留空的負邊界只能由 enrich 管線依 README 回補，
+ * 但此函式此前不認它，導致缺負邊界的工具永遠排不進待補清單。） */
 function needsEnrich(t) {
   if (!t.advantages || t.advantages.length === 0) return true;
   if (!t.useCase || t.useCase === t.description) return true;
   if (!t.description_zh || !t.useCase_zh) return true;
+  if (!t.negativeConstraints || t.negativeConstraints.length === 0) return true;
   return false;
 }
 
@@ -75,6 +85,7 @@ if (DRY) {
     if (!t.advantages?.length) why.push('缺 advantages');
     if (!t.useCase || t.useCase === t.description) why.push('useCase 為複製品');
     if (!t.description_zh || !t.useCase_zh) why.push('缺 *_zh');
+    if (!t.negativeConstraints?.length) why.push('缺 negativeConstraints');
     console.log(`  ${t.id.padEnd(28)} ${why.join('、')}`);
   });
   if (targets.length > 15) console.log(`  …另有 ${targets.length - 15} 支`);
@@ -90,14 +101,16 @@ let ok = 0, skip = 0, fail = 0, upgraded = 0, cursor = 0;
 const SAVE_EVERY = 10;
 
 function flush() {
-  // 寫入前重讀，避免蓋掉其他程序（例如 sync-daemon）的更新
-  const fresh = JSON.parse(readFileSync(REGISTRY, 'utf8'));
+  // 寫入前重讀，避免蓋掉其他程序（例如 sync-daemon）的更新。
+  // 2026-10-03 起走 saveRegistry 原子寫入（temp+rename），取代直接 writeFileSync，
+  // 避免並行測試讀到截斷 JSON（見 HANDOFF 新增陷阱 5）。
+  const fresh = loadRegistry();
   const freshById = new Map(fresh.tools.map((t) => [t.id, t]));
   for (const [id, patch] of applied) {
     const t = freshById.get(id);
     if (t) Object.assign(t, patch);
   }
-  writeFileSync(REGISTRY, JSON.stringify(fresh, null, 2) + '\n');
+  saveRegistry(fresh);
 }
 
 const applied = new Map();
@@ -129,10 +142,10 @@ async function worker() {
   }
 }
 
-await Promise.all(Array.from({ length: Math.min(CONCURRENCY, targets.length) }, worker));
+await Promise.all(Array.from({ length: Math.min(EFFECTIVE_CONCURRENCY, targets.length) }, worker));
 flush();
 
 console.log(`\n\n完成：成功 ${ok}／無足夠資訊 ${skip}／失敗 ${fail}`);
 console.log(`其中 ${upgraded} 支語意欄位補齊 → 狀態由 experimental 升級為 active`);
-console.log(`已寫入 ${REGISTRY}`);
+console.log(`已寫入 registry/tools.json（經 saveRegistry 原子寫入）`);
 console.log('建議接著執行：npm run validate 與 npm run translate:zh（補齊剩餘 *_zh）');

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T11:47:35.739Z",
+  "lastUpdated": "2026-10-03T12:24:44.100Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -55281,7 +55281,11 @@
         "Includes part-specific models for hands and faces alongside the full body",
         "Apache 2.0 licensed with free and non-commercial installation options"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "The 'smplx' topology is restricted to non-commercial use only, which limits its applicability for commercial product development.",
+        "The free installation (pip install anny[examples]) may download non-commercial-only assets, so commercial users must use the full install (pip install anny[smpl,examples]) to comply with licensing.",
+        "The default 'anny' rig is compact and pruned; use cases requiring exact compatibility with legacy full-163-bone MakeHuman rigs or specific facial/eye/tongue bones must explicitly select rig=\"makehuman\"."
+      ],
       "addedAt": "2026-09-21T12:56:43.483Z",
       "status": "active",
       "useCase_zh": "3D 內容開發人員將 Anny 整合至 PyTorch 程式中，以生成從嬰幼兒到老人、且具備特定 facial expression 的多樣人體網格模型。",

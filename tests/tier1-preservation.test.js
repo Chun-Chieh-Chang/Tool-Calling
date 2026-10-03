@@ -265,29 +265,34 @@ test('Property 2b [Preservation]: check-mece.js exits 0 on unfixed code', { time
 // ══════════════════════════════════════════════════════════════════════════════
 
 /**
- * Property 2c [Preservation]: `node cli.js validate` exits 0 on unfixed code.
+ * Property 2c [Preservation]: `node cli.js validate` 的結束碼與錯誤數一致。
  *
  * The validate command checks metadata quality (descriptions, triggers, etc.)
  * and registry contract compliance — it is independent of classification
- * correctness. It should pass regardless of whether the 14 tools are in
- * the right category.
+ * correctness. 它的通過與否只看詮釋資料，不看 14 支工具是否在正確分類。
+ * 2026-09-27 的佔位樣板清理後，誠實留空的負邊界會以 error 計數呈現，
+ * 因此這裡要求的是「結束碼 = 有無錯誤」，而不是永遠 exit 0（2026-10-03 修正）。
  *
  * Validates: Requirements 3.3, 3.4
  */
-test('Property 2c [Preservation]: cli.js validate exits 0 on unfixed code', () => {
+test('Property 2c [Preservation]: cli.js validate 結束碼與錯誤數一致', () => {
   const { exitCode, stdout, stderr } = runNode(['cli.js', 'validate']);
 
-  assert.equal(
-    exitCode,
-    0,
-    `Expected 'node cli.js validate' to exit 0, but got exit code ${exitCode}.\n` +
-    `stdout:\n${stdout}\nstderr:\n${stderr}`
+  // CLI 本體的錯誤行（「N 個錯誤」），不是 Registry Contract v2 的「N errors」。
+  // 曾經 `0 errors` 誤判（命中 Contract 行的 0 errors 而非 CLI 行），見 DEV_LOG。
+  const cliLine = stdout.split('\n').find((l) => /[0-9]+ 個錯誤/.test(l)) || '';
+  const errorCount = Number((cliLine.match(/([0-9]+) 個錯誤/) || [])[1] ?? NaN);
+  assert.ok(
+    Number.isInteger(errorCount),
+    `Expected validate output to contain a CLI summary line like 'N 個錯誤'.\nstdout:\n${stdout}\nstderr:\n${stderr}`
   );
 
-  // Confirm 0 errors in output
-  assert.ok(
-    stdout.includes('0 個錯誤') || stdout.includes('0 errors'),
-    `Expected validate output to report 0 errors.\nstdout:\n${stdout}`
+  // 結束碼必須誠實：有錯 exit 非零、無錯 exit 0（2026-10-03 前 CLI 永遠 exit 0）。
+  assert.equal(
+    exitCode === 0,
+    errorCount === 0,
+    `Expected exit code to match error count, but got exit ${exitCode} with ${errorCount} errors.\n` +
+    `stdout:\n${stdout}\nstderr:\n${stderr}`
   );
 });
 

@@ -1148,7 +1148,9 @@ async function main() {
       cmdIndexSubtools(args[0]);
       break;
     case 'validate':
-      cmdValidate();
+      // 誠實出口：驗證有錯就以非零碼退出。此前忽略回傳值，永遠 exit 0，
+      // 紅燈看起來像綠燈（見 HANDOFF「守門機制必須能失敗才算數」）。
+      process.exitCode = cmdValidate() ? 0 : 1;
       break;
     case 'discover-trending': {
       const { discoverTrendingTools } = await import('./scripts/trending-weekly.js');
