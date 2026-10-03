@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "recipes": [
+    {
+      "id": "video-transcript-summary",
+      "name": "影片 → 逐字稿 → 重點摘要",
+      "description": "把 YouTube 影片的內容轉成逐字稿，再濃縮為可用的重點摘要。",
+      "patterns": ["逐字稿.*摘要", "影片.*逐字稿", "transcript.*summary", "影片.*重點"],
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "youtube-skills",
+          "action": "取得目標影片的逐字稿（transcript）",
+          "output": "逐字稿文字檔（transcript.md）"
+        },
+        {
+          "order": 2,
+          "toolId": "summarize",
+          "action": "將逐字稿檔案濃縮為重點摘要",
+          "input": "transcript.md",
+          "output": "summary.md"
+        }
+      ],
+      "dataFlow": "youtube-skills 產出逐字稿文字檔，作為 summarize 的檔案輸入（summarize 支援檔案摘要）",
+      "validated": true,
+      "validatedAt": "2026-10-03",
+      "validatedHow": "依兩支工具的 registry 描述核對：youtube-skills 提供 transcript 能力；summarize 明載支援『摘要任何檔案』",
+      "source": "hand-curated"
+    },
+    {
+      "id": "scrape-to-rag",
+      "name": "網頁爬取 → RAG 知識庫",
+      "description": "爬取網站內容並餵入 RAG 知識庫，建立可檢索問答的語料。",
+      "patterns": ["(爬蟲|爬取|抓取).*(知識庫|rag)", "(知識庫|rag).*(爬蟲|爬取|抓取)", "crawl.*rag", "rag.*ingest"],
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "crawl4ai",
+          "action": "爬取目標網站，產出 LLM 友善的文件內容",
+          "output": "結構化文件（markdown/json）"
+        },
+        {
+          "order": 2,
+          "toolId": "ragflow",
+          "action": "將爬取的文件匯入知識庫並建立檢索索引",
+          "input": "結構化文件",
+          "output": "可問答的 RAG 知識庫"
+        }
+      ],
+      "dataFlow": "crawl4ai 的 markdown/json 產出即 ragflow 的文件匯入格式",
+      "validated": true,
+      "validatedAt": "2026-10-03",
+      "validatedHow": "依 registry 描述核對：crawl4ai 為 LLM 友善爬蟲；ragflow 為 RAG 知識庫引擎，接受文件匯入",
+      "source": "hand-curated"
+    },
+    {
+      "id": "markdown-to-slides",
+      "name": "報告文件 → 簡報",
+      "description": "把現有報告／文件轉成 markdown，再生成專業簡報。",
+      "patterns": ["報告.*簡報", "文件.*簡報", "markdown.*(ppt|簡報)", "word.*(ppt|簡報)"],
+      "steps": [
+        {
+          "order": 1,
+          "toolId": "markitdown",
+          "action": "將報告／文件（PDF、Word 等）轉為 markdown",
+          "output": "report.md"
+        },
+        {
+          "order": 2,
+          "toolId": "ppt-master",
+          "action": "從 markdown 報告生成專業 PowerPoint 簡報",
+          "input": "report.md",
+          "output": "簡報檔（.pptx）"
+        }
+      ],
+      "dataFlow": "markitdown 的 markdown 輸出正是 ppt-master 明載的輸入（『從原始 markdown 報告自動生成簡報』）",
+      "validated": true,
+      "validatedAt": "2026-10-03",
+      "validatedHow": "依 registry 描述核對：markitdown 為文件轉 markdown 工具；ppt-master 明載支援 markdown 輸入",
+      "source": "hand-curated"
+    }
+  ]
+}

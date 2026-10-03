@@ -1,5 +1,37 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-03（第四批）人工驗證配方庫上線——專家藍圖的「教整合協作」落地
+
+### 需求
+專家藍圖的最後一塊（Batch 3b）：`registry/recipes.json` + 掛進 `cli.js plan`。
+Advisory board 紀律：「寧可 3 條真的，不要 300 條假的」——配方一律人工驗證、
+帶 validated 旗標，**禁止自動生成**；命中配方的任務採用人工核對過的資料流契約，
+未命中走原 planToolSet 自動規劃（零回歸）。
+
+### 實作內容
+1. **配方庫** `registry/recipes.json`：3 條手工驗證配方，每條含 steps（toolId/action/
+   輸入輸出契約）、dataFlow、validatedHow（驗證依據=registry 描述的明載能力）：
+   - `video-transcript-summary`：youtube-skills（transcript）→ summarize（明載支援檔案摘要）
+   - `scrape-to-rag`：crawl4ai（LLM 友善爬取）→ ragflow（文件匯入知識庫）
+   - `markdown-to-slides`：markitdown（文件→markdown）→ ppt-master（明載支援 markdown 輸入）
+2. **`core/recipes.js`**：mtime 快取載入、RECIPES_FILE env 覆寫（測試隔離）、
+   patterns 以正規表示式匹配（非法 regex 該條丟棄）、**validated !== true 的配方不上線**、
+   檔案不存在 → null → CLI 行為與未上線前完全一致。
+3. **`cli.js plan` 整合**：命中配方 → 輸出配方卡（步驟、工具、資料流、驗證方式）；
+   未命中 → 原 planToolSet 路徑。煙霧測試：命中與未命中兩條路徑皆正確
+   （「抓取網頁資料然後做成簡報」如實未命中任何配方——配方庫只有 3 條，不假裝萬能）。
+4. 過程修掉自己的 regex 盲點：scrape-to-rag 初版只認「爬取/爬蟲」，漏了同義的「抓取」。
+
+### 已知殘留
+1. 配方覆蓋 3 條——新配方一律走人工驗證後手工加入（禁止自動生成是設計決策）。
+2. web 端 `/api/chain` 與 MCP 尚未接配方庫（本批範圍限 CLI）。
+3. 18 支 facets 補萃取 + 3 支 zh 重譯——等 API 額度。
+
+### 驗證結果
+- `npm test`：351 tests / 349 pass / 0 fail / 2 skip（recipes 5 條新測試，
+  含「每個 step.toolId 都存在於 registry」的資料完整性斷言）
+- 煙霧測試：配方命中卡 + 自動規劃 fallback 兩路徑皆正確
+
 ## 2026-10-03（第三批）意圖原型層上線——高精準同分群裁決者，方向正確、貼著噪音地板
 
 ### 需求

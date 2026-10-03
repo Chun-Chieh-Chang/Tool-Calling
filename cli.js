@@ -850,6 +850,28 @@ async function cmdPlan(taskDescription) {
 
   header('🤖 多工具鏈自動規劃 (Tool Chain Planner)');
   const registry = loadRegistry();
+
+  // 人工驗證配方庫（Batch 3b）：命中即採用——人類核對過的資料流契約
+  // 優先於啟發式拆解；未命中才走 planToolSet 自動規劃（配方庫不存在或
+  // 格式壞時 loadRecipes 回 null，行為與未上線前完全一致）。
+  const { loadRecipes, matchRecipe } = await import('./core/recipes.js');
+  const recipes = loadRecipes();
+  const recipe = recipes ? matchRecipe(taskDescription, recipes) : null;
+  if (recipe) {
+    console.log(`${c.cyan}${c.bold}原始長任務:${c.reset} ${taskDescription}\n`);
+    console.log(`${c.green}${c.bold}📐 命中人工驗證配方:${c.reset} ${c.bold}${recipe.name}${c.reset} ${c.dim}(${recipe.id}｜validated ${recipe.validatedAt})${c.reset}\n`);
+    recipe.steps.forEach((s) => {
+      const tool = registry.tools.find((t) => t.id === s.toolId);
+      console.log(`  ${c.bold}【步驟 ${s.order}】${c.reset} ${c.cyan}${s.action}${c.reset}`);
+      console.log(`    ⭐ 工具: ${c.green}${c.bold}${tool ? tool.name : s.toolId}${c.reset} ${c.dim}(${s.toolId})${c.reset}`);
+      if (s.input) console.log(`    📥 輸入: ${s.input}`);
+      if (s.output) console.log(`    📤 輸出: ${s.output}`);
+    });
+    console.log(`\n  ${c.magenta}🔗 資料流: ${recipe.dataFlow}${c.reset}`);
+    console.log(`  ${c.dim}驗證方式: ${recipe.validatedHow}${c.reset}\n`);
+    return;
+  }
+
   // 改走融合引擎版（core/tool-chain.js 的 planToolSet）。
   // 原本直接用 planToolChain（L2 詞彙引擎），落後主檢索很多——
   // 實例：「抓取網頁資料然後做成簡報」第二步從 officecli 改選 codex-ppt-skill。
