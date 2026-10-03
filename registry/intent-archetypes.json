@@ -1,0 +1,184 @@
+[
+  {
+    "id": "transcribe",
+    "name": "語音/影片轉逐字稿",
+    "patterns": ["逐字稿", "transcript", "speech to text", "語音轉文字", "字幕"],
+    "tools": ["whisper", "youtube-skills"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "summarize",
+    "name": "內容摘要",
+    "patterns": ["摘要", "summarize", "tldr", "重點整理"],
+    "tools": ["summarize", "reader3"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "slides",
+    "name": "簡報生成",
+    "patterns": ["簡報", "ppt", "slides", "presentation", "投影片"],
+    "tools": ["ppt-master", "dashi-ppt-skill"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "office-docs",
+    "name": "辦公文件自動化",
+    "patterns": ["word", "excel", "文件自動化", "spreadsheet", "試算表"],
+    "tools": ["genoffice-skill", "officecli-officecli"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "web-scrape",
+    "name": "網頁爬蟲",
+    "patterns": ["爬蟲", "scrape", "crawl", "抓取網頁", "crawler"],
+    "tools": ["scrapling", "firecrawl", "crawl4ai"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "pdf",
+    "name": "PDF 處理",
+    "patterns": ["pdf"],
+    "tools": ["stirling-pdf", "markitdown", "anthropic-pdf-analysis-skill"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "image-gen",
+    "name": "圖像生成",
+    "patterns": ["生圖", "image generation", "文生圖", "text-to-image", "繪圖"],
+    "tools": ["stable-diffusion", "generative-media-skills", "doany-comfyui-skills"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "video-gen",
+    "name": "影片生成",
+    "patterns": ["影片生成", "video generation", "text-to-video"],
+    "tools": ["open-higgsfield", "text2video"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "tts",
+    "name": "語音合成",
+    "patterns": ["語音合成", "text to speech", "tts", "配音"],
+    "tools": ["openai-edge-tts", "edge-tts"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "ocr",
+    "name": "OCR 文字辨識",
+    "patterns": ["ocr", "文字辨識", "圖片轉文字"],
+    "tools": ["paddleocr", "unlimited-ocr"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "code-review",
+    "name": "程式碼審查",
+    "patterns": ["code review", "代碼審查", "程式碼審查"],
+    "tools": ["open-code-review", "code-review-graph"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "e2e-test",
+    "name": "端對端測試",
+    "patterns": ["e2e", "端對端測試", "browser testing", "瀏覽器測試", "自動化測試"],
+    "tools": ["playwright", "selenium", "browser-use"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "dashboard",
+    "name": "儀表板與資料視覺化",
+    "patterns": ["dashboard", "儀表板", "資料視覺化", "data visualization"],
+    "tools": ["apache-superset", "evidence-dev-evidence"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "screenshot",
+    "name": "網頁截圖",
+    "patterns": ["截圖", "screenshot", "網頁快照"],
+    "tools": ["playwright"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "workflow-automation",
+    "name": "工作流自動化",
+    "patterns": ["工作流自動化", "workflow automation", "自動化工作流"],
+    "tools": ["n8n", "dify"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "rag",
+    "name": "RAG 知識庫",
+    "patterns": ["rag", "知識庫", "向量檢索", "retrieval augmented"],
+    "tools": ["ragflow", "dify"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "chatbot",
+    "name": "聊天機器人",
+    "patterns": ["聊天機器人", "chatbot", "客服機器人"],
+    "tools": ["langchain"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "mcp",
+    "name": "MCP 伺服器",
+    "patterns": ["mcp 伺服器", "mcp server", "model context protocol"],
+    "tools": ["openai-mcpkit", "claude-plugins-official", "sequential-thinking-skill"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "agent-framework",
+    "name": "Agent 框架",
+    "patterns": ["agent 框架", "multi-agent", "ai agent framework"],
+    "tools": ["autogpt", "deepseek-harness"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "diagram",
+    "name": "圖表與流程圖",
+    "patterns": ["流程圖", "diagram", "mermaid"],
+    "tools": ["diagram-design", "archify"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "email",
+    "name": "郵件自動化",
+    "patterns": ["email", "郵件", "信件自動化"],
+    "tools": ["agentic-inbox"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "finance",
+    "name": "金融與交易",
+    "patterns": ["股票", "量化", "交易", "trading", "stock"],
+    "tools": ["tradingagents", "backtrader"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "security",
+    "name": "資安掃描",
+    "patterns": ["密碼", "security scanning", "弱點", "vulnerability"],
+    "tools": ["strix", "security-audit-skill"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "social-media",
+    "name": "社群媒體爬蟲與發文",
+    "patterns": ["社群媒體", "social media", "發文"],
+    "tools": ["mediacrawler"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "note-km",
+    "name": "筆記與知識管理",
+    "patterns": ["筆記", "notes", "知識管理", "knowledge management", "obsidian"],
+    "tools": ["claude-obsidian", "obsidian-skills", "memos"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  },
+  {
+    "id": "seo",
+    "name": "SEO 與內容行銷",
+    "patterns": ["seo", "搜尋引擎優化", "keyword research"],
+    "tools": ["marketingskills", "web-quality-skills"],
+    "source": "tool-metadata-derived + hand-curated 2026-10-03"
+  }
+]

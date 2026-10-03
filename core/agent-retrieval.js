@@ -44,6 +44,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadVectors, cosine } from './embedding.js';
 import { getWikiIndex, wikiScore, loadWikiCached } from './wiki-matcher.js';
+import { loadArchetypes, matchArchetypes } from './archetype.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -194,6 +195,10 @@ function scoreV4Constraint(q, tool, idf) {
 
 const BEST_DIM_THRESHOLD = 0.35;
 const NO_MATCH_THRESHOLD = 0.15;
+// 意圖原型提升（Batch 3a，2026-10-03）：查詢命中原型時，映射工具的 weighted
+// 加 0.03——量級刻意小於任何維度分數的顯著差距，只裁決「本來就並列」的同分群；
+// 不擴召回（候選必須先過 bestDim > 0 門檻）。原型表不存在 → 整層停用零回歸。
+const ARCHETYPE_BOOST = 0.03;
 // V5（知識編譯詞條 + 知識圖譜）由 core/wiki-matcher.js 供應。
 //
 // 權重切分方式：V1~V4 維持原始比例（0.30 : 0.35 : 0.20 : 0.15）整體縮放 0.85，
@@ -310,7 +315,7 @@ function negativePenalty(q, tool, idf) {
   return Math.min(0.15, (sim - 0.25) * 0.5);
 }
 
-function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null) {
+function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null, boostIds = null) {
   const s1 = scoreV1Identity(q, tool, idf);
   const s2 = scoreV2Capability(q, tool, idf);
   const s3 = scoreV3Scenario(q, tool, idf);
@@ -337,8 +342,11 @@ function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null) {
   // 符號修復：命中禁用場景扣分（只影響排序，不改變 bestDim／decision 門檻）
   const negPenalty = negativePenalty(q, tool, idf);
   if (negPenalty > 0) weighted = Math.max(0, weighted - negPenalty);
+  // 意圖原型提升：同分群裁決者（同樣只影響排序）
+  const archetypeBoost = boostIds && boostIds.has(tool.id) ? ARCHETYPE_BOOST : 0;
+  if (archetypeBoost > 0) weighted += archetypeBoost;
   const topDimKey = dims.reduce((a, b) => (per[a] >= per[b] ? a : b));
-  return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit, negPenalty };
+  return { per, bestDim, weighted, topDimKey, trigHit: s1.trigHit, negPenalty, archetypeBoost };
 }
 
 function reasons(q, tool, fuseResult, matchedIntent = '') {
@@ -350,6 +358,7 @@ function reasons(q, tool, fuseResult, matchedIntent = '') {
   if (fuseResult.per.V4 >= 0.4) r.push(`✓ 部署吻合：${tool.install?.method} / ${tool.language}`);
   if (fuseResult.per.V5 >= 0.4) r.push(`✓ 知識詞條吻合：${(matchedIntent || '').slice(0, 60)}`);
   // 扣分 ≥ 0.01 才顯示：sub-cent 扣分渲染成「已扣分 0.00」是雜訊
+  if (fuseResult.archetypeBoost > 0) r.push('✓ 意圖原型命中');
   if (fuseResult.negPenalty >= 0.01) r.push(`🚫 命中禁用場景，已扣分 ${fuseResult.negPenalty.toFixed(2)}`);
   if (fuseResult.bestDim < NO_MATCH_THRESHOLD) r.push('⚠ 所有維度皆無有效信號');
   return r;
@@ -366,6 +375,9 @@ export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors =
   const q = extractQuery(query);
   const idf = buildIdentityIdf(tools);
   const w = withV5(intentWeights, v5Weight);
+  // 意圖原型（Batch 3a）：每查詢匹配一次；原型表不存在 → null → 整層停用
+  const archetypes = loadArchetypes();
+  const boostIds = archetypes ? matchArchetypes(query, archetypes) : null;
   const v0Enabled = vectors !== null && queryVector !== null && Array.isArray(queryVector) && queryVector.length > 0;
   // V5：知識編譯詞條（wiki-matcher）。
   //   wiki 未指定 → 自動載入詞檔（mtime 快取，不會每次查詢重讀）
@@ -379,7 +391,7 @@ export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors =
       : null;
     const wv = wikiMap ? wikiMap.get(tool.id) : null;
     const v5 = wikiMap ? (wv?.V5 ?? 0) : null;
-    return { tool, ...fuse(q, tool, idf, w, v0, v5), matchedIntent: wv?.intent || '' };
+    return { tool, ...fuse(q, tool, idf, w, v0, v5, boostIds), matchedIntent: wv?.intent || '' };
   }).filter((x) => x.bestDim > 0);
 
   // 按 weighted 分數排序（意圖權重已反映在 w 中；V0 啟用時已納入 weighted）

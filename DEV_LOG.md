@@ -1,5 +1,46 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-03（第三批）意圖原型層上線——高精準同分群裁決者，方向正確、貼著噪音地板
+
+### 需求
+專家藍圖的「專家的檔案櫃」（計畫 docs/superpowers/plans/2026-10-03-batch3a-intent-archetypes.md）。
+Batch 2 的教訓先行：彌散軟訊號量不出增益——本批機制改為**高精準同分群裁決者**：
+查詢命中原型 → 映射工具在 fuse() 的 weighted +0.03，只裁決本來就並列的同分群，
+不擴召回（候選仍須過 bestDim > 0）。原型表不存在 → 整層停用零回歸。
+
+### 實作內容
+1. **原型表** `registry/intent-archetypes.json`：26 個任務家族、54 個映射
+   （`scripts/derive-archetypes.js` 從工具側元資料匹配候選 + 人工核對修正——
+   自動匹配的雜訊實測嚴重（pdf→tdd、ocr→open-code-review、dashboard→open-webui），
+   人工定稿刪除 4 個無對應工具/映射太噪的家族（data-clean/mindmap/deploy-devops/translate）。
+   **刻意不從評測題反推**——原型衍生源頭是工具側，評測集保持乾淨考卷。
+2. **引擎** `core/archetype.js`（mtime 快取載入、env ARCHETYPE_FILE 可覆寫供測試、
+   損壞停用）+ `agent-retrieval.js` 的 fuse 整合（boostIds 每查詢匹配一次，
+   weighted += 0.03，reasons 顯示「✓ 意圖原型命中」）。
+3. 過程抓到自己一個簡體字（胜→勝），被本專案的 check-traditional 門禁攔截——門禁有效。
+
+### 可證偽判定（267 題 benchmark，逐查詢歸因）
+- **gate A（零回歸）：通過**——Hit@1 無回歸、空集誠實率 10/10。
+- **gate B：方向正確、貼著噪音地板**——semantic 49.6→50.4%（+0.8pp）、
+  agent 56.8→57.6%、fusion 57.2→58.0%；逐查詢歸因確認**乾淨翻正 c152**
+  （「指令列產出 Word 報告」靠 office-docs 原型把 officecli-officecli 從第 4 拉上第 1，
+  direct 67.1→68.4% 的來源），同時發現一次誤提升（diagram 家族的「圖表」pattern
+  過寬）——移除該 pattern 後 agent Hit@3 回血（72.4→72.8）。
+- **判決：保留**。+0.8pp 未超過 1-2 筆的噪音地板（誠實說法：與噪音同量級），
+  但機制可歸因（c152 翻正路徑完全可解釋）、零回歸、顯示透明（原型命中可見），
+  且原型表是 Batch 3b 配方庫與未來 telemetry 期重校準的基底。
+
+### 已知殘留
+1. 原型覆蓋率 26 家族，patterns 的精準度是長期打磨項（本輪已示範：一個過寬
+   pattern 的誤提升可在逐查詢歸因中被抓出並修正）。
+2. 18 支 facets 補萃取 + 3 支 zh 重譯——等 API 額度。
+3. 真人查詢語料仍為 0——telemetry 已上線，待累積；原型表屆時依真人分佈重校準。
+
+### 驗證結果
+- `npm test`：346 tests / 344 pass / 0 fail / 2 skip（archetype 5 條新測試）
+- `node cli.js validate`：0 errors；全門禁綠
+- benchmark：`2026-10-03-batch3a-final.txt`（agent 57.6% / fusion 58.0% / 誠實率 10/10）
+
 ## 2026-10-03（第二批）結構化禁用約束 negativeFacets 試點——排序假說未被證實，誠實顯示修復成立
 
 ### 需求
