@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-09-29T23:38:43.982Z",
+  "lastUpdated": "2026-10-03T07:26:31.998Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -37914,10 +37914,7 @@
       },
       "description_zh": "280+ 免費 n8n 自動化範本 — 即用的工作流，適用於 Gmail、Telegram、Slack、Discord、WhatsApp、Google Drive、Notion、OpenAI 等。AI 代理、RAG 聊天機器人、電子郵件自動化、社交 m",
       "useCase_zh": "280+ 免費 n8n 自動化範本",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "qwenpaw",
@@ -37971,10 +37968,7 @@
         "支援透過 Agent 通訊協定（ACP）進行多 Agent 編排與並行子 Agent 運作。",
         "具備由 ReMe 驅動的三層記憶系統，可將對話轉化為可搜尋的 Markdown 知識庫。"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "kimi-k3-in-c",
@@ -38028,10 +38022,7 @@
         "透過串流架構，在不同記憶體配置（8 GB 至 224 GB）下產生完全相同位元組的輸出",
         "推論引擎僅 176 KB，極簡資源佔用"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "khoj",
@@ -38078,10 +38069,7 @@
       },
       "description_zh": "你的 AI 第二大腦。可自行託管。從網路或你的文件取得答案。建立自訂代理，排程自動化，進行深入研究。將任何線上或本地 LLM 轉變為你個人的、自主的 AI（gpt、claude、gemini、llama、qwen、mistral）。免費開始使用。",
       "useCase_zh": "你的 AI 第二大腦。可自行託管。從網路或你的文件取得答案。建立自訂代理，排程自動化，進行深入研究。將任何線上或本地 LLM 轉變為你個人的、自主的 AI（gpt、claude、gemini、llama、qwen、mistral）。免費開始使用。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "awesome",
@@ -38133,10 +38121,7 @@
         "匯總了數千個主題特定的 Awesome 清單索引。",
         "涵蓋廣泛的類別，包括平台、程式語言、資料庫與商業領域。"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "freecodecamp",
@@ -38191,10 +38176,7 @@
         "提供永久有效的可驗證認證，使用者可隨時連結至履歷或 LinkedIn 供招募者查看。",
         "提供專門針對開發者的英文及其他專業語言（如西班牙文、中文）的專業能力認證。"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "awesome-python",
@@ -38244,10 +38226,7 @@
       },
       "description_zh": "精選的 Python 框架、函式庫、工具和資源清單",
       "useCase_zh": "開發者需要快速尋找某個特定領域（如 Web 框架、資料視覺化）的 Python 函式庫時，可直接透過此清單篩選並比較熱門選擇。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "996-icu",
@@ -40603,10 +40582,7 @@
       "description_zh": "NVIDIA 物件導向代理：以 Pythonic 方式建構 AI 代理",
       "useCase_zh": "建構需要多 Agent 協作、且要與 NVIDIA GPU 基礎設施整合的 AI 應用。",
       "advantages_zh": "Python 物件導向語法建置 Agent，符合 Python 開發者直覺，學習成本低,NVIDIA 官方支援，與 NeMo 生態整合，可直接連結 HPC 與 GPU 資源,物件模型便於多 Agent 協作時定義角色與邊界",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "dashi-taskboard",
@@ -40707,10 +40683,7 @@
       "description_zh": "使用 LLM 將訊息隱藏在看似正常的對話中",
       "advantages_zh": "利用 LLM 產生看似自然的對話內容隱含訊息，難以被傳統內容過濾偵測,Go 實作，編譯後為單檔二進位，部署無依賴,概念上可應用於安全研究與隱私測試場景",
       "useCase_zh": "資安研究者或記者需要在 WhatsApp、Telegram 等主流通訊軟體上交換敏感座標或指示，且必須避免因發送加密訊息而觸發異常流量分析或元數據標記，透過此工具將內容偽裝成自然的 LLM 生成對話。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "nativ",
@@ -40876,10 +40849,7 @@
       "description_zh": "Agent 技能：將中文故事文案或順序圖片轉換為手繪日記漫畫動畫（無聲 MP4 圖片軌）。",
       "advantages_zh": "直接從中文故事文案產出手繪日記風動畫 MP4，全過程無需手繪或剪輯,靜止圖片序列轉動的影片，製作成本低且風格一致,以 Agent 技能格式提供，可嵌入現有 AI 工作流",
       "useCase_zh": "內容創作者在需要將中文故事或手繪圖片轉為直向無聲 MP4 動畫時，利用此工具快速產出手繪日記風格的影片。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "findphone",
@@ -40921,10 +40891,7 @@
       "description_zh": "透過信號強度定位附近藍芽裝置，由 macOS 命令列操作 —— 適用於 Find My 無法使用的情境。",
       "advantages_zh": "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位,依賴藍牙信號強度（RSSI），無需 GPS 或網路連線,Swift 原生 macOS 開發，無額外依賴",
       "useCase_zh": "Find My 網頁版慢或離線時，快速從終端機找到附近藍牙裝置的位置。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "openreply",
@@ -40966,10 +40933,7 @@
       "description_zh": "開源 ManyChat 替代品：留言・DM 自動化 + 帳號分析。注意：下方連結不支援 OAuth；須自行架設並使用自己的 API keys。",
       "useCase_zh": "品牌或內容創作者自架 Instagram 留言/DM 自動回應系統，降低 SaaS 訂閱成本。",
       "advantages_zh": "開源自架替代 ManyChat，免月費，資料完整掌握在自己手上，同時處理 Instagram 留言與 DM 自動化，減少多工具切換，內建帳號分析，可直接追蹤互動轉化率",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "openmouse",
@@ -41023,10 +40987,7 @@
         "採用模組化架構，將封包編碼器與驅動程式分離至獨立的 @openmouse/protocol 程式庫，便於貢獻與重用。",
         "包含手動更新檢查機制，可驗證 Bridge 元件的版本與變更紀錄，而不會在背景自動安裝更新。"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "axisagentic",
@@ -41074,10 +41035,7 @@
       "description_zh": "AxisAgentic：一個可擴充的 Runtime 與 Trajectory-Collection Framework，專為 Long-Horizon Agents 設計。",
       "advantages_zh": "專為長時間 Agent 任務設計，內建軌跡收集（trajectory collection）機制,架構可擴展，便於加入自訂工具或策略,收集之軌跡可直接作為 RLHF / DPO 訓練資料",
       "useCase_zh": "ML 工程師在構建長期網路搜尋代理時，使用 AxisAgentic 執行多輪軌跡，自動收集唯追加執行日誌，並匯出狀態忠實的 SFT 數據集，用於外部大型語言模型的微調。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "moviebox-tui",
@@ -41128,10 +41086,7 @@
       "description_zh": "一款基於 Rust 的現代化終端使用者介面，專為串流設計。快速、輕量、鍵盤優先，且跨平台。",
       "advantages_zh": "純終端機 UI，資源極輕，低規格主機也能流暢使用，Rust 編譯，無垃圾回收，效能穩定，跨平台支援，Linux 與 Windows 皆可用",
       "useCase_zh": "開發者可以在無圖形介面的 Linux 伺服器上，透過該工具串流或下載 Stremio 插補提供的動漫內容，而無需開啟傳統媒體播放器。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "penguin-harness",
@@ -41182,10 +41137,7 @@
       "description_zh": "🐧 自動化 Agent 建構工具。一鍵建立自我演化的 Agent（DeepSeek/Kimi/GPT/Claude/Gemini）",
       "advantages_zh": "一鍵生成自演化 Agent，支援 DeepSeek / Kimi / GPT / Claude / Gemini 多模型切換，Agent 可自我改進策略，減少反覆手動調整，開源，無 SaaS 訂閱費用",
       "useCase_zh": "快速原型化 AI Agent，並讓它在執行中自我優化任務執行策略。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "cue",
@@ -41226,10 +41178,7 @@
       },
       "description_zh": "開源的 macOS AI copilot，漂浮於螢幕之上，能看見/聽見您的會議，且在畫面分享時保持隱藏。Cluely 的替代方案，bring-your-own-key。",
       "useCase_zh": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓對方看到 AI 介面的場景。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "firecrawl",
@@ -45974,10 +45923,7 @@
       "description_zh": "開源編程代理。",
       "useCase_zh": "開發者想在本機運行 AI 編碼助理，但不想訂閱閉源 SaaS。",
       "advantages_zh": "開源編碼 Agent，無月費，可自架自訂,模型中立：支援多家 LLM 後端，不綁定單一廠商,可嵌入現有開發工具鏈，不替代 IDE 而是補充",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "awesome-mac",
@@ -46028,10 +45974,7 @@
       "description_zh": " 本專案致力於收集高品質的 macOS 軟體，並按不同類別系統化整理，方便搜尋與使用。",
       "useCase_zh": "Mac 用戶重新整理作業系統時，系統性找齊各類型工具的最佳 macOS 原生替代。",
       "advantages_zh": "專為 macOS 挑選，跨平台清單中不會出現不支援 Mac 的項目,系統性分類整理，可快速找到特定類別的最佳選擇,社群持續更新，工具上下線跟得上",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "llms-from-scratch",
@@ -46083,10 +46026,7 @@
         "Not suitable for production-grade inference or serving large-scale foundation models due to its educational focus on small but functional models.",
         "Requires following the specific setup and environment configurations outlined in the book's setup directory for the code to run correctly."
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "figures4papers",
@@ -46316,10 +46256,7 @@
         "支援版式參數的全面自訂，包括照片與面板比例、色彩飽和度、抽象母題及 typography 樣式",
         "個人及非商業用途免費，採用 CC BY-NC-SA 4.0 授權"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "zouyuxuan122-deepseek-harness-eac",
@@ -46973,10 +46910,7 @@
       "advantages_zh": "將 DeepSeek Harness 從純插件擴展為桌面級方案，能力覆蓋全螢幕場景，Cordis 插件架構，可與既有 DSH 插件生態互換，桌面本身即插件，可組合出多種工作空間配置",
       "description_zh": "為 DeepSeek Harness (DSH) 插件生態打造的現代化桌面端解決方案。萬物皆「插件」，桌面本身也是「插件」。",
       "useCase_zh": "開發者希望把 DeepSeek Harness 的 AI 能力從終端機擴展到桌面全工作流。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "awesome-dsh-plugin",
@@ -47026,10 +46960,7 @@
       "description_zh": "DeepSeek Harness (dsh) 插件精選列表",
       "useCase_zh": "評估 DeepSeek Harness 插件生態時，快速找出現有可用的插件方案。",
       "advantages_zh": "收錄 DeepSeek Harness 生態系統全部插件，一站式瀏覽，按功能分類，快速找到符合需求的插件；社群維護，新插件上線可及時追蹤",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "dsh-routing-suite",
@@ -47079,10 +47010,7 @@
       "description_zh": "dsh-routing-suite — injector + router-standard 套件：先安裝 runtime injector，接著安裝 task-aware reasoning-mode router preset（measured P1-P23）。",
       "useCase_zh": "Windows 開發者需要在 DeepSeek Harness 中依任務類型自動切換不同 LLM 模型。",
       "advantages_zh": "兩階段設計：先裝 runtime injector，再裝 task-aware 推理路由，依序安裝避免衝突,任務感知路由可根據工作內容動態切換模型，兼顧效能與成本,PowerShell 腳本封裝，Windows 環境一鍵部署",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "arc-task-gen",
@@ -47123,10 +47051,7 @@
       "description_zh": "生成符合 ARC-AGI-1 風格的原始任務，其分佈與公開評估集相符。",
       "useCase_zh": "ARC-AGI 模型評估時，需要大量新任務以測試泛化能力。",
       "advantages_zh": "自動產生與公開 ARC-AGI-1 評測集分佈匹配的新任務，可擴展測試集規模；Python 實作，易於嵌入現有評估管線；任務產生無需人工介入，可大量產生邊界案例",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "dsh-anchored-standard",
@@ -47300,10 +47225,7 @@
         "Not suitable as a standard npm package for direct dependency installation; it is designed to be copied and vendored into the user's source control.",
         "Requires maintaining exact version alignment between @oxlint/plugins and the oxlint runtime to prevent upgrade conflicts."
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "dsh-better-sidebar",
@@ -47357,10 +47279,7 @@
         "Requires a specific DSH version (0.1.7-rc.1 or later) for the latest release; older DSH versions require pinned older plugin versions to avoid breaking changes.",
         "Strictly depends on the DeepSeek Harness environment; it is not a standalone application and requires DSH's plugin system to function."
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "mattpocock-skills",
@@ -54523,10 +54442,7 @@
         "依所長分工：ChatGPT 負責思考、Codex 負責執行",
         "可在 Codex 內自我更新，解決大多數已知問題"
       ],
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
+      "negativeConstraints_zh": []
     },
     {
       "id": "zcode",

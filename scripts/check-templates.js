@@ -26,7 +26,12 @@ const BOILERPLATE = [
   '詳細安裝指令需依官方 README 為準',
 ];
 
-const FIELDS = ['description', 'useCase', 'advantages', 'negativeConstraints'];
+// 掃描欄位含 *_zh 鏡像（2026-10-03 補審查發現：09-27 的清理只清了英文欄位，
+// 27 支工具的 negativeConstraints_zh 仍殘留樣板譯文，而 *_zh 會進顯示層與檢索向量）。
+const FIELDS = [
+  'description', 'useCase', 'advantages', 'negativeConstraints',
+  'description_zh', 'useCase_zh', 'advantages_zh', 'negativeConstraints_zh',
+];
 
 const registry = JSON.parse(readFileSync(REGISTRY, 'utf8'));
 const failures = [];
