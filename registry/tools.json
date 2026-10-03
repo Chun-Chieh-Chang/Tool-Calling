@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T09:33:52.801Z",
+  "lastUpdated": "2026-10-03T11:31:39.583Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -2727,6 +2727,14 @@
         "不適用於後端開發、資料庫管理或伺服器端邏輯。",
         "避免用於數據分析、NLP 或系統管理等非視覺工作。",
         "不適合用於建立光柵圖形、Logo 或照片編輯工作流程。"
+      ],
+      "negativeFacets": [
+        "-platform:backend",
+        "-platform:database",
+        "-platform:server-side",
+        "-platform:data-analysis",
+        "-platform:nlp",
+        "-format:raster"
       ]
     },
     {
@@ -4393,6 +4401,11 @@
         "不適合需要進階向量編輯的專業平面設計",
         "不適合需要即時多人編輯的協作團隊工作流程",
         "不適合具有複雜元件程式庫的生產級設計系統"
+      ],
+      "negativeFacets": [
+        "-scale:professional",
+        "-scale:collaborative",
+        "-scale:production-grade"
       ]
     },
     {
@@ -8126,6 +8139,9 @@
         "不適用於完全不需要 LLM 介入的純規則型確定性業務邏輯",
         "對於僅呼叫單一 OpenAI/Anthropic API 的極簡腳本可能引入過多抽象封裝",
         "不推薦在微秒級超低延遲系統中使用深層嵌套的 Chain 結構"
+      ],
+      "negativeFacets": [
+        "-integration:simple-api-calls"
       ]
     },
     {
@@ -9084,6 +9100,11 @@
         "不適用於無圖形介面的純伺服器端或 Headless CI/CD 自動化流程",
         "若僅使用單一特定 AI 工具且不需要多 Provider 切換則效益較低",
         "不適用於行動端或純瀏覽器 Web 環境"
+      ],
+      "negativeFacets": [
+        "-interface:cli",
+        "-interface:headless",
+        "-platform:mobile"
       ]
     },
     {
@@ -26050,6 +26071,10 @@
         "不適合用於複雜的圖形使用者介面設計任務",
         "對需要大量視覺除錯或 GUI 互動的專案效果不彰",
         "在進行大規模多儲存庫重構時，可能缺乏情境感知能力"
+      ],
+      "negativeFacets": [
+        "-interface:gui",
+        "-scale:large"
       ]
     },
     {
@@ -26166,6 +26191,11 @@
         "不適合需要透過低階控制來進行極致效能優化的專案。",
         "不適合為了清晰度而偏好冗長、明確程式碼的學習環境。",
         "當必須嚴格遵循現有複雜架構模式時，不宜使用。"
+      ],
+      "negativeFacets": [
+        "-scale:performance",
+        "-interface:low-level",
+        "-integration:legacy-patterns"
       ]
     },
     {
@@ -26576,6 +26606,11 @@
         "不適合需要嚴格角色基礎存取控制的企業團隊。",
         "不適合需要高度客製化、無既定偏見的開發工具鏈的專案。",
         "如果您偏好手動監督而非自動化的 AI 工作流程，請避免使用。"
+      ],
+      "negativeFacets": [
+        "-scale:enterprise",
+        "-scale:customized",
+        "-interface:manual"
       ]
     },
     {
@@ -37653,6 +37688,11 @@
         "不適合需要大量自訂 CSS 動畫的專案",
         "對於樣式需求簡單的靜態網頁來說過於複雜",
         "當開發者偏好語意化 CSS 類別命名時並非理想選擇"
+      ],
+      "negativeFacets": [
+        "-interface:css-animations",
+        "-scale:simple-pages",
+        "-interface:semantic-css"
       ]
     },
     {
@@ -37849,6 +37889,10 @@
         "不是用於建構應用程式的生產就緒 SDK 或函式庫；它僅為教育資源。",
         "標準的複製操作可能因包含 50 多種語言的翻譯資料夾而導致下載尺寸顯著增大。",
         "主要專注於 Azure 和 Microsoft 服務，這可能與嚴格致力於非 Microsoft 雲端供應商的開發者不符。"
+      ],
+      "negativeFacets": [
+        "-interface:educational-content",
+        "-deployment:large-repo"
       ]
     },
     {
@@ -43455,6 +43499,10 @@
       "negativeConstraints_zh": [
         "需要本地 GPU 硬體或付費雲端訂閱；無足夠運算資源存取的使用者不適用",
         "與簡單網頁 UI 相比，基於節點的圖形介面學習曲線較陡峭，對不需微調控制的使用者效果較差"
+      ],
+      "negativeFacets": [
+        "-deployment:free-cloud",
+        "-pricing:free"
       ]
     },
     {
@@ -50972,6 +51020,13 @@
         "僅為資訊彙整，免費方案條款與額度可能隨時變更",
         "不含付費方案比較，也不提供供應商推薦或背書",
         "不適合需要採購合約、SLA 或合規認證的企業選型流程"
+      ],
+      "negativeFacets": [
+        "-pricing:paid comparison",
+        "-integration:vendor endorsement",
+        "-license:procurement contract",
+        "-license:sla",
+        "-license:compliance certification"
       ]
     },
     {
