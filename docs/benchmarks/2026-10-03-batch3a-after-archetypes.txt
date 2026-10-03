@@ -1,0 +1,49 @@
+
+═══ 工具選用基準評測 ═══
+評測集 v1.3.0　共 267 筆（257 可命中 + 10 空集）　topK=5
+
+【整體】
+  引擎        Hit@1      Hit@3      MRR
+  ─────────────────────────────────────────
+  L2           10.1%     14.8%    0.130
+  agent        57.6%     72.4%    0.670
+  fusion       58.0%     63.4%    0.615
+
+【含近義（計入 13 筆 alsoAcceptable）】
+  引擎        Hit@1      Hit@3      MRR
+  ─────────────────────────────────────────
+  L2           10.9%     16.0%    0.138
+  agent        58.8%     74.3%    0.680
+  fusion       59.1%     64.2%    0.625
+
+【按類型分組 — fusion】
+  類型          筆數   Hit@1      Hit@3      MRR
+  ──────────────────────────────────────────────────
+  direct         76     68.4%     75.0%    0.726
+  semantic      129     50.4%     56.6%    0.542
+  constrained    52     61.5%     63.5%    0.634
+
+【空集誠實率（越高越好）】
+  agent-retrieval : 10/10  100.0%
+  fusion          : 10/10  100.0%
+   ✓ e01 幫我訂明天晚上七點兩個人日本料理的位子
+      agent=low-confidence  fusion=no-match
+   ✓ e02 監測我家盆栽的土壤濕度，太乾的時候通知我
+      agent=low-confidence  fusion=no-match
+   ✓ e03 把這份合約翻成有法律效力的英文版本並幫我公證
+      agent=low-confidence  fusion=no-match
+   ✓ e04 清理並去重一個很大的 jsonl 資料集
+      agent=low-confidence  fusion=no-match
+   ✓ e05 把一個 node.js 服務部署到 kubernetes 叢集上
+      agent=low-confidence  fusion=no-match
+   ✓ e06 幫我查詢台北市明天上午的垃圾車清運路線
+      agent=low-confidence  fusion=no-match
+   ✓ e07 想找一家會修理機械錶的鐘錶行
+      agent=low-confidence  fusion=no-match
+   ✓ e08 幫我訂一束花送到朋友家，今天下午前要到
+      agent=low-confidence  fusion=no-match
+   ✓ e09 想知道這個週末哪裡有大型演唱會
+      agent=low-confidence  fusion=no-match
+   ✓ e10 幫我預約下週二的牙醫洗牙
+      agent=low-confidence  fusion=no-match
+
