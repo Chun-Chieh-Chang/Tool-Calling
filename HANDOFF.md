@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-09-22
+> 最後更新：2026-10-03（六批次衝刺：檢索校準／治理門禁／原型層／配方庫——見「三、目前狀態」頂部快照）
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **725 筆**開源 AI 工具與 Agent 技能，分為 **18 個領域分類**
+- 收錄 **736 筆**開源 AI 工具與 Agent 技能（以 registry/tools.json 為準），分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -235,7 +235,41 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（2026-09-21）
+## 三、目前狀態（2026-10-03 快照；本節下方 2026-09-21 的分析結論仍有效，數字已過期）
+
+### 2026-10-03 六批次衝刺後的現況
+
+- **檢索核心指標（267 題評測 v1.3.0）**：fusion Hit@1 **58.0%**（9/21 時 56.8%）、
+  agent 57.6%、semantic 50.4%、direct 68.4%、**空集誠實率 100%（全程未破）**。
+  LLM rerank 已三端預設啟用（有 key 就開；CLI `--no-rerank` 可停）。
+- **測試**：355 tests / 0 fail / 2 skip；validate 0 errors；全門禁綠。
+- **治理**：tools.json 寫入點 6→1（`saveRegistry`，**原子寫入** temp+rename）；
+  新門禁 `check-templates`（樣板黑名單含 *_zh）、`check-doc-stats`（文件數字=實際）、
+  `tracked-repos-schema`（頂層只准 owner/repo 鍵）；`enrich-registry` 需 `--force`。
+- **新資產**：`registry/intent-archetypes.json`（26 家族原型層 → fuse 加權 +0.03 同分群裁決）、
+  `registry/recipes.json`（3 條人工驗證配方 → CLI/Web/MCP plan 三端，命中回 `source: 'recipe-library'`）、
+  `web/telemetry-endpoint.js`（真人查詢 JSONL 回流，含 isTrustedOrigin 防護）、
+  `scripts/infer-facets.js`（negativeFacets ±極性萃取，冪等）。
+- **設計紅線（勿違反）**：配方**禁止自動生成**（人工驗證才上線）；原型表**禁止從評測題反推**；
+  negativeFacets 的 value 不得含「non-」（極性歸 ± 符號，雙重否定不得復活）。
+- **並行 session 已關閉**：其 W39 同步、CI 淺 clone 修復皆已入庫；陳舊 stash 已刪。
+- **數字基準**：追蹤池 2,581（頂層含 `_meta`/`lastGenerated` 中繼欄位，
+  計數一律用 owner/repo 形狀 regex，勿用 `_` 前綴過濾）。
+
+### 2026-10-03 新增陷阱（編入上方陷阱清單的補遺）
+
+1. **port 3000 可能被舊 server 佔用**：`node web/server.js` EADDRINUSE 會靜默失敗
+   （錯誤進 log 沒人看），curl 打到的是**舊程式**——測新端點前先
+   `netstat -ano | grep :3000`，或用 `PORT=3457` 起驗證實例。
+2. **Git Bash 的 curl 傳中文 POST body 會亂碼**：先寫 UTF-8 檔案再 `--data-binary @file`。
+3. **`npm test | grep -E "pass|fail"` 不是閘門**：grep 匹配到「fail 1」也 exit 0，
+   曾帶紅燈推送——驗證一律看 exit code 或精確匹配 `fail 0`。
+4. **AGNES API 429 限流**：約 30-45 呼叫/窗口；LLM 萃取腳本皆冪等
+   （自動跳過已完成），額度恢復後重跑即可，勿在 429 時硬幹。
+5. **並行寫檔競態**：並行 session 的 daemon 寫 tools.json 時測試讀到截斷 JSON
+   → 暫態失敗。saveRegistry 已原子化，**勿改回直接 writeFileSync**。
+
+─── 以下為 2026-09-21 的狀態記錄（數字已過期，rerank A/B 分析結論仍有效）───
 
 ### Git
 
@@ -527,6 +561,23 @@ npm run mcp                 # 啟動 MCP server
 ---
 
 ## 七、待辦事項
+
+### 2026-10-03 起的待辦（優先序以此為準；下方歷史清單僅作脈絡）
+
+- ⏳ **7 支 facets 補萃取 + 3 支 zh 重譯**（等 AGNES API 額度）：
+  `node scripts/infer-facets.js --top=100 --apply`（冪等，自動只補缺）；
+  zh 重譯走 `npm run translate:zh -- --limit=N`（無 ids 控制，按自家 pending 清單處理）。
+- ⏳ **telemetry 累積真人查詢**（目前 0 筆，`web/data/telemetry-events.jsonl`）→
+  累積後兩件事：原型表依真人分佈重校準、Batch 4 用真人問句重建評測集
+  （取代「由 metadata 反推」的自製題——eval-queries.json methodology 自承的偏差）。
+- ✅ 本文件舊待辦中已完成者：tracked-repos schema 統一、配方庫三端對齊、
+  意圖原型層、decision 閾值修正——詳 DEV_LOG 2026-10-03 六批次。
+- 📌 semantic 缺口（50.4%，仍是最弱類型）的已知無效手段清單見下方
+  「刻意不做的」表格；下一個未試方向是 embedding（API 端點無模型，已查證受阻）。
+
+---
+
+### 以下為 2026-09-22 之前的歷史待辦記錄
 
 ### 已完成（含 2026-09-22 本輪）
 
