@@ -325,6 +325,24 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
+    // ─── 行為遙測回流 API ──────────────────────────────────────────────
+    // behavior-tracker.js 的事件原本只存瀏覽器 localStorage；這裡補上
+    // 伺服器端落盤（JSONL 附加寫入），讓真人查詢語料開始累積。
+    // 只寫不讀、無副作用放大；事件形狀驗證在 web/telemetry-endpoint.js。
+    if (decodedUrl === '/api/telemetry' && req.method === 'POST') {
+      try {
+        const { handleTelemetry } = await import('./telemetry-endpoint.js');
+        const event = JSON.parse(req._body || '{}');
+        const out = handleTelemetry(event);
+        res.writeHead(out.status, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify(out.body));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
+
     // ─── 多工具鏈規劃 API ──────────────────────────────────────────────
     // 專案型需求通常不是單一工具能解決（例：「抓網頁資料然後做成簡報」）。
     // 這個端點把任務拆成步驟，每步給主力工具 + 備選，並標出資料怎麼接力。

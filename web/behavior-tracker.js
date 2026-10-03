@@ -47,6 +47,23 @@ export class BehaviorTracker {
   }
 
   /**
+   * 回流到伺服器：把事件 POST 到 /api/telemetry（fire-and-forget）。
+   * 失敗一律靜默——遙測永遠不能影響前端功能；本地 localStorage 仍是主儲存。
+   */
+  _postToServer(entry) {
+    try {
+      fetch('/api/telemetry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(entry),
+        keepalive: true,
+      }).catch(() => {});
+    } catch (err) {
+      /* fetch 不可用（舊瀏覽器）時靜默 */
+    }
+  }
+
+  /**
    * 記錄一次搜尋行為
    * @param {string} query - 搜尋查詢
    * @param {object[]} results - 搜尋結果
@@ -64,6 +81,7 @@ export class BehaviorTracker {
 
     this.history.push(entry);
     this._saveHistory();
+    this._postToServer(entry);
   }
 
   /**
@@ -83,6 +101,7 @@ export class BehaviorTracker {
 
     this.history.push(entry);
     this._saveHistory();
+    this._postToServer(entry);
   }
 
   /**
@@ -98,6 +117,7 @@ export class BehaviorTracker {
 
     this.history.push(entry);
     this._saveHistory();
+    this._postToServer(entry);
   }
 
   /**

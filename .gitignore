@@ -29,6 +29,8 @@ registry/embeddings/
 registry/backups/
 # Kiro IDE 工作目錄（spec 草稿、任務狀態，屬工具私有狀態，非專案原始碼）
 .kiro/
+# 行為遙測（使用者資料，不進版控）
+web/data/
 
 # ── 機密與憑證（預防性規則）─────────────────────────────────────────────
 # 本專案的 API 金鑰一律走環境變數（AGNES_API_KEY / AGNES_API_KEYS），
