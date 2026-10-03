@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T14:01:43.629Z",
+  "lastUpdated": "2026-10-03T14:41:24.428Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -40970,7 +40970,13 @@
         "method": "none",
         "repoUrl": "https://github.com/NVIDIA-NeMo/labs-OO-Agents"
       },
-      "capabilities": [],
+      "capabilities": [
+        "object-oriented-agents",
+        "llm-integration",
+        "typed-io",
+        "pythonic-workflow",
+        "code-as-action"
+      ],
       "useCase": "建構需要多 Agent 協作、且要與 NVIDIA GPU 基礎設施整合的 AI 應用。",
       "advantages": [
         "Python 物件導向語法建置 Agent，符合 Python 開發者直覺，學習成本低",
@@ -40988,7 +40994,12 @@
       "description_zh": "NVIDIA 物件導向代理：以 Pythonic 方式建構 AI 代理",
       "useCase_zh": "建構需要多 Agent 協作、且要與 NVIDIA GPU 基礎設施整合的 AI 應用。",
       "advantages_zh": "Python 物件導向語法建置 Agent，符合 Python 開發者直覺，學習成本低,NVIDIA 官方支援，與 NeMo 生態整合，可直接連結 HPC 與 GPU 資源,物件模型便於多 Agent 協作時定義角色與邊界",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要 LLM 後端來執行具有 ... 主體的代理方法；確定性用例可能無法充分利用完整的代理循環。"
+      ],
+      "negativeConstraints": [
+        "Requires an LLM backend to execute agentic methods with ... bodies; deterministic use cases may not leverage the full agentic loop."
+      ]
     },
     {
       "id": "dashi-taskboard",
