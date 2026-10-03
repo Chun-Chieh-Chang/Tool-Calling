@@ -938,7 +938,30 @@ function renderClarify(data) {
 
 async function runChain(query) {
   const plan = await serverChain(query);
-  if (plan) renderChain(plan);
+  if (!plan) return;
+  // 人工驗證配方庫（Batch 3b）：後端以 source 標記分流，配方走專屬卡片
+  if (plan.source === 'recipe-library') { renderRecipeCard(plan.recipe); return; }
+  renderChain(plan);
+}
+
+function renderRecipeCard(recipe) {
+  if (!chainResult || !recipe) return;
+  chainPipeline.textContent = `📐 人工驗證配方：${recipe.name}`;
+  chainSteps.innerHTML = `
+    <div class="chain-step">
+      <span class="chain-step-no">✓</span>
+      <div class="chain-step-body">
+        ${recipe.steps.map((s) => `
+          <div><span class="chain-step-action">${escapeHtml(`步驟 ${s.order}：${s.action}`)} →</span>
+            <span class="chain-step-tool">${escapeHtml(s.toolId)}</span></div>
+          ${s.input ? `<div class="chain-step-io">📥 輸入：${escapeHtml(s.input)}</div>` : ''}
+          ${s.output ? `<div class="chain-step-io">📤 輸出：${escapeHtml(s.output)}</div>` : ''}
+        `).join('')}
+        <div class="chain-step-alt">🔗 資料流：${escapeHtml(recipe.dataFlow)}</div>
+        <div class="chain-step-alt">驗證：${escapeHtml(recipe.validatedHow)}（${escapeHtml(recipe.validatedAt)}）</div>
+      </div>
+    </div>`;
+  chainResult.hidden = false;
 }
 
 async function runClarify(query) {

@@ -329,6 +329,22 @@ server.tool(
   async (args) => {
     try {
       const tools = loadRegistry().tools;
+      // 人工驗證配方庫（Batch 3b）：命中即採用，回應帶 source 標記；未命中走原規劃
+      const { loadRecipes, matchRecipe } = await import("./core/recipes.js");
+      const recipes = loadRecipes();
+      const recipe = recipes ? matchRecipe(args.task, recipes) : null;
+      if (recipe) {
+        return {
+          content: [{
+            type: "text",
+            text: JSON.stringify({
+              task: args.task,
+              source: "recipe-library",
+              recipe,
+            }, null, 2),
+          }],
+        };
+      }
       const { planToolSet } = await import("./core/tool-chain.js");
       const plan = planToolSet(tools, args.task, { topK: args.topK || 3 });
       return {

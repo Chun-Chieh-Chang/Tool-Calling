@@ -371,6 +371,20 @@ const server = http.createServer(async (req, res) => {
         const { loadRegistry, displayText } = await import('../core/registry.js');
         const { planToolSet } = await import('../core/tool-chain.js');
         const registry = loadRegistry();
+        // 人工驗證配方庫（Batch 3b）：命中即採用，回應帶 source 標記供前端分流；
+        // 未命中走原 planToolSet（回應形狀不變，前端零改動風險）
+        const { loadRecipes, matchRecipe } = await import('../core/recipes.js');
+        const recipes = loadRecipes();
+        const recipe = recipes ? matchRecipe(String(task).trim(), recipes) : null;
+        if (recipe) {
+          res.writeHead(200, {
+            'Content-Type': 'application/json; charset=utf-8',
+            ...corsHeaders(req),
+            'Cache-Control': 'no-cache',
+          });
+          res.end(JSON.stringify({ task, source: 'recipe-library', recipe }));
+          return;
+        }
         const plan = planToolSet(registry.tools, String(task).trim(), { topK: Math.min(Number(topK) || 3, 10) });
         const byId = new Map(registry.tools.map((t) => [t.id, t]));
         const steps = plan.steps.map((s) => ({
