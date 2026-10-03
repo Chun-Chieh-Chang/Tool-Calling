@@ -268,6 +268,9 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
    （自動跳過已完成），額度恢復後重跑即可，勿在 429 時硬幹。
 5. **並行寫檔競態**：並行 session 的 daemon 寫 tools.json 時測試讀到截斷 JSON
    → 暫態失敗。saveRegistry 已原子化，**勿改回直接 writeFileSync**。
+6. **翻譯狀態快取會復活手動編輯**：`registry/zh-translation-state.json` 快取歷史譯文，
+   重跑時整批套回——手動清空的欄位會被舊譯文覆蓋（樣板門禁曾即時抓到 49 筆復活）。
+   **清資料必須連 state 條目一起清**，否則下次重跑又套回。
 
 ─── 以下為 2026-09-21 的狀態記錄（數字已過期，rerank A/B 分析結論仍有效）───
 
@@ -564,9 +567,8 @@ npm run mcp                 # 啟動 MCP server
 
 ### 2026-10-03 起的待辦（優先序以此為準；下方歷史清單僅作脈絡）
 
-- ⏳ **7 支 facets 補萃取 + 3 支 zh 重譯**（等 AGNES API 額度）：
-  `node scripts/infer-facets.js --top=100 --apply`（冪等，自動只補缺）；
-  zh 重譯走 `npm run translate:zh -- --limit=N`（無 ids 控制，按自家 pending 清單處理）。
+- ✅ ~~7 支 facets 補萃取 + 3 支 zh 重譯~~ → 已完成（facets 覆蓋 92/100，其餘為
+  散文無可萃取的誠實留空；zh 3 筆全數重譯成功）。注意新陷阱 6。
 - ⏳ **telemetry 累積真人查詢**（目前 0 筆，`web/data/telemetry-events.jsonl`）→
   累積後兩件事：原型表依真人分佈重校準、Batch 4 用真人問句重建評測集
   （取代「由 metadata 反推」的自製題——eval-queries.json methodology 自承的偏差）。
