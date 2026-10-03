@@ -324,15 +324,25 @@ for (let i = 0; i < targets.length; i += BATCH) {
       }
       // negativeConstraints 是陣列：模型應回 negativeConstraints_zh (陣列)
       if (b.negativeConstraints) {
+        const want = Array.isArray(b.negativeConstraints) ? b.negativeConstraints.length : 0;
         const ncRaw = r['negativeConstraints_zh'] ?? r['negativeConstraints'];
-        if (Array.isArray(ncRaw)) {
-          const nc = ncRaw.map((s) => toTraditional(String(s ?? '').trim())).filter(Boolean);
-          if (nc.length) rec['negativeConstraints_zh'] = nc;
+        // 🔴 筆數比對（原本只有字串分支有，陣列分支漏了）——2026-10-03 freecodecamp
+        // 實例：英文 2 條、模型回 1 個「以 \n 黏接」的陣列元素，陣列分支無條件收下，
+        // 導致 NCZ[i] 不再對應 NC[i]（顯示層取首項會吐出兩句、compile-wiki 少算 1 條）。
+        if (Array.isArray(ncRaw) && ncRaw.length) {
+          let nc = ncRaw.map((s) => String(s ?? '').trim()).filter(Boolean);
+          if (want && nc.length !== want) {
+            // 先試按換行拆分（黏接的常見分隔符）；拆完數目仍不符 → 整批拒收留空，
+            // 寧可退回英文也不收錯位陣列。
+            nc = nc.flatMap((s) => s.split(/\n+/)).map((s) => toTraditional(s.trim())).filter(Boolean);
+          } else {
+            nc = nc.map((s) => toTraditional(s));
+          }
+          if (nc.length && (!want || nc.length === want)) rec['negativeConstraints_zh'] = nc;
         } else if (typeof ncRaw === 'string' && ncRaw.trim()) {
           // 模型偶爾把整個陣列壓成一條字串。只有切分後**筆數正好等於**原文才收下，
           // 否則寧可留空（web/app.js:1285 會退回英文）——憑猜測切分會切錯句子。
-          const want = Array.isArray(b.negativeConstraints) ? b.negativeConstraints.length : 0;
-          const parts = ncRaw.split(/[；;]/).map((s) => toTraditional(s.trim())).filter(Boolean);
+          const parts = ncRaw.split(/[；;\n]+/).map((s) => toTraditional(s.trim())).filter(Boolean);
           if (want && parts.length === want) rec['negativeConstraints_zh'] = parts;
         }
       }

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T13:38:36.267Z",
+  "lastUpdated": "2026-10-03T14:01:43.629Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -38541,7 +38541,14 @@
         "提供永久有效的可驗證認證，使用者可隨時連結至履歷或 LinkedIn 供招募者查看。",
         "提供專門針對開發者的英文及其他專業語言（如西班牙文、中文）的專業能力認證。"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints": [
+        "Certifications are revoked and users are banned if they unambiguously plagiarize or submit others' code as their own.",
+        "Certifications are only granted after passing a final exam and completing five required projects."
+      ],
+      "negativeConstraints_zh": [
+        "若使用者明確抄襲或將他人的程式提交為自己的，認證將被撤銷，且該使用者將被封禁。",
+        "認證僅在通過期末測驗並完成五個必要專案後才會核發。"
+      ]
     },
     {
       "id": "awesome-python",
