@@ -1,17 +1,17 @@
 {
   "worldWeek": "2026-W39",
-  "lastUpdated": "2026-09-28T08:16:28.494Z",
+  "lastUpdated": "2026-10-03T07:26:31.998Z",
   "dateRange": "2026-09-21 ~ 2026-09-27",
   "statPeriod": {
     "start": "2026-09-21T00:00:00.000Z",
     "end": "2026-09-27T23:59:59.999Z"
   },
-  "scanTime": "2026-09-28T08:16:28.494Z",
-  "trackedPoolSize": 2543,
-  "activeReposCount": 200,
-  "scannedReposCount": 200,
-  "historicalCoverage": 1625,
-  "newlyAddedCount": 2,
+  "scanTime": "2026-10-03T07:26:31.998Z",
+  "trackedPoolSize": 2583,
+  "activeReposCount": 232,
+  "scannedReposCount": 232,
+  "historicalCoverage": 1649,
+  "newlyAddedCount": 0,
   "top10": [
     {
       "rank": 1,
@@ -27,7 +27,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 2,
@@ -43,7 +43,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 3,
@@ -59,7 +59,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 4,
@@ -75,7 +75,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 5,
@@ -91,7 +91,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 6,
@@ -107,14 +107,14 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 7,
       "name": "firecrawl",
       "fullName": "firecrawl/firecrawl",
       "url": "https://github.com/firecrawl/firecrawl",
-      "description": "The web data API to search, scrape, and interact at scale. 🔥",
+      "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥",
       "currentStars": 182590,
       "prevStars": 180126,
       "delta": 2464,
@@ -123,7 +123,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 8,
@@ -135,11 +135,11 @@
       "prevStars": 1331,
       "delta": 2450,
       "category": "AI 框架",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
+      "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 9,
@@ -155,7 +155,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 10,
@@ -171,7 +171,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     }
   ],
   "top20": [
@@ -189,7 +189,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 2,
@@ -205,7 +205,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 3,
@@ -221,7 +221,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 4,
@@ -237,7 +237,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 5,
@@ -253,7 +253,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 6,
@@ -269,14 +269,14 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 7,
       "name": "firecrawl",
       "fullName": "firecrawl/firecrawl",
       "url": "https://github.com/firecrawl/firecrawl",
-      "description": "The web data API to search, scrape, and interact at scale. 🔥",
+      "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥",
       "currentStars": 182590,
       "prevStars": 180126,
       "delta": 2464,
@@ -285,7 +285,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 8,
@@ -297,11 +297,11 @@
       "prevStars": 1331,
       "delta": 2450,
       "category": "AI 框架",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
+      "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 9,
@@ -317,7 +317,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 10,
@@ -333,7 +333,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 11,
@@ -349,7 +349,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 12,
@@ -365,7 +365,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 13,
@@ -381,7 +381,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 14,
@@ -393,11 +393,11 @@
       "prevStars": 1501,
       "delta": 1944,
       "category": "開發工具",
-      "isNewlyAdded": true,
+      "isNewlyAdded": false,
       "inRegistry": true,
-      "statusText": "🆕 本週納入",
+      "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 15,
@@ -413,7 +413,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 16,
@@ -429,7 +429,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 17,
@@ -445,7 +445,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 18,
@@ -461,7 +461,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 19,
@@ -477,7 +477,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     },
     {
       "rank": 20,
@@ -493,7 +493,7 @@
       "inRegistry": true,
       "statusText": "✅ 已在工具箱",
       "startStarsAt": "2026-09-20",
-      "endStarsAt": "2026-09-25"
+      "endStarsAt": "2026-09-27"
     }
   ],
   "lastWeek": {
@@ -501,7 +501,7 @@
     "dateRange": "2026-09-21 ~ 2026-09-27",
     "isComplete": true,
     "note": "上週完整數據，列入工具箱納入判斷",
-    "newlyAddedCount": 2,
+    "newlyAddedCount": 0,
     "top10": [
       {
         "rank": 1,
@@ -517,7 +517,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 2,
@@ -533,7 +533,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 3,
@@ -549,7 +549,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 4,
@@ -565,7 +565,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 5,
@@ -581,7 +581,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 6,
@@ -597,14 +597,14 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 7,
         "name": "firecrawl",
         "fullName": "firecrawl/firecrawl",
         "url": "https://github.com/firecrawl/firecrawl",
-        "description": "The web data API to search, scrape, and interact at scale. 🔥",
+        "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥",
         "currentStars": 182590,
         "prevStars": 180126,
         "delta": 2464,
@@ -613,7 +613,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 8,
@@ -625,11 +625,11 @@
         "prevStars": 1331,
         "delta": 2450,
         "category": "AI 框架",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
+        "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 9,
@@ -645,7 +645,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 10,
@@ -661,7 +661,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       }
     ],
     "top20": [
@@ -679,7 +679,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 2,
@@ -695,7 +695,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 3,
@@ -711,7 +711,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 4,
@@ -727,7 +727,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 5,
@@ -743,7 +743,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 6,
@@ -759,14 +759,14 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 7,
         "name": "firecrawl",
         "fullName": "firecrawl/firecrawl",
         "url": "https://github.com/firecrawl/firecrawl",
-        "description": "The web data API to search, scrape, and interact at scale. 🔥",
+        "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥",
         "currentStars": 182590,
         "prevStars": 180126,
         "delta": 2464,
@@ -775,7 +775,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 8,
@@ -787,11 +787,11 @@
         "prevStars": 1331,
         "delta": 2450,
         "category": "AI 框架",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
+        "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 9,
@@ -807,7 +807,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 10,
@@ -823,7 +823,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 11,
@@ -839,7 +839,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 12,
@@ -855,7 +855,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 13,
@@ -871,7 +871,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 14,
@@ -883,11 +883,11 @@
         "prevStars": 1501,
         "delta": 1944,
         "category": "開發工具",
-        "isNewlyAdded": true,
+        "isNewlyAdded": false,
         "inRegistry": true,
-        "statusText": "🆕 本週納入",
+        "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 15,
@@ -903,7 +903,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 16,
@@ -919,7 +919,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 17,
@@ -935,7 +935,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 18,
@@ -951,7 +951,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 19,
@@ -967,7 +967,7 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       },
       {
         "rank": 20,
@@ -983,498 +983,498 @@
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-20",
-        "endStarsAt": "2026-09-25"
+        "endStarsAt": "2026-09-27"
       }
     ]
   },
   "currentWeekToDate": {
     "weekStr": "2026-W40",
-    "dateRange": "2026-09-28 ~ 2026-09-28",
+    "dateRange": "2026-09-28 ~ 2026-10-03",
     "isComplete": false,
     "note": "本週統計進行中，不列入工具箱納入判斷",
-    "asOfDate": "2026-09-28",
+    "asOfDate": "2026-10-03",
     "top10": [
       {
         "rank": 1,
+        "name": "HowToLiveBetter",
+        "fullName": "eternity4719/HowToLiveBetter",
+        "url": "https://github.com/eternity4719/HowToLiveBetter",
+        "description": "高性价比人生指南: 长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+        "currentStars": 36019,
+        "prevStars": 22738,
+        "delta": 13281,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 2,
+        "name": "Strata",
+        "fullName": "Niko1221/Strata",
+        "url": "https://github.com/Niko1221/Strata",
+        "description": "Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on localhost, optional image input.",
+        "currentStars": 7000,
+        "prevStars": 0,
+        "delta": 7000,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 3,
+        "name": "AIHOT",
+        "fullName": "KKKKhazix/AIHOT",
+        "url": "https://github.com/KKKKhazix/AIHOT",
+        "description": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+        "currentStars": 5023,
+        "prevStars": 0,
+        "delta": 5023,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 4,
+        "name": "ponytail",
+        "fullName": "DietrichGebert/ponytail",
+        "url": "https://github.com/DietrichGebert/ponytail",
+        "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+        "currentStars": 152101,
+        "prevStars": 147106,
+        "delta": 4995,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 5,
+        "name": "deepseek-harness",
+        "fullName": "deepseek-ai/deepseek-harness",
+        "url": "https://github.com/deepseek-ai/deepseek-harness",
+        "description": "DeepSeek Harness: Everything is a Plugin.",
+        "currentStars": 242542,
+        "prevStars": 238185,
+        "delta": 4357,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 6,
+        "name": "skills",
+        "fullName": "mattpocock/skills",
+        "url": "https://github.com/mattpocock/skills",
+        "description": "Skills for Real Engineers. Straight from my .agents directory.",
+        "currentStars": 274875,
+        "prevStars": 270918,
+        "delta": 3957,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 7,
+        "name": "how-to-live-better",
+        "fullName": "cdyforever/how-to-live-better",
+        "url": "https://github.com/cdyforever/how-to-live-better",
+        "description": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+        "currentStars": 6496,
+        "prevStars": 3046,
+        "delta": 3450,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 8,
         "name": "laya",
         "fullName": "NandhaKishorM/laya",
         "url": "https://github.com/NandhaKishorM/laya",
         "description": "Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a single forward pass, in 100+ languages, with a router that picks the right checkpoint per request.",
-        "currentStars": 27091,
+        "currentStars": 30281,
         "prevStars": 27091,
-        "delta": 0,
+        "delta": 3190,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 2,
-        "name": "HowToLiveBetter",
-        "fullName": "eternity4719/HowToLiveBetter",
-        "url": "https://github.com/eternity4719/HowToLiveBetter",
-        "description": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
-        "currentStars": 22738,
-        "prevStars": 22738,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 3,
-        "name": "jev-ultrafast",
-        "fullName": "browser-use/jev-ultrafast",
-        "url": "https://github.com/browser-use/jev-ultrafast",
-        "description": "Fastest and cheapest web agent",
-        "currentStars": 20954,
-        "prevStars": 20954,
-        "delta": 0,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 4,
-        "name": "m3e-canvas",
-        "fullName": "lnkiai/m3e-canvas",
-        "url": "https://github.com/lnkiai/m3e-canvas",
-        "description": "Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts.",
-        "currentStars": 8380,
-        "prevStars": 8380,
-        "delta": 0,
-        "category": "UI/UX設計",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 5,
-        "name": "kev",
-        "fullName": "jaredpalmer/kev",
-        "url": "https://github.com/jaredpalmer/kev",
-        "description": "Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and run on your own",
-        "currentStars": 7513,
-        "prevStars": 7513,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 6,
-        "name": "fast-jev-compaction",
-        "fullName": "tamaratran/fast-jev-compaction",
-        "url": "https://github.com/tamaratran/fast-jev-compaction",
-        "description": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbatim.",
-        "currentStars": 7049,
-        "prevStars": 7049,
-        "delta": 0,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 7,
-        "name": "ZCode",
-        "fullName": "zai-org/ZCode",
-        "url": "https://github.com/zai-org/ZCode",
-        "description": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
-        "currentStars": 6961,
-        "prevStars": 6961,
-        "delta": 0,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 8,
-        "name": "jev-chat-jarvis",
-        "fullName": "jev-chat/jev-chat-jarvis",
-        "url": "https://github.com/jev-chat/jev-chat-jarvis",
-        "description": "装在手机上的对话副驾：在 QQ / X / 飞书里读懂对方、给出候选回复、一键填入输入框，发不发由你。非侵入，只读屏幕，不 hook 不改包。",
-        "currentStars": 6825,
-        "prevStars": 6825,
-        "delta": 0,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
+        "endStarsAt": "2026-10-03"
       },
       {
         "rank": 9,
-        "name": "reef",
-        "fullName": "Human-Agent-Society/reef",
-        "url": "https://github.com/Human-Agent-Society/reef",
-        "description": "Infrastructure for continually self‑improving agents",
-        "currentStars": 6755,
-        "prevStars": 6755,
-        "delta": 0,
+        "name": "coucou",
+        "fullName": "Louis-CFM/coucou",
+        "url": "https://github.com/Louis-CFM/coucou",
+        "description": "A tiny friend that lives in your notch (macOS) or at the top of your screen (Windows, Linux) and keeps an eye on your coding agents: Claude Code, Codex, Cursor, Gemini CLI, Antigravity and more.",
+        "currentStars": 3056,
+        "prevStars": 0,
+        "delta": 3056,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 10,
+        "name": "ECC",
+        "fullName": "affaan-m/ECC",
+        "url": "https://github.com/affaan-m/ECC",
+        "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+        "currentStars": 271565,
+        "prevStars": 268582,
+        "delta": 2983,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 10,
-        "name": "laya-mlx",
-        "fullName": "mizorewww/laya-mlx",
-        "url": "https://github.com/mizorewww/laya-mlx",
-        "description": "Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyTorch, or cloud API.",
-        "currentStars": 6520,
-        "prevStars": 6520,
-        "delta": 0,
-        "category": "基礎設施",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
+        "endStarsAt": "2026-10-03"
       }
     ],
     "top20": [
       {
         "rank": 1,
+        "name": "HowToLiveBetter",
+        "fullName": "eternity4719/HowToLiveBetter",
+        "url": "https://github.com/eternity4719/HowToLiveBetter",
+        "description": "高性价比人生指南: 长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+        "currentStars": 36019,
+        "prevStars": 22738,
+        "delta": 13281,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 2,
+        "name": "Strata",
+        "fullName": "Niko1221/Strata",
+        "url": "https://github.com/Niko1221/Strata",
+        "description": "Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on localhost, optional image input.",
+        "currentStars": 7000,
+        "prevStars": 0,
+        "delta": 7000,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 3,
+        "name": "AIHOT",
+        "fullName": "KKKKhazix/AIHOT",
+        "url": "https://github.com/KKKKhazix/AIHOT",
+        "description": "一个自己找热点、自己写日报的网站框架。把信源和精选标准换成你的，它就是你的行业热点站。",
+        "currentStars": 5023,
+        "prevStars": 0,
+        "delta": 5023,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 4,
+        "name": "ponytail",
+        "fullName": "DietrichGebert/ponytail",
+        "url": "https://github.com/DietrichGebert/ponytail",
+        "description": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
+        "currentStars": 152101,
+        "prevStars": 147106,
+        "delta": 4995,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 5,
+        "name": "deepseek-harness",
+        "fullName": "deepseek-ai/deepseek-harness",
+        "url": "https://github.com/deepseek-ai/deepseek-harness",
+        "description": "DeepSeek Harness: Everything is a Plugin.",
+        "currentStars": 242542,
+        "prevStars": 238185,
+        "delta": 4357,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 6,
+        "name": "skills",
+        "fullName": "mattpocock/skills",
+        "url": "https://github.com/mattpocock/skills",
+        "description": "Skills for Real Engineers. Straight from my .agents directory.",
+        "currentStars": 274875,
+        "prevStars": 270918,
+        "delta": 3957,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 7,
+        "name": "how-to-live-better",
+        "fullName": "cdyforever/how-to-live-better",
+        "url": "https://github.com/cdyforever/how-to-live-better",
+        "description": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+        "currentStars": 6496,
+        "prevStars": 3046,
+        "delta": 3450,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 8,
         "name": "laya",
         "fullName": "NandhaKishorM/laya",
         "url": "https://github.com/NandhaKishorM/laya",
         "description": "Non-autoregressive System 1 decision engine. Typed choice, score and yes/no decisions over any text in a single forward pass, in 100+ languages, with a router that picks the right checkpoint per request.",
-        "currentStars": 27091,
+        "currentStars": 30281,
         "prevStars": 27091,
-        "delta": 0,
+        "delta": 3190,
         "category": "開發工具",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 2,
-        "name": "HowToLiveBetter",
-        "fullName": "eternity4719/HowToLiveBetter",
-        "url": "https://github.com/eternity4719/HowToLiveBetter",
-        "description": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
-        "currentStars": 22738,
-        "prevStars": 22738,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 3,
-        "name": "jev-ultrafast",
-        "fullName": "browser-use/jev-ultrafast",
-        "url": "https://github.com/browser-use/jev-ultrafast",
-        "description": "Fastest and cheapest web agent",
-        "currentStars": 20954,
-        "prevStars": 20954,
-        "delta": 0,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 4,
-        "name": "m3e-canvas",
-        "fullName": "lnkiai/m3e-canvas",
-        "url": "https://github.com/lnkiai/m3e-canvas",
-        "description": "Sketch Material 3 Expressive screens in the browser and turn them into vibe-coding prompts.",
-        "currentStars": 8380,
-        "prevStars": 8380,
-        "delta": 0,
-        "category": "UI/UX設計",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 5,
-        "name": "kev",
-        "fullName": "jaredpalmer/kev",
-        "url": "https://github.com/jaredpalmer/kev",
-        "description": "Jev-like family of decision models built on top of Qwen3.5/3.8 you can train and run on your own",
-        "currentStars": 7513,
-        "prevStars": 7513,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 6,
-        "name": "fast-jev-compaction",
-        "fullName": "tamaratran/fast-jev-compaction",
-        "url": "https://github.com/tamaratran/fast-jev-compaction",
-        "description": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbatim.",
-        "currentStars": 7049,
-        "prevStars": 7049,
-        "delta": 0,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 7,
-        "name": "ZCode",
-        "fullName": "zai-org/ZCode",
-        "url": "https://github.com/zai-org/ZCode",
-        "description": "Z.ai's coding agent harness. Powerful, intelligent, extensible.",
-        "currentStars": 6961,
-        "prevStars": 6961,
-        "delta": 0,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 8,
-        "name": "jev-chat-jarvis",
-        "fullName": "jev-chat/jev-chat-jarvis",
-        "url": "https://github.com/jev-chat/jev-chat-jarvis",
-        "description": "装在手机上的对话副驾：在 QQ / X / 飞书里读懂对方、给出候选回复、一键填入输入框，发不发由你。非侵入，只读屏幕，不 hook 不改包。",
-        "currentStars": 6825,
-        "prevStars": 6825,
-        "delta": 0,
-        "category": "AI 框架",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
+        "endStarsAt": "2026-10-03"
       },
       {
         "rank": 9,
-        "name": "reef",
-        "fullName": "Human-Agent-Society/reef",
-        "url": "https://github.com/Human-Agent-Society/reef",
-        "description": "Infrastructure for continually self‑improving agents",
-        "currentStars": 6755,
-        "prevStars": 6755,
-        "delta": 0,
+        "name": "coucou",
+        "fullName": "Louis-CFM/coucou",
+        "url": "https://github.com/Louis-CFM/coucou",
+        "description": "A tiny friend that lives in your notch (macOS) or at the top of your screen (Windows, Linux) and keeps an eye on your coding agents: Claude Code, Codex, Cursor, Gemini CLI, Antigravity and more.",
+        "currentStars": 3056,
+        "prevStars": 0,
+        "delta": 3056,
         "category": "AI 框架",
         "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
         "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
+        "endStarsAt": "2026-10-03"
       },
       {
         "rank": 10,
-        "name": "laya-mlx",
-        "fullName": "mizorewww/laya-mlx",
-        "url": "https://github.com/mizorewww/laya-mlx",
-        "description": "Native MLX runtime for Laya typed decision models — 7–14 ms short decisions on M3 Max. No text generation, PyTorch, or cloud API.",
-        "currentStars": 6520,
-        "prevStars": 6520,
-        "delta": 0,
-        "category": "基礎設施",
+        "name": "ECC",
+        "fullName": "affaan-m/ECC",
+        "url": "https://github.com/affaan-m/ECC",
+        "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
+        "currentStars": 271565,
+        "prevStars": 268582,
+        "delta": 2983,
+        "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": true,
         "statusText": "✅ 已在工具箱",
         "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
+        "endStarsAt": "2026-10-03"
       },
       {
         "rank": 11,
-        "name": "Compositor",
-        "fullName": "robbietilton/Compositor",
-        "url": "https://github.com/robbietilton/Compositor",
-        "description": "The Photoshop alternative for Mac",
-        "currentStars": 5910,
-        "prevStars": 5910,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 12,
-        "name": "niubigeo",
-        "fullName": "Albert-Weasker/niubigeo",
-        "url": "https://github.com/Albert-Weasker/niubigeo",
-        "description": "Open-source AI brand visibility and competitor reports. Official website: https://niubigeo.ai/ | Paid services: AI testing by real people and GEO optimization. Pricing: https://niubigeo.ai/pricing",
-        "currentStars": 4856,
-        "prevStars": 4856,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 13,
-        "name": "AirCard",
-        "fullName": "Mak5er/AirCard",
-        "url": "https://github.com/Mak5er/AirCard",
-        "description": "Apple Wallet Card Skinner for iOS 18+ (No Jailbreak Required)",
-        "currentStars": 4619,
-        "prevStars": 4619,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 14,
-        "name": "SemIf-OpenJev",
-        "fullName": "TheoLeeCJ/SemIf-OpenJev",
-        "url": "https://github.com/TheoLeeCJ/SemIf-OpenJev",
-        "description": "Semantic ifs from open models, on a 3090 at home. Independent; not affiliated with Jev or TypeSafe.",
-        "currentStars": 4477,
-        "prevStars": 4477,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 15,
-        "name": "dlssg_for_sm86",
-        "fullName": "sdli1995/dlssg_for_sm86",
-        "url": "https://github.com/sdli1995/dlssg_for_sm86",
-        "description": "Here is a dlssg for RTX30 Series GPU ",
-        "currentStars": 4047,
-        "prevStars": 4047,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 16,
-        "name": "human-atlas",
-        "fullName": "ashemag/human-atlas",
-        "url": "https://github.com/ashemag/human-atlas",
-        "description": "Open-source 3D anatomy explorer: 2,234 selectable BodyParts3D meshes, system layers, search, and exploded views.",
-        "currentStars": 3942,
-        "prevStars": 3942,
-        "delta": 0,
-        "category": "3D工程繪圖",
-        "isNewlyAdded": false,
-        "inRegistry": true,
-        "statusText": "✅ 已在工具箱",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 17,
-        "name": "handraw-style",
-        "fullName": "yang0/handraw-style",
-        "url": "https://github.com/yang0/handraw-style",
-        "description": "手绘风格编号画廊与双语提示词 Skill",
-        "currentStars": 3496,
-        "prevStars": 3496,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 18,
-        "name": "SoL-Pi",
-        "fullName": "NVlabs/SoL-Pi",
-        "url": "https://github.com/NVlabs/SoL-Pi",
-        "description": "SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses",
-        "currentStars": 3155,
-        "prevStars": 3155,
-        "delta": 0,
-        "category": "AI 代理",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 19,
-        "name": "printfilm",
-        "fullName": "yi1108/printfilm",
-        "url": "https://github.com/yi1108/printfilm",
-        "description": "PRINTFILM：AI 视频获客与 AI短剧创作平台",
-        "currentStars": 3094,
-        "prevStars": 3094,
-        "delta": 0,
-        "category": "開發工具",
-        "isNewlyAdded": false,
-        "inRegistry": false,
-        "statusText": "⏭ 首次記錄",
-        "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
-      },
-      {
-        "rank": 20,
-        "name": "commerce-agents",
-        "fullName": "anthropics/commerce-agents",
-        "url": "https://github.com/anthropics/commerce-agents",
-        "description": "Reference blueprint for building shopping and merchant agents with Claude. Examples in retail, commerce, telecom, and entertainment included.",
-        "currentStars": 3074,
-        "prevStars": 3074,
-        "delta": 0,
+        "name": "magpie",
+        "fullName": "yetone/magpie",
+        "url": "https://github.com/yetone/magpie",
+        "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+        "currentStars": 4322,
+        "prevStars": 1408,
+        "delta": 2914,
         "category": "AI 框架",
         "isNewlyAdded": false,
         "inRegistry": false,
         "statusText": "⏭ 首次記錄",
         "startStarsAt": "2026-09-28",
-        "endStarsAt": "2026-09-28"
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 12,
+        "name": "DiPlay",
+        "fullName": "shihabal3amri/DiPlay",
+        "url": "https://github.com/shihabal3amri/DiPlay",
+        "description": "Independent CarPlay receiver for compatible Android head units. Wired and wireless public preview.",
+        "currentStars": 2654,
+        "prevStars": 0,
+        "delta": 2654,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 13,
+        "name": "dots",
+        "fullName": "feder-cr/dots",
+        "url": "https://github.com/feder-cr/dots",
+        "description": "Open-source dots for the web: an AI agent with its own browser, one that does not get blocked.",
+        "currentStars": 2562,
+        "prevStars": 0,
+        "delta": 2562,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 14,
+        "name": "firecrawl",
+        "fullName": "firecrawl/firecrawl",
+        "url": "https://github.com/firecrawl/firecrawl",
+        "description": "Supercharge your AI agents with data from the web and beyond. Building the library for superintelligence. 🔥",
+        "currentStars": 188047,
+        "prevStars": 185677,
+        "delta": 2370,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 15,
+        "name": "superpowers",
+        "fullName": "obra/superpowers",
+        "url": "https://github.com/obra/superpowers",
+        "description": "An agentic skills framework & software development methodology that works.",
+        "currentStars": 294579,
+        "prevStars": 292287,
+        "delta": 2292,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 16,
+        "name": "universal-modder",
+        "fullName": "rehan-remade/universal-modder",
+        "url": "https://github.com/rehan-remade/universal-modder",
+        "description": "Point Claude at any game. Skills, tools and the fal MCP that let Claude Code mod almost any PC game you own: recon, reverse engineering, fal-generated art/3D/audio, in-game testing, showcase videos.",
+        "currentStars": 2264,
+        "prevStars": 0,
+        "delta": 2264,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 17,
+        "name": "awesome",
+        "fullName": "sindresorhus/awesome",
+        "url": "https://github.com/sindresorhus/awesome",
+        "description": "😎 Awesome lists about all kinds of interesting topics [NOTE: Pull requests are temporarily disabled until I have a chance to catch up with the existing ones]",
+        "currentStars": 513839,
+        "prevStars": 511657,
+        "delta": 2182,
+        "category": "研究",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 18,
+        "name": "Fieldwatch",
+        "fullName": "OffGridPete/Fieldwatch",
+        "url": "https://github.com/OffGridPete/Fieldwatch",
+        "description": "Receive-only Wi-Fi and Bluetooth LE observer for Android. MIT.",
+        "currentStars": 2013,
+        "prevStars": 0,
+        "delta": 2013,
+        "category": "開發工具",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 19,
+        "name": "ISpotify",
+        "fullName": "RubinLabs26/ISpotify",
+        "url": "https://github.com/RubinLabs26/ISpotify",
+        "description": "Local-first desktop music search, playlist, download, and playback app for Windows and Linux",
+        "currentStars": 1902,
+        "prevStars": 0,
+        "delta": 1902,
+        "category": "音訊",
+        "isNewlyAdded": false,
+        "inRegistry": false,
+        "statusText": "⏭ 首次記錄",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
+      },
+      {
+        "rank": 20,
+        "name": "cc-switch",
+        "fullName": "farion1231/cc-switch",
+        "url": "https://github.com/farion1231/cc-switch",
+        "description": "A cross-platform desktop All-in-One assistant for Claude Code, Codex, OpenCode, OpenClaw, Grok Build & Hermes Agent. Only official website: ccswitch.io",
+        "currentStars": 139637,
+        "prevStars": 137891,
+        "delta": 1746,
+        "category": "AI 框架",
+        "isNewlyAdded": false,
+        "inRegistry": true,
+        "statusText": "✅ 已在工具箱",
+        "startStarsAt": "2026-09-28",
+        "endStarsAt": "2026-10-03"
       }
     ]
   }

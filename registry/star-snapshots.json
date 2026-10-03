@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-28T08:16:28.494Z",
+  "lastUpdated": "2026-10-03T07:26:31.998Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -8737,8 +8737,8 @@
     },
     {
       "week": "2026-W40",
-      "dateRange": "2026-09-28 ~ 2026-09-28",
-      "timestamp": "2026-09-28T08:16:28.494Z",
+      "dateRange": "2026-09-28 ~ 2026-10-03",
+      "timestamp": "2026-10-03T07:26:31.998Z",
       "isWeekStart": true,
       "repos": {
         "NandhaKishorM/laya": 27091,
@@ -8943,8 +8943,5 @@
         "mrdoob/three.js": 116007
       }
     }
-  ],
-  "tmstack/awesome-persona-skills": 4053,
-  "LottieFiles/motion-design-skill": 1821,
-  "nolangz/pixel2motion": 2358
+  ]
 }

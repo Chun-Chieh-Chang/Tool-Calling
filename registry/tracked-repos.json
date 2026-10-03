@@ -24078,12 +24078,12 @@
     "fullName": "wide-trace/open-higgsfield",
     "owner": "wide-trace",
     "repo": "open-higgsfield",
-    "initialStars": 1104,
-    "discoveredAt": "2026-09-03T11:55:00.944Z",
-    "sourceSnapshotWeek": "2026-W36",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-09-28T08:16:28.494Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 1104,
+    "sourceSnapshotWeek": "2026-W36",
+    "discoveredAt": "2026-09-03T11:55:00.944Z"
   },
   "bryllim/workout-guide": {
     "fullName": "bryllim/workout-guide",
@@ -24895,12 +24895,12 @@
     "fullName": "Human-Agent-Society/reef",
     "owner": "Human-Agent-Society",
     "repo": "reef",
-    "initialStars": 1331,
-    "discoveredAt": "2026-09-20T23:49:57.326Z",
-    "sourceSnapshotWeek": "2026-W38",
-    "category": null,
+    "category": "AI 框架",
     "addedAt": "2026-09-28T08:16:28.494Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 1331,
+    "sourceSnapshotWeek": "2026-W38",
+    "discoveredAt": "2026-09-20T23:49:57.326Z"
   },
   "sonicloudco/recorder": {
     "fullName": "sonicloudco/recorder",
@@ -25878,11 +25878,442 @@
     "addedAt": "2026-09-27T03:58:06.266Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2541,
-    "inRegistry": 694,
-    "trackedOnly": 1847,
-    "lastGenerated": "2026-09-28T08:16:28.543Z"
+  "tmstack/awesome-persona-skills": {
+    "fullName": "tmstack/awesome-persona-skills",
+    "owner": "tmstack",
+    "repo": "awesome-persona-skills",
+    "category": "學習資源",
+    "addedAt": "2026-09-29T23:32:19.745Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-09-28T08:16:28.494Z"
+  "LottieFiles/motion-design-skill": {
+    "fullName": "LottieFiles/motion-design-skill",
+    "owner": "LottieFiles",
+    "repo": "motion-design-skill",
+    "category": "UI/UX設計",
+    "addedAt": "2026-09-29T23:32:20.616Z",
+    "status": "tracking"
+  },
+  "nolangz/pixel2motion": {
+    "fullName": "nolangz/pixel2motion",
+    "owner": "nolangz",
+    "repo": "pixel2motion",
+    "category": "UI/UX設計",
+    "addedAt": "2026-09-29T23:32:21.402Z",
+    "status": "tracking"
+  },
+  "cdyforever/how-to-live-better": {
+    "fullName": "cdyforever/how-to-live-better",
+    "owner": "cdyforever",
+    "repo": "how-to-live-better",
+    "initialStars": 3046,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "newliver666/apk-reverse": {
+    "fullName": "newliver666/apk-reverse",
+    "owner": "newliver666",
+    "repo": "apk-reverse",
+    "initialStars": 2870,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "CopilotKit/openmuse": {
+    "fullName": "CopilotKit/openmuse",
+    "owner": "CopilotKit",
+    "repo": "openmuse",
+    "initialStars": 2718,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "driceroland/Search": {
+    "fullName": "driceroland/Search",
+    "owner": "driceroland",
+    "repo": "Search",
+    "initialStars": 2210,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Contrastive-LM/CLM": {
+    "fullName": "Contrastive-LM/CLM",
+    "owner": "Contrastive-LM",
+    "repo": "CLM",
+    "initialStars": 2055,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "unreallabsai/unreal-agent": {
+    "fullName": "unreallabsai/unreal-agent",
+    "owner": "unreallabsai",
+    "repo": "unreal-agent",
+    "initialStars": 2002,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yibie/awesome-jev": {
+    "fullName": "yibie/awesome-jev",
+    "owner": "yibie",
+    "repo": "awesome-jev",
+    "initialStars": 1873,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "tobi/disktree": {
+    "fullName": "tobi/disktree",
+    "owner": "tobi",
+    "repo": "disktree",
+    "initialStars": 1710,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "QwenLM/Qwen-Image-2.1": {
+    "fullName": "QwenLM/Qwen-Image-2.1",
+    "owner": "QwenLM",
+    "repo": "Qwen-Image-2.1",
+    "initialStars": 1584,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "hydra-db/open-glean": {
+    "fullName": "hydra-db/open-glean",
+    "owner": "hydra-db",
+    "repo": "open-glean",
+    "initialStars": 1532,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mizorewww/laya-coreml": {
+    "fullName": "mizorewww/laya-coreml",
+    "owner": "mizorewww",
+    "repo": "laya-coreml",
+    "initialStars": 1512,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pallavi-shekhar/ai-engineering-interview-questions-company-wise": {
+    "fullName": "pallavi-shekhar/ai-engineering-interview-questions-company-wise",
+    "owner": "pallavi-shekhar",
+    "repo": "ai-engineering-interview-questions-company-wise",
+    "initialStars": 1511,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mexicat/pdoom-video": {
+    "fullName": "mexicat/pdoom-video",
+    "owner": "mexicat",
+    "repo": "pdoom-video",
+    "initialStars": 1443,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yetone/magpie": {
+    "fullName": "yetone/magpie",
+    "owner": "yetone",
+    "repo": "magpie",
+    "initialStars": 1408,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "JohnHeibel/PDoomVideo": {
+    "fullName": "JohnHeibel/PDoomVideo",
+    "owner": "JohnHeibel",
+    "repo": "PDoomVideo",
+    "initialStars": 1316,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Mak5er/AirCard-iOS": {
+    "fullName": "Mak5er/AirCard-iOS",
+    "owner": "Mak5er",
+    "repo": "AirCard-iOS",
+    "initialStars": 1264,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "linguo2625469/workbuddy2api-panel": {
+    "fullName": "linguo2625469/workbuddy2api-panel",
+    "owner": "linguo2625469",
+    "repo": "workbuddy2api-panel",
+    "initialStars": 1224,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "TokenRhythm/NeoHorse": {
+    "fullName": "TokenRhythm/NeoHorse",
+    "owner": "TokenRhythm",
+    "repo": "NeoHorse",
+    "initialStars": 1173,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "anmolkapil/plexo": {
+    "fullName": "anmolkapil/plexo",
+    "owner": "anmolkapil",
+    "repo": "plexo",
+    "initialStars": 1152,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Observal/Axl": {
+    "fullName": "Observal/Axl",
+    "owner": "Observal",
+    "repo": "Axl",
+    "initialStars": 1152,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "To3akaRin/mac-computer-use": {
+    "fullName": "To3akaRin/mac-computer-use",
+    "owner": "To3akaRin",
+    "repo": "mac-computer-use",
+    "initialStars": 1127,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "theoephraim/awesome-cloudflare-selfhosted": {
+    "fullName": "theoephraim/awesome-cloudflare-selfhosted",
+    "owner": "theoephraim",
+    "repo": "awesome-cloudflare-selfhosted",
+    "initialStars": 1113,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "NxcoreAI/NxMem": {
+    "fullName": "NxcoreAI/NxMem",
+    "owner": "NxcoreAI",
+    "repo": "NxMem",
+    "initialStars": 1084,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "deepopen-com/deepopen": {
+    "fullName": "deepopen-com/deepopen",
+    "owner": "deepopen-com",
+    "repo": "deepopen",
+    "initialStars": 1044,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "awlevin/typesafe-computer-use": {
+    "fullName": "awlevin/typesafe-computer-use",
+    "owner": "awlevin",
+    "repo": "typesafe-computer-use",
+    "initialStars": 1042,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mikehasa/golive-skill": {
+    "fullName": "mikehasa/golive-skill",
+    "owner": "mikehasa",
+    "repo": "golive-skill",
+    "initialStars": 1024,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "youngyangyang04/llm-master": {
+    "fullName": "youngyangyang04/llm-master",
+    "owner": "youngyangyang04",
+    "repo": "llm-master",
+    "initialStars": 999,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kryvora-network/kryvora-node": {
+    "fullName": "kryvora-network/kryvora-node",
+    "owner": "kryvora-network",
+    "repo": "kryvora-node",
+    "initialStars": 998,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "seanhowarthdev/Roam-Control": {
+    "fullName": "seanhowarthdev/Roam-Control",
+    "owner": "seanhowarthdev",
+    "repo": "Roam-Control",
+    "initialStars": 981,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Lumid-Off/AirCard-Windows": {
+    "fullName": "Lumid-Off/AirCard-Windows",
+    "owner": "Lumid-Off",
+    "repo": "AirCard-Windows",
+    "initialStars": 970,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shilapi/xcertplay": {
+    "fullName": "shilapi/xcertplay",
+    "owner": "shilapi",
+    "repo": "xcertplay",
+    "initialStars": 968,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "faisalkindi/DLSS5oneclick": {
+    "fullName": "faisalkindi/DLSS5oneclick",
+    "owner": "faisalkindi",
+    "repo": "DLSS5oneclick",
+    "initialStars": 961,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zhihui-hu/one-ip": {
+    "fullName": "zhihui-hu/one-ip",
+    "owner": "zhihui-hu",
+    "repo": "one-ip",
+    "initialStars": 954,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dzhng/jevgrep": {
+    "fullName": "dzhng/jevgrep",
+    "owner": "dzhng",
+    "repo": "jevgrep",
+    "initialStars": 951,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ArasTey/lunel": {
+    "fullName": "ArasTey/lunel",
+    "owner": "ArasTey",
+    "repo": "lunel",
+    "initialStars": 930,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "incoai/splash": {
+    "fullName": "incoai/splash",
+    "owner": "incoai",
+    "repo": "splash",
+    "initialStars": 926,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "PAICNI/CFNext": {
+    "fullName": "PAICNI/CFNext",
+    "owner": "PAICNI",
+    "repo": "CFNext",
+    "initialStars": 919,
+    "discoveredAt": "2026-09-28T08:16:28.494Z",
+    "sourceSnapshotWeek": "2026-W40",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2581,
+    "inRegistry": 699,
+    "trackedOnly": 1882,
+    "lastGenerated": "2026-10-03T07:26:32.041Z"
+  },
+  "lastGenerated": "2026-10-03T07:26:31.998Z"
 }
