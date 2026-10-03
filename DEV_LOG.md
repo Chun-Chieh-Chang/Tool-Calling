@@ -1,5 +1,40 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-03（第五批）tracked-repos.json schema 統一——混種異類移除，防復發門禁上線
+
+### 需求
+2026-10-02 診斷指認的 schema 混種：`tracked-repos.json` 頂層 2,581 個 repo 鍵之間
+混著一個歷史遺留的平行 `repos` 陣列（add-user-requested-tools 舊版的錯誤設計），
+任何 `Object.keys()` 迭代都會把它當成一個 repo 名。並行 session 已關閉（維護者確認），
+daemon 沉寂 4 小時——安全動 schema 的條件成立。
+
+### 前置：並行 session 的 W39 同步資料入庫
+先以 `26da30e` 對方留下的 4 個週期同步檔入庫（歸屬標明），避免 schema 遷移與其
+資料攪在一起。入庫後發現該同步已含 `_meta`/`lastGenerated`（重建後的中繼欄位），
+真實 repo 數為 **2,581**（先前診斷說的 2,543/2,583 是同步前後不同時點的數字）。
+
+### 修復內容
+1. **資料**：刪除頂層 `repos` 陣列——其 2 筆成員經查全數已存在頂層（純重複），零資料遷移。
+2. **`add-user-requested-tools.js`**（陣列的產地）：重寫為 merge-style 頂層鍵寫入
+   （既有條目溯源不覆寫、新條目依 registry 分類與在庫狀態給 status）。
+3. **`tracked-repos.js`**：`buildTrackedRepos()` 載入舊檔時防禦性 `delete existingTracked.repos`；
+   `getTrackedRepos()` 的兩處 fallback 丟掉 `repos: []` 鍵。
+4. **計數過濾統一**：`trending-weekly.js` 改用「owner/repo 形狀」regex
+   （原 `!k.startsWith('_')` 濾不掉 `lastGenerated`——generate-agents-md 的註解明載
+   曾因此虛報 2435 vs 2433）；generate-agents-md 註解同步更新。
+5. **防復發門禁** `tests/tracked-repos-schema.test.js`：頂層只允許 owner/repo 鍵與
+   `_meta`/`lastGenerated`、每個 repo 條目必為含 fullName 的物件、原始碼必須含
+   防禦性清除（三道斷言）。
+
+### 驗證結果
+- `npm test`：355 tests / 353 pass / 0 fail / 2 skip（schema 防禦 3 條新測試）
+- `node cli.js validate`：0 errors；`npm run agents:init` 重生成，AGENTS.md
+  「追蹤 repos: 2581」（與檔案實況一致）
+
+### 已知殘留
+1. 7 支 facets（3×429、2×誠實空、2×門禁攔截）+ 3 支 zh 重譯——等 API 額度。
+2. 真人查詢累積後：原型重校準 + Batch 4 評測集重建（telemetry 仍 0）。
+
 ## 2026-10-03（第四批）人工驗證配方庫上線——專家藍圖的「教整合協作」落地
 
 ### 需求

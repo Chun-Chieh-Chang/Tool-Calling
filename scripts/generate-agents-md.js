@@ -59,9 +59,9 @@ function generateAgentsMd(registry, trackedRepos) {
   const avgStars = Math.round(totalStars / totalTools);
   
   // 追蹤池資訊
-  // 注意：不可只過濾 `_` 前綴 —— tracked-repos.json 另含 `repos`（歷史遺留的陣列）
-  // 與 `lastGenerated`（字串）兩個中繼欄位，只濾 `_` 會把它們算成 repo（曾因此報 2435，實際 2433）。
-  // 只計「owner/repo」形狀的鍵。
+  // 2026-10-03 schema 統一後 `repos` 歷史陣列已移除（並在 tracked-repos.js 重建時
+  // 防禦性清除）；`_meta` / `lastGenerated` 中繼欄位仍在——只計「owner/repo」形狀的鍵
+  //（歷史上曾因只濾 `_` 前綴虛報 2435 vs 實際 2433）。
   const trackedCount = trackedRepos ?
     Object.keys(trackedRepos).filter(k => /^[\w.-]+\/[\w.-]+$/.test(k)).length : 0;
   

@@ -23770,10 +23770,6 @@
     "addedAt": "2026-08-29T14:15:00.000Z",
     "status": "tracking"
   },
-  "repos": [
-    "humanlayer/skills",
-    "alishahryar1/free-claude-code"
-  ],
   "total-typescript/type-transformations-workshop": {
     "fullName": "total-typescript/type-transformations-workshop",
     "owner": "total-typescript",

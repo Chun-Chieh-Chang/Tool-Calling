@@ -255,7 +255,9 @@ export async function discoverTrendingTools() {
   console.log('📋 Step 1: 初始化追蹤池...');
   buildTrackedRepos();
   const trackedData = getTrackedRepos();
-  const trackedCount = Object.keys(trackedData).filter(k => !k.startsWith('_')).length;
+  // 只計「owner/repo」形狀的鍵——`_meta` / `lastGenerated` 等中繼欄位不得計入
+  //（generate-agents-md.js 有同款過濾；歷史上曾因此虛報 2435 vs 實際 2433）
+  const trackedCount = Object.keys(trackedData).filter(k => /^[\w.-]+\/[\w.-]+$/.test(k)).length;
 
   // Step 2: 載入歷史快照（合併所有週）
   console.log('📊 Step 2: 載入歷史快照...');

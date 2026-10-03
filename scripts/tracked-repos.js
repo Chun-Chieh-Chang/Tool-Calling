@@ -153,6 +153,9 @@ function buildTrackedRepos({ forceRegenerate = false } = {}) {
       // 移除 _meta 和 lastGenerated，只保留 repo 數據
       delete existingTracked._meta;
       delete existingTracked.lastGenerated;
+      // 2026-10-03 schema 統一：清除歷史遺留的平行 repos 陣列
+      //（add-user-requested-tools 舊版寫入；條目皆已在頂層，純重複）
+      delete existingTracked.repos;
     }
   }
 
@@ -197,10 +200,10 @@ function getTrackedRepos({ ensureExists = true } = {}) {
       console.log('[tracked-repos] tracked-repos.json 不存在，自動重建...');
       buildTrackedRepos();
     } else {
-      return { _meta: { total: 0 }, repos: [] };
+      return { _meta: { total: 0 } };
     }
   }
-  return readJSON(TRACKED_PATH) || { _meta: { total: 0 }, repos: [] };
+  return readJSON(TRACKED_PATH) || { _meta: { total: 0 } };
 }
 
 function getTrackedRepoList() {

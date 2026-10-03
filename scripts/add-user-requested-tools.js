@@ -401,26 +401,30 @@ function applyUpdates() {
   saveRegistry(registry);
   console.log(`\nRegistry updated: ${addedCount} added, ${updatedCount} updated. Total: ${registry.tools.length}`);
 
-  // 更新 tracked-repos.json
+  // 更新 tracked-repos.json（2026-10-03 schema 統一：一律寫頂層 owner/repo 鍵，
+  // 不再維護平行 repos 陣列——該陣列是 2,583 個頂層鍵中的混種異類，
+  // 任何 Object.keys() 迭代都會把它當成一個 repo 名）
   const tracked = JSON.parse(readFileSync(TRACKED_PATH, 'utf-8'));
-  const trackedList = Array.isArray(tracked) ? tracked : (tracked.repos || []);
   const newRepos = [
     'humanlayer/skills',
     'alishahryar1/free-claude-code'
   ];
   let trackedAdded = 0;
-  for (const repo of newRepos) {
-    if (!trackedList.includes(repo)) {
-      trackedList.push(repo);
-      trackedAdded++;
-    }
+  for (const fullName of newRepos) {
+    if (tracked[fullName]) continue; // 既有條目的溯源欄位（addedAt/status）不覆寫
+    const [owner, repo] = fullName.split('/');
+    const entry = registry.tools.find((t) => t.url && t.url.toLowerCase() === `https://github.com/${fullName}`.toLowerCase());
+    tracked[fullName] = {
+      fullName,
+      owner,
+      repo,
+      category: entry ? entry.category : 'API 整合',
+      addedAt: new Date().toISOString(),
+      status: entry ? 'tracking' : 'tracked_not_in_registry'
+    };
+    trackedAdded++;
   }
-  if (Array.isArray(tracked)) {
-    writeFileSync(TRACKED_PATH, JSON.stringify(trackedList, null, 2) + '\n', 'utf-8');
-  } else {
-    tracked.repos = trackedList;
-    writeFileSync(TRACKED_PATH, JSON.stringify(tracked, null, 2) + '\n', 'utf-8');
-  }
+  writeFileSync(TRACKED_PATH, JSON.stringify(tracked, null, 2) + '\n', 'utf-8');
   console.log(`Tracked repos updated: +${trackedAdded}`);
 
   // 更新 star-snapshots.json
