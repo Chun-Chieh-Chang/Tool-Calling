@@ -25,6 +25,7 @@
 // 本腳本僅負責「規則違反審計」流程（Tier 1/2/3 分層、--apply、報告產出）。
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { saveRegistry } from '../core/registry.js';
 import {
   fields,
   ruleApplies,
@@ -412,8 +413,8 @@ function main() {
       tool.category = t.proposed;
       applied++;
     }
-    registry.lastUpdated = new Date().toISOString();
-    writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf-8');
+    // 2026-10-02 寫入路徑收斂：lastUpdated 由 saveRegistry() 統一設定
+    saveRegistry(registry);
     console.log(`\n✅ 已套用 ${applied} 筆 Tier 1 分類變更至 registry/tools.json`);
   }
 

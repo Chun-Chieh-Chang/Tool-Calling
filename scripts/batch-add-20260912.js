@@ -22,6 +22,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { getCurrentWorldWeek } from '../core/world-week.js';
+import { saveRegistry } from '../core/registry.js';
 
 const ROOT = join(import.meta.dirname, '..');
 const REGISTRY_PATH = join(ROOT, 'registry', 'tools.json');
@@ -713,8 +714,8 @@ function main() {
     added++;
   }
 
-  registry.lastUpdated = now;
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf-8');
+  // 2026-10-02 寫入路徑收斂：lastUpdated 由 saveRegistry() 統一設定
+  saveRegistry(registry);
   console.log(`\n✅ registry/tools.json: ${before} → ${registry.tools.length} (+${added} 新增, ${upgraded} 升級)`);
 
   // Step 3: tracked-repos.json

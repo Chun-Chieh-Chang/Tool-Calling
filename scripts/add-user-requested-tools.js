@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { saveRegistry } from '../core/registry.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -396,8 +397,8 @@ function applyUpdates() {
     }
   }
 
-  registry.lastUpdated = now.split('T')[0];
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf-8');
+  // 2026-10-02 寫入路徑收斂：lastUpdated 由 saveRegistry() 統一設定
+  saveRegistry(registry);
   console.log(`\nRegistry updated: ${addedCount} added, ${updatedCount} updated. Total: ${registry.tools.length}`);
 
   // 更新 tracked-repos.json

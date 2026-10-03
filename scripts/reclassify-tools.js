@@ -10,9 +10,10 @@
  *    AI 代理 = 成品(agent 本體/harness/skill 與 plugin 集合/平台)
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { saveRegistry } from '../core/registry.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -438,8 +439,8 @@ export async function reclassifyAllTools({ apply = false } = {}) {
   registry.lastUpdated = new Date().toISOString();
 
   if (apply) {
-    // 寫回檔案
-    writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf8');
+    // 寫回檔案（2026-10-02 寫入路徑收斂：一律經 saveRegistry()）
+    saveRegistry(registry);
     console.log(`\n📁 已更新:${REGISTRY_PATH}\n`);
   } else {
     console.log('\n📁 DRY-RUN:未寫入任何檔案(加上 --apply 參數才會寫入)\n');

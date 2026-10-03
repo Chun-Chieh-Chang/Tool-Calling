@@ -13,6 +13,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { dirname, join } from 'node:path';
 import { buildTrackedRepos, getTrackedRepos } from './tracked-repos.js';
 import { getCurrentWorldWeek, getPreviousWorldWeek, getWeekRangeFromWeekStr } from '../core/world-week.js';
+import { saveRegistry } from '../core/registry.js';
 import { syncRegistryToDist } from './dist-sync.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -439,8 +440,8 @@ export async function discoverTrendingTools() {
     }
   }
 
-  registry.lastUpdated = now.toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf8');
+  // 2026-10-02 寫入路徑收斂：lastUpdated 由 saveRegistry() 統一設定
+  saveRegistry(registry);
   console.log(`   ✅ 新增 ${addedCount} 個工具入庫（現有庫存：${registry.tools.length} 個）\n`);
 
   // Step 6: 更新歷史快照（存本週即時數據，作為下次執行的「上週基準線」）

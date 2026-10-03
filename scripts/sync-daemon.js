@@ -12,15 +12,13 @@
  * 輪詢間隔預設 6 小時，可用環境變數 DAEMON_INTERVAL_MS 覆寫。
  */
 
-import { writeFileSync } from 'node:fs';
-import { join, dirname } from 'node:path';
+import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry, saveRegistry } from '../core/registry.js';
 import { loadSnapshot, saveSnapshot, parseOwnerRepo } from '../core/snapshot.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const REGISTRY_PATH = join(__dirname, '..', 'registry', 'tools.json');
 const INTERVAL_MS = parseInt(process.env.DAEMON_INTERVAL_MS || `${6 * 3600000}`, 10);
 
 async function syncOnce() {
@@ -53,8 +51,9 @@ async function syncOnce() {
   }
 
   saveSnapshot(snap);
-  registry.lastUpdated = new Date().toISOString();
-  writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2) + '\n', 'utf-8');
+  // 2026-10-02 寫入路徑收斂：tools.json 一律經 saveRegistry()（尾端換行、
+  // lastUpdated、知識圖譜同步由單一入口負責）
+  saveRegistry(registry);
 
   const now = new Date().toISOString().slice(0, 19).replace('T', ' ');
   console.log(`[${now}] ✅ 同步完成 — ${updated}/${registry.tools.length} 個工具已更新`);
