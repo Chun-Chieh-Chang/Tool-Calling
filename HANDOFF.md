@@ -442,8 +442,10 @@ CLI  ─┘
 
 ### 重要設計決策
 
-- **rerank 預設關閉**：詞彙引擎 119ms vs rerank 5365ms，故做成選項
-  （Web 有「深度搜尋」開關、CLI 有 `--deep`）
+- **rerank 預設「有 key 就啟用」（2026-10-02 三端對齊）**：CLI / Web / MCP 三端同語意
+  （`undefined` = 由 retrieval-fusion 依 key pool 判定，離線自動略過；`false` = 明確停用）。
+  CLI 提供 `--no-rerank` 強制停用；`--deep` 保留為無操作的相容別名。
+  延遲取捨不變：詞彙引擎 119ms vs rerank ~5s，且深度搜尋結果仍不寫快取
 - **rerank 只跑序列**：實測併發 3 會讓 58% 呼叫失敗（限制是 TPM，見陷阱 21）
 - **rerank 可棄權**：prompt 允許回 `NONE`，避免把已正確的 top-1 換掉
 - **no-match 時仍給最佳猜測**：已明示不確定，不損害誠實性
