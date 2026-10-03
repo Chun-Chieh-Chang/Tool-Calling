@@ -44,6 +44,51 @@ const WARNING_RULES = [
   }
 ];
 
+// ── negativeFacets：結構化禁用約束（Batch 2，2026-10-03）────────────────
+// 每筆 `[-+]<facet>:<value>`；`-` 排除（命中扣分）、`+` 要求（命中不扣分）。
+// 極性在資料層消滅散文的雙重否定歧義（c61 教訓）。欄位 optional；
+// 違反格式計 error——資料完整性問題不得靜默進檢索。
+const FACET_WHITELIST = new Set([
+  'platform', 'language', 'license', 'pricing', 'deployment',
+  'ecosystem', 'format', 'scale', 'interface', 'integration',
+]);
+const FACET_ENTRY_RE = /^([-+])([a-z][a-z0-9-]*):([a-z0-9][a-z0-9 .+-]*)$/;
+const FACET_MAX_ENTRIES = 6;
+const FACET_MAX_VALUE_TOKENS = 3;
+
+function validateNegativeFacets(value) {
+  if (value === null || value === undefined) return [];
+  if (!Array.isArray(value)) return ['negativeFacets 必須是字串陣列'];
+  if (value.length > FACET_MAX_ENTRIES) return [`negativeFacets 不得超過 ${FACET_MAX_ENTRIES} 筆`];
+  const errors = [];
+  const seen = new Set();
+  for (const entry of value) {
+    if (typeof entry !== 'string') {
+      errors.push(`negativeFacets 條目必須是字串：${JSON.stringify(entry)}`);
+      continue;
+    }
+    const m = entry.match(FACET_ENTRY_RE);
+    if (!m) {
+      errors.push(`negativeFacets 條目格式不符（需 [-+]facet:value，value ≤${FACET_MAX_VALUE_TOKENS} token）：${entry}`);
+      continue;
+    }
+    if (!FACET_WHITELIST.has(m[2])) {
+      errors.push(`negativeFacets facet 不在白名單：${m[2]}（${entry}）`);
+      continue;
+    }
+    if (m[3].trim().split(/\s+/).length > FACET_MAX_VALUE_TOKENS) {
+      errors.push(`negativeFacets value 超過 ${FACET_MAX_VALUE_TOKENS} 個 token：${entry}`);
+      continue;
+    }
+    if (seen.has(entry)) {
+      errors.push(`negativeFacets 重複條目：${entry}`);
+      continue;
+    }
+    seen.add(entry);
+  }
+  return errors;
+}
+
 function hasValue(value) {
   if (Array.isArray(value)) return value.length > 0;
   if (typeof value === 'string') return value.trim().length > 0;
@@ -88,6 +133,11 @@ export function validateToolContract(tool = {}) {
       warnings.push(issue(rule.field, rule.message));
       score -= rule.penalty;
     }
+  }
+
+  for (const msg of validateNegativeFacets(tool.negativeFacets)) {
+    errors.push(issue('negativeFacets', msg, 'error'));
+    score -= 25;
   }
 
   const qualityScore = Math.max(0, Math.min(100, score));
