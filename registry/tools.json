@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T07:26:31.998Z",
+  "lastUpdated": "2026-10-03T09:33:52.801Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -914,6 +914,12 @@
         "避免用於簡單的事實查詢或單步算術運算。",
         "不適用於即時串流資料處理。",
         "當需要立即進行二元決策且無需上下文時，請勿使用。"
+      ],
+      "negativeFacets": [
+        "-scale:simple",
+        "-scale:single-step",
+        "-scale:real-time",
+        "-interface:binary-decision"
       ]
     },
     {
@@ -2005,7 +2011,11 @@
       "stars": 139896,
       "description_zh": "100 多種免費開源的 AI 代理、代理技能與 RAG 應用範例——從入門到進階的多代理系統、常駐代理、MCP 代理、語音代理與生成式 UI 代理。",
       "advantages_zh": "100+ 個可運行範例，涵蓋 starter 到 advanced multi-agent 完整梯度,同時提供 Agent Skills 與 Generative UI 範例，緊跟 2026 年主流範式,每個子專案皆可獨立 clone 運行，學習與複製成本低",
-      "useCase_zh": "當需要快速取得可運行的 Agent／RAG 範例作為專案起點或教學素材時使用，涵蓋入門到進階多 Agent 架構。"
+      "useCase_zh": "當需要快速取得可運行的 Agent／RAG 範例作為專案起點或教學素材時使用，涵蓋入門到進階多 Agent 架構。",
+      "negativeFacets": [
+        "-deployment:production",
+        "-deployment:compliance-sensitive"
+      ]
     },
     {
       "id": "desktopcommandermcp",
@@ -2823,6 +2833,11 @@
       "negativeConstraints_zh": [
         "非設計為獨立的可執行二進位檔案；需要 LLM runtime",
         "不適合用於不需要多角色協作的單一簡單提示"
+      ],
+      "negativeFacets": [
+        "-interface:standalone binary",
+        "+interface:llm runtime",
+        "-interface:simple prompt"
       ]
     },
     {
@@ -3917,6 +3932,10 @@
         "不要用於不需要歷史脈絡的臨時便箋任務。",
         "避免用於需要內建雲端同步的應用程式。",
         "不適用於儲存敏感憑證或個人資料。"
+      ],
+      "negativeFacets": [
+        "-scale:transient",
+        "-deployment:cloud-sync"
       ]
     },
     {
@@ -4312,6 +4331,9 @@
         "勿用於後端邏輯、API 開發或資料庫結構設計。",
         "避免用於無障礙合規稽核或執行時期效能最佳化。",
         "不適用於生成點陣圖、圖示或靜態媒體素材。"
+      ],
+      "negativeFacets": [
+        "-format:raster images"
       ]
     },
     {
@@ -5787,6 +5809,10 @@
         "不適用於即時串流影片或音訊處理。",
         "避免用於生成二元可執行檔或非文字資產。",
         "不適合就地編輯原始來源檔案。"
+      ],
+      "negativeFacets": [
+        "-interface:streaming",
+        "-format:binary"
       ]
     },
     {
@@ -5987,6 +6013,11 @@
         "不可用於非 AI 代理任務（如資料庫管理或系統操作）。",
         "若需專有、封閉原始碼的技能實作，則不適合。",
         "不應直接使用，因為它是資源庫而非可執行工具，需經開發者整合。"
+      ],
+      "negativeFacets": [
+        "+ecosystem:ai-agent",
+        "+integration:developer-integration",
+        "-ecosystem:proprietary"
       ]
     },
     {
@@ -6534,6 +6565,11 @@
         "不適合用於即時資料處理或動態執行階段決策。",
         "避免用於需要專有或非公開模型微調的任務。",
         "不要依賴它處理安全性關鍵的認證或存取控制邏輯。"
+      ],
+      "negativeFacets": [
+        "-scale:real-time",
+        "-license:proprietary",
+        "-scale:security-critical"
       ]
     },
     {
@@ -6977,6 +7013,11 @@
         "避免用於簡單的「文字處理任務」，且這類任務不需要依賴機器學習。",
         "當建構底層的自訂神經網路架構，且未使用現有模型類別時，不應依賴此套件。",
         "由於依賴函式庫龐大，不適合用於記憶體限制嚴格的即時嵌入式系統。"
+      ],
+      "negativeFacets": [
+        "+platform:model-based",
+        "+deployment:cloud",
+        "+interface:machine-learning"
       ]
     },
     {
@@ -7103,6 +7144,11 @@
         "不適用於無獨立顯卡（NVIDIA/AMD/Apple Silicon）或 VRAM 極小（<4GB）的運算環境",
         "不適合作為高併發、無頭（Headless）微服務 API 部署（建議使用 ComfyUI 或 SD API 專用伺服器）",
         "初次安裝需下載數 GB 的模型與 PyTorch 權重，需要充裕的磁碟空間與網路頻寬"
+      ],
+      "negativeFacets": [
+        "+platform:gpu",
+        "-interface:headless",
+        "-integration:comfyui"
       ]
     },
     {
@@ -7211,6 +7257,10 @@
         "因資源開銷，不適合低延遲邊緣部署。",
         "對於不需要工作流編排的簡單腳本來說並不適合。",
         "可能不符合嚴格的閉源合規需求。"
+      ],
+      "negativeFacets": [
+        "-deployment:edge",
+        "-license:closed-source"
       ]
     },
     {
@@ -7572,6 +7622,11 @@
         "需要開箱即用企業 SSO 和稽核日誌的生產環境",
         "記憶體少於 4GB 且資源受限的邊緣裝置",
         "需要嚴格 HIPAA 或金融合規但不進行重度自定義的專案"
+      ],
+      "negativeFacets": [
+        "-integration:enterprise-sso",
+        "-scale:4gb-ram",
+        "-integration:hipaa-compliance"
       ]
     },
     {
@@ -7986,6 +8041,11 @@
         "不適用於管理倉庫存取權限或認證金鑰",
         "避免作為專用憑證管理系統的替代品",
         "不適合用於執行程式碼品質標準或 linting 規則"
+      ],
+      "negativeFacets": [
+        "-integration:credentials",
+        "-integration:authentication",
+        "-integration:linting"
       ]
     },
     {
@@ -8250,6 +8310,11 @@
         "不適合簡單的靜態網站或非 AI 的 CRUD 應用。",
         "若需要完全托管的 SaaS 且不希望自行架設時請避免使用。",
         "不適合用於底層系統程式設計或嵌入式裝置控制。"
+      ],
+      "negativeFacets": [
+        "-deployment:sahosted",
+        "-integration:static",
+        "-platform:embedded"
       ]
     },
     {
@@ -8696,6 +8761,10 @@
         "不適合尋找即時工作缺額或履歷撰寫服務。",
         "不提供模擬面試回饋或即時評估。",
         "不適合快速學習 React 或 Django 等特定框架語法。"
+      ],
+      "negativeFacets": [
+        "-language:react",
+        "-language:django"
       ]
     },
     {
@@ -8757,6 +8826,11 @@
         "不適合用於學習程式語言或基於圖形介面的開發工具。",
         "無法取代官方 man 頁面以進行深入的參數探索。",
         "不適用於需要可執行腳本的自動化部署流程。"
+      ],
+      "negativeFacets": [
+        "-language:programming",
+        "-integration:man-pages",
+        "-deployment:executable-scripts"
       ]
     },
     {
@@ -8880,6 +8954,11 @@
         "不適合需要逐步環境設定或 IDE 配置的初學者。",
         "不適合作為快速 API 參考或 React、Vue 等框架特定教程的使用。",
         "不設計用於互動式程式執行或實作操練。"
+      ],
+      "negativeFacets": [
+        "+ecosystem:javascript",
+        "-ecosystem:react",
+        "-ecosystem:vue"
       ]
     },
     {
@@ -24731,6 +24810,11 @@
         "由於採批次處理設計，不適合用於即時影片串流處理。",
         "避免用於書寫模糊難辨或嚴重變形的筆寫筆記。",
         "僅執行文字辨識與擷取，不提供語意翻譯功能。"
+      ],
+      "negativeFacets": [
+        "-interface:streaming",
+        "-language:illegible",
+        "-language:handwriting"
       ]
     },
     {
@@ -24968,6 +25052,12 @@
         "不適合需要視覺識別人員的應用",
         "在極端射頻干擾的環境中無效",
         "無法取代高精確度的醫療診斷設備"
+      ],
+      "negativeFacets": [
+        "-interface:visual identification",
+        "+interface:rf-based sensing",
+        "-deployment:extreme rf interference",
+        "-integration:medical diagnostics"
       ]
     },
     {
@@ -26969,6 +27059,11 @@
         "不應用於與代理技能無關的通用程式產生。",
         "避免用於直接的用戶服務客服互動。",
         "不適合用於建立與代理無關的軟體函式庫。"
+      ],
+      "negativeFacets": [
+        "-interface:general code generation",
+        "-ecosystem:customer-support",
+        "+ecosystem:agent"
       ]
     },
     {
@@ -31074,6 +31169,10 @@
       "negativeConstraints_zh": [
         "主要內容為簡體中文，非中文使用者需翻譯或具備語言能力才能使用。",
         "專注於 Java 與後端技術，不適合前端或非 JVM 語言的面試準備。"
+      ],
+      "negativeFacets": [
+        "+language:chinese",
+        "+language:java"
       ]
     },
     {
@@ -34327,6 +34426,12 @@
       "negativeConstraints_zh": [
         "不適用於非 Firecrawl 環境或無 CLI 權限的系統",
         "不適合簡單的 static HTML 解析"
+      ],
+      "negativeFacets": [
+        "-interface:cli",
+        "-format:html",
+        "+ecosystem:firecrawl",
+        "+interface:cli"
       ]
     },
     {
@@ -34380,6 +34485,10 @@
       "negativeConstraints_zh": [
         "不適用於純靜態無 JavaScript 的輕量解析",
         "不支援過度頻繁的本地即時影音串流處理"
+      ],
+      "negativeFacets": [
+        "-integration:static",
+        "-integration:streaming"
       ]
     },
     {
@@ -37495,6 +37604,11 @@
         "無互動性或動態內容的簡單靜態網站",
         "需要 iOS/Android 特定功能的原生行動應用程式開發",
         "需要持久 WebSocket 連線的即時協作應用程式"
+      ],
+      "negativeFacets": [
+        "-platform:simple static",
+        "-platform:native mobile",
+        "-platform:real time"
       ]
     },
     {
@@ -38737,6 +38851,10 @@
         "Requires approximately 20 hours per week and a discipline for self-study over a duration of about 2 years.",
         "Not intended for pure career training or professional development; it focuses on well-rounded fundamental concepts.",
         "Learners must actively seek out financial aid if they cannot afford graded assignments or tests on some platforms."
+      ],
+      "negativeFacets": [
+        "-scale:quick",
+        "+pricing:free"
       ]
     },
     {
@@ -38793,6 +38911,10 @@
       ],
       "negativeConstraints_zh": [
         "並非開發工具或框架，而是包含洩漏系統提示的靜態資料存放庫"
+      ],
+      "negativeFacets": [
+        "-ecosystem:development",
+        "-integration:framework"
       ]
     },
     {
@@ -38868,7 +38990,12 @@
         "未經沙盒隔離時避免直接賦予全權執行高風險系統或未受控之生產環境",
         "對於單一問答或簡單文字分類任務顯得過度複雜且 Token 消耗較大"
       ],
-      "useCase_zh": "非技術背景的商業使用者以自然語言描述每週報告任務，AutoGPT 自動建構並部署多步驟代理，在排程時間點自動擷取數據、彙整報告並透過電子郵件發送。"
+      "useCase_zh": "非技術背景的商業使用者以自然語言描述每週報告任務，AutoGPT 自動建構並部署多步驟代理，在排程時間點自動擷取數據、彙整報告並透過電子郵件發送。",
+      "negativeFacets": [
+        "-interface:real-time",
+        "-deployment:production",
+        "-scale:simple"
+      ]
     },
     {
       "id": "minimax-h3",
@@ -41421,6 +41548,14 @@
         "需要 API key，設計為託管服務或自行架設後端，非瀏覽器擴充功能",
         "依賴對目標的網路存取；若無特定憑證設定，嚴格認證或私人內網網站可能失敗",
         "依賴即時網路互動，不適合離線資料處理"
+      ],
+      "negativeFacets": [
+        "-interface:browser-extension",
+        "-deployment:offline",
+        "-integration:private-intranet",
+        "+deployment:cloud",
+        "+integration:network",
+        "+format:live"
       ]
     },
     {
@@ -44825,7 +44960,11 @@
         "僅供教育用途，不建議用於商業影片製作",
         "需要 Python 3.9+ 環境"
       ],
-      "useCase_zh": "教育者利用 ManimGL 程式化地產生逐步幾何動畫，為微積分課程將複雜的 3D 向量場渲染成高解析度影片供學生觀看。"
+      "useCase_zh": "教育者利用 ManimGL 程式化地產生逐步幾何動畫，為微積分課程將複雜的 3D 向量場渲染成高解析度影片供學生觀看。",
+      "negativeFacets": [
+        "-pricing:commercial",
+        "+language:python"
+      ]
     },
     {
       "id": "manim-community",
@@ -52722,6 +52861,9 @@
       "negativeConstraints_zh": [
         "僅支援 POSIX shell（bash/zsh/sh）— Windows 需使用 nvm-windows 或 WSL，本倉庫不原生支援 cmd/PowerShell",
         "僅管理 Node.js 版本 — 並非通用的套件或執行時期管理器"
+      ],
+      "negativeFacets": [
+        "-platform:windows"
       ]
     },
     {
@@ -54138,6 +54280,11 @@
         "由於包含 50 多個工具和企業功能，需要大量伺服器資源或在本機安裝。",
         "授權為 open-core 模式，進階功能或特定企業支援可能需付費，而非完全開源。",
         "不適合需要雲端託管 PDF 處理的情境，因為主要設計用於自建或本機桌面環境。"
+      ],
+      "negativeFacets": [
+        "-deployment:managed-cloud",
+        "-scale:low-resource",
+        "-license:fully-open-source"
       ]
     },
     {

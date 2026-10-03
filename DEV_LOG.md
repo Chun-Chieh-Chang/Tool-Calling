@@ -34,8 +34,9 @@ Schema：`negativeFacets: ["[-+]facet:value"]`，facet 白名單 10 種、value 
   「硬過濾」（telemetry 累積後）的地基。此為對計畫的偏離，如實記錄。
 
 ### 已知殘留
-1. 43 支工具待 API 額度恢復後重跑 `infer-facets.js`（腳本冪等，自動只補缺）；
-   tailwindcss 1 支 LLM 輸出畸形 JSON 需重試。
+1. 18 支工具待 API 額度恢復後重跑 `infer-facets.js`（腳本冪等，自動只補缺）——
+   累計已覆蓋 77/100（第二輪 --apply 補上 31 支）；其中 13 支 429、4 支空輸出、
+   1 支（langchain）LLM 輸出畸形已被門禁攔截。
 2. `-scale:rapid prototyping` 等 value 語義偏鬆（facet 選擇可議）——屬資料品質打磨，
    不影響機制。
 3. 3 支工具 zh 重譯仍待 API 額度。
@@ -103,8 +104,8 @@ Schema：`negativeFacets: ["[-+]facet:value"]`，facet 白名單 10 種、value 
 4. 評測集仍為「由 metadata 反推」的自製題——telemetry 累積真人查詢後重建（Batch 4）。
 5. core/multidimensional.js:88 分類端 D1 仍折入 negativeConstraints（分類側同一符號缺陷）——
    已列入計畫 Batch 2 台帳。
-6. 工作區存在一筆預存 stash（"Added 7 new tools: react-d3-tree…"），內容已全數在庫，
-   疑為陳舊重複，待維護者確認後清理。
+6. 工作區預存 stash（"Added 7 new tools: react-d3-tree…"）經驗證內容全數在庫，
+   已於 2026-10-03 經維護者點頭後刪除。
 
 ## 2026-09-30 修復 Deploy GitHub Pages 連續失敗（#397～#401）：淺 clone 沒有 HEAD~1
 
