@@ -6,6 +6,16 @@ if (!API_KEY) {
   console.error('Please set it using: $env:AGNES_API_KEY="your-key" (Windows) or export AGNES_API_KEY="your-key" (Mac/Linux)');
   process.exit(1);
 }
+// 2026-10-02 上鎖：DEV_LOG 2026-09-27「已知殘留」#5——本腳本 prompt 明令
+// 「猜用途」、整批覆寫 triggers、直接 status='active' 繞過 activateIfComplete。
+// 一般補齊請改用 scripts/enrich-new-tools.js（有守門）；真要跑本腳本必須 --force。
+if (!process.argv.includes('--force')) {
+  console.error('🚫 enrich-registry.js 是已知的危險路徑（DEV_LOG 2026-09-27 殘留 #5）：');
+  console.error('   它會「猜用途」生成內容、整批覆寫 triggers、並繞過啟用門禁。');
+  console.error('   一般補齊請改用：node scripts/enrich-new-tools.js');
+  console.error('   若你了解風險仍要執行，請加 --force。');
+  process.exit(1);
+}
 const API_URL = 'https://apihub.agnes-ai.com/v1/chat/completions';
 const MODEL = 'agnes-2.0-flash';
 const CONCURRENCY = 5;
