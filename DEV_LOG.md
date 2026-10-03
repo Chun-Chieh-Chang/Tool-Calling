@@ -41,7 +41,7 @@ Schema：`negativeFacets: ["[-+]facet:value"]`，facet 白名單 10 種、value 
 3. 3 支工具 zh 重譯仍待 API 額度。
 
 ### 驗證結果
-- `npm test`：344 tests / 0 fail / 2 skip（含 contract 9 條、penalty 4 條新測試）
+- `npm test`：341 tests / 339 pass / 0 fail / 2 skip（含 contract 9 條、penalty 4 條新測試）
 - `node cli.js validate`：0 errors；check-templates / check-doc-stats 全過
 
 ## 2026-10-03 檢索校準三修復 + rerank 三端對齊 + telemetry 回流 + 四道治理門禁（計畫批次 1）

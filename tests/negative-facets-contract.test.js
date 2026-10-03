@@ -53,3 +53,8 @@ test('重複條目 → error', () => {
   const r = validateToolContract({ ...baseTool, negativeFacets: ['-platform:web', '-platform:web'] });
   assert.ok(r.errors.some((e) => e.message.includes('重複')));
 });
+
+test('value 含 non- → error（極性歸符號，雙重否定不得復活）', () => {
+  const r = validateToolContract({ ...baseTool, negativeFacets: ['-ecosystem:non-microsoft-cloud'] });
+  assert.ok(r.errors.some((e) => e.message.includes('non-')));
+});
