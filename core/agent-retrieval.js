@@ -282,7 +282,26 @@ const V0_WEIGHT = 0.25;
 // 懲罰了正解 fluentui-system-icons 0.06，因其「不適合非 Microsoft 生態」
 // 與查詢「Microsoft 生態」共享詞彙）。結構化 {facet, value} 約束
 //（Batch 2）才是根治；本函式在該重工前屬「寧可扣錯少數、不可漏扣多數」的取捨。
+//
+// 2026-10-03 結構化路徑（Batch 2）：工具帶 negativeFacets 時**一律以結構為準、
+// 忽略散文**——`-facet:value`（排除）命中才扣分，`+facet:value`（要求）永不扣分。
+// 極性在資料層消滅雙重否定歧義；結構值短而銳，起罰門檻 0.30（散文 0.25），
+// 蓋帽同 0.15。無結構資料的工具行為完全不變（零回歸）。
 function negativePenalty(q, tool, idf) {
+  const facets = Array.isArray(tool.negativeFacets) ? tool.negativeFacets : null;
+  if (facets && facets.length > 0) {
+    let maxSim = 0;
+    for (const entry of facets) {
+      if (typeof entry !== 'string' || entry.charCodeAt(0) !== 45 /* '-' */) continue;
+      const colon = entry.indexOf(':');
+      if (colon === -1) continue;
+      const value = entry.slice(colon + 1);
+      const sim = weightedSim(q.bag, bagOf(tokenize(value)), idf.idfIdentity, { weightA: 1, weightB: 1 });
+      if (sim > maxSim) maxSim = sim;
+    }
+    if (maxSim <= 0.30) return 0;
+    return Math.min(0.15, (maxSim - 0.30) * 0.5);
+  }
   const negs = tool.negativeConstraints || [];
   if (negs.length === 0) return 0;
   const negBag = bagOf(tokenize(negs.join(' ')));
