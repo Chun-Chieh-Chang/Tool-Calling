@@ -329,10 +329,24 @@ const server = http.createServer(async (req, res) => {
     // behavior-tracker.js 的事件原本只存瀏覽器 localStorage；這裡補上
     // 伺服器端落盤（JSONL 附加寫入），讓真人查詢語料開始累積。
     // 只寫不讀、無副作用放大；事件形狀驗證在 web/telemetry-endpoint.js。
+    // 寫入端點必須過 isTrustedOrigin（與 /api/trending/refresh 同級）：
+    // 語料庫的價值在「真人查詢」的可信度，跨站 simple request 可以毒化它。
     if (decodedUrl === '/api/telemetry' && req.method === 'POST') {
+      if (!isTrustedOrigin(req)) {
+        res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
+        return;
+      }
+      let event;
+      try {
+        event = JSON.parse(req._body || '{}');
+      } catch {
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.end(JSON.stringify({ error: 'body 必須是合法 JSON' }));
+        return;
+      }
       try {
         const { handleTelemetry } = await import('./telemetry-endpoint.js');
-        const event = JSON.parse(req._body || '{}');
         const out = handleTelemetry(event);
         res.writeHead(out.status, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
         res.end(JSON.stringify(out.body));

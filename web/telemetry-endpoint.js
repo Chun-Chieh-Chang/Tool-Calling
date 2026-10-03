@@ -40,6 +40,13 @@ export function handleTelemetry(event) {
     query: event.query.slice(0, 500),
     timestamp: Number.isFinite(event.timestamp) ? event.timestamp : Date.now(),
   };
+  // 搜尋事件的量測欄位：resultCount / duration 是日後做成功率和放棄分析的基礎，
+  // 語料一開始就存齊，事後補不回來。形狀不合法一律落到 null（不拒收事件）。
+  if (event.type === 'search') {
+    clean.resultCount = Number.isFinite(event.resultCount) ? event.resultCount : null;
+    clean.topResultId = typeof event.topResultId === 'string' ? event.topResultId.slice(0, 120) : null;
+    clean.duration = Number.isFinite(event.duration) ? event.duration : null;
+  }
   if (event.type === 'click') {
     if (typeof event.toolId !== 'string' || !event.toolId) {
       return { status: 400, body: { error: 'click 事件需要 toolId' } };

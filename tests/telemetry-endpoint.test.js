@@ -16,7 +16,14 @@ test('合法 search 事件附加寫入 JSONL', async () => {
   assert.equal(out.status, 200);
   const lines = readFileSync(path.join(dir, 'telemetry-events.jsonl'), 'utf8').trim().split('\n');
   assert.equal(lines.length, 1);
-  assert.deepEqual(JSON.parse(lines[0]), { type: 'search', query: '我想把 YouTube 影片轉成逐字稿', timestamp: 1 });
+  assert.deepEqual(JSON.parse(lines[0]), {
+    type: 'search',
+    query: '我想把 YouTube 影片轉成逐字稿',
+    timestamp: 1,
+    resultCount: null,
+    topResultId: null,
+    duration: null,
+  });
   rmSync(dir, { recursive: true, force: true });
 });
 
@@ -48,4 +55,22 @@ test('query 超過 500 字被截斷而非拒絕', async () => {
   const lines = readFileSync(path.join(dir, 'telemetry-events.jsonl'), 'utf8').trim().split('\n');
   assert.equal(JSON.parse(lines[0]).query.length, 500);
   rmSync(dir, { recursive: true, force: true });
+});
+
+test('search 事件保留 resultCount / topResultId / duration（缺省落 null）', async () => {
+  const dir = newDir();
+  process.env.TELEMETRY_DIR = dir;
+  const { handleTelemetry } = await import('../web/telemetry-endpoint.js');
+  handleTelemetry({ type: 'search', query: 'q', timestamp: 3, resultCount: 5, topResultId: 'ppt-master', duration: 120 });
+  handleTelemetry({ type: 'search', query: 'q2', timestamp: 4, resultCount: 'x', duration: NaN });
+  const lines = readFileSync(path.join(dir, 'telemetry-events.jsonl'), 'utf8').trim().split('\n');
+  const first = JSON.parse(lines[0]);
+  const second = JSON.parse(lines[1]);
+  assert.equal(first.resultCount, 5);
+  assert.equal(first.topResultId, 'ppt-master');
+  assert.equal(first.duration, 120);
+  assert.equal(second.resultCount, null);
+  assert.equal(second.duration, null);
+  rmSync(dir, { recursive: true, force: true });
+  delete process.env.TELEMETRY_DIR;
 });
