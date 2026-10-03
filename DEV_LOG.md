@@ -1,5 +1,93 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-03 檢索校準三修復 + rerank 三端對齊 + telemetry 回流 + 四道治理門禁（計畫批次 1）
+
+### 需求
+2026-10-02 全域診斷指認兩大問題：(1) registry 寫入治理（多個寫入者、108 支樣板污染、
+危險的 enrich 路徑）；(2) 需求→工具對接有效性未驗證（L1.5 量尺不一致 → 213% 信心度、
+萬用觸發詞同分群、negativeConstraints 被當正向證據、真人查詢語料為零）。
+本輪執行計畫批次 1（docs/superpowers/plans/2026-10-02-retrieval-calibration-and-governance.md，
+11 個任務全數完成，subagent 兩階段審查至 Task 5，Task 6-10 因 subagent 配額限制改由
+控制器逐任務執行，TDD 與門禁紀律不變）。
+
+### 修復內容（逐任務 commit）
+1. **L1.5 量尺對齊**（`bb2b3d3`，search-engine.js:974）：L1.5 原回傳 3*discrim（0~3 量級）
+   與 L2 的 0~0.99 混用，顯示層乘 100 出現「213%」；改回 discrim（0~1）。CLI/web 顯示層
+   防禦性蓋帽（cmdCompare 於 `2274ee6` 補齊）。**fusion Hit@1 56.0% → 56.8%**：L1.5 分數
+   進入 0~1 量級後融合決策門檻首次正確比較，c45/c50 兩筆 semantic 翻正、零回歸。
+2. **L1.5 同分破解**（`c4718b5` + `ca86269`）：id/name 含命中 trigger 的工具獲
+   L15_IDENTITY_BOOST=0.017 身分加權；**c48（DEV_LOG 記錄的 YouTube 逐字稿案例）
+   MISS→HIT（youtube-skills 升至 #1）**、c01 寬鬆翻正；agent/fusion Hit@1 持平、L2 9.7→10.1%。
+   註解依審查修正為有界宣稱（重排僅可能發生在 discrim 差 <0.017 的近等價 trigger 間）。
+3. **negativeConstraints 符號修復**（`6aec9f6` + `34fb54b`，agent-retrieval.js）：
+   V3/V4 正向文本移除禁用欄位，改 negativePenalty()（重疊 >0.25 起扣、上限 0.15、
+   只動排序不動 bestDim/decision）。**fusion +0.4pp；⚠️ 歸因更正：constrained 組
+   59.6→61.5%（+1.9pp）是 Task 2-3 的累積效果，Task 4 自身對 constrained 為 0.0pp**
+   （direct −1.3pp、semantic +0.8pp）。已記錄 bag-of-words 對雙重否定的盲點
+   （評測 c61 誤懲正解 fluentui-system-icons 0.06）——結構化 {facet, value} 約束（Batch 2）的具體論據。
+4. **CLI rerank 預設化**（`51af8f4` + `5817156`）：與 web/MCP 對齊「有 key 就啟用」，
+   `--no-rerank` 逃生門、`--deep` 保留為相容別名；HANDOFF.md 同步。online 路徑實測通過。
+5. **telemetry 回流**（`3720d28`）：POST /api/telemetry → web/data/telemetry-events.jsonl
+   （JSONL 附加、.gitignore 排除、形狀驗證含 click 必帶 toolId）；behavior-tracker 三事件
+   fire-and-forget 上報；煙霧測試通過（合法落盤、非法 400 不寫檔）。真人查詢語料開始累積。
+6. **寫入路徑收斂**（`7fe498c`）：**實際發現 6 個寫入點**（計畫預估 4 個）——sync-daemon /
+   trending-weekly / reclassify-tools / rescan-classification / batch-add-20260912 /
+   add-user-requested-tools 全數改呼叫 core/registry.js#saveRegistry()；sync-daemon 順手
+   清掉「已 import saveRegistry 卻仍手寫 writeFileSync」的矛盾。tools.json 寫入點 6 → 1。
+7. **enrich 上鎖**（`5d95696`）：scripts/enrich-registry.js 需 --force（DEV_LOG 2026-09-27
+   殘留 #5 落地），實測 exit=1。
+8. **兩道新門禁**：check-templates.js（`8be3364`，樣板黑名單掃全欄位，fixture 驗證會擋）
+   與 check-doc-stats.js（`59dba62`，README/AGENTS.md 工具數=實際筆數；README 725→736、
+   package.json description 移除寫死數字），皆已掛入 npm test。
+
+### 驗證結果
+- 各任務 commit 當下：`npm test` 全綠（最終 327 tests / 325 pass / 0 fail / 2 skip）、
+  `node cli.js validate` Contract 0 errors、check-templates / check-doc-stats 全過。
+- benchmark（267 題，逐位元組可重現）：**fusion Hit@1 56.0% → 57.2%（累計 +1.2pp）、
+  agent 56.8% 持平、Hit@3 61.9→62.6%，空集誠實率全程 10/10**；無任何一筆查詢 HIT→MISS 回歸。
+- ⚠️ 收尾時的例外：最終電池跑分時，**另一並行工作 session 正在本工作區施工**
+  （其未提交的 docs/CLASSIFICATION.md 編輯移除了「金融與投資」分類），導致 check-mece
+  與 2 個相依測試暫時轉紅。經查證：HEAD 版本的 CLASSIFICATION.md 含該分類、
+  本批所有 commit 未觸及任何分類/registry 資料，屬並行編輯的暫態，非本批回歸。
+  本批 benchmark 產物（post-fix.txt）與 after-task4 逐位元組一致，不受影響。
+
+### 已知殘留（如實記錄，本輪未處理）
+1. tracked-repos.json 混合 schema（2,543 個 repo key 與 repos 陣列同層）——讀寫者分散，
+   屬 Batch 2。
+2. dist/registry/tools.json 落後 5 筆——build 流程與 CI 的 dist 政策待釐清。
+3. V0 語意 embedding（vectors.json）與 retrieveWithAdaptiveHyDE 已實作未評測——Batch 2。
+4. 評測集仍為「由 metadata 反推」的自製題——telemetry 累積真人查詢後重建（Batch 4）。
+5. core/multidimensional.js:88 分類端 D1 仍折入 negativeConstraints（分類側同一符號缺陷）——
+   已列入計畫 Batch 2 台帳。
+6. 工作區存在一筆預存 stash（"Added 7 new tools: react-d3-tree…"），內容已全數在庫，
+   疑為陳舊重複，待維護者確認後清理。
+
+## 2026-09-30 修復 Deploy GitHub Pages 連續失敗（#397～#401）：淺 clone 沒有 HEAD~1
+
+### 需求
+
+Actions 頁面顯示 Deploy GitHub Pages 自 2026-09-25 起連續紅燈（#397／#398／#399／#401 failure；#400 為被 #401 以 concurrency 取消，非失敗），網站已 5 天未部署。
+
+### 問題與原因分析（RCA）
+
+- **失敗點**：四次失敗的步驟完全相同——`Run Tests`（`npm test`）exit code 1；其後的 check-mece／build-web／deploy 全被 skipped。最後一次成功是 #396（a728f9c）。
+- **根因**：8679b2f／44baf17 新增的 `tests/check-traditional.test.js` 有兩條測試執行 `--range HEAD~1..HEAD` 與 `--commits HEAD~1..HEAD`，前提是「repo 至少有 2 筆提交」。CI 的 `actions/checkout` 預設 `fetch-depth: 1`（淺 clone，只有 1 筆提交），git 回 `fatal: ambiguous argument 'HEAD~1..HEAD': unknown revision`，`execFileSync` 拋錯，測試失敗。
+- **為何本機沒發現**：本機有完整歷史，`HEAD~1` 恆存在；本機 `npm test` 全綠（318 pass／0 fail），DEV_LOG 前一條的驗證數字因此與 CI 現況脫節。
+- **重現方式**：`git clone --depth 1` 後跑 `npm test` → 恰好這 2 條失敗（321 tests／317 pass／2 fail）；完整 clone 則 0 fail。已排除其他嫌疑：opencc-js 有無安裝（乾淨 clone＋`npm install` 仍全綠）、Playwright e2e（本機可跑且通過）。
+
+### 矯正與預防措施（CAPA）
+
+1. **矯正（測試）**：`tests/check-traditional.test.js` 新增 `NO_PARENT_SKIP`——偵測 `git rev-parse --verify --quiet HEAD~1`，無父提交時這 2 條 `skip`（附原因），有歷史時照常執行。測試從此不再依賴 clone 深度。
+2. **矯正（CI）**：`deploy-pages.yml` 的 checkout 加 `fetch-depth: 2`（經使用者同意修改受保護路徑，僅此一處），讓 CI 上這 2 條鎖也真的執行，而不是永遠 skip。
+3. **預防**：凡測試依賴 git 歷史，一律先用淺 clone（`git clone --depth 1`）驗證一次再推送；驗收清單新增「淺 clone 跑完整 `npm test`」。
+
+### 驗證結果
+
+- 淺 clone（`--depth 1`）完整 `npm test`：修復前 2 fail → 修復後 0 fail（見下方收斂數字）。
+- 完整 clone `npm test`：0 fail，tests 總數不變、skipped 不增加。
+- 推送後（77f5add）Deploy GitHub Pages **#402 success**：validate-and-build 全部 13 步 success（含 Run Tests、check-mece、categories:check、rescan、Build Web、Upload artifact），deploy job success；自 #397 起連續 5 天的紅燈解除。
+- 推送過程備註：本機無 SSH 私鑰（`git push origin` 回 `Permission denied (publickey)`），改以 HTTPS 一次性推送完成；origin 仍設為 SSH 網址，日後本機直推前需先設定憑證。
+
 ## 2026-09-30 批次：新增 3 筆、4 筆去重與拆解判定；修復 2 支管線腳本、補齊 W40 遺留
 
 ### 一、批量新增（3 筆；其餘 4 筆已在庫，去重排除）
