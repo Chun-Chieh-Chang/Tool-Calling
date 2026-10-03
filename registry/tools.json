@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T12:58:27.755Z",
+  "lastUpdated": "2026-10-03T13:23:10.803Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -38367,7 +38367,16 @@
         "透過串流架構，在不同記憶體配置（8 GB 至 224 GB）下產生完全相同位元組的輸出",
         "推論引擎僅 176 KB，極簡資源佔用"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "在低記憶體機器上的推論速度極慢（例如 8 GB RAM 下每 token 約 26.5 秒），不適用於即時或互動式應用。",
+        "需要 1.56 TB 的權重檔案存放在磁碟上，與量化或較小模型相比，儲存開銷顯著。",
+        "僅支援 CPU 推論，無法利用 GPU 加速，不適合需要高吞吐量或低延遲生成的環境。"
+      ],
+      "negativeConstraints": [
+        "Extremely slow inference speed on low-RAM machines (e.g., ~26.5s per token on 8 GB RAM), making it impractical for real-time or interactive applications.",
+        "Requires a 1.56 TB checkpoint file on disk, which is a significant storage overhead compared to quantized or smaller model alternatives.",
+        "Limited to CPU inference; does not leverage GPU acceleration, so it is not suitable for environments requiring high-throughput or low-latency generation."
+      ]
     },
     {
       "id": "khoj",
