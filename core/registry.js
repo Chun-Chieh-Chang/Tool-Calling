@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, renameSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { generateKnowledgeGraph } from '../scripts/generate-knowledge-graph.js';
@@ -15,7 +15,12 @@ export function saveRegistry(data) {
   data.lastUpdated = new Date().toISOString();
   // 尾端換行是 tools.json 的版控慣例；漏掉會讓每次存檔都多一行
   // "\ No newline at end of file" 的噪音 diff，蓋掉真正的欄位變動。
-  writeFileSync(REGISTRY_PATH, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+  // 2026-10-03 原子寫入：寫到同目錄暫存檔再 rename——writeFileSync 中途被讀
+  // （例如並行 daemon 寫入時測試正好讀檔）會看到截斷的 JSON，rename 在同一個
+  // 檔案系統上是原子操作，讀者永遠只看到完整新檔或完整舊檔。
+  const tmpPath = REGISTRY_PATH + '.tmp';
+  writeFileSync(tmpPath, JSON.stringify(data, null, 2) + '\n', 'utf-8');
+  renameSync(tmpPath, REGISTRY_PATH);
   try {
     generateKnowledgeGraph(data);
   } catch (err) {
