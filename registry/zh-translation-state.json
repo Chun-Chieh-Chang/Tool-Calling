@@ -2863,67 +2863,6 @@
         "較新且尚未發布的模型架構支援可能落後於模型發布週期"
       ]
     },
-    "awesome-n8n-templates": {
-      "description_zh": "280+ 免費 n8n 自動化範本 — 即用的工作流，適用於 Gmail、Telegram、Slack、Discord、WhatsApp、Google Drive、Notion、OpenAI 等。AI 代理、RAG 聊天機器人、電子郵件自動化、社交 m",
-      "useCase_zh": "280+ 免費 n8n 自動化範本",
-      "at": "2026-09-20T03:13:04.886Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "qwenpaw": {
-      "description_zh": "你的個人 AI 助理；容易安裝，可在你自己的機器或雲端上部署；支援多種聊天應用程式，功能可輕鬆擴展。",
-      "useCase_zh": "你的個人 AI 助理；容易安裝，可在你自己的機器或雲端上部署；支援多種聊天應用程式，功能可輕鬆擴展。",
-      "at": "2026-09-20T03:13:04.886Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "kimi-k3-in-c": {
-      "description_zh": "一個 2.78 兆參數的 Kimi K3，在單一 CPU 上使用 8.24 GB RAM 執行推論。可攜式 C99：無需 BLAS、無需框架、無需 GPU。",
-      "useCase_zh": "一個 2.78 兆參數的 Kimi K3，在單一 CPU 上使用 8.24 GB RAM 執行推論。可攜式 C99：無需 BLAS、無需框架、無需 GPU。",
-      "at": "2026-09-20T03:13:04.886Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "khoj": {
-      "description_zh": "你的 AI 第二大腦。可自行託管。從網路或你的文件取得答案。建立自訂代理，排程自動化，進行深入研究。將任何線上或本地 LLM 轉變為你個人的、自主的 AI（gpt、claude、gemini、llama、qwen、mistral）。免費開始使用。",
-      "useCase_zh": "你的 AI 第二大腦。可自行託管。從網路或你的文件取得答案。建立自訂代理，排程自動化，進行深入研究。將任何線上或本地 LLM 轉變為你個人的、自主的 AI（gpt、claude、gemini、llama、qwen、mistral）。免費開始使用。",
-      "at": "2026-09-20T03:13:04.886Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "awesome": {
-      "description_zh": "😎 關於各種有趣主題的 Awesome 清單",
-      "at": "2026-09-20T03:13:10.892Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "freecodecamp": {
-      "description_zh": "freeCodeCamp.org 的開源程式碼庫與課程內容。免費學習數學、程式設計與計算機科學。",
-      "at": "2026-09-20T03:13:10.892Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "awesome-python": {
-      "description_zh": "精選的 Python 框架、函式庫、工具和資源清單",
-      "at": "2026-09-20T03:13:10.892Z",
-      "useCase_zh": "開發者需要快速尋找某個特定領域（如 Web 框架、資料視覺化）的 Python 函式庫時，可直接透過此清單篩選並比較熱門選擇。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
     "996-icu": {
       "description_zh": "記錄科技公司 996 工作制度的儲存庫，倡導勞工權益與勞動意識。",
       "useCase_zh": "研究中國科技業勞動條件，或尋找職場權益社群資源的開發者。",
@@ -3149,16 +3088,6 @@
         "非為 GitLab、Bitbucket 或 Azure DevOps 等非 GitHub 平台設計"
       ]
     },
-    "labs-oo-agents": {
-      "description_zh": "NVIDIA 物件導向代理：以 Pythonic 方式建構 AI 代理",
-      "at": "2026-09-20T02:39:58.826Z",
-      "useCase_zh": "建構需要多 Agent 協作、且要與 NVIDIA GPU 基礎設施整合的 AI 應用。",
-      "advantages_zh": "Python 物件導向語法建置 Agent，符合 Python 開發者直覺，學習成本低,NVIDIA 官方支援，與 NeMo 生態整合，可直接連結 HPC 與 GPU 資源,物件模型便於多 Agent 協作時定義角色與邊界",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
     "dashi-taskboard": {
       "description_zh": "一款本地優先的問題看板，於瀏覽器中執行，可透過獨立 CDP 啟動器或其注入腳本嵌入 Codex。相同的 HTTP API 同時驅動 React UI 與 `taskctl` CLI",
       "at": "2026-09-27T05:19:10.776Z",
@@ -3168,15 +3097,6 @@
         "需要 Node.js 22.5 或更新版本方可在本機執行。",
         "建構 macOS 與 Windows 桌面應用程式需要特定的 Rust 工具鏈與目標設定。",
         "Linux 支援僅限於 Ubuntu 24.04 x64 套件。"
-      ]
-    },
-    "conversation-steganography": {
-      "description_zh": "使用 LLM 將訊息隱藏在看似正常的對話中",
-      "at": "2026-09-20T02:39:58.826Z",
-      "advantages_zh": "利用 LLM 產生看似自然的對話內容隱含訊息，難以被傳統內容過濾偵測,Go 實作，編譯後為單檔二進位，部署無依賴,概念上可應用於安全研究與隱私測試場景",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
       ]
     },
     "nativ": {
@@ -3929,43 +3849,6 @@
         "對於單一問答或簡單文字分類任務顯得過度複雜且 Token 消耗較大"
       ]
     },
-    "axisagentic": {
-      "description_zh": "AxisAgentic：一個可擴充的 Runtime 與 Trajectory-Collection Framework，專為 Long-Horizon Agents 設計。",
-      "at": "2026-09-20T03:15:01.225Z",
-      "advantages_zh": "專為長時間 Agent 任務設計，內建軌跡收集（trajectory collection）機制,架構可擴展，便於加入自訂工具或策略,收集之軌跡可直接作為 RLHF / DPO 訓練資料",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "moviebox-tui": {
-      "description_zh": "一款基於 Rust 的現代化終端使用者介面，專為串流設計。快速、輕量、鍵盤優先，且跨平台。",
-      "at": "2026-09-20T03:15:01.226Z",
-      "advantages_zh": "純終端機 UI，資源極輕，低規格主機也能流暢使用，Rust 編譯，無垃圾回收，效能穩定，跨平台支援，Linux 與 Windows 皆可用",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "penguin-harness": {
-      "description_zh": "🐧 自動化 Agent 建構工具。一鍵建立自我演化的 Agent（DeepSeek/Kimi/GPT/Claude/Gemini）",
-      "at": "2026-09-20T03:15:01.226Z",
-      "advantages_zh": "一鍵生成自演化 Agent，支援 DeepSeek / Kimi / GPT / Claude / Gemini 多模型切換，Agent 可自我改進策略，減少反覆手動調整，開源，無 SaaS 訂閱費用",
-      "useCase_zh": "快速原型化 AI Agent，並讓它在執行中自我優化任務執行策略。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "cue": {
-      "description_zh": "開源的 macOS AI copilot，漂浮於螢幕之上，能看見/聽見您的會議，且在畫面分享時保持隱藏。Cluely 的替代方案，bring-your-own-key。",
-      "at": "2026-09-20T03:15:01.226Z",
-      "useCase_zh": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓對方看到 AI 介面的場景。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
     "firecrawl": {
       "description_zh": "可大規模搜尋、爬取並與網路互動的 context API。🔥",
       "at": "2026-09-27T05:19:27.455Z",
@@ -4205,43 +4088,6 @@
         "非 OpenAI 相容的訂閱代理；不實作 token 到模型端點的行為，也不在其他客戶端選擇器中加入假訂閱模型",
         "第三方軟體中直接使用 Gemini CLI OAuth tokens 未實作，且 Google 條款明文禁止",
         "未宣傳檔案系統與終端機功能，且在 Control Center 提供前台審核介面前，預設拒絕權限請求"
-      ]
-    },
-    "story-to-handdrawn-video": {
-      "description_zh": "Agent 技能：將中文故事文案或順序圖片轉換為手繪日記漫畫動畫（無聲 MP4 圖片軌）。",
-      "at": "2026-09-20T03:14:53.874Z",
-      "advantages_zh": "直接從中文故事文案產出手繪日記風動畫 MP4，全過程無需手繪或剪輯,靜止圖片序列轉動的影片，製作成本低且風格一致,以 Agent 技能格式提供，可嵌入現有 AI 工作流",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "findphone": {
-      "description_zh": "透過信號強度定位附近藍芽裝置，由 macOS 命令列操作 —— 適用於 Find My 無法使用的情境。",
-      "at": "2026-09-20T03:14:53.874Z",
-      "advantages_zh": "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位,依賴藍牙信號強度（RSSI），無需 GPS 或網路連線,Swift 原生 macOS 開發，無額外依賴",
-      "useCase_zh": "Find My 網頁版慢或離線時，快速從終端機找到附近藍牙裝置的位置。",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "openreply": {
-      "description_zh": "開源 ManyChat 替代品：留言・DM 自動化 + 帳號分析。注意：下方連結不支援 OAuth；須自行架設並使用自己的 API keys。",
-      "at": "2026-09-20T03:14:53.874Z",
-      "useCase_zh": "品牌或內容創作者自架 Instagram 留言/DM 自動回應系統，降低 SaaS 訂閱成本。",
-      "advantages_zh": "開源自架替代 ManyChat，免月費，資料完整掌握在自己手上，同時處理 Instagram 留言與 DM 自動化，減少多工具切換，內建帳號分析，可直接追蹤互動轉化率",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ]
-    },
-    "openmouse": {
-      "description_zh": "OpenMouse 是一款基於瀏覽器的控制器面板，支援多款電競滑鼠。連接滑鼠後即可查看其資訊，並在不用安裝額外軟體的情況下修改 DPI、輪詢率等支援設定。",
-      "at": "2026-09-20T03:14:53.874Z",
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
       ]
     },
     "awesome-agent-skills-VoltAgent": {
@@ -5209,26 +5055,12 @@
       ],
       "at": "2026-09-20T03:17:20.909Z"
     },
-    "opencode": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T03:17:20.909Z"
-    },
-    "awesome-mac": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T03:17:20.909Z"
-    },
     "llms-from-scratch": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適合用於生產級推論或服務大規模基礎模型，因其教育導向專注於小型但功能完整的模型。",
+        "程式碼要正確執行，需遵循本書 setup 目錄中所列的特定設定與環境配置。"
       ],
-      "at": "2026-09-20T03:17:20.909Z"
+      "at": "2026-10-03T11:47:45.153Z"
     },
     "figures4papers": {
       "negativeConstraints_zh": [
@@ -5253,13 +5085,6 @@
         "檢舉處理時間可能從數小時到數日不等，視案件複雜度而定。"
       ],
       "at": "2026-09-27T05:22:18.979Z"
-    },
-    "photo-abstract-editorial": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T03:17:26.075Z"
     },
     "zouyuxuan122-deepseek-harness-eac": {
       "negativeConstraints_zh": [
@@ -5349,26 +5174,19 @@
       ],
       "at": "2026-09-20T02:43:53.159Z"
     },
-    "deepseek-harness-desktop-anywhere": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T02:43:53.159Z"
-    },
     "anti-slop": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "不適合用作標準 npm 套件直接安裝為依賴項；設計為複製並整合至使用者的版本控制系統。",
+        "需維持 @oxlint/plugins 與 oxlint 執行階段之間的精確版本對應，以避免升級衝突。"
       ],
-      "at": "2026-09-20T03:18:04.976Z"
+      "at": "2026-10-03T11:47:45.154Z"
     },
     "dsh-better-sidebar": {
       "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
+        "最新版本需要特定的 DSH 版本（0.1.7-rc.1 或更新）；較舊的 DSH 版本需固定使用較舊的插件版本，以避免破壞性變更。",
+        "嚴格依賴 DeepSeek Harness 環境；非獨立應用程式，需要 DSH 的插件系統才能運作。"
       ],
-      "at": "2026-09-20T03:18:04.976Z"
+      "at": "2026-10-03T11:47:45.154Z"
     },
     "deepseek-work": {
       "negativeConstraints_zh": [
@@ -5996,27 +5814,6 @@
       ],
       "at": "2026-09-20T03:17:11.112Z"
     },
-    "awesome-dsh-plugin": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T03:17:56.653Z"
-    },
-    "dsh-routing-suite": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T03:17:56.653Z"
-    },
-    "arc-task-gen": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫，建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-20T03:17:56.653Z"
-    },
     "dsh-anchored-standard": {
       "negativeConstraints_zh": [
         "本專案已凍結，不再接受或處理新的問題或拉取請求。",
@@ -6618,13 +6415,6 @@
         "尚未測試實體裝置效能或真實多點觸控硬體。"
       ],
       "at": "2026-09-27T05:20:05.185Z"
-    },
-    "codex-with-chatgpt": {
-      "negativeConstraints_zh": [
-        "由自動化探勘入庫,建議人工審查確認適用場景後再正式啟用",
-        "詳細安裝指令需依官方 README 為準"
-      ],
-      "at": "2026-09-21T12:36:43.051Z"
     },
     "models-of-human-anatomy": {
       "at": "2026-09-21T13:08:22.370Z",

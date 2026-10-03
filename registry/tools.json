@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T11:31:39.583Z",
+  "lastUpdated": "2026-10-03T11:47:35.739Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -569,7 +569,11 @@
         "不建議用於高頻率的即時交易系統監控，因瀏覽器自動化延遲較高。"
       ],
       "useCase_zh": "QA 工程師使用 Playwright 執行跨瀏覽器回歸測試，AI 代理則透過 CLI 或 MCP 伺服器控制網頁介面。",
-      "description_zh": "Playwright 是一個網頁自動化與測試框架，能以單一 API 驅動 Chromium、Firefox 和 WebKit，適用於測試、腳本以及 AI 代理工具。"
+      "description_zh": "Playwright 是一個網頁自動化與測試框架，能以單一 API 驅動 Chromium、Firefox 和 WebKit，適用於測試、腳本以及 AI 代理工具。",
+      "negativeFacets": [
+        "+platform:browser",
+        "+ecosystem:microsoft"
+      ]
     },
     {
       "id": "flysystem",
@@ -8003,6 +8007,11 @@
         "不適用於生產環境、企業級的說明文件或 API 參考文件",
         "不適合需要逐步教學或影片課程的初學者",
         "無法取代框架專用的完整指南或官方說明文件"
+      ],
+      "negativeFacets": [
+        "-scale:enterprise",
+        "-scale:beginner",
+        "-scale:comprehensive"
       ]
     },
     {
@@ -19846,6 +19855,10 @@
         "不需要用於依賴多節點分散式運算訓練大型基礎模型的場景。",
         "若用於生產環境軟體部署，請避免使用，因其設計目的為研究與實驗。",
         "若要求對實驗的每個步驟進行嚴格的人工介入控制，則不適合使用。"
+      ],
+      "negativeFacets": [
+        "-scale:distributed",
+        "-deployment:production"
       ]
     },
     {
@@ -42460,6 +42473,11 @@
         "不適用於實作工作 - 僅限規劃/設計階段使用",
         "不編寫程式碼 - 著重於釐清決策",
         "需要現有的專案上下文才能發揮效果"
+      ],
+      "negativeFacets": [
+        "-interface:implementation",
+        "-interface:code-generation",
+        "+integration:project-context"
       ]
     },
     {
@@ -46412,7 +46430,10 @@
         "Not suitable for production-grade inference or serving large-scale foundation models due to its educational focus on small but functional models.",
         "Requires following the specific setup and environment configurations outlined in the book's setup directory for the code to run correctly."
       ],
-      "negativeConstraints_zh": [],
+      "negativeConstraints_zh": [
+        "不適合用於生產級推論或服務大規模基礎模型，因其教育導向專注於小型但功能完整的模型。",
+        "程式碼要正確執行，需遵循本書 setup 目錄中所列的特定設定與環境配置。"
+      ],
       "negativeFacets": [
         "-deployment:production",
         "-scale:large"
@@ -47619,7 +47640,10 @@
         "Not suitable as a standard npm package for direct dependency installation; it is designed to be copied and vendored into the user's source control.",
         "Requires maintaining exact version alignment between @oxlint/plugins and the oxlint runtime to prevent upgrade conflicts."
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "不適合用作標準 npm 套件直接安裝為依賴項；設計為複製並整合至使用者的版本控制系統。",
+        "需維持 @oxlint/plugins 與 oxlint 執行階段之間的精確版本對應，以避免升級衝突。"
+      ]
     },
     {
       "id": "dsh-better-sidebar",
@@ -47673,7 +47697,10 @@
         "Requires a specific DSH version (0.1.7-rc.1 or later) for the latest release; older DSH versions require pinned older plugin versions to avoid breaking changes.",
         "Strictly depends on the DeepSeek Harness environment; it is not a standalone application and requires DSH's plugin system to function."
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "最新版本需要特定的 DSH 版本（0.1.7-rc.1 或更新）；較舊的 DSH 版本需固定使用較舊的插件版本，以避免破壞性變更。",
+        "嚴格依賴 DeepSeek Harness 環境；非獨立應用程式，需要 DSH 的插件系統才能運作。"
+      ]
     },
     {
       "id": "mattpocock-skills",
@@ -56019,8 +56046,8 @@
         "weeklyDelta": 1944,
         "ingestedAt": "2026-09-28T08:16:28.494Z"
       },
-      "description_zh": "一個圖像與影片生成的工作室——單一提示列、每款模型保有各自設定，每次完成的成品都集中於同一個畫廊。",
-      "useCase_zh": "當你想以單一提示列操作數十款 AI 模型生成圖像或影片時使用——Higgsfield AI 的免費自架替代方案，完成的成品集中收藏。",
+      "description_zh": "無提供說明。",
+      "useCase_zh": "open-higgsfield",
       "advantages_zh": [
         "自我部署的開源替代品，消除供應商鎖定與工作室訂閱費用",
         "整合 38 個模型（8 個影像、30 個影片）的目錄，以單一提示詞介面驅動多種媒體類型",
