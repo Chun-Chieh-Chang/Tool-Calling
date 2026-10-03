@@ -1,5 +1,49 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-03（第二批）結構化禁用約束 negativeFacets 試點——排序假說未被證實，誠實顯示修復成立
+
+### 需求
+承接口志鞏固：結構化 {facet, value} 約束是 c61 雙重否定誤懲的根治方案
+（計畫 docs/superpowers/plans/2026-10-03-batch2-structured-constraints.md）。
+Schema：`negativeFacets: ["[-+]facet:value"]`，facet 白名單 10 種、value ≤3 token、
+每工具 ≤6 筆；`-` 排除命中扣分、`+` 要求命中永不扣分——極性在資料層消滅散文歧義。
+
+### 實作內容
+1. **contract 驗證**（`79d1259`）：negativeFacets 存在時驗格式（白名單、極性、token 數、
+   重複、上限），違反計 error。追加語義門禁：**value 不得含「non-」**——
+   「-ecosystem:non-x」是雙重否定在結構化形式的復活（萃取實測真的出現過）。
+2. **negativePenalty v2**（`1a2e8ef`）：工具帶 negativeFacets 時一律以結構為準、忽略散文；
+   無結構資料的工具走原散文邏輯（零回歸）。起罰門檻 0.30、蓋帽 0.15。
+3. **萃取腳本** `scripts/infer-facets.js`：LLM 從既有散文萃取（有依據轉換，非猜用途），
+   dry-run 預設、--apply 經 saveRegistry、逐筆過 contract 門、冪等跳過已萃取工具。
+4. **資料**：top-100 by stars 中 46 支（46 支成功萃取、43 支撞 API 429 限流待補、
+   5 支空輸出）+ fluentui-system-icons 手動補 `+ecosystem:microsoft`（c61 正解）。
+   抽檢極性正確（react `+language:javascript`、linux `-platform:windows`、
+   public-apis 四筆混合極性）；逐筆過門禁後 0 拒絕。
+
+### 可證偽判定（267 題 benchmark）
+- **gate A（零回歸）：通過**——agent 56.8% / fusion 57.2%，與套用前逐項相同；
+  空集誠實率 10/10。零資料時引擎行為也逐位元組不變（2026-10-03-batch2-engine-zero-data.txt）。
+- **gate B（排序增益）：未證實**——constrained 組 61.5% 持平、direct/semantic 持平。
+  解讀：假陽性原本就罕見（0.01% 的 query×tool 對）、真陽性散文扣分早已處理，
+  軟扣分機制在現行評測敏感度下量不出排名增益。
+- **成立的改善在顯示層**：c61 的正解 fluentui-system-icons 不再掛錯誤的
+  「🚫 命中禁用場景」，實測改回乾淨的「✓ 情境吻合」。
+- 計畫原訂「兩 gate 皆敗才清空資料」；本輪 gate A 過、gate B 敗，判斷為
+  **保留機制與資料**：零回歸成本、顯示誠實改善已實現，且結構層是未來
+  「硬過濾」（telemetry 累積後）的地基。此為對計畫的偏離，如實記錄。
+
+### 已知殘留
+1. 43 支工具待 API 額度恢復後重跑 `infer-facets.js`（腳本冪等，自動只補缺）；
+   tailwindcss 1 支 LLM 輸出畸形 JSON 需重試。
+2. `-scale:rapid prototyping` 等 value 語義偏鬆（facet 選擇可議）——屬資料品質打磨，
+   不影響機制。
+3. 3 支工具 zh 重譯仍待 API 額度。
+
+### 驗證結果
+- `npm test`：344 tests / 0 fail / 2 skip（含 contract 9 條、penalty 4 條新測試）
+- `node cli.js validate`：0 errors；check-templates / check-doc-stats 全過
+
 ## 2026-10-03 檢索校準三修復 + rerank 三端對齊 + telemetry 回流 + 四道治理門禁（計畫批次 1）
 
 ### 需求

@@ -56,7 +56,7 @@ const FACET_ENTRY_RE = /^([-+])([a-z][a-z0-9-]*):([a-z0-9][a-z0-9 .+-]*)$/;
 const FACET_MAX_ENTRIES = 6;
 const FACET_MAX_VALUE_TOKENS = 3;
 
-function validateNegativeFacets(value) {
+export function validateNegativeFacets(value) {
   if (value === null || value === undefined) return [];
   if (!Array.isArray(value)) return ['negativeFacets 必須是字串陣列'];
   if (value.length > FACET_MAX_ENTRIES) return [`negativeFacets 不得超過 ${FACET_MAX_ENTRIES} 筆`];
@@ -78,6 +78,11 @@ function validateNegativeFacets(value) {
     }
     if (m[3].trim().split(/\s+/).length > FACET_MAX_VALUE_TOKENS) {
       errors.push(`negativeFacets value 超過 ${FACET_MAX_VALUE_TOKENS} 個 token：${entry}`);
+      continue;
+    }
+    if (/(^|\s)non-/i.test(m[3])) {
+      // 極性歸 +/- 符號；「-ecosystem:non-x」是雙重否定復活（c61 教訓的結構化變體）
+      errors.push(`negativeFacets value 不得含「non-」（極性請用 +/- 符號表達）：${entry}`);
       continue;
     }
     if (seen.has(entry)) {

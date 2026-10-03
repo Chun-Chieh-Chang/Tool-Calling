@@ -119,7 +119,12 @@
         "採用可追蹤的圖結構而非向量嵌入儲存，允許使用者精確追蹤概念之間的路徑。",
         "明確標註每一條連結是「擷取（EXTRACTED）」或「推斷（INFERRED）」，清楚區分直接讀取與系統推導的內容。"
       ],
-      "description_zh": "將程式碼、文件、PDF 與多媒體資料轉化為可查詢的知識圖譜，強化專案理解與跨專案搜尋能力。"
+      "description_zh": "將程式碼、文件、PDF 與多媒體資料轉化為可查詢的知識圖譜，強化專案理解與跨專案搜尋能力。",
+      "negativeFacets": [
+        "-interface:real-time",
+        "-interface:text-search",
+        "+integration:code-analysis"
+      ]
     },
     {
       "id": "strix",
@@ -1080,6 +1085,11 @@
         "不適合快速原型開發或生產部署",
         "不適合缺乏基本程式設計基礎的初學者",
         "不提供即用型商業軟體解決方案"
+      ],
+      "negativeFacets": [
+        "-scale:rapid prototyping",
+        "-deployment:production",
+        "+deployment:learning"
       ]
     },
     {
@@ -2531,6 +2541,14 @@
         "若需要獨立 IDE 或程式編輯器而非提示詞指令，請勿使用。",
         "避免用於數據分析或創意寫作等非程式設計工作，此類工程提示詞毫無用處。",
         "若偏好完全自主且無策展行為指南的代理程式，則不適合使用。"
+      ],
+      "negativeFacets": [
+        "-platform:ide",
+        "-platform:code-editor",
+        "+interface:prompt",
+        "-ecosystem:data-analysis",
+        "-ecosystem:creative-writing",
+        "+integration:cursor"
       ]
     },
     {
@@ -3157,6 +3175,9 @@
         "不需標準語法，不應使用於正式文件撰寫或專業通訊。",
         "簡化表述可能遺漏關鍵細節的複雜推理任務，應避免使用。",
         "不適用於非 Claude Code 環境或其他 LLM 介面。"
+      ],
+      "negativeFacets": [
+        "+platform:claude code"
       ]
     },
     {
@@ -3315,6 +3336,11 @@
         "需要秒級以下回應速度的即時低延遲串流應用程式",
         "未經事先微調，音訊中含有高度專業領域術語的場景",
         "需要在對話中識別個別說話者的語者辨別任務"
+      ],
+      "negativeFacets": [
+        "-interface:real-time",
+        "-format:specialized-jargon",
+        "-interface:speaker-diarization"
       ]
     },
     {
@@ -3825,6 +3851,13 @@
         "不適合用於即時嵌入式系統或低階硬體控制",
         "避免用於全 agent 工作流程負擔不需要的瑣碎一次性腳本",
         "無法取代專用的 CI/CD 管線或自動化測試框架"
+      ],
+      "negativeFacets": [
+        "-platform:embedded",
+        "-platform:hardware",
+        "-scale:trivial",
+        "-integration:cicd",
+        "-integration:testing"
       ]
     },
     {
@@ -6118,6 +6151,11 @@
         "避免用於手動向量圖形編輯或高保真像素精確設計工作。",
         "不適合用於後端基礎設施、資料庫架構設計或非 UI 系統架構任務。",
         "若要求嚴格的雲端即時多人協作，則不適合。"
+      ],
+      "negativeFacets": [
+        "-ecosystem:backend",
+        "-interface:manual-editing",
+        "+deployment:cloud"
       ]
     },
     {
@@ -6561,6 +6599,10 @@
         "需要次毫秒執行的高頻交易",
         "無網頁介面的後端資料庫操作",
         "具有嚴格的防機器人驗證挑戰的環境"
+      ],
+      "negativeFacets": [
+        "-integration:backend-database",
+        "-integration:direct-database"
       ]
     },
     {
@@ -7408,6 +7450,11 @@
         "不適用於通用聊天或非技術性查詢。",
         "需要外部 LLM API 存取或本地模型配置才能運作。",
         "可能會產生 token 成本，視所選模型供應商而定。"
+      ],
+      "negativeFacets": [
+        "-interface:general chat",
+        "+integration:external api",
+        "+pricing:token-based"
       ]
     },
     {
@@ -7759,6 +7806,11 @@
         "不適合尋找商業托管服務提供商",
         "不提供直接安裝支援或客戶服務",
         "不適合尋求專有軟體解決方案的使用者"
+      ],
+      "negativeFacets": [
+        "-deployment:managed hosting",
+        "-interface:support",
+        "-ecosystem:proprietary"
       ]
     },
     {
@@ -7817,6 +7869,10 @@
         "不適用於生產環境的效能優化基準測試或低層級系統程式設計",
         "避免作為 Python 或 C++ 等非 JavaScript 語言的主要學習資源",
         "不適合尋找可直接部署應用程式的現成 npm 套件或函式庫"
+      ],
+      "negativeFacets": [
+        "+language:javascript",
+        "-ecosystem:npm"
       ]
     },
     {
@@ -8067,6 +8123,11 @@
         "需要微秒級延遲的高頻即時交易系統",
         "因公平程式碼授權而需嚴格遵循開源合規的專案",
         "簡單單一任務腳本，以輕量排程工作處理更為合適"
+      ],
+      "negativeFacets": [
+        "-scale:microsecond latency",
+        "-license:open source",
+        "-scale:simple scripts"
       ]
     },
     {
@@ -8121,6 +8182,11 @@
         "需要集中式團隊管理與角色權限管控的企業環境。",
         "需要托管雲端基礎設施或保證 SLA 可用率的用戶。",
         "需要內建認證合規審計的高度監管產業。"
+      ],
+      "negativeFacets": [
+        "-deployment:enterprise",
+        "-deployment:managed-cloud",
+        "-deployment:regulated"
       ]
     },
     {
@@ -8246,7 +8312,13 @@
         "不含付費、私有或企業內部 API",
         "不具備 API 閘道或治理功能，無法取代內部 API 管理"
       ],
-      "useCase_zh": "開發者在需要外部數據（如天氣或股票報價）時，利用此倉庫快速找到免費且有文件的公開 API 端點，無須單獨搜尋多家供應商。"
+      "useCase_zh": "開發者在需要外部數據（如天氣或股票報價）時，利用此倉庫快速找到免費且有文件的公開 API 端點，無須單獨搜尋多家供應商。",
+      "negativeFacets": [
+        "-integration:api-gateway",
+        "-integration:sla-guarantee",
+        "-pricing:paid",
+        "-pricing:enterprise"
+      ]
     },
     {
       "id": "developer-roadmap",
@@ -8308,6 +8380,11 @@
         "不適合用於取得特定程式碼片段或可直接投入生產的函式庫。",
         "無法取代正式認證或實作專案的經驗。",
         "避免將其作為專屬或高度垂直領域技術堆疊的唯一資源。"
+      ],
+      "negativeFacets": [
+        "-format:code-snippets",
+        "-ecosystem:proprietary",
+        "-scale:niche"
       ]
     },
     {
@@ -8484,6 +8561,12 @@
         "不適合查找專有文件說明或付費認證教材。",
         "在需要離線存取且無網際網路連線時不應使用。",
         "不適用於商業發行或販售受版權保護的內容。"
+      ],
+      "negativeFacets": [
+        "-pricing:paid",
+        "-ecosystem:proprietary",
+        "-deployment:offline",
+        "-license:commercial"
       ]
     },
     {
@@ -8549,6 +8632,11 @@
         "不適合學習底層語言語法或基本程式設計基礎。",
         "不提供生產系統的實作或可執行程式碼庫。",
         "不適合快速查閱特定框架 API 或容器編排工具。"
+      ],
+      "negativeFacets": [
+        "-language:low-level",
+        "-format:code",
+        "-interface:quick-reference"
       ]
     },
     {
@@ -8726,6 +8814,12 @@
         "不適合需要逐步安裝指南或環境設定的初學者。",
         "不提供互動式編程環境或影片講授。",
         "不適合用於尋找學術研究論文或理論計算機科學教科書。"
+      ],
+      "negativeFacets": [
+        "-interface:interactive-coding",
+        "-format:video",
+        "-format:research-papers",
+        "-format:textbooks"
       ]
     },
     {
@@ -8840,6 +8934,11 @@
         "當需要可執行軟體套件而非參考資料時",
         "對於需要互動式、逐步引導教程的初學者",
         "當需要自動化部署或執行階段執行而非文件時"
+      ],
+      "negativeFacets": [
+        "-format:executable",
+        "-interface:tutorial",
+        "-interface:deployment"
       ]
     },
     {
@@ -9011,6 +9110,10 @@
         "不支援 CLAUDE.md 檔案的非 Anthropic 編碼代理程式請勿使用。",
         "不要依賴它來取代人工程式碼審查或自動化測試。",
         "避免用於行為限制無關的非編碼任務。"
+      ],
+      "negativeFacets": [
+        "+ecosystem:anthropic",
+        "+interface:cli"
       ]
     },
     {
@@ -13967,6 +14070,10 @@
       "negativeConstraints_zh": [
         "這些準則偏向謹慎而非速度——不適用於應由判斷力主導的簡單任務",
         "單一行為技能規範，需與專案特定工作流程深思熟慮地整合"
+      ],
+      "negativeFacets": [
+        "-scale:trivial",
+        "+integration:project-specific"
       ]
     },
     {
@@ -14323,6 +14430,11 @@
         "不適合專業好萊塢等級的 VFX 或進階色彩調色工作流程。",
         "需企業級權限系統的實時多人雲端協作請避免使用。",
         "低階裝置上處理硬體加速的 8K RAW 影片素材並非理想選擇。"
+      ],
+      "negativeFacets": [
+        "-scale:professional",
+        "-deployment:cloud",
+        "-scale:large"
       ]
     },
     {
@@ -18992,6 +19104,10 @@
         "不適合需要微秒級執行速度的低延遲高頻交易。",
         "不應取代人工監督或嚴格的後測驗證。",
         "非為非金融類的一般任務自動化所設計。"
+      ],
+      "negativeFacets": [
+        "-ecosystem:general-purpose",
+        "-ecosystem:finance"
       ]
     },
     {
@@ -19279,6 +19395,11 @@
         "不適用於非 AI 程式設計工作流程或標準終端機自動化",
         "若需完全隔離且無持久記憶的工作階段，請避免使用",
         "請勿將其作為獨立 LLM 使用，因為它需要現有的 AI 程式設計代理程式"
+      ],
+      "negativeFacets": [
+        "-interface:terminal",
+        "+integration:memory",
+        "+interface:ide"
       ]
     },
     {
@@ -24726,6 +24847,10 @@
         "不適合偏好圖形使用者介面而非命令列互動的使用者。",
         "需要活躍的網路連線才能存取 Gemini API。",
         "根據底層 API 使用限制，可能會產生費用。"
+      ],
+      "negativeFacets": [
+        "-interface:gui",
+        "+deployment:cloud"
       ]
     },
     {
@@ -25603,6 +25728,10 @@
         "不適合用於即時串流影片生成",
         "本機推論需要大量 GPU 資源",
         "無法取代專業電影剪輯以製作劇情長片"
+      ],
+      "negativeFacets": [
+        "+deployment:local",
+        "+platform:gpu"
       ]
     },
     {
@@ -27491,6 +27620,11 @@
         "不適合需要無需自架的托管 SaaS 解決方案的使用者。",
         "不適合尋求簡單聊天機器人但不具備編程知識的非技術使用者。",
         "並非為高吞吐量生產環境推理服務而設計，開箱即用。"
+      ],
+      "negativeFacets": [
+        "-deployment:managed-saas",
+        "-interface:gui",
+        "-scale:high-throughput"
       ]
     },
     {
@@ -29366,6 +29500,10 @@
         "不適合不需要探索性調查的小型、定義明確的任務",
         "當團隊已有清晰詳細的計畫且不需要以探索為導向的規劃時，並非理想選擇",
         "不建議用於單人快速任務，因為建立工單會增加不必要的成本"
+      ],
+      "negativeFacets": [
+        "-scale:small",
+        "-scale:single"
       ]
     },
     {
@@ -30474,6 +30612,10 @@
       "negativeConstraints_zh": [
         "不適合沒有自訂適配器的 Vanilla JS 或 Vue 等非 React/Tailwind 網頁堆疊",
         "避免用於無前端使用者介面需求的後端 API 微服務"
+      ],
+      "negativeFacets": [
+        "+platform:react",
+        "+ecosystem:tailwind"
       ]
     },
     {
@@ -30525,6 +30667,11 @@
       "negativeConstraints_zh": [
         "不建議用於小型單一頁面靜態網站，因為隔離的元件模擬會產生額外負擔",
         "避免用於沒有使用者介面組件的純後端邏輯服務"
+      ],
+      "negativeFacets": [
+        "-scale:small",
+        "-format:single-page",
+        "-interface:backend"
       ]
     },
     {
@@ -30801,6 +30948,10 @@
       "negativeConstraints_zh": [
         "非 Python 與 C++ 的 API 不保證相容性，且可能向后不相容。",
         "Nightly 二進位檔僅供測試使用，不適用於生產環境的穩定性。"
+      ],
+      "negativeFacets": [
+        "+language:python",
+        "+language:c++"
       ]
     },
     {
@@ -30861,6 +31012,9 @@
       "negativeConstraints_zh": [
         "需要已安裝並啟用 Zsh v4.3.9 或更新版本。",
         "不原生支援 OS/2 Warp。"
+      ],
+      "negativeFacets": [
+        "+platform:zsh"
       ]
     },
     {
@@ -32026,7 +32180,12 @@
         "不適合即時高畫質影片串流處理",
         "不適合需要 GPU 大規模平行計算的場景"
       ],
-      "useCase_zh": "開發人員或研究人員透過呼叫 C++ API 建構即時影像處理與分析應用程式，例如物件追蹤或場景分割。"
+      "useCase_zh": "開發人員或研究人員透過呼叫 C++ API 建構即時影像處理與分析應用程式，例如物件追蹤或場景分割。",
+      "negativeFacets": [
+        "-platform:deep-learning",
+        "-scale:real-time-streaming",
+        "-scale:gpu-parallel-computing"
+      ]
     },
     {
       "id": "frame",
@@ -33884,6 +34043,9 @@
         "風格與 Fluent Design 深度綁定",
         "不適合非 Microsoft 生態",
         "部分圖示較為特定"
+      ],
+      "negativeFacets": [
+        "+ecosystem:microsoft"
       ]
     },
     {
@@ -38272,6 +38434,10 @@
         "不適用於一般程式設計或軟體開發任務",
         "未經專業諮詢，不應作為勞資爭議的法律參考依據",
         "不適用於中國科技生態系以外的公司或地區"
+      ],
+      "negativeFacets": [
+        "-integration:legal reference",
+        "+ecosystem:chinese tech"
       ]
     },
     {
@@ -38329,6 +38495,9 @@
       "negativeConstraints_zh": [
         "不適合需要零 JavaScript 執行或純靜態內容產生而無需 JS 執行階段的情境",
         "不限定其餘技術堆疊，開發者須自行處理與其他程式庫或框架的整合"
+      ],
+      "negativeFacets": [
+        "+language:javascript"
       ]
     },
     {
@@ -38376,6 +38545,12 @@
         "不適合用於終端使用者應用程式開發或高階軟體工程任務",
         "不適合尋求無需編譯與設定的即用型作業系統的使用者",
         "非為 Windows 或 macOS 原生開發環境而設計"
+      ],
+      "negativeFacets": [
+        "-interface:end-user",
+        "-deployment:ready-to-use",
+        "-platform:windows",
+        "-platform:macos"
       ]
     },
     {
@@ -38438,6 +38613,10 @@
       "negativeConstraints_zh": [
         "不適合生產環境，因為實作方式可能不如 Python 標準程式庫有效率",
         "主要著重於學習而非效能最佳化"
+      ],
+      "negativeFacets": [
+        "-deployment:production",
+        "-scale:performance"
       ]
     },
     {
@@ -38494,6 +38673,10 @@
         "不適合新專案，Vue 2 已於 2023 年 12 月 31 日終止支援且不再獲得更新或修復",
         "不支援 Internet Explorer 8 或更早版本",
         "缺乏現代 ES6+ 特性，僅針對符合 ES5 的瀏覽器"
+      ],
+      "negativeFacets": [
+        "-platform:ie8",
+        "-language:es5"
       ]
     },
     {
@@ -42634,6 +42817,11 @@
         "不適合用於輕量級函式庫（如 Canvas API 或 SVG）更合適的簡單 2D 圖形",
         "不適合用於伺服器端渲染或非瀏覽器環境",
         "對於不需要即時 3D 渲染的基本視覺化來說過於複雜"
+      ],
+      "negativeFacets": [
+        "-format:2d graphics",
+        "-platform:server-side",
+        "-format:basic visualizations"
       ]
     },
     {
@@ -44888,6 +45076,10 @@
       "negativeConstraints_zh": [
         "完整部署需大量系統資源（含 Docker 與向量資料庫）",
         "不建議在僅限瀏覽器的輕量級環境中使用"
+      ],
+      "negativeFacets": [
+        "+scale:substantial",
+        "-interface:browser"
       ]
     },
     {
@@ -45056,6 +45248,9 @@
       "negativeConstraints_zh": [
         "目前為 developer preview，API 可能隨時破壞性變更，不適合生產環境依賴",
         "需要 Node.js 環境，不適用於非 JS 生態的部署場景"
+      ],
+      "negativeFacets": [
+        "+platform:node.js"
       ]
     },
     {
@@ -45369,6 +45564,10 @@
         "需要 Python ≥3.11 環境",
         "不適用於無規格需求的快速原型或一次性小型任務",
         "主要面向 GitHub Copilot 生態系，其他 IDE 支援有限"
+      ],
+      "negativeFacets": [
+        "+language:python",
+        "+ecosystem:github copilot"
       ]
     },
     {
@@ -46026,7 +46225,11 @@
         "Not suitable for production-grade inference or serving large-scale foundation models due to its educational focus on small but functional models.",
         "Requires following the specific setup and environment configurations outlined in the book's setup directory for the code to run correctly."
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [],
+      "negativeFacets": [
+        "-deployment:production",
+        "-scale:large"
+      ]
     },
     {
       "id": "figures4papers",
@@ -46204,6 +46407,10 @@
         "僅提供特定免費網域（.DPDNS.ORG、.US.KG、.QZZ.IO、.XX.KG、.QD.JE）；不提供標準高級或國家代碼網域。",
         "此倉庫主要用於文件與學習；實際應用程式原始碼在另一個倉庫中維護。",
         "檢舉處理時間可能從數小時到數日不等，視案件複雜度而定。"
+      ],
+      "negativeFacets": [
+        "-format:premium-tlds",
+        "-format:country-codes"
       ]
     },
     {
@@ -47348,6 +47555,11 @@
       "negativeConstraints_zh": [
         "基於 Shell 的技能需要 Unix 相容環境或 Windows 上的 WSL",
         "個別的技能子路徑需透過 npx skills@latest add 分別安裝"
+      ],
+      "negativeFacets": [
+        "-platform:windows",
+        "+integration:npx",
+        "+integration:npm"
       ]
     },
     {
