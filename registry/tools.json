@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T22:54:05.964Z",
+  "lastUpdated": "2026-10-03T23:40:09.058Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41275,7 +41275,16 @@
       "description_zh": "Agent 技能：將中文故事文案或順序圖片轉換為手繪日記漫畫動畫（無聲 MP4 圖片軌）。",
       "advantages_zh": "直接從中文故事文案產出手繪日記風動畫 MP4，全過程無需手繪或剪輯,靜止圖片序列轉動的影片，製作成本低且風格一致,以 Agent 技能格式提供，可嵌入現有 AI 工作流",
       "useCase_zh": "內容創作者在需要將中文故事或手繪圖片轉為直向無聲 MP4 動畫時，利用此工具快速產出手繪日記風格的影片。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要特定的本地環境依賴：Node.js 20+、Python 3.10+、FFmpeg 以及用於 Remotion 渲染的基於 Chrome 的瀏覽器。",
+        "純 CLI 執行無法對參考圖片進行視覺分析；此步驟必須由具備圖像理解能力的 AI Agent 完成。",
+        "輸出為無聲的 MP4 影片軌道；不包含內建的音訊產生功能，需另行後製製作人聲或背景音樂。"
+      ],
+      "negativeConstraints": [
+        "Requires specific local dependencies: Node.js 20+, Python 3.10+, FFmpeg, and a Chrome-based browser for Remotion rendering.",
+        "Pure CLI execution cannot perform visual analysis of reference images; this step must be completed by an AI Agent with image understanding capabilities.",
+        "Output is a silent MP4 video track; it does not include integrated audio generation, requiring separate post-production for voiceovers or BGM."
+      ]
     },
     {
       "id": "findphone",

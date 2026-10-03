@@ -6604,6 +6604,14 @@
         "需要手動將生成的 cover text 複製並貼入 messaging app，這使得它無法適用於高速或自動化通訊"
       ],
       "at": "2026-10-03T23:02:23.365Z"
+    },
+    "story-to-handdrawn-video": {
+      "negativeConstraints_zh": [
+        "需要特定的本地環境依賴：Node.js 20+、Python 3.10+、FFmpeg 以及用於 Remotion 渲染的基於 Chrome 的瀏覽器。",
+        "純 CLI 執行無法對參考圖片進行視覺分析；此步驟必須由具備圖像理解能力的 AI Agent 完成。",
+        "輸出為無聲的 MP4 影片軌道；不包含內建的音訊產生功能，需另行後製製作人聲或背景音樂。"
+      ],
+      "at": "2026-10-03T23:48:00.397Z"
     }
   },
   "failed": {}
