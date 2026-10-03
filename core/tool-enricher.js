@@ -130,6 +130,9 @@ export async function enrichToolFromReadme(tool, options = {}) {
     // 每次嘗試重新取一把，讓重試有機會換到沒被限流的那把
     const apiKey = options.apiKey ?? nextKey();
     if (!apiKey) return null;
+    // QA 覆核用的 README 全文（normalizeEnrichment 驗證 negativeConstraints 用；
+    // __ 前綴標記為內部傳遞，落盤前必須刪除——見下方成功分支）。
+    tool.__readmeTextForVerify = readme;
     try {
       const res = await fetch(`${apiBase}/chat/completions`, {
         method: 'POST',
@@ -150,7 +153,14 @@ export async function enrichToolFromReadme(tool, options = {}) {
       const raw = String(j?.choices?.[0]?.message?.content || '').trim();
       const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
       const out = JSON.parse(cleaned);
-      return normalizeEnrichment(out, tool);
+      // 內部覆核標記不得外洩：normalizeEnrichment 只回傳白名單 patch，
+      // 但 tool 本體上的暫存鍵仍須清掉，否則 enrich-new-tools 的 Object.assign
+      // 會把它寫進 registry（__ 鍵一進 tools.json 就污染單一真理來源）。
+      try {
+        return normalizeEnrichment(out, tool);
+      } finally {
+        delete tool.__readmeTextForVerify;
+      }
     } catch { /* 重試 */ }
   }
   return null;
@@ -220,9 +230,31 @@ export function normalizeEnrichment(out, tool) {
   if (caps.length && (!tool.capabilities || tool.capabilities.length === 0)) {
     rec.capabilities = caps;   // 只在原本是空的時候補，不覆蓋 GitHub topics
   }
-  // 禁用場景：只在模型真的從 README 給出內容時才收（佔位樣板由掃描器端根治，見 scan-tool.js）
+  // 禁用場景：只在模型真的從 README 給出內容時才收（佔位樣板由掃描器端根治，見 scan-tool.js）。
+  // 2026-10-03 補 QA 覆核：LLM 會產出「乍看合理、README 查無實據」的條目
+  // （實例：awesome-n8n-templates「production use」README 無此詞；
+  // KEV「80GB GPU」README 只有 27B 無 VRAM 數字）。覆核規則：
+  // (a) 條內長度>=5 的英文 token 至少一枚命中 README，(b) 條內數字＋單位
+  // 必須在 README 出現。兩者任一不滿足就丟棄該條，寧可留白。
+  // 2026-10-03 A 批註記：覆核 (a) 只保證「詞有出現」，不保證「關係為真」
+  // （QwenPaw「Python 3.11~3.13」實為 badge 徽章的版本標示，被模型寫成相容性邊界）。
+  // 數字＋版本範圍（x.y、3.11~3.14 這類）一律視為高風險：必須在 README 內文
+  // （非徽章 URL）出現才收，徽章只算半個證據。
   const neg = arr(out?.negativeConstraints, 3, en);
-  if (neg.length) rec.negativeConstraints = neg;
+  if (neg.length && tool.__readmeTextForVerify) {
+    const rl = String(tool.__readmeTextForVerify).toLowerCase();
+    const verified = neg.filter((s) => {
+      const ls = String(s).toLowerCase();
+      const words = ls.split(/[^a-z0-9+.-]+/).filter((w) => w.length >= 5);
+      const nums = ls.match(/[0-9]+(?:\.[0-9]+)?\s?(?:gb|mb|tb|b|k|m|h100|l40s)/g) || [];
+      if (words.length && !words.some((w) => rl.includes(w))) return false;
+      if (nums.some((n) => !rl.includes(n.replace(/\s+/g, '')) && !rl.includes(n))) return false;
+      return true;
+    });
+    if (verified.length) rec.negativeConstraints = verified;
+  } else if (neg.length) {
+    rec.negativeConstraints = neg;
+  }
   // ⚠️ 刻意不處理 description_zh：描述的中文一律由 translate:zh 產生，
   //    它翻譯的是真正的 description 欄位，不會出現「中英不一致」。
   //    （模型仍可能回傳 description_zh，這裡直接忽略。）

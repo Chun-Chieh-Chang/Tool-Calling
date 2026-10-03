@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T12:24:44.100Z",
+  "lastUpdated": "2026-10-03T12:58:27.755Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -38247,7 +38247,19 @@
       },
       "description_zh": "280+ 免費 n8n 自動化範本 — 即用的工作流，適用於 Gmail、Telegram、Slack、Discord、WhatsApp、Google Drive、Notion、OpenAI 等。AI 代理、RAG 聊天機器人、電子郵件自動化、社交 m",
       "useCase_zh": "280+ 免費 n8n 自動化範本",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "每個匯入的範本在啟用前，都需經過手動審查與憑證設定。",
+        "範本為依賴 n8n 平台的 JSON 檔案，無法於其他工作流程引擎中使用。"
+      ],
+      "advantages_zh": [
+        "提供超過 280 個可即時匯入的 JSON 工作流模板，涵蓋 Gmail、Telegram 和 OpenAI 等特定整合。",
+        "模板基於 n8n 的來源可用、公平代碼授權，允許自架以掌控資料且無供應商鎖定。",
+        "包含 AI 代理、RAG 管道和 DevOps 自動化等高階應用場景的模板。"
+      ],
+      "negativeConstraints": [
+        "Requires manual review and credential configuration for each imported template before activation.",
+        "Templates are JSON files that depend on the n8n platform; they cannot be used in other workflow engines."
+      ]
     },
     {
       "id": "qwenpaw",

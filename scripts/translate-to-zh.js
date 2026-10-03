@@ -36,6 +36,9 @@ const RESET = args.includes('--reset');
 /** --redo-skipped：清掉「之前判定不需翻譯」的記錄，讓規則放寬後可重跑那批 */
 const REDO_SKIPPED = args.includes('--redo-skipped');
 const BATCH = Number(args.find((a) => a.startsWith('--batch='))?.split('=')[1]) || 5;
+const IDS = args.find((a) => a.startsWith('--ids='))?.split('=')[1]?.split(',').map((s) => s.trim()).filter(Boolean);
+// 2026-10-03 補：此前無 --ids，只能全量跑；A 批回補需要單支重譯
+// （enrich 回補 negativeConstraints 後只翻該支的 negativeConstraints_zh）。
 const SAVE_EVERY = 20;
 
 const hasZH = (s) => /[一-鿿]/.test(String(s || ''));
@@ -110,13 +113,18 @@ function normalizeResponse(out) {
   return out;
 }
 
-/** 重讀 registry → 套用目前所有譯文 → 寫回。避免覆蓋背景行程的更新。 */
-function flush() {
+/** 重讀 registry → 套用目前所有譯文 → 寫回。避免覆蓋背景行程的更新。
+ * 2026-10-03 補 --ids 語意：指定 id 時只套用這些工具的譯文，不重放全庫。
+ * 背景：全量重放會把 state.done 裡的舊譯文蓋回 tools.json——A 批回補時曾把
+ * 手動清空的欄位用舊快取復活（HANDOFF 新增陷阱 6 的同類事件），故 --ids 限定範圍。 */
+function flush(idsOnly) {
   if (DRY) return;
   const j = JSON.parse(readFileSync(REGISTRY, 'utf8'));
   let n = 0;
   const activated = [];
+  const only = idsOnly ? new Set(idsOnly) : null;
   for (const t of j.tools) {
+    if (only && !only.has(t.id)) continue;
     const d = state.done[t.id];
     if (!d) continue;
     if (d.description_zh) t.description_zh = d.description_zh;
@@ -142,7 +150,13 @@ function flush() {
 
 // ── 收集待翻譯 ──────────────────────────────────────────────────────────────
 const reg = JSON.parse(readFileSync(REGISTRY, 'utf8'));
-const tools = reg.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
+let tools = reg.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
+// --ids：只處理指定工具（A 批回補用）。flush(IDS) 同步限定範圍，
+// 只套用這些工具的譯文，不重放全庫（state 只新增該支條目）。
+if (IDS) {
+  const set = new Set(IDS);
+  tools = tools.filter((t) => set.has(t.id));
+}
 
 const pending = [];
 for (const t of tools) {
@@ -194,7 +208,7 @@ if (DRY) console.log('（--dry：不會寫入）');
 if (targets.length === 0) {
   // ⚠️ 這裡也要存檔：收集階段可能清掉過時的失敗記錄，直接結束會讓清理白做
   saveState();
-  flush();
+  flush(IDS);
   console.log('沒有待處理的工具。');
   process.exit(0);
 }
@@ -327,13 +341,13 @@ for (let i = 0; i < targets.length; i += BATCH) {
     process.stdout.write('·');
   }
 
-  if (batchNo % SAVE_EVERY === 0) { flush(); process.stdout.write('S'); }
+  if (batchNo % SAVE_EVERY === 0) { flush(IDS); process.stdout.write('S'); }
   if (batchNo % 20 === 0) process.stdout.write(` ${Math.round((i / targets.length) * 100)}% `);
   // 批次間小歇，降低連續呼叫觸發限流的機率
   await new Promise((r) => setTimeout(r, 400));
 }
 
-const written = flush();
+const written = flush(IDS);
 console.log(`\n\n完成：成功 ${okN} 筆、失敗 ${failN} 筆`);
 if (!DRY) console.log(`已寫入 tools.json（本次套用 ${written} 筆譯文）`);
 if (failN > 0) console.log(`失敗的工具已記錄，重新執行本腳本即可續跑。`);
