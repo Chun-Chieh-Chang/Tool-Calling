@@ -284,8 +284,12 @@ for (let i = 0; i < targets.length; i += BATCH) {
         : (r === undefined && Array.isArray(out[`${b.id}_zh`]) ? out[`${b.id}_zh`] : null);
       if (ncArr && b.negativeConstraints) r = { negativeConstraints_zh: ncArr };
       if (typeof r === 'string') {
-        // 扁平形式：只有一個待翻欄位時可直接對應，否則歸給 description
-        r = fields.length === 1 ? { [`${fields[0]}_zh`]: r } : { description_zh: r };
+        // 扁平形式：只有一個待翻欄位時可直接對應。
+        // fields 為空（本批只請求 negativeConstraints）→ 給約束，不給 description
+        // （2026-10-03 khoj 教訓：歸錯欄位會覆寫既有譯文）。
+        if (fields.length === 1) r = { [`${fields[0]}_zh`]: r };
+        else if (fields.length === 0 && b.negativeConstraints) r = { negativeConstraints_zh: r };
+        else r = { description_zh: r };
       }
       // 第 4 種跑版：整個回應被壓平，key 變成 `<id>_<欄位>_zh`
       if (!r || typeof r !== 'object') {
@@ -294,8 +298,11 @@ for (let i = 0; i < targets.length; i += BATCH) {
           const v = out[`${b.id}_${f}_zh`];
           if (typeof v === 'string' && v.trim()) flat[`${f}_zh`] = v;
         }
-        const nc = out[`${b.id}_negativeConstraints_zh`];
+        const nc = out[`${b.id}_negativeConstraints_zh`] ?? out[`${b.id}_negativeConstraints`];
+        // 2026-10-03 khoj 實測：只收陣列會漏掉字串版——扁平鍵回來的是字串，
+        // 整批被誤判 missing id。字串交給下方的筆數比對防呆處理。
         if (Array.isArray(nc) && nc.length) flat.negativeConstraints_zh = nc;
+        else if (typeof nc === 'string' && nc.trim()) flat.negativeConstraints_zh = nc;
         if (Object.keys(flat).length > 0) r = flat;
       }
       if (!r) {
@@ -306,22 +313,28 @@ for (let i = 0; i < targets.length; i += BATCH) {
         continue;
       }
       const rec = {};
-      // 同理：模型可能回 `description` 而非指定的 `description_zh`，兩種都收
+      // 同理：模型可能回 `description` 而非指定的 `description_zh`，兩種都收。
+      // 🔴 但只收「本次真的請求的欄位」——2026-10-03 khoj 實例：本批次只請求
+      // negativeConstraints，模型卻把譯文回成 description_zh，未加閘門會把
+      // 既有的描述譯文覆寫成約束句（污染後需從 git 手動復原）。
       for (const k of ['description', 'useCase', 'advantages']) {
+        if (!fields.includes(k)) continue;
         const v = String(r[`${k}_zh`] || r[k] || r[k.toLowerCase()] || '').trim();
         if (v) rec[`${k}_zh`] = toTraditional(v);
       }
       // negativeConstraints 是陣列：模型應回 negativeConstraints_zh (陣列)
-      const ncRaw = r['negativeConstraints_zh'] ?? r['negativeConstraints'];
-      if (Array.isArray(ncRaw)) {
-        const nc = ncRaw.map((s) => toTraditional(String(s ?? '').trim())).filter(Boolean);
-        if (nc.length) rec['negativeConstraints_zh'] = nc;
-      } else if (typeof ncRaw === 'string' && ncRaw.trim()) {
-        // 模型偶爾把整個陣列壓成一條字串。只有切分後**筆數正好等於**原文才收下，
-        // 否則寧可留空（web/app.js:1285 會退回英文）——憑猜測切分會切錯句子。
-        const want = Array.isArray(b.negativeConstraints) ? b.negativeConstraints.length : 0;
-        const parts = ncRaw.split(/[；;]/).map((s) => toTraditional(s.trim())).filter(Boolean);
-        if (want && parts.length === want) rec['negativeConstraints_zh'] = parts;
+      if (b.negativeConstraints) {
+        const ncRaw = r['negativeConstraints_zh'] ?? r['negativeConstraints'];
+        if (Array.isArray(ncRaw)) {
+          const nc = ncRaw.map((s) => toTraditional(String(s ?? '').trim())).filter(Boolean);
+          if (nc.length) rec['negativeConstraints_zh'] = nc;
+        } else if (typeof ncRaw === 'string' && ncRaw.trim()) {
+          // 模型偶爾把整個陣列壓成一條字串。只有切分後**筆數正好等於**原文才收下，
+          // 否則寧可留空（web/app.js:1285 會退回英文）——憑猜測切分會切錯句子。
+          const want = Array.isArray(b.negativeConstraints) ? b.negativeConstraints.length : 0;
+          const parts = ncRaw.split(/[；;]/).map((s) => toTraditional(s.trim())).filter(Boolean);
+          if (want && parts.length === want) rec['negativeConstraints_zh'] = parts;
+        }
       }
       if (Object.keys(rec).length === 0) {
         // 只寫「empty fields」無從診斷：模型常把唯一待翻欄位壓成陣列或換 key，

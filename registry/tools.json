@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T13:23:10.803Z",
+  "lastUpdated": "2026-10-03T13:38:36.267Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -38423,7 +38423,18 @@
       },
       "description_zh": "你的 AI 第二大腦。可自行託管。從網路或你的文件取得答案。建立自訂代理，排程自動化，進行深入研究。將任何線上或本地 LLM 轉變為你個人的、自主的 AI（gpt、claude、gemini、llama、qwen、mistral）。免費開始使用。",
       "useCase_zh": "你的 AI 第二大腦。可自行託管。從網路或你的文件取得答案。建立自訂代理，排程自動化，進行深入研究。將任何線上或本地 LLM 轉變為你個人的、自主的 AI（gpt、claude、gemini、llama、qwen、mistral）。免費開始使用。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "聊天功能取決於是否有相容的本地或線上 LLM"
+      ],
+      "advantages_zh": [
+        "可無縫擴展從裝置端個人 AI 到雲端企業級部署",
+        "支援多種文件格式（包括 PDF、Notion、Word 和 org-mode）進行語意搜尋",
+        "啟用重複研究的自動化工作流，並將智慧通知傳送至收件匣",
+        "可透過 Obsidian、Emacs、WhatsApp 及行動裝置等多種介面存取"
+      ],
+      "negativeConstraints": [
+        "Depends on the availability of compatible local or online LLMs for chat functionality"
+      ]
     },
     {
       "id": "awesome",
