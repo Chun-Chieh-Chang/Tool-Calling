@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T14:41:24.428Z",
+  "lastUpdated": "2026-10-03T22:54:05.964Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41100,7 +41100,16 @@
       "description_zh": "使用 LLM 將訊息隱藏在看似正常的對話中",
       "advantages_zh": "利用 LLM 產生看似自然的對話內容隱含訊息，難以被傳統內容過濾偵測,Go 實作，編譯後為單檔二進位，部署無依賴,概念上可應用於安全研究與隱私測試場景",
       "useCase_zh": "資安研究者或記者需要在 WhatsApp、Telegram 等主流通訊軟體上交換敏感座標或指示，且必須避免因發送加密訊息而觸發異常流量分析或元數據標記，透過此工具將內容偽裝成自然的 LLM 生成對話。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "已明確標示為 proof of concept，且已知對新興檢測技術存在弱點",
+        "僅限於教育和研究用途；作者明確免除對未經授權或非法濫用的相關責任",
+        "需要手動將生成的 cover text 複製並貼入 messaging app，這使得它無法適用於高速或自動化通訊"
+      ],
+      "negativeConstraints": [
+        "Explicitly marked as a proof of concept with known vulnerabilities to emerging detection techniques",
+        "Restricted to educational and research purposes; the author explicitly disclaims liability for unauthorized or illegal misuse",
+        "Requires manual copying and pasting of generated cover text into the messaging app, making it impractical for high-speed or automated communication"
+      ]
     },
     {
       "id": "nativ",
