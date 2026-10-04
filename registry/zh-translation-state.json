@@ -6462,9 +6462,12 @@
       "at": "2026-09-27T05:20:05.185Z"
     },
     "models-of-human-anatomy": {
-      "at": "2026-09-21T13:08:22.370Z",
+      "at": "2026-10-04T09:06:15.719Z",
       "skipped": "already zh or empty",
-      "description_zh": "此儲存庫包含 Z-Anatomy Project 的 Blender 模板。它包含源自 'BodyParts3D' 的模型，以及高度依賴 Wikipedia 的定義。由 Gauthier Kervyn 製作…"
+      "description_zh": "此儲存庫包含 Z-Anatomy Project 的 Blender 模板。它包含源自 'BodyParts3D' 的模型，以及高度依賴 Wikipedia 的定義。由 Gauthier Kervyn 製作…",
+      "negativeConstraints_zh": [
+        "需要本地安裝 Blender 以及特定的範本解壓縮步驟"
+      ]
     },
     "anny": {
       "at": "2026-09-21T12:58:25.369Z",
