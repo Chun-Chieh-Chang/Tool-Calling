@@ -1,5 +1,44 @@
 # Tool-Calling 開發日誌
 
+## 2026-10-04 A 批 39 支 negativeConstraints 判定完成＋validate 門禁語義對齊＋tokentab deprecated
+
+### 需求
+第六批門禁誠實化揭露：39 支工具缺 negativeConstraints（09-27 佔位樣板清理的
+誠實留空存量）。本批目標：依 README 逐條人工核實回補、該留空的留空、
+並讓 validate 門禁語義與 contract 層一致。
+
+### 完成內容
+1. **39 支全數判定**：33 支回補（enrich→逐條 README 核實→單支重譯→NC/NCZ 筆數
+   對齊）；6 支誠實留空（awesome／awesome-python／awesome-mac 書單型、qwenpaw
+   badge 陷阱、arc-task-gen 無邊界、tokentab 死鏈）。**攔下 13 條捏造**——書單型
+   README 必然捏造；badge 數字不算證據；QA 閘門擋不住「錯誤轉述」與「演繹推論」，
+   落盤前人工核實不可省。
+2. **兩個管線真 bug 修復**（比資料更有價值）：
+   - `translate-to-zh.js` 欄位歸屬閘門——khoj 案：模型回錯鍵（negativeConstraints
+     譯文掛 description_zh）曾覆寫既有描述譯文，閘門只收本次請求欄位。
+   - `translate-to-zh.js` 陣列筆數比對——freecodecamp 案：英文 2 條被黏成 1 個
+     \n 接陣列元素無條件收下；現比對筆數，不符先按換行拆、拆不對整批拒收。
+   - 另補 `--ids`（單支重譯不再全量重放，根治 state 快取復活）。
+3. **validate 門禁語義對齊**（`2fb4a5b`）：NC 缺失 error→warn，與 registry-contract
+   的 09-27「誠實的訊號」設計一致（advantages 同族本就是 warning）。現況
+   0 錯誤／6 警告／品質 99.8／exit 0。留空壓力由 enrich 管線承擔。
+4. **tokentab 標 deprecated**（`5883057`）：上游 repo GitHub API 404、作者公開
+   repo 數 0（無改名新家），依既有慣例僅改 status。
+5. **逾時砍測試造成 categories.json 注入殘留**：系統負載使 npm test 兩度撞 30 秒
+   指令上限，category-guards.test.js 的注入（AI 框架色碼重複）未及還原——
+   `git checkout` 復原，教訓編入 HANDOFF A 批陷阱 7。
+
+### 驗證
+- benchmark（267 題，確定性）：fusion 59.1%（批前 58.0%）、agent 58.8%、
+  direct 68.4%、semantic 50.4%、constrained 61.5%、空集誠實率 10/10——零回歸。
+- 測試 354/352/0/2；check-mece、樣板、繁體、UTF-8、doc-stats 門禁綠；
+  NC/NCZ 全庫筆數失配 0。
+- 遠端核對：GitHub API 確認本批 35+2 筆 commit 全數在 main。
+
+### 殘留
+- 6 支 NC 留空為最終狀態（各附判定理由於各 commit）；validate 以 warning 呈現。
+- HANDOFF 已同步（頂部快照、A 批陷阱 7-14、陷阱 22 的 ℹ 前綴修正、待辦打勾）。
+
 ## 2026-10-03（第六批）validate 門禁誠實化——結束碼回報錯誤＋兩道假綠測試修正
 
 ### 需求

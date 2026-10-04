@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-03（六批次衝刺：檢索校準／治理門禁／原型層／配方庫——見「三、目前狀態」頂部快照）
+> 最後更新：2026-10-04（A 批 39 支 negativeConstraints 判定完成＋validate 門禁語義對齊——見「三、目前狀態」頂部快照）
 
 ---
 
@@ -235,9 +235,30 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（2026-10-03 快照；本節下方 2026-09-21 的分析結論仍有效，數字已過期）
+## 三、目前狀態（2026-10-04 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
-### 2026-10-03 六批次衝刺後的現況
+### 2026-10-04 A 批回補後的現況
+
+- **A 批 negativeConstraints 全數判定完成（39 支）**：33 支依 README 逐條人工核實回補
+  （每支 NC 與 NCZ 筆數對齊），6 支**誠實留空**（awesome／awesome-python／awesome-mac
+  書單型、qwenpaw badge 陷阱、arc-task-gen 無邊界、tokentab 死鏈）。過程攔下 13 條捏造
+  （書單型 README 必然捏造；badge 數字不算證據）。
+- **validate 門禁語義已對齊**：NC 缺失降級 error→warn（`cli.js`，與 `registry-contract.js`
+  的 09-27「誠實的訊號」設計一致；同族欄位 advantages 本來就是 warning）。現況：
+  **0 錯誤／6 警告／品質 99.8／exit 0**。留空壓力由 enrich 管線承擔
+  （`needsEnrich()` 已認 NC 為補齊目標）。
+- **檢索核心指標（267 題 v1.3.0）**：fusion Hit@1 **59.1%**（A 批前 58.0%，+1.1pp，
+  噪音地板內）、agent 58.8%、semantic 50.4%、direct 68.4%、constrained 61.5%、
+  **空集誠實率 100%**——A 批 33 支 NC 變動零回歸。
+- **測試**：**354** tests / 352 pass / 0 fail / 2 skip；check-mece、樣板、繁體門禁綠。
+- **管線能力更新**：`translate-to-zh.js` 新增 `--ids`（限定套用範圍）＋**欄位歸屬閘門**
+  （模型回錯鍵不再覆寫，khoj 污染案）＋**陣列筆數比對**（NCZ[i] 恆對應 NC[i]，
+  freecodecamp 黏接案）；`enrich-new-tools.js` 認 NC 為補齊目標＋強制序列（TPM）＋
+  `saveRegistry` 原子寫入。
+- **tokentab 已標 deprecated**：上游 `damejan80/tokentab` GitHub API 404（作者公開
+  repo 數 0，無改名新家）；依既有慣例僅改 status。active+experimental = 732。
+
+### 2026-10-03 六批次衝刺後的現況（A 批前的歷史快照）
 
 - **檢索核心指標（267 題評測 v1.3.0）**：fusion Hit@1 **58.0%**（9/21 時 56.8%）、
   agent 57.6%、semantic 50.4%、direct 68.4%、**空集誠實率 100%（全程未破）**。
@@ -271,6 +292,35 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 6. **翻譯狀態快取會復活手動編輯**：`registry/zh-translation-state.json` 快取歷史譯文，
    重跑時整批套回——手動清空的欄位會被舊譯文覆蓋（樣板門禁曾即時抓到 49 筆復活）。
    **清資料必須連 state 條目一起清**，否則下次重跑又套回。
+
+### 2026-10-04 A 批新增陷阱（負邊界回補 39 支實測）
+
+7. **逾時砍死 npm test 會讓注入殘留進真實 categories.json**：
+   `tests/category-guards.test.js` 對**真實** `registry/categories.json` 注入壞值驗證
+   守衛、結束時還原——測試行程被 30 秒指令逾時砍死時還原不會執行，殘留會讓
+   check-mece 紅燈（實例：AI 框架色碼被改成與 AI 代理重複）。
+   **復原**：`git checkout -- registry/categories.json`＋重跑 check-mece。
+   凡是逾時砍掉測試，先 `git status registry/` 檢查有無非預期修改。
+8. **GitHub Actions cron 會隨時搶推 main**：push 失敗時先 `git ls-remote origin main`
+   對 hash——若分岔，fetch 後 `git merge <hash>`（禁 rebase），衝突通常只在
+   tools.json 頂部 lastUpdated 時間戳，其餘自動合併。
+9. **commit 訊息逐字引用簡體 README 會被繁體門禁攔截**：`check-traditional --commits`
+   掃最新一筆、無豁免——A 批踩了兩次。CJK 引述一律**打字重寫成繁體**，不複製貼上。
+10. **badge／shield.io 徽章數字不算證據**：`python-3.11~<3.14` 徽章 URL 被模型寫成
+    相容性邊界（qwenpaw 案）。數字必須在 README **正文段落**出現才算。
+11. **書單型 README 必然產出捏造約束**：awesome／awesome-mac 等連結清單沒有
+    「何時不該用」章節，LLM 被逼著填就會編（static-list／terms-of-service 等
+    十三例）——**判定誠實留空，不要硬湊**。有 CAUTION/WARNING/Limitations
+    章節的 README 幾乎必然全收。
+12. **Node v26 的 TAP 前綴是 `ℹ` 不是 `#`**：陷阱 22 的 `grep -E "^# (tests|pass|fail)"`
+    在 Node v26 抓不到摘要——改用 `"^ℹ (tests|pass|fail)"` 或直接看 exit code。
+13. **PowerShell 把 git push 的 stderr 進度訊息判為錯誤**：輸出顯示
+    `Command exited with code 1` 不代表推送失敗——唯一判準是
+    `git ls-remote origin main` 對 hash（A 批 20+ 次假失敗、1 次真失敗全靠此分辨）。
+14. **模型會把 negativeConstraints 產成中文或回錯鍵**：已由管線閘門根治
+    （translate-to-zh 欄位歸屬閘門＋筆數比對、enricher QA 覆核），但**落盤前仍須
+    逐條對 README 人工核實**——QA 閘門只擋「字面不在 README」，擋不住
+    「對比的錯誤轉述」（labs-oo-agents 案）與「演繹推論」（penguin-harness 案）。
 
 ─── 以下為 2026-09-21 的狀態記錄（數字已過期，rerank A/B 分析結論仍有效）───
 
@@ -342,7 +392,8 @@ TAP 輸出的順序是：
 誤以為全綠，結果**深度搜尋整個壞掉（ReferenceError）卻沒發現**——
 因為編輯註解時誤刪了 `const DEFAULT_MODEL = ...` 這一行。
 
-→ **至少 `tail -8`，或直接 `npm test 2>&1 | grep -E "^# (tests|pass|fail)"`。**
+→ **至少 `tail -8`，或直接 `npm test 2>&1 | grep -E "^(#|ℹ) (tests|pass|fail)"`。**
+  ⚠️ Node v26 起 TAP 前綴是 `ℹ` 不是 `#`（2026-10-04 實測），舊 grep 會抓不到摘要。
 → 同理：任何「只看尾部 N 行」的驗證都要確認關鍵行沒被截掉。
 
 ### 23. 🔴 反引號寫進 template literal 會提前結束字串（2026-09-21）
@@ -569,6 +620,9 @@ npm run mcp                 # 啟動 MCP server
 
 - ✅ ~~7 支 facets 補萃取 + 3 支 zh 重譯~~ → 已完成（facets 覆蓋 92/100，其餘為
   散文無可萃取的誠實留空；zh 3 筆全數重譯成功）。注意新陷阱 6。
+- ✅ **A 批 negativeConstraints 39 支全數判定**（2026-10-04）→ 33 支回補＋6 支誠實
+  留空＋validate NC 降級 warning 對齊 contract 層＋tokentab 標 deprecated。
+  判定模式與 13 例捏造明細見 commit 5883057 之前連續 38 筆 feat(enrich)。
 - ⏳ **telemetry 累積真人查詢**（目前 0 筆，`web/data/telemetry-events.jsonl`）→
   累積後兩件事：原型表依真人分佈重校準、Batch 4 用真人問句重建評測集
   （取代「由 metadata 反推」的自製題——eval-queries.json methodology 自承的偏差）。
