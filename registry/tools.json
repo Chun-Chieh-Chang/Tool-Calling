@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T09:06:13.506Z",
+  "lastUpdated": "2026-10-04T11:05:25.312Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -52162,7 +52162,7 @@
       ],
       "negativeConstraints": [],
       "addedAt": "2026-09-02T11:10:52.855Z",
-      "status": "active",
+      "status": "deprecated",
       "description_zh": "一款 CLI 工具，讀取 Claude Code、Codex 和 Gemini CLI 的會話日誌，計算依模型、專案和日期分類的 API 成本。",
       "useCase_zh": "適用於 AI 代理 領域之相關任務需求：一個 CLI，可讀取 Claude Code、Codex 和 Gemini CLI 工作階段日誌，並從中計算成本"
     },
