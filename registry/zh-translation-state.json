@@ -6431,8 +6431,11 @@
       ]
     },
     "kev": {
-      "at": "2026-09-21T12:36:37.343Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T08:55:58.681Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "較小的模型 (0.8B–9B) 在精確度下降前，其已驗證的上下文限制為 8,192 tokens；若要處理長度達 65,536 tokens 的文件，請使用 27B 模型。"
+      ]
     },
     "amagine3d": {
       "negativeConstraints_zh": [

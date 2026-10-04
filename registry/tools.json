@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T08:43:28.383Z",
+  "lastUpdated": "2026-10-04T08:51:29.867Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -55434,7 +55434,9 @@
         "API matches TypeSafe System One, so their Python SDK can point at your local server",
         "Apache 2.0 with frozen evaluation suites"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Smaller models (0.8B–9B) have a validated context limit of 8,192 tokens before accuracy degrades; use 27B for documents up to 65,536 tokens."
+      ],
       "addedAt": "2026-09-21T11:35:22.305Z",
       "status": "active",
       "description_zh": "可自行訓練與執行的輕量決策模型（Jev 風格）。",
@@ -55445,7 +55447,10 @@
         "API 與 TypeSafe System One 相容，可直接把對方的 Python SDK 指向本機伺服器",
         "Apache 2.0 授權，附凍結的評測套件"
       ],
-      "stars": 8371
+      "stars": 8371,
+      "negativeConstraints_zh": [
+        "較小的模型 (0.8B–9B) 在精確度下降前，其已驗證的上下文限制為 8,192 tokens；若要處理長度達 65,536 tokens 的文件，請使用 27B 模型。"
+      ]
     },
     {
       "id": "models-of-human-anatomy",
