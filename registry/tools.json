@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T05:31:47.243Z",
+  "lastUpdated": "2026-10-04T05:56:37.368Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -47550,7 +47550,12 @@
       "description_zh": "DeepSeek Harness (dsh) 插件精選列表",
       "useCase_zh": "評估 DeepSeek Harness 插件生態時，快速找出現有可用的插件方案。",
       "advantages_zh": "收錄 DeepSeek Harness 生態系統全部插件，一站式瀏覽，按功能分類，快速找到符合需求的插件；社群維護，新插件上線可及時追蹤",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "在此列出插件不代表已通過安全性審查或品質認可"
+      ],
+      "negativeConstraints": [
+        "Listing a plugin here does not imply security review or quality endorsement"
+      ]
     },
     {
       "id": "dsh-routing-suite",
