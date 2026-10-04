@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T00:02:41.053Z",
+  "lastUpdated": "2026-10-04T00:44:50.379Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41365,7 +41365,14 @@
         "method": "none",
         "repoUrl": "https://github.com/diwenne/openreply"
       },
-      "capabilities": [],
+      "capabilities": [
+        "keyword-dm-automation",
+        "story-reply-trigger",
+        "tracked-link-management",
+        "follow-gate-mechanism",
+        "multi-account-workspace",
+        "dm-inbox-management"
+      ],
       "useCase": "品牌或內容創作者自架 Instagram 留言/DM 自動回應系統，降低 SaaS 訂閱成本。",
       "advantages": [
         "開源自架替代 ManyChat，免月費，數據完整掌握在自己手上",
@@ -41383,7 +41390,16 @@
       "description_zh": "開源 ManyChat 替代品：留言・DM 自動化 + 帳號分析。注意：下方連結不支援 OAuth；須自行架設並使用自己的 API keys。",
       "useCase_zh": "品牌或內容創作者自架 Instagram 留言/DM 自動回應系統，降低 SaaS 訂閱成本。",
       "advantages_zh": "開源自架替代 ManyChat，免月費，資料完整掌握在自己手上，同時處理 Instagram 留言與 DM 自動化，減少多工具切換，內建帳號分析，可直接追蹤互動轉化率",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要自行託管的基礎設施，包括 PostgreSQL、Redis、執行中的 worker，以及公開的 HTTPS 網址",
+        "受 Meta 官方 API 速率限制規範，每個帳戶每小時上限為 750 則私人回覆",
+        "無法繞過 Instagram 針對使用者發起對話的 24 小時訊息視窗限制"
+      ],
+      "negativeConstraints": [
+        "Requires self-hosting infrastructure including PostgreSQL, Redis, a running worker, and a public HTTPS URL",
+        "Subject to Meta's official API rate limits, specifically capped at 750 private replies per hour per account",
+        "Cannot bypass Instagram's 24-hour messaging window for user-initiated conversations"
+      ]
     },
     {
       "id": "openmouse",
