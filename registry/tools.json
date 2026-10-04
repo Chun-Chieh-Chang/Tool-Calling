@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T08:01:12.825Z",
+  "lastUpdated": "2026-10-04T08:27:16.409Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -55163,7 +55163,16 @@
         "依所長分工：ChatGPT 負責思考、Codex 負責執行",
         "可在 Codex 內自我更新，解決大多數已知問題"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要付費的 ChatGPT Plus 或 Pro 訂閱，且具備網頁使用者介面與專案功能存取權限",
+        "必須部署在可用於安全公開存取的 Cloudflare 隧道服務（cloudflared）環境中",
+        "僅限於唯讀工作流程，ChatGPT 可進行規劃與檢視，但無法執行程式或直接寫入儲存庫"
+      ],
+      "negativeConstraints": [
+        "Requires a paid ChatGPT Plus or Pro subscription with access to the web UI and Project features",
+        "Must be deployed in an environment where the Cloudflare tunnel service (cloudflared) is available for secure public access",
+        "Restricted to a read-only workflow where ChatGPT can plan and review but cannot execute code or directly write to the repository"
+      ]
     },
     {
       "id": "zcode",
