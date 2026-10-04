@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T01:05:46.154Z",
+  "lastUpdated": "2026-10-04T01:25:24.518Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41508,7 +41508,16 @@
       "description_zh": "AxisAgentic：一個可擴充的 Runtime 與 Trajectory-Collection Framework，專為 Long-Horizon Agents 設計。",
       "advantages_zh": "專為長時間 Agent 任務設計，內建軌跡收集（trajectory collection）機制,架構可擴展，便於加入自訂工具或策略,收集之軌跡可直接作為 RLHF / DPO 訓練資料",
       "useCase_zh": "ML 工程師在構建長期網路搜尋代理時，使用 AxisAgentic 執行多輪軌跡，自動收集唯追加執行日誌，並匯出狀態忠實的 SFT 數據集，用於外部大型語言模型的微調。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要 Python 3.12 或更新版本及相容的 OpenAI 端點；不支援較舊的 Python 版本",
+        "程式庫不包含模型權重，需自行在外圍設定推理環境",
+        "目前參考配方聚焦於網頁搜尋；其他領域需自訂設定"
+      ],
+      "negativeConstraints": [
+        "Requires Python 3.12 or newer and a compatible OpenAI endpoint; does not work with older Python versions",
+        "Repository does not include model weights, requiring external setup for inference",
+        "Current reference recipes focus on web search; other domains require custom configuration"
+      ]
     },
     {
       "id": "moviebox-tui",
