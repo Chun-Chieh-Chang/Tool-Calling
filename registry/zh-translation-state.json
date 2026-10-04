@@ -6388,8 +6388,12 @@
       ]
     },
     "laya": {
-      "at": "2026-09-21T12:36:37.342Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T08:05:28.042Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "安裝與執行需要 Python 3.10 或更新版本",
+        "對超過約 4,000 個 token 的長上下文檔案，準確度高度變化，需要自訂驗證"
+      ]
     },
     "zcode": {
       "at": "2026-09-21T12:36:37.343Z",

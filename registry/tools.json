@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T07:47:14.827Z",
+  "lastUpdated": "2026-10-04T08:01:12.825Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -54882,7 +54882,10 @@
         "Built-in router selects the right checkpoint per request",
         "Apache 2.0 licensed and installable from PyPI"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Requires Python 3.10 or newer for installation and execution",
+        "Accuracy on long-context documents exceeding ~4,000 tokens is highly variable and requires custom validation"
+      ],
       "addedAt": "2026-09-20T23:50:28.034Z",
       "status": "active",
       "description_zh": "多語言、非自回歸的 System 1 決策引擎：單次前向傳遞即可對 100 多種語言輸出結構化決策（約 33 毫秒），以強化學習搭配嚴格適當評分規則（RLCD）訓練，內建 router 依請求挑選合適檢查點。",
@@ -54894,7 +54897,11 @@
         "內建 router 依每次請求挑選合適檢查點",
         "Apache 2.0 授權，可從 PyPI 安裝"
       ],
-      "stars": 30501
+      "stars": 30501,
+      "negativeConstraints_zh": [
+        "安裝與執行需要 Python 3.10 或更新版本",
+        "對超過約 4,000 個 token 的長上下文檔案，準確度高度變化，需要自訂驗證"
+      ]
     },
     {
       "id": "amagine3d",
