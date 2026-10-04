@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T06:58:16.038Z",
+  "lastUpdated": "2026-10-04T07:07:12.362Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -52986,12 +52986,25 @@
       "advantages": [
         "支援 html 開發生態"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Requires an AI agent environment that supports the Agent Skills (SKILL.md) format, such as moxt, Claude Code, or Codex.",
+        "Report generation is limited to the provided 12 templates and only triggers when specific document types are explicitly requested."
+      ],
       "status": "active",
       "addedAt": "2026-09-05T06:13:34.163Z",
       "stars": 5908,
       "description_zh": "Data visualization Skill for AI Agents，turning data into polished, interactive HTML charts. 面向 AI Agents 的資料可視化 Skill，將資料快速生成精緻、可互動的 HTML 圖表。",
-      "useCase_zh": "適用於資料分析領域之相關任務需求：Data visualization Skill for AI Agents, turning data into polished, interactive"
+      "useCase_zh": "適用於資料分析領域之相關任務需求：Data visualization Skill for AI Agents, turning data into polished, interactive",
+      "advantages_zh": [
+        "透過 Agent Skills 格式原生整合 Claude Code、Codex 及 moxt 等 AI 代理。",
+        "提供三種不同的視覺語法（Lupi、Glance 和 Basics），針對特定數據敘事與密度需求進行最佳化。",
+        "包含 12 套整頁報告模板，支援中英文版面配置，可生成可直接發佈的成果文件。",
+        "根據數據結構自動選擇色彩調色盤（Mono 或特定預設），無需手動輸入即可維持視覺清晰度。"
+      ],
+      "negativeConstraints_zh": [
+        "需要支援 Agent Skills (SKILL.md) 格式的 AI 代理環境，例如 moxt、Claude Code 或 Codex。",
+        "報告產生僅限於所提供的 12 個範本，且僅在明確要求特定文件類型時才會觸發。"
+      ]
     },
     {
       "id": "everything-claude-code",

@@ -6197,8 +6197,12 @@
       ]
     },
     "lieflat-charts": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T07:07:17.951Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要支援 Agent Skills (SKILL.md) 格式的 AI 代理環境，例如 moxt、Claude Code 或 Codex。",
+        "報告產生僅限於所提供的 12 個範本，且僅在明確要求特定文件類型時才會觸發。"
+      ]
     },
     "magnitude": {
       "at": "2026-09-27T05:05:15.843Z",
