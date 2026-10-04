@@ -6422,8 +6422,13 @@
       ]
     },
     "laya-mlx": {
-      "at": "2026-09-21T12:36:37.343Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T08:47:09.873Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "僅支援 macOS 14+ 與 Apple Silicon（M 系列）硬體；無法在 Windows、Linux 或 Intel Mac 上執行。",
+        "視 checkpoint 而定，僅限 512-1024 token 的上下文視窗，不適合用於長文件分析。",
+        "無法執行開放式文字生成；嚴格限制於結構化決策類型，如選擇、評分與布林值。"
+      ]
     },
     "kev": {
       "at": "2026-09-21T12:36:37.343Z",

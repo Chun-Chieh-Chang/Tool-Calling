@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T08:37:17.567Z",
+  "lastUpdated": "2026-10-04T08:43:28.383Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -55377,7 +55377,11 @@
         "Zero output tokens per decision",
         "No PyTorch, Transformers runtime or cloud API required"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Only supports macOS 14+ and Apple Silicon (M-series) hardware; does not run on Windows, Linux, or Intel Macs.",
+        "Limited to 512-1024 token context windows depending on the checkpoint, making it unsuitable for long-document analysis.",
+        "Cannot perform open-ended text generation; strictly limited to structured decision types like choice, score, and boolean."
+      ],
       "addedAt": "2026-09-21T11:35:16.003Z",
       "status": "active",
       "description_zh": "在 Apple Silicon 上以 MLX 原生執行 Laya 的結構化決策模型。",
@@ -55388,7 +55392,12 @@
         "每次決策輸出零 token",
         "不需 PyTorch、Transformers 執行環境或雲端 API"
       ],
-      "stars": 6742
+      "stars": 6742,
+      "negativeConstraints_zh": [
+        "僅支援 macOS 14+ 與 Apple Silicon（M 系列）硬體；無法在 Windows、Linux 或 Intel Mac 上執行。",
+        "視 checkpoint 而定，僅限 512-1024 token 的上下文視窗，不適合用於長文件分析。",
+        "無法執行開放式文字生成；嚴格限制於結構化決策類型，如選擇、評分與布林值。"
+      ]
     },
     {
       "id": "kev",
