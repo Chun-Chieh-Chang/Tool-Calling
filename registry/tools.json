@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T08:27:16.409Z",
+  "lastUpdated": "2026-10-04T08:37:17.567Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -55207,7 +55207,10 @@
         "AI coding workbench with desktop app, browser UI and terminal agent",
         "Single repository covering client, backend service, shared UI, plus Agent CLI and runtime source"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Requires specific Node.js 24.14.0 and pnpm 10.33.2 versions for building.",
+        "Local builds for desktop are unsigned, requiring manual macOS quarantine removal."
+      ],
       "addedAt": "2026-09-21T11:32:40.278Z",
       "status": "active",
       "description_zh": "AI 程式開發工作台，提供桌面應用、瀏覽器介面與終端 Agent。",
@@ -55216,7 +55219,11 @@
         "AI 程式開發工作台，同時提供桌面應用、瀏覽器介面與終端 Agent",
         "單一倉庫涵蓋客戶端、後端服務、共用 UI，以及 Agent CLI 與執行環境原始碼"
       ],
-      "stars": 7376
+      "stars": 7376,
+      "negativeConstraints_zh": [
+        "需要特定的 Node.js 24.14.0 和 pnpm 10.33.2 版本進行建置。",
+        "桌面版本地建置未簽署，需手動移除 macOS 隔離限制。"
+      ]
     },
     {
       "id": "niubigeo",

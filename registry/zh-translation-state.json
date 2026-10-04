@@ -6396,8 +6396,12 @@
       ]
     },
     "zcode": {
-      "at": "2026-09-21T12:36:37.343Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T08:40:19.267Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需要特定的 Node.js 24.14.0 和 pnpm 10.33.2 版本進行建置。",
+        "桌面版本地建置未簽署，需手動移除 macOS 隔離限制。"
+      ]
     },
     "niubigeo": {
       "at": "2026-09-27T05:05:39.447Z",
