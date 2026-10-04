@@ -6190,8 +6190,11 @@
       ]
     },
     "cognicode": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T06:58:19.271Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "需先進行初始圖形建構步驟，才能使用分析工具。"
+      ]
     },
     "lieflat-charts": {
       "at": "2026-09-20T03:22:44.792Z",

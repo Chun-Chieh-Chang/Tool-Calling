@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T06:31:50.637Z",
+  "lastUpdated": "2026-10-04T06:58:16.038Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -52930,12 +52930,23 @@
       "advantages": [
         "支援 rust 開發生態"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Requires initial graph building step before analysis tools are available"
+      ],
       "status": "active",
       "addedAt": "2026-09-05T06:13:34.161Z",
       "stars": 4,
       "description_zh": "AI 驅動的程式智慧 MCP 伺服器 — 17 個工具，支援跨 6 種語言的程式分析、搜尋、重構與呼叫圖視覺化",
-      "useCase_zh": "適用領域：數據分析；需求概述：AI 驅動程式智能 MCP 伺服器，提供 17 個程式分析與搜尋工具…"
+      "useCase_zh": "適用領域：數據分析；需求概述：AI 驅動程式智能 MCP 伺服器，提供 17 個程式分析與搜尋工具…",
+      "advantages_zh": [
+        "支援 30 種語言（18 種穩定、12 種實驗性），透過 Tree-sitter 實現",
+        "提供持久化 RedbGraphStore，支援跨會話圖快取",
+        "內建 73 個 MCP 工具，包含帶影響預覽的安全重構功能",
+        "支援零配置啟動，並整合 OpenTelemetry 觀察性監控"
+      ],
+      "negativeConstraints_zh": [
+        "需先進行初始圖形建構步驟，才能使用分析工具。"
+      ]
     },
     {
       "id": "lieflat-charts",
