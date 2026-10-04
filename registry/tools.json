@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-03T23:40:09.058Z",
+  "lastUpdated": "2026-10-04T00:02:41.053Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41308,7 +41308,13 @@
         "method": "none",
         "repoUrl": "https://github.com/ben-z/findphone"
       },
-      "capabilities": [],
+      "capabilities": [
+        "bluetooth-rssi-tracking",
+        "proximity-locator",
+        "auditory-feedback",
+        "cli-tool",
+        "privacy-redaction"
+      ],
       "useCase": "Find My 網頁版慢或離線時，快速從終端機找到附近藍牙裝置的位置。",
       "advantages": [
         "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位",
@@ -41326,7 +41332,16 @@
       "description_zh": "透過信號強度定位附近藍芽裝置，由 macOS 命令列操作 —— 適用於 Find My 無法使用的情境。",
       "advantages_zh": "純 command-line 操作，不需在瀏覽器開啟 Find My，極速定位,依賴藍牙信號強度（RSSI），無需 GPS 或網路連線,Swift 原生 macOS 開發，無額外依賴",
       "useCase_zh": "Find My 網頁版慢或離線時，快速從終端機找到附近藍牙裝置的位置。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "無法提供方向指引或讓目標裝置響鈴；僅顯示距離趨勢。",
+        "需要 macOS 13 或更新版本，以及在系統設定中的特定藍牙權限。",
+        "效能僅限室內約10-20公尺，且會因金屬、牆壁和人體而大幅衰減。"
+      ],
+      "negativeConstraints": [
+        "Cannot provide directional bearing or make the target device ring; it only indicates distance trends.",
+        "Requires macOS 13 or later and specific Bluetooth permissions in System Settings.",
+        "Effectiveness is limited to roughly 10-20 meters indoors and is heavily attenuated by metal, walls, and human bodies."
+      ]
     },
     {
       "id": "openreply",
