@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T02:55:31.262Z",
+  "lastUpdated": "2026-10-04T03:17:16.225Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41659,7 +41659,13 @@
         "method": "none",
         "repoUrl": "https://github.com/Blueturboguy07/cue"
       },
-      "capabilities": [],
+      "capabilities": [
+        "local-ai-integration",
+        "audio-loopback",
+        "on-device-whisper",
+        "screen-share-exclusion",
+        "real-time-transcription"
+      ],
       "useCase": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓对方看到 AI 介面的場景。",
       "advantages": [
         "浮動覆蓋層設計，不中斷工作流，同時聽取與回應",
@@ -41676,7 +41682,21 @@
       },
       "description_zh": "開源的 macOS AI copilot，漂浮於螢幕之上，能看見/聽見您的會議，且在畫面分享時保持隱藏。Cluely 的替代方案，bring-your-own-key。",
       "useCase_zh": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓對方看到 AI 介面的場景。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "無法確保在 macOS 15.4+ 上進行螢幕共享時完全不可見，因為現代擷取工具可能偵測到浮動面板。",
+        "透過系統環回進行會議音訊擷取需要 macOS 14.4+；較舊版本會保持靜音。",
+        "在監控考試或求職面試中使用 cue 可能違反平台服務條款或同意法律。"
+      ],
+      "advantages_zh": [
+        "在 macOS 與 Windows 上本地執行，無需依賴雲端服務，可搭配 OpenAI、Anthropic 或 Google 的 API 金鑰。",
+        "內建固定版本的 whisper.cpp 執行環境，支援本機語音辨識以處理麥克風與會議音訊。",
+        "在 macOS 與 Windows 的標準螢幕錄製與分享中自動保持隱藏狀態，避免隱私洩漏。"
+      ],
+      "negativeConstraints": [
+        "Cannot provide guaranteed screen-share invisibility on macOS 15.4+ where modern capture tools may detect the floating panel.",
+        "Meeting audio capture via system loopback requires macOS 14.4+; on older versions the channel remains silent.",
+        "Using cue during proctored exams or job interviews may violate platform terms of service or consent laws."
+      ]
     },
     {
       "id": "firecrawl",
