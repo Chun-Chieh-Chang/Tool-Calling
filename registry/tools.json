@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T07:21:29.953Z",
+  "lastUpdated": "2026-10-04T07:26:16.424Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -54494,13 +54494,22 @@
         "僅在需要輸入文字時才呼叫小型 LLM",
         "官方實測 Google Flights 航線查詢僅 7.1 秒完成"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Requires a paid API key for TypeSafe Jev and a separate API key for a small LLM (e.g., OpenRouter) to function, making it dependent on external paid services.",
+        "Specifically designed for natural language goals on standard web forms; it does not support arbitrary code execution or handling non-standard UI elements outside the defined operations (CLICK, TYPE_TEXT, etc.).",
+        "Depends on Chrome being connected via Browser Harness and remote debugging being enabled, which adds deployment complexity compared to headless browser environments."
+      ],
       "addedAt": "2026-09-18T13:01:04.385Z",
       "status": "active",
       "description_zh": "以動態索引動作空間運作的極速瀏覽器代理：給定一個自然語言目標，由 TypeSafe 的 Jev 直接選出操作與元素，僅在需要輸入文字時才呼叫小型 LLM。官方實測 Google Flights 蘇黎世飛倫敦僅 7.1 秒。",
       "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成",
       "useCase_zh": "網頁自動化開發者在需要快速操作基於瀏覽器的前端功能（如 Google Flights 搜尋）時，用它來執行搜尋與資料擷取任務，而無需撰寫脆弱且專屬於該網站的定位腳本。",
-      "stars": 21912
+      "stars": 21912,
+      "negativeConstraints_zh": [
+        "需要付費的 TypeSafe Jev API 金鑰，以及用於小型 LLM（例如 OpenRouter）的獨立 API 金鑰才能運作，使其依賴外部付費服務。",
+        "專為標準網頁表單上的自然語言目標所設計；不支援任意程式碼執行，也無法處理既定操作（CLICK、TYPE_TEXT 等）之外的非標準 UI 元素。",
+        "依賴透過 Browser Harness 連線的 Chrome，且需啟用遠端偵錯功能，相較於無頭瀏覽器環境增加了部署複雜度。"
+      ]
     },
     {
       "id": "fast-jev-compaction",

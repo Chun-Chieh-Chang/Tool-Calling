@@ -6281,9 +6281,14 @@
       ]
     },
     "jev-ultrafast": {
-      "at": "2026-09-20T05:09:35.651Z",
+      "at": "2026-10-04T07:29:06.390Z",
       "skipped": "already zh or empty",
-      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成"
+      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成",
+      "negativeConstraints_zh": [
+        "需要付費的 TypeSafe Jev API 金鑰，以及用於小型 LLM（例如 OpenRouter）的獨立 API 金鑰才能運作，使其依賴外部付費服務。",
+        "專為標準網頁表單上的自然語言目標所設計；不支援任意程式碼執行，也無法處理既定操作（CLICK、TYPE_TEXT 等）之外的非標準 UI 元素。",
+        "依賴透過 Browser Harness 連線的 Chrome，且需啟用遠端偵錯功能，相較於無頭瀏覽器環境增加了部署複雜度。"
+      ]
     },
     "fast-jev-compaction": {
       "at": "2026-09-20T03:22:44.792Z",
