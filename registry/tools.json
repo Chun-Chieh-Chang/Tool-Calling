@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T07:07:12.362Z",
+  "lastUpdated": "2026-10-04T07:21:29.953Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -54444,13 +54444,20 @@
         "Agent-first 架構，設計系統規則可由 agent 自動驗證",
         "專為 Tailwind 設計系統打造"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Designed for Tailwind CSS v4 projects",
+        "Optimized for coding agent workflows; may offer less value for purely manual development without AI assistance."
+      ],
       "addedAt": "2026-09-18T12:51:37.467Z",
       "status": "active",
       "description_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。",
       "useCase_zh": "專為 Tailwind 設計系統設計的 agent-first linter。撰寫可由 agent 驗證的設計系統規則。",
       "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造",
-      "stars": 3021
+      "stars": 3021,
+      "negativeConstraints_zh": [
+        "專為 Tailwind CSS v4 專案設計",
+        "針對程式助理工作流程最佳化；若沒有 AI 輔助的純手動開發，可能提供的價值較低。"
+      ]
     },
     {
       "id": "jev-ultrafast",

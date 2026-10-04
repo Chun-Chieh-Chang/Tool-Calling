@@ -6272,9 +6272,13 @@
       ]
     },
     "lint": {
-      "at": "2026-09-20T05:09:33.211Z",
+      "at": "2026-10-04T07:21:35.697Z",
       "skipped": "already zh or empty",
-      "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造"
+      "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造",
+      "negativeConstraints_zh": [
+        "專為 Tailwind CSS v4 專案設計",
+        "針對程式助理工作流程最佳化；若沒有 AI 輔助的純手動開發，可能提供的價值較低。"
+      ]
     },
     "jev-ultrafast": {
       "at": "2026-09-20T05:09:35.651Z",
