@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T05:25:59.263Z",
+  "lastUpdated": "2026-10-04T05:31:47.243Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -47493,7 +47493,14 @@
       "advantages_zh": "將 DeepSeek Harness 從純插件擴展為桌面級方案，能力覆蓋全螢幕場景，Cordis 插件架構，可與既有 DSH 插件生態互換，桌面本身即插件，可組合出多種工作空間配置",
       "description_zh": "為 DeepSeek Harness (DSH) 插件生態打造的現代化桌面端解決方案。萬物皆「插件」，桌面本身也是「插件」。",
       "useCase_zh": "開發者希望把 DeepSeek Harness 的 AI 能力從終端機擴展到桌面全工作流。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "受限於 Windows x64 和 macOS Universal 平台；沒有官方 Linux 支援",
+        "社群專案，與 DeepSeek Inc. 無關聯、背書或支援"
+      ],
+      "negativeConstraints": [
+        "Limited to Windows x64 and macOS Universal platforms; no official Linux support",
+        "Community project with no official affiliation, endorsement, or support from DeepSeek Inc."
+      ]
     },
     {
       "id": "awesome-dsh-plugin",

@@ -6679,6 +6679,13 @@
         "需整合 Codex 或手動執行提示詞；並非獨立的圖像處理軟體。"
       ],
       "at": "2026-10-04T05:26:02.207Z"
+    },
+    "deepseek-harness-desktop-anywhere": {
+      "negativeConstraints_zh": [
+        "受限於 Windows x64 和 macOS Universal 平台；沒有官方 Linux 支援",
+        "社群專案，與 DeepSeek Inc. 無關聯、背書或支援"
+      ],
+      "at": "2026-10-04T05:36:59.492Z"
     }
   },
   "failed": {}
