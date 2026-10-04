@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T02:27:18.697Z",
+  "lastUpdated": "2026-10-04T02:55:31.262Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41628,7 +41628,14 @@
       "description_zh": "🐧 自動化 Agent 建構工具。一鍵建立自我演化的 Agent（DeepSeek/Kimi/GPT/Claude/Gemini）",
       "advantages_zh": "一鍵生成自演化 Agent，支援 DeepSeek / Kimi / GPT / Claude / Gemini 多模型切換，Agent 可自我改進策略，減少反覆手動調整，開源，無 SaaS 訂閱費用",
       "useCase_zh": "快速原型化 AI Agent，並讓它在執行中自我優化任務執行策略。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要 Node.js 版本 24 或更高",
+        "主要成本效益基準測試已針對 DeepSeek 等特定開源模型進行調整；在其他模型上的效能可能有所不同"
+      ],
+      "negativeConstraints": [
+        "Requires Node.js version 24 or higher",
+        "Primary cost-efficiency benchmarks are tuned for specific open models like DeepSeek; performance on other models may vary"
+      ]
     },
     {
       "id": "cue",
