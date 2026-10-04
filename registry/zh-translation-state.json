@@ -6181,8 +6181,13 @@
       ]
     },
     "unlazy": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T06:37:08.013Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "無法推斷自然語言標題與shell程式之間的語義等價性；閘道必須明確設計為讀取artifacts並印出成功標記。",
+        "執行依賴本機shell環境與PATH；驗證shell與執行shell不匹配（例如Windows上的Git Bash與PowerShell）會導致驗證失敗。",
+        "簽核紀錄儲存於使用者的本機home目錄中，因此若未手動匯出，證據無法進行集中稽核或跨分散式團隊共用。"
+      ]
     },
     "cognicode": {
       "at": "2026-09-20T03:22:44.792Z",

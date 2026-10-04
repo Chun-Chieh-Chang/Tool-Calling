@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T06:10:28.380Z",
+  "lastUpdated": "2026-10-04T06:31:50.637Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -52870,12 +52870,27 @@
       "advantages": [
         "支援 javascript 開發生態"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Cannot infer semantic equivalence between natural language titles and shell code; gates must be explicitly designed to read artifacts and print success markers.",
+        "Execution relies on the local shell environment and PATH; a mismatch between the verification shell and the execution shell (e.g., Git Bash vs. PowerShell on Windows) results in failed verification.",
+        "Approval records are stored locally in the user's home directory, so evidence is not centrally audited or shareable across distributed teams without manual export."
+      ],
       "status": "active",
       "addedAt": "2026-09-05T06:13:34.159Z",
       "stars": 3815,
       "description_zh": "AI 智能體的抗惰性技能。核心為深度樹方法，將任務拆解至 N 層深度，並讓每個葉節點分配整個任務的完整時間預算，使努力程度隨深度倍增。本研究紮根於 2025–2026 年關於模型惰性、思考不足與提前完成的論述。",
-      "useCase_zh": "適用領域：AI 代理；需求概述：AI 代理抗惰性技能。核心為 Depth Tree 方法，可將任務切分…"
+      "useCase_zh": "適用領域：AI 代理；需求概述：AI 代理抗惰性技能。核心為 Depth Tree 方法，可將任務切分…",
+      "advantages_zh": [
+        "透過「深度樹」方法將任務拆解為多層，隨著深度增加而倍增努力程度，防止代理提前結束工作。",
+        "使用檢查定義和輸出的 SHA-256 雜湊提供可驗證的證據，以偵測結構漂移或帳務竄改。",
+        "要求對 Shell 命令進行明確批準與重新驗證，確保代理不會在未經審核的情況下靜默執行程式碼。",
+        "支援非執行狀態檢查，可在觸發潛在破壞性的 Shell 操作前檢查解析後的命令與環境變數。"
+      ],
+      "negativeConstraints_zh": [
+        "無法推斷自然語言標題與shell程式之間的語義等價性；閘道必須明確設計為讀取artifacts並印出成功標記。",
+        "執行依賴本機shell環境與PATH；驗證shell與執行shell不匹配（例如Windows上的Git Bash與PowerShell）會導致驗證失敗。",
+        "簽核紀錄儲存於使用者的本機home目錄中，因此若未手動匯出，證據無法進行集中稽核或跨分散式團隊共用。"
+      ]
     },
     {
       "id": "cognicode",
