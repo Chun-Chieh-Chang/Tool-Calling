@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T07:36:50.577Z",
+  "lastUpdated": "2026-10-04T07:47:14.827Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -54816,20 +54816,34 @@
         "command": "npx claude-code",
         "repoUrl": "https://github.com/anthropics/claude-code"
       },
-      "capabilities": [],
+      "capabilities": [
+        "terminal-integration",
+        "code-explanation",
+        "git-workflow-automation",
+        "natural-language-coding",
+        "plugin-architecture",
+        "github-integration"
+      ],
       "useCase": "Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows ",
       "advantages": [
         "Understands codebase context",
         "executes routine tasks via natural language",
         "handles git workflows"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Installation via npm is deprecated, requiring users to use curl, Homebrew, or other specific installers instead.",
+        "Collects usage data and conversation logs for feedback purposes, which may not be suitable for highly sensitive or proprietary environments without careful review of data retention policies."
+      ],
       "addedAt": "2026-09-20T05:04:11.409Z",
       "status": "active",
       "description_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼 — 全部透過自然語言指令完成。",
       "useCase_zh": "Claude Code 是一種代理編碼工具，運行於終端機中，理解您的程式碼庫，並透過執行例行任務、解釋複雜程式碼以及處理 git 工作流程來加速編碼",
       "stars": 149245,
-      "advantages_zh": "理解程式碼庫上下文，透過自然語言執行例行任務，並處理 git 工作流程"
+      "advantages_zh": "理解程式碼庫上下文，透過自然語言執行例行任務，並處理 git 工作流程",
+      "negativeConstraints_zh": [
+        "已不支援透過 npm 安裝，請改用 curl、Homebrew 或其他特定安裝程式。",
+        "會蒐集使用資料與對話紀錄用於回饋目的，若未仔細檢視資料保留政策，可能不適合用於高度敏感或具專屬權利的環境。"
+      ]
     },
     {
       "id": "laya",
