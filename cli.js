@@ -440,9 +440,13 @@ function cmdValidate() {
     }
 
     // 禁用場景 (negativeConstraints)
+    // 2026-10-04 降級 error→warn：與 registry-contract.js 對齊（09-27 佔位樣板
+    // 清理後確立「誠實留空」原則，contract 層視為 warning penalty；兩層矛盾
+    // 曾讓 validate 永久紅燈）。留空壓力改由 enrich 管線承擔（needsEnrich
+    // 已認 negativeConstraints 為補齊目標）；紅燈只會激勵捏造（A 批攔 13 例）。
     if (!tool.negativeConstraints || !Array.isArray(tool.negativeConstraints) || tool.negativeConstraints.length === 0) {
-      error(`工具 "${tool.id}" 缺少禁用場景 (negativeConstraints)`);
-      errors++;
+      warn(`工具 "${tool.id}" 缺少禁用場景 (negativeConstraints)`);
+      warnings++;
     }
 
     // 優勢標籤 (advantages)
