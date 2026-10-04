@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T07:26:16.424Z",
+  "lastUpdated": "2026-10-04T07:36:50.577Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -54534,19 +54534,38 @@
         "command": "npx fast-jev-compaction",
         "repoUrl": "https://github.com/tamaratran/fast-jev-compaction"
       },
-      "capabilities": [],
+      "capabilities": [
+        "context-compaction",
+        "tool-call-pruning",
+        "token-budget-management",
+        "verbatim-preservation",
+        "llm-scoring"
+      ],
       "useCase": "Claude Code plugin that replaces the compaction summary with Jev decisions: every tool call and result is scored in one fast request, stale ones are dropped or truncated, everything kept stays verbati",
       "advantages": [
         "每筆工具呼叫與結果在一次快速請求中評分",
         "過時項目可被截斷或捨棄",
         "保留內容維持原文不變更"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Does not remove or shorten text messages in the final output; only tool calls and results are candidates for deletion or truncation.",
+        "Token counting relies on character-based estimation (not a tokenizer), which may result in inaccurate budget adherence for highly symbolic content."
+      ],
       "addedAt": "2026-09-19T14:59:30.034Z",
       "status": "active",
       "description_zh": "Claude Code 外掛，以 Jev 決策取代 compaction 摘要：在一次快速請求中對每個 tool call 和結果進行評分，過時的項目會被捨棄或截斷，保留的內容維持原文。",
       "useCase_zh": "Claude Code 外掛，以 Jev 決策取代 compaction 摘要：在一次快速請求中對每個 tool call 和結果進行評分，過時的項目會被捨棄或截斷，保留的內容維持原文。",
-      "stars": 7361
+      "stars": 7361,
+      "advantages_zh": [
+        "逐字且依序保留使用者與助理的文字，不像基於摘要的壓縮方法會遺失檔案路徑或約束條件等具體細節。",
+        "使用快速、單次請求的評分機制決定要刪除或截斷哪些工具呼叫，而非要求 LLM 摘要整個對話輪次。",
+        "透過分階段截斷與摺疊，自動將對話狀態調整至 token 限制（預設 25k）內，確保請求保持在 Jev 的 32k 限制之下。",
+        "同時可作為取代 Claude Code 內建壓縮的外掛程式，以及供自訂整合的 npm 函式庫使用。"
+      ],
+      "negativeConstraints_zh": [
+        "不會在最終輸出中移除或縮短文字訊息；只有工具呼叫和結果可作為刪除或截斷的對象。",
+        "Token 計數仰賴字元估算（而非 tokenizer），對高度符號化的內容可能會產生不準確的預算依循狀況。"
+      ]
     },
     {
       "id": "stirling-pdf",

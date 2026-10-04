@@ -6291,8 +6291,12 @@
       ]
     },
     "fast-jev-compaction": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
+      "at": "2026-10-04T07:36:56.298Z",
+      "skipped": "already zh or empty",
+      "negativeConstraints_zh": [
+        "不會在最終輸出中移除或縮短文字訊息；只有工具呼叫和結果可作為刪除或截斷的對象。",
+        "Token 計數仰賴字元估算（而非 tokenizer），對高度符號化的內容可能會產生不準確的預算依循狀況。"
+      ]
     },
     "gathered-scenes-zine-skill": {
       "at": "2026-09-27T05:19:32.940Z",
