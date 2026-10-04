@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T01:25:24.518Z",
+  "lastUpdated": "2026-10-04T02:27:18.697Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41568,7 +41568,16 @@
       "description_zh": "一款基於 Rust 的現代化終端使用者介面，專為串流設計。快速、輕量、鍵盤優先，且跨平台。",
       "advantages_zh": "純終端機 UI，資源極輕，低規格主機也能流暢使用，Rust 編譯，無垃圾回收，效能穩定，跨平台支援，Linux 與 Windows 皆可用",
       "useCase_zh": "開發者可以在無圖形介面的 Linux 伺服器上，透過該工具串流或下載 Stremio 插補提供的動漫內容，而無需開啟傳統媒體播放器。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要已安裝且功能正常的本地媒體播放器，例如 mpv、VLC 或 IINA",
+        "DASH 下載特別需要外部相依性 yt-dlp 和 ffmpeg",
+        "海報藝術渲染需要具備特定影像協定支援的終端機，例如 Sixel、Kitty 或 iTerm2"
+      ],
+      "negativeConstraints": [
+        "Requires local media players like mpv, VLC, or IINA to be installed and functional",
+        "DASH downloads specifically require the external dependencies yt-dlp and ffmpeg",
+        "Poster art rendering requires a terminal with specific image protocol support such as Sixel, Kitty, or iTerm2"
+      ]
     },
     {
       "id": "penguin-harness",
