@@ -317,6 +317,9 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 13. **PowerShell 把 git push 的 stderr 進度訊息判為錯誤**：輸出顯示
     `Command exited with code 1` 不代表推送失敗——唯一判準是
     `git ls-remote origin main` 對 hash（A 批 20+ 次假失敗、1 次真失敗全靠此分辨）。
+    **解法**：`git push origin main 2>$null` 丟掉 stderr 只看 `$LASTEXITCODE`
+    （up-to-date 的 push 不寫 stderr、乾淨無紅字；有傳輸才會出現噪音），
+    慣例已收錄於「八、協作規範」。
 14. **模型會把 negativeConstraints 產成中文或回錯鍵**：已由管線閘門根治
     （translate-to-zh 欄位歸屬閘門＋筆數比對、enricher QA 覆核），但**落盤前仍須
     逐條對 README 人工核實**——QA 閘門只擋「字面不在 README」，擋不住
@@ -724,6 +727,10 @@ npm run mcp                 # 啟動 MCP server
 - **能優化就不要怠惰**——發現問題應一併修好
 - **破壞性操作、push 需先取得明確許可**
 - **不確定就說不確定**，不可編造
+- **push 慣例（2026-10-04 起）**：一律 `git push origin main 2>$null`（丟 stderr
+  避免 PowerShell 假失敗紅字，見陷阱 13），看 `$LASTEXITCODE` 判成敗，
+  **並且固定補 `git ls-remote origin main` 對 hash**——唯一可信判準；
+  對不上 = 真分岔，走 fetch＋merge（陷阱 8），禁 rebase。
 
 ---
 
