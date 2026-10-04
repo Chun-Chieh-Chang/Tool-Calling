@@ -6628,6 +6628,13 @@
         "無法繞過 Instagram 針對使用者發起對話的 24 小時訊息視窗限制"
       ],
       "at": "2026-10-04T00:46:10.472Z"
+    },
+    "openmouse": {
+      "negativeConstraints_zh": [
+        "需要在 Linux 上設定特定的 udev 規則才能讓使用者存取 hidraw 節點；標準 Linux 權限預設會阻止 OpenMouse 開啟裝置。",
+        "需依賴外部的 OpenMouse-Bridge 服務才能繞過 Chrome 153+ 對部分廠商（如 Razer）的保護；若沒有此服務，WebHID 備用方案可能在較新的瀏覽器上失效。"
+      ],
+      "at": "2026-10-04T01:12:54.467Z"
     }
   },
   "failed": {}

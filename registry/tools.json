@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T00:44:50.379Z",
+  "lastUpdated": "2026-10-04T01:05:46.154Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -41453,7 +41453,14 @@
         "採用模組化架構，將封包編碼器與驅動程式分離至獨立的 @openmouse/protocol 程式庫，便於貢獻與重用。",
         "包含手動更新檢查機制，可驗證 Bridge 元件的版本與變更紀錄，而不會在背景自動安裝更新。"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要在 Linux 上設定特定的 udev 規則才能讓使用者存取 hidraw 節點；標準 Linux 權限預設會阻止 OpenMouse 開啟裝置。",
+        "需依賴外部的 OpenMouse-Bridge 服務才能繞過 Chrome 153+ 對部分廠商（如 Razer）的保護；若沒有此服務，WebHID 備用方案可能在較新的瀏覽器上失效。"
+      ],
+      "negativeConstraints": [
+        "Requires specific udev rules on Linux to grant user access to hidraw nodes; standard Linux permissions prevent OpenMouse from opening devices by default.",
+        "Depends on the external OpenMouse-Bridge service to bypass Chrome 153+ protections for specific vendors like Razer; without it, WebHID fallbacks may fail on newer browsers."
+      ]
     },
     {
       "id": "axisagentic",
