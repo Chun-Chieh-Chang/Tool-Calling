@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T03:42:27.648Z",
+  "lastUpdated": "2026-10-04T05:25:59.263Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -46832,7 +46832,14 @@
         "支援版式參數的全面自訂，包括照片與面板比例、色彩飽和度、抽象母題及 typography 樣式",
         "個人及非商業用途免費，採用 CC BY-NC-SA 4.0 授權"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "在 CC BY-NC-SA 4.0 授權條款下，禁止商業使用。",
+        "需整合 Codex 或手動執行提示詞；並非獨立的圖像處理軟體。"
+      ],
+      "negativeConstraints": [
+        "Commercial use is prohibited under the CC BY-NC-SA 4.0 license.",
+        "Requires integration with Codex or manual prompt execution; it is not a standalone image processing software."
+      ]
     },
     {
       "id": "zouyuxuan122-deepseek-harness-eac",
