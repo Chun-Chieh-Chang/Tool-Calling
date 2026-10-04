@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T03:17:16.225Z",
+  "lastUpdated": "2026-10-04T03:42:27.648Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -46460,7 +46460,12 @@
         "method": "none",
         "repoUrl": "https://github.com/anomalyco/opencode"
       },
-      "capabilities": [],
+      "capabilities": [
+        "ai-coding-agent",
+        "cli-automation",
+        "agent-switching",
+        "multi-platform-support"
+      ],
       "useCase": "開發者想在本機運行 AI 編碼助理，但不想訂閱閉源 SaaS。",
       "advantages": [
         "開源編碼 Agent，無月費，可自架自訂",
@@ -46478,7 +46483,12 @@
       "description_zh": "開源編程代理。",
       "useCase_zh": "開發者想在本機運行 AI 編碼助理，但不想訂閱閉源 SaaS。",
       "advantages_zh": "開源編碼 Agent，無月費，可自架自訂,模型中立：支援多家 LLM 後端，不綁定單一廠商,可嵌入現有開發工具鏈，不替代 IDE 而是補充",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "安裝前必須移除 0.1.x 之前的舊版本"
+      ],
+      "negativeConstraints": [
+        "Older versions prior to 0.1.x must be removed before installation"
+      ]
     },
     {
       "id": "awesome-mac",
