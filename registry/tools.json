@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T05:56:37.368Z",
+  "lastUpdated": "2026-10-04T06:10:28.380Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -47605,7 +47605,12 @@
       "description_zh": "dsh-routing-suite — injector + router-standard 套件：先安裝 runtime injector，接著安裝 task-aware reasoning-mode router preset（measured P1-P23）。",
       "useCase_zh": "Windows 開發者需要在 DeepSeek Harness 中依任務類型自動切換不同 LLM 模型。",
       "advantages_zh": "兩階段設計：先裝 runtime injector，再裝 task-aware 推理路由，依序安裝避免衝突,任務感知路由可根據工作內容動態切換模型，兼顧效能與成本,PowerShell 腳本封裝，Windows 環境一鍵部署",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要 DSH 0.1.0-rc.6 以上、0.2.0 以下版本；因破壞性變更，與 0.2.0 以上穩定版不相容"
+      ],
+      "negativeConstraints": [
+        "Requires DSH version 0.1.0-rc.6 or later but below 0.2.0; incompatible with stable 0.2.0+ versions due to breaking changes"
+      ]
     },
     {
       "id": "arc-task-gen",
