@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-04T14:12:04.066Z",
+  "generatedAt": "2026-10-05T23:33:15.597Z",
   "decisionTree": "docs/CLASSIFICATION.md",
-  "totalTools": 746,
+  "totalTools": 748,
   "summary": {
     "tier1_violations": 0,
-    "tier2_needsReview": 17,
+    "tier2_needsReview": 18,
     "tier3_domainHeuristic": 21,
-    "compliant": 212,
-    "noRuleMatched": 496
+    "compliant": 211,
+    "noRuleMatched": 498
   },
   "moves": {},
   "compliant": [
@@ -1065,11 +1065,6 @@
       "id": "claude-howto",
       "category": "學習資源",
       "rule": "D3-T3"
-    },
-    {
-      "id": "quilt",
-      "category": "AI 代理",
-      "rule": "R6"
     }
   ],
   "noRuleMatched": [
@@ -1568,7 +1563,9 @@
     "video-shotcraft-dsh",
     "sc-datav",
     "heterogeneous-gpu-pd-lab",
-    "ollama"
+    "ollama",
+    "compositor",
+    "clash-verge-rev"
   ],
   "tier1": [],
   "tier2": [
@@ -1704,6 +1701,14 @@
       "id": "graft",
       "name": "Graft",
       "current": "API 整合",
+      "proposed": "AI 代理",
+      "rule": "R6",
+      "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"
+    },
+    {
+      "id": "quilt",
+      "name": "Quilt",
+      "current": "UI/UX設計",
       "proposed": "AI 代理",
       "rule": "R6",
       "reason": "自稱為編碼 agent / AI code assistant → AI 代理（Tier 2：語境裁決）"

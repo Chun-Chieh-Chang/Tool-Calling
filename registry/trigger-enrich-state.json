@@ -2911,6 +2911,14 @@
     "anatomy": {
       "at": "2026-09-27T05:31:41.269Z",
       "added": 5
+    },
+    "compositor": {
+      "at": "2026-10-05T23:31:37.609Z",
+      "added": 5
+    },
+    "clash-verge-rev": {
+      "at": "2026-10-05T23:31:37.610Z",
+      "added": 5
     }
   },
   "model": "agnes-2.5-flash"

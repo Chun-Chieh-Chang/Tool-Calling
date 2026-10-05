@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-05T08:25:58.647Z",
+  "lastUpdated": "2026-10-05T23:32:55.339Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -57025,19 +57025,40 @@
       "name": "Compositor",
       "url": "https://github.com/robbietilton/Compositor",
       "description": "The Photoshop alternative for Mac",
-      "category": "開發工具",
+      "category": "UI/UX設計",
       "language": "swift",
       "triggers": [
-        "compositor"
+        "compositor",
+        "修照片",
+        "移除圖片物體",
+        "處理 RAW 檔",
+        "合併多張圖片",
+        "非破壞性縮放圖片"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/robbietilton/Compositor"
       },
-      "capabilities": [],
-      "useCase": "The Photoshop alternative for Mac",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "layer-based-editing",
+        "non-destructive-transforms",
+        "gpu-layer-effects",
+        "camera-raw-processing",
+        "content-aware-fill",
+        "scriptable-project-format"
+      ],
+      "useCase": "Mac users who find GIMP unfamiliar but want a free, Photoshop-like environment to perform layer-based compositing, retouching, and export professional-quality images without paying for Adobe software.",
+      "advantages": [
+        "Provides a familiar Photoshop-like workflow with a full set of blend modes, layers, masks, and retouching tools",
+        "Supports direct manipulation by AI agents and scripts through an open .comp file format (folder of PNGs and manifest)",
+        "Includes non-destructive editing features such as editable text/shape tools and GPU-rendered layer effects",
+        "Completely free and open source; the Xcode project can be downloaded and modified to fit a custom workflow"
+      ],
+      "negativeConstraints": [
+        "Requires macOS 26.0 or later running on an Apple Silicon Mac",
+        "PSD/PSB import supports 8-bit RGB only (not CMYK); vectors other than simple shapes and vertical text become pixels on import",
+        "Source code requires Xcode 26 or later to build"
+      ],
       "stars": 5910,
       "addedAt": "2026-10-05T08:25:38.635Z",
       "status": "active",
@@ -57047,22 +57068,38 @@
         "starsAtIngest": 5910,
         "weeklyDelta": 2242,
         "ingestedAt": "2026-10-05T08:25:38.635Z"
-      }
+      },
+      "useCase_zh": "對 GIMP 介面不熟悉、但希望使用免費且類似 Photoshop 的環境進行圖層合成、修圖與專業影像輸出的 Mac 使用者。",
+      "description_zh": "Mac 上的 Photoshop 替代品",
+      "advantages_zh": [
+        "提供熟悉的 Photoshop 式工作流程，包含完整的混合模式、圖層、遮罩與修圖工具",
+        "支援 AI 代理與腳本透過開放的 .comp 檔案格式（PNG 圖層資料夾加資訊清單）直接建立與編輯專案",
+        "具備非破壞性編輯功能，例如可編輯的文字／圖形工具與 GPU 運算的圖層效果",
+        "完全免費且開源；可下載 Xcode 專案並修改，以符合自己的工作流程"
+      ],
+      "negativeConstraints_zh": [
+        "需要 macOS 26.0 以上，且須為 Apple Silicon 的 Mac",
+        "PSD／PSB 匯入僅支援 8 位元 RGB（不支援 CMYK）；簡單形狀以外的向量與直排文字在匯入時會轉成像素",
+        "原始碼需 Xcode 26 以上才能建置"
+      ]
     },
     {
       "id": "clash-verge-rev",
       "name": "clash-verge-rev",
       "url": "https://github.com/clash-verge-rev/clash-verge-rev",
       "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
-      "category": "開發工具",
+      "category": "安全性",
       "language": "rust",
       "triggers": [
         "clash-verge-rev",
         "clash",
         "clash-meta",
         "clash-verge",
-        "linux",
-        "mac"
+        "匯入代理訂閱連結",
+        "切換代理節點",
+        "配置代理分流規則",
+        "管理代理配置文件",
+        "設定系統代理連線"
       ],
       "install": {
         "method": "none",
@@ -57072,12 +57109,14 @@
         "clash",
         "clash-meta",
         "clash-verge",
-        "linux",
-        "mac",
         "mihomo"
       ],
-      "useCase": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
-      "advantages": [],
+      "useCase": "Users who want a cross-platform (Windows, macOS, Linux) graphical client for managing Clash Meta (mihomo) proxy profiles, with TUN mode, system proxy and visual node and rule editing.",
+      "advantages": [
+        "Built on the high-performance Rust and Tauri 2 framework, with a built-in Clash.Meta (mihomo) core and optional Alpha core switching",
+        "Provides TUN (virtual network card) mode and system proxy with guard, plus profile management and enhancement through Merge and Script",
+        "Supports visual node and rule editing, and WebDAV configuration backup and sync"
+      ],
       "negativeConstraints": [],
       "stars": 147913,
       "addedAt": "2026-10-05T08:25:38.635Z",
@@ -57088,7 +57127,14 @@
         "starsAtIngest": 147913,
         "weeklyDelta": 2178,
         "ingestedAt": "2026-10-05T08:25:38.635Z"
-      }
+      },
+      "description_zh": "基於 Tauri 的現代化圖形客戶端，可在 Windows、macOS 與 Linux 上執行，提供量身打造的代理體驗",
+      "useCase_zh": "想要跨平台圖形化客戶端來管理 Clash Meta（mihomo）代理配置檔案的用戶，包含 TUN 模式、系統代理與圖形化的節點與規則編輯。",
+      "advantages_zh": [
+        "基於高效能的 Rust 與 Tauri 2 框架，內建 Clash.Meta（mihomo）核心，並可切換 Alpha 版核心",
+        "提供 TUN（虛擬網卡）模式與含守護機制的系統代理，並透過 Merge 與 Script 管理及增強設定檔",
+        "支援視覺化節點與規則編輯，以及 WebDAV 設定檔備份與同步"
+      ]
     }
   ]
 }
