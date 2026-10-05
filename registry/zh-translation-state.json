@@ -6754,6 +6754,23 @@
         "僅限於唯讀工作流程，ChatGPT 可進行規劃與檢視，但無法執行程式或直接寫入儲存庫"
       ],
       "at": "2026-10-04T08:32:49.871Z"
+    },
+    "qwenpaw": {
+      "negativeConstraints_zh": [
+        "需要 Python 3.11 至 <3.14 環境",
+        "不適合需要零本地運算無伺服器部署的使用者，因為它要求本地或自行架設執行階段",
+        "Flash 模型限於 9B 參數量，需要高效能本地硬體以達到最佳代理任務效能"
+      ],
+      "at": "2026-10-05T00:00:21.870Z"
+    },
+    "osiris": {
+      "description_zh": "開源全球情報平台 - 即時 OSINT 儀表板 - Palantir 替代方案 - 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump",
+      "negativeConstraints_zh": [
+        "需要使用者自行提供 OI Assist 和 OI Forecast 功能的 API 金鑰。",
+        "依賴靜態 OSINT 情報來呈現衝突區和海事資料，可能落後於即時動態變化。",
+        "核心資料流（如 OpenSky 和 USGS）仰賴外部 API 可用性。"
+      ],
+      "at": "2026-10-05T00:00:25.571Z"
     }
   },
   "failed": {}

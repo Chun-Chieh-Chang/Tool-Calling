@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T11:05:25.312Z",
+  "lastUpdated": "2026-10-04T23:57:27.945Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -38313,7 +38313,16 @@
         "支援透過 Agent 通訊協定（ACP）進行多 Agent 編排與並行子 Agent 運作。",
         "具備由 ReMe 驅動的三層記憶系統，可將對話轉化為可搜尋的 Markdown 知識庫。"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "需要 Python 3.11 至 <3.14 環境",
+        "不適合需要零本地運算無伺服器部署的使用者，因為它要求本地或自行架設執行階段",
+        "Flash 模型限於 9B 參數量，需要高效能本地硬體以達到最佳代理任務效能"
+      ],
+      "negativeConstraints": [
+        "Requires Python 3.11 to <3.14 environment",
+        "Not suitable for users requiring zero-local-compute serverless deployment as it mandates local or self-hosted runtime",
+        "Flash models are limited to 9B parameter size, requiring high-end local hardware for optimal agent task performance"
+      ]
     },
     {
       "id": "kimi-k3-in-c",
@@ -56527,6 +56536,488 @@
       "negativeConstraints_zh": [
         "需特定 AI 代理程式環境（如 Codex 或 Claude）才能執行技能工作流程",
         "僅限於標誌與品牌標記重建，無法進行一般影片生成或複雜場景動畫"
+      ]
+    },
+    {
+      "id": "claude-howto",
+      "name": "Claude Howto",
+      "url": "https://github.com/luongnv89/claude-howto",
+      "description": "A visual, example-driven guide to Claude Code — from basic concepts to advanced agents, with copy-paste templates that bring immediate value.",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "claude-howto",
+        "claude",
+        "howto",
+        "claude-code",
+        "guide",
+        "tutorial"
+      ],
+      "install": {
+        "method": "none",
+        "command": "https://github.com/luongnv89/claude-howto",
+        "repoUrl": "https://github.com/luongnv89/claude-howto"
+      },
+      "capabilities": [
+        "claude-code",
+        "guide",
+        "tutorial"
+      ],
+      "useCase": "A developer who has installed Claude Code but lacks a structured learning path uses this guide to orchestrate automated code review and deployment pipelines by combining slash commands, hooks, memory, and subagents.",
+      "advantages": [
+        "Provides production-ready, copy-paste templates for configurations like CLAUDE.md, hook scripts, and MCP servers that official reference docs do not include.",
+        "Features a guided progressive learning path (11-13 hours total) with visual Mermaid diagrams explaining internal mechanisms, unlike standard self-directed documentation.",
+        "Includes built-in interactive self-assessment and quiz commands to identify specific knowledge gaps and personalize the learning roadmap."
+      ],
+      "negativeConstraints": [
+        "Exclusively for Claude Code; templates and workflows are not applicable to other LLM-based IDEs or CLI agents.",
+        "Requires users to have already installed Claude Code and set up an Anthropic API key; does not provide the underlying code execution environment.",
+        "Learning path assumes a general technical background; not suitable for users who need to learn how to write Python or general coding fundamentals from scratch."
+      ],
+      "addedAt": "2026-10-04T13:16:25.148Z",
+      "status": "experimental",
+      "stars": 41741,
+      "useCase_zh": "一位已安裝 Claude Code 但缺乏結構化學習路徑的開發人員，透過此指南結合斜線命令、鉤子、記憶與子代理，構建自動化的程式碼審查與部署管線。",
+      "advantages_zh": [
+        "提供可立即複製貼上的生產級配置範本（如 CLAUDE.md、鉤子腳本、MCP 設定），補足了官方文件缺乏具體實例的不足。",
+        "具備結構化的循序漸進學習路徑（共 11-13 小時），並附帶 Mermaid 圖示解釋內部機制，與標準的自行探索式文件不同。",
+        "內建互動式自我評估與測驗指令，可精確識別知識缺口並客製化學習路線。"
+      ]
+    },
+    {
+      "id": "osiris",
+      "name": "Osiris",
+      "url": "https://github.com/simplifaisoul/osiris",
+      "description": "Open Source Global Intelligence Platform - Real-Time OSINT Dashboard - A Palantir Alternative - 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump",
+      "category": "安全性",
+      "language": "typescript",
+      "triggers": [
+        "osiris",
+        "安全性"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/simplifaisoul/osiris.git",
+        "repoUrl": "https://github.com/simplifaisoul/osiris"
+      },
+      "capabilities": [
+        "osint-dashboard",
+        "gpu-map-rendering",
+        "multi-domain-data-aggregation",
+        "real-time-cctv-monitoring",
+        "crypto-wallet-tracing"
+      ],
+      "useCase": "An intelligence analyst monitoring global situational awareness by aggregating live flight tracking, CCTV feeds, and earthquake data into a single GPU-accelerated dashboard.",
+      "advantages": [
+        "Achieves 60fps rendering performance with thousands of concurrent entities using WebGL instead of DOM.",
+        "Aggregates 16 diverse intelligence domains including aviation, maritime, seismic, and crypto tracing into one interface.",
+        "Features OI Assist for natural language interaction and OI Forecast for prediction-engine based market analysis."
+      ],
+      "negativeConstraints": [
+        "Requires user-provided API keys for OI Assist and OI Forecast features.",
+        "Relies on static OSINT intel for conflict zones and maritime data, which may lag behind real-time dynamic shifts.",
+        "Dependent on external API availability for core data streams like OpenSky and USGS."
+      ],
+      "addedAt": "2026-10-04T13:20:44.496Z",
+      "status": "active",
+      "stars": 10446,
+      "useCase_zh": "情報分析師透過將即時航班追蹤、監控攝影機串流與地震數據整合至單一 GPU 加速儀表板，來監測全球態勢感知。",
+      "advantages_zh": [
+        "使用 WebGL 替代 DOM 渲染，即使有數千個同時實體也能達到 60fps 效能。",
+        "將航空、海事、地震與加密貨幣追蹤等 16 個多元情報領域整合於單一介面。",
+        "具備 OI Assist 自然語言互動功能，以及基於預測引擎的 OI Forecast 市場分析功能。"
+      ],
+      "description_zh": "開源全球情報平台 - 即時 OSINT 儀表板 - Palantir 替代方案 - 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump",
+      "negativeConstraints_zh": [
+        "需要使用者自行提供 OI Assist 和 OI Forecast 功能的 API 金鑰。",
+        "依賴靜態 OSINT 情報來呈現衝突區和海事資料，可能落後於即時動態變化。",
+        "核心資料流（如 OpenSky 和 USGS）仰賴外部 API 可用性。"
+      ]
+    },
+    {
+      "id": "quilt",
+      "name": "Quilt",
+      "url": "https://github.com/Bearisbug/Quilt",
+      "description": "AI-native infinite-canvas design tool: describe an app, get multi-screen HTML designs on an infinite canvas, click through them as a prototype, and let your local coding agent read and write the canvas over MCP.",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "quilt",
+        "ai",
+        "claude",
+        "design-tool",
+        "infinite-canvas",
+        "mcp",
+        "prototyping"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Bearisbug/Quilt.git",
+        "repoUrl": "https://github.com/Bearisbug/Quilt"
+      },
+      "capabilities": [
+        "ai",
+        "claude",
+        "design-tool",
+        "infinite-canvas",
+        "mcp"
+      ],
+      "useCase": "AI-native infinite-canvas design tool: describe an app, get multi-screen HTML designs on an infinite canvas, click through them as a prototype, and let your local coding agent read and write the…",
+      "advantages": [
+        "Runs entirely locally with one process, requiring no cloud backend or user accounts.",
+        "Supports bidirectional MCP integration with 54 tools, allowing coding agents to fully automate canvas operations.",
+        "Features a revision tree that tracks every generation and edit, enabling easy rollback and branch management."
+      ],
+      "negativeConstraints": [
+        "Requires Node.js 22 or newer and pnpm 11 to run.",
+        "Needs a browser (Chrome/Edge) or Playwright installed for screenshotting generated screens.",
+        "Depends on a configured generation channel such as a local Claude CLI subscription or API keys for Anthropic/Gemini/OpenAI."
+      ],
+      "addedAt": "2026-10-04T13:24:34.626Z",
+      "status": "experimental",
+      "stars": 8,
+      "useCase_zh": "設計師使用 Quilt 透過文字描述生成多螢幕 HTML 原型，並讓本機編碼代理透過 MCP 讀取與修改畫布以迭代 UI。",
+      "advantages_zh": [
+        "完全在本機運行，單一程序，無需雲端後端或使用者帳號。",
+        "支援雙向 MCP 整合，提供 54 個工具，讓編碼代理能完全自動化畫布操作。",
+        "具備修訂樹狀結構，追蹤每次生成與編輯，輕鬆回滾並管理分支。"
+      ]
+    },
+    {
+      "id": "ow-bridge",
+      "name": "Ow Bridge",
+      "url": "https://github.com/louchi1984-coder/ow-bridge",
+      "description": "OW Bridge — 让 WorkBuddy 使用 OpenCode 免费模型。支持 macOS / Windows，自动发现模型、一键导入。",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "ow-bridge",
+        "bridge"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/louchi1984-coder/ow-bridge.git",
+        "repoUrl": "https://github.com/louchi1984-coder/ow-bridge"
+      },
+      "capabilities": [
+        "model-discovery",
+        "workbuddy-integration",
+        "electron-desktop",
+        "automatic-proxy-configuration",
+        "system-tray-management",
+        "cross-platform-support"
+      ],
+      "useCase": "A developer uses this utility to automatically scan for free AI models on their local OpenCode instance and import them into WorkBuddy for cost-free inference without manually configuring model endpoints.",
+      "advantages": [
+        "Automates the detection and import of available free models into WorkBuddy, eliminating manual configuration of model endpoints.",
+        "Functions as a cross-platform system tray application that manages the OpenCode runtime locally, handling downloads and updates automatically.",
+        "Provides a visual control panel to monitor model availability, reasoning capabilities, and response latency before committing to an import."
+      ],
+      "negativeConstraints": [
+        "Does not support PAC or SOCKS system proxies, limiting usage in corporate environments relying on those protocols.",
+        "The macOS build uses ad-hoc signing and is not Apple notarized, which requires users to manually bypass Gatekeeper security warnings."
+      ],
+      "addedAt": "2026-10-04T13:33:29.731Z",
+      "status": "experimental",
+      "stars": 105,
+      "useCase_zh": "開發者使用此工具自動掃描本地 OpenCode 的免費模型，並一鍵導入 WorkBuddy，以實現零成本的 AI 推理，無需手動設定模型端點。",
+      "advantages_zh": [
+        "自動化檢測並導入免費模型至 WorkBuddy，省去手動設定模型端點的流程。",
+        "作為跨平台系統托盘應用，自動管理本地 OpenCode 運行時，包括自動下載與更新。",
+        "提供視覺化控制面板，可在導入前監測模型可用性、推理能力與響應延遲。"
+      ]
+    },
+    {
+      "id": "voicestudio",
+      "name": "VoiceStudio",
+      "url": "https://github.com/debpalash/VoiceStudio",
+      "description": "VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages.",
+      "category": "音訊",
+      "language": "python",
+      "triggers": [
+        "voicestudio",
+        "ai",
+        "audiobook",
+        "cuda",
+        "dubbing",
+        "elevenlabs-alternative",
+        "huggingface",
+        "local-first"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/debpalash/VoiceStudio.git",
+        "repoUrl": "https://github.com/debpalash/VoiceStudio"
+      },
+      "capabilities": [
+        "ai",
+        "audiobook",
+        "cuda",
+        "dubbing",
+        "elevenlabs-alternative"
+      ],
+      "useCase": "A content creator needs to quickly dub a video into multiple languages or clone a specific voice for an audiobook without uploading data to the cloud, using VoiceStudio's local desktop environment.",
+      "advantages": [
+        "Fully local workflow that keeps voice data on the user's hardware, avoiding the need for third-party APIs like ElevenLabs.",
+        "Supports a wide range of speech models (k2-fsa/OmniVoice default and others) and accelerators including CUDA and Metal.",
+        "Provides an integrated desktop workspace for voice cloning, design, and video dubbing with built-in model management."
+      ],
+      "negativeConstraints": [
+        "Requires significant local hardware resources, with CPU-only usage being slower and requiring at least 5 GB of free disk space for PyTorch dependencies.",
+        "Intel Macs are limited to UI only and must connect to a remote backend rather than running the speech models locally."
+      ],
+      "addedAt": "2026-10-04T13:35:46.674Z",
+      "status": "experimental",
+      "stars": 52911,
+      "useCase_zh": "當內容創作者需要將影片翻譯配音成多種語言，或為有聲書克隆特定嗓音，又不想將資料上傳至雲端時，會使用 VoiceStudio 的本地桌面環境完成任務。",
+      "advantages_zh": [
+        "完全在地化的工作流程，將語音資料保留在硬體上，無須依賴 ElevenLabs 等第三方 API。",
+        "支援多種語音模型（預設為 k2-fsa/OmniVoice 及其他）並提供 CUDA 與 Metal 硬體加速。",
+        "提供整合式桌面工作區，可進行語音克隆、設計與影片配音，並內建模型管理功能。"
+      ]
+    },
+    {
+      "id": "awesome-vibecoding-guide",
+      "name": "Awesome Vibecoding Guide",
+      "url": "https://github.com/bobvibes/Awesome-Vibecoding-Guide",
+      "description": "A compendium drawn from real commercial projects and hundreds of thousands of lines of AI‑assisted code. Read it end‑to‑end or feed this repo to your AI agent for summaries and Q&A. Stars and watches appreciated! ⭐",
+      "category": "學習資源",
+      "language": "other",
+      "triggers": [
+        "awesome-vibecoding-guide",
+        "awesome",
+        "vibecoding",
+        "guide",
+        "ai-agents",
+        "coding-standards",
+        "vibe-coded",
+        "vibe-coding"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/bobvibes/Awesome-Vibecoding-Guide.git",
+        "repoUrl": "https://github.com/bobvibes/Awesome-Vibecoding-Guide"
+      },
+      "capabilities": [
+        "ai-agents",
+        "awesome",
+        "coding-standards",
+        "guide",
+        "vibe-coded"
+      ],
+      "useCase": "A compendium drawn from real commercial projects and hundreds of thousands of lines of AI‑assisted code. Read it end‑to‑end or feed this repo to your AI agent for summaries and Q&A. Stars and watches…",
+      "advantages": [
+        "Focuses on monetization strategies rather than being a simple tool catalog",
+        "Demonstrates that budget AI models can deliver professional results when combined with the guide's methodology",
+        "Provides a comprehensive delivery system including workflow, quality standards, and troubleshooting across different revenue streams"
+      ],
+      "negativeConstraints": [
+        "Specifically tailored for commercial freelancers and solo developers aiming to generate immediate income",
+        "Not a technical reference library or tool catalog; it lacks deep theoretical programming concepts"
+      ],
+      "addedAt": "2026-10-04T13:39:06.494Z",
+      "status": "experimental",
+      "stars": 787,
+      "useCase_zh": "自由接案開發者選擇商業化路徑並執行交付工作流，透過 AI 輔助程式開發技術，建立在地商業網站、AI 自動化系統或微型 SaaS 軟體來賺取收入。",
+      "advantages_zh": [
+        "專注於商業化獲利策略，而非僅提供工具目錄",
+        "證明在搭配該指南的方法論時，即使使用低預算的 AI 模型也能產出專業級的成果",
+        "提供完整的交付系統，涵蓋工作流、品質標準與故障排除等跨收益來源的管理技巧"
+      ]
+    },
+    {
+      "id": "video-shotcraft-dsh",
+      "name": "Video Shotcraft Dsh",
+      "url": "https://github.com/kingselyjoe/video-shotcraft-dsh",
+      "description": "面向 DeepSeek Harness 的电影感产品视频 Agent Skill，包含 152 张镜头配方卡、Remotion 模板、代码组件和音频资产。",
+      "category": "影片",
+      "language": "typescript",
+      "triggers": [
+        "video-shotcraft-dsh",
+        "video",
+        "shotcraft",
+        "dsh",
+        "agent-skills",
+        "deepseek-harness",
+        "motion-design",
+        "remotion"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/kingselyjoe/video-shotcraft-dsh.git",
+        "repoUrl": "https://github.com/kingselyjoe/video-shotcraft-dsh"
+      },
+      "capabilities": [
+        "agent-skills",
+        "deepseek-harness",
+        "motion-design",
+        "remotion",
+        "typescript"
+      ],
+      "useCase": "A creative developer or agent user wants to generate a cinematic 10-shot product promo video with 2.5D camera moves and beat-synced audio using the 'Ink Press' Remotion template by swapping in their own product screenshots and copy.",
+      "advantages": [
+        "Includes 152 distilled shot recipe cards and 209 motion styles derived from frame-by-frame review of reference footage",
+        "Provides a production-ready 'Ink Press' template that reliably outputs a 36.2-second, 1920x1080, 30fps cinematic video with SFX",
+        "Supports direct export to JianYing (CapCut CN) drafts with separated audio tracks and editable native text captions",
+        "All demo components are deterministic, driven by normalized progress, and de-branded with neutral placeholders for easy adaptation"
+      ],
+      "negativeConstraints": [
+        "Requires specific handling for low-core headless Linux environments due to Remotion concurrency limits",
+        "JianYing export functionality is verified only on JianYing Pro 11.2 for macOS"
+      ],
+      "addedAt": "2026-10-04T13:42:03.478Z",
+      "status": "experimental",
+      "stars": 63,
+      "useCase_zh": "創意開發者或 Agent 使用者希望透過替換產品截圖與文案，使用「Ink Press」Remotion 模板生成一段具有 2.5D 鏡頭移動與音節同步音效的 10 鏡頭電影感產品宣傳影片。",
+      "advantages_zh": [
+        "包含 152 張經過逐幀審查提煉的鏡頭配方卡與 209 種動效樣式",
+        "提供可直接生產的「Ink Press」模板，可靠輸出 36.2 秒、1920x1080、30fps 的電影感影片並含 SFX",
+        "支援匯出為剪映（JianYing）專案草稿，包含分離的音訊軌道與可編輯的原生字幕軌道",
+        "所有示範元件皆為確定性、由標準化進度驅動，並使用中性佔位符以便輕鬆適配"
+      ]
+    },
+    {
+      "id": "sc-datav",
+      "name": "Sc Datav",
+      "url": "https://github.com/knight-L/sc-datav",
+      "description": "数据可视化大屏 基于 Three.js + React 19 + ECharts 的 3D 地图可视化大屏项目 包含 3D 地图渲染、轮廓飞线、侧边扫光、多图表联动等丰富功能",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "sc-datav",
+        "datav",
+        "3dmap",
+        "react",
+        "threejs"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/knight-L/sc-datav.git",
+        "repoUrl": "https://github.com/knight-L/sc-datav"
+      },
+      "capabilities": [
+        "3dmap",
+        "react",
+        "threejs"
+      ],
+      "useCase": "Developers build a responsive web-based dashboard that visualizes 3D geographic data for Sichuan Province with synchronized ECharts analytics panels.",
+      "advantages": [
+        "Integrates Three.js for 3D rendering with ECharts for 2D data visualization in a single React 19 application.",
+        "Includes a real-time debugging panel using Leva to adjust visualization parameters dynamically.",
+        "Features built-in responsive design that adapts to multiple screen sizes."
+      ],
+      "negativeConstraints": [
+        "Requires Node.js >= 18 and PNPM >= 8 to build and run.",
+        "Geographic data is hardcoded for Sichuan Province, limiting direct use for other regions without modifying asset files."
+      ],
+      "addedAt": "2026-10-04T13:45:04.117Z",
+      "status": "experimental",
+      "stars": 2402,
+      "useCase_zh": "開發人員建置一個響應式網頁儀表板，以四川地區的 3D 地理數據為基礎，並結合同步的 ECharts 分析面板進行視覺化。",
+      "advantages_zh": [
+        "整合 Three.js 進行 3D 渲染與 ECharts 進行 2D 數據可視化，共用同一個 React 19 應用程式。",
+        "內建使用 Leva 實現的即時除錯面板，可動態調整視覺化參數。",
+        "具備內建的響應式設計，能自適應多種螢幕尺寸。"
+      ]
+    },
+    {
+      "id": "heterogeneous-gpu-pd-lab",
+      "name": "Heterogeneous Gpu Pd Lab",
+      "url": "https://github.com/Soulmate-Halo/heterogeneous-gpu-pd-lab",
+      "description": "使用稠密算力卡对稀疏大显存主机进行加速，主机包括 AI Max+ 395、M3 512G、DGX Spark 等。",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "heterogeneous-gpu-pd-lab",
+        "heterogeneous",
+        "gpu",
+        "lab",
+        "heterogeneous-gpu",
+        "llama-cpp",
+        "pipeline-parallelism",
+        "prefill-decode"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Soulmate-Halo/heterogeneous-gpu-pd-lab.git",
+        "repoUrl": "https://github.com/Soulmate-Halo/heterogeneous-gpu-pd-lab"
+      },
+      "capabilities": [
+        "heterogeneous-gpu",
+        "llama-cpp",
+        "pipeline-parallelism",
+        "prefill-decode",
+        "rtx-3060"
+      ],
+      "useCase": "Researchers or inference engineers deploy DeepSeek-V4.1-Flash on a cluster combining two RTX 6000D GPUs for Prefill and four DGX Spark nodes for Decode to achieve high throughput (16000+ tok/s Prefill, 442+ tok/s Decode) without loading the full model on every accelerator.",
+      "advantages": [
+        "Achieves 16000+ tok/s Prefill throughput and 442.02 tok/s aggregate Decode at concurrency 32 using a heterogeneous 6-GPU setup (2x RTX 6000D + 4x DGX Spark).",
+        "Utilizes Prefill-Decode (PD) separation with cross-engine NIXL cache-page adaptation between vLLM (Prefill) and SGLang (Decode), allowing specialized hardware allocation for each stage.",
+        "Supports 32K input token processing with all 216 test requests passing correctness gates, enabling reliable handling of long-context workloads on sparse memory hosts."
+      ],
+      "negativeConstraints": [
+        "Requires specific heterogeneous hardware topology: two RTX 6000D (or equivalent) GPUs for Prefill and four DGX Spark/GB10 nodes for Decode.",
+        "Depends on cross-engine patches (V8) for vLLM and SGLang integration; standard unmodified vLLM or SGLang deployments will not support the NIXL cache-page adaptation described.",
+        "Does not redistribute the 510 GB official DeepSeek-V4.1-Flash weights; users must provide their own model artifacts compatible with the frozen V8 environment."
+      ],
+      "addedAt": "2026-10-04T13:54:21.312Z",
+      "status": "experimental",
+      "stars": 626,
+      "useCase_zh": "研究人員或推論工程師在結合兩張 RTX 6000D GPU 與四節點 DGX Spark 的集群上部署 DeepSeek-V4.1-Flash，透過 Prefill 與 Decode 分離架構，在不於所有加速器載入完整模型的情況下，實現 16000+ tok/s 的 Prefill 與 442+ tok/s 的 Decode 高吞吐量。",
+      "advantages_zh": [
+        "在異構 6 GPU 設定（2 張 RTX 6000D + 4 節點 DGX Spark）下，實現 16000+ tok/s 的 Prefill 吞吐量及併發 32 時 442.02 tok/s 的 Decode 吞吐量。",
+        "利用 Prefill-Decode (PD) 分離架構，結合 vLLM (Prefill) 與 SGLang (Decode) 的跨引擎 NIXL 快取頁適應，允許針對各階段配置專用硬體。",
+        "支援 32K 輸入 token 處理，所有 216 個測試請求均通過正確性閘門，可在稀疏記憶體主機上可靠處理長上下文工作負載。"
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "url": "https://github.com/ollama/ollama",
+      "description": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
+      "category": "AI 框架",
+      "language": "go",
+      "triggers": [
+        "ollama",
+        "deepseek",
+        "gemma",
+        "gemma3",
+        "glm",
+        "go",
+        "golang",
+        "gpt-oss"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/ollama/ollama.git",
+        "repoUrl": "https://github.com/ollama/ollama"
+      },
+      "capabilities": [
+        "deepseek",
+        "gemma",
+        "gemma3",
+        "glm",
+        "go"
+      ],
+      "useCase": "A developer running a local development environment on macOS, Windows, or Linux wants to instantly spin up an open-weight LLM like Gemma or DeepSeek to power a CLI agent, chat interface, or local API without configuring a distributed cluster.",
+      "advantages": [
+        "Supports one-line CLI and API integration for rapid local deployment across macOS, Windows, and Linux environments.",
+        "Provides a unified REST API and official Python/JavaScript clients that abstract the underlying llama.cpp backend for consistent model management.",
+        "Includes built-in launch integrations for specialized agentic tools like Claude Code, OpenClaw, and Codex to streamline agent workflows."
+      ],
+      "negativeConstraints": [
+        "Primarily targets single-node local execution on macOS, Windows, or Linux, so it is not designed for distributed multi-node GPU cluster orchestration.",
+        "Performance and available model architectures are constrained by the underlying llama.cpp backend, meaning it may not support every cutting-edge model topology or quantization format.",
+        "While it offers chat and local integration, it lacks a native, out-of-the-box enterprise-grade RAG framework for complex, structured document processing."
+      ],
+      "addedAt": "2026-10-04T13:58:11.322Z",
+      "status": "experimental",
+      "stars": 182169,
+      "useCase_zh": "一位開發者在 macOS、Windows 或 Linux 本機環境上，想要立即啟動 Gemma 或 DeepSeek 等開放權重語言模型，以驅動 CLI 代理程式、聊天介面或本機 API，而無須配置分散式叢集。",
+      "advantages_zh": [
+        "支援單行 CLI 與 API 整合，可快速在 macOS、Windows 與 Linux 上進行本機部署。",
+        "提供統一的 REST API 與官方 Python/JavaScript 客戶端，抽象化底層 llama.cpp 後端以達到一致的模型管理。",
+        "內建啟動整合功能，可快速串接 Claude Code、OpenClaw、Codex 等專用代理程式工具以簡化工作流。"
       ]
     }
   ]

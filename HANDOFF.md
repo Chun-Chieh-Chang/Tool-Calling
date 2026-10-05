@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-04（A 批 39 支 negativeConstraints 判定完成＋validate 門禁語義對齊——見「三、目前狀態」頂部快照）
+> 最後更新：2026-10-05（批次加入 10 支工具至 746＋分類修正 5 支＋文件數字同步——見「三、目前狀態」頂部快照）
 
 ---
 
@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **736 筆**開源 AI 工具與 Agent 技能（以 registry/tools.json 為準），分為 **18 個領域分類**
+- 收錄 **746 筆**開源 AI 工具與 Agent 技能（以 registry/tools.json 為準），分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -235,9 +235,33 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（2026-10-04 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（2026-10-05 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
-### 2026-10-04 A 批回補後的現況
+### 2026-10-05 批次加入 10 支工具（736 → 746）
+
+- **入庫**：`cli.js add` 逐支序列（兩階段管線），10 支全數入庫且 stars 寫入
+  （陷阱 15 對 `cli.js add` 已不存在）——claude-howto、osiris、quilt、ow-bridge、
+  voicestudio、awesome-vibecoding-guide、video-shotcraft-dsh、sc-datav、
+  heterogeneous-gpu-pd-lab、ollama（182k★，此前竟不在庫中）。
+- **拆解判定：10 支全不拆**（5 個可疑結構查證：osiris／VoiceStudio／Quilt 的
+  monorepo 組件、video-shotcraft-dsh 的技能包、gpu-pd-lab 的實驗集——皆為同一
+  產品的組成，依 oracle/fusion-ai-studio 先例不拆）。
+- **分類修正 5 支**（依定義＋先例）：ollama→AI 框架（本地模型運行時，laya-mlx
+  先例）、awesome-vibecoding-guide→學習資源（指南彙編）、gpu-pd-lab→AI 框架
+  （vLLM/SGLang 推理基礎設施）、quilt→UI/UX設計（原型工具，m3e-canvas 先例）、
+  sc-datav→UI/UX設計（前端資料視覺化專案範本）。
+- **加入後審計紀律（本次教訓）**：batch add 當下不逐支核、入庫後**逐 README
+  重審**——抓到 6 條擬造條件（5 支），其中 qwenpaw 的 badge 版本宣稱經正文重查
+  **成立**（重產通過、從 A 批留空清單除名）；ow-bridge 擬造條目拒收重產後 2 條
+  逐字核實。最終 22 條 NC 全數過覆核（19 條自動字詞命中＋3 條人工逐字）。
+- **文件數字同步**：README／AGENTS.md（agents:init 重生成）736→746，
+  check-doc-stats 回綠；本文件第一節與此快照同步。
+- **zh 全齊**：10/10 完成 description_zh／useCase_zh／advantages_zh／
+  negativeConstraints_zh（sc-datav 的 desc_zh 去除冗餘重複段）。
+- **驗證**：rescan Tier1=0、check-mece 綠、tier1+category-guards 19/19、
+  validate 0 錯誤、測試 354/352/0、門禁全綠。
+
+### 2026-10-04 A 批回補後的現況（歷史快照，數字仍有效除工具數）
 
 - **A 批 negativeConstraints 全數判定完成（39 支）**：33 支依 README 逐條人工核實回補
   （每支 NC 與 NCZ 筆數對齊），6 支**誠實留空**（awesome／awesome-python／awesome-mac
