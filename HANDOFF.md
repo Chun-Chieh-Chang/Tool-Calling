@@ -9,7 +9,7 @@
 
 **Tool-Calling** — 一個「找工具、裝工具、用工具」的 AI 工具箱系統。
 
-- 收錄 **746 筆**開源 AI 工具與 Agent 技能（以 registry/tools.json 為準），分為 **18 個領域分類**
+- 收錄 **748 筆**開源 AI 工具與 Agent 技能（以 registry/tools.json 為準），分為 **18 個領域分類**
 - 提供三個入口：**Web 工作台**、**MCP server**、**CLI**
 - 核心價值是**檢索**：使用者用自然語言描述需求，系統找出最適合的工具
 
@@ -299,6 +299,39 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
   4. 量測腳本在 scratchpad（會隨 session 清除）；要重現需重寫：載入 e5、對 `toolEmbedText` 與查詢算向量、
      對照 `agentRetrieve`、RRF(k=60)。
 
+### 2026-10-06 cron 自動探勘新增 2 支並補齊（746 → 748）
+
+- **來源**：遠端 cron 提交 `a5f8ef0`（W40 自動探勘）加入 compositor（Mac 版 Photoshop 替代）與
+  clash-verge-rev（Clash Meta 圖形客戶端），只有掃描階段欄位（advantages／NC 為空、useCase＝description、
+  triggers 僅名稱），品質 50／65 分。
+- **補齊流程**：`enrich-new-tools --ids` → **逐條對 README 全文核實** → 手動修正 → `enrich-triggers-llm`
+  → `translate-to-zh --ids` → 手動修正譯文。抓到的問題：
+  - clash-verge-rev 兩條 NC 站不住：「僅限有圖形介面」是由 GUI 演繹推論（README 無此句）；「需另配代理後端」
+    與 README 相反（README 寫**內置** mihomo 內核）。**全數移除、NC 誠實留空**（第 6 個警告）。
+  - 「安全性、輕量」是 README 沒有的潤飾；compositor 的「專為 Mac 優化」同理；compositor 第 4 條優點其實是
+    系統需求（macOS 26＋Apple Silicon）被包裝成優點，改為 README 有的「完全免費開源、可改 Xcode 專案」。
+  - triggers 帶 `linux`、`mac` 這類泛詞（稀釋鑑別力，陷阱 3）→ 剔除；`enrich-triggers-llm` 補上
+    5 個含口語中文的詞（守門 20→10 詞）。
+- **分類（判斷題，可推翻）**：compositor 開發工具→**UI/UX設計**（圖像編輯器，最近分類，非 AI 生成；
+  先例 pixel2motion）；clash-verge-rev 開發工具→**安全性**（先例 fanqiang＝翻牆代理彙編，雖然「安全性」
+  的定義是滲透測試，兩者都不貼切）。rescan Tier 1＝0。
+- **新陷阱**：
+  1. **`translate-to-zh --ids` 的欄位歸屬閘門仍會漏**：compositor 的 `advantages_zh` 被寫成黏了 NC 內容的
+     **單一字串**（還截斷），`negativeConstraints_zh` 缺；clash 的 `advantages_zh` 缺。落盤後必須檢查
+     zh 欄位是**陣列且筆數與英文一致**，不能只看「成功 2 筆」。
+  2. **`zh-translation-state.json` 會快取這份壞譯文**（陷阱 6 的再現）→ 手動修正後必須同步刪該 id 的
+     state 條目。
+  3. **`enrich-triggers-llm.js` 沒有 `--ids`**，預設處理**所有**尚未處理的工具（本次 17 筆，其中 15 筆與
+     本任務無關）。限縮範圍的做法：先備份 `trigger-enrich-state.json`，把其餘待處理 id 暫標為 done，
+     跑完再刪除暫標記（只留目標 id 的新條目）。
+  4. **Node 的 `/tmp` 不等於 Git Bash 的 `/tmp`**：Node 會解析成 `D:\tmp`，暫存檔一律放 scratchpad 的完整路徑，
+     否則 `&&` 串接的管線會在中途靜默斷掉並留下半套狀態。
+  5. `compositor`／`clash-verge-rev` 的 `install.method` 仍是 `none`（README 只有下載／Homebrew 或 Release 頁，
+     未改動）。
+- **驗證**：只有這 2 筆與 `trigger-enrich-state.json` 的 2 個條目有變動；validate 0 錯誤／6 警告／99.8；
+  check-doc-stats、check-templates、check-traditional、check-mece 全綠；rescan Tier 1＝0；
+  測試 354／352 pass／0 fail／2 skip。
+
 ### 2026-10-05 批次加入 10 支工具（736 → 746）
 
 - **入庫**：`cli.js add` 逐支序列（兩階段管線），10 支全數入庫且 stars 寫入
@@ -570,7 +603,7 @@ agent **59.7%**（含近義 61.6%）／fusion **58.5%**（含近義 60.4%）。
 2026-09-25 起 `npm test` 多了兩道語言關卡：`check-traditional.js`（預設＝相對 HEAD 的新增行＋未追蹤檔）
 與 `--full --code`（原始碼整檔綠燈鎖）。`--commits <range>` 另可查 commit 訊息——該處無法豁免，
 只能改寫歷史，所以本專案的 commit 訊息自此必須全繁體。
-`cli.js validate` → **0 錯誤／5 警告／品質 99.9**（746 支工具；5 警告皆為刻意留空 negativeConstraints 的 awesome／awesome-python／awesome-mac／arc-task-gen／tokentab，2026-10-06 實測）。
+`cli.js validate` → **0 錯誤／6 警告／品質 99.8**（748 支工具；6 警告皆為刻意留空 negativeConstraints 的 awesome／awesome-python／awesome-mac／arc-task-gen／tokentab／clash-verge-rev，2026-10-06 實測）。
 `npm run ceiling` → 天花板診斷（不需 API，見陷阱 17）。
 
 ---
@@ -634,7 +667,7 @@ CLI  ─┘
 
 | 路徑 | 用途 |
 |---|---|
-| `registry/tools.json` | **工具庫（單一真理來源）** 746 筆 |
+| `registry/tools.json` | **工具庫（單一真理來源）** 748 筆 |
 | `registry/categories.json` | **分類唯一來源**（機器可讀） |
 | `registry/eval-queries.json` | 評測集 **v1.3.0 — 267 筆**（257 可命中 + 10 空集），標準誤 ~3.0pp |
 | `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|
