@@ -12232,12 +12232,12 @@
     "fullName": "ollama/ollama",
     "owner": "ollama",
     "repo": "ollama",
+    "category": "AI 框架",
+    "addedAt": "2026-10-04T13:58:11.322Z",
+    "status": "tracking",
     "initialStars": 178060,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-08-02T23:59:59.999Z"
   },
   "f/prompts.chat": {
     "fullName": "f/prompts.chat",
@@ -20294,8 +20294,8 @@
     "discoveredAt": "2026-08-02T23:59:59.999Z",
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-05T08:25:38.635Z",
+    "status": "in_registry"
   },
   "golang/go": {
     "fullName": "golang/go",
@@ -25426,8 +25426,8 @@
     "discoveredAt": "2026-09-22T12:10:11.014Z",
     "sourceSnapshotWeek": "2026-W39",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-05T08:25:38.635Z",
+    "status": "in_registry"
   },
   "Player-YN/BrowserKitten": {
     "fullName": "Player-YN/BrowserKitten",
@@ -26305,11 +26305,83 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2581,
-    "inRegistry": 699,
-    "trackedOnly": 1882,
-    "lastGenerated": "2026-10-03T07:26:32.041Z"
+  "luongnv89/claude-howto": {
+    "fullName": "luongnv89/claude-howto",
+    "owner": "luongnv89",
+    "repo": "claude-howto",
+    "category": "學習資源",
+    "addedAt": "2026-10-04T13:16:25.148Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-10-03T07:26:31.998Z"
+  "simplifaisoul/osiris": {
+    "fullName": "simplifaisoul/osiris",
+    "owner": "simplifaisoul",
+    "repo": "osiris",
+    "category": "安全性",
+    "addedAt": "2026-10-04T13:20:44.496Z",
+    "status": "tracking"
+  },
+  "Bearisbug/Quilt": {
+    "fullName": "Bearisbug/Quilt",
+    "owner": "Bearisbug",
+    "repo": "Quilt",
+    "category": "UI/UX設計",
+    "addedAt": "2026-10-04T13:24:34.626Z",
+    "status": "tracking"
+  },
+  "louchi1984-coder/ow-bridge": {
+    "fullName": "louchi1984-coder/ow-bridge",
+    "owner": "louchi1984-coder",
+    "repo": "ow-bridge",
+    "category": "開發工具",
+    "addedAt": "2026-10-04T13:33:29.731Z",
+    "status": "tracking"
+  },
+  "debpalash/VoiceStudio": {
+    "fullName": "debpalash/VoiceStudio",
+    "owner": "debpalash",
+    "repo": "VoiceStudio",
+    "category": "音訊",
+    "addedAt": "2026-10-04T13:35:46.674Z",
+    "status": "tracking"
+  },
+  "bobvibes/Awesome-Vibecoding-Guide": {
+    "fullName": "bobvibes/Awesome-Vibecoding-Guide",
+    "owner": "bobvibes",
+    "repo": "Awesome-Vibecoding-Guide",
+    "category": "學習資源",
+    "addedAt": "2026-10-04T13:39:06.494Z",
+    "status": "tracking"
+  },
+  "kingselyjoe/video-shotcraft-dsh": {
+    "fullName": "kingselyjoe/video-shotcraft-dsh",
+    "owner": "kingselyjoe",
+    "repo": "video-shotcraft-dsh",
+    "category": "影片",
+    "addedAt": "2026-10-04T13:42:03.478Z",
+    "status": "tracking"
+  },
+  "knight-L/sc-datav": {
+    "fullName": "knight-L/sc-datav",
+    "owner": "knight-L",
+    "repo": "sc-datav",
+    "category": "UI/UX設計",
+    "addedAt": "2026-10-04T13:45:04.117Z",
+    "status": "tracking"
+  },
+  "Soulmate-Halo/heterogeneous-gpu-pd-lab": {
+    "fullName": "Soulmate-Halo/heterogeneous-gpu-pd-lab",
+    "owner": "Soulmate-Halo",
+    "repo": "heterogeneous-gpu-pd-lab",
+    "category": "AI 框架",
+    "addedAt": "2026-10-04T13:54:21.312Z",
+    "status": "tracking"
+  },
+  "_meta": {
+    "total": 2590,
+    "inRegistry": 709,
+    "trackedOnly": 1881,
+    "lastGenerated": "2026-10-05T08:25:38.688Z"
+  },
+  "lastGenerated": "2026-10-05T08:25:38.635Z"
 }
