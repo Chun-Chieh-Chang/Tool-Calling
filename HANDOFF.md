@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-05（批次加入 10 支工具至 746＋分類修正 5 支＋文件數字同步——見「三、目前狀態」頂部快照）
+> 最後更新：2026-10-06（embedding 可行性量測 e5-small／e5-base＋文件數字同步——見「三、目前狀態」頂部；其下為 10-05 批次加入 10 支工具至 746 的快照）
 
 ---
 
@@ -236,6 +236,68 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 ---
 
 ## 三、目前狀態（2026-10-05 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-06 embedding 可行性量測（本地 multilingual-e5；只量測、未接線、專案零改動）
+
+- **診斷**：接線早已存在（`core/embedding.js`、`scripts/embed-build.js`、fusion／agent-retrieval 的
+  V0 維度與 `queryVector` 參數，權重預設 0），缺的只有向量來源（`registry/embeddings/` 不存在）。
+  AGNES 端點重驗：`/models` 12 個全是對話／影像／影片模型；`/embeddings` 試三個常見名稱皆回
+  503 `model_not_found` → **「端點無 embedding」封鎖仍成立**。
+- **方法**：scratchpad 內安裝 `@huggingface/transformers`（`package-lock.json` 是受保護路徑，
+  專案內不 `npm install`）；257 題可命中題（嚴格標註）；基準是單獨的 `agentRetrieve`
+  （topK=50＋intent 權重，**不是完整 fusion**，與 59.1% 不可直接比）；工具文字兩種：
+  base＝`toolEmbedText`、withZh＝再加 `description_zh`／`useCase_zh`；e5 前綴 `passage:`／`query:`；
+  742 支（active＋experimental）。
+
+| 方案（e5-small，嚴格） | Hit@1 | Hit@5 | 召回@30 | semantic 召回@30 |
+|---|---|---|---|---|
+| 詞彙引擎（基準） | 57.6% | 84.0% | 96.1% | 93.0% |
+| 純向量 base | 39.7% | 64.6% | 85.6% | 82.2% |
+| 純向量 withZh | 47.5% | 69.6% | 89.1% | 85.3% |
+| RRF(k=60) 詞彙＋向量 withZh | 57.2% | 86.8% | 98.8% | 97.7% |
+
+  候選池（詞彙 top20 ∪ 向量 top10）召回@30：96.1% → 97.3%（約 3 題）。
+- **e5-base（fp32，模型約 1.1GB；計算 742 工具×2 變體＋257 查詢 279s，e5-small 為 95s）**：
+
+| 方案（e5-base，嚴格） | Hit@1 | Hit@5 | 召回@30 | semantic 召回@30 |
+|---|---|---|---|---|
+| 純向量 base | 43.2% | 68.1% | 91.4% | 89.1% |
+| 純向量 withZh | 52.9% | 74.3% | 93.0% | 90.7% |
+| RRF(k=60) 詞彙＋向量 base | 56.8% | 86.4% | 98.8% | 98.4% |
+| RRF(k=60) 詞彙＋向量 withZh | **61.1%** | 87.9% | 98.8% | 97.7% |
+
+  候選池（詞彙 top20 ∪ 向量 top10）召回@30：base 97.3%、withZh 98.4%（基準 96.1%）。
+  **配對 McNemar（RRF vs 詞彙基準，Hit@1，257 題）**：
+  e5-small base −0.8pp（p=0.894）、e5-small withZh −0.4pp（p=1.000）、e5-base base −0.8pp（p=0.894）、
+  **e5-base withZh +3.5pp（只基準對 19／只變體對 28，p=0.243；含近義 +4.3pp，p=0.152）**——全部不顯著。
+- **結論**：向量單獨用都比詞彙差（e5-small −10pp、e5-base 最佳 −4.7pp）。融合後：e5-small 兩種變體與
+  e5-base base 的 Hit@1 皆無進步（±1pp 內）；**唯一有正訊號的是 e5-base＋中文譯文（+3.5pp、p=0.243）**，
+  但那是 4 種組合裡事後挑出最好的一個（多重比較，p 值偏樂觀），且不顯著，**不能當成已證實的進步**。
+  模型加大（small→base）確實有幫助（withZh 純向量 Hit@1 47.5%→52.9%、融合 57.2%→61.1%），
+  所以「更大模型可能達顯著」是合理假設，但**尚未驗證**（e5-large 約 2.2GB、算向量更慢）。
+  與既有結論一致：rerank 路徑對召回不敏感（top-30 vs top-50 端到端相同），故**預期不會動到 rerank 後的 80.4%**，
+  收益最多落在快速搜尋路徑。代價是新增執行期依賴（目前零依賴）與載入成本（base fp32 約 1.1GB、
+  首次載入含下載 559s；若量化 q8 可大幅縮小，**未測量化對品質的影響**）。
+  **暫不接進上線路徑；若要繼續，下一步是 e5-base 量化版／e5-large 的同一套配對檢定，並先預先註冊
+  「只比 withZh＋RRF(k=60) 這一個設定」以避免再次事後挑選。**
+- **限制**：評測集由 metadata 反推（偏向哪邊不明）；未試 V0 加權融合（對評測集調權重＝過擬合風險）；
+  RRF 只是參數無關的粗估，不是最佳融合。
+- **工具箱／本機盤點**：`cli.js search` 前 5 名皆不相關；關鍵字掃庫 4 筆命中
+  （claude-mem、tencentdb-agent-memory、stable-diffusion-webui、tldraw）**無一是 embedding 套件**
+  → 庫中沒有 embedding 模型／函式庫類工具（收錄缺口，非檢索問題）。本機 Ollama 0.32.5 已裝但未啟動、
+  只拉了 gemma4；LM Studio 只有 gemma-4——**皆無 embedding 模型**。
+- **外部來源評估**：`semantica-agi/semantica`（已在庫）是 Python 知識圖譜／決策溯源平台，向量部分
+  需自備 embedding（`embeddings-local` 只是包 sentence-transformers／fastembed／onnxruntime），
+  **與瓶頸（詞彙鴻溝）無關**；`github/semantic` 是已封存的 Haskell 程式碼解析工具，**無關**；
+  影片（Karpathy 閱讀 AI 輸出四層階梯）是輸出格式技巧，**與檢索無關**（僅 README／影片層級查證，
+  未核對原推文）。
+- **新陷阱**：
+  1. `~/.workbuddy-ai/models.json` **已無 agnes-ai.com 項目**（只剩 tokenharbor、NVIDIA）；
+     AGNES 金鑰現在只在 `~/.strix/cli-config.json` 的 `env.OPENAI_API_KEY`（陷阱 21 的來源清單已過期）。
+  2. `onnxruntime-node` 的 postinstall 需 `npm approve-scripts onnxruntime-node` 才會執行。
+  3. Windows 主控台（cp950）印簡體字會 `UnicodeEncodeError`——先寫檔再讀。
+  4. 量測腳本在 scratchpad（會隨 session 清除）；要重現需重寫：載入 e5、對 `toolEmbedText` 與查詢算向量、
+     對照 `agentRetrieve`、RRF(k=60)。
 
 ### 2026-10-05 批次加入 10 支工具（736 → 746）
 
@@ -508,7 +570,7 @@ agent **59.7%**（含近義 61.6%）／fusion **58.5%**（含近義 60.4%）。
 2026-09-25 起 `npm test` 多了兩道語言關卡：`check-traditional.js`（預設＝相對 HEAD 的新增行＋未追蹤檔）
 與 `--full --code`（原始碼整檔綠燈鎖）。`--commits <range>` 另可查 commit 訊息——該處無法豁免，
 只能改寫歷史，所以本專案的 commit 訊息自此必須全繁體。
-`cli.js validate` → **0 錯誤／0 警告／品質 100.0**（725 支工具）。
+`cli.js validate` → **0 錯誤／5 警告／品質 99.9**（746 支工具；5 警告皆為刻意留空 negativeConstraints 的 awesome／awesome-python／awesome-mac／arc-task-gen／tokentab，2026-10-06 實測）。
 `npm run ceiling` → 天花板診斷（不需 API，見陷阱 17）。
 
 ---
@@ -572,7 +634,7 @@ CLI  ─┘
 
 | 路徑 | 用途 |
 |---|---|
-| `registry/tools.json` | **工具庫（單一真理來源）** 725 筆 |
+| `registry/tools.json` | **工具庫（單一真理來源）** 746 筆 |
 | `registry/categories.json` | **分類唯一來源**（機器可讀） |
 | `registry/eval-queries.json` | 評測集 **v1.3.0 — 267 筆**（257 可命中 + 10 空集），標準誤 ~3.0pp |
 | `registry/zh-translation-state.json` | 繁中譯文進度（可續跑）|
@@ -656,7 +718,9 @@ npm run mcp                 # 啟動 MCP server
 - ✅ 本文件舊待辦中已完成者：tracked-repos schema 統一、配方庫三端對齊、
   意圖原型層、decision 閾值修正——詳 DEV_LOG 2026-10-03 六批次。
 - 📌 semantic 缺口（50.4%，仍是最弱類型）的已知無效手段清單見下方
-  「刻意不做的」表格；下一個未試方向是 embedding（API 端點無模型，已查證受阻）。
+  「刻意不做的」表格；embedding 已於 2026-10-06 以本地 e5 量測（見「三、目前狀態」頂部）：
+  e5-small 融合後 Hit@1 無進步；e5-base＋中文譯文 +3.5pp 但不顯著（McNemar p=0.243），**暫不接線**；
+  AGNES 端點仍無 embedding 模型。
 
 ---
 
