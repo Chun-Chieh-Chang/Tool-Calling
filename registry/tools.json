@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-04T23:57:27.945Z",
+  "lastUpdated": "2026-10-05T08:25:58.647Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -57019,6 +57019,76 @@
         "提供統一的 REST API 與官方 Python/JavaScript 客戶端，抽象化底層 llama.cpp 後端以達到一致的模型管理。",
         "內建啟動整合功能，可快速串接 Claude Code、OpenClaw、Codex 等專用代理程式工具以簡化工作流。"
       ]
+    },
+    {
+      "id": "compositor",
+      "name": "Compositor",
+      "url": "https://github.com/robbietilton/Compositor",
+      "description": "The Photoshop alternative for Mac",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "compositor"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/robbietilton/Compositor"
+      },
+      "capabilities": [],
+      "useCase": "The Photoshop alternative for Mac",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 5910,
+      "addedAt": "2026-10-05T08:25:38.635Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W40",
+        "starsAtIngest": 5910,
+        "weeklyDelta": 2242,
+        "ingestedAt": "2026-10-05T08:25:38.635Z"
+      }
+    },
+    {
+      "id": "clash-verge-rev",
+      "name": "clash-verge-rev",
+      "url": "https://github.com/clash-verge-rev/clash-verge-rev",
+      "description": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "clash-verge-rev",
+        "clash",
+        "clash-meta",
+        "clash-verge",
+        "linux",
+        "mac"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/clash-verge-rev/clash-verge-rev"
+      },
+      "capabilities": [
+        "clash",
+        "clash-meta",
+        "clash-verge",
+        "linux",
+        "mac",
+        "mihomo"
+      ],
+      "useCase": "A modern GUI client based on Tauri, designed to run in Windows, macOS and Linux for tailored proxy experience",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 147913,
+      "addedAt": "2026-10-05T08:25:38.635Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W40",
+        "starsAtIngest": 147913,
+        "weeklyDelta": 2178,
+        "ingestedAt": "2026-10-05T08:25:38.635Z"
+      }
     }
   ]
 }
