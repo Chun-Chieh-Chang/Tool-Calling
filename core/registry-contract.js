@@ -80,9 +80,10 @@ export function validateNegativeFacets(value) {
       errors.push(`negativeFacets value 超過 ${FACET_MAX_VALUE_TOKENS} 個 token：${entry}`);
       continue;
     }
-    if (/(^|\s)non-/i.test(m[3])) {
-      // 極性歸 +/- 符號；「-ecosystem:non-x」是雙重否定復活（c61 教訓的結構化變體）
-      errors.push(`negativeFacets value 不得含「non-」（極性請用 +/- 符號表達）：${entry}`);
+    if (/(^|[\s.\-])(?:non-|not|without)\b/i.test(m[3])) {
+      // 極性歸 +/- 符號；「-ecosystem:not bootstrap」是雙重否定復活（c61 教訓的結構化變體）。
+      // 實測兩種漏網寫法：獨立字 not、接在連字號後面的 -non-。
+      errors.push(`negativeFacets value 不得含否定詞（non-/not/without）——極性請用 +/- 符號表達：${entry}`);
       continue;
     }
     if (seen.has(entry)) {

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-05T23:32:55.339Z",
+  "lastUpdated": "2026-10-07T12:38:24.353Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32222,7 +32222,11 @@
         "不適合非影片生成的通用任務",
         "不適合無 LLM 代理的直接呼叫"
       ],
-      "useCase_zh": "內容創作者或開發者在 Claude Code、Cursor 等 AI Agent 中，需要為 Seedance 2.0 撰寫高品質的影片提示詞（用於廣告或劇集），並透過此技能庫確保語法正確與攝影機語言規範。"
+      "useCase_zh": "內容創作者或開發者在 Claude Code、Cursor 等 AI Agent 中，需要為 Seedance 2.0 撰寫高品質的影片提示詞（用於廣告或劇集），並透過此技能庫確保語法正確與攝影機語言規範。",
+      "negativeFacets": [
+        "-platform:seedance 1",
+        "+integration:llm agent"
+      ]
     },
     {
       "id": "remotion",
@@ -32273,7 +32277,12 @@
         "不適合非程式設計師的純 GUI 影片編輯",
         "不適合需要 GPU 硬體加速渲染的 4K/8K 長片"
       ],
-      "useCase_zh": "開發團隊使用 AI 代理根據創意生成個人化行銷影片，並透過 React 元件直接連接數據管線進行大規模渲染。"
+      "useCase_zh": "開發團隊使用 AI 代理根據創意生成個人化行銷影片，並透過 React 元件直接連接數據管線進行大規模渲染。",
+      "negativeFacets": [
+        "-platform:liver streaming",
+        "-interface:gui editing",
+        "-format:4k 8k"
+      ]
     },
     {
       "id": "opencv",
@@ -32450,6 +32459,11 @@
         "提供一組可重複使用的 C 語言程式庫（如 libavcodec、libavformat），可直接連結至自訂應用程式中，這與僅限獨立運行的工具不同。",
         "具備強大的有向圖濾鏡引擎（libavfilter），允許在單一行程中執行複雜的鏈式音訊與影片處理工作流程。",
         "核心採用 LGPL 授權，確保商業軟體整合的法律彈性，並提供選用的 GPL 元件以支援特定進階功能。"
+      ],
+      "negativeFacets": [
+        "-interface:gui",
+        "-integration:live-streaming",
+        "-interface:intuitive"
       ]
     },
     {
@@ -32557,7 +32571,11 @@
       ],
       "stars": 22484,
       "description_zh": "1,324 項運動健身資料集——包含動畫 GIF、180×180 縮圖、肌群與設備資料，以及六種語言的分步說明。為 LogPress 應用程式背後的運動資料層。",
-      "useCase_zh": "提供 1,324 筆健身動作資料集（含動畫 GIF 與肌肉群分類），適合健身 App 開發、運動科學分析與教學平台"
+      "useCase_zh": "提供 1,324 筆健身動作資料集（含動畫 GIF 與肌肉群分類），適合健身 App 開發、運動科學分析與教學平台",
+      "negativeFacets": [
+        "-format:3d skeletal animation",
+        "-format:biomechanics data"
+      ]
     },
     {
       "id": "ai-agent-book",
@@ -32659,6 +32677,11 @@
         "不適合非 OpenCode 的通用對話場景",
         "不適合需要完整無損對話歷史的稽核用途",
         "避免與其他上下文管理工具同時啟用造成衝突"
+      ],
+      "negativeFacets": [
+        "+ecosystem:opencode",
+        "-interface:complete-history",
+        "-integration:other-context-manager"
       ]
     },
     {
@@ -33079,6 +33102,9 @@
         "選擇較多需設計決策",
         "檔案大小依導入方式而異",
         "不適合非 SVG 環境"
+      ],
+      "negativeFacets": [
+        "+format:svg"
       ]
     },
     {
@@ -33444,6 +33470,10 @@
         "非 Bootstrap 專案需額外整合",
         "設計風格偏中性",
         "不適合非網頁的桌面應用"
+      ],
+      "negativeFacets": [
+        "-interface:neutral-design",
+        "-platform:desktop"
       ]
     },
     {
@@ -33552,6 +33582,12 @@
         "不適合非 Agent 的通用 ML 學習",
         "內容以英文為主",
         "需具備基礎 Python 知識"
+      ],
+      "negativeFacets": [
+        "+ecosystem:hugging face",
+        "+language:english",
+        "+language:python",
+        "+platform:agent"
       ]
     },
     {
@@ -33592,7 +33628,12 @@
       ],
       "stars": 1120,
       "description_zh": "HugAgentOS：企業級 AgentOS，專為基於語義網的可靠推理而設計",
-      "useCase_zh": "企業級本體論驅動的 Agent 作業系統，適合大型組織的 AI Agent 部署與治理"
+      "useCase_zh": "企業級本體論驅動的 Agent 作業系統，適合大型組織的 AI Agent 部署與治理",
+      "negativeFacets": [
+        "+scale:enterprise",
+        "+integration:ontology",
+        "+deployment:complex"
+      ]
     },
     {
       "id": "adhd",
@@ -33649,6 +33690,10 @@
         "不適合非程式設計的通用推理",
         "需支援 ToT 的 Agent 環境",
         "非醫療相關 ADHD 工具"
+      ],
+      "negativeFacets": [
+        "+integration:agent",
+        "-interface:medical"
       ]
     },
     {
@@ -33801,6 +33846,11 @@
         "非 Ant Design 專案需額外適配",
         "風格偏企業級應用",
         "不適合非網頁環境"
+      ],
+      "negativeFacets": [
+        "+ecosystem:enterprise",
+        "+interface:web",
+        "+ecosystem:ant design"
       ]
     },
     {
@@ -34134,6 +34184,10 @@
         "不適合非 Material 設計風格的專案",
         "圖示風格偏現代簡約",
         "不適合真實感圖形"
+      ],
+      "negativeFacets": [
+        "+ecosystem:material design",
+        "-format:realistic"
       ]
     },
     {
@@ -35556,6 +35610,11 @@
         "不適合尋找即插即用工具的開發者，本質是學習課程而非可安裝套件",
         "不適合需要深入研究特定框架原始碼的進階開發者",
         "不適合非 Python 開發者，大部分範例以 Python 為主"
+      ],
+      "negativeFacets": [
+        "+language:python",
+        "+format:course",
+        "-scale:advanced"
       ]
     },
     {
@@ -35723,6 +35782,9 @@
         "不適合直接安裝使用，需瀏覽後選擇個別插件安裝",
         "不適合非 Claude Code 環境的插件需求",
         "不適合需要自訂或修改官方插件行為的進階用例"
+      ],
+      "negativeFacets": [
+        "+ecosystem:claude code"
       ]
     },
     {
@@ -35892,6 +35954,10 @@
         "不適合作為替代人工安全審計的唯一安全把關手段",
         "不適合非前端或不使用所列技術棧的後端專案",
         "不適合需要即插即用 npm/pip 套件的自動化管道整合"
+      ],
+      "negativeFacets": [
+        "-integration:sole security audit",
+        "-integration:plug-and-play packages"
       ]
     },
     {
@@ -36232,6 +36298,11 @@
         "不適合非 Claude Code 環境，依賴 Claude Code Skill 協議",
         "需要 tsx 執行環境，不適合完全無 Node.js 的部署場景",
         "不適合簡單單步問題，引入狀態機會增加不必要的複雜度"
+      ],
+      "negativeFacets": [
+        "+platform:claude code",
+        "+platform:tsx",
+        "-scale:simple"
       ]
     },
     {
@@ -37008,6 +37079,9 @@
         "不適合需要英文原版或最新未翻譯內容的開發者",
         "不適合非 UI/UX 設計領域的 AI 技能需求",
         "不適合不需要中文本地化、直接使用英文資源的開發者"
+      ],
+      "negativeFacets": [
+        "+language:chinese"
       ]
     },
     {
@@ -47284,6 +47358,13 @@
         "不適合非技術用戶（需要 SQL 能力）",
         "視覺化選擇相對有限，不如 Tableau/Superset",
         "團隊協作與權限管理功能較弱"
+      ],
+      "negativeFacets": [
+        "+platform:sql",
+        "-integration:tableau",
+        "-integration:superset",
+        "-scale:team-collaboration",
+        "-scale:permission-management"
       ]
     },
     {
@@ -52395,6 +52476,10 @@
         "需要 Claude Code 作為 AI 助手",
         "研究品質取決於底層 LLM 能力",
         "不適合非學術或商業寫作用途"
+      ],
+      "negativeFacets": [
+        "+platform:claude code",
+        "-format:commercial"
       ]
     },
     {

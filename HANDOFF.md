@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-07（`lint:wiki` E1–E5 上線＋四項裁決落地與「乾跑」成本實測——見「三、目前狀態」頂部兩節 10-07；其下為 10-06 embedding 量測與 10-05 批次加入 10 支工具至 746 的快照）
+> 最後更新：2026-10-07（`lint:wiki` E1–E5 上線＋四項裁決落地與「乾跑」成本實測＋12 支缺詞條＋19 支雙否結構化＋Tier 0 消融重量（§5.4 舊表已註銷）——見「三、目前狀態」頂部四節 10-07；其下為 10-06 embedding 量測與 10-05 批次加入 10 支工具至 746 的快照）
 
 ---
 
@@ -21,12 +21,13 @@
 
 ### 1. 量測本身會騙人（最重要）
 
-**兩次差點得出錯誤結論：**
+**三次差點得出錯誤結論：**
 
 | 症狀 | 真因 | 檢查方式 |
 |---|---|---|
 | 評測跑出 50.0%（比基準差） | **API 限流**，成功呼叫只有 29/42 | 一定要看「成功呼叫數」 |
 | 評測跑出 61.9%（比基準差） | 用了**不同參數**（topK=20 vs 50），天花板不同 | 比較前確認參數一致 |
+| 換了 `--wiki=` 詞檔，數字卻跟對照組一模一樣 | **假開關**：腳本只用載入的詞檔印標頭，打分那路仍自己讀預設路徑 | 拿一份「必定讓結果變差」的錯掛資料跑；數字不動＝開關是假的（2026-10-07 第四輪 §6） |
 
 → **看到數字異常時，先懷疑量測方法，再懷疑改動。**
 
@@ -233,9 +234,20 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 在評測與上線共用）。之所以維持預設 20，是為了與歷史數字可比較；
 **引用 rerank 數字時務必標明 topK**。
 
+### 21. 🔴 LLM 的「乾跑提案」不是「寫入內容」，且 prompt 的佔位符會被字面複製（2026-10-07）
+
+- `infer-facets.js` 的 prompt 用 `"[-+]facet:value"` 表達格式，`facet` 在這裡是偽變量；
+  模型把它原字抄進輸出（實測 `-facet:scale:streaming`、`-facet:syntax tutorials`），
+  整批被 facet 白名單拒收。格式說明改用 `<NAME>:<VALUE>` 這種不會與資料詞彙相撞的佔位符，
+  並明寫「Never write the literal word "facet"」。
+- `temperature=0` **不等於可重現**：同 19 支、同一份 prompt，dry 與 apply 兩次呼叫的輸出不同，
+  甚至翻轉極性（`+platform:seedance 2` → `-platform:seedance 1`；`+language:python` → `-language:python`）。
+  「先乾跑看提案」只能驗**格式與管線會不會全滅**，不能當成**寫入內容的憑證**；
+  落地後一律回頭讀 `registry/tools.json` 的實際值再引用或寫文件。
+
 ---
 
-## 三、目前狀態（頂部兩節為 2026-10-07 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部四節為 2026-10-07 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 
@@ -509,6 +521,8 @@ Tier 0 規則式編譯：12 筆
 - 🔴 §8 用法區原本把 `--dry` 註解寫成「**先看 prompt**」——這正是我上一輪誤信「乾跑能看到提案」的來源。
   實測 `--dry` 只印目標數，已連同「`--offline --dry` 的範例詞條印的是既有條目」一起寫進文件。
 - §5.4／§5.5 的 Tier 0 消融數字標明屬「未過濾時期」，現行實作下**未重量**，引用前要重建。
+  ✅ 已於第四輪 §6 重量（先給 `scripts/v5-ablate.js` 加 `--wiki=`），`docs/WIKI-COMPILER.md` §5.4／§5.5
+  整節換掉，舊表那句「0.10 天花板不降反升」已註銷。
 - README 詞檔筆數 732 → 744（並註明 Tier 1 732＋Tier 0 12）。
 - `TEST_STATS` 於定稿點重量為 **374／372／2 skip**（`npm test` exit 0、九個 ✅ 閘門全綠），
   `AGENTS.md` 重生成 diff 為 7 增／7 刪＝6 行測試數＋1 行時間戳，工具數／star 數區塊未動。
@@ -517,9 +531,164 @@ Tier 0 規則式編譯：12 筆
 
 1. 19 支高危雙否：等 free 額度重置後 `infer-facets --dry --ids=<19>` 一次收齊再 `--apply`
    （已到手 8 支的提案內容記在上一節；落地後同樣要重跑 `ablate:v5`＋`benchmark`＋`--update-baseline`）。
+   ✅ 已於下方「第四輪」落地（E5 高危 19→0；8 支的舊提案內容已被 apply 時的實際值取代，見該節 §2）。
 2. `b21e8c2` 與本輪 commit 是否一起 push。
 3. 那 5 筆只有 1 句的 Tier 0 詞條：要留著（E3 已歸零），還是等 Tier 1 額度時重寫成 2~4 句。
+   ✅ 第四輪 §9 已查完：素材在 `advantages_zh`，但那是「這是什麼」語域，建議不納入來源集——變成待裁①。
 4. §5.4 的 Tier 0 對照數字要不要重量（現在是已知過期、標了警告）。
+   ✅ 第四輪 §6 已重量（先給 `v5-ablate.js` 補 `--wiki=`），§5.4／§5.5 整節換掉，舊表已撤。
+
+### 2026-10-07（第四輪）19 支高危雙否落地：根因是 prompt 的佔位符被模型字面複製
+
+**做了什麼**：把 19 支「散文雙重否定」工具抽成結構化 `negativeFacets`（裁決：額度重置後一次跑完），
+順手修掉造成整批失敗的 prompt 缺陷、收緊一道門禁，並修正 3 筆「極性反轉」的寫入。
+其後補完第三輪留下的兩項：重量 §5.4 的 Tier 0 消融（`v5-ablate.js` 加 `--wiki=`，過程中抓到一個
+只改標頭不改打分的假開關），以及查清 5 支單句 Tier 0 詞條的素材到底在哪（結論見 §9）。
+
+#### 1. 根因：`facet` 是偽變量，模型會原字複製
+
+`infer-facets.js` 的 prompt 把格式寫成 `Each string is "[-+]facet:value"`，而 `facet` 在這裡是**佔位符**，
+不是白名單詞。模型把它抄進輸出：實測 `-facet:scale:streaming`、`-facet:syntax tutorials`
+→ 白名單檢查拒絕 → 該工具「全部條目不合格」。上一輪 8 支乾跑折損 1 支、這一輪 remotion／adhd
+兩支全滅，都是同一個原因。**改法**：佔位符改成 `<NAME>`／`<VALUE>`，把 10 個白名單名稱獨立成
+一行「MUST be copied verbatim」，並補一條「Never write the literal word "facet"」。
+驗證方式：同一對工具（remotion, adhd）改前 2/2 全滅 → 改後 2/2 合格（2 次 API 呼叫）。
+
+#### 2. 🔴 陷阱：`temperature=0` 不保證可重現，dry 的提案≠apply 的寫入
+
+19 支乾跑清單與隨後 `--apply` 實際寫入的內容**不同**（19 支裡多數有差異，且含極性翻轉：
+seedance2-skill 乾跑是 `+platform:seedance 2`，寫入變成 `-platform:seedance 1`；
+adhd 乾跑 3 條 `+`，寫入變成 `+integration:agent`／`-interface:medical`）。
+所以**落地後必須回頭讀 `registry/tools.json` 的實際值**，引用乾跑清單會把不存在的資料寫進文件。
+
+#### 3. 3 筆極性反轉已修（依據句逐條列在這裡，易於覆核）
+
+| 工具 | 寫入值（錯） | 依據句（原文） | 修正 |
+|---|---|---|---|
+| `ai-agents-for-beginners` | `-language:python` | 不適合非 Python 開發者，大部分範例以 Python 為主 | `+language:python` |
+| `ai-agents-for-beginners` | `-format:course` | 本質是學習課程而非可安裝套件 | `+format:course` |
+| `ant-design-icons` | `-ecosystem:ant design` | 非 Ant Design 專案需額外適配 | `+ecosystem:ant design` |
+
+這三筆留下的後果比散文雙否**更糟**：`core/agent-retrieval.js:291-296` 對有 facets 的工具
+「一律以結構為準」，等於把工具自己的核心需求寫成扣分項。修正只做一件事——翻極性符號，
+facet 與 value 原封不動，並用 `loadRegistry`／`saveRegistry` 寫回（不手改 JSON 字串）。
+
+#### 4. 門禁收緊：`not` 與連字號後的 `non-` 原本是漏網的
+
+舊規則 `/(^|\s)non-/i` 抓不到「獨立字 not」（`-ecosystem:not bootstrap`）與
+「連字號後的 -non-」（`-language:backend-non-frontend`）。收緊前先量既有資料：
+現況 92 支工具／248 條 facets 中，值內含否定詞的 **0 筆** → 收緊不會讓已 blessed 的資料轉紅
+（實測 `node cli.js validate`：0 errors／6 warnings／99.8）。
+新規則 `/(^|[\s.\-])(?:non-|not|without)\b/i`。
+
+- 測試 `tests/negative-facets-contract.test.js` 9 → **12 項**：兩個漏網正例＋一個
+  「note／cannot 不被誤殺」的對照組（`\b` 與前置字元類別就是為了不誤殺 `note-taking`、`cannot-fit`）。
+- ⚠️ 刻意維持的相容點：新錯誤訊息仍含子字串 `non-`，所以既有第 9 項 `includes('non-')` 不必改。
+
+#### 5. 順手修掉一個「E1 對 Tier 0 假綠」的缺陷（上一輪自己留下的）
+
+`lint-wiki.js:89` 的 `fingerprintSource(tool, tier)` 對 Tier 0 走另一個視圖，但那個視圖
+與 `compileOffline()` 的實際來源**不同步**：`description` 完全沒進視圖、`triggers` 只取到 4
+（編譯器取 6）。後果是實測的——**12 支 Tier 0 詞條裡有 7 支的 intents 收了 description 句**，
+而改了那欄 E1 不會報。這是上一輪把 description 加進 Tier 0 來源時漏改的另一邊。
+
+- 修：視圖補 `description`、`triggers` 改 `slice(0, 6)`，與 `compile-wiki.js:122-126` 對齊。
+- 注銷驗證（把 `lint-wiki.js` 還原成 HEAD 版跑同一批測試）：**兩條新的「該響」測試轉紅、
+  「第 7 個 trigger 不該響」的對照仍綠**（13 pass／2 fail），還原後 15/15 全綠。
+  這證明測試掛在真實耦合上，不是自證。
+- 代價（如實記）：指紋定義一變，12 支 Tier 0 的指紋全數不符 → `lint:wiki` 一度報
+  **E1=12**（不是資料變了，是尺變了），`--update-baseline` 重建後回到 0。
+  基線 diff = 13 行（12 支 Tier 0＋`generatedAt`），與預期一致。
+- 邊界刻意保留：視圖仍不含 `stars`（cron 每晚改），也不覆蓋第 7、8 個 trigger——
+  兩條「不該響」的測試就是把這道邊界釘住。
+
+#### 6. 重量 §5.4 的 Tier 0 消融：順手抓到 `v5-ablate.js` 的靜默假量測
+
+第三輪留下的待裁項（「§5.4 仍屬過期；需先給 `scripts/v5-ablate.js` 加詞檔路徑覆蓋」）本輪做完。
+
+- 先補尺：`v5-ablate.js` 加 `--wiki=<路徑>`（預設仍是 `registry/compiled-entries.json`），
+  才能拿一份純 Tier 0 詞檔去量。建詞檔用 `npm run compile:wiki -- --offline --out=<暫存>`，
+  `--out` 不碰正式版（見 `docs/WIKI-COMPILER.md` §6 的 seed 警告）。
+- 🔴 **改動前腳本是假開關**：`run()` 從未把載入的詞檔傳給 `agentRetrieve`，它自己讀預設路徑
+  → 換 `--wiki=` 只改了標題那一行，數字量的還是正式版。修法是在 `agentRetrieve` 的 opts 裡
+  一路傳 `wiki`（`core/agent-retrieval.js` 端 `wiki === undefined ? loadWikiCached() : (wiki || null)`）。
+- ⚠️ **中性與有效性是兩件事，要分開證**：
+  ①**中性**（改動沒動到現行行為）＝`--wiki=registry/compiled-entries.json`（明確指正式版）
+  與不加參數跑同組權重，兩份輸出**只差「來源：…」那一行標頭**（一個列相對路徑、一個列解析後的
+  絕對路徑），天花板／平均排名／top1／三個類型欄逐字相同。
+  ②**有效**（flag 真的進打分）＝①本身證不了——flag 若被無視，輸出也會一樣。靠的是下面的錯掛夾具。
+  拿①當②的證據，就是「0 殘留」型假綠。
+- 反例夾具（`tests/v5-ablate-wiki-flag.test.js`，2 項）：把 261 筆詞條「錯掛」——第 i 題的 query
+  接到第 i+1 題的 expected 工具上。flag 若沒接進打分，錯掛與正確詞檔的數字會一致；實測
+  錯掛 top1 **21.0%** vs 基線 **50.6%**（會變差才算真的讀到）；單次子行程實測 30.7 秒，
+  整個 `npm test` 因此約 40 秒（這支就吃掉四分之三）。
+- 重量結果（v1.3.0／267 題，寫進 `docs/WIKI-COMPILER.md` §5.4／§5.5）：現行 Tier 0
+  **沒有任何權重**能讓天花板不降（舊表「0.10 讓天花板 95.0%→95.6%」是未過濾時期，已整節撤掉）；
+  top1 最好 54.1%（w=0.10）但天花板 96.9%→94.9%。Tier 1 仍是 0.20（天花板 98.4%／top1 58.0%）。
+  ⚠️ `npm run benchmark` 那張表**仍未重量**：要接詞檔覆蓋得動 `core/retrieval-fusion.js`（生產路徑），
+  為一個文件數字不划算——已在文件上明寫「未重量」，不留假數。
+- 文件同步：`docs/WIKI-COMPILER.md` §5.4／§5.5 整節重寫（舊表註銷）、§6 加 `--wiki=` 用法與
+  「只改標頭」的警告、§7 檔案清單補 `scripts/v5-ablate.js` 與 `tests/v5-ablate-wiki-flag.test.js` 兩列。
+
+#### 7. 結果（確定性證據）
+
+- `lint:wiki`：E5 高危 19 → **0**、低危 1 → **20**；E1–E4／未對基線全 0，exit 0。
+  寫入 `negativeFacets` **本身不需重建基線**（facets 不在 E1 的指紋來源欄位內，實測 E1=0）；
+  需要重建的是 §5 的指紋視圖修正——兩個動作的基線影響要分開講，別混成一件事。
+- 一筆 API 層失敗（`evidence-dev-evidence`：JSON parse error）重跑單支後成功，19/19 全落地。
+- `node cli.js validate`：0 errors／6 warnings／平均品質 99.8。
+- `npm test` exit 0：**382 tests／380 pass／0 fail／2 skip**（本輪新增 8 項＝
+  `negative-facets-contract` 9→12、`wiki-lint` 12→15、`v5-ablate-wiki-flag` 新檔 2 項；374＋8=382，與總數自我吻合）。
+  最後一次完整重量是在 §6 的 `--wiki=` 程式改動與新測試檔落地**之後**做的——本輪途中還讀到過
+  380/378 與 377/375 兩個較舊的數，引用時以本行 382/380 為準。此後只再動文件；文件改完在提交前
+  重跑一次 `npm test`（含繁中字守門）才算數。
+  `TEST_STATS` 已同步；`AGENTS.md` 重生成 diff = **8 增／8 刪**＝6 行測試數＋1 行
+  `最後更新: 2026/10/6 → 2026/10/7`（`saveRegistry` 更新了 tools.json 的 `lastUpdated`，
+  產生器把這個日期取自 registry，不是手改）＋1 行 ISO 時間戳。
+  ⚠️ 數 `-` 行時注意：`- [ ] 所有測試通過 (…)` 在 diff 裡長成 `-- ` 開頭，用
+  `grep -c "^-[^-]"` 會少算一行——這一輪的 8/8 與 7/8 之爭就是這樣來的。
+
+#### 8. 量測口徑：這批改動在 benchmark 上「不可能顯示改進」
+
+評測集 267 題裡 `expected`／`alsoAcceptable` 指向這 19 支的題數＝**0／267**（實測）。
+所以 `ablate:v5` 與 `benchmark` 只能承擔**測回歸**的角色：
+
+| | 前一輪（744 詞檔、尚未寫 facets） | 本輪（已寫 20 支 facets） |
+|---|---|---|
+| `ablate:v5` 建議 | 0.20（天花板 98.4%／top1 58.0%） | 0.20（天花板 98.4%／top1 58.0%） |
+| benchmark fusion Hit@1／Hit@3／MRR | 58.0%／63.0%／0.614 | 58.0%／63.0%／0.614 |
+| 含近義 fusion Hit@3 | 63.8% | 63.8% |
+| semantic Hit@3（129 題） | 55.8% | 55.8% |
+| 空集誠實率 | 10/10 | 10/10 |
+
+**全部零移動**＝無回歸；不可讀成「補 facets 沒用」。真正證明本輪有效的是確定性那兩個數
+（E5 高危 0、validate 0 errors），結構化扣分路徑本身由 `tests/negative-facets-penalty.test.js` 守著。
+
+#### 9. 留下的品質債務（未修，需裁）
+
+- 「格式合法但語意牽強」的寫入：`-platform:liver streaming`（拼字錯 → 永不命中，屬無效雜訊）、
+  `-interface:intuitive`、`-scale:audit`、`-format:biomechanics data`。
+- 3 支的依據句語意未被覆蓋：`bootstrap-icons` 的「需要 bootstrap」被新門禁擋掉後只剩
+  `-platform:desktop`；`code-review-skill`、`exercises-dataset` 同理。
+- 5 支只有 1 句的 Tier 0 詞條（claude-howto／quilt／voicestudio／awesome-vibecoding-guide／ollama）
+  **素材確實存在，但語域不對**（本輪量過）：把 `advantages_zh` 暫時併入 `compileOffline()` 來源集、
+  跑 `--offline --out=<暫存檔>` 後立刻還原原始檔 → 12 支 Tier 0 有 **11 支**的 intents 直達上限 4 句。
+  但收進來的是工具中心的優惠散文（claude-howto 新第 2 句＝「提供可立即複製貼上的生產級配置範本
+  （如 CLAUDE.md、鉤子腳本、MCP 設定）…」），正是 §2「詞彙鴻溝」要消滅的「這是什麼」寫法，
+  不是使用者的「我想達成什麼」。→ 建議**不納入**來源集；要補就等 Tier 1。
+
+**下一個人的待裁清單**
+
+1. 5 支單句 Tier 0：留著等 Tier 1（建議，理由見上方的語域問題）／跑 Tier 1 重寫／硬把 `advantages_zh`
+   納入 Tier 0 來源集（代價已量：11/12 支詞條變動，並要同步 E1 指紋視圖＋`--update-baseline`＋ablate 重量）。
+2. push：本地目前 **3 個 commit** 落後於 origin/main（`b21e8c2`、`9472d43`、本輪），需明文核准。
+3. `npm audit` 實測 4 項（`proxy-addr` **critical**、`@modelcontextprotocol/sdk` high、
+   `fast-uri`／`ip-address` moderate）；修法動到受保護的 `package-lock.json`，需人工確認。
+   ⚠️ 與 GitHub 先前回報的「5 個中危」不同，引用前要用本地數為準。
+4. `/tmp` 有 **246** 個 `wiki-bad-*` 夾具殘檔（`tests/wiki-lint.test.js` 在正常結束時會自己清，
+   這些是被中斷的歷史 run 留下的）；刪檔需明文核准。
+5. `npm run benchmark` 的詞檔覆蓋尚未接線（§6 末已裁為不做：要動 `core/retrieval-fusion.js` 這條
+   生產路徑；文件裡那張表已標明「未重量」）。
 
 ### 2026-10-06 embedding 可行性量測（本地 multilingual-e5；只量測、未接線、專案零改動）
 

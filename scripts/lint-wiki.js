@@ -99,7 +99,10 @@ function fingerprintSource(tool, tier) {
       }
     : {
         useCase: String(tool.useCase_zh || tool.useCase || ''),
-        triggers: (tool.triggers || []).slice(0, 4),
+        // Tier 0 的兩個實來源（compile-wiki.js:122-126）：description 與前 6 個 triggers。
+        // 缺 description 時，7/12 支靠它取句的 Tier 0 詞條改了不會報漂移＝假綠。
+        description: String(tool.description_zh || tool.description || ''),
+        triggers: (tool.triggers || []).slice(0, 6),
         capabilities: tool.capabilities || [],
         category: tool.category,
         install: tool.install?.method || '',

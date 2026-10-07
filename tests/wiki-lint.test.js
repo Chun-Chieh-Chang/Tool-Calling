@@ -62,6 +62,7 @@ const uniqueIntent = (n) => `最佳化凸輪從動件 zzz${n}`;
  * @param {boolean} [opt.missing]    多一支「registry 有、詞條沒有」的工具（E3）
  * @param {boolean} [opt.decay]      3 筆詞條共用萬能詞句（E4）
  * @param {boolean} [opt.doubleNeg]  兩支含「不適合非…」的工具，一支有 facets 一支沒有（E5）
+ * @param {boolean} [opt.tier0]      把 tool-00 改成 Tier 0 詞條（指紋走另一個視圖）
  */
 function buildFixture(opt = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), 'wiki-lint-'));
@@ -72,6 +73,15 @@ function buildFixture(opt = {}) {
     const id = `tool-${String(i).padStart(2, '0')}`;
     tools.push(makeTool(id));
     entries[id] = { intents: [uniqueIntent(i)], tier: 1, epistemic: 'S' };
+  }
+  if (opt.tier0) {
+    // Tier 0 的來源欄位與 Tier 1 不同（compile-wiki.js:122-126：useCase／description／
+    // triggers 前 6 個），所以 fingerprintSource 走另一個視圖。給 8 個 triggers 是為了
+    // 讓「第 5 個該響、第 7 個不該響」兩條邊界都能被測到。
+    const t0 = tools.find((t) => t.id === 'tool-00');
+    t0.triggers = Array.from({ length: 8 }, (_, i) => `trig${i}-tool-00`);
+    t0.description_zh = 'Tier 0 詞條收進去的那句中文描述';
+    entries['tool-00'] = { intents: [uniqueIntent(0)], tier: 0, epistemic: 'V' };
   }
   if (opt.missing) tools.push(makeTool('tool-no-entry'));
   if (opt.doubleNeg) {
@@ -161,6 +171,36 @@ test('E1 不誤報：只改 stars（cron 每晚動的那個欄位）→ drift �
 
   const out = lint(f);
   assert.deepEqual(out.drift, [], 'stars 不在指紋視圖內 → nightly cron 不該製造漂移');
+});
+
+// Tier 0 的指紋視圖與 Tier 1 不同：compileOffline() 讀 description_zh 與 triggers
+// 前 6 個，而視圖原本兩者都不蓋（description 完全缺、triggers 只到 4）→ 實測 7/12 支
+// Tier 0 詞條的 intents 有 description 句，那些改了不會報，E1 對 Tier 0 是假綠。
+test('E1 會響（Tier 0 視圖）：改 description_zh → 該詞條被報為漂移', () => {
+  const f = buildFixture({ tier0: true });
+  withBaseline(f);
+  mutate(f, (tools) => { tools[0].description_zh = '改了中文描述，詞條收進去的那句已經過期'; });
+
+  const out = lint(f);
+  assert.deepEqual(out.drift, ['tool-00'], 'Tier 0 的 description 是 intents 來源，改了必須報');
+});
+
+test('E1 會響（Tier 0 視圖）：改第 5 個 trigger（在 slice(0,6) 內）→ 報漂移', () => {
+  const f = buildFixture({ tier0: true });
+  withBaseline(f);
+  mutate(f, (tools) => { tools[0].triggers[4] = 'trig4-tool-00-改了'; });
+
+  const out = lint(f);
+  assert.deepEqual(out.drift, ['tool-00']);
+});
+
+test('E1 不誤報（Tier 0 視圖）：改第 7 個 trigger（超出 slice(0,6)）→ drift 為空', () => {
+  const f = buildFixture({ tier0: true });
+  withBaseline(f);
+  mutate(f, (tools) => { tools[0].triggers[6] = 'trig6-tool-00-沒進來源'; });
+
+  const out = lint(f);
+  assert.deepEqual(out.drift, [], '第 7、8 個 trigger 不在 compileOffline 的來源內，不該算漂移');
 });
 
 test('E1 沒基線時不宣稱「沒有漂移」，而是標記 baselineExists=false', () => {

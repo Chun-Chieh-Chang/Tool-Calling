@@ -39,6 +39,12 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
 const WEIGHTS = (args.find((a) => a.startsWith('--weights='))?.split('=')[1] || '0.05,0.10,0.15,0.20')
   .split(',').map((s) => Number(s.trim())).filter((n) => Number.isFinite(n));
+// 詞檔路徑覆蓋（與 compile-wiki.js／lint-wiki.js 同形的 `--<name>=`）：
+// 對照「另一份詞檔」（例如整庫 Tier 0）時用它。⚠️ 只改這裡不夠——run() 必須把
+// 載入的詞檔真的傳進 agentRetrieve；原本呼叫端沒傳 wiki，腳色上會變成「標題是
+// Tier 0、實際量的還是 registry 預設檔」的靜默假測量。
+const WIKI_ARG = args.find((a) => a.startsWith('--wiki='))?.split('=')[1];
+const WIKI_PATH = WIKI_ARG ? path.resolve(ROOT, WIKI_ARG) : undefined;
 
 const b = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'eval-queries.json'), 'utf8'));
 const reg = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8'));
@@ -46,15 +52,16 @@ const { agentRetrieve } = await import('../core/agent-retrieval.js');
 const { extractIntent, weightsForIntent } = await import('../core/query-intent.js');
 const { loadWikiCached } = await import('../core/wiki-matcher.js');
 const tools = reg.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
-const wiki = loadWikiCached();
+const wiki = loadWikiCached(WIKI_PATH);
 
 if (!wiki) {
-  console.error('找不到知識詞檔（registry/compiled-entries.json）。');
+  console.error(`找不到知識詞檔（${WIKI_PATH || 'registry/compiled-entries.json'}）。`);
   console.error('請先跑：npm run compile:wiki -- --offline  或  npm run compile:wiki');
   process.exit(1);
 }
 const tier1 = Object.values(wiki.entries).filter((e) => e.tier === 1).length;
 console.log(`詞檔：${Object.keys(wiki.entries).length} 筆（Tier 1：${tier1}）  評測集 v${b.version}，${b.cases.length} 題`);
+console.log(`   來源：${WIKI_PATH || 'registry/compiled-entries.json（預設）'}`);
 console.log();
 
 const cases = b.cases.filter((x) => x.type !== 'empty-set');
@@ -64,7 +71,10 @@ function run(label, opts) {
   for (const c of cases) {
     const it = extractIntent(c.query);
     const top = agentRetrieve(tools, c.query, {
-      topK: 50, intentWeights: weightsForIntent(it), ...opts,
+      // 必須把腳本載入的詞檔真的傳進去：不傳時 agentRetrieve 會自行載入**預設路徑**，
+      // `--wiki=` 就淪為只改標題的假開關。baseline 的 `wiki: null` 在 ...opts 之後，
+      // 仍會蓋掉這裡 → 「V5 停用」對照組的行為不變。
+      topK: 50, intentWeights: weightsForIntent(it), wiki, ...opts,
     }).topK.map((y) => y.id);
     let idx = -1;
     for (const e of c.expected) {

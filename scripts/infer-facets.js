@@ -38,13 +38,15 @@ const idsArg = args.find((a) => a.startsWith('--ids='))?.split('=')[1];
 function buildPrompt(tool) {
   return `You convert a tool's free-text negative constraints into structured facet entries.
 
-Output: ONLY a JSON array of strings. Each string is "[-+]facet:value".
-- "-facet:value" = the tool must NOT be used when a request matches value (a true exclusion).
-- "+facet:value" = the tool REQUIRES value to be useful (requests matching value are good fits; never a reason to reject).
-- facet must be exactly one of: platform, language, license, pricing, deployment, ecosystem, format, scale, interface, integration
-- value: lowercase, 1-3 words, english.
+Output: ONLY a JSON array of strings. Each string has the form "<POLARITY><NAME>:<VALUE>".
+<NAME> MUST be copied verbatim from exactly these 10 names, lowercase:
+platform, language, license, pricing, deployment, ecosystem, format, scale, interface, integration
+- "-<NAME>:<VALUE>" = the tool must NOT be used when a request matches VALUE (a true exclusion).
+- "+<NAME>:<VALUE>" = the tool REQUIRES VALUE to be useful (requests matching VALUE are good fits; never a reason to reject).
+- <VALUE>: lowercase, 1-3 english words, and must not contain a colon.
+- Never write the literal word "facet" inside a string — it is a placeholder name, not one of the 10 names above.
 - At most 6 entries total. Use [] if nothing meaningful can be extracted.
-- Preserve meaning EXACTLY. Watch for double negation: "not suitable for non-X" means the tool requires X => "+facet:x".
+- Preserve meaning EXACTLY. Watch for double negation: "not suitable for non-X" means the tool requires X, so it becomes a "+" entry.
 
 Facet cheatsheet: platform=OS/runtime surface, language=programming language, license=legal license, pricing=cost model, deployment=cloud/local/self-hosted, ecosystem=vendor/platform family, format=file/data format, scale=data size or team size, interface=CLI/GUI/API surface, integration=external service dependency.
 
