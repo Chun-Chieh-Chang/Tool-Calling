@@ -20,8 +20,7 @@ import { fileURLToPath } from 'node:url';
  *    這個斷言是自我對照的，不需要任何寫死的歷史數字；若 `--wiki=` 是假開關，
  *    腳本會用預設詞檔量出 58.0% > 50.6%，斷言立刻轉紅（已用注銷測試驗證）。
  *
- * 成本：一次 3 列的量測（含 261 筆錯掛詞檔的圖建立）實測 30.7 秒——它是整個 `npm test`
- * （約 40 秒）裡最貴的一支。
+ * 成本：一次 3 列的量測（含 261 筆錯掛詞檔的圖建立）實測 30.7 秒——它是整套 `npm test` 最貴的一支。
  */
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
