@@ -647,6 +647,15 @@ facet 與 value 原封不動，並用 `loadRegistry`／`saveRegistry` 寫回（�
   產生器把這個日期取自 registry，不是手改）＋1 行 ISO 時間戳。
   ⚠️ 數 `-` 行時注意：`- [ ] 所有測試通過 (…)` 在 diff 裡長成 `-- ` 開頭，用
   `grep -c "^-[^-]"` 會少算一行——這一輪的 8/8 與 7/8 之爭就是這樣來的。
+- 🔴 **順手撤銷自己寫錯的一條歸因**：`/tmp` 的 `wiki-bad-*` 空目錄原本記成「被中斷的 run 留下的」，
+  實測發現是 `tests/wiki-matcher.test.js:53` **每次 exit 0 都漏一個**（只 `unlinkSync` 檔案、不刪
+  `mkdtempSync` 的目錄）。證據是時間戳：今日新增的 21:18／21:30／21:33 三個目錄，正好對應本輪三次
+  全綠的 `npm test`。改成 `rmSync(dir, {recursive, force})` 後重跑該檔：250 → 250（不再成長），
+  測試仍 20 項全綠。歷史殘留的清理因此從「撿破爛」變成「一次核准刪 250 個空目錄」。
+- 🔴 **連 commit message 都在門禁範圍內（本輪自己踩的）**：`tests/check-traditional.test.js:184` 會拿
+  `check-traditional.js` 檢查 `HEAD~1..HEAD` 的**提交訊息**。上一筆 `b32059d` 的 body 把「經」打成簡體形、
+  又多打一個「依」字，讓整串 `npm test` 轉紅。本專案禁 rebase／stash（陷阱 12）、也不改已提交的
+  message，所以解法是**下一筆用字正確**（檢查範圍往前移一格），歷史那筆留檔並在此記帳。
 
 #### 8. 量測口徑：這批改動在 benchmark 上「不可能顯示改進」
 
@@ -685,8 +694,12 @@ facet 與 value 原封不動，並用 `loadRegistry`／`saveRegistry` 寫回（�
 3. `npm audit` 實測 4 項（`proxy-addr` **critical**、`@modelcontextprotocol/sdk` high、
    `fast-uri`／`ip-address` moderate）；修法動到受保護的 `package-lock.json`，需人工確認。
    ⚠️ 與 GitHub 先前回報的「5 個中危」不同，引用前要用本地數為準。
-4. `/tmp` 有 **246** 個 `wiki-bad-*` 夾具殘檔（`tests/wiki-lint.test.js` 在正常結束時會自己清，
-   這些是被中斷的歷史 run 留下的）；刪檔需明文核准。
+4. `/tmp` 有 **250** 個空的 `wiki-bad-*` 目錄。🔴 **歸因與本節先前記的相反**：這不是「被中斷的 run」
+   留下的，而是 `tests/wiki-matcher.test.js:53` 那支測試**每次跑都漏一個**——它只 `unlinkSync` 裡面的
+   `bad.json`，不刪 `mkdtempSync` 建的目錄。證據：今日新增目錄的時間戳 21:18／21:30／21:33 正好對應
+   本輪三次 **exit 0** 的 `npm test`（不是中斷的 run）。本輪已改成 `rmSync(dir, {recursive, force})`，
+   修後重跑 `wiki-matcher.test.js`：250 → 250（不再成長）。剩下的 250 個是歷史空目錄，刪檔仍需明文核准。
+   （對照組：`tests/v5-ablate-wiki-flag.test.js` 用 `after()` 清整個目錄，實測 0 殘留。）
 5. `npm run benchmark` 的詞檔覆蓋尚未接線（§6 末已裁為不做：要動 `core/retrieval-fusion.js` 這條
    生產路徑；文件裡那張表已標明「未重量」）。
 

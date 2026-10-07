@@ -51,13 +51,14 @@ test('wiki-matcher: 詞檔不存在時回傳 null（V5 停用，不是拋錯）'
 });
 
 test('wiki-matcher: 詞檔損壞時回傳 null', async () => {
-  const { writeFileSync, unlinkSync, mkdtempSync } = await import('node:fs');
+  const { writeFileSync, mkdtempSync, rmSync } = await import('node:fs');
   const { tmpdir } = await import('node:os');
   const dir = mkdtempSync(path.join(tmpdir(), 'wiki-bad-'));
   const p = path.join(dir, 'bad.json');
   writeFileSync(p, '{ this is not json');
   assert.equal(loadWiki(p), null);
-  try { unlinkSync(p); } catch { /* 清理失敗不影響測試結果 */ }
+  // 刪整個夾具目錄，不是只刪裡面的檔：只 unlink 檔案會讓空目錄每次跑都累積一個
+  try { rmSync(dir, { recursive: true, force: true }); } catch { /* 清理失敗不影響測試結果 */ }
 });
 
 test('wiki-matcher: 空詞檔回傳 null', () => {
