@@ -653,10 +653,21 @@ facet 與 value 原封不動，並用 `loadRegistry`／`saveRegistry` 寫回（�
   `mkdtempSync` 的目錄）。證據是時間戳：今日新增的 21:18／21:30／21:33 三個目錄，正好對應本輪三次
   全綠的 `npm test`。改成 `rmSync(dir, {recursive, force})` 後重跑該檔：250 → 250（不再成長），
   測試仍 20 項全綠。歷史殘留的清理因此從「撿破爛」變成「一次核准刪 250 個空目錄」。
-- 🔴 **連 commit message 都在門禁範圍內（本輪自己踩的）**：`tests/check-traditional.test.js:184` 會拿
+- 🔴 **連 commit message 都在門禁範圍內（本輪踩了兩次）**：`tests/check-traditional.test.js:184` 會拿
   `check-traditional.js` 檢查 `HEAD~1..HEAD` 的**提交訊息**。上一筆 `b32059d` 的 body 把「經」打成簡體形、
   又多打一個「依」字，讓整串 `npm test` 轉紅。本專案禁 rebase／stash（陷阱 12）、也不改已提交的
   message，所以解法是**下一筆用字正確**（檢查範圍往前移一格），歷史那筆留檔並在此記帳。
+  - ⚠️ **同一天復發**：寫 §10 那筆 `6c959e7` 又中了兩個字（「口徑」的「徑」與「改寫」的「寫」打成簡體形）。
+    兩個錯字都落在 **body** 而不是標題（標題每輪都會重讀一遍，body 寫完就直接送出）。
+  - 🔴 **commit 訊息沒有預檢這回事，除非你先把訊息落成檔**：`--commits` 掃的是 `HEAD~1..HEAD`，
+    **一定要 commit 之後**才測得到，所以它的真實角色是「事後讓 `npm test` 轉紅」，不是攔在送出前。
+    實測過三條自以為可用的預檢路徑，只有一條成立（下方為各次實測的 exit code）：
+    1. ❌ `--full <倉庫外路徑>`：印「⚠️ 路徑不存在，已跳過」→ **仍 exit 0**，整條綠是空的。
+    2. ❌ `--full scratch/msg.txt`：`SCAN_EXTENSIONS`（`scripts/check-traditional.js:69`）只有
+       `.js/.mjs/.cjs/.ts/.md/.html/.json`，`.txt` 不在內 → 自報「整檔掃描 **0 個檔案**」exit 0。
+    3. ✅ `--full scratch/msg.md`：把訊息寫成**倉內 `.md`** 再掃，實測抓到 2 字、exit 1，
+       接著 `git commit -F scratch/msg.md`，才算真的有提交前閘門。
+    ⚠️ 這三條都是同一支尺、只差 argv 的結果，再次印證「引用驗法要連 argv 一起貼」。
 
 #### 8. 量測口徑：這批改動在 benchmark 上「不可能顯示改進」
 
