@@ -69,11 +69,18 @@ scripts/compile-wiki.js ──► registry/compiled-entries.json
 
 | 層級 | 指令 | 需要 API | 說明 |
 |---|---|---|---|
-| Tier 0 | `--offline` | 否 | 規則式：把既有結構化欄位（useCase_zh / triggers / negativeConstraints_zh）重組為詞條 |
+| Tier 0 | `--offline` | 否 | 規則式：只收既有欄位裡的**整句**（useCase_zh → 中文 description → 含中文且 ≥8 字的 triggers），去近似重複、上限 4 句 |
 | Tier 1 | 預設 | 是（AGNES_API_KEY） | LLM 語意編譯：產生使用者語言的應用情境句 |
 
 Tier 0 沒有語意增益，但讓整條管線在沒有 key 時也能跑、能測、能驗證零回歸。
 Tier 1 覆寫 `intents`，其餘欄位保留 Tier 0 的內容。
+
+🔴 **Tier 0 的 `intents` 只收整句**（2026-10-07 修正）。實測根據：修正前補 12 支缺詞條會帶入
+47 句，其中 **33 句（70.2%）是工具 id 自我重複與裸觸發詞**（`quilt`、`awesome`、`deepseek`…），
+而當時 732 筆 2636 句裡此類為 **0**；鑑別力守門只按文件頻率剔除，df 低的裸詞全部存活 ——
+於是「E3 歸零」實際上是把非需求語句灌進 V5 索引。修正後同樣 12 筆帶入 **22 句、純 ASCII 0 句**
+（7 筆 ≥2 句、5 筆僅 1 句，那 5 筆的 `description` 本身是英文）。形態由
+`tests/wiki-compile-offline.test.js`（8 項）釘住，且經注銷測試確認把過濾拆掉後 T1／T2／T4 會紅。
 
 ### 3.2 配對邏輯：`core/wiki-matcher.js`
 
@@ -187,6 +194,10 @@ McNemar：兩邊都對 109／只有開對 11／只有關對 10／兩邊都錯 27
 
 ### 5.4 Tier 0 規則式詞檔（基準對照，已被 Tier 1 取代）
 
+> ⚠️ **本節數字屬「未過濾的 Tier 0」時期**（那時 `intents` 還收裸觸發詞，見 §3.1）。
+> 2026-10-07 把 Tier 0 改成只收整句後**未重跑這組對照**，直接引用會拿到與現行實作不符的數字；
+> 要引用請先 `npm run compile:wiki -- --offline --out=<暫存檔>` 重建一份 Tier 0 詞檔再量。
+
 Tier 0 不含新詞彙，只是重組既有欄位。以下同樣是**確定性的**數字：
 
 | 指標 | V5 停用 | V5 啟用（w=0.10） | 差異 |
@@ -277,10 +288,19 @@ V5 權重從 V1~V4 等比挪過來（V1~V4 = 原始比例 × 0.8），
 # Tier 0：規則式編譯（不需 API key）
 npm run compile:wiki -- --offline
 
+# 只補特定工具，而且先看提案再決定寫入（--out 不碰正式版詞檔）
+node scripts/compile-wiki.js --offline --ids=<id1,id2> --out=<暫存檔>.json
+
+# ⚠️ `--dry` 不會印出提案本體（兩種模式都一樣）：
+#    LLM 模式在呼叫模型**之前**就 exit，只印目標數；`--offline --dry` 的「[dry] 範例詞條」
+#    取的是 out.entries 的前 2 個 key = **既有詞條**，不是本次的 targets。
+#    要看提案本體就用上面的 `--out=`。另外用暫存檔預覽時務必先複製真詞檔進去 seed，
+#    否則鑑別力守門的分母會從全庫掉成這次目標數，「剔除 0 句」是假綠。
+
 # Tier 1：LLM 語意編譯（需要 AGNES_API_KEY，可續跑）
-AGNES_API_KEY=sk-... npm run compile:wiki -- --limit=10 --dry   # 先看 prompt
+AGNES_API_KEY=sk-... npm run compile:wiki -- --limit=10 --dry   # 只印目標數，不呼叫模型
 AGNES_API_KEY=sk-... npm run compile:wiki -- --limit=30
-AGNES_API_KEY=sk-... npm run compile:wiki                        # 全量 705 筆
+AGNES_API_KEY=sk-... npm run compile:wiki                        # 全量 744 筆
 
 # 只看覆蓋率與圖譜統計
 npm run compile:wiki -- --stats
@@ -306,7 +326,7 @@ Tier 0 的最佳值（0.10）在 Tier 1 之後未必一樣。
 |---|---|---|
 | E1 來源漂移 | 詞條編譯後，「進過 prompt 的那幾個欄位」又被改過 → 詞條描述的是舊版工具 | `compile-wiki.js --ids=<清單>` |
 | E2 幽靈詞條 | 詞檔有、registry 的 active/experimental 沒有 | 人工決定刪除 |
-| E3 缺詞條 | 工具在庫上卻沒有 intents → 該工具的 V5 恆為 0 | `npm run compile:wiki` |
+| E3 缺詞條 | 工具在庫上卻沒有 intents → 該工具的 V5 恆為 0 | `npm run compile:wiki -- --offline`（免 API，只收整句）或跑 Tier 1 |
 | E4 鑑別力腐化 | 以「當前全庫」重算 df，compile 時合格的 intent 如今淪為萬能詞 | 重編該工具 |
 | E5 雙重否定殘留 | `不適合非…` 型散文約束（評測 c61 的實證失敗模式）；第 4 條模式要求「非 … 情況下／環境下」，裸「下」會誤報「非下載工具」 | `infer-facets.js` |
 
@@ -338,11 +358,12 @@ Tier 1 的詞條（`compile-wiki.js:287`），漂移的那批被靜默跳過；`
 | 檔案 | 角色 |
 |---|---|
 | `scripts/compile-wiki.js` | 解析邏輯（離線編譯器） |
-| `registry/compiled-entries.json` | 編譯產物（732 筆，納入版控） |
+| `registry/compiled-entries.json` | 編譯產物（744 筆，納入版控） |
 | `core/wiki-matcher.js` | 配對邏輯（詞條比對 + 知識圖譜擴散） |
 | `scripts/lint-wiki.js` | 詞檔體檢（唯讀診斷，見 §6.1） |
-| `registry/wiki-lint-baseline.json` | E1 的來源指紋基線（732 筆，2026-10-07 建立） |
+| `registry/wiki-lint-baseline.json` | E1 的來源指紋基線（744 筆，2026-10-07 隨 Tier 0 補寫重建） |
 | `core/tokenize.js` | 共用斷詞（兩個引擎必須同源） |
 | `core/agent-retrieval.js` | 五維融合（新增 V5） |
-| `tests/wiki-matcher.test.js` | 離線測試（19 項） |
-| `tests/wiki-lint.test.js` | 詞檔體檢的固定夾具測試（11 項，子行程跑 `lint-wiki.js`） |
+| `tests/wiki-matcher.test.js` | 離線測試（20 項） |
+| `tests/wiki-lint.test.js` | 詞檔體檢的固定夾具測試（12 項，子行程跑 `lint-wiki.js`） |
+| `tests/wiki-compile-offline.test.js` | Tier 0 詞條形態測試（8 項，子行程跑 `compile-wiki.js --offline --out=`） |

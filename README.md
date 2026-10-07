@@ -192,7 +192,7 @@ Tool-Calling/
 │   ├── categories.json   # 18 個分類的單一機器可讀來源
 │   ├── tools.json        # 725 工具（截至 2026-09-25）
 │   ├── eval-queries.json # 評測集 v1.3.0（267 題）
-│   └── compiled-entries.json # 知識編譯詞條（Tier 1，732 筆；新工具需重跑 compile:wiki）
+│   └── compiled-entries.json # 知識編譯詞條（744 筆＝Tier 1 732＋Tier 0 12；新工具需重跑 compile:wiki）
 ├── docs/               # 文件（依主題分類的索引見 docs/README.md）
 │   ├── README.md               # ⭐ docs 索引（現行／研究／歷史三類）
 │   ├── WIKI-COMPILER.md         # 知識編譯器：解析邏輯 + 配對邏輯

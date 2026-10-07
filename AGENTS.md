@@ -89,7 +89,7 @@
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
 npm run tracked-repos     # 重建追蹤池 (2590 repos)
-npm test                  # 執行所有測試 (366 tests, 364 pass + 2 optional e2e skip)
+npm test                  # 執行所有測試 (374 tests, 372 pass + 2 optional e2e skip)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 npm run plugin:install    # 一鍵安裝為各 Agentic IDE 外掛 (MCP + Skill)
@@ -107,7 +107,7 @@ node cli.js list                      # 列出所有工具 (748+)
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 366 測試全綠（其中 2 個 playwright e2e 需 npm i）
+npm test           # 確保 374 測試全綠（其中 2 個 playwright e2e 需 npm i）
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -123,7 +123,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：366 tests 全綠 (364 pass + 2 optional e2e skip), 0 fail
+npm test  # 目標：374 tests 全綠 (372 pass + 2 optional e2e skip), 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -133,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (366/366)
+- [ ] 所有測試通過 (374/374)
 - [ ] 工具庫驗證通過 (748+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] HANDOFF.md 已更新（本輪日期快照）
@@ -287,7 +287,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (366 tests)
+### 單元測試 (374 tests)
 ```bash
 npm test
 ```
@@ -307,7 +307,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (366/366 pass)
+1. `npm test` (374/374 pass)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -479,4 +479,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-10-07T10:30:52.492Z
+> **最後更新**：2026-10-07T10:59:05.787Z

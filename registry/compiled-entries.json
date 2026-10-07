@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-09-29T23:52:51.322Z",
+  "generatedAt": "2026-10-07T10:54:56.467Z",
   "entries": {
     "ppt-master": {
       "intents": [
@@ -22844,7 +22844,317 @@
       "tier": 1,
       "epistemic": "S",
       "compiled_at": "2026-09-29T23:49:12.017Z"
+    },
+    "claude-howto": {
+      "intents": [
+        "一位已安裝 Claude Code 但缺乏結構化學習路徑的開發人員，透過此指南結合斜線命令、鉤子、記憶與子代理，構建自動化的程式碼審查與部署管線。"
+      ],
+      "objects": [
+        "claude-code",
+        "guide",
+        "tutorial",
+        "學習資源"
+      ],
+      "actions": [],
+      "constraints": [
+        "none",
+        "python"
+      ],
+      "negative": [
+        "Exclusively for Claude Code; templates and workflows are not applicable to other LLM-based IDEs or CLI agents.",
+        "Requires users to have already installed Claude Code and set up an Anthropic API key; does not provide the underlying code execution environment.",
+        "Learning path assumes a general technical background; not suitable for users who need to learn how to write Python or general coding fundamentals from scratch."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "osiris": {
+      "intents": [
+        "情報分析師透過將即時航班追蹤、監控攝影機串流與地震數據整合至單一 GPU 加速儀表板，來監測全球態勢感知。",
+        "開源全球情報平台 - 即時 OSINT 儀表板 - Palantir 替代方案 - 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump"
+      ],
+      "objects": [
+        "osint-dashboard",
+        "gpu-map-rendering",
+        "multi-domain-data-aggregation",
+        "real-time-cctv-monitoring",
+        "crypto-wallet-tracing",
+        "安全性"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "typescript"
+      ],
+      "negative": [
+        "需要使用者自行提供 OI Assist 和 OI Forecast 功能的 API 金鑰。",
+        "依賴靜態 OSINT 情報來呈現衝突區和海事資料，可能落後於即時動態變化。",
+        "核心資料流（如 OpenSky 和 USGS）仰賴外部 API 可用性。"
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "quilt": {
+      "intents": [
+        "設計師使用 Quilt 透過文字描述生成多螢幕 HTML 原型，並讓本機編碼代理透過 MCP 讀取與修改畫布以迭代 UI。"
+      ],
+      "objects": [
+        "ai",
+        "claude",
+        "design-tool",
+        "infinite-canvas",
+        "mcp",
+        "UI/UX設計"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "typescript"
+      ],
+      "negative": [
+        "Requires Node.js 22 or newer and pnpm 11 to run.",
+        "Needs a browser (Chrome/Edge) or Playwright installed for screenshotting generated screens.",
+        "Depends on a configured generation channel such as a local Claude CLI subscription or API keys for Anthropic/Gemini/OpenAI."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "ow-bridge": {
+      "intents": [
+        "開發者使用此工具自動掃描本地 OpenCode 的免費模型，並一鍵導入 WorkBuddy，以實現零成本的 AI 推理，無需手動設定模型端點。",
+        "OW Bridge — 让 WorkBuddy 使用 OpenCode 免费模型。支持 macOS / Windows，自动发现模型、一键导入。"
+      ],
+      "objects": [
+        "model-discovery",
+        "workbuddy-integration",
+        "electron-desktop",
+        "automatic-proxy-configuration",
+        "system-tray-management",
+        "cross-platform-support",
+        "開發工具"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "javascript"
+      ],
+      "negative": [
+        "Does not support PAC or SOCKS system proxies, limiting usage in corporate environments relying on those protocols.",
+        "The macOS build uses ad-hoc signing and is not Apple notarized, which requires users to manually bypass Gatekeeper security warnings."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "voicestudio": {
+      "intents": [
+        "當內容創作者需要將影片翻譯配音成多種語言，或為有聲書克隆特定嗓音，又不想將資料上傳至雲端時，會使用 VoiceStudio 的本地桌面環境完成任務。"
+      ],
+      "objects": [
+        "ai",
+        "audiobook",
+        "cuda",
+        "dubbing",
+        "elevenlabs-alternative",
+        "音訊"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "python"
+      ],
+      "negative": [
+        "Requires significant local hardware resources, with CPU-only usage being slower and requiring at least 5 GB of free disk space for PyTorch dependencies.",
+        "Intel Macs are limited to UI only and must connect to a remote backend rather than running the speech models locally."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "awesome-vibecoding-guide": {
+      "intents": [
+        "自由接案開發者選擇商業化路徑並執行交付工作流，透過 AI 輔助程式開發技術，建立在地商業網站、AI 自動化系統或微型 SaaS 軟體來賺取收入。"
+      ],
+      "objects": [
+        "ai-agents",
+        "awesome",
+        "coding-standards",
+        "guide",
+        "vibe-coded",
+        "學習資源"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "other"
+      ],
+      "negative": [
+        "Specifically tailored for commercial freelancers and solo developers aiming to generate immediate income",
+        "Not a technical reference library or tool catalog; it lacks deep theoretical programming concepts"
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "video-shotcraft-dsh": {
+      "intents": [
+        "創意開發者或 Agent 使用者希望透過替換產品截圖與文案，使用「Ink Press」Remotion 模板生成一段具有 2.5D 鏡頭移動與音節同步音效的 10 鏡頭電影感產品宣傳影片。",
+        "面向 DeepSeek Harness 的电影感产品视频 Agent Skill，包含 152 张镜头配方卡、Remotion 模板、代码组件和音频资产。"
+      ],
+      "objects": [
+        "agent-skills",
+        "deepseek-harness",
+        "motion-design",
+        "remotion",
+        "typescript",
+        "影片"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "typescript"
+      ],
+      "negative": [
+        "Requires specific handling for low-core headless Linux environments due to Remotion concurrency limits",
+        "JianYing export functionality is verified only on JianYing Pro 11.2 for macOS"
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "sc-datav": {
+      "intents": [
+        "開發人員建置一個響應式網頁儀表板，以四川地區的 3D 地理數據為基礎，並結合同步的 ECharts 分析面板進行視覺化。",
+        "数据可视化大屏 基于 Three.js + React 19 + ECharts 的 3D 地图可视化大屏项目 包含 3D 地图渲染、轮廓飞线、侧边扫光、多图表联动等丰富功能"
+      ],
+      "objects": [
+        "3dmap",
+        "react",
+        "threejs",
+        "UI/UX設計"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "typescript"
+      ],
+      "negative": [
+        "Requires Node.js >= 18 and PNPM >= 8 to build and run.",
+        "Geographic data is hardcoded for Sichuan Province, limiting direct use for other regions without modifying asset files."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "heterogeneous-gpu-pd-lab": {
+      "intents": [
+        "研究人員或推論工程師在結合兩張 RTX 6000D GPU 與四節點 DGX Spark 的集群上部署 DeepSeek-V4.1-Flash，透過 Prefill 與 Decode 分離架構，在不於所有加速器載入完整模型的情況下，實現 16000+ tok/s 的 Prefill 與 442+ tok/s 的 Decode 高吞吐量。",
+        "使用稠密算力卡对稀疏大显存主机进行加速，主机包括 AI Max+ 395、M3 512G、DGX Spark 等。"
+      ],
+      "objects": [
+        "heterogeneous-gpu",
+        "llama-cpp",
+        "pipeline-parallelism",
+        "prefill-decode",
+        "rtx-3060",
+        "AI 框架"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "python"
+      ],
+      "negative": [
+        "Requires specific heterogeneous hardware topology: two RTX 6000D (or equivalent) GPUs for Prefill and four DGX Spark/GB10 nodes for Decode.",
+        "Depends on cross-engine patches (V8) for vLLM and SGLang integration; standard unmodified vLLM or SGLang deployments will not support the NIXL cache-page adaptation described.",
+        "Does not redistribute the 510 GB official DeepSeek-V4.1-Flash weights; users must provide their own model artifacts compatible with the frozen V8 environment."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "ollama": {
+      "intents": [
+        "一位開發者在 macOS、Windows 或 Linux 本機環境上，想要立即啟動 Gemma 或 DeepSeek 等開放權重語言模型，以驅動 CLI 代理程式、聊天介面或本機 API，而無須配置分散式叢集。"
+      ],
+      "objects": [
+        "deepseek",
+        "gemma",
+        "gemma3",
+        "glm",
+        "go",
+        "AI 框架"
+      ],
+      "actions": [],
+      "constraints": [
+        "git-clone",
+        "go"
+      ],
+      "negative": [
+        "Primarily targets single-node local execution on macOS, Windows, or Linux, so it is not designed for distributed multi-node GPU cluster orchestration.",
+        "Performance and available model architectures are constrained by the underlying llama.cpp backend, meaning it may not support every cutting-edge model topology or quantization format.",
+        "While it offers chat and local integration, it lacks a native, out-of-the-box enterprise-grade RAG framework for complex, structured document processing."
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "compositor": {
+      "intents": [
+        "對 GIMP 介面不熟悉、但希望使用免費且類似 Photoshop 的環境進行圖層合成、修圖與專業影像輸出的 Mac 使用者。",
+        "Mac 上的 Photoshop 替代品",
+        "處理 RAW 檔",
+        "非破壞性縮放圖片"
+      ],
+      "objects": [
+        "layer-based-editing",
+        "non-destructive-transforms",
+        "gpu-layer-effects",
+        "camera-raw-processing",
+        "content-aware-fill",
+        "scriptable-project-format",
+        "UI/UX設計"
+      ],
+      "actions": [],
+      "constraints": [
+        "none",
+        "swift"
+      ],
+      "negative": [
+        "需要 macOS 26.0 以上，且須為 Apple Silicon 的 Mac",
+        "PSD／PSB 匯入僅支援 8 位元 RGB（不支援 CMYK）；簡單形狀以外的向量與直排文字在匯入時會轉成像素",
+        "原始碼需 Xcode 26 以上才能建置"
+      ],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
+    },
+    "clash-verge-rev": {
+      "intents": [
+        "想要跨平台圖形化客戶端來管理 Clash Meta（mihomo）代理配置檔案的用戶，包含 TUN 模式、系統代理與圖形化的節點與規則編輯。",
+        "基於 Tauri 的現代化圖形客戶端，可在 Windows、macOS 與 Linux 上執行，提供量身打造的代理體驗",
+        "匯入代理訂閱連結"
+      ],
+      "objects": [
+        "clash",
+        "clash-meta",
+        "clash-verge",
+        "mihomo",
+        "安全性"
+      ],
+      "actions": [],
+      "constraints": [
+        "none",
+        "rust"
+      ],
+      "negative": [],
+      "tier": 0,
+      "epistemic": "V",
+      "compiled_at": "2026-10-07T10:54:56.445Z"
     }
   },
-  "generatedBy": "compile-wiki LLM (Tier 1, agnes-2.5-flash)"
+  "generatedBy": "compile-wiki --offline (Tier 0)"
 }

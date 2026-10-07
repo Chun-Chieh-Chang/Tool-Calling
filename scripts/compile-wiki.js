@@ -59,10 +59,15 @@ import { buildWikiIndex, wikiGraphStats } from '../core/wiki-matcher.js';
 import { nextKey, reportSuccess, reportFailure } from '../core/llm-keys.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
-const OUT_PATH = path.join(ROOT, 'registry', 'compiled-entries.json');
-
 const args = process.argv.slice(2);
+// 路徑覆蓋（與 scripts/lint-wiki.js 同形）：`--registry=`／`--out=`。
+// 沒有 `--out=` 時，想看 Tier 0 提案本體只能複製整支腳本改 OUT_PATH（2026-10-07 HANDOFF 記的坑）。
+const argPath = (name) => {
+  const raw = args.find((a) => a.startsWith(`--${name}=`))?.split('=')[1];
+  return raw ? path.resolve(ROOT, raw) : null;
+};
+const REGISTRY = argPath('registry') || path.join(ROOT, 'registry', 'tools.json');
+const OUT_PATH = argPath('out') || path.join(ROOT, 'registry', 'compiled-entries.json');
 const OFFLINE = args.includes('--offline');
 const DRY = args.includes('--dry');
 const RESET = args.includes('--reset');
@@ -101,13 +106,32 @@ function isGenericIntent(s) {
 // ── Tier 0：規則式編譯 ─────────────────────────────────────────────────────
 // 把既有結構化欄位機械式重組為詞條。沒有語意增益，
 // 但讓整條 V5 管線在沒有 API key 時也能跑、能測、能驗證零回歸。
+//
+// 🔴 intents 只收「整句」：含中文、≥8 字（由 isGenericIntent() 守）、非萬能詞。
+// 2026-10-07 實測的教訓：原本把 `triggers` 原詞直接塞進 intents，12 筆帶入 47 句
+// 其中 33 句（70.2%）是工具 id 自我重複與裸觸發詞（`quilt`、`awesome`、`deepseek`…），
+// 而既有 732 筆 2636 句此類為 **0**。鑑別力守門只按文件頻率剔除，df 低的裸詞全部存活，
+// 等於把「非需求語句」灌進 V5 索引換取 E3 歸零。
+const isSentenceIntent = (s) => {
+  const t = String(s || '').trim();
+  if (!/[㐀-䶿一-鿿]/.test(t)) return false; // 純 ASCII 的 id／triggers 不當語意句
+  return !isGenericIntent(t); // 同時負責「<8 字」與萬能詞黑名單
+};
+
 function compileOffline(tool) {
+  const sources = [
+    tool.useCase_zh || tool.useCase,
+    tool.description_zh || tool.description,
+    ...(tool.triggers || []).slice(0, 6),
+  ];
   const intents = [];
-  const uc = String(tool.useCase_zh || tool.useCase || '').trim();
-  if (uc) intents.push(uc);
-  for (const t of (tool.triggers || []).slice(0, 4)) {
-    const s = String(t || '').trim();
-    if (s && s.length >= 4) intents.push(s);
+  for (const raw of sources) {
+    const s = String(raw || '').trim();
+    if (!isSentenceIntent(s)) continue;
+    // 前 24 字相同視為同句：description 常是 useCase 的截斷，收兩句等於重複計數
+    if (intents.some((k) => k.slice(0, 24) === s.slice(0, 24))) continue;
+    intents.push(s);
+    if (intents.length === 4) break; // 既有語料上限 5 句，Tier 0 不超過 4
   }
   return {
     intents,
@@ -324,10 +348,18 @@ if (BACKFILL_EPISTEMIC) {
 }
 
 if (OFFLINE) {
+  const skipped = [];
   for (const t of targets) {
-    out.entries[t.id] = withEpistemic(compileOffline(t), 0);
+    const entry = compileOffline(t);
+    // 無整句來源就維持「缺詞條」狀態：寫一筆空 intents 只會讓 E3 假性歸零
+    if (entry.intents.length === 0) {
+      skipped.push(t.id);
+      continue;
+    }
+    out.entries[t.id] = withEpistemic(entry, 0);
   }
-  console.log(`Tier 0 規則式編譯：${targets.length} 筆`);
+  console.log(`Tier 0 規則式編譯：${targets.length - skipped.length} 筆（跳過 ${skipped.length} 筆無整句來源）`);
+  if (skipped.length) console.log('  跳過：', skipped.join(', '));
 } else {
   const apiKey = process.env.AGNES_API_KEY;
   if (!apiKey) { console.error('需要 AGNES_API_KEY（或用 --offline 做規則式編譯）'); process.exit(1); }

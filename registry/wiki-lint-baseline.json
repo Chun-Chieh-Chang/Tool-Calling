@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-07T09:54:50.639Z",
+  "generatedAt": "2026-10-07T10:58:12.965Z",
   "fingerprints": {
     "ppt-master": "fe3e54132a8413be",
     "graphify": "8cc5c994c894df9d",
@@ -733,6 +733,18 @@
     "open-higgsfield": "f1c5ac1e74db50be",
     "awesome-persona-skills": "5576fbd7c5691ca3",
     "motion-design-skill": "07bc7c343c8c65da",
-    "pixel2motion": "66f14c5c6fc3c39f"
+    "pixel2motion": "66f14c5c6fc3c39f",
+    "claude-howto": "67b842dcb043820a",
+    "osiris": "583239d460af8978",
+    "quilt": "8719183c2a4e7927",
+    "ow-bridge": "4df7828142b6af28",
+    "voicestudio": "78cdaceaf651e350",
+    "awesome-vibecoding-guide": "0960bafedc997e88",
+    "video-shotcraft-dsh": "d4c8f8a48a608d9a",
+    "sc-datav": "d08eefd99797e9a4",
+    "heterogeneous-gpu-pd-lab": "c2131f7f0abfb888",
+    "ollama": "f0c831cd5d1899e0",
+    "compositor": "5635b637b3515bdd",
+    "clash-verge-rev": "b5f699aaf2e357b2"
   }
 }
