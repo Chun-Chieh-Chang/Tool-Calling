@@ -746,12 +746,14 @@ Dependabot open alerts（`gh api`）＝critical1／high1／medium5／**7 則**�
 1. ✅ **已裁（2026-10-07）：留著等 Tier 1**，不納入 `advantages_zh`。E3 保持 0；等額度回來用 Tier 1
    重寫這 5 支才是正解（跑法見上方 §9 與 `docs/WIKI-COMPILER.md` §6）。若日後又有人提議納入來源集，
    本輪的代價已量：11/12 支詞條變動＋E1 指紋視圖與 `--update-baseline` 同步＋ablate 重量。
-2. ✅ **已裁「現在推」並執行兩次**：第一次推掉 `48ab756..37dd971`（7 筆）；本檔與 §10 那筆提交後
-   再推一次 `37dd971..478b76e`（2 筆，仍在同一項核准的範圍內）。兩次都實測
-   `git rev-list --count origin/main..HEAD` = **0**、`HEAD..origin/main` = **0**。
-   ⚠️ 遠端在 push 時又回報一次 Dependabot 摘要：**7 項（1 critical／1 high／5 moderate）**，
-   與 §10 對照本地 4 項的「計數粒度」結論相符——這是遠端口徑，引用時要連來源一起講。
-   （覆核請用 `git rev-list --count`，此環境的 remote-tracking 不會自動更新，見陷阱 5。）
+2. ✅ **已裁「現在推」並執行**：已推送兩段區間——`48ab756..37dd971`（7 筆）與
+   `37dd971..478b76e`（2 筆，含 §10 那筆與 commit 訊息門禁那筆），兩段都屬同一項核准的範圍。
+   ⚠️ **本條目自此不再追加筆數**：每補一筆文件就多一次推送，把「執行過幾次」寫死必然過期
+   （陷阱 5 ＋ §7「自引用活數要在定稿點一次重量」）。同步狀態一律現量：
+   `git rev-list --count origin/main..HEAD` 與 `git rev-list --count HEAD..origin/main`
+   都應為 **0**（此環境的 remote-tracking 不會自動更新）。
+   ⚠️ 遠端在 push 時回報的 Dependabot 摘要：**7 項（1 critical／1 high／5 moderate）**，
+   與 §10 本地 4 項的「計數粒度」結論相符——那是遠端口徑，引用時要連來源一起講。
 3. ✅ **已裁「先出影響面報告」**：報告在上方 §10。實測結論——弱點鏈（express／proxy-addr／ajv／
    fast-uri／ip-address）在我們真正載入的模組圖裡**零命中**，本地 4 項與 Dependabot 7 則的差是
    **計數粒度**而非資料不同。`package-lock.json` **仍未動**；下次要裁的是那一句：「願不願意為了
