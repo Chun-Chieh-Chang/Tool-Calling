@@ -195,7 +195,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 - [ ] 所有測試通過 (${TEST_STATS.total}/${TEST_STATS.total})
 - [ ] 工具庫驗證通過 (${totalTools}+ 工具)
 - [ ] MECE 分類無殘留
-- [ ] DEV_LOG.md 已更新
+- [ ] HANDOFF.md 已更新（本輪日期快照）
 - [ ] README.md 已同步（如有 CLI 變更）
 
 ---
@@ -412,7 +412,7 @@ PDCA 循環：
 - Plan: 先診斷脆弱點與 UI 違和處
 - Do: 小批量實施，保持邏輯最小變動
 - Check: 魯棒性測試 + Console 零錯誤
-- Act: 記錄 DEV_LOG, 請求 Push 許可
+- Act: 記錄 HANDOFF.md 日期快照, 請求 Push 許可
 
 ### 協議四：核心承諾 (品質守則)
 \`\`\`markdown
@@ -433,12 +433,16 @@ PDCA 循環：
 
 ## Document Conventions — 文件規範
 
-### 開發日誌 (DEV_LOG.md)
-每次重大變更必須記錄：
+### 交接日誌 (HANDOFF.md)
+每次重大變更必須在 §三 加一節日期快照，記錄：
 - 需求內容
 - 問題與原因分析 (RCA)
 - 矯正與預防措施 (CAPA)
 - 驗證結果
+
+### 歷史歸檔 (DEV_LOG.md)
+DEV_LOG.md 最後一篇是 2026-09-27，之後的變更紀實改寫進 HANDOFF.md §三。
+本檔保留作歷史歸檔，不再要求每次同步更新。
 
 ### README 同步
 當以下情況發生時，必須更新 README：

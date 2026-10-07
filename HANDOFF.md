@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-06（embedding 可行性量測 e5-small／e5-base＋文件數字同步——見「三、目前狀態」頂部；其下為 10-05 批次加入 10 支工具至 746 的快照）
+> 最後更新：2026-10-07（`lint:wiki` E1–E5 上線＋四項裁決落地與「乾跑」成本實測——見「三、目前狀態」頂部兩節 10-07；其下為 10-06 embedding 量測與 10-05 批次加入 10 支工具至 746 的快照）
 
 ---
 
@@ -235,7 +235,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（2026-10-05 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部兩節為 2026-10-07 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 
@@ -319,7 +319,7 @@ hex**；批次改字還需要第四條不變量——拿一個「該字必然出
 走的是既有慣例、不是新流程。⚠️ 教訓：**測試數是自引用活數**——只要還會補測試，AGENTS.md
 的數字就注定過期，必須放到最後一步再重量＋重生成。
 **仍待裁**：DEV_LOG 那條指引本身（繼續用 HANDOFF 取代 DEV_LOG，還是把 DEV_LOG 寫回管線）
-沒有決定，故未動。
+沒有決定 → 已裁定「改產生器」，落實在下方「2026-10-07（第二輪）」。
 
 **下一步**
 
@@ -340,6 +340,114 @@ hex**；批次改字還需要第四條不變量——拿一個「該字必然出
    需重跑 `ablate:v5` ＋ `benchmark`。拆兩次做就得量兩次。
    （要 `AGNES_API_KEY`、花額度，**尚未經核准**；做完必須連基線一起 `--update-baseline` 重建，
    否則新編譯的詞條落在基線外，「未對基線」會非零。）
+
+### 2026-10-07（第二輪）四項裁決落地 ＋ 「乾跑」實測推翻了對 item 4 的成本假設
+
+**本輪性質**：上一節 push 後，依四項裁決執行。除治理檔與本檔外**沒有任何寫入**。
+
+**裁決與執行**
+
+| 裁決 | 動作 | 結果 |
+|---|---|---|
+| ① 現在 push | `git push origin main` | `bf69ba0..48ab756 main -> main` ✅ |
+| ② 先乾跑看提案 | `infer-facets.js --dry`（19 支雙否）＋ Tier 0 詞條預覽（12 支缺詞條） | 見下方實測，**成本假設被推翻** |
+| ③ 不動，維持 0.20 | `V5_WEIGHT` 零改動 | 消融建議值 0.15 **未採**，程式碼未動 |
+| ④ 改產生器、寫 HANDOFF | `scripts/generate-agents-md.js` 的 DEV_LOG 指引改指本檔 | 見下方「治理改道」 |
+
+**②的實測（19 支高危雙否，`infer-facets.js --dry --ids=…`，model=agnes-2.5-flash）**
+
+摘要：**成功 8／全遭門禁剔除 1／空輸出 1／API 失敗 9**。9 支全在同一句話上失敗：
+`HTTP 429: You've reached the API rate limit for free users`（free 層額度，非本專案的併發設定問題）。
+
+8 支提案（`[-+]facet:value`）：
+
+- `remotion`：`-interface:live-streaming`、`-interface:gui`、`-scale:4k-8k`
+- `ffmpeg`：`-interface:cli`、`-interface:gui`
+- `exercises-dataset`：`-format:3d`、`-ecosystem:fitness`、`-platform:medical`
+- `opencode-acp`：`+ecosystem:opencode`、`-integration:other-context-management`（另丟棄 1 筆不合格）
+- `phosphor-icons`：`+format:svg`、`-scale:many-choices`、`+scale:varies-import`
+- `bootstrap-icons`：`-platform:desktop`（另丟棄 1 筆不合格）
+- `agents-course`：`-integration:ml`、`+integration:agent`、`+language:python`、`+language:english`
+- `hugagentos`：`-scale:small`、`+ecosystem:ontology`
+
+`adhd` 被**整批**剔除的原因值得記：模型把 schema 的佔位名當欄位名輸出成
+`+facet:language:programming`（facet 位址填了字面上的 `facet`），格式門禁如設計擋下。
+這是模型輸出形態問題，不是門禁誤報。
+
+**🔴 新陷阱：本專案的「乾跑」有兩種相反的コスト語意**
+
+- `compile-wiki.js --dry`（LLM 模式）：在呼叫模型**之前**就 `process.exit(0)`，只印目標數 → 零成本。
+- `infer-facets.js --dry`：預設不寫入 registry，但**照樣逐支呼叫 LLM** → 會燒額度，本次就撞上 429。
+
+我先前把前一者的行為當成兩支腳本的共通前提，於是回報「乾跑是免費預覽」。這是**錯誤前提**，
+且直接影響 ② 的裁決品質（他選「先看提案」正是為了不花額度）。規則：**同名動詞（乾跑／試跑／
+`--dry`）跨腳本不保證同義，引用成本前必須讀到 exit 點與 fetch 點各自的行號**。
+
+**12 支缺詞條：`--offline --dry` 看不到提案本體，要靠 OUT_PATH 改指的副本**
+
+`--offline --dry` 實測（1 秒、exit 0、`registry/compiled-entries.json` 的 `git status`＋`--numstat` 皆空）：
+
+```
+Tier 0 規則式編譯：12 筆
+鑑別力守門：剔除 2 句低鑑別力 intent（df 門檻 44/744）
+[dry] 範例詞條：
+  ppt-master: […]   graphify: […]
+```
+
+- 🔴 `[dry] 範例詞條` 印的是 `Object.entries(out.entries).slice(0, 2)`，而 `out.entries` 從既有詞檔
+  讀入 → 前兩筆是**既有條目**（`ppt-master`／`graphify`），**不是本次 12 支 targets**。乾跑能看到計數，
+  看不到提案本體。
+- 要看本體只能做一件事：把 `compile-wiki.js` 的 `OUT_PATH`（硬編碼，`:63`，無 `--wiki=` 覆蓋）
+  改指向暫存檔，在 `scripts/` 內跑一份副本（相對 import 才解得開），跑完即刪。本輪即用此法。
+- ⚠️ **預覽副本必須用真詞檔 seed**：暫存檔不存在時，守門的分母掉成本次targets 12 筆
+  → `df 門檻 2/12`、**剔除 0 句**；seed 真詞檔後才是 `44/744`、**剔除 2 句**。未 seed 的「0 剔除」是假綠。
+
+**Tier 0 的品質代價（這是 item 4 還沒做的真正原因，全部實測）**
+
+預覽產物（已過守門）744 筆中 tier0=12／tier1=732：
+
+| | 筆數 | intents | 無中文（純 ASCII）的 intent |
+|---|---|---|---|
+| 既有語料 | 732 | 2636 | **0（0.0%）** |
+| Tier 0 新增 | 12 | 47 | **33（70.2%）** |
+
+那 33 句的內容是工具 id 自我重複＋`triggers` 原詞（`quilt`、`design-tool`、`awesome`、`video`、
+`deepseek`、`clash-meta`…）。`compileOffline()` 完全不做 `isGenericIntent()` 過濾，守門也只按
+**文件頻率**剔除，因此 `df` 低的裸詞全部存活 → E3 歸零的代價是把 33 句「非需求語句」灌進 V5 索引。
+反過來若加「必須含中文且 ≥8 字」的過濾：47 → **13** 句，其中 **5 支只剩 1 句**，而既有語料的形態是
+平均 3.60 句、最少 2 句、**1 句的 0 筆**。混合來源（`useCase` ＋ 中文 `description`）可讓 **7/12** 達 2 句，
+另外 5 支的 `description` 本身就是英文（近重複 0 筆），所以混合也補不齊那 5 支。
+
+**治理改道（裁決④）**
+
+- `scripts/generate-agents-md.js` 的 DEV_LOG 指引**有 3 處**，不是本檔先前寫的 2 處；三處都改，
+  並新增「歷史歸檔 (DEV_LOG.md)」區塊，說明 2026-09-27 之後的記錄落在本檔。
+  ⚠️ 教訓：文件裡「某檔有 N 處」這種計數，動手前必須重掃一遍。
+- `AGENTS.md` 走 `npm run agents:init` 重生成（不手改），diff 只含治理行＋時間戳。
+- 產生器自報的測試數（`TEST_STATS`）在本輪定稿點重量為 **366／364／2 skip**。
+- 金鑰只做**存在性**檢查（長度 51），值從未讀出。
+- ⚠️ push 時 GitHub 回報：預設分支有 **5 個中危 Dependabot 漏洞**，尚未開單處理（本輪未動依賴）。
+
+**繁體閘門的實際覆蓋率（本輪實測，不是宣稱）**
+
+`check-traditional` 的偵測器是 `fix-simplified.js` 的 `findSimplified()`，而本機 **opencc 未安裝**
+（`usingOpenCC()=false`），跑的是內建備援表。拿 20 個常用簡體字探它：**抓到 15 個**，未抓到的 5 個
+碼位是 `U+79BB`／`U+91CC`／`U+7CFB`／`U+4E8E`／`U+540E`。其中四個屬**刻意豁免**（這些字形在繁體裡
+本身合法，例：中文「系」、單位「里」），只有 `U+79BB`（「離」的簡體形）是**真缺口**。
+
+本輪我在同一節手寫出 6 個簡體字，閘門抓到 5 個（`check:lang` 一次報出其中 3 個），
+**唯一它報不出來的那個正是 `U+79BB`**，由人工掃字抓到。教訓：備援表回報「✅ 未發現簡體字」
+只代表「表內那些會響」，**不能當成繁簡全覆蓋的憑證**；要全覆蓋得裝 opencc。
+
+**item 4 現況（從「未核准」改成「證據已到位，待重新裁」）**
+
+原計畫把 19 支雙否與 12 支缺詞條當一批做，理由是兩者都動 wiki 語料 → `df` 與共現圖改變 →
+`V5_WEIGHT=0.20` 作廢、需重跑 `ablate:v5`＋`benchmark`（一輪約 42 秒＋226 秒，皆離線免費）。
+本輪把成本量清楚了：
+
+1. **雙否那 19 支需要 LLM**，而 free 額度已 429；9 支提案因此取不到，短期內只能等額度重置或改走人工。
+2. **缺詞條那 12 支不需要 LLM**，但 Tier 0 未過濾會灌 33 句裸詞、過濾後有 5 支只剩 1 句 → 兩邊都偏離語料形態。
+3. 兩者都動語料 → 一旦落地就必須重跑 `ablate:v5`＋`benchmark`＋`--update-baseline`（基線不重建，新詞條會落在基線外）。
 
 ### 2026-10-06 embedding 可行性量測（本地 multilingual-e5；只量測、未接線、專案零改動）
 
