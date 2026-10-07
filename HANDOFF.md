@@ -690,7 +690,9 @@ facet 與 value 原封不動，並用 `loadRegistry`／`saveRegistry` 寫回（�
 
 1. 5 支單句 Tier 0：留著等 Tier 1（建議，理由見上方的語域問題）／跑 Tier 1 重寫／硬把 `advantages_zh`
    納入 Tier 0 來源集（代價已量：11/12 支詞條變動，並要同步 E1 指紋視圖＋`--update-baseline`＋ablate 重量）。
-2. push：本地目前 **3 個 commit** 落後於 origin/main（`b21e8c2`、`9472d43`、本輪），需明文核准。
+2. push：本地領先 origin/main（本輪自己就進了 **2 筆**：`b32059d`、`3bb80d4`，加上先前的
+   `b21e8c2`、`9472d43`）。⚠️ 這是**活數**，再提交就會變——別信文件裡的數字，用
+   `git rev-list --count origin/main..HEAD` 自己量；需明文核准。
 3. `npm audit` 實測 4 項（`proxy-addr` **critical**、`@modelcontextprotocol/sdk` high、
    `fast-uri`／`ip-address` moderate）；修法動到受保護的 `package-lock.json`，需人工確認。
    ⚠️ 與 GitHub 先前回報的「5 個中危」不同，引用前要用本地數為準。
