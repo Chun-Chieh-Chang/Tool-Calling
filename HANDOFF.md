@@ -21,13 +21,14 @@
 
 ### 1. 量測本身會騙人（最重要）
 
-**三次差點得出錯誤結論：**
+**四次差點得出錯誤結論（最後兩列同為 2026-10-07 第四輪）：**
 
 | 症狀 | 真因 | 檢查方式 |
 |---|---|---|
 | 評測跑出 50.0%（比基準差） | **API 限流**，成功呼叫只有 29/42 | 一定要看「成功呼叫數」 |
 | 評測跑出 61.9%（比基準差） | 用了**不同參數**（topK=20 vs 50），天花板不同 | 比較前確認參數一致 |
 | 換了 `--wiki=` 詞檔，數字卻跟對照組一模一樣 | **假開關**：腳本只用載入的詞檔印標頭，打分那路仍自己讀預設路徑 | 拿一份「必定讓結果變差」的錯掛資料跑；數字不動＝開關是假的（2026-10-07 第四輪 §6） |
+| grep 回報「全庫沒人 import SDK／express」 | pattern 只寫了**單引號**形式（`from 'express'`），而實際檔案用的是雙引號 | 同一個符號換第二種引號再掃一次，或直接讀那支檔的 import 行（第四輪 §10 就這樣躲過一次假證據） |
 
 → **看到數字異常時，先懷疑量測方法，再懷疑改動。**
 
@@ -686,25 +687,67 @@ facet 與 value 原封不動，並用 `loadRegistry`／`saveRegistry` 寫回（�
   （如 CLAUDE.md、鉤子腳本、MCP 設定）…」），正是 §2「詞彙鴻溝」要消滅的「這是什麼」寫法，
   不是使用者的「我想達成什麼」。→ 建議**不納入**來源集；要補就等 Tier 1。
 
+#### 10. npm audit 影響面報告（裁決③：只量不修，2026-10-07）
+
+裁的是「先弄清楚暴露面，再決定要不要動受保護的 `package-lock.json`」。以下全部是本輪實測。
+
+**依賴鏈（`package-lock.json` 反查）**
+
+| 套件 | 嚴重度 | 版本 | 誰拉進來的 | 直接依賴？ |
+|---|---|---|---|---|
+| `proxy-addr` | **critical**（IPv4-mapped IPv6 trust subnet 的 IP 欺騙） | 2.0.7 | `express@5.2.1` | 否 |
+| `@modelcontextprotocol/sdk` | **high**（OAuth client 可能把憑證送給 server 選的授權伺服器） | 1.30.0 | root | 是 |
+| `fast-uri` | moderate（percent-encoded octets 的主機大小寫不一致） | 3.1.7 | `ajv@8.20.0` | 否 |
+| `ip-address` | moderate（上游 4 條：subnet 比對跨家族、Address6 診斷無長度上限、isLinkLocal 範圍錯、NAT64 未識別） | 10.5.0 | `express-rate-limit@8.6.0` | 否 |
+
+**可達性實測（這才是「要不要急」的關鍵）**
+
+- 全庫只有 `mcp-server.js:3-4` 用到 SDK，而且只 import `server/mcp.js` ＋ `server/stdio.js`；
+  載入這兩條後 `process.moduleLoadList` 共 158 個模組，**express／proxy-addr／ajv／fast-uri／
+  ip-address 零命中**——弱點鏈的程式根本沒進到執行途徑裡。
+- HTTP 入口是 `web/server.js:1` 的 `node:http`（不是 express），加上本專案的 `isTrustedOrigin`
+  本機安全模型，`proxy-addr` 那條「要開啟 trust proxy 才走得到的 IP 欺騙」沒有可觸發的路徑；
+  SDK 那條 high 是 OAuth 流程，我們走 stdio，同樣碰不到。
+- 🔴 這裡我差點報了假證據：第一次 grep `from 'express'`／`require('express')` 得到「全庫零命中」，
+  我幾乎要寫成「沒人 import SDK」；實情是 `mcp-server.js` 用的是**雙引號** import，pattern 的引號
+  形式決定了命中與否。已把這條收進 §二 陷阱 1 的表格。
+
+**`npm audit fix --dry-run`（未寫入；`git status package-lock.json` 實測 0 變更）**
+
+proxy-addr 2.0.7→2.0.8、ip-address 10.5.0→10.7.3、fast-uri 3.1.7→3.1.8、SDK 1.30.0→1.32.1；
+另外它要 `add playwright / playwright-core / opencc-js`——這三個 devDep 在 lock 有、`node_modules`
+**沒裝**（實測），正好對應 2 個 skip 的 e2e 測試，以及繁中守護自報的「opencc 未安裝，走備援」。
+→ 真要用 `npm audit fix` 修漏洞時，**主要成本不是漏洞本身**：它會順手把 playwright 裝回來，
+那 2 支從沒在本機跑過的 e2e 會第一次真的執行，可能翻出舊破損。這件事要先讓你知道再裁。
+
+**本地 4 項 vs GitHub 7 則的差異（把舊警告講確切）**
+
+本輪兩邊都讀過：本地 `npm audit --json` metadata＝critical1／high1／moderate2／**total 4**；
+Dependabot open alerts（`gh api`）＝critical1／high1／medium5／**7 則**。差在**計數粒度**，不是資料不同：
+`ip-address` 上游有 4 條獨立 advisory，npm 把它們收斂成 1 個條目。引用時要講「4 個套件／7 條 advisory」，
+別再寫成「本地 4、遠端 5 個中危」那種對不齊的口徑。
+
+**裁決與後續**：本輪**未動** `package-lock.json`（受保護路徑）。下次要裁只要回答一句話：
+「願不願意為了這 7 條 advisory，換一次 e2e 首次真跑」。
+
 **下一個人的待裁清單**
 
-1. 5 支單句 Tier 0：留著等 Tier 1（建議，理由見上方的語域問題）／跑 Tier 1 重寫／硬把 `advantages_zh`
-   納入 Tier 0 來源集（代價已量：11/12 支詞條變動，並要同步 E1 指紋視圖＋`--update-baseline`＋ablate 重量）。
-2. push：本地領先 origin/main——第四輪有多筆 commit，加上先前的 `b21e8c2`、`9472d43`。
-   ⚠️ **筆數與 hash 都是活數**，本文件故意不記：用 `git rev-list --count origin/main..HEAD` 與
-   `git log --oneline origin/main..HEAD` 自己量（此環境的 remote-tracking 不會自動更新，見陷阱 5）；
-   需明文核准。
-3. `npm audit` 實測 4 項（`proxy-addr` **critical**、`@modelcontextprotocol/sdk` high、
-   `fast-uri`／`ip-address` moderate）；修法動到受保護的 `package-lock.json`，需人工確認。
-   ⚠️ 與 GitHub 先前回報的「5 個中危」不同，引用前要用本地數為準。
-4. `/tmp` 有 **250** 個空的 `wiki-bad-*` 目錄。🔴 **歸因與本節先前記的相反**：這不是「被中斷的 run」
-   留下的，而是 `tests/wiki-matcher.test.js:53` 那支測試**每次跑都漏一個**——它只 `unlinkSync` 裡面的
-   `bad.json`，不刪 `mkdtempSync` 建的目錄。證據：今日新增目錄的時間戳 21:18／21:30／21:33 正好對應
-   本輪三次 **exit 0** 的 `npm test`（不是中斷的 run）。本輪已改成 `rmSync(dir, {recursive, force})`，
-   修後重跑 `wiki-matcher.test.js`：250 → 250（不再成長）。剩下的 250 個是歷史空目錄，刪檔仍需明文核准。
-   （對照組：`tests/v5-ablate-wiki-flag.test.js` 用 `after()` 清整個目錄，實測 0 殘留。）
-5. `npm run benchmark` 的詞檔覆蓋尚未接線（§6 末已裁為不做：要動 `core/retrieval-fusion.js` 這條
-   生產路徑；文件裡那張表已標明「未重量」）。
+1. ✅ **已裁（2026-10-07）：留著等 Tier 1**，不納入 `advantages_zh`。E3 保持 0；等額度回來用 Tier 1
+   重寫這 5 支才是正解（跑法見上方 §9 與 `docs/WIKI-COMPILER.md` §6）。若日後又有人提議納入來源集，
+   本輪的代價已量：11/12 支詞條變動＋E1 指紋視圖與 `--update-baseline` 同步＋ablate 重量。
+2. ✅ **已裁「現在推」並執行**：`git push origin main` 推掉 `48ab756..37dd971`（7 筆），實測
+   `ahead=0 behind=0`；本檔提交後再推一次，仍在同一項核准的範圍內（用 `git rev-list --count
+   origin/main..HEAD` 覆核，此環境的 remote-tracking 不會自動更新，見陷阱 5）。
+3. ✅ **已裁「先出影響面報告」**：報告在上方 §10。實測結論——弱點鏈（express／proxy-addr／ajv／
+   fast-uri／ip-address）在我們真正載入的模組圖裡**零命中**，本地 4 項與 Dependabot 7 則的差是
+   **計數粒度**而非資料不同。`package-lock.json` **仍未動**；下次要裁的是那一句：「願不願意為了
+   7 條 advisory，換一次 e2e 首次真跑」（`npm audit fix` 會順手把 playwright 裝回來）。
+4. ✅ **已裁「刪掉」並執行**：刪前先量——250 個 `wiki-bad-*` 全是**空**目錄（非空 0 個），
+   所以用 `find … -type d -empty -delete` 只碰空的；刪後實測剩 0，其他前綴（`wiki-lint-*`、
+   `v5-ablate-wiki-*`）未受影響。源頭已在 `3bb80d4` 修好，往後不會再長。
+   ⚠️ 上面那段「歸因寫錯」的記錄**不要刪**——那是本輪最值錢的一次自我撤銷。
+5. ⏳ **未裁**：`npm run benchmark` 的詞檔覆蓋尚未接線（§6 末已裁為不做：要動
+   `core/retrieval-fusion.js` 這條生產路徑；文件裡那張表已標明「未重量」）。
 
 ### 2026-10-06 embedding 可行性量測（本地 multilingual-e5；只量測、未接線、專案零改動）
 
