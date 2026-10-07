@@ -237,6 +237,110 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ## 三、目前狀態（2026-10-05 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
+### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
+
+**問題**：Karpathy 的 LLM wiki gist 能否幫到檢索與配對。
+**結論**：gist 的架構本專案**已實作且帶消融實驗**——`docs/LLM-WIKI-BLUEPRINT.md`
+就是同一份 Karpathy 概念的 OCR 整理版（標籤 `#AndrejKarpathy`）。逐條對照：
+
+| gist 主張 | 本專案對應 | 狀態 |
+|---|---|---|
+| 知識該復利、不該每次重推 | `compile-wiki.js` → `compiled-entries.json` → V5 | ✅ 天花板 94.9%→98.1%、top1 +9.4pp |
+| 不用 embedding，純文字導航 | L1/L1.5/L2/L3 + PPR 圖譜為預設路徑，V0 向量僅可選 | ✅ |
+| `index.md` 精簡目錄 | `mcp-server.js:45-48` `list_tools` 回傳 id/name/category/desc≤200 | ✅ |
+| `AGENTS.md` 結構約定 | `scripts/generate-agents-md.js` 全檔生成 | ✅ |
+| 信任層 [V]/[S] | `epistemic` 欄位（733 筆全為 Tier 1 → `[S]`） | ✅ |
+| **Ingest／Query／Lint 的 Lint** | 缺 → 本次起草 `scripts/lint-wiki.js` 補上 | 🆕 |
+
+**首跑實測（詞條 733／active+experimental 744／全庫 748）**
+
+- E2 幽靈詞條 **1**（`tokentab`）、E3 缺詞條 **12**、E5 高危雙重否定 **20** ＋ 低危 **1**
+- E4 腐化 **0**（df 門檻 43）。為排除「靜默綠」：把門檻壓到 maxDf=3 時報出 2 筆腐化
+  → **檢查路徑會響**，現行門檻下確實為零。
+- E1 漂移 **0** —— ⚠️ 這**不是**「沒有漂移」的證據：來源指紋基線尚未建立，E1 目前恆為 0。
+
+**更正一個口徑錯誤**：先前回報「15/748 缺詞條」。748 含非活躍狀態；實際待補是 **12 支**
+（active/experimental），另 3 支屬已停用工具（不該補），還有 1 支是反向問題
+（詞條還在、工具已不在庫 → E2）。教訓：**缺詞條要先定義分母是哪個狀態子集**，
+`tools.json` 全庫數 ≠ 檢索可見數。
+
+**更正二（同一批數字，這次錯在我的 Regex）**：首報的 E5 高危 **20** 筆含 1 筆誤報——`freetube`
+的「無法下載影片離線觀看（非下載工具）」。第 4 條原本寫 `/非.{0,12}(情況|情境|下)/`，那個
+**裸「下」**讓「非」直接接上「**下**載」的下，而該句沒有任何否定套疊。已改成
+`/非.{0,16}(情況|情形|情境|環境|條件|狀態|場景)下/`（裸「下」必須和前一個詞構成
+「情況下／環境下」這類處所式收尾），實測 **20 → 19**，低危 1 不變。
+教訓：**修誤報時要同時釘住一個正向案例**，否則收緊 Regex 的過程中很可能順手把檢查修成
+靜默綠——新增的 `E5 誤報防線` 測試兩邊一起斷言（「（非下載工具）」不響 ＋ 「非…的情況下」仍響）。
+
+**新增陷阱（編入 §二 清單的補遺）**
+
+- 🔴 **裸跑 `npm run compile:wiki` 修不了來源漂移**：LLM 模式的 targets 過濾掉已是 Tier 1
+  的詞條（`compile-wiki.js:287`），漂移那批會被靜默跳過；要用 `--ids=<清單>`（走 `:281-284`）。
+- ⚠️ **E1 的指紋複刻了 prompt 的截斷長度**（description 300／capabilities 10／advantages 5／
+  negativeConstraints 3／triggers 6），與 `compile-wiki.js:154-163` 是隱性耦合。
+  之所以不直接雜湊整筆工具：改到沒進 prompt 的第 12 項 capabilities 也會報漂移 → 誤報淹沒訊號。
+- 🔴 **把工具標成 deprecated 不會連帶清掉詞條**：`tokentab` 10-04 轉 deprecated，詞條卻留到
+  本次才刪；那段期間每次 lint 都被 E2 擋成 exit 1（E1／E2 屬阻斷級）。deprecate 流程缺一步
+  「刪 `compiled-entries.json` 的對應 key」，本次補刪的 diff 是純刪除（0 增／27 刪）。
+
+**驗證（分三層，避免只測夾具）**
+
+1. **腳本重寫不回歸**：整檔重寫＋加路徑覆蓋後，活資料 10 項計數與重寫前**完全一致**
+   （733 詞條／744 工具、df 門檻 43、E2=1、E3=12、E4=0、E5=20 高危＋1 低危）。
+2. **E1 在活資料上會響**：把 `tools.json` 複製到暫存目錄、只改 `ppt-master` 的 `useCase_zh`，
+   用 `--registry=<副本>` 搭真實基線跑同一支腳本 → `drift=["ppt-master"]` 且 exit 1；
+   原檔全程未動（事後 `git status registry/tools.json` clean、暫存目錄已清）。
+   這層不能省：夾具只有 35 筆合成詞條，指紋視圖是否真的對得上 `compile-wiki.js` 的截斷，
+   只有在真資料上才驗證得到。
+3. **資料收斂後的終態**：732 詞條、E1=0（基線已建、未對基線 0）、E2=0、E3=12、E4=0、
+   E5=19 高危＋1 低危、**exit 0**。
+
+`tests/wiki-lint.test.js` **12 項全綠**；完整 `npm test`：**366 tests／364 pass／0 fail／2 skip**，
+七道門禁全綠（`check-syntax` 134 檔、Doc Stats 748、兩道繁體掃描）。
+（本檔 10-04／10-05／10-06 快照的 354／352 是這些測試加入前的歷史值，刻意不改寫。）
+
+**新陷阱：批次改字時，「換過去的那個字」也要驗碼位**
+為把簡體 `夹`（allow-simplified：此處引用的是錯字本體，換成繁體就失去例證）一次換成繁體，我用 codepoint 替換寫成 `0x5939 → 0x592A`——但 `0x592A` 是
+`太`，`夾` 其實是 `0x593E`。三條不變量（改動行數＝命中數、總行數不變、無 U+FFFD）全部通過，
+`check-traditional` 也全綠（`太` 本身是合法繁體字），於是 6 處 `太具` 無聲地進了 3 個檔案，
+直到人掃文件才發現。教訓：**codepoint 映射要從實字反查（`'夾'.codePointAt(0)`），不能憑記憶寫
+hex**；批次改字還需要第四條不變量——拿一個「該字必然出現的已知詞」斷言結果，例如改完後檔內
+應能掃到 `夾具`、且 `太具` 為 0（實測：全庫殘留 2 處，都在本段對照引用、非真錯字——
+這條掃法會被文件自己引用的反例汙染，判讀時要連行號一起看）。
+
+**文件債已補**：README npm scripts 表 ＋ `docs/WIKI-COMPILER.md` §6.1／§7。
+**順帶發現的不一致（待裁，未改）**：AGENTS.md 仍要求「重大變更記錄 DEV_LOG.md」，
+但 `DEV_LOG.md` 最後一篇是 2026-09-27，之後 4 次文件提交全落在本檔——
+該指引硬編在 `scripts/generate-agents-md.js:198/436`，屬於改產生器而非改文件，故未動。
+同檔的 `TEST_STATS`（`generate-agents-md.js:16`，原為 315／313）**已更新並重生成**：
+先寫成 365／363，接著為 E5 誤報防線補了第 12 項測試、數字又失效，定稿點重量為 **366／364**。
+兩次 diff 都只有 7 行（6 行測試數＋1 行時間戳），工具數／star 數區塊完全沒變，
+所以沒有把 cron 的浮動數字混進這次文件變更。該常數的註解本來就寫「改動測試後在此更新即可」，
+走的是既有慣例、不是新流程。⚠️ 教訓：**測試數是自引用活數**——只要還會補測試，AGENTS.md
+的數字就注定過期，必須放到最後一步再重量＋重生成。
+**仍待裁**：DEV_LOG 那條指引本身（繼續用 HANDOFF 取代 DEV_LOG，還是把 DEV_LOG 寫回管線）
+沒有決定，故未動。
+
+**下一步**
+
+1. ✅ **已完成**：證明 E1 不是靜默綠。`tests/wiki-lint.test.js` 用子行程跑**同一支腳本、
+   同一套判定**（靠 `--registry`／`--wiki`／`--baseline` 指向暫存目錄夾具，不 mock、不複製邏輯）：
+   正向——改 `useCase` → `drift=['tool-03']` 且 exit 1；兩個不誤報反例——改 `stars`
+   （nightly cron 的欄位）與改第 12 項 `capabilities`（超出 `slice(0, 10)`）→ `drift=[]`；
+   無基線時必報 `baselineExists:false`，而不是宣稱 `drift:0`。基線由被測腳本自己
+   `--update-baseline` 產生，測試裡不重述 hash 邏輯。E4 另有一組：35 筆詞條共用同一句
+   萬能詞 → 恰 3 筆腐化（dropped=1／kept=1）、其餘 32 筆不誤報。
+2. ✅ **已完成**：`--update-baseline` → `registry/wiki-lint-baseline.json`（732 筆指紋，
+   `tokentab` 已不在詞檔所以自然排除）。**時效成本照舊**：漂移只能從此刻往後偵測；
+   之後每多一次 enrich/add/translate 提交，就多永久隱藏一部分更早的變動。
+3. ✅ **已完成**：刪 `tokentab` 幽靈詞條 → E2 歸零、lint **exit 0**（詞檔 733 → 732）。
+   順帶把「deprecated 工具不會自動掉詞條」寫進上面的陷阱清單。
+4. ⏳ 19 支高危雙否（`infer-facets.js --ids=…`）與 12 支缺詞條（`compile:wiki`）**當一批做**，
+   共用一次測量週期：兩者都動 wiki 語料 → `df` 與共現圖改變 → `V5_WEIGHT=0.20` 作廢，
+   需重跑 `ablate:v5` ＋ `benchmark`。拆兩次做就得量兩次。
+   （要 `AGNES_API_KEY`、花額度，**尚未經核准**；做完必須連基線一起 `--update-baseline` 重建，
+   否則新編譯的詞條落在基線外，「未對基線」會非零。）
+
 ### 2026-10-06 embedding 可行性量測（本地 multilingual-e5；只量測、未接線、專案零改動）
 
 - **診斷**：接線早已存在（`core/embedding.js`、`scripts/embed-build.js`、fusion／agent-retrieval 的

@@ -138,6 +138,7 @@ node cli.js interview "網頁爬蟲"
 | `npm run trending` | `node scripts/trending-weekly.js` | 每週漲星探勘 |
 | `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精靈 |
 | `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同義詞詞典 |
+| `npm run lint:wiki` | `node scripts/lint-wiki.js` | 知識編譯詞檔體檢（唯讀：來源漂移／幽靈詞條／缺詞條／雙重否定殘留；未掛進 `npm test`） |
 | `npm test` | `node scripts/check-syntax.js && node scripts/check-utf8.js && node scripts/check-duplicate-ids.js && node scripts/check-traditional.js && node scripts/check-traditional.js --full --code && node --test --test-concurrency=1 tests/*.test.js` | 執行單元測試（含繁體書寫門禁，無外部依賴） |
 | `npm run check:lang` | `node scripts/check-traditional.js` | 繁體門禁：檢查相對 HEAD 的新增行與未追蹤檔 |
 | `npm run check:lang:commits` | `node scripts/check-traditional.js --commits HEAD~5..HEAD` | 繁體門禁：檢查 commit 訊息（無法豁免，改寫歷史才能修） |
@@ -191,7 +192,7 @@ Tool-Calling/
 │   ├── categories.json   # 18 個分類的單一機器可讀來源
 │   ├── tools.json        # 725 工具（截至 2026-09-25）
 │   ├── eval-queries.json # 評測集 v1.3.0（267 題）
-│   └── compiled-entries.json # 知識編譯詞條（Tier 1，705 筆；新工具需重跑 compile:wiki）
+│   └── compiled-entries.json # 知識編譯詞條（Tier 1，732 筆；新工具需重跑 compile:wiki）
 ├── docs/               # 文件（依主題分類的索引見 docs/README.md）
 │   ├── README.md               # ⭐ docs 索引（現行／研究／歷史三類）
 │   ├── WIKI-COMPILER.md         # 知識編譯器：解析邏輯 + 配對邏輯

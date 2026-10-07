@@ -20484,33 +20484,6 @@
       "epistemic": "S",
       "compiled_at": "2026-09-20T14:47:37.959Z"
     },
-    "tokentab": {
-      "intents": [
-        "想知道上個月用 Claude Code 寫專案花了多少 API 費用，想按月與專案拆分報表",
-        "需要比較不同模型（如 GPT-4 與 Claude 3）在同一專案裡的 token 消耗差多少",
-        "想快速檢視 Gemini CLI 近期會話紀錄，計算每日平均花費以便控制預算"
-      ],
-      "objects": [
-        "AI 工具會話日誌（Claude Code、Codex、Gemini CLI）",
-        "API 消費紀錄（token 計數、費用摘要）",
-        "專案資料夾結構"
-      ],
-      "actions": [
-        "讀取會話日誌",
-        "計算依模型/專案/日期的成本",
-        "產生消費明細報表"
-      ],
-      "constraints": [
-        "需運行於 Python 環境並安裝相依套件",
-        "日誌路徑需符合工具預設格式（如 ~/.claude/logs）"
-      ],
-      "negative": [
-        "不使用 Claude Code、Codex 或 Gemini CLI 等指定工具的專案不適用"
-      ],
-      "tier": 1,
-      "epistemic": "S",
-      "compiled_at": "2026-09-20T14:47:37.959Z"
-    },
     "timesfm": {
       "intents": [
         "我想根據過去幾個月的銷售數據，預測下個季度的營收趨勢",

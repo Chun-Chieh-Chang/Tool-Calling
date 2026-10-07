@@ -298,13 +298,51 @@ Tier 0 的最佳值（0.10）在 Tier 1 之後未必一樣。
 其他參數：`--ids=a,b,c`（只編譯指定工具）、`--batch=3`、
 `--model=agnes-2.5-flash`、`COMPILE_CONCURRENCY=2`（並行數，429 限流嚴重）。
 
+## 6.1 詞檔體檢（`npm run lint:wiki`，2026-10-07 起草）
+
+唯讀、確定性、不呼叫 LLM。它問的是編譯器不問的那件事：**詞條編好之後，還對不對得上現在的 registry**。
+
+| 檢查 | 內容 | 誰來修它 |
+|---|---|---|
+| E1 來源漂移 | 詞條編譯後，「進過 prompt 的那幾個欄位」又被改過 → 詞條描述的是舊版工具 | `compile-wiki.js --ids=<清單>` |
+| E2 幽靈詞條 | 詞檔有、registry 的 active/experimental 沒有 | 人工決定刪除 |
+| E3 缺詞條 | 工具在庫上卻沒有 intents → 該工具的 V5 恆為 0 | `npm run compile:wiki` |
+| E4 鑑別力腐化 | 以「當前全庫」重算 df，compile 時合格的 intent 如今淪為萬能詞 | 重編該工具 |
+| E5 雙重否定殘留 | `不適合非…` 型散文約束（評測 c61 的實證失敗模式）；第 4 條模式要求「非 … 情況下／環境下」，裸「下」會誤報「非下載工具」 | `infer-facets.js` |
+
+參數：`--json`（機器可讀、不截斷）、`--show=30`（人可讀清單每項筆數）、
+`--update-baseline`（重建來源指紋基線）。出口碼：E1／E2 > 0 → 1。
+
+⚠️ **E1 的兩個前提**
+1. 得先建基線：`node scripts/lint-wiki.js --update-baseline`。基線存在之前 E1 恆報 0，
+   而且**無法追溯基線之前的變更**——`compiled-entries.json` 只存 `compiled_at` 時間戳，
+   沒存「編譯時看到的來源長什麼樣」；`tools.json` 的 `lastUpdated` 是全庫一個值，
+   定位不到是哪支工具變的。
+2. 指紋複刻了 `compile-wiki.js:154-163` 的截斷長度（description 300／capabilities 10／
+   advantages 5／negativeConstraints 3／triggers 6）。兩邊不同步時，E1 會覆蓋到編譯
+   根本沒看過的欄位 → 誤報。**這是刻意接受的隱性耦合**，由 `tests/wiki-lint.test.js`
+   守著：改 `useCase`（有進 prompt）必須報漂移，改第 12 項 `capabilities`（超出
+   `slice(0, 10)`、根本沒進 prompt）必須不報。
+
+🔴 **陷阱：裸跑 `npm run compile:wiki` 修不了 E1。** LLM 模式的 targets 會過濾掉已是
+Tier 1 的詞條（`compile-wiki.js:287`），漂移的那批被靜默跳過；`--ids=` 走的是另一條
+分支（`:281-284`），才會強制重編。
+
+⚠️ `scripts/lint-wiki.js` **本身沒有掛進 `npm test`**：它讀的是活資料，registry 一變
+計數就變，掛進去就是隨時會紅的斷言。進 `npm test` 的是 `tests/wiki-lint.test.js`——
+用 `--registry`／`--wiki`／`--baseline` 三個路徑覆蓋參數，把同一支腳本、同一套判定
+指向暫存目錄的固定夾具（子行程，不 mock、不改寫判定）。
+
 ## 7. 檔案清單
 
 | 檔案 | 角色 |
 |---|---|
 | `scripts/compile-wiki.js` | 解析邏輯（離線編譯器） |
-| `registry/compiled-entries.json` | 編譯產物（705 筆，納入版控） |
+| `registry/compiled-entries.json` | 編譯產物（732 筆，納入版控） |
 | `core/wiki-matcher.js` | 配對邏輯（詞條比對 + 知識圖譜擴散） |
+| `scripts/lint-wiki.js` | 詞檔體檢（唯讀診斷，見 §6.1） |
+| `registry/wiki-lint-baseline.json` | E1 的來源指紋基線（732 筆，2026-10-07 建立） |
 | `core/tokenize.js` | 共用斷詞（兩個引擎必須同源） |
 | `core/agent-retrieval.js` | 五維融合（新增 V5） |
 | `tests/wiki-matcher.test.js` | 離線測試（19 項） |
+| `tests/wiki-lint.test.js` | 詞檔體檢的固定夾具測試（11 項，子行程跑 `lint-wiki.js`） |
