@@ -250,6 +250,9 @@ function toGeneratedSource(map) {
  *
  * 刻意不寫入產生時間：時間戳會讓每次 build 都產生只差一行的無意義 diff，
  * 掩蓋真正的內容變更。需要時間資訊請看 git log。
+ *
+ * check-traditional: skip-file —— 本檔是同義詞鍵**資料檔**：鍵與值刻意收錄簡體寫法
+ * （簡體查詢要靠它命中），不歸繁體書寫門禁管。實測 587 次／535 行屬這類內容。
  */
 `;
   return `${header}export const SYNONYM_MAP = ${JSON.stringify(map, null, 2)};\n`;

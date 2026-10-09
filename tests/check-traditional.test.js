@@ -12,6 +12,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
@@ -226,6 +227,18 @@ test('文件未被納入 --code，但 --full 仍抓得到（記錄 --code 排除
   const hits = scanFile('DEV_LOG.md');
   assert.ok(hits.length > 0, 'DEV_LOG 的歷史引用應仍可被 --full 列出');
   assert.ok(hits.every((h) => typeof h.line === 'number' && h.chars.length > 0));
+});
+
+test('產生式資料檔的 skip-file 標記：檔頭要有、產生器模板也要有（否則重產就消失）', () => {
+  // core/synonyms.generated.js 的同義詞鍵刻意收簡體寫法（簡體查詢要靠它命中）。
+  // 兩件事必須一起鎖：現檔有標記（前 10 行內，門禁只認那裡）、產生器模板也有標記。
+  // 只鎖現檔的話，下次 `node scripts/mine-synonyms.js` 一重產就把標記洗掉，
+  // 而那時候門禁會因為表外字形照樣全綠——連「哪天開始擋」都不會有訊號。
+  const data = readFileSync(path.join(ROOT, 'core/synonyms.generated.js'), 'utf8').split('\n').slice(0, 10).join('\n');
+  const gen = readFileSync(path.join(ROOT, 'scripts/mine-synonyms.js'), 'utf8');
+  assert.ok(data.includes('check-traditional: skip-file'), '資料檔檔頭需有 skip-file');
+  assert.ok(gen.includes('check-traditional: skip-file'), '產生器模板需內嵌同一個標記字串');
+  assert.equal(scanFile('core/synonyms.generated.js').length, 0, '標記生效：該檔整檔掃描為 0');
 });
 
 // ── 路徑展開：目錄也是合法輸入 ───────────────────────────────────────────
