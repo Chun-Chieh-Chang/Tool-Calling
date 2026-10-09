@@ -333,6 +333,48 @@ format＝檔案／資料格式、scale＝資料量或團隊規模）。**改動�
 2. ⏳ 59 支缺 `negativeConstraints_zh`——要補（需額度），還是明定「NCZ 非必填、UI 顯示英文可接受」。
 3. ⏳ 中英零重疊這件事要不要進 §二 正式陷阱清單（本輪先記在本節補遺）。
 
+### 2026-10-09（第二輪）telemetry 寫入通路首次驗證：五條路徑全綠，並找到「不起探勘也能起伺服器」的搭法
+
+**裁決來源**：四項裁決的 ④＝只驗寫入通路。
+**為何需要**：`web/data/` 是空目錄、`telemetry-events.jsonl` **從未存在過** → 這條路自上線以來
+沒有任何一次端到端證據。模組層由 `tests/telemetry-endpoint.test.js` 守著（在 `npm test` 裡綠），
+但 HTTP 路由那一段是未驗的連結。
+
+**副作用規避（這段可重用）**：`web/server.js:79 checkAndAutoUpdateOnStartup()` 在快照的
+`asOfDate ≠ 今日` 時會 `setImmediate(triggerTrendingScan)`。實測現行 `weekly-trending.json`
+的 `currentWeekToDate.asOfDate` 是 `2026-10-05`、今日 `2026-10-09`（`weekStr` 已同為 `2026-W41`，
+所以走的是「已跨日」那條分支）→ 直接起伺服器**必然**觸發探勘：燒 GitHub API 配額、
+覆寫已版控的 registry 檔案。**不必改程式**：把該檔的 `"asOfDate": "2026-10-05"` 字串換成今日
+（長度差 0、diff 1 增 1 刪），啟動檢查即改走 `✨ [啟動檢查] 當日數據已為最新`，探勘整條不跑。
+驗完從備份還原，**24 個 registry 檔案的 sha1 與起服前基線逐字相同**。
+
+**實測（`PORT=3457` 隔離實例＋預設寫入路徑，不是 `TELEMETRY_DIR` 導向的暫存目錄）**
+
+| # | 輸入 | 預期 | 實測 |
+|---|---|---|---|
+| ① | 合法 `search` 事件、不帶 Origin | 200 且落檔 | `{"ok":true}` 200；檔 158 bytes／1 行；`query` 逐字 round-trip；U+FFFD 0；`timestamp` 由伺服器補齊 |
+| ② | 同一份 body ＋ `Origin: https://evil.example` | 403 且不落檔 | `Forbidden: untrusted origin` 403，檔未增加 |
+| ③ | `query: ""` | 400 | `query 必須是非空字串` 400 |
+| ④ | `type: "typo"` | 400 | `type 必須是 search/click/abandon` 400 |
+| ⑤ | 合法 body ＋ `Origin: http://127.0.0.1:3457` | 200 | `{"ok":true}` 200 |
+
+終態 2 行＝只有 ①⑤ 落檔；②③④ 未落檔是**拒絕路徑的負對照**（只測成功案例會把「驗證也寫進去」
+這件事誤當成通路正常）。
+
+**清理與邊界**：2 筆自造語料已刪，刪前四條判準逐一成立（行數 2、兩行都是同一句測試 query、
+mtime 為今日、該目錄只有這一個檔案），`web/data/` 回到原本的空目錄——
+**真人語料庫不能混進我打的樣本**。另記一道邊界：`isTrustedOrigin` 是
+`if (!origin) return true`（`web/server.js:215`），意即「沒有 Origin 一律信任」，這是 curl 打得進去的
+原因；對本機工作台是可接受的模型，但引用「受 isTrustedOrigin 保護」時要講清楚這半句。
+
+**舊陷阱再現（已記檔）**：`node -e` 把 Git Bash 的 `/d/tmp/...` 解析成 `D:\d\tmp\...`
+（2026-10-06 陷阱 4）。教訓加重：不只「暫存檔一律放完整路徑」，而是**同一條命令裡同時要給
+node 和 curl 用的路徑，一律採倉內相對路徑**——否則 node 先 ENOENT、curl 再 exit 26，兩段都白跑
+（本輪就白跑了一輪）。
+
+**結論**：通路是好的，0 筆的原因純粹是沒人用。要讓語料累積需要真人查詢（或經核准的種子問句集），
+**不是再動程式**。
+
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 
 **問題**：Karpathy 的 LLM wiki gist 能否幫到檢索與配對。
