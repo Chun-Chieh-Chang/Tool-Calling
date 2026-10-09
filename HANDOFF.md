@@ -346,7 +346,10 @@ format＝檔案／資料格式、scale＝資料量或團隊規模）。**改動�
 
 **下一個人的待裁清單（本輪新增）**
 
-1. ⏳ 上述 2. 的 `+ecosystem:bootstrap` 等 4 條「有零成本正解但未寫入」的覆蓋缺口——要不要補。
+1. ✅已裁「不做」（第十輪覆核確認）：那 4 條「有零成本正解但未寫入」的前提在下一節就被實測
+   推翻了——`+` 極性條目根本不參與打分（`core/agent-retrieval.js` 的 facets 迴圈用
+   `entry.charCodeAt(0) !== 45 → continue` 只認 `-`）。第十輪再查 `registry/tools.json`
+   內 `ecosystem:bootstrap` 出現 **0 次**，維持原判定，不再 reopen。
 2. ⏳ 59 支缺 `negativeConstraints_zh`——要補（需額度），還是明定「NCZ 非必填、UI 顯示英文可接受」。
 3. ⏳ 中英零重疊這件事要不要進 §二 正式陷阱清單（本輪先記在本節補遺）。
 
@@ -442,9 +445,11 @@ node 和 curl 用的路徑，一律採倉內相對路徑**——否則 node 先 
 
 **下一個人的待裁清單（第三輪新增）**
 
-1. ⏳ `U+79BB` 收進 `S2T_SAFE`（一行、零額度，但動到閘門）——要不要補。補完必須同版更新
-   10-07（第二輪）那段「抓到 15 個／U+79BB 是真缺口」的覆蓋率敘述，否則文件描述的驗法會失效。
-2. ⏳ `check-traditional.js:276` 的橫幅措辭——要不要改成「偵測＝內建表／轉換＝opencc」這種講清楚分工的寫法。
+1. ✅已完成（commit `11bdd9a`）：`U+79BB` 收進 `S2T_SAFE`，同版也把 10-07（第二輪）那段
+   「抓到 15 個／U+79BB 是真缺口」的覆蓋率敘述一起改好。第十輪覆核：`scripts/fix-simplified.js`
+   的表內那行是 `U+79BB → U+96E2`（實字反查過：左邊是簡體形、右邊是「離」），驗法未失效。
+2. ✅已完成：橫幅現在就是「偵測＝內建對照表（與 opencc 與否無關）｜轉換＝opencc 已啟用」
+   這種講清分工的寫法（第十輪三次實跑的第一行都是這句，字串出自 `check-traditional.js` 的橫幅行）。
 
 ### 2026-10-09（第四輪）推送落地，並改掉那條「靜默不執行卻回成功」的 push 慣例
 
@@ -562,7 +567,10 @@ deps／docs）。判準三件都取：命令 exit 0、push.log 裡真的出現�
    而「讓它有用的規格（複用 `SYNONYM_MAP` 做跨語點燃）」被佐證度實測證偽。改走值域清理（P1-b）。
 2. ⏳ `translate-to-zh.js` 要不要加第 5 種響應形態的解析分支＋測試；以及「成功筆數」應不該改成**逐欄位**核銷。
 3. ⏳ E1=2 那兩支 Tier 1 詞條要不要花額度重編（需 AGNES Tier 1 額度，上次是 429）。
-4. ⏳ 對稱盲區後半：CI 跑的 `rescan-classification.js --ci` 本地仍無等價入口（第五輪只補了 `check-mece` 與 `categories:check`）。
+4. ✅已完成（第十輪 C4）：CI 跑的 `rescan-classification.js --ci` 現在有本地等價入口
+   `npm run check:classification`，並已接進 `npm test` 鏈（與 `check-mece`、`categories:check`
+   湊齊）。另補 `--registry <path>`＝診斷模式（唯讀、禁與 `--apply` 合併），讓這條閘門能用
+   fixture 打樁，不必再改正式庫才驗得出來。
 
 ### 2026-10-09（第七輪）P1-b 清程度詞：46 條點不燃的 `-` 值改寫 37／刪 10，順手修掉一支「自我拆台」的約束
 
@@ -695,7 +703,8 @@ tree 相同就等於**內容一個 bit 沒動、只有訊息變**，也順帶證
    → error／R2 自指 → warning），並據此清掉 7 條 facets（283→277）。
 4. ⏳ 舊三項待裁（`translate-to-zh` 第 5 種響應形態／花額度重編 `ds4`·`anny` 清 E1=2／
    `rescan-classification --ci` 的本地等價入口）——選單那一題的答案**整筆沒回傳**，
-   依規矩視為未答，不得代裁。
+   依規矩視為未答，不得代裁。**第十輪更新**：三項裡的第三項已由用戶在選單勾選並完成（C4），
+   剩兩項仍懸著；前兩項都要 AGNES 額度。
 
 ### 2026-10-09（第九輪）一次跑完三項已裁：range 自適應、自我拆台雙閘門、P1-a 中文對照量測（結論是「先不接」）
 
@@ -1343,8 +1352,9 @@ Dependabot open alerts（`gh api`）＝critical1／high1／medium5／**7 則**�
    所以用 `find … -type d -empty -delete` 只碰空的；刪後實測剩 0，其他前綴（`wiki-lint-*`、
    `v5-ablate-wiki-*`）未受影響。源頭已在 `3bb80d4` 修好，往後不會再長。
    ⚠️ 上面那段「歸因寫錯」的記錄**不要刪**——那是本輪最值錢的一次自我撤銷。
-5. ⏳ **未裁**：`npm run benchmark` 的詞檔覆蓋尚未接線（§6 末已裁為不做：要動
-   `core/retrieval-fusion.js` 這條生產路徑；文件裡那張表已標明「未重量」）。
+5. ✅已裁「不做」（原文標成「未裁」是錯的——同一句裡就寫著 §6 末已裁為不做）：
+   `npm run benchmark` 的詞檔覆蓋不接線，因為要動 `core/retrieval-fusion.js` 這條生產路徑；
+   文件裡那張表已標明「未重量」。
 
 ### 2026-10-06 embedding 可行性量測（本地 multilingual-e5；只量測、未接線、專案零改動）
 
