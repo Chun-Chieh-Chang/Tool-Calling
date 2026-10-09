@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-07T10:54:56.467Z",
+  "generatedAt": "2026-10-09T04:20:32.821Z",
   "entries": {
     "ppt-master": {
       "intents": [
@@ -22847,7 +22847,8 @@
     },
     "claude-howto": {
       "intents": [
-        "一位已安裝 Claude Code 但缺乏結構化學習路徑的開發人員，透過此指南結合斜線命令、鉤子、記憶與子代理，構建自動化的程式碼審查與部署管線。"
+        "一位已安裝 Claude Code 但缺乏結構化學習路徑的開發人員，透過此指南結合斜線命令、鉤子、記憶與子代理，構建自動化的程式碼審查與部署管線。",
+        "一個視覺化、以範例為導向的 Claude Code 指南——從基本概念到進階 agents，提供可直接複製貼上的範本，立即發揮實用價值。"
       ],
       "objects": [
         "claude-code",
@@ -22861,13 +22862,13 @@
         "python"
       ],
       "negative": [
-        "Exclusively for Claude Code; templates and workflows are not applicable to other LLM-based IDEs or CLI agents.",
-        "Requires users to have already installed Claude Code and set up an Anthropic API key; does not provide the underlying code execution environment.",
-        "Learning path assumes a general technical background; not suitable for users who need to learn how to write Python or general coding fundamentals from scratch."
+        "僅適用於 Claude Code；範本與工作流程不適用於其他基於 LLM 的 IDE 或 CLI agents。",
+        "使用者需已安裝 Claude Code 並設定 Anthropic API 金鑰；不提供底層程式碼執行環境。",
+        "學習路徑假設使用者具有通用技術背景；不適合需要從頭學習 Python 程式撰寫或通用程式設計基礎的使用者。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "osiris": {
       "intents": [
@@ -22898,7 +22899,8 @@
     },
     "quilt": {
       "intents": [
-        "設計師使用 Quilt 透過文字描述生成多螢幕 HTML 原型，並讓本機編碼代理透過 MCP 讀取與修改畫布以迭代 UI。"
+        "設計師使用 Quilt 透過文字描述生成多螢幕 HTML 原型，並讓本機編碼代理透過 MCP 讀取與修改畫布以迭代 UI。",
+        "AI原生無限畫布設計工具：描述一個App，在無限畫布上取得多螢幕HTML設計，點擊流覽它們作為原型，並讓你的本機編碼代理透過MCP讀寫畫布。"
       ],
       "objects": [
         "ai",
@@ -22914,18 +22916,18 @@
         "typescript"
       ],
       "negative": [
-        "Requires Node.js 22 or newer and pnpm 11 to run.",
-        "Needs a browser (Chrome/Edge) or Playwright installed for screenshotting generated screens.",
-        "Depends on a configured generation channel such as a local Claude CLI subscription or API keys for Anthropic/Gemini/OpenAI."
+        "需要Node.js 22或更新版本以及pnpm 11才能執行。",
+        "需要安裝瀏覽器（Chrome/Edge）或Playwright用於截取生成畫面的截圖。",
+        "依賴已配置的生成通道，例如本機Claude CLI訂閱或Anthropic/Gemini/OpenAI的API金鑰。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "ow-bridge": {
       "intents": [
         "開發者使用此工具自動掃描本地 OpenCode 的免費模型，並一鍵導入 WorkBuddy，以實現零成本的 AI 推理，無需手動設定模型端點。",
-        "OW Bridge — 让 WorkBuddy 使用 OpenCode 免费模型。支持 macOS / Windows，自动发现模型、一键导入。"
+        "OW Bridge — 讓 WorkBuddy 使用 OpenCode 免費模型。支援 macOS / Windows，自動偵測模型、一鍵匯入。"
       ],
       "objects": [
         "model-discovery",
@@ -22942,16 +22944,17 @@
         "javascript"
       ],
       "negative": [
-        "Does not support PAC or SOCKS system proxies, limiting usage in corporate environments relying on those protocols.",
-        "The macOS build uses ad-hoc signing and is not Apple notarized, which requires users to manually bypass Gatekeeper security warnings."
+        "不支援 PAC 或 SOCKS 系統代理，限制依賴這些協定的企業環境使用。",
+        "macOS 版本採用自行簽署，未通過 Apple 認證，使用者需手動略過 Gatekeeper 安全警告。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "voicestudio": {
       "intents": [
-        "當內容創作者需要將影片翻譯配音成多種語言，或為有聲書克隆特定嗓音，又不想將資料上傳至雲端時，會使用 VoiceStudio 的本地桌面環境完成任務。"
+        "當內容創作者需要將影片翻譯配音成多種語言，或為有聲書克隆特定嗓音，又不想將資料上傳至雲端時，會使用 VoiceStudio 的本地桌面環境完成任務。",
+        "VoiceStudio 是開源、完全本機的 ElevenLabs 替代品——提供語音克隆、語音設計、影片配音、聽寫、文字轉語音及有聲書建立，支援 646 種語言。"
       ],
       "objects": [
         "ai",
@@ -22967,16 +22970,17 @@
         "python"
       ],
       "negative": [
-        "Requires significant local hardware resources, with CPU-only usage being slower and requiring at least 5 GB of free disk space for PyTorch dependencies.",
-        "Intel Macs are limited to UI only and must connect to a remote backend rather than running the speech models locally."
+        "需要較多的本機硬體資源，僅使用 CPU 時速度較慢，且需至少 5 GB 的可用磁碟空間來存放 PyTorch 相依元件。",
+        "Intel Mac 僅能使用 UI，必須連接遠端後端而非在本地執行語音模型。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "awesome-vibecoding-guide": {
       "intents": [
-        "自由接案開發者選擇商業化路徑並執行交付工作流，透過 AI 輔助程式開發技術，建立在地商業網站、AI 自動化系統或微型 SaaS 軟體來賺取收入。"
+        "自由接案開發者選擇商業化路徑並執行交付工作流，透過 AI 輔助程式開發技術，建立在地商業網站、AI 自動化系統或微型 SaaS 軟體來賺取收入。",
+        "一本匯萃自真實商業專案與數十萬行 AI 輔助程式的實戰指南。可從頭讀到尾，或將這個倉庫餵給你的 AI 代理以取得摘要與問答。歡迎給星與加 watch！⭐"
       ],
       "objects": [
         "ai-agents",
@@ -22992,17 +22996,17 @@
         "other"
       ],
       "negative": [
-        "Specifically tailored for commercial freelancers and solo developers aiming to generate immediate income",
-        "Not a technical reference library or tool catalog; it lacks deep theoretical programming concepts"
+        "專門針對希望立即創造收入的商業自由接案者與獨立開發者設計",
+        "不是技術參考書籍或工具目錄；缺乏深入的理論程式設計概念"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "video-shotcraft-dsh": {
       "intents": [
         "創意開發者或 Agent 使用者希望透過替換產品截圖與文案，使用「Ink Press」Remotion 模板生成一段具有 2.5D 鏡頭移動與音節同步音效的 10 鏡頭電影感產品宣傳影片。",
-        "面向 DeepSeek Harness 的电影感产品视频 Agent Skill，包含 152 张镜头配方卡、Remotion 模板、代码组件和音频资产。"
+        "針對 DeepSeek Harness 的電影感產品影片 Agent Skill，包含 152 張鏡頭配方卡、Remotion 模板、程式碼組件與音訊資產。"
       ],
       "objects": [
         "agent-skills",
@@ -23018,17 +23022,17 @@
         "typescript"
       ],
       "negative": [
-        "Requires specific handling for low-core headless Linux environments due to Remotion concurrency limits",
-        "JianYing export functionality is verified only on JianYing Pro 11.2 for macOS"
+        "由於 Remotion 並發限制，需要在低核心頭端 Linux 環境中進行特定處理。",
+        "剪映匯出功能僅在 macOS 版 JianYing Pro 11.2 上驗證過。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "sc-datav": {
       "intents": [
         "開發人員建置一個響應式網頁儀表板，以四川地區的 3D 地理數據為基礎，並結合同步的 ECharts 分析面板進行視覺化。",
-        "数据可视化大屏 基于 Three.js + React 19 + ECharts 的 3D 地图可视化大屏项目 包含 3D 地图渲染、轮廓飞线、侧边扫光、多图表联动等丰富功能"
+        "數據可視化大型顯示器專案，基於 Three.js + React 19 + ECharts，提供 3D 地圖渲染、輪廓飛線、側邊掃光、多圖表聯動等功能。"
       ],
       "objects": [
         "3dmap",
@@ -23042,17 +23046,17 @@
         "typescript"
       ],
       "negative": [
-        "Requires Node.js >= 18 and PNPM >= 8 to build and run.",
-        "Geographic data is hardcoded for Sichuan Province, limiting direct use for other regions without modifying asset files."
+        "建置與執行需 Node.js >= 18 與 PNPM >= 8。",
+        "地理資料硬編碼為四川省，未修改資產檔就難以直接用於其他地區。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "heterogeneous-gpu-pd-lab": {
       "intents": [
         "研究人員或推論工程師在結合兩張 RTX 6000D GPU 與四節點 DGX Spark 的集群上部署 DeepSeek-V4.1-Flash，透過 Prefill 與 Decode 分離架構，在不於所有加速器載入完整模型的情況下，實現 16000+ tok/s 的 Prefill 與 442+ tok/s 的 Decode 高吞吐量。",
-        "使用稠密算力卡对稀疏大显存主机进行加速，主机包括 AI Max+ 395、M3 512G、DGX Spark 等。"
+        "使用稠密算力卡對稀疏大顯存主機進行加速，主機包括 AI Max+ 395、M3 512G、DGX Spark 等。"
       ],
       "objects": [
         "heterogeneous-gpu",
@@ -23068,17 +23072,18 @@
         "python"
       ],
       "negative": [
-        "Requires specific heterogeneous hardware topology: two RTX 6000D (or equivalent) GPUs for Prefill and four DGX Spark/GB10 nodes for Decode.",
-        "Depends on cross-engine patches (V8) for vLLM and SGLang integration; standard unmodified vLLM or SGLang deployments will not support the NIXL cache-page adaptation described.",
-        "Does not redistribute the 510 GB official DeepSeek-V4.1-Flash weights; users must provide their own model artifacts compatible with the frozen V8 environment."
+        "需要特定的異質硬體拓撲：Prefill 使用兩張 RTX 6000D（或同等級）GPU，Decode 使用四個 DGX Spark/GB10 節點。",
+        "依賴 vLLM 與 SGLang 整合的跨引擎修補程式（V8）；標準未修改的 vLLM 或 SGLang 部署將不支援所述之 NIXL cache-page 適配。",
+        "不提供 510 GB 官方 DeepSeek-V4.1-Flash 權重；使用者須自行準備符合凍結 V8 環境的模型檔案。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "ollama": {
       "intents": [
-        "一位開發者在 macOS、Windows 或 Linux 本機環境上，想要立即啟動 Gemma 或 DeepSeek 等開放權重語言模型，以驅動 CLI 代理程式、聊天介面或本機 API，而無須配置分散式叢集。"
+        "一位開發者在 macOS、Windows 或 Linux 本機環境上，想要立即啟動 Gemma 或 DeepSeek 等開放權重語言模型，以驅動 CLI 代理程式、聊天介面或本機 API，而無須配置分散式叢集。",
+        "快速上手使用 Kimi、GLM、MiniMax、DeepSeek、gpt-oss、Qwen、Gemma 及其他模型。"
       ],
       "objects": [
         "deepseek",
@@ -23094,13 +23099,13 @@
         "go"
       ],
       "negative": [
-        "Primarily targets single-node local execution on macOS, Windows, or Linux, so it is not designed for distributed multi-node GPU cluster orchestration.",
-        "Performance and available model architectures are constrained by the underlying llama.cpp backend, meaning it may not support every cutting-edge model topology or quantization format.",
-        "While it offers chat and local integration, it lacks a native, out-of-the-box enterprise-grade RAG framework for complex, structured document processing."
+        "主要針對在 macOS、Windows 或 Linux 上的單節點本地執行，因此並未設計用於分佈式多節點 GPU 叢集編排。",
+        "效能和可用的模型架構受到底層 llama.cpp 後端的限制，表示可能不支援每種前沿的模型拓撲或量化格式。",
+        "雖然提供聊天和本地整合功能，但缺乏原生、即用的企業級 RAG 框架來處理複雜的結構化文件處理。"
       ],
       "tier": 0,
       "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "compiled_at": "2026-10-09T04:20:32.803Z"
     },
     "compositor": {
       "intents": [

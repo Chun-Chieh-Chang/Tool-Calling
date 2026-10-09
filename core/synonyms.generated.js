@@ -23498,14 +23498,14 @@ export const SYNONYM_MAP = {
     "ds4",
     "local-inference",
     "metal-cuda-rocm",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "本機部署deepseek",
     "用metal跑deepseek",
     "離線推理大模型"
   ],
   "ds4": [
     "本地跑deepseek模型",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "本機部署deepseek",
     "用metal跑deepseek",
     "離線推理大模型",
@@ -23514,7 +23514,7 @@ export const SYNONYM_MAP = {
   ],
   "local-inference": [
     "本地跑deepseek模型",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "本機部署deepseek",
     "用metal跑deepseek",
     "離線推理大模型",
@@ -23524,14 +23524,14 @@ export const SYNONYM_MAP = {
   ],
   "metal-cuda-rocm": [
     "本地跑deepseek模型",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "本機部署deepseek",
     "用metal跑deepseek",
     "離線推理大模型",
     "ds4",
     "local-inference"
   ],
-  "离線運行deepseek": [
+  "離線運行deepseek": [
     "ds4",
     "local-inference",
     "metal-cuda-rocm",
@@ -23545,7 +23545,7 @@ export const SYNONYM_MAP = {
     "local-inference",
     "metal-cuda-rocm",
     "本地跑deepseek模型",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "用metal跑deepseek",
     "離線推理大模型"
   ],
@@ -23554,7 +23554,7 @@ export const SYNONYM_MAP = {
     "local-inference",
     "metal-cuda-rocm",
     "本地跑deepseek模型",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "本機部署deepseek",
     "離線推理大模型"
   ],
@@ -23563,7 +23563,7 @@ export const SYNONYM_MAP = {
     "local-inference",
     "metal-cuda-rocm",
     "本地跑deepseek模型",
-    "离線運行deepseek",
+    "離線運行deepseek",
     "本機部署deepseek",
     "用metal跑deepseek"
   ],
@@ -63319,6 +63319,180 @@ export const SYNONYM_MAP = {
     "long-term-memory",
     "memory-system",
     "cross-session-memory"
+  ],
+  "圖片生成": [
+    "open-higgsfield",
+    "image generation",
+    "video generation",
+    "ai studio",
+    "higgsfield alternative",
+    "影片生成",
+    "影片"
+  ],
+  "open-higgsfield": [
+    "圖片生成",
+    "影片生成",
+    "image generation",
+    "video generation",
+    "ai studio",
+    "higgsfield alternative",
+    "影片"
+  ],
+  "ai studio": [
+    "圖片生成",
+    "影片生成",
+    "open-higgsfield",
+    "image generation",
+    "video generation",
+    "higgsfield alternative",
+    "影片"
+  ],
+  "higgsfield alternative": [
+    "圖片生成",
+    "影片生成",
+    "open-higgsfield",
+    "image generation",
+    "video generation",
+    "ai studio",
+    "影片"
+  ],
+  "安全性": [
+    "osiris"
+  ],
+  "osiris": [
+    "安全性"
+  ],
+  "修照片": [
+    "compositor",
+    "移除圖片物體",
+    "處理 raw 檔",
+    "合併多張圖片",
+    "非破壞性縮放圖片"
+  ],
+  "compositor": [
+    "修照片",
+    "移除圖片物體",
+    "處理 raw 檔",
+    "合併多張圖片",
+    "非破壞性縮放圖片"
+  ],
+  "移除圖片物體": [
+    "compositor",
+    "修照片",
+    "處理 raw 檔",
+    "合併多張圖片",
+    "非破壞性縮放圖片"
+  ],
+  "處理 raw 檔": [
+    "compositor",
+    "修照片",
+    "移除圖片物體",
+    "合併多張圖片",
+    "非破壞性縮放圖片"
+  ],
+  "合併多張圖片": [
+    "compositor",
+    "修照片",
+    "移除圖片物體",
+    "處理 raw 檔",
+    "非破壞性縮放圖片"
+  ],
+  "非破壞性縮放圖片": [
+    "compositor",
+    "修照片",
+    "移除圖片物體",
+    "處理 raw 檔",
+    "合併多張圖片"
+  ],
+  "匯入代理訂閱連結": [
+    "clash-verge-rev",
+    "clash",
+    "clash-meta",
+    "clash-verge",
+    "切換代理節點",
+    "配置代理分流規則",
+    "管理代理配置文件",
+    "設定系統代理連線"
+  ],
+  "clash-verge-rev": [
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "配置代理分流規則",
+    "管理代理配置文件",
+    "設定系統代理連線",
+    "clash",
+    "clash-meta",
+    "clash-verge"
+  ],
+  "clash": [
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "配置代理分流規則",
+    "管理代理配置文件",
+    "設定系統代理連線",
+    "clash-verge-rev",
+    "clash-meta",
+    "clash-verge"
+  ],
+  "clash-meta": [
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "配置代理分流規則",
+    "管理代理配置文件",
+    "設定系統代理連線",
+    "clash-verge-rev",
+    "clash",
+    "clash-verge"
+  ],
+  "clash-verge": [
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "配置代理分流規則",
+    "管理代理配置文件",
+    "設定系統代理連線",
+    "clash-verge-rev",
+    "clash",
+    "clash-meta"
+  ],
+  "切換代理節點": [
+    "clash-verge-rev",
+    "clash",
+    "clash-meta",
+    "clash-verge",
+    "匯入代理訂閱連結",
+    "配置代理分流規則",
+    "管理代理配置文件",
+    "設定系統代理連線"
+  ],
+  "配置代理分流規則": [
+    "clash-verge-rev",
+    "clash",
+    "clash-meta",
+    "clash-verge",
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "管理代理配置文件",
+    "設定系統代理連線"
+  ],
+  "管理代理配置文件": [
+    "clash-verge-rev",
+    "clash",
+    "clash-meta",
+    "clash-verge",
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "配置代理分流規則",
+    "設定系統代理連線"
+  ],
+  "設定系統代理連線": [
+    "clash-verge-rev",
+    "clash",
+    "clash-meta",
+    "clash-verge",
+    "匯入代理訂閱連結",
+    "切換代理節點",
+    "配置代理分流規則",
+    "管理代理配置文件"
   ],
   "翻譯": [
     "translate",

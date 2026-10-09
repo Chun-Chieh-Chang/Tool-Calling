@@ -273,7 +273,10 @@ function usage() {
 }
 
 function printFindings(findings, modeLabel) {
-  console.log(`🔍 [Traditional Guard] 偵測器：內建對照表（opencc ${usingOpenCC() ? '已啟用' : '未安裝，走備援'}）｜範圍：${modeLabel}`);
+  // 2026-10-09 措辭更正：舊橫幅寫「偵測器：內建對照表（opencc 已啟用）」兩半互相矛盾，
+  // 且讓人誤以為裝了 opencc 偵測就會全覆蓋——實測 findSimplified() 永遠只查內建表，
+  // opencc 只參與 toTraditional() 的轉換端。分工講清楚，別再餵養那個錯誤結論。
+  console.log(`🔍 [Traditional Guard] 偵測＝內建對照表（與 opencc 與否無關）｜轉換＝${usingOpenCC() ? 'opencc 已啟用' : 'opencc 未安裝，走內建表單字對照'}｜範圍：${modeLabel}`);
 
   if (findings.length === 0) {
     console.log('✅ [Traditional Guard] 未發現簡體字，中文書寫皆為繁體');

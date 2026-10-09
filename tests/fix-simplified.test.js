@@ -102,3 +102,14 @@ test('findSimplified - 表外簡體字也應被偵測出來（修掉循環盲區
   assert.equal(findSimplified('有沒有').length, 0, '繁體不應被誤報');
   assert.equal(findSimplified('跨平台').length, 0, '繁體「台」不應被誤報');
 });
+
+// 2026-10-09：U+79BB（「離」的簡體形）是 10-07 二十字探針裡唯一未被豁免的真缺口，
+// 當時它同時不在 S2T_KEYS 也不在 S2T_SAFE → 偵測與轉換兩邊都漏（陷阱 19 的循環盲區）。
+// 樣本刻意只用「离線」：串裡唯一的簡體字就是它，才能證明走的是單字對照那條路，
+// 而不是整串丟給 opencc。
+test('S2T_SAFE - 收錄 U+79BB 後偵測與轉換兩邊都要生效（兩個方向都釘住）', () => {
+  assert.ok(findSimplified('离線').length > 0, '簡體「离」應被偵測出來');
+  assert.equal(toTraditional('离線'), '離線', '單字對照應把它轉成繁體「離」');
+  assert.equal(findSimplified('離線').length, 0, '繁體「離」不應被誤報');
+  assert.equal(toTraditional('離線'), '離線', '純繁體應完全不變');
+});

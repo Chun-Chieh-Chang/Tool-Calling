@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-09（negativeFacets 品質債務清償 4 筆逐條覆核＋telemetry 寫入通路首次驗證＋`npm audit fix` 全套落地並推翻「裝 opencc 就全覆蓋」＋四段已推送、**push 慣例改版**（`cmd /c … 2>nul` 實測靜默不執行卻回 exit 0，自此停用）——見「三、目前狀態」頂部四節 10-09；其下為 10-07 四節（`lint:wiki` E1–E5 上線、四項裁決、12 支缺詞條、19 支雙否結構化、Tier 0 消融重量）與 10-06 embedding 量測、10-05 批次加入快照）
+> 最後更新：2026-10-09（六節：negativeFacets 債務清償 4 筆逐條覆核／telemetry 寫入通路首次驗證／`npm audit fix` 全套並推翻「裝 opencc 就全覆蓋」／推送與 push 慣例改版（`cmd /c … 2>nul` 靜默不執行卻回 exit 0，已停用）／CI 長期紅的根因是衍生檔漂移五天／`U+79BB` 收進閘門＋NCZ 缺口由「59」修正為 10＋撤回「`+ecosystem:bootstrap` 是零成本正解」——見「三、目前狀態」頂部六節；其下為 10-07 四節與 10-06 embedding 量測、10-05 批次加入快照）
 
 ---
 
@@ -248,7 +248,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部四節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部六節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
 
@@ -480,6 +480,72 @@ deps／docs）。判準三件都取：命令 exit 0、push.log 裡真的出現�
 **仍存在的對稱盲區（未修，需裁）**：CI 另外還跑 `npm run validate`、
 `node scripts/rescan-classification.js --ci`、`node scripts/build-web.js`，本地 `npm test` 缺後兩條的等價物
 （`validate` 有獨立 `npm run validate`，`rescan --ci` 沒有任何本地入口）。要補就一起補，別再留半條。
+
+### 2026-10-09（第六輪）三項待裁落地：`U+79BB` 收進閘門、NCZ 缺口從「59」修正為 10、以及 `+` 極性其實是惰性的
+
+**先撤回本會話早先報的兩條錯**
+
+1. 「`bootstrap-icons` NC[0] 有零成本正解 `+ecosystem:bootstrap`」——**錯**。
+   `core/agent-retrieval.js:301` 對 facets 一律 `entry.charCodeAt(0) !== 45 → continue`，
+   **`+` 極性條目不參與打分**。記憶體 A/B（同查詢、只改這一支的 facets）實測：
+   基準 第 1 名／0.266；加 `+ecosystem:bootstrap` → 第 1 名／0.266（**零變化**）；
+   對照組加 `-ecosystem:bootstrap` → 第 12 名／0.116（起罰，證明扣分機制是活的）。
+   → 「要求型」約束（不適合非 X）在現有結構裡**無處表達**：`-` 會誤扣、`+` 不扣，
+   而 facets 非空時散文被整條忽略（`:296-300`）。四條「未覆蓋」逐條覆核後：只有 `bootstrap-icons`
+   那條語意上能對應 `+ecosystem`；其餘 3 條（`code-review-skill` NC[1]、`exercises-dataset` NC[1]／NC[2]）
+   在 10 個白名單 facet 裡**沒有合法歸屬**（「領域／用途」不是一個 facet），維持散文。
+2. 「59 支缺 `negativeConstraints_zh` 是缺陷」——**誇大**。按 NC 的語言分類：46 支的 NC 本來就是
+   **純中文散文**，`translate-to-zh.js:184-189` 判定無需翻譯是**正確行為**（顯示層直接顯示中文）；
+   含英文內容的真缺口只有 **13 支**，其中 3 支是 deprecated／archived
+   （`kimi-k3-code-free-desktop-ai`、`figma-sharp`、`figma-api-demo`）被腳本正確排除 → **實際要補 10 支**。
+
+**做了什麼**
+
+- **(c) 閘門**：`U+79BB` 收進 `scripts/fix-simplified.js` 的 `S2T_SAFE`（附收錄資格註解）；
+  `tests/fix-simplified.test.js` 新增 1 項**兩個方向都釘**的測試（`离線` 應被偵測且轉成 `離線`；allow-simplified：引用測試樣本本體
+  `離線` 不應被誤報、不應被改）。樣本刻意只用「离線」兩字，確保走的是單字對照那條路而非整串 opencc。allow-simplified：引用測試樣本本體
+  注銷順序照文件慣例：先證明收緊會響——`--full --code` 立刻在 `core/synonyms.generated.js` 報出 8 處。
+- **(c) 源頭**：`ds4` 的 trigger `离線運行DeepSeek` → `離線運行DeepSeek`（走 `loadRegistry`／`saveRegistry`）；allow-simplified：引用修正前的資料原值
+  再 `npm run build` 重建派生檔 → `--full --code` 掃 136 檔轉綠。
+  ⚠️ **但檢索收益是零**：三個繁體查詢的 fusion 分數改前改後都是 **0.57 完全相同**。
+  因為這條是**簡繁混寫**（只有首字簡），bigram 仍有 2/3 重疊。
+  → 對陷阱 4 的精確化：**「零重疊」只在整詞全簡時成立**；混寫一個字不影響命中，這正是它能存活的原因。
+  修它的依據是資料衛生與往後可被閘門照到，**不是效能**。
+- **(c) 橫幅**：`check-traditional.js:276` 改為「偵測＝內建對照表（與 opencc 與否無關）｜轉換＝opencc 已啟用」，
+  拆掉那句自相矛盾的話。改前先確認沒有測試或文件釘住舊字串。
+- **(b) 譯文**：清掉 10 支的 state 標記（**不用 `--redo-skipped`**——它會把數百條 `skipped` 標記一起清掉，
+  日後重跑就可能覆蓋手動修正過的譯文），`--ids=` 限定範圍、`--batch=1`（陷阱 16：批次越大越容易照抄）。
+  9 支成功、1 支失敗；逐支驗證看四個數：NC／NCZ 筆數對齊、照抄數、未譯數、`desc_zh` 有無。
+  - `sc-datav` 被計入「成功」卻**沒寫入 NCZ** → **「成功筆數」不等於「每個欄位都落盤」**。
+    重跑仍失敗，原因與 `heterogeneous-gpu-pd-lab` 相同：模型回**扁平鍵 `<id>_zh`**（不帶欄位名），
+    解析器無法歸屬 → 這是第 5 種響應形態，屬腳本缺陷，未擅自改解析器；
+    該支 2 條由我照原文手翻入檔（英中對照已逐條印出），並在 state 標記來源。
+  - ⚠️ **`translate-to-zh.js --dry` 會照樣呼叫 API**（只有寫入被 DRY 擋住，API 迴圈沒有）——
+    與 `infer-facets --dry` 同語意、與 `compile-wiki --dry` 相反。「同名動詞跨腳本不保證同義」的第三個實例。
+  - 副作用（如實記）：補齊 `description_zh` 觸發 `activateIfComplete()`，**9 支 experimental → active**。
+    現量 active 744／experimental 0／deprecated 2／archived 2，**active+experimental 仍為 744**，
+    所以 `lint:wiki` 的 744 分母與 E3 判定不受影響——這是剛好湊巧，不是設計保證。
+- **詞檔與量測**：9 支 Tier 0 詞條以 `compile:wiki -- --offline --ids=…` 免費重編
+  （`--dry` 先確認目標 9 筆、跳過 0）。`ablate:v5` 建議**仍 0.2**（天花板 98.4%／top1 58.0%，
+  與改動前的工作點逐字相同；只有 w=0.15 那行 −1 筆／267，雜訊級）；`benchmark` 與前一份
+  **只差 agent MRR 0.672→0.671**，fusion 全行不動。評測集對這 11 支 **0／267 命中**
+  → 兩把尺只承擔測回歸的角色，不可讀成「補譯文沒用」也不必讀成「有進步」。
+- **E1 基線採部分重建**：9 支已重編譯的更新指紋；`ds4`／`anny` 兩支 Tier 1 詞條**保留舊指紋**，
+  讓 `lint:wiki` 誠實報 **E1=2**（它們的詞條仍是補譯前編出來的）。
+  全量 `--update-baseline` 會把這條真訊號抹掉，故沒做。清法：
+  `AGNES_API_KEY=… node scripts/compile-wiki.js --ids=ds4,anny` 之後再 `--update-baseline`。
+
+**順帶更正我對使用者講過的一句**：我說「閘門對 registry 存量完全盲、一直沒人看見」——不確切。
+`check-traditional.js:59` 的 `SKIP_PATH_PATTERNS` 把 `^registry/` **刻意排除**（預設與 `--full` 都排），
+所以那 35 項是「閘門不管資料檔」而不是「漏掃」；其中多數還是上游 README 原文，屬應保留的原始語言。
+
+**下一個人的待裁清單（本輪新增）**
+
+1. ⏳ 要不要給 `+` 極性一條加分路徑（動 `core/agent-retrieval.js` ＋ 重跑評測）——
+   否則「要求型」約束永遠只能留在散文，而散文在有 facets 時被忽略。
+2. ⏳ `translate-to-zh.js` 要不要加第 5 種響應形態的解析分支＋測試；以及「成功筆數」應不該改成**逐欄位**核銷。
+3. ⏳ E1=2 那兩支 Tier 1 詞條要不要花額度重編（需 AGNES Tier 1 額度，上次是 429）。
+4. ⏳ 對稱盲區後半：CI 跑的 `rescan-classification.js --ci` 本地仍無等價入口（第五輪只補了 `check-mece` 與 `categories:check`）。
 
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 

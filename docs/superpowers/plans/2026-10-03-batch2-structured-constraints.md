@@ -33,7 +33,7 @@
 - **可證偽判定**：套用後重跑 267 題 benchmark——
   gate A：agent / fusion Hit@1 降幅 ≤ 3pp、空集誠實率 10/10（不做就滾回）
   gate B（假說檢驗）：constrained 組 Hit@1 > 61.5%（現值）且 c61 不再誤懲
-  兩 gate 都不過 → 保留引擎碼但清空資料（negativeFacets 撤离），結論記 DEV_LOG
+  兩 gate 都不過 → 保留引擎碼但清空資料（negativeFacets 撤離），結論記 DEV_LOG
 
 ## 任務序列
 
