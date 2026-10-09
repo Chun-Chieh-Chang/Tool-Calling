@@ -451,6 +451,36 @@ deps／docs）。判準三件都取：命令 exit 0、push.log 裡真的出現�
 （critical 1／high 1／moderate 5）——那是重算前的快照，與上面不矛盾。
 第三輪留的「push 前不可引用遠端已歸零」至此有了後續數據。
 
+### 2026-10-09（第五輪）CI 長期紅的根因：`categories:check` 只存在於 CI，本地全綠讓衍生檔漂移了五天
+
+**現象**：使用者貼 GitHub 提交列表截圖，`5dddfef`／`ba3c1e4`／`478b76e`／`37dd971` 都掛 ❌ 0/2。
+**歸因前先取證**：`gh run list --limit 12` 顯示 `Deploy GitHub Pages` 從 **10-05 23:27 起每一次 push 都失敗**
+（早於本會話的 4 筆與本輪全部都在紅的清單裡）→ **不是本輪造成的回歸，是長期紅**。
+**根因**：失敗步驟是 `Check Category Sync` → `npm run categories:check` → `【CATEGORY-SYSTEM.md】不一致`，
+本地重跑完全復現。該衍生檔合計仍寫 **736 個工具**、實際 748：10-05 批次加入 10 支、10-06 加 2 支、
+外加 5 支改分類之後，只更新了 `check-doc-stats` 覆蓋的 README／AGENTS.md，**漏跑 `npm run categories:sync`**。
+**為什麼五天無人發現**：`npm test` 的閘門鏈裡**沒有** `categories:check`，也沒有 `check-mece`——
+那兩條只寫在 `.github/workflows/deploy-pages.yml`。本地九道全綠、CI 卻紅，
+屬「閘門只存在於一條路徑」的盲區（與 §二 陷阱 22「只看尾部會漏掉失敗」同族，但這次是整條閘門缺席）。
+
+**CAPA（兩件事，都帶驗證）**
+
+1. `npm run categories:sync` 落盤：`docs/CATEGORY-SYSTEM.md` **8 增／8 刪**
+   （開發工具 107→108、AI 框架 81→83、學習資源 63→65、UI/UX設計 56→59、影片 24→25、
+   安全性 16→18、音訊 12→13、合計 736→748）。同步後的分類數與 `AGENTS.md`（由 registry 產生）逐項一致。
+2. 把 `check-mece` 與 `sync-categories.js --check` 補進 `package.json` 的 `test` 鏈
+   （兩條實測各 0.08 秒，加進去零成本），讓「只在 CI 的閘門」本地也會擋。
+   **注銷測試**：把 `CATEGORY-SYSTEM.md` 的 748 暫改成 736 → `--check` **exit 1**；
+   按副本還原 → **exit 0**，且還原後 `--numstat` 仍是 8/8（證明還原的是同步版而非 HEAD 版）。
+
+**旁證（順帶對上）**：`gh run list` 在 10-09 03:35 有一筆 `Dependabot Updates … ip-address` **success**，
+與本地 `npm audit` 歸零同期——遠端那 7 則 advisory 的關閉正是這次 lock 更新觸發的
+（open 0／closed 24 現量見第四輪）。
+
+**仍存在的對稱盲區（未修，需裁）**：CI 另外還跑 `npm run validate`、
+`node scripts/rescan-classification.js --ci`、`node scripts/build-web.js`，本地 `npm test` 缺後兩條的等價物
+（`validate` 有獨立 `npm run validate`，`rescan --ci` 沒有任何本地入口）。要補就一起補，別再留半條。
+
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 
 **問題**：Karpathy 的 LLM wiki gist 能否幫到檢索與配對。
