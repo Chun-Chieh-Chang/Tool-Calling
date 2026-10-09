@@ -677,7 +677,24 @@ tree 相同就等於**內容一個 bit 沒動、只有訊息變**，也順帶證
 
 **驗證**：`npm test` **387／385 pass／0 fail／2 skip**，且輸出現在有**三道** ✅ Traditional Guard
 （先前兩道：新增行＋`--full --code`；第三道是本輪新增的 commit 訊息）。
-`af2c456` 的 CI 先前已 completed success；`964abbb` 為 docs-only，推過之後用 `git ls-remote` 驗過遠端同值。
+`af2c456` 的 CI（run 37905378251）與 `964abbb` 的 CI（run 37907752470，2m9s）都 **completed success**；
+兩筆推送後皆以 `git ls-remote` 驗過遠端與本地同值。本筆 `65561bf` 的 CI（run 37915680552）
+亦 **conclusion success**——這是 `--commits` 第一次在 CI 的 `fetch-depth: 2` 環境下真跑，
+實測證明「默認範圍 `HEAD~1..HEAD` 在深度 2 的 clone 裡存在」這個選法是對的
+（若當初沿用 `HEAD~5..HEAD`，這一步會在 CI 直接 unknown revision）。
+
+**下一個人的待裁清單（本輪新增）**
+
+1. ⏳ 鏈裡這道 commit 訊息閘門**只掃最新一筆**（`HEAD~1..HEAD`）。多筆一起推時，較旧的 commit 訊息
+   不會被抓到——我為了避開 CI `fetch-depth: 2` 才這麼選的，是取捨不是完解。兩個候選解法：
+   (a) 讓 `check-traditional.js` 自己把 range 收斂到「實際可達的深度」（不動 CI 設定，程式內解決）；
+   (b) 把 workflow 的 `fetch-depth` 提高（受保護路徑 `.github/workflows/*.yml`，**需用人工確認**）。
+   現行緩解：推多筆前先手動跑 `npm run check:lang:commits`（HEAD~5..HEAD）。
+2. ✅已裁「先只量覆蓋率」**尚未執行**：P1-a 中文對照表（任務 #7）。
+3. ✅已裁「做閘門並掃全庫」**尚未執行**：`infer-facets` 自我拆台約束的反向檢查（任務 #9）。
+4. ⏳ 舊三項待裁（`translate-to-zh` 第 5 種響應形態／花額度重編 `ds4`·`anny` 清 E1=2／
+   `rescan-classification --ci` 的本地等價入口）——選單那一題的答案**整筆沒回傳**，
+   依規矩視為未答，不得代裁。
 
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 
