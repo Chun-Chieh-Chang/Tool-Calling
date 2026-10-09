@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-09T08:09:48.411Z",
+  "lastUpdated": "2026-10-09T10:25:57.801Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -8724,7 +8724,6 @@
       ],
       "negativeFacets": [
         "-language:low-level",
-        "-format:code",
         "-format:api reference"
       ]
     },
@@ -9110,7 +9109,6 @@
         "不適用於行動端或純瀏覽器 Web 環境"
       ],
       "negativeFacets": [
-        "-interface:cli",
         "-interface:headless",
         "-platform:mobile"
       ]
@@ -14540,7 +14538,7 @@
       ],
       "negativeFacets": [
         "-format:vfx",
-        "-deployment:cloud",
+        "-interface:multi-user editing",
         "-format:8k footage"
       ]
     },
@@ -32217,7 +32215,6 @@
       ],
       "useCase_zh": "內容創作者或開發者在 Claude Code、Cursor 等 AI Agent 中，需要為 Seedance 2.0 撰寫高品質的影片提示詞（用於廣告或劇集），並透過此技能庫確保語法正確與攝影機語言規範。",
       "negativeFacets": [
-        "-platform:seedance 1",
         "+integration:llm agent"
       ]
     },
@@ -32331,7 +32328,6 @@
       ],
       "useCase_zh": "開發人員或研究人員透過呼叫 C++ API 建構即時影像處理與分析應用程式，例如物件追蹤或場景分割。",
       "negativeFacets": [
-        "-platform:deep-learning",
         "-scale:real-time-streaming",
         "-scale:gpu-parallel-computing"
       ]
@@ -34520,7 +34516,6 @@
         "不適合簡單的 static HTML 解析"
       ],
       "negativeFacets": [
-        "-interface:cli",
         "-format:html",
         "+ecosystem:firecrawl",
         "+interface:cli"
@@ -37717,7 +37712,6 @@
         "需要持久 WebSocket 連線的即時協作應用程式"
       ],
       "negativeFacets": [
-        "-format:static site",
         "-platform:native mobile",
         "-platform:real time"
       ]

@@ -120,3 +120,57 @@ test('有所指的複合狀態詞不得被誤殺（正例對照二）', () => {
   assert.equal(r.errors.filter((e) => e.field === 'negativeFacets').length, 0);
 });
 
+// ── 自我拆台約束（#9，2026-10-09）───────────────────────────────────────
+// 實測根據：`tradingagents`（金融分析代理）帶著 `-ecosystem:finance`——把自家領域
+// 列為禁用。植查證明它真的會咬自己：`build a quantitative finance agent for stock
+// trading` 被扣 0.07（第 16 名）、`finance dashboard for portfolio tracking` 被扣
+// 0.10 讓分數壓到 0（第 32 名）。根因是 infer-facets 把散文「不適合微秒級高頻交易」
+// 抽成 `-ecosystem:finance`（抓錯主詞）。
+//
+// 口徑選擇（掃全庫後定的，不是拍的）：值詞彙**全部**落在該工具自己的
+// id／name／triggers 才算嫌疑。寬口徑（再加上 capabilities／advantages／useCase／tags）
+// 實測抓 10 筆，其中 7 筆是合法的「排除相鄰領域」（如 storybook 排除 backend、
+// awesome-selfhosted 排除 proprietary）——那些詞只是工具碰過、不是它本身是什麼。
+// 嚴口徑 3 筆全部是真自指。所以這裡用嚴口徑，且做 **warning 不做 error**：
+// 誤判成本是「關掉門禁」，而合法排除無窮無盡、列不進白名單。
+test('- 條目的值全等於工具自己的身分詞 → warning（疑似自我拆台）', () => {
+  const r = validateToolContract({
+    ...baseTool,
+    triggers: ['t1', 'tool one', 'finance'],
+    negativeFacets: ['-ecosystem:finance'],
+  });
+  assert.ok(r.warnings.some((w) => w.field === 'negativeFacets' && w.message.includes('自我拆台')),
+    `應出現自我拆台 warning，實得 warnings=${JSON.stringify(r.warnings.map((w) => w.message))}`);
+  assert.equal(r.errors.filter((e) => e.field === 'negativeFacets').length, 0, '這是 warning，不得升級成 error');
+});
+
+// 反向釘住（同一版必列正例，否則一刀修成靜默綠＋擋死合法資料）：
+// 排除「不是自己」的相鄰領域是 negativeFacets 的正當用途。
+test('排除相鄰領域不受自我拆台規則影響（正例對照）', () => {
+  const r = validateToolContract({
+    ...baseTool,
+    triggers: ['storybook', 'component workshop'],
+    capabilities: ['ui', 'backend'],
+    negativeFacets: ['-interface:backend'],
+  });
+  assert.equal(r.warnings.filter((w) => w.field === 'negativeFacets' && w.message.includes('自我拆台')).length, 0);
+});
+
+// 極性矛盾：同一個 facet:value 同時被 `-` 排除與 `+` 要求，是零判斷空間的資料缺陷
+// （實測現行一筆：firecrawl-cli-skills 同時帶 `-interface:cli` 與 `+interface:cli`）。
+test('同 facet:value 出現相反極性 → error（自相矛盾）', () => {
+  const r = validateToolContract({
+    ...baseTool,
+    negativeFacets: ['-interface:cli', '+interface:cli'],
+  });
+  assert.ok(r.errors.some((e) => e.message.includes('矛盾')), `應報矛盾 error，實得 ${JSON.stringify(r.errors.map((e) => e.message))}`);
+});
+
+test('不同facet 或不同值不算矛盾（正例對照）', () => {
+  const r = validateToolContract({
+    ...baseTool,
+    negativeFacets: ['-interface:cli', '+interface:gui', '-platform:cli'],
+  });
+  assert.equal(r.errors.filter((e) => e.message.includes('矛盾')).length, 0);
+});
+

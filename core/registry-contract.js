@@ -1,3 +1,7 @@
+// 斷詞沿用引擎那把尺（見 findSelfDefeatingFacets 的註解）：本檔原本是零依賴的，
+// 但這道檢查若自己實作一套切詞規則，門禁看到的詞彙邊界會和實際打分的邊界不一致。
+import { tokenize } from './tokenize.js';
+
 const CONTRACT_VERSION = '2.0';
 
 const REQUIRED_FIELDS = [
@@ -93,6 +97,7 @@ export function validateNegativeFacets(value) {
   if (value.length > FACET_MAX_ENTRIES) return [`negativeFacets 不得超過 ${FACET_MAX_ENTRIES} 筆`];
   const errors = [];
   const seen = new Set();
+  const polarities = new Map();
   for (const entry of value) {
     if (typeof entry !== 'string') {
       errors.push(`negativeFacets 條目必須是字串：${JSON.stringify(entry)}`);
@@ -125,6 +130,16 @@ export function validateNegativeFacets(value) {
       errors.push(`negativeFacets value 是程度詞（無所指、任何語言都點不燃），請改寫成可比的對象或刪除該條：${entry}（程度詞：${vague}）`);
       continue;
     }
+    const seenKey = m[3].trim().toLowerCase();
+    const pairKey = `${m[2]}:${seenKey}`;
+    const prior = polarities.get(pairKey);
+    if (prior && prior !== m[1]) {
+      // 同一個 facet:value 同時被排除與要求 = 零判斷空間的資料缺陷。
+      // 實例（2026-10-09 掃全庫）：firecrawl-cli-skills 帶 `-interface:cli` 又帶 `+interface:cli`。
+      errors.push(`negativeFacets 極性矛盾（同 ${pairKey} 同時出現 - 與 +）：${entry}`);
+      continue;
+    }
+    polarities.set(pairKey, m[1]);
     if (seen.has(entry)) {
       errors.push(`negativeFacets 重複條目：${entry}`);
       continue;
@@ -132,6 +147,35 @@ export function validateNegativeFacets(value) {
     seen.add(entry);
   }
   return errors;
+}
+
+/**
+ * 自我拆台檢查：`-` 條目的值詞彙若**全部**出現在該工具自己的 id／name／triggers，
+ * 代表「這個工具不適合它自己」——命中時照樣扣分，等於把正解壓下去。
+ *
+ * 實測根據（同一版掃全庫）：寬口徑（再加 capabilities／advantages／useCase／tags）
+ * 抓 10 筆，其中 7 筆是合法的相鄰領域排除（storybook 排除 backend 等）；
+ * 嚴口徑 3 筆全是真自指（seedance2-skill `-platform:seedance 1`、opencv
+ * `-platform:deep-learning`、firecrawl-cli-skills `-interface:cli`）。
+ * 因此：只用嚴口徑，且回 **warning**（不是 error）——誤判的代價是工程師關掉門禁。
+ *
+ * 斷詞刻意沿用 `core/tokenize.js`（引擎打分用的同一把尺），否則門禁與實際
+ * 會扣分的詞彙邊界不一致，檢查就只是形似。
+ */
+export function findSelfDefeatingFacets(tool) {
+  const facets = Array.isArray(tool?.negativeFacets) ? tool.negativeFacets : [];
+  if (facets.length === 0) return [];
+  const identity = new Set(tokenize([tool.id, tool.name, ...(tool.triggers || [])].join(' ').toLowerCase()));
+  const hits = [];
+  for (const entry of facets) {
+    if (typeof entry !== 'string' || entry.charCodeAt(0) !== 45 /* - */) continue;
+    const colon = entry.indexOf(':');
+    if (colon === -1) continue;
+    const valueTokens = [...new Set(tokenize(entry.slice(colon + 1)))];
+    if (valueTokens.length === 0) continue;   // 斷詞後為空（如純數字值）→ 交給格式規則，不在這裡誤報
+    if (valueTokens.every((t) => identity.has(t))) hits.push({ entry, valueTokens });
+  }
+  return hits;
 }
 
 function hasValue(value) {
@@ -183,6 +227,12 @@ export function validateToolContract(tool = {}) {
   for (const msg of validateNegativeFacets(tool.negativeFacets)) {
     errors.push(issue('negativeFacets', msg, 'error'));
     score -= 25;
+  }
+
+  for (const hit of findSelfDefeatingFacets(tool)) {
+    warnings.push(issue('negativeFacets',
+      `疑似自我拆台：${hit.entry} 的值詞彙（${hit.valueTokens.join(', ')}）全部出現在本工具的 id／name／triggers，等於「不適合自己」。請改寫成被排除的具體對象或刪除該條`));
+    score -= 5;
   }
 
   const qualityScore = Math.max(0, Math.min(100, score));
