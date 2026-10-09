@@ -18,13 +18,15 @@
  *   node scripts/rescan-classification.js            # 產出報告（唯讀）
  *   node scripts/rescan-classification.js --debug    # 印出每筆命中理由
  *   node scripts/rescan-classification.js --apply    # 套用 Tier 1 變更
+ *   node scripts/rescan-classification.js --ci       # CI 模式：Tier 1 > 0 就 exit 1（唯讀）
+ *   node scripts/rescan-classification.js --registry <path>  # 改用指定 registry（給測試打樁用）
  */
 
 // 規則引擎已抽至 core/classification-rules.js（唯讀純函式），
 // 讓多值推斷（infer-multidimensional.js）與本腳本共用同一份規則，避免兩份規則漂移。
 // 本腳本僅負責「規則違反審計」流程（Tier 1/2/3 分層、--apply、報告產出）。
 import { readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { saveRegistry } from '../core/registry.js';
 import {
   fields,
@@ -33,7 +35,12 @@ import {
 } from '../core/classification-rules.js';
 
 const ROOT = join(import.meta.dirname, '..');
-const REGISTRY_PATH = join(ROOT, 'registry', 'tools.json');
+// --registry <path>：讓這條閘門能用 fixture 打樁（測試要證明它真的會擋，
+// 而不是只能改到正式版 tools.json 才驗得出來）。不給就是正檔。
+const REGISTRY_FLAG = process.argv.indexOf('--registry');
+const REGISTRY_PATH = REGISTRY_FLAG >= 0 && process.argv[REGISTRY_FLAG + 1]
+  ? resolve(process.argv[REGISTRY_FLAG + 1])
+  : join(ROOT, 'registry', 'tools.json');
 const JSON_OUT = join(ROOT, 'registry', 'classification-rescan.json');
 const MD_OUT = join(ROOT, 'docs', 'classification-rescan-2026-09-12.md');
 const APPLY = process.argv.includes('--apply');
@@ -41,6 +48,17 @@ const DEBUG = process.argv.includes('--debug');
 // CI 模式：Tier 1 > 0 時以非零退出碼結束，讓建置失敗。
 // 預設（無 --ci）一律 exit 0，因為「有 Tier 1 待套用」是正常的待辦狀態，不是錯誤。
 const CI_MODE = process.argv.includes('--ci');
+// 指定 --registry 就是診斷／打樁模式：絕不寫報告檔，否則拿 fixture 跑一次就會把
+// docs 與 registry 的正式報告覆蓋成「只有 1 支工具」的內容。
+const DIAGNOSTIC = REGISTRY_FLAG >= 0 && Boolean(process.argv[REGISTRY_FLAG + 1]);
+const WRITES_REPORT = !CI_MODE && !DIAGNOSTIC;
+// --apply 一律寫**正式庫**（core/registry.js 的 saveRegistry 寫死自己的路徑，不認 --registry）。
+// 所以 `--apply --registry fixture` 會拿 1 支工具的 fixture 覆蓋 748 支的正式庫，
+// 這裡直接擋掉，不靠呼叫端小心。
+if (APPLY && DIAGNOSTIC) {
+  console.error('❌ --apply 不得與 --registry 合併使用：saveRegistry() 寫的是正式 registry/tools.json。');
+  process.exit(2);
+}
 
 // ═══ 規則引擎（fields / ruleApplies / EX / AGENT_SIGNALS / RULES / RULES_BY_PASS）══
 // 已抽取至 core/classification-rules.js（唯讀純函式），本腳本不再內含重複定義。
@@ -137,7 +155,7 @@ function main() {
   // CI 模式是唯讀閘門，不寫檔。
   // 否則每次跑 gate 都會弄髒工作區 —— generatedAt 每次都不同，產生物
   // 永遠顯示為「已修改」，讓真正的變更淹沒在雜訊裡。
-  if (!CI_MODE) writeFileSync(JSON_OUT, JSON.stringify(result, null, 2) + '\n', 'utf-8');
+  if (WRITES_REPORT) writeFileSync(JSON_OUT, JSON.stringify(result, null, 2) + '\n', 'utf-8');
 
   // ─── Markdown 報告 ──────────────────────────────────────────────────────
   const before = {};
@@ -388,7 +406,7 @@ function main() {
   L.push('而非單純因為「找不到領域詞」。修正後 Tier 1 由 37 筆降至 10 筆，全數可辯護。');
   L.push('');
 
-  if (!CI_MODE) writeFileSync(MD_OUT, L.join('\n'), 'utf-8');
+  if (WRITES_REPORT) writeFileSync(MD_OUT, L.join('\n'), 'utf-8');
 
   console.log(`📊 掃描 ${tools.length} 個工具`);
   console.log(`   Tier 1 明確違反 : ${tier1.length}`);
@@ -397,8 +415,8 @@ function main() {
   console.log(`   合規            : ${compliant.length}`);
   console.log(`   無規則命中      : ${noRule.length}`);
   console.log(`   決策樹覆蓋率     : ${((ruleHitCount / tools.length) * 100).toFixed(1)}%`);
-  if (CI_MODE) {
-    console.log('\n（CI 模式：唯讀，未寫入報告檔）');
+  if (!WRITES_REPORT) {
+    console.log(`\n（唯讀模式：未寫入報告檔${CI_MODE ? ' — CI 閘門' : ' — --registry 診斷'}）`);
   } else {
     console.log(`\n📄 報告：docs/classification-rescan-2026-09-12.md`);
     console.log(`📄 差異：registry/classification-rescan.json`);
@@ -420,6 +438,12 @@ function main() {
 
   if (CI_MODE && tier1.length > 0) {
     console.error(`\n✗ CI 檢查失敗：發現 ${tier1.length} 筆 Tier 1 分類違反。`);
+    // 不列 id 的話，本地被擋之後只能再跑一次「不帶 --ci」才知道卡在哪——
+    // 而那一跑會順手覆蓋 docs 與 registry 的正式報告檔。所以這裡直接點名。
+    for (const t of tier1.slice(0, 10)) {
+      console.error(`    · ${t.id}：${t.current} → 應為 ${t.proposed}（${t.rule}｜${t.why}）`);
+    }
+    if (tier1.length > 10) console.error(`    …其餘 ${tier1.length - 10} 筆見完整報告模式`);
     console.error('  請執行 node scripts/rescan-classification.js --apply 或人工修正後再提交。');
     process.exitCode = 1;
   }
