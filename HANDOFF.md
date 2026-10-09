@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-09（negativeFacets 品質債務清償 4 筆逐條覆核＋telemetry 寫入通路首次驗證＋`npm audit fix` 全套落地並推翻「裝 opencc 就全覆蓋」——見「三、目前狀態」頂部三節 10-09；其下為 10-07 四節（`lint:wiki` E1–E5 上線、四項裁決、12 支缺詞條、19 支雙否結構化、Tier 0 消融重量）與 10-06 embedding 量測、10-05 批次加入快照）
+> 最後更新：2026-10-09（negativeFacets 品質債務清償 4 筆逐條覆核＋telemetry 寫入通路首次驗證＋`npm audit fix` 全套落地並推翻「裝 opencc 就全覆蓋」＋四段已推送、**push 慣例改版**（`cmd /c … 2>nul` 實測靜默不執行卻回 exit 0，自此停用）——見「三、目前狀態」頂部四節 10-09；其下為 10-07 四節（`lint:wiki` E1–E5 上線、四項裁決、12 支缺詞條、19 支雙否結構化、Tier 0 消融重量）與 10-06 embedding 量測、10-05 批次加入快照）
 
 ---
 
@@ -248,7 +248,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部三節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部四節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
 
@@ -428,6 +428,28 @@ node 和 curl 用的路徑，一律採倉內相對路徑**——否則 node 先 
 1. ⏳ `U+79BB` 收進 `S2T_SAFE`（一行、零額度，但動到閘門）——要不要補。補完必須同版更新
    10-07（第二輪）那段「抓到 15 個／U+79BB 是真缺口」的覆蓋率敘述，否則文件描述的驗法會失效。
 2. ⏳ `check-traditional.js:276` 的橫幅措辭——要不要改成「偵測＝內建表／轉換＝opencc」這種講清楚分工的寫法。
+
+### 2026-10-09（第四輪）推送落地，並改掉那條「靜默不執行卻回成功」的 push 慣例
+
+**推送現量**：`ba3c1e4..5dddfef  main -> main`（本日四段：facets 清償／telemetry 驗證／
+deps／docs）。判準三件都取：命令 exit 0、push.log 裡真的出現那行區間、
+`git ls-remote origin main` 與 `git rev-parse HEAD` 逐字相同。
+這一次 `git rev-list --count origin/main..HEAD` 也回到 **0**——本地 remote-tracking 是被
+**push 自己**帶正的，`git fetch` 在本機仍無效（陷阱 5），所以別預設它會自己正。
+
+🔴 **為什麼改慣例（陷阱 8 的老模式：緩解機制自己有缺陷）**：§八 與陷阱 13 自 2026-10-04 起
+規定的 `cmd /c "git push origin main 2>nul"`，本輪實測**整條沒有執行任何推送，卻回 exit 0**。
+它印的是 cmd 自己的橫幅，`2>nul` 也沒接到 git 的 stderr；我據那個 0 以為成功，
+是 `git ls-remote` 仍是 `ba3c1e4` 才戳破。改用 `git push origin main > <倉庫外>/push.log 2>&1`
+後才拿到真正的 exit code 與 `ba3c1e4..5dddfef` 那行。
+這是陷阱 13「假失敗」的反向版本——**假成功**，比假失敗更危險，因為它連「看起來不對」都不留。
+兩處慣例本文已同版改寫（§八 ＋ 陷阱 13），**舊寫法自此停用**。
+
+**Dependabot 現量（push 之後取）**：`gh api …dependabot/alerts` → **open 0／closed 24**。
+拿 closed=24 作第二條路徑，證明那個 0 不是權限失敗或空回應。
+⚠️ 對照組一併記下：push 當下 GitHub 仍在 server-side 訊息裡回報 **7 則**
+（critical 1／high 1／moderate 5）——那是重算前的快照，與上面不矛盾。
+第三輪留的「push 前不可引用遠端已歸零」至此有了後續數據。
 
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 
@@ -1166,9 +1188,12 @@ Dependabot open alerts（`gh api`）＝critical1／high1／medium5／**7 則**�
 13. **PowerShell 把 git push 的 stderr 進度訊息判為錯誤**：輸出顯示
     `Command exited with code 1` 不代表推送失敗——唯一判準是
     `git ls-remote origin main` 對 hash（A 批 20+ 次假失敗、1 次真失敗全靠此分辨）。
-    **解法**：`cmd /c "git push origin main 2>nul"` 原生重導向丟 stderr 只看
-    `$LASTEXITCODE`（`2>$null` 在本環境 PowerShell 壓不住；up-to-date 的 push
-    不寫 stderr、乾淨無紅字；有傳輸才會出現噪音），慣例收錄於「八、協作規範」。
+    **解法（2026-10-09 改版）**：`git push origin main > <倉庫外路徑>/push.log 2>&1`，
+    看這條命令自己的 exit code，再 `ls-remote` 對 hash。
+    🔴 原本收錄的 `cmd /c "git push origin main 2>nul"` **會靜默不執行推送卻回 exit 0**：
+    cmd 只印自己的橫幅，`2>nul` 也沒接到 git 的 stderr。這是本條「假失敗」的反向版本——
+    **假成功**，比假失敗更難發現（同類模式見陷阱 8：緩解機制自己有缺陷時偽裝成正常）。
+    `2>$null` 在本環境 PowerShell 壓不住紅字這件事仍然成立。慣例收錄於「八、協作規範」。
 14. **模型會把 negativeConstraints 產成中文或回錯鍵**：已由管線閘門根治
     （translate-to-zh 欄位歸屬閘門＋筆數比對、enricher QA 覆核），但**落盤前仍須
     逐條對 README 人工核實**——QA 閘門只擋「字面不在 README」，擋不住
@@ -1579,11 +1604,14 @@ npm run mcp                 # 啟動 MCP server
 - **能優化就不要怠惰**——發現問題應一併修好
 - **破壞性操作、push 需先取得明確許可**
 - **不確定就說不確定**，不可編造
-- **push 慣例（2026-10-04 起）**：一律 `cmd /c "git push origin main 2>nul"`
-  （原生重導向丟 stderr；`2>$null` 在本環境 PowerShell 版本**壓不住**假失敗紅字，
-  見陷阱 13），看 `$LASTEXITCODE` 判成敗，
-  **並且固定補 `git ls-remote origin main` 對 hash**——唯一可信判準；
+- **push 慣例（2026-10-09 改版）**：一律 `git push origin main > <倉庫外路徑>/push.log 2>&1`，
+  看**這條命令自己的 exit code**，再到 push.log 確認出現 `oldsha..newsha  main -> main`，
+  **並固定補 `git ls-remote origin main` 對 hash**——後者仍是唯一可信判準；
   對不上 = 真分岔，走 fetch＋merge（陷阱 8），禁 rebase。
+  - 🔴 **舊寫法 `cmd /c "git push origin main 2>nul"` 已停用**（2026-10-04 起沿用，至本輪共五天後失效）：
+    2026-10-09 實測它**整條不執行推送卻回 exit 0**——cmd 只印出自己的橫幅，`2>nul` 也沒接到
+    git 的 stderr。它是陷阱 13「假失敗」的反向版本：**假成功**，更危險（見陷阱 8：
+    緩解機制本身有缺陷時會偽裝成正常）。要壓紅字就用「stderr 收進檔案」，不要用 cmd 包裝。
 
 ---
 
