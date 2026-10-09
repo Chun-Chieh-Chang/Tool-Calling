@@ -248,7 +248,90 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部四節為 2026-10-07 快照；本節下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
+
+**需求來源**：用戶要求把「未做／待裁」做成一頁可點的選擇題。四項裁決——①本輪範圍＝只做零成本兩項
+②facets 品質債務＝逐條覆核後改寫或刪 ③npm audit＝`audit fix` 全套 ④telemetry＝只驗寫入通路。
+本節記 ①②；③④各自落稿時再補。
+
+**覆核方法**：逐條比對該工具的 `negativeConstraints` 原文依據句，再對 `core/registry-contract.js:51-57`
+的白名單與 `scripts/infer-facets.js` prompt 的 cheatsheet 判 facet 名稱是否用對
+（platform＝OS/runtime 表面、interface＝CLI/GUI/API 表面、integration＝外部服務依賴、
+format＝檔案／資料格式、scale＝資料量或團隊規模）。**改動前已採完整份 before（benchmark＋ablate），
+原始碼未動時採的才作數。**
+
+| 條目 | 依據句（原文） | 判定 |
+|---|---|---|
+| `remotion -platform:liver streaming` | NC[0]「不適合即時串流直播場景」 | **改寫**為 `-integration:live streaming`。`liver` 是 `live` 的拼字錯→永不命中；且「直播串流」是外部服務依賴不是 OS 表面。同語意在 `ffmpeg` 早已寫成 `-integration:live-streaming`，兩支至此一致 |
+| `ffmpeg -interface:intuitive` | NC[2]「不適合非技術用戶的直覺操作」 | **刪除**。`intuitive` 是形容詞，不在 CLI/GUI/API 值域內；且 NC[0] 已由 `-interface:gui` 覆蓋。散文 NC[2] 保留→資訊不丟 |
+| `code-review-skill -integration:sole security audit` | NC[0]「不適合作為替代人工安全審計的唯一安全把關手段」 | **刪除**。安全審計不是外部服務依賴，`sole` 是句子殘餘（「作為……的唯一……手段」）。散文 NC[0] 保留 |
+| `exercises-dataset -format:biomechanics data` | NC[0]「不適合需要 3D 骨骼動畫或**生物力學數據**的研究」 | **未動**——見下方「撤回」 |
+
+**結果（確定性證據）**
+- `registry/tools.json` diff ＝ **3 增／5 刪**（逐字可覆核：`lastUpdated` 1/1、`remotion` 改寫 1/1、
+  `ffmpeg` 因尾逗號重排 1/2、`code-review-skill` 刪 1 行）。
+- facets 覆蓋 **111 支／293 條**（改寫前現量 295 條）。殘留掃描：`liver` 0、`intuitive` 0、
+  `sole security audit` 0、`biomechanics` 1（刻意保留）。
+- `node cli.js validate` 0 errors／6 warnings／99.8（不變）；`npm run lint:wiki` E1–E5 與未對基線
+  **全 0、exit 0**——再次印證 facets 不在 E1 指紋來源欄位內，**寫入本身不需重建基線**。
+- `npm test` exit 0：**382／380 pass／0 fail／2 skip**，九道 ✅ 閘門全綠（本輪未新增測試，
+  故 `TEST_STATS` 與 `AGENTS.md` 的測試數區塊不動）。
+
+**量測 A/B（離線免費、同支腳本、先採 before）**
+
+| 尺 | before | after |
+|---|---|---|
+| `npm run benchmark`（267 題） | fusion 58.0%／63.0%／MRR 0.614；含近義 59.1%／63.8%；direct 68.4%／semantic 50.4%／constrained 61.5%；空集 10/10 | **輸出逐位元組相同** |
+| `npm run ablate:v5` | 建議 0.20（天花板 98.4%／top1 58.0%） | **輸出逐位元組相同**，建議仍 0.20 |
+
+**行為級證據（證明改寫真的會扣分，不是只讓檔案整齊）**：記憶體中 A/B——把 `remotion` 的 facets
+臨時還原成改寫前的值跑同一查詢，不落盤。
+
+| 查詢 | 舊 `-platform:liver streaming` | 新 `-integration:live streaming` |
+|---|---|---|
+| 「live streaming 影片」 | 第 3 名／score 0.1191 | **第 20 名／0.0814**（如設計起罰） |
+| 「make videos programmatically with React」 | 第 1 名／0.2115 | 第 1 名／0.2115（不誤傷） |
+| 「即時串流直播」（純中文） | 不在前 200 名 | 不在前 200 名 |
+
+🔴 **更正一（推翻 §8 的口徑，且是我自己先前報錯的）**：第四輪 §8 宣稱「評測集 267 題裡
+`expected`／`alsoAcceptable` 指向這 19 支的題數＝0／267（實測）」。實測 **c07**
+「找一份健身動作的資料集，每個動作最好有動畫可以看」（type=direct）的 `expected`
+就是 `exercises-dataset`，而它在該 19 支清單內 → 正確口徑是 **18 支零命中、1 支有 1 題**。
+根因記錄：評測集的容器欄位名是 **`cases`**，不是 `queries`；我第一次用 `e.queries` 迭代得到
+`TypeError: qs is not iterable`。**若那行不報錯，我就會把「0 題」當成實測結果**——
+「零命中」型宣稱必須連欄位名一起驗，並拿一個已知數（此處 267）打樁。
+
+🔴 **更正二（撤回 §9 對 `exercises-dataset` 的指控）**：§9 把 `-format:biomechanics data`
+列為「格式合法但語意牽強」。覆核後**該指控不成立**——NC[0] 原文明確寫「……或生物力學數據的研究」，
+而 format＝檔案／資料格式對得上。該筆**未動**。
+
+**更正三（§6／§9 的覆蓋數已過期）**：文件仍寫「92 支／248 條」，那是 10-07 落地前的值；
+落地後現量 111 支／295 條，本輪清償後 111 支／293 條。
+
+🔴 **新陷阱（編入 §二 清單的補遺）：結構化扣分對純中文查詢是盲的**。白名單規定 facet 值只能是
+1–3 個**英文**詞，而 `negativePenalty`（`core/agent-retrieval.js:296` 起）走 `core/tokenize.js`
+的共享詞重疊——「即時串流直播」與 `live streaming` 重疊為 0，改前改後 remotion 都不在前 200 名
+（上表實測）。這是陷阱 4「簡繁 bigram 零重疊」的同族但**性質不同**：簡繁是同一語言的字形差
+（`fix-simplified.js` 修得掉），中英是跨語言零重疊（修不掉，除非值欄放中文）。
+→ 引用「已結構化」時必須同時講「對哪種語言的查詢生效」；本輪那 1 筆改寫只在**夾帶英文詞的查詢**上有用。
+
+**本輪順手發現、未修的資料缺陷（需裁）**
+1. **59 支工具有 `negativeConstraints` 但 `negativeConstraints_zh` 整個欄位不存在**（實測掃全庫；
+   而 NC／NCZ **筆數**不對齊者 0 支 → 缺的是整欄，不是部分筆數）。`validate` 的 6 個警告只看 NC
+   有無，抓不到 NCZ 缺口；`displayText()`（`core/registry.js:48-54`）只支援
+   description／useCase／advantages 三個欄位，NCZ 缺時 UI 直接顯示英文原文。補齊要 `translate:zh`＝燒額度。
+2. **`bootstrap-icons` NC[0]「非 Bootstrap 專案需額外整合」有零成本正解：`+ecosystem:bootstrap`**
+   （要求值，非排除值——「非 Bootstrap 專案不適合」＝「需要 Bootstrap 生態」）。
+   這不需要額度，是極性判讀漏了；§9 把它歸給「等額度」是錯誤分類。
+   同族未覆蓋：`code-review-skill` NC[1]、`exercises-dataset` NC[1]／NC[2]。
+
+**下一個人的待裁清單（本輪新增）**
+
+1. ⏳ 上述 2. 的 `+ecosystem:bootstrap` 等 4 條「有零成本正解但未寫入」的覆蓋缺口——要不要補。
+2. ⏳ 59 支缺 `negativeConstraints_zh`——要補（需額度），還是明定「NCZ 非必填、UI 顯示英文可接受」。
+3. ⏳ 中英零重疊這件事要不要進 §二 正式陷阱清單（本輪先記在本節補遺）。
 
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
 

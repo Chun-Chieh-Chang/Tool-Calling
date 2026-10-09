@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-07T12:38:24.353Z",
+  "lastUpdated": "2026-10-09T02:35:36.874Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -32279,7 +32279,7 @@
       ],
       "useCase_zh": "開發團隊使用 AI 代理根據創意生成個人化行銷影片，並透過 React 元件直接連接數據管線進行大規模渲染。",
       "negativeFacets": [
-        "-platform:liver streaming",
+        "-integration:live streaming",
         "-interface:gui editing",
         "-format:4k 8k"
       ]
@@ -32462,8 +32462,7 @@
       ],
       "negativeFacets": [
         "-interface:gui",
-        "-integration:live-streaming",
-        "-interface:intuitive"
+        "-integration:live-streaming"
       ]
     },
     {
@@ -35956,7 +35955,6 @@
         "不適合需要即插即用 npm/pip 套件的自動化管道整合"
       ],
       "negativeFacets": [
-        "-integration:sole security audit",
         "-integration:plug-and-play packages"
       ]
     },
