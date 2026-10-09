@@ -20,6 +20,7 @@ import {
   isSkippedPath,
   parseAddedLines,
   expandTargets,
+  resolveCommits,
   scanFile,
 } from '../scripts/check-traditional.js';
 
@@ -187,6 +188,35 @@ test('CLI：--commits 掃最近一筆 commit 的訊息 —— commit message 也
   });
   assert.match(out, /commit 訊息/);
   assert.match(out, /未發現簡體字/);
+});
+
+test('CLI：--commits 不給 range 時掃「最近多筆」而不是只掃最新一筆', { skip: NO_PARENT_SKIP }, () => {
+  // 這一條鎖的就是第八輪那個取捨的破口：當時預設範圍是 HEAD~1..HEAD，一次推好幾筆時
+  // 較旧的 commit 訊息根本沒被看。現在預設改為名額制（最近 5 筆可達提交）。
+  const out = execFileSync(process.execPath, [SCRIPT, '--commits'], { cwd: ROOT, encoding: 'utf8' });
+  const m = out.match(/，(\d+) 筆/);
+  assert.ok(m, `label 應帶「，N 筆」實際掃描筆數，實際輸出：${out.split('\n')[0]}`);
+  const scanned = Number(m[1]);
+  assert.ok(scanned >= 2, `不給 range 應該掃到多筆（實測 ${scanned} 筆）——只掃 1 筆就是那個破口還在`);
+  assert.ok(scanned <= 5, `不應超過名額 5 筆（實測 ${scanned}）`);
+  assert.match(out, /未發現簡體字/);
+});
+
+test('CLI：range 在淺歷史解析不了時降級，而不是擲出 unknown revision 堆疊', () => {
+  // CI 是 fetch-depth: 2。若有人在鏈裡寫 HEAD~5..HEAD 這類超出可達深度的 range，
+  // execFileSync 原本會直接 throw（門禁從「會擋」退化成「會炸」）——這裡鎖住降級路徑。
+  const out = execFileSync(process.execPath, [SCRIPT, '--commits', 'HEAD~100000..HEAD'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.match(out, /降級/);
+  assert.match(out, /commit 訊息/);
+});
+
+test('resolveCommits：auto 的最後一筆必須就是 HEAD（證明名額制沒有漏掉剛提交的訊息）', { skip: NO_PARENT_SKIP }, () => {
+  const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim();
+  const { hashes } = resolveCommits('auto');
+  assert.equal(hashes[0], head);
 });
 
 test('文件未被納入 --code，但 --full 仍抓得到（記錄 --code 排除文件的理由）', () => {

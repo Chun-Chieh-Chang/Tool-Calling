@@ -223,6 +223,33 @@ function runDiffMode(ref) {
 }
 
 /**
+ * commit 掃描的名額與解析。
+ *
+ * 名額固定 5 筆，但**浅 clone 拿不到這麼多筆時必須降級，而不是當機**：
+ * CI 的 `actions/checkout` 是 `fetch-depth: 2`，那裡連 `HEAD~5` 都不存在，
+ * 一旦把 `HEAD~5..HEAD` 這種寫法接進 `npm test`，git 會報 unknown revision
+ * → execFileSync 直接丟出堆疊，門禁從「會擋」退化成「會炸」。
+ * 所以這裡一律改用 `rev-list --max-count=N HEAD`（只依賴 HEAD 可達的提交），
+ * 且呼叫端傳進來的 range 若解析不了，就降級到同樣的名額掃描並在 label 標明。
+ */
+const COMMIT_SCAN_LIMIT = 5;
+
+export function resolveCommits(spec = 'auto') {
+  const list = (args) => git(['rev-list', ...args]).trim().split('\n').filter(Boolean);
+  if (spec === 'auto') {
+    return { hashes: list([`--max-count=${COMMIT_SCAN_LIMIT}`, 'HEAD']), note: `最近 ${COMMIT_SCAN_LIMIT} 筆可達提交` };
+  }
+  try {
+    return { hashes: list([spec]), note: spec };
+  } catch {
+    return {
+      hashes: list([`--max-count=${COMMIT_SCAN_LIMIT}`, 'HEAD']),
+      note: `${spec} 在此 repo 解析不了（淺歷史）→ 降級為最近 ${COMMIT_SCAN_LIMIT} 筆可達提交`,
+    };
+  }
+}
+
+/**
  * commit 訊息模式：掃 range 內每筆 commit 的 subject ＋ body。
  *
  * 為什麼也要管：commit message 同屬「本專案用的中文字」，而且 git log 是長期
@@ -233,7 +260,7 @@ function runDiffMode(ref) {
  * 寫法（例如把簡體的「明確」寫成繁體再加註說明），不要把簡體字本身打進去。
  */
 function runCommitsMode(range) {
-  const hashes = git(['rev-list', range]).trim().split('\n').filter(Boolean);
+  const { hashes, note } = resolveCommits(range);
   const findings = [];
   for (const h of hashes) {
     const short = h.slice(0, 7);
@@ -243,7 +270,7 @@ function runCommitsMode(range) {
       if (hit) findings.push({ path: `commit ${short}`, ...hit });
     });
   }
-  return { findings, label: `commit 訊息（${range}，${hashes.length} 筆）` };
+  return { findings, label: `commit 訊息（${note}，${hashes.length} 筆）` };
 }
 
 function parseArgv(argv) {
@@ -251,7 +278,7 @@ function parseArgv(argv) {
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === '--full') opts.mode = 'full';
-    else if (a === '--commits') { opts.mode = 'commits'; opts.ref = argv[++i] ?? 'HEAD~1..HEAD'; }
+    else if (a === '--commits') { opts.mode = 'commits'; opts.ref = argv[++i] ?? 'auto'; }
     else if (a === '--code') opts.codeOnly = true;
     else if (a === '--range') { opts.ref = argv[++i] ?? 'HEAD'; }
     else if (a === '--help' || a === '-h') opts.help = true;
@@ -266,7 +293,8 @@ function usage() {
   （無選項）        檢查相對 HEAD 的新增行 ＋ 未追蹤檔（預設）
   --range <ref>     檢查指定 git 範圍的新增行，例：--range HEAD~5..HEAD
   --full [路徑...]  整檔掃描（不給路徑＝所有原始碼與文件；路徑可為目錄，會遞迴）
-  --commits <range> 掃 range 內每筆 commit 的訊息（歷史無豁免）
+  --commits <range> 掃 range 內每筆 commit 的訊息（歷史無豁免）；不給 range 時
+                    預設掃「最近 ${COMMIT_SCAN_LIMIT} 筆可達提交」，淺歷史會自動降級
   --code            只限 core/ scripts/ web/ tests/（不含文件與資料檔）
 
 豁免：行內 \`// ${LINE_ESCAPE}：原因\`；檔頭 \`// ${FILE_ESCAPE}\``);
