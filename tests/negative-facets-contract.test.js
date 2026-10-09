@@ -81,3 +81,42 @@ test('值中「note/cannot/without-」以外的字串不受影響（誤殺對照
   assert.equal(r.errors.filter((e) => e.field === 'negativeFacets').length, 0);
 });
 
+// ── 程度形容詞禁令（P1-b，2026-10-09）───────────────────────────────────
+// 實測根據：217 條 `-` 值去重 171 個，其中只有 9 個以拉丁原形出現在評測集 267
+// 題的查詢裡；高頻值反而是 production/simple/large/trivial 這類「分級判斷」——
+// 使用者在任一種語言都不會這樣描述需求，結構化約束因此永遠點不燃
+// （`-` 路徑在 257 題只產生 14 筆扣分事件）。分級詞沒有所指，留空比放
+// 一個查不到的值誠實（同 advantages:[] 的取捨）。
+test('值是純程度形容詞 → error（simple/large/trivial 型別點不燃）', () => {
+  for (const entry of ['-scale:simple', '-scale:trivial', '-scale:large', '-interface:manual',
+    '-format:realistic', '-scale:performance', '+deployment:complex']) {
+    const r = validateToolContract({ ...baseTool, negativeFacets: [entry] });
+    assert.ok(r.errors.some((e) => e.message.includes('程度詞')), `${entry} 應被攔下`);
+  }
+});
+
+// 反向釘住（收緊誤報規則時必須同版列正例）：有具體所指的值不得被誤殺。
+// real-time／offline／managed-cloud 是使用者真的會說出來的狀態（即時／離線／
+// 託管），hipaa-compliance 與 4gb-ram 是可比對的名詞，production 指「生產環境」。
+test('有具體所指的值不受程度詞規則影響（正例對照）', () => {
+  const r = validateToolContract({
+    ...baseTool,
+    // 上限 6 筆（FACET_MAX_ENTRIES），放第 7 筆會讓本對照紅在錯誤的理由上
+    negativeFacets: ['-platform:real-time', '-deployment:offline', '-ecosystem:managed-cloud',
+      '-integration:hipaa-compliance', '-scale:4gb-ram', '-deployment:production'],
+  });
+  assert.equal(r.errors.filter((e) => e.field === 'negativeFacets').length, 0);
+});
+
+// 同標準的第二組正例：這五個複合詞一度被誤塞進禁令，但它們和 real-time 是同類
+// （指一個可比對的狀態，使用者會說「底層／高吞吐／資源受限／安全關鍵／合規」）。
+// 判定只看有沒有所指，不看詞長。
+test('有所指的複合狀態詞不得被誤殺（正例對照二）', () => {
+  const r = validateToolContract({
+    ...baseTool,
+    negativeFacets: ['-language:low-level', '-scale:high-throughput', '-scale:low-resource',
+      '-scale:security-critical', '-deployment:compliance-sensitive', '+interface:headless'],
+  });
+  assert.equal(r.errors.filter((e) => e.field === 'negativeFacets').length, 0);
+});
+

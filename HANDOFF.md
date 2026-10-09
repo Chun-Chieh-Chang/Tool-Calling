@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-09（六節：negativeFacets 債務清償 4 筆逐條覆核／telemetry 寫入通路首次驗證／`npm audit fix` 全套並推翻「裝 opencc 就全覆蓋」／推送與 push 慣例改版（`cmd /c … 2>nul` 靜默不執行卻回 exit 0，已停用）／CI 長期紅的根因是衍生檔漂移五天／`U+79BB` 收進閘門＋NCZ 缺口由「59」修正為 10＋撤回「`+ecosystem:bootstrap` 是零成本正解」——見「三、目前狀態」頂部六節；其下為 10-07 四節與 10-06 embedding 量測、10-05 批次加入快照）
+> 最後更新：2026-10-09（七節：negativeFacets 債務清償 4 筆逐條覆核／telemetry 寫入通路首次驗證／`npm audit fix` 全套並推翻「裝 opencc 就全覆蓋」／推送與 push 慣例改版（`cmd /c … 2>nul` 靜默不執行卻回 exit 0，已停用）／CI 長期紅的根因是衍生檔漂移五天／`U+79BB` 收進閘門＋NCZ 缺口由「59」修正為 10＋撤回「`+ecosystem:bootstrap` 是零成本正解」／**P1-b 清程度詞：新增閘門攔下 46 條點不燃的 `-` 值（改寫 37／刪 10），並修掉 `tradingagents` 那條自我拆台的 `-ecosystem:finance`；跨語點燃的舊規格被佐證度實測證偽（見陷阱 22）**——見「三、目前狀態」頂部七節；其下為 10-07 四節與 10-06 embedding 量測、10-05 批次加入快照）
 
 ---
 
@@ -246,9 +246,26 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
   「先乾跑看提案」只能驗**格式與管線會不會全滅**，不能當成**寫入內容的憑證**；
   落地後一律回頭讀 `registry/tools.json` 的實際值再引用或寫文件。
 
+### 22. 🔴 借用既有資料層做語意判斷前，先量它的「證據強度」——不是量覆蓋率（2026-10-09）
+
+`core/synonyms.generated.js` 的 `SYNONYM_MAP`（7,759 鍵）看起來是現成的中英橋樑，實測它**不能**直接
+用來點燃 `negativeFacets`：從 `registry/tools.json` 的 triggers 重算每組「中文詞×拉丁詞」共現出現在
+幾個不同工具裡，**31,412 組中只有 42 組 ≥2 工具，31,370 組是單工具證據**（99.87%）——根因是
+`scripts/mine-synonyms.js` 註解記的那次降門檻（原規則要 ≥2 工具共現，因 registry 稀疏改成 1）。
+
+後果不是「命中率低」而是**沒有獨立證據可以區分正例與誤例**：`資料庫→database`（對）與
+`影片→open source ai`（錯）在表裡的地位完全相同。用「只收單詞值」還能剩下 10 筆新增事件，
+而任何能把噪聲濾掉的閘門（要求 ≥2 工具佐證）會把**信號一起濾到 0**。
+
+- 教訓一：**覆蓋率高 ≠ 可用**。先問「這條資料的每一對配據，有沒有一點獨立於產生它的證據」；
+  沒有就別把它接進打分路徑。
+- 教訓二：借來的詞袋**不要直接換掉原袋**。把擴展詞併進同一個袋子，`weightedSim` 的分母會一起長大——
+  實測現有 14 筆扣分被稀釋掉 4 筆，用 bigram 反查更誇張（平均灌 1,824 個詞 → 14 筆全滅）。
+  要擴展就取 `max(原始, 擴展)`，這樣對既有行為單調不減分，before/after 才分得清。
+
 ---
 
-## 三、目前狀態（頂部六節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部七節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
 
@@ -541,13 +558,95 @@ deps／docs）。判準三件都取：命令 exit 0、push.log 裡真的出現�
 
 **下一個人的待裁清單（本輪新增）**
 
-1. ⏳ 要不要給 `+` 極性一條加分路徑（動 `core/agent-retrieval.js` ＋ 重跑評測）——
-   否則「要求型」約束永遠只能留在散文，而散文在有 facets 時被忽略。
+1. ~~要不要給 `+` 極性一條加分路徑~~ → **已結案（見第七輪與前兩輪量測）**：路徑本身量出零收益，
+   而「讓它有用的規格（複用 `SYNONYM_MAP` 做跨語點燃）」被佐證度實測證偽。改走值域清理（P1-b）。
 2. ⏳ `translate-to-zh.js` 要不要加第 5 種響應形態的解析分支＋測試；以及「成功筆數」應不該改成**逐欄位**核銷。
 3. ⏳ E1=2 那兩支 Tier 1 詞條要不要花額度重編（需 AGNES Tier 1 額度，上次是 429）。
 4. ⏳ 對稱盲區後半：CI 跑的 `rescan-classification.js --ci` 本地仍無等價入口（第五輪只補了 `check-mece` 與 `categories:check`）。
 
+### 2026-10-09（第七輪）P1-b 清程度詞：46 條點不燃的 `-` 值改寫 37／刪 10，順手修掉一支「自我拆台」的約束
+
+**需求來源**：用戶裁「先做 P1，按『跨語點燃』規格執行」→ 我在動碼前的量測把那個規格**證偽**
+（詳見陷阱 22），改提 P1-b「先修值域」並獲准「動手改 P1-b，清形容詞值」。本節記 P1-b 落地。
+
+**為什麼值域才是主因（本輪實測，非推測）**
+
+| 觀測 | 數字 |
+|---|---|
+| `-` 路徑在 257 題的點燃面 | 11 題／14 事件（其中 facets 路只 **1** 筆、散文路 13 筆；純中文題貢獻 6 筆） |
+| 14 筆裡扣到正解的 | 1 筆（c29→`ego-lite` 0.005） |
+| facets 上線時被熄掉的散文扣分 | 4 筆（c61×2、c141、c215）——**最大的那筆 0.056 正是 c61 的正解 `fluentui-system-icons`**，即 Batch 2 要救的對象。所以「還原散文」是錯的修法，本輪不動這條 |
+| 造對查詢時 `-` 路徑的力度 | 扣到蓋帽 **0.15**（`sequentialthinking`、`build-your-own-x`）→ 路徑沒壞，壞的是詞到不了 |
+| 217 條 `-` 去重後的值 | 171 個，**只有 9 個**以拉丁原形出現在 267 題查詢裡 |
+| 高頻 `-` 值 | `production` 6、`proprietary` 5、`real-time` 5、`enterprise` 4、`gui` 4、`simple`/`trivial`/`large` 各 3 |
+
+**做了什麼**
+
+1. **閘門**（`core/registry-contract.js`）：新增 `FACET_VAGUE_TOKENS`（31 項，按詞比對）與
+   `FACET_VAGUE_VALUES`（8 項，整值比對），命中即 error。判定標準只有一條——**有沒有所指**，
+   不看詞長也不看語氣；註解內明列「刻意不放進去」的 real-time／offline／managed-cloud／headless／
+   enterprise／production／distributed／embedded／static／streaming／proprietary／commercial／
+   regulated／hipaa-compliance 及理由。
+   - **同版自我修正**：我最初把 `low-level`／`high-throughput`／`low-resource`／`security-critical`／
+     `compliance-sensitive` 五個複合詞塞進禁令，但它們與我自己釘住的正例 real-time／offline 同類
+     （指一個可比對的狀態，使用者會說「底層／高吞吐／資源受限／安全關鍵／合規」）。撤除後違規從
+     52 降到 46，並把這五個補進測試的正例對照二——**收緊規則的同版必須釘住正例**。
+2. **測試**（`tests/negative-facets-contract.test.js`，TDD 先行）：違規樣本 7 條（含一條 `+`）
+   ＋ 兩組正例對照 12 個值。先跑紅（只紅在規則那條；第一組正例最初也紅，查證是我放了 7 筆撞
+   `FACET_MAX_ENTRIES=6`，屬**儀器缺陷不是規則缺陷**，削到 6 筆後轉綠）。384→**387 tests／385 pass**。
+   因 `check-doc-stats.js` 只數工具數、管不到 AGENTS.md 的測試數宣告，同版改
+   `scripts/generate-agents-md.js` 的 `TEST_STATS` 並重跑 `npm run agents:init`（AGENTS.md 7/7 行同步）。
+3. **遷移**（一次性腳本，跑完即刪）：閘門報的 46 條 ＋ 下面那條實證誤簽，共 **47 條全部覆蓋**
+   （漏 0、多 0）。**改寫 37／刪除 10**，涉及 36 支工具。每條的判定依據寫在腳本的 `DECISIONS` 表內
+   對應散文原句，例：`-scale:simple`→`-interface:factual lookup`（依據「簡單的事實查詢」）、
+   `-interface:standalone binary`→`-format:executable`、`-format:premium-tlds`→`-format:paid tlds`；
+   拆不出所指的就刪（`-scale:niche`、`-interface:neutral-design`、`+deployment:complex`），
+   散文 `negativeConstraints` 原句一併保留→資訊不丟。
+   寫入前三條不變量全過：改完整個 registry 零 `negativeFacets` error；status 分佈
+   `{active 744, deprecated 2, archived 2}` 不變；**除 negativeFacets 外其他欄位逐工具 deep-equal 零漂移**。
+
+**順手抓到並修好的一條自我拆台約束**：`tradingagents`（金融分析代理）帶著 `-ecosystem:finance`
+——它把自家領域列為禁用。植查（可重跑）：
+
+| 查詢 | 改前 | 改後 |
+|---|---|---|
+| `build a quantitative finance agent for stock trading` | 第 **16** 名，理由「🚫 已扣分 0.07」 | 第 **3** 名，無扣分 |
+| `finance dashboard for portfolio tracking` | 第 **32** 名，分數被壓到 **0**（扣分 0.10） | 第 **9** 名，無扣分 |
+
+根因是 `infer-facets.js` 把散文「不適合需要微秒級執行速度的高頻交易」抽成 `-ecosystem:finance`
+（抓錯主詞）。該語意本輪改寫為 `-ecosystem:high frequency trading`，誤簽那條刪除。
+
+**結果（A/B 全在原始碼未動時採 before）**
+
+| 尺 | before | after |
+|---|---|---|
+| `-` 點燃面 | 11/257 題、14 事件、扣到正解 1 筆 | **完全相同，且事件集合逐筆比對：新增 0、消失 0**（不是置換掩蓋） |
+| top50 窗 | Hit@1 149／Hit@3 186／Hit@5 215／MRR 0.684224 | 同（`npm run benchmark` 口徑 top5 MRR 0.670882＝印出的 0.671） |
+| `npm run ablate:v5` | 建議 V5_WEIGHT=0.20（天花板 98.4%／平均排名 19.4／top1 58.0%） | **逐位元組相同**，仍 0.20 |
+| `npm run ceiling` | 98.4%／top1 58.0%（direct 68.4／semantic 50.4／constrained 61.5） | 同 |
+| `npm test` | — | **387 tests／385 pass／0 fail／2 skip**，十道 ✅ 閘門全綠 |
+| `node cli.js validate` | 0 errors／6 warnings／99.8 | 同（打樁：記憶體植入 `-scale:trivial` → errors 0→**1**，證新規則在 CLI 這條路上真的會響） |
+| `npm run lint:wiki` | E1=2（`ds4`、`anny`，與本輪無關的既有老實紅燈） | 同——印證 facets 不在 E1 指紋來源欄位 |
+| 空集誠實率 | 10/10 | 10/10 |
+
+**facets 現量：111 支／283 條**（`-` 208／`+` 75；`-` 值去重 171→165；改完**沒有**任何工具變成空陣列，
+所以散文路徑沒有被意外復活）。
+
+**為什麼「指標零變動」仍是對的交付**：被清掉的都是**點不燃**的值，所以排序不可能動——這正是它
+成立的方式。本輪買到的東西是「值域裡不再有分級詞」，讓 P1-a（人工策展 zh 對照）第一次有可配的對象；
+否則那 46 條就算接上中文對照也照樣點不燃。
+
+**下一個人的待裁清單（本輪新增）**
+
+1. ⏳ P1-a：要不要為剩下那 208 條 `-` 值裡「使用者真的會說」的子集（platform／language／
+   license／deployment 那類）人工寫中文對照並接進打分。**注意**：這不能複用 `SYNONYM_MAP`
+   （陷阱 22），得是新的一份人工表，且要同時重掃點燃面與 267 題。
+2. ⏳ `infer-facets.js` 抓錯主詞這件事（散文「不適合 X」被抽成 `-ecosystem:<DomainOfTheTool>`）
+   要不要加一道反向檢查：若 `-` 值命中的詞同時出現在該工具自己的正向 metadata，就標記疑似誤簽。
+   本輪只實證並修了 1 支（`tradingagents`），未掃全庫。
+
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
+
 
 **問題**：Karpathy 的 LLM wiki gist 能否幫到檢索與配對。
 **結論**：gist 的架構本專案**已實作且帶消融實驗**——`docs/LLM-WIKI-BLUEPRINT.md`

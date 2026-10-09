@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-09T04:19:35.800Z",
+  "lastUpdated": "2026-10-09T08:09:48.411Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -920,8 +920,8 @@
         "當需要立即進行二元決策且無需上下文時，請勿使用。"
       ],
       "negativeFacets": [
-        "-scale:simple",
-        "-scale:single-step",
+        "-interface:factual lookup",
+        "-interface:arithmetic",
         "-scale:real-time",
         "-interface:binary-decision"
       ]
@@ -2847,9 +2847,9 @@
         "不適合用於不需要多角色協作的單一簡單提示"
       ],
       "negativeFacets": [
-        "-interface:standalone binary",
+        "-format:executable",
         "+interface:llm runtime",
-        "-interface:simple prompt"
+        "-interface:one-shot prompt"
       ]
     },
     {
@@ -3882,7 +3882,7 @@
       "negativeFacets": [
         "-platform:embedded",
         "-platform:hardware",
-        "-scale:trivial",
+        "-scale:one-off script",
         "-integration:cicd",
         "-integration:testing"
       ]
@@ -4407,9 +4407,9 @@
         "不適合具有複雜元件程式庫的生產級設計系統"
       ],
       "negativeFacets": [
-        "-scale:professional",
-        "-scale:collaborative",
-        "-scale:production-grade"
+        "-interface:vector editing",
+        "-interface:multi-user editing",
+        "-format:design system"
       ]
     },
     {
@@ -6202,7 +6202,7 @@
       ],
       "negativeFacets": [
         "-ecosystem:backend",
-        "-interface:manual-editing",
+        "-format:vector graphics",
         "+deployment:cloud"
       ]
     },
@@ -7519,7 +7519,7 @@
         "可能會產生 token 成本，視所選模型供應商而定。"
       ],
       "negativeFacets": [
-        "-interface:general chat",
+        "-interface:chat",
         "+integration:external api",
         "+pricing:token-based"
       ]
@@ -8010,8 +8010,8 @@
       ],
       "negativeFacets": [
         "-scale:enterprise",
-        "-scale:beginner",
-        "-scale:comprehensive"
+        "-format:tutorial",
+        "-format:official documentation"
       ]
     },
     {
@@ -8150,7 +8150,7 @@
         "不推薦在微秒級超低延遲系統中使用深層嵌套的 Chain 結構"
       ],
       "negativeFacets": [
-        "-integration:simple-api-calls"
+        "-integration:direct api call"
       ]
     },
     {
@@ -8212,7 +8212,7 @@
       "negativeFacets": [
         "-scale:microsecond latency",
         "-license:open source",
-        "-scale:simple scripts"
+        "-integration:cron job"
       ]
     },
     {
@@ -8473,8 +8473,7 @@
       ],
       "negativeFacets": [
         "-format:code-snippets",
-        "-ecosystem:proprietary",
-        "-scale:niche"
+        "-ecosystem:proprietary"
       ]
     },
     {
@@ -8726,7 +8725,7 @@
       "negativeFacets": [
         "-language:low-level",
         "-format:code",
-        "-interface:quick-reference"
+        "-format:api reference"
       ]
     },
     {
@@ -14181,7 +14180,6 @@
         "單一行為技能規範，需與專案特定工作流程深思熟慮地整合"
       ],
       "negativeFacets": [
-        "-scale:trivial",
         "+integration:project-specific"
       ]
     },
@@ -14541,9 +14539,9 @@
         "低階裝置上處理硬體加速的 8K RAW 影片素材並非理想選擇。"
       ],
       "negativeFacets": [
-        "-scale:professional",
+        "-format:vfx",
         "-deployment:cloud",
-        "-scale:large"
+        "-format:8k footage"
       ]
     },
     {
@@ -19215,8 +19213,7 @@
         "非為非金融類的一般任務自動化所設計。"
       ],
       "negativeFacets": [
-        "-ecosystem:general-purpose",
-        "-ecosystem:finance"
+        "-ecosystem:high frequency trading"
       ]
     },
     {
@@ -26087,7 +26084,7 @@
       ],
       "negativeFacets": [
         "-interface:gui",
-        "-scale:large"
+        "-scale:multi-repository"
       ]
     },
     {
@@ -26206,7 +26203,6 @@
         "當必須嚴格遵循現有複雜架構模式時，不宜使用。"
       ],
       "negativeFacets": [
-        "-scale:performance",
         "-interface:low-level",
         "-integration:legacy-patterns"
       ]
@@ -26622,8 +26618,7 @@
       ],
       "negativeFacets": [
         "-scale:enterprise",
-        "-scale:customized",
-        "-interface:manual"
+        "-interface:human review"
       ]
     },
     {
@@ -27109,7 +27104,7 @@
         "不適合用於建立與代理無關的軟體函式庫。"
       ],
       "negativeFacets": [
-        "-interface:general code generation",
+        "-interface:code generation",
         "-ecosystem:customer-support",
         "+ecosystem:agent"
       ]
@@ -29645,8 +29640,7 @@
         "不建議用於單人快速任務，因為建立工單會增加不必要的成本"
       ],
       "negativeFacets": [
-        "-scale:small",
-        "-scale:single"
+        "-scale:well-defined task"
       ]
     },
     {
@@ -30812,8 +30806,7 @@
         "避免用於沒有使用者介面組件的純後端邏輯服務"
       ],
       "negativeFacets": [
-        "-scale:small",
-        "-format:single-page",
+        "-format:static site",
         "-interface:backend"
       ]
     },
@@ -32679,7 +32672,7 @@
       ],
       "negativeFacets": [
         "+ecosystem:opencode",
-        "-interface:complete-history",
+        "-interface:audit trail",
         "-integration:other-context-manager"
       ]
     },
@@ -33471,7 +33464,6 @@
         "不適合非網頁的桌面應用"
       ],
       "negativeFacets": [
-        "-interface:neutral-design",
         "-platform:desktop"
       ]
     },
@@ -33630,8 +33622,7 @@
       "useCase_zh": "企業級本體論驅動的 Agent 作業系統，適合大型組織的 AI Agent 部署與治理",
       "negativeFacets": [
         "+scale:enterprise",
-        "+integration:ontology",
-        "+deployment:complex"
+        "+integration:ontology"
       ]
     },
     {
@@ -34186,7 +34177,7 @@
       ],
       "negativeFacets": [
         "+ecosystem:material design",
-        "-format:realistic"
+        "-format:photorealistic images"
       ]
     },
     {
@@ -35613,7 +35604,7 @@
       "negativeFacets": [
         "+language:python",
         "+format:course",
-        "-scale:advanced"
+        "-format:framework source code"
       ]
     },
     {
@@ -36300,7 +36291,7 @@
       "negativeFacets": [
         "+platform:claude code",
         "+platform:tsx",
-        "-scale:simple"
+        "-interface:factual lookup"
       ]
     },
     {
@@ -37726,7 +37717,7 @@
         "需要持久 WebSocket 連線的即時協作應用程式"
       ],
       "negativeFacets": [
-        "-platform:simple static",
+        "-format:static site",
         "-platform:native mobile",
         "-platform:real time"
       ]
@@ -37776,7 +37767,7 @@
       ],
       "negativeFacets": [
         "-interface:css-animations",
-        "-scale:simple-pages",
+        "-format:static site",
         "-interface:semantic-css"
       ]
     },
@@ -37977,7 +37968,7 @@
       ],
       "negativeFacets": [
         "-interface:educational-content",
-        "-deployment:large-repo"
+        "-deployment:repository clone"
       ]
     },
     {
@@ -38838,8 +38829,8 @@
         "非為 Windows 或 macOS 原生開發環境而設計"
       ],
       "negativeFacets": [
-        "-interface:end-user",
-        "-deployment:ready-to-use",
+        "-interface:app development",
+        "-deployment:precompiled",
         "-platform:windows",
         "-platform:macos"
       ]
@@ -38906,8 +38897,7 @@
         "主要著重於學習而非效能最佳化"
       ],
       "negativeFacets": [
-        "-deployment:production",
-        "-scale:performance"
+        "-deployment:production"
       ]
     },
     {
@@ -39030,7 +39020,7 @@
         "Learners must actively seek out financial aid if they cannot afford graded assignments or tests on some platforms."
       ],
       "negativeFacets": [
-        "-scale:quick",
+        "-format:short course",
         "+pricing:free"
       ]
     },
@@ -39171,7 +39161,7 @@
       "negativeFacets": [
         "-interface:real-time",
         "-deployment:production",
-        "-scale:simple"
+        "-interface:text classification"
       ]
     },
     {
@@ -43250,7 +43240,7 @@
       "negativeFacets": [
         "-format:2d graphics",
         "-platform:server-side",
-        "-format:basic visualizations"
+        "-format:2d charts"
       ]
     },
     {
@@ -46678,7 +46668,7 @@
       ],
       "negativeFacets": [
         "-deployment:production",
-        "-scale:large"
+        "-deployment:model serving"
       ]
     },
     {
@@ -46859,7 +46849,7 @@
         "檢舉處理時間可能從數小時到數日不等，視案件複雜度而定。"
       ],
       "negativeFacets": [
-        "-format:premium-tlds",
+        "-format:paid tlds",
         "-format:country-codes"
       ]
     },

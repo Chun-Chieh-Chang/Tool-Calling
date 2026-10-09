@@ -56,6 +56,37 @@ const FACET_ENTRY_RE = /^([-+])([a-z][a-z0-9-]*):([a-z0-9][a-z0-9 .+-]*)$/;
 const FACET_MAX_ENTRIES = 6;
 const FACET_MAX_VALUE_TOKENS = 3;
 
+// ── 程度詞禁令（P1-b，2026-10-09）───────────────────────────────────────
+// 實測根據（同一輪）：217 條 `-` 值去重 171 個，只有 9 個以拉丁原形出現在評測
+// 集 267 題的查詢裡；高頻值反而是 production/simple/large/trivial 這類分級判斷。
+// 分級詞沒有所指——使用者在任一種語言都不會用「trivial」描述需求，於是結構化
+// 約束永遠點不燃（`-` 路徑在 257 題只產生 14 筆扣分事件）。留空比放一個查不
+// 到的值誠實（同 advantages:[] 的取捨）。
+//
+// 收錄資格（詞級）：只有「沒有所指、純粹分級」的詞進清單。以下刻意**不進**，
+// 因為它們指得出具體狀態／物件，使用者真的會說：
+//   real-time（即時）、offline（離線）、managed-cloud（託管）、headless（無頭）、
+//   enterprise（企業）、production（生產環境）、distributed、embedded、static、
+//   streaming、proprietary、commercial、regulated、hipaa-compliance、low-level、
+//   high-throughput、low-resource、security-critical、compliance-sensitive。
+const FACET_VAGUE_TOKENS = new Set([
+  'simple', 'trivial', 'quick', 'easy', 'basic', 'advanced', 'beginner',
+  'comprehensive', 'niche', 'professional', 'performance', 'realistic',
+  'premium', 'standalone', 'manual', 'customized', 'collaborative', 'complex',
+  'large', 'small', 'tiny', 'huge', 'massive', 'single', 'lightweight',
+  'robust', 'scalable', 'intuitive', 'fast', 'slow', 'general',
+]);
+// 複合值整段比對：拆詞後每塊都合法（ready／to／use），但合起來仍是分級判斷，
+// 故以整值列入。
+// ⚠️ 曾在這裡多塞了 low-level／high-throughput／low-resource／security-critical／
+// compliance-sensitive 五個——它們與下方正例 real-time／offline 同類，指的是一個
+// 使用者真的會說出口的狀態（底層、高吞吐、資源受限、安全關鍵、合規敏感），
+// 依同一標準必須放行。判定標準只有一條：**有沒有所指**，不是詞長或語氣。
+const FACET_VAGUE_VALUES = new Set([
+  'ready-to-use', 'complete-history', 'neutral-design',
+  'single-step', 'quick-reference', 'production-grade', 'end-user', 'high-quality',
+]);
+
 export function validateNegativeFacets(value) {
   if (value === null || value === undefined) return [];
   if (!Array.isArray(value)) return ['negativeFacets 必須是字串陣列'];
@@ -84,6 +115,14 @@ export function validateNegativeFacets(value) {
       // 極性歸 +/- 符號；「-ecosystem:not bootstrap」是雙重否定復活（c61 教訓的結構化變體）。
       // 實測兩種漏網寫法：獨立字 not、接在連字號後面的 -non-。
       errors.push(`negativeFacets value 不得含否定詞（non-/not/without）——極性請用 +/- 符號表達：${entry}`);
+      continue;
+    }
+    // 程度詞禁令：見上方 FACET_VAGUE_TOKENS 的實測根據與收錄資格。
+    const valueTokens = m[3].toLowerCase().split(/[\s.\-]+/).filter(Boolean);
+    const vague = valueTokens.find((t) => FACET_VAGUE_TOKENS.has(t))
+      || (FACET_VAGUE_VALUES.has(m[3].toLowerCase().trim()) ? m[3].trim() : '');
+    if (vague) {
+      errors.push(`negativeFacets value 是程度詞（無所指、任何語言都點不燃），請改寫成可比的對象或刪除該條：${entry}（程度詞：${vague}）`);
       continue;
     }
     if (seen.has(entry)) {
