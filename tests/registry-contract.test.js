@@ -25,6 +25,9 @@ const completeTool = {
   status: 'active',
   useCase: 'Use when validating that a tool registry entry has enough metadata to support reliable retrieval.',
   negativeConstraints: ['Do not use as a real production tool.'],
+  // 上面是英文 NC，所以「完整」工具必須連繁體對照一起給——第十輪加的
+  // negativeConstraints_zh 常態閘門就是盯這個。少了它，這支 fixture 會從 100 掉到 85。
+  negativeConstraints_zh: ['不要把這支範例工具當成真實的生產工具使用。'],
   advantages: ['Complete metadata for deterministic tests.'],
   capabilities: ['validate metadata'],
   install: {

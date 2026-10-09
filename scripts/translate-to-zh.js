@@ -24,6 +24,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { toTraditional } from './fix-simplified.js';
 import { activateIfComplete } from '../core/tool-lifecycle.js';
+import { negativeConstraintsZhGap } from '../core/registry-contract.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
@@ -181,14 +182,10 @@ for (const t of tools) {
   // negativeConstraints 是字串陣列（「Not suitable for X / Y / Z」這種列舉）。
   // 翻譯整個陣列——少一個就破壞「禁用情境」的語意。
   if (Array.isArray(t.negativeConstraints) && t.negativeConstraints.length > 0) {
-    const missing = t.negativeConstraints.some((s) => {
-      const v = String(s || '').trim();
-      if (!v) return false;
-      if (Array.isArray(t.negativeConstraints_zh) && t.negativeConstraints_zh.length >= t.negativeConstraints.length) return false;
-      const isMixed = /[一-鿿]/.test(v) && /[A-Za-z]{2,}/.test(v);
-      return !/[一-鿿]/.test(v) || isMixed;
-    });
-    if (missing) {
+    // 判準抽到 core/registry-contract.js 的 negativeConstraintsZhGap：同一支函式也是
+    // 「NCZ 欠債」常態閘門的實作處。兩邊各寫一次的話，遲早會出現閘門說有缺口、
+    // 而翻譯器說不用翻（或反之）的洞——這次的 6 支誤報就是兩把尺不同源造成的。
+    if (negativeConstraintsZhGap(t)) {
       job.negativeConstraints = t.negativeConstraints.filter((s) => String(s || '').trim()).slice(0, 8);
       need++;
     }

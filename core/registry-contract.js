@@ -15,6 +15,46 @@ const REQUIRED_FIELDS = [
   'status'
 ];
 
+const CJK_RE = /[一-鿿]/;
+const LATIN_RUN_RE = /[A-Za-z]{2,}/;
+
+/**
+ * negativeConstraints 的一條內容要不要翻成繁體（NCZ）。
+ *
+ * 判準只有兩種情形算「要」：完全沒有中文，或中文裡夾著 ≥2 個連續拉丁字母。
+ * 「需要C++編譯環境」「僅支援A股」這種散文**不算**缺口——C++／A股 只有一個字母，
+ * 技術詞留在原文反而比較準，UI 直接顯示原句就是正確行為。
+ */
+export function isNcEntryNeedingZh(value) {
+  const s = String(value ?? '').trim();
+  if (!s) return false;
+  const hasCjk = CJK_RE.test(s);
+  return !hasCjk || (hasCjk && LATIN_RUN_RE.test(s));
+}
+
+/**
+ * 回傳該工具在 NCZ 上的缺口（無缺口回 null）。
+ * 這是**唯一一把尺**：scripts/translate-to-zh.js 決定「要不要送翻」也用同一支函式，
+ * 否則閘門與翻譯器各判一次，缺口會在一邊永遠補不完。
+ *
+ * 範圍與翻譯器一致：只認 active／experimental。實測把這條套到全部 status 會多出
+ * 3 支 warning（`kimi-k3-code-free-desktop-ai`／`figma-sharp`／`figma-api-demo`），
+ * 而那三支是 deprecated／archived——不翻是刻意行為，不是欠債。
+ */
+const TRANSLATED_STATUSES = new Set(['active', 'experimental']);
+
+export function negativeConstraintsZhGap(tool = {}) {
+  if (!TRANSLATED_STATUSES.has(tool.status)) return null;
+  const nc = Array.isArray(tool.negativeConstraints) ? tool.negativeConstraints : [];
+  const filled = nc.filter((s) => String(s ?? '').trim());
+  if (filled.length === 0) return null;
+  const zh = Array.isArray(tool.negativeConstraints_zh) ? tool.negativeConstraints_zh : [];
+  if (zh.length >= filled.length) return null;
+  const needing = filled.filter(isNcEntryNeedingZh);
+  if (needing.length === 0) return null;
+  return { ncCount: filled.length, zhCount: zh.length, needingCount: needing.length, sample: needing[0] };
+}
+
 const WARNING_RULES = [
   {
     field: 'triggers',
@@ -45,6 +85,16 @@ const WARNING_RULES = [
     penalty: 15,
     check: (tool) => Array.isArray(tool.advantages) && tool.advantages.length > 0,
     message: 'Add at least one advantage.'
+  },
+  {
+    // 與 scripts/translate-to-zh.js 同源（同一支 negativeConstraintsZhGap）：
+    // 那支腳本決定要不要送翻、這條閘門決定欠不欠債，兩把尺分開就會永遠補不完。
+    // 級別是 warning 不是 error：新工具由探勘批次進來時 NC 常是英文，要等 translate-to-zh
+    // 跑完才有譯文；做成 error 會讓每次 cron 提交都紅，而紅的是「流程中間態」不是缺陷。
+    field: 'negativeConstraints_zh',
+    penalty: 15,
+    check: (tool) => negativeConstraintsZhGap(tool) === null,
+    message: 'negativeConstraints 是英文（或中英夾雜），但 negativeConstraints_zh 沒有逐條對齊——繁中 UI 會直接露出原文'
   }
 ];
 
