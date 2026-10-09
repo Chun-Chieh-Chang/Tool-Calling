@@ -1,7 +1,7 @@
 /**
  * core/classification-rules.js — 分類規則引擎（唯讀，純函式）
  *
- * 從 scripts/rescan-classification.js 抽出，讓多值推断（infer-multidimensional.js）
+ * 從 scripts/rescan-classification.js 抽出，讓多值推斷（infer-multidimensional.js）
  * 與既有 rescan 共用同一份規則，避免兩份規則漂移。
  *
  * 匯出：
@@ -324,7 +324,7 @@ export const RULES_BY_PASS = [1, 2, 3]
   .map(p => RULES.filter(r => (r.pass || 1) === p))
   .filter(group => group.length > 0);
 
-// ─── 多值身分推断 ─────────────────────────────────────────────────────────
+// ─── 多值身分推斷 ─────────────────────────────────────────────────────────
 // primary：依 pass 分層、先命中者勝（現行單一分類的替代）
 export function inferPrimary(tool) {
   const f = fields(tool);

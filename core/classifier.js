@@ -158,7 +158,7 @@ function classifyByRules(name, description, topics) {
 
 /**
  * 主分類函數 - LLM + 規則引擎混合
- * @param {string} name - 工具名称
+ * @param {string} name - 工具名稱
  * @param {string} description - 工具描述
  * @param {string[]} topics - 相關標簽
  * @returns {{ category: string, confidence: number, source: string }}

@@ -68,7 +68,7 @@ test('weightsForIntent: 約束意圖時 V4 權重 > 基準', () => {
   assert.ok(w.V4 > BASE_WEIGHTS.V4, `V4=${w.V4} 應 > 基準 ${BASE_WEIGHTS.V4}`);
 });
 
-test('weightsForIntent: 權重加總恒等於 1', () => {
+test('weightsForIntent: 權重加總恆等於 1', () => {
   for (const q of [
     'scrape a JS-rendered dashboard and extract tables',
     'deploy a node.js service to a kubernetes cluster',

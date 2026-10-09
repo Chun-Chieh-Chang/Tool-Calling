@@ -26,7 +26,7 @@
  *
  * 每個維度對 (query, tool) 回傳 0~1 的評分；融合時採用「取最佳維度」策略
  * （類比 classify 端的投票取最佳，把邊界工具拖回正區），再加權平均作為
- * confidence。若 confidence 低于閾值，誠實回傳「無高置信度工具」，
+ * confidence。若 confidence 低於閾值，誠實回傳「無高置信度工具」，
  * 而非偽裝一個 top-1。
  *
  * 輸出

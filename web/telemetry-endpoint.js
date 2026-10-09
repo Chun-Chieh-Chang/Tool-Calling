@@ -4,7 +4,7 @@
  * 背景：web/behavior-tracker.js 只把行為存在瀏覽器 localStorage，
  * 資料從未回到伺服器。真人查詢語料是本專案最缺的證據
  * （eval-queries.json 的 methodology 欄位明言下一步應收集真人問句），
- * 本模組是回流的最後一里路。
+ * 本模組是回流的最後一哩路。
  *
  * 格式：JSON Lines（一行一事件），附加寫入、不重寫整檔。
  * 位置：web/data/telemetry-events.jsonl（已列入 .gitignore，使用者資料不進版控）。

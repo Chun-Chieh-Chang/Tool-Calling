@@ -97,7 +97,7 @@ for (let i = 0; i < N; i++) {
 // ─── 凝聚式分群（平均連結），記錄 K=N→1 全過程的群間距離 ──────────────────────
 // 為了做 gap statistic 與 split quality，需要「每次分裂時的群間質心距離」。
 // 我們反向做：從 K=N（單點）一路合併到 K=target，記錄每步合併的相似度
-// （= 群間距離的 proxy）。K 的「分裂品質」= 把 K+1 拆成 K 時丢掉的群間相似度。
+// （= 群間距離的 proxy）。K 的「分裂品質」= 把 K+1 拆成 K 時丟掉的群間相似度。
 class Cluster {
   constructor(members) { this.members = members; this.alive = true; }
   avgSim(other) {
@@ -152,7 +152,7 @@ function runAgglomerative(targetK) {
     merges.push({ fromK: aliveCount, sim: bestSim });
     aliveCount--;
   }
-  // simByK：分裂到 K 群時丢掉的群間相似度（= 該步合併的相似度）
+  // simByK：分裂到 K 群時丟掉的群間相似度（= 該步合併的相似度）
   const simByK = new Map();
   for (const m of merges) simByK.set(m.fromK - 1, m.sim);
   return { simByK };
@@ -160,7 +160,7 @@ function runAgglomerative(targetK) {
 
 // ─── Gap Statistic ─────────────────────────────────────────────────────────
 // 標準 Gap Statistic 用「群內點到質心距離」的 log。我們用等價的群間 proxy：
-// 分裂到 K 群時，最後一次合併丢掉的「群間相似度」越低 → 群離得越遠 → 結構越清晰。
+// 分裂到 K 群時，最後一次合併丟掉的「群間相似度」越低 → 群離得越遠 → 結構越清晰。
 // 對 K 序列取「群間相似度」，與隨機 0/1 基線的期望群間相似度相比，gap = 實際 - 隨機。
 // 隨機 TF-IDF 向量（同 IDF 分布、隨機詞）的群間相似度期望 ≈ 0（向量隨機方向）。
 // 實務上：gap 的「knee」（二階差分最大）= 群結構從「隨機」轉「有意義」的臨界 K。

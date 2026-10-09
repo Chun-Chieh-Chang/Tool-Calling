@@ -225,7 +225,7 @@ function runDiffMode(ref) {
 /**
  * commit 掃描的名額與解析。
  *
- * 名額固定 5 筆，但**浅 clone 拿不到這麼多筆時必須降級，而不是當機**：
+ * 名額固定 5 筆，但**淺 clone 拿不到這麼多筆時必須降級，而不是當機**：
  * CI 的 `actions/checkout` 是 `fetch-depth: 2`，那裡連 `HEAD~5` 都不存在，
  * 一旦把 `HEAD~5..HEAD` 這種寫法接進 `npm test`，git 會報 unknown revision
  * → execFileSync 直接丟出堆疊，門禁從「會擋」退化成「會炸」。

@@ -21,7 +21,7 @@
  */
 
 // 規則引擎已抽至 core/classification-rules.js（唯讀純函式），
-// 讓多值推断（infer-multidimensional.js）與本腳本共用同一份規則，避免兩份規則漂移。
+// 讓多值推斷（infer-multidimensional.js）與本腳本共用同一份規則，避免兩份規則漂移。
 // 本腳本僅負責「規則違反審計」流程（Tier 1/2/3 分層、--apply、報告產出）。
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -44,7 +44,7 @@ const CI_MODE = process.argv.includes('--ci');
 
 // ═══ 規則引擎（fields / ruleApplies / EX / AGENT_SIGNALS / RULES / RULES_BY_PASS）══
 // 已抽取至 core/classification-rules.js（唯讀純函式），本腳本不再內含重複定義。
-// 多值推断 infer-multidimensional.js 亦共用同一份規則，避免兩份規則漂移。
+// 多值推斷 infer-multidimensional.js 亦共用同一份規則，避免兩份規則漂移。
 
 // ─── 主流程 ────────────────────────────────────────────────────────────────
 function main() {

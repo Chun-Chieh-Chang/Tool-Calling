@@ -192,7 +192,7 @@ test('CLI：--commits 掃最近一筆 commit 的訊息 —— commit message 也
 
 test('CLI：--commits 不給 range 時掃「最近多筆」而不是只掃最新一筆', { skip: NO_PARENT_SKIP }, () => {
   // 這一條鎖的就是第八輪那個取捨的破口：當時預設範圍是 HEAD~1..HEAD，一次推好幾筆時
-  // 較旧的 commit 訊息根本沒被看。現在預設改為名額制（最近 5 筆可達提交）。
+  // 較舊的 commit 訊息根本沒被看。現在預設改為名額制（最近 5 筆可達提交）。
   const out = execFileSync(process.execPath, [SCRIPT, '--commits'], { cwd: ROOT, encoding: 'utf8' });
   const m = out.match(/，(\d+) 筆/);
   assert.ok(m, `label 應帶「，N 筆」實際掃描筆數，實際輸出：${out.split('\n')[0]}`);
