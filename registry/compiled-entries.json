@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-09T04:20:32.821Z",
+  "generatedAt": "2026-10-09T13:59:18.623Z",
   "entries": {
     "ppt-master": {
       "intents": [
@@ -7983,30 +7983,38 @@
     },
     "ds4": {
       "intents": [
-        "我想在本地 Mac 或 NVIDIA 電腦上直接運行 DeepSeek 模型，不用上傳資料到雲端。",
-        "需要工具加速 DeepSeek Flash/PRO 模型推理，同時保持資料隱私。",
-        "想在 Apple Silicon 或 AMD 顯卡上離線執行大型語言模型。"
+        "我想在自己電腦上跑 DeepSeek 的模型，不要上傳到雲端",
+        "我的 Mac 有 Metal 加速，能不能本地執行 DeepSeek？",
+        "NVIDIA 顯卡上離線跑 DeepSeek 推論，要怎麼弄？",
+        "不用網路連線就能用 DeepSeek 模型嗎？",
+        "在本地機器上加速 DeepSeek 推論，支援哪些 GPU？"
       ],
       "objects": [
-        "DeepSeek 模型檔案",
-        "Metal/CUDA/ROCm 硬體"
+        "DeepSeek Flash 模型",
+        "DeepSeek PRO 模型",
+        "Apple Silicon Metal GPU",
+        "NVIDIA CUDA GPU",
+        "AMD ROCm GPU",
+        "本地計算環境"
       ],
       "actions": [
-        "本地模型推論",
-        "硬體加速運算",
-        "離線生成回應"
+        "執行本地推論",
+        "加速模型推理",
+        "離線運行 DeepSeek 模型"
       ],
       "constraints": [
-        "需具備 GPU 加速設備（Apple Silicon/NVIDIA/AMD）"
+        "需具備 Metal、CUDA 或 ROCm 架構的 GPU 加速環境",
+        "不適合純 CPU 系統",
+        "需安裝對應硬體後端"
       ],
       "negative": [
-        "純 CPU 系統",
-        "需要多用戶雲端部署",
-        "非 DeepSeek 模型架構"
+        "缺乏 GPU 加速的純 CPU 系統",
+        "多用戶雲端部署情境",
+        "非 DeepSeek 模型架構的場景"
       ],
       "tier": 1,
       "epistemic": "S",
-      "compiled_at": "2026-09-20T14:47:37.959Z"
+      "compiled_at": "2026-10-09T13:59:18.602Z"
     },
     "ai-job-search": {
       "intents": [
@@ -22237,33 +22245,39 @@
     },
     "anny": {
       "intents": [
-        "我需要在3D動畫裡加入不同年齡層的角色，從小孩到老人都要有，而且姿勢和表情能自由調整",
-        "做遊戲角色時想快速生成各種人體網格，還要有手部、臉部的細節動作",
-        "想把現有的臉部表情和姿勢參數套用到自己寫的AI模型裡，不用再自己調頂點"
+        "我在做 3D 角色模型，想要生成從嬰兒到老人的不同年齡人體網格",
+        "PyTorch 專案裡要加入人體形狀模型，還要有臉部表情",
+        "需要能驅動人體姿勢和表情的 3D 網格工具",
+        "用 OpenSima 骨架生成不同年齡的人體模型，要怎麼做？",
+        "商業用途的話，Anny 的非商業限制要注意什麼？"
       ],
       "objects": [
-        "3D人體網格模型",
-        "角色模型",
-        "臉部表情",
-        "姿勢參數",
-        "手部和臉部細節模型"
+        "3D 人體網格模型",
+        "PyTorch 程式碼專案",
+        "OpenSima 骨架",
+        "SMPL-X 拓撲結構",
+        "面部表情參數",
+        "手部模型"
       ],
       "actions": [
-        "生成",
-        "調整",
-        "套用",
-        "整合"
+        "生成 3D 人體網格",
+        "模擬人體形狀與表情",
+        "整合至 PyTorch 專案",
+        "驅動人體姿勢"
       ],
       "constraints": [
-        "需使用PyTorch框架"
+        "需在 PyTorch 環境中使用",
+        "商業用途須使用完整安裝（pip install anny[smpl,examples]）",
+        "若需兼容舊版 MakeHuman 骨架，須指定 rig=\"makehuman\""
       ],
       "negative": [
-        "不適用於非人體的3D物體建模",
-        "不支援其他深度學習框架如TensorFlow"
+        "商業產品開發且受非商業授權限制",
+        "不需要差異化人體網格的 3D 開發場景",
+        "非 PyTorch 環境的專案"
       ],
       "tier": 1,
       "epistemic": "S",
-      "compiled_at": "2026-09-29T23:48:49.064Z"
+      "compiled_at": "2026-10-09T13:59:18.602Z"
     },
     "fusion-ai-studio": {
       "intents": [
@@ -23161,5 +23175,5 @@
       "compiled_at": "2026-10-07T10:54:56.445Z"
     }
   },
-  "generatedBy": "compile-wiki --offline (Tier 0)"
+  "generatedBy": "compile-wiki LLM (Tier 1, agnes-2.5-flash)"
 }
