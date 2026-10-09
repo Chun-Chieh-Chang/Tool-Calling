@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-09（七節：negativeFacets 債務清償 4 筆逐條覆核／telemetry 寫入通路首次驗證／`npm audit fix` 全套並推翻「裝 opencc 就全覆蓋」／推送與 push 慣例改版（`cmd /c … 2>nul` 靜默不執行卻回 exit 0，已停用）／CI 長期紅的根因是衍生檔漂移五天／`U+79BB` 收進閘門＋NCZ 缺口由「59」修正為 10＋撤回「`+ecosystem:bootstrap` 是零成本正解」／**P1-b 清程度詞：新增閘門攔下 46 條點不燃的 `-` 值（改寫 37／刪 10），並修掉 `tradingagents` 那條自我拆台的 `-ecosystem:finance`；跨語點燃的舊規格被佐證度實測證偽（見陷阱 22）**——見「三、目前狀態」頂部七節；其下為 10-07 四節與 10-06 embedding 量測、10-05 批次加入快照）
+> 最後更新：2026-10-09（八節：negativeFacets 債務清償 4 筆逐條覆核／telemetry 寫入通路首次驗證／`npm audit fix` 全套並推翻「裝 opencc 就全覆蓋」／推送與 push 慣例改版（`cmd /c … 2>nul` 靜默不執行卻回 exit 0，已停用）／CI 長期紅的根因是衍生檔漂移五天／`U+79BB` 收進閘門＋NCZ 缺口由「59」修正為 10＋撤回「`+ecosystem:bootstrap` 是零成本正解」／**P1-b 清程度詞：新增閘門攔下 46 條點不燃的 `-` 值（改寫 37／刪 10），並修掉 `tradingagents` 那條自我拆台的 `-ecosystem:finance`；跨語點燃的舊規格被佐證度實測證偽（見陷阱 22）**／**commit 訊息閘門接進 `npm test`（用默認 `HEAD~1..HEAD`，因 CI 是 `fetch-depth: 2`），並記下 amend 未推送 commit 時用 tree hash 證明內容未動的做法**——見「三、目前狀態」頂部八節；其下為 10-07 四節與 10-06 embedding 量測、10-05 批次加入快照）
 
 ---
 
@@ -265,7 +265,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部七節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部八節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
 
@@ -649,7 +649,39 @@ deps／docs）。判準三件都取：命令 exit 0、push.log 裡真的出現�
    分數被壓到 0 的第 32 名→第 9 名），**全庫尚未掃**。建議先掃出候名單再決定是 error 還是
    warning——合法的「排除自家相鄰領域」不該被一刀打死。
 
+### 2026-10-09（第八輪）把 commit 訊息閘門接進 `npm test`，並記下 amend 未推送 commit 的安全證明法
+
+**需求來源**：用戶明文兩字——「推」（推 `af2c456`）＋「要」（把 `check:lang:commits` 補進鏈）。
+第七輪那筆 docs commit 我打了一個簡體字（「本」後面接 U+8F6E，應寫 U+8F2B），被自己寫的閘門在 commit 訊息那條路上抓到
+（那條路**不認 `allow-simplified`**，第六輪已記）。用戶回「改」准我 amend 那筆未推送的 commit。
+
+**amend 的安全證明法（值得沿用）**：改前先記舊 tree hash，改後比對——
+tree 相同就等於**內容一個 bit 沒動、只有訊息變**，也順帶證明我沒趁 amend 夾帶代碼。
+這比「我用眼看 diff 說沒改到」強。改完必須重跑管訊息的那道閘門，綠了才回報。
+
+**做了什麼**：`package.json` 的 `test` 鏈尾端（`--full --code` 之後、`node --test` 之前）插入
+`node scripts/check-traditional.js --commits`，diff 是乾淨的 **1 增／1 刪**。
+
+⚠️ **用的是 `--commits` 的默認範圍 `HEAD~1..HEAD`，不是 `npm run check:lang:commits` 的 `HEAD~5..HEAD`**。
+理由：CI 的 `actions/checkout` 是 `fetch-depth: 2`（`.github/workflows/deploy-pages.yml:26`，
+那行註解就是為 `--range`／`--commits` 鎖寫的），在 2 筆深度上 `HEAD~5` **根本不存在**，
+放進鏈會讓 CI 當場炸。而改 workflow 是受保護路徑，需要人工確認——本輪**沒動它**。
+衍生後果兩條，接手時要知道：
+1. 鏈裡這道只掃**最新一筆** commit 的訊息；多筆一起推時 older 訊息不會被鏈抓到。
+   深掃仍是手動 `npm run check:lang:commits`（HEAD~5..HEAD）。
+2. 用 `git clone --depth 1` 的人跑 `npm test` 會在 `HEAD~1` 上失敗（無第二筆）。CI 不受影響（depth 2）。
+
+**打樁（證明接進鏈的不是靜默綠）**：拿那筆被 amend 掉的壞 commit（物件仍在 reflog 可達）單獨掃
+→ **exit 1**，逐行點名 `[U+8F6E]`；同一支指令用默認範圍掃目前 HEAD → **exit 0（1 筆）**。
+`A && B && C` 中 B 會紅，鏈就紅——這是鏈條成立的機制，不是推測。
+
+**驗證**：`npm test` **387／385 pass／0 fail／2 skip**，且輸出現在有**三道** ✅ Traditional Guard
+（先前兩道：新增行＋`--full --code`；第三道是本輪新增的 commit 訊息）。
+`af2c456` 的 CI 先前已 completed success；`964abbb` 為 docs-only，推過之後用 `git ls-remote` 驗過遠端同值。
+
 ### 2026-10-07 LLM Wiki（Karpathy gist）對照 ＋ `lint:wiki` 起草（唯讀診斷，未接線）
+
+
 
 
 **問題**：Karpathy 的 LLM wiki gist 能否幫到檢索與配對。
