@@ -20290,12 +20290,12 @@
     "fullName": "clash-verge-rev/clash-verge-rev",
     "owner": "clash-verge-rev",
     "repo": "clash-verge-rev",
-    "initialStars": 136411,
-    "discoveredAt": "2026-08-02T23:59:59.999Z",
-    "sourceSnapshotWeek": "2026-W31",
-    "category": null,
+    "category": "安全性",
     "addedAt": "2026-10-05T08:25:38.635Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 136411,
+    "sourceSnapshotWeek": "2026-W31",
+    "discoveredAt": "2026-08-02T23:59:59.999Z"
   },
   "golang/go": {
     "fullName": "golang/go",
@@ -25422,12 +25422,12 @@
     "fullName": "robbietilton/Compositor",
     "owner": "robbietilton",
     "repo": "Compositor",
-    "initialStars": 3668,
-    "discoveredAt": "2026-09-22T12:10:11.014Z",
-    "sourceSnapshotWeek": "2026-W39",
-    "category": null,
+    "category": "UI/UX設計",
     "addedAt": "2026-10-05T08:25:38.635Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 3668,
+    "sourceSnapshotWeek": "2026-W39",
+    "discoveredAt": "2026-09-22T12:10:11.014Z"
   },
   "Player-YN/BrowserKitten": {
     "fullName": "Player-YN/BrowserKitten",
@@ -25511,8 +25511,8 @@
     "discoveredAt": "2026-09-22T12:10:11.014Z",
     "sourceSnapshotWeek": "2026-W39",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-12T08:40:48.785Z",
+    "status": "in_registry"
   },
   "yi1108/printfilm": {
     "fullName": "yi1108/printfilm",
@@ -25906,8 +25906,8 @@
     "discoveredAt": "2026-09-28T08:16:28.494Z",
     "sourceSnapshotWeek": "2026-W40",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-12T08:40:48.785Z",
+    "status": "in_registry"
   },
   "newliver666/apk-reverse": {
     "fullName": "newliver666/apk-reverse",
@@ -26049,8 +26049,8 @@
     "discoveredAt": "2026-09-28T08:16:28.494Z",
     "sourceSnapshotWeek": "2026-W40",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-12T08:40:48.785Z",
+    "status": "in_registry"
   },
   "JohnHeibel/PDoomVideo": {
     "fullName": "JohnHeibel/PDoomVideo",
@@ -26377,11 +26377,462 @@
     "addedAt": "2026-10-04T13:54:21.312Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2590,
-    "inRegistry": 709,
-    "trackedOnly": 1881,
-    "lastGenerated": "2026-10-05T08:25:38.688Z"
+  "Niko1221/Strata": {
+    "fullName": "Niko1221/Strata",
+    "owner": "Niko1221",
+    "repo": "Strata",
+    "initialStars": 12014,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
   },
-  "lastGenerated": "2026-10-05T08:25:38.635Z"
+  "KKKKhazix/AIHOT": {
+    "fullName": "KKKKhazix/AIHOT",
+    "owner": "KKKKhazix",
+    "repo": "AIHOT",
+    "initialStars": 5867,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shihabal3amri/DiPlay": {
+    "fullName": "shihabal3amri/DiPlay",
+    "owner": "shihabal3amri",
+    "repo": "DiPlay",
+    "initialStars": 4233,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Louis-CFM/coucou": {
+    "fullName": "Louis-CFM/coucou",
+    "owner": "Louis-CFM",
+    "repo": "coucou",
+    "initialStars": 3543,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "rehan-remade/universal-modder": {
+    "fullName": "rehan-remade/universal-modder",
+    "owner": "rehan-remade",
+    "repo": "universal-modder",
+    "initialStars": 3426,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "CopilotKit/OpenDots": {
+    "fullName": "CopilotKit/OpenDots",
+    "owner": "CopilotKit",
+    "repo": "OpenDots",
+    "initialStars": 3331,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "feder-cr/dots": {
+    "fullName": "feder-cr/dots",
+    "owner": "feder-cr",
+    "repo": "dots",
+    "initialStars": 2609,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "OffGridPete/Fieldwatch": {
+    "fullName": "OffGridPete/Fieldwatch",
+    "owner": "OffGridPete",
+    "repo": "Fieldwatch",
+    "initialStars": 2370,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yihui-dev/awesome-opus5-5-videos": {
+    "fullName": "yihui-dev/awesome-opus5-5-videos",
+    "owner": "yihui-dev",
+    "repo": "awesome-opus5-5-videos",
+    "initialStars": 1994,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Avenuezensport/efjvysuz": {
+    "fullName": "Avenuezensport/efjvysuz",
+    "owner": "Avenuezensport",
+    "repo": "efjvysuz",
+    "initialStars": 1928,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "RubinLabs26/ISpotify": {
+    "fullName": "RubinLabs26/ISpotify",
+    "owner": "RubinLabs26",
+    "repo": "ISpotify",
+    "initialStars": 1901,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kaankiziltug/logo-design-skill": {
+    "fullName": "kaankiziltug/logo-design-skill",
+    "owner": "kaankiziltug",
+    "repo": "logo-design-skill",
+    "initialStars": 1900,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ntfargo/Relapse-Exploit": {
+    "fullName": "ntfargo/Relapse-Exploit",
+    "owner": "ntfargo",
+    "repo": "Relapse-Exploit",
+    "initialStars": 1756,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Droid-Deck/DroidDeck": {
+    "fullName": "Droid-Deck/DroidDeck",
+    "owner": "Droid-Deck",
+    "repo": "DroidDeck",
+    "initialStars": 1660,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "feitangyuan/onetake": {
+    "fullName": "feitangyuan/onetake",
+    "owner": "feitangyuan",
+    "repo": "onetake",
+    "initialStars": 1555,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "852wa/JIZURA": {
+    "fullName": "852wa/JIZURA",
+    "owner": "852wa",
+    "repo": "JIZURA",
+    "initialStars": 1539,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nanaism/yomiyasu": {
+    "fullName": "nanaism/yomiyasu",
+    "owner": "nanaism",
+    "repo": "yomiyasu",
+    "initialStars": 1447,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wy51ai/floorplan-3d": {
+    "fullName": "wy51ai/floorplan-3d",
+    "owner": "wy51ai",
+    "repo": "floorplan-3d",
+    "initialStars": 1410,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "firelex/jeff": {
+    "fullName": "firelex/jeff",
+    "owner": "firelex",
+    "repo": "jeff",
+    "initialStars": 1380,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "omnirush-ai/omnirush-gui": {
+    "fullName": "omnirush-ai/omnirush-gui",
+    "owner": "omnirush-ai",
+    "repo": "omnirush-gui",
+    "initialStars": 1352,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Ebony-Vinyl/dsh-our-free-model": {
+    "fullName": "Ebony-Vinyl/dsh-our-free-model",
+    "owner": "Ebony-Vinyl",
+    "repo": "dsh-our-free-model",
+    "initialStars": 1336,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "facebookincubator/muse-gadget-sdk": {
+    "fullName": "facebookincubator/muse-gadget-sdk",
+    "owner": "facebookincubator",
+    "repo": "muse-gadget-sdk",
+    "initialStars": 1293,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "edenfunf/reelmimic": {
+    "fullName": "edenfunf/reelmimic",
+    "owner": "edenfunf",
+    "repo": "reelmimic",
+    "initialStars": 1280,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Clearailhc/clearai-dsh": {
+    "fullName": "Clearailhc/clearai-dsh",
+    "owner": "Clearailhc",
+    "repo": "clearai-dsh",
+    "initialStars": 1268,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Jakeschincariol/linkedin-agent-skill": {
+    "fullName": "Jakeschincariol/linkedin-agent-skill",
+    "owner": "Jakeschincariol",
+    "repo": "linkedin-agent-skill",
+    "initialStars": 1261,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ninjahawk/livenerf": {
+    "fullName": "ninjahawk/livenerf",
+    "owner": "ninjahawk",
+    "repo": "livenerf",
+    "initialStars": 1255,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "google-research/rrsi": {
+    "fullName": "google-research/rrsi",
+    "owner": "google-research",
+    "repo": "rrsi",
+    "initialStars": 1248,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "angusdevgo/IDM_Pro_Tool": {
+    "fullName": "angusdevgo/IDM_Pro_Tool",
+    "owner": "angusdevgo",
+    "repo": "IDM_Pro_Tool",
+    "initialStars": 1223,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "QingYunA/answer-me-with-html": {
+    "fullName": "QingYunA/answer-me-with-html",
+    "owner": "QingYunA",
+    "repo": "answer-me-with-html",
+    "initialStars": 1207,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/photocraft": {
+    "fullName": "storytold/photocraft",
+    "owner": "storytold",
+    "repo": "photocraft",
+    "initialStars": 1201,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ollaya-dev/ollaya": {
+    "fullName": "ollaya-dev/ollaya",
+    "owner": "ollaya-dev",
+    "repo": "ollaya",
+    "initialStars": 1196,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "volotat/mini-AGI": {
+    "fullName": "volotat/mini-AGI",
+    "owner": "volotat",
+    "repo": "mini-AGI",
+    "initialStars": 1179,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nykooi1/vibe-wise": {
+    "fullName": "nykooi1/vibe-wise",
+    "owner": "nykooi1",
+    "repo": "vibe-wise",
+    "initialStars": 1168,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Vodiwalker/vodiwalker_panel": {
+    "fullName": "Vodiwalker/vodiwalker_panel",
+    "owner": "Vodiwalker",
+    "repo": "vodiwalker_panel",
+    "initialStars": 1157,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "aliyun/ai-agent-handbook": {
+    "fullName": "aliyun/ai-agent-handbook",
+    "owner": "aliyun",
+    "repo": "ai-agent-handbook",
+    "initialStars": 1133,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kargulstudio/sales-crm": {
+    "fullName": "kargulstudio/sales-crm",
+    "owner": "kargulstudio",
+    "repo": "sales-crm",
+    "initialStars": 1110,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dgreenheck/tidewater": {
+    "fullName": "dgreenheck/tidewater",
+    "owner": "dgreenheck",
+    "repo": "tidewater",
+    "initialStars": 1100,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Mapika/decider": {
+    "fullName": "Mapika/decider",
+    "owner": "Mapika",
+    "repo": "decider",
+    "initialStars": 1067,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Inkloom-art/inkloom": {
+    "fullName": "Inkloom-art/inkloom",
+    "owner": "Inkloom-art",
+    "repo": "inkloom",
+    "initialStars": 1066,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "liangshanbo789/chatgpt-plus-pro-team-billing": {
+    "fullName": "liangshanbo789/chatgpt-plus-pro-team-billing",
+    "owner": "liangshanbo789",
+    "repo": "chatgpt-plus-pro-team-billing",
+    "initialStars": 1065,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "reladraw/reladraw": {
+    "fullName": "reladraw/reladraw",
+    "owner": "reladraw",
+    "repo": "reladraw",
+    "initialStars": 1062,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2631,
+    "inRegistry": 711,
+    "trackedOnly": 1920,
+    "lastGenerated": "2026-10-12T08:40:48.816Z"
+  },
+  "lastGenerated": "2026-10-12T08:40:48.785Z"
 }

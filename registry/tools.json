@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-11T03:15:07.557Z",
+  "lastUpdated": "2026-10-12T08:41:09.823Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -57256,6 +57256,105 @@
         "提供 TUN（虛擬網卡）模式與含守護機制的系統代理，並透過 Merge 與 Script 管理及增強設定檔",
         "支援視覺化節點與規則編輯，以及 WebDAV 設定檔備份與同步"
       ]
+    },
+    {
+      "id": "how-to-live-better",
+      "name": "how-to-live-better",
+      "url": "https://github.com/cdyforever/how-to-live-better",
+      "description": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+      "category": "開發工具",
+      "language": "html",
+      "triggers": [
+        "how-to-live-better"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/cdyforever/how-to-live-better"
+      },
+      "capabilities": [],
+      "useCase": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 7525,
+      "addedAt": "2026-10-12T08:40:48.785Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 7525,
+        "weeklyDelta": 4479,
+        "ingestedAt": "2026-10-12T08:40:48.785Z"
+      }
+    },
+    {
+      "id": "magpie",
+      "name": "magpie",
+      "url": "https://github.com/yetone/magpie",
+      "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "category": "AI 框架",
+      "language": "go",
+      "triggers": [
+        "magpie",
+        "claude-code",
+        "codex",
+        "deepseek",
+        "gemini-cli",
+        "llm"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/yetone/magpie"
+      },
+      "capabilities": [
+        "claude-code",
+        "codex",
+        "deepseek",
+        "gemini-cli",
+        "llm",
+        "macos"
+      ],
+      "useCase": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 4960,
+      "addedAt": "2026-10-12T08:40:48.785Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4960,
+        "weeklyDelta": 3552,
+        "ingestedAt": "2026-10-12T08:40:48.785Z"
+      }
+    },
+    {
+      "id": "qingjian",
+      "name": "qingjian",
+      "url": "https://github.com/qingjian-team/qingjian",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "unknown",
+      "triggers": [
+        "qingjian"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/qingjian-team/qingjian"
+      },
+      "capabilities": [],
+      "useCase": "qingjian",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 4369,
+      "addedAt": "2026-10-12T08:40:48.785Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4369,
+        "weeklyDelta": 2218,
+        "ingestedAt": "2026-10-12T08:40:48.785Z"
+      }
     }
   ]
 }
