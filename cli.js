@@ -459,9 +459,12 @@ function cmdValidate() {
   console.log(`${c.dim}─────────────────────────────────────────${c.reset}`);
   if (errors === 0 && warnings === 0) {
     success(`所有 ${registry.tools.length} 個工具通過驗證 ✨`);
-  } else {
-    console.log(`${errors > 0 ? c.red : c.green}${errors} 個錯誤${c.reset}, ${warnings > 0 ? c.yellow : c.green}${warnings} 個警告${c.reset}`);
   }
+  // 🔴 「N 個錯誤, M 個警告」摘要行必須無條件印出：cli-validate 與
+  //    tier1-preservation 的守門測試靠解析這行驗證「結束碼與錯誤數一致」。
+  //    全綠分支曾吞掉這行 → 2026-10-13 registry 首次 0/0 時 CI 紅燈
+  //    （416 測中 3 筆失敗皆源於此，前兩個 commit 的綠色是 6 個警告僥倖撐的）。
+  console.log(`${errors > 0 ? c.red : c.green}${errors} 個錯誤${c.reset}, ${warnings > 0 ? c.yellow : c.green}${warnings} 個警告${c.reset}`);
   const contract = assessRegistryContract(registry);
   const lowQualityPreview = contract.lowQualityTools.slice(0, 5);
   console.log();

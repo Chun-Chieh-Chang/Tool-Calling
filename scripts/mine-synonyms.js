@@ -242,7 +242,7 @@ export function mineSynonyms(tools) {
   };
 }
 
-function toGeneratedSource(map) {
+export function toGeneratedSource(map) {
   const header = `/**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
  * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：

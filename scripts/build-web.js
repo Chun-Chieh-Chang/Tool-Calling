@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { mineSynonyms } from './mine-synonyms.js';
+import { mineSynonyms, toGeneratedSource } from './mine-synonyms.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,15 +26,11 @@ const registry = JSON.parse(fs.readFileSync(registryPath, 'utf-8'));
 // 每次部署前重新產生全景知識圖譜與同義詞詞典
 generateKnowledgeGraph(registry);
 const { map: synonymMap, stats } = mineSynonyms(registry.tools);
-const synonymsSource = `/**
- * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- *
- * 刻意不寫入產生時間：時間戳會讓每次 build 都產生只差一行的無意義 diff，
- * 掩蓋真正的內容變更。需要時間資訊請看 git log。
- */
-export const SYNONYM_MAP = ${JSON.stringify(synonymMap, null, 2)};
-`;
-fs.writeFileSync(path.join(rootDir, 'core', 'synonyms.generated.js'), synonymsSource, 'utf-8');
+// 🔴 檔頭模板必須與 mine-synonyms.js 共用同一份（toGeneratedSource），
+//    不可在此重複維護：歷史上這裡有一份漏掉 check-traditional: skip-file
+//    標記的複製版，每次 npm run build 都把標記覆蓋掉，check-traditional
+//    門禁與其守門測試（產生器模板也要有標記）直接失敗。
+fs.writeFileSync(path.join(rootDir, 'core', 'synonyms.generated.js'), toGeneratedSource(synonymMap), 'utf-8');
 console.log(`同義詞詞典已更新（${stats.totalTerms} 個詞彙，來自 ${stats.keptPairs} 組挖掘配對 + ${stats.seedTerms} 個種子詞）`);
 
 // 複製 web 檔案
