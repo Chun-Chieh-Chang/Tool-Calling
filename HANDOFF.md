@@ -265,7 +265,35 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-13 第二輪快照，第二節為 2026-10-13 第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-13 第三輪快照，其次第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-13（第三輪）三項裁決執行：移除失效 repo、補三 URL、四原子 commit
+
+**流程**：用戶把「未做／待裁」做成一頁可點的選擇題（三題：tokentab 404 處置／剩餘 3 URL 入庫與否／變更提交方式），裁決為 **Q1=C（移除）、Q2=A（全入庫）、Q3=A（拆 4 個原子 commit）**。
+
+**1. tokentab 移除（Q1=C）**：`damejan80/tokentab` repo 已 404 → 從 tools.json（768→767）、tracked-repos.json、trigger-enrich-state.json 一併移除；dist 與同義詞詞典重建後同步清零。
+🔴 **過程事故（教訓，MEMORY §9 規則再次應驗）**：移除 tracked-repos 條目時誤用 `git checkout` 還原檔案，把當日 95 筆未提交的追蹤池成果一起洗掉。**救援成功**：`buildTrackedRepos()` 是純本地資料驅動（tools.json ＋ star-snapshots.json 合併），重跑後追蹤池精確回復 2685 筆（與事故前數字一致）；預存在條目的溯源欄位以 HEAD 版逐筆復原（10 筆——rebuild 會用較新快照覆蓋 initialStars／sourceSnapshotWeek，mergeTrackedProvenance 只保護 discoveredAt），最終只保留「95 筆恢復＋移除 tokentab＋_meta」的最小 diff。**下次重寫大 JSON 前，先確認該檔有沒有未提交變更；git checkout／restore 會連未提交修改一起還原。**
+
+**2. 三 URL 入庫（Q2=A）**——皆走完整衛生管線（repo-metadata-hygiene），experimental → active，registry 現 **770 支**：
+
+| 工具 | 分類 | 安裝指令與證據 |
+|---|---|---|
+| ultramotion | 多媒體生成 | `npx skills add sunsiyuan/ultramotion`——上游 README 自載指令（強於根目錄無封裝檔的 git clone 下界） |
+| answer-me-with-html | AI 代理 | `npx answer-me-with-html`——根目錄 package.json 有 `bin` 且非 private（封裝證據） |
+| vibe-coding-cn | 學習資源 | `git clone`——根目錄無任何封裝檔（Makefile／docs／skills），誠實下界 |
+
+人工核對（鐵律 4）抓到兩處：ultramotion 被 scan 歸「開發工具」→ 改「多媒體生成」（領域專屬 skill 包歸該領域，同 generative-media-skills 先例）；vibe-coding-cn 的 enrich useCase 複製了 description → 依 README 手工重寫並補 advantages。answer-me-with-html 觸發詞清掉 id 斷詞殘骸（answer／with／html）。
+
+**3. 四原子 commit（Q3=A）**——`scripts/trending-weekly.js` 同時含世界週與守門兩種改動，用 hunk 級 `git apply --cached` 拆分（世界週 8 hunks／守門 4 hunks；測試檔先提交 anchors-only 版再補守門版），每個 commit 的樹都單獨綠燈：
+
+```
+d9740c9  feat(knowledge-graph): 聚焦時淡化未選取節點（2D/3D 同語義）
+01be647  chore(registry): 補齊 3 支新工具、移除失效 repo tokentab，文件對齊 770 支
+b9aa213  fix(trending): 分類與語言加入 SSOT 守門，收錄生命週期改回 experimental
+336bfe9  fix(trending): 世界週起訖改依快照 timestamp 語意挑錨點
+```
+
+**提交後復驗**（對外部狀態取快照）：`cli.js validate` 770/770、100/100、0 錯誤 0 警告；七道閘門全過；守門測試 12/12；工作區乾淨；port 3000 伺服器服務 770 支（含三支新工具、無 tokentab）。4 個 commit 已推送 origin/main（用戶明確授權）。
 
 ### 2026-10-13（第二輪）世界週起訖日期 off-by-one 修正 ＋ trending 分類／語言 SSOT 守門
 
@@ -291,7 +319,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 **最終狀態**：`node cli.js validate` **768/768 全過、Contract 100/100、0 錯誤 0 警告 0 low-quality**；check-utf8／duplicate-ids／templates／doc-stats／mece／sync --check／rescan --ci 七道閘門全過；`npm run build` 後 dist/registry 與 registry 逐笔一致（0 stale）。
 
-⚠️ **未裁決事項**：`tokentab`（damejan80/tokentab）GitHub repo 已 404——先記錄，是否降級 deprecated 留給使用者裁決（不擅自下架 active 工具）。
+⚠️ **未裁決事項**：`tokentab`（damejan80/tokentab）GitHub repo 已 404——先記錄，是否降級 deprecated 留給使用者裁決（不擅自下架 active 工具）。→ **已裁決**：用戶選「直接移除」，本日第三輪執行完畢（見上方第三輪快照）。
 
 **環境限制同第一輪**（沙盒 node spawn EBUSY → `npm test` 不可用，改用直接執行＋逐檔 `node --check`）。
 
@@ -311,7 +339,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 **🔴 環境限制（下次接手必讀）**：本沙盒環境內 **node 的 child_process spawn 全部 EBUSY**（git/cmd/node 皆然，bash 直啟子行程正常）→ `check-syntax.js`、`npm test`、`check-traditional` 的 git 模式、以及所有 spawn 型測試（category-guards、cli-validate、wiki-lint、check-traditional）在此環境**無法執行**，49 筆測試失敗全為 EBUSY 偽失敗（斷言訊息是空輸出，不是邏輯錯）。已用等價直接執行替代：138 檔 `node --check` 全過；check-utf8／check-duplicate-ids／check-templates／check-doc-stats／check-mece／sync-categories --check／rescan-classification --ci 全過；`cli.js validate` 0 錯誤。**回到正常環境請重跑一次 `npm test` 確認 404 全綠。**
 
-**待辦**：使用者第一批 5 個 URL 尚有 3 支未入庫（sunsiyuan/ultramotion、QingYunA/answer-me-with-html、tradecatlabs/vibe-coding-cn；FreeCAD 已存在、morluto/rea 已 experimental 在庫）。
+**待辦**：使用者第一批 5 個 URL 尚有 3 支未入庫（sunsiyuan/ultramotion、QingYunA/answer-me-with-html、tradecatlabs/vibe-coding-cn；FreeCAD 已存在、morluto/rea 已 experimental 在庫）。→ **已於本日第三輪全數入庫**（見上方第三輪快照，registry 770 支）。
 
 ### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
 
