@@ -5917,422 +5917,6 @@
       ],
       "at": "2026-09-20T02:45:35.660Z"
     },
-    "graphify": {
-      "at": "2026-09-20T03:22:44.789Z",
-      "skipped": "already zh or empty"
-    },
-    "strix": {
-      "at": "2026-09-20T03:22:44.790Z",
-      "skipped": "already zh or empty"
-    },
-    "awesome-llm-apps": {
-      "at": "2026-09-20T03:22:44.790Z",
-      "skipped": "already zh or empty"
-    },
-    "speak-human-tw": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "daily-stock-analysis": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "data-to-html": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "excel-to-html": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "seedance-20": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "exercises-dataset": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "claude-opus-5md": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "opus-5md": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "claude-system-prompt": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "remixicon": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "iconoir": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "tabler-icons": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "hugagentos": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "radix-ui-icons": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "welovesvg": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "buzz": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "claude-code-debug-mode": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "howtheytest": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "first-principles-skill": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "qlib": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "openbb": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "ai-hedge-fund": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "fincept-terminal": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "backtrader": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "lean": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "fingpt": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "tradingagents-cn": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "tradingagents-astock": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "mars": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "avernet": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "deeptutor": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "slavingia-skills": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "awesome-openclaw-skills": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "trailofbits-skills": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "mengto-skills": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "design-control-loop": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "show-me": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "mono-color-skill": {
-      "at": "2026-09-27T05:04:51.672Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不適合生成高擬真度、多色寫實藝術或需完整 CMYK 或 RGB 色彩範圍的標準商業圖形。",
-        "預設不套用復古效果；需經使用者明確要求，否則輸出採當代編輯風格。"
-      ]
-    },
-    "praxist": {
-      "at": "2026-09-27T05:04:51.674Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要一個已可執行且具有可衡量目標的專案；不從頭設計專案。",
-        "需要 Python 3.11+。",
-        "針對使用開源模型 API 或 Codex 訂閱的持續研究進行優化，而非一次性簡單查詢。"
-      ]
-    },
-    "fastpotify": {
-      "at": "2026-09-27T05:04:51.674Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要 Spotify Premium 訂閱才能播放音訊；免費帳號僅能瀏覽和搜尋。",
-        "特定的本地 Seek 操作可能會遭遇解碼器、下載及裝置緩衝區延遲。",
-        "無法官方更改 Spotify 播放清單的播放順序；拖曳時會自動切換至本地安排。"
-      ]
-    },
-    "goldie": {
-      "at": "2026-09-27T05:04:51.674Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要 Node 20+ 及 PATH 中的 ffmpeg；取得 App Store 螢幕截圖必須使用 macOS，而 Google Play 需要特定的 Android 模擬器硬體設定（Pixel 10/9 Pro）。",
-        "除錯建置會導致 LogBox 橫幅出現在截圖中；必須使用 Release 建置才能取得乾淨輸出。",
-        "App Store 預覽影片必須嚴格遵守 15-30 秒時長限制，而 Google Play 則不強制此限制。"
-      ]
-    },
-    "delivery-harness": {
-      "at": "2026-09-27T05:04:51.674Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不適合用真實個人或訂單資料進行生產用途，因為它是使用合成資料和記憶體狀態的教育性 MVP。",
-        "不得暴露於公共網際網路，或未經身份驗證、政策執行及人工審核即用於執行報酬決策。",
-        "缺乏持久化、向量嵌入、身份驗證及限流等生產級功能，使其不適合高風險操作環境。"
-      ]
-    },
-    "stop-that-shit": {
-      "at": "2026-09-27T05:05:00.276Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "一般主機需 Node.js 18+，Pi 0.84.4 需 Node.js 22.19+。",
-        "僅在透過特定指令或鉤子明確呼叫時執行防護，不會在無使用者提示的情況下自動監控所有 agent 動作。"
-      ]
-    },
-    "tokentab": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "fmt": {
-      "at": "2026-09-20T03:22:44.791Z",
-      "skipped": "already zh or empty"
-    },
-    "openwiki": {
-      "at": "2026-09-27T05:05:00.276Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需 Node.js 22.22.0 或更新版本。",
-        "在 Windows 上透過 `bun` 安裝時，需安裝含 C++ 桌面開發負載的 Visual Studio Build Tools，以編譯 better-sqlite3。",
-        "使用者必須主動與支援的程式設計 agent 互動，才能順利初始化或執行該工具。"
-      ]
-    },
-    "obscura": {
-      "at": "2026-09-27T05:05:00.277Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "目前依賴 V8 引擎執行 JavaScript，與其它 JS 引擎相比，可能產生特定的授權或整合限制。",
-        "作為即插即用替代品，假設目標自動化腳本與 Obscura 實作的 CDP 子集相容；對於小眾使用情境，該子集可能與完整 Chrome CDP 有所差異。",
-        "README 強調記憶體與啟動速度上的優勢，但未提供複雜重度 DOM 操作任務的基準資料，暗示在極端情況下與成熟 Chromium 相比可能有限制。"
-      ]
-    },
-    "agent-orchestrator": {
-      "at": "2026-09-27T05:05:00.277Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需在 macOS、Windows 或 Linux 上安裝本機桌面版本；不作為伺服器端或雲端原生服務運作。",
-        "專為基於 Git 的原始碼控管而設計；使用非 Git VCS 或純檔案型專案的倉庫可能不相容。"
-      ]
-    },
-    "graft": {
-      "at": "2026-09-27T05:05:00.277Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需本機檔案系統存取權限來建置並維護程式碼圖形快取。",
-        "圖形資料為本地端且可重新產生，因此無法直接透過 Git 共享，每位團隊成員都需執行重新建置。"
-      ]
-    },
-    "kunpeng": {
-      "at": "2026-09-27T05:05:15.843Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不適合需要零維護、開箱即用的商業 SaaS 工具的使用者，因為它需要基本的程式設計和 AI 工作流程知識。",
-        "Windows 版本正在測試中，可能遇到問題；由於缺乏硬體加速支援，Windows 上的影片編碼會回退到 libx264。",
-        "高精度商業級編輯仍有侷限，需要外部專業編輯軟體進行最終修飾。"
-      ]
-    },
-    "unlazy": {
-      "at": "2026-10-04T06:37:08.013Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "無法推斷自然語言標題與shell程式之間的語義等價性；閘道必須明確設計為讀取artifacts並印出成功標記。",
-        "執行依賴本機shell環境與PATH；驗證shell與執行shell不匹配（例如Windows上的Git Bash與PowerShell）會導致驗證失敗。",
-        "簽核紀錄儲存於使用者的本機home目錄中，因此若未手動匯出，證據無法進行集中稽核或跨分散式團隊共用。"
-      ]
-    },
-    "cognicode": {
-      "at": "2026-10-04T06:58:19.271Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需先進行初始圖形建構步驟，才能使用分析工具。"
-      ]
-    },
-    "lieflat-charts": {
-      "at": "2026-10-04T07:07:17.951Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要支援 Agent Skills (SKILL.md) 格式的 AI 代理環境，例如 moxt、Claude Code 或 Codex。",
-        "報告產生僅限於所提供的 12 個範本，且僅在明確要求特定文件類型時才會觸發。"
-      ]
-    },
-    "magnitude": {
-      "at": "2026-09-27T05:05:15.843Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不適合僅限雲端環境且不允许本地執行的情況",
-        "需要大量的本機記憶體或運算資源才能有效運行大型模型"
-      ]
-    },
-    "weread-hot-booklists": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
-    },
-    "gpt4free": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
-    },
-    "freellmapi": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
-    },
-    "free-books": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
-    },
-    "musicfree": {
-      "at": "2026-09-20T03:22:44.792Z",
-      "skipped": "already zh or empty"
-    },
-    "howtolivebetter": {
-      "at": "2026-09-27T05:05:15.843Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "如果需要特定 608 個列出的情境或更新後的醫療標準以外的建議，使用者需要手動驗證事實",
-        "Unlicense 代表無保修或責任，使其不適合在高風險法律或醫療依賴中作為主要來源，除非經過專業諮詢",
-        "非英文翻譯版本是非官方的，可能與原始中文內容的新增項目或變更不同步"
-      ]
-    },
-    "spotifast": {
-      "at": "2026-09-27T05:05:15.843Z",
-      "skipped": "already zh or empty",
-      "advantages_zh": "單一輕量 Rust 應用程式即可同時支援本地播放與 Spotify Connect, 跨 Linux、macOS 與 Windows 三大平台, 無需依賴原生 Spotify 客戶端",
-      "negativeConstraints_zh": [
-        "無法使用 Spotify Free 帳號播放音樂；播放嚴格需要 Spotify Premium",
-        "不支援 audiobook 的本機播放，當啟用本地播放時，它們在 Podcasts 檢視中會被隱藏",
-        "在名稱從 Fastpotify 變更為 Spotifast 期間遷移 Flatpak 安裝可能需要手動干預以保留設定"
-      ]
-    },
-    "my-girlfriend-jingtian-latex": {
-      "at": "2026-09-27T05:05:15.843Z",
-      "skipped": "already zh or empty",
-      "advantages_zh": "提供可直接編譯的 XeLaTeX 專案結構（含 main.tex 與編譯指令）, 預設 5×8 吋排版尺寸, 相容標準 TeX Live 發行版",
-      "negativeConstraints_zh": [
-        "需要 XeLaTeX 和標準 TeX Live 發行版來編譯。",
-        "輸出固定的 5x8 英吋 PDF 版面，不適合變數尺寸或動態內容生成。"
-      ],
-      "useCase_zh": "需要以 XeLaTeX 製作 5×8 吋規格印刷品（寫真集、小冊子），想直接沿用現成排版設定時。"
-    },
-    "ai-infra-book": {
-      "at": "2026-09-27T05:10:46.078Z",
-      "skipped": "already zh or empty",
-      "advantages_zh": "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計, 開源包含全書正文、PDF 與配套計算工具及實驗",
-      "negativeConstraints_zh": [
-        "需要線性代數、Python 和電腦系統方面的基礎知識；不適合沒有軟體工程或系統設計技術背景的讀者。",
-        "由於 Git LFS 追蹤的文件（包含論文和實驗資料）導致倉儲體積龐大（約 20GB），若 LFS 未正確設定，初始 clone 可能緩慢或困難。",
-        "實驗復現需要特定的硬體設定（GPU/加速器）和依賴項，這些在標準開發環境中未必都可用。"
-      ]
-    },
-    "lint": {
-      "at": "2026-10-04T07:21:35.697Z",
-      "skipped": "already zh or empty",
-      "advantages_zh": "Agent-first 架構，設計系統規則可由 agent 自動驗證,專為 Tailwind 設計系統打造",
-      "negativeConstraints_zh": [
-        "專為 Tailwind CSS v4 專案設計",
-        "針對程式助理工作流程最佳化；若沒有 AI 輔助的純手動開發，可能提供的價值較低。"
-      ]
-    },
-    "jev-ultrafast": {
-      "at": "2026-10-04T07:29:06.390Z",
-      "skipped": "already zh or empty",
-      "advantages_zh": "動態索引動作空間運作的極速瀏覽器代理，僅在需要輸入文字時才呼叫小型 LLM，官方實測 Google Flights 航線查詢僅 7.1 秒完成",
-      "negativeConstraints_zh": [
-        "需要付費的 TypeSafe Jev API 金鑰，以及用於小型 LLM（例如 OpenRouter）的獨立 API 金鑰才能運作，使其依賴外部付費服務。",
-        "專為標準網頁表單上的自然語言目標所設計；不支援任意程式碼執行，也無法處理既定操作（CLICK、TYPE_TEXT 等）之外的非標準 UI 元素。",
-        "依賴透過 Browser Harness 連線的 Chrome，且需啟用遠端偵錯功能，相較於無頭瀏覽器環境增加了部署複雜度。"
-      ]
-    },
-    "fast-jev-compaction": {
-      "at": "2026-10-04T07:36:56.298Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不會在最終輸出中移除或縮短文字訊息；只有工具呼叫和結果可作為刪除或截斷的對象。",
-        "Token 計數仰賴字元估算（而非 tokenizer），對高度符號化的內容可能會產生不準確的預算依循狀況。"
-      ]
-    },
-    "gathered-scenes-zine-skill": {
-      "at": "2026-09-27T05:19:32.940Z",
-      "skipped": "already zh or empty",
-      "advantages_zh": "提供 zine-skill 相關功能",
-      "negativeConstraints_zh": [
-        "嚴格限於個人、非商業用途；禁止銷售、訂閱、代理業務或 SaaS/API 整合。",
-        "需 Codex 環境才能運作；技能須手動複製至 ~/.codex/skills 目錄並重新啟動應用程式方能載入。"
-      ]
-    },
-    "mattpocock-skills": {
-      "at": "2026-09-20T03:43:42.958Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "基於 Shell 的技能需要 Unix 相容環境或 Windows 上的 WSL",
-        "個別的技能子路徑需透過 npx skills@latest add 分別安裝"
-      ]
-    },
-    "munder-difflin": {
-      "at": "2026-09-20T03:43:44.175Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不適合需要遠端團隊存取權限的雲端協作工作流程",
-        "對於只需單一 CLI 工具即可完成的簡單單項編碼任務，建議避免使用",
-        "由於多代理架構的額外資源開銷，不太適合本機運算資源有限的使用環境"
-      ]
-    },
-    "ai-memory": {
-      "at": "2026-09-20T03:43:46.252Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "不需要上下文持久化的單一代理工作流程",
-        "需要即時共享狀態的即時協作編碼工作階段",
-        "不會從長期記憶中受益的非編碼 AI 任務"
-      ]
-    },
     "stirling-pdf": {
       "description_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
       "useCase_zh": "GitHub 上排名第一的 PDF 應用程式，可在任何裝置上的任何地方編輯 PDF",
@@ -6387,56 +5971,6 @@
         "會蒐集使用資料與對話紀錄用於回饋目的，若未仔細檢視資料保留政策，可能不適合用於高度敏感或具專屬權利的環境。"
       ]
     },
-    "laya": {
-      "at": "2026-10-04T08:05:28.042Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "安裝與執行需要 Python 3.10 或更新版本",
-        "對超過約 4,000 個 token 的長上下文檔案，準確度高度變化，需要自訂驗證"
-      ]
-    },
-    "zcode": {
-      "at": "2026-10-04T08:40:19.267Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要特定的 Node.js 24.14.0 和 pnpm 10.33.2 版本進行建置。",
-        "桌面版本地建置未簽署，需手動移除 macOS 隔離限制。"
-      ]
-    },
-    "niubigeo": {
-      "at": "2026-09-27T05:05:39.447Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要個人 OpenRouter API key 才能運作",
-        "取決於透過 OpenRouter 支援的特定 LLM 的準確性和可用性",
-        "需要 Node.js 22.13+ 或 Docker 進行自託管部署"
-      ]
-    },
-    "aircard": {
-      "at": "2026-09-27T05:05:39.447Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "需要透過 USB 連接 iPhone 的 macOS 電腦（Apple Silicon 或 Intel）；無法直接在 iPhone 上執行",
-        "僅適用於 iOS 18+ 裝置；並非為較舊的 iOS 版本設計或測試",
-        "依賴 'airlift' 漏洞，表示相較於標準系統修改，可能存在潛在的安全風險或不穩定性"
-      ]
-    },
-    "laya-mlx": {
-      "at": "2026-10-04T08:47:09.873Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "僅支援 macOS 14+ 與 Apple Silicon（M 系列）硬體；無法在 Windows、Linux 或 Intel Mac 上執行。",
-        "視 checkpoint 而定，僅限 512-1024 token 的上下文視窗，不適合用於長文件分析。",
-        "無法執行開放式文字生成；嚴格限制於結構化決策類型，如選擇、評分與布林值。"
-      ]
-    },
-    "kev": {
-      "at": "2026-10-04T08:55:58.681Z",
-      "skipped": "already zh or empty",
-      "negativeConstraints_zh": [
-        "較小的模型 (0.8B–9B) 在精確度下降前，其已驗證的上下文限制為 8,192 tokens；若要處理長度達 65,536 tokens 的文件，請使用 27B 模型。"
-      ]
-    },
     "amagine3d": {
       "negativeConstraints_zh": [
         "需 Node.js 22.19.0+ 與特定版本的 Vite",
@@ -6460,14 +5994,6 @@
         "尚未測試實體裝置效能或真實多點觸控硬體。"
       ],
       "at": "2026-09-27T05:20:05.185Z"
-    },
-    "models-of-human-anatomy": {
-      "at": "2026-10-04T09:06:15.719Z",
-      "skipped": "already zh or empty",
-      "description_zh": "此儲存庫包含 Z-Anatomy Project 的 Blender 模板。它包含源自 'BodyParts3D' 的模型，以及高度依賴 Wikipedia 的定義。由 Gauthier Kervyn 製作…",
-      "negativeConstraints_zh": [
-        "需要本地安裝 Blender 以及特定的範本解壓縮步驟"
-      ]
     },
     "anatomy": {
       "description_zh": "一個使用 three.js 和 GPT 5.6 Sol 建構的互動式 3D 人體解剖探索器。",
@@ -6850,6 +6376,550 @@
         "negativeConstraints_zh"
       ],
       "note": "手動補譯：模型回扁平鍵 sc-datav_zh 無法歸屬欄位"
+    },
+    "awesome-mac": {
+      "negativeConstraints_zh": [
+        "非軟體分發工具或自動化安裝程式；為靜態清單，需自行搜尋並手動安裝",
+        "僅限 macOS；所列應用程式不兼容 Windows、Linux 或其他非 Apple 平台"
+      ],
+      "at": "2026-10-13T12:36:59.071Z"
+    },
+    "arc-task-gen": {
+      "negativeConstraints_zh": [
+        "專門用於生成 ARC-AGI-1 風格的邏輯謎題；不適用於其他推理領域或一般程式設計評估",
+        "需依照連結指南中的特定手動步驟來正確啟動任務生成"
+      ],
+      "at": "2026-10-13T12:36:59.071Z"
+    },
+    "clash-verge-rev": {
+      "negativeConstraints_zh": [
+        "需使用 macOS 11 或更高版本（Apple 裝置）。",
+        "GPL-3.0 授權可能在專有商業環境中需遵守相關法律規範。",
+        "使用者必須已有 Clash 設定檔；此工具本身不會建立網路基礎架構。"
+      ],
+      "at": "2026-10-13T12:36:59.071Z"
+    },
+    "magpie": {
+      "description_zh": "每個 Agent 的模型。一個地方。Codex 在 DeepSeek，Claude Code 在 Kimi，從選單列即可存取。",
+      "negativeConstraints_zh": [
+        "若使用者僅專心使用單一 AI 程式設計 Agent，且僅在其供應商原生方案上使用，則此工具並非必要。",
+        "需在本機安裝或設定閘道實例；純雲端託管且不支援自訂基礎 URL 或本機設定注入的 Agent 無法直接管理。"
+      ],
+      "at": "2026-10-13T12:36:59.071Z"
+    },
+    "qingjian": {
+      "description_zh": "青簡 Qingjian：用 Rust 寫的拼音輸入法，候選詞旁多一條正在學的語言的譯詞",
+      "negativeConstraints_zh": [
+        "Linux 支援僅限 Fcitx5，且需手動啟動背景服務，不像 macOS 與 Windows 可取得獨立桌面應用程式。"
+      ],
+      "at": "2026-10-13T12:37:12.552Z"
+    },
+    "rea": {
+      "description_zh": "用 agent 逆向工程任何事物，從應用程式行為到原生二進位檔案。",
+      "negativeConstraints_zh": [
+        "原生二進位分析需安裝外部引擎（Hopper、Ghidra 或 IDA），或需經批准安裝 Hopper。",
+        "靜態 JavaScript 分析不支援原生分析引擎，限制其範圍於 JS/Electron 情境。",
+        "因開發節奏快速需頻繁更新，必須定期執行更新指令。"
+      ],
+      "at": "2026-10-13T12:37:12.553Z"
+    },
+    "photocraft": {
+      "description_zh": "PhotoCraft：以純 Rust 從頭開始編寫的開源照片編輯器",
+      "negativeConstraints_zh": [
+        "工具目前處於早期 alpha 狀態，缺乏成熟度與生產級替代方案的穩定性。",
+        "它嚴格作為 Photoshop 子集的空教室重新實作，不具備 Adobe Creative Cloud 完整生態系功能。"
+      ],
+      "at": "2026-10-13T12:37:12.553Z"
+    },
+    "droiddeck": {
+      "description_zh": "DroidDeck 將 SteamOS 體驗帶入 Android",
+      "negativeConstraints_zh": [
+        "不兼容 Mali、Xclipse、PowerVR 與 Adreno 710 GPU。",
+        "需要 Android 9+ 與特定 Adreno GPU 版本（730+ 或 8xx）；Adreno 6xx 為實驗性且於 DirectX 12 不穩定。",
+        "用於桌面合成之軟體渲染限制非遊戲環境的效能。"
+      ],
+      "at": "2026-10-13T12:37:12.553Z"
+    },
+    "wordcraft": {
+      "description_zh": "以純 Rust 對 Microsoft Word 進行的開源空教室重新實作",
+      "negativeConstraints_zh": [
+        "並非複雜歷史 .doc（Word 97-2003）檔案格式的直接替代方案，主要處理 .docx。",
+        "限於已實作之特定 Word 工作流程功能；進階 VBA 巨集執行或複雜 OLE 物件嵌入可能不如 Microsoft Word 受支援。",
+        "作為空教室重新實作，可能缺乏與高度特定或專有 MS Word 擴充功能的相容性。"
+      ],
+      "at": "2026-10-13T12:37:12.553Z"
+    },
+    "filmcraft": {
+      "description_zh": "FilmCraft：一款以純 Rust 從頭撰寫的開源非線性影片編輯器",
+      "negativeConstraints_zh": [
+        "專案開發處於早期階段且快速迭代，穩定性可能不如成熟的商業編輯器",
+        "主要目標用戶為熟悉 Adobe Premiere Pro 工作流與介面的使用者"
+      ],
+      "at": "2026-10-13T12:37:22.732Z"
+    },
+    "dsh-our-free-model": {
+      "description_zh": "在 dsh 裡裝上這個插件即可，無需登錄、註冊或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在內的前沿模型——完全免費，不限量。All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
+      "negativeConstraints_zh": [
+        "需要運行 DeepSeek Harness (dsh) 核心版本 0.1.5 至 0.1.7-rc.2 作為主機環境",
+        "免費的 Kilo 頻道明確警示提示內容可能被記錄用於服務改進，因此不適合處理敏感資料"
+      ],
+      "at": "2026-10-13T12:37:22.732Z"
+    },
+    "wheresryan22-anatomy": {
+      "description_zh": "用於建立真實機械與複雜系統的精緻互動等距插圖的 agent 技能，可生成帶有可選 WebGL 著色器與 3D 效果的精美 SVG。",
+      "negativeConstraints_zh": [
+        "需要 Node.js 版本 20.10 或更高",
+        "主要設計給 Claude Code、OpenCode 與 Codex 環境使用",
+        "不適合非技術用戶或僅需靜態資訊圖表的需求"
+      ],
+      "at": "2026-10-13T12:37:22.732Z"
+    },
+    "lightcraft": {
+      "description_zh": "LightCraft：一款以純 Rust 從頭撰寫的開源非破壞性圖片編輯器",
+      "negativeConstraints_zh": [
+        "該專案目前開發階段尚早且快速迭代，功能可能不夠穩定或完整",
+        "不適合無 UI 的伺服器端持續處理，因主要設計為應用程式",
+        "除提供的 MCP agent 介面外，不支援專有 AI 模型整合"
+      ],
+      "at": "2026-10-13T12:37:22.732Z"
+    },
+    "math": {
+      "description_zh": "未提供說明。",
+      "at": "2026-10-13T13:47:47.725Z",
+      "useCase_zh": "查閱或引用 OpenAI 模型產生的數學研究：涵蓋 372 個研究家族共 719 篇手稿，其中約 42% 附有 Lean 形式化以供機器驗證，並提供推理軌跡摘要與 BibTeX 引用。",
+      "advantages_zh": "372 個研究家族共 719 篇手稿，規模遠超單一論文彙集；約 42% 成果附有 Lean 形式化，可供機器驗證而不僅僅是閱讀；內含推理軌跡摘要、各手稿的 BibTeX 引用，以及版本化釋出歷程。",
+      "negativeConstraints_zh": [
+        "為靜態彙集而非可執行軟體：無法安裝、匯入為程式庫或作為服務呼叫",
+        "未形式化的成果可能含有錯誤（上游已明確標示）；引用前請先行驗證",
+        "檢視 Lean 形式化需要 Lean 工具鏈與大量運算資源"
+      ]
+    },
+    "pdfcraft": {
+      "description_zh": "PdfCraft：以純 Rust 從頭編寫的開源 PDF 閱讀器與編輯器",
+      "negativeConstraints_zh": [
+        "無法取代專業設計軟體，用於建立複雜的向量版面或修改超出標準頁面管理範圍的 PDF 內容結構。",
+        "需在本機安裝或透過 WebAssembly 執行，非伺服器端 API，不適合高吞吐量批次處理流程。"
+      ],
+      "at": "2026-10-13T13:42:21.501Z"
+    },
+    "strata": {
+      "description_zh": "在任何消費型硬體上執行 Qwen3.8-Flash-Next：一鍵安裝（Windows / Linux）。Strata 推理引擎，在 localhost 上提供 OpenAI/Anthropic API，支援可選圖片輸入。",
+      "negativeConstraints_zh": [
+        "需要至少 12 GB VRAM 與 32 GB 系統記憶體，在較舊或低階硬體上無法使用。",
+        "模型初始化期間會經歷 1–3 分鐘的系統遲滯或凍結，起因於大量鎖定記憶體。",
+        "僅明確支援 NVIDIA RTX 20–50 系列與特定 AMD Radeon 顯示卡；其他架構僅為實驗性或不支援。"
+      ],
+      "at": "2026-10-13T13:42:21.501Z"
+    },
+    "vectorcraft": {
+      "description_zh": "VectorCraft：一款以純 Rust 編寫的開源向量藝術工具。",
+      "negativeConstraints_zh": [
+        "目前處於積極開發階段，可能缺乏穩定性，或功能完整性無法與成熟的商業工具相比。",
+        "需要在本地使用 Rust 環境或預編譯二進位檔，這可能為非 Rust 用戶增加設定負擔。"
+      ],
+      "at": "2026-10-13T13:42:44.306Z"
+    },
+    "effectcraft": {
+      "description_zh": "EffectCraft：一款以純 Rust 編寫的開源動態圖像與合成工具。",
+      "negativeConstraints_zh": [
+        "目前尚屬新興且發展迅速，穩定性較低，功能成熟度不如已建立的商業軟體。",
+        "採用淨室重新實現，可能無法 100% 相容所有現有的 After Effects 專案檔案或外掛。",
+        "瀏覽器版本在處理厚重 3D 或複雜合成時，效能可能不如原生版本。"
+      ],
+      "at": "2026-10-13T13:42:44.306Z"
+    },
+    "diplay": {
+      "description_zh": "相容 Android 車載主機的獨立 CarPlay 接收器。有線與無線公開測試版。",
+      "negativeConstraints_zh": [
+        "明確僅支援 BYD 車輛；其他品牌不支援，開發者亦無計畫新增品牌專用修復。",
+        "內附私密金鑰可被提取，且配件身分處於實驗階段，無法保證在所有車載主機及未來 iOS 更新中的可靠性與相容性。",
+        "儀表板、電池、輪速與停車影片等功能需要 ADB 存取權限，而核心 CarPlay 功能則不需要。"
+      ],
+      "at": "2026-10-13T13:42:44.306Z"
+    },
+    "shaders": {
+      "description_zh": "適用於 React、Vue、Svelte、Solid、JS 與 Framer 的 WebGPU 元件。",
+      "negativeConstraints_zh": [
+        "需要目標瀏覽器／環境支援 WebGPU，因其明確使用 WebGPU 而非舊式 WebGL。",
+        "進階設計工作流程與視覺編輯需要 Shaders 帳號，即使核心匯出功能免費。"
+      ],
+      "at": "2026-10-13T13:42:44.306Z"
+    },
+    "removemacai": {
+      "description_zh": "為 macOS 去背：關閉 Apple Intelligence、分析、廣告與彈出視窗。提供原生應用程式與 CLI，所有變更皆可撤銷。",
+      "negativeConstraints_zh": [
+        "驗證警告：該應用程式未經驗證，使用者首次啟動時必須在系統設定中手動覆蓋安全提示。",
+        "僅限 macOS：僅在 macOS 上運作（上下文中特別提及 macOS 27），無法用於其他作業系統。",
+        "限於 Apple 生態系：不管理 Windows 或 Linux 軟體，也不提供系統層級的防毒或防火牆功能。"
+      ],
+      "at": "2026-10-13T13:42:44.306Z"
+    },
+    "gridcraft": {
+      "description_zh": "GridCraft：一款純 Rust 實作的開源乾淨室試算表（Microsoft Excel 風格），由 ArtCraft 開發。",
+      "negativeConstraints_zh": [
+        "不支援 Microsoft Office 專有格式，例如 DOCX、PPTX 或原生 XLS（2007 年以前版本）。",
+        "缺乏 Microsoft 365 生態系中內建的雲端同步功能。",
+        "原生開發使用情境需安裝 Rust 工具鏈或特定編譯設定。"
+      ],
+      "at": "2026-10-13T13:42:46.839Z"
+    },
+    "graphify": {
+      "at": "2026-10-13T13:48:53.881Z",
+      "skipped": "already zh or empty"
+    },
+    "strix": {
+      "at": "2026-10-13T13:48:53.882Z",
+      "skipped": "already zh or empty"
+    },
+    "awesome-llm-apps": {
+      "at": "2026-10-13T13:48:53.882Z",
+      "skipped": "already zh or empty"
+    },
+    "speak-human-tw": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "daily-stock-analysis": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "data-to-html": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "excel-to-html": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "seedance-20": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "exercises-dataset": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "claude-opus-5md": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "opus-5md": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "claude-system-prompt": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "remixicon": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "iconoir": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "tabler-icons": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "hugagentos": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "radix-ui-icons": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "welovesvg": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "buzz": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "claude-code-debug-mode": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "howtheytest": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "first-principles-skill": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "qlib": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "awesome": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "awesome-python": {
+      "at": "2026-10-13T13:48:53.883Z",
+      "skipped": "already zh or empty"
+    },
+    "gathered-scenes-zine-skill": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "openbb": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "ai-hedge-fund": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "fincept-terminal": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "backtrader": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "lean": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "fingpt": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "tradingagents-cn": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "tradingagents-astock": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "mars": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "avernet": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "deeptutor": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "slavingia-skills": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "awesome-openclaw-skills": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "trailofbits-skills": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "mengto-skills": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "mattpocock-skills": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "munder-difflin": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "ai-memory": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "design-control-loop": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "show-me": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "mono-color-skill": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "praxist": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "fastpotify": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "goldie": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "delivery-harness": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "stop-that-shit": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "fmt": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "openwiki": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "obscura": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "agent-orchestrator": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "graft": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "kunpeng": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "unlazy": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "cognicode": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "lieflat-charts": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "magnitude": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "weread-hot-booklists": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "gpt4free": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "freellmapi": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "free-books": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "musicfree": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "howtolivebetter": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "spotifast": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "my-girlfriend-jingtian-latex": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "ai-infra-book": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "lint": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "jev-ultrafast": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "fast-jev-compaction": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "laya": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "zcode": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "niubigeo": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "aircard": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "laya-mlx": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "kev": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "models-of-human-anatomy": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "compositor": {
+      "at": "2026-10-13T13:48:53.884Z",
+      "skipped": "already zh or empty"
+    },
+    "how-to-live-better": {
+      "at": "2026-10-13T13:49:07.754Z",
+      "skipped": "already zh or empty"
+    },
+    "ultramotion": {
+      "description_zh": "開放原始碼動態模板即代理技能 · 動效模板庫",
+      "negativeConstraints_zh": [
+        "需搭配支援 WebGL 的無頭 Chromium 瀏覽器，以及 ffmpeg、Python（內含 numpy 與 scipy）",
+        "'Variety Captions' 樣式需要 Playwright、Pillow 與 soundfile，並依賴 Apple Vision（macOS）或 MediaPipe 進行臉部偵測",
+        "'Flat Explainer' 樣式需要 'edge-tts' 或 Whisper 進行語音合成與對齊"
+      ],
+      "at": "2026-10-13T14:43:13.359Z"
+    },
+    "answer-me-with-html": {
+      "description_zh": "Answer me with HTML — 一個讓 AI 代理用單頁 HTML 回答艱難問題的代理技能，內容可直接閱讀。讓 AI Agent 用一頁 HTML 回答複雜問題。",
+      "negativeConstraints_zh": [
+        "需要 Node.js 20 或更新版本才能執行技能的 CLI 組件。",
+        "僅支援特定 AI 代理框架，例如 Claude Code、Codex、Cursor、OpenCode、Pi 與 DeepSeek Harness。"
+      ],
+      "at": "2026-10-13T14:43:13.360Z"
+    },
+    "vibe-coding-cn": {
+      "description_zh": "Vibe Coding 從入門到精通教程｜AI 結對程式設計工作流｜Prompt、Skill、Workflow、上下文管理、codex實戰指南",
+      "useCase_zh": "語系為中文的開發者或團隊希望完整學習 vibe-coding 工作流，包含提示工程、技能、上下文管理與品質關卡，以結構化且持續維護的教程形式呈現，並附研究實證，而非零散的部落格文章。",
+      "advantages_zh": "涵蓋完整工作流的結構化中文課程：提示、技能、上下文管理與品質關卡；教程搭配研究實證與方法學登錄檔，使各項主張皆可追溯；提供即用資源：一鍵式 Codex 設定、技能目錄與線上提示庫",
+      "negativeConstraints_zh": [
+        "非程式庫或可執行工具"
+      ],
+      "at": "2026-10-13T14:43:13.361Z"
     }
   },
   "failed": {}

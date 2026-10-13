@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-09T10:25:57.801Z",
+  "lastUpdated": "2026-10-13T14:43:04.180Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -38552,7 +38552,16 @@
         "匯總了數千個主題特定的 Awesome 清單索引。",
         "涵蓋廣泛的類別，包括平台、程式語言、資料庫與商業領域。"
       ],
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "非軟體程式庫或可執行工具",
+        "不提供可執行程式碼或整合功能",
+        "靜態列表，需手動檢查連結有效性"
+      ],
+      "negativeConstraints": [
+        "Not a software library or executable tool",
+        "Does not provide executable code or integrations",
+        "Static list that requires manual checking for link validity"
+      ]
     },
     {
       "id": "freecodecamp",
@@ -38664,7 +38673,19 @@
       },
       "description_zh": "精選的 Python 框架、函式庫、工具和資源清單",
       "useCase_zh": "開發者需要快速尋找某個特定領域（如 Web 框架、資料視覺化）的 Python 函式庫時，可直接透過此清單篩選並比較熱門選擇。",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "非程式庫或可執行工具；此為連結與說明的靜態列表。",
+        "具有個人偏好的特性，因此並未收錄所有可能的工具，可能遺漏未被維護者審查過的小眾或較新替代品。"
+      ],
+      "advantages_zh": [
+        "作為 GitHub 上星數第 10 高的專案，提供高度策展且帶有觀點的工具選單。",
+        "提供專屬網站 (awesome-python.com)，讓使用者能比閱讀原始 Markdown 更輕鬆地搜尋與篩選專案。",
+        "涵蓋廣泛的類別，包括 AI 與機器學習、網頁開發、資料科學、DevOps 與安全性。"
+      ],
+      "negativeConstraints": [
+        "Not a code library or executable tool; it is a static list of links and descriptions.",
+        "The 'opinionated' nature means it does not include every possible tool, potentially omitting niche or newer alternatives not reviewed by the maintainers."
+      ]
     },
     {
       "id": "996-icu",
@@ -46604,7 +46625,14 @@
       "description_zh": " 本專案致力於收集高品質的 macOS 軟體，並按不同類別系統化整理，方便搜尋與使用。",
       "useCase_zh": "Mac 用戶重新整理作業系統時，系統性找齊各類型工具的最佳 macOS 原生替代。",
       "advantages_zh": "專為 macOS 挑選，跨平台清單中不會出現不支援 Mac 的項目,系統性分類整理，可快速找到特定類別的最佳選擇,社群持續更新，工具上下線跟得上",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "非軟體分發工具或自動化安裝程式；為靜態清單，需自行搜尋並手動安裝",
+        "僅限 macOS；所列應用程式不兼容 Windows、Linux 或其他非 Apple 平台"
+      ],
+      "negativeConstraints": [
+        "Not a software distribution tool or automated installer; it is a static list requiring manual search and installation",
+        "Limited to macOS; apps listed are not compatible with Windows, Linux, or non-Apple platforms"
+      ]
     },
     {
       "id": "llms-from-scratch",
@@ -47705,7 +47733,12 @@
         "method": "none",
         "repoUrl": "https://github.com/pathwaycom/arc-task-gen"
       },
-      "capabilities": [],
+      "capabilities": [
+        "task-generation",
+        "distribution-matching",
+        "evaluation-dataset",
+        "json-export"
+      ],
       "useCase": "ARC-AGI 模型評估時，需要大量新任務以测试泛化能力。",
       "advantages": [
         "自動產生與公開 ARC-AGI-1 評測集分佈匹配的新任務，可擴展測試集規模",
@@ -47723,7 +47756,14 @@
       "description_zh": "生成符合 ARC-AGI-1 風格的原始任務，其分佈與公開評估集相符。",
       "useCase_zh": "ARC-AGI 模型評估時，需要大量新任務以測試泛化能力。",
       "advantages_zh": "自動產生與公開 ARC-AGI-1 評測集分佈匹配的新任務，可擴展測試集規模；Python 實作，易於嵌入現有評估管線；任務產生無需人工介入，可大量產生邊界案例",
-      "negativeConstraints_zh": []
+      "negativeConstraints_zh": [
+        "專門用於生成 ARC-AGI-1 風格的邏輯謎題；不適用於其他推理領域或一般程式設計評估",
+        "需依照連結指南中的特定手動步驟來正確啟動任務生成"
+      ],
+      "negativeConstraints": [
+        "Intended strictly for generating ARC-AGI-1-style logic puzzles; not applicable for other reasoning domains or general coding evaluations",
+        "Requires following specific manual instructions in the linked guide to properly initiate task generation"
+      ]
     },
     {
       "id": "dsh-anchored-standard",
@@ -52193,50 +52233,6 @@
         "僅在透過特定指令或鉤子明確呼叫時執行防護，不會在無使用者提示的情況下自動監控所有 agent 動作。"
       ],
       "stars": 2470
-    },
-    {
-      "id": "tokentab",
-      "name": "Tokentab",
-      "url": "https://github.com/damejan80/tokentab",
-      "description": "A CLI that reads Claude Code, Codex, and Gemini CLI session logs and works out how much they cost, by model, project, and day.",
-      "category": "AI 代理",
-      "language": "python",
-      "triggers": [
-        "tokentab",
-        "ai",
-        "claude",
-        "claude-code",
-        "cursor",
-        "python",
-        "token-optimization",
-        "token-usage",
-        "計算 AI 會話成本",
-        "按項目分出 AI 費用",
-        "分析每日 token 消耗",
-        "計算各模型使用金額",
-        "優化 AI 工具的成本"
-      ],
-      "install": {
-        "method": "pip",
-        "command": "pip install git+https://github.com/damejan80/tokentab.git",
-        "repoUrl": "https://github.com/damejan80/tokentab"
-      },
-      "capabilities": [
-        "ai",
-        "claude",
-        "claude-code",
-        "cursor",
-        "python"
-      ],
-      "useCase": "適用於 AI 代理 領域之相關任務需求：A CLI that reads Claude Code, Codex, and Gemini CLI session logs and works out h",
-      "advantages": [
-        "支援 python 開發生態"
-      ],
-      "negativeConstraints": [],
-      "addedAt": "2026-09-02T11:10:52.855Z",
-      "status": "deprecated",
-      "description_zh": "一款 CLI 工具，讀取 Claude Code、Codex 和 Gemini CLI 的會話日誌，計算依模型、專案和日期分類的 API 成本。",
-      "useCase_zh": "適用於 AI 代理 領域之相關任務需求：一個 CLI，可讀取 Claude Code、Codex 和 Gemini CLI 工作階段日誌，並從中計算成本"
     },
     {
       "id": "timesfm",
@@ -57238,7 +57234,11 @@
         "Provides TUN (virtual network card) mode and system proxy with guard, plus profile management and enhancement through Merge and Script",
         "Supports visual node and rule editing, and WebDAV configuration backup and sync"
       ],
-      "negativeConstraints": [],
+      "negativeConstraints": [
+        "Requires macOS version 11 or later on Apple devices.",
+        "The GPL-3.0 license may require legal compliance if used in a proprietary commercial environment.",
+        "The user must have an existing Clash configuration file; the tool does not generate the network infrastructure itself."
+      ],
       "stars": 147913,
       "addedAt": "2026-10-05T08:25:38.635Z",
       "status": "active",
@@ -57255,6 +57255,1318 @@
         "基於高效能的 Rust 與 Tauri 2 框架，內建 Clash.Meta（mihomo）核心，並可切換 Alpha 版核心",
         "提供 TUN（虛擬網卡）模式與含守護機制的系統代理，並透過 Merge 與 Script 管理及增強設定檔",
         "支援視覺化節點與規則編輯，以及 WebDAV 設定檔備份與同步"
+      ],
+      "negativeConstraints_zh": [
+        "需使用 macOS 11 或更高版本（Apple 裝置）。",
+        "GPL-3.0 授權可能在專有商業環境中需遵守相關法律規範。",
+        "使用者必須已有 Clash 設定檔；此工具本身不會建立網路基礎架構。"
+      ]
+    },
+    {
+      "id": "how-to-live-better",
+      "name": "how-to-live-better",
+      "url": "https://github.com/cdyforever/how-to-live-better",
+      "description": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+      "category": "開發工具",
+      "language": "html",
+      "triggers": [
+        "how-to-live-better",
+        "高性價比人生指南",
+        "人生建議清單",
+        "evidence-based-life-advice"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/cdyforever/how-to-live-better"
+      },
+      "capabilities": [
+        "offline-reading",
+        "full-text-search",
+        "single-file-deployment",
+        "responsive-mobile-design",
+        "dark-mode-toggle",
+        "print-optimization"
+      ],
+      "useCase": "A user wants to read evidence-based life advice on a mobile device without internet access or installing any applications, opening the single-file HTML page directly on their phone or another person's computer.",
+      "advantages": [
+        "Completely self-contained single-file HTML with zero external resources, ensuring readability even when offline.",
+        "Immediate usability with no build process or installation required, supporting direct double-click execution or printing.",
+        "Integrated full-text keyword search with result highlighting and specific filters for A-level evidence or plain-language explanations."
+      ],
+      "negativeConstraints": [
+        "Not suitable for users who expect interactive features, user accounts, or real-time data synchronization, as the content is a static snapshot of the upstream repository.",
+        "Requires an upstream clone and Python environment only for regeneration; it cannot dynamically fetch updates from the source book directly in the browser."
+      ],
+      "stars": 7525,
+      "addedAt": "2026-10-13T11:38:05.310Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 7525,
+        "weeklyDelta": 4479,
+        "ingestedAt": "2026-10-13T11:38:05.310Z"
+      },
+      "useCase_zh": "使用者希望在不行動裝置、無網路連線或不安裝任何應用程式的情況下閱讀基於證據的人生建議，直接在手機或他人電腦上開啟這個單檔案 HTML 頁面。",
+      "advantages_zh": [
+        "完全自包含的單檔案 HTML，零外部資源依賴，即使斷網也能流暢閱讀。",
+        "無需建置或安裝流程，可直接雙擊執行或列印，使用門檻極低。",
+        "內建全站關鍵字搜尋與結果高亮，並提供篩選 A 級證據或「說人話」內容的功能。"
+      ],
+      "negativeConstraints_zh": [
+        "不適合期望具備互動功能、使用者帳號或即時資料同步的使用者，因為內容為上游儲存庫的靜態快照。",
+        "僅在重新生成時需要上游複製與 Python 環境；無法直接在瀏覽器中動態從源書籍擷取更新。"
+      ],
+      "description_zh": "《高性價比人生指南》全書 528 條的在線單頁閱讀版：手機可讀、可搜索、零依賴、支援離線"
+    },
+    {
+      "id": "magpie",
+      "name": "magpie",
+      "url": "https://github.com/yetone/magpie",
+      "description": "Every agent's model. One place. Codex on DeepSeek, Claude Code on Kimi, from the menu bar.",
+      "category": "AI 框架",
+      "language": "go",
+      "triggers": [
+        "magpie",
+        "claude-code",
+        "codex",
+        "deepseek",
+        "gemini-cli",
+        "llm"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/yetone/magpie"
+      },
+      "capabilities": [
+        "claude-code",
+        "codex",
+        "deepseek",
+        "gemini-cli",
+        "llm",
+        "macos"
+      ],
+      "useCase": "A developer using multiple AI coding agents (like Claude Code and Codex) switches their underlying models from a unified macOS/Windows/Linux menu bar or TUI without manually editing configuration files.",
+      "advantages": [
+        "Automatically fails over to the next account or model in a routing group when a quota is exhausted, ensuring the agent never sees an error.",
+        "Consolidates management of multiple AI coding agents and providers into a single local gateway with a unified interface.",
+        "Supports a wide range of deployment environments including native desktop apps, CLI, Docker, and Termux on Linux."
+      ],
+      "negativeConstraints": [
+        "Not necessary for users who only use a single AI coding agent exclusively on its vendor's own native plan.",
+        "Requires local installation or a gateway instance; purely cloud-hosted agents that do not support custom base URLs or local configuration injection cannot be managed directly."
+      ],
+      "stars": 4960,
+      "addedAt": "2026-10-13T11:38:05.310Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4960,
+        "weeklyDelta": 3552,
+        "ingestedAt": "2026-10-13T11:38:05.310Z"
+      },
+      "useCase_zh": "一名同時使用多個 AI 編碼代理（例如 Claude Code 與 Codex）的開發者，透過統一的 macOS、Windows 或 Linux 選單列或 TUI，無須手動編輯設定檔即可切換其底層模型。",
+      "advantages_zh": [
+        "當配額用盡時，會自動切換至路由群組中的下一個帳戶或模型，確保代理不會收到錯誤訊息。",
+        "透過單一本地網關與統一介面，整合管理多個 AI 編碼代理與供應商。",
+        "支援多種部署環境，包括原生桌面應用程式、CLI、Docker 以及 Linux 上的 Termux。"
+      ],
+      "description_zh": "每個 Agent 的模型。一個地方。Codex 在 DeepSeek，Claude Code 在 Kimi，從選單列即可存取。",
+      "negativeConstraints_zh": [
+        "若使用者僅專心使用單一 AI 程式設計 Agent，且僅在其供應商原生方案上使用，則此工具並非必要。",
+        "需在本機安裝或設定閘道實例；純雲端託管且不支援自訂基礎 URL 或本機設定注入的 Agent 無法直接管理。"
+      ]
+    },
+    {
+      "id": "qingjian",
+      "name": "qingjian",
+      "url": "https://github.com/qingjian-team/qingjian",
+      "description": "青简 Qingjian：用 Rust 写的拼音输入法，候选词旁多一条正在学的语言的译词",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "qingjian",
+        "青簡",
+        "拼音輸入法",
+        "pinyin-input-method",
+        "rust-input-method"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/qingjian-team/qingjian.git",
+        "repoUrl": "https://github.com/qingjian-team/qingjian"
+      },
+      "capabilities": [
+        "pinyin-input-method",
+        "translation-candidates",
+        "local-data-processing",
+        "vocabulary-tracking",
+        "multi-platform-support",
+        "input-correction"
+      ],
+      "useCase": "A language learner uses Qingjian as their daily Pinyin input method on macOS or Windows to automatically display translations of their typing in a target language (e.g., English, Japanese, or Spanish) next to candidate words.",
+      "advantages": [
+        "Displays one target language translation per candidate word without obscuring the primary input text, integrating language learning naturally into daily typing.",
+        "Processes Pinyin conversion, dictionary lookups, local models, and habit learning entirely on-device without requiring a user account.",
+        "Stores input volume and vocabulary statistics locally only, with no data uploaded unless the optional, user-configured cloud completion feature is explicitly enabled.",
+        "Supports a variety of input modes including full-sentence input, abbreviations, spelling correction, Shuangpin, and Wubi."
+      ],
+      "negativeConstraints": [
+        "Linux support is limited to Fcitx5 and requires manual startup of background services, unlike the standalone desktop apps available for macOS and Windows."
+      ],
+      "stars": 4369,
+      "addedAt": "2026-10-13T11:38:05.310Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4369,
+        "weeklyDelta": 2218,
+        "ingestedAt": "2026-10-13T11:38:05.310Z"
+      },
+      "useCase_zh": "語言學習者日常在 macOS 或 Windows 上使用「青簡」作為拼音輸入法，在打字時自動在候選詞旁顯示目標語言（如英語、日語或西班牙語）的譯文，藉此在無縫輸入中學習新單詞。",
+      "advantages_zh": [
+        "候選詞旁顯示的單一目標語言譯文不會遮擋主要的輸入文字，能將語言學習自然融入日常打字。",
+        "拼音轉換、詞庫查詢、本地模型與輸入習慣學習全在設備端完成，無需註冊帳號。",
+        "輸入量與詞彙統計僅儲存在本機，不會上傳；選用功能未開啟時不會發送資料。",
+        "支援多種輸入方式，包含整句輸入、簡拼、拼字糾錯、雙拼與五筆等。"
+      ],
+      "description_zh": "青簡 Qingjian：用 Rust 寫的拼音輸入法，候選詞旁多一條正在學的語言的譯詞",
+      "negativeConstraints_zh": [
+        "Linux 支援僅限 Fcitx5，且需手動啟動背景服務，不像 macOS 與 Windows 可取得獨立桌面應用程式。"
+      ]
+    },
+    {
+      "id": "rea",
+      "name": "Rea",
+      "url": "https://github.com/morluto/rea",
+      "description": "Reverse engineer anything with agents, from app behavior down to native binaries.",
+      "category": "安全性",
+      "language": "typescript",
+      "triggers": [
+        "rea",
+        "agent-skills",
+        "ai-agents",
+        "binary-analysis",
+        "claude-code",
+        "cli",
+        "codex",
+        "cordis"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx rea-agents",
+        "repoUrl": "https://github.com/morluto/rea"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-agents",
+        "binary-analysis",
+        "claude-code",
+        "cli"
+      ],
+      "useCase": "A developer seeing a feature in a native or Electron app asks their AI agent to inspect the binary without source code, trace the logic, and build a similar implementation for their own project.",
+      "advantages": [
+        "Supports multiple agent platforms including Claude Code, Codex, Cursor, and Gemini CLI via a unified MCP interface",
+        "Capable of analyzing both native binaries and JavaScript/Electron applications with evidence-based results",
+        "Can optionally install Hopper during setup to enable native analysis capabilities"
+      ],
+      "negativeConstraints": [
+        "Native binary analysis requires an external engine installation (Hopper, Ghidra, or IDA) or approval to install Hopper",
+        "Static JavaScript analysis does not support native analysis engines, limiting its scope to JS/Electron contexts",
+        "Frequent updates are required due to the rapid development pace, necessitating regular execution of update commands"
+      ],
+      "addedAt": "2026-10-13T11:44:37.155Z",
+      "status": "active",
+      "stars": 185793,
+      "useCase_zh": "開發人員看到原生或 Electron 應用程式中的某個功能時，詢問其 AI 代理在沒有原始碼的情況下檢查二進位檔、追蹤邏輯，並為自己的專案建構類似功能。",
+      "advantages_zh": [
+        "透過統一的 MCP 介面支援多個代理平台，包括 Claude Code、Codex、Cursor 和 Gemini CLI",
+        "能夠分析原生二進位檔和 JavaScript/Electron 應用程式，並提供基於證據的結果",
+        "可選地在安裝過程中安裝 Hopper，以啟用原生分析功能"
+      ],
+      "description_zh": "用 agent 逆向工程任何事物，從應用程式行為到原生二進位檔案。",
+      "negativeConstraints_zh": [
+        "原生二進位分析需安裝外部引擎（Hopper、Ghidra 或 IDA），或需經批准安裝 Hopper。",
+        "靜態 JavaScript 分析不支援原生分析引擎，限制其範圍於 JS/Electron 情境。",
+        "因開發節奏快速需頻繁更新，必須定期執行更新指令。"
+      ]
+    },
+    {
+      "id": "photocraft",
+      "name": "Photocraft",
+      "url": "https://github.com/storytold/photocraft",
+      "description": "PhotoCraft: An open-source, photo editor written by scratch in pure Rust",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "photocraft",
+        "art",
+        "image-editing",
+        "image-editing-software",
+        "image-editor",
+        "images",
+        "photo-editing",
+        "rust"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/storytold/photocraft",
+        "repoUrl": "https://github.com/storytold/photocraft"
+      },
+      "capabilities": [
+        "art",
+        "image-editing",
+        "image-editing-software",
+        "image-editor",
+        "images"
+      ],
+      "useCase": "Photoshop users needing to open, edit, and save layered PSD files offline without relying on Adobe's subscription-based desktop application can use PhotoCraft.",
+      "advantages": [
+        "Achieves 100% render compatibility with 307 out of 309 psd-tools test files when saving PSD documents.",
+        "Provides native performance without web views through a wgpu GPU compositor and multithreaded copy-on-write tiles.",
+        "Implements agent-readiness by exposing every engine action as a command accessible via CLI, JSON, or MCP server interfaces."
+      ],
+      "negativeConstraints": [
+        "The tool is currently in early alpha status, implying it lacks the maturity and stability of a production-grade alternative.",
+        "It functions strictly as a clean-room reimplementation of a subset of Photoshop, meaning it is not a substitute for full Adobe Creative Cloud ecosystem features."
+      ],
+      "addedAt": "2026-10-13T11:44:42.927Z",
+      "status": "active",
+      "stars": 55704,
+      "useCase_zh": "不需要依賴 Adobe 訂閱制桌面應用程式的 Photoshop 使用者，可以利用 PhotoCraft 進行離線作業，來開啟、編輯並儲存具圖層的 PSD 檔案。",
+      "advantages_zh": [
+        "在儲存 PSD 文件時，能對 309 個 psd-tools 測試檔案中的 307 個實現 100% 渲染相容性。",
+        "透過 wgpu GPU 合成器與執行緒化的 copy-on-write 磁磚技術，提供原生效能且無需網頁檢視視窗。",
+        "具備智能代理準備功能，允許透過 CLI、JSON 或 MCP 伺服器介面存取引擎的每個操作指令。"
+      ],
+      "description_zh": "PhotoCraft：以純 Rust 從頭開始編寫的開源照片編輯器",
+      "negativeConstraints_zh": [
+        "工具目前處於早期 alpha 狀態，缺乏成熟度與生產級替代方案的穩定性。",
+        "它嚴格作為 Photoshop 子集的空教室重新實作，不具備 Adobe Creative Cloud 完整生態系功能。"
+      ]
+    },
+    {
+      "id": "droiddeck",
+      "name": "DroidDeck",
+      "url": "https://github.com/Droid-Deck/DroidDeck",
+      "description": "DroidDeck brings the SteamOS experience to Android",
+      "category": "開發工具",
+      "language": "kotlin",
+      "triggers": [
+        "droiddeck",
+        "開發工具"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Droid-Deck/DroidDeck.git",
+        "repoUrl": "https://github.com/Droid-Deck/DroidDeck"
+      },
+      "capabilities": [
+        "windows-games-emulation",
+        "proton-arm64",
+        "steam-client-integration",
+        "linux-app-installation",
+        "multi-store-support",
+        "frame-generation"
+      ],
+      "useCase": "Gamers on Android handhelds with Adreno 730+ GPUs use it to play Windows games via Steam and Proton, along with installing Linux apps and browsing other game stores like GOG.",
+      "advantages": [
+        "Supports Windows games on Android via ARM64 Proton",
+        "Integrates multiple game stores (GOG, Epic Games, Amazon) directly into the Steam client",
+        "Requires no root access and supports Adreno 730/8xx series out of the box",
+        "Includes experimental support for LSFG frame generation"
+      ],
+      "negativeConstraints": [
+        "Incompatible with Mali, Xclipse, PowerVR, and Adreno 710 GPUs",
+        "Requires Android 9+ and specific Adreno GPU versions (730+ or 8xx); Adreno 6xx is experimental and unstable for DirectX 12",
+        "Software rendering used for desktop compositing limits performance in non-game environments"
+      ],
+      "addedAt": "2026-10-13T11:44:48.487Z",
+      "status": "active",
+      "stars": 6879,
+      "useCase_zh": "在 Adreno 730 以上 GPU 的 Android 行動裝置上，遊戲玩家使用它透過 Steam 與 Proton 玩 Windows 遊戲，並安裝 Linux 應用與瀏覽 GOG 等其他遊戲商店。",
+      "advantages_zh": [
+        "支援在 Android 上透過 ARM64 Proton 執行 Windows 遊戲",
+        "將多個遊戲商店（GOG、Epic Games、Amazon）直接整合至 Steam 客戶端",
+        "不需 root 權限，並原生支援 Adreno 730/8xx 系列",
+        "包含實驗性的 LSFG 幀生成支援"
+      ],
+      "description_zh": "DroidDeck 將 SteamOS 體驗帶入 Android",
+      "negativeConstraints_zh": [
+        "不兼容 Mali、Xclipse、PowerVR 與 Adreno 710 GPU。",
+        "需要 Android 9+ 與特定 Adreno GPU 版本（730+ 或 8xx）；Adreno 6xx 為實驗性且於 DirectX 12 不穩定。",
+        "用於桌面合成之軟體渲染限制非遊戲環境的效能。"
+      ]
+    },
+    {
+      "id": "wordcraft",
+      "name": "Wordcraft",
+      "url": "https://github.com/storytold/wordcraft",
+      "description": "An open-source, clean-room reimplementation of Microsoft Word in pure Rust",
+      "category": "文件生產力",
+      "language": "rust",
+      "triggers": [
+        "wordcraft",
+        "文件生產力"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/storytold/wordcraft",
+        "repoUrl": "https://github.com/storytold/wordcraft"
+      },
+      "capabilities": [
+        "docx-reading",
+        "docx-writing",
+        "track-changes",
+        "mail-merge",
+        "mcp-integration",
+        "webassembly-support"
+      ],
+      "useCase": "Developers and automation agents use WordCraft to programmatically generate, edit, and review .docx documents in headless environments or web browsers via its Rust-based CLI and MCP interface.",
+      "advantages": [
+        "Runs natively on macOS, Windows, Linux, BSD, and in the browser via WebAssembly",
+        "Agent-drivable via MCP (Model Context Protocol) and CLI interfaces",
+        "Clean-room reimplementation in Rust ensures high performance and stability without proprietary dependencies"
+      ],
+      "negativeConstraints": [
+        "Not a direct replacement for complex legacy .doc (Word 97-2003) file formats, as it primarily handles .docx",
+        "Limited to the specific Word workflow features implemented; advanced VBA macro execution or complex OLE object embedding may not be supported as in Microsoft Word",
+        "Being a clean-room reimplementation, it may lack compatibility with highly specific or proprietary MS Word extensions"
+      ],
+      "addedAt": "2026-10-13T11:44:52.492Z",
+      "status": "active",
+      "stars": 10118,
+      "useCase_zh": "開發人員與自動化代理使用 WordCraft 在無頭環境或瀏覽器中，透過其基於 Rust 的 CLI 和 MCP 介面，程式化地建立、編輯及檢視 .docx 文件。",
+      "advantages_zh": [
+        "原生支援 macOS、Windows、Linux、BSD 以及透過 WebAssembly 在瀏覽器中執行",
+        "可透過 MCP（模型上下文協議）和 CLI 介面驅動代理操作",
+        "以 Rust 進行乾淨室重新實作，確保高效能與穩定性，且無專有依賴"
+      ],
+      "description_zh": "以純 Rust 對 Microsoft Word 進行的開源空教室重新實作",
+      "negativeConstraints_zh": [
+        "並非複雜歷史 .doc（Word 97-2003）檔案格式的直接替代方案，主要處理 .docx。",
+        "限於已實作之特定 Word 工作流程功能；進階 VBA 巨集執行或複雜 OLE 物件嵌入可能不如 Microsoft Word 受支援。",
+        "作為空教室重新實作，可能缺乏與高度特定或專有 MS Word 擴充功能的相容性。"
+      ]
+    },
+    {
+      "id": "filmcraft",
+      "name": "Filmcraft",
+      "url": "https://github.com/storytold/filmcraft",
+      "description": "FilmCraft: An open-source, nonlinear video editor written by scratch in pure Rust",
+      "category": "影片",
+      "language": "rust",
+      "triggers": [
+        "filmcraft",
+        "art",
+        "rust",
+        "video",
+        "video-editing",
+        "video-editor",
+        "video-processing"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/storytold/filmcraft",
+        "repoUrl": "https://github.com/storytold/filmcraft"
+      },
+      "capabilities": [
+        "art",
+        "rust",
+        "video",
+        "video-editing",
+        "video-editor"
+      ],
+      "useCase": "A video editor with Premiere Pro experience switches to a cost-effective, cross-platform workflow to cut and grade an Apache 11 documentary using NASA public-domain footage without relying on proprietary software.",
+      "advantages": [
+        "Runs natively on macOS, Windows, Linux, and in the browser via WebAssembly",
+        "Implements H.264, HEVC, ProRes, and AAC codecs in pure Rust from public specifications",
+        "Uses exact integer time frame math to ensure edits never drift across common frame rates",
+        "Designed to be driven precisely by AI agents as every action is a command"
+      ],
+      "negativeConstraints": [
+        "Project status is young and moving fast, so it may lack the stability of mature commercial editors",
+        "Primary target users are those familiar with the Adobe Premiere Pro workflow and interface"
+      ],
+      "addedAt": "2026-10-13T11:44:55.101Z",
+      "status": "active",
+      "stars": 11996,
+      "useCase_zh": "一位具有 Premiere Pro 經驗的影片編輯者，切換至一個跨平台且無授權成本的Workflow，使用 NASA 公開領域素材剪輯並調色阿波羅 11 號記錄片，無需依賴專有軟體。",
+      "advantages_zh": [
+        "原生支援 macOS、Windows、Linux，並可透過 WebAssembly 在瀏覽器中執行",
+        "以純 Rust 根據公開規範實作 H.264、HEVC、ProRes 及 AAC 編解碼器",
+        "採用精確的整數時間幀運算，確保在常見幀率下剪輯絕不漂移",
+        "設計上允許 AI 代理精準驅動應用內的每一個動作指令"
+      ],
+      "description_zh": "FilmCraft：一款以純 Rust 從頭撰寫的開源非線性影片編輯器",
+      "negativeConstraints_zh": [
+        "專案開發處於早期階段且快速迭代，穩定性可能不如成熟的商業編輯器",
+        "主要目標用戶為熟悉 Adobe Premiere Pro 工作流與介面的使用者"
+      ]
+    },
+    {
+      "id": "dsh-our-free-model",
+      "name": "Dsh Our Free Model",
+      "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
+      "description": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "dsh-our-free-model",
+        "dsh",
+        "our",
+        "free",
+        "model",
+        "ai-agents",
+        "deepseek",
+        "deepseek-harness"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/Ebony-Vinyl/dsh-our-free-model.git",
+        "repoUrl": "https://github.com/Ebony-Vinyl/dsh-our-free-model"
+      },
+      "capabilities": [
+        "ai-agents",
+        "deepseek",
+        "deepseek-harness",
+        "developer-tools",
+        "dsh"
+      ],
+      "useCase": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just…",
+      "advantages": [
+        "Zero dependencies and no build steps required, ensuring a lightweight and frictionless installation process.",
+        "Aggregates over 76 third-party providers and 13 free-tier channels into a single registry, allowing users to switch sources and models easily.",
+        "Includes a built-in OpenAI and Anthropic-compatible local gateway that lets other local tools access the models via standard base URLs.",
+        "Implements token savings features like tool output compression (RTK) that removes up to 90% of bytes from large contexts like git diffs."
+      ],
+      "negativeConstraints": [
+        "Requires running the DeepSeek Harness (dsh) kernel version 0.1.5 through 0.1.7-rc.2 as the host environment.",
+        "The free Kilo channel explicitly warns that prompts may be recorded for service improvement, making it unsuitable for processing sensitive data."
+      ],
+      "addedAt": "2026-10-13T11:44:58.983Z",
+      "status": "active",
+      "stars": 13276,
+      "useCase_zh": "希望在 DeepSeek Harness 中免費使用前沿 AI 模型，且不希望手動管理 API 金鑰或設定服務的開發者，可以透過此插件事件接入多個模型來源並轉發給本機其他工具。",
+      "advantages_zh": [
+        "零依賴且無需構建步驟，安裝過程輕量且無障礙。",
+        "聚合超過 76 家第三方供應商與 13 個免費通道，讓使用者可輕鬆切換模型來源。",
+        "內建 OpenAI 與 Anthropic 相容的本機閘道，讓其他本機工具能透過標準 URL 存取模型。",
+        "具備 Token 節省功能，例如工具輸出壓縮，可移除大型語境（如 git diff）最多 90% 的位元組。"
+      ],
+      "description_zh": "在 dsh 裡裝上這個插件即可，無需登錄、註冊或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在內的前沿模型——完全免費，不限量。All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
+      "negativeConstraints_zh": [
+        "需要運行 DeepSeek Harness (dsh) 核心版本 0.1.5 至 0.1.7-rc.2 作為主機環境",
+        "免費的 Kilo 頻道明確警示提示內容可能被記錄用於服務改進，因此不適合處理敏感資料"
+      ]
+    },
+    {
+      "id": "wheresryan22-anatomy",
+      "name": "Anatomy",
+      "url": "https://github.com/wheresryan22/anatomy",
+      "description": "An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex systems. Generates polished SVGs with optional WebGL shaders and 3D effects.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "anatomy",
+        "agent-skill",
+        "open-source",
+        "svg",
+        "vizualization"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/wheresryan22/anatomy.git",
+        "repoUrl": "https://github.com/wheresryan22/anatomy"
+      },
+      "capabilities": [
+        "agent-skill",
+        "open-source",
+        "svg",
+        "vizualization"
+      ],
+      "useCase": "A developer uses Claude Code to visualize how a rate limiter works by generating an interactive isometric illustration of the concept as a physical object.",
+      "advantages": [
+        "Zero dependencies using only Node built-in modules",
+        "Generates self-verifying interactive figures with live readouts and animations",
+        "Supports multiple rendering modes including SVG, WebGL shaders, and 3D"
+      ],
+      "negativeConstraints": [
+        "Requires Node.js version 20.10 or later",
+        "Primarily designed for Claude Code, OpenCode, and Codex environments",
+        "Not intended for non-technical audiences or static-only infographic needs"
+      ],
+      "addedAt": "2026-10-13T11:45:02.234Z",
+      "status": "active",
+      "stars": 7316,
+      "useCase_zh": "開發者在使用 Claude Code 時，透過該工具將技術概念（如速率限制器）轉換為互動式等距圖示，以視覺化方式呈現其運作機制。",
+      "advantages_zh": [
+        "零依賴，僅使用 Node.js 內建模組",
+        "能產出自我驗證的互動圖示，具備即時數據顯示與動畫效果",
+        "支援 SVG、WebGL 著色器與 3D 等多種渲染模式"
+      ],
+      "description_zh": "用於建立真實機械與複雜系統的精緻互動等距插圖的 agent 技能，可生成帶有可選 WebGL 著色器與 3D 效果的精美 SVG。",
+      "negativeConstraints_zh": [
+        "需要 Node.js 版本 20.10 或更高",
+        "主要設計給 Claude Code、OpenCode 與 Codex 環境使用",
+        "不適合非技術用戶或僅需靜態資訊圖表的需求"
+      ]
+    },
+    {
+      "id": "lightcraft",
+      "name": "Lightcraft",
+      "url": "https://github.com/storytold/lightcraft",
+      "description": "LightCraft: An open-source non-destructive photo editor written by scratch in pure Rust",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "lightcraft",
+        "art",
+        "photography",
+        "raw",
+        "raw-editor",
+        "raw-processing",
+        "rust"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/storytold/lightcraft",
+        "repoUrl": "https://github.com/storytold/lightcraft"
+      },
+      "capabilities": [
+        "art",
+        "photography",
+        "raw",
+        "raw-editor",
+        "raw-processing"
+      ],
+      "useCase": "Photographers process RAW files locally on their desktop or run automated batch edits via an AI agent without uploading data to the cloud.",
+      "advantages": [
+        "Runs natively on macOS, Windows, and Linux, and in the browser via WebAssembly.",
+        "Includes an MCP server, allowing end-to-end control by AI agents.",
+        "Uses a pure Rust implementation for performance and stability.",
+        "Adopts a scene-referred, wide-gamut, 32-bit float pipeline for high-quality image processing."
+      ],
+      "negativeConstraints": [
+        "It is currently a young project and moving fast, so features may be unstable or incomplete.",
+        "Not suitable for server-side continuous processing without a UI, as it is designed primarily as an application.",
+        "Does not support proprietary AI model integration outside of the provided MCP agent interface."
+      ],
+      "addedAt": "2026-10-13T11:45:09.414Z",
+      "status": "active",
+      "stars": 11616,
+      "useCase_zh": "攝影師在地端工作站處理 RAW 檔案，或透過 AI 代理執行自動批量修圖，無需將資料上傳至雲端。",
+      "advantages_zh": [
+        "支援 macOS、Windows、Linux 原生執行，並透過 WebAssembly 在瀏覽器中運行。",
+        "內建 MCP 伺服器，可讓 AI 代理從頭到尾控制編輯流程。",
+        "使用純 Rust 實作，具有高性能與穩定性。",
+        "採用場景參考、寬色域、32 位元浮點數管線，提供高品質影像處理。"
+      ],
+      "description_zh": "LightCraft：一款以純 Rust 從頭撰寫的開源非破壞性圖片編輯器",
+      "negativeConstraints_zh": [
+        "該專案目前開發階段尚早且快速迭代，功能可能不夠穩定或完整",
+        "不適合無 UI 的伺服器端持續處理，因主要設計為應用程式",
+        "除提供的 MCP agent 介面外，不支援專有 AI 模型整合"
+      ]
+    },
+    {
+      "id": "math",
+      "name": "math",
+      "url": "https://github.com/openai/math",
+      "description": "A collection of 719 mathematical manuscripts and supporting Lean formalization artifacts produced by an internal OpenAI model, organized into 372 discipline-classified families with verification status annotated.",
+      "category": "研究",
+      "language": "other",
+      "triggers": [
+        "math",
+        "openai-math",
+        "mathematics",
+        "mathematical-manuscripts",
+        "lean",
+        "formal-proof",
+        "proof-verification"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/openai/math"
+      },
+      "capabilities": [
+        "mathematical-manuscripts",
+        "lean-formalization",
+        "proof-verification"
+      ],
+      "useCase": "Consult or cite OpenAI model-produced mathematical research: 719 manuscripts across 372 families, with ~42% carrying Lean formalizations for machine verification, plus reasoning-trace summaries and BibTeX citations.",
+      "advantages": [
+        "719 manuscripts in 372 research families, far broader than any single paper collection",
+        "~42% of results carry Lean formalizations that can be machine-verified rather than only read",
+        "Includes reasoning-trace summaries, per-manuscript BibTeX, and a preserved versioned release history"
+      ],
+      "negativeConstraints": [
+        "A static collection, not executable software: cannot be installed, imported as a library, or called as a service",
+        "Unformalized results may contain errors (stated explicitly upstream); verify before citing",
+        "Checking the Lean formalizations requires a Lean toolchain and substantial compute"
+      ],
+      "stars": 14566,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 14566,
+        "weeklyDelta": 14566,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "description_zh": "未提供說明。",
+      "useCase_zh": "查閱或引用 OpenAI 模型產生的數學研究：涵蓋 372 個研究家族共 719 篇手稿，其中約 42% 附有 Lean 形式化以供機器驗證，並提供推理軌跡摘要與 BibTeX 引用。",
+      "advantages_zh": "372 個研究家族共 719 篇手稿，規模遠超單一論文彙集；約 42% 成果附有 Lean 形式化，可供機器驗證而不僅僅是閱讀；內含推理軌跡摘要、各手稿的 BibTeX 引用，以及版本化釋出歷程。",
+      "negativeConstraints_zh": [
+        "為靜態彙集而非可執行軟體：無法安裝、匯入為程式庫或作為服務呼叫",
+        "未形式化的成果可能含有錯誤（上游已明確標示）；引用前請先行驗證",
+        "檢視 Lean 形式化需要 Lean 工具鏈與大量運算資源"
+      ]
+    },
+    {
+      "id": "pdfcraft",
+      "name": "pdfcraft",
+      "url": "https://github.com/storytold/pdfcraft",
+      "description": "PdfCraft: An open-source PDF reader and editor written by scratch in pure Rust",
+      "category": "文件生產力",
+      "language": "rust",
+      "triggers": [
+        "pdfcraft",
+        "document-processing",
+        "documents",
+        "pdf",
+        "pdf-generation",
+        "pdf-processing"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/storytold/pdfcraft"
+      },
+      "capabilities": [
+        "document-processing",
+        "documents",
+        "pdf",
+        "pdf-generation",
+        "pdf-processing",
+        "pdf-tools"
+      ],
+      "useCase": "Developers and power users organize, split, merge, and secure local PDF documents offline on macOS, Windows, Linux, FreeBSD, or the web without uploading data to a cloud service.",
+      "advantages": [
+        "Clean-room reimplementation in pure Rust that runs natively on macOS, Windows, Linux, FreeBSD, and the web.",
+        "Operates completely offline with no account, no telemetry, and no cloud dependency.",
+        "High fault tolerance: processes damaged documents with 0 crashes across the 983-file pdf.js test corpus.",
+        "Atomic writes and deep undo functionality ensure the original file bytes remain untouched during edits."
+      ],
+      "negativeConstraints": [
+        "Cannot replace professional design software for creating complex vector layouts or modifying underlying PDF content structure beyond standard page management.",
+        "Requires local installation or WebAssembly execution; not a server-side API for high-throughput batch processing pipelines."
+      ],
+      "stars": 12055,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 12055,
+        "weeklyDelta": 12055,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "開發人員與進階使用者在 macOS、Windows、Linux、FreeBSD 或網頁上離線整理、分割、合併及保護本地 PDF 文件，無需提供帳戶或上傳資料至雲端。",
+      "advantages_zh": [
+        "以純 Rust 重新實現，原生支援 macOS、Windows、Linux、FreeBSD 與網頁環境。",
+        "完全離線運作，無帳戶、無遙測、無雲端依賴。",
+        "高容錯性：在 983 個 pdf.js 測試語料庫中處理損毀文件時 0 崩潰。",
+        "原子寫入與深度還原功能，確保編輯時原始檔案位元組不被修改。"
+      ],
+      "description_zh": "PdfCraft：以純 Rust 從頭編寫的開源 PDF 閱讀器與編輯器",
+      "negativeConstraints_zh": [
+        "無法取代專業設計軟體，用於建立複雜的向量版面或修改超出標準頁面管理範圍的 PDF 內容結構。",
+        "需在本機安裝或透過 WebAssembly 執行，非伺服器端 API，不適合高吞吐量批次處理流程。"
+      ]
+    },
+    {
+      "id": "strata",
+      "name": "Strata",
+      "url": "https://github.com/Niko1221/Strata",
+      "description": "Qwen3.8-Flash-Next on any consumer hardware: one-click install for Windows / Linux. Strata inference engine, OpenAI/Anthropic API on localhost, optional image input.",
+      "category": "AI 框架",
+      "language": "c++",
+      "triggers": [
+        "strata",
+        "qwen",
+        "local-llm",
+        "quantized-model",
+        "consumer-gpu"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Niko1221/Strata"
+      },
+      "capabilities": [
+        "local-llm-inference",
+        "openai-compatible-api",
+        "anthropic-compatible-api",
+        "image-input-processing",
+        "multi-gpu-support",
+        "mcp-server-integration"
+      ],
+      "useCase": "An individual developer with a gaming PC equipped with a 12 GB+ NVIDIA or AMD GPU runs a 125-billion parameter Qwen model locally via Strata to process code or chat prompts without sending data to external servers.",
+      "advantages": [
+        "Runs a 125B parameter model on consumer hardware (12 GB+ VRAM) rather than requiring enterprise servers",
+        "Exposes OpenAI/Anthropic compatible APIs on localhost for direct app integration",
+        "Supports multi-GPU setups and allows AI coding agents to manage installation and runtime via an MCP server",
+        "Achieves specific inference benchmarks (e.g., up to 94 tokens/s on RTX 5070 for Q2_0) for readable speed on local machines"
+      ],
+      "negativeConstraints": [
+        "Requires a minimum of 12 GB VRAM and 32 GB system RAM, making it unusable on older or low-end hardware",
+        "Experiencing 1-3 minutes of system sluggishness or freezing during model initialization due to high RAM locking",
+        "Only explicitly supports NVIDIA RTX 20-50 series and specific AMD Radeon cards; other architectures are experimental or unsupported"
+      ],
+      "stars": 23313,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 23313,
+        "weeklyDelta": 11299,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "擁有配置了 12GB 以上 NVIDIA 或 AMD 顯卡的個人開發者，使用 Strata 在本機執行 1250 億參數的 Qwen 模型，以處理程式碼或對話提示，且無需將資料傳送至外部伺服器。",
+      "advantages_zh": [
+        "可在消費級硬體（12GB+ VRAM）上運行 125B 參數模型，無需企業伺服器",
+        "在本地主機上開放相容於 OpenAI/Anthropic 的 API，方便直接整合應用程式",
+        "支援多 GPU 設定，並允許 AI 編碼工具透過 MCP 伺服器管理安裝與執行",
+        "提供具體的推論基準測試數字（例如 RTX 5070 在 Q2_0 模式下可達 94 tokens/s），確保本機執行速度可讀"
+      ],
+      "description_zh": "在任何消費型硬體上執行 Qwen3.8-Flash-Next：一鍵安裝（Windows / Linux）。Strata 推理引擎，在 localhost 上提供 OpenAI/Anthropic API，支援可選圖片輸入。",
+      "negativeConstraints_zh": [
+        "需要至少 12 GB VRAM 與 32 GB 系統記憶體，在較舊或低階硬體上無法使用。",
+        "模型初始化期間會經歷 1–3 分鐘的系統遲滯或凍結，起因於大量鎖定記憶體。",
+        "僅明確支援 NVIDIA RTX 20–50 系列與特定 AMD Radeon 顯示卡；其他架構僅為實驗性或不支援。"
+      ]
+    },
+    {
+      "id": "vectorcraft",
+      "name": "vectorcraft",
+      "url": "https://github.com/storytold/vectorcraft",
+      "description": "VectorCraft: An open-source, vector art tool written by scratch in pure Rust",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "vectorcraft",
+        "art",
+        "rust",
+        "rust-lang",
+        "svg",
+        "svg-editor"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/storytold/vectorcraft"
+      },
+      "capabilities": [
+        "art",
+        "rust",
+        "rust-lang",
+        "svg",
+        "svg-editor",
+        "vector-graphics"
+      ],
+      "useCase": "A graphic designer or developer needs to create complex vector illustrations with features like live blends and perspective grids without relying on proprietary Adobe software.",
+      "advantages": [
+        "Open-source clean-room reimplementation of Adobe Illustrator workflow",
+        "Runs natively on macOS, Windows, Linux, FreeBSD, and in the browser via WebAssembly",
+        "Written in pure Rust",
+        "Includes an MCP server for agent integration"
+      ],
+      "negativeConstraints": [
+        "Currently in active development and may lack stability or full feature parity compared to established commercial tools",
+        "Requires Rust environment or pre-compiled binaries for local use, which may add setup overhead for non-Rust users"
+      ],
+      "stars": 8148,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 8148,
+        "weeklyDelta": 8148,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "當圖形設計師或開發人員需要進行複雜的向量插圖，例如使用即時混合和透視格線等功能，且不想依賴專有的 Adobe 軟體時。",
+      "advantages_zh": [
+        "開源的 Adobe Illustrator 工作流程乾淨室重實作",
+        "可原生運行於 macOS、Windows、Linux、FreeBSD 以及透過 WebAssembly 在瀏覽器中運行",
+        "純 Rust 撰寫",
+        "包含用於 Agent 整合的 MCP 伺服器"
+      ],
+      "description_zh": "VectorCraft：一款以純 Rust 編寫的開源向量藝術工具。",
+      "negativeConstraints_zh": [
+        "目前處於積極開發階段，可能缺乏穩定性，或功能完整性無法與成熟的商業工具相比。",
+        "需要在本地使用 Rust 環境或預編譯二進位檔，這可能為非 Rust 用戶增加設定負擔。"
+      ]
+    },
+    {
+      "id": "effectcraft",
+      "name": "effectcraft",
+      "url": "https://github.com/storytold/effectcraft",
+      "description": "EffectCraft: An open-source motion graphics and compositing tool written by scratch in pure Rust",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "effectcraft",
+        "art",
+        "compositing",
+        "compositing-software",
+        "motion-graphics",
+        "rust"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/storytold/effectcraft"
+      },
+      "capabilities": [
+        "art",
+        "compositing",
+        "compositing-software",
+        "motion-graphics",
+        "rust"
+      ],
+      "useCase": "A motion graphics designer uses EffectCraft to create After Effects-style animations and export them directly to Lottie format for web and mobile applications.",
+      "advantages": [
+        "Built-in Lottie import and export eliminates the need for third-party plugins for web animation delivery.",
+        "Projects are stored as versioned JSON (.ecproj), allowing clean diffs in version control systems.",
+        "Every action is scriptable via a unified command registry, supporting CLI, JSON channels, and MCP agents.",
+        "Uses pure Rust codecs (VP9, AV1, HEVC, Opus) for video and audio encoding without relying on FFmpeg."
+      ],
+      "negativeConstraints": [
+        "Currently young and moving fast, implying less stability and a less mature feature set than established commercial software.",
+        "Clean-room reimplementation means it may not be 100% compatible with all existing After Effects project files or plugins.",
+        "Browser version may have performance limitations compared to native builds for heavy 3D or complex composites."
+      ],
+      "stars": 5995,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 5995,
+        "weeklyDelta": 5995,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "動態圖形設計師使用 EffectCraft 建立類似 After Effects 的動畫，並直接匯出 Lottie 格式以供 Web 與行動應用使用。",
+      "advantages_zh": [
+        "內建 Lottie 匯入與匯出功能，無需第三方外掛即可將動畫交付給 Web。",
+        "專案檔案為版本化 JSON (.ecproj)，可在版本控制系統中進行清晰的 diff。",
+        "所有操作皆可透過統一的指令註冊表進行腳本化，支援 CLI、JSON 通道與 MCP agent。",
+        "使用純 Rust 編解碼器 (VP9, AV1, HEVC, Opus) 處理影音編碼，不依賴 FFmpeg。"
+      ],
+      "description_zh": "EffectCraft：一款以純 Rust 編寫的開源動態圖像與合成工具。",
+      "negativeConstraints_zh": [
+        "目前尚屬新興且發展迅速，穩定性較低，功能成熟度不如已建立的商業軟體。",
+        "採用淨室重新實現，可能無法 100% 相容所有現有的 After Effects 專案檔案或外掛。",
+        "瀏覽器版本在處理厚重 3D 或複雜合成時，效能可能不如原生版本。"
+      ]
+    },
+    {
+      "id": "diplay",
+      "name": "DiPlay",
+      "url": "https://github.com/shihabal3amri/DiPlay",
+      "description": "Independent CarPlay receiver for compatible Android head units. Wired and wireless public preview.",
+      "category": "開發工具",
+      "language": "kotlin",
+      "triggers": [
+        "diplay",
+        "carplay",
+        "android-head-unit",
+        "car-entertainment"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/shihabal3amri/DiPlay"
+      },
+      "capabilities": [
+        "wired-carplay-streaming",
+        "wireless-carplay-streaming",
+        "byd-hud-navigation",
+        "android-head-unit-apk",
+        "local-authentication",
+        "diagnostic-reporting"
+      ],
+      "useCase": "BYD vehicle owners install the APK on their Android head unit to stream iPhone CarPlay over USB or Wi-Fi without jailbreaking the car or needing a Mac.",
+      "advantages": [
+        "Installs as an independent APK on the head unit, requiring no jailbreak, dongle, Mac, or external authentication server.",
+        "Specifically supports BYD HUD navigation, drawing arrows, distance, and street names directly on the windshield via verified firmware.",
+        "Compatible with both wired USB and wireless Wi-Fi Direct/hotspot connections on Android 7.1+ head units."
+      ],
+      "negativeConstraints": [
+        "Explicitly supports only BYD cars; other brands are unsupported and the developer has no plans to add brand-specific fixes.",
+        "The bundled private key is extractable and the accessory identity is experimental, making reliability and compatibility across all head units and future iOS updates unguaranteed.",
+        "Dashboard, battery, wheel-speed, and parked-video features require ADB access, whereas core CarPlay functionality does not."
+      ],
+      "stars": 10181,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 10181,
+        "weeklyDelta": 5948,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "比亞迪車主將此 APK 安裝在車載主機上，即可透過 USB 或 Wi-Fi 串流 iPhone CarPlay，無須越獄、轉接器、Mac 或外部認證伺服器。",
+      "advantages_zh": [
+        "作為獨立 APK 安裝於車載主機，不需越獄、轉接器、Mac 或外部認證伺服器。",
+        "專屬支援比亞迪 HUD 導航，可在經確認的韌體上，將箭頭、距離與路徑名稱直接繪製於擋風玻璃上。",
+        "相容於 Android 7.1 以上車主的有線 USB 與無線 Wi-Fi 直接/熱點連線。"
+      ],
+      "description_zh": "相容 Android 車載主機的獨立 CarPlay 接收器。有線與無線公開測試版。",
+      "negativeConstraints_zh": [
+        "明確僅支援 BYD 車輛；其他品牌不支援，開發者亦無計畫新增品牌專用修復。",
+        "內附私密金鑰可被提取，且配件身分處於實驗階段，無法保證在所有車載主機及未來 iOS 更新中的可靠性與相容性。",
+        "儀表板、電池、輪速與停車影片等功能需要 ADB 存取權限，而核心 CarPlay 功能則不需要。"
+      ]
+    },
+    {
+      "id": "shaders",
+      "name": "shaders",
+      "url": "https://github.com/shader-effects-inc/shaders",
+      "description": "WebGPU components for React, Vue, Svelte, Solid, JS & Framer",
+      "category": "UI/UX設計",
+      "language": "typescript",
+      "triggers": [
+        "shaders",
+        "cli",
+        "javascript",
+        "mcp",
+        "react",
+        "shaders"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/shader-effects-inc/shaders"
+      },
+      "capabilities": [
+        "cli",
+        "javascript",
+        "mcp",
+        "react",
+        "shaders",
+        "solid"
+      ],
+      "useCase": "A frontend developer implements GPU-accelerated visual effects (like gradients and cursor trails) in a React application by dropping in declarative components instead of writing raw WebGL/WebGPU code.",
+      "advantages": [
+        "Provides a visual design editor at shaders.com that allows non-coders to design effects on an infinite canvas and export the exact component tree for specific frameworks.",
+        "Supports React, Vue, Svelte, Solid, and plain JavaScript through a single package with consistent props, ensuring cross-framework compatibility.",
+        "Offers an MCP server and agent skill integration, enabling AI coding assistants (like Claude or Cursor) to directly find, install, and edit shader components.",
+        "Includes a CLI tool that detects the project's framework, writes component files directly to the codebase, and maintains synchronization via a lock file."
+      ],
+      "negativeConstraints": [
+        "Requires WebGPU support in the target browser/environment, as it explicitly uses WebGPU rather than legacy WebGL.",
+        "Advanced design workflows and visual editing require a Shaders account, even though the core export features are free."
+      ],
+      "stars": 4700,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4700,
+        "weeklyDelta": 4700,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "前端開發人員在 React 應用程式中，透過匯入聲明式元件來實作 GPU 加速的視覺效果（如漸層與游標軌跡），而非手動撰寫原始的 WebGL/WebGPU 程式碼。",
+      "advantages_zh": [
+        "提供 shaders.com 視覺化設計編輯器，讓非程式設計師可無限量畫布設計效果，並匯出特定框架的精確元件樹。",
+        "單一套件支援 React、Vue、Svelte、Solid 與原生 JavaScript，且屬性保持一致，確保跨框架相容性。",
+        "整合 MCP 伺服器與 Agent 技能，讓 AI 編碼助手（如 Claude 或 Cursor）能直接搜尋、安裝並編輯 Shader 元件。",
+        "內建 CLI 工具可偵測專案框架，直接將元件檔案寫入程式庫，並透過鎖檔（lock file）維持同步。"
+      ],
+      "description_zh": "適用於 React、Vue、Svelte、Solid、JS 與 Framer 的 WebGPU 元件。",
+      "negativeConstraints_zh": [
+        "需要目標瀏覽器／環境支援 WebGPU，因其明確使用 WebGPU 而非舊式 WebGL。",
+        "進階設計工作流程與視覺編輯需要 Shaders 帳號，即使核心匯出功能免費。"
+      ]
+    },
+    {
+      "id": "removemacai",
+      "name": "RemoveMacAI",
+      "url": "https://github.com/omlahore/RemoveMacAI",
+      "description": "Debloat macOS: turn off Apple Intelligence, analytics, ads and pop-ups. A native app and CLI, and every change can be undone.",
+      "category": "安全性",
+      "language": "swift",
+      "triggers": [
+        "removemacai",
+        "apple-intelligence",
+        "cli",
+        "debloat",
+        "macos",
+        "macos-27"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/omlahore/RemoveMacAI"
+      },
+      "capabilities": [
+        "apple-intelligence",
+        "cli",
+        "debloat",
+        "macos",
+        "macos-27",
+        "privacy"
+      ],
+      "useCase": "Mac users want to reclaim disk space and improve privacy by disabling Apple Intelligence features, stopping background analytics, and removing unused macOS clutter in a single, reversible operation.",
+      "advantages": [
+        "Frees up approximately 12 GB of storage by deleting Apple Intelligence models and optional apps like GarageBand and iMovie",
+        "Native Swift app and CLI that share the same undo history, ensuring every configuration change can be reversed",
+        "Provides specific granularity to disable individual Apple Intelligence components (e.g., Genmoji, Writing Tools) without affecting others",
+        "Automatically identifies and disables third-party background updaters and helpers, such as Google's updater"
+      ],
+      "negativeConstraints": [
+        "Notarization warning: The app is not notarized, so users must manually override security prompts in System Settings on first launch",
+        "macOS-specific: Only works on macOS (specifically referenced in context of macOS 27) and cannot be used for other operating systems",
+        "Limited to Apple Ecosystem: Does not manage Windows or Linux software, nor does it provide system-level antivirus or firewall capabilities"
+      ],
+      "stars": 4533,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4533,
+        "weeklyDelta": 4533,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "當 Mac 使用者想要釋放磁碟空間並增強隱私時，可以透過此工具一鍵停用 Apple Intelligence 功能、關閉背景分析追蹤，並移除未使用的 macOS 預設應用程式與設定。",
+      "advantages_zh": [
+        "透過刪除 Apple Intelligence 模型及 GarageBand 等選配應用程式，可釋放約 12 GB 的磁碟空間",
+        "原生 Swift 開發的應用程式與 CLI 共用相同的復原歷史紀錄，確保所有設定變更皆可完整還原",
+        "提供極高的細粒度控制，可單獨停用特定 Apple Intelligence 功能（如 Genmoji、寫作工具）而不影響其他功能",
+        "自動識別並停用第三方背景更新程式與輔助工具，例如 Google 的更新程式"
+      ],
+      "description_zh": "為 macOS 去背：關閉 Apple Intelligence、分析、廣告與彈出視窗。提供原生應用程式與 CLI，所有變更皆可撤銷。",
+      "negativeConstraints_zh": [
+        "驗證警告：該應用程式未經驗證，使用者首次啟動時必須在系統設定中手動覆蓋安全提示。",
+        "僅限 macOS：僅在 macOS 上運作（上下文中特別提及 macOS 27），無法用於其他作業系統。",
+        "限於 Apple 生態系：不管理 Windows 或 Linux 軟體，也不提供系統層級的防毒或防火牆功能。"
+      ]
+    },
+    {
+      "id": "gridcraft",
+      "name": "gridcraft",
+      "url": "https://github.com/storytold/gridcraft",
+      "description": "GridCraft: an open-source, clean-room spreadsheet (Microsoft Excel-style) in pure Rust. By ArtCraft.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "gridcraft",
+        "spreadsheet",
+        "excel-alternative",
+        "clean-room-spreadsheet"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/storytold/gridcraft"
+      },
+      "capabilities": [
+        "spreadsheet-engine",
+        "xlsx-compatibility",
+        "chart-rendering",
+        "pivot-tables",
+        "mcp-integration",
+        "webassembly-support"
+      ],
+      "useCase": "A developer or agent uses GridCraft via MCP to automate the generation of formatted XLSX reports with charts and pivot tables without needing a Microsoft license.",
+      "advantages": [
+        "Runs natively on macOS, Windows, Linux, BSD, and in the browser via WebAssembly.",
+        "Agent-drivable over MCP (Model Context Protocol) for automated spreadsheet tasks.",
+        "Clean-room reimplementation in pure Rust, ensuring it is not just a wrapper around proprietary Excel binaries.",
+        "Supports 500+ functions, dynamic arrays, LET, LAMBDA, and 17 chart types."
+      ],
+      "negativeConstraints": [
+        "Does not support proprietary Microsoft Office formats like DOCX, PPTX, or native XLS (pre-2007).",
+        "Lacks native cloud synchronization features found in Microsoft 365 ecosystem.",
+        "Requires Rust toolchain or specific build configurations for native development use cases."
+      ],
+      "stars": 4138,
+      "addedAt": "2026-10-13T13:13:23.557Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 4138,
+        "weeklyDelta": 4138,
+        "ingestedAt": "2026-10-13T13:13:23.557Z"
+      },
+      "useCase_zh": "開發者或 AI 代理透過 MCP 協議使用 GridCraft，在不依賴 Microsoft 授權的情況下，自動化產生包含圖表與樞透表的格式化 XLSX 報告。",
+      "advantages_zh": [
+        "原生支援 macOS、Windows、Linux、BSD 以及透過 WebAssembly 在瀏覽器中執行。",
+        "支援 MCP 協議，可讓 AI 代理自動化操作試算表。",
+        "以純 Rust 書寫的清潔室重新實現，非依賴專有 Excel 二進位檔。",
+        "支援超過 500 個函數、動態陣列、LET、LAMBDA 以及 17 種圖表類型。"
+      ],
+      "description_zh": "GridCraft：一款純 Rust 實作的開源乾淨室試算表（Microsoft Excel 風格），由 ArtCraft 開發。",
+      "negativeConstraints_zh": [
+        "不支援 Microsoft Office 專有格式，例如 DOCX、PPTX 或原生 XLS（2007 年以前版本）。",
+        "缺乏 Microsoft 365 生態系中內建的雲端同步功能。",
+        "原生開發使用情境需安裝 Rust 工具鏈或特定編譯設定。"
+      ]
+    },
+    {
+      "id": "ultramotion",
+      "name": "Ultramotion",
+      "url": "https://github.com/sunsiyuan/ultramotion",
+      "description": "Open-source motion templates as agent skills · 动效模板库",
+      "category": "多媒體生成",
+      "language": "html",
+      "triggers": [
+        "ultramotion",
+        "agent-skills",
+        "claude-skills",
+        "motion-graphics",
+        "motion-templates"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx skills add sunsiyuan/ultramotion",
+        "repoUrl": "https://github.com/sunsiyuan/ultramotion"
+      },
+      "capabilities": [
+        "agent-skills",
+        "claude-skills",
+        "motion-graphics"
+      ],
+      "useCase": "A content creator uses Claude Code or ChatGPT Codex to instantly generate a vertical motion-graphics video with synchronized music from a single text prompt by installing a specific style like 'Liquid Glass' as an agent skill.",
+      "advantages": [
+        "Generates finished videos with music from a single prompt using agent-based workflows",
+        "Offers specialized styles like 'Light Particles' capable of rendering up to 1.6M glowing particles via WebGL2",
+        "Includes a 'Hand-drawn Explainer' style that supports real stroke order for Chinese character writing",
+        "Enables 'Event Replay' by replaying moments in history from real data with specific temporal visualization techniques"
+      ],
+      "negativeConstraints": [
+        "Requires a headless Chromium-based browser with WebGL support, ffmpeg, and Python with numpy and scipy",
+        "The 'Variety Captions' style requires Playwright, Pillow, and soundfile, and depends on Apple Vision (macOS) or MediaPipe for face detection",
+        "The 'Flat Explainer' style requires 'edge-tts' or Whisper for voice synthesis and alignment"
+      ],
+      "addedAt": "2026-10-13T14:39:17.006Z",
+      "status": "active",
+      "stars": 6,
+      "useCase_zh": "內容創作者使用 Claude Code 或 ChatGPT Codex，透過安裝如「Liquid Glass」等特定風格的技能，僅需輸入一段文字提示詞，即可立即生成帶有同步音樂的垂直動態圖影片。",
+      "advantages_zh": [
+        "透過代理式工作流，從單一提示詞生成帶有音樂的完成影片",
+        "提供如「Light Particles」等專業風格，可透過 WebGL2 渲染高達 160 萬個發光粒子",
+        "「Hand-drawn Explainer」風格支援中文字體書寫的實際筆順",
+        "「Event Replay」可從真實數據重現歷史時刻，並採用特定的時間視覺化技術"
+      ],
+      "description_zh": "開放原始碼動態模板即代理技能 · 動效模板庫",
+      "negativeConstraints_zh": [
+        "需搭配支援 WebGL 的無頭 Chromium 瀏覽器，以及 ffmpeg、Python（內含 numpy 與 scipy）",
+        "'Variety Captions' 樣式需要 Playwright、Pillow 與 soundfile，並依賴 Apple Vision（macOS）或 MediaPipe 進行臉部偵測",
+        "'Flat Explainer' 樣式需要 'edge-tts' 或 Whisper 進行語音合成與對齊"
+      ]
+    },
+    {
+      "id": "answer-me-with-html",
+      "name": "Answer Me With Html",
+      "url": "https://github.com/QingYunA/answer-me-with-html",
+      "description": "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "answer-me-with-html",
+        "agent-skill",
+        "ai-agent",
+        "claude-code",
+        "html-diagram",
+        "ste100"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx answer-me-with-html",
+        "repoUrl": "https://github.com/QingYunA/answer-me-with-html"
+      },
+      "capabilities": [
+        "agent-skill",
+        "ai-agent",
+        "claude-code",
+        "claude-code-skill",
+        "claude-skill"
+      ],
+      "useCase": "A developer wants to understand a complex system architecture or technical concept without reading a wall of text, so they ask their AI agent a question like \"Map out how the modules in this repo fit together\" and receive a single-file HTML page with diagrams.",
+      "advantages": [
+        "Reduces model output tokens by approximately 8x (from 4,893 to 612 on average) by having the model write only a Markdown draft while the CLI generates the HTML/CSS/SVG structure.",
+        "Generates explainer pages in about 12 seconds, which is 2.6x faster than having the model hand-write the full HTML.",
+        "Produces a single self-contained HTML file that works offline without external dependencies or network requests.",
+        "Significantly reduces token usage for explainer videos, saving about 18x fewer output tokens and running 12x faster compared to standard generation."
+      ],
+      "negativeConstraints": [
+        "Requires Node.js 20 or newer to run the CLI component of the skill.",
+        "Only supported by specific AI agent frameworks such as Claude Code, Codex, Cursor, OpenCode, Pi, and DeepSeek Harness."
+      ],
+      "addedAt": "2026-10-13T14:40:47.860Z",
+      "status": "active",
+      "stars": 3273,
+      "useCase_zh": "開發者需要快速理解複雜的系統架構或技術概念，因此透過 AI Agent 詢問如「梳理此專案模組間的關係」等問題，並獲得一個包含圖表的單檔 HTML 頁面，而非漫長的純文字。",
+      "advantages_zh": [
+        "模型只需撰寫 Markdown 草稿，由 CLI 產生 HTML/CSS/SVG 結構，平均減少約 8 倍的輸出 token 數（從 4,893 降至 612）。",
+        "產生說明頁面僅需約 12 秒，比讓模型直接手寫 HTML 快 2.6 倍。",
+        "產出單一自包含的 HTML 檔案，可離線閱讀，無需外部資源或網路連線。",
+        "在製作說明影片時效能提升更顯著，輸出 token 減少約 18 倍，速度提升 12 倍。"
+      ],
+      "description_zh": "Answer me with HTML — 一個讓 AI 代理用單頁 HTML 回答艱難問題的代理技能，內容可直接閱讀。讓 AI Agent 用一頁 HTML 回答複雜問題。",
+      "negativeConstraints_zh": [
+        "需要 Node.js 20 或更新版本才能執行技能的 CLI 組件。",
+        "僅支援特定 AI 代理框架，例如 Claude Code、Codex、Cursor、OpenCode、Pi 與 DeepSeek Harness。"
+      ]
+    },
+    {
+      "id": "vibe-coding-cn",
+      "name": "Vibe Coding Cn",
+      "url": "https://github.com/tradecatlabs/vibe-coding-cn",
+      "description": "Vibe Coding 从入门到精通教程｜AI 结对编程工作流｜Prompt、Skill、Workflow、上下文管理、codex实战指南",
+      "category": "學習資源",
+      "language": "python",
+      "triggers": [
+        "vibe-coding-cn",
+        "vibe-coding",
+        "ai-pair-programming",
+        "chinese-tutorial",
+        "prompt-engineering",
+        "context-management"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/tradecatlabs/vibe-coding-cn.git",
+        "repoUrl": "https://github.com/tradecatlabs/vibe-coding-cn"
+      },
+      "capabilities": [
+        "ai",
+        "ai-agent",
+        "ai-agents",
+        "ai-coding",
+        "ai-programming"
+      ],
+      "useCase": "A Chinese-speaking developer or team wants to learn the full vibe-coding workflow end to end: prompt engineering, skills, context management and quality gates, taught as a structured, actively maintained tutorial with research evidence rather than scattered blog posts.",
+      "advantages": [
+        "Structured Chinese curriculum covering the whole workflow: prompts, skills, context management and quality gates",
+        "Pairs the tutorials with research evidence and a methodology registry so claims can be traced",
+        "Ships ready-to-use assets: one-click Codex configs, a skills catalogue and an online prompt library"
+      ],
+      "negativeConstraints": [
+        "Not a code library or executable tool"
+      ],
+      "addedAt": "2026-10-13T14:41:39.130Z",
+      "status": "active",
+      "stars": 17521,
+      "description_zh": "Vibe Coding 從入門到精通教程｜AI 結對程式設計工作流｜Prompt、Skill、Workflow、上下文管理、codex實戰指南",
+      "useCase_zh": "語系為中文的開發者或團隊希望完整學習 vibe-coding 工作流，包含提示工程、技能、上下文管理與品質關卡，以結構化且持續維護的教程形式呈現，並附研究實證，而非零散的部落格文章。",
+      "advantages_zh": "涵蓋完整工作流的結構化中文課程：提示、技能、上下文管理與品質關卡；教程搭配研究實證與方法學登錄檔，使各項主張皆可追溯；提供即用資源：一鍵式 Codex 設定、技能目錄與線上提示庫",
+      "negativeConstraints_zh": [
+        "非程式庫或可執行工具"
       ]
     }
   ]

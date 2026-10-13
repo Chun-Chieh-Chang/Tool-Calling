@@ -265,7 +265,53 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部九節為 2026-10-09 快照，其下四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-13 第二輪快照，第二節為 2026-10-13 第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-13（第二輪）世界週起訖日期 off-by-one 修正 ＋ trending 分類／語言 SSOT 守門
+
+**需求**：用戶截圖回報「累積總 STAR 數」卡片 起: 22,738 (2026-10-03) ／ 終: 41,838 (2026-10-05)，與表頭聲稱的 W41（2026-10-05 ~ 2026-10-11）矛盾——起訖日期完全不對，且每次重跑都會飄。
+
+**根因（RCA）**：`scripts/trending-weekly.js` 的**快照語意錯置**——Step 6 寫入端把快照定義為「**週初基準**」（週一早上 02:00 節刊量的是上週末狀態），Step 4a 讀取端卻把它當「**上週末快照**」。兩者錯一整個週：W41 報告的起點取到 W40 快照（10-03 臨時跑的那筆）、終點取到 W41 自身快照（10-05 週初基準）→ 算出的其實是 **W40→W41 的成長**卻掛上 W41 標籤（off-by-one 週）。起訖日期直接顯示快照的 `timestamp`（牆上時間），臨時執行還會汙染基準時間戳 → 日期每次看都不一樣。
+
+**修法（語意驅動，不靠 week 標籤）**：
+- 新增純函式 `pickWeekBoundaryAnchors(snapshotData, weekInfo)`（已匯出）：**起點**＝snapshot{N}（上週週初基準）；**終點**＝第一個 timestamp ≥ N.sunday 的快照（上週結束後首次量測）；回傳 `{startSnap, endSnap, startFromFallback, endFromStale}` 供降級註記。
+- Step 2 移除錯誤的 prevPrev baseline 邏輯；Step 4a 改依錨點計算，**起訖日期一律用 `prevWeekInfo.mondayStr/sundayStr`（ISO 週界）**，不再顯示快照牆上時間。
+- Step 6 修正：**重跑不再刷新基準快照的 timestamp**（「本週迄今」的起點真相必須穩定，否則日期隨臨時執行飄移）；dateRange 收斂為基準當日。
+- 測試 `tests/trending-weekly-anchors.test.js`（7/7）：理想節刊、臨時執行汙染（用 10-03/10-05/10-13 真實數據形狀）、終點降級、起點 fallback、未排序輸入、空資料、WIP 週。
+
+**驗證（端到端重跑）**：`起點 2026-10-05T08:25:38Z（上週週初基準）→ 終點 2026-10-13T11:53:26Z（上週結束後首次量測）`，W41 顯示真實週漲幅（如 mattpocock/skills +12,347）；`lastWeek.measuredAt` 與動態 note 入 JSON。
+
+**連帶修掉的第二類問題（trending 重跑後 gate 失敗）**：
+1. **分類越權**：`CATEGORY_RULES` 曾包含三條規則會寫出 `categories.json` 不存在的分類（`行銷`／`資料庫`／`基礎設施`）——removemacai 描述裡的 "analytics" 命中行銷規則，帶著 `category:"行銷"` 入庫 → check-mece exit 1。修法：`基礎設施`／`資料庫` 重映射到 `開發工具`（既有庫實際歸屬：DB-ish 7 筆中 5 筆在開發工具）、`行銷` 整條移除；`安全性` 規則補 `privacy|debloat`；**加 SSOT 守門**——`inferCategory` 讀 categories.json 建合法集合，規則越權直接跳過。registry 內 removemacai 手工改判 `安全性`（隱私清理工具，與 fanqiang／clash-verge-rev 同族）。
+2. **語言越權**：openai/math 以 `language:"lean"` 入庫（schema enum 只收 23 個主流值）→ check-mece exit 1。修法：`normalizeLanguage()` 讀 schema enum 建集合，落榜一律收斂到 `other`；registry 內 math 改 `other`。
+3. **守門可失敗性**：兩個守門都匯出並加測試（12/12 通過）：斷言 `inferCategory` 輸出 ⊆ 18 分類、`normalizeLanguage('Lean')==='other'` 且 enum 內值只正規化大小寫。誰移除守門，測試就紅。
+4. **文件漂移**：registry 768 → README 更新＋`generate-agents-md.js`＋`categories:sync`（CATEGORY-SYSTEM.md 數量表）。`check-doc-stats`／`check-mece`／`sync-categories --check` 全過。
+
+**9 支新工具補齊結果**：`enrich-new-tools.js` 12 支待補 → 成功 11／資訊不足 1（math，OpenAI 上游 README 稀疏＋2016 風格空描述，enrich 端誠實留白）；`translate-to-zh.js` 補 *_zh 並把 8 支升 active。`math` 後續**依上游 README 實查證據手工補齊**（719 篇手稿／372 家族／~42% Lean 形式化；category 由「開發工具」正名為「研究」；NC 明言「靜態館藏非可執行軟體」與「未形式化結果可能有誤——上游自述」）。另清掉兩筆舊債：`how-to-live-better` 描述為簡體，被 translate 的「已含中文」判據誤跳 → 依職責分離流程（findSimplified 偵測→toTraditional 轉換）補 desc_zh 並升 active；`qingjian`／`how-to-live-better` 觸發詞不足、`tokentab` 缺 NC（repo 已 404，NC 只從既有 description 語意保守推導，未編造）→ 警告清零。
+
+**最終狀態**：`node cli.js validate` **768/768 全過、Contract 100/100、0 錯誤 0 警告 0 low-quality**；check-utf8／duplicate-ids／templates／doc-stats／mece／sync --check／rescan --ci 七道閘門全過；`npm run build` 後 dist/registry 與 registry 逐笔一致（0 stale）。
+
+⚠️ **未裁決事項**：`tokentab`（damejan80/tokentab）GitHub repo 已 404——先記錄，是否降級 deprecated 留給使用者裁決（不擅自下架 active 工具）。
+
+**環境限制同第一輪**（沙盒 node spawn EBUSY → `npm test` 不可用，改用直接執行＋逐檔 `node --check`）。
+
+### 2026-10-13 知識圖譜聚焦淡化（2D/3D 同語義）＋ 收錄管線四項根因修復
+
+**需求**：知識圖譜只有「被選中」的節點維持高亮，其餘一律淡化；2D 與 3D 相同。
+
+**實作**（`scripts/generate-knowledge-graph.js` → 重產 `docs/` + `dist/knowledge-graph.html`）：
+- 2D：初始化時快照 nodes/edges 原色（`_focus2dSnapshot`）；`applyFocus2d(activeIds)` 以 rgba 低透明度底色＋暗字色淡化非選取節點／邊；接上 click 節點／點空白、圖例 `filterCategory`、搜尋、`resetToDefaultState`。取消聚焦靠快照完整還原，不重算。
+- 3D：`nodeThreeObject` 建立時把材質參考掛回 node（`__sphereMat`／`__sprite`／`__origColor`）；`applyFocus3d()` 直接調 opacity／emissive（選取＝白色＋原色自發光，其餘 opacity 0.07、depthWrite 關）；`linkColor`／`linkOpacity` accessor 分流後 `refresh()`；`onNodeClick` 聚焦、`onBackgroundClick` 取消（與 2D 點空白同語義）；圖例聚焦集合＝分類節點＋其工具（與 2D `selectNodes` 範圍一致）。
+
+**RCA／CAPA — 本輪順手清掉的既有債（源頭多為先前未提交的 registry 增補）**：
+1. **Doc Stats 漂移**：registry 已 759 支但 README／AGENTS.md 仍寫 748 → README 更新（保留日期錨點 2026-10-13）＋ `npm run agents:init` 重生 AGENTS.md（diff 僅統計區）。
+2. **`qingjian` 低品質條目**（trending 自動入庫）：`language: "unknown"` 不在 schema enum → check-mece exit 1。以 GitHub API 證據修：`language=rust`、description 改上游原句（registry/ 在繁體守門豁免名單內，上游簡體資料依規則保留）、install 依根目錄 `Cargo.toml` 判定——**虛擬工作區**（21 members、無 `[package]`）→ `cargo install --git` 必定失敗 → 依鐵律用誠實下界 `git clone`；useCase 清空待補。
+3. **trending-weekly.js 根因**：language 落負由 `"unknown"` 改 schema 合法的 `"other"`；新入庫 status 由 `active` 改 `experimental`（生命週期：須 `isFullyEnriched()` 才升）；useCase 不再複製 description（複製品＝沒資訊，留空交給 enrich 管線）。
+4. **今日三筆 trending 工具**（how-to-live-better／magpie／qingjian）退回 experimental 並清掉 useCase 複製品；執行 `enrich-new-tools.js`（16 支待補 → 6 成功／10 資訊不足誠實留白／0 失敗）、`categories:sync`（修 CATEGORY-SYSTEM.md 漂移）、`translate:zh`（補 *_zh，14 筆待處理）。`node cli.js validate`：**3 錯誤 → 0 錯誤**，Contract v2 99.6/100、0 low-quality。
+
+**🔴 環境限制（下次接手必讀）**：本沙盒環境內 **node 的 child_process spawn 全部 EBUSY**（git/cmd/node 皆然，bash 直啟子行程正常）→ `check-syntax.js`、`npm test`、`check-traditional` 的 git 模式、以及所有 spawn 型測試（category-guards、cli-validate、wiki-lint、check-traditional）在此環境**無法執行**，49 筆測試失敗全為 EBUSY 偽失敗（斷言訊息是空輸出，不是邏輯錯）。已用等價直接執行替代：138 檔 `node --check` 全過；check-utf8／check-duplicate-ids／check-templates／check-doc-stats／check-mece／sync-categories --check／rescan-classification --ci 全過；`cli.js validate` 0 錯誤。**回到正常環境請重跑一次 `npm test` 確認 404 全綠。**
+
+**待辦**：使用者第一批 5 個 URL 尚有 3 支未入庫（sunsiyuan/ultramotion、QingYunA/answer-me-with-html、tradecatlabs/vibe-coding-cn；FreeCAD 已存在、morluto/rea 已 experimental 在庫）。
 
 ### 2026-10-09（第一輪）negativeFacets 品質債務清償：改寫 1／刪除 2／撤回 1 條指控，並推翻 §8 的「0／267」口徑
 

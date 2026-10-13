@@ -1,13 +1,8 @@
 /**
  * ⚠️ 此檔案由 scripts/mine-synonyms.js 自動產生，請勿手動編輯。
- * 若要調整挖掘邏輯或種子詞典，請修改 scripts/mine-synonyms.js 後重新執行：
- *   node scripts/mine-synonyms.js
  *
  * 刻意不寫入產生時間：時間戳會讓每次 build 都產生只差一行的無意義 diff，
  * 掩蓋真正的內容變更。需要時間資訊請看 git log。
- *
- * check-traditional: skip-file —— 本檔是同義詞鍵**資料檔**：鍵與值刻意收錄簡體寫法
- * （簡體查詢要靠它命中），不歸繁體書寫門禁管。實測 587 次／535 行屬這類內容。
  */
 export const SYNONYM_MAP = {
   "簡報": [
@@ -8849,12 +8844,12 @@ export const SYNONYM_MAP = {
   "pdf轉markdown": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion",
     "anydoc",
-    "markdown conversion"
+    "markdown conversion",
+    "document to markdown"
   ],
   "markitdown": [
     "pdf轉markdown",
@@ -8867,16 +8862,6 @@ export const SYNONYM_MAP = {
     "網頁抓成markdown"
   ],
   "markdown": [
-    "pdf轉markdown",
-    "pdf轉纯文本",
-    "word轉成文字",
-    "網頁轉成markdown",
-    "office文檔轉markdown",
-    "docx轉文字",
-    "把pdf轉成markdown",
-    "網頁抓成markdown"
-  ],
-  "pdf": [
     "pdf轉markdown",
     "pdf轉纯文本",
     "word轉成文字",
@@ -8919,7 +8904,6 @@ export const SYNONYM_MAP = {
   "pdf轉纯文本": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8927,7 +8911,6 @@ export const SYNONYM_MAP = {
   "word轉成文字": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8935,7 +8918,6 @@ export const SYNONYM_MAP = {
   "網頁轉成markdown": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8943,7 +8925,6 @@ export const SYNONYM_MAP = {
   "office文檔轉markdown": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8951,7 +8932,6 @@ export const SYNONYM_MAP = {
   "docx轉文字": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8959,7 +8939,6 @@ export const SYNONYM_MAP = {
   "把pdf轉成markdown": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8967,7 +8946,6 @@ export const SYNONYM_MAP = {
   "網頁抓成markdown": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8975,7 +8953,6 @@ export const SYNONYM_MAP = {
   "文檔轉成可讀取文字": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -8983,7 +8960,6 @@ export const SYNONYM_MAP = {
   "pdf轉成文本": [
     "markitdown",
     "markdown",
-    "pdf",
     "docx",
     "office-documents",
     "llm-conversion"
@@ -9099,8 +9075,7 @@ export const SYNONYM_MAP = {
     "offline-tool"
   ],
   "尋找ai技能庫": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "anthropic-skills": [
     "尋找ai技能庫",
@@ -9112,51 +9087,32 @@ export const SYNONYM_MAP = {
     "套用現成ai技能",
     "尋找agent模組"
   ],
-  "claude-skills": [
-    "尋找ai技能庫",
-    "整合claude技能",
-    "搜尋agent能力插件",
-    "查看anthropic技能範例",
-    "部署ai代理技能",
-    "擴充claude agent功能",
-    "套用現成ai技能",
-    "尋找agent模組"
-  ],
   "整合claude技能": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "搜尋agent能力插件": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "查看anthropic技能範例": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "部署ai代理技能": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "擴充claude agent功能": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "套用現成ai技能": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "尋找agent模組": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "實作ai技能": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "搜尋claude插件": [
-    "anthropic-skills",
-    "claude-skills"
+    "anthropic-skills"
   ],
   "figma 設計轉成程式碼": [
     "figma",
@@ -14041,43 +13997,33 @@ export const SYNONYM_MAP = {
     "agent-skills-list"
   ],
   "ai編程提示詞庫": [
-    "claude-skills",
     "openai-codex"
   ],
   "程式碼自動補全插件": [
-    "claude-skills",
     "openai-codex"
   ],
   "claude編程技能庫": [
-    "claude-skills",
     "openai-codex"
   ],
   "code review ai工具": [
-    "claude-skills",
     "openai-codex"
   ],
   "自然語言生成程式碼": [
-    "claude-skills",
     "openai-codex"
   ],
   "cursor編程助手": [
-    "claude-skills",
     "openai-codex"
   ],
   "codex ai代理": [
-    "claude-skills",
     "openai-codex"
   ],
   "開發者ai技能包": [
-    "claude-skills",
     "openai-codex"
   ],
   "寫程式碼的ai插件": [
-    "claude-skills",
     "openai-codex"
   ],
   "gemini cli編程技能": [
-    "claude-skills",
     "openai-codex"
   ],
   "設定 claude code": [
@@ -18523,7 +18469,6 @@ export const SYNONYM_MAP = {
     "china-market"
   ],
   "找 ai 技能庫": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
@@ -18538,47 +18483,38 @@ export const SYNONYM_MAP = {
     "找高星 ai 技能"
   ],
   "瀏覽熱門 ai 技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "匯入 claude 技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "安裝 gemini 技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "同步 github ai 技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "查閱最新 ai 技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "分類搜尋 ai 工具": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "找高星 ai 技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "新增 ai 自動化技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
   "更新已安裝技能": [
-    "claude-skills",
     "gemini-skills",
     "ai-skills"
   ],
@@ -19232,8 +19168,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "slidev": [
     "用 markdown 寫投影片",
@@ -19281,8 +19216,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "markdown 轉成投影片": [
     "slidev",
@@ -19290,8 +19224,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "開發者簡報框架": [
     "slidev",
@@ -19299,8 +19232,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "寫程式簡報": [
     "slidev",
@@ -19308,8 +19240,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "用 markdown 製作投影片": [
     "slidev",
@@ -19317,8 +19248,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "vue 開發投影片": [
     "slidev",
@@ -19326,8 +19256,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "markdown 做簡報": [
     "slidev",
@@ -19335,8 +19264,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "技術簡報工具": [
     "slidev",
@@ -19344,8 +19272,7 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "用 markdown 寫簡報": [
     "slidev",
@@ -19353,12 +19280,10 @@ export const SYNONYM_MAP = {
     "vue",
     "vite",
     "vueuse",
-    "developer",
-    "pdf"
+    "developer"
   ],
   "編寫 claude 指令": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
@@ -19405,63 +19330,54 @@ export const SYNONYM_MAP = {
   ],
   "生成 codex 提示词": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "配置 openclaw 技能": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "創建 agent 模板": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "設計可重用 ai 提示词": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "制作 coding assistant 配方": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "輸出 agent 行為指令": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "調整 ai 助手工作流": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "建立 reusable prompts": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
   ],
   "生成編程輔助模板": [
     "baoyu-skills",
-    "claude-skills",
     "codex-skills",
     "openclaw-skills",
     "agent-prompts"
@@ -19657,8 +19573,7 @@ export const SYNONYM_MAP = {
     "consensus"
   ],
   "讀 pdf": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "reader3": [
     "讀 pdf",
@@ -19671,40 +19586,31 @@ export const SYNONYM_MAP = {
     "研究論文摘要"
   ],
   "讀電子書": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "問書本內容": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "分析書籍": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "摘要書籍重點": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "查詢書籍資料": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "讀小說提問": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "研究論文摘要": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "翻閱書籍內容": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "解讀書本": [
-    "reader3",
-    "pdf"
+    "reader3"
   ],
   "搜尋學術文章": [
     "awesome-auto-research-tools",
@@ -29317,9 +29223,12 @@ export const SYNONYM_MAP = {
   "把 pdf 轉成 markdown": [
     "pdf2md-agent-skill",
     "pdf2md",
-    "agent-skill",
     "claude-code-skill",
-    "document-conversion"
+    "document-conversion",
+    "把 word 轉成文字",
+    "掃描檔 ocr 轉文字",
+    "從 ppt 抓重點",
+    "把 excel 轉成 markdown"
   ],
   "pdf2md-agent-skill": [
     "把 pdf 轉成 markdown",
@@ -29328,8 +29237,8 @@ export const SYNONYM_MAP = {
     "從 ppt 抓重點",
     "把 excel 轉成 markdown",
     "pdf2md",
-    "agent-skill",
-    "claude-code-skill"
+    "claude-code-skill",
+    "document-conversion"
   ],
   "pdf2md": [
     "把 pdf 轉成 markdown",
@@ -29341,16 +29250,6 @@ export const SYNONYM_MAP = {
     "pdf 解析",
     "pdf 轉 markdown"
   ],
-  "agent-skill": [
-    "把 pdf 轉成 markdown",
-    "把 word 轉成文字",
-    "掃描檔 ocr 轉文字",
-    "從 ppt 抓重點",
-    "把 excel 轉成 markdown",
-    "部署應用程式",
-    "配置 kubernetes 叢集",
-    "監控系統效能"
-  ],
   "document-conversion": [
     "把 pdf 轉成 markdown",
     "把 word 轉成文字",
@@ -29359,35 +29258,47 @@ export const SYNONYM_MAP = {
     "把 excel 轉成 markdown",
     "pdf2md-agent-skill",
     "pdf2md",
-    "agent-skill"
+    "claude-code-skill"
   ],
   "把 word 轉成文字": [
     "pdf2md-agent-skill",
     "pdf2md",
-    "agent-skill",
     "claude-code-skill",
-    "document-conversion"
+    "document-conversion",
+    "把 pdf 轉成 markdown",
+    "掃描檔 ocr 轉文字",
+    "從 ppt 抓重點",
+    "把 excel 轉成 markdown"
   ],
   "掃描檔 ocr 轉文字": [
     "pdf2md-agent-skill",
     "pdf2md",
-    "agent-skill",
     "claude-code-skill",
-    "document-conversion"
+    "document-conversion",
+    "把 pdf 轉成 markdown",
+    "把 word 轉成文字",
+    "從 ppt 抓重點",
+    "把 excel 轉成 markdown"
   ],
   "從 ppt 抓重點": [
     "pdf2md-agent-skill",
     "pdf2md",
-    "agent-skill",
     "claude-code-skill",
-    "document-conversion"
+    "document-conversion",
+    "把 pdf 轉成 markdown",
+    "把 word 轉成文字",
+    "掃描檔 ocr 轉文字",
+    "把 excel 轉成 markdown"
   ],
   "把 excel 轉成 markdown": [
     "pdf2md-agent-skill",
     "pdf2md",
-    "agent-skill",
     "claude-code-skill",
-    "document-conversion"
+    "document-conversion",
+    "把 pdf 轉成 markdown",
+    "把 word 轉成文字",
+    "掃描檔 ocr 轉文字",
+    "從 ppt 抓重點"
   ],
   "找健身動作動畫": [
     "exercises-dataset",
@@ -29920,7 +29831,6 @@ export const SYNONYM_MAP = {
     "adhd",
     "claude-",
     "claude-code-plugin",
-    "claude-skills",
     "productivity"
   ],
   "i-have-adhd": [
@@ -29969,7 +29879,6 @@ export const SYNONYM_MAP = {
     "adhd",
     "claude-",
     "claude-code-plugin",
-    "claude-skills",
     "productivity"
   ],
   "別解釋太多": [
@@ -29978,7 +29887,6 @@ export const SYNONYM_MAP = {
     "adhd",
     "claude-",
     "claude-code-plugin",
-    "claude-skills",
     "productivity"
   ],
   "一步到位解決": [
@@ -29987,7 +29895,6 @@ export const SYNONYM_MAP = {
     "adhd",
     "claude-",
     "claude-code-plugin",
-    "claude-skills",
     "productivity"
   ],
   "只要結論不要廢話": [
@@ -29996,7 +29903,6 @@ export const SYNONYM_MAP = {
     "adhd",
     "claude-",
     "claude-code-plugin",
-    "claude-skills",
     "productivity"
   ],
   "保持程式碼會話不中斷": [
@@ -41447,7 +41353,6 @@ export const SYNONYM_MAP = {
   ],
   "部署應用程式": [
     "hermesskill",
-    "agent-skill",
     "devops",
     "配置 kubernetes 叢集",
     "監控系統效能",
@@ -41460,12 +41365,10 @@ export const SYNONYM_MAP = {
     "監控系統效能",
     "自動化 ci/cd 管道",
     "管理雲端資源",
-    "agent-skill",
     "devops"
   ],
   "配置 kubernetes 叢集": [
     "hermesskill",
-    "agent-skill",
     "devops",
     "部署應用程式",
     "監控系統效能",
@@ -41474,7 +41377,6 @@ export const SYNONYM_MAP = {
   ],
   "監控系統效能": [
     "hermesskill",
-    "agent-skill",
     "devops",
     "部署應用程式",
     "配置 kubernetes 叢集",
@@ -41483,7 +41385,6 @@ export const SYNONYM_MAP = {
   ],
   "自動化 ci/cd 管道": [
     "hermesskill",
-    "agent-skill",
     "devops",
     "部署應用程式",
     "配置 kubernetes 叢集",
@@ -41492,7 +41393,6 @@ export const SYNONYM_MAP = {
   ],
   "管理雲端資源": [
     "hermesskill",
-    "agent-skill",
     "devops",
     "部署應用程式",
     "配置 kubernetes 叢集",
@@ -45588,9 +45488,9 @@ export const SYNONYM_MAP = {
     "壓縮提示詞 token",
     "優化開發命令 token 用量",
     "代理 llm 請求節省成本",
-    "計算 ai 會話成本",
-    "按項目分出 ai 費用",
-    "分析每日 token 消耗"
+    "rtk",
+    "cost-reduction",
+    "cli-proxy"
   ],
   "cli-proxy": [
     "減少 llm token 消耗",
@@ -49147,7 +49047,12 @@ export const SYNONYM_MAP = {
   "ai agent 框架": [
     "harness",
     "agent harness",
-    "cordis"
+    "agent 執行環境",
+    "搭建 ai 代理環境",
+    "構建插件化智能體",
+    "實現多插件 ai 架構",
+    "開發 agent 執行框架",
+    "建立智能代理平台"
   ],
   "agent harness": [
     "ai agent 框架",
@@ -49159,45 +49064,65 @@ export const SYNONYM_MAP = {
     "建立智能代理平台",
     "harness"
   ],
-  "cordis": [
+  "agent 執行環境": [
+    "harness",
+    "agent harness",
+    "ai agent 框架",
+    "搭建 ai 代理環境",
+    "構建插件化智能體",
+    "實現多插件 ai 架構",
+    "開發 agent 執行框架",
+    "建立智能代理平台"
+  ],
+  "搭建 ai 代理環境": [
+    "harness",
+    "agent harness",
+    "ai agent 框架",
+    "agent 執行環境",
+    "構建插件化智能體",
+    "實現多插件 ai 架構",
+    "開發 agent 執行框架",
+    "建立智能代理平台"
+  ],
+  "構建插件化智能體": [
+    "harness",
+    "agent harness",
+    "ai agent 框架",
+    "agent 執行環境",
+    "搭建 ai 代理環境",
+    "實現多插件 ai 架構",
+    "開發 agent 執行框架",
+    "建立智能代理平台"
+  ],
+  "實現多插件 ai 架構": [
+    "harness",
+    "agent harness",
+    "ai agent 框架",
+    "agent 執行環境",
+    "搭建 ai 代理環境",
+    "構建插件化智能體",
+    "開發 agent 執行框架",
+    "建立智能代理平台"
+  ],
+  "開發 agent 執行框架": [
+    "harness",
+    "agent harness",
     "ai agent 框架",
     "agent 執行環境",
     "搭建 ai 代理環境",
     "構建插件化智能體",
     "實現多插件 ai 架構",
-    "開發 agent 執行框架",
-    "建立智能代理平台",
-    "deepseek 插件桌面版"
-  ],
-  "agent 執行環境": [
-    "harness",
-    "agent harness",
-    "cordis"
-  ],
-  "搭建 ai 代理環境": [
-    "harness",
-    "agent harness",
-    "cordis"
-  ],
-  "構建插件化智能體": [
-    "harness",
-    "agent harness",
-    "cordis"
-  ],
-  "實現多插件 ai 架構": [
-    "harness",
-    "agent harness",
-    "cordis"
-  ],
-  "開發 agent 執行框架": [
-    "harness",
-    "agent harness",
-    "cordis"
+    "建立智能代理平台"
   ],
   "建立智能代理平台": [
     "harness",
     "agent harness",
-    "cordis"
+    "ai agent 框架",
+    "agent 執行環境",
+    "搭建 ai 代理環境",
+    "構建插件化智能體",
+    "實現多插件 ai 架構",
+    "開發 agent 執行框架"
   ],
   "程式碼文件": [
     "codewiki",
@@ -49773,11 +49698,11 @@ export const SYNONYM_MAP = {
     "watermarks-remover",
     "watermarks",
     "remover",
-    "agent-skill",
     "c2pa",
     "provenance",
     "synthid",
-    "watermark"
+    "watermark",
+    "remove-ai-marks"
   ],
   "watermarks-remover": [
     "刪除ai圖片隱形水印",
@@ -49839,41 +49764,41 @@ export const SYNONYM_MAP = {
     "watermarks-remover",
     "watermarks",
     "remover",
-    "agent-skill",
     "c2pa",
     "provenance",
     "synthid",
-    "watermark"
+    "watermark",
+    "remove-ai-marks"
   ],
   "去除圖像metadata": [
     "watermarks-remover",
     "watermarks",
     "remover",
-    "agent-skill",
     "c2pa",
     "provenance",
     "synthid",
-    "watermark"
+    "watermark",
+    "remove-ai-marks"
   ],
   "批量清除png溯源標記": [
     "watermarks-remover",
     "watermarks",
     "remover",
-    "agent-skill",
     "c2pa",
     "provenance",
     "synthid",
-    "watermark"
+    "watermark",
+    "remove-ai-marks"
   ],
   "隱藏pdf生成痕跡": [
     "watermarks-remover",
     "watermarks",
     "remover",
-    "agent-skill",
     "c2pa",
     "provenance",
     "synthid",
-    "watermark"
+    "watermark",
+    "remove-ai-marks"
   ],
   "用 deepseek 連線 astrbot": [
     "awesome-deepseek-agent",
@@ -52126,7 +52051,6 @@ export const SYNONYM_MAP = {
   ],
   "deepseek 插件桌面版": [
     "deepseek-harness-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "deepseek harness 客戶端",
@@ -52140,7 +52064,6 @@ export const SYNONYM_MAP = {
     "dsh 桌面應用",
     "安裝 deepseek 桌面應用",
     "使用 deepseek harness 插件",
-    "cordis",
     "cordis-plugin",
     "desktop"
   ],
@@ -52166,7 +52089,6 @@ export const SYNONYM_MAP = {
   ],
   "deepseek harness 客戶端": [
     "deepseek-harness-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "deepseek 插件桌面版",
@@ -52176,7 +52098,6 @@ export const SYNONYM_MAP = {
   ],
   "dsh 桌面應用": [
     "deepseek-harness-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "deepseek 插件桌面版",
@@ -52186,7 +52107,6 @@ export const SYNONYM_MAP = {
   ],
   "安裝 deepseek 桌面應用": [
     "deepseek-harness-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "deepseek 插件桌面版",
@@ -52196,7 +52116,6 @@ export const SYNONYM_MAP = {
   ],
   "使用 deepseek harness 插件": [
     "deepseek-harness-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "deepseek 插件桌面版",
@@ -52248,7 +52167,6 @@ export const SYNONYM_MAP = {
   ],
   "ai助手切換": [
     "dsh-routing-suite",
-    "cordis",
     "多模型路由",
     "自動選擇ai後端",
     "請求分流",
@@ -52259,12 +52177,10 @@ export const SYNONYM_MAP = {
     "多模型路由",
     "自動選擇ai後端",
     "請求分流",
-    "注入工具到ai",
-    "cordis"
+    "注入工具到ai"
   ],
   "多模型路由": [
     "dsh-routing-suite",
-    "cordis",
     "ai助手切換",
     "自動選擇ai後端",
     "請求分流",
@@ -52272,7 +52188,6 @@ export const SYNONYM_MAP = {
   ],
   "自動選擇ai後端": [
     "dsh-routing-suite",
-    "cordis",
     "ai助手切換",
     "多模型路由",
     "請求分流",
@@ -52280,7 +52195,6 @@ export const SYNONYM_MAP = {
   ],
   "請求分流": [
     "dsh-routing-suite",
-    "cordis",
     "ai助手切換",
     "多模型路由",
     "自動選擇ai後端",
@@ -52288,7 +52202,6 @@ export const SYNONYM_MAP = {
   ],
   "注入工具到ai": [
     "dsh-routing-suite",
-    "cordis",
     "ai助手切換",
     "多模型路由",
     "自動選擇ai後端",
@@ -52416,7 +52329,6 @@ export const SYNONYM_MAP = {
   ],
   "dsh 任務看板操作": [
     "dsh-web-ui",
-    "cordis",
     "dsh-web",
     "deepseek 移動端遠程運維",
     "dsh web gui 插件安装",
@@ -52429,7 +52341,6 @@ export const SYNONYM_MAP = {
     "dsh web gui 插件安装",
     "deepseek ssh 遠程管理",
     "dsh 皮膚主題配置",
-    "cordis",
     "dsh-web"
   ],
   "dsh-web": [
@@ -52438,12 +52349,10 @@ export const SYNONYM_MAP = {
     "dsh web gui 插件安装",
     "deepseek ssh 遠程管理",
     "dsh 皮膚主題配置",
-    "dsh-web-ui",
-    "cordis"
+    "dsh-web-ui"
   ],
   "deepseek 移動端遠程運維": [
     "dsh-web-ui",
-    "cordis",
     "dsh-web",
     "dsh 任務看板操作",
     "dsh web gui 插件安装",
@@ -52452,7 +52361,6 @@ export const SYNONYM_MAP = {
   ],
   "dsh web gui 插件安装": [
     "dsh-web-ui",
-    "cordis",
     "dsh-web",
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
@@ -52461,7 +52369,6 @@ export const SYNONYM_MAP = {
   ],
   "deepseek ssh 遠程管理": [
     "dsh-web-ui",
-    "cordis",
     "dsh-web",
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
@@ -52470,7 +52377,6 @@ export const SYNONYM_MAP = {
   ],
   "dsh 皮膚主題配置": [
     "dsh-web-ui",
-    "cordis",
     "dsh-web",
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
@@ -56902,7 +56808,6 @@ export const SYNONYM_MAP = {
     "mono-color-skill",
     "mono",
     "color",
-    "agent-skill",
     "claude-skill",
     "editorial-design"
   ],
@@ -56914,7 +56819,7 @@ export const SYNONYM_MAP = {
     "生成單色編輯圖",
     "mono",
     "color",
-    "agent-skill"
+    "claude-skill"
   ],
   "mono": [
     "轉成單色印刷風",
@@ -56924,7 +56829,7 @@ export const SYNONYM_MAP = {
     "生成單色編輯圖",
     "mono-color-skill",
     "color",
-    "agent-skill"
+    "claude-skill"
   ],
   "color": [
     "轉成單色印刷風",
@@ -56934,7 +56839,7 @@ export const SYNONYM_MAP = {
     "生成單色編輯圖",
     "mono-color-skill",
     "mono",
-    "agent-skill"
+    "claude-skill"
   ],
   "claude-skill": [
     "轉成單色印刷風",
@@ -56960,7 +56865,6 @@ export const SYNONYM_MAP = {
     "mono-color-skill",
     "mono",
     "color",
-    "agent-skill",
     "claude-skill",
     "editorial-design"
   ],
@@ -56968,7 +56872,6 @@ export const SYNONYM_MAP = {
     "mono-color-skill",
     "mono",
     "color",
-    "agent-skill",
     "claude-skill",
     "editorial-design"
   ],
@@ -56976,7 +56879,6 @@ export const SYNONYM_MAP = {
     "mono-color-skill",
     "mono",
     "color",
-    "agent-skill",
     "claude-skill",
     "editorial-design"
   ],
@@ -56984,7 +56886,6 @@ export const SYNONYM_MAP = {
     "mono-color-skill",
     "mono",
     "color",
-    "agent-skill",
     "claude-skill",
     "editorial-design"
   ],
@@ -57341,69 +57242,6 @@ export const SYNONYM_MAP = {
     "生成校驗和",
     "擴展任務範圍",
     "驗證檔案完整性"
-  ],
-  "計算 ai 會話成本": [
-    "tokentab",
-    "token-optimization",
-    "token-usage",
-    "按項目分出 ai 費用",
-    "分析每日 token 消耗",
-    "計算各模型使用金額",
-    "優化 ai 工具的成本"
-  ],
-  "tokentab": [
-    "計算 ai 會話成本",
-    "按項目分出 ai 費用",
-    "分析每日 token 消耗",
-    "計算各模型使用金額",
-    "優化 ai 工具的成本",
-    "token-optimization",
-    "token-usage"
-  ],
-  "token-usage": [
-    "計算 ai 會話成本",
-    "按項目分出 ai 費用",
-    "分析每日 token 消耗",
-    "計算各模型使用金額",
-    "優化 ai 工具的成本",
-    "tokentab",
-    "token-optimization"
-  ],
-  "按項目分出 ai 費用": [
-    "tokentab",
-    "token-optimization",
-    "token-usage",
-    "計算 ai 會話成本",
-    "分析每日 token 消耗",
-    "計算各模型使用金額",
-    "優化 ai 工具的成本"
-  ],
-  "分析每日 token 消耗": [
-    "tokentab",
-    "token-optimization",
-    "token-usage",
-    "計算 ai 會話成本",
-    "按項目分出 ai 費用",
-    "計算各模型使用金額",
-    "優化 ai 工具的成本"
-  ],
-  "計算各模型使用金額": [
-    "tokentab",
-    "token-optimization",
-    "token-usage",
-    "計算 ai 會話成本",
-    "按項目分出 ai 費用",
-    "分析每日 token 消耗",
-    "優化 ai 工具的成本"
-  ],
-  "優化 ai 工具的成本": [
-    "tokentab",
-    "token-optimization",
-    "token-usage",
-    "計算 ai 會話成本",
-    "按項目分出 ai 費用",
-    "分析每日 token 消耗",
-    "計算各模型使用金額"
   ],
   "預測銷售趨勢": [
     "timesfm",
@@ -57886,7 +57724,8 @@ export const SYNONYM_MAP = {
     "本地部署 ai 助手"
   ],
   "文件生產力": [
-    "openwiki"
+    "openwiki",
+    "wordcraft"
   ],
   "寫程式文件": [
     "openwiki"
@@ -58862,7 +58701,6 @@ export const SYNONYM_MAP = {
   ],
   "安裝桌面插件": [
     "dsh-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "構建本地ai應用",
@@ -58876,13 +58714,11 @@ export const SYNONYM_MAP = {
     "為桌面環境開發插件",
     "管理桌面插件生態",
     "在桌面運行本地模型",
-    "cordis",
     "cordis-plugin",
     "desktop"
   ],
   "構建本地ai應用": [
     "dsh-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "安裝桌面插件",
@@ -58892,7 +58728,6 @@ export const SYNONYM_MAP = {
   ],
   "為桌面環境開發插件": [
     "dsh-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "安裝桌面插件",
@@ -58902,7 +58737,6 @@ export const SYNONYM_MAP = {
   ],
   "管理桌面插件生態": [
     "dsh-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "安裝桌面插件",
@@ -58912,7 +58746,6 @@ export const SYNONYM_MAP = {
   ],
   "在桌面運行本地模型": [
     "dsh-desktop-anywhere",
-    "cordis",
     "cordis-plugin",
     "desktop",
     "安裝桌面插件",
@@ -61092,7 +60925,6 @@ export const SYNONYM_MAP = {
   "合併 pdf 檔案": [
     "stirling-pdf",
     "stirling",
-    "pdf",
     "docker",
     "hacktoberfest",
     "java",
@@ -61106,8 +60938,8 @@ export const SYNONYM_MAP = {
     "分割 pdf 文件",
     "移除 pdf 密碼",
     "stirling",
-    "pdf",
-    "docker"
+    "docker",
+    "hacktoberfest"
   ],
   "stirling": [
     "合併 pdf 檔案",
@@ -61116,8 +60948,8 @@ export const SYNONYM_MAP = {
     "分割 pdf 文件",
     "移除 pdf 密碼",
     "stirling-pdf",
-    "pdf",
-    "docker"
+    "docker",
+    "hacktoberfest"
   ],
   "java": [
     "合併 pdf 檔案",
@@ -61127,7 +60959,7 @@ export const SYNONYM_MAP = {
     "移除 pdf 密碼",
     "stirling-pdf",
     "stirling",
-    "pdf"
+    "docker"
   ],
   "pdf-editor": [
     "合併 pdf 檔案",
@@ -61142,7 +60974,6 @@ export const SYNONYM_MAP = {
   "將 pdf 轉成 word": [
     "stirling-pdf",
     "stirling",
-    "pdf",
     "docker",
     "hacktoberfest",
     "java",
@@ -61152,7 +60983,6 @@ export const SYNONYM_MAP = {
   "壓縮 pdf 大小": [
     "stirling-pdf",
     "stirling",
-    "pdf",
     "docker",
     "hacktoberfest",
     "java",
@@ -61162,7 +60992,6 @@ export const SYNONYM_MAP = {
   "分割 pdf 文件": [
     "stirling-pdf",
     "stirling",
-    "pdf",
     "docker",
     "hacktoberfest",
     "java",
@@ -61172,7 +61001,6 @@ export const SYNONYM_MAP = {
   "移除 pdf 密碼": [
     "stirling-pdf",
     "stirling",
-    "pdf",
     "docker",
     "hacktoberfest",
     "java",
@@ -62537,12 +62365,11 @@ export const SYNONYM_MAP = {
   "用 ai 產生 ppt 簡報": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "genoffice-skill": [
     "用 ai 產生 ppt 簡報",
@@ -62577,102 +62404,92 @@ export const SYNONYM_MAP = {
   "讓 agent 寫出 word 文件": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "生成 excel 工作簿": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "批次轉換文件格式": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "編輯既有 office 文件": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "輸出真實 office 檔案": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "生成 word 文件": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "製作 ppt 簡報": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "建立 excel 表格": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "讀取 office 文件": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "編輯既有 word 文件": [
     "genoffice-skill",
     "genoffice",
-    "agent-skill",
     "office-document-generation",
     "docx",
     "xlsx",
     "pptx",
-    "pdf"
+    "format-conversion"
   ],
   "用本地模型做語義判斷": [
     "semif-openjev",
@@ -63498,6 +63315,60 @@ export const SYNONYM_MAP = {
     "切換代理節點",
     "配置代理分流規則",
     "管理代理配置文件"
+  ],
+  "高性價比人生指南": [
+    "how-to-live-better",
+    "evidence-based-life-advice",
+    "人生建議清單"
+  ],
+  "how-to-live-better": [
+    "高性價比人生指南",
+    "人生建議清單",
+    "evidence-based-life-advice"
+  ],
+  "evidence-based-life-advice": [
+    "高性價比人生指南",
+    "人生建議清單",
+    "how-to-live-better"
+  ],
+  "人生建議清單": [
+    "how-to-live-better",
+    "evidence-based-life-advice",
+    "高性價比人生指南"
+  ],
+  "青簡": [
+    "qingjian",
+    "pinyin-input-method",
+    "rust-input-method",
+    "拼音輸入法"
+  ],
+  "qingjian": [
+    "青簡",
+    "拼音輸入法",
+    "pinyin-input-method",
+    "rust-input-method"
+  ],
+  "pinyin-input-method": [
+    "青簡",
+    "拼音輸入法",
+    "qingjian",
+    "rust-input-method"
+  ],
+  "rust-input-method": [
+    "青簡",
+    "拼音輸入法",
+    "qingjian",
+    "pinyin-input-method"
+  ],
+  "拼音輸入法": [
+    "qingjian",
+    "pinyin-input-method",
+    "rust-input-method",
+    "青簡"
+  ],
+  "wordcraft": [
+    "文件生產力",
+    "openwiki"
   ],
   "翻譯": [
     "translate",

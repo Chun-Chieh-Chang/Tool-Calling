@@ -20295,7 +20295,7 @@
     "sourceSnapshotWeek": "2026-W31",
     "category": null,
     "addedAt": "2026-10-05T08:25:38.635Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "golang/go": {
     "fullName": "golang/go",
@@ -24297,14 +24297,6 @@
     "addedAt": "2026-09-02T11:10:49.783Z",
     "status": "tracking"
   },
-  "damejan80/tokentab": {
-    "fullName": "damejan80/tokentab",
-    "owner": "damejan80",
-    "repo": "tokentab",
-    "category": "AI 代理",
-    "addedAt": "2026-09-02T11:10:52.855Z",
-    "status": "tracking"
-  },
   "google-research/timesfm": {
     "fullName": "google-research/timesfm",
     "owner": "google-research",
@@ -25427,7 +25419,7 @@
     "sourceSnapshotWeek": "2026-W39",
     "category": null,
     "addedAt": "2026-10-05T08:25:38.635Z",
-    "status": "in_registry"
+    "status": "tracking"
   },
   "Player-YN/BrowserKitten": {
     "fullName": "Player-YN/BrowserKitten",
@@ -26377,11 +26369,1005 @@
     "addedAt": "2026-10-04T13:54:21.312Z",
     "status": "tracking"
   },
-  "_meta": {
-    "total": 2590,
-    "inRegistry": 709,
-    "trackedOnly": 1881,
-    "lastGenerated": "2026-10-05T08:25:38.688Z"
+  "morluto/rea": {
+    "fullName": "morluto/rea",
+    "owner": "morluto",
+    "repo": "rea",
+    "category": "安全性",
+    "addedAt": "2026-10-13T11:44:37.155Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-10-05T08:25:38.635Z"
+  "storytold/photocraft": {
+    "fullName": "storytold/photocraft",
+    "owner": "storytold",
+    "repo": "photocraft",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T11:44:42.927Z",
+    "status": "tracking"
+  },
+  "Droid-Deck/DroidDeck": {
+    "fullName": "Droid-Deck/DroidDeck",
+    "owner": "Droid-Deck",
+    "repo": "DroidDeck",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T11:44:48.487Z",
+    "status": "tracking"
+  },
+  "storytold/wordcraft": {
+    "fullName": "storytold/wordcraft",
+    "owner": "storytold",
+    "repo": "wordcraft",
+    "category": "文件生產力",
+    "addedAt": "2026-10-13T11:44:52.492Z",
+    "status": "tracking"
+  },
+  "storytold/filmcraft": {
+    "fullName": "storytold/filmcraft",
+    "owner": "storytold",
+    "repo": "filmcraft",
+    "category": "影片",
+    "addedAt": "2026-10-13T11:44:55.101Z",
+    "status": "tracking"
+  },
+  "Ebony-Vinyl/dsh-our-free-model": {
+    "fullName": "Ebony-Vinyl/dsh-our-free-model",
+    "owner": "Ebony-Vinyl",
+    "repo": "dsh-our-free-model",
+    "category": "AI 代理",
+    "addedAt": "2026-10-13T11:44:58.983Z",
+    "status": "tracking"
+  },
+  "wheresryan22/anatomy": {
+    "fullName": "wheresryan22/anatomy",
+    "owner": "wheresryan22",
+    "repo": "anatomy",
+    "category": "AI 代理",
+    "addedAt": "2026-10-13T11:45:02.234Z",
+    "status": "tracking"
+  },
+  "storytold/lightcraft": {
+    "fullName": "storytold/lightcraft",
+    "owner": "storytold",
+    "repo": "lightcraft",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T11:45:09.414Z",
+    "status": "tracking"
+  },
+  "openai/math": {
+    "fullName": "openai/math",
+    "owner": "openai",
+    "repo": "math",
+    "category": "研究",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "storytold/pdfcraft": {
+    "fullName": "storytold/pdfcraft",
+    "owner": "storytold",
+    "repo": "pdfcraft",
+    "category": "文件生產力",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "Niko1221/Strata": {
+    "fullName": "Niko1221/Strata",
+    "owner": "Niko1221",
+    "repo": "Strata",
+    "category": "AI 框架",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "storytold/vectorcraft": {
+    "fullName": "storytold/vectorcraft",
+    "owner": "storytold",
+    "repo": "vectorcraft",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "storytold/effectcraft": {
+    "fullName": "storytold/effectcraft",
+    "owner": "storytold",
+    "repo": "effectcraft",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "shihabal3amri/DiPlay": {
+    "fullName": "shihabal3amri/DiPlay",
+    "owner": "shihabal3amri",
+    "repo": "DiPlay",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "shader-effects-inc/shaders": {
+    "fullName": "shader-effects-inc/shaders",
+    "owner": "shader-effects-inc",
+    "repo": "shaders",
+    "category": "UI/UX設計",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "omlahore/RemoveMacAI": {
+    "fullName": "omlahore/RemoveMacAI",
+    "owner": "omlahore",
+    "repo": "RemoveMacAI",
+    "category": "安全性",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "storytold/gridcraft": {
+    "fullName": "storytold/gridcraft",
+    "owner": "storytold",
+    "repo": "gridcraft",
+    "category": "開發工具",
+    "addedAt": "2026-10-13T13:13:23.557Z",
+    "status": "tracking"
+  },
+  "KKKKhazix/AIHOT": {
+    "fullName": "KKKKhazix/AIHOT",
+    "owner": "KKKKhazix",
+    "repo": "AIHOT",
+    "initialStars": 5867,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Louis-CFM/coucou": {
+    "fullName": "Louis-CFM/coucou",
+    "owner": "Louis-CFM",
+    "repo": "coucou",
+    "initialStars": 3543,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "rehan-remade/universal-modder": {
+    "fullName": "rehan-remade/universal-modder",
+    "owner": "rehan-remade",
+    "repo": "universal-modder",
+    "initialStars": 3426,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "CopilotKit/OpenDots": {
+    "fullName": "CopilotKit/OpenDots",
+    "owner": "CopilotKit",
+    "repo": "OpenDots",
+    "initialStars": 3331,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "feder-cr/dots": {
+    "fullName": "feder-cr/dots",
+    "owner": "feder-cr",
+    "repo": "dots",
+    "initialStars": 2609,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "OffGridPete/Fieldwatch": {
+    "fullName": "OffGridPete/Fieldwatch",
+    "owner": "OffGridPete",
+    "repo": "Fieldwatch",
+    "initialStars": 2370,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yihui-dev/awesome-opus5-5-videos": {
+    "fullName": "yihui-dev/awesome-opus5-5-videos",
+    "owner": "yihui-dev",
+    "repo": "awesome-opus5-5-videos",
+    "initialStars": 1994,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Avenuezensport/efjvysuz": {
+    "fullName": "Avenuezensport/efjvysuz",
+    "owner": "Avenuezensport",
+    "repo": "efjvysuz",
+    "initialStars": 1928,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "RubinLabs26/ISpotify": {
+    "fullName": "RubinLabs26/ISpotify",
+    "owner": "RubinLabs26",
+    "repo": "ISpotify",
+    "initialStars": 1901,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kaankiziltug/logo-design-skill": {
+    "fullName": "kaankiziltug/logo-design-skill",
+    "owner": "kaankiziltug",
+    "repo": "logo-design-skill",
+    "initialStars": 1900,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ntfargo/Relapse-Exploit": {
+    "fullName": "ntfargo/Relapse-Exploit",
+    "owner": "ntfargo",
+    "repo": "Relapse-Exploit",
+    "initialStars": 1756,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "feitangyuan/onetake": {
+    "fullName": "feitangyuan/onetake",
+    "owner": "feitangyuan",
+    "repo": "onetake",
+    "initialStars": 1555,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "852wa/JIZURA": {
+    "fullName": "852wa/JIZURA",
+    "owner": "852wa",
+    "repo": "JIZURA",
+    "initialStars": 1539,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nanaism/yomiyasu": {
+    "fullName": "nanaism/yomiyasu",
+    "owner": "nanaism",
+    "repo": "yomiyasu",
+    "initialStars": 1447,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wy51ai/floorplan-3d": {
+    "fullName": "wy51ai/floorplan-3d",
+    "owner": "wy51ai",
+    "repo": "floorplan-3d",
+    "initialStars": 1410,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "firelex/jeff": {
+    "fullName": "firelex/jeff",
+    "owner": "firelex",
+    "repo": "jeff",
+    "initialStars": 1380,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "omnirush-ai/omnirush-gui": {
+    "fullName": "omnirush-ai/omnirush-gui",
+    "owner": "omnirush-ai",
+    "repo": "omnirush-gui",
+    "initialStars": 1352,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "facebookincubator/muse-gadget-sdk": {
+    "fullName": "facebookincubator/muse-gadget-sdk",
+    "owner": "facebookincubator",
+    "repo": "muse-gadget-sdk",
+    "initialStars": 1293,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "edenfunf/reelmimic": {
+    "fullName": "edenfunf/reelmimic",
+    "owner": "edenfunf",
+    "repo": "reelmimic",
+    "initialStars": 1280,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Clearailhc/clearai-dsh": {
+    "fullName": "Clearailhc/clearai-dsh",
+    "owner": "Clearailhc",
+    "repo": "clearai-dsh",
+    "initialStars": 1268,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Jakeschincariol/linkedin-agent-skill": {
+    "fullName": "Jakeschincariol/linkedin-agent-skill",
+    "owner": "Jakeschincariol",
+    "repo": "linkedin-agent-skill",
+    "initialStars": 1261,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ninjahawk/livenerf": {
+    "fullName": "ninjahawk/livenerf",
+    "owner": "ninjahawk",
+    "repo": "livenerf",
+    "initialStars": 1255,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "google-research/rrsi": {
+    "fullName": "google-research/rrsi",
+    "owner": "google-research",
+    "repo": "rrsi",
+    "initialStars": 1248,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "angusdevgo/IDM_Pro_Tool": {
+    "fullName": "angusdevgo/IDM_Pro_Tool",
+    "owner": "angusdevgo",
+    "repo": "IDM_Pro_Tool",
+    "initialStars": 1223,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "QingYunA/answer-me-with-html": {
+    "fullName": "QingYunA/answer-me-with-html",
+    "owner": "QingYunA",
+    "repo": "answer-me-with-html",
+    "initialStars": 1207,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ollaya-dev/ollaya": {
+    "fullName": "ollaya-dev/ollaya",
+    "owner": "ollaya-dev",
+    "repo": "ollaya",
+    "initialStars": 1196,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "volotat/mini-AGI": {
+    "fullName": "volotat/mini-AGI",
+    "owner": "volotat",
+    "repo": "mini-AGI",
+    "initialStars": 1179,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nykooi1/vibe-wise": {
+    "fullName": "nykooi1/vibe-wise",
+    "owner": "nykooi1",
+    "repo": "vibe-wise",
+    "initialStars": 1168,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Vodiwalker/vodiwalker_panel": {
+    "fullName": "Vodiwalker/vodiwalker_panel",
+    "owner": "Vodiwalker",
+    "repo": "vodiwalker_panel",
+    "initialStars": 1157,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "aliyun/ai-agent-handbook": {
+    "fullName": "aliyun/ai-agent-handbook",
+    "owner": "aliyun",
+    "repo": "ai-agent-handbook",
+    "initialStars": 1133,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "kargulstudio/sales-crm": {
+    "fullName": "kargulstudio/sales-crm",
+    "owner": "kargulstudio",
+    "repo": "sales-crm",
+    "initialStars": 1110,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "dgreenheck/tidewater": {
+    "fullName": "dgreenheck/tidewater",
+    "owner": "dgreenheck",
+    "repo": "tidewater",
+    "initialStars": 1100,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Mapika/decider": {
+    "fullName": "Mapika/decider",
+    "owner": "Mapika",
+    "repo": "decider",
+    "initialStars": 1067,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Inkloom-art/inkloom": {
+    "fullName": "Inkloom-art/inkloom",
+    "owner": "Inkloom-art",
+    "repo": "inkloom",
+    "initialStars": 1066,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "liangshanbo789/chatgpt-plus-pro-team-billing": {
+    "fullName": "liangshanbo789/chatgpt-plus-pro-team-billing",
+    "owner": "liangshanbo789",
+    "repo": "chatgpt-plus-pro-team-billing",
+    "initialStars": 1065,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "reladraw/reladraw": {
+    "fullName": "reladraw/reladraw",
+    "owner": "reladraw",
+    "repo": "reladraw",
+    "initialStars": 1062,
+    "discoveredAt": "2026-10-05T08:25:38.635Z",
+    "sourceSnapshotWeek": "2026-W41",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/cadcraft": {
+    "fullName": "storytold/cadcraft",
+    "owner": "storytold",
+    "repo": "cadcraft",
+    "initialStars": 3813,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mhtsec/ARTEX": {
+    "fullName": "mhtsec/ARTEX",
+    "owner": "mhtsec",
+    "repo": "ARTEX",
+    "initialStars": 3799,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "alchaincyf/huashu-art-motion": {
+    "fullName": "alchaincyf/huashu-art-motion",
+    "owner": "alchaincyf",
+    "repo": "huashu-art-motion",
+    "initialStars": 3760,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/designcraft": {
+    "fullName": "storytold/designcraft",
+    "owner": "storytold",
+    "repo": "designcraft",
+    "initialStars": 3555,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zhongerxin/iPhone-use": {
+    "fullName": "zhongerxin/iPhone-use",
+    "owner": "zhongerxin",
+    "repo": "iPhone-use",
+    "initialStars": 3499,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "waligoraamodio288-rgb/hongguo-desktop-releases": {
+    "fullName": "waligoraamodio288-rgb/hongguo-desktop-releases",
+    "owner": "waligoraamodio288-rgb",
+    "repo": "hongguo-desktop-releases",
+    "initialStars": 3282,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "LosaLosSantos/aurelio-finance": {
+    "fullName": "LosaLosSantos/aurelio-finance",
+    "owner": "LosaLosSantos",
+    "repo": "aurelio-finance",
+    "initialStars": 3064,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "nullmoth/nvidia-macos-driver": {
+    "fullName": "nullmoth/nvidia-macos-driver",
+    "owner": "nullmoth",
+    "repo": "nvidia-macos-driver",
+    "initialStars": 2846,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "feder-cr/invisible_playwright_mcp": {
+    "fullName": "feder-cr/invisible_playwright_mcp",
+    "owner": "feder-cr",
+    "repo": "invisible_playwright_mcp",
+    "initialStars": 2764,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/deckcraft": {
+    "fullName": "storytold/deckcraft",
+    "owner": "storytold",
+    "repo": "deckcraft",
+    "initialStars": 2762,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "deadinside28/bloodborne_pc": {
+    "fullName": "deadinside28/bloodborne_pc",
+    "owner": "deadinside28",
+    "repo": "bloodborne_pc",
+    "initialStars": 2672,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "BlueHeisenberg/SCSKiller": {
+    "fullName": "BlueHeisenberg/SCSKiller",
+    "owner": "BlueHeisenberg",
+    "repo": "SCSKiller",
+    "initialStars": 2581,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "KingKongRobotics/jumper": {
+    "fullName": "KingKongRobotics/jumper",
+    "owner": "KingKongRobotics",
+    "repo": "jumper",
+    "initialStars": 2577,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "t4t5/omdrop-owl": {
+    "fullName": "t4t5/omdrop-owl",
+    "owner": "t4t5",
+    "repo": "omdrop-owl",
+    "initialStars": 2524,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/soundcraft": {
+    "fullName": "storytold/soundcraft",
+    "owner": "storytold",
+    "repo": "soundcraft",
+    "initialStars": 2386,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Oldcircle/geo-sleuth": {
+    "fullName": "Oldcircle/geo-sleuth",
+    "owner": "Oldcircle",
+    "repo": "geo-sleuth",
+    "initialStars": 2295,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Jakeschincariol/replica-skill": {
+    "fullName": "Jakeschincariol/replica-skill",
+    "owner": "Jakeschincariol",
+    "repo": "replica-skill",
+    "initialStars": 2257,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "lemomo-ai/lemo-opuscar": {
+    "fullName": "lemomo-ai/lemo-opuscar",
+    "owner": "lemomo-ai",
+    "repo": "lemo-opuscar",
+    "initialStars": 2125,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ARahim3/DigUp": {
+    "fullName": "ARahim3/DigUp",
+    "owner": "ARahim3",
+    "repo": "DigUp",
+    "initialStars": 2090,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "alejandrobujan/tendedero": {
+    "fullName": "alejandrobujan/tendedero",
+    "owner": "alejandrobujan",
+    "repo": "tendedero",
+    "initialStars": 2055,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "noahdunnagan/fsearch": {
+    "fullName": "noahdunnagan/fsearch",
+    "owner": "noahdunnagan",
+    "repo": "fsearch",
+    "initialStars": 2005,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/craft-launcher": {
+    "fullName": "storytold/craft-launcher",
+    "owner": "storytold",
+    "repo": "craft-launcher",
+    "initialStars": 1976,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "liseami/CCBaga": {
+    "fullName": "liseami/CCBaga",
+    "owner": "liseami",
+    "repo": "CCBaga",
+    "initialStars": 1933,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "lucasmarkes/hairline": {
+    "fullName": "lucasmarkes/hairline",
+    "owner": "lucasmarkes",
+    "repo": "hairline",
+    "initialStars": 1876,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "egoist/mygo": {
+    "fullName": "egoist/mygo",
+    "owner": "egoist",
+    "repo": "mygo",
+    "initialStars": 1819,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "FlashML-org/FreeVideo": {
+    "fullName": "FlashML-org/FreeVideo",
+    "owner": "FlashML-org",
+    "repo": "FreeVideo",
+    "initialStars": 1793,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "LoreanXavier/pt-pc": {
+    "fullName": "LoreanXavier/pt-pc",
+    "owner": "LoreanXavier",
+    "repo": "pt-pc",
+    "initialStars": 1609,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Fei2411/DeepSeek-Bot": {
+    "fullName": "Fei2411/DeepSeek-Bot",
+    "owner": "Fei2411",
+    "repo": "DeepSeek-Bot",
+    "initialStars": 1570,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "CAPCOM-TD-OSS/REDox": {
+    "fullName": "CAPCOM-TD-OSS/REDox",
+    "owner": "CAPCOM-TD-OSS",
+    "repo": "REDox",
+    "initialStars": 1532,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shadany7824/playgta5": {
+    "fullName": "shadany7824/playgta5",
+    "owner": "shadany7824",
+    "repo": "playgta5",
+    "initialStars": 1528,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zed-industries/zed": {
+    "fullName": "zed-industries/zed",
+    "owner": "zed-industries",
+    "repo": "zed",
+    "initialStars": 91669,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "astral-sh/uv": {
+    "fullName": "astral-sh/uv",
+    "owner": "astral-sh",
+    "repo": "uv",
+    "initialStars": 90681,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "gohugoio/hugo": {
+    "fullName": "gohugoio/hugo",
+    "owner": "gohugoio",
+    "repo": "hugo",
+    "initialStars": 90108,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "syncthing/syncthing": {
+    "fullName": "syncthing/syncthing",
+    "owner": "syncthing",
+    "repo": "syncthing",
+    "initialStars": 89353,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "sveltejs/svelte": {
+    "fullName": "sveltejs/svelte",
+    "owner": "sveltejs",
+    "repo": "svelte",
+    "initialStars": 88439,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "NationalSecurityAgency/ghidra": {
+    "fullName": "NationalSecurityAgency/ghidra",
+    "owner": "NationalSecurityAgency",
+    "repo": "ghidra",
+    "initialStars": 85802,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "unclecode/crawl4ai": {
+    "fullName": "unclecode/crawl4ai",
+    "owner": "unclecode",
+    "repo": "crawl4ai",
+    "initialStars": 85432,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "vitejs/vite": {
+    "fullName": "vitejs/vite",
+    "owner": "vitejs",
+    "repo": "vite",
+    "initialStars": 83346,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "spring-projects/spring-boot": {
+    "fullName": "spring-projects/spring-boot",
+    "owner": "spring-projects",
+    "repo": "spring-boot",
+    "initialStars": 81594,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "elastic/elasticsearch": {
+    "fullName": "elastic/elasticsearch",
+    "owner": "elastic",
+    "repo": "elasticsearch",
+    "initialStars": 78240,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "caddyserver/caddy": {
+    "fullName": "caddyserver/caddy",
+    "owner": "caddyserver",
+    "repo": "caddy",
+    "initialStars": 77899,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "tensorflow/models": {
+    "fullName": "tensorflow/models",
+    "owner": "tensorflow",
+    "repo": "models",
+    "initialStars": 77647,
+    "discoveredAt": "2026-10-13T14:26:14.374Z",
+    "sourceSnapshotWeek": "2026-W42",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2684,
+    "inRegistry": 727,
+    "trackedOnly": 1957,
+    "lastGenerated": "2026-10-13T14:30:56.758Z"
+  },
+  "lastGenerated": "2026-10-13T14:30:56.758Z"
 }
