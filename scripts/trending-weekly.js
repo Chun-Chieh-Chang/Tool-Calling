@@ -138,6 +138,55 @@ function getLatestSnapshot(snapshotData) {
   return snapshotData.snapshots[snapshotData.snapshots.length - 1];
 }
 
+/**
+ * 🔴 依「時間戳語意」挑選週界錨點（2026-10-13 修 off-by-one 時新增，純函式可測）。
+ *
+ * 背景：快照的 `week` 標籤只代表「該次執行落在哪一週」，**不代表邊界狀態**；
+ * 真正決定語意的是 `timestamp`。Step 6 寫入端把 snapshot{W}.repos 定義為
+ * 「W 週初基準」（本週首次執行寫入、後續執行不覆寫 repos），因此：
+ *   ・週 N 的「起點值」= snapshot{N}.repos（N 週初的量測）
+ *   ・週 N 的「終點值」= timestamp ≥ N.sunday 的最早快照（N 結束後第一次量測；
+ *       在每週一 02:00 UTC 的設計節刊下就是本週快照，漂移以小時計）
+ *
+ * 舊碼把 snapshot{N} 當「上週末快照」、snapshot{N-1} 當基準 → 算出的其實是
+ * N-1 那週的成長，卻掛上 N 的標籤；起訖日期還直接顯示兩次臨時執行的牆上時間
+ * （實測汙染：2026-W41 報告顯示 起 10-03 → 終 10-05，與 W41＝10-05~10-11 完全無關）。
+ *
+ * @param {{snapshots?: Array<{week?:string, timestamp:string, repos?:Object}>}} snapshotData
+ * @param {{weekStr:string, mondayStr:string, sundayStr:string}} weekInfo - 要報導的週（N）
+ * @returns {{
+ *   startSnap: object|null,   // 起點錨（優先 N 自身快照，否則 N 開始前最後一次量測）
+ *   endSnap: object|null,     // 終點錨（N 結束後最早一次量測；沒有則現有最新筆）
+ *   startFromFallback: boolean, // 起點非 N 自身快照（基準退化，漲幅可能跨週）
+ *   endFromStale: boolean       // 終點早於 N 結束（上週結束後還沒有任何量測）
+ * }}
+ */
+export function pickWeekBoundaryAnchors(snapshotData, weekInfo) {
+  const snaps = (snapshotData?.snapshots || [])
+    .filter(s => s && s.timestamp)
+    .slice()
+    .sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
+
+  const weekStartMs = new Date(`${weekInfo.mondayStr}T00:00:00.000Z`).getTime();
+  const weekEndMs = new Date(`${weekInfo.sundayStr}T23:59:59.999Z`).getTime();
+
+  // 起點：本週自身的「週初基準」；該週從未執行 → 退到週開始前最後一次量測
+  const ownSnap = snaps.find(s => s.week === weekInfo.weekStr);
+  const beforeStart = snaps.filter(s => new Date(s.timestamp).getTime() <= weekStartMs);
+  const startSnap = ownSnap || beforeStart[beforeStart.length - 1] || null;
+
+  // 終點：週結束後最早的一次量測；整段歷史都沒有 → 用現有最新筆（呼叫端標記降級）
+  const afterEnd = snaps.filter(s => new Date(s.timestamp).getTime() >= weekEndMs);
+  const endSnap = afterEnd[0] || snaps[snaps.length - 1] || null;
+
+  return {
+    startSnap,
+    endSnap,
+    startFromFallback: !ownSnap && !!startSnap,
+    endFromStale: afterEnd.length === 0 && !!endSnap
+  };
+}
+
 // ──────────────────────────────────────────────
 // 共用排名計算函式
 // ──────────────────────────────────────────────
@@ -263,22 +312,14 @@ export async function discoverTrendingTools() {
   console.log('📊 Step 2: 載入歷史快照...');
   const snapshotData = loadAllSnapshotData();
   const allHistoricalRepos = snapshotData.allRepos || {};
-
-  // 上上週快照 → 作為「上週完整數據」的基準線
-  const prevPrevWeekInfo = getPreviousWorldWeek(prevWeekInfo.monday);
-  const prevPrevWeekStr = prevPrevWeekInfo.weekStr;
-  const prevPrevWeekSnap = getSnapshotForWeek(prevPrevWeekStr, snapshotData);
-  const baselineForLastWeek =
-    prevPrevWeekSnap?.repos ||
-    getSnapshotForWeek(prevWeekStr, snapshotData)?.repos ||
-    getLatestSnapshot(snapshotData)?.repos ||
-    allHistoricalRepos;
-
-  // 本週「週初基準」快照（在 Step 3 取得 liveRepos 後再決定 fallback 值）
+  // 🔴 2026-10-13：舊碼在此用 snapshot{上上週} 當「上週基準」，前提是快照語意為
+  //    「週末快照」；但 Step 6 寫入端其實把它定義為「週初基準」。兩半對語意不一致
+  //    → 上週漲幅整體錯一週。錨點挑選改到 Step 4a 依 timestamp 語意處理（見
+  //    pickWeekBoundaryAnchors）；本週「週初基準」仍用本週首次執行的快照。
   const currentWeekBaselineSnap = getSnapshotForWeek(currentWeekStr, snapshotData);
 
-  console.log(`   上週基準 (${prevPrevWeekStr})：${Object.keys(baselineForLastWeek).length} 個 repos`);
-  console.log(`   歷史總計 ${Object.keys(allHistoricalRepos).length} 個 unique repos\n`);
+  console.log(`   歷史總計 ${Object.keys(allHistoricalRepos).length} 個 unique repos`);
+  console.log(`   本週基準快照 (${currentWeekStr})：${currentWeekBaselineSnap ? currentWeekBaselineSnap.timestamp : '（本週首次執行，將建立）'}\n`);
 
   // Step 3: 搜尋熱門 repos
   console.log('🔎 Step 3: 搜尋熱門與新銳暴漲 repos...');
@@ -323,18 +364,31 @@ export async function discoverTrendingTools() {
     allHistoricalRepos;
   console.log(`   本週基準 (${currentWeekStr})：${Object.keys(baselineForCurrentWeek).length} 個 repos`);
 
-  // Step 4a: 計算「上週完整數據」排名（基準：上上週末 → 當前即時星數，代表上週累積）
-  // 說明：腳本上週執行時已抓上週末數據存入快照，現在用「上上週」基線對比「上週末快照」
-  // 但為了簡化（避免需要兩次API呼叫），我們用「上週末快照」 vs「上上週快照」計算正式的上週delta
+  // Step 4a: 計算「上週完整數據」排名（起點＝上週週初基準，終點＝上週結束後首次量測）
+  // 🔴 2026-10-13 off-by-one 修正：舊碼用 snapshot{上週} 當「上週末快照」、
+  //    snapshot{上上週} 當基準，算出的其實是「上上週」的成長卻掛上「上週」標籤；
+  //    起訖日期還直接顯示快照的牆上執行時間（臨時執行 → 每次看的日期都不一樣）。
+  //    新碼依 timestamp 語意取錨（pickWeekBoundaryAnchors），起訖一律用 ISO 週界。
   console.log('📊 Step 4a: 計算上週完整數據排名（正式，列入入庫判斷）...');
-  const prevWeekSnap = getSnapshotForWeek(prevWeekStr, snapshotData);
-  const lastWeekStartStr = (prevPrevWeekSnap?.timestamp || '').slice(0, 10) || prevWeekInfo.mondayStr;
-  const lastWeekEndStr = (prevWeekSnap?.timestamp || '').slice(0, 10) || prevWeekInfo.sundayStr;
+  const anchors = pickWeekBoundaryAnchors(snapshotData, prevWeekInfo);
+  const lastWeekStartRepos = anchors.startSnap?.repos
+    || getLatestSnapshot(snapshotData)?.repos
+    || allHistoricalRepos;
+  const lastWeekEndIsLive = !anchors.endSnap; // 上週結束後完全沒有量測 → 退化用即時值
+  const lastWeekEndRepos = anchors.endSnap?.repos || liveReposBaseline;
+  // 起訖日期 = 世界週的真相（ISO 週界），永不洩漏臨時執行的牆上時間
+  const lastWeekStartStr = prevWeekInfo.mondayStr;
+  const lastWeekEndStr = prevWeekInfo.sundayStr;
+  const lastWeekAnchorNotes = [
+    anchors.startFromFallback ? `起點非上週自身快照（改用 ${anchors.startSnap?.timestamp || '無'}），漲幅可能跨週` : null,
+    lastWeekEndIsLive ? '終點無「上週結束後」量測，改用即時值（含上週結束後天數）' : null,
+    anchors.endFromStale ? `終點早於上週結束（${anchors.endSnap?.timestamp || '無'}），上週結束後尚未量測` : null
+  ].filter(Boolean);
+
   let lastWeekRanked;
-  if (prevWeekSnap?.repos && Object.keys(prevWeekSnap.repos).length > 0) {
-    // 理想路徑：上週快照存在，用「上上週快照 vs 上週快照」計算純上週 delta
+  if (!lastWeekEndIsLive) {
     const lastWeekReposMap = new Map(
-      Object.entries(prevWeekSnap.repos).map(([name, stars]) => [
+      Object.entries(lastWeekEndRepos).map(([name, stars]) => [
         name,
         { full_name: name, stargazers_count: stars, name: name.split('/')[1] || name,
           owner: { login: name.split('/')[0] }, fork: false,
@@ -346,18 +400,21 @@ export async function discoverTrendingTools() {
           created_at: liveRepos.get(name)?.created_at || null }
       ])
     );
-    lastWeekRanked = computeRanking(lastWeekReposMap, baselineForLastWeek, prevWeekInfo, false, lastWeekStartStr, lastWeekEndStr);
-    console.log(`   使用上週快照 (${prevWeekStr}) vs 基準 (${prevPrevWeekStr})，計算純上週增量`);
+    lastWeekRanked = computeRanking(lastWeekReposMap, lastWeekStartRepos, prevWeekInfo, true, lastWeekStartStr, lastWeekEndStr);
+    console.log(`   起點：${anchors.startSnap?.timestamp || '—'}（上週週初基準）→ 終點：${anchors.endSnap?.timestamp || '—'}（上週結束後首次量測）`);
   } else {
-    // 退化路徑：上週快照不存在，改用 live repos vs 上週基線估算
-    lastWeekRanked = computeRanking(liveRepos, baselineForLastWeek, prevWeekInfo, true, lastWeekStartStr, lastWeekEndStr);
-    console.log(`   ⚠ 上週快照不存在，改用即時數據估算上週排名`);
+    // 退化路徑：上週結束後完全沒有量測，終點用即時數據（含上週結束後的天數）
+    lastWeekRanked = computeRanking(liveRepos, lastWeekStartRepos, prevWeekInfo, true, lastWeekStartStr, lastWeekEndStr);
+    console.log('   ⚠ 上週結束後尚無量測，終點改用即時數據估算（漲幅含上週結束後天數）');
   }
+  if (lastWeekAnchorNotes.length > 0) console.log(`   ⚠ ${lastWeekAnchorNotes.join('；')}`);
   const lastWeekTop20 = lastWeekRanked.slice(0, 20);
   console.log(`   上週排名計算完成，共 ${lastWeekRanked.length} 個有效 repos\n`);
 
-  // Step 4b: 計算「本週迄今」排名（基準：上週末快照 → 今日即時星數，不列入入庫）
+  // Step 4b: 計算「本週迄今」排名（起點＝本週週初基準快照，終點＝今日即時星數，不列入入庫）
   console.log('📊 Step 4b: 計算本週迄今數據排名（進行中，不列入入庫判斷）...');
+  // 起點顯示基準快照的「量測日」（該快照的 repos 是週初值；Step 6 不再刷新其
+  // timestamp，所以這個日期穩定＝真正的資料起點，不會隨臨時執行飄移）
   const currentWeekStartStr = (currentWeekBaselineSnap?.timestamp || '').slice(0, 10) || currentWeekInfo.mondayStr;
   const currentWeekRanked = computeRanking(liveRepos, baselineForCurrentWeek, currentWeekInfo, true, currentWeekStartStr, todayStr);
   const currentWeekTop20 = currentWeekRanked.slice(0, 20);
@@ -462,18 +519,22 @@ export async function discoverTrendingTools() {
     } catch { /* ignore */ }
   }
 
-  // 保留「週初基準」：本週快照僅在首次執行時寫入，後續執行不覆寫 repos，
-  // 以避免「本週迄今」的比對基準被洗掉（否則本週迄今會變成上週整週漲幅，誤標為單日暴衝）
+  // 保留「週初基準」：本週快照的 repos 僅在首次執行時寫入，後續執行一律不覆寫，
+  // 且 **timestamp 也不刷新**——它代表「基準量測時間」，是「本週迄今」起點的真相。
+  // 🔴 舊碼會在重跑時把 timestamp 刷成最近執行時間 → 起點日期每次看都不一樣，
+  //    與「起訖日期不正確」直接相關（2026-10-13 修）。
+  // mergedSnapshot 只供「歷史覆蓋率」統計用（不參與錨點挑選）
   const mergedSnapshot = { ...allHistoricalRepos, ...currentSnapshot };
   const existingCurrentSnap = snapshotFileData.snapshots.find(s => s.week === currentWeekStr);
   if (existingCurrentSnap) {
-    existingCurrentSnap.dateRange = `${currentWeekInfo.mondayStr} ~ ${todayStr}`;
-    existingCurrentSnap.timestamp = now.toISOString();
-    // 保留 existingCurrentSnap.repos（週初基準），不更新
+    // 只把 dateRange 收斂到「基準量測當日」，不再宣稱覆蓋到今天（repos 停在週初）
+    const baselineDay = String(existingCurrentSnap.timestamp).slice(0, 10);
+    existingCurrentSnap.dateRange = `${baselineDay} ~ ${baselineDay}`;
+    // existingCurrentSnap.repos / timestamp 刻意不動（週初基準）
   } else {
     snapshotFileData.snapshots.push({
       week: currentWeekStr,
-      dateRange: `${currentWeekInfo.mondayStr} ~ ${todayStr}`,
+      dateRange: `${todayStr} ~ ${todayStr}`,
       timestamp: now.toISOString(),
       isWeekStart: true,
       repos: currentSnapshot
@@ -499,6 +560,10 @@ export async function discoverTrendingTools() {
     `> **統計區間**：${prevWeekInfo.dateRange} (ISO-8601 World Week)`,
     `> **統計時間**：${formatDateTime(prevWeekInfo.monday)} ~ ${formatDateTime(prevWeekInfo.sunday)}`,
     `> **探勘時間**：${now.toISOString()}`,
+    // 起訖值誠實標註「實際量測時間」：ISO 週界是統計區間，錨點快照才是量測點
+    `> **起點量測**：${anchors.startSnap?.timestamp || '—'}（上週週初基準）`,
+    `> **終點量測**：${anchors.endSnap?.timestamp || '—'}（上週結束後首次量測）`,
+    lastWeekAnchorNotes.length > 0 ? `> **⚠ 降級說明**：${lastWeekAnchorNotes.join('；')}` : null,
     `> **追蹤池大小**：${trackedCount}`,
     `> **搜尋 repos 數**：${liveRepos.size}`,
     `> **歷史快照覆蓋率**：${Object.keys(mergedSnapshot).length} 個 repos`,
@@ -524,7 +589,7 @@ export async function discoverTrendingTools() {
 
   reportLines.push('', '---', `> 由 \`scripts/trending-weekly.js\` 自動生成（遵循 ISO-8601 World Week 國際標準）`);
 
-  writeFileSync(reportPath, reportLines.join('\n'), 'utf8');
+  writeFileSync(reportPath, reportLines.filter(l => l !== null).join('\n'), 'utf8');
   console.log(`   週報已寫入：${reportPath}\n`);
 
   // Step 9: 生成雙週 JSON 數據檔
@@ -555,7 +620,13 @@ export async function discoverTrendingTools() {
       weekStr: prevWeekStr,
       dateRange: prevWeekInfo.dateRange,
       isComplete: true,
-      note: '上週完整數據，列入工具箱納入判斷',
+      note: lastWeekAnchorNotes.length > 0
+        ? `⚠ 降級：${lastWeekAnchorNotes.join('；')}`
+        : '上週完整數據（起點=上週週初基準，終點=上週結束後首次量測），列入工具箱納入判斷',
+      measuredAt: {
+        start: anchors.startSnap?.timestamp || null,
+        end: anchors.endSnap?.timestamp || null
+      },
       newlyAddedCount: addedCount,
       top10: lastWeekFormattedItems.slice(0, 10),
       top20: lastWeekFormattedItems
