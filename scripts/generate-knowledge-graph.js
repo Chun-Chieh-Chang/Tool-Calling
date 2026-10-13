@@ -767,6 +767,85 @@ export function generateKnowledgeGraph(registryInput = null) {
     const network2d = new vis.Network(container2d, data2d, options2d);
     window.network2d = network2d;
     window.data2d = data2d;
+
+    // -- 聚焦淡化機制 (Focus Spotlight, 2D) --
+    // 規則：只有「被選中」的節點維持原色高亮，其餘節點／邊線一律淡化；
+    // 2D 與 3D 使用同一套語義。取消聚焦（點空白、雙擊空白重設、取消圖例）即還原。
+    // 還原不依賴重算：初始化時對 nodes/edges 的顏色與字色做快照，離線也可重放。
+    const FOCUS_DIM_NODE_ALPHA = 0.16; // 2D 節點淡化不透明度
+    const FOCUS_DIM_FONT = 'rgba(148, 163, 184, 0.30)';
+    const FOCUS_DIM_EDGE = 'rgba(24, 28, 36, 0.35)';
+    const FOCUS_DIM_EDGE_OPACITY = 0.10;
+
+    const _focus2dSnapshot = { nodes: new Map(), edges: new Map() };
+    data2d.nodes.get().forEach(function (n) {
+      _focus2dSnapshot.nodes.set(n.id, {
+        background: n.color.background,
+        border: n.color.border,
+        highlight: n.color.highlight,
+        hover: n.color.hover,
+        fontColor: (n.font && n.font.color) ? n.font.color : '#94a3b8'
+      });
+    });
+    data2d.edges.get().forEach(function (e) {
+      _focus2dSnapshot.edges.set(e.id, {
+        color: e.color.color,
+        highlight: e.color.highlight,
+        hover: e.color.hover,
+        opacity: e.color.opacity
+      });
+    });
+
+    let _focus2dIds = null; // null = 全景無淡化
+
+    function hexToRgba2d(hex, alpha) {
+      const h = String(hex || '#000000').replace('#', '');
+      const full = h.length === 3 ? h[0] + h[0] + h[1] + h[1] + h[2] + h[2] : h;
+      const r = parseInt(full.substring(0, 2), 16) || 0;
+      const g = parseInt(full.substring(2, 4), 16) || 0;
+      const b = parseInt(full.substring(4, 6), 16) || 0;
+      return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+    }
+
+    // activeIds: null = 取消淡化（全還原）；Set = 只有集合內的節點保持原色
+    function applyFocus2d(activeIds) {
+      _focus2dIds = activeIds;
+      const active = activeIds;
+      const nodeUpdates = [];
+      data2d.nodes.get().forEach(function (n) {
+        const snap = _focus2dSnapshot.nodes.get(n.id);
+        if (!snap) return;
+        const on = !active || active.has(n.id);
+        nodeUpdates.push({
+          id: n.id,
+          color: {
+            background: on ? snap.background : hexToRgba2d(n.colorHex, FOCUS_DIM_NODE_ALPHA),
+            border: on ? snap.border : 'rgba(0, 0, 0, 0)',
+            highlight: snap.highlight,
+            hover: snap.hover
+          },
+          font: { color: on ? snap.fontColor : FOCUS_DIM_FONT }
+        });
+      });
+      if (nodeUpdates.length > 0) data2d.nodes.update(nodeUpdates);
+
+      const edgeUpdates = [];
+      data2d.edges.get().forEach(function (e) {
+        const snap = _focus2dSnapshot.edges.get(e.id);
+        if (!snap) return;
+        const on = !active || (active.has(e.from) && active.has(e.to));
+        edgeUpdates.push({
+          id: e.id,
+          color: {
+            color: on ? snap.color : FOCUS_DIM_EDGE,
+            highlight: snap.highlight,
+            hover: snap.hover,
+            opacity: on ? snap.opacity : FOCUS_DIM_EDGE_OPACITY
+          }
+        });
+      });
+      if (edgeUpdates.length > 0) data2d.edges.update(edgeUpdates);
+    }
     
     // -- HTML 跳脫（客戶端）--
     //
@@ -980,6 +1059,65 @@ export function generateKnowledgeGraph(registryInput = null) {
       network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } }); 
     }, 500);
 
+    // ─── 3D 聚焦淡化機制 (與 2D 同一套語義) ────────────────────────────────
+    // 3D 節點本體是 THREE 物件（nodeThreeObject），無法用資料集覆寫改色；
+    // 改為在建立時把材質參考掛回 node，聚焦時直接調 opacity／emissive。
+    let _focus3dIds = null; // null = 全景無淡化
+
+    function focusLinkIsActive3d(link, active, clearAll) {
+      if (clearAll) return true;
+      const s = link.source && link.source.id ? link.source.id : link.source;
+      const t = link.target && link.target.id ? link.target.id : link.target;
+      return active.has(s) && active.has(t);
+    }
+
+    // activeIds: null = 取消淡化（全還原）；Set = 只有集合內的節點維持高亮
+    function applyFocus3d(activeIds) {
+      _focus3dIds = activeIds;
+      const g = graph3DInstance;
+      if (!g) return;
+      const clearAll = !activeIds;
+      const active = activeIds || new Set();
+
+      g.graphData().nodes.forEach(function (n) {
+        const mat = n.__sphereMat;
+        if (mat) {
+          mat.transparent = true;
+          if (clearAll) {
+            // 取消聚焦：還原原色（不可把全部當「選中」變白）
+            mat.opacity = 1.0;
+            mat.depthWrite = true;
+            if (n.__origColor) {
+              mat.color.set(n.__origColor);
+              mat.emissive.set('#000000');
+              mat.emissiveIntensity = 0.0;
+            }
+          } else {
+            const on = active.has(n.id);
+            mat.opacity = on ? 1.0 : 0.07;
+            mat.depthWrite = on;
+            if (n.__origColor) {
+              mat.color.set(on ? '#ffffff' : n.__origColor);
+              mat.emissive.set(on ? n.__origColor : '#000000');
+              mat.emissiveIntensity = on ? 0.35 : 0.0;
+            }
+          }
+        }
+        if (n.__sprite && n.__sprite.material) {
+          n.__sprite.material.transparent = true;
+          n.__sprite.material.opacity = clearAll || active.has(n.id) ? 1.0 : 0.10;
+        }
+      });
+
+      g.linkColor(function (link) {
+        return focusLinkIsActive3d(link, active, clearAll) ? (link.colorHex || '#0284c7') : 'rgba(30, 38, 50, 0.55)';
+      });
+      g.linkOpacity(function (link) {
+        return focusLinkIsActive3d(link, active, clearAll) ? 0.35 : 0.05;
+      });
+      g.refresh();
+    }
+
     // ─── 2. 初始化 3D Force-Directed Graph (Obsidian 廣闊宇宙空間) ─────────────
     function init3DGraph() {
       if (graph3DInstance) return;
@@ -1016,6 +1154,10 @@ export function generateKnowledgeGraph(registryInput = null) {
           const sphereMesh = new THREE.Mesh(sphereGeo, sphereMat);
           group.add(sphereMesh);
 
+          // 聚焦淡化需事後改材質，把參考掛回節點資料（applyFocus3d 使用）
+          node.__sphereMat = sphereMat;
+          node.__origColor = bgHex;
+
           // 建立純淨無背景透明 SpriteText (對齊 13px 視覺比例)
           if (typeof SpriteText !== 'undefined') {
             const label = node.label.replace('\\n', ' ');
@@ -1042,6 +1184,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
             sprite.position.set(0, radius + 3.2, 0);
             group.add(sprite);
+            node.__sprite = sprite;
           }
 
           return group;
@@ -1082,9 +1225,15 @@ export function generateKnowledgeGraph(registryInput = null) {
         .warmupTicks(100)
         .cooldownTicks(600)
         .onNodeClick(node => {
-          // 點擊節點：深入對焦至節點正前方
+          // 點擊節點：深入對焦至節點正前方（只有它維持高亮，其餘淡化）
+          applyFocus3d(new Set([node.id]));
           zoomTo3DNode(node, 36);
           showPanel(node);
+        })
+        .onBackgroundClick(() => {
+          // 點擊空白處：取消聚焦淡化（與 2D 點空白的語義一致）
+          applyFocus3d(null);
+          closePanel();
         });
 
       // 設定 3D 力導向物理場
@@ -1287,9 +1436,11 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       if (isAlreadyActive) {
         if (is3DMode && graph3DInstance) {
+          applyFocus3d(null);
           graph3DInstance.cameraPosition({ x: 0, y: 0, z: 460 }, { x: 0, y: 0, z: 0 }, 1000);
         } else {
           network2d.unselectAll();
+          applyFocus2d(null);
           network2d.fit({ animation: { duration: 600 } });
         }
         closePanel();
@@ -1301,6 +1452,12 @@ export function generateKnowledgeGraph(registryInput = null) {
       if (is3DMode && graph3DInstance) {
         const catNode = graph3DInstance.graphData().nodes.find(n => n.group === 'category' && n.label === catName);
         if (catNode) {
+          // 聚焦集合 = 分類節點 + 其下全部工具（與 2D selectNodes 範圍一致）
+          const active3d = new Set([catNode.id]);
+          graph3DInstance.graphData().nodes.forEach(function (n) {
+            if (n.group === 'tool' && n.categoryName === catName) active3d.add(n.id);
+          });
+          applyFocus3d(active3d);
           const distRatio = 1.4;
           graph3DInstance.cameraPosition(
             { x: (catNode.x || 0) * distRatio, y: (catNode.y || 0) * distRatio, z: (catNode.z || 150) * distRatio },
@@ -1316,6 +1473,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         const catNode = allNodes.find(n => n.group === 'category' && n.label === catName);
 
         if (targetIds.length > 0) {
+          applyFocus2d(new Set(targetIds));
           network2d.selectNodes(targetIds);
           if (catNode) {
             network2d.focus(catNode.id, { scale: 1.4, animation: { duration: 700 } });
@@ -1331,10 +1489,12 @@ export function generateKnowledgeGraph(registryInput = null) {
         const nodeId = params.nodes[0];
         const node = data2d.nodes.get(nodeId);
         if (node) {
+          applyFocus2d(new Set([nodeId]));
           network2d.focus(nodeId, { scale: 2.2, animation: { duration: 500 } });
           showPanel(node);
         }
       } else {
+        applyFocus2d(null);
         closePanel();
         document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
       }
@@ -1431,6 +1591,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       if (is3DMode && graph3DInstance) {
         const found = graph3DInstance.graphData().nodes.find(n => n.label.toLowerCase().includes(term));
         if (found) {
+          applyFocus3d(new Set([found.id]));
           graph3DInstance.cameraPosition(
             { x: (found.x || 0) + 40, y: (found.y || 0) + 40, z: (found.z || 0) + 40 },
             found,
@@ -1441,6 +1602,7 @@ export function generateKnowledgeGraph(registryInput = null) {
       } else {
         const found = data2d.nodes.get().find(n => n.label.toLowerCase().includes(term));
         if (found) {
+          applyFocus2d(new Set([found.id]));
           network2d.focus(found.id, { scale: 2.5, animation: { duration: 600 } });
           network2d.selectNodes([found.id]);
           showPanel(found);
@@ -1460,6 +1622,7 @@ export function generateKnowledgeGraph(registryInput = null) {
 
       // 3. 視圖回歸預設全景視野 (Z: 1200 斜角視角顯示所有分類群組)
       if (is3DMode && graph3DInstance) {
+        applyFocus3d(null);
         graph3DInstance.cameraPosition(
           { x: 400, y: 400, z: 1200 },
           { x: 0, y: 0, z: 0 },
@@ -1467,6 +1630,7 @@ export function generateKnowledgeGraph(registryInput = null) {
         );
       } else if (network2d) {
         network2d.unselectAll();
+        applyFocus2d(null);
         // 重置 2D 全景：使用 fit() 自動適配所有節點
         network2d.fit({ animation: { duration: 600, easingFunction: 'easeInOutQuad' } });
       }
