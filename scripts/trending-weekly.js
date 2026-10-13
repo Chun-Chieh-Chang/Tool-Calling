@@ -48,6 +48,12 @@ function formatDateTime(date) { return date.toISOString().replace('T', ' ').slic
 // MECE 分類規則
 // ──────────────────────────────────────────────
 
+// 🔴 規則只能產生 registry/categories.json 裡存在的 18 個分類。
+//    2026-10-13 踩過的坑：本表曾寫出「行銷」「資料庫」「基礎設施」——
+//    都不在 18 分類內，removemacai 就是這樣帶著 category:"行銷" 入庫，
+//    check-mece 直接 exit 1。分類唯一來源是 categories.json，本腳本不得發明分類。
+//    修正策略：infra／database 類工具在既有庫的實際歸屬是「開發工具」；
+//    「行銷」在分類法中無對應概念，整條移除（市場類工具由其他規則或預設承接）。
 const CATEGORY_RULES = [
   { match: /\b(llm|gpt|openai|gemini|claude|transformer|language.model)\b/i, cat: 'AI 框架' },
   { match: /\b(agent|autonomous|assistant|copilot|auto\.?gpt)\b/i, cat: 'AI 代理' },
@@ -58,24 +64,47 @@ const CATEGORY_RULES = [
   { match: /\b(browser|puppeteer|crawl|scrape|headless)\b/i, cat: '瀏覽器自動化' },
   { match: /\b(video|ffmpeg|stream|animation|movie)\b/i, cat: '影片' },
   { match: /\b(audio|music|tts|stt|speech|voice|whisper)\b/i, cat: '音訊' },
-  { match: /\b(security|vuln|pentest|hack|owasp|cryptography)\b/i, cat: '安全性' },
-  { match: /\b(infra|docker|k8s|kubernetes|terraform|cloud)\b/i, cat: '基礎設施' },
+  { match: /\b(security|vuln|pentest|hack|owasp|cryptography|privacy|debloat)\b/i, cat: '安全性' },
+  { match: /\b(infra|docker|k8s|kubernetes|terraform|cloud)\b/i, cat: '開發工具' },
   { match: /\b(api|rest|graphql|grpc|sdk|integration)\b/i, cat: 'API 整合' },
-  { match: /\b(database|sql|nosql|postgres|mongo|redis)\b/i, cat: '資料庫' },
+  { match: /\b(database|sql|nosql|postgres|mongo|redis)\b/i, cat: '開發工具' },
   { match: /\b(doc|pdf|markdown|notes|wiki|obsidian|ppt|office)\b/i, cat: '文件生產力' },
   { match: /\b(knowledge|graph|rag|retrieval|embedding)\b/i, cat: '知識管理' },
   { match: /\b(learn|tutorial|course|education|bootcamp|roadmap)\b/i, cat: '學習資源' },
   { match: /\b(research|paper|arxiv|science|survey|awesome)\b/i, cat: '研究' },
   { match: /\b(image|diffusion|stablediffusion|midjourney|dalle|generation)\b/i, cat: '多媒體生成' },
-  { match: /\b(market|seo|analytics|adverti)\b/i, cat: '行銷' },
 ];
+
+// 導出供測試：SSOT 守門（分類／語言）必須可被驗證
+export { inferCategory, normalizeLanguage };
+
+// SSOT 守門：合法分類集合直接讀 categories.json（不重複維護清單）
+const VALID_CATEGORIES = new Set(
+  (JSON.parse(readFileSync(join(ROOT, 'registry', 'categories.json'), 'utf8')).categories || [])
+    .map(c => c.name)
+);
 
 function inferCategory(repo) {
   const text = `${repo.description || ''} ${(repo.topics || []).join(' ')} ${repo.name}`;
   for (const rule of CATEGORY_RULES) {
+    // 規則越權（cat 不在 18 分類內）→ 跳過該規則，不讓非法分類流進 registry
+    if (!VALID_CATEGORIES.has(rule.cat)) continue;
     if (rule.match.test(text)) return rule.cat;
   }
   return '開發工具';
+}
+
+// 🔴 GitHub 語言超過 300 種，schema enum 只收錄主流值（"lean" 也不在內）。
+//    正規化到 enum，落榜 → "other"（誠實的「非主流／未收錄語言」）。
+//    2026-10-13：openai/math 以 language:"lean" 入庫，check-mece exit 1。
+const VALID_LANGUAGES = new Set(
+  JSON.parse(readFileSync(join(ROOT, 'registry', 'schemas', 'tool.schema.json'), 'utf8'))
+    .definitions.Tool.properties.language.enum
+);
+
+function normalizeLanguage(lang) {
+  const l = (lang || 'other').toLowerCase();
+  return VALID_LANGUAGES.has(l) ? l : 'other';
 }
 
 // ──────────────────────────────────────────────
@@ -456,13 +485,20 @@ export async function discoverTrendingTools() {
       url: repoUrl,
       description: (repo.description || 'No description provided.').slice(0, 200),
       category: repo.category,
-      language: (repo.language || 'unknown').toLowerCase(),
+      // 🔴 GitHub 未回報語言時不可寫 "unknown"——schema enum 沒有這個值，
+      //    check-mece 會直接 exit 1（2026-10-13 踩過：qingjian 就是這樣進來的）。
+      //    "other" 是語意上最誠實的合法值（「GitHub 未判明主要語言」）。
+      //    🔴 enum 外的語言（如 Lean）同樣經 normalizeLanguage 收斂到 "other"，
+      //       不可原樣落盤（openai/math 的 "lean" 就是這樣漏過的）。
+      language: normalizeLanguage(repo.language),
       triggers: [toolId, ...(repo.topics?.slice(0, 5) || [])],
       install: { method: 'none', repoUrl },
       capabilities: repo.topics?.slice(0, 6) || [],
       // ⚠️ useCase 是「語意欄位」——描述這個工具適合什麼任務。
-      // 探勘 provenance(漲星數、入庫週次)不屬於語意內容,改記錄於 _provenance。
-      useCase: repo.description || repo.name,
+      // 🔴 不可拿 description 來複製（等於沒有資訊，還會餵進 V3/V4 檢索維度）。
+      //    留空 → 由 enrich 管線依 README 補真實內容；空字串只會觸發
+      //    registry-contract 的 warning——那是誠實的「尚未補齊」訊號。
+      useCase: '',
       // ⚠️ advantages 是「語意欄位」——描述這個工具相對其他選擇的優勢。
       // 星數不是工具的優勢,而是受歡迎程度的客觀指標,應存於 stars 欄位。
       // 無法從 GitHub metadata 推得真正的優勢,故留空待人工/後續豐富化補齊,
@@ -476,7 +512,12 @@ export async function discoverTrendingTools() {
       negativeConstraints: [],
       stars: repo.currentStars,
       addedAt: now.toISOString(),
-      status: 'active',
+      // 🔴 生命週期：新入庫一律 experimental，等 enrich 管線補齊語意欄位
+      //    （isFullyEnriched()）才升 active。直接給 active 會讓半成品
+      //    （useCase 複製 description、advantages 空陣列）長期待在正式庫。
+      //    2026-10-13 修：先前三筆 trending 工具（how-to-live-better／magpie／qingjian）
+      //    都是以 active 入庫，違反本規則。
+      status: 'experimental',
       // 入庫 provenance 集中於此,不污染語意欄位
       _provenance: {
         source: 'trending-weekly',
