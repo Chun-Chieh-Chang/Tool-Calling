@@ -297,6 +297,11 @@ b9aa213  fix(trending): 分類與語言加入 SSOT 守門，收錄生命週期�
 
 **推送時撞上遠端排程工作流**（用戶倉庫的 cron 用**舊版有 bug 的程式碼**自動跑了 W42 探勘＋星數同步 2 個 commit）：依鐵律以 merge 整合（禁 rebase／stash），5 個資料檔衝突逐個有意識解決——tools.json 以本地修正版為基準疊加遠端新星數（遠端那 3 個「新」工具其實是舊管線重新加回今日已修正的 qingjian／magpie／how-to-live-better，本地修正版勝出；tokentab 依裁決持續移除）；star-snapshots 雙方量測併留（14 筆）；tracked-repos／weekly-trending／W41 週報沿用本地修正版。復跑七道閘門全過後完成 merge commit `8b1e1e8` 並推送成功。**後續 cron 將改用修正後程式碼，同類衝突只會出現在資料層。**
 
+**推送後 CI 紅燈（GitHub Actions 416 測 3 失敗）——全綠缺口只在 CI 曝光**（commit `27d996b` 修）：
+1. `cli.js validate` 全綠分支吞掉「N 個錯誤」摘要行——兩道守門測試（cli-validate、tier1-preservation Property 2c）靠解析這行驗證結束碼一致性；本輪管線把 registry 補到**首次 0 錯誤 0 警告**才觸發（上一個綠燈 commit 是 6 個警告僥倖撐著）。改為無條件印出。
+2. `build-web.js` 自帶第二份同義詞檔頭模板漏掉 `check-traditional: skip-file` 標記，每次 `npm run build` 覆蓋掉 mine-synonyms.js 加好標記的版本 → 守門測試「產生器模板也要有」失敗。消滅重複：匯出 `toGeneratedSource` 單一共用。
+3. `core/synonyms.generated.js` 重新產生。修後 CI（validate-and-build＋deploy）全綠，本地/遠端同步。
+
 ### 2026-10-13（第二輪）世界週起訖日期 off-by-one 修正 ＋ trending 分類／語言 SSOT 守門
 
 **需求**：用戶截圖回報「累積總 STAR 數」卡片 起: 22,738 (2026-10-03) ／ 終: 41,838 (2026-10-05)，與表頭聲稱的 W41（2026-10-05 ~ 2026-10-11）矛盾——起訖日期完全不對，且每次重跑都會飄。
