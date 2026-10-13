@@ -293,7 +293,9 @@ b9aa213  fix(trending): 分類與語言加入 SSOT 守門，收錄生命週期�
 336bfe9  fix(trending): 世界週起訖改依快照 timestamp 語意挑錨點
 ```
 
-**提交後復驗**（對外部狀態取快照）：`cli.js validate` 770/770、100/100、0 錯誤 0 警告；七道閘門全過；守門測試 12/12；工作區乾淨；port 3000 伺服器服務 770 支（含三支新工具、無 tokentab）。4 個 commit 已推送 origin/main（用戶明確授權）。
+**提交後復驗**（對外部狀態取快照）：`cli.js validate` 770/770、100/100、0 錯誤 0 警告；七道閘門全過；守門測試 12/12；工作區乾淨；port 3000 伺服器服務 770 支（含三支新工具、無 tokentab）。4 個原子 commit 連同 HANDOFF 文件 commit 已推送 origin/main（用戶明確授權）。
+
+**推送時撞上遠端排程工作流**（用戶倉庫的 cron 用**舊版有 bug 的程式碼**自動跑了 W42 探勘＋星數同步 2 個 commit）：依鐵律以 merge 整合（禁 rebase／stash），5 個資料檔衝突逐個有意識解決——tools.json 以本地修正版為基準疊加遠端新星數（遠端那 3 個「新」工具其實是舊管線重新加回今日已修正的 qingjian／magpie／how-to-live-better，本地修正版勝出；tokentab 依裁決持續移除）；star-snapshots 雙方量測併留（14 筆）；tracked-repos／weekly-trending／W41 週報沿用本地修正版。復跑七道閘門全過後完成 merge commit `8b1e1e8` 並推送成功。**後續 cron 將改用修正後程式碼，同類衝突只會出現在資料層。**
 
 ### 2026-10-13（第二輪）世界週起訖日期 off-by-one 修正 ＋ trending 分類／語言 SSOT 守門
 
