@@ -302,6 +302,12 @@ b9aa213  fix(trending): 分類與語言加入 SSOT 守門，收錄生命週期�
 2. `build-web.js` 自帶第二份同義詞檔頭模板漏掉 `check-traditional: skip-file` 標記，每次 `npm run build` 覆蓋掉 mine-synonyms.js 加好標記的版本 → 守門測試「產生器模板也要有」失敗。消滅重複：匯出 `toGeneratedSource` 單一共用。
 3. `core/synonyms.generated.js` 重新產生。修後 CI（validate-and-build＋deploy）全綠，本地/遠端同步。
 
+**第四輪（2026-10-14 凌晨）：用戶回報「起訖日期仍是錯誤」＋「3D 圖譜未選中仍高亮」**——兩個症狀各自的根因：
+1. **卡片層日期沒修到**：第二輪只修了週層級 `dateRange`，`lastWeek.top10` 每筆卡片的 `startStarsAt/endStarsAt` 仍是舊 bug 產物（10-03／10-05 快照牆上時間）。
+2. **常駐伺服器汙染**：port 3000 的 `web/server.js` 是修正前啟動的，`import { discoverTrendingTools }` 是**舊碼 in-memory**，且每 30 分鐘 `checkAndAutoUpdateOnStartup()` 自動重跑——23:44 用舊邏輯重寫了 `weekly-trending.json`（錯誤日期復活）與 `docs/knowledge-graph.html`（3D 淡化程式碼被洗掉，正是「未選中仍高亮」的直接原因）。教訓：🔴 **長駐 node 服務帶著啟動時的程式碼，改碼後必須重啟**；其定期任務會持續用舊邏輯寫入資料檔。
+- 處置：`git checkout` 丟棄被舊碼汙染的 5 個資料檔 → 重啟伺服器 → 以修正後程式碼重跑 trending 管線（起點 W41 週初基準 10-05、終點 W42@10-12T08:40，卡片起訖一律 ISO 週界 10-05~10-11）→ 新增 huashu-art-motion（771 支）。
+- **3D 聚焦淡化的兩個隱形失效**（playwright 逐段隔間定位，commit `f6a4015`）：① `3d-force-graph@1.73.1` 的 link/particle material 更新把 `state.linkOpacity` **原值**相乘（`3 * linkOpacity * α`），傳函式 → 函式×數字 = **NaN**（925 連結＋272 粒子全滅）；且 setter 改寫會重建 link 物件。改法：linkOpacity 永遠保持數值、淡化編進顏色 alpha、粒子改以暗色呈現。② setter 觸發的重新整理會把節點材質洗回 opacity 1 → refresh 後用雙 rAF 重貼。實測：點節點→925 球 0.07／被點選 1.0 白／連結 0.06／粒子暗灰／0 NaN；點空白→926 球全還原。
+
 ### 2026-10-13（第二輪）世界週起訖日期 off-by-one 修正 ＋ trending 分類／語言 SSOT 守門
 
 **需求**：用戶截圖回報「累積總 STAR 數」卡片 起: 22,738 (2026-10-03) ／ 終: 41,838 (2026-10-05)，與表頭聲稱的 W41（2026-10-05 ~ 2026-10-11）矛盾——起訖日期完全不對，且每次重跑都會飄。
