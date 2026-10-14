@@ -1078,44 +1078,58 @@ export function generateKnowledgeGraph(registryInput = null) {
       if (!g) return;
       const clearAll = !activeIds;
       const active = activeIds || new Set();
+      // 未選取的連結顏色：暗色半透明（見下方 α 隱碼說明）
+      const dimLinkColor = 'rgba(30, 38, 50, 0.16)';
+      const litLinkColor = link => link.colorHex || '#0284c7';
 
-      g.graphData().nodes.forEach(function (n) {
-        const mat = n.__sphereMat;
-        if (mat) {
-          mat.transparent = true;
-          if (clearAll) {
-            // 取消聚焦：還原原色（不可把全部當「選中」變白）
-            mat.opacity = 1.0;
-            mat.depthWrite = true;
-            if (n.__origColor) {
-              mat.color.set(n.__origColor);
-              mat.emissive.set('#000000');
-              mat.emissiveIntensity = 0.0;
-            }
-          } else {
-            const on = active.has(n.id);
-            mat.opacity = on ? 1.0 : 0.07;
-            mat.depthWrite = on;
+      // 🔴 2026-10-14 實測教訓：3d-force-graph@1.73.1 的 link/arrow material 更新
+      //    把 state.linkOpacity「原值」拿來相乘（3 * linkOpacity * 顏色alpha），
+      //    傳函式進去 → 函式×數字 = NaN → 全部連結變 NaN 透明度；且該 setter 的
+      //    重新整理會把節點材質重建回 opacity 1（淡化被洗掉）。
+      //    因此：linkOpacity 永遠保持數值（不改寫），淡化全部編進「顏色 alpha」
+      //    （library 用 Uu(color).getAlpha() 解析 rgba 的 α），函式只給 linkColor
+      //    與 linkDirectionalArrowColor（這兩個是每條連結各自解析，安全）。
+      g.linkColor(function (link) {
+        return focusLinkIsActive3d(link, active, clearAll) ? litLinkColor(link) : dimLinkColor;
+      });
+      if (typeof g.linkDirectionalArrowColor === 'function') {
+        g.linkDirectionalArrowColor(function (link) {
+          return focusLinkIsActive3d(link, active, clearAll) ? litLinkColor(link) : dimLinkColor;
+        });
+      }
+      // 粒子（photons）不透明度固定為 3 × linkOpacity（與顏色 alpha 無關），
+      // 且 Nh() 解析顏色時會把 alpha 去掉 → 淡化只能靠「暗色」呈現。
+      if (typeof g.linkDirectionalParticleColor === 'function') {
+        g.linkDirectionalParticleColor(function (link) {
+          return focusLinkIsActive3d(link, active, clearAll) ? litLinkColor(link) : 'rgb(30, 38, 50)';
+        });
+      }
+
+      // 節點本體與標籤：直接改材質。setter 觸發的重新整理可能重建 material，
+      // 因此 refresh 之後用雙 rAF 再重貼一次，確保最終狀態是淡化後的。
+      const applyNodeMaterials = function () {
+        g.graphData().nodes.forEach(function (n) {
+          const on = !clearAll && active.has(n.id);
+          const mat = n.__sphereMat;
+          if (mat) {
+            mat.transparent = true;
+            mat.opacity = on || clearAll ? 1.0 : 0.07;
+            mat.depthWrite = on || clearAll;
             if (n.__origColor) {
               mat.color.set(on ? '#ffffff' : n.__origColor);
               mat.emissive.set(on ? n.__origColor : '#000000');
               mat.emissiveIntensity = on ? 0.35 : 0.0;
             }
           }
-        }
-        if (n.__sprite && n.__sprite.material) {
-          n.__sprite.material.transparent = true;
-          n.__sprite.material.opacity = clearAll || active.has(n.id) ? 1.0 : 0.10;
-        }
-      });
-
-      g.linkColor(function (link) {
-        return focusLinkIsActive3d(link, active, clearAll) ? (link.colorHex || '#0284c7') : 'rgba(30, 38, 50, 0.55)';
-      });
-      g.linkOpacity(function (link) {
-        return focusLinkIsActive3d(link, active, clearAll) ? 0.35 : 0.05;
-      });
+          if (n.__sprite && n.__sprite.material) {
+            n.__sprite.material.transparent = true;
+            n.__sprite.material.opacity = on || clearAll ? 1.0 : 0.10;
+          }
+        });
+      };
+      applyNodeMaterials();
       g.refresh();
+      requestAnimationFrame(function () { requestAnimationFrame(applyNodeMaterials); });
     }
 
     // ─── 2. 初始化 3D Force-Directed Graph (Obsidian 廣闊宇宙空間) ─────────────
@@ -1216,6 +1230,11 @@ export function generateKnowledgeGraph(registryInput = null) {
         })
         .linkColor(link => link.colorHex || '#0284c7')
         .linkOpacity(0.35)
+        // 箭頭顏色與連結色一致（聚焦淡化時由 applyFocus3d 改寫為暗色半透明）
+        .linkDirectionalArrowColor(link => link.colorHex || '#0284c7')
+        // 粒子顏色（聚焦淡化時由 applyFocus3d 改寫為暗灰——粒子不透明度恆為
+        // 3 × linkOpacity，且 Nh() 會去掉 alpha，只能靠暗色呈現淡化）
+        .linkDirectionalParticleColor(link => link.colorHex || '#0284c7')
         .linkWidth(link => link.width || 0.8)
         .linkDirectionalParticles(link => link.isDashed ? 2 : 0)
         .linkDirectionalParticleSpeed(0.004)
