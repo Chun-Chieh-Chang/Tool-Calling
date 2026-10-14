@@ -265,7 +265,27 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-13 第三輪快照，其次第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-14 第五輪快照，其次第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-14（第五輪）五項裁決執行完畢＋發佈上線
+
+**裁決**（用戶自裁決頁選擇）：Q1=B 多值分類只對未來新工具增量落盤／Q2=B 只補缺中文的 7 支＋未來新工具／Q3=A 發佈伺服器讓真人使用並累積查詢／Q4=A 意圖抽取精進實驗（設上限）／Q5=B 維持 CI 把關＋merge 模式。
+
+**Q4 意圖抽取實驗（負結果，加權停用）**：實測評測集 267 筆全為中文查詢、hasIntent 僅 16/267 觸發。依 CJK n-gram df 策展繁簡詞表後觸發率 82.4%，但 A/B 消融顯示 object 訊號使 semantic Hit@1 49.6%→44.2%、constraint 中性、兩者皆關最佳（agent 58.0%）。**裁決：抽取保留供診斷，加權預設停用（QI_ENABLE_WEIGHTS=1 可重啟）**——碼內註解與 DEV_LOG 載明實測數字。
+
+**Q1 多值分類增量政策**：`scan-tool.js`（所有新工具唯一入口）以 `buildMultiCategories` 落盤 `categories[]`（第一欄=primary、白名單守門）；回溯庫刻意不補（771 支中 43 支有 secondary 候選）。順手修 reader3 歷史違章（categories[0] 與 category 不一致 → 重排）。
+
+**Q2 缺中文 7 支**：查核後**實際需動作數為 0**——6 個缺項在刻意排除翻譯的 deprecated/archived 工具（translate-to-zh.js:154 範圍），1 個（huashu-art-motion）原文本為中文（顯示層正確回退）。未燒 API 額度。
+
+**Q3 發佈上線（workbuddy sites）**：公開連結 `https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run`（2026-10-14 12:03 UTC 部署，verified）。四項部署前改造＋一件部署後實測修正，**全部有守門測試**：
+- `isTrustedOrigin` 放行自己的公開網域（Host／X-Forwarded-Host 比對）——否則發佈域瀏覽器遙測寫入全數 403，發佈目的一上線就死。
+- 遙測匯出 `GET /api/telemetry/export?token=`（token 在 `web/data/telemetry-export-token.txt`，.gitignore 管轄）：真人問句是敏感資料，無 token 404。
+- 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據——🔴 **首發部署實測：平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開实例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。環境變數判據不可靠，Host 頭才可靠。
+- 自動探勘預設關閉（TRENDING_AUTO=1 可開）——每週漲星由遠端 cron 負責；本機 30 分鐘任務正是第四輪舊碼汙染事故來源。
+- 端到端實測：首頁 200／公開访客 shutdown·refresh 404／遙測寫入 200／匯出 count=2（smoke_test 標記，跨重部署持久）／無金鑰搜尋正常降級。
+- **取回真人語料**：`curl "https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run/api/telemetry/export?token=<web/data/telemetry-export-token.txt 內容>"`。
+
+**提交**（本地 main，5 個原子 commit，未推送）：`e9adbf0` Q4 詞表＋停用加權／`ffc52aa` Q1 增量政策／`8ec9b2d` 發佈安全態勢／`dc6321e` Host 判據修正／docs 待補。validate 100/100、新測試 22/22、門禁全綠。
 
 ### 2026-10-13（第三輪）三項裁決執行：移除失效 repo、補三 URL、四原子 commit
 
