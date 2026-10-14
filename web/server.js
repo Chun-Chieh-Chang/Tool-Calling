@@ -24,6 +24,19 @@ const DEV_MODE = process.argv.includes('--dev');
 const distDir = DEV_MODE ? path.join(__dirname) : path.join(rootDir, 'dist');
 const trendingJsonPath = path.join(rootDir, 'registry', 'weekly-trending.json');
 
+// ─── 部署模式判定（2026-10-14 Q3=A 發佈決策） ────────────────────────────
+// 平台（workbuddy sites）一定注入 PORT；本機 `npm start` 不會有 PORT。
+// 發佈实例與本機工作台的安全態勢完全不同，據此收緊：
+//   · 探勘自動更新：本機預設開（原行為不變）；平台預設關（省 GitHub 額度，
+//     sandbox 內重寫 registry 沒有意義）。TRENDING_AUTO=1 可手動覆寫。
+//   · 寫入型端點（tools/add／trending/refresh／shutdown）：平台一律停用
+//     （sandbox registry 是一次性的；公開訪客不該能觸發背景任務或關閉服務）。
+//   · 遙測寫入 /api/telemetry 必須維持開放——那是發佈的目的（累積真人查詢）。
+const IS_PLATFORM = Boolean(process.env.PORT);
+const AUTO_TRENDING_ENABLED = IS_PLATFORM
+  ? process.env.TRENDING_AUTO === '1'
+  : process.env.TRENDING_AUTO !== '0';
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -214,11 +227,23 @@ const server = http.createServer(async (req, res) => {
       const origin = req.headers.origin;
       if (!origin) return true;
       try {
-        const { hostname } = new URL(origin);
-        return hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '[::1]';
+        const { hostname, host } = new URL(origin);
+        if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '[::1]') return true;
+        // 發佈实例（2026-10-14 Q3=A）：自己的公開網域＝信任來源。
+        // 反向代理可能保留原始 Host，也可能改寫（X-Forwarded-Host），兩種都比對。
+        // 安全性不變：跨站攻擊者的 Origin 主機不可能等於我們的 Host 頭。
+        const fwd = req.headers['x-forwarded-host'];
+        if (host && (host === req.headers.host || (fwd && host === fwd))) return true;
+        return false;
       } catch {
         return false;
       }
+    };
+
+    // 平台实例停用寫入型端點（見 IS_PLATFORM 註解）
+    const rejectOnPlatform = (res, name) => {
+      res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ error: `此端點在發佈实例已停用: ${name}` }));
     };
 
     // 只對信任來源回顯 Origin；不再無差別給 `*`
@@ -244,6 +269,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (decodedUrl === '/api/trending/refresh') {
+      if (IS_PLATFORM) { rejectOnPlatform(res, 'trending/refresh'); return; }
       if (!isTrustedOrigin(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
@@ -357,7 +383,38 @@ const server = http.createServer(async (req, res) => {
       return;
     }
 
-    // ─── 多工具鏈規劃 API ──────────────────────────────────────────────
+    // ─── 遙測匯出 API（唯讀，2026-10-14 Q3=A） ──────────────────────────
+    // 真人查詢語料是敏感資料，絕不能公開列目：取回必須帶 token。
+    // token 來源（擇一，都沒設＝端點不存在）：
+    //   ① process.env.TELEMETRY_EXPORT_TOKEN
+    //   ② web/data/telemetry-export-token.txt（.gitignore 管轄，隨目錄上傳到平台）
+    // 用法：GET /api/telemetry/export?token=<token>
+    if (decodedUrl === '/api/telemetry/export' && req.method === 'GET') {
+      let expected = process.env.TELEMETRY_EXPORT_TOKEN || '';
+      if (!expected) {
+        try {
+          expected = fs.readFileSync(path.join(rootDir, 'web', 'data', 'telemetry-export-token.txt'), 'utf8').trim();
+        } catch { expected = ''; }
+      }
+      const given = new URL(req.url, 'http://localhost').searchParams.get('token');
+      if (!expected || given !== expected) {
+        res.writeHead(given ? 403 : 404, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: given ? 'Forbidden: bad token' : 'Not found' }));
+        return;
+      }
+      try {
+        const { telemetryFilePath } = await import('./telemetry-endpoint.js');
+        const file = telemetryFilePath();
+        const raw = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+        const events = raw.split('\n').filter(Boolean).map((l) => { try { return JSON.parse(l); } catch { return null; } }).filter(Boolean);
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+        res.end(JSON.stringify({ exportedAt: new Date().toISOString(), count: events.length, events }));
+      } catch (err) {
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ error: err.message }));
+      }
+      return;
+    }
     // 專案型需求通常不是單一工具能解決（例：「抓網頁資料然後做成簡報」）。
     // 這個端點把任務拆成步驟，每步給主力工具 + 備選，並標出資料怎麼接力。
     if (decodedUrl === '/api/chain' && req.method === 'POST') {
@@ -553,6 +610,7 @@ const server = http.createServer(async (req, res) => {
 
     // ─── 新增工具 API ──────────────────────────────────────────────────
     if (decodedUrl === '/api/tools/add' && req.method === 'POST') {
+      if (IS_PLATFORM) { rejectOnPlatform(res, 'tools/add'); return; }
       if (!isTrustedOrigin(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
@@ -647,6 +705,7 @@ const server = http.createServer(async (req, res) => {
     // event loop tick 優雅關閉 HTTP server 並結束程序。
     // 僅允許本機來源 + 需帶確認字串，避免任意網頁或 curl 誤關。
     if (decodedUrl === '/api/shutdown' && req.method === 'POST') {
+      if (IS_PLATFORM) { rejectOnPlatform(res, 'shutdown'); return; }
       if (!isTrustedOrigin(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
@@ -767,11 +826,15 @@ server.listen(PORT, () => {
   console.log(`📊 互動式工具圖譜: http://localhost:${PORT}/knowledge-graph.html`);
   console.log(`==================================================\n`);
 
-  // 伺服器啟動後執行自動檢查
-  checkAndAutoUpdateOnStartup();
+  // 伺服器啟動後執行自動檢查（本機預設開；平台預設關，見 AUTO_TRENDING_ENABLED）
+  if (AUTO_TRENDING_ENABLED) {
+    checkAndAutoUpdateOnStartup();
 
-  // 週期性自動更新：每 30 分鐘檢查跨日/跨週，保持「本週迄今」即時並於週初捕獲基準
-  setInterval(() => {
-    try { checkAndAutoUpdateOnStartup(); } catch { /* 忽略暫態錯誤 */ }
-  }, 30 * 60 * 1000);
+    // 週期性自動更新：每 30 分鐘檢查跨日/跨週，保持「本週迄今」即時並於週初捕獲基準
+    setInterval(() => {
+      try { checkAndAutoUpdateOnStartup(); } catch { /* 忽略暫態錯誤 */ }
+    }, 30 * 60 * 1000);
+  } else {
+    console.log('ℹ️ 探勘自動更新已停用（平台模式或 TRENDING_AUTO=0）——每週漲星資料維持靜態');
+  }
 });
