@@ -364,3 +364,24 @@ export function inferSecondary(tool) {
   }
   return out;
 }
+
+// ─── 多值身分落盤助手（增量政策，2026-10-14 裁決） ──────────────────────────
+// 裁決 Q1=B：categories[] 只對「未來新工具」增量落盤，不回溯掃全庫
+// （回溯仍走 scripts/infer-multidimensional.js 提案＋人工核准；
+//  2026-10-14 實測：現行 771 支有 43 支带 secondary 候選，刻意不補）。
+// 由 scripts/scan-tool.js 在新工具入庫時呼叫——所有新工具的唯一入口
+// （cli add／web /api/tools/add／trending ingest 都經過 scan-tool）。
+//
+// schema 規則：第一欄必為 primary 身分（= 該工具的 category）。
+// 回傳值：至少兩個身分才回傳陣列；否則回傳 undefined（不落單值冗餘欄位）。
+export function buildMultiCategories(primaryCategory, secondaryHits, validCategories) {
+  const out = [primaryCategory];
+  if (!Array.isArray(secondaryHits)) return undefined;
+  for (const h of secondaryHits) {
+    const c = typeof h === 'string' ? h : h && h.required;
+    if (!c || c === primaryCategory || out.includes(c)) continue;
+    if (validCategories && !validCategories.has(c)) continue;
+    out.push(c);
+  }
+  return out.length > 1 ? out : undefined;
+}

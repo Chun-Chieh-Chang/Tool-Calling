@@ -2,6 +2,8 @@
 
 import { parseArgs } from 'node:util';
 import { generateId } from '../core/registry.js';
+import { inferSecondary, buildMultiCategories } from '../core/classification-rules.js';
+import { categoryNames } from '../core/categories.js';
 
 
 
@@ -468,6 +470,13 @@ async function scan(url, options = {}) {
       addedAt: new Date().toISOString(),
       status: 'experimental'
     };
+
+    // 多值身分（2026-10-14 裁決 Q1=B，增量政策）：secondary 由分類規則引擎
+    // （core/classification-rules.js，與 rescan／infer-multidimensional 同一份規則）
+    // 推論，經 categories.json 白名單守門後落盤；第一欄恆等於 category（schema 規則）。
+    // 只對新工具生效——回溯庫刻意不補（保留單一主分類，避免未核准偽陽性）。
+    const multiCategories = buildMultiCategories(category, inferSecondary(toolEntry), new Set(categoryNames()));
+    if (multiCategories) toolEntry.categories = multiCategories;
 
     if (!silent) {
       console.log(`\x1b[32m✓ 掃描成功\x1b[0m`);
