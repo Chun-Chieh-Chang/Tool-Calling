@@ -56,16 +56,45 @@ test('weightsForIntent: 無意圖時回傳基準權重', () => {
   assert.equal(w.V4, BASE_WEIGHTS.V4);
 });
 
-test('weightsForIntent: 物件意圖時 V2 權重 > 基準', () => {
-  const intent = extractIntent('scrape a JS-rendered dashboard and extract tables');
-  const w = weightsForIntent(intent);
-  assert.ok(w.V2 > BASE_WEIGHTS.V2, `V2=${w.V2} 應 > 基準 ${BASE_WEIGHTS.V2}`);
+// 預設停用契約：2026-10-14 實測裁決（詳 core/query-intent.js 權重區塊頭註解），
+// 命中意圖也不得改變權重；開關路徑由下面兩支測試覆蓋。
+test('weightsForIntent: 預設停用時即使命中意圖也回傳基準權重', () => {
+  withWeightsEnabled(false, () => {
+    const intent = extractIntent('scrape a JS-rendered dashboard and extract tables');
+    assert.equal(intent.hasIntent, true, '前置條件：此查詢應命中意圖');
+    assert.deepEqual(weightsForIntent(intent), { ...BASE_WEIGHTS });
+  });
 });
 
-test('weightsForIntent: 約束意圖時 V4 權重 > 基準', () => {
-  const intent = extractIntent('deploy a node.js service to a kubernetes cluster');
-  const w = weightsForIntent(intent);
-  assert.ok(w.V4 > BASE_WEIGHTS.V4, `V4=${w.V4} 應 > 基準 ${BASE_WEIGHTS.V4}`);
+// 開關在每次呼叫時讀取 env（見 intentWeightsEnabled），故可於測試內切換；
+// 顯式指定 on/off 使測試不受外圍 env 影響，用完 restore 避免汙染同檔後續測試
+// （node --test 同檔共用行程）。
+function withWeightsEnabled(on, fn) {
+  const prev = process.env.QI_ENABLE_WEIGHTS;
+  if (on) process.env.QI_ENABLE_WEIGHTS = '1';
+  else delete process.env.QI_ENABLE_WEIGHTS;
+  try {
+    fn();
+  } finally {
+    if (prev === undefined) delete process.env.QI_ENABLE_WEIGHTS;
+    else process.env.QI_ENABLE_WEIGHTS = prev;
+  }
+}
+
+test('weightsForIntent: 物件意圖時 V2 權重 > 基準（QI_ENABLE_WEIGHTS=1）', () => {
+  withWeightsEnabled(true, () => {
+    const intent = extractIntent('scrape a JS-rendered dashboard and extract tables');
+    const w = weightsForIntent(intent);
+    assert.ok(w.V2 > BASE_WEIGHTS.V2, `V2=${w.V2} 應 > 基準 ${BASE_WEIGHTS.V2}`);
+  });
+});
+
+test('weightsForIntent: 約束意圖時 V4 權重 > 基準（QI_ENABLE_WEIGHTS=1）', () => {
+  withWeightsEnabled(true, () => {
+    const intent = extractIntent('deploy a node.js service to a kubernetes cluster');
+    const w = weightsForIntent(intent);
+    assert.ok(w.V4 > BASE_WEIGHTS.V4, `V4=${w.V4} 應 > 基準 ${BASE_WEIGHTS.V4}`);
+  });
 });
 
 test('weightsForIntent: 權重加總恆等於 1', () => {

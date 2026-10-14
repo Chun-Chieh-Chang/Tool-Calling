@@ -5824,3 +5824,11 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
   4. 自動探勘預設關閉（`TRENDING_AUTO=1` 可開）：每週漲星由遠端 cron 負責；本機 30 分鐘任務正是 2026-10-14 凌晨舊碼汙染事故的來源。
 - **部署後實測（公開連結，curl）**：首頁 200；shutdown／refresh 對公開访客 404；遙測寫入（公開 Origin）200 `{"ok":true}`；匯出 count=2（兩筆 `__deploy_smoke_test__` 標記事件，跨重部署持久）；無金鑰搜尋正常降級（rerank `no api key (offline)`、fusion 結果、誠實 low-confidence）。
 - **本機**：port 3000 已以新碼重啟（自動探勘停用訊息已印出）。
+
+### CI #3（run 38565136599）失敗根因：被掩蓋的測試失敗，非 commit message
+
+- **症狀**：`not ok 235／236`（weightsForIntent 物件→V2、約束→V4 兩支加權守門測試），整套 431 支僅此 2 支失敗，其餘全綠（含 `--commits` 模式， amend 後的訊息已乾淨）。
+- **根因**：Q4 停用開關原本寫成 **import 時凍結**（`const INTENT_WEIGHTS_ENABLED = process.env...`）→ 預設停用時，這兩支「開著時應加權」的舊測試永遠走 base 分支而失敗。**前兩輪 check-traditional 先失敗，`node --test` 從未在 CI 抵達**，同一批 commit 的這個真失敗被完全掩蓋；本機又因沙盒 EBUSY 跑不完 npm test → 只有 CI 能曝光。
+- **修法**（commit `qi-weights-calltime` 前一版）：開關改為**每次呼叫時讀取**（`intentWeightsEnabled()`）。正式環境 env 於行程生命期固定，語意等價；測試因此可在兩條路徑間切換。舊測試改以 helper 顯式指定 on/off 並 restore，不受外圍 env 影響；另補一支「預設停用時命中意圖也回傳基準權重」契約測試。
+- **驗證**：兩檔在預設與 `QI_ENABLE_WEIGHTS=1` 下皆全綠（12/12、6/6）；`llm-rerank.test.js` 36/36；`node --check` 三檔透過；繁體門禁對三檔 0 違規。
+- **教訓（增量，對應 MEMORY §8 既有條目）**：CI 鏈是 `&&` 串接——**前置閘門失敗會讓後段測試整段不跑**。同一批 commit 若有多個獨立失敗，只能一輪曝光一個；每輪修完要確認「`node --test` 是否真的跑完」（看 TAP 尾行 `1..N` 與 fail 計數），不能只看第一個錯誤。沙盒內可用「逐檔 `node <file>` 直跑」取得與 CI 等價的覆蓋（in-process runner，不經 spawn）。

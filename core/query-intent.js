@@ -204,7 +204,14 @@ function extractIntent(query) {
 //   · 兩者皆關（保留抽取）：agent Hit@1 58.0%、fusion 57.2%、semantic 49.6%（最佳觀測）
 //   停損裁決＝**預設停用加權**，抽取保留供診斷（CLI／未來實驗）。
 //   重啟開關：QI_ENABLE_WEIGHTS=1（僅供未來有依據的實驗，勿預設開啟）。
-const INTENT_WEIGHTS_ENABLED = process.env.QI_ENABLE_WEIGHTS === '1';
+// 🔴 開關在「每次呼叫時」讀取，非 import 時凍結：正式環境 env 於行程生命期
+//   固定不變，兩者語意等價；但 import 時凍結會讓測試無法切換路徑——
+//   2026-10-14 CI 實證：weightsForIntent 加權分支的兩支舊守門測試
+//   （物件→V2、約束→V4）因預設停用而失敗，舊碼在本機從未跑完 npm test
+//   （前兩輪 check-traditional 先失敗，node --test 從未抵達），CI 才曝光。
+function intentWeightsEnabled() {
+  return process.env.QI_ENABLE_WEIGHTS === '1';
+}
 // 基準權重（與 agent-retrieval.js 的 DIM_WEIGHTS 一致）：
 //   V1=0.30, V2=0.35, V3=0.20, V4=0.15
 //
@@ -224,7 +231,7 @@ const BASE_WEIGHTS = { V1: 0.30, V2: 0.35, V3: 0.20, V4: 0.15 };
  */
 function weightsForIntent(intent) {
   const w = { ...BASE_WEIGHTS };
-  if (!intent?.hasIntent || !INTENT_WEIGHTS_ENABLED) return w;
+  if (!intent?.hasIntent || !intentWeightsEnabled()) return w;
 
   // 物件訊號：V2 加權，V3 微減（物件屬功能側）
   if (intent.object) {

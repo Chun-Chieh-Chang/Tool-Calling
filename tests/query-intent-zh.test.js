@@ -52,6 +52,13 @@ test('評測集覆蓋率：中文詞表應讓多數查詢觸發意圖（2026-10-
 });
 
 test('預設回傳基準權重（加權已於 2026-10-14 實測後停用）', () => {
-  const it = extractIntent('幫我把網頁上的表格轉成 csv，要開源的');
-  assert.deepEqual(weightsForIntent(it), { ...BASE_WEIGHTS });
+  // 顯式移除開關再測，避免外圍 env 影響此契約（開關為呼叫時讀取）
+  const prev = process.env.QI_ENABLE_WEIGHTS;
+  delete process.env.QI_ENABLE_WEIGHTS;
+  try {
+    const it = extractIntent('幫我把網頁上的表格轉成 csv，要開源的');
+    assert.deepEqual(weightsForIntent(it), { ...BASE_WEIGHTS });
+  } finally {
+    if (prev !== undefined) process.env.QI_ENABLE_WEIGHTS = prev;
+  }
 });
