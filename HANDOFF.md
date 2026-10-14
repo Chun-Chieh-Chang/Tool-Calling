@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-09（十節：negativeFacets 債務清償 4 筆逐條覆核／telemetry 寫入通路首次驗證／`npm audit fix` 全套並推翻「裝 opencc 就全覆蓋」／推送與 push 慣例改版（`cmd /c … 2>nul` 靜默不執行卻回 exit 0，已停用）／CI 長期紅的根因是衍生檔漂移五天／`U+79BB` 收進閘門＋NCZ 缺口由「59」修正為 10＋撤回「`+ecosystem:bootstrap` 是零成本正解」／**P1-b 清程度詞：新增閘門攔下 46 條點不燃的 `-` 值（改寫 37／刪 10），並修掉 `tradingagents` 那條自我拆台的 `-ecosystem:finance`；跨語點燃的舊規格被佐證度實測證偽（見陷阱 22）**／**commit 訊息閘門接進 `npm test`（用默認 `HEAD~1..HEAD`，因 CI 是 `fetch-depth: 2`），並記下 amend 未推送 commit 時用 tree hash 證明內容未動的做法**／**第九輪一次跑完三項已裁：`--commits` 改名額制並在淺歷史下降級＋兩道自我拆台閘門（R1 error／R2 warning）清掉 7 條 facets＋P1-a 中文對照量測（點燃面 4 倍但排序零變動 → 建議先不接線）；順帶量出繁體偵測器「70 個 distinct 字看不見」的覆蓋缺口，修掉原始碼與文件裡 18 處閘門抓不到的簡體（12 檔）**／**第十輪選單六項一次跑完：`--ci` 分類閘門搬進本地 `npm test`（鏈上 12 道）＋NCZ 常態閘門與翻譯器共用同一把尺＋synonyms 知情豁免＋清掉五個過期 ⏳＋重編 2 支漂移詞條（E1 2→0）；**兩項選單前提被現況查推翻並公開撤回**（「6 支缺 NCZ」實測 0、「19＋12」實測 E5 高危 0／E3 0／E1 2），而 B1 的 cap／門檻網格**否決了第九輪待裁 #1**：蓋帽是空轉的旋鈕（帽 0.15→0.50 指標逐位相同），結構門檻放到 0.05 排序 0 變動，散文門檻降下去扣到正解 1→33、Hit@1 149→146——槓桿不在刻度，在「633 支沒有結構化約束」與那把詞袋重疊的鈍尺**——見「三、目前狀態」頂部十節；其下為 10-07 四節與 10-06 embedding 量測、10-05 批次加入快照）
+> 最後更新：2026-10-14（第五輪：五項裁決執行完畢＋發佈上線＋推送後 CI 三連失敗處置完畢並全綠——詳見「三、目前狀態」頂部一節。此行以下為 10-09 十輪與 10-07 四節的快照式描述，保留作為歷史，數字已過期）
 
 ---
 
@@ -263,6 +263,13 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
   實測現有 14 筆扣分被稀釋掉 4 筆，用 bigram 反查更誇張（平均灌 1,824 個詞 → 14 筆全滅）。
   要擴展就取 `max(原始, 擴展)`，這樣對既有行為單調不減分，before/after 才分得清。
 
+### 23. 🔴 CI 的 `&&` 鏈會隱藏後段失敗；`--commits` 模式沒有豁免（2026-10-14）
+
+- `npm test` 是 `&&` 串接：**前置閘門（check-traditional 等）失敗時，`node --test` 整段不會跑**。同一批 commit 若有多個獨立失敗，只能一輪曝光一個。實測：第五輪推送後 CI 三連紅，#1 #2 都是 check-traditional（檔案簡體違規／commit message 引述簡體字），修完才發現 #3 是**被掩蓋兩輪的真測試失敗**（2 支 weightsForIntent 守門測試，根因是停用開關在 import 時凍結）——它從 #1 輪就存在。沙盒內 `npm test` 又跑不完（EBUSY），只有 CI 能曝光。
+- **每輪修完必須確認 TAP 真的跑完**：看尾行 `1..N` 與 `# fail` 計數，不能只看第一個錯誤就改。
+- **`check-traditional --commits` 掃 commit message 且「歷史無豁免」**：行級 `// allow-simplified` 對它無效；message 不得出現任何簡體字（連引述實測資料都不行），只能用繁體描述。amend 已推送的 commit 需 force-with-lease（須用戶裁決後才做）。
+- 沙盒等價驗證：spawn 型測試 EBUSY 時，用「逐檔 `node <file>` 直跑」（in-process runner，不經 spawn）取得與 CI 等價的覆蓋。
+
 ---
 
 ## 三、目前狀態（頂部一節為 2026-10-14 第五輪快照，其次第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
@@ -282,10 +289,17 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 - 遙測匯出 `GET /api/telemetry/export?token=`（token 在 `web/data/telemetry-export-token.txt`，.gitignore 管轄）：真人問句是敏感資料，無 token 404。
 - 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據——🔴 **首發部署實測：平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開實例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。環境變數判據不可靠，Host 頭才可靠。
 - 自動探勘預設關閉（TRENDING_AUTO=1 可開）——每週漲星由遠端 cron 負責；本機 30 分鐘任務正是第四輪舊碼汙染事故來源。
-- 端到端實測：首頁 200／公開访客 shutdown·refresh 404／遙測寫入 200／匯出 count=2（smoke_test 標記，跨重部署持久）／無金鑰搜尋正常降級。
+- 端到端實測：首頁 200／公開訪客 shutdown·refresh 404／遙測寫入 200／匯出 count=2（smoke_test 標記，跨重部署持久）／無金鑰搜尋正常降級。
 - **取回真人語料**：`curl "https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run/api/telemetry/export?token=<web/data/telemetry-export-token.txt 內容>"`。
 
-**提交**（本地 main，5 個原子 commit，未推送）：`e9adbf0` Q4 詞表＋停用加權／`ffc52aa` Q1 增量政策／`8ec9b2d` 發佈安全態勢／`dc6321e` Host 判據修正／docs 待補。validate 100/100、新測試 22/22、門禁全綠。
+**提交與推送（2026-10-14 完結，`origin/main` = 本地 = `55024d8`，CI 全綠）**：7 個原子 commit——`e9adbf0` Q4 繁簡詞表＋加權預設停用／`ffc52aa` Q1 多值分類增量政策／`8ec9b2d` 發佈安全態勢（isTrustedOrigin 放行公開域、遙測匯出 token）／`dc6321e` Host 頭判據＋自動探勘預設關閉／`13bf263` 文件（HANDOFF／DEV_LOG）／`3c6b268`（原 `bfb4dee`）繁體門禁：簡體資料行級豁免＋四處誤打字修正／`55024d8` 加權開關改呼叫時讀取（修 CI #3）。
+
+**推送後 CI 三連失敗 → 全綠**（最終 run 38567242681 success，validate-and-build＋deploy；詳陷阱 23）：
+1. **#1（run 38561896777）**：check-traditional `--full --code` 12 行違規 → 簡體資料（繁簡檢索詞、fixture）改行級 `// allow-simplified：原因` 豁免；四處誤打字改回繁體。commit `bfb4dee`。
+2. **#2（run 38563027957）**：commit message 本身引述簡體字——`--commits` 模式歷史無豁免 → 用戶裁決 **amend＋force-with-lease**；訊息改用繁體描述、不引原字（findSimplified 驗證乾淨）。`bfb4dee` → `3c6b268`。
+3. **#3（run 38565136599）**：**不是訊息問題，是被掩蓋兩輪的真測試失敗**——431 支測試僅 2 支失敗（weightsForIntent 物件→V2／約束→V4 守門測試）。根因：停用開關在 **import 時凍結**，預設停用時加權分支永遠走不到；且 #1 #2 讓 `node --test` 從未抵達。修法：開關改**呼叫時讀取**（`intentWeightsEnabled()`，正式環境語意等價），測試以 helper 顯式指定 on/off，另補「預設停用也回傳基準權重」契約測試。本地兩狀態（預設／`QI_ENABLE_WEIGHTS=1`）皆全綠。
+
+**3D 聚焦淡化複驗（2026-10-14 晚，回應使用者提問「未選中是否也維持高亮」）**：以目前程式碼重新生成頁面＋headless Chromium 實測（讀 `__sphereMat.opacity`，不靠肉眼）：圖例選分類 → 選中 64 支（分類節點＋其工具）維持 1.0、其餘 862 支 → 0.07（標籤 0.10、連結暗灰）；直點節點只有被點那支高亮；相機拖曳後淡化維持（材質未被洗回）；取消聚焦三路徑（單擊空白／雙擊空白／圖例反點）皆全還原 926/926。**結論：未選中不會維持高亮，Focus Spotlight 語意（2D/3D 一致）運作正常，無需改碼。**
 
 ### 2026-10-13（第三輪）三項裁決執行：移除失效 repo、補三 URL、四原子 commit
 
