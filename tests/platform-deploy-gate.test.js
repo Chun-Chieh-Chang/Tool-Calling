@@ -1,11 +1,12 @@
 /**
- * platform-deploy-gate.test.js — 發佈实例安全態勢守門測試（2026-10-14 Q3=A）
+ * platform-deploy-gate.test.js — 公開访客安全態勢守門測試（2026-10-14 Q3=A）
  *
- * 發佈（workbuddy sites）會注入 PORT。平台实例必須：
- *   · 遙測寫入 /api/telemetry 維持開放（發佈的目的）
- *   · 遙測匯出 /api/telemetry/export 無 token 不可見（真人語料是敏感資料）
- *   · 寫入型端點 tools/add、trending/refresh、shutdown 一律停用
- *     （公開訪客不該能改 sandbox registry、觸發背景任務或關閉服務）
+ * 部署實測修正（2026-10-14）：平台不保證注入 PORT，改以 Host 頭判據。
+ * 公開访客（Host／X-Forwarded-Host 非本機）必須：
+ *   · 寫入型端點 tools/add、trending/refresh、shutdown 一律 404
+ *   · 遙測匯出 /api/telemetry/export 無 token 不可見、錯 token 403
+ * 遙測寫入（公開Origin + 相符的 X-Forwarded-Host＝信任）的端到端驗證
+ * 在部署实例上用 curl 實測（見 DEV_LOG 2026-10-14），不在此檔落事件。
  */
 
 import test from 'node:test';
@@ -18,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = join(fileURLToPath(import.meta.url), '..', '..');
 const PORT = 3987;
 const BASE = `http://127.0.0.1:${PORT}`;
+const PUBLIC_HOST = 'public.example.com';
 
 async function waitForServer(timeoutMs = 15000) {
   const t0 = Date.now();
@@ -32,7 +34,7 @@ async function waitForServer(timeoutMs = 15000) {
   }
 }
 
-test('平台实例：寫入型端點停用、遙測端點行為正確', async (t) => {
+test('公開访客：寫入型端點停用、遙測匯出 token 把關', async (t) => {
   const child = spawn(process.execPath, ['web/server.js'], {
     cwd: ROOT,
     env: { ...process.env, PORT: String(PORT) },
@@ -43,20 +45,23 @@ test('平台实例：寫入型端點停用、遙測端點行為正確', async (t
 
     const shutdown = await fetch(`${BASE}/api/shutdown`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Forwarded-Host': PUBLIC_HOST },
       body: JSON.stringify({ confirm: 'SHUTDOWN' }),
     });
-    assert.equal(shutdown.status, 404, 'shutdown 在平台实例必須停用');
+    assert.equal(shutdown.status, 404, 'shutdown 對公開访客必須停用');
 
     const add = await fetch(`${BASE}/api/tools/add`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'X-Forwarded-Host': PUBLIC_HOST },
       body: JSON.stringify({ url: 'https://github.com/owner/repo' }),
     });
-    assert.equal(add.status, 404, 'tools/add 在平台实例必須停用');
+    assert.equal(add.status, 404, 'tools/add 對公開访客必須停用');
 
-    const refresh = await fetch(`${BASE}/api/trending/refresh`, { method: 'POST' });
-    assert.equal(refresh.status, 404, 'trending/refresh 在平台实例必須停用');
+    const refresh = await fetch(`${BASE}/api/trending/refresh`, {
+      method: 'POST',
+      headers: { 'X-Forwarded-Host': PUBLIC_HOST },
+    });
+    assert.equal(refresh.status, 404, 'trending/refresh 對公開访客必須停用');
 
     const exportNoToken = await fetch(`${BASE}/api/telemetry/export`);
     assert.equal(exportNoToken.status, 404, '匯出端點無 token 必須不可見');

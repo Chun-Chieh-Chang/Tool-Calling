@@ -24,18 +24,18 @@ const DEV_MODE = process.argv.includes('--dev');
 const distDir = DEV_MODE ? path.join(__dirname) : path.join(rootDir, 'dist');
 const trendingJsonPath = path.join(rootDir, 'registry', 'weekly-trending.json');
 
-// ─── 部署模式判定（2026-10-14 Q3=A 發佈決策） ────────────────────────────
-// 平台（workbuddy sites）一定注入 PORT；本機 `npm start` 不會有 PORT。
-// 發佈实例與本機工作台的安全態勢完全不同，據此收緊：
-//   · 探勘自動更新：本機預設開（原行為不變）；平台預設關（省 GitHub 額度，
-//     sandbox 內重寫 registry 沒有意義）。TRENDING_AUTO=1 可手動覆寫。
-//   · 寫入型端點（tools/add／trending/refresh／shutdown）：平台一律停用
-//     （sandbox registry 是一次性的；公開訪客不該能觸發背景任務或關閉服務）。
-//   · 遙測寫入 /api/telemetry 必須維持開放——那是發佈的目的（累積真人查詢）。
-const IS_PLATFORM = Boolean(process.env.PORT);
-const AUTO_TRENDING_ENABLED = IS_PLATFORM
-  ? process.env.TRENDING_AUTO === '1'
-  : process.env.TRENDING_AUTO !== '0';
+// ─── 部署模式判定（2026-10-14 Q3=A 發佈決策，含部署後實測修正） ──────────
+// 首發佈實測：平台**不一定注入 PORT**（實測 IS_PLATFORM 判據失效，
+// shutdown 在公開实例回 200、自動探勘照跑並撞 GitHub 限流出 504）。
+// 改用不依賴環境變數的判據：
+//   · isLocalRequest(req)：Host／X-Forwarded-Host 皆為本機才算本機。
+//     本機瀏覽器（Host: localhost）行為完全不變；公開访客一律受限。
+//   · 自動探勘：預設關（TRENDING_AUTO=1 可手動開）。每週漲星由遠端
+//     cron 工作流負責；本機 30 分鐘任務曾在 2026-10-14 造成舊碼汙染事故。
+//   · 寫入型端點（tools/add／trending/refresh／shutdown）：僅本機可用
+//     （公開访客不該能改 sandbox registry、觸發背景任務或關閉服務）。
+//   · 遙測寫入 /api/telemetry 維持公開開放——那是發佈的目的（累積真人查詢）。
+const AUTO_TRENDING_ENABLED = process.env.TRENDING_AUTO === '1';
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -240,10 +240,20 @@ const server = http.createServer(async (req, res) => {
       }
     };
 
-    // 平台实例停用寫入型端點（見 IS_PLATFORM 註解）
+    // 本機請求判定（2026-10-14 部署實測修正）：Host 與 X-Forwarded-Host
+    // 皆為本機（或缺失）才算本機。反向代理後的公開访客一律視為遠端。
+    const isLocalRequest = (req) => {
+      const bare = (h) => String(h || '').split(',')[0].split(':')[0].trim().toLowerCase();
+      const host = bare(req.headers.host);
+      const fwd = bare(req.headers['x-forwarded-host']);
+      const local = (h) => h === '' || h === 'localhost' || h === '127.0.0.1' || h === '::1' || h === '[::1]';
+      return local(host) && local(fwd);
+    };
+
+    // 平台实例停用寫入型端點（見上方部署模式判定註解）
     const rejectOnPlatform = (res, name) => {
       res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ error: `此端點在發佈实例已停用: ${name}` }));
+      res.end(JSON.stringify({ error: `此端點僅限本機使用: ${name}` }));
     };
 
     // 只對信任來源回顯 Origin；不再無差別給 `*`
@@ -269,7 +279,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (decodedUrl === '/api/trending/refresh') {
-      if (IS_PLATFORM) { rejectOnPlatform(res, 'trending/refresh'); return; }
+      if (!isLocalRequest(req)) { rejectOnPlatform(res, 'trending/refresh'); return; }
       if (!isTrustedOrigin(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
@@ -610,7 +620,7 @@ const server = http.createServer(async (req, res) => {
 
     // ─── 新增工具 API ──────────────────────────────────────────────────
     if (decodedUrl === '/api/tools/add' && req.method === 'POST') {
-      if (IS_PLATFORM) { rejectOnPlatform(res, 'tools/add'); return; }
+      if (!isLocalRequest(req)) { rejectOnPlatform(res, 'tools/add'); return; }
       if (!isTrustedOrigin(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
@@ -705,7 +715,7 @@ const server = http.createServer(async (req, res) => {
     // event loop tick 優雅關閉 HTTP server 並結束程序。
     // 僅允許本機來源 + 需帶確認字串，避免任意網頁或 curl 誤關。
     if (decodedUrl === '/api/shutdown' && req.method === 'POST') {
-      if (IS_PLATFORM) { rejectOnPlatform(res, 'shutdown'); return; }
+      if (!isLocalRequest(req)) { rejectOnPlatform(res, 'shutdown'); return; }
       if (!isTrustedOrigin(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
