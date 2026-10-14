@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-13T14:26:14.374Z",
+  "lastUpdated": "2026-10-14T00:01:53.302Z",
   "snapshots": [
     {
       "week": "2026-W30",
@@ -9620,8 +9620,5 @@
         "browser-use/browser-use": 117824
       }
     }
-  ],
-  "sunsiyuan/ultramotion": 6,
-  "QingYunA/answer-me-with-html": 3273,
-  "tradecatlabs/vibe-coding-cn": 17521
+  ]
 }

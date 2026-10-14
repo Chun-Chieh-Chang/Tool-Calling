@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-13T15:02:17.615Z",
+  "lastUpdated": "2026-10-14T00:02:16.206Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -58567,6 +58567,64 @@
       "advantages_zh": "涵蓋完整工作流的結構化中文課程：提示、技能、上下文管理與品質關卡；教程搭配研究實證與方法學登錄檔，使各項主張皆可追溯；提供即用資源：一鍵式 Codex 設定、技能目錄與線上提示庫",
       "negativeConstraints_zh": [
         "非程式庫或可執行工具"
+      ]
+    },
+    {
+      "id": "huashu-art-motion",
+      "name": "huashu-art-motion",
+      "url": "https://github.com/alchaincyf/huashu-art-motion",
+      "description": "艺术动画skill：35种艺术风格、9种解说语法，用代码让画动起来。",
+      "category": "多媒體生成",
+      "language": "javascript",
+      "triggers": [
+        "huashu-art-motion",
+        "art-animation",
+        "艺术动画",
+        "animation-skill",
+        "claude-skills"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx skills add alchaincyf/huashu-art-motion",
+        "repoUrl": "https://github.com/alchaincyf/huashu-art-motion"
+      },
+      "capabilities": [
+        "code-based-animation",
+        "art-style-simulation",
+        "narrative-syntax-templates",
+        "audio-synthesis",
+        "quality-automated-validation",
+        "scene-transition-rendering"
+      ],
+      "useCase": "A content creator instructs a coding agent to generate a seamless animation of a character moving across 35 different art historical styles, using code-based rendering to animate static images and synthesize accompanying music.",
+      "advantages": [
+        "Provides 35 parameterized art style recipes and 9 narrative syntax templates that can be combined to create dynamic animations from static imagery.",
+        "Includes a built-in quality assurance pipeline (qa.py and deliver.py) that automatically validates motion stability, flow, and visual quality before final delivery.",
+        "Supports pure code-based audio synthesis, allowing users to generate background music and sound effects without external audio assets."
+      ],
+      "negativeConstraints": [
+        "Requires specific external dependencies including uv, ffmpeg, and Playwright Chromium for rendering and execution.",
+        "Not suitable for complex 3D modeling or real-time interactive game engines, as it focuses on 2D code-rendered frames and synthesized composites."
+      ],
+      "stars": 3494,
+      "addedAt": "2026-10-13T23:56:03.251Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W41",
+        "starsAtIngest": 3494,
+        "weeklyDelta": 3494,
+        "ingestedAt": "2026-10-13T23:56:03.251Z"
+      },
+      "useCase_zh": "創作者指示 AI 編碼代理，利用程式碼渲染技術，將靜態圖像轉換為跨越 35 種藝術風格的動態動畫，並同步合成背景音樂與音效。",
+      "advantages_zh": [
+        "提供 35 張參數化藝術風格配方卡與 9 種敘事語法模板，可組合生成從靜態圖像到動態動畫的內容。",
+        "內建自動化品質驗證流程（qa.py 與 deliver.py），在交付前自動檢查運動穩定性、流暢度與視覺質量。",
+        "支援純程式碼音訊合成，無需外部音訊素材即可生成配樂與音效。"
+      ],
+      "negativeConstraints_zh": [
+        "需要特定的外部相依套件，包括 uv、ffmpeg 與 Playwright Chromium，用於渲染及執行。",
+        "不適合用於複雜的 3D 建模或即時互動式遊戲引擎，因其專注於 2D 程式碼渲染之影格與合成影像。"
       ]
     }
   ]

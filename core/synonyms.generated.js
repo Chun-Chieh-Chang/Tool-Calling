@@ -63375,6 +63375,26 @@ export const SYNONYM_MAP = {
     "文件生產力",
     "openwiki"
   ],
+  "艺术动画": [
+    "huashu-art-motion",
+    "art-animation",
+    "animation-skill"
+  ],
+  "huashu-art-motion": [
+    "艺术动画",
+    "art-animation",
+    "animation-skill"
+  ],
+  "art-animation": [
+    "艺术动画",
+    "huashu-art-motion",
+    "animation-skill"
+  ],
+  "animation-skill": [
+    "艺术动画",
+    "huashu-art-motion",
+    "art-animation"
+  ],
   "翻譯": [
     "translate",
     "translation",
