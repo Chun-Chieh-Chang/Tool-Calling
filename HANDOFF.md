@@ -280,7 +280,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 **Q3 發佈上線（workbuddy sites）**：公開連結 `https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run`（2026-10-14 12:03 UTC 部署，verified）。四項部署前改造＋一件部署後實測修正，**全部有守門測試**：
 - `isTrustedOrigin` 放行自己的公開網域（Host／X-Forwarded-Host 比對）——否則發佈域瀏覽器遙測寫入全數 403，發佈目的一上線就死。
 - 遙測匯出 `GET /api/telemetry/export?token=`（token 在 `web/data/telemetry-export-token.txt`，.gitignore 管轄）：真人問句是敏感資料，無 token 404。
-- 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據——🔴 **首發部署實測：平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開实例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。環境變數判據不可靠，Host 頭才可靠。
+- 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據——🔴 **首發部署實測：平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開實例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。環境變數判據不可靠，Host 頭才可靠。
 - 自動探勘預設關閉（TRENDING_AUTO=1 可開）——每週漲星由遠端 cron 負責；本機 30 分鐘任務正是第四輪舊碼汙染事故來源。
 - 端到端實測：首頁 200／公開访客 shutdown·refresh 404／遙測寫入 200／匯出 count=2（smoke_test 標記，跨重部署持久）／無金鑰搜尋正常降級。
 - **取回真人語料**：`curl "https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run/api/telemetry/export?token=<web/data/telemetry-export-token.txt 內容>"`。

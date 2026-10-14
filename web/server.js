@@ -26,7 +26,7 @@ const trendingJsonPath = path.join(rootDir, 'registry', 'weekly-trending.json');
 
 // ─── 部署模式判定（2026-10-14 Q3=A 發佈決策，含部署後實測修正） ──────────
 // 首發佈實測：平台**不一定注入 PORT**（實測 IS_PLATFORM 判據失效，
-// shutdown 在公開实例回 200、自動探勘照跑並撞 GitHub 限流出 504）。
+// shutdown 在公開實例回 200、自動探勘照跑並撞 GitHub 限流出 504）。
 // 改用不依賴環境變數的判據：
 //   · isLocalRequest(req)：Host／X-Forwarded-Host 皆為本機才算本機。
 //     本機瀏覽器（Host: localhost）行為完全不變；公開访客一律受限。
@@ -229,7 +229,7 @@ const server = http.createServer(async (req, res) => {
       try {
         const { hostname, host } = new URL(origin);
         if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '::1' || hostname === '[::1]') return true;
-        // 發佈实例（2026-10-14 Q3=A）：自己的公開網域＝信任來源。
+        // 發佈實例（2026-10-14 Q3=A）：自己的公開網域＝信任來源。
         // 反向代理可能保留原始 Host，也可能改寫（X-Forwarded-Host），兩種都比對。
         // 安全性不變：跨站攻擊者的 Origin 主機不可能等於我們的 Host 頭。
         const fwd = req.headers['x-forwarded-host'];
@@ -250,7 +250,7 @@ const server = http.createServer(async (req, res) => {
       return local(host) && local(fwd);
     };
 
-    // 平台实例停用寫入型端點（見上方部署模式判定註解）
+    // 平台實例停用寫入型端點（見上方部署模式判定註解）
     const rejectOnPlatform = (res, name) => {
       res.writeHead(404, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ error: `此端點僅限本機使用: ${name}` }));

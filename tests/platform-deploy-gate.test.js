@@ -6,7 +6,7 @@
  *   · 寫入型端點 tools/add、trending/refresh、shutdown 一律 404
  *   · 遙測匯出 /api/telemetry/export 無 token 不可見、錯 token 403
  * 遙測寫入（公開Origin + 相符的 X-Forwarded-Host＝信任）的端到端驗證
- * 在部署实例上用 curl 實測（見 DEV_LOG 2026-10-14），不在此檔落事件。
+ * 在部署實例上用 curl 實測（見 DEV_LOG 2026-10-14），不在此檔落事件。
  */
 
 import test from 'node:test';

@@ -33,9 +33,9 @@ test('中文查詢命中物件與約束訊號', () => {
 });
 
 test('簡體查詢同樣命中（繁簡並列）', () => {
-  const it = extractIntent('把视频转换成 gif，要离线的');
-  assert.ok(it.objectTerms.includes('视频'));
-  assert.ok(it.constraintTerms.includes('离线'));
+  const it = extractIntent('把视频转换成 gif，要离线的');  // allow-simplified：簡體 fixture，測的就是簡體匹配
+  assert.ok(it.objectTerms.includes('视频'));  // allow-simplified：簡體 fixture 斷言
+  assert.ok(it.constraintTerms.includes('离线'));  // allow-simplified：簡體 fixture 斷言
 });
 
 test('中文通用詞不觸發意圖（幫我／工具／系統單獨出現）', () => {

@@ -368,7 +368,7 @@ export function inferSecondary(tool) {
 // ─── 多值身分落盤助手（增量政策，2026-10-14 裁決） ──────────────────────────
 // 裁決 Q1=B：categories[] 只對「未來新工具」增量落盤，不回溯掃全庫
 // （回溯仍走 scripts/infer-multidimensional.js 提案＋人工核准；
-//  2026-10-14 實測：現行 771 支有 43 支带 secondary 候選，刻意不補）。
+//  2026-10-14 實測：現行 771 支有 43 支帶 secondary 候選，刻意不補）。
 // 由 scripts/scan-tool.js 在新工具入庫時呼叫——所有新工具的唯一入口
 // （cli add／web /api/tools/add／trending ingest 都經過 scan-tool）。
 //

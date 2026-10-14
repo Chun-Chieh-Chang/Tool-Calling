@@ -5820,7 +5820,7 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
 - **部署前改造**（commit `8ec9b2d`／`dc6321e`）：
   1. `isTrustedOrigin` 原本只放行 localhost → 發佈域的瀏覽器遙測寫入會被全數 403（發佈目的一上線就死）。改為「自己的公開網域＝信任」（Host／X-Forwarded-Host 比對），跨站攻擊者的 Origin 主機仍不可能等於我們的 Host。
   2. 遙測匯出 `GET /api/telemetry/export?token=`（env 或 `web/data/telemetry-export-token.txt`，.gitignore 管轄）：真人問句是敏感資料，無 token 404、錯 token 403、正確 token 200。
-  3. 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據（isLocalRequest）——首發部署實測：**平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開实例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。不依賴環境變數的判據才可靠。
+  3. 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據（isLocalRequest）——首發部署實測：**平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開實例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。不依賴環境變數的判據才可靠。
   4. 自動探勘預設關閉（`TRENDING_AUTO=1` 可開）：每週漲星由遠端 cron 負責；本機 30 分鐘任務正是 2026-10-14 凌晨舊碼汙染事故的來源。
 - **部署後實測（公開連結，curl）**：首頁 200；shutdown／refresh 對公開访客 404；遙測寫入（公開 Origin）200 `{"ok":true}`；匯出 count=2（兩筆 `__deploy_smoke_test__` 標記事件，跨重部署持久）；無金鑰搜尋正常降級（rerank `no api key (offline)`、fusion 結果、誠實 low-confidence）。
 - **本機**：port 3000 已以新碼重啟（自動探勘停用訊息已印出）。
