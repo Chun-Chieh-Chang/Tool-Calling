@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tool-Calling 裁決頁 2026-10-15（第七輪）— 未做／待裁一頁選</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --panel-2: #1c2330;
+    --border: #2d333f;
+    --text: #e6e9ef;
+    --muted: #9aa4b2;
+    --accent: #58a6ff;
+    --accent-dim: rgba(88, 166, 255, 0.14);
+    --good: #3fb950;
+    --warn: #d29922;
+    --bad: #f85149;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.65;
+    padding: 24px 16px 120px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  header h1 { font-size: 1.5rem; letter-spacing: 0.5px; }
+  header .sub { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
+  .chip {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .chip b { color: var(--text); font-weight: 600; }
+  .chip.done b { color: var(--good); }
+  .chip.todo b { color: var(--warn); }
+  .intro {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin: 16px 0 24px;
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 22px;
+  }
+  .card h2 { font-size: 1.08rem; margin-bottom: 4px; }
+  .card h2 .qno { color: var(--accent); font-family: ui-monospace, "Cascadia Code", Consolas, monospace; margin-right: 6px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+  .fact {
+    font-size: 0.75rem;
+    background: rgba(210, 153, 34, 0.12);
+    border: 1px solid rgba(210, 153, 34, 0.35);
+    color: #e8b85a;
+    border-radius: 6px;
+    padding: 2px 9px;
+  }
+  .plain { font-size: 0.92rem; color: var(--text); margin-bottom: 12px; }
+  .plain b { color: var(--accent); font-weight: 600; }
+  .plain .so { color: var(--muted); font-size: 0.86rem; display: block; margin-top: 8px; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    width: 100%;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt .mark {
+    flex: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--muted);
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: transparent;
+  }
+  .opt .body { flex: 1; }
+  .opt .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    border-radius: 4px;
+    padding: 0 6px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+  .tag.rec { background: rgba(63, 185, 80, 0.16); color: var(--good); border: 1px solid rgba(63, 185, 80, 0.4); }
+  .tag.no { background: rgba(248, 81, 73, 0.14); color: var(--bad); border: 1px solid rgba(248, 81, 73, 0.4); }
+  .opt .why { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 3px; }
+  .opt.selected { border-color: var(--accent); background: var(--accent-dim); }
+  .opt.selected .mark { border-color: var(--accent); background: var(--accent); color: #0d1117; font-weight: 700; }
+  .opt.rec-hint:not(.selected) { border-style: dashed; border-color: rgba(63, 185, 80, 0.45); }
+  .bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(13, 17, 23, 0.94);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+  }
+  .bar .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .summary {
+    flex: 1;
+    min-width: 260px;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: pre-wrap;
+  }
+  .summary b { color: var(--accent); font-weight: 600; }
+  .summary .pending { color: var(--warn); }
+  button.act {
+    background: var(--accent);
+    color: #0d1117;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button.act:hover { filter: brightness(1.1); }
+  button.act.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  button.act.ghost:hover { color: var(--text); border-color: var(--accent); }
+  .toast {
+    position: fixed;
+    bottom: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--good);
+    color: #0d1117;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .toast.show { opacity: 1; }
+  footer { margin-top: 8px; color: var(--muted); font-size: 0.8rem; }
+  footer code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🧭 Tool-Calling 裁決頁 — 2026-10-15（第七輪）</h1>
+    <div class="sub">上一輪五題已執行完畢並推送（CI 綠）。這一頁是「還卡著、需要你決定」的七件事。</div>
+    <div class="chips">
+      <span class="chip done">上一輪 Q1~Q5 <b>已完成</b></span>
+      <span class="chip todo">Worker <b>未部署</b></span>
+      <span class="chip todo">live 環境變數 <b>未設</b></span>
+      <span class="chip">真人遙測 <b>3 筆（皆測試）</b></span>
+      <span class="chip">評測集 <b>v1.3.0</b>（9 題含簡體）</span>
+      <span class="chip">數據錨點 <b>2026-10-15 20:00 實測</b></span>
+    </div>
+  </header>
+
+  <div class="intro">
+    💡 <b>怎麼用：</b>每題 2–4 個選項，<b>綠色虛線框＝建議</b>、紅色標籤＝不建議。點一下就是選定，可隨時改；
+    選擇存在瀏覽器（重整不丟）。選完按「📋 複製裁決摘要」貼回對話，我就照著執行並記錄到 <code>HANDOFF.md §三</code>。
+    <br><br>
+    <b>哪些是「卡在外部動作」：</b>Q1、Q2 不是寫程式就能完成的——需要你在 Cloudflare 或發佈平台上操作。
+    其餘五題我都能直接動手。
+  </div>
+
+  <div id="cards"></div>
+
+  <footer>
+    產出：<code>docs/decisions-2026-10-15b.html</code>（第七輪）。裁決結果將記錄至 <code>HANDOFF.md §三</code>。
+    本頁不修改任何 registry 或程式碼。
+  </footer>
+</div>
+
+<div class="bar">
+  <div class="inner">
+    <div class="summary" id="summary"></div>
+    <button class="act ghost" id="btn-reset">重選</button>
+    <button class="act ghost" id="btn-rec">採用全部建議</button>
+    <button class="act" id="btn-copy">📋 複製裁決摘要</button>
+  </div>
+</div>
+<div class="toast" id="toast">✅ 已複製，貼回對話即可</div>
+
+<script>
+const QUESTIONS = [
+  {
+    id: 'Q1',
+    title: '「加入工具庫」的 Worker 要不要現在部署？',
+    facts: ['程式與測試已完成並推送', 'Worker 未建立', 'Pages 按鈕目前顯示「尚未設定端點」'],
+    plain: '上一輪你選了 B 案（Worker 開 PR），程式碼已經寫好、測試綠、也推上 GitHub 了。但 <b>Worker 本身還沒建立</b>——所以現在到 Pages 上按「＋ 加入工具庫」，只會看到「尚未設定提名端點」的說明，不會送請求。要啟用就得在 Cloudflare 建一個 Worker，並放一把<b>只能開 PR、不能直接改 main</b> 的 GitHub token（當 secret 注入，不會寫進程式碼）。'
+      + '<span class="so">我能幫的：把每一步指令與要填的值整理成可直接複製的步驟（含 wrangler 指令、secret 名稱、要填進 index.html 的網址位置）。但 Cloudflare 帳號登入與 token 產生必須你本人操作。若你不想碰後端，B 案是替代路線：按鈕改成「提名工具」導向預填好的 Issue，由 GitHub Actions 在背景跑 <code>node cli.js add</code>，零後端、但 LLM 費用由你吸收。</span>',
+    options: [
+      { key: 'A', label: '現在部署：我產出逐步指令，你照做', rec: true, tag: 'rec', why: '程式已備妥，只差約 15 分鐘的外部操作；保留全部 CI 品質閘門，使用者不必交出 repo 寫入權。' },
+      { key: 'B', label: '改走 Issue 提名制（放棄 Worker）', rec: false, why: '零後端、零維護，但 LLM 費用由你負擔，且要自己防濫用（節流、allowlist）。等於推翻上一輪的 B 案。' },
+      { key: 'C', label: '維持現狀：按鈕顯示部署說明', rec: false, why: '不做任何事。訪客按了會看到「尚未設定」——誠實但功能等於沒開。' },
+      { key: 'D', label: '把 Pages 上的按鈕移除', rec: false, why: '避免訪客以為可用；代價是連「本機工作台可用」這件事在 Pages 上也看不到入口。' }
+    ]
+  },
+  {
+    id: 'Q2',
+    title: 'live 實例要不要重新發佈並設 allowlist？',
+    facts: ['Pages 導流橫幅已上線（今日 push 後生效）', '遙測後端實測正常', 'live 環境變數 TELEMETRY_ALLOWED_ORIGINS 未設'],
+    plain: '上一輪我診斷出「真人遙測 0 筆」的原因是入口不可見＋跨域被擋，並寫好了修正。今天推送後 <b>Pages 的導流橫幅已經上線</b>（訪客現在看得到通往完整工作台的連結）。但還差最後一哩：live 實例的環境變數 <code>TELEMETRY_ALLOWED_ORIGINS</code> 沒設，Pages 訪客的搜尋事件會被 403 擋掉，<b>回流還是不通</b>。而環境變數要在重新發佈時才會生效。'
+      + '<span class="so">目前遙測 3 筆全是部署冒煙測試與我的診斷探針，沒有真人事件。設定後，Pages 與 live 兩邊的搜尋都會累積到同一份語料（真人問句是檢索調校最缺的證據）。發佈是對外動作，我會在你回覆後再確認一次才實際執行。</span>',
+    options: [
+      { key: 'A', label: '現在重新發佈，並設好 allowlist', rec: true, tag: 'rec', why: '橫幅已上線，趁熱把回流打通，語料從今天開始累積；否則橫幅導來的流量一樣不會被記錄。' },
+      { key: 'B', label: '跟 Q1 的 Worker 一起做（一次部署解決兩件）', rec: false, why: '少一次部署，但遙測要多等一段時間才開始累積，且兩件事互不相依。' },
+      { key: 'C', label: '先不設：只觀察橫幅導流效果', rec: false, why: '能看到「有沒有人從 Pages 點過來」，但那裡的搜尋行為仍然完全不會被記錄。' }
+    ]
+  },
+  {
+    id: 'Q3',
+    title: '評測集裡 9 題含簡體字，怎麼處理？',
+    facts: ['257 題中 9 題含簡體', '配對 A/B：改善 6／不變 3／變差 0', '其中 1 題由「找不到」→ 第 7 名'],
+    plain: '評測集是「量尺」，我們用它判斷檢索有沒有變好。今天發現尺本身有瑕疵：<b>257 題裡有 9 題的問句混了簡體字</b>（例如「想让 AI 助理能开口说话…」）。實測把這 9 題轉成繁體後：改善 6 題、不變 3 題、變差 0 題，其中一題從「完全找不到」變成第 7 名。也就是說這 9 題量到的有一部分是「簡繁不匹配」，不是檢索能力。' // allow-simplified：逐字引用評測題原文，這正是本題的證據本身
+      + '<span class="so">注意：9 題裡有 4 題即使帶簡體也照樣成功，所以簡繁只解釋 42 題失敗中的 5 題——不是萬用藉口。改評測集要付出代價：它是 SSOT，改了就必須<b>重跑所有基線數字</b>（Hit@1、天花板、ablate:v5…），而且新舊版本不可直接比較。</span>',
+    options: [
+      { key: 'A', label: '清洗成繁體 → 發 v1.4.0，並重跑全部基線', rec: true, tag: 'rec', why: '量出來的數字才反映真實檢索能力；舊 v1.3.0 的數字保留為歷史（專案既有慣例），不會被改寫。' },
+      { key: 'B', label: '先只量出「清洗後會變多少」，再決定', rec: false, why: '多一輪、但決策有據；缺點是這段時間的調校仍踩在含雜訊的尺上。' },
+      { key: 'C', label: '不動評測集，只在文件註明這 9 題', rec: false, why: '零成本、保住可比性；但每次量測都要人工記得扣掉這層雜訊。' }
+    ]
+  },
+  {
+    id: 'Q4',
+    title: '查詢端要不要做「簡轉繁」正規化？',
+    facts: ['已有偵測器 findSimplified() 與轉換器 toTraditional()', '檢索入口尚未接', '會改變檢索行為'],
+    plain: '真人使用者可能用簡體打字（尤其輸入法預設簡體的人）。專案裡已經有「偵測簡體」與「轉繁體」兩個工具，但<b>查詢入口沒有接上</b>。接上之後，簡體問句也能找到繁體 metadata 的工具——這正是 Q3 那 9 題失敗的同一種病，只是發生在真實使用者身上。'
+      + '<span class="so">但這是<b>行為改變</b>：所有既有量測數字的意義都會變成「接之前／接之後」。所以建議先離線量測（同一批題目跑兩次、配對比較），確認無回歸再上線——而不是直接改。</span>',
+    options: [
+      { key: 'A', label: '先離線量測，確認無回歸再上線', rec: true, tag: 'rec', why: '沿用專案既有的配對 A/B 方法論；量測不需 API，成本低，且能同時回答「值得做嗎」。' },
+      { key: 'B', label: '直接上線', rec: false, why: '快，但跳過量測；一旦有回歸（例如已繁體的字被改錯）就要回頭收拾。' },
+      { key: 'C', label: '不做：只修評測集，不碰檢索路徑', rec: false, why: '最保守；代價是真人打簡體時仍然找不到工具，語料也救不回。' }
+    ]
+  },
+  {
+    id: 'Q5',
+    title: '精實補 capabilities：要不要先用代理訊號跑一批？',
+    facts: ['159 支缺 capabilities', '已確認非召回瓶頸主因', '真人遙測 0 筆 → 目前候選 0 支'],
+    plain: '上一輪做了「只補真的有被用到的」腳本（預設唯讀）。但因為真人遙測還是 0 筆，<b>目前候選是 0 支</b>——工具做好了卻沒事做。可以改用「評測集裡被期待的工具」當代理訊號，先補一批（約 12 支，多為語音／自動化類）。'
+      + '<span class="so">要誠實說：capabilities 已知不是召回瓶頸的主因，補了對 Hit@1 幫助有限；代理訊號也不是真人使用率。所以這題的價值主要在「驗證管線能跑通、累積經驗」，不在分數。</span>',
+    options: [
+      { key: 'A', label: '等真人遙測累積後再補（純淨）', rec: true, tag: 'rec', why: '符合「精實」初衷：只補真的被用到的。搭配 Q2 設好 allowlist，候選會自己長出來。' },
+      { key: 'B', label: '先用代理訊號補 5 支，人工核對', rec: false, why: '能驗證管線端到端可用，但代理訊號不是真人需求，補出來的東西可能沒人用。' },
+      { key: 'C', label: '不做，維持留白', rec: false, why: '零成本；但已寫好的工具會一直閒置，之後要驗證也得重來。' }
+    ]
+  },
+  {
+    id: 'Q6',
+    title: '把「守門假綠」變成機制嗎？（今天被騙過一次）',
+    facts: ['繁體門禁對不支援的副檔名會靜默跳過', '印「掃描 0 個檔案」後回成功', '目前無「空掃描即失敗」檢查'],
+    plain: '今天驗證 commit 訊息時，我把訊息匯出成 <code>.txt</code> 餵給繁體門禁，它印出「掃描 <b>0</b> 個檔案」然後回報成功——<b>看起來通過，其實什麼都沒檢查</b>。我當下發現了（改成 .md 重跑，並注入一個簡體字確認它真的會紅），但這種「假綠」遲早會騙到下一次。要不要把它變成硬性檢查？'
+      + '<span class="so">同類問題也適用於其他守門腳本：只要輸入是空的、路徑不存在、或副檔名不在清單內，都可能靜默通過。這是「閘門本身要能失敗才算數」的具體化。</span>',
+    options: [
+      { key: 'A', label: '加檢查：掃描 0 個檔案即視為失敗，並補測試', rec: true, tag: 'rec', why: '一次把這類假綠堵死；測試會驗「給空輸入必須紅」，確保機制本身能失敗。' },
+      { key: 'B', label: '只留文件紀錄（已寫進 HANDOFF 陷阱 27）', rec: false, why: '零成本；但靠人記得讀文件，下次仍可能被同樣的假綠騙過。' },
+      { key: 'C', label: '擴大範圍：所有守門腳本都加「空輸入即失敗」', rec: false, why: '最徹底，但要逐一盤點每個腳本的合法空輸入情境，工時較高、也可能誤傷正常用法。' }
+    ]
+  },
+  {
+    id: 'Q7',
+    title: '一直出現在 git status 的未追蹤目錄，怎麼處置？',
+    facts: ['.playwright-cli/ 1.2MB（55 檔）', 'scratch/ 2.5MB', '.workbuddy/（部署紀錄）'],
+    plain: '這三個目錄每次提交都出現在未追蹤清單裡，我每次都要人工避開（今天也是）。它們不是專案原始碼：<code>.playwright-cli/</code> 是瀏覽器自動化的截圖與頁面快照、<code>scratch/</code> 是暫存草稿、<code>.workbuddy/</code> 是平台自己的部署紀錄。'
+      + '<span class="so">放進 .gitignore 只是「不再顯示」，不會刪掉任何檔案——內容都還在磁碟上。若你其實想留某些截圖進版控，告訴我是哪幾個就好。</span>',
+    options: [
+      { key: 'A', label: '加進 .gitignore（不刪檔）', rec: true, tag: 'rec', why: 'git status 從此乾淨、每次提交不用人工避開；檔案原封不動。' },
+      { key: 'B', label: '維持現狀', rec: false, why: '看得見才不會忘記清理；代價是每次提交都要人工判斷，容易誤加。' },
+      { key: 'C', label: '清掉內容（只留 .gitignore）', rec: false, why: '最乾淨，但可能刪掉還想留的截圖——屬破壞性動作，需要你明確指名。' }
+    ]
+  }
+];
+
+const STORE_KEY = 'tool-calling-decisions-2026-10-15b';
+let choices = {};
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) choices = JSON.parse(raw) || {};
+  } catch { choices = {}; }
+}
+function save() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(choices)); } catch {}
+}
+
+function render() {
+  const host = document.getElementById('cards');
+  host.innerHTML = '';
+  for (const q of QUESTIONS) {
+    const card = document.createElement('section');
+    card.className = 'card';
+    const chosen = choices[q.id];
+    let html = '<h2><span class="qno">' + q.id + '</span>' + q.title + '</h2>';
+    html += '<div class="facts">' + q.facts.map(f => '<span class="fact">' + f + '</span>').join('') + '</div>';
+    html += '<p class="plain">' + q.plain + '</p>';
+    html += '<div class="options">';
+    for (const o of q.options) {
+      const cls = ['opt'];
+      if (chosen === o.key) cls.push('selected');
+      if (o.rec && chosen !== o.key) cls.push('rec-hint');
+      const tag = o.tag === 'rec' ? '<span class="tag rec">⭐ 建議</span>'
+                : o.tag === 'no' ? '<span class="tag no">不建議</span>' : '';
+      html += '<button class="' + cls.join(' ') + '" data-q="' + q.id + '" data-k="' + o.key + '">'
+            + '<span class="mark">✓</span>'
+            + '<span class="body"><b>' + o.key + '. ' + o.label + '</b>' + tag
+            + '<span class="why">' + o.why + '</span></span>'
+            + '</button>';
+    }
+    html += '</div>';
+    card.innerHTML = html;
+    host.appendChild(card);
+  }
+  host.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.q, k = btn.dataset.k;
+      if (choices[q] === k) delete choices[q]; else choices[q] = k;
+      save(); render();
+    });
+  });
+  renderSummary();
+}
+
+function summaryText() {
+  const lines = [];
+  const pending = [];
+  for (const q of QUESTIONS) {
+    const c = choices[q.id];
+    if (c) lines.push(q.id + '=' + c);
+    else pending.push(q.id);
+  }
+  let out = '2026-10-15 第七輪裁決（自 docs/decisions-2026-10-15b.html）：\n';
+  out += lines.length ? lines.join('／') : '（尚未選擇）';
+  if (pending.length) out += '\n尚未裁決：' + pending.join('、');
+  return out;
+}
+
+function renderSummary() {
+  const lines = [];
+  const pending = [];
+  for (const q of QUESTIONS) {
+    const c = choices[q.id];
+    if (c) lines.push('<b>' + q.id + '=' + c + '</b>');
+    else pending.push(q.id);
+  }
+  const el = document.getElementById('summary');
+  el.innerHTML = '目前選擇：' + (lines.length ? lines.join('　') : '（尚未選擇）')
+    + (pending.length ? '\n<span class="pending">尚未裁決：' + pending.join('、') + '</span>' : '\n✅ 七題皆已裁決');
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+document.getElementById('btn-rec').addEventListener('click', () => {
+  for (const q of QUESTIONS) {
+    const rec = q.options.find(o => o.rec);
+    if (rec) choices[q.id] = rec.key;
+  }
+  save(); render(); toast('✅ 已採用全部建議');
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  choices = {};
+  save(); render(); toast('🧹 已重選');
+});
+
+document.getElementById('btn-copy').addEventListener('click', async () => {
+  const text = summaryText();
+  try {
+    await navigator.clipboard.writeText(text);
+    toast('✅ 已複製，貼回對話即可');
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('✅ 已複製，貼回對話即可'); }
+    catch { toast('⚠️ 請手動複製底部摘要'); }
+    document.body.removeChild(ta);
+  }
+});
+
+load();
+render();
+</script>
+</body>
+</html>

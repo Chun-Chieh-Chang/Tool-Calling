@@ -71,7 +71,8 @@
 
 | 文件 | 內容 |
 |---|---|
-| [decisions-2026-10-15.html](./decisions-2026-10-15.html) | 2026-10-15 五題裁決頁：Pages「加入工具庫」路線／真人遙測 0 筆／多值分類回填／159 支缺 capabilities／語義天花板。附白話說明、實測數據錨點與建議 |
+| [decisions-2026-10-15.html](./decisions-2026-10-15.html) | 2026-10-15 五題裁決頁（第六輪，已裁已執行）：Pages「加入工具庫」路線／真人遙測 0 筆／多值分類回填／159 支缺 capabilities／語義天花板。附白話說明、實測數據錨點與建議 |
+| [decisions-2026-10-15b.html](./decisions-2026-10-15b.html) | 2026-10-15 第七輪七題裁決頁（待裁）：Worker 部署／live 重發佈與 allowlist／評測集 9 題簡體／查詢端簡轉繁／精實補 capabilities／守門假綠機制化／未追蹤目錄處置 |
 | [telemetry-diagnosis-2026-10-15.md](./telemetry-diagnosis-2026-10-15.md) | Q2=A 執行紀錄：真人遙測 0 筆的三層根因（入口不可見／純瀏覽不計事件／跨域刻意擋）、最小修正（導流橫幅＋allowlist 中繼）與驗收實測 |
 | [semantic-failure-analysis-2026-10-15.md](./semantic-failure-analysis-2026-10-15.md) | Q5=A 執行紀錄：逐題失敗清單工具（`--failures`）、4 題召回缺口 vs 38 題排序問題、以及「評測集 9 題含簡體」的配對 A/B 證據（改善 6／不變 3／變差 0）與兩項待裁建議 |
 
