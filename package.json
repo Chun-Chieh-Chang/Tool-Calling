@@ -9,6 +9,7 @@
     "tool-calling-mcp": "./mcp-server.js"
   },
   "scripts": {
+    "prestart": "node scripts/build-web.js",
     "start": "node web/server.js",
     "dev": "node web/server.js --dev",
     "build": "node scripts/build-web.js",
