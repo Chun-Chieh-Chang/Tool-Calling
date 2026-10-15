@@ -1,0 +1,8 @@
+{
+  "commitBase": "d632738",
+  "command": "node scripts/eval-benchmark.js",
+  "captured": "2026-10-15",
+  "evalSet": "v1.4.0 (267 cases: 257 hittable + 10 empty-set)",
+  "outputFile": "docs/benchmarks/2026-10-15-v1.4.0-baseline.txt",
+  "note": "v1.4.0 基線（評測集簡繁清洗後）。評測集變更隨本次提交一起進版控，故此處的 commitBase 是變更前的 HEAD。整體 strict：L2 9.7% / agent 58.4% / fusion 57.6%（Hit@1）。天花板 98.8%（semantic 97.7%，v1.3.0 為 96.1%）。**與 v1.3.0 不可直接比較**。同碼配對（只換評測集）：agent 58.0%→58.4%、fusion 57.2%→57.6%，9 題改善 3／變差 0、外溢 0。eval:rerank（需 API key）與 ablate:v5 未在本版重跑。"
+}
