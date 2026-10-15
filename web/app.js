@@ -61,16 +61,23 @@ const refreshTrendingBtn = document.getElementById('refreshTrendingBtn');
  * 本機工作台與 live 服務本身就是完整版，不需要橫幅；只有第三方純靜態託管
  * （GitHub Pages）才顯示，把訪客導向 live 工作台——遙測回流與「加入工具庫」
  * 提名管線都只在 live 環境完整可用，找不到入口＝真人遙測永遠 0 筆。
+ *
+ * 🔴 判斷方式刻意用「能力探測」而非主機名稱白名單：live 工作台的公開網址
+ *    每次重新發佈都會換一組（2026-10-15 第七輪實測：連續三次部署得到三個
+ *    不同連結，舊連結全部失效），寫死清單必然過期——而過期的後果是橫幅
+ *    反過來出現在 live 工作台上，對著完整版的使用者說「你正在瀏覽靜態
+ *    展示版」。探測後端則永遠跟著現實走，且不需隨部署維護。
  */
-function setupStaticSiteBanner() {
+async function setupStaticSiteBanner() {
   const banner = document.getElementById('staticSiteBanner');
   if (!banner) return;
-  const host = String(location.hostname || '').toLowerCase();
-  const fullWorkbenchHosts = [
-    'localhost', '127.0.0.1', '::1', '[::1]',
-    'eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run',
-  ];
-  if (!fullWorkbenchHosts.includes(host)) banner.hidden = false;
+  try {
+    const res = await fetch('./api/trending/status', { method: 'GET' });
+    if (res.ok) return; // 有後端＝這裡就是完整版，不顯示橫幅
+  } catch {
+    // 純靜態託管：fetch 失敗（Pages 回 404 或網路不可達）→ 往下顯示橫幅
+  }
+  banner.hidden = false;
 }
 
 async function init() {

@@ -53,25 +53,46 @@ export class BehaviorTracker {
    * 2026-10-15 Q2=A：純靜態託管（GitHub Pages）沒有同源 /api/telemetry，
    * 此時改用 relay 目標（index.html 的 meta[name="telemetry-relay"]，
    * 值為 live 工作台網址）跨域中繼；伺服器端以 allowlist 把關
-   * （web/telemetry-origin.js）。relay 未設定或與本站同源時行為不變。
+   * （web/telemetry-origin.js）。
+   *
+   * 🔴 順序刻意是「先打同源，失敗才 relay」而非「看到 relay 就用」：
+   *    live 工作台自己的 index.html 也帶著同一條 meta，而它的公開網址
+   *    每次重新發佈都會換一組（2026-10-15 第七輪實測：連續三次部署得到
+   *    三個不同連結，舊連結全部失效）。「看到 relay 就用」會讓 live 把
+   *    自己的事件送去一組**過期的死連結**——真人語料全數靜默丟失，而症狀
+   *    與「還沒有人來用」完全一樣，是最難察覺的一種失效。先打同源則永遠
+   *    不受網址輪替影響；relay 只在「本站真的沒有後端」時才上場。
    */
   _postToServer(entry) {
+    const relay = typeof document !== 'undefined'
+      ? document.querySelector('meta[name="telemetry-relay"]')?.content?.trim()
+      : '';
+    let relayUrl = '';
     try {
-      let target = '/api/telemetry';
-      if (typeof document !== 'undefined') {
-        const relay = document.querySelector('meta[name="telemetry-relay"]')
-          ?.content?.trim();
-        if (relay) {
-          const sameOrigin = new URL(relay, location.href).origin === location.origin;
-          if (!sameOrigin) target = relay;
-        }
+      // relay 與本站同源（或值畸形）時視同未設定——同源那條路已經在跑了
+      if (relay && new URL(relay, location.href).origin !== location.origin) {
+        relayUrl = relay;
       }
-      fetch(target, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(entry),
-        keepalive: true,
-      }).catch(() => {});
+    } catch {
+      /* 畸形 relay 值一律當作未設定 */
+    }
+
+    const send = (url) => fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entry),
+      keepalive: true,
+    });
+
+    try {
+      send('/api/telemetry')
+        .then((res) => {
+          // 靜態託管沒有這個端點（GitHub Pages 回 404）→ 中繼到 live 工作台
+          if (!res.ok && relayUrl) send(relayUrl).catch(() => {});
+        })
+        .catch(() => {
+          if (relayUrl) send(relayUrl).catch(() => {});
+        });
     } catch (err) {
       /* fetch 不可用（舊瀏覽器）時靜默 */
     }
