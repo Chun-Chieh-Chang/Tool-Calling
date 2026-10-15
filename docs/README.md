@@ -78,7 +78,8 @@
 |---|---|
 | [decisions-2026-10-15.html](./decisions-2026-10-15.html) | 2026-10-15 五題裁決頁（第六輪，已裁已執行）：Pages「加入工具庫」路線／真人遙測 0 筆／多值分類回填／159 支缺 capabilities／語義天花板。附白話說明、實測數據錨點與建議 |
 | [decisions-2026-10-15b.html](./decisions-2026-10-15b.html) | 2026-10-15 第七輪七題裁決頁（**已裁：Q1～Q7 全 A**）：Worker 部署／live 重發佈與 allowlist／評測集 9 題簡體／查詢端簡轉繁／精實補 capabilities／守門假綠機制化／未追蹤目錄處置。落地結果見下方執行紀錄 |
-| [decisions-2026-10-15c.html](./decisions-2026-10-15c.html) | 2026-10-15 第八輪七題裁決頁（**待裁**）：registry 17 筆 `*_zh` 簡體／`check:lang:full` 長期紅燈／Worker 仍未部署／rerank 基線未重跑／live 網址每次部署都換／裁決頁在 Pages 上 404／遙測觀察期自動檢查。每題附白話說明、實測數據錨點與建議 |
+| [decisions-2026-10-15c.html](./decisions-2026-10-15c.html) | 2026-10-15 第八輪七題裁決頁（**已裁：Q1～Q7 全 A**）：registry 簡體清洗／`check:lang:full` 綠燈／Worker 部署指南／rerank 基線重跑／live 網址輪替守門／裁決頁上 Pages／每週遙測自動檢查。每題附白話說明、實測數據錨點與建議 |
+| [round8-execution-2026-10-15.md](./round8-execution-2026-10-15.md) | Q1～Q7 全 A 的執行紀錄：三波簡體清洗（143 筆）+ `S2T_SAFE` 擴充 52 字、門禁路徑排除 + 28 個豁免標記、Worker 部署逐步指令、`eval:rerank` v1.4.1 基線、build-web.js 通配複製、每週遙測自動化 |
 | [round7-execution-2026-10-15.md](./round7-execution-2026-10-15.md) | Q1～Q7 全 A 的執行紀錄：已落地（評測集清洗 v1.4.0＋重跑基線／查詢端正規化離線量測／守門「空掃描即失敗」／.gitignore）與待外部操作（Worker 部署／live 重發佈）的現況。§Q2 另記三個被推翻的平台假設 |
 | [telemetry-diagnosis-2026-10-15.md](./telemetry-diagnosis-2026-10-15.md) | Q2=A 執行紀錄：真人遙測 0 筆的三層根因（入口不可見／純瀏覽不計事件／跨域刻意擋）、最小修正（導流橫幅＋allowlist 中繼）與驗收實測 |
 | [semantic-failure-analysis-2026-10-15.md](./semantic-failure-analysis-2026-10-15.md) | Q5=A 執行紀錄：逐題失敗清單工具（`--failures`）、4 題召回缺口 vs 38 題排序問題、以及「評測集 9 題含簡體」的配對 A/B 證據（改善 6／不變 3／變差 0）與兩項待裁建議 |
