@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tool-Calling 裁決頁 2026-10-15 — 待裁事項一頁選</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --panel: #161b22;
+    --panel-2: #1c2330;
+    --border: #2d333f;
+    --text: #e6e9ef;
+    --muted: #9aa4b2;
+    --accent: #58a6ff;
+    --accent-dim: rgba(88, 166, 255, 0.14);
+    --good: #3fb950;
+    --warn: #d29922;
+    --bad: #f85149;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+    line-height: 1.65;
+    padding: 24px 16px 120px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  header h1 { font-size: 1.5rem; letter-spacing: 0.5px; }
+  header .sub { color: var(--muted); font-size: 0.9rem; margin-top: 6px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
+  .chip {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px 12px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .chip b { color: var(--text); font-weight: 600; }
+  .intro {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    margin: 16px 0 24px;
+    font-size: 0.92rem;
+    color: var(--text);
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 22px;
+  }
+  .card h2 { font-size: 1.08rem; margin-bottom: 4px; }
+  .card h2 .qno { color: var(--accent); font-family: ui-monospace, "Cascadia Code", Consolas, monospace; margin-right: 6px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 14px; }
+  .fact {
+    font-size: 0.75rem;
+    background: rgba(210, 153, 34, 0.12);
+    border: 1px solid rgba(210, 153, 34, 0.35);
+    color: #e8b85a;
+    border-radius: 6px;
+    padding: 2px 9px;
+  }
+  .plain { font-size: 0.92rem; color: var(--text); margin-bottom: 12px; }
+  .plain b { color: var(--accent); font-weight: 600; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    text-align: left;
+    width: 100%;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 0.88rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt .mark {
+    flex: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--muted);
+    margin-top: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: transparent;
+  }
+  .opt .body { flex: 1; }
+  .opt .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    border-radius: 4px;
+    padding: 0 6px;
+    margin-left: 6px;
+    vertical-align: 1px;
+  }
+  .tag.rec { background: rgba(63, 185, 80, 0.16); color: var(--good); border: 1px solid rgba(63, 185, 80, 0.4); }
+  .tag.no { background: rgba(248, 81, 73, 0.14); color: var(--bad); border: 1px solid rgba(248, 81, 73, 0.4); }
+  .opt .why { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 3px; }
+  .opt.selected { border-color: var(--accent); background: var(--accent-dim); }
+  .opt.selected .mark { border-color: var(--accent); background: var(--accent); color: #0d1117; font-weight: 700; }
+  .opt.rec-hint:not(.selected) { border-style: dashed; border-color: rgba(63, 185, 80, 0.45); }
+  .bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(13, 17, 23, 0.94);
+    backdrop-filter: blur(6px);
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+  }
+  .bar .inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .summary {
+    flex: 1;
+    min-width: 260px;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 0.82rem;
+    color: var(--muted);
+    white-space: pre-wrap;
+  }
+  .summary b { color: var(--accent); font-weight: 600; }
+  .summary .pending { color: var(--warn); }
+  button.act {
+    background: var(--accent);
+    color: #0d1117;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  button.act:hover { filter: brightness(1.1); }
+  button.act.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  button.act.ghost:hover { color: var(--text); border-color: var(--accent); }
+  .toast {
+    position: fixed;
+    bottom: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--good);
+    color: #0d1117;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 8px 18px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .toast.show { opacity: 1; }
+  footer { margin-top: 8px; color: var(--muted); font-size: 0.8rem; }
+  footer code { background: var(--panel-2); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 0.78rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>🧭 Tool-Calling 裁決頁 — 2026-10-15</h1>
+    <div class="sub">未做／待裁事項，一頁點選。每題附白話說明與建議；選完按「複製裁決摘要」貼回對話即可。</div>
+    <div class="chips">
+      <span class="chip">工具庫 <b>771</b> 支</span>
+      <span class="chip">缺 capabilities <b>159</b> 支</span>
+      <span class="chip">多值分類落地 <b>6</b> 支</span>
+      <span class="chip">真人遙測 <b>0</b> 筆</span>
+      <span class="chip">數據錨點 <b>2026-10-15 實測</b></span>
+    </div>
+  </header>
+
+  <div class="intro">
+    💡 <b>這一頁在幹嘛：</b>把「還沒做、等你決定」的五件事攤開來。每題有 2–4 個選項，綠色虛線框是<b>建議</b
+    >、紅色標籤是<b>不建議</b>。點一下就是選定，可隨時改；所有選擇存在瀏覽器 localStorage，重整不丟。
+  </div>
+
+  <div id="cards"></div>
+
+  <footer>
+    產出：<code>docs/decisions-2026-10-15.html</code>。裁決結果將記錄至 <code>HANDOFF.md §三</code>（2026-10-15 快照）。
+    本頁不修改任何 registry 或程式碼。
+  </footer>
+</div>
+
+<div class="bar">
+  <div class="inner">
+    <div class="summary" id="summary"></div>
+    <button class="act ghost" id="btn-reset">重選</button>
+    <button class="act ghost" id="btn-rec">採用全部建議</button>
+    <button class="act" id="btn-copy">📋 複製裁決摘要</button>
+  </div>
+</div>
+<div class="toast" id="toast">✅ 已複製，貼回對話即可</div>
+
+<script>
+const QUESTIONS = [
+  {
+    id: 'Q1',
+    title: 'GitHub Pages「加入工具庫」怎麼落地（本輪新議題）',
+    facts: ['Pages 僅託管靜態 dist/', '/api/tools/add 不存在', 'tools.json 2.9MB', '2026-10-14 裁決：CI 把關＋merge 模式'],
+    plain: '你想讓外部使用者貼自己的 API key，在網站上按「＋ 加入工具庫」就直接擴充工具庫。已實測：LLM 端點與 GitHub API 的 CORS 都是開的，「抓 README、呼叫 LLM 補齊 metadata」在瀏覽器端跑得動；但「寫回 registry」靜態 Pages 辦不到——頁面唯讀。剩下的問題是選哪種寫回方式。',
+    options: [
+      { key: 'A', label: '純前端直推', rec: false, tag: 'no', why: '使用者提供 repo 寫入權 PAT，前端直接 commit 到 main。PAT 權限遠大於需求，且繞過全部 CI 閘門。' },
+      { key: 'B', label: 'Worker 開 PR', rec: true, tag: 'rec', why: 'LLM 在前端跑（key 不落地）；Cloudflare Worker 只把結果開成 PR，CI 跑完人工 merge，保留所有品質閘門。工作量中等。' },
+      { key: 'C', label: 'Issue 提名制', rec: false, why: '按鈕改導向預填 Issue，Actions 背景跑 node cli.js add 自動開 PR。零維護，但 LLM 費用由你吸收、要防濫用。' },
+      { key: 'D', label: '誠實降級', rec: false, why: 'Pages 上把按鈕改成「複製 CLI 指令」，不實作寫入。半小時完工，不假裝能寫。' }
+    ]
+  },
+  {
+    id: 'Q2',
+    title: '真人遙測 0 筆，處置？',
+    facts: ['telemetry-events.jsonl 從未存在', '發佈連結 2026-10-14 已上線'],
+    plain: '檢索調校（權重、詞表、分類）目前只靠 267 筆自建評測集，聽不到真人實際怎麼下問句。網站已上線卻一筆都沒累積到——可能是入口不夠可見、或還沒人發現。要嘛解決可見度繼續等，要嘛不等真人。',
+    options: [
+      { key: 'A', label: '診斷入口＋可見度，再累積 2–4 週', rec: true, tag: 'rec', why: '先確認「為什麼 0 筆」（曝光不足還是沒人用），再決定是否繼續投資遙測。' },
+      { key: 'B', label: '不等真人，改用合成問句擴充評測集', rec: false, why: '快，但合成分佈不等於真人分佈，可能調錯方向。' },
+      { key: 'C', label: '擱置遙測，優先處理別的事', rec: false, why: '遙測是長期資產，拖延的代價是調校持續盲飛。' }
+    ]
+  },
+  {
+    id: 'Q3',
+    title: '多值分類：要不要回填現有 771 支？',
+    facts: ['已落地 6 支', '機制早在 schema＋infer-multidimensional.js', '2026-10-14 裁決 Q1=B＝只增量'],
+    plain: '一支工具可以同時屬於兩個領域（例如既是 AI 代理也是自動化），顯示時可掛雙身分。目前只有 6 支落盤。上一輪已裁決「只對未來新工具增量」；這一題問的是：要不要為現有 771 支跑一次推斷＋人工核准？注意這會推翻 Q1=B。',
+    options: [
+      { key: 'A', label: '維持 Q1=B，只增量不回填', rec: true, tag: 'rec', why: '不推翻已裁決政策；回填成本高且有偽陽性風險（精度優先）。' },
+      { key: 'B', label: '全庫回填：跑推斷＋人工核准', rec: false, why: '771 支逐一核准工作量可觀，屬「寧可低覆蓋也不要偽陽性」的例外。' },
+      { key: 'C', label: '取消多值機制，回到單一主分類', rec: false, why: '最簡，但放棄已建置的機制與 6 支成果。' }
+    ]
+  },
+  {
+    id: 'Q4',
+    title: '159 支缺 capabilities，補不補？',
+    facts: ['159/771 無 capabilities', '已確認非召回瓶頸主因', 'experimental 僅 1 支'],
+    plain: 'capabilities 是檢索五維中的 V2 那一維，缺了等於這 159 支在該維度沒有訊號。補齊要花 LLM 額度，且實測補了對 Hit@1 幫助有限。',
+    options: [
+      { key: 'A', label: '立即全量 enrich 補齊 159 支', rec: false, why: '燒額度換完整度，收益與成本不成比例。' },
+      { key: 'B', label: '只補 active 且近期被檢索命中過的', rec: false, why: '精實補法，但要先有遙測數據佐證「誰被命中」——與 Q2 連動。' },
+      { key: 'C', label: '暫緩，優先序維持最低', rec: true, tag: 'rec', why: '非召回瓶頸主因，先把額度留給高槓桿項目。' },
+      { key: 'D', label: '從 schema 移除該欄位', rec: false, why: '激進；欄位對新工具仍會自動補齊，移除是自廢觸角。' }
+    ]
+  },
+  {
+    id: 'Q5',
+    title: '語意維度的詞彙鴻溝（天花板問題），下一步？',
+    facts: ['agent Hit@1 62.3%', '天花板 96.9%', '語義維度缺口約 50%', 'API 端點無 embedding 模型、本地 e5 實測不顯著'],
+    plain: '使用者用詞和 registry 用詞對不上時就找不到工具（內部產品名、非公開命名）。乾淨解法是 embedding 向量檢索，但你的 API 端點沒有模型，本地 e5 也試過沒幫助。剩下是繼續磨 V5 知識編譯器、接外部服務，或接受現狀。',
+    options: [
+      { key: 'A', label: '持續調校 V5 知識編譯器', rec: true, tag: 'rec', why: '現行唯一實證有效路線；每次重新編譯都必須重跑 npm run ablate:v5（權重取決於詞檔品質）。' },
+      { key: 'B', label: '接外部 embedding 服務', rec: false, why: '乾淨但引入新額度與新依賴，需先確認端點與成本。' },
+      { key: 'C', label: '接受現狀，對外講清楚 62%', rec: false, why: '零成本，但天花板缺口持續存在，新用戶首次查詢可能找不到工具。' }
+    ]
+  }
+];
+
+const STORE_KEY = 'tool-calling-decisions-2026-10-15';
+let choices = {};
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) choices = JSON.parse(raw) || {};
+  } catch { choices = {}; }
+}
+function save() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(choices)); } catch {}
+}
+
+function render() {
+  const host = document.getElementById('cards');
+  host.innerHTML = '';
+  for (const q of QUESTIONS) {
+    const card = document.createElement('section');
+    card.className = 'card';
+    const chosen = choices[q.id];
+    let html = '<h2><span class="qno">' + q.id + '</span>' + q.title + '</h2>';
+    html += '<div class="facts">' + q.facts.map(f => '<span class="fact">' + f + '</span>').join('') + '</div>';
+    html += '<p class="plain">' + q.plain + '</p>';
+    html += '<div class="options">';
+    for (const o of q.options) {
+      const cls = ['opt'];
+      if (chosen === o.key) cls.push('selected');
+      if (o.rec && chosen !== o.key) cls.push('rec-hint');
+      const tag = o.tag === 'rec' ? '<span class="tag rec">⭐ 建議</span>'
+                : o.tag === 'no' ? '<span class="tag no">不建議</span>' : '';
+      html += '<button class="' + cls.join(' ') + '" data-q="' + q.id + '" data-k="' + o.key + '">'
+            + '<span class="mark">✓</span>'
+            + '<span class="body"><b>' + o.key + '. ' + o.label + '</b>' + tag
+            + '<span class="why">' + o.why + '</span></span>'
+            + '</button>';
+    }
+    html += '</div>';
+    card.innerHTML = html;
+    host.appendChild(card);
+  }
+  host.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const q = btn.dataset.q, k = btn.dataset.k;
+      if (choices[q] === k) delete choices[q]; else choices[q] = k;
+      save(); render();
+    });
+  });
+  renderSummary();
+}
+
+function summaryText() {
+  const lines = [];
+  const pending = [];
+  for (const q of QUESTIONS) {
+    const c = choices[q.id];
+    if (c) lines.push(q.id + '=' + c);
+    else pending.push(q.id);
+  }
+  let out = '2026-10-15 裁決（自 docs/decisions-2026-10-15.html）：\n';
+  out += lines.length ? lines.join('／') : '（尚未選擇）';
+  if (pending.length) out += '\n尚未裁決：' + pending.join('、');
+  return out;
+}
+
+function renderSummary() {
+  const lines = [];
+  const pending = [];
+  for (const q of QUESTIONS) {
+    const c = choices[q.id];
+    if (c) lines.push('<b>' + q.id + '=' + c + '</b>');
+    else pending.push(q.id);
+  }
+  const el = document.getElementById('summary');
+  el.innerHTML = '目前選擇：' + (lines.length ? lines.join('　') : '（尚未選擇）')
+    + (pending.length ? '\n<span class="pending">尚未裁決：' + pending.join('、') + '</span>' : '\n✅ 五題皆已裁決');
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+document.getElementById('btn-rec').addEventListener('click', () => {
+  for (const q of QUESTIONS) {
+    const rec = q.options.find(o => o.rec);
+    if (rec) choices[q.id] = rec.key;
+  }
+  save(); render(); toast('✅ 已採用全部建議');
+});
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  choices = {};
+  save(); render(); toast('🧹 已重選');
+});
+
+document.getElementById('btn-copy').addEventListener('click', async () => {
+  const text = summaryText();
+  try {
+    await navigator.clipboard.writeText(text);
+    toast('✅ 已複製，貼回對話即可');
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); toast('✅ 已複製，貼回對話即可'); }
+    catch { toast('⚠️ 請手動複製底部摘要'); }
+    document.body.removeChild(ta);
+  }
+});
+
+load();
+render();
+</script>
+</body>
+</html>

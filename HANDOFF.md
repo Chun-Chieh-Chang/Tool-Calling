@@ -270,9 +270,72 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 - **`check-traditional --commits` 掃 commit message 且「歷史無豁免」**：行級 `// allow-simplified` 對它無效；message 不得出現任何簡體字（連引述實測資料都不行），只能用繁體描述。amend 已推送的 commit 需 force-with-lease（須用戶裁決後才做）。
 - 沙盒等價驗證：spawn 型測試 EBUSY 時，用「逐檔 `node <file>` 直跑」（in-process runner，不經 spawn）取得與 CI 等價的覆蓋。
 
+### 24. 🔴 「服務活著」≠「有人用得到」：入口不可見會讓整條資料鏈靜默歸零（2026-10-15）
+
+- 2026-10-14 發佈了 live 工作台，目的是累積真人查詢語料。23 小時後匯出仍只有 2 筆部署冒煙測試。**逐項實測證明後端完全正常**（首頁 200、公開 Origin POST 回 `{"ok":true}`、落盤 count 2→3、匯出正確）——壞的不是服務，是**沒人走到那個 URL**。
+- 真因：live 連結只存在 `HANDOFF.md` 與 `.workbuddy-ai/memory/`（開發者檔案），`README.md` 只寫 localhost，公開可見的 GitHub Pages 是**唯讀靜態站**（沒有 `/api/telemetry`，POST 404 後依設計靜默丟棄）。
+- **可推廣的判準**：遙測／漏斗類功能上線後，第一個要驗的不是後端，是「**使用者從哪個 URL 進來、那個 URL 有沒有這條 API**」。入口與後端不同源時，還要檢查跨域（preflight＋allowlist）——本專案的遙測端點原本只信同源且無 OPTIONS 處理，等於把 Pages 中繼這條唯一補救路封死。
+- 對應修正與驗收見 `docs/telemetry-diagnosis-2026-10-15.md`。
+
+### 25. 🔴 量測工具本身可能有偏誤：評測集含簡體字（2026-10-15）
+
+- 天花板分析一直顯示 semantic 是瓶頸。用專案自己的 `findSimplified()` 掃評測集才發現：**257 題裡有 9 題 query 含簡體字**。配對 A/B（同一題只轉繁體）結果 **改善 6／不變 3／變差 0**（符號檢定單尾 p≈0.016），其中一題 semantic 召回缺口由「未進 top-50」直接進到第 7 名。
+- 也就是說：這 9 題量到的部分是「簡繁不匹配」而不是「檢索能力」。
+- ⚠️ **但別過度推論**：9 題中有 4 題帶簡體也照樣成功，簡繁只對 42 題失敗中的 5 題有解釋力。看到「某因子能解釋失敗」時，**要同時數它解釋不了的**。
+- 教訓：**調校之前先審查尺**。評測集是 SSOT，要改（簡繁清洗）就得發新版本並重跑全部基線（v1.3.0 與 v1.4.0 不可比較），不能偷偷改。
+- 詳見 `docs/semantic-failure-analysis-2026-10-15.md`。
+
+### 26. 🔴 瀏覽器端模組的相對路徑要在「原始碼樹」與「dist 樹」同時成立（2026-10-15）
+
+- Q1=B 要把 `scripts/scan-tool.js`＋`core/tool-enricher.js` 搬到瀏覽器跑。第一版放在 `web/pipeline/`：`../scripts/...` 在原始碼樹成立，但 `build-web.js` 把鏈上檔案複製到 `dist/scripts/`、`dist/core/`，模組在 `dist/pipeline/` → 上溯層數不同，**兩種樹只有一種能解析**。
+- 解法：把管線模組放**倉庫根的 `pipeline/`**——web/ 與 dist/ 兩種樹都只需一層上溯（`../scripts/`、`../core/`、`../worker/`），成為唯一共通的相對路徑；`app.js` 的動態載入則雙路徑各試一次。
+- 配套：`build-web.js` 必須同步複製**整條鏈**（漏一個檔案＝Pages 上 404，且只有 runtime 才會發現）。`tests/add-pipeline.test.js` 就是這條鏈的守門。
+
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-14 第五輪快照，其次第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-15（第六輪）快照，其次 2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-15（第六輪）Pages「加入工具庫」可行性調查＋五題裁決頁產出
+
+**需求**：用戶詢問「能否在 GitHub Pages 執行『加入工具庫』、由用戶提供 API KEY」，追問後要求把未做／待裁事項做成一頁可點選題並附建議。
+
+**調查（皆為實測證據）**：
+- 呼叫鏈：`web/app.js:698` 按鈕 → `POST /api/tools/add`；該端點只存在 `web/server.js`，且受 `isLocalRequest`＋`isTrustedOrigin` 雙閘門（`web/server.js:226-257, 622-627`）——公開訪客一律 404。Pages 僅託管 `dist/` 靜態產物（`.github/workflows/deploy-pages.yml` 只上傳 `build-web.js` 輸出）。
+- **CORS 探測（關鍵結論）**：`apihub.agnes-ai.com` OPTIONS 回 `Access-Control-Allow-Origin: *`＋`Allow-Headers: *`；`api.github.com` 回 `ACAO: *`（未認證 60/hr）→ 「抓 README＋LLM 補齊 metadata」可在瀏覽器純前端完成，用戶 key 自備不落地。
+- 寫回障礙：靜態 Pages 唯讀；`registry/tools.json` **2.9MB**（直推需改走 Git Data API）；直推 main 會繞過 `cli.js validate`／`npm test`／`check-mece`，違反第五輪 Q5=B「維持 CI 把關＋merge 模式」；要用戶交 repo 寫入權 PAT 屬資安不對等（與 Strix 修掉的 CWE 同源）。
+- registry 現況（2026-10-15 實測）：771 支、159 支無 capabilities、多值分類僅 6 支落盤、experimental 1 支、`web/data/telemetry-events.jsonl` 從未存在（真人遙測 0 筆）。
+
+**產出**：`docs/decisions-2026-10-15.html`（五題裁決頁：Q1 Pages「加入工具庫」路線 A 直推／B Worker 開 PR／C Issue 提名／D 誠實降級；Q2 遙測 0 筆處置；Q3 多值分類是否回填 771 支；Q4 159 支缺 capabilities；Q5 語義天花板），附白話說明、實測數據錨點與建議。已加入 `docs/README.md` 索引（§6）。**未動任何 registry 或程式碼**；頁面通過 `check-traditional --full`。
+
+**待辦**：用戶裁決後按慣例記錄 Q1~Q5 結論並執行（Q1=B 若選定，工作量＝把 `scripts/scan-tool.js`＋`core/tool-enricher.js` 打包成瀏覽器可用＋一個 Cloudflare Worker＋`web/app.js` 非本機時改指向）。
+
+**裁決（2026-10-15 用戶自裁決頁回傳）**：Q1=B（Worker 開 PR 管線）／Q2=A（遙測可見度診斷）／Q3=A（多值分類僅增量、不回填）／Q4=B（精實補 capabilities）／Q5=A（持續調校 V5）。執行紀錄見本節下方「Q1=B 實作」與同日 `docs/` 新檔。
+
+**Q1=B 實作（2026-10-15 完成主體，未提交）**：
+- 瀏覽器化重構（節點行為不變）：新增 `core/tool-id.js`（`generateId` 抽為純模組，`core/registry.js` 保留 re-export）；`core/categories.js` 新增 `setCategoryData()`（瀏覽器以 fetch 注入，Node 續用 `readFileSync`，兩樹共通）；`core/llm-keys.js`＋`core/tool-enricher.js` 的 `process.env` 加 `typeof` 守門；`core/tool-enricher.js` 新增 `skipZh`（瀏覽器管線不產生 `*_zh`，留給合併後 `translate:zh` 統一處理，符合「`*_zh` 只由 translate:zh 產生」鐵律）；`scripts/scan-tool.js` 移除靜態 `node:util`（CLI 分支改動態 import＋URL 比對）；`scripts/fix-simplified.js` 的 `main()` 同法改守門（S2T 表仍內建，opencc 仍 try/catch 選用）。
+- 新檔：`pipeline/add-pipeline.js`（掃描＋充實組裝候選，repo 根單一 `../` 相對路徑，web/ 與 dist/ 兩樹共通）＋`pipeline/add-tool-dialog.js`（提名對話框，用戶 LLM key 僅在瀏覽器記憶體）；`worker/index.js`＋`worker/wrangler.toml`＋`worker/README.md`（零依賴 Worker：GitHub PAT 以 secret 注入僅 deploy，驗證 schema 契約後走 Git Data API 開 PR，不直推 main）；`web/data/tools-add-endpoint.json`（Worker URL 設定，build 複製進 dist）。
+- `web/app.js`：非本機（`location.hostname` 非 localhost/127.0.0.1/::1）時改開提名對話框（雙路徑動態 import），本機工作台流程完全不變；`scripts/build-web.js` 複製整條鏈（pipeline/、scripts/scan-tool.js、scripts/fix-simplified.js、core/、worker/index.js、data/tools-add-endpoint.json）進 dist。
+- 守門測試：`tests/worker-tools-add.test.js`（16 項，驗證常數與 `registry/schemas/tool.schema.json` 比對）＋`tests/add-pipeline.test.js`（4 項，離線 stub fetch 涵蓋 skipZh 行為），全綠；dist 模組鏈以暫存腳本驗證解析成功（EBUSY 偽失敗排除法見 MEMORY §8）。
+- 🔴 **未完成**：Worker 尚未部署（需用戶在 Cloudflare 建 Worker、設 `GITHUB_TOKEN` PR-only secret、填 `tools-add-endpoint.json`）；部署前 Pages 上對話框送出會得到網路錯誤。
+
+**Q2=A 遙測可見度診斷（執行紀錄：`docs/telemetry-diagnosis-2026-10-15.md`）**：
+- 實測：live 首頁 200；`/api/telemetry/export` count=2（皆 10-14 smoke test）；從公開 Origin POST 回 `{"ok":true}` 且 count→3（**寫入鏈完全正常**）；`OPTIONS /api/telemetry` 回 404（無 preflight 處理）。
+- 根因三層：① **入口不可見**——live 連結只存在 HANDOFF／memory，README 只寫 localhost，公開可見的 Pages 是唯讀靜態站，事件 POST 404 後靜默丟棄；② **純瀏覽不計事件**（只在「有查詢字串的搜尋」與「點擊結果卡片」記錄）；③ **跨域被刻意擋**（`isTrustedOrigin` 同源才信＋無 OPTIONS handler，封死了 Pages 中繼這條路）。
+- 最小修正（已實作）：新模組 `web/telemetry-origin.js`（`isTelemetryOrigin`＋`telemetryCorsHeaders`，可測純函式）；`web/server.js` 遙測端點吃 `TELEMETRY_ALLOWED_ORIGINS`（**預設空＝行為與發佈時一致**）並新增 preflight；`web/behavior-tracker.js` 讀 `meta[name="telemetry-relay"]` 跨域中繼（未設定／同源時行為不變）；`web/index.html` 加導流橫幅 `#staticSiteBanner`（僅非本機、非 live 顯示）＋ relay meta；`web/app.js` 的 `setupStaticSiteBanner()`；`README.md` 加線上版對照表；`web/style.css` 加樣式。
+- 驗收：`tests/telemetry-origin.test.js` 8 項＋本地 E2E 12 項（allowlist preflight 204/ACAO、陌生 preflight 403、allowlist POST 200、陌生 POST 403、同源 200、無 Origin 200、匯出內容正確）**全綠**。
+- 🔴 **未完成**：需重新發佈 live 並設 `TELEMETRY_ALLOWED_ORIGINS=https://chun-chieh-chang.github.io`（沒設＝F2 不生效），且 Pages 要 push 後才更新。
+
+**Q4=B 精實補 capabilities（新檔 `scripts/enrich-capabilities.js`）**：不做全庫批次回填（159 支，已知非召回瓶頸）。選候選＝「缺 capabilities ＋ active ＋ 有命中」，命中來源優先真人遙測（`web/data/telemetry-events.jsonl`），遙測 0 筆時可用 `--proxy` 以 `eval-queries` expected 作**代理訊號**（輸出明示非真人使用率）。預設 dry-run、`--apply` 才寫且先備份；`skipZh: true`（中文欄位只由 `translate:zh` 產生）；不覆蓋既有值（沿用 `normalizeEnrichment`）。`tests/enrich-capabilities.test.js` 7 項全綠；dry-run 實測：771 支、缺 159 支、遙測 0 筆→候選 0 支（正確不亂補）。
+
+**Q5=A V5 調校紀律＋失敗分析（執行紀錄：`docs/semantic-failure-analysis-2026-10-15.md`）**：
+- 工具升級：`core/ceiling.js`（純邏輯，可測）＋`scripts/ceiling-analysis.js` 新增 `--failures／--recall-miss／--rank-loss／--limit／--json`；**預設輸出與改動前逐字相同**（向下相容）。`tests/ceiling-analysis.test.js` 6 項、0.6 秒（整庫 257 題 16 秒留在 `npm run ceiling`，不進 npm test）。
+- 實測（topK=50）：257 題、天花板 98.4%、top1 58.0%；失敗 42 題＝**召回缺口 4 題（全 semantic）＋排序問題 38 題**（semantic 25／constrained 10／direct 3）——再次印證「多數失敗是排序問題」。
+- ⭐ **新證據（配對 A/B，確定性無 API）**：評測集 257 題中 **9 題含簡體字**（用 `findSimplified()` 掃出），其中 5 題在失敗清單；把這 9 題 query 轉繁體後 **改善 6／不變 3／變差 0**（符號檢定單尾 p≈0.016），唯一那題 semantic 召回缺口 c144 由「未進榜」→ 第 7 名。**但不可過度推論**：9 題中有 4 題帶簡體也照樣成功，故簡繁只對 42 題失敗中的 5 題有解釋力。
+- 兩項待裁建議（**本輪未動 SSOT 與檢索權重**）：A 評測集簡繁清洗→發 v1.4.0 並重跑全部基線（v1.3.0 與 v1.4.0 不可比較）；B 查詢端簡轉繁正規化（`findSimplified` 守門＋`toTraditional`，須先離線量測再上線）。
+- 紀律落檔：🔴 **每次 `npm run compile:wiki` 後必須重跑 `npm run ablate:v5`**（最適權重取決於詞檔品質）。
+
+**本輪驗證（沙盒）**：`node --check` 23 檔全過；`check-traditional --full` 我新增／改動的 16 檔全乾淨（HANDOFF／README 被標的 8 行是既有歷史內容，非本輪新增）；相關 9 支測試直跑 94 項全綠（`npm test` 全數 EBUSY 屬沙盒偽失敗，見 MEMORY §8）；`check-mece`、`categories:check`、`cli validate`（100/100、0 錯 0 警）直跑全過。
+
 
 ### 2026-10-14（第五輪）五項裁決執行完畢＋發佈上線
 

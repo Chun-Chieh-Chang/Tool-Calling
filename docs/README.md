@@ -67,7 +67,15 @@
 | [SKILLS-SH-vs-TOOL-CALLING.md](./SKILLS-SH-vs-TOOL-CALLING.md) | skills.sh 生態與本專案的定位比較 |
 | [architecture/](./architecture/) | 技能路由的架構白皮書與標準化建議（早期研究） |
 
-## 6. 歷史記錄（**不可修改**——改了就是偽造歷史）
+## 6. 決策頁與執行紀錄（當輪待裁事項與落地紀錄）
+
+| 文件 | 內容 |
+|---|---|
+| [decisions-2026-10-15.html](./decisions-2026-10-15.html) | 2026-10-15 五題裁決頁：Pages「加入工具庫」路線／真人遙測 0 筆／多值分類回填／159 支缺 capabilities／語義天花板。附白話說明、實測數據錨點與建議 |
+| [telemetry-diagnosis-2026-10-15.md](./telemetry-diagnosis-2026-10-15.md) | Q2=A 執行紀錄：真人遙測 0 筆的三層根因（入口不可見／純瀏覽不計事件／跨域刻意擋）、最小修正（導流橫幅＋allowlist 中繼）與驗收實測 |
+| [semantic-failure-analysis-2026-10-15.md](./semantic-failure-analysis-2026-10-15.md) | Q5=A 執行紀錄：逐題失敗清單工具（`--failures`）、4 題召回缺口 vs 38 題排序問題、以及「評測集 9 題含簡體」的配對 A/B 證據（改善 6／不變 3／變差 0）與兩項待裁建議 |
+
+## 7. 歷史記錄（**不可修改**——改了就是偽造歷史）
 
 這些是過往時點的紀錄，數字反映當時狀態，**不要為了「同步」去改它們**。
 引用時請註明日期。
