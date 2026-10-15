@@ -66,9 +66,15 @@ for (const f of ['tool-id.js', 'classification-rules.js', 'categories.js', 'tool
   fs.copyFileSync(path.join(rootDir, 'core', f), path.join(distDir, 'core', f));
 }
 fs.copyFileSync(path.join(rootDir, 'worker', 'index.js'), path.join(distDir, 'worker', 'index.js'));
-// 提名端點設定（url 預設為空 → 前端顯示部署說明，不送請求）
-fs.mkdirSync(path.join(distDir, 'data'), { recursive: true });
-fs.copyFileSync(path.join(webDir, 'data', 'tools-add-endpoint.json'), path.join(distDir, 'data', 'tools-add-endpoint.json'));
+// 提名端點設定：**本機覆寫用，可不存在**。
+// 🔴 2026-10-15 CI 實測教訓：`web/data/` 在 .gitignore 內，CI 從乾淨 clone 建置時
+//    這個檔案不存在；原本無條件 copyFileSync 會 ENOENT 讓整個 build 掛掉，而
+//    本機因為檔案真的存在，怎麼跑都看不出來。正式路徑是 web/index.html 的
+//    meta[name="tools-add-endpoint"]（版控可見），這裡只做後備複製。
+if (fs.existsSync(path.join(webDir, 'data', 'tools-add-endpoint.json'))) {
+  fs.mkdirSync(path.join(distDir, 'data'), { recursive: true });
+  fs.copyFileSync(path.join(webDir, 'data', 'tools-add-endpoint.json'), path.join(distDir, 'data', 'tools-add-endpoint.json'));
+}
 if (fs.existsSync(path.join(webDir, 'favicon.svg'))) {
   fs.copyFileSync(path.join(webDir, 'favicon.svg'), path.join(distDir, 'favicon.svg'));
 }

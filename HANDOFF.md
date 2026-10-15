@@ -290,6 +290,8 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 - Q1=B 要把 `scripts/scan-tool.js`＋`core/tool-enricher.js` 搬到瀏覽器跑。第一版放在 `web/pipeline/`：`../scripts/...` 在原始碼樹成立，但 `build-web.js` 把鏈上檔案複製到 `dist/scripts/`、`dist/core/`，模組在 `dist/pipeline/` → 上溯層數不同，**兩種樹只有一種能解析**。
 - 解法：把管線模組放**倉庫根的 `pipeline/`**——web/ 與 dist/ 兩種樹都只需一層上溯（`../scripts/`、`../core/`、`../worker/`），成為唯一共通的相對路徑；`app.js` 的動態載入則雙路徑各試一次。
 - 配套：`build-web.js` 必須同步複製**整條鏈**（漏一個檔案＝Pages 上 404，且只有 runtime 才會發現）。`tests/add-pipeline.test.js` 就是這條鏈的守門。
+- 🔴 **反向陷阱（2026-10-15 CI 實測）**：對**可能不存在**的檔案（尤其是 `.gitignore` 管轄的目錄，如 `web/data/`）不可無條件 `copyFileSync`——CI 從乾淨 clone 建置，該檔不存在 → ENOENT 讓整個 build 掛掉。而**本機因為檔案真的在你機器上，怎麼跑都看不出來**（同一個 build 腳本，本機綠、CI 紅）。凡是複製非版控檔案，一律 `existsSync` 守門；設定值要走版控可見的路徑（如 `index.html` 的 meta），別依賴 gitignored 目錄。
+- 驗證法：把該檔案暫時 `mv` 走再跑一次 build——這是唯一能在本機重現 CI 條件的方式。
 
 ### 27. 🔴 守門腳本對「不支援的副檔名／不存在的路徑」靜默跳過——那是假綠（2026-10-15）
 
