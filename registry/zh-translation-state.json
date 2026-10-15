@@ -122,7 +122,7 @@
     },
     "hallmark": {
       "description_zh": "透過在 IDE 中強制執行乾淨精簡的編碼規範，防止 AI 生成程式碼過度膨脹。",
-      "useCase_zh": "適合在 Cursor 或 Claude Code 中重構舊有專案或生成生產就绪的程式碼，避免冗長的 AI 產物。",
+      "useCase_zh": "適合在 Cursor 或 Claude Code 中重構舊有專案或生成生產就緒的程式碼，避免冗長的 AI 產物。",
       "advantages_zh": "強制執行嚴格的編碼規範以消除多餘的 AI 樣板。與 Cursor 與 Claude Code 等熱門 AI 驅動 IDE 無縫整合。透過精簡的輸出產生提升程式碼可讀性與可維護性。",
       "at": "2026-09-20T02:51:10.120Z",
       "negativeConstraints_zh": [
@@ -385,7 +385,7 @@
       ]
     },
     "agent-reach": {
-      "description_zh": "CLI 工具，讓 AI 代理无需 API 費用即可爬取與搜尋主流社交媒體平台。",
+      "description_zh": "CLI 工具，讓 AI 代理無需 API 費用即可爬取與搜尋主流社交媒體平台。",
       "useCase_zh": "自動化監控 Twitter、Reddit 與 YouTube 上的熱門討論，用於市場研究。",
       "advantages_zh": "透過直接網頁爬取實現零 API 費用。\n統一 CLI 介面支援多個平台。\n原生 MCP 整合，無縫嵌入 AI 代理工作流程。",
       "at": "2026-09-20T02:53:08.122Z",
@@ -633,7 +633,7 @@
       "at": "2026-09-20T02:53:52.861Z",
       "negativeConstraints_zh": [
         "不適合需要客製化圖形的高度設計簡報。",
-        "避免在没有預先準備來源的情況下用於即時協作編輯。",
+        "避免在沒有預先準備來源的情況下用於即時協作編輯。",
         "對於需要手動調整圖表的複雜資料視覺化，並非理想選擇。"
       ]
     },
@@ -1002,7 +1002,7 @@
     "the-evolution-of-a-go-programmer": {
       "description_zh": "不適合用於查詢即時Go套件文件或是API參考資料。",
       "useCase_zh": "適合自學者或需要結構化學習路徑以掌握 Go 基礎知識與進階模式的團隊。",
-      "advantages_zh": "提供清晰的漸進式技能發展，從語法到高級併發處理。涵蓋標準函式庫精通與生產就绪的架構模式。視覺化組織便於快速參考與持續學習追蹤。",
+      "advantages_zh": "提供清晰的漸進式技能發展，從語法到高級併發處理。涵蓋標準函式庫精通與生產就緒的架構模式。視覺化組織便於快速參考與持續學習追蹤。",
       "at": "2026-09-20T02:58:04.329Z",
       "negativeConstraints_zh": [
         "不適合用於查找即時 Go 套件文件說明或 API 參考文件。",
@@ -2343,7 +2343,7 @@
       "at": "2026-09-20T03:05:44.854Z",
       "negativeConstraints_zh": [
         "不適合需要純圖形化 WYSIWYG CAD 介面的非程式設計師",
-        "不建議用於無 3D CAD 幾何需求的基礎 2D 栅格圖形編輯"
+        "不建議用於無 3D CAD 幾何需求的基礎 2D 柵格圖形編輯"
       ]
     },
     "tensorflow": {
@@ -2623,7 +2623,7 @@
       "at": "2026-09-20T03:12:28.786Z",
       "negativeConstraints_zh": [
         "不適合需要EVM相容性或以太坊智慧合約可移植性的專案",
-        "若輕量級區塊鏈如Hyperledger Fabric已能满足需求，不建議使用",
+        "若輕量級區塊鏈如Hyperledger Fabric已能滿足需求，不建議使用",
         "因基礎設施和節點需求，不適合低資源環境"
       ]
     },
@@ -3517,7 +3517,7 @@
       ]
     },
     "mini-agent": {
-      "description_zh": "輕量生產就绪單代理程式框架，展示核心 LLM 執行管線。",
+      "description_zh": "輕量生產就緒單代理程式框架，展示核心 LLM 執行管線。",
       "useCase_zh": "適合開發者用來構建需要簡單任務規劃與直接工具執行的獨立 AI 助理。",
       "advantages_zh": "輕量架構降低設定負擔。\n內建生產級錯誤處理與記錄。\n模組化設計簡化自訂工具整合。",
       "at": "2026-09-20T02:53:08.122Z",
@@ -3650,9 +3650,9 @@
       ]
     },
     "awesome-auto-research-tools": {
-      "description_zh": "精選 AI 工具，涵蓋文献搜尋、論文閱讀、實驗與程式碼生成。",
-      "useCase_zh": "研究者能快速發現並整合自動化工具，從文献回顧到編碼 streamlined academic workflow。",
-      "advantages_zh": "涵蓋完整研究生命周期，包括文献搜尋、論文分析與實驗管理。\n提供精選的高品質自動化工具集合。\n協助研究者顯著加速學術工作流程。",
+      "description_zh": "精選 AI 工具，涵蓋文獻搜尋、論文閱讀、實驗與程式碼生成。",
+      "useCase_zh": "研究者能快速發現並整合自動化工具，從文獻回顧到編碼 streamlined academic workflow。",
+      "advantages_zh": "涵蓋完整研究生命周期，包括文獻搜尋、論文分析與實驗管理。\n提供精選的高品質自動化工具集合。\n協助研究者顯著加速學術工作流程。",
       "at": "2026-09-20T03:02:26.808Z",
       "negativeConstraints_zh": [
         "請勿作為獨立軟體應用程式用於直接執行任務。",
@@ -4251,7 +4251,7 @@
       ]
     },
     "ui-ux-pro-max-skill-cn": {
-      "description_zh": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 辅助設計能力。",
+      "description_zh": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 輔助設計能力。",
       "advantages_zh": "完整翻譯並本地化原始 README，消除中文開發者的語言障礙,覆蓋 UI/UX Pro Max 全部技能，提供系統化的 AI 設計學習路徑,針對中文開發者優化，降低上手門檻，提升學習效率",
       "at": "2026-09-20T03:12:28.786Z",
       "useCase_zh": "中文開發者需要快速上手 AI 輔助 UI/UX 設計工作流時，使用本技能庫獲取完整中文教程與最佳實踐。",
@@ -5623,7 +5623,7 @@
     },
     "hy3": {
       "negativeConstraints_zh": [
-        "不適合僅需较小、较快模型即可應付的簡單單輪問答",
+        "不適合僅需較小、較快模型即可應付的簡單單輪問答",
         "不適合需要次秒級回應時間的即時低延遲應用",
         "因模型體積龐大，不適合部署於邊緣裝置或端側"
       ],
@@ -6110,7 +6110,7 @@
       ]
     },
     "awesome-persona-skills": {
-      "description_zh": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女娲.skill……",
+      "description_zh": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女媧.skill……",
       "negativeConstraints_zh": [
         "非可執行軟體；為 Markdown 索引，需使用者複製外部儲存庫方可運作",
         "技能依賴第三方外部連結，此精選列表中這些連結可能隨時失效或變更"

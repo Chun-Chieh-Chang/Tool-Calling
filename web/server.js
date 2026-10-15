@@ -30,11 +30,11 @@ const trendingJsonPath = path.join(rootDir, 'registry', 'weekly-trending.json');
 // shutdown 在公開實例回 200、自動探勘照跑並撞 GitHub 限流出 504）。
 // 改用不依賴環境變數的判據：
 //   · isLocalRequest(req)：Host／X-Forwarded-Host 皆為本機才算本機。
-//     本機瀏覽器（Host: localhost）行為完全不變；公開访客一律受限。
+//     本機瀏覽器（Host: localhost）行為完全不變；公開訪客一律受限。
 //   · 自動探勘：預設關（TRENDING_AUTO=1 可手動開）。每週漲星由遠端
 //     cron 工作流負責；本機 30 分鐘任務曾在 2026-10-14 造成舊碼汙染事故。
 //   · 寫入型端點（tools/add／trending/refresh／shutdown）：僅本機可用
-//     （公開访客不該能改 sandbox registry、觸發背景任務或關閉服務）。
+//     （公開訪客不該能改 sandbox registry、觸發背景任務或關閉服務）。
 //   · 遙測寫入 /api/telemetry 維持公開開放——那是發佈的目的（累積真人查詢）。
 const AUTO_TRENDING_ENABLED = process.env.TRENDING_AUTO === '1';
 
@@ -242,7 +242,7 @@ const server = http.createServer(async (req, res) => {
     };
 
     // 本機請求判定（2026-10-14 部署實測修正）：Host 與 X-Forwarded-Host
-    // 皆為本機（或缺失）才算本機。反向代理後的公開访客一律視為遠端。
+    // 皆為本機（或缺失）才算本機。反向代理後的公開訪客一律視為遠端。
     const isLocalRequest = (req) => {
       const bare = (h) => String(h || '').split(',')[0].split(':')[0].trim().toLowerCase();
       const host = bare(req.headers.host);

@@ -75,6 +75,12 @@ const SKIP_PATH_PATTERNS = [
   /^\.temp\//,
   // 評測輸出檔是 harness 產物（tee 擷取的機器輸出，內含評測集刻意保留的簡體查詢字串），非代碼散文。
   /^docs\/benchmarks\/.*\.txt$/,
+  // 產生的知識圖譜 HTML：內容是 registry 的機器傾印，由
+  // `node scripts/generate-knowledge-graph.js` 產生。**用路徑排除而非行內標記**——
+  // 標記會被下一次重建覆蓋，那種豁免等於不存在（第八輪 Q2=A）。
+  // 註：資料面已於同輪清洗，這裡排除是為了讓「資料再度變髒」時門禁仍能專注在
+  // 人手寫的內容上，而不是對著產物空轉。
+  /^docs\/knowledge-graph\.html$/,
 ];
 
 // --full 的副檔名範圍

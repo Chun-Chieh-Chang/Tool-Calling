@@ -54,12 +54,12 @@ trigger 擴充到 361 筆時，fusion Hit@1 **從 11.9% 退步到 7.1%**。
 
 ### 4. 簡繁必須一致
 
-LLM 產生的簡體詞（「浏览器」）與繁體查詢的 bigram **完全不重疊**——
-tokenize 把「瀏覽器」切成 瀏覽/覽器、「浏览器」切成 浏览/览器，零交集。
+LLM 產生的簡體詞（「浏览器」）與繁體查詢的 bigram **完全不重疊**—— <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+tokenize 把「瀏覽器」切成 瀏覽/覽器、「浏览器」切成 浏览/览器，零交集。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 曾污染 508 項／1201 字元／110 筆工具。
 
 → 已用 `scripts/fix-simplified.js` 全數修正，並在產生端防護。
-→ **但注意：`CLASSIFICATION.md` 的「开发工具」是刻意引用（描述 bug），不可改。**
+→ **但注意：`CLASSIFICATION.md` 的「开发工具」是刻意引用（描述 bug），不可改。** <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 
 ### 5. git remote-tracking 在此環境不會更新
 
@@ -205,18 +205,18 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 `scripts/fix-simplified.js` 原本拿內建保守表 `S2T_KEYS` 當**閘門**：
 只有偵測到明確簡體字，才把整串交給 opencc 做詞組級轉換。
 
-問題：S2T 表不完整（缺「没」等字），所以這些字**永遠轉不到**；
+問題：S2T 表不完整（缺「没」等字），所以這些字**永遠轉不到**； <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 而 `findSimplified()` 也用同一張表，複檢也抓不到 → **雙雙失明**。
-（知識編譯器 Tier 1 試跑時輸出「有没有」才被發現。）
+（知識編譯器 Tier 1 試跑時輸出「有没有」才被發現。） <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 
 修法：新增 `S2T_SAFE`（只收無歧義簡體字），在閘門未開時做單字對照。
 
-🔴 **不能直接把字加進 S2T**：那會讓閘門為「含『没』但其他部分是繁體」
+🔴 **不能直接把字加進 S2T**：那會讓閘門為「含『没』但其他部分是繁體」 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 的字串打開，整串丟給 opencc 後會把繁體改錯——
 `跨平台→跨平臺`、`群組→羣組`、`減少干擾→減少幹擾`、`漏斗→漏鬥`。
 
 → 判定某字能否進 `S2T_SAFE`：opencc 單字轉換後不同、**且**該字在繁體裡
-不存在同樣字形（排除 台/群/干/斗/里/面/发/只/松/适/复/于/后…）。
+不存在同樣字形（排除 台/群/干/斗/里/面/发/只/松/适/复/于/后…）。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 
 ### 20. ⚠️ eval-rerank 預設 topK=20，上線 recallK=30（兩者不一致）
 
@@ -500,7 +500,7 @@ b9aa213  fix(trending): 分類與語言加入 SSOT 守門，收錄生命週期�
 
 **9 支新工具補齊結果**：`enrich-new-tools.js` 12 支待補 → 成功 11／資訊不足 1（math，OpenAI 上游 README 稀疏＋2016 風格空描述，enrich 端誠實留白）；`translate-to-zh.js` 補 *_zh 並把 8 支升 active。`math` 後續**依上游 README 實查證據手工補齊**（719 篇手稿／372 家族／~42% Lean 形式化；category 由「開發工具」正名為「研究」；NC 明言「靜態館藏非可執行軟體」與「未形式化結果可能有誤——上游自述」）。另清掉兩筆舊債：`how-to-live-better` 描述為簡體，被 translate 的「已含中文」判據誤跳 → 依職責分離流程（findSimplified 偵測→toTraditional 轉換）補 desc_zh 並升 active；`qingjian`／`how-to-live-better` 觸發詞不足、`tokentab` 缺 NC（repo 已 404，NC 只從既有 description 語意保守推導，未編造）→ 警告清零。
 
-**最終狀態**：`node cli.js validate` **768/768 全過、Contract 100/100、0 錯誤 0 警告 0 low-quality**；check-utf8／duplicate-ids／templates／doc-stats／mece／sync --check／rescan --ci 七道閘門全過；`npm run build` 後 dist/registry 與 registry 逐笔一致（0 stale）。
+**最終狀態**：`node cli.js validate` **768/768 全過、Contract 100/100、0 錯誤 0 警告 0 low-quality**；check-utf8／duplicate-ids／templates／doc-stats／mece／sync --check／rescan --ci 七道閘門全過；`npm run build` 後 dist/registry 與 registry 逐笔一致（0 stale）。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 
 ⚠️ **未裁決事項**：`tokentab`（damejan80/tokentab）GitHub repo 已 404——先記錄，是否降級 deprecated 留給使用者裁決（不擅自下架 active 工具）。→ **已裁決**：用戶選「直接移除」，本日第三輪執行完畢（見上方第三輪快照）。
 

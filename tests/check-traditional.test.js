@@ -144,6 +144,17 @@ test('資料檔與產物目錄永不掃描', () => {
   assert.equal(isSkippedPath('core/search-engine.js'), false);
 });
 
+// 2026-10-15 第八輪 Q2=A：產生的知識圖譜 HTML 走路徑排除。
+// 排除必須**精準**——排太寬等於把整類檔案變成盲區（那比不排除更糟）。
+test('產生的知識圖譜 HTML 走路徑排除，且排除範圍不得外溢', () => {
+  assert.equal(isSkippedPath('docs/knowledge-graph.html'), true, '產生檔應被排除');
+  // 負向控制：只排這一個檔，同目錄其他檔與近似檔名都要照掃
+  assert.equal(isSkippedPath('docs/knowledge-graph.html.bak'), false, '不可誤排同前綴的檔');
+  assert.equal(isSkippedPath('docs/other.html'), false, '不可誤排同目錄其他 HTML');
+  assert.equal(isSkippedPath('docs/knowledge-graph.md'), false, '不可誤排同名的 .md');
+  assert.equal(isSkippedPath('other/knowledge-graph.html'), false, '不可誤排其他目錄的同名檔');
+});
+
 test('刻意含簡體資料的原始碼檔，靠標記保持零違規', () => {
   // 這幾支檔是「簡體字是資料」的最大案例；若有人刪掉標記，這裡會紅
   for (const f of [

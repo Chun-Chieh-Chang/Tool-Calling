@@ -1,8 +1,8 @@
 /**
- * platform-deploy-gate.test.js — 公開访客安全態勢守門測試（2026-10-14 Q3=A）
+ * platform-deploy-gate.test.js — 公開訪客安全態勢守門測試（2026-10-14 Q3=A）
  *
  * 部署實測修正（2026-10-14）：平台不保證注入 PORT，改以 Host 頭判據。
- * 公開访客（Host／X-Forwarded-Host 非本機）必須：
+ * 公開訪客（Host／X-Forwarded-Host 非本機）必須：
  *   · 寫入型端點 tools/add、trending/refresh、shutdown 一律 404
  *   · 遙測匯出 /api/telemetry/export 無 token 不可見、錯 token 403
  * 遙測寫入（公開Origin + 相符的 X-Forwarded-Host＝信任）的端到端驗證
@@ -34,7 +34,7 @@ async function waitForServer(timeoutMs = 15000) {
   }
 }
 
-test('公開访客：寫入型端點停用、遙測匯出 token 把關', async (t) => {
+test('公開訪客：寫入型端點停用、遙測匯出 token 把關', async (t) => {
   const child = spawn(process.execPath, ['web/server.js'], {
     cwd: ROOT,
     env: { ...process.env, PORT: String(PORT) },
@@ -48,20 +48,20 @@ test('公開访客：寫入型端點停用、遙測匯出 token 把關', async (
       headers: { 'Content-Type': 'application/json', 'X-Forwarded-Host': PUBLIC_HOST },
       body: JSON.stringify({ confirm: 'SHUTDOWN' }),
     });
-    assert.equal(shutdown.status, 404, 'shutdown 對公開访客必須停用');
+    assert.equal(shutdown.status, 404, 'shutdown 對公開訪客必須停用');
 
     const add = await fetch(`${BASE}/api/tools/add`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Forwarded-Host': PUBLIC_HOST },
       body: JSON.stringify({ url: 'https://github.com/owner/repo' }),
     });
-    assert.equal(add.status, 404, 'tools/add 對公開访客必須停用');
+    assert.equal(add.status, 404, 'tools/add 對公開訪客必須停用');
 
     const refresh = await fetch(`${BASE}/api/trending/refresh`, {
       method: 'POST',
       headers: { 'X-Forwarded-Host': PUBLIC_HOST },
     });
-    assert.equal(refresh.status, 404, 'trending/refresh 對公開访客必須停用');
+    assert.equal(refresh.status, 404, 'trending/refresh 對公開訪客必須停用');
 
     const exportNoToken = await fetch(`${BASE}/api/telemetry/export`);
     assert.equal(exportNoToken.status, 404, '匯出端點無 token 必須不可見');

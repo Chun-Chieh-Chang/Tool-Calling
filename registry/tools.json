@@ -1199,7 +1199,7 @@
       ],
       "stars": 29876,
       "description_zh": "透過在 IDE 中強制執行乾淨精簡的編碼規範，防止 AI 生成程式碼過度膨脹。",
-      "useCase_zh": "適合在 Cursor 或 Claude Code 中重構舊有專案或生成生產就绪的程式碼，避免冗長的 AI 產物。",
+      "useCase_zh": "適合在 Cursor 或 Claude Code 中重構舊有專案或生成生產就緒的程式碼，避免冗長的 AI 產物。",
       "advantages_zh": "強制執行嚴格的編碼規範以消除多餘的 AI 樣板。與 Cursor 與 Claude Code 等熱門 AI 驅動 IDE 無縫整合。透過精簡的輸出產生提升程式碼可讀性與可維護性。",
       "negativeConstraints_zh": [
         "不適合需要詳細解釋來學習基礎程式設計概念的初學者。",
@@ -1230,7 +1230,7 @@
         "構建代碼依賴關係圖",
         "增量更新程式碼地圖",
         "提取程式碼符號資訊",
-        "構建程式碼知識圖谱"
+        "構建程式碼知識圖譜"
       ],
       "install": {
         "method": "pip",
@@ -1635,13 +1635,13 @@
         "mcp",
         "devtools",
         "追蹤AI編碼成本",
-        "审計AI代理操作",
-        "初始化編碼代理循环",
+        "審計AI代理操作",
+        "初始化編碼代理循環",
         "管理Grok使用費用",
         "編排多步AI任務",
-        "监控Codex消耗",
+        "監控Codex消耗",
         "追蹤MCP工具調用成本",
-        "审查AI代理執行記錄",
+        "審查AI代理執行記錄",
         "統計LLM API費用",
         "自動化AI代理工作流"
       ],
@@ -2098,7 +2098,7 @@
         "Agent間共享上下文",
         "把上下文傳給下一個Agent",
         "讓兩個Agent互相調用工具",
-        "跨Agent复用技能",
+        "跨Agent複用技能",
         "Agent之間傳遞數據",
         "讓另一個Agent理解我的代碼",
         "跨Agent協作編程",
@@ -2580,7 +2580,7 @@
         "學構建AI代理",
         "做agent開發教程",
         "接MCP協議",
-        "VSCode里寫agent",
+        "VSCode裡寫agent",
         "編智能體程序"
       ],
       "install": {
@@ -3998,7 +3998,7 @@
         "Platforms with strict anti-bot measures that may result in IP bans"
       ],
       "stars": 95514,
-      "description_zh": "CLI 工具，讓 AI 代理无需 API 費用即可爬取與搜尋主流社交媒體平台。",
+      "description_zh": "CLI 工具，讓 AI 代理無需 API 費用即可爬取與搜尋主流社交媒體平台。",
       "useCase_zh": "自動化監控 Twitter、Reddit 與 YouTube 上的熱門討論，用於市場研究。",
       "advantages_zh": "透過直接網頁爬取實現零 API 費用。\n統一 CLI 介面支援多個平台。\n原生 MCP 整合，無縫嵌入 AI 代理工作流程。",
       "negativeConstraints_zh": [
@@ -4159,7 +4159,7 @@
         "Unideal for applications needing advanced memory management or long-context persistence"
       ],
       "stars": 3052,
-      "description_zh": "輕量生產就绪單代理程式框架，展示核心 LLM 執行管線。",
+      "description_zh": "輕量生產就緒單代理程式框架，展示核心 LLM 執行管線。",
       "useCase_zh": "適合開發者用來構建需要簡單任務規劃與直接工具執行的獨立 AI 助理。",
       "advantages_zh": "輕量架構降低設定負擔。\n內建生產級錯誤處理與記錄。\n模組化設計簡化自訂工具整合。",
       "negativeConstraints_zh": [
@@ -4821,7 +4821,7 @@
         "去除視頻水印",
         "清除PDF水印",
         "處理音頻文件",
-        "NotebookLM提示词",
+        "NotebookLM提示詞",
         "批量刪除視頻logo"
       ],
       "install": {
@@ -5532,7 +5532,7 @@
       "advantages_zh": "自動化筆記記錄與簡報製作之間的工作流程。\n利用 NotebookLM 上下文進行精確的內容擷取。\n提供可重複的管線結構，以生成一致的簡報投影片。",
       "negativeConstraints_zh": [
         "不適合需要客製化圖形的高度設計簡報。",
-        "避免在没有預先準備來源的情況下用於即時協作編輯。",
+        "避免在沒有預先準備來源的情況下用於即時協作編輯。",
         "對於需要手動調整圖表的複雜資料視覺化，並非理想選擇。"
       ]
     },
@@ -5779,7 +5779,7 @@
         "rag",
         "llm-conversion",
         "PDF轉Markdown",
-        "PDF轉纯文本",
+        "PDF轉純文本",
         "Word轉成文字",
         "網頁轉成Markdown",
         "Office文檔轉Markdown",
@@ -6495,14 +6495,14 @@
         "skill",
         "把書轉成AI技能",
         "把書的內容做成agent",
-        "從書里提取決策規則",
-        "将書籍轉成可執行工具",
+        "從書裡提取決策規則",
+        "將書籍轉成可執行工具",
         "把書的知識整理成skill",
         "用書訓練自動化決策",
         "把電子書變成AI助手",
         "從書中抓方法論做成技能",
         "把書的內容轉成agent skill",
-        "将專業知識書轉成可執行指令"
+        "將專業知識書轉成可執行指令"
       ],
       "install": {
         "method": "git-clone",
@@ -6809,9 +6809,9 @@
         "microsoft",
         "讓多個 AI 代理協作完成任務",
         "編排多步驟 LLM 對話流程",
-        "自動讓 AI 分角色讨論問題",
+        "自動讓 AI 分角色討論問題",
         "構建多智能體編程助手",
-        "讓 ChatGPT 群聊解決复雜任務",
+        "讓 ChatGPT 群聊解決複雜任務",
         "自動化 AI 代理工作流編排",
         "設計多 LLM 協作對話系統",
         "用多代理框架實現任務自動化",
@@ -6934,7 +6934,7 @@
         "用AI技能自動化任務",
         "連接多個AI服務一起跑",
         "設定AI定期檢查什麼",
-        "讓AI自動循环工作"
+        "讓AI自動循環工作"
       ],
       "install": {
         "method": "npm",
@@ -7417,9 +7417,9 @@
         "llm-orchestration",
         "編排多代理協作流程",
         "建立角色扮演型AI代理",
-        "讓多個LLM分工完成复雜任務",
+        "讓多個LLM分工完成複雜任務",
         "創建可協作的Agent團隊",
-        "用多Agent架構執行串联任務",
+        "用多Agent架構執行串聯任務",
         "設計AI代理角色扮演工作流",
         "實現多步驟AI任務自動化",
         "構建自主Agent協同系統",
@@ -7480,7 +7480,7 @@
         "coding-assistant",
         "幫我寫代碼",
         "幫我生成代碼",
-        "幫我审查代碼",
+        "幫我審查代碼",
         "幫我修bug",
         "幫我優化代碼"
       ],
@@ -8297,7 +8297,7 @@
         "構建 RAG 系統",
         "配置 MCP 接口",
         "自動化 AI 流程",
-        "搭建對話机器人",
+        "搭建對話機器人",
         "設計 agent 工作流",
         "可視化編排 LLM 應用",
         "集成知識庫問答"
@@ -8527,7 +8527,7 @@
       "stars": 1325,
       "description_zh": "不適合用於查詢即時Go套件文件或是API參考資料。",
       "useCase_zh": "適合自學者或需要結構化學習路徑以掌握 Go 基礎知識與進階模式的團隊。",
-      "advantages_zh": "提供清晰的漸進式技能發展，從語法到高級併發處理。涵蓋標準函式庫精通與生產就绪的架構模式。視覺化組織便於快速參考與持續學習追蹤。",
+      "advantages_zh": "提供清晰的漸進式技能發展，從語法到高級併發處理。涵蓋標準函式庫精通與生產就緒的架構模式。視覺化組織便於快速參考與持續學習追蹤。",
       "negativeConstraints_zh": [
         "不適合用於查找即時 Go 套件文件說明或 API 參考文件。",
         "不適合用於產生生產環境程式碼或自動化測試框架。",
@@ -9177,10 +9177,10 @@
         "llm coding pitfalls",
         "karpathy skills",
         "優化代碼生成",
-        "修复LLM常見錯誤",
+        "修復LLM常見錯誤",
         "提升編程準確率",
         "解決代碼幻覺",
-        "修正逻輯漏洞",
+        "修正邏輯漏洞",
         "減少編碼錯誤",
         "改善AI編程輸出",
         "提升代碼質量",
@@ -13811,7 +13811,7 @@
         },
         {
           "name": "Rednote Cover",
-          "description": "Create a Xiaohongshu (RedNote/小红书) style cover image — vibrant, lifestyle-focused, with aesthetic typography overlay suitable for the Chinese social platform.",
+          "description": "Create a Xiaohongshu (RedNote/小紅書) style cover image — vibrant, lifestyle-focused, with aesthetic typography overlay suitable for the Chinese social platform.",
           "subpath": "library/social/rednote-cover"
         },
         {
@@ -14070,14 +14070,14 @@
         "memory",
         "business-knowledge",
         "code-exploration",
-        "把代碼庫轉成知識圖谱",
-        "用圖谱查看我的代碼",
+        "把代碼庫轉成知識圖譜",
+        "用圖譜查看我的代碼",
         "分析我的代碼庫結構",
         "給代碼庫建立知識庫",
         "查詢業務邏輯的知識圖譜",
         "讓代碼庫可以問答",
         "探索代碼之間的關系",
-        "把代碼轉成可搜索的圖谱",
+        "把代碼轉成可搜索的圖譜",
         "可視化我的代碼知識",
         "分析整個項目的代碼結構"
       ],
@@ -14131,7 +14131,7 @@
         "先思考再寫代碼",
         "簡化代碼",
         "精準修改 bug",
-        "审查代碼錯誤",
+        "審查代碼錯誤",
         "澄清編程需求",
         "重構代碼",
         "避免 AI 編程錯誤",
@@ -15349,15 +15349,15 @@
         "ai-tone-removal",
         "writing",
         "改寫AI生成文本",
-        "去除机翻腔",
+        "去除機翻腔",
         "本地化技術文檔",
-        "润色机器翻譯",
-        "修正程序注释",
+        "潤色機器翻譯",
+        "修正程序注釋",
         "優化提示詞表達",
         "翻譯技術文件",
         "改寫英文文檔為中文",
         "消除AI腔調",
-        "润色開發者文案"
+        "潤色開發者文案"
       ],
       "install": {
         "method": "pip",
@@ -15414,7 +15414,7 @@
         "AI 文風去味",
         "提示詞增強",
         "內容人性化處理",
-        "文章改寫流畅",
+        "文章改寫流暢",
         "AI 生成文本優化",
         "寫作自然化調整"
       ],
@@ -15429,7 +15429,7 @@
       "subTools": [
         {
           "name": "Author Written",
-          "description": "---\r name: Author-written\r description: |\r   去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\r   基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\r   宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\r   AI 词汇、否定式排比、过多的连接性短语。",
+          "description": "---\r name: Author-written\r description: |\r   去除文本中的 AI 生成痕跡。適用於編輯或審閱文本，使其聽起來更自然、更像人類書寫。\r   基於維基百科的\"AI 寫作特徵\"綜合指南。檢測並修復以下模式：誇大的象徵意義、\r   宣傳性語言、以 -ing 結尾的膚淺分析、模糊的歸因、破折號過度使用、三段式法則、\r   AI 詞彙、否定式排比、過多的連接性短語。",
           "subpath": ".backup/Author-written"
         },
         {
@@ -15439,27 +15439,27 @@
         },
         {
           "name": "Humanizer Zh",
-          "description": "---\r name: humanizer-zh\r description: |\r   去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\r   基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\r   宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\r   AI 词汇、否定式排比、过多的连接性短语。\r ",
+          "description": "---\r name: humanizer-zh\r description: |\r   去除文本中的 AI 生成痕跡。適用於編輯或審閱文本，使其聽起來更自然、更像人類書寫。\r   基於維基百科的\"AI 寫作特徵\"綜合指南。檢測並修復以下模式：誇大的象徵意義、\r   宣傳性語言、以 -ing 結尾的膚淺分析、模糊的歸因、破折號過度使用、三段式法則、\r   AI 詞彙、否定式排比、過多的連接性短語。\r ",
           "subpath": ".backup/humanizer-zh"
         },
         {
           "name": "My Writing",
-          "description": "---\r name: my-writing\r description: |\r   去除文本中的 AI 生成痕迹。适用于编辑或审阅文本，使其听起来更自然、更像人类书写。\r   基于维基百科的\"AI 写作特征\"综合指南。检测并修复以下模式：夸大的象征意义、\r   宣传性语言、以 -ing 结尾的肤浅分析、模糊的归因、破折号过度使用、三段式法则、\r   AI 词汇、否定式排比、过多的连接性短语。\r al",
+          "description": "---\r name: my-writing\r description: |\r   去除文本中的 AI 生成痕跡。適用於編輯或審閱文本，使其聽起來更自然、更像人類書寫。\r   基於維基百科的\"AI 寫作特徵\"綜合指南。檢測並修復以下模式：誇大的象徵意義、\r   宣傳性語言、以 -ing 結尾的膚淺分析、模糊的歸因、破折號過度使用、三段式法則、\r   AI 詞彙、否定式排比、過多的連接性短語。\r al",
           "subpath": ".backup/my-writing"
         },
         {
           "name": "Writer Pro One",
-          "description": "精确复现特定作者的中文写作风格。适用于：(1) 以该风格从零生成文章，(2) 将AI风格或其他风格的文章改写为该风格，(3) 在同一次任务里对草稿做终稿打磨/精修（保持作者笔力，不得改成中性说明书），(4) 审阅文章是否符合该风格，(5) 结构保真地将非简体中文翻译为简体中文（保留原始结构与不可改动片段，如人名/专名、代码、代码块、URL 等；不擅自增删）。核心特征：半文半白的用词、长短交替的句式节奏、类比先行的论证方式、冷面热心的情感表达、第一人称介入的立场标定；并在不破坏作者习惯的前提下，清除显眼的 AI 写作痕迹（24 项检测）。触发词：写作、改写、风格、润色、重写、精修、再优化、二稿、终稿、最终版、翻译、译、translate、翻成、译成、转为简体。",
+          "description": "精確復現特定作者的中文寫作風格。適用於：(1) 以該風格從零生成文章，(2) 將AI風格或其他風格的文章改寫為該風格，(3) 在同一次任務裡對草稿做終稿打磨/精修（保持作者筆力，不得改成中性說明書），(4) 審閱文章是否符合該風格，(5) 結構保真地將非簡體中文翻譯為簡體中文（保留原始結構與不可改動片段，如人名/專名、代碼、代碼塊、URL 等；不擅自增刪）。核心特徵：半文半白的用詞、長短交替的句式節奏、類比先行的論證方式、冷麪熱心的情感表達、第一人稱介入的立場標定；並在不破壞作者習慣的前提下，清除顯眼的 AI 寫作痕跡（24 項檢測）。觸發詞：寫作、改寫、風格、潤色、重寫、精修、再優化、二稿、終稿、最終版、翻譯、譯、translate、翻成、譯成、轉為簡體。",
           "subpath": ".backup/writer-Pro-one"
         },
         {
           "name": "De AI Writing",
-          "description": "中文写作、改写、润色、翻译和审阅的去 AI 味技能。用于保留原意和原文风格，减少路标词、讲义腔、模板句式、协作口吻和 AI 痕迹。默认轻量加载，按任务只读取必要参考章节。",
+          "description": "中文寫作、改寫、潤色、翻譯和審閱的去 AI 味技能。用於保留原意和原文風格，減少路標詞、講義腔、模板句式、協作口吻和 AI 痕跡。默認輕量加載，按任務只讀取必要參考章節。",
           "subpath": "de-AI-writing"
         },
         {
           "name": "Good Writing",
-          "description": "复现特定作者中文写作风格的轻量 Skill。用于从零写作、改写、终稿精修、风格审阅和结构保真翻译。默认先读风格摘要，不再启动时通读完整范文或大型检测清单。",
+          "description": "復現特定作者中文寫作風格的輕量 Skill。用於從零寫作、改寫、終稿精修、風格審閱和結構保真翻譯。默認先讀風格摘要，不再啓動時通讀完整範文或大型檢測清單。",
           "subpath": "good-writing"
         }
       ],
@@ -18693,7 +18693,7 @@
       "useCase_zh": "快速掌握熱門議題的近期輿論與主要討論，便於做出決策。",
       "advantages_zh": "彙整 Reddit、X、YouTube、HN 與 Polymarket 等多元平台的見解，提供綜合摘要而非原始搜尋結果，專注於最近 30 天內的活動。",
       "negativeConstraints_zh": [
-        "不適用于需要逐秒更新之即時新聞。",
+        "不適用於需要逐秒更新之即時新聞。",
         "不適合 30 天以上的歷史分析。",
         "進行深度學術文獻回顧或專有資料庫查詢時，請避免使用。"
       ]
@@ -18754,7 +18754,7 @@
       "useCase_zh": "適合競賽情報團隊追蹤小紅書與抖音近一個月的病毒式傳播趨勢。",
       "advantages_zh": "涵蓋小紅書與 TikTok 等八大中國網際網路平台，產出附有近期內容可驗證引用的結構化報告，透過 Claude Code 整合自動化資料收集與分析。",
       "negativeConstraints_zh": [
-        "不適用于需要小於一小時更新頻率之即時監控。",
+        "不適用於需要小於一小時更新頻率之即時監控。",
         "搜尋中國大陸以外之西方社交媒體平台時，請避免使用。",
         "不適合擷取超過指定 30 天範圍的歷史資料。"
       ]
@@ -18800,27 +18800,27 @@
       "subTools": [
         {
           "name": "Companion Simple",
-          "description": "小跃虚拟伴侣 - 使用智谱 AI 提供温暖的对话陪伴和静态图片分享",
+          "description": "小躍虛擬伴侶 - 使用智譜 AI 提供溫暖的對話陪伴和靜態圖片分享",
           "subpath": "projects/companion-simple"
         },
         {
           "name": "Agent Team",
-          "description": "统一管理多智能体角色的团队协作框架，支持智能体动态组合、灵活协作和扩展新角色。智能体本质上是\"角色定义\"，可以根据任务需求灵活组建团队，实现从会议决策到系统构建的完整能力。智能体角色明确分工：有干活的、有指挥的、有挑毛病的，能实时看到沟通过程，共享数据库记忆，确保上下文一致。",
+          "description": "統一管理多智能體角色的團隊協作框架，支持智能體動態組合、靈活協作和擴展新角色。智能體本質上是\"角色定義\"，可以根據任務需求靈活組建團隊，實現從會議決策到系統構建的完整能力。智能體角色明確分工：有幹活的、有指揮的、有挑毛病的，能實時看到溝通過程，共享數據庫記憶，確保上下文一致。",
           "subpath": "skills/agent-team/agent-team"
         },
         {
           "name": "Agentkit Multimedia Shopping",
-          "description": "基于ByteDance agentkit-samples多媒体用例的小省导购员数字人带货视频生成技能，整合多模态内容生成能力（图像、视频、音频），支持AI绘画、语音合成、视频生成，与小省导购员人设融合，9:16竖屏适配，直接对接带货视频生成流程",
+          "description": "基於ByteDance agentkit-samples多媒體用例的小省導購員數字人帶貨視頻生成技能，整合多模態內容生成能力（圖像、視頻、音頻），支持AI繪畫、語音合成、視頻生成，與小省導購員人設融合，9:16豎屏適配，直接對接帶貨視頻生成流程",
           "subpath": "skills/agentkit-multimedia-shopping/agentkit-multimedia-shopping"
         },
         {
           "name": "Article Illustrator",
-          "description": "分析文章内容，在需要视觉辅助理解的位置生成插画。配图可以是信息补充、概念具象化，或引导读者想象。当用户要求\"给文章配图\"、\"为文章生成插图\"、\"添加配图\"时使用此技能。",
+          "description": "分析文章內容，在需要視覺輔助理解的位置生成插畫。配圖可以是信息補充、概念具象化，或引導讀者想像。當用戶要求\"給文章配圖\"、\"為文章生成插圖\"、\"添加配圖\"時使用此技能。",
           "subpath": "skills/article-illustrator/article-illustrator"
         },
         {
           "name": "Bedtime Story",
-          "description": "为3-12岁儿童提供温馨亲切的睡前寓言故事和成语典故讲解。支持用户唤醒后提供故事列表选择，或直接讲解指定故事/成语。讲解时保持亲切温馨的语气、0.6倍正常语速、通俗易懂的表达，为小朋友营造舒适的睡前氛围。",
+          "description": "為3-12歲兒童提供溫馨親切的睡前寓言故事和成語典故講解。支持用戶喚醒後提供故事列表選擇，或直接講解指定故事/成語。講解時保持親切溫馨的語氣、0.6倍正常語速、通俗易懂的表達，為小朋友營造舒適的睡前氛圍。",
           "subpath": "skills/bedtime-story/bedtime-story"
         },
         {
@@ -18830,12 +18830,12 @@
         },
         {
           "name": "Content Creation Publisher",
-          "description": "内容创作与发布全流程技能，整合网页采集、Markdown格式化、智能配图、多平台发布（微信公众号、X/Twitter）功能，实现从内容获取到发布的一站式解决方案",
+          "description": "內容創作與發布全流程技能，整合網頁採集、Markdown格式化、智能配圖、多平台發布（微信公眾號、X/Twitter）功能，實現從內容獲取到發布的一站式解決方案",
           "subpath": "skills/content-creation-publisher"
         },
         {
           "name": "Article Illustrator",
-          "description": "分析文章内容，在需要视觉辅助理解的位置生成插画。配图可以是信息补充、概念具象化，或引导读者想象。当用户要求\"给文章配图\"、\"为文章生成插图\"、\"添加配图\"时使用此技能。",
+          "description": "分析文章內容，在需要視覺輔助理解的位置生成插畫。配圖可以是信息補充、概念具象化，或引導讀者想像。當用戶要求\"給文章配圖\"、\"為文章生成插圖\"、\"添加配圖\"時使用此技能。",
           "subpath": "skills/content-creation-publisher/article-illustrator"
         },
         {
@@ -18845,7 +18845,7 @@
         },
         {
           "name": "Baoyu Post To Wechat",
-          "description": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (图文) with multiple images. Use when user mentions \"发布公众号\", \"post to wechat\", \"微信公众号\", or \"图文/文章\".",
+          "description": "Posts content to WeChat Official Account (微信公眾號) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (圖文) with multiple images. Use when user mentions \"發布公眾號\", \"post to wechat\", \"微信公眾號\", or \"圖文/文章\".",
           "subpath": "skills/content-creation-publisher/baoyu-post-to-wechat"
         },
         {
@@ -18870,22 +18870,22 @@
         },
         {
           "name": "Digital Avatar Shopping Video",
-          "description": "小省导购员多智能体数字人口播带货视频生成系统，以\"小省导购员\"为核心人设，打造专业购物助手+数字人口播带货视频一体化服务。涵盖五大智能体（小省导购员、带货脚本师、数字人口播生成师、带货画面设计师、音画合成师），产出\"数字人口播+带货画面+字幕音效\"的成品视频，适配抖音、快手等短视频平台，支持淘宝、京东、拼多多、唯品会等全平台商品信息，具备知识库自动存取能力。",
+          "description": "小省導購員多智能體數字人口播帶貨視頻生成系統，以\"小省導購員\"為核心人設，打造專業購物助手+數字人口播帶貨視頻一體化服務。涵蓋五大智能體（小省導購員、帶貨腳本師、數字人口播生成師、帶貨畫面設計師、音畫合成師），產出\"數字人口播+帶貨畫面+字幕音效\"的成品視頻，適配抖音、快手等短視頻平台，支持淘寶、京東、拼多多、唯品會等全平台商品信息，具備知識庫自動存取能力。",
           "subpath": "skills/digital-avatar-shopping-video/digital-avatar-shopping-video"
         },
         {
           "name": "Dream Video Prompt Generator",
-          "description": "小省导购员数字人带货版即梦视频提示词生成系统，基于四大智能体协同（提示词生成师、质量管控师、知识库运维师、跨环节适配师），按照\"主体+运动+场景+（镜头语言+光影+氛围）\"公式输出中英文双版提示词，适配5s短视频。确保人物一致性、视觉连贯性、情绪连贯性，支持知识库智能复用和跨工具适配（Suno音乐、AI绘画），为数字人带货视频提供高质量提示词生成服务。",
+          "description": "小省導購員數字人帶貨版即夢視頻提示詞生成系統，基於四大智能體協同（提示詞生成師、質量管控師、知識庫運維師、跨環節適配師），按照\"主體+運動+場景+（鏡頭語言+光影+氛圍）\"公式輸出中英文雙版提示詞，適配5s短視頻。確保人物一致性、視覺連貫性、情緒連貫性，支持知識庫智能複用和跨工具適配（Suno音樂、AI繪畫），為數字人帶貨視頻提供高質量提示詞生成服務。",
           "subpath": "skills/dream-video-prompt-generator/dream-video-prompt-generator"
         },
         {
           "name": "Ecommerce Copywriter",
-          "description": "电商图片文案创作技能，支持多品类产品的吸引性文案生成，适用于电商平台的商品营销推广",
+          "description": "電商圖片文案創作技能，支持多品類產品的吸引性文案生成，適用於電商平台的商品營銷推廣",
           "subpath": "skills/ecommerce-copywriter/ecommerce-copywriter"
         },
         {
           "name": "Ecommerce Video Marketing",
-          "description": "电商视频营销创作技能，支持多品类商品的营销视频脚本生成，包含6阶段创作流程、智能体提示词框架、8种商品类型模板，适用于电商平台、社交媒体、品牌推广",
+          "description": "電商視頻營銷創作技能，支持多品類商品的營銷視頻腳本生成，包含6階段創作流程、智能體提示詞框架、8種商品類型模板，適用於電商平台、社交媒體、品牌推廣",
           "subpath": "skills/ecommerce-video-marketing/ecommerce-video-marketing"
         },
         {
@@ -18895,27 +18895,27 @@
         },
         {
           "name": "Historical Interview Scripts",
-          "description": "生成历史名人现代访谈短视频文案，通过古今反差与网络热梗的爆笑结合，创作具有传播力的虚构趣味内容",
+          "description": "生成歷史名人現代訪談短視頻文案，通過古今反差與網絡熱梗的爆笑結合，創作具有傳播力的虛構趣味內容",
           "subpath": "skills/historical-interview-scripts/historical-interview-scripts"
         },
         {
           "name": "Historical Science Video Prod",
-          "description": "自动化生成历史科学类3分钟科普短视频的全流程素材包，包含口播文案、分镜脚本、Veo2提示词、人物形象规范等，适配即梦平台视频生成。",
+          "description": "自動化生成歷史科學類3分鐘科普短視頻的全流程素材包，包含口播文案、分鏡腳本、Veo2提示詞、人物形象規範等，適配即夢平台視頻生成。",
           "subpath": "skills/historical-science-video-prod/historical-science-video-prod"
         },
         {
           "name": "Infinitetalk",
-          "description": "音频驱动的稀疏帧视频配音工具，支持音频驱动的 Video-to-Video 和 Image-to-Video 生成，实现精准的唇形、头部、身体姿态同步，支持无限时长视频生成",
+          "description": "音頻驅動的稀疏幀視頻配音工具，支持音頻驅動的 Video-to-Video 和 Image-to-Video 生成，實現精準的脣形、頭部、身體姿態同步，支持無限時長視頻生成",
           "subpath": "skills/infinitetalk"
         },
         {
           "name": "Infinitetalk",
-          "description": "音频驱动的稀疏帧视频配音工具，支持音频驱动的 Video-to-Video 和 Image-to-Video 生成，实现精准的唇形、头部、身体姿态同步，支持无限时长视频生成",
+          "description": "音頻驅動的稀疏幀視頻配音工具，支持音頻驅動的 Video-to-Video 和 Image-to-Video 生成，實現精準的脣形、頭部、身體姿態同步，支持無限時長視頻生成",
           "subpath": "skills/infinitetalk/infinitetalk"
         },
         {
           "name": "Infinitetalk Shopping Avatar",
-          "description": "专为InfiniteTalk项目设计的小省导购员数字人带货提示词生成技能，基于四大智能体协同（提示词生成师、质量管控师、知识库运维师、跨环节适配师），生成适配Image-to-Video模式的结构化提示词（角色固定特征+动作时序+场景环境+音频匹配+光影氛围+技术约束），支持9:16竖屏、5s/幕、音频同步（Suno+chinese-wav2vec2-base）、一致性管控（角色/视觉/情绪），直接对接模型推理流程",
+          "description": "專為InfiniteTalk項目設計的小省導購員數字人帶貨提示詞生成技能，基於四大智能體協同（提示詞生成師、質量管控師、知識庫運維師、跨環節適配師），生成適配Image-to-Video模式的結構化提示詞（角色固定特徵+動作時序+場景環境+音頻匹配+光影氛圍+技術約束），支持9:16豎屏、5s/幕、音頻同步（Suno+chinese-wav2vec2-base）、一致性管控（角色/視覺/情緒），直接對接模型推理流程",
           "subpath": "skills/infinitetalk-shopping-avatar/infinitetalk-shopping-avatar"
         },
         {
@@ -18930,27 +18930,27 @@
         },
         {
           "name": "Law To Markdown",
-          "description": "将法条/规范文件（.txt/.docx/.pdf）转为 Markdown。适用于用户要求“法条转 markdown”“pdf/docx 转 markdown”。处理 .pdf/.docx 时先检查是否已安装 mineru-ocr skill；未安装先引导安装，安装后优先用 mineru-ocr；仅在用户明确同意时再用本地回退方案。",
+          "description": "將法條/規範文件（.txt/.docx/.pdf）轉為 Markdown。適用於用戶要求“法條轉 markdown”“pdf/docx 轉 markdown”。處理 .pdf/.docx 時先檢查是否已安裝 mineru-ocr skill；未安裝先引導安裝，安裝後優先用 mineru-ocr；僅在用戶明確同意時再用本地回退方案。",
           "subpath": "skills/legal-assistant-skills-main/law-to-markdown"
         },
         {
           "name": "Media Processor",
-          "description": "提供基于 FFmpeg 和 ImageMagick 的多媒体处理能力，支持视频和图像的格式转换、分辨率调整、压缩等操作",
+          "description": "提供基於 FFmpeg 和 ImageMagick 的多媒體處理能力，支持視頻和圖像的格式轉換、分辨率調整、壓縮等操作",
           "subpath": "skills/media-processor/media-processor"
         },
         {
           "name": "Moltbook",
-          "description": "AI Agent的社交网络. 发布帖子、评论、点赞和创建社区。当用户明确要求时才会使用，否则不会使用。",
+          "description": "AI Agent的社交網絡. 發布帖子、評論、點贊和創建社區。當用戶明確要求時纔會使用，否則不會使用。",
           "subpath": "skills/moltbook"
         },
         {
           "name": "Multi Agent Meeting",
-          "description": "模拟多个AI智能体协作开会并进行决策讨论的场景。适用于需要从多个专业角度分析问题、进行辩论和达成共识的场景，如项目决策、技术方案评审、商业策略制定等。",
+          "description": "模擬多個AI智能體協作開會並進行決策討論的場景。適用於需要從多個專業角度分析問題、進行辯論和達成共識的場景，如項目決策、技術方案評審、商業策略制定等。",
           "subpath": "skills/multi-agent-meeting/multi-agent-meeting"
         },
         {
           "name": "Nanobanana Ppt Visualizer",
-          "description": "PPT 视觉增强工具，支持多种风格渲染、交互式播放器生成和视频合成。可与 ppt-generator Skill 协同工作，实现从内容规划到视觉呈现的完整流程。",
+          "description": "PPT 視覺增強工具，支持多種風格渲染、交互式播放器生成和視頻合成。可與 ppt-generator Skill 協同工作，實現從內容規劃到視覺呈現的完整流程。",
           "subpath": "skills/nanobanana-ppt-visualizer/nanobanana-ppt-visualizer"
         },
         {
@@ -18970,7 +18970,7 @@
         },
         {
           "name": "Paper Analysis Assistant",
-          "description": "根据arXiv论文网址自动下载PDF并进行多维度分析，包括文本提取、词频分析、语音播报、播客对话生成、交互式网页、PPT、总结图和引用分析",
+          "description": "根據arXiv論文網址自動下載PDF並進行多維度分析，包括文本提取、詞頻分析、語音播報、播客對話生成、交互式網頁、PPT、總結圖和引用分析",
           "subpath": "skills/paper-analysis-assistant/paper-analysis-assistant"
         },
         {
@@ -18980,32 +18980,32 @@
         },
         {
           "name": "Pet Commerce Creator",
-          "description": "萌宠带货短视频全流程创作技能，基于COZE视频大模型API，支持萌宠剧情/好物测评/品种科普/宠品带货等全类型创作，覆盖爆款解析反推、知识库联动、互动优化、素材批量下载、全素材整合，实现从创意到带货引流型成品视频的自动化生成，适配15-30秒竖屏9:16主流平台规格。",
+          "description": "萌寵帶貨短視頻全流程創作技能，基於COZE視頻大模型API，支持萌寵劇情/好物測評/品種科普/寵品帶貨等全類型創作，覆蓋爆款解析反推、知識庫聯動、互動優化、素材批量下載、全素材整合，實現從創意到帶貨引流型成品視頻的自動化生成，適配15-30秒豎屏9:16主流平台規格。",
           "subpath": "skills/pet-commerce-creator/pet-commerce-creator"
         },
         {
           "name": "Poetry Music Visual",
-          "description": "为古诗词提供配图与配乐的全流程创作指导；支持深度解析诗词意境、生成画面描述、提供配乐创作蓝图（Suno格式）；适用于诗词可视化、MV创作、文化传播等场景",
+          "description": "為古詩詞提供配圖與配樂的全流程創作指導；支持深度解析詩詞意境、生成畫面描述、提供配樂創作藍圖（Suno格式）；適用於詩詞可視化、MV創作、文化傳播等場景",
           "subpath": "skills/poetry-music-visual/poetry-music-visual"
         },
         {
           "name": "Pop Up Book Illustration",
-          "description": "生成3D纸艺弹出书风格插画，具备立体层次感、明亮温暖色调，适用于科技、教育、品牌展示等场景",
+          "description": "生成3D紙藝彈出書風格插畫，具備立體層次感、明亮溫暖色調，適用於科技、教育、品牌展示等場景",
           "subpath": "skills/pop-up-book-illustration/pop-up-book-illustration"
         },
         {
           "name": "Ppt Generator",
-          "description": "基于七角色协作的智能 PPT 生成与优化工具。支持主题生成、模板推荐、内容填充、AI 智能配图、文本润色和 PPTX 文件生成。适用于学术汇报、商业演示、培训课件、产品发布等多种场景。",
+          "description": "基於七角色協作的智能 PPT 生成與優化工具。支持主題生成、模板推薦、內容填充、AI 智能配圖、文本潤色和 PPTX 文件生成。適用於學術彙報、商業演示、培訓課件、產品發布等多種場景。",
           "subpath": "skills/ppt-generator/ppt-generator"
         },
         {
           "name": "Ppt Roadshow Generator",
-          "description": "PPT 路演视频全流程生成器，支持品牌风格学习、智能配音、音效音乐、字幕和一键视频合成。可一次性生成 15-100 页风格统一的完整路演视频。",
+          "description": "PPT 路演視頻全流程生成器，支持品牌風格學習、智能配音、音效音樂、字幕和一鍵視頻合成。可一次性生成 15-100 頁風格統一的完整路演視頻。",
           "subpath": "skills/ppt-roadshow-generator/ppt-roadshow-generator"
         },
         {
           "name": "Pptx Generator",
-          "description": "将 JSON 格式的 PPT 内容转换为标准的 .pptx 文件。使用 python-pptx 库，支持多种布局、图表、表格和样式。与 ppt-generator Skill 完全协同，可作为独立使用或与其他 PPT Skill 配合。",
+          "description": "將 JSON 格式的 PPT 內容轉換為標準的 .pptx 文件。使用 python-pptx 庫，支持多種布局、圖表、表格和樣式。與 ppt-generator Skill 完全協同，可作為獨立使用或與其他 PPT Skill 配合。",
           "subpath": "skills/pptx-generator/pptx-generator"
         },
         {
@@ -19015,12 +19015,12 @@
         },
         {
           "name": "Product Marketing Copywriter",
-          "description": "产品营销文案创作技能，支持多品类产品的吸引性营销文案生成，适用于产品推广、品牌营销、销售转化",
+          "description": "產品營銷文案創作技能，支持多品類產品的吸引性營銷文案生成，適用於產品推廣、品牌營銷、銷售轉化",
           "subpath": "skills/product-marketing-copywriter/product-marketing-copywriter"
         },
         {
           "name": "Product Video Creator",
-          "description": "多智能体协同的商品视频创作流水线，支持从商品信息到成视频的全流程创作：文案生成、故事策划、脚本创作、分镜设计、图片生成、字幕创作、音效推荐及视频合成；适用于电商商品宣传、品牌推广、社交媒体营销等场景",
+          "description": "多智能體協同的商品視頻創作流水線，支持從商品信息到成視頻的全流程創作：文案生成、故事策劃、腳本創作、分鏡設計、圖片生成、字幕創作、音效推薦及視頻合成；適用於電商商品宣傳、品牌推廣、社交媒體營銷等場景",
           "subpath": "skills/product-video-creator/product-video-creator"
         },
         {
@@ -19035,22 +19035,22 @@
         },
         {
           "name": "Qwen3 Asr Assistant",
-          "description": "智能语音转文字助手，基于 Qwen3-ASR 模型，支持实时语音识别和智能文本改写。可以将录音转换为文字，并一键改写成邮件、笔记、社交媒体文案，支持复制、分享和录音拼接。适用于会议纪要、语音备忘、内容创作等多种场景。",
+          "description": "智能語音轉文字助手，基於 Qwen3-ASR 模型，支持實時語音識別和智能文本改寫。可以將錄音轉換為文字，並一鍵改寫成郵件、筆記、社交媒體文案，支持複製、分享和錄音拼接。適用於會議紀要、語音備忘、內容創作等多種場景。",
           "subpath": "skills/qwen3-asr-assistant/qwen3-asr-assistant"
         },
         {
           "name": "Qwen3 Tts Local",
-          "description": "真正的本地语音合成服务，使用 Edge-TTS 引擎，零依赖、零配置、完全离线可用，支持多语言和多种音色",
+          "description": "真正的本地語音合成服務，使用 Edge-TTS 引擎，零依賴、零配置、完全離線可用，支持多語言和多種音色",
           "subpath": "skills/qwen3-tts-local/qwen3-tts-local"
         },
         {
           "name": "Remotion Video Enhancer",
-          "description": "视频转场与动画增强工具，提取 Remotion 的动画理念，提供高级视频转场效果和 Framer Motion 交互式动画。可与 ppt-generator、nanobanana-ppt-visualizer、ppt-roadshow-generator Skill 协同工作。",
+          "description": "視頻轉場與動畫增強工具，提取 Remotion 的動畫理念，提供高級視頻轉場效果和 Framer Motion 交互式動畫。可與 ppt-generator、nanobanana-ppt-visualizer、ppt-roadshow-generator Skill 協同工作。",
           "subpath": "skills/remotion-video-enhancer/remotion-video-enhancer"
         },
         {
           "name": "Stock Analysis",
-          "description": "股票个股分析，实时获取价格涨跌幅，计算技术指标和支撑位，识别缺口并判断支撑压力，智能预测未来3天走势并给出操作建议",
+          "description": "股票個股分析，實時獲取價格漲跌幅，計算技術指標和支撐位，識別缺口並判斷支撐壓力，智能預測未來3天走勢並給出操作建議",
           "subpath": "skills/stock-analysis/stock-analysis"
         },
         {
@@ -19060,37 +19060,37 @@
         },
         {
           "name": "Three Body Video Creator",
-          "description": "《三体》赛道AI视频创作工具,提供结构化的多智能体协作流程、素材生成与视频合成,涵盖选题深化、视觉设计、音频生成、视频制作全流程",
+          "description": "《三體》賽道AI視頻創作工具,提供結構化的多智能體協作流程、素材生成與視頻合成,涵蓋選題深化、視覺設計、音頻生成、視頻製作全流程",
           "subpath": "skills/three-body-video-creator/three-body-video-creator"
         },
         {
           "name": "Tts Voice Synthesis",
-          "description": "智能语音合成服务，支持音色克隆、拟人化语义适配配音、流式实时生成、多语言与方言支持，提供 1.7B/0.6B 双模型选择",
+          "description": "智能語音合成服務，支持音色克隆、擬人化語義適配配音、流式實時生成、多語言與方言支持，提供 1.7B/0.6B 雙模型選擇",
           "subpath": "skills/tts-voice-synthesis"
         },
         {
           "name": "Video Creation Collaborator",
-          "description": "影品智创多智能体协同视频创作管理工具,提供11个智能体结构化分工、5阶段协同流程、质量管控标准与数据反馈机制,解决生图失真、视频合成瑕疵等问题,确保输出统一可控",
+          "description": "影品智創多智能體協同視頻創作管理工具,提供11個智能體結構化分工、5階段協同流程、質量管控標準與數據反饋機制,解決生圖失真、視頻合成瑕疵等問題,確保輸出統一可控",
           "subpath": "skills/video-creation-collaborator/video-creation-collaborator"
         },
         {
           "name": "Video Creation Pro",
-          "description": "10大智能体协同的商品视频创作系统，全流程质量闭环（创作→质检→反馈迭代），强制使用COZE视频大模型API进行视频合成，彻底移除本地依赖包逻辑，适用于智能硬件、美妆护肤、家居家电等多品类商品视频创作",
+          "description": "10大智能體協同的商品視頻創作系統，全流程質量閉環（創作→質檢→反饋迭代），強制使用COZE視頻大模型API進行視頻合成，徹底移除本地依賴包邏輯，適用於智能硬件、美妝護膚、家居家電等多品類商品視頻創作",
           "subpath": "skills/video-creation-pro/video-creation-pro"
         },
         {
           "name": "Video Creation Suite",
-          "description": "完整的视频创作套件，支持原创创作、视频二创、视频分析三种模式，集成Coze Bot API、Edge-TTS、Suno API，涵盖多智能体协同、素材生成、视频合成全流程",
+          "description": "完整的視頻創作套件，支持原創創作、視頻二創、視頻分析三種模式，集成Coze Bot API、Edge-TTS、Suno API，涵蓋多智能體協同、素材生成、視頻合成全流程",
           "subpath": "skills/video-creation-suite/video-creation-suite"
         },
         {
           "name": "Video Frame Extractor",
-          "description": "视频反推工具,支持视频抽帧、视觉模型分析、提示词生成,适用于视频创作参考、内容提取、场景分析",
+          "description": "視頻反推工具,支持視頻抽幀、視覺模型分析、提示詞生成,適用於視頻創作參考、內容提取、場景分析",
           "subpath": "skills/video-frame-extractor/video-frame-extractor"
         },
         {
           "name": "Video Recreation",
-          "description": "完整的视频二创工具，支持视频反推、素材生成(图片/音效/背景音乐/配音/字幕)、视频合成、文件下载的全流程，集成Coze Bot API进行视觉分析，使用Edge-TTS进行语音合成",
+          "description": "完整的視頻二創工具，支持視頻反推、素材生成(圖片/音效/背景音樂/配音/字幕)、視頻合成、文件下載的全流程，集成Coze Bot API進行視覺分析，使用Edge-TTS進行語音合成",
           "subpath": "skills/video-recreation/video-recreation"
         },
         {
@@ -19100,32 +19100,32 @@
         },
         {
           "name": "Viral Video Copywriting",
-          "description": "专业的爆款短视频文案创作工具。通过对标抖音爆款视频，智能提取视频内容，深度拆解爆款因素，并结合用户需求创作出符合爆款规律的新文案。适用于短视频创作者、运营人员提升内容质量。",
+          "description": "專業的爆款短視頻文案創作工具。通過對標抖音爆款視頻，智能提取視頻內容，深度拆解爆款因素，並結合用戶需求創作出符合爆款規律的新文案。適用於短視頻創作者、運營人員提升內容質量。",
           "subpath": "skills/viral-video-copywriting/viral-video-copywriting"
         },
         {
           "name": "Web Design Analyzer",
-          "description": "分析网页截图，提取设计系统（Design System）并生成结构化数据和可用的 AI Coding Prompt。适用于 UI/UX 设计师和前端工程师需要从现有网页设计中提取设计规范、配色方案、排版系统和组件风格的场景。",
+          "description": "分析網頁截圖，提取設計系統（Design System）並生成結構化數據和可用的 AI Coding Prompt。適用於 UI/UX 設計師和前端工程師需要從現有網頁設計中提取設計規範、配色方案、排版系統和組件風格的場景。",
           "subpath": "skills/web-design-analyzer/web-design-analyzer"
         },
         {
           "name": "Web To App",
-          "description": "将任意网页转换为桌面应用，支持 macOS/Windows/Linux 三大平台。使用 Rust + Tauri 技术栈，生成的应用体积小（约 5MB）、性能高。支持自定义图标、窗口大小、快捷键等丰富配置。",
+          "description": "將任意網頁轉換為桌面應用，支持 macOS/Windows/Linux 三大平台。使用 Rust + Tauri 技術棧，生成的應用體積小（約 5MB）、性能高。支持自定義圖標、窗口大小、快捷鍵等豐富配置。",
           "subpath": "skills/web-to-app/web-to-app"
         },
         {
           "name": "Wechat Hotspot Publisher",
-          "description": "智能采集热点话题，10分制筛选优质选题，AI生成爆款内容（标题/封面/标签/图片/HTML排版），支持素材上传和草稿箱发布，一键发布到微信公众号、小红书、B站等多平台",
+          "description": "智能採集熱點話題，10分制篩選優質選題，AI生成爆款內容（標題/封面/標籤/圖片/HTML排版），支持素材上傳和草稿箱發布，一鍵發布到微信公眾號、小紅書、B站等多平台",
           "subpath": "skills/wechat-hotspot-publisher/wechat-hotspot-publisher"
         },
         {
           "name": "Wechatsync Publisher",
-          "description": "多平台内容发布助手，支持智能选题筛选、AI生成优质内容、一键发布到微信公众号等平台；支持内容格式自动适配（HTML/Markdown/纯文本）",
+          "description": "多平台內容發布助手，支持智能選題篩選、AI生成優質內容、一鍵發布到微信公眾號等平台；支持內容格式自動適配（HTML/Markdown/純文本）",
           "subpath": "skills/wechatsync-publisher/wechatsync-publisher"
         },
         {
           "name": "Xiaohongshu Makeup",
-          "description": "小红书美妆内容创作技能，支持笔记生成、笔记优化、文生图描述创作；适用于美妆护肤产品的内容创作、测评和营销推广",
+          "description": "小紅書美妝內容創作技能，支持筆記生成、筆記優化、文生圖描述創作；適用於美妝護膚產品的內容創作、測評和營銷推廣",
           "subpath": "skills/xiaohongshu-makeup/xiaohongshu-makeup"
         }
       ],
@@ -19643,10 +19643,10 @@
         "ai-coding",
         "agent-prompts",
         "編寫 Claude 指令",
-        "生成 Codex 提示词",
+        "生成 Codex 提示詞",
         "配置 OpenClaw 技能",
         "創建 agent 模板",
-        "設計可重用 AI 提示词",
+        "設計可重用 AI 提示詞",
         "制作 coding assistant 配方",
         "輸出 agent 行為指令",
         "調整 AI 助手工作流",
@@ -19671,17 +19671,17 @@
       "subTools": [
         {
           "name": "Release Skills",
-          "description": "Universal release workflow. Auto-detects version files and changelogs. Supports Node.js, Python, Rust, Claude Plugin, GitHub Releases, annotated tags, historical release backfill, and generic projects. Use when user says \"release\", \"发布\", \"new version\", \"bump version\", \"push\", \"推送\", \"release notes\", \"GitHub Release\", or \"回填 Release\".",
+          "description": "Universal release workflow. Auto-detects version files and changelogs. Supports Node.js, Python, Rust, Claude Plugin, GitHub Releases, annotated tags, historical release backfill, and generic projects. Use when user says \"release\", \"發布\", \"new version\", \"bump version\", \"push\", \"推送\", \"release notes\", \"GitHub Release\", or \"回填 Release\".",
           "subpath": ".claude/skills/release-skills"
         },
         {
           "name": "Baoyu Article Illustrator",
-          "description": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach. Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"为文章配图\".",
+          "description": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach. Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"為文章配圖\".",
           "subpath": "skills/baoyu-article-illustrator"
         },
         {
           "name": "Baoyu Comic",
-          "description": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知识漫画\", \"教育漫画\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".",
+          "description": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知識漫畫\", \"教育漫畫\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".",
           "subpath": "skills/baoyu-comic"
         },
         {
@@ -19706,12 +19706,12 @@
         },
         {
           "name": "Baoyu Diagram",
-          "description": "Create professional, dark-themed SVG diagrams of any type — architecture diagrams, flowcharts, sequence diagrams, structural diagrams, mind maps, timelines, illustrative/conceptual diagrams, and more. Use this skill whenever the user asks for any kind of technical or conceptual diagram, visualization of a system, process flow, data flow, component relationship, network topology, decision tree, org chart, state machine, or any visual representation of structure/logic/process. Also trigger when the user says \"画个图\" \"画一个架构图\" \"diagram\" \"flowchart\" \"sequence diagram\" \"draw me a ...\" or uploads content and asks to visualize it. Output is always a standalone .svg file.",
+          "description": "Create professional, dark-themed SVG diagrams of any type — architecture diagrams, flowcharts, sequence diagrams, structural diagrams, mind maps, timelines, illustrative/conceptual diagrams, and more. Use this skill whenever the user asks for any kind of technical or conceptual diagram, visualization of a system, process flow, data flow, component relationship, network topology, decision tree, org chart, state machine, or any visual representation of structure/logic/process. Also trigger when the user says \"畫個圖\" \"畫一個架構圖\" \"diagram\" \"flowchart\" \"sequence diagram\" \"draw me a ...\" or uploads content and asks to visualize it. Output is always a standalone .svg file.",
           "subpath": "skills/baoyu-diagram"
         },
         {
           "name": "Baoyu Electron Extract",
-          "description": "Extracts resources and JavaScript from any installed Electron app (`.asar` bundle), restoring original sources from `.js.map` files when available or formatting minified code with Prettier otherwise. Use when user wants to \"extract Electron app\", \"decompile Electron\", \"get the source code of <app>\", \"inspect app.asar\", \"看 Electron 应用源码\", \"提取 .asar\", or asks how a desktop Electron app is built. Skips `node_modules` and supports both macOS and Windows.",
+          "description": "Extracts resources and JavaScript from any installed Electron app (`.asar` bundle), restoring original sources from `.js.map` files when available or formatting minified code with Prettier otherwise. Use when user wants to \"extract Electron app\", \"decompile Electron\", \"get the source code of <app>\", \"inspect app.asar\", \"看 Electron 應用源碼\", \"提取 .asar\", or asks how a desktop Electron app is built. Skips `node_modules` and supports both macOS and Windows.",
           "subpath": "skills/baoyu-electron-extract"
         },
         {
@@ -19726,22 +19726,22 @@
         },
         {
           "name": "Baoyu Infographic",
-          "description": "Generate professional infographics with 21 layout types and 22 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics. Use when user asks to create \"infographic\", \"信息图\", \"visual summary\", \"可视化\", or \"高密度信息大图\".",
+          "description": "Generate professional infographics with 21 layout types and 22 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics. Use when user asks to create \"infographic\", \"信息圖\", \"visual summary\", \"可視化\", or \"高密度信息大圖\".",
           "subpath": "skills/baoyu-infographic"
         },
         {
           "name": "Baoyu Markdown To Html",
-          "description": "Converts Markdown to styled HTML with WeChat-compatible themes. Supports code highlighting, math, Mermaid (rendered to PNG via headless Chrome), PlantUML, footnotes, alerts, infographics, and optional bottom citations for external links. Use when user asks for \"markdown to html\", \"convert md to html\", \"md 转 html\", \"微信外链转底部引用\", or needs styled HTML output from markdown.",
+          "description": "Converts Markdown to styled HTML with WeChat-compatible themes. Supports code highlighting, math, Mermaid (rendered to PNG via headless Chrome), PlantUML, footnotes, alerts, infographics, and optional bottom citations for external links. Use when user asks for \"markdown to html\", \"convert md to html\", \"md 轉 html\", \"微信外鏈轉底部引用\", or needs styled HTML output from markdown.",
           "subpath": "skills/baoyu-markdown-to-html"
         },
         {
           "name": "Baoyu Post To Wechat",
-          "description": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (贴图, formerly 图文) with multiple images. Markdown article workflows default to converting ordinary external links into bottom citations for WeChat-friendly output. Use when user mentions \"发布公众号\", \"post to wechat\", \"微信公众号\", or \"贴图/图文/文章\".",
+          "description": "Posts content to WeChat Official Account (微信公眾號) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (貼圖, formerly 圖文) with multiple images. Markdown article workflows default to converting ordinary external links into bottom citations for WeChat-friendly output. Use when user mentions \"發布公眾號\", \"post to wechat\", \"微信公眾號\", or \"貼圖/圖文/文章\".",
           "subpath": "skills/baoyu-post-to-wechat"
         },
         {
           "name": "Baoyu Post To Weibo",
-          "description": "Posts content to Weibo (微博). Supports regular posts with text, images, and videos, and headline articles (头条文章) with Markdown input via Chrome CDP. Use when user asks to \"post to Weibo\", \"发微博\", \"发布微博\", \"publish to Weibo\", \"share on Weibo\", \"写微博\", or \"微博头条文章\".",
+          "description": "Posts content to Weibo (微博). Supports regular posts with text, images, and videos, and headline articles (頭條文章) with Markdown input via Chrome CDP. Use when user asks to \"post to Weibo\", \"發微博\", \"發布微博\", \"publish to Weibo\", \"share on Weibo\", \"寫微博\", or \"微博頭條文章\".",
           "subpath": "skills/baoyu-post-to-weibo"
         },
         {
@@ -19766,17 +19766,17 @@
         },
         {
           "name": "Baoyu Wechat Summary",
-          "description": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl), per-user profiles, and per-group fact memory (memory.md) across runs, with privacy guardrails baked in. Use when the user asks to \"总结群聊\", \"群聊精华\", \"群聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"帮我看看 XX 群最近聊了什么\", \"XX 群有什么值得看的\", or asks to \"回溯画像\" / \"初始化画像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再来个毒舌的\", or similar.",
+          "description": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl), per-user profiles, and per-group fact memory (memory.md) across runs, with privacy guardrails baked in. Use when the user asks to \"總結羣聊\", \"羣聊精華\", \"羣聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"幫我看看 XX 羣最近聊了什麼\", \"XX 羣有什麼值得看的\", or asks to \"回溯畫像\" / \"初始化畫像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再來個毒舌的\", or similar.",
           "subpath": "skills/baoyu-wechat-summary"
         },
         {
           "name": "Baoyu Xhs Images",
-          "description": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions \"小红书图片\", \"小红书种草\", \"小绿书\", \"微信图文\", \"微信贴图\", \"image cards\", \"图片卡片\", baoyu-xhs-images, or wants social media infographic series.",
+          "description": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions \"小紅書圖片\", \"小紅書種草\", \"小綠書\", \"微信圖文\", \"微信貼圖\", \"image cards\", \"圖片卡片\", baoyu-xhs-images, or wants social media infographic series.",
           "subpath": "skills/baoyu-xhs-images"
         },
         {
           "name": "Baoyu Youtube Transcript",
-          "description": "Downloads YouTube video transcripts/subtitles and cover images by URL or video ID. Supports multiple languages, translation, chapters, and speaker identification. Caches raw data for fast re-formatting. Use when user asks to \"get YouTube transcript\", \"download subtitles\", \"get captions\", \"YouTube字幕\", \"YouTube封面\", \"视频封面\", \"video thumbnail\", \"video cover image\", or provides a YouTube URL and wants the transcript/subtitle text or cover image extracted.",
+          "description": "Downloads YouTube video transcripts/subtitles and cover images by URL or video ID. Supports multiple languages, translation, chapters, and speaker identification. Caches raw data for fast re-formatting. Use when user asks to \"get YouTube transcript\", \"download subtitles\", \"get captions\", \"YouTube字幕\", \"YouTube封面\", \"視頻封面\", \"video thumbnail\", \"video cover image\", or provides a YouTube URL and wants the transcript/subtitle text or cover image extracted.",
           "subpath": "skills/baoyu-youtube-transcript"
         }
       ],
@@ -20006,9 +20006,9 @@
         "Does not provide direct access or installation to the listed tools"
       ],
       "stars": 1228,
-      "description_zh": "精選 AI 工具，涵蓋文献搜尋、論文閱讀、實驗與程式碼生成。",
-      "useCase_zh": "研究者能快速發現並整合自動化工具，從文献回顧到編碼 streamlined academic workflow。",
-      "advantages_zh": "涵蓋完整研究生命周期，包括文献搜尋、論文分析與實驗管理。\n提供精選的高品質自動化工具集合。\n協助研究者顯著加速學術工作流程。",
+      "description_zh": "精選 AI 工具，涵蓋文獻搜尋、論文閱讀、實驗與程式碼生成。",
+      "useCase_zh": "研究者能快速發現並整合自動化工具，從文獻回顧到編碼 streamlined academic workflow。",
+      "advantages_zh": "涵蓋完整研究生命周期，包括文獻搜尋、論文分析與實驗管理。\n提供精選的高品質自動化工具集合。\n協助研究者顯著加速學術工作流程。",
       "negativeConstraints_zh": [
         "請勿作為獨立軟體應用程式用於直接執行任務。",
         "不適合非學術或一般生產力需求。",
@@ -25350,7 +25350,7 @@
         "轉換成投影片",
         "產生演示文稿",
         "寫好html簡報",
-        "輸出幻灯頁面",
+        "輸出幻燈頁面",
         "自動化生成投影片",
         "設計展示頁面模板",
         "將資料轉成簡報",
@@ -26157,15 +26157,15 @@
         "minimalism",
         "refactoring",
         "精簡代碼量",
-        "重構出冗余",
+        "重構出冗餘",
         "代碼瘦身",
-        "刪掉重复逻輯",
+        "刪掉重複邏輯",
         "別寫過頭代碼",
         "用更少代碼實現功能",
-        "清理注释代碼",
+        "清理注釋代碼",
         "壓縮函數行數",
-        "簡化复雜逻輯",
-        "減少重复代碼"
+        "簡化複雜邏輯",
+        "減少重複代碼"
       ],
       "install": {
         "method": "npm",
@@ -26271,10 +26271,10 @@
         "design-engineering",
         "productivity",
         "prototyping",
-        "绘制CAD圖纸",
+        "繪制CAD圖紙",
         "創建3D原型",
         "做工程設計計算",
-        "审查机械圖纸",
+        "審查機械圖紙",
         "生成BOM清單",
         "做產品仿真分析",
         "查詢設計規範要求",
@@ -26439,7 +26439,7 @@
         },
         {
           "name": "Color Font Skill",
-          "description": "Choose presentation-ready color palettes and font pairings for PPT/design tasks. Use when users ask for visual theme choices, brand-safe palettes, or font recommendations. Triggers include: 配色, 色板, 字体, color palette, font, PPT配色, 字体搭配.",
+          "description": "Choose presentation-ready color palettes and font pairings for PPT/design tasks. Use when users ask for visual theme choices, brand-safe palettes, or font recommendations. Triggers include: 配色, 色板, 字體, color palette, font, PPT配色, 字體搭配.",
           "subpath": "plugins/pptx-plugin/skills/color-font-skill"
         },
         {
@@ -27378,10 +27378,10 @@
         "low-ram-inference",
         "pure-c-llm",
         "在低內存設備上運行大語言模型",
-        "旧電脑跑 GLM-5.2",
+        "舊電腦跑 GLM-5.2",
         "不用 GPU 運行 LLM 推理",
         "樹莓派上運行大模型",
-        "纯 CPU 跑大型語言模型"
+        "純 CPU 跑大型語言模型"
       ],
       "install": {
         "method": "git-clone",
@@ -27870,7 +27870,7 @@
         },
         {
           "name": "Dbs Chatroom",
-          "description": "定向聊天室：根据话题推荐或接受用户指定的专家，模拟多角色对话。先选经过长期检验、可独立验证的理论，再选择其代表人物。聊天室进行中，用户后续输入默认继续由同一组专家讨论；用户说「结束聊天室」或输入 /dbs 时退出。触发方式：/dbs-chatroom、/定向聊天室、「定向聊天室」「结束聊天室」",
+          "description": "定向聊天室：根據話題推薦或接受用戶指定的專家，模擬多角色對話。先選經過長期檢驗、可獨立驗證的理論，再選擇其代表人物。聊天室進行中，用戶後續輸入默認繼續由同一組專家討論；用戶說「結束聊天室」或輸入 /dbs 時退出。觸發方式：/dbs-chatroom、/定向聊天室、「定向聊天室」「結束聊天室」",
           "subpath": "skills/dbs-chatroom"
         },
         {
@@ -28067,7 +28067,7 @@
         "claude-code",
         "下載文章",
         "下載PDF",
-        "获取YouTube字幕",
+        "獲取YouTube字幕",
         "抓取YouTube文字稿",
         "下載網頁文章"
       ],
@@ -29592,7 +29592,7 @@
         "frontier-discovery",
         "matt-pocock-skills",
         "拆解大型項目為調查任務",
-        "規划從想法到執行的路線圖",
+        "規劃從想法到執行的路線圖",
         "追蹤技術決策的分支路徑",
         "探索需求中的不確定領域",
         "識別技術方案的前鋒邊界"
@@ -30090,7 +30090,7 @@
       "useCase_zh": "需要工具使用的複雜多步驟推理任務，例如跨多來源搜尋、分析和綜合資訊的自主研究代理。",
       "advantages_zh": "專家混合架構（總計 295B / 活躍 21B）實現高推理效能並降低推論成本，專為強大工具使用和規劃能力的代理工作流程設計，成本效益推論使其適用於生產規模的代理部署",
       "negativeConstraints_zh": [
-        "不適合僅需较小、较快模型即可應付的簡單單輪問答",
+        "不適合僅需較小、較快模型即可應付的簡單單輪問答",
         "不適合需要次秒級回應時間的即時低延遲應用",
         "因模型體積龐大，不適合部署於邊緣裝置或端側"
       ]
@@ -30934,8 +30934,8 @@
         "csg-modeling",
         "3d-printing-cad",
         "parametric-parts",
-        "用脚本建模 3D 零件",
-        "參數化設計机械件",
+        "用腳本建模 3D 零件",
+        "參數化設計機械件",
         "CSG 構造實體幾何",
         "代碼生成 CAD 模型",
         "導出 STL 3D 打印"
@@ -31022,7 +31022,7 @@
       "advantages_zh": "受 jQuery 啟發的流暢 Python API，提供直覺的 3D 選擇器導航與幾何操作；由工業級 OpenCASCADE CAD 核心驅動，支援精確的 B-Rep 與 NURBS 表面建模；與 Python 生態系無縫整合，實現自動化 CAD 模型生成與參數化最佳化",
       "negativeConstraints_zh": [
         "不適合需要純圖形化 WYSIWYG CAD 介面的非程式設計師",
-        "不建議用於無 3D CAD 幾何需求的基礎 2D 栅格圖形編輯"
+        "不建議用於無 3D CAD 幾何需求的基礎 2D 柵格圖形編輯"
       ]
     },
     {
@@ -31081,7 +31081,7 @@
         "Nightly binaries are intended only for testing, not for production stability"
       ],
       "negativeConstraints_zh": [
-        "非 Python 與 C++ 的 API 不保證相容性，且可能向后不相容。",
+        "非 Python 與 C++ 的 API 不保證相容性，且可能向後不相容。",
         "Nightly 二進位檔僅供測試使用，不適用於生產環境的穩定性。"
       ],
       "negativeFacets": [
@@ -31156,7 +31156,7 @@
       "id": "javaguide",
       "name": "JavaGuide",
       "url": "https://github.com/Snailclimb/JavaGuide",
-      "description": "Java 面試 & 后端通用面試指南，覆盖計算机基础、數據庫、分布式、高並發、系統設計與 AI 應用開發",
+      "description": "Java 面試 & 後端通用面試指南，覆蓋計算機基礎、數據庫、分布式、高並發、系統設計與 AI 應用開發",
       "category": "學習資源",
       "language": "javascript",
       "triggers": [
@@ -31166,10 +31166,10 @@
         "deepseek",
         "interview",
         "準備Java面試",
-        "复習數據庫面試題",
+        "復習數據庫面試題",
         "學習分佈式系統",
         "準備高並發編程面試",
-        "复習系統設計"
+        "復習系統設計"
       ],
       "install": {
         "method": "none",
@@ -31183,7 +31183,7 @@
         "interview",
         "java"
       ],
-      "useCase": "Java 面试 & 后端通用面试指南，覆盖计算机基础、数据库、分布式、高并发、系统设计与 AI 应用开发",
+      "useCase": "Java 面試 & 後端通用面試指南，覆蓋計算機基礎、數據庫、分佈式、高併發、系統設計與 AI 應用開發",
       "advantages": [
         "近期頻繁更新維護 (最後推送 2026-07-21)"
       ],
@@ -31412,7 +31412,7 @@
         "quant",
         "分析股票行情",
         "查看A股走勢",
-        "监控股票新聞",
+        "監控股票新聞",
         "定時推送股票",
         "多市場選股"
       ],
@@ -33111,9 +33111,9 @@
         "svg",
         "找圖標",
         "下載圖標字體",
-        "获取圖標包",
+        "獲取圖標包",
         "添加矢量圖標",
-        "安装圖標庫"
+        "安裝圖標庫"
       ],
       "install": {
         "method": "git-clone",
@@ -33249,7 +33249,7 @@
       "id": "hugging-multi-agent",
       "name": "Hugging Multi Agent",
       "url": "https://github.com/datawhalechina/hugging-multi-agent",
-      "description": "A tutorial based on MetaGPT to quickly help you understand the concept of agent and muti-agent and get started with coding development. 基于MetaGPT的多智能體入門與開發教程",
+      "description": "A tutorial based on MetaGPT to quickly help you understand the concept of agent and muti-agent and get started with coding development. 基於MetaGPT的多智能體入門與開發教程",
       "category": "學習資源",
       "language": "css",
       "triggers": [
@@ -33912,7 +33912,7 @@
         "查找SVG圖標集",
         "管理圖標資源",
         "整合圖標素材",
-        "获取矢量圖標"
+        "獲取矢量圖標"
       ],
       "install": {
         "method": "git-clone",
@@ -34309,7 +34309,7 @@
         "找品牌logo",
         "下載SVG圖標",
         "找APP的icon",
-        "获取品牌圖標素材",
+        "獲取品牌圖標素材",
         "找產品的logo"
       ],
       "install": {
@@ -34369,7 +34369,7 @@
         "調試程序",
         "管理項目",
         "執行終端命令",
-        "审查代碼"
+        "審查代碼"
       ],
       "install": {
         "method": "git-clone",
@@ -36425,10 +36425,10 @@
         "hierarchy",
         "organizational chart",
         "interactive tree",
-        "畫树状圖",
-        "绘制組織架構",
+        "畫樹狀圖",
+        "繪制組織架構",
         "可視化層級結構",
-        "渲染文件目錄树",
+        "渲染文件目錄樹",
         "構建組織圖表"
       ],
       "install": {
@@ -36798,7 +36798,7 @@
         "Not ideal for static agent deployments without self-improvement goals"
       ],
       "stars": 9141,
-      "description_zh": "具備可審計進化能力的 AI 代理框架，透過基因、封裝與事件追踪進化歷程。",
+      "description_zh": "具備可審計進化能力的 AI 代理框架，透過基因、封裝與事件追蹤進化歷程。",
       "useCase_zh": "建置需要自主持續改進能力、同時保有進化歷程完整審計紀錄的 AI 代理。",
       "advantages_zh": "透過基因、封裝與事件追蹤可審計的進化歷程，GEP 驅動的 AI 代理自我改進能力，支援 A2A 協定以實現代理間的互通性。",
       "negativeConstraints_zh": [
@@ -36916,7 +36916,7 @@
       "advantages_zh": "高效能共識機制支援每秒數千筆交易、原生 Go 實作可無縫整合 Go 系統、支援 PBFT 與 Raft 等多種共識演算法",
       "negativeConstraints_zh": [
         "不適合需要EVM相容性或以太坊智慧合約可移植性的專案",
-        "若輕量級區塊鏈如Hyperledger Fabric已能满足需求，不建議使用",
+        "若輕量級區塊鏈如Hyperledger Fabric已能滿足需求，不建議使用",
         "因基礎設施和節點需求，不適合低資源環境"
       ]
     },
@@ -37045,7 +37045,7 @@
       "capabilities": [],
       "addedAt": "2026-08-05T12:59:53.828Z",
       "status": "active",
-      "useCase": "中文开发者需要快速上手 AI 辅助 UI/UX 设计工作流时，使用本技能库获取完整中文教程和最佳实践。",
+      "useCase": "中文開發者需要快速上手 AI 輔助 UI/UX 設計工作流時，使用本技能庫獲取完整中文教程和最佳實踐。",
       "advantages": [
         "完整翻譯並本地化原始 README，消除中文開發者的語言障礙",
         "覆蓋 UI/UX Pro Max 全部技能，提供系統化的 AI 設計學習路徑",
@@ -37057,7 +37057,7 @@
         "不適合不需要中文本地化、直接使用英文資源的開發者"
       ],
       "stars": 1442,
-      "description_zh": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 辅助設計能力。",
+      "description_zh": "中文本地化的 UI/UX Pro Max AI 設計技能庫教程，幫助中文開發者快速掌握 AI 輔助設計能力。",
       "advantages_zh": "完整翻譯並本地化原始 README，消除中文開發者的語言障礙,覆蓋 UI/UX Pro Max 全部技能，提供系統化的 AI 設計學習路徑,針對中文開發者優化，降低上手門檻，提升學習效率",
       "useCase_zh": "中文開發者需要快速上手 AI 輔助 UI/UX 設計工作流時，使用本技能庫獲取完整中文教程與最佳實踐。",
       "negativeConstraints_zh": [
@@ -37533,11 +37533,11 @@
         "scanned pdf",
         "ocr routing",
         "pdf classification",
-        "掃描件pdf判断",
+        "掃描件pdf判斷",
         "提取pdf文字",
         "檢測pdf表格",
         "區分pdf文字型和掃描型",
-        "pdf多栏解析"
+        "pdf多欄解析"
       ],
       "install": {
         "method": "pip",
@@ -38769,7 +38769,7 @@
         "react",
         "ui"
       ],
-      "useCase": "建構需要高互動性、狀態複雜度的現代 Web 或原生应用前端介面。",
+      "useCase": "建構需要高互動性、狀態複雜度的現代 Web 或原生應用前端介面。",
       "advantages": [
         "宣告式 UI 模型大幅降低狀態管理的認知負荷，組件可組合性高",
         "Virtual DOM diffing 使 UI 更新高效，無需手動操作 DOM",
@@ -38944,7 +38944,7 @@
         "javascript",
         "vue"
       ],
-      "useCase": "快速建構中大型 Web 應用，特別適合前端團隊偏好渐进式採用（而非整顆框架）的場景。",
+      "useCase": "快速建構中大型 Web 應用，特別適合前端團隊偏好漸進式採用（而非整顆框架）的場景。",
       "advantages": [
         "單檔組件（SFC）整合 template/script/style，開發效率與可讀性兼顧",
         "響應式系統自動追蹤依賴，無需手動宣告響應式變數",
@@ -40217,10 +40217,10 @@
         "群體智慧",
         "去中心化溝通",
         "p2p-messaging",
-        "發起群體讨論",
+        "發起群體討論",
         "組織去中心化會議",
         "進行匿名投票決策",
-        "建立社群自治机制",
+        "建立社群自治機制",
         "分發加密消息"
       ],
       "install": {
@@ -40345,9 +40345,9 @@
         "skill-automation",
         "記錄工作流程",
         "自動生成技能",
-        "捕获重复任務",
+        "捕獲重複任務",
         "自動化項目設定",
-        "自動化代碼审查"
+        "自動化代碼審查"
       ],
       "install": {
         "method": "pip",
@@ -40780,7 +40780,7 @@
         "binary-analysis",
         "security-research",
         "逆向分析二進制文件",
-        "渗透測試系統漏洞",
+        "滲透測試系統漏洞",
         "解構惡意軟件樣本",
         "分析可執行文件結構",
         "破解通信協議格式"
@@ -41327,10 +41327,10 @@
         "handdrawn video",
         "animation",
         "story to video",
-        "故事轉手绘視頻",
+        "故事轉手繪視頻",
         "圖片變動畫",
         "文字轉漫畫視頻",
-        "手绘風格動畫生成",
+        "手繪風格動畫生成",
         "故事動畫化"
       ],
       "install": {
@@ -41443,9 +41443,9 @@
         "instagram automation",
         "dm automation",
         "追蹤Instagram評論",
-        "設置DM自動回复",
-        "分析Instagram账號數據",
-        "监控Instagram私信",
+        "設置DM自動回覆",
+        "分析Instagram賬號數據",
+        "監控Instagram私信",
         "自動化Instagram互動"
       ],
       "install": {
@@ -41753,7 +41753,7 @@
         "screen-share-exclusion",
         "real-time-transcription"
       ],
-      "useCase": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓对方看到 AI 介面的場景。",
+      "useCase": "Mac 用戶在會議中需要 AI 即時筆記與摘要，但不想讓對方看到 AI 介面的場景。",
       "advantages": [
         "浮動覆蓋層設計，不中斷工作流，同時聽取與回應",
         "刻意隱藏於螢幕分享，會議中不需擔心隱私外洩",
@@ -41877,7 +41877,7 @@
         "圖表設計",
         "畫流程圖",
         "制作架構圖",
-        "绘制系統架構",
+        "繪制系統架構",
         "把 Mermaid 轉成圖",
         "生成 SVG 圖表"
       ],
@@ -41925,10 +41925,10 @@
         "ai-infrastructure",
         "graph-rag",
         "knowledge-graph",
-        "建立知識圖谱",
+        "建立知識圖譜",
         "記憶AI代理",
         "圖RAG檢索",
-        "構建上下文圖谱",
+        "構建上下文圖譜",
         "治理AI系統"
       ],
       "install": {
@@ -42118,11 +42118,11 @@
         "forecast",
         "precipitation",
         "temperature prediction",
-        "預報天气",
-        "預測温度",
+        "預報天氣",
+        "預測溫度",
         "查詢降水概率",
         "預報未來天氣",
-        "計算气温走勢"
+        "計算氣溫走勢"
       ],
       "install": {
         "method": "pip",
@@ -43499,7 +43499,7 @@
         "upwork",
         "找遠程自由職業工作",
         "找合約開發職位",
-        "找設計兼职机會",
+        "找設計兼職機會",
         "找Upwork平台",
         "找遠程工作機會"
       ],
@@ -43889,11 +43889,11 @@
         "ai",
         "automation",
         "developer-tools",
-        "用AI操作手机屏幕",
-        "讓agent自動控制手机app",
+        "用AI操作手機屏幕",
+        "讓agent自動控制手機app",
         "AI幫我在手機上點選",
-        "語音指令控制手机界面",
-        "用AI自動化手机操作流程"
+        "語音指令控制手機界面",
+        "用AI自動化手機操作流程"
       ],
       "install": {
         "method": "none",
@@ -44215,7 +44215,7 @@
       "id": "vnpy",
       "name": "VN.py",
       "url": "https://github.com/vnpy/vnpy",
-      "description": "基于Python的開源量化交易平台開發框架",
+      "description": "基於Python的開源量化交易平台開發框架",
       "category": "金融與投資",
       "language": "python",
       "triggers": [
@@ -44581,7 +44581,7 @@
       "id": "ai-berkshire",
       "name": "AI Berkshire",
       "url": "https://github.com/xbtlin/ai-berkshire",
-      "description": "AI 時代的伯克希尔：基于 Claude Code/Codex 的價值投資研究 Skill 合集",
+      "description": "AI 時代的伯克希爾：基於 Claude Code/Codex 的價值投資研究 Skill 合集",
       "category": "金融與投資",
       "language": "python",
       "triggers": [
@@ -44646,7 +44646,7 @@
         "選股推薦",
         "分析個股走勢",
         "查詢股票數據",
-        "查看股市涨跌"
+        "查看股市漲跌"
       ],
       "stars": 32238,
       "forks": 600,
@@ -45231,7 +45231,7 @@
         "visualization",
         "做數學動畫",
         "畫幾何圖形",
-        "制作微积分可視化",
+        "制作微積分可視化",
         "生成函數圖像動畫",
         "做線性代數動畫"
       ],
@@ -45540,7 +45540,7 @@
         "education",
         "找自學英語教材",
         "推薦英語學習路徑",
-        "規划英語學習計畫",
+        "規劃英語學習計畫",
         "找免費英語課程",
         "學習英語基礎教程"
       ],
@@ -45845,7 +45845,7 @@
         "web-scraper",
         "mcp",
         "繞過 Cloudflare 爬網頁",
-        "反檢測網頁爬虫",
+        "反檢測網頁爬蟲",
         "自適應抓取網站內容",
         "全站數據爬取",
         "隱匿抓取網頁表格"
@@ -46068,7 +46068,7 @@
       ],
       "stars": 23796,
       "description_zh": "移除多廠商 AI 溯源標記的 Agent Skill + Python 服務：Unicode 文字衛生、統計重寫鉤子，及 PNG/JPEG/SVG/PDF/DOCX/HTML/MD 的 C2PA/metadata 清理",
-      "advantages_zh": "覆蓋多層級標記：Unicode 隱形字元、統計式文字浮水印（Claude/Gemini/SynthID/OpenAI）與 C2PA/EXIF/XMP 檔案 metadata；Agent Skill 為輕量 HTTP 客戶端，宿主環境无需 Python 即可驅動服務；支援 PNG/JPEG/WebP/SVG/PDF/DOCX/ODT/HTML/Markdown 多種檔案格式",
+      "advantages_zh": "覆蓋多層級標記：Unicode 隱形字元、統計式文字浮水印（Claude/Gemini/SynthID/OpenAI）與 C2PA/EXIF/XMP 檔案 metadata；Agent Skill 為輕量 HTTP 客戶端，宿主環境無需 Python 即可驅動服務；支援 PNG/JPEG/WebP/SVG/PDF/DOCX/ODT/HTML/Markdown 多種檔案格式",
       "negativeConstraints_zh": [
         "僅適用於處理使用者自己擁有或已獲授權的內容，不得用於規避他人版權保護",
         "不適用於移除可見的浮水印圖片（非溯源標記）或 DRM 保護內容",
@@ -46857,7 +46857,7 @@
       "description_zh": "免費網域註冊和實用的 DNS 學習資源，提供給大眾使用。",
       "useCase_zh": "對希望在不產生網域註冊費用的情況下學習 DNS 基礎的學生或教育者而言，可使用提供的圖書式學習指南與免費網域儀表板來練習設定。",
       "advantages_zh": [
-        "提供多種后缀（如 .DPPDNS.ORG 和 .US.KG）的免費網域註冊。",
+        "提供多種後綴（如 .DPPDNS.ORG 和 .US.KG）的免費網域註冊。",
         "包含涵蓋 DNS 設定、網站部署與進階運作的綜合圖書式學習指南。",
         "允許使用者透過自訂 nameserver 連接偏好的 DNS 供應商，具備更高彈性。"
       ],
@@ -46939,7 +46939,7 @@
       "id": "zouyuxuan122-deepseek-harness-eac",
       "name": "DeepSeek Harness EAC",
       "url": "https://github.com/zouyuxuan122/Deepseek-Harness-EAC",
-      "description": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮膚。EAC: Embracing All Creation 揽尽萬象。",
+      "description": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮膚。EAC: Embracing All Creation 攬盡萬象。",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -46965,7 +46965,7 @@
         "command": "git clone https://github.com/zouyuxuan122/Deepseek-Harness-EAC.git",
         "repoUrl": "https://github.com/zouyuxuan122/Deepseek-Harness-EAC"
       },
-      "useCase": "當需要在 Windows/Linux 桌面環境中以一鍵啟動方式運行 DeepSeek Harness，並偏好內建多套 UI 皮肤的桌面體驗時使用。",
+      "useCase": "當需要在 Windows/Linux 桌面環境中以一鍵啟動方式運行 DeepSeek Harness，並偏好內建多套 UI 皮膚的桌面體驗時使用。",
       "advantages": [
         "內建 Node.js + dsh CLI，無需額外安裝依賴即可一鍵啟動",
         "提供 10 套預設 UI 皮膚，支援視覺客製化",
@@ -46979,9 +46979,9 @@
       "status": "active",
       "addedAt": "2026-08-17T13:28:20.209Z",
       "stars": 1951,
-      "description_zh": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮肤。EAC: Embracing All Creation 攬盡萬象",
-      "useCase_zh": "當需要在 Windows/Linux 桌面環境中以一鍵啟動方式運行 DeepSeek Harness，並偏好內建多套 UI 皮肤的桌面體驗時使用",
-      "advantages_zh": "內建 Node.js + dsh CLI，無需額外安裝依賴即可一鍵啟動，提供 10 套預設 UI 皮肤，支援視覺客製化，與 DeepSeek Harness 插件生態（dsh-plugin）完全相容",
+      "description_zh": "DeepSeek Harness (dsh) Windows/Linux 桌面客戶端：內建 Node.js + dsh CLI，一鍵啟動，附 10 套 UI 皮膚。EAC: Embracing All Creation 攬盡萬象",
+      "useCase_zh": "當需要在 Windows/Linux 桌面環境中以一鍵啟動方式運行 DeepSeek Harness，並偏好內建多套 UI 皮膚的桌面體驗時使用",
+      "advantages_zh": "內建 Node.js + dsh CLI，無需額外安裝依賴即可一鍵啟動，提供 10 套預設 UI 皮膚，支援視覺客製化，與 DeepSeek Harness 插件生態（dsh-plugin）完全相容",
       "negativeConstraints_zh": [
         "功能相較官方 Anywhere Labs 版本較簡化，缺少部分進階設定",
         "目前僅支援 Windows/Linux，不支援 macOS",
@@ -47450,7 +47450,7 @@
         "在桌面應用打開 .sqlite 文件",
         "寫 SQL 查詢篩選表格數據",
         "可視化設計數據庫表結構",
-        "将 CSV 或 Excel 導入 SQLite"
+        "將 CSV 或 Excel 導入 SQLite"
       ],
       "capabilities": [
         "sqlite-management",
@@ -47740,7 +47740,7 @@
         "evaluation-dataset",
         "json-export"
       ],
-      "useCase": "ARC-AGI 模型評估時，需要大量新任務以测试泛化能力。",
+      "useCase": "ARC-AGI 模型評估時，需要大量新任務以測試泛化能力。",
       "advantages": [
         "自動產生與公開 ARC-AGI-1 評測集分佈匹配的新任務，可擴展測試集規模",
         "Python 實作，易於嵌入現有評估管線",
@@ -47839,7 +47839,7 @@
         "dsh-web",
         "DSH 任務看板操作",
         "DeepSeek 移動端遠程運維",
-        "DSH Web GUI 插件安装",
+        "DSH Web GUI 插件安裝",
         "DeepSeek SSH 遠程管理",
         "DSH 皮膚主題配置"
       ],
@@ -50241,7 +50241,7 @@
         "前端型別重構",
         "收窄 prop 類型",
         "精簡 React 組件屬性",
-        "去掉多余 prop 類型",
+        "去掉多餘 prop 類型",
         "移除無用 prop",
         "修正 prop 類型範圍"
       ],
@@ -50545,9 +50545,9 @@
       ],
       "addedAt": "2026-08-30T13:44:53.198Z",
       "status": "active",
-      "description_zh": "Local-first Rust 工具，透過 HID++ 重新映射 Logitech 滑鼠按鍵、DPI 與 SmartShift，無需帳戶或遥測資料。",
+      "description_zh": "Local-first Rust 工具，透過 HID++ 重新映射 Logitech 滑鼠按鍵、DPI 與 SmartShift，無需帳戶或遙測資料。",
       "useCase_zh": "使用 Logitech MX Master 滑鼠的 Linux 使用者希望重新映射按鍵與調整 DPI，但不想安裝專有軟體或建立帳戶。",
-      "advantages_zh": "無需帳戶、遥測或雲端依賴，完全本地優先運作；以 Rust 編寫，低階 HID++ 通訊，資源消耗極低；原生支援按鍵重新映射、DPI 調整與 SmartShift 設定",
+      "advantages_zh": "無需帳戶、遙測或雲端依賴，完全本地優先運作；以 Rust 編寫，低階 HID++ 通訊，資源消耗極低；原生支援按鍵重新映射、DPI 調整與 SmartShift 設定",
       "negativeConstraints_zh": [
         "不適合非羅技滑鼠或不使用 HID++ 協定的裝置。",
         "偏好帶有雲端同步功能的官方 Logitech Options+ 生態系統的 Windows 使用者並非理想選擇。",
@@ -50826,11 +50826,11 @@
         "map animation",
         "historical visualization",
         "cinematic maps",
-        "把地理脚本轉成地圖動畫",
-        "将歷史故事做成動態地圖",
+        "把地理腳本轉成地圖動畫",
+        "將歷史故事做成動態地圖",
         "制作地形變化視頻效果",
-        "把領土變迁渲染成影視級地圖動畫",
-        "将文化脚本轉成地圖視覺呈現"
+        "把領土變遷渲染成影視級地圖動畫",
+        "將文化腳本轉成地圖視覺呈現"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -50877,10 +50877,10 @@
         "ad-storyboard",
         "brand-campaign",
         "撰寫廣告文案",
-        "設計分鏡脚本",
-        "策划品牌营銷活動",
+        "設計分鏡腳本",
+        "策劃品牌營銷活動",
         "制作病毒式廣告",
-        "規划短視頻廣告"
+        "規劃短視頻廣告"
       ],
       "install": {
         "method": "git-clone-sparse",
@@ -51440,7 +51440,7 @@
       "negativeConstraints_zh": [
         "需要支援 WebGL 的瀏覽器與足夠的 GPU 才能流暢執行",
         "沒有 TypeScript 經驗的新手可能難以設定 monorepo",
-        "單人 3D 視覺化場景中多人遊玩功能是多余的額外負荷"
+        "單人 3D 視覺化場景中多人遊玩功能是多餘的額外負荷"
       ]
     },
     {
@@ -52182,7 +52182,7 @@
       "id": "stop-that-shit",
       "name": "Stop That Shit",
       "url": "https://github.com/lennney/stop-that-shit",
-      "description": "Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：拦截 AI coding agent 無需求的哈希、校驗和與任務範圍膨胀。 A multi-platform Hook + Skill Guard for AI coding agents in Codex/GPT workflows: stop unrequested hashes, checksums, and task-scope creep.",
+      "description": "Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：攔截 AI coding agent 無需求的哈希、校驗和與任務範圍膨脹。 A multi-platform Hook + Skill Guard for AI coding agents in Codex/GPT workflows: stop unrequested hashes, checksums, and task-scope creep.",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -52212,7 +52212,7 @@
         "claude-code",
         "codex"
       ],
-      "useCase": "適用於 AI 代理 領域之相關任務需求：Stop That Shit（别再造史了）｜面向 Codex/GPT 场景的多平台 Hook + Skill Guard：拦截 AI coding agent ",
+      "useCase": "適用於 AI 代理 領域之相關任務需求：Stop That Shit（別再造史了）｜面向 Codex/GPT 場景的多平台 Hook + Skill Guard：攔截 AI coding agent ",
       "advantages": [
         "支援 javascript 開發生態"
       ],
@@ -52383,7 +52383,7 @@
         "搭建模型推理集群",
         "跑大模型API",
         "提供模型推理接口",
-        "搭建agent推理基础設施"
+        "搭建agent推理基礎設施"
       ],
       "capabilities": [
         "model-serving",
@@ -52579,7 +52579,7 @@
         "做網頁自動化測試",
         "讓AI agent瀏覽網頁",
         "繞過網站反爬檢測",
-        "批量访問網頁"
+        "批量訪問網頁"
       ],
       "capabilities": [
         "antidetect",
@@ -52879,7 +52879,7 @@
         "command": "npx kunpeng",
         "repoUrl": "https://github.com/pengfeiqiao/kunpeng"
       },
-      "useCase": "適用於 開發工具 領域之相關任務需求：鲲鹏 Kunpeng — 跑在本地的中文 AIGC 创作工作台（Tauri + React + Rust，内嵌 DeepSeek Harness 引擎）。支持 ",
+      "useCase": "適用於 開發工具 領域之相關任務需求：鯤鵬 Kunpeng — 跑在本地的中文 AIGC 創作工作台（Tauri + React + Rust，內嵌 DeepSeek Harness 引擎）。支持 ",
       "advantages": [
         "支援 typescript 開發生態"
       ],
@@ -53025,7 +53025,7 @@
       "id": "lieflat-charts",
       "name": "Lieflat Charts",
       "url": "https://github.com/larashero3-dotcom/lieflat-charts",
-      "description": "Data visualization Skill for AI Agents, turning data into polished, interactive HTML charts. 面向 AI Agents 的數據可視化 Skill，将數據快速生成精致、可交互的 HTML 圖表。",
+      "description": "Data visualization Skill for AI Agents, turning data into polished, interactive HTML charts. 面向 AI Agents 的數據可視化 Skill，將數據快速生成精致、可交互的 HTML 圖表。",
       "category": "數據分析",
       "language": "html",
       "triggers": [
@@ -53123,7 +53123,7 @@
       "stars": 4438,
       "description_zh": "Claude Code 工具包 — 為高效 AI 輔助開發提供 agents、指令、技能、規則與 hooks",
       "useCase_zh": "將經過驗證的 Claude Code 子 agents（規劃器、TDD 指南、安全審查員）、技能、hooks 和斜線指令植入真實產品程式碼庫，實現有紀律的 AI 輔助開發。",
-      "advantages_zh": "經 10 餘個月日常使用淬鍊的生產環境就绪 agents/技能/hooks/指令/規則（Anthropic 黑客松獲獎作品），可透過市集安裝為單一 Claude Code 外掛，或複製個別組件，內建 TDD、驗證循環、安全審查與持續學習等工作流程技能",
+      "advantages_zh": "經 10 餘個月日常使用淬鍊的生產環境就緒 agents/技能/hooks/指令/規則（Anthropic 黑客松獲獎作品），可透過市集安裝為單一 Claude Code 外掛，或複製個別組件，內建 TDD、驗證循環、安全審查與持續學習等工作流程技能",
       "negativeConstraints_zh": [
         "Claude Code 專用 — 非獨立 CLI 或函式庫",
         "工作流程帶有立場性；團隊可能需要裁剪或調整指令與規則以符合自身慣例"
@@ -53180,7 +53180,7 @@
         "確保模型和提示詞保留在裝置上，實現完整的隱私保護，下載後無需網路連線"
       ],
       "negativeConstraints_zh": [
-        "不適合僅限雲端環境且不允许本地執行的情況",
+        "不適合僅限雲端環境且不允許本地執行的情況",
         "需要大量的本機記憶體或運算資源才能有效運行大型模型"
       ]
     },
@@ -53290,7 +53290,7 @@
         "week": "2026-W36",
         "weeklyDelta": 2726
       },
-      "description_zh": "真正屬於您的自架健身房與體重視追蹤器。規劃您的每週訓練、執行引導式運動，並透過您自己的 passkey 登入記錄每一組動作和體重 — 無訂閱費用、無廣告、無遥測。",
+      "description_zh": "真正屬於您的自架健身房與體重視追蹤器。規劃您的每週訓練、執行引導式運動，並透過您自己的 passkey 登入記錄每一組動作和體重 — 無訂閱費用、無廣告、無遙測。",
       "useCase_zh": "一位健身愛好者希望用私人、擁有資料主權的方案取代訂閱制的商業運動 App，透過 Docker 在自管伺服器上執行 openGym，以跨裝置追蹤體重並管理引導式健身房課程。",
       "advantages_zh": [
         "資料主權：透過 Docker Compose 完全自我託管，使用者資料儲存在本地資料夾中，無第三方伺服器、無訂閱費、無廣告或遙測。",
@@ -53446,7 +53446,7 @@
         "古籍處理",
         "butler agent",
         "wiki automation",
-        "把古籍轉成知識圖谱",
+        "把古籍轉成知識圖譜",
         "整理歷史人物關系",
         "生成歷史事件時間線",
         "提取史書人物實體",
@@ -53581,7 +53581,7 @@
         "畫界面草圖",
         "做可點擊原型",
         "鏈接屏幕原型",
-        "生成AI編碼提示词",
+        "生成AI編碼提示詞",
         "畫Material 3界面"
       ],
       "capabilities": [
@@ -54288,7 +54288,7 @@
         "financial-planning",
         "offline-access"
       ],
-      "useCase": "按性价比排序的循证生活指南：长寿防病、急救、省钱理财、法律红线、失业与工伤、医保社保、恋爱婚育、怀孕育儿、创业与做平台合规、出国与技能。每条写明成本、收益、证据等级和原始出处，只引期刊论文与官方文件。",
+      "useCase": "按性價比排序的循證生活指南：長壽防病、急救、省錢理財、法律紅線、失業與工傷、醫保社保、戀愛婚育、懷孕育兒、創業與做平台合規、出國與技能。每條寫明成本、收益、證據等級和原始出處，只引期刊論文與官方文件。",
       "advantages": [
         "所有建議附有成本、收益、證據等級與期刊論文或官方文件原始出處",
         "內容按性價比排序",
@@ -54456,7 +54456,7 @@
         "book",
         "datacenter-network"
       ],
-      "useCase": "《深入理解 AI Infra：量化分析与系统设计》（李博杰 著）开源书稿：从硬件约束和模型架构出发，量化推导 LLM 推理与训练系统设计。含全书正文、PDF、配套计算工具与实验",
+      "useCase": "《深入理解 AI Infra：量化分析與系統設計》（李博杰 著）開源書稿：從硬件約束和模型架構出發，量化推導 LLM 推理與訓練系統設計。含全書正文、PDF、配套計算工具與實驗",
       "advantages": [
         "從硬件約束與模型架構出發量化推導 LLM 推理與訓練系統設計",
         "開源包含全書正文、PDF 與配套計算工具及實驗"
@@ -54770,11 +54770,11 @@
         "security",
         "audit",
         "skill",
-        "审查程式碼安全",
+        "審查程式碼安全",
         "檢查代碼弱點",
         "找出程式缺陷",
         "分析安全漏洞",
-        "审計系統風險"
+        "審計系統風險"
       ],
       "install": {
         "method": "npm",
@@ -55309,8 +55309,8 @@
         "niubigeo",
         "測試與自動化",
         "查看AI搜索中品牌出現次數",
-        "监控AI對話里品牌提及",
-        "分析竞品在AI平台表現",
+        "監控AI對話裡品牌提及",
+        "分析競品在AI平台表現",
         "優化AI搜索引擎品牌排名",
         "追蹤AI回答中品牌曝光"
       ],
@@ -56021,7 +56021,7 @@
       "id": "jev-chat-jarvis",
       "name": "Jev Chat Jarvis",
       "url": "https://github.com/jev-chat/jev-chat-jarvis",
-      "description": "装在手机上的对话副驾：在 QQ / X / 飞书里读懂对方、给出候选回复、一键填入输入框，发不发由你。非侵入，只读屏幕，不 hook 不改包。",
+      "description": "裝在手機上的對話副駕：在 QQ / X / 飛書裡讀懂對方、給出候選回覆、一鍵填入輸入框，發不發由你。非侵入，只讀屏幕，不 hook 不改包。",
       "category": "AI 代理",
       "language": "kotlin",
       "triggers": [
@@ -56459,7 +56459,7 @@
       "id": "awesome-persona-skills",
       "name": "Awesome Persona Skills",
       "url": "https://github.com/tmstack/awesome-persona-skills",
-      "description": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女娲.skill……  ",
+      "description": "同事.skill、老闆.skill、前任.skill、自己.skill、永生.skill、女媧.skill……  ",
       "category": "學習資源",
       "language": "markdown",
       "triggers": [
@@ -56493,7 +56493,7 @@
         "Not a runnable software; it is a Markdown index that requires users to clone external repositories to function",
         "Skills rely on third-party external links which may break or change without notice in this curated list"
       ],
-      "description_zh": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女娲.skill……",
+      "description_zh": "同事.skill、老闆.skill、前任.skill、自己.skill、永生.skill、女媧.skill……",
       "negativeConstraints_zh": [
         "非可執行軟體；為 Markdown 索引，需使用者複製外部儲存庫方可運作",
         "技能依賴第三方外部連結，此精選列表中這些連結可能隨時失效或變更"
@@ -56768,7 +56768,7 @@
       "id": "ow-bridge",
       "name": "Ow Bridge",
       "url": "https://github.com/louchi1984-coder/ow-bridge",
-      "description": "OW Bridge — 让 WorkBuddy 使用 OpenCode 免费模型。支持 macOS / Windows，自动发现模型、一键导入。",
+      "description": "OW Bridge — 讓 WorkBuddy 使用 OpenCode 免費模型。支持 macOS / Windows，自動發現模型、一鍵導入。",
       "category": "開發工具",
       "language": "javascript",
       "triggers": [
@@ -56804,7 +56804,7 @@
       "useCase_zh": "開發者使用此工具自動掃描本地 OpenCode 的免費模型，並一鍵導入 WorkBuddy，以實現零成本的 AI 推理，無需手動設定模型端點。",
       "advantages_zh": [
         "自動化檢測並導入免費模型至 WorkBuddy，省去手動設定模型端點的流程。",
-        "作為跨平台系統托盘應用，自動管理本地 OpenCode 運行時，包括自動下載與更新。",
+        "作為跨平台系統托盤應用，自動管理本地 OpenCode 運行時，包括自動下載與更新。",
         "提供視覺化控制面板，可在導入前監測模型可用性、推理能力與響應延遲。"
       ],
       "description_zh": "OW Bridge — 讓 WorkBuddy 使用 OpenCode 免費模型。支援 macOS / Windows，自動偵測模型、一鍵匯入。",
@@ -56925,7 +56925,7 @@
       "id": "video-shotcraft-dsh",
       "name": "Video Shotcraft Dsh",
       "url": "https://github.com/kingselyjoe/video-shotcraft-dsh",
-      "description": "面向 DeepSeek Harness 的电影感产品视频 Agent Skill，包含 152 张镜头配方卡、Remotion 模板、代码组件和音频资产。",
+      "description": "面向 DeepSeek Harness 的電影感產品視頻 Agent Skill，包含 152 張鏡頭配方卡、Remotion 模板、代碼組件和音頻資產。",
       "category": "影片",
       "language": "typescript",
       "triggers": [
@@ -56981,7 +56981,7 @@
       "id": "sc-datav",
       "name": "Sc Datav",
       "url": "https://github.com/knight-L/sc-datav",
-      "description": "数据可视化大屏 基于 Three.js + React 19 + ECharts 的 3D 地图可视化大屏项目 包含 3D 地图渲染、轮廓飞线、侧边扫光、多图表联动等丰富功能",
+      "description": "數據可視化大屏 基於 Three.js + React 19 + ECharts 的 3D 地圖可視化大屏項目 包含 3D 地圖渲染、輪廓飛線、側邊掃光、多圖表聯動等豐富功能",
       "category": "UI/UX設計",
       "language": "typescript",
       "triggers": [
@@ -57030,7 +57030,7 @@
       "id": "heterogeneous-gpu-pd-lab",
       "name": "Heterogeneous Gpu Pd Lab",
       "url": "https://github.com/Soulmate-Halo/heterogeneous-gpu-pd-lab",
-      "description": "使用稠密算力卡对稀疏大显存主机进行加速，主机包括 AI Max+ 395、M3 512G、DGX Spark 等。",
+      "description": "使用稠密算力卡對稀疏大顯存主機進行加速，主機包括 AI Max+ 395、M3 512G、DGX Spark 等。",
       "category": "AI 框架",
       "language": "python",
       "triggers": [
@@ -57267,7 +57267,7 @@
       "id": "how-to-live-better",
       "name": "how-to-live-better",
       "url": "https://github.com/cdyforever/how-to-live-better",
-      "description": "《高性价比人生指南》全书 528 条的在线单页阅读版：手机可读、可搜索、零依赖、支持离线",
+      "description": "《高性價比人生指南》全書 528 條的在線單頁閱讀版：手機可讀、可搜索、零依賴、支持離線",
       "category": "開發工具",
       "language": "html",
       "triggers": [
@@ -57383,7 +57383,7 @@
       "id": "qingjian",
       "name": "qingjian",
       "url": "https://github.com/qingjian-team/qingjian",
-      "description": "青简 Qingjian：用 Rust 写的拼音输入法，候选词旁多一条正在学的语言的译词",
+      "description": "青簡 Qingjian：用 Rust 寫的拼音輸入法，候選詞旁多一條正在學的語言的譯詞",
       "category": "開發工具",
       "language": "rust",
       "triggers": [
@@ -57711,7 +57711,7 @@
       "id": "dsh-our-free-model",
       "name": "Dsh Our Free Model",
       "url": "https://github.com/Ebony-Vinyl/dsh-our-free-model",
-      "description": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
+      "description": "在 dsh 裡裝上這個插件即可，無需登錄、註冊或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在內的前沿模型——完全免費，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just there, DeepSeek V4.1 Flash and Kimi K3 among them. Completely free, with no usage cap.",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -57736,7 +57736,7 @@
         "developer-tools",
         "dsh"
       ],
-      "useCase": "在 dsh 里装上这个插件即可，无需登录、注册或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在内的前沿模型——完全免费，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just…",
+      "useCase": "在 dsh 裡裝上這個插件即可，無需登錄、註冊或填 API Key，就能使用包括 DeepSeek V4.1 Flash、Kimi K3 在內的前沿模型——完全免費，不限量。 All you do is install this plugin in dsh: no login, no sign-up, no API key — the frontier models are just…",
       "advantages": [
         "Zero dependencies and no build steps required, ensuring a lightweight and frictionless installation process.",
         "Aggregates over 76 third-party providers and 13 free-tier channels into a single registry, allowing users to switch sources and models easily.",
@@ -58421,7 +58421,7 @@
       "id": "ultramotion",
       "name": "Ultramotion",
       "url": "https://github.com/sunsiyuan/ultramotion",
-      "description": "Open-source motion templates as agent skills · 动效模板库",
+      "description": "Open-source motion templates as agent skills · 動效模板庫",
       "category": "多媒體生成",
       "language": "html",
       "triggers": [
@@ -58474,7 +58474,7 @@
       "id": "answer-me-with-html",
       "name": "Answer Me With Html",
       "url": "https://github.com/QingYunA/answer-me-with-html",
-      "description": "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 让 AI Agent 用一页 HTML 回答复杂问题。",
+      "description": "Answer me with HTML — an agent skill that answers hard questions with a one-page HTML you can actually read. 讓 AI Agent 用一頁 HTML 回答複雜問題。",
       "category": "AI 代理",
       "language": "javascript",
       "triggers": [
@@ -58528,7 +58528,7 @@
       "id": "vibe-coding-cn",
       "name": "Vibe Coding Cn",
       "url": "https://github.com/tradecatlabs/vibe-coding-cn",
-      "description": "Vibe Coding 从入门到精通教程｜AI 结对编程工作流｜Prompt、Skill、Workflow、上下文管理、codex实战指南",
+      "description": "Vibe Coding 從入門到精通教程｜AI 結對編程工作流｜Prompt、Skill、Workflow、上下文管理、codex實戰指南",
       "category": "學習資源",
       "language": "python",
       "triggers": [
@@ -58574,13 +58574,13 @@
       "id": "huashu-art-motion",
       "name": "huashu-art-motion",
       "url": "https://github.com/alchaincyf/huashu-art-motion",
-      "description": "艺术动画skill：35种艺术风格、9种解说语法，用代码让画动起来。",
+      "description": "藝術動畫skill：35種藝術風格、9種解說語法，用代碼讓畫動起來。",
       "category": "多媒體生成",
       "language": "javascript",
       "triggers": [
         "huashu-art-motion",
         "art-animation",
-        "艺术动画",
+        "藝術動畫",
         "animation-skill",
         "claude-skills"
       ],

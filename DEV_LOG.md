@@ -199,7 +199,7 @@ Batch 2 的教訓先行：彌散軟訊號量不出增益——本批機制改為
 2. **引擎** `core/archetype.js`（mtime 快取載入、env ARCHETYPE_FILE 可覆寫供測試、
    損壞停用）+ `agent-retrieval.js` 的 fuse 整合（boostIds 每查詢匹配一次，
    weighted += 0.03，reasons 顯示「✓ 意圖原型命中」）。
-3. 過程抓到自己一個簡體字（胜→勝），被本專案的 check-traditional 門禁攔截——門禁有效。
+3. 過程抓到自己一個簡體字（胜→勝），被本專案的 check-traditional 門禁攔截——門禁有效。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 
 ### 可證偽判定（267 題 benchmark，逐查詢歸因）
 - **gate A（零回歸）：通過**——Hit@1 無回歸、空集誠實率 10/10。
@@ -812,8 +812,8 @@ w=0.20：有圖譜 59.7% vs 無圖譜 59.7%，完全相同（Tier 0 時有差）
 原因：圖譜密度從 789/1151 降到 355/264——LLM 句子太多元，共現達不到 MIN_COOC=3。
 
 ### 順手修掉的 bug：簡繁轉換的循環盲區
-`toTraditional()` 拿保守表當閘門，表外簡體字（「没」）既轉不到、
-複檢也抓不到（findSimplified 用同一張表）。Tier 1 試跑輸出「有没有」才發現。
+`toTraditional()` 拿保守表當閘門，表外簡體字（「没」）既轉不到、 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+複檢也抓不到（findSimplified 用同一張表）。Tier 1 試跑輸出「有没有」才發現。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 修法：新增 S2T_SAFE（無歧義簡體字），閘門未開時做單字對照。
 不能直接加進 S2T——那會讓整串丟給 opencc，把 跨平台→跨平臺、減少干擾→減少幹擾。
 實測修正 registry 13 處殘留，複檢歸零。
@@ -904,7 +904,7 @@ c17（本地執行環境非 API 聚合）、c36（非參數式、無工程圖）
 ### 簡繁轉換改為 opencc-js（根治，非逐字補表）
 
 **發現經過**：擴充剩餘 6 筆工具的 trigger 時，輸出連續出現漏網簡體
-（「查询」「赔償」「训练」「硬件约束」）。根本原因不是模型，而是
+（「查询」「赔償」「训练」「硬件约束」）。根本原因不是模型，而是 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 `scripts/fix-simplified.js` 手維護的對照表**註定補不完**——本次先補 37 字、
 再補 32 字，仍繼續漏。
 
@@ -918,7 +918,7 @@ cn→t 詞組級轉換；內建對照表降為**偵測器與離線備援**。
 因此最終設計為**職責分離**：
 - **偵測**用內建表（安全子集，刻意排除 干/复/于/后/台 等歧義字）→ 保守，寧可漏
 - **轉換**才交給 opencc → 品質好，連歧義字都能靠上下文處理對
-  （`恢复→恢復`、`干什么→幹什麼`、`后面→後面`）
+  （`恢复→恢復`、`干什么→幹什麼`、`后面→後面`） <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 
 同理 `findSimplified` 也必須走內建表：改用 opencc 逐字比對會把「減少干擾」
 「跨平台」誤報成簡體。
@@ -1316,8 +1316,8 @@ rerank 以 `{ deep: true }` 保留待 UI 接上。
 - 刪除誤建的 `$null` 檔（shell 重導向意外產生）
 - 文件簡繁一致性：修正 docs/ 33 個字元、檔名、AGENTS.md 產生器
 
-⚠️ **保留的簡體是刻意引用**：`CLASSIFICATION.md` 的「`开发工具`」
-（描述 classifier bug）、`README.md` 的「`浏览器`」（簡繁問題的舉例）、
+⚠️ **保留的簡體是刻意引用**：`CLASSIFICATION.md` 的「`开发工具`」 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+（描述 classifier bug）、`README.md` 的「`浏览器`」（簡繁問題的舉例）、 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 `DEV_LOG.md` 描述過往清理時的引用。
 
 ### 驗證
@@ -1339,7 +1339,7 @@ rerank 以 `{ deep: true }` 保留待 UI 接上。
 |---|---|---|
 | 工具總數 | 695 | **696** |
 | 分類數 | 19 | **18** |
-| `UI/UX设计`（簡體分類） | 1 筆 | **0 筆，分類根本不存在** |
+| `UI/UX设计`（簡體分類） | 1 筆 | **0 筆，分類根本不存在** | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 | 19 列中的錯誤列數 | — | **12 列**（AI 代理 145→149、AI 框架 83→71、API 整合 10→16…） |
 
 **根因**：`check-mece.js` 的 5h 只驗 `docs/CLASSIFICATION.md`，`sync-categories.js` 也只重生
@@ -1353,7 +1353,7 @@ rerank 以 `{ deep: true }` 保留待 UI 接上。
   （標記區塊 `<!-- CATEGORIES:INVENTORY:START/END -->`），資料來自 `tools.json` ＋ `categories.json`
 - 同時把腳本內重複的標記區塊邏輯抽成 `syncBlock()` 共用函式
 - `scripts/check-mece.js` 新增 **5i**：驗 `CATEGORY-SYSTEM.md` 的清單與 `categories.json`
-  **集合相等**（同時抓「缺少」與「幽靈」—— 只驗「有提到」抓不到殘留的 `UI/UX设计`）
+  **集合相等**（同時抓「缺少」與「幽靈」—— 只驗「有提到」抓不到殘留的 `UI/UX设计`） <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 - `docs/CATEGORY-SYSTEM.md` 重寫：加標記區塊、刪幽靈列、**移除重複的規則定義**
   （規則的權威是 `CLASSIFICATION.md` ＋ `category-conventions.md`，本檔只留統計與重構機制）
 - `tests/category-guards.test.js` 新增 3 個注入測試（幽靈分類／缺少分類／缺少標記），
@@ -1361,11 +1361,11 @@ rerank 以 `{ deep: true }` 保留待 UI 接上。
 
 ### 問題 2：`README.md` 中文嚴重損壞（專案門面）
 
-- **10 處 `面`→`麵`**：`裡麵`、`全麵優化`、`平麵`、`介麵`、`畫麵`、`跨页麵`
-- **大量簡體字殘留**：网页、专案、透过、搜寻、进行、触发、延迟、离线、容错、距离、词汇、
-  集成、函式库、资料集、微调、补帖、规划、问答、互动、数量、关鍵词
+- **10 處 `面`→`麵`**：`裡麵`、`全麵優化`、`平麵`、`介麵`、`畫麵`、`跨页麵` <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+- **大量簡體字殘留**：网页、专案、透过、搜寻、进行、触发、延迟、离线、容错、距离、词汇、 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+  集成、函式库、资料集、微调、补帖、规划、问答、互动、数量、关鍵词 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 - **同音字誤代**：`齣` 代替 `出`（`輸齣`、`列齣`、`汇齣`）
-- **疊字**：`功能類別别`、`分類別`
+- **疊字**：`功能類別别`、`分類別` <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 - **語意錯字**：`游標位元置`（位元＝bit，應為 `游標位置`）、`零位元移縮放`（應為 `零位移`）
 
 **為何 `check-utf8.js` 沒抓到**：它只驗 U+FFFD 替換字元，而這些是「合法但錯」的字。
@@ -1414,7 +1414,7 @@ rerank 以 `{ deep: true }` 保留待 UI 接上。
 |---|---|
 | `npm test` | ✅ **56 tests / 54 pass / 0 fail / 2 skipped**（新增 3 個守衛測試） |
 | `tests/category-guards.test.js` | ✅ **11/11 pass** |
-| 新守衛 5i 實測攔截 | ✅ 注入 `UI/UX设计` → exit 1，訊息 `出現 categories.json 沒有的分類：UI/UX设计`，還原位元組一致 |
+| 新守衛 5i 實測攔截 | ✅ 注入 `UI/UX设计` → exit 1，訊息 `出現 categories.json 沒有的分類：UI/UX设计`，還原位元組一致 | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 | `npm run check-mece` | ✅ 通過（含新增的 `CATEGORY-SYSTEM.md 分類清單與 categories.json 一致（18 列）`） |
 | `npm run categories:check` | ✅ 3 個衍生檔全同步 |
 | `node scripts/rescan-classification.js --ci` | ✅ exit 0（Tier 1 = 0、覆蓋率 28.6%） |
@@ -1807,8 +1807,8 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
 
 | # | 問題 | 影響 | 矯正 |
 |---|---|---|---|
-| 1 | `core/classifier.js` 的 `VALID_CATEGORIES` 為**簡體中文**（`开发工具`），與 registry 繁體（`開發工具`）不符 | LLM 分類結果被 `VALID_CATEGORIES.includes()` 拒絕 → **靜默退回規則引擎**，LLM 分類形同失效 | 改為 18 個繁體正規分類；補上 `測試與自動化`、移除 0 工具的 `圖文資源` |
-| 2 | 規則引擎分類名亦為簡體，且 `图文资源` 在 registry 不存在 | 規則分類會產出無效分類值 | 全部改為繁體；圖標庫規則改歸 `UI/UX設計` |
+| 1 | `core/classifier.js` 的 `VALID_CATEGORIES` 為**簡體中文**（`开发工具`），與 registry 繁體（`開發工具`）不符 | LLM 分類結果被 `VALID_CATEGORIES.includes()` 拒絕 → **靜默退回規則引擎**，LLM 分類形同失效 | 改為 18 個繁體正規分類；補上 `測試與自動化`、移除 0 工具的 `圖文資源` | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+| 2 | 規則引擎分類名亦為簡體，且 `图文资源` 在 registry 不存在 | 規則分類會產出無效分類值 | 全部改為繁體；圖標庫規則改歸 `UI/UX設計` | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 | 3 | `tool.schema.json` category enum 僅 9 值且含違反 MECE 的「其他」；language 僅 8 值、install.method 僅 7 值 | 實際資料為 18 分類 / 23 語言 / 17 安裝方式 → schema 形同無約束（`c++`、`conda`、`none` 等全數違規） | enum 全面對齊實際值；移除「其他」 |
 | 4 | 語言欄位大小寫/別名混亂（`Python`/`python`、`C++`/`cpp`、`csharp`、`unknown`） | 語言篩選與統計失準 | 全庫正規化 **39 筆** |
 | 5 | 無任何機制校驗 enum | 上述漂移可無聲累積 | `check-mece.js` 新增 **Enum 合規檢查**（自動讀取 schema enum，違反即建置失敗） |
@@ -3130,7 +3130,7 @@ Tier 1 的 4 筆待確認後執行 `--apply`。
   - 保留確認為有效：playwright devDep（cli.js/scripts/tests 引用）、`docs/architecture/` 2 檔（檔名正常僅終端顯示問題）、`registry/schemas/tool.schema.json`（追蹤中）、`web/favicon.ico`（舊瀏覽器 fallback，build-web.js 複製）。
 - **階段二：文件同步**:
   - AGENTS.md：工具數 497 → **513**、tracked repos 2119 → **2118**、總 star 9,258,500 → **9,470,512**、平均 18,629 → **25,121**、最後更新 2026/8/10 → 8/11；Top 5 分類（AI 代理 97→101、開發工具 65→72）與 Top 5 語言（python 181→188、typescript 109→113、javascript 51→52）對齊 registry 實測；`agents:init`/`list`/驗證清單/目錄結構數字同步。
-  - README.md：合併重複段落（刪簡體舊「网页版 UI」重複章節，保留繁體版含 file:// 警告）；目錄結構補 `web/fonts.css`、`fonts/`、`scripts/build-web.js`、`check-mece.js`；CLI 指令表補齊 `plan`/`interview`/`compare`/`discover-trending`/`verify-environment`。
+  - README.md：合併重複段落（刪簡體舊「网页版 UI」重複章節，保留繁體版含 file:// 警告）；目錄結構補 `web/fonts.css`、`fonts/`、`scripts/build-web.js`、`check-mece.js`；CLI 指令表補齊 `plan`/`interview`/`compare`/`discover-trending`/`verify-environment`。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 - **階段三：MECE 整合**: `npm run check-mece` 待執行（見驗證）。
 - **階段四：確效基準點**: `npm test` 11/11 PASS；`node cli.js validate` 待執行（見驗證）；基準 commit 含上輪漏洞修復。
 - **階段五：資安審查**：待 push 許可（本次不 push）。
@@ -5822,7 +5822,7 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
   2. 遙測匯出 `GET /api/telemetry/export?token=`（env 或 `web/data/telemetry-export-token.txt`，.gitignore 管轄）：真人問句是敏感資料，無 token 404、錯 token 403、正確 token 200。
   3. 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據（isLocalRequest）——首發部署實測：**平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開實例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。不依賴環境變數的判據才可靠。
   4. 自動探勘預設關閉（`TRENDING_AUTO=1` 可開）：每週漲星由遠端 cron 負責；本機 30 分鐘任務正是 2026-10-14 凌晨舊碼汙染事故的來源。
-- **部署後實測（公開連結，curl）**：首頁 200；shutdown／refresh 對公開访客 404；遙測寫入（公開 Origin）200 `{"ok":true}`；匯出 count=2（兩筆 `__deploy_smoke_test__` 標記事件，跨重部署持久）；無金鑰搜尋正常降級（rerank `no api key (offline)`、fusion 結果、誠實 low-confidence）。
+- **部署後實測（公開連結，curl）**：首頁 200；shutdown／refresh 對公開訪客 404；遙測寫入（公開 Origin）200 `{"ok":true}`；匯出 count=2（兩筆 `__deploy_smoke_test__` 標記事件，跨重部署持久）；無金鑰搜尋正常降級（rerank `no api key (offline)`、fusion 結果、誠實 low-confidence）。
 - **本機**：port 3000 已以新碼重啟（自動探勘停用訊息已印出）。
 
 ### CI #3（run 38565136599）失敗根因：被掩蓋的測試失敗，非 commit message

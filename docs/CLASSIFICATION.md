@@ -13,7 +13,7 @@
 | 問題 | 證據 | 後果 |
 |---|---|---|
 | **分類定義無明文** | Awesome List 散落於 `學習資源`(5)、`AI 框架`(3)、`研究`(2) 三個分類 | 同類工具無法聚類，檢索精度下降 |
-| **程式碼與資料脫節** | `core/classifier.js` 的 `VALID_CATEGORIES` 為簡體中文（`开发工具`），與 registry 的繁體（`開發工具`）不符 | LLM 分類結果被驗證拒絕 → 靜默退回規則引擎 |
+| **程式碼與資料脫節** | `core/classifier.js` 的 `VALID_CATEGORIES` 為簡體中文（`开发工具`），與 registry 的繁體（`開發工具`）不符 | LLM 分類結果被驗證拒絕 → 靜默退回規則引擎 | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 | **Schema 未同步** | `tool.schema.json` 只列 9 個分類（含違反 MECE 的「其他」），語言只列 8 種、安裝方式只列 7 種 | 實際資料有 18 分類 / 23 語言 / 17 安裝方式，形同無約束 |
 
 本文件即為修正後的權威定義。
@@ -104,7 +104,7 @@
 | `UI/UX設計` | `#ec4899` | `design system` `ui (kit\|library\|component)` `prototyp` `wireframe` `design token` `figma (plugin\|api\|library\|sdk\|widget\|integration)` |
 | `知識管理` | `#9333ea` | `\brag\b` `retrieval[- ]augmented` `knowledge graph` `vector (db\|database\|store)` `embedding (store\|index)` `second brain` `agent memory` `codebase (index\|map)` |
 | `學習資源` | `#ea580c` | `tutorial` `course` `curriculum` `roadmap` `handbook` `cheat ?sheet` `interview (prep\|handbook)` `learn .{0,20}(from\|by) (scratch\|doing\|example)` `guide to` |
-| `研究` | `#78716c` | `arxiv` `research paper\|academic (paper\|research)` `literature review\|systematic review` `preprint\|peer[- ]reviewed` `论文\|論文\|文献\|學術\|学术` |
+| `研究` | `#78716c` | `arxiv` `research paper\|academic (paper\|research)` `literature review\|systematic review` `preprint\|peer[- ]reviewed` `论文\|論文\|文献\|學術\|学术` | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 | `安全性` | `#dc2626` | `pentest\|penetration test\|vulnerability (scan\|assessment)\|exploit (dev\|development)\|malware\|owasp\|threat (intel\|hunt)\|security (audit\|scanner)\|forensic` |
 | `金融與投資` | `#f59e0b` | `\btrading\b\|quant(itative)? (trading\|finance\|strategy)\|portfolio (optim\|management)\|backtest\|stock (analysis\|market\|screening)\|financial (analysis\|data\|statement)` |
 | `3D工程繪圖` | `#0891b2` | `\bcad\b\|parametric (3d\|model)\|openscad\|freecad\|3d (model\|asset\|mesh\|printing)\|blender\|\bbim\b` |
@@ -236,7 +236,7 @@ npm test
 
 | # | 脫節 | 後果 |
 |---|---|---|
-| 1 | `core/classifier.js` 的分類名寫成簡體（`开发工具`），registry 用繁體（`開發工具`） | LLM 分類結果被驗證拒絕 → **靜默**退回規則引擎 |
+| 1 | `core/classifier.js` 的分類名寫成簡體（`开发工具`），registry 用繁體（`開發工具`） | LLM 分類結果被驗證拒絕 → **靜默**退回規則引擎 | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 | 2 | `tool.schema.json` 的 enum 只有 9 個分類（含違反 MECE 的「其他」） | 形同無約束 |
 | 3 | 知識圖譜色表漏了 `金融與投資`，且有 4 個已廢棄分類的幽靈 key | 25 筆工具用任意色 |
 | 4 | `core/classifier.js` 的 LLM prompt 停在舊版 6 步決策樹、且是簡體 | LLM 分類與本文件不一致 |
