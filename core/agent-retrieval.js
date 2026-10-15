@@ -54,6 +54,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 // 斷詞與相似度定義，否則兩邊的分數不能放在同一個加權公式裡比較。
 // 抽出的同時保留既有行為（停用詞、bigram、IDF 公式完全不變）。
 import { tokenize, bagOf, buildIdentityIdf, weightedSim } from './tokenize.js';
+import { normalizeQuery } from './query-normalize.js';
 
 // 身分欄位的「完整 trigger 命中」：query 內的某 trigger 整段出現 → 強信號
 // 這是 V1 的核心：agent 寫 query 時常直接包含 trigger 字串。
@@ -372,6 +373,10 @@ function reasons(q, tool, fuseResult, matchedIntent = '') {
 //     為 null / undefined 時 V0 停用，完全退化成原四維引擎（離線安全）。
 // 兩者皆提供時，V0 = cosine(queryVector, vectors[tool.id])，權重 V0_WEIGHT。
 export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors = null, queryVector = null, wiki, v5Weight, wikiGraph = true } = {}) {
+  // 查詢端正規化（2026-10-15 第七輪 Q4=A）：簡體輸入轉繁體，避免 bigram 零重疊造成
+  // 靜默檢索失敗。冪等（對已繁體是 no-op），所以多層入口重複套用不會累積副作用。
+  // 量測與設計理由見 core/query-normalize.js。
+  query = normalizeQuery(query);
   const q = extractQuery(query);
   const idf = buildIdentityIdf(tools);
   const w = withV5(intentWeights, v5Weight);

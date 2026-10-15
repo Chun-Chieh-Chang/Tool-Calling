@@ -20,6 +20,7 @@ import { agentRetrieve } from './agent-retrieval.js';
 import { extractIntent, weightsForIntent } from './query-intent.js';
 import { loadVectors, cosine } from './embedding.js';
 import { neutralizeDelimiters } from './prompt-sanitize.js';
+import { normalizeQuery } from './query-normalize.js';
 
 // ── 融合參數 ─────────────────────────────────────────────────────────────
 //
@@ -89,6 +90,9 @@ const AGENT_MIN_MODERATE = 1;     // topK=5 中至少 1 筆高置信，視為「
  * }
  */
 export function retrieve(tools, query, options = {}) {
+  // 查詢端正規化（2026-10-15 第七輪 Q4=A）。放在最外層是為了讓 intent／L2／agent
+  // 三方看到同一個查詢字串；冪等，內層再套一次也不會變。見 core/query-normalize.js。
+  query = normalizeQuery(query);
   const { topK = 5, category, language, telemetryStats } = options;
 
   // 1. 跑兩套引擎
@@ -308,6 +312,9 @@ export function retrieve(tools, query, options = {}) {
  * @returns {Promise<object>} retrieve() 的結果，外加 rerank 欄位
  */
 export async function retrieveWithRerank(tools, query, options = {}) {
+  // 查詢端正規化（2026-10-15 第七輪 Q4=A）：必須在**呼叫 rerank 之前**就換掉，
+  // 否則召回用繁體、rerank prompt 卻還帶著簡體問句，兩邊看到的不是同一個查詢。
+  query = normalizeQuery(query);
   // recallK 由 50 降為 30。
   //
   // ✅ 2026-09-20 末以 v1.3.0（267 題）重新驗證，**結論更強**：
@@ -423,6 +430,9 @@ const _DECISION_RANK = { adopt: 3, 'adopt-with-warning': 2, ambiguous: 1, 'no-ma
  * @returns {Promise<object>} retrieve() 的結果，外加 hyde.* 欄位
  */
 export async function retrieveWithAdaptiveHyDE(tools, query, options = {}) {
+  // 查詢端正規化（Q4=A）：HyDE 會用 query 生成假想文件並串成 expandedQuery，
+  // 所以必須在生成之前就換掉，否則假想文件與檢索語料仍不同字形。
+  query = normalizeQuery(query);
   const firstPass = retrieve(tools, query, options);
 
   if (firstPass.decision === 'adopt') {

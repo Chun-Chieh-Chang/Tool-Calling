@@ -609,6 +609,7 @@ function fuzzyMatch(triggerNorm, queryToken) {
 // （或跑 `npm run build:web`，會自動先重新挖掘一次）即可讓詞典跟著變新，
 // 不需要再手動維護一份固定字典。
 import { SYNONYM_MAP } from './synonyms.generated.js';
+import { normalizeQuery } from './query-normalize.js';
 
 /**
  * 同義詞擴展：將查詢字串中的詞擴展為同義詞集合
@@ -910,6 +911,9 @@ function applyTelemetryWeights(results, telemetryStats) {
 }
 
 export function search(registryTools, query, options = {}) {
+  // 查詢端正規化（2026-10-15 第七輪 Q4=A）：必須在快取查詢之前，這樣簡體與繁體
+  // 問句會共用同一筆快取，而不是各存一份。冪等，見 core/query-normalize.js。
+  query = normalizeQuery(query);
   const { topK = 5, category, language } = options;
   const registryVersion = options.registryVersion || getRegistryCacheFingerprint(registryTools);
   
