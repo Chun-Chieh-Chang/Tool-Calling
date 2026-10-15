@@ -81,9 +81,14 @@ if (fs.existsSync(path.join(webDir, 'favicon.svg'))) {
 if (fs.existsSync(path.join(webDir, 'favicon.ico'))) {
   fs.copyFileSync(path.join(webDir, 'favicon.ico'), path.join(distDir, 'favicon.ico'));
 }
-if (fs.existsSync(path.join(rootDir, 'docs', 'knowledge-graph.html'))) {
-  fs.copyFileSync(path.join(rootDir, 'docs', 'knowledge-graph.html'), path.join(distDir, 'knowledge-graph.html'));
-  fs.copyFileSync(path.join(rootDir, 'docs', 'pipeline-workflow.html'), path.join(distDir, 'pipeline-workflow.html'));
+// 複製 docs/ 下的所有 HTML 檔案（含裁決頁、知識圖譜、流程圖等），未來新增不需再改清單
+const docsDir = path.join(rootDir, 'docs');
+if (fs.existsSync(docsDir)) {
+  for (const entry of fs.readdirSync(docsDir)) {
+    if (entry.endsWith('.html')) {
+      fs.copyFileSync(path.join(docsDir, entry), path.join(distDir, entry));
+    }
+  }
 }
 
 // 複製依賴檔案
