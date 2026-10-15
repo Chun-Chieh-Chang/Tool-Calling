@@ -45,6 +45,30 @@ if (fs.existsSync(path.join(webDir, 'persist-cache.js'))) {
 if (fs.existsSync(path.join(webDir, 'behavior-tracker.js'))) {
   fs.copyFileSync(path.join(webDir, 'behavior-tracker.js'), path.join(distDir, 'behavior-tracker.js'));
 }
+// 2026-10-15 Q1=B：Web 提名管線（GitHub Pages「加入工具庫」）。
+// repo/pipeline/{add-pipeline.js,add-tool-dialog.js} → dist/pipeline/。
+// 管線模組以 '../scripts/…'／'../core/…'／'../worker/…' 向上匯入——兩種樹深度
+// 相同（pipeline/ 與 scripts/ 都在各自根的下一層），同一個 specifier 在原始碼樹
+// 與部署樹都成立，因此這裡只需原樣複製、不改寫內容。
+// ⚠️ 新增瀏覽器端模組時，記得回來加複製行（漏一次 = Pages 上 404）。
+fs.mkdirSync(path.join(distDir, 'pipeline'), { recursive: true });
+for (const f of ['add-pipeline.js', 'add-tool-dialog.js']) {
+  if (fs.existsSync(path.join(rootDir, 'pipeline', f))) {
+    fs.copyFileSync(path.join(rootDir, 'pipeline', f), path.join(distDir, 'pipeline', f));
+  }
+}
+fs.mkdirSync(path.join(distDir, 'scripts'), { recursive: true });
+fs.mkdirSync(path.join(distDir, 'worker'), { recursive: true });
+for (const f of ['scan-tool.js', 'fix-simplified.js']) {
+  fs.copyFileSync(path.join(rootDir, 'scripts', f), path.join(distDir, 'scripts', f));
+}
+for (const f of ['tool-id.js', 'classification-rules.js', 'categories.js', 'tool-enricher.js', 'llm-keys.js']) {
+  fs.copyFileSync(path.join(rootDir, 'core', f), path.join(distDir, 'core', f));
+}
+fs.copyFileSync(path.join(rootDir, 'worker', 'index.js'), path.join(distDir, 'worker', 'index.js'));
+// 提名端點設定（url 預設為空 → 前端顯示部署說明，不送請求）
+fs.mkdirSync(path.join(distDir, 'data'), { recursive: true });
+fs.copyFileSync(path.join(webDir, 'data', 'tools-add-endpoint.json'), path.join(distDir, 'data', 'tools-add-endpoint.json'));
 if (fs.existsSync(path.join(webDir, 'favicon.svg'))) {
   fs.copyFileSync(path.join(webDir, 'favicon.svg'), path.join(distDir, 'favicon.svg'));
 }
@@ -60,6 +84,8 @@ if (fs.existsSync(path.join(rootDir, 'docs', 'knowledge-graph.html'))) {
 fs.copyFileSync(path.join(rootDir, 'core', 'search-engine.js'), path.join(distDir, 'core', 'search-engine.js'));
 fs.copyFileSync(path.join(rootDir, 'core', 'synonyms.generated.js'), path.join(distDir, 'core', 'synonyms.generated.js'));
 fs.copyFileSync(path.join(rootDir, 'registry', 'tools.json'), path.join(distDir, 'registry', 'tools.json'));
+// 2026-10-15 Q1=B：分類白名單（瀏覽器管線用；與 Node 端同一份 categories.json）
+fs.copyFileSync(path.join(rootDir, 'registry', 'categories.json'), path.join(distDir, 'registry', 'categories.json'));
 const trendingPath = path.join(rootDir, 'registry', 'weekly-trending.json');
 if (fs.existsSync(trendingPath)) {
   fs.copyFileSync(trendingPath, path.join(distDir, 'registry', 'weekly-trending.json'));

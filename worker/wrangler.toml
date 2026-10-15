@@ -1,0 +1,19 @@
+# worker/wrangler.toml — Cloudflare Worker 部署設定（2026-10-15 Q1=B）
+#
+# 部署步驟見 worker/README.md。重點：
+#   · name：上線後網址為 https://<name>.<subdomain>.workers.dev
+#   · main：進入點 worker/index.js（零外部依賴）
+#   · vars：非機密設定；GITHUB_TOKEN／SUBMIT_TOKEN 用 wrangler secret put 注入
+#   · compatibility_date：之後升级 wrangler 可逐年提高
+
+name = "tool-calling-add"
+main = "index.js"
+compatibility_date = "2026-10-15"
+
+[vars]
+# 目標 repo（提名開 PR 的對象）
+REPO_OWNER = "Chun-Chieh-Chang"
+REPO_NAME = "Tool-Calling"
+# 允許的來源網域（逗號分隔）。留空 = 暫不限制（見 worker/README.md 的取捨）。
+# 正式使用請填入 GitHub Pages 網址，例：
+# ALLOWED_ORIGINS = "https://chun-chieh-chang.github.io"

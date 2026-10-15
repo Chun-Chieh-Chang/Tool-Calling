@@ -56,8 +56,26 @@ const currentWeekLeaderboardBody = document.getElementById('currentWeekLeaderboa
 const refreshTrendingBtn = document.getElementById('refreshTrendingBtn');
 
 // 初始化
+/**
+ * 靜態展示站導流橫幅（2026-10-15 Q2=A）。
+ * 本機工作台與 live 服務本身就是完整版，不需要橫幅；只有第三方純靜態託管
+ * （GitHub Pages）才顯示，把訪客導向 live 工作台——遙測回流與「加入工具庫」
+ * 提名管線都只在 live 環境完整可用，找不到入口＝真人遙測永遠 0 筆。
+ */
+function setupStaticSiteBanner() {
+  const banner = document.getElementById('staticSiteBanner');
+  if (!banner) return;
+  const host = String(location.hostname || '').toLowerCase();
+  const fullWorkbenchHosts = [
+    'localhost', '127.0.0.1', '::1', '[::1]',
+    'eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run',
+  ];
+  if (!fullWorkbenchHosts.includes(host)) banner.hidden = false;
+}
+
 async function init() {
   try {
+    setupStaticSiteBanner();
     const res = await fetch('./registry/tools.json');
     if (!res.ok) throw new Error('Failed to load tools registry');
     const data = await res.json();
@@ -676,10 +694,19 @@ function setupRefreshTrendingButton() {
 
 /**
  * 綁定「加入工具庫」按鈕（事件委派於 leaderboardBody）
+ *
+ * 2026-10-15 Q1=B：非本機（GitHub Pages／公開實例）沒有 server.js 的
+ * /api/tools/add（端點刻意只允許 localhost，見 web/server.js 雙閘門），
+ * 改開 Web 提名對話框：瀏覽器端掃描＋補齊 → 預覽 → Cloudflare Worker 開 PR。
+ * 本機行為完全不變（維持背景補齊直接入庫）。
  */
 function setupAddToRegistryButtons() {
   const target = currentWeekLeaderboardBody || leaderboardBody;
   if (!target) return;
+  // 部署模式判定與 web/server.js 同一組旗標（Host 頭本地值）
+  const isLocalWorkbench = ['localhost', '127.0.0.1', '::1', '[::1]']
+    .includes(String(location.hostname || '').toLowerCase());
+
   target.addEventListener('click', async (e) => {
     const btn = e.target.closest('.add-to-registry-btn');
     if (!btn) return;
@@ -687,6 +714,24 @@ function setupAddToRegistryButtons() {
     const toolUrl = btn.dataset.url;
     const toolName = btn.dataset.name;
     if (!toolUrl) return;
+
+    if (!isLocalWorkbench) {
+      // 純靜態託管：開提名對話框（動態 import，本機工作台不會載入這段依賴）
+      try {
+        // 雙路徑：部署樹 dist/pipeline/（'./…'）與原始碼樹 repo/pipeline/（'../…'）
+        // 兩邊深度不同，各試一次；都不行才報錯（見 pipeline/ 檔頭版面註解）
+        let dialogMod = null;
+        for (const p of ['./pipeline/add-tool-dialog.js', '../pipeline/add-tool-dialog.js']) {
+          try { dialogMod = await import(p); break; } catch { /* 試下一個路徑 */ }
+        }
+        if (!dialogMod) throw new Error('找不到提名對話框模組');
+        await dialogMod.openAddToolDialog({ url: toolUrl, name: toolName });
+      } catch (err) {
+        console.warn('Add tool dialog failed:', err);
+        window.alert(`無法開啟提名對話框：${err.message}\n\n也可在本機執行：node cli.js add ${toolUrl}`);
+      }
+      return;
+    }
 
     const confirmed = window.confirm(`確認將「${toolName}」加入工具庫？\n\n${toolUrl}`);
     if (!confirmed) return;
