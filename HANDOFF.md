@@ -328,6 +328,25 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
+### 30. 🔴 `--commits` 門禁對歷史訊息**沒有豁免**，而修訊息只能改寫歷史（2026-10-15）
+
+`check-traditional.js --commits` 掃的是**最近 `COMMIT_SCAN_LIMIT` 筆可達提交的訊息**，沒有豁免機制
+（`printFindings` 的 `allow-simplified` 只作用在檔案行，不作用在 commit message）。
+
+**實際踩到**：第七輪要修 README 的簡體字範例時，我在 commit message 裡逐字引用了那個簡體詞當說明
+→ CI 紅燈（門禁指到該訊息的那一行）。訊息是**已經 push 出去**的，所以唯一乾淨的補救是
+`git commit --amend` ＋ `git push --force-with-lease`（tree hash 不變，只有訊息變）。
+
+**可推廣的判準**：
+- **寫 commit message 時，把「簡體字」當成禁字**——連「舉例說明要防治的簡體詞」都不行，改成描述性寫法（例：「逐字引用了要防治的簡體詞」）。
+- 訊息類的門禁**沒有事後修補的便宜路徑**（不像檔案可以再補一個 commit），所以它在 push 前就該檢查。
+  自檢方式：`git log -1 --format=%B | grep -P '[\x{4e00}-\x{9fff}]'` 後目視，或直接
+  `node scripts/check-traditional.js --commits HEAD~1..HEAD`。
+- 🔴 CI 是**淺層 checkout**（只掃得到最近 2 筆），所以「推幾筆新 commit 把壞訊息擠出範圍」這種
+  便宜解法**只是把地雷往後推**——日後加深 fetch 深度會再次紅燈。
+
+---
+
 ## 三、目前狀態（頂部一節為 2026-10-15（第七輪）快照，其次 2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-15（第七輪）七題裁決執行：Q1=A／Q2=A／Q3=A／Q4=A／Q5=A／Q6=A／Q7=A
