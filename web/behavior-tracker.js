@@ -49,10 +49,24 @@ export class BehaviorTracker {
   /**
    * 回流到伺服器：把事件 POST 到 /api/telemetry（fire-and-forget）。
    * 失敗一律靜默——遙測永遠不能影響前端功能；本地 localStorage 仍是主儲存。
+   *
+   * 2026-10-15 Q2=A：純靜態託管（GitHub Pages）沒有同源 /api/telemetry，
+   * 此時改用 relay 目標（index.html 的 meta[name="telemetry-relay"]，
+   * 值為 live 工作台網址）跨域中繼；伺服器端以 allowlist 把關
+   * （web/telemetry-origin.js）。relay 未設定或與本站同源時行為不變。
    */
   _postToServer(entry) {
     try {
-      fetch('/api/telemetry', {
+      let target = '/api/telemetry';
+      if (typeof document !== 'undefined') {
+        const relay = document.querySelector('meta[name="telemetry-relay"]')
+          ?.content?.trim();
+        if (relay) {
+          const sameOrigin = new URL(relay, location.href).origin === location.origin;
+          if (!sameOrigin) target = relay;
+        }
+      }
+      fetch(target, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(entry),

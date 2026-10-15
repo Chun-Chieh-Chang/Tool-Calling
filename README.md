@@ -249,6 +249,13 @@ npm start
 
 > ⚠️ **重要**：不要直接打開 `web/index.html`（file:// 協議不支援 ES Module），必須透過 HTTP Server 才能正常載入！
 
+不想在本機跑？直接用線上版：
+
+| 版本 | 網址 | 能力 |
+|---|---|---|
+| **工具選用工作台**（完整版） | https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run | 即時搜尋、排行榜、遙測回流、「加入工具庫」提名（掃描＋LLM 充實在瀏覽器端完成，結果開 PR 進 CI） |
+| GitHub Pages（靜態展示版） | https://chun-chieh-chang.github.io/Tool-Calling/ | 工具庫瀏覽、知識圖譜、排行榜——唯讀，無後端 API |
+
 網頁版提供：
 - 📊 **精密儀表板總覽** - 高對比度統計圖表與分類概覽
 - 🔧 **工具目錄列表** - 完整的工具瀏覽與搜尋

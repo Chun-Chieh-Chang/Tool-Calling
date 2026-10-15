@@ -6,6 +6,7 @@ import { discoverTrendingTools } from '../scripts/trending-weekly.js';
 import { getCurrentWorldWeek } from '../core/world-week.js';
 import { syncRegistryToDist } from '../scripts/dist-sync.js';
 import { classifyTool } from '../core/classifier.js';
+import { parseAllowedOrigins, isTelemetryOrigin, telemetryCorsHeaders } from './telemetry-origin.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -264,6 +265,24 @@ const server = http.createServer(async (req, res) => {
         : {};
     };
 
+    // 遙測專屬來源把關（2026-10-15 Q2=A）：同源信任＋顯式 allowlist。
+    // GitHub Pages 是靜態站、沒有自己的 /api/telemetry；開放 allowlist
+    // （env TELEMETRY_ALLOWED_ORIGINS，逗號分隔）讓 Pages 能把事件中繼到
+    // 本服務累積。預設空 allowlist＝行為與發佈時一致，意即必須顯式設定
+    // 才開這條路（見 web/telemetry-origin.js 的安全邊界註解）。
+    const TELEMETRY_ALLOWED_ORIGINS = parseAllowedOrigins(process.env.TELEMETRY_ALLOWED_ORIGINS);
+    const isTelemetryOriginReq = (req) => isTelemetryOrigin(req.headers.origin, {
+      hostHeader: req.headers.host,
+      xForwardedHost: req.headers['x-forwarded-host'],
+      allowedOrigins: TELEMETRY_ALLOWED_ORIGINS,
+    });
+    // 回應用 CORS 標頭：同源（corsHeaders）與 allowlist（telemetryCorsHeaders）
+    // 兩路合併；Allow-Headers/Methods 只有 allowlist 路徑會產生。
+    const telemetryCors = (req) => ({
+      ...corsHeaders(req),
+      ...telemetryCorsHeaders(req.headers.origin, TELEMETRY_ALLOWED_ORIGINS),
+    });
+
     if (decodedUrl === '/api/trending/status') {
       res.writeHead(200, {
         'Content-Type': 'application/json; charset=utf-8',
@@ -365,29 +384,37 @@ const server = http.createServer(async (req, res) => {
     // behavior-tracker.js 的事件原本只存瀏覽器 localStorage；這裡補上
     // 伺服器端落盤（JSONL 附加寫入），讓真人查詢語料開始累積。
     // 只寫不讀、無副作用放大；事件形狀驗證在 web/telemetry-endpoint.js。
-    // 寫入端點必須過 isTrustedOrigin（與 /api/trending/refresh 同級）：
+    // 寫入端點把關（2026-10-15 Q2=A 擴充）：同源信任＋TELEMETRY_ALLOWED_ORIGINS
+    // allowlist（讓 GitHub Pages 靜態站也能中繼，見 web/telemetry-origin.js）。
     // 語料庫的價值在「真人查詢」的可信度，跨站 simple request 可以毒化它。
-    if (decodedUrl === '/api/telemetry' && req.method === 'POST') {
-      if (!isTrustedOrigin(req)) {
+    if (decodedUrl === '/api/telemetry' && (req.method === 'POST' || req.method === 'OPTIONS')) {
+      if (!isTelemetryOriginReq(req)) {
         res.writeHead(403, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ error: 'Forbidden: untrusted origin' }));
+        return;
+      }
+      // preflight：只有 allowlist 內的跨域瀏覽器會送 OPTIONS；
+      // 同源請求不觸發 preflight，走到這裡一律是 allowlist 來源。
+      if (req.method === 'OPTIONS') {
+        res.writeHead(204, telemetryCors(req));
+        res.end();
         return;
       }
       let event;
       try {
         event = JSON.parse(req._body || '{}');
       } catch {
-        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.writeHead(400, { 'Content-Type': 'application/json; charset=utf-8', ...telemetryCors(req) });
         res.end(JSON.stringify({ error: 'body 必須是合法 JSON' }));
         return;
       }
       try {
         const { handleTelemetry } = await import('./telemetry-endpoint.js');
         const out = handleTelemetry(event);
-        res.writeHead(out.status, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.writeHead(out.status, { 'Content-Type': 'application/json; charset=utf-8', ...telemetryCors(req) });
         res.end(JSON.stringify(out.body));
       } catch (err) {
-        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...corsHeaders(req) });
+        res.writeHead(500, { 'Content-Type': 'application/json; charset=utf-8', ...telemetryCors(req) });
         res.end(JSON.stringify({ error: err.message }));
       }
       return;

@@ -1856,3 +1856,45 @@ select:focus {
   font-size: 11px;
   width: 100%;
 }
+
+/* ==========================================================================
+   靜態展示站導流橫幅（2026-10-15 Q2=A）
+   只在「非本機、非 live 工作台」的純靜態託管顯示（app.js 切換 hidden 屬性）。
+   採 neumorphism 同一組底色與柔和陰影，不做成刺眼的通知條。
+   ========================================================================== */
+.static-site-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 12px auto 0;
+  padding: 10px 18px;
+  max-width: 1080px;
+  border-radius: 12px;
+  background: var(--brand-cobalt-light, rgba(53, 100, 212, 0.10));
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.6;
+  box-shadow: var(--shadow-soft, 0 1px 3px rgba(46, 54, 72, 0.12));
+}
+
+.static-site-banner[hidden] {
+  display: none;
+}
+
+.ssb-text {
+  color: var(--text-secondary);
+}
+
+.ssb-link {
+  color: var(--brand-cobalt);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  white-space: nowrap;
+}
+
+.ssb-link:hover {
+  color: var(--brand-cobalt-hover);
+}
