@@ -1,41 +1,43 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { analyzeCases, formatTable, formatFailures } from '../core/ceiling.js';
+
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const b = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'eval-queries.json'), 'utf8'));
 const reg = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8'));
-const { agentRetrieve } = await import('../core/agent-retrieval.js');
-const { extractIntent, weightsForIntent } = await import('../core/query-intent.js');
 const tools = reg.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
-const stat = {};
-for (const c of b.cases.filter((x) => x.type !== 'empty-set')) {
-  const it = extractIntent(c.query);
-  const top = agentRetrieve(tools, c.query, { topK: 50, intentWeights: weightsForIntent(it) }).topK.map((y) => y.id);
-  let idx = -1;
-  for (const e of c.expected) {
-    const i = top.indexOf(e);
-    if (i >= 0 && (idx < 0 || i < idx)) idx = i;
-  }
-  stat[c.type] = stat[c.type] || { n: 0, in50: 0, sumRank: 0, hit1: 0 };
-  const s = stat[c.type];
-  s.n += 1;
-  if (idx >= 0) { s.in50 += 1; s.sumRank += idx + 1; if (idx === 0) s.hit1 += 1; } else { s.sumRank += 999; }
+// ─── 2026-10-15 Q5=A：新增 --failures 系列旗標 ──────────────────────────────
+// 天花板分析原本只印聚合數字，看不到「哪一題壞、壞在哪」。詞檔調校需要
+// 逐題清單，且必須能分辨兩種失敗（MEMORY §2：多數失敗是排序問題不是召回問題）：
+//   · recall-miss：正解根本沒進 top-50（真正的召回缺口）
+//   · rank-loss ：正解在 top-50 內但排名 > 5（排序問題，rerank／權重的活）
+// 預設輸出不變（向下相容）；新增旗標才多印清單。
+const argv = process.argv.slice(2);
+const has = (f) => argv.includes(f);
+const argVal = (f, d) => {
+  const i = argv.indexOf(f);
+  return i >= 0 && argv[i + 1] ? Number(argv[i + 1]) : d;
+};
+const TOPK = argVal('--topK', 50);
+const RANK_THRESHOLD = argVal('--rank-threshold', 5);
+const { stat, records } = analyzeCases(b.cases, tools, TOPK);
+
+if (has('--json')) {
+  // 機器可讀（給 docs 產生器／後續分析用），不印人眼表格
+  console.log(JSON.stringify({ topK: TOPK, rankThreshold: RANK_THRESHOLD, stat, records }, null, 2));
+} else {
+  console.log(formatTable(stat));
 }
 
-console.log('類型          筆數   天花板(top50)   平均排名   top1命中');
-console.log('─'.repeat(60));
-let tn = 0, ti = 0, th = 0;
-for (const [k, v] of Object.entries(stat)) {
-  console.log(
-    '  ' + k.padEnd(13) + String(v.n).padStart(3) + '      ' + (v.in50 / v.n * 100).toFixed(1).padStart(5) + '%      ' +
-    (v.sumRank / v.n).toFixed(1).padStart(6) + '      ' + (v.hit1 / v.n * 100).toFixed(1) + '%'
-  );
-  tn += v.n; ti += v.in50; th += v.hit1;
+if (has('--failures') && !has('--json')) {
+  const only = has('--recall-miss') ? 'recall' : has('--rank-loss') ? 'rank' : null;
+  console.log(formatFailures(records, {
+    topK: TOPK,
+    rankThreshold: RANK_THRESHOLD,
+    limit: argVal('--limit', 40),
+    only,
+  }));
 }
-console.log('─'.repeat(60));
-console.log('  合計        ' + String(tn).padStart(3) + '      ' + (ti / tn * 100).toFixed(1) + '%            ' + (th / tn * 100).toFixed(1) + '%');
-console.log();
-console.log('天花板 = 答案有無進 top-50（召回能力）');
-console.log('平均排名 = 在 top-50 內排第幾（999 = 沒進）；top1 命中 = 答案是否排第一');
