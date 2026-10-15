@@ -8,10 +8,14 @@
 >
 > | 資料 | 檔案 |
 > |---|---|
-> | 工具庫（725 筆）| `registry/tools.json` |
+> | 工具庫（771 筆；日期錨點 2026-10-15）| `registry/tools.json` |
 > | 分類定義與色碼 | `registry/categories.json` |
-> | 評測集（v1.3.0，267 題）| `registry/eval-queries.json` |
+> | 評測集（v1.4.0，267 題）| `registry/eval-queries.json` |
 > | 知識編譯詞條 | `registry/compiled-entries.json` |
+>
+> ⚠️ 上表的工具數**沒有自動守門**（`check-doc-stats.js` 只檢查根目錄 `README.md`
+> 與 `AGENTS.md`），所以它會漂移——2026-10-15 發現本表停在 725（實際 771）。
+> 工具數一律加日期錨點，並以 `registry/tools.json` 為準。
 >
 > ⚠️ `CATEGORY-SYSTEM.md`、`CLASSIFICATION.md`、`AGENTS.md` 是**衍生檔**
 > （由 `npm run categories:sync` / `agents:init` 產生），**不可手改**。
@@ -44,6 +48,7 @@
 | [AGENTS-Integration-Guide.md](./AGENTS-Integration-Guide.md) | 如何把本專案 `AGENTS.md` 與 IDE 全域規則整合 |
 | [PLUGIN-INSTALL.md](./PLUGIN-INSTALL.md) | 🔌 一鍵安裝為各 Agentic IDE 外掛（MCP + Skill 雙介面） |
 | [batch-add-automation.md](./batch-add-automation.md) | 「批次加入工具庫」的自動化流程（解析 → 分類 → 寫入） |
+| [../worker/README.md](../worker/README.md) | 「加入工具庫」Cloudflare Worker（Q1=B）：架構分工、部署步驟（wrangler／secret／meta 設定）、端點與濫用防線。**Pages 上的「＋ 加入工具庫」要能用的唯一部署指引** |
 
 ## 4. 資產（prompt 範本與診斷工具）
 
@@ -72,7 +77,8 @@
 | 文件 | 內容 |
 |---|---|
 | [decisions-2026-10-15.html](./decisions-2026-10-15.html) | 2026-10-15 五題裁決頁（第六輪，已裁已執行）：Pages「加入工具庫」路線／真人遙測 0 筆／多值分類回填／159 支缺 capabilities／語義天花板。附白話說明、實測數據錨點與建議 |
-| [decisions-2026-10-15b.html](./decisions-2026-10-15b.html) | 2026-10-15 第七輪七題裁決頁（待裁）：Worker 部署／live 重發佈與 allowlist／評測集 9 題簡體／查詢端簡轉繁／精實補 capabilities／守門假綠機制化／未追蹤目錄處置 |
+| [decisions-2026-10-15b.html](./decisions-2026-10-15b.html) | 2026-10-15 第七輪七題裁決頁（**已裁：Q1～Q7 全 A**）：Worker 部署／live 重發佈與 allowlist／評測集 9 題簡體／查詢端簡轉繁／精實補 capabilities／守門假綠機制化／未追蹤目錄處置。落地結果見下方執行紀錄 |
+| [round7-execution-2026-10-15.md](./round7-execution-2026-10-15.md) | Q1～Q7 全 A 的執行紀錄：已落地（評測集清洗 v1.4.0＋重跑基線／查詢端正規化離線量測／守門「空掃描即失敗」／.gitignore）與待外部操作（Worker 部署／live 重發佈）的現況 |
 | [telemetry-diagnosis-2026-10-15.md](./telemetry-diagnosis-2026-10-15.md) | Q2=A 執行紀錄：真人遙測 0 筆的三層根因（入口不可見／純瀏覽不計事件／跨域刻意擋）、最小修正（導流橫幅＋allowlist 中繼）與驗收實測 |
 | [semantic-failure-analysis-2026-10-15.md](./semantic-failure-analysis-2026-10-15.md) | Q5=A 執行紀錄：逐題失敗清單工具（`--failures`）、4 題召回缺口 vs 38 題排序問題、以及「評測集 9 題含簡體」的配對 A/B 證據（改善 6／不變 3／變差 0）與兩項待裁建議 |
 
