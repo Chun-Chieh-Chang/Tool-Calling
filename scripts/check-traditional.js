@@ -34,6 +34,18 @@
  * 整個檔案都是對照表的（如 fix-simplified.js 本體）改用檔頭標記：
  *     // check-traditional: skip-file —— 本檔定義簡繁對照表
  * 標記寫在被豁免的檔案裡，會出現在 diff 中，因此豁免本身可稽核。
+ *
+ * 「掃描 0 個檔案」的處理（2026-10-15 第七輪 Q6=A）
+ * ─────────────────────────────────────────────
+ * 門禁最危險的失效不是漏報，而是**假綠**：輸入是空的、路徑不存在、或副檔名不在
+ * SCAN_EXTENSIONS 內，都可能讓掃描範圍變成 0 個檔案，卻照樣印「未發現簡體字」並回 0。
+ * 實例見 HANDOFF 陷阱 27（把 commit 訊息匯出成 .txt 再餵進 --full，得到
+ * 「掃描 0 個檔案 ＋ exit 0」）。
+ *   · 指定了目標（--full 帶路徑／--full 不帶路徑但 repo 沒有原始碼／--commits 沒有提交）
+ *     而實掃 0 個檔案 → **視為失敗**（exit 1）。
+ *   · diff 模式在乾淨工作區本來就沒有新增行可檢 → 不算失敗，但訊息改成明確的
+ *     「無事可檢」，與「檢查通過」分開，兩者不再共用同一句話。
+ * 位置參數在 diff 模式過去會被默默忽略（餵了檔案卻什麼都沒檢查），現改為升級成整檔掃描。
  */
 
 import { execFileSync } from 'node:child_process';
@@ -201,9 +213,12 @@ function runDiffMode(ref) {
   const diffText = git(['diff', ref, '--unified=0', '--no-color']);
   const findings = [];
   const seenHeader = new Map();
+  // 真的被逐行檢查過的檔案（決定「掃描 0 個檔案」的判定，見檔頭說明）
+  const examined = new Set();
 
   for (const { path: p, text, line } of parseAddedLines(diffText)) {
     if (isSkippedPath(p)) continue;
+    examined.add(p);
     let header = seenHeader.get(p);
     if (header === undefined) {
       // 檔頭標記可能位於本次未新增的前 10 行，需從工作樹補讀
@@ -217,9 +232,10 @@ function runDiffMode(ref) {
 
   // 未追蹤檔整份都是新增內容，diff 看不到，必須另外掃
   for (const p of listUntracked()) {
+    examined.add(p);
     for (const hit of scanFile(p)) findings.push({ path: p, ...hit });
   }
-  return findings;
+  return { findings, examined: [...examined] };
 }
 
 /**
@@ -270,7 +286,7 @@ function runCommitsMode(range) {
       if (hit) findings.push({ path: `commit ${short}`, ...hit });
     });
   }
-  return { findings, label: `commit 訊息（${note}，${hashes.length} 筆）` };
+  return { findings, label: `commit 訊息（${note}，${hashes.length} 筆）`, scanned: hashes.length };
 }
 
 function parseArgv(argv) {
@@ -297,17 +313,40 @@ function usage() {
                     預設掃「最近 ${COMMIT_SCAN_LIMIT} 筆可達提交」，淺歷史會自動降級
   --code            只限 core/ scripts/ web/ tests/（不含文件與資料檔）
 
+指定了目標卻「掃描 0 個檔案」＝失敗（exit 1），因為那代表什麼都沒檢查（HANDOFF 陷阱 27）。
+diff 模式在乾淨工作區掃到 0 檔不算失敗，但會印「無事可檢」而不是「未發現簡體字」。
+
 豁免：行內 \`// ${LINE_ESCAPE}：原因\`；檔頭 \`// ${FILE_ESCAPE}\``);
 }
 
-function printFindings(findings, modeLabel) {
+/**
+ * 統一的結果輸出。回傳 process exit code。
+ *
+ * 2026-10-15 第七輪 Q6=A 起，**掃描 0 個檔案不再與「通過」共用同一句話**：
+ * 前者是「沒有內容被檢查」（假綠的來源），後者是「檢查了而且乾淨」。
+ * @param {{allowEmptyScan?: boolean}} opts allowEmptyScan=true 表示「這個範圍本來就無事可檢」
+ *        是合法的（diff 模式在乾淨工作區），此時 0 檔不算失敗但仍明確標示。
+ */
+export function printFindings(findings, modeLabel, scanned = 0, { allowEmptyScan = false } = {}) {
   // 2026-10-09 措辭更正：舊橫幅寫「偵測器：內建對照表（opencc 已啟用）」兩半互相矛盾，
   // 且讓人誤以為裝了 opencc 偵測就會全覆蓋——實測 findSimplified() 永遠只查內建表，
   // opencc 只參與 toTraditional() 的轉換端。分工講清楚，別再餵養那個錯誤結論。
   console.log(`🔍 [Traditional Guard] 偵測＝內建對照表（與 opencc 與否無關）｜轉換＝${usingOpenCC() ? 'opencc 已啟用' : 'opencc 未安裝，走內建表單字對照'}｜範圍：${modeLabel}`);
 
   if (findings.length === 0) {
-    console.log('✅ [Traditional Guard] 未發現簡體字，中文書寫皆為繁體');
+    if (scanned === 0) {
+      if (allowEmptyScan) {
+        console.log('ℹ️ [Traditional Guard] 這個範圍沒有可檢查的內容（掃描 0 個檔案）——是「無事可檢」，不是「檢查通過」。');
+        return 0;
+      }
+      console.error('❌ [Traditional Guard] 掃描 0 個檔案——沒有任何內容被檢查，不能算通過。');
+      console.error(`   範圍：${modeLabel}`);
+      console.error(`   可掃描副檔名：${SCAN_EXTENSIONS.join(' ')}`);
+      console.error('   常見原因：路徑不存在／副檔名不在清單（例如把內容匯出成 .txt 再餵進來）／整個路徑被 isSkippedPath 排除。');
+      console.error('   這條規則的由來見 HANDOFF 陷阱 27：門禁靜默跳過＝假綠。');
+      return 1;
+    }
+    console.log(`✅ [Traditional Guard] 未發現簡體字，中文書寫皆為繁體（掃描 ${scanned} 個檔案）`);
     return 0;
   }
 
@@ -333,23 +372,40 @@ function main() {
     return 0;
   }
 
+  // 位置參數在 diff 模式過去會被默默忽略：`check-traditional.js foo.txt` 看起來在檢查
+  // foo.txt，實際上只跑了「相對 HEAD 的新增行」——又是一種假綠。給了路徑就代表
+  // 「請掃這些檔案」，因此升級為整檔掃描（等同 --full <paths>）。
+  if (opts.mode === 'diff' && opts.paths.length) {
+    console.log(`ℹ️ [Traditional Guard] 預設模式不吃位置參數，已把 ${opts.paths.length} 個路徑改以整檔掃描處理（等同 --full）。`);
+    opts.mode = 'full';
+  }
+
   let findings = [];
   let modeLabel = '';
+  let scanned = 0;
+  let allowEmptyScan = false;
   if (opts.mode === 'full') {
     let targets = opts.paths.length ? expandTargets(opts.paths) : listSources();
     if (opts.codeOnly) targets = targets.filter((p) => CODE_PATH.test(p));
     for (const p of targets) findings.push(...scanFile(p).map((h) => ({ path: p, ...h })));
+    scanned = targets.length;
     modeLabel = `整檔掃描 ${targets.length} 個檔案${opts.codeOnly ? '（僅原始碼）' : ''}`;
   } else if (opts.mode === 'commits') {
     const r = runCommitsMode(opts.ref);
     findings = r.findings;
+    scanned = r.scanned;
     modeLabel = r.label;
   } else {
-    findings = runDiffMode(opts.ref);
+    const r = runDiffMode(opts.ref);
+    findings = r.findings;
+    // --code 會濾掉文件：計數要跟著濾，否則「掃描 N 個檔案」會虛報（含沒被檢查的文件）。
+    scanned = opts.codeOnly ? r.examined.filter((p) => CODE_PATH.test(p)).length : r.examined.length;
+    // 乾淨工作區本來就沒有新增行可檢——不該判失敗，但也不能假裝「通過」（見檔頭說明）。
+    allowEmptyScan = true;
     if (opts.codeOnly) findings = findings.filter((f) => CODE_PATH.test(f.path));
     modeLabel = `新增行（vs ${opts.ref}，含未追蹤檔全文）`;
   }
-  return printFindings(findings, modeLabel);
+  return printFindings(findings, modeLabel, scanned, { allowEmptyScan });
 }
 
 // isDirect 守衛：讓 tests/ 能匯入 scanFile / checkLine / parseAddedLines 而不觸發掃描

@@ -6,6 +6,10 @@
  *      故「歧義字必須不報」是核心契約（與 fix-simplified.js 的 S2T_SAFE 收字規則同源）。
  *   2. **漏報**：豁免機制太寬鬆，任何行加個標記就免檢 → 故標記必須是
  *      明確字串、且檔頭標記只認前 10 行。
+ *   3. **假綠**：輸入被靜默丟掉（路徑不存在、副檔名不在清單、位置參數被忽略）
+ *      卻照樣回報「未發現簡體字」→ 2026-10-15 第七輪 Q6=A 起「掃描 0 個檔案
+ *      即失敗」，見檔尾〈假綠防線〉。**門禁最危險的失效是這一類**：前兩類至少
+ *      還會吵，假綠連訊號都沒有。
  * 另有一條 **綠色鎖**：原始碼目錄整檔掃描必須 0 違規，這是 npm test 能長期
  * 掛著它的前提；哪天有人新增未標記的簡體資料行，這條會先紅。
  */
@@ -21,12 +25,41 @@ import {
   isSkippedPath,
   parseAddedLines,
   expandTargets,
+  printFindings,
   resolveCommits,
   scanFile,
 } from '../scripts/check-traditional.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPT = path.join(ROOT, 'scripts', 'check-traditional.js');
+
+/** 攔下 console.log／console.error，用來直接驗 printFindings 的輸出與 exit code。 */
+function captureConsole(fn) {
+  const logs = [];
+  const errs = [];
+  const origLog = console.log;
+  const origErr = console.error;
+  console.log = (...a) => logs.push(a.join(' '));
+  console.error = (...a) => errs.push(a.join(' '));
+  let code;
+  try {
+    code = fn();
+  } finally {
+    console.log = origLog;
+    console.error = origErr;
+  }
+  return { code, out: logs.join('\n'), err: errs.join('\n'), all: [...logs, ...errs].join('\n') };
+}
+
+/** 跑 CLI 並「要求它失敗」——門禁測試的重點是證明它真的會紅，不是證明它會跑。 */
+function runCliExpectFail(args) {
+  try {
+    execFileSync(process.execPath, [SCRIPT, ...args], { cwd: ROOT, encoding: 'utf8' });
+  } catch (e) {
+    return { code: e.status, stdout: e.stdout ?? '', stderr: e.stderr ?? '' };
+  }
+  throw new Error(`預期門禁失敗，但它回 0 了：node scripts/check-traditional.js ${args.join(' ')}`);
+}
 
 // --range / --commits 這兩條鎖要比對 HEAD~1..HEAD，需要至少 2 筆提交的歷史。
 // 淺 clone（actions/checkout 預設 fetch-depth: 1）與全新 repo 的首筆提交都沒有 HEAD~1，
@@ -272,5 +305,61 @@ test('CLI：--full 給目錄能跑完（防 EISDIR 復發）', () => {
     encoding: 'utf8',
   });
   assert.match(out, /整檔掃描 \d+ 個檔案/);
+  assert.match(out, /未發現簡體字/);
+});
+
+// ── 假綠防線：掃描 0 個檔案必須失敗（2026-10-15 第七輪 Q6=A／HANDOFF 陷阱 27）──
+// 這組鎖的是門禁最危險的失效：輸入被靜默丟掉，卻照樣印「未發現簡體字」。
+// 真實案例是把 commit 訊息匯出成 .txt 再餵進 --full，得到「掃描 0 個檔案 ＋ exit 0」。
+test('printFindings：不允許空掃時，掃描 0 個檔案必須回 1，且不得印出通過字樣', () => {
+  const r = captureConsole(() => printFindings([], '整檔掃描 0 個檔案', 0, { allowEmptyScan: false }));
+  assert.equal(r.code, 1, '掃描 0 個檔案不能算通過');
+  assert.ok(!r.all.includes('未發現簡體字'), '空掃描不可印出「未發現簡體字」——那正是假綠的來源');
+  assert.ok(r.err.includes('掃描 0 個檔案'), '要明講掃到 0 個檔案，並走 stderr');
+});
+
+test('printFindings：diff 模式的合法空掃描回 0，但訊息是「無事可檢」而非「通過」', () => {
+  // 乾淨工作區沒有新增行可檢，判失敗會讓 npm test 在乾淨樹上直接紅；
+  // 但也不能假裝通過——所以兩者用不同句子區分。
+  const r = captureConsole(() => printFindings([], '新增行（vs HEAD，含未追蹤檔全文）', 0, { allowEmptyScan: true }));
+  assert.equal(r.code, 0);
+  assert.ok(r.all.includes('無事可檢'));
+  assert.ok(!r.all.includes('未發現簡體字'), '「無事可檢」不可寫成「未發現簡體字」');
+});
+
+test('printFindings：真的掃了 N 個檔案且乾淨 → 回 0 並印出實際掃描量', () => {
+  const r = captureConsole(() => printFindings([], '整檔掃描 51 個檔案', 51));
+  assert.equal(r.code, 0);
+  assert.ok(r.all.includes('未發現簡體字'));
+  assert.ok(r.all.includes('掃描 51 個檔案'), '印出實際掃描量，才分得出「掃很多」與「掃 0 個」');
+});
+
+test('CLI：--full 指定沒有可掃副檔名的檔案必須失敗（陷阱 27 的原始情境）', () => {
+  // .gitignore 確實存在、但 .gitignore 不在 SCAN_EXTENSIONS 內 → 舊行為是靜默通過。
+  const r = runCliExpectFail(['--full', '.gitignore']);
+  assert.equal(r.code, 1);
+  assert.match(r.stderr, /掃描 0 個檔案/);
+});
+
+test('CLI：--full 指定不存在的路徑必須失敗，而不是靜默通過', () => {
+  const r = runCliExpectFail(['--full', 'no-such-file.md']);
+  assert.equal(r.code, 1);
+  assert.match(r.stderr, /掃描 0 個檔案/);
+});
+
+test('CLI：--full 指向整條被 isSkippedPath 排除的目錄必須失敗', () => {
+  const r = runCliExpectFail(['--full', 'registry/']);
+  assert.equal(r.code, 1);
+  assert.match(r.stderr, /掃描 0 個檔案/);
+});
+
+test('CLI：位置參數在預設模式會被當成整檔掃描目標（不再默默忽略）', () => {
+  // 舊行為：`check-traditional.js foo.js` 只跑 diff 模式，位置參數被丟掉——
+  // 使用者以為檢查了 foo.js，其實沒有。現在升級為整檔掃描。
+  const out = execFileSync(process.execPath, [SCRIPT, 'scripts/check-traditional.js'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.match(out, /整檔掃描 1 個檔案/);
   assert.match(out, /未發現簡體字/);
 });
