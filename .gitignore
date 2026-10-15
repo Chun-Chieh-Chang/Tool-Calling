@@ -20,6 +20,14 @@ docs/antigravity-global-rules.md
 
 # 代理工作區（與上方 .claude/ .agnes/ .omo/ 同性質，非專案原始碼）
 .workbuddy-ai/
+
+# 平台私有狀態與一次性暫存（非專案原始碼）
+# 2026-10-15 第七輪 Q7=A：這幾項每次提交都出現在未追蹤清單，需人工避開、易誤加。
+# 只影響 git 顯示，磁碟上的檔案原封不動。
+.workbuddy/
+.wbapp_*.genie
+.playwright-cli/
+scratch/
 # 一次性回滾快照（批次作業前產生，內含重複的 registry 全量資料，約 7MB）
 .backup-*/
 
