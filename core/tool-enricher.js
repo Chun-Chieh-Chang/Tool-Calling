@@ -113,7 +113,9 @@ export async function enrichToolFromReadme(tool, options = {}) {
   const readme = options.readme ?? await fetchReadmeText(repoUrl);
   if (!readme) return null;   // 沒有 README 就不猜
 
-  const apiBase = (options.apiBase ?? process.env.LLM_API_BASE ?? DEFAULT_API_BASE).replace(/\/$/, '');
+  const apiBase = (options.apiBase
+    ?? (typeof process !== 'undefined' && process.env ? process.env.LLM_API_BASE : undefined)
+    ?? DEFAULT_API_BASE).replace(/\/$/, '');
   const model = options.model ?? DEFAULT_MODEL;
 
   const payload = {
@@ -157,7 +159,7 @@ export async function enrichToolFromReadme(tool, options = {}) {
       // 但 tool 本體上的暫存鍵仍須清掉，否則 enrich-new-tools 的 Object.assign
       // 會把它寫進 registry（__ 鍵一進 tools.json 就污染單一真理來源）。
       try {
-        return normalizeEnrichment(out, tool);
+        return normalizeEnrichment(out, tool, { skipZh: options.skipZh === true });
       } finally {
         delete tool.__readmeTextForVerify;
       }
@@ -200,8 +202,20 @@ export function isFullyEnriched(tool) {
   );
 }
 
-/** 正規化：去 Markdown、限制長度、簡轉繁、確保 advantages 是陣列 */
-export function normalizeEnrichment(out, tool) {
+/**
+ * 正規化：去 Markdown、限制長度、簡轉繁、確保 advantages 是陣列
+ *
+ * @param {object} out - 模型輸出
+ * @param {object} tool - registry 中的工具物件（description 用於防複製）
+ * @param {object} [opts]
+ * @param {boolean} [opts.skipZh] - 不輸出 *_zh 欄位。
+ *   2026-10-15 Q1=B：瀏覽器端「加入工具庫」管線使用——opencc-js 在純瀏覽器
+ *   無法解析（bare specifier），與其降級成不完整的內建表，不如不產生 *_zh；
+ *   中文欄位統一由合併後的 `npm run translate:zh` 補齊（與 negativeConstraints_zh
+ *   既有的分工一致）。Node／CLI 路徑不受影響（預設 false）。
+ */
+export function normalizeEnrichment(out, tool, opts = {}) {
+  const skipZh = opts.skipZh === true;
   const zh = (v) => toTraditional(stripMd(v));
   const en = (v) => stripMd(v);
   const arr = (v, max, conv) => (Array.isArray(v) ? v : [])
@@ -217,14 +231,18 @@ export function normalizeEnrichment(out, tool) {
   const rec = {};
   if (useCase && !isCopy) {
     rec.useCase = useCase.slice(0, 300);
-    const uzh = zh(out?.useCase_zh);
-    if (uzh) rec.useCase_zh = uzh.slice(0, 300);
+    if (!skipZh) {
+      const uzh = zh(out?.useCase_zh);
+      if (uzh) rec.useCase_zh = uzh.slice(0, 300);
+    }
   }
   const adv = arr(out?.advantages, 4, en);
   if (adv.length) {
     rec.advantages = adv;
-    const advZh = arr(out?.advantages_zh, 4, zh);
-    if (advZh.length) rec.advantages_zh = advZh;
+    if (!skipZh) {
+      const advZh = arr(out?.advantages_zh, 4, zh);
+      if (advZh.length) rec.advantages_zh = advZh;
+    }
   }
   const caps = arr(out?.capabilities, 6, en).map((c) => c.toLowerCase().replace(/\s+/g, '-'));
   if (caps.length && (!tool.capabilities || tool.capabilities.length === 0)) {

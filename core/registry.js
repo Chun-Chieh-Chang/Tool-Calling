@@ -53,11 +53,6 @@ export function displayText(tool, field) {
   return '';
 }
 
-export function generateId(name) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
-}
+// generateId 於 2026-10-15 抽出至 core/tool-id.js（純函式，供瀏覽器管線共用）；
+// 此處 re-export 維持既有 import 路徑相容（web/server.js 等消費端不需改）。
+export { generateId } from './tool-id.js';

@@ -40,7 +40,11 @@
  * 離線安全：沒有任何金鑰時 `nextKey()` 回傳 null，呼叫端照原邏輯停用 LLM 功能。
  */
 
-const QUARANTINE_MS = Number(process.env.LLM_KEY_QUARANTINE_MS || 60000);
+// 2026-10-15 Q1=B：本檔經 core/tool-enricher.js 被瀏覽器端「加入工具庫」管線
+// import，process.env 一律經 env() 安全讀取（瀏覽器無 process，回 undefined）。
+const env = (name) => (typeof process !== 'undefined' && process.env ? process.env[name] : undefined);
+
+const QUARANTINE_MS = Number(env('LLM_KEY_QUARANTINE_MS') || 60000);
 
 let pool = null;
 let cursor = 0;
@@ -49,7 +53,7 @@ let cursor = 0;
 let runtimeKeys = [];
 
 function initPool() {
-  const raw = process.env.AGNES_API_KEYS || process.env.AGNES_API_KEY || '';
+  const raw = env('AGNES_API_KEYS') || env('AGNES_API_KEY') || '';
   const envKeys = String(raw)
     .split(',')
     .map((s) => s.trim())
@@ -98,7 +102,7 @@ export function setRuntimeKeys(keys) {
  */
 export function getKeyStatus() {
   const p = getKeyPool();
-  const envRaw = process.env.AGNES_API_KEYS || process.env.AGNES_API_KEY || '';
+  const envRaw = env('AGNES_API_KEYS') || env('AGNES_API_KEY') || '';
   const envCount = envRaw ? new Set(String(envRaw).split(',').map((s) => s.trim()).filter(Boolean)).size : 0;
   return {
     configured: p.length > 0,

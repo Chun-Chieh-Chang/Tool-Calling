@@ -18,15 +18,13 @@
  * ─────
  *   node scripts/fix-simplified.js            # 預覽（唯讀）
  *   node scripts/fix-simplified.js --apply    # 寫入（先自動備份）
+ *
+ * 2026-10-15 Q1=B（Worker 開 PR）：瀏覽器端「加入工具庫」管線會經
+ * core/tool-enricher.js import 本檔的 toTraditional()，因此 node:fs／
+ * node:path／node:url 改為 main() 內延遲載入——頂端只保留純邏輯與
+ * opencc 載入（本就 try/catch 容錯），瀏覽器可直接載入本模組。
+ * CLI 分支以 `typeof process` 守門，瀏覽器不會進入。
  */
-
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
-const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
-const BACKUP_DIR = path.join(ROOT, 'registry', 'backups');
 
 // ── 簡 → 繁 對照表 ───────────────────────────────────────────────────────
 // 只收「兩者確實不同」的字。刻意排除簡繁同形者（理、言、影、系、容、面、
@@ -234,8 +232,17 @@ export function usingOpenCC() {
   return Boolean(openccConvert);
 }
 
-function main() {
-  const apply = process.argv.includes('--apply');
+async function main() {
+  // node 內建模組延遲載入（見檔頭 2026-10-15 註記）：本檔會被瀏覽器管線 import，
+  // 頂端不可出現靜態 node: import。
+  const { readFileSync, writeFileSync, mkdirSync, copyFileSync } = await import('node:fs');
+  const path = (await import('node:path')).default;
+  const { fileURLToPath } = await import('node:url');
+  const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+  const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
+  const BACKUP_DIR = path.join(ROOT, 'registry', 'backups');
+
+  const apply = typeof process !== 'undefined' && process.argv.includes('--apply');
   const j = JSON.parse(readFileSync(REGISTRY, 'utf8'));
   const tools = j.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
@@ -285,5 +292,16 @@ function main() {
   console.log(`\n已修正並寫入 tools.json（備份於 registry/backups/）`);
 }
 
-const isDirect = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
-if (isDirect) main();
+let isDirect = false;
+if (typeof process !== 'undefined' && process.argv[1]) {
+  // pathToFileURL 才處理得了 Windows 磁碟機路徑（D:\… → file:///D:/…）；
+  // 瀏覽器環境 `typeof process` 即為 false，這個動態 import 不會執行。
+  const { pathToFileURL } = await import('node:url');
+  isDirect = import.meta.url === pathToFileURL(process.argv[1]).href;
+}
+if (isDirect) {
+  main().catch((err) => {
+    console.error(err);
+    process.exitCode = 1;
+  });
+}

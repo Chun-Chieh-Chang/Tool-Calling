@@ -12,19 +12,61 @@
  * 單一來源：registry/categories.json
  * 強制驗證：scripts/check-mece.js
  * 同步衍生檔：npm run categories:sync
+ *
+ * 2026-10-15 Q1=B（Worker 開 PR）：為了讓瀏覽器端「加入工具庫」管線
+ * （web/add-pipeline.js → scan-tool.js → 本模組）能共用同一份分類白名單，
+ * 移除頂端靜態 node: import，改為：
+ *   · Node：首次呼叫時才動態載入 node:fs（行為與過去完全相同）
+ *   · 瀏覽器：由呼叫端 fetch('./registry/categories.json') 後 setCategoryData() 注入
+ * 注入優先於讀檔——這正是 SSOT：兩邊讀的都是同一份 categories.json。
  */
 
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+// 動態載入 node 內建模組；瀏覽器環境 import 失敗時留空（走注入路徑）。
+let _fs = null;
+let _path = null;
+try {
+  _fs = await import('node:fs');
+  _path = await import('node:path');
+} catch {
+  _fs = null;
+  _path = null;
+}
 
-export const CATEGORIES_PATH = join(import.meta.dirname, '..', 'registry', 'categories.json');
+/** registry/categories.json 的絕對路徑（僅 Node 有效；瀏覽器為空字串） */
+export const CATEGORIES_PATH = _path && _fs
+  ? _path.join(_path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1')), '..', 'registry', 'categories.json')
+  : '';
 
+// 瀏覽器注入的 categories.json 內容（null = 未注入，走 Node 讀檔路徑）
+let _injected = null;
+
+// 讀檔結果快取（注入路徑不使用——注入的物件本身就是唯一來源）
 let _cache = null;
+
+/**
+ * 注入 categories.json 內容（瀏覽器端使用）。
+ * 傳入的必須是 registry/categories.json 解析後的完整物件；
+ * 注入後 loadCategories() 一律回傳它，直到 clearCategoryData()。
+ */
+export function setCategoryData(json) {
+  _injected = json;
+  _cache = null;
+}
+
+/** 清除注入內容，恢復 Node 讀檔路徑（測試用） */
+export function clearCategoryData() {
+  _injected = null;
+  _cache = null;
+}
 
 /** 讀取完整 categories.json（含 meta 欄位），結果會快取 */
 export function loadCategories() {
+  if (_injected) return _injected;
   if (!_cache) {
-    _cache = JSON.parse(readFileSync(CATEGORIES_PATH, 'utf8'));
+    if (!_fs || !_path) {
+      throw new Error('categories.js：非 Node 環境且未注入分類資料（呼叫端應先 setCategoryData）');
+    }
+    _cache = JSON.parse(_fs.readFileSync(CATEGORIES_PATH, 'utf8'));
   }
   return _cache;
 }

@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-import { parseArgs } from 'node:util';
-import { generateId } from '../core/registry.js';
+// 2026-10-15 Q1=B：parseArgs 改為 CLI 分支內延遲載入——本檔會被瀏覽器端
+// 「加入工具庫」管線（web/add-pipeline.js）import，頂端不可有靜態 node: import。
+import { generateId } from '../core/tool-id.js';
 import { inferSecondary, buildMultiCategories } from '../core/classification-rules.js';
 import { categoryNames } from '../core/categories.js';
 
@@ -490,8 +491,15 @@ async function scan(url, options = {}) {
   }
 }
 
-// 判斷是否直接執行
-if (import.meta.url === `file://${process.argv[1]}`) {
+// 判斷是否直接執行（瀏覽器環境 typeof process 為 undefined，整段不進入）
+let isDirect = false;
+if (typeof process !== 'undefined' && process.argv[1]) {
+  const { pathToFileURL } = await import('node:url');
+  isDirect = import.meta.url === pathToFileURL(process.argv[1]).href;
+}
+
+if (isDirect) {
+  const { parseArgs } = await import('node:util');
   const { values, positionals } = parseArgs({
     args: process.argv.slice(2),
     options: {
