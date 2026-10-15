@@ -15,18 +15,27 @@
  *   · allowlist 預設為空 → 行為與 2026-10-14 發佈時完全一致（只有同源可信）。
  *   · 無 Origin 的直連（curl）維持開放——遙測只寫 JSONL，無副作用放大。
  *   · allowlist 只放行「明確列出的來源」，不接受萬用字元。
+ *
+ * allowlist 的來源（2026-10-15 第七輪追加）：優先序為
+ *   env `TELEMETRY_ALLOWED_ORIGINS`（有值時） → `web/telemetry-allowlist.txt`。
+ * 需要檔案後備是因為**發佈平台只注入 PORT、沒有設定任意環境變數的介面**，
+ * 所以 allowlist 必須隨原始碼一起部署才可能生效；實測記錄見
+ * docs/round7-execution-2026-10-15.md。
  */
 
 const LOCAL_HOSTS = new Set(['localhost', '127.0.0.1', '::1', '[::1]']);
 
 /**
- * 解析逗號分隔的 allowlist（env TELEMETRY_ALLOWED_ORIGINS）。
+ * 解析 allowlist 文字。兩種輸入共用同一個出口：
+ *   · env `TELEMETRY_ALLOWED_ORIGINS` —— 逗號分隔的單行；
+ *   · `web/telemetry-allowlist.txt` —— 一行一個 origin（可含 `#` 註解）。
+ * 因此這裡同時吃逗號與換行，並去掉 `#` 之後的註解。
  * 尾斜線會去掉，空項過濾；不含萬用字元（有意為之）。
  */
 export function parseAllowedOrigins(raw) {
   return String(raw || '')
-    .split(',')
-    .map((s) => s.trim().replace(/\/+$/, ''))
+    .split(/[,\n]/)
+    .map((s) => s.replace(/#.*$/, '').trim().replace(/\/+$/, ''))
     .filter(Boolean);
 }
 

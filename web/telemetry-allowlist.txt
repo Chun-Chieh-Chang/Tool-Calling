@@ -1,0 +1,16 @@
+# 遙測中繼 allowlist —— 由 web/telemetry-origin.js 的 parseAllowedOrigins() 消費。
+#
+# 一行一個 origin；`#` 之後為註解；空行忽略。不接受萬用字元（見模組檔頭的安全邊界）。
+#
+# 為什麼是「版控檔案」而不是環境變數：
+#   2026-10-15 第七輪 Q2=A 的原始設計是 env TELEMETRY_ALLOWED_ORIGINS，但實測發現
+#   發佈平台只注入 PORT、**沒有設定任意環境變數的介面**——live 重發佈後跨域仍是 403。
+#   allowlist 必須隨原始碼一起部署才可能生效，因此改為本檔（env 有值時仍優先）。
+#   實測與推論記錄：docs/round7-execution-2026-10-15.md
+#
+# 本檔不是機密：內容是公開的 Pages 來源，且只放行「明確列出」的來源。
+# 只有能改動本 repo 的人能改它，與改任何其他程式碼的權限等價。
+#
+# GitHub Pages 靜態展示版（README.md 的線上版對照表；Pages 無自己的 /api/telemetry，
+# 訪客的搜尋事件靠此 allowlist 中繼到 live 工作台）。
+https://chun-chieh-chang.github.io

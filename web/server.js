@@ -270,7 +270,22 @@ const server = http.createServer(async (req, res) => {
     // （env TELEMETRY_ALLOWED_ORIGINS，逗號分隔）讓 Pages 能把事件中繼到
     // 本服務累積。預設空 allowlist＝行為與發佈時一致，意即必須顯式設定
     // 才開這條路（見 web/telemetry-origin.js 的安全邊界註解）。
-    const TELEMETRY_ALLOWED_ORIGINS = parseAllowedOrigins(process.env.TELEMETRY_ALLOWED_ORIGINS);
+    //
+    // 第七輪實測追加：發佈平台只注入 PORT，**沒有設定任意環境變數的介面**
+    // （live 重發佈後跨域仍 403，見 docs/round7-execution-2026-10-15.md）。
+    // 因此 allowlist 增加「版控檔案」後備——env 有值時 env 優先，
+    // 否則讀 web/telemetry-allowlist.txt（隨原始碼部署，不需平台設定）。
+    // 檔案不存在＝空 allowlist＝與舊行為完全相同。
+    const readTelemetryAllowlistFile = () => {
+      try {
+        return fs.readFileSync(path.join(__dirname, 'telemetry-allowlist.txt'), 'utf-8');
+      } catch {
+        return '';
+      }
+    };
+    const TELEMETRY_ALLOWED_ORIGINS = parseAllowedOrigins(
+      process.env.TELEMETRY_ALLOWED_ORIGINS || readTelemetryAllowlistFile()
+    );
     const isTelemetryOriginReq = (req) => isTelemetryOrigin(req.headers.origin, {
       hostHeader: req.headers.host,
       xForwardedHost: req.headers['x-forwarded-host'],
