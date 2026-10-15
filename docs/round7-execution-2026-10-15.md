@@ -10,7 +10,7 @@
 | 題 | 裁決 | 狀態 | 一句話 |
 |---|---|---|---|
 | Q1 | A | ⏳ 待外部操作 | Worker 程式已備妥並測試；Cloudflare 帳號與 token 必須由你操作 |
-| Q2 | A | ⏳ 待外部操作 | 導流橫幅已上線；還差 live 環境變數 `TELEMETRY_ALLOWED_ORIGINS` |
+| Q2 | A | ✅ 已落地（原假設被推翻） | 已重新發佈並讓 Pages 中繼生效；「設環境變數」平台做不到 → 改版控 allowlist。**過程中另外查出並修好 2 個既有靜默失效**（舊 dist 從未上線、live 遙測被送去死連結） |
 | Q3 | A | ✅ 已落地 | 評測集 9 題簡體清洗 → **v1.4.0**，全部基線已重跑 |
 | Q4 | A | ✅ 已落地 | 離線量測完成（**+22.6～23.3pp**）且已接上檢索入口 |
 | Q5 | A | ✅ 無需動作 | 「等真人遙測累積後再補」——本輪刻意不動 |
@@ -186,13 +186,37 @@ wrangler deploy
 
 ### Q2 — live 重新發佈 ＋ 設定 allowlist
 
-導流橫幅與 relay meta 已在今日 push 後上線。還差：live 實例的環境變數
-`TELEMETRY_ALLOWED_ORIGINS=https://chun-chieh-chang.github.io`，**需重新發佈才生效**。
+**已執行（2026-10-15，經使用者明確許可）**，但執行過程中撞到三個連鎖的靜默失效，
+原定的「設環境變數」這一步在平台上**根本做不到**——以下是被推翻的假設與實際處置。
 
-**目前狀態**：`web/data/telemetry-events.jsonl` 本機不存在（本機 0 筆）；
-live 的 3 筆全是部署冒煙測試與診斷探針，**無真人事件**。
+| # | 原假設 | 實測結果 | 處置 |
+|---|---|---|---|
+| ① | 可以在 live 環境設 `TELEMETRY_ALLOWED_ORIGINS` | `workbuddy_sites_deploy` 無 env 參數；Sites 文件只提到 `PORT`。重發佈後 Pages 來源仍 **403** | 改為 env 優先、**版控檔案** `web/telemetry-allowlist.txt` 後備 |
+| ② | 重新發佈會帶上最新的 `dist/` | `dist/` 在 `.gitignore` → 不進上傳 → sandbox 沿用**第一次部署的舊 dist**。鐵證：live `dist/index.html` 扣掉平台注入的 575 字元 Beacon 區塊後，與 `e372968`（Q2 前端改動的前一個 commit）**逐位元相同** | `package.json` 加 `prestart`，`npm start` 就地重建 |
+| ③ | 公開網址是穩定的 | `sandboxId` 不變，但 **share link 每次部署都換**，舊連結一律 400（連續三次部署 → 三個連結） | 遙測改「先同源、失敗才 relay」；橫幅改 `/api/trending/status` 能力探測；三處網址加守門測試 |
 
-> 兩者都是對外動作，我會在你明確回覆後才實際執行。
+**③ 的連鎖後果最隱蔽**：relay meta、橫幅 href、README 三處寫死同一組網址，而 live 的
+`index.html` 也帶著同一條 meta。舊寫法「有 relay 就打 relay」讓 **live 把自己的遙測事件
+送去過期的死連結**——真人語料全數靜默丟失，症狀與「還沒有人來用」一模一樣。
+
+**驗收（對 live 實例實測，非推論）**：
+
+| 檢查 | 結果 |
+|---|---|
+| 首頁 200、`staticSiteBanner` 元素存在 | ✅ |
+| `app.js` 含能力探測、**不含**主機白名單 | ✅（`agentos-app.run` 出現 0 次） |
+| `behavior-tracker.js` 為同源優先 | ✅ |
+| `GET /api/trending/status`（live 200／Pages 404） | ✅ 兩邊分流正確 |
+| `POST /api/telemetry`，`Origin: https://chun-chieh-chang.github.io` | ✅ **200**（修正前 403） |
+| `POST /api/telemetry`，陌生來源 | ✅ **403**（無萬用字元） |
+| 匯出 `count` 是否含 Pages 來源事件 | ✅ 探針確實落盤（`final-pages-probe`） |
+
+**目前生效的 live 連結**：`https://653536468db14d6c83b3457c6f855340.sg.agentos-app.run`
+（已寫入 `web/index.html` 的 relay meta ＋ 橫幅 href ＋ `README.md`，三者由
+`tests/live-url-consistency.test.js` 守住一致性）。
+
+> 🔴 **下次重新發佈務必記得**：網址會再換一組。流程是「部署 → 取新連結 → 更新那三處 → push」，
+> **不要**為了更新網址而再部署一次（那只會再換一組，無限迴圈）。見 HANDOFF 陷阱 29。
 
 ---
 

@@ -312,6 +312,22 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
+### 29. 🔴 發佈平台的公開網址**每次重新發佈都會換一組**，且平台不帶建置產物（2026-10-15）
+
+第七輪執行 Q2=A（重新發佈 live）時一次撞到三個互相纏住的坑，症狀全部是「靜默失效」：
+
+- **① 平台不注入 PORT 以外的環境變數**。原設計的 allowlist 靠 `TELEMETRY_ALLOWED_ORIGINS`，但 `workbuddy_sites_deploy` 沒有 env 參數、Sites 文件也只提到 `PORT`。實測：live 重發佈後 Pages 來源仍是 403。→ 改成 env 優先、**版控檔案** `web/telemetry-allowlist.txt` 後備（隨原始碼部署才可能生效）。
+- **② 平台只上傳原始碼，排除建置產物**。`dist/` 在 `.gitignore` 內 → 不進上傳 → sandbox 一直沿用**第一次部署留下的舊 dist/**。鐵證：把 live `dist/index.html` 扣掉平台注入的 575 字元 Beacon 區塊後，與 `e372968`（Q2 前端改動的前一個 commit）**逐位元相同**——也就是導流橫幅與中繼 meta **從來沒有上線過**，而「部署成功、首頁 200」看起來一切正常。→ `package.json` 加 `prestart` 讓 `npm start` 就地重建。
+- **③ 公開網址每次部署都換**。`sandboxId` 不變但 share link 每次都不同，舊連結一律 400（連續三次部署 → 三個連結）。而 relay meta、橫幅 href、README 三處都寫死那個網址 → 連鎖失效：live 的 `index.html` 也帶著同一條 meta，舊寫法「有 relay 就打 relay」讓 **live 把自己的遙測事件送去過期的死連結**，真人語料全數靜默丟失（症狀與「還沒有人來用」一模一樣）。
+
+**可推廣的判準**：
+- 對「外部平台」的每個假設都要**實測**，尤其是「平台會幫我帶上 X」（env、建置產物、穩定網址）——這些都不會在部署輸出裡顯示失敗。
+- **不變的東西不要寫死，會變的東西要探測**：橫幅改用 `GET /api/trending/status` 能力探測（live 200／Pages 404），完全不依賴網址；遙測改成「先打同源、失敗才 relay」。
+- **多點寫死的常數要有守門測試**：`tests/live-url-consistency.test.js` 擋住 meta／橫幅／README 三處不一致；`tests/behavior-tracker-relay.test.js` 擋住 relay 搶走同源請求。
+- 「部署成功」≠「改動生效」。驗收要看**產物內容**（比對 bytes／找關鍵字），不是看 HTTP 200。
+
+---
+
 ## 三、目前狀態（頂部一節為 2026-10-15（第七輪）快照，其次 2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
 
 ### 2026-10-15（第七輪）七題裁決執行：Q1=A／Q2=A／Q3=A／Q4=A／Q5=A／Q6=A／Q7=A
@@ -385,12 +401,13 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 **Q2 缺中文 7 支**：查核後**實際需動作數為 0**——6 個缺項在刻意排除翻譯的 deprecated/archived 工具（translate-to-zh.js:154 範圍），1 個（huashu-art-motion）原文本為中文（顯示層正確回退）。未燒 API 額度。
 
 **Q3 發佈上線（workbuddy sites）**：公開連結 `https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run`（2026-10-14 12:03 UTC 部署，verified）。四項部署前改造＋一件部署後實測修正，**全部有守門測試**：
+> ⚠️ **2026-10-15 第七輪更新：這個連結已失效。** 重新發佈會**換一組新網址**，舊連結一律 400（實測連續三次部署得到三個不同連結）。目前生效的是 `https://653536468db14d6c83b3457c6f855340.sg.agentos-app.run`，見陷阱 29。以下記的是當時的事實，保留不改。
 - `isTrustedOrigin` 放行自己的公開網域（Host／X-Forwarded-Host 比對）——否則發佈域瀏覽器遙測寫入全數 403，發佈目的一上線就死。
 - 遙測匯出 `GET /api/telemetry/export?token=`（token 在 `web/data/telemetry-export-token.txt`，.gitignore 管轄）：真人問句是敏感資料，無 token 404。
 - 寫入型端點（tools/add、trending/refresh、shutdown）改依 **Host 頭**判據——🔴 **首發部署實測：平台不保證注入 PORT**（IS_PLATFORM 判據失效，公開實例 shutdown 回 200、自動探勘照跑撞 GitHub 限流出 504）。環境變數判據不可靠，Host 頭才可靠。
 - 自動探勘預設關閉（TRENDING_AUTO=1 可開）——每週漲星由遠端 cron 負責；本機 30 分鐘任務正是第四輪舊碼汙染事故來源。
 - 端到端實測：首頁 200／公開訪客 shutdown·refresh 404／遙測寫入 200／匯出 count=2（smoke_test 標記，跨重部署持久）／無金鑰搜尋正常降級。
-- **取回真人語料**：`curl "https://eff0cbae09c44e5f8544d5975718db7c.sg.agentos-app.run/api/telemetry/export?token=<web/data/telemetry-export-token.txt 內容>"`。
+- **取回真人語料**：`curl "https://653536468db14d6c83b3457c6f855340.sg.agentos-app.run/api/telemetry/export?token=<web/data/telemetry-export-token.txt 內容>"`（網址每次重新發佈會換——以 `web/index.html` 的 `meta[name="telemetry-relay"]` 為準，`tests/live-url-consistency.test.js` 會擋住三處不一致）。
 
 **提交與推送（2026-10-14 完結，`origin/main` = 本地 = `55024d8`，CI 全綠）**：7 個原子 commit——`e9adbf0` Q4 繁簡詞表＋加權預設停用／`ffc52aa` Q1 多值分類增量政策／`8ec9b2d` 發佈安全態勢（isTrustedOrigin 放行公開域、遙測匯出 token）／`dc6321e` Host 頭判據＋自動探勘預設關閉／`13bf263` 文件（HANDOFF／DEV_LOG）／`3c6b268`（原 `bfb4dee`）繁體門禁：簡體資料行級豁免＋四處誤打字修正／`55024d8` 加權開關改呼叫時讀取（修 CI #3）。
 
