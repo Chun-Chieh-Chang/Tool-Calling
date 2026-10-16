@@ -137,40 +137,53 @@ node scripts/check-traditional.js --full core/ scripts/ web/ tests/ docs/ README
 
 ### 執行
 
-```bash
-export AGNES_API_KEY=...
-npm run eval:rerank
-```
+兩次執行，均為單一路徑、併發 1（序列）：
 
-- 評測集：v1.4.0（267 題，可命中 257 筆）
-- 模型：預設（`core/llm-rerank.js` 的 DEFAULT_MODEL）
-- 路徑：單一路徑（`retrieveWithRerank`）
-- 耗時：13 分 46 秒
-- 併發：1（序列，預設）
+| 執行 | 金鑰數 | 耗時 | 成功呼叫 |
+|---|---|---|---|
+| 第一次 | 1 把 | 13m 46s | 111/257（43.2%） |
+| 第二次 | 5 把（`AGNES_API_KEYS`） | 13m 57s | 122/257（47.5%） |
 
-### 結果
+### 結果（第二次，5 把金鑰）
 
 | 指標 | 數值 | 說明 |
 |---|---|---|
 | 詞彙 agent top-1 | 58.0%（149/257） | 未經 rerank 的融合排序 |
 | 天花板（正確在 top-20） | 93.8%（241/257） | rerank 可達到的理論上限 |
-| LLM rerank 後 | 33.1%（85/257） | **⚠️ 不可採信** |
-| 成功呼叫 | 111/257（43.2%） | 146 次因 TPM 限流失敗 |
-| 含近義 | 33.9%（87/257） | — |
+| LLM rerank 後 | 38.1%（98/257） | **⚠️ 不可採信** |
+| 成功呼叫 | 122/257（47.5%） | 135 次因 TPM 限流失敗 |
+| 含近義 | 38.1%（98/257） | — |
 
-### 結論：不可採信
+### 結論：多把金鑰無效，基線不可採信
 
-**這個基線不能與 v1.4.0 比對。** 原因：
+**5 把金鑰僅將成功率從 43.2% 提升到 47.5%（+4.3pp），遠非線性放大。** 這再次證實：
 
-1. **TPM 限流**：端點 `apihub.agnes-ai.com` 的限制綁定**帳號／IP**（非 per-key）。`core/llm-keys.js` 註解記載 2026-09-20 實測：2 把 key → 成功數與 1 把完全相同（23/40），只是失敗平均攤到兩把上。
-2. **大 prompt 累積超標**：top-20 × 550 字 ≈ 每題 1.1 萬 token（含 system prompt），連續發送即使 concurrency=1 也會在數分鐘內觸發 429。
-3. **失敗時退回融合排序**：eval-rerank.js 在 `error` 時 `continue`，不計入 rerank 成功。這 146 題實際上沒被 rerank，分數自然偏低。
+> 端點 `apihub.agnes-ai.com` 的 TPM 限制綁定**帳號／IP**（非 per-key）。
+> 加金鑰只是把失敗平均攤到多把上，不增加總額度。
+
+（此結論與 `core/llm-keys.js` 註解記載的 2026-09-20 實測一致：2 把 key 成功數與 1 把完全相同。）
+
+其他原因：
+
+1. **大 prompt 累積超標**：top-20 × 550 字 ≈ 每題 1.1 萬 token（含 system prompt），連續發送即使 concurrency=1 也會在數分鐘內觸發 429。
+2. **失敗時退回融合排序**：eval-rerank.js 在 `error` 時 `continue`，不計入 rerank 成功。這 135 題實際上沒被 rerank，分數自然偏低。
+
+### 順帶修正：`eval-rerank.js` 的 `hasKey` 檢查遺漏 `AGNES_API_KEYS`
+
+```javascript
+// 修正前
+const hasKey = Boolean(process.env.AGNES_API_KEY);
+// 修正後
+const hasKey = Boolean(process.env.AGNES_API_KEY || process.env.AGNES_API_KEYS);
+```
+
+原本設了 `AGNES_API_KEYS` 會顯示「API key：未設定」而跳過 rerank，這是個 bug。
 
 ### 解法（需另立裁決或外部條件）
 
 | 方案 | 可行性 | 說明 |
 |---|---|---|
-| 多把金鑰 | ❌ 已實證無效 | 帳號/IP 綁定，加 key 不增加 TPM |
+| 多把金鑰 | ❌ 已實證無效（本次再確認） | 帳號/IP 綁定，加 key 不增加 TPM |
 | 降低 topK（20→10） | ⚠️ 改測試條件 | 減少每次 token 數，但天花板也降了，與舊基線不可比 |
 | 降低 DESC_LIMIT（550→300） | ⚠️ 改測試條件 | 同樣改變測試條件 |
 | 加請求間延遲（如 2 秒/題） | ✅ 最可行 | 需改 `eval-rerank.js` 或 `llm-rerank.js` 加 throttle |

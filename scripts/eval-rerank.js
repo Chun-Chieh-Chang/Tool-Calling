@@ -78,7 +78,7 @@ const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) 
 // 否則評測數字會與實際上線行為脫節。（真正的定義在下方，因為它需要用到
 // WIKI 才能支援 --variant=intents。）
 
-const hasKey = Boolean(process.env.AGNES_API_KEY);
+const hasKey = Boolean(process.env.AGNES_API_KEY || process.env.AGNES_API_KEYS);
 const WIKI = loadWikiCached();
 
 // 候選描述＝「基本 metadata」＋（可選）知識編譯詞條的 intents。
