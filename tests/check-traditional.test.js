@@ -29,6 +29,7 @@ import {
   resolveCommits,
   scanFile,
 } from '../scripts/check-traditional.js';
+import { findSimplified } from '../scripts/fix-simplified.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SCRIPT = path.join(ROOT, 'scripts', 'check-traditional.js');
@@ -264,13 +265,26 @@ test('resolveCommits：auto 的最後一筆必須就是 HEAD（證明名額制�
   assert.equal(hashes[0], head);
 });
 
-test('文件未被納入 --code，但 --full 仍抓得到（記錄 --code 排除文件的理由）', () => {
-  // DEV_LOG.md 的歷史條目引用簡體字樣（記錄簡繁 bug 本身），刻意不改寫；
-  // 這裡鎖住兩件事：檔案確實仍有違規（否則 --code 的理由消失），
-  // 且這些違規行全部落在 docs 檔，不會因 --code 而漏掉原始碼。
-  const hits = scanFile('DEV_LOG.md');
-  assert.ok(hits.length > 0, 'DEV_LOG 的歷史引用應仍可被 --full 列出');
-  assert.ok(hits.every((h) => typeof h.line === 'number' && h.chars.length > 0));
+test('DEV_LOG 的簡體歷史引用：證據仍在、且逐行有行內豁免（--code 不含它，--full 仍須綠）', () => {
+  // 第八輪（4435759）起，DEV_LOG.md 引用簡體 bug 本身的歷史條目一律加
+  // allow-simplified 行內標記：證據保留（原始內容仍掃得到簡體字，只是被豁免），
+  // 門禁對 --full 維持全綠。本測試鎖住這個新不變式。
+  // 歷史教訓：舊版斷言「scanFile 必須回報違規（> 0）」，用「DEV_LOG 有違規」
+  // 解釋它為何不在 --code 範圍；行內標記上線後豁免=無違規，該斷言自
+  // 2026-10-16 起就不可能成立——而 CI 自 2026-10-15 日起因前置閘門失敗從未
+  // 跑到 node --test，這個過時斷言被整條鏈掩蓋了兩天，直到前面幾關修好才曝光。
+  const raw = readFileSync(path.join(ROOT, 'DEV_LOG.md'), 'utf8');
+  const header = raw.split('\n').slice(0, 10).join('\n');
+  const AMBIG = '\u51c6'; // 准：繁體官方用語也這樣寫，門禁不報，不計入違規證據
+  const evidenceLines = raw.split('\n').filter((l) => findSimplified(l).some((ch) => ch !== AMBIG));
+  // 1. 證據仍在：未加標記前，這些歷史條目確實含簡體字（否則「逐字引用 bug 本身」消失）
+  assert.ok(evidenceLines.length > 0, 'DEV_LOG 的歷史引用應仍可被原始內容掃到簡體字');
+  // 2. 逐行豁免完整：走門禁的豁免邏輯後為 0（--full 全綠的前提）
+  assert.equal(scanFile('DEV_LOG.md').length, 0, '所有簡體歷史引用都應有行內 allow-simplified 標記');
+  // 3. 不得用檔頭整檔豁免取代行內標記——那會讓門禁失去逐行訊號
+  assert.ok(!header.includes('check-traditional: skip-file'), '不得用檔頭整檔豁免取代行內標記');
+  // 4. 每一行簡體歷史引用都必須真的帶行內標記（而非僥倖沒被掃到）
+  assert.ok(evidenceLines.every((l) => isLineExempt(l)), '每一行簡體歷史引用都應帶 allow-simplified 行內標記');
 });
 
 test('產生式資料檔的 skip-file 標記：檔頭要有、產生器模板也要有（否則重產就消失）', () => {
