@@ -226,12 +226,18 @@ export const RULES = [
       /代碼審查|代码审查|程式碼審查|代码评审/ // allow-simplified：刻意引用的簡體關鍵字／範例，轉繁會破壞比對
     ],
     // 排除：TDD 方法論／工作流（純流程指引，非 code review 工具）、
-    //       agent skill 包（R5 不應介入 §2-4 的 skill 包裁決）、
+    //       skill 包（R5 不介入 §2-4 的 skill 包裁決）、
     //       Oxlint 規則集（ESLint 系 rules collection，非 AI code review）
+    //
+    // 2026-10-18：原排除式 /agent[- ]?skills?\b/ 要求「agent」與「skill」字面相連，
+    // 漏掉「agent 的 meta-skill」「xxx-skill-factory」「skill-generation」等自稱形式，
+    // 使 hermes-skill-factory（通用型 skill 包，§2-4 已裁決歸 AI 代理）被誤判 Tier 1。
+    // 改為 \bskills?\b：凡自稱 skill 包即排除——skill 包的歸屬由 §2-4 裁決、R5 不介入。
+    // 精度優先：寧可漏報，也不把正確分類的工具錯搬成開發工具。
     exclusions: [
       EX.proxy,
       /\btdd\b|test[- ]driven|red[- ]green[- ]refactor/,
-      /agent[- ]?skills?\b/,
+      /\bskills?\b/,
       /\boxlint\b/
     ]
   },

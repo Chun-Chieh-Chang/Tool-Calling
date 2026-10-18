@@ -5832,3 +5832,11 @@ agentConsistent = (topK 中 ≥3 筆 conf≥0.35) && !(agent 自報 low-confiden
 - **修法**（commit `qi-weights-calltime` 前一版）：開關改為**每次呼叫時讀取**（`intentWeightsEnabled()`）。正式環境 env 於行程生命期固定，語意等價；測試因此可在兩條路徑間切換。舊測試改以 helper 顯式指定 on/off 並 restore，不受外圍 env 影響；另補一支「預設停用時命中意圖也回傳基準權重」契約測試。
 - **驗證**：兩檔在預設與 `QI_ENABLE_WEIGHTS=1` 下皆全綠（12/12、6/6）；`llm-rerank.test.js` 36/36；`node --check` 三檔透過；繁體門禁對三檔 0 違規。
 - **教訓（增量，對應 MEMORY §8 既有條目）**：CI 鏈是 `&&` 串接——**前置閘門失敗會讓後段測試整段不跑**。同一批 commit 若有多個獨立失敗，只能一輪曝光一個；每輪修完要確認「`node --test` 是否真的跑完」（看 TAP 尾行 `1..N` 與 fail 計數），不能只看第一個錯誤。沙盒內可用「逐檔 `node <file>` 直跑」取得與 CI 等價的覆蓋（in-process runner，不經 spawn）。
+
+### CI 連續兩關失敗：衍生檔標記改由產生器掛載、R5 排除式涵蓋所有 skill 包自稱形式（2026-10-18）
+
+- **背景**：第八輪收尾推送（`8ac9dfc`）後 CI 紅燈；其間遠端 cron 每日自動同步星數（每筆都是新 commit），本地推送反覆被 non-fast-forward 拒——「推送異常」的真相是「本地落後一筆」與「閘門真的紅」兩件事疊在一起。
+- **第一關（`sync-categories --check`）**：第八輪在 `docs/CLASSIFICATION.md` 研究列人工加的 `allow-simplified` 行內標記位在**自動產生區塊內**——保留 → 衍生檔同步檢查失敗；刪除 → 繁體門禁對該列紅燈（三個簡體字）。兩難根源：產生區塊內不容任何「產生器不知道的位元組」。**修法**：`scripts/sync-categories.js` 改由產生器對含簡體字的列自動附上標記（`findSimplified()` 判定），兩種門禁同時滿足，且重建不再覆蓋。
+- **第二關（`rescan-classification --ci`）**：`hermes-skill-factory`（通用型 skill 包，§2-4 裁決歸 `AI 代理`，現行分類正確）因 triggers 含「自動化代碼審查」被 R5 判 Tier 1 違反，擋住 CI——此違規早已存在，只是被第一關掩蓋、從未曝光。**修法**：R5 排除式由 `/agent[- ]?skills?\b/` 改為 `\bskills?\b`（原式要求字面相連，漏掉「agent 的 meta-skill」「xxx-skill-factory」「skill-generation」等自稱形式）；凡自稱 skill 包即排除，R5 不介入 §2-4 的 skill 包裁決。精度優先，未跑 `--apply` 錯搬工具。
+- **驗證**：rescan Tier 1 由 1→0；Tier 2/3 不動（19/21）；合規 213→211、無規則命中 517→520（覆蓋率 −0.3pp：兩支僅從「R5 合規」變「無規則命中」，分類未變）；`tier1-preservation` 的 in-process 計數同為 0；`cli.js validate` 100/100；繁體門禁對三個改動檔 0 違規。已合併遠端 cron 提交 `ef68be0`（`git merge`，非 rebase）後推送，CI 復跑。
+- **教訓（增量，對應 MEMORY 既有條目）**：①`&&` 串接的 CI 鏈一輪只曝光一個失敗——修完第一關必須確認後段真的跑完。②衍生檔的行內豁免不可靠：產生器不知道的位元組終將與重建衝突，豁免要嘛進產生器、要嘛走路徑排除（`check-traditional` 的 `SKIP_PATH_PATTERNS`）。③遠端有自動推送的 cron 時，本地推送前先 fetch 比對，否則 non-fast-forward 會反覆發生。
