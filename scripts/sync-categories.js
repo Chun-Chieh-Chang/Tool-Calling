@@ -24,6 +24,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { categoryList, CATEGORIES_PATH } from '../core/categories.js';
+import { findSimplified } from './fix-simplified.js';
 
 const ROOT = join(import.meta.dirname, '..');
 const SCHEMA_PATH = join(ROOT, 'registry', 'schemas', 'tool.schema.json');
@@ -96,7 +97,15 @@ const r1 = syncBlock({
       const kw = (c.keywords && c.keywords.length)
         ? c.keywords.map(k => '`' + escapeCell(k) + '`').join(' ')
         : '—（無關鍵詞：靠結構性規則或語意判斷，見 §2 步驟 1–6）';
-      return `| \`${c.name}\` | \`${c.color}\` | ${kw} |`;
+      let row = `| \`${c.name}\` | \`${c.color}\` | ${kw} |`;
+      // 關鍵詞表刻意保留簡體形式（與繁體形式並列），讓分類與檢索同時匹配簡體查詢。
+      // 行內 allow-simplified 標記位在自動產生區塊內：靠人工加 ── 加了，衍生檔同步
+      // 檢查失敗（標記不在產生內容裡）；下次重建覆蓋 ── 不加，繁體門禁對該列紅燈。
+      // 改由產生器統一掛上：該列含簡體字才附標記，兩種門禁同時滿足、且不會再被覆蓋。
+      if (findSimplified(row).length > 0) {
+        row += ' <!-- allow-simplified：本列由 categories.json 自動產生，關鍵詞刻意保留簡體形式以匹配簡體查詢 -->';
+      }
+      return row;
     });
     return [
       KW_START,

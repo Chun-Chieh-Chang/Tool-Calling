@@ -104,7 +104,7 @@
 | `UI/UX設計` | `#ec4899` | `design system` `ui (kit\|library\|component)` `prototyp` `wireframe` `design token` `figma (plugin\|api\|library\|sdk\|widget\|integration)` |
 | `知識管理` | `#9333ea` | `\brag\b` `retrieval[- ]augmented` `knowledge graph` `vector (db\|database\|store)` `embedding (store\|index)` `second brain` `agent memory` `codebase (index\|map)` |
 | `學習資源` | `#ea580c` | `tutorial` `course` `curriculum` `roadmap` `handbook` `cheat ?sheet` `interview (prep\|handbook)` `learn .{0,20}(from\|by) (scratch\|doing\|example)` `guide to` |
-| `研究` | `#78716c` | `arxiv` `research paper\|academic (paper\|research)` `literature review\|systematic review` `preprint\|peer[- ]reviewed` `论文\|論文\|文献\|學術\|学术` | <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
+| `研究` | `#78716c` | `arxiv` `research paper\|academic (paper\|research)` `literature review\|systematic review` `preprint\|peer[- ]reviewed` `论文\|論文\|文献\|學術\|学术` | <!-- allow-simplified：本列由 categories.json 自動產生，關鍵詞刻意保留簡體形式以匹配簡體查詢 -->
 | `安全性` | `#dc2626` | `pentest\|penetration test\|vulnerability (scan\|assessment)\|exploit (dev\|development)\|malware\|owasp\|threat (intel\|hunt)\|security (audit\|scanner)\|forensic` |
 | `金融與投資` | `#f59e0b` | `\btrading\b\|quant(itative)? (trading\|finance\|strategy)\|portfolio (optim\|management)\|backtest\|stock (analysis\|market\|screening)\|financial (analysis\|data\|statement)` |
 | `3D工程繪圖` | `#0891b2` | `\bcad\b\|parametric (3d\|model)\|openscad\|freecad\|3d (model\|asset\|mesh\|printing)\|blender\|\bbim\b` |
