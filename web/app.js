@@ -80,12 +80,67 @@ async function setupStaticSiteBanner() {
   banner.hidden = false;
 }
 
+/**
+ * 取得工具庫主檔（registry/tools.json）。
+ *
+ * 🔴 為什麼包裝一層：2026-10-18 live 工作空間降級時，這支 3MB 的靜態檔
+ *    取料失敗，但 init() 的 catch 只把暗色的 resultCount 改成「載入失敗」
+ *    （在「工具目錄」分頁的摺疊區）——KPI 卡片靜靜顯示「--」、圖表全空，
+ *    使用者看到的是「工具庫是空的」而不是「資料沒載到」。取不到主檔就必須
+ *    向前端大聲報錯，不能靜默退化。
+ *
+ * 空陣列／缺 tools 欄位一律視為失敗：SSOT 有 771 筆工具，「合法但空」的
+ * 回應只可能是毀損或半成品快取。
+ */
+async function fetchRegistryData() {
+  const res = await fetch('./registry/tools.json');
+  if (!res.ok) throw new Error(`registry/tools.json 回應 HTTP ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data.tools)) throw new Error('registry/tools.json 格式不完整（缺少 tools 陣列）');
+  if (data.tools.length === 0) throw new Error('registry/tools.json 的 tools 陣列是空的');
+  return data;
+}
+
+/** 顯示工具庫載入失敗橫幅（紅色告警＋重試按鈕）。 */
+function showRegistryError(err) {
+  console.error('[Registry] 載入失敗：', err);
+  const banner = document.getElementById('registryError');
+  const msg = document.getElementById('registryErrorMessage');
+  const detail = err && err.message ? err.message : String(err);
+  if (msg) msg.textContent = `原因：${detail}`;
+  if (banner) banner.hidden = false;
+  const btn = document.getElementById('registryRetryBtn');
+  if (btn && !btn.dataset.bound) {
+    btn.dataset.bound = '1';
+    btn.addEventListener('click', () => {
+      btn.disabled = true;
+      btn.textContent = '重試中…';
+      location.reload();
+    });
+  }
+}
+
 async function init() {
+  setupStaticSiteBanner();
+  let data;
   try {
-    setupStaticSiteBanner();
-    const res = await fetch('./registry/tools.json');
-    if (!res.ok) throw new Error('Failed to load tools registry');
-    const data = await res.json();
+    data = await fetchRegistryData();
+  } catch (firstErr) {
+    // 一次自動重試：公開工作台的靜態檔偶發失敗（2026-10-18 實測：同一頁面
+    // 的 API 有回應、唯獨 3MB 主檔失敗）。重試仍失敗才亮橫幅。
+    await new Promise((r) => setTimeout(r, 1200));
+    try {
+      data = await fetchRegistryData();
+    } catch (secondErr) {
+      // 沒有主檔就沒有初始化意義——早退，且必須讓使用者看見（不能靜默 "--"）
+      showRegistryError(secondErr);
+      if (resultCount) resultCount.textContent = '載入失敗，請稍後再試。';
+      return;
+    }
+    console.warn('[Registry] 首次載入失敗，重試成功：', firstErr.message);
+  }
+
+  try {
     registryTools = Array.isArray(data.tools) ? data.tools : [];
 
     populateCategories();
@@ -136,8 +191,9 @@ async function init() {
     setupWorkflowSteps();
 
   } catch (err) {
-    console.error(err);
-    if (resultCount) resultCount.textContent = '載入失敗，請稍後再試。';
+    // 初始化期的其他錯誤（非取料失敗）：只記主控台，不亮「載入失敗」橫幅
+    console.error('[Init] 初始化失敗：', err);
+    if (resultCount) resultCount.textContent = '初始化失敗，請重新整理頁面。';
   }
 }
 

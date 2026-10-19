@@ -1883,6 +1883,79 @@ select:focus {
   display: none;
 }
 
+/* 工具庫載入失敗橫幅（2026-10-18）：紅色告警＋重試按鈕。
+   讓「資料沒載到」不再偽裝成「工具庫是空的」。 */
+.registry-error-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 0 0 16px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: rgba(220, 38, 38, 0.10);
+  border: 1px solid rgba(220, 38, 38, 0.35);
+  color: var(--text-primary);
+  font-size: 13px;
+  line-height: 1.6;
+  box-shadow: var(--shadow-soft, 0 1px 3px rgba(46, 54, 72, 0.12));
+}
+
+.registry-error-banner[hidden] {
+  display: none;
+}
+
+.registry-error-banner .reb-icon {
+  flex-shrink: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--status-error);
+}
+
+.registry-error-banner .reb-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 240px;
+}
+
+.registry-error-banner .reb-title {
+  color: var(--status-error);
+  font-size: 14px;
+}
+
+.registry-error-banner .reb-message {
+  color: var(--text-secondary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+.registry-error-banner .reb-hint {
+  color: var(--text-secondary);
+}
+
+.registry-error-banner .reb-retry {
+  flex-shrink: 0;
+  padding: 8px 20px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--status-error);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.registry-error-banner .reb-retry:hover {
+  filter: brightness(1.12);
+}
+
+.registry-error-banner .reb-retry:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
 .ssb-text {
   color: var(--text-secondary);
 }

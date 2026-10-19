@@ -182,6 +182,20 @@
 
     <!-- 儀表板視圖 (Dashboard View) -->
     <div id="dashboardView">
+      <!-- 工具庫載入失敗橫幅：registry/tools.json 取不到資料時才顯示。
+           沒有它，KPI 只會靜靜顯示「--」，使用者無法分辨「工具庫是真的空」
+           還是「資料沒載到前端」（2026-10-18 live 工作空間降級時的實際客訴：
+           介面顯示工具庫是空的，卻沒有任何錯誤提示）。 -->
+      <div id="registryError" class="registry-error-banner" hidden role="alert">
+        <span class="reb-icon" aria-hidden="true">&#9888;</span>
+        <div class="reb-body">
+          <strong class="reb-title">工具庫資料載入失敗</strong>
+          <span class="reb-message" id="registryErrorMessage"></span>
+          <span class="reb-hint">工具庫不是空的——是瀏覽器沒有成功取得 registry/tools.json，統計數字才會顯示「--」。公開工作台可能是伺服器或工作空間暫時中斷，稍後再試；本機工作台請確認 npm start 正在運行。</span>
+        </div>
+        <button type="button" id="registryRetryBtn" class="reb-retry">重試</button>
+      </div>
+
       <!-- KPI 關鍵指標區塊 (4 欄) -->
       <div class="kpi-grid">
         <div class="kpi-card">
