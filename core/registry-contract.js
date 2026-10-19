@@ -55,6 +55,21 @@ export function negativeConstraintsZhGap(tool = {}) {
   return { ncCount: filled.length, zhCount: zh.length, needingCount: needing.length, sample: needing[0] };
 }
 
+/**
+ * useCase 缺口該算什麼級別？（cli.js cmdValidate 與本檔共用同一把尺）
+ *
+ * experimental 是 trending-weekly 自動入庫的中間態：useCase 刻意留空，
+ * 由 enrich 管線依 README 補齊後才升級 active（見 scripts/trending-weekly.js
+ * Step 5 的「不可拿 description 複製」註解）。把中間態當 error 會讓每週 cron
+ * 的新工具擋掉整個 Pages 部署——2026-10-19 就是這樣紅的（6 筆 experimental）。
+ * 其餘狀態（active 等）缺 useCase 是真缺陷，維持 error。
+ */
+export function useCaseIssueSeverity(tool = {}) {
+  const filled = typeof tool.useCase === 'string' && tool.useCase.trim().length > 0;
+  if (filled) return null;
+  return tool.status === 'experimental' ? 'warning' : 'error';
+}
+
 const WARNING_RULES = [
   {
     field: 'triggers',

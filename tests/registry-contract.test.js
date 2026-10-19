@@ -6,6 +6,7 @@ import { dirname, join } from 'node:path';
 import {
   assessRegistryContract,
   scoreToolMetadata,
+  useCaseIssueSeverity,
   validateToolContract
 } from '../core/registry-contract.js';
 
@@ -79,4 +80,23 @@ test('Registry Contract v2 - current registry can be summarized without mutation
   assert.ok(summary.averageQualityScore >= 95); // Allow some new tools with lower scores
   assert.ok(summary.averageQualityScore <= 100);
   assert.ok(Array.isArray(summary.lowQualityTools));
+});
+
+// 2026-10-19：trending-weekly 自動入庫刻意留空 useCase（等 enrich 補），
+// 舊版 cmdValidate 把空 useCase 一律當 error → 每週 cron 的新工具直接擋掉
+// Pages 部署（6b33a1e 的 deploy 就是這樣紅的）。級別必須依 status 分流。
+test('useCaseIssueSeverity - experimental 缺 useCase 是中間態 warning，active 是真缺陷 error', () => {
+  assert.equal(useCaseIssueSeverity({ status: 'experimental', useCase: '' }), 'warning');
+  assert.equal(useCaseIssueSeverity({ status: 'experimental' }), 'warning');
+  assert.equal(useCaseIssueSeverity({ status: 'active', useCase: '' }), 'error');
+  assert.equal(useCaseIssueSeverity({ status: 'deprecated', useCase: '   ' }), 'error');
+  assert.equal(useCaseIssueSeverity({ status: 'experimental', useCase: '需要批次轉檔時' }), null);
+});
+
+test('useCaseIssueSeverity - 現量 registry 的 experimental 工具不得讓 validate 紅燈', () => {
+  const offenders = registry.tools
+    .filter((tool) => useCaseIssueSeverity(tool) === 'error')
+    .map((tool) => tool.id);
+
+  assert.deepEqual(offenders, [], `active 工具缺 useCase 是真缺陷：${offenders.join(', ')}`);
 });

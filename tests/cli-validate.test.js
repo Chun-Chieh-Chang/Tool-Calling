@@ -17,4 +17,9 @@ test('CLI validate prints Registry Contract v2 quality summary', () => {
   assert.match(result.stdout, /Registry Contract v2/);
   assert.match(result.stdout, /Average metadata quality/);
   assert.match(result.stdout, /Low quality tools/);
+
+  // 綠色鎖：deploy-pages.yml 的 validate 站就是這道門。現量 registry 必須全綠，
+  // 否則 push main 不會部署（2026-10-19：6 筆 trending experimental 缺 useCase
+  // 被當 error，Pages 卡在 6b33a1e 的舊版）。
+  assert.equal(errorCount, 0, `現量 registry 不該有 error：\n${result.stdout}`);
 });

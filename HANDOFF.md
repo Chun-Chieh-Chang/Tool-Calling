@@ -347,7 +347,26 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-19 快照，其次 2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-19（部署門禁）快照，其次 2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-19 部署紅燈：validate 把 trending 中間態當缺陷
+
+**症狀**：`6b33a1e`（Pages 空白修復）push 後 `Deploy GitHub Pages` 失敗在 `Validate Registry (Software Validation)`，`Run Tests` 起全部 skipped，live 站仍停在舊版。
+
+**RCA（實測，非推測）**
+- `node cli.js validate` 本機重現：`6 個錯誤`，全部是 `缺少推薦場景 (useCase)`——`digup`／`ccbaga`／`deepseek-bot`／`plexo`／`playgta5`／`cadcraft`。
+- 這 6 筆是 `cba34f4`（trending cron，`2026-W43`）自動入庫的 `experimental` 工具。`scripts/trending-weekly.js` Step 5 **刻意**留空 `useCase`／`advantages`／`negativeConstraints`（不可拿 description 複製，留給 enrich 依 README 補），並以 `experimental` 入庫等升級。
+- `cli.js cmdValidate()` 對空 `useCase` **不分 status 一律 error**；`core/registry-contract.js` 卻只記 warning（penalty 20）。兩層判定不一致，於是「流程中間態」把部署門擋死。
+- 結構性問題：`trending-weekly.yml` 的 validate 跑在 commit **之後**，所以 cron 每次入庫都可能讓 main 停在紅燈狀態；下次 push 才發現部署早就壞了。
+
+**CAPA**
+1. `core/registry-contract.js` 新增 `useCaseIssueSeverity(tool)`——**唯一一把尺**：`experimental` 缺 useCase → `warning`；其餘狀態（`active`／`deprecated`／`archived`）→ `error`。
+2. `cli.js cmdValidate()` 改呼叫該函式，移除自己那份 `if (!tool.useCase) error(...)`，兩層判定自此同源。
+3. 新增回歸測試：`tests/registry-contract.test.js` 兩項（級別分流、現量 registry 不得有 error）；`tests/cli-validate.test.js` 加綠色鎖 `errorCount === 0`——deploy 的 validate 站就是這道門，紅了就代表 Pages 不會更新。
+
+**驗證**
+- `node cli.js validate` → `0 個錯誤, 22 個警告`，exit 0。
+- `npm test`：510 項，507 pass、2 skipped、1 fail（唯一失敗仍是 `tests/knowledge-graph.test.js` 本機 Playwright 版本不符，與本次改動無關；CI 會自行安裝）。
 
 ### 2026-10-19 GitHub Pages 工具庫空白：dist 漏檔導致 import 鏈斷裂
 

@@ -11,7 +11,7 @@ import { dirname, join } from 'node:path';
 import { search, listAll, listByCategory, getById, planToolChain, extractQueryContext } from './core/search-engine.js';
 import { scanMonorepo } from './scripts/scan-monorepo.js';
 import { loadRegistry, saveRegistry, generateId, displayText } from './core/registry.js';
-import { assessRegistryContract } from './core/registry-contract.js';
+import { assessRegistryContract, useCaseIssueSeverity } from './core/registry-contract.js';
 import { 
   installSkill, 
   listSkills, 
@@ -434,9 +434,16 @@ function cmdValidate() {
     }
 
     // 推薦場景 (useCase)
-    if (!tool.useCase) {
+    // 級別由 registry-contract.useCaseIssueSeverity 統一決定（同一把尺）：
+    // experimental 缺 useCase 是 trending 入庫的中間態 → warning；
+    // active 缺 useCase 是真缺陷 → error。詳見該函式註解（2026-10-19 Pages 紅燈）。
+    const useCaseSeverity = useCaseIssueSeverity(tool);
+    if (useCaseSeverity === 'error') {
       error(`工具 "${tool.id}" 缺少推薦場景 (useCase)`);
       errors++;
+    } else if (useCaseSeverity === 'warning') {
+      warn(`工具 "${tool.id}" 缺少推薦場景 (useCase)，待 enrich 補齊`);
+      warnings++;
     }
 
     // 禁用場景 (negativeConstraints)
