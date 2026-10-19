@@ -2560,7 +2560,7 @@ export const SYNONYM_MAP = {
     "static-analysis",
     "context-reduction"
   ],
-  "構建程式碼知識圖谱": [
+  "構建程式碼知識圖譜": [
     "code-review",
     "tree-sitter",
     "static-analysis",
@@ -3068,30 +3068,30 @@ export const SYNONYM_MAP = {
   ],
   "loop-engineering": [
     "追蹤ai編碼成本",
-    "审計ai代理操作",
-    "初始化編碼代理循环",
+    "審計ai代理操作",
+    "初始化編碼代理循環",
     "管理grok使用費用",
     "編排多步ai任務",
-    "监控codex消耗",
+    "監控codex消耗",
     "追蹤mcp工具調用成本",
-    "审查ai代理執行記錄"
+    "審查ai代理執行記錄"
   ],
   "agent-orchestration": [
     "追蹤ai編碼成本",
-    "审計ai代理操作",
-    "初始化編碼代理循环",
+    "審計ai代理操作",
+    "初始化編碼代理循環",
     "管理grok使用費用",
     "編排多步ai任務",
-    "监控codex消耗",
+    "監控codex消耗",
     "追蹤mcp工具調用成本",
-    "审查ai代理執行記錄"
+    "審查ai代理執行記錄"
   ],
-  "审計ai代理操作": [
+  "審計ai代理操作": [
     "loop-engineering",
     "agent-orchestration",
     "devtools"
   ],
-  "初始化編碼代理循环": [
+  "初始化編碼代理循環": [
     "loop-engineering",
     "agent-orchestration",
     "devtools"
@@ -3106,7 +3106,7 @@ export const SYNONYM_MAP = {
     "agent-orchestration",
     "devtools"
   ],
-  "监控codex消耗": [
+  "監控codex消耗": [
     "loop-engineering",
     "agent-orchestration",
     "devtools"
@@ -3116,7 +3116,7 @@ export const SYNONYM_MAP = {
     "agent-orchestration",
     "devtools"
   ],
-  "审查ai代理執行記錄": [
+  "審查ai代理執行記錄": [
     "loop-engineering",
     "agent-orchestration",
     "devtools"
@@ -3665,7 +3665,7 @@ export const SYNONYM_MAP = {
     "agent間共享上下文",
     "把上下文傳給下一個agent",
     "讓兩個agent互相調用工具",
-    "跨agent复用技能",
+    "跨agent複用技能",
     "agent之間傳遞數據",
     "讓另一個agent理解我的代碼"
   ],
@@ -3675,7 +3675,7 @@ export const SYNONYM_MAP = {
     "agent間共享上下文",
     "把上下文傳給下一個agent",
     "讓兩個agent互相調用工具",
-    "跨agent复用技能",
+    "跨agent複用技能",
     "agent之間傳遞數據",
     "讓另一個agent理解我的代碼"
   ],
@@ -3695,7 +3695,7 @@ export const SYNONYM_MAP = {
     "stitch",
     "stitch-skills"
   ],
-  "跨agent复用技能": [
+  "跨agent複用技能": [
     "stitch",
     "stitch-skills"
   ],
@@ -3974,14 +3974,14 @@ export const SYNONYM_MAP = {
     "agent-tutorials",
     "做agent開發教程",
     "接mcp協議",
-    "vscode里寫agent",
+    "vscode裡寫agent",
     "編智能體程序"
   ],
   "awesome-agent-skills": [
     "學構建ai代理",
     "做agent開發教程",
     "接mcp協議",
-    "vscode里寫agent",
+    "vscode裡寫agent",
     "編智能體程序",
     "找 claude code 技能清單",
     "搜尋 ai agent 提示詞庫",
@@ -3991,7 +3991,7 @@ export const SYNONYM_MAP = {
     "學構建ai代理",
     "做agent開發教程",
     "接mcp協議",
-    "vscode里寫agent",
+    "vscode裡寫agent",
     "編智能體程序",
     "awesome-agent-skills",
     "agent-tutorials"
@@ -4000,7 +4000,7 @@ export const SYNONYM_MAP = {
     "學構建ai代理",
     "做agent開發教程",
     "接mcp協議",
-    "vscode里寫agent",
+    "vscode裡寫agent",
     "編智能體程序",
     "awesome-agent-skills",
     "vscode"
@@ -4011,7 +4011,7 @@ export const SYNONYM_MAP = {
     "agent-tutorials",
     "學構建ai代理",
     "接mcp協議",
-    "vscode里寫agent",
+    "vscode裡寫agent",
     "編智能體程序"
   ],
   "接mcp協議": [
@@ -4020,10 +4020,10 @@ export const SYNONYM_MAP = {
     "agent-tutorials",
     "學構建ai代理",
     "做agent開發教程",
-    "vscode里寫agent",
+    "vscode裡寫agent",
     "編智能體程序"
   ],
-  "vscode里寫agent": [
+  "vscode裡寫agent": [
     "awesome-agent-skills",
     "vscode",
     "agent-tutorials",
@@ -4039,7 +4039,7 @@ export const SYNONYM_MAP = {
     "學構建ai代理",
     "做agent開發教程",
     "接mcp協議",
-    "vscode里寫agent"
+    "vscode裡寫agent"
   ],
   "建立頭部 cms": [
     "directus",
@@ -7324,14 +7324,14 @@ export const SYNONYM_MAP = {
     "client-side",
     "清除pdf水印",
     "處理音頻文件",
-    "notebooklm提示词",
+    "notebooklm提示詞",
     "批量刪除視頻logo"
   ],
   "watermark-removal": [
     "去除視頻水印",
     "清除pdf水印",
     "處理音頻文件",
-    "notebooklm提示词",
+    "notebooklm提示詞",
     "批量刪除視頻logo",
     "audio-processing",
     "client-side"
@@ -7340,7 +7340,7 @@ export const SYNONYM_MAP = {
     "去除視頻水印",
     "清除pdf水印",
     "處理音頻文件",
-    "notebooklm提示词",
+    "notebooklm提示詞",
     "批量刪除視頻logo",
     "watermark-removal",
     "client-side"
@@ -7349,7 +7349,7 @@ export const SYNONYM_MAP = {
     "去除視頻水印",
     "清除pdf水印",
     "處理音頻文件",
-    "notebooklm提示词",
+    "notebooklm提示詞",
     "批量刪除視頻logo",
     "watermark-removal",
     "audio-processing"
@@ -7360,7 +7360,7 @@ export const SYNONYM_MAP = {
     "client-side",
     "去除視頻水印",
     "處理音頻文件",
-    "notebooklm提示词",
+    "notebooklm提示詞",
     "批量刪除視頻logo"
   ],
   "處理音頻文件": [
@@ -7369,10 +7369,10 @@ export const SYNONYM_MAP = {
     "client-side",
     "去除視頻水印",
     "清除pdf水印",
-    "notebooklm提示词",
+    "notebooklm提示詞",
     "批量刪除視頻logo"
   ],
-  "notebooklm提示词": [
+  "notebooklm提示詞": [
     "watermark-removal",
     "audio-processing",
     "client-side",
@@ -7388,7 +7388,7 @@ export const SYNONYM_MAP = {
     "去除視頻水印",
     "清除pdf水印",
     "處理音頻文件",
-    "notebooklm提示词"
+    "notebooklm提示詞"
   ],
   "notebooklm 匯出到知識庫": [
     "notebooklm-obsidian-pipeline",
@@ -8858,7 +8858,7 @@ export const SYNONYM_MAP = {
   ],
   "markitdown": [
     "pdf轉markdown",
-    "pdf轉纯文本",
+    "pdf轉純文本",
     "word轉成文字",
     "網頁轉成markdown",
     "office文檔轉markdown",
@@ -8868,7 +8868,7 @@ export const SYNONYM_MAP = {
   ],
   "markdown": [
     "pdf轉markdown",
-    "pdf轉纯文本",
+    "pdf轉純文本",
     "word轉成文字",
     "網頁轉成markdown",
     "office文檔轉markdown",
@@ -8878,7 +8878,7 @@ export const SYNONYM_MAP = {
   ],
   "docx": [
     "pdf轉markdown",
-    "pdf轉纯文本",
+    "pdf轉純文本",
     "word轉成文字",
     "網頁轉成markdown",
     "office文檔轉markdown",
@@ -8888,7 +8888,7 @@ export const SYNONYM_MAP = {
   ],
   "office-documents": [
     "pdf轉markdown",
-    "pdf轉纯文本",
+    "pdf轉純文本",
     "word轉成文字",
     "網頁轉成markdown",
     "office文檔轉markdown",
@@ -8898,7 +8898,7 @@ export const SYNONYM_MAP = {
   ],
   "llm-conversion": [
     "pdf轉markdown",
-    "pdf轉纯文本",
+    "pdf轉純文本",
     "word轉成文字",
     "網頁轉成markdown",
     "office文檔轉markdown",
@@ -8906,7 +8906,7 @@ export const SYNONYM_MAP = {
     "把pdf轉成markdown",
     "網頁抓成markdown"
   ],
-  "pdf轉纯文本": [
+  "pdf轉純文本": [
     "markitdown",
     "markdown",
     "docx",
@@ -9532,8 +9532,8 @@ export const SYNONYM_MAP = {
   "book-to-skill-apple-ouyang": [
     "把書轉成ai技能",
     "把書的內容做成agent",
-    "從書里提取決策規則",
-    "将書籍轉成可執行工具",
+    "從書裡提取決策規則",
+    "將書籍轉成可執行工具",
     "把書的知識整理成skill",
     "用書訓練自動化決策",
     "把電子書變成ai助手",
@@ -9543,11 +9543,11 @@ export const SYNONYM_MAP = {
     "book-to-skill-apple-ouyang",
     "book-to-skill"
   ],
-  "從書里提取決策規則": [
+  "從書裡提取決策規則": [
     "book-to-skill-apple-ouyang",
     "book-to-skill"
   ],
-  "将書籍轉成可執行工具": [
+  "將書籍轉成可執行工具": [
     "book-to-skill-apple-ouyang",
     "book-to-skill"
   ],
@@ -9571,7 +9571,7 @@ export const SYNONYM_MAP = {
     "book-to-skill-apple-ouyang",
     "book-to-skill"
   ],
-  "将專業知識書轉成可執行指令": [
+  "將專業知識書轉成可執行指令": [
     "book-to-skill-apple-ouyang",
     "book-to-skill"
   ],
@@ -9822,9 +9822,9 @@ export const SYNONYM_MAP = {
   "autogen": [
     "讓多個 ai 代理協作完成任務",
     "編排多步驟 llm 對話流程",
-    "自動讓 ai 分角色讨論問題",
+    "自動讓 ai 分角色討論問題",
     "構建多智能體編程助手",
-    "讓 chatgpt 群聊解決复雜任務",
+    "讓 chatgpt 群聊解決複雜任務",
     "自動化 ai 代理工作流編排",
     "設計多 llm 協作對話系統",
     "用多代理框架實現任務自動化"
@@ -9832,9 +9832,9 @@ export const SYNONYM_MAP = {
   "llm-framework": [
     "讓多個 ai 代理協作完成任務",
     "編排多步驟 llm 對話流程",
-    "自動讓 ai 分角色讨論問題",
+    "自動讓 ai 分角色討論問題",
     "構建多智能體編程助手",
-    "讓 chatgpt 群聊解決复雜任務",
+    "讓 chatgpt 群聊解決複雜任務",
     "自動化 ai 代理工作流編排",
     "設計多 llm 協作對話系統",
     "用多代理框架實現任務自動化"
@@ -9842,9 +9842,9 @@ export const SYNONYM_MAP = {
   "chatgpt": [
     "讓多個 ai 代理協作完成任務",
     "編排多步驟 llm 對話流程",
-    "自動讓 ai 分角色讨論問題",
+    "自動讓 ai 分角色討論問題",
     "構建多智能體編程助手",
-    "讓 chatgpt 群聊解決复雜任務",
+    "讓 chatgpt 群聊解決複雜任務",
     "自動化 ai 代理工作流編排",
     "設計多 llm 協作對話系統",
     "用多代理框架實現任務自動化"
@@ -9852,9 +9852,9 @@ export const SYNONYM_MAP = {
   "microsoft": [
     "讓多個 ai 代理協作完成任務",
     "編排多步驟 llm 對話流程",
-    "自動讓 ai 分角色讨論問題",
+    "自動讓 ai 分角色討論問題",
     "構建多智能體編程助手",
-    "讓 chatgpt 群聊解決复雜任務",
+    "讓 chatgpt 群聊解決複雜任務",
     "自動化 ai 代理工作流編排",
     "設計多 llm 協作對話系統",
     "用多代理框架實現任務自動化"
@@ -9865,7 +9865,7 @@ export const SYNONYM_MAP = {
     "chatgpt",
     "microsoft"
   ],
-  "自動讓 ai 分角色讨論問題": [
+  "自動讓 ai 分角色討論問題": [
     "autogen",
     "llm-framework",
     "chatgpt",
@@ -9877,7 +9877,7 @@ export const SYNONYM_MAP = {
     "chatgpt",
     "microsoft"
   ],
-  "讓 chatgpt 群聊解決复雜任務": [
+  "讓 chatgpt 群聊解決複雜任務": [
     "autogen",
     "llm-framework",
     "chatgpt",
@@ -10038,7 +10038,7 @@ export const SYNONYM_MAP = {
     "orchestration",
     "ai-skills"
   ],
-  "讓ai自動循环工作": [
+  "讓ai自動循環工作": [
     "lobehub",
     "orchestration",
     "ai-skills"
@@ -10828,9 +10828,9 @@ export const SYNONYM_MAP = {
   "crewai": [
     "編排多代理協作流程",
     "建立角色扮演型ai代理",
-    "讓多個llm分工完成复雜任務",
+    "讓多個llm分工完成複雜任務",
     "創建可協作的agent團隊",
-    "用多agent架構執行串联任務",
+    "用多agent架構執行串聯任務",
     "設計ai代理角色扮演工作流",
     "實現多步驟ai任務自動化",
     "構建自主agent協同系統"
@@ -10838,9 +10838,9 @@ export const SYNONYM_MAP = {
   "llm-orchestration": [
     "編排多代理協作流程",
     "建立角色扮演型ai代理",
-    "讓多個llm分工完成复雜任務",
+    "讓多個llm分工完成複雜任務",
     "創建可協作的agent團隊",
-    "用多agent架構執行串联任務",
+    "用多agent架構執行串聯任務",
     "設計ai代理角色扮演工作流",
     "實現多步驟ai任務自動化",
     "構建自主agent協同系統"
@@ -10849,7 +10849,7 @@ export const SYNONYM_MAP = {
     "crewai",
     "llm-orchestration"
   ],
-  "讓多個llm分工完成复雜任務": [
+  "讓多個llm分工完成複雜任務": [
     "crewai",
     "llm-orchestration"
   ],
@@ -10857,7 +10857,7 @@ export const SYNONYM_MAP = {
     "crewai",
     "llm-orchestration"
   ],
-  "用多agent架構執行串联任務": [
+  "用多agent架構執行串聯任務": [
     "crewai",
     "llm-orchestration"
   ],
@@ -10891,7 +10891,7 @@ export const SYNONYM_MAP = {
   "nousresearch-hermes-coding-agent": [
     "幫我寫代碼",
     "幫我生成代碼",
-    "幫我审查代碼",
+    "幫我審查代碼",
     "幫我修bug",
     "幫我優化代碼",
     "hermes-agent",
@@ -10901,7 +10901,7 @@ export const SYNONYM_MAP = {
   "hermes-agent": [
     "幫我寫代碼",
     "幫我生成代碼",
-    "幫我审查代碼",
+    "幫我審查代碼",
     "幫我修bug",
     "幫我優化代碼",
     "切換編碼工具",
@@ -10911,7 +10911,7 @@ export const SYNONYM_MAP = {
   "nous-research": [
     "幫我寫代碼",
     "幫我生成代碼",
-    "幫我审查代碼",
+    "幫我審查代碼",
     "幫我修bug",
     "幫我優化代碼",
     "用瀏覽器操作 ai 代理",
@@ -10925,7 +10925,7 @@ export const SYNONYM_MAP = {
     "nous-research",
     "coding-assistant"
   ],
-  "幫我审查代碼": [
+  "幫我審查代碼": [
     "nousresearch-hermes-coding-agent",
     "hermes-agent",
     "openai",
@@ -12181,7 +12181,7 @@ export const SYNONYM_MAP = {
     "構建 rag 系統",
     "配置 mcp 接口",
     "自動化 ai 流程",
-    "搭建對話机器人",
+    "搭建對話機器人",
     "設計 agent 工作流"
   ],
   "workflow": [
@@ -12191,7 +12191,7 @@ export const SYNONYM_MAP = {
     "構建 rag 系統",
     "配置 mcp 接口",
     "自動化 ai 流程",
-    "搭建對話机器人",
+    "搭建對話機器人",
     "設計 agent 工作流"
   ],
   "創建智能體": [
@@ -12214,7 +12214,7 @@ export const SYNONYM_MAP = {
     "dify",
     "workflow"
   ],
-  "搭建對話机器人": [
+  "搭建對話機器人": [
     "dify",
     "workflow"
   ],
@@ -13698,35 +13698,35 @@ export const SYNONYM_MAP = {
   ],
   "claude.md": [
     "優化代碼生成",
-    "修复llm常見錯誤",
+    "修復llm常見錯誤",
     "提升編程準確率",
     "解決代碼幻覺",
-    "修正逻輯漏洞",
+    "修正邏輯漏洞",
     "減少編碼錯誤",
     "改善ai編程輸出",
     "提升代碼質量"
   ],
   "llm coding pitfalls": [
     "優化代碼生成",
-    "修复llm常見錯誤",
+    "修復llm常見錯誤",
     "提升編程準確率",
     "解決代碼幻覺",
-    "修正逻輯漏洞",
+    "修正邏輯漏洞",
     "減少編碼錯誤",
     "改善ai編程輸出",
     "提升代碼質量"
   ],
   "karpathy skills": [
     "優化代碼生成",
-    "修复llm常見錯誤",
+    "修復llm常見錯誤",
     "提升編程準確率",
     "解決代碼幻覺",
-    "修正逻輯漏洞",
+    "修正邏輯漏洞",
     "減少編碼錯誤",
     "改善ai編程輸出",
     "提升代碼質量"
   ],
-  "修复llm常見錯誤": [
+  "修復llm常見錯誤": [
     "claude.md",
     "claude code",
     "llm coding pitfalls",
@@ -13744,7 +13744,7 @@ export const SYNONYM_MAP = {
     "llm coding pitfalls",
     "karpathy skills"
   ],
-  "修正逻輯漏洞": [
+  "修正邏輯漏洞": [
     "claude.md",
     "claude code",
     "llm coding pitfalls",
@@ -14309,42 +14309,42 @@ export const SYNONYM_MAP = {
     "canvas",
     "javascript-library"
   ],
-  "把代碼庫轉成知識圖谱": [
+  "把代碼庫轉成知識圖譜": [
     "codebase-visualization",
     "business-knowledge",
     "code-exploration"
   ],
   "codebase-visualization": [
-    "把代碼庫轉成知識圖谱",
-    "用圖谱查看我的代碼",
+    "把代碼庫轉成知識圖譜",
+    "用圖譜查看我的代碼",
     "分析我的代碼庫結構",
     "給代碼庫建立知識庫",
     "查詢業務邏輯的知識圖譜",
     "讓代碼庫可以問答",
     "探索代碼之間的關系",
-    "把代碼轉成可搜索的圖谱"
+    "把代碼轉成可搜索的圖譜"
   ],
   "business-knowledge": [
-    "把代碼庫轉成知識圖谱",
-    "用圖谱查看我的代碼",
+    "把代碼庫轉成知識圖譜",
+    "用圖譜查看我的代碼",
     "分析我的代碼庫結構",
     "給代碼庫建立知識庫",
     "查詢業務邏輯的知識圖譜",
     "讓代碼庫可以問答",
     "探索代碼之間的關系",
-    "把代碼轉成可搜索的圖谱"
+    "把代碼轉成可搜索的圖譜"
   ],
   "code-exploration": [
-    "把代碼庫轉成知識圖谱",
-    "用圖谱查看我的代碼",
+    "把代碼庫轉成知識圖譜",
+    "用圖譜查看我的代碼",
     "分析我的代碼庫結構",
     "給代碼庫建立知識庫",
     "查詢業務邏輯的知識圖譜",
     "讓代碼庫可以問答",
     "探索代碼之間的關系",
-    "把代碼轉成可搜索的圖谱"
+    "把代碼轉成可搜索的圖譜"
   ],
-  "用圖谱查看我的代碼": [
+  "用圖譜查看我的代碼": [
     "codebase-visualization",
     "business-knowledge",
     "code-exploration"
@@ -14374,7 +14374,7 @@ export const SYNONYM_MAP = {
     "business-knowledge",
     "code-exploration"
   ],
-  "把代碼轉成可搜索的圖谱": [
+  "把代碼轉成可搜索的圖譜": [
     "codebase-visualization",
     "business-knowledge",
     "code-exploration"
@@ -14401,7 +14401,7 @@ export const SYNONYM_MAP = {
     "先思考再寫代碼",
     "簡化代碼",
     "精準修改 bug",
-    "审查代碼錯誤",
+    "審查代碼錯誤",
     "澄清編程需求",
     "重構代碼",
     "避免 ai 編程錯誤",
@@ -14411,7 +14411,7 @@ export const SYNONYM_MAP = {
     "先思考再寫代碼",
     "簡化代碼",
     "精準修改 bug",
-    "审查代碼錯誤",
+    "審查代碼錯誤",
     "澄清編程需求",
     "重構代碼",
     "避免 ai 編程錯誤",
@@ -14421,7 +14421,7 @@ export const SYNONYM_MAP = {
     "先思考再寫代碼",
     "簡化代碼",
     "精準修改 bug",
-    "审查代碼錯誤",
+    "審查代碼錯誤",
     "澄清編程需求",
     "重構代碼",
     "避免 ai 編程錯誤",
@@ -14431,7 +14431,7 @@ export const SYNONYM_MAP = {
     "先思考再寫代碼",
     "簡化代碼",
     "精準修改 bug",
-    "审查代碼錯誤",
+    "審查代碼錯誤",
     "澄清編程需求",
     "重構代碼",
     "避免 ai 編程錯誤",
@@ -14441,7 +14441,7 @@ export const SYNONYM_MAP = {
     "先思考再寫代碼",
     "簡化代碼",
     "精準修改 bug",
-    "审查代碼錯誤",
+    "審查代碼錯誤",
     "澄清編程需求",
     "重構代碼",
     "避免 ai 編程錯誤",
@@ -14451,7 +14451,7 @@ export const SYNONYM_MAP = {
     "先思考再寫代碼",
     "簡化代碼",
     "精準修改 bug",
-    "审查代碼錯誤",
+    "審查代碼錯誤",
     "澄清編程需求",
     "重構代碼",
     "避免 ai 編程錯誤",
@@ -14473,7 +14473,7 @@ export const SYNONYM_MAP = {
     "simplicity-first",
     "surgical-changes"
   ],
-  "审查代碼錯誤": [
+  "審查代碼錯誤": [
     "andrej-karpathy-skills",
     "karpathy-skills",
     "llm-coding-guidelines",
@@ -16536,45 +16536,45 @@ export const SYNONYM_MAP = {
   ],
   "shuorenhua": [
     "改寫ai生成文本",
-    "去除机翻腔",
+    "去除機翻腔",
     "本地化技術文檔",
-    "润色机器翻譯",
-    "修正程序注释",
+    "潤色機器翻譯",
+    "修正程序注釋",
     "優化提示詞表達",
     "翻譯技術文件",
     "改寫英文文檔為中文"
   ],
   "chinese": [
     "改寫ai生成文本",
-    "去除机翻腔",
+    "去除機翻腔",
     "本地化技術文檔",
-    "润色机器翻譯",
-    "修正程序注释",
+    "潤色機器翻譯",
+    "修正程序注釋",
     "優化提示詞表達",
     "翻譯技術文件",
     "改寫英文文檔為中文"
   ],
   "ai-tone-removal": [
     "改寫ai生成文本",
-    "去除机翻腔",
+    "去除機翻腔",
     "本地化技術文檔",
-    "润色机器翻譯",
-    "修正程序注释",
+    "潤色機器翻譯",
+    "修正程序注釋",
     "優化提示詞表達",
     "翻譯技術文件",
     "改寫英文文檔為中文"
   ],
   "writing": [
     "改寫ai生成文本",
-    "去除机翻腔",
+    "去除機翻腔",
     "本地化技術文檔",
-    "润色机器翻譯",
-    "修正程序注释",
+    "潤色機器翻譯",
+    "修正程序注釋",
     "優化提示詞表達",
     "翻譯技術文件",
     "改寫英文文檔為中文"
   ],
-  "去除机翻腔": [
+  "去除機翻腔": [
     "shuorenhua",
     "chinese",
     "ai-tone-removal",
@@ -16586,13 +16586,13 @@ export const SYNONYM_MAP = {
     "ai-tone-removal",
     "writing"
   ],
-  "润色机器翻譯": [
+  "潤色機器翻譯": [
     "shuorenhua",
     "chinese",
     "ai-tone-removal",
     "writing"
   ],
-  "修正程序注释": [
+  "修正程序注釋": [
     "shuorenhua",
     "chinese",
     "ai-tone-removal",
@@ -16626,7 +16626,7 @@ export const SYNONYM_MAP = {
     "ai-tone-removal",
     "writing"
   ],
-  "润色開發者文案": [
+  "潤色開發者文案": [
     "shuorenhua",
     "chinese",
     "ai-tone-removal",
@@ -16647,7 +16647,7 @@ export const SYNONYM_MAP = {
     "ai 文風去味",
     "提示詞增強",
     "內容人性化處理",
-    "文章改寫流畅"
+    "文章改寫流暢"
   ],
   "prompt": [
     "ai 文章改人話",
@@ -16657,7 +16657,7 @@ export const SYNONYM_MAP = {
     "ai 文風去味",
     "提示詞增強",
     "內容人性化處理",
-    "文章改寫流畅"
+    "文章改寫流暢"
   ],
   "writer": [
     "ai 文章改人話",
@@ -16667,7 +16667,7 @@ export const SYNONYM_MAP = {
     "ai 文風去味",
     "提示詞增強",
     "內容人性化處理",
-    "文章改寫流畅"
+    "文章改寫流暢"
   ],
   "ai-flavor": [
     "ai 文章改人話",
@@ -16677,7 +16677,7 @@ export const SYNONYM_MAP = {
     "ai 文風去味",
     "提示詞增強",
     "內容人性化處理",
-    "文章改寫流畅"
+    "文章改寫流暢"
   ],
   "潤稿消除機器人感": [
     "de-ai-prompt-enhancer-writer-booster-skill",
@@ -16721,7 +16721,7 @@ export const SYNONYM_MAP = {
     "humanize",
     "ai-flavor"
   ],
-  "文章改寫流畅": [
+  "文章改寫流暢": [
     "de-ai-prompt-enhancer-writer-booster-skill",
     "prompt",
     "writer",
@@ -19295,45 +19295,45 @@ export const SYNONYM_MAP = {
   ],
   "baoyu-skills": [
     "編寫 claude 指令",
-    "生成 codex 提示词",
+    "生成 codex 提示詞",
     "配置 openclaw 技能",
     "創建 agent 模板",
-    "設計可重用 ai 提示词",
+    "設計可重用 ai 提示詞",
     "制作 coding assistant 配方",
     "輸出 agent 行為指令",
     "調整 ai 助手工作流"
   ],
   "codex-skills": [
     "編寫 claude 指令",
-    "生成 codex 提示词",
+    "生成 codex 提示詞",
     "配置 openclaw 技能",
     "創建 agent 模板",
-    "設計可重用 ai 提示词",
+    "設計可重用 ai 提示詞",
     "制作 coding assistant 配方",
     "輸出 agent 行為指令",
     "調整 ai 助手工作流"
   ],
   "openclaw-skills": [
     "編寫 claude 指令",
-    "生成 codex 提示词",
+    "生成 codex 提示詞",
     "配置 openclaw 技能",
     "創建 agent 模板",
-    "設計可重用 ai 提示词",
+    "設計可重用 ai 提示詞",
     "制作 coding assistant 配方",
     "輸出 agent 行為指令",
     "調整 ai 助手工作流"
   ],
   "agent-prompts": [
     "編寫 claude 指令",
-    "生成 codex 提示词",
+    "生成 codex 提示詞",
     "配置 openclaw 技能",
     "創建 agent 模板",
-    "設計可重用 ai 提示词",
+    "設計可重用 ai 提示詞",
     "制作 coding assistant 配方",
     "輸出 agent 行為指令",
     "調整 ai 助手工作流"
   ],
-  "生成 codex 提示词": [
+  "生成 codex 提示詞": [
     "baoyu-skills",
     "codex-skills",
     "openclaw-skills",
@@ -19351,7 +19351,7 @@ export const SYNONYM_MAP = {
     "openclaw-skills",
     "agent-prompts"
   ],
-  "設計可重用 ai 提示词": [
+  "設計可重用 ai 提示詞": [
     "baoyu-skills",
     "codex-skills",
     "openclaw-skills",
@@ -20140,7 +20140,9 @@ export const SYNONYM_MAP = {
     "claude-code-cybersecurity-skill",
     "cybersecurity",
     "threat-hunting",
-    "offensive-security"
+    "offensive-security",
+    "security-audit-skill",
+    "audit"
   ],
   "紅隊演練": [
     "claude-code-cybersecurity-skill",
@@ -21012,7 +21014,7 @@ export const SYNONYM_MAP = {
   "寫好html簡報": [
     "templates"
   ],
-  "輸出幻灯頁面": [
+  "輸出幻燈頁面": [
     "templates"
   ],
   "自動化生成投影片": [
@@ -22091,35 +22093,35 @@ export const SYNONYM_MAP = {
   ],
   "ponytail": [
     "精簡代碼量",
-    "重構出冗余",
+    "重構出冗餘",
     "代碼瘦身",
-    "刪掉重复逻輯",
+    "刪掉重複邏輯",
     "別寫過頭代碼",
     "用更少代碼實現功能",
-    "清理注释代碼",
+    "清理注釋代碼",
     "壓縮函數行數"
   ],
   "minimalism": [
     "精簡代碼量",
-    "重構出冗余",
+    "重構出冗餘",
     "代碼瘦身",
-    "刪掉重复逻輯",
+    "刪掉重複邏輯",
     "別寫過頭代碼",
     "用更少代碼實現功能",
-    "清理注释代碼",
+    "清理注釋代碼",
     "壓縮函數行數"
   ],
   "refactoring": [
     "精簡代碼量",
-    "重構出冗余",
+    "重構出冗餘",
     "代碼瘦身",
-    "刪掉重复逻輯",
+    "刪掉重複邏輯",
     "別寫過頭代碼",
     "用更少代碼實現功能",
-    "清理注释代碼",
+    "清理注釋代碼",
     "壓縮函數行數"
   ],
-  "重構出冗余": [
+  "重構出冗餘": [
     "ponytail",
     "claude-code-plugin",
     "minimalism",
@@ -22131,7 +22133,7 @@ export const SYNONYM_MAP = {
     "minimalism",
     "refactoring"
   ],
-  "刪掉重复逻輯": [
+  "刪掉重複邏輯": [
     "ponytail",
     "claude-code-plugin",
     "minimalism",
@@ -22149,7 +22151,7 @@ export const SYNONYM_MAP = {
     "minimalism",
     "refactoring"
   ],
-  "清理注释代碼": [
+  "清理注釋代碼": [
     "ponytail",
     "claude-code-plugin",
     "minimalism",
@@ -22161,13 +22163,13 @@ export const SYNONYM_MAP = {
     "minimalism",
     "refactoring"
   ],
-  "簡化复雜逻輯": [
+  "簡化複雜邏輯": [
     "ponytail",
     "claude-code-plugin",
     "minimalism",
     "refactoring"
   ],
-  "減少重复代碼": [
+  "減少重複代碼": [
     "ponytail",
     "claude-code-plugin",
     "minimalism",
@@ -22221,37 +22223,37 @@ export const SYNONYM_MAP = {
     "產生可編輯的 office 文件",
     "轉換 markdown 為 word 文件"
   ],
-  "绘制cad圖纸": [
+  "繪制cad圖紙": [
     "emil-design-skills",
     "design-engineering",
     "productivity",
     "prototyping"
   ],
   "emil-design-skills": [
-    "绘制cad圖纸",
+    "繪制cad圖紙",
     "創建3d原型",
     "做工程設計計算",
-    "审查机械圖纸",
+    "審查機械圖紙",
     "生成bom清單",
     "做產品仿真分析",
     "查詢設計規範要求",
     "撰寫技術規格文檔"
   ],
   "design-engineering": [
-    "绘制cad圖纸",
+    "繪制cad圖紙",
     "創建3d原型",
     "做工程設計計算",
-    "审查机械圖纸",
+    "審查機械圖紙",
     "生成bom清單",
     "做產品仿真分析",
     "查詢設計規範要求",
     "撰寫技術規格文檔"
   ],
   "productivity": [
-    "绘制cad圖纸",
+    "繪制cad圖紙",
     "創建3d原型",
     "做工程設計計算",
-    "审查机械圖纸",
+    "審查機械圖紙",
     "生成bom清單",
     "做產品仿真分析",
     "查詢設計規範要求",
@@ -22269,7 +22271,7 @@ export const SYNONYM_MAP = {
     "productivity",
     "prototyping"
   ],
-  "审查机械圖纸": [
+  "審查機械圖紙": [
     "emil-design-skills",
     "design-engineering",
     "productivity",
@@ -23578,52 +23580,52 @@ export const SYNONYM_MAP = {
     "glm-5.2",
     "low-ram-inference",
     "pure-c-llm",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型"
+    "純 cpu 跑大型語言模型"
   ],
   "colibri": [
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型",
+    "純 cpu 跑大型語言模型",
     "glm-5.2",
     "low-ram-inference",
     "pure-c-llm"
   ],
   "glm-5.2": [
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型",
+    "純 cpu 跑大型語言模型",
     "colibri",
     "low-ram-inference",
     "pure-c-llm"
   ],
   "low-ram-inference": [
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型",
+    "純 cpu 跑大型語言模型",
     "colibri",
     "glm-5.2",
     "pure-c-llm"
   ],
   "pure-c-llm": [
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型",
+    "純 cpu 跑大型語言模型",
     "colibri",
     "glm-5.2",
     "low-ram-inference"
   ],
-  "旧電脑跑 glm-5.2": [
+  "舊電腦跑 glm-5.2": [
     "colibri",
     "glm-5.2",
     "low-ram-inference",
@@ -23631,7 +23633,7 @@ export const SYNONYM_MAP = {
     "在低內存設備上運行大語言模型",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型"
+    "純 cpu 跑大型語言模型"
   ],
   "不用 gpu 運行 llm 推理": [
     "colibri",
@@ -23639,9 +23641,9 @@ export const SYNONYM_MAP = {
     "low-ram-inference",
     "pure-c-llm",
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "樹莓派上運行大模型",
-    "纯 cpu 跑大型語言模型"
+    "純 cpu 跑大型語言模型"
   ],
   "樹莓派上運行大模型": [
     "colibri",
@@ -23649,17 +23651,17 @@ export const SYNONYM_MAP = {
     "low-ram-inference",
     "pure-c-llm",
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
-    "纯 cpu 跑大型語言模型"
+    "純 cpu 跑大型語言模型"
   ],
-  "纯 cpu 跑大型語言模型": [
+  "純 cpu 跑大型語言模型": [
     "colibri",
     "glm-5.2",
     "low-ram-inference",
     "pure-c-llm",
     "在低內存設備上運行大語言模型",
-    "旧電脑跑 glm-5.2",
+    "舊電腦跑 glm-5.2",
     "不用 gpu 運行 llm 推理",
     "樹莓派上運行大模型"
   ],
@@ -24092,14 +24094,14 @@ export const SYNONYM_MAP = {
     "content-download",
     "web-scraping",
     "下載pdf",
-    "获取youtube字幕",
+    "獲取youtube字幕",
     "抓取youtube文字稿",
     "下載網頁文章"
   ],
   "tapestry-skills-for-claude-code": [
     "下載文章",
     "下載pdf",
-    "获取youtube字幕",
+    "獲取youtube字幕",
     "抓取youtube文字稿",
     "下載網頁文章",
     "content-download",
@@ -24108,7 +24110,7 @@ export const SYNONYM_MAP = {
   "content-download": [
     "下載文章",
     "下載pdf",
-    "获取youtube字幕",
+    "獲取youtube字幕",
     "抓取youtube文字稿",
     "下載網頁文章",
     "tapestry-skills-for-claude-code",
@@ -24119,11 +24121,11 @@ export const SYNONYM_MAP = {
     "content-download",
     "web-scraping",
     "下載文章",
-    "获取youtube字幕",
+    "獲取youtube字幕",
     "抓取youtube文字稿",
     "下載網頁文章"
   ],
-  "获取youtube字幕": [
+  "獲取youtube字幕": [
     "tapestry-skills-for-claude-code",
     "content-download",
     "web-scraping",
@@ -24138,7 +24140,7 @@ export const SYNONYM_MAP = {
     "web-scraping",
     "下載文章",
     "下載pdf",
-    "获取youtube字幕",
+    "獲取youtube字幕",
     "下載網頁文章"
   ],
   "下載網頁文章": [
@@ -24147,7 +24149,7 @@ export const SYNONYM_MAP = {
     "web-scraping",
     "下載文章",
     "下載pdf",
-    "获取youtube字幕",
+    "獲取youtube字幕",
     "抓取youtube文字稿"
   ],
   "寫廣告文案": [
@@ -25264,7 +25266,7 @@ export const SYNONYM_MAP = {
   ],
   "wayfinder": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25274,7 +25276,7 @@ export const SYNONYM_MAP = {
   ],
   "large-planning": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25284,7 +25286,7 @@ export const SYNONYM_MAP = {
   ],
   "investigation-tickets": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25294,7 +25296,7 @@ export const SYNONYM_MAP = {
   ],
   "fog-of-war": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25304,7 +25306,7 @@ export const SYNONYM_MAP = {
   ],
   "issue-tracker": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25314,7 +25316,7 @@ export const SYNONYM_MAP = {
   ],
   "frontier-discovery": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25324,7 +25326,7 @@ export const SYNONYM_MAP = {
   ],
   "matt-pocock-skills": [
     "拆解大型項目為調查任務",
-    "規划從想法到執行的路線圖",
+    "規劃從想法到執行的路線圖",
     "追蹤技術決策的分支路徑",
     "探索需求中的不確定領域",
     "識別技術方案的前鋒邊界",
@@ -25332,7 +25334,7 @@ export const SYNONYM_MAP = {
     "large-planning",
     "investigation-tickets"
   ],
-  "規划從想法到執行的路線圖": [
+  "規劃從想法到執行的路線圖": [
     "wayfinder",
     "large-planning",
     "investigation-tickets",
@@ -27477,7 +27479,7 @@ export const SYNONYM_MAP = {
     "fem-analysis",
     "step-stl-export"
   ],
-  "用脚本建模 3d 零件": [
+  "用腳本建模 3d 零件": [
     "openscad",
     "code-cad",
     "scripted-3d-modeling",
@@ -27486,8 +27488,8 @@ export const SYNONYM_MAP = {
     "parametric-parts"
   ],
   "openscad": [
-    "用脚本建模 3d 零件",
-    "參數化設計机械件",
+    "用腳本建模 3d 零件",
+    "參數化設計機械件",
     "csg 構造實體幾何",
     "代碼生成 cad 模型",
     "導出 stl 3d 打印",
@@ -27496,8 +27498,8 @@ export const SYNONYM_MAP = {
     "文字轉 openscad 程式碼"
   ],
   "code-cad": [
-    "用脚本建模 3d 零件",
-    "參數化設計机械件",
+    "用腳本建模 3d 零件",
+    "參數化設計機械件",
     "csg 構造實體幾何",
     "代碼生成 cad 模型",
     "導出 stl 3d 打印",
@@ -27506,8 +27508,8 @@ export const SYNONYM_MAP = {
     "csg-modeling"
   ],
   "scripted-3d-modeling": [
-    "用脚本建模 3d 零件",
-    "參數化設計机械件",
+    "用腳本建模 3d 零件",
+    "參數化設計機械件",
     "csg 構造實體幾何",
     "代碼生成 cad 模型",
     "導出 stl 3d 打印",
@@ -27516,8 +27518,8 @@ export const SYNONYM_MAP = {
     "csg-modeling"
   ],
   "csg-modeling": [
-    "用脚本建模 3d 零件",
-    "參數化設計机械件",
+    "用腳本建模 3d 零件",
+    "參數化設計機械件",
     "csg 構造實體幾何",
     "代碼生成 cad 模型",
     "導出 stl 3d 打印",
@@ -27526,8 +27528,8 @@ export const SYNONYM_MAP = {
     "scripted-3d-modeling"
   ],
   "3d-printing-cad": [
-    "用脚本建模 3d 零件",
-    "參數化設計机械件",
+    "用腳本建模 3d 零件",
+    "參數化設計機械件",
     "csg 構造實體幾何",
     "代碼生成 cad 模型",
     "導出 stl 3d 打印",
@@ -27536,8 +27538,8 @@ export const SYNONYM_MAP = {
     "scripted-3d-modeling"
   ],
   "parametric-parts": [
-    "用脚本建模 3d 零件",
-    "參數化設計机械件",
+    "用腳本建模 3d 零件",
+    "參數化設計機械件",
     "csg 構造實體幾何",
     "代碼生成 cad 模型",
     "導出 stl 3d 打印",
@@ -27545,7 +27547,7 @@ export const SYNONYM_MAP = {
     "code-cad",
     "scripted-3d-modeling"
   ],
-  "參數化設計机械件": [
+  "參數化設計機械件": [
     "openscad",
     "code-cad",
     "scripted-3d-modeling",
@@ -27846,63 +27848,63 @@ export const SYNONYM_MAP = {
     "javaguide",
     "context-engineering",
     "interview",
-    "复習數據庫面試題",
+    "復習數據庫面試題",
     "學習分佈式系統",
     "準備高並發編程面試",
-    "复習系統設計"
+    "復習系統設計"
   ],
   "javaguide": [
     "準備java面試",
-    "复習數據庫面試題",
+    "復習數據庫面試題",
     "學習分佈式系統",
     "準備高並發編程面試",
-    "复習系統設計",
+    "復習系統設計",
     "context-engineering",
     "interview"
   ],
   "context-engineering": [
     "準備java面試",
-    "复習數據庫面試題",
+    "復習數據庫面試題",
     "學習分佈式系統",
     "準備高並發編程面試",
-    "复習系統設計",
+    "復習系統設計",
     "ai agent 設計",
     "ai agent 實作",
     "ai agent 架構"
   ],
-  "复習數據庫面試題": [
+  "復習數據庫面試題": [
     "javaguide",
     "context-engineering",
     "interview",
     "準備java面試",
     "學習分佈式系統",
     "準備高並發編程面試",
-    "复習系統設計"
+    "復習系統設計"
   ],
   "學習分佈式系統": [
     "javaguide",
     "context-engineering",
     "interview",
     "準備java面試",
-    "复習數據庫面試題",
+    "復習數據庫面試題",
     "準備高並發編程面試",
-    "复習系統設計"
+    "復習系統設計"
   ],
   "準備高並發編程面試": [
     "javaguide",
     "context-engineering",
     "interview",
     "準備java面試",
-    "复習數據庫面試題",
+    "復習數據庫面試題",
     "學習分佈式系統",
-    "复習系統設計"
+    "復習系統設計"
   ],
-  "复習系統設計": [
+  "復習系統設計": [
     "javaguide",
     "context-engineering",
     "interview",
     "準備java面試",
-    "复習數據庫面試題",
+    "復習數據庫面試題",
     "學習分佈式系統",
     "準備高並發編程面試"
   ],
@@ -28102,14 +28104,14 @@ export const SYNONYM_MAP = {
     "a-stock",
     "aigc",
     "查看a股走勢",
-    "监控股票新聞",
+    "監控股票新聞",
     "定時推送股票",
     "多市場選股"
   ],
   "daily-stock-analysis": [
     "分析股票行情",
     "查看a股走勢",
-    "监控股票新聞",
+    "監控股票新聞",
     "定時推送股票",
     "多市場選股",
     "a-stock",
@@ -28118,7 +28120,7 @@ export const SYNONYM_MAP = {
   "a-stock": [
     "分析股票行情",
     "查看a股走勢",
-    "监控股票新聞",
+    "監控股票新聞",
     "定時推送股票",
     "多市場選股",
     "查a股行情",
@@ -28128,7 +28130,7 @@ export const SYNONYM_MAP = {
   "aigc": [
     "分析股票行情",
     "查看a股走勢",
-    "监控股票新聞",
+    "監控股票新聞",
     "定時推送股票",
     "多市場選股",
     "daily-stock-analysis",
@@ -28139,11 +28141,11 @@ export const SYNONYM_MAP = {
     "a-stock",
     "aigc",
     "分析股票行情",
-    "监控股票新聞",
+    "監控股票新聞",
     "定時推送股票",
     "多市場選股"
   ],
-  "监控股票新聞": [
+  "監控股票新聞": [
     "daily-stock-analysis",
     "a-stock",
     "aigc",
@@ -28158,7 +28160,7 @@ export const SYNONYM_MAP = {
     "aigc",
     "分析股票行情",
     "查看a股走勢",
-    "监控股票新聞",
+    "監控股票新聞",
     "多市場選股"
   ],
   "多市場選股": [
@@ -28167,7 +28169,7 @@ export const SYNONYM_MAP = {
     "aigc",
     "分析股票行情",
     "查看a股走勢",
-    "监控股票新聞",
+    "監控股票新聞",
     "定時推送股票"
   ],
   "統一呼叫不同 llm 接口": [
@@ -30010,7 +30012,7 @@ export const SYNONYM_MAP = {
     "使用開源圖標字體",
     "找圖標",
     "下載圖標字體",
-    "获取圖標包"
+    "獲取圖標包"
   ],
   "icon-pack": [
     "尋找免費圖標資源",
@@ -30020,7 +30022,7 @@ export const SYNONYM_MAP = {
     "使用開源圖標字體",
     "找圖標",
     "下載圖標字體",
-    "获取圖標包"
+    "獲取圖標包"
   ],
   "phosphor": [
     "尋找免費圖標資源",
@@ -30076,16 +30078,16 @@ export const SYNONYM_MAP = {
     "icon-font",
     "icon-pack",
     "下載圖標字體",
-    "获取圖標包",
+    "獲取圖標包",
     "添加矢量圖標",
-    "安装圖標庫"
+    "安裝圖標庫"
   ],
   "remixicon": [
     "找圖標",
     "下載圖標字體",
-    "获取圖標包",
+    "獲取圖標包",
     "添加矢量圖標",
-    "安装圖標庫",
+    "安裝圖標庫",
     "icon",
     "icon-font",
     "icon-pack"
@@ -30093,9 +30095,9 @@ export const SYNONYM_MAP = {
   "icon": [
     "找圖標",
     "下載圖標字體",
-    "获取圖標包",
+    "獲取圖標包",
     "添加矢量圖標",
-    "安装圖標庫",
+    "安裝圖標庫",
     "找圖標庫",
     "下載 svg 圖標",
     "安裝 icon 套件"
@@ -30106,11 +30108,11 @@ export const SYNONYM_MAP = {
     "icon-font",
     "icon-pack",
     "找圖標",
-    "获取圖標包",
+    "獲取圖標包",
     "添加矢量圖標",
-    "安装圖標庫"
+    "安裝圖標庫"
   ],
-  "获取圖標包": [
+  "獲取圖標包": [
     "remixicon",
     "icon",
     "icon-font",
@@ -30118,7 +30120,7 @@ export const SYNONYM_MAP = {
     "找圖標",
     "下載圖標字體",
     "添加矢量圖標",
-    "安装圖標庫"
+    "安裝圖標庫"
   ],
   "添加矢量圖標": [
     "remixicon",
@@ -30127,17 +30129,17 @@ export const SYNONYM_MAP = {
     "icon-pack",
     "找圖標",
     "下載圖標字體",
-    "获取圖標包",
-    "安装圖標庫"
+    "獲取圖標包",
+    "安裝圖標庫"
   ],
-  "安装圖標庫": [
+  "安裝圖標庫": [
     "remixicon",
     "icon",
     "icon-font",
     "icon-pack",
     "找圖標",
     "下載圖標字體",
-    "获取圖標包",
+    "獲取圖標包",
     "添加矢量圖標"
   ],
   "找圖標庫": [
@@ -31173,14 +31175,14 @@ export const SYNONYM_MAP = {
     "查找svg圖標集",
     "管理圖標資源",
     "整合圖標素材",
-    "获取矢量圖標"
+    "獲取矢量圖標"
   ],
   "welovesvg": [
     "下載圖標包",
     "查找svg圖標集",
     "管理圖標資源",
     "整合圖標素材",
-    "获取矢量圖標",
+    "獲取矢量圖標",
     "icon-management",
     "icon-packs"
   ],
@@ -31189,7 +31191,7 @@ export const SYNONYM_MAP = {
     "查找svg圖標集",
     "管理圖標資源",
     "整合圖標素材",
-    "获取矢量圖標",
+    "獲取矢量圖標",
     "welovesvg",
     "icon-packs"
   ],
@@ -31198,7 +31200,7 @@ export const SYNONYM_MAP = {
     "查找svg圖標集",
     "管理圖標資源",
     "整合圖標素材",
-    "获取矢量圖標",
+    "獲取矢量圖標",
     "welovesvg",
     "icon-management"
   ],
@@ -31209,7 +31211,7 @@ export const SYNONYM_MAP = {
     "下載圖標包",
     "管理圖標資源",
     "整合圖標素材",
-    "获取矢量圖標"
+    "獲取矢量圖標"
   ],
   "管理圖標資源": [
     "welovesvg",
@@ -31218,7 +31220,7 @@ export const SYNONYM_MAP = {
     "下載圖標包",
     "查找svg圖標集",
     "整合圖標素材",
-    "获取矢量圖標"
+    "獲取矢量圖標"
   ],
   "整合圖標素材": [
     "welovesvg",
@@ -31227,9 +31229,9 @@ export const SYNONYM_MAP = {
     "下載圖標包",
     "查找svg圖標集",
     "管理圖標資源",
-    "获取矢量圖標"
+    "獲取矢量圖標"
   ],
-  "获取矢量圖標": [
+  "獲取矢量圖標": [
     "welovesvg",
     "icon-management",
     "icon-packs",
@@ -31741,7 +31743,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple",
     "brand",
@@ -31751,7 +31753,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple-icons",
     "brand",
@@ -31761,7 +31763,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple-icons",
     "simple",
@@ -31771,7 +31773,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple-icons",
     "simple",
@@ -31781,7 +31783,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple-icons",
     "simple",
@@ -31791,7 +31793,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple-icons",
     "simple",
@@ -31801,7 +31803,7 @@ export const SYNONYM_MAP = {
     "找品牌logo",
     "下載svg圖標",
     "找app的icon",
-    "获取品牌圖標素材",
+    "獲取品牌圖標素材",
     "找產品的logo",
     "simple-icons",
     "simple",
@@ -31825,7 +31827,7 @@ export const SYNONYM_MAP = {
     "branding",
     "branding-assets"
   ],
-  "获取品牌圖標素材": [
+  "獲取品牌圖標素材": [
     "simple-icons",
     "simple",
     "brand",
@@ -31858,7 +31860,7 @@ export const SYNONYM_MAP = {
     "調試程序",
     "管理項目",
     "執行終端命令",
-    "审查代碼",
+    "審查代碼",
     "調試程式錯誤",
     "生成代碼片段",
     "ai寫腳本"
@@ -31868,7 +31870,7 @@ export const SYNONYM_MAP = {
     "調試程序",
     "管理項目",
     "執行終端命令",
-    "审查代碼",
+    "審查代碼",
     "調試程式錯誤",
     "生成代碼片段",
     "ai寫腳本"
@@ -31878,7 +31880,7 @@ export const SYNONYM_MAP = {
     "調試程序",
     "管理項目",
     "執行終端命令",
-    "审查代碼",
+    "審查代碼",
     "調試程式錯誤",
     "生成代碼片段",
     "ai寫腳本"
@@ -31888,7 +31890,7 @@ export const SYNONYM_MAP = {
     "調試程序",
     "管理項目",
     "執行終端命令",
-    "审查代碼",
+    "審查代碼",
     "agnescode",
     "terminal-coding",
     "debugging-assistance"
@@ -31901,7 +31903,7 @@ export const SYNONYM_MAP = {
     "生成代碼",
     "管理項目",
     "執行終端命令",
-    "审查代碼"
+    "審查代碼"
   ],
   "管理項目": [
     "agnescode",
@@ -31911,7 +31913,7 @@ export const SYNONYM_MAP = {
     "生成代碼",
     "調試程序",
     "執行終端命令",
-    "审查代碼"
+    "審查代碼"
   ],
   "執行終端命令": [
     "agnescode",
@@ -31921,17 +31923,17 @@ export const SYNONYM_MAP = {
     "生成代碼",
     "調試程序",
     "管理項目",
-    "审查代碼"
+    "審查代碼"
   ],
-  "审查代碼": [
+  "審查代碼": [
     "agnescode",
     "terminal-coding",
     "debugging-assistance",
     "open-source-ai",
-    "生成代碼",
-    "調試程序",
-    "管理項目",
-    "執行終端命令"
+    "kilocode",
+    "kilo-code",
+    "agentic-engineering",
+    "vscode-extension"
   ],
   "調試程式錯誤": [
     "agnescode",
@@ -35447,7 +35449,7 @@ export const SYNONYM_MAP = {
     "為多代理程式建立共享知識庫",
     "將程式碼轉換成可搜尋的記憶資產"
   ],
-  "畫树状圖": [
+  "畫樹狀圖": [
     "react-d3-tree",
     "tree",
     "chart",
@@ -35458,79 +35460,79 @@ export const SYNONYM_MAP = {
     "hierarchy"
   ],
   "react-d3-tree": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "tree": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "chart": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "d3": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表",
     "學程式設計",
     "找免費編程課程",
     "考編程認證"
   ],
   "d3-hierarchy": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "d3-tree": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "d3-visualization": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "hierarchy": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "organizational chart": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
   "interactive tree": [
-    "畫树状圖",
-    "绘制組織架構",
+    "畫樹狀圖",
+    "繪制組織架構",
     "可視化層級結構",
-    "渲染文件目錄树",
+    "渲染文件目錄樹",
     "構建組織圖表"
   ],
-  "绘制組織架構": [
+  "繪制組織架構": [
     "react-d3-tree",
     "tree",
     "chart",
@@ -35550,7 +35552,7 @@ export const SYNONYM_MAP = {
     "d3-visualization",
     "hierarchy"
   ],
-  "渲染文件目錄树": [
+  "渲染文件目錄樹": [
     "react-d3-tree",
     "tree",
     "chart",
@@ -37081,61 +37083,61 @@ export const SYNONYM_MAP = {
     "pdf 分類",
     "pdf 解析",
     "pdf 轉 markdown",
-    "掃描件pdf判断",
+    "掃描件pdf判斷",
     "提取pdf文字",
     "檢測pdf表格",
     "區分pdf文字型和掃描型",
-    "pdf多栏解析"
+    "pdf多欄解析"
   ],
   "detect-pdf": [
     "pdf 分類",
     "pdf 解析",
     "pdf 轉 markdown",
-    "掃描件pdf判断",
+    "掃描件pdf判斷",
     "提取pdf文字",
     "檢測pdf表格",
     "區分pdf文字型和掃描型",
-    "pdf多栏解析"
+    "pdf多欄解析"
   ],
   "pdf extraction": [
     "pdf 分類",
     "pdf 解析",
     "pdf 轉 markdown",
-    "掃描件pdf判断",
+    "掃描件pdf判斷",
     "提取pdf文字",
     "檢測pdf表格",
     "區分pdf文字型和掃描型",
-    "pdf多栏解析"
+    "pdf多欄解析"
   ],
   "scanned pdf": [
     "pdf 分類",
     "pdf 解析",
     "pdf 轉 markdown",
-    "掃描件pdf判断",
+    "掃描件pdf判斷",
     "提取pdf文字",
     "檢測pdf表格",
     "區分pdf文字型和掃描型",
-    "pdf多栏解析"
+    "pdf多欄解析"
   ],
   "ocr routing": [
     "pdf 分類",
     "pdf 解析",
     "pdf 轉 markdown",
-    "掃描件pdf判断",
+    "掃描件pdf判斷",
     "提取pdf文字",
     "檢測pdf表格",
     "區分pdf文字型和掃描型",
-    "pdf多栏解析"
+    "pdf多欄解析"
   ],
   "pdf classification": [
     "pdf 分類",
     "pdf 解析",
     "pdf 轉 markdown",
-    "掃描件pdf判断",
+    "掃描件pdf判斷",
     "提取pdf文字",
     "檢測pdf表格",
     "區分pdf文字型和掃描型",
-    "pdf多栏解析"
+    "pdf多欄解析"
   ],
   "pdf 解析": [
     "pdf-inspector",
@@ -37155,7 +37157,7 @@ export const SYNONYM_MAP = {
     "ocr routing",
     "pdf classification"
   ],
-  "掃描件pdf判断": [
+  "掃描件pdf判斷": [
     "pdf-inspector",
     "pdf2md",
     "detect-pdf",
@@ -37191,7 +37193,7 @@ export const SYNONYM_MAP = {
     "ocr routing",
     "pdf classification"
   ],
-  "pdf多栏解析": [
+  "pdf多欄解析": [
     "pdf-inspector",
     "pdf2md",
     "detect-pdf",
@@ -37333,7 +37335,7 @@ export const SYNONYM_MAP = {
     "偵測物體",
     "做數學動畫",
     "畫幾何圖形",
-    "制作微积分可視化"
+    "制作微積分可視化"
   ],
   "bounding-box": [
     "畫偵測框",
@@ -41034,50 +41036,50 @@ export const SYNONYM_MAP = {
   "block-buzz": [
     "群體智慧",
     "去中心化溝通",
-    "發起群體讨論",
+    "發起群體討論",
     "組織去中心化會議",
     "進行匿名投票決策",
-    "建立社群自治机制",
+    "建立社群自治機制",
     "分發加密消息",
     "buzz"
   ],
   "hive-mind": [
     "群體智慧",
     "去中心化溝通",
-    "發起群體讨論",
+    "發起群體討論",
     "組織去中心化會議",
     "進行匿名投票決策",
-    "建立社群自治机制",
+    "建立社群自治機制",
     "分發加密消息",
     "buzz"
   ],
   "decentralized": [
     "群體智慧",
     "去中心化溝通",
-    "發起群體讨論",
+    "發起群體討論",
     "組織去中心化會議",
     "進行匿名投票決策",
-    "建立社群自治机制",
+    "建立社群自治機制",
     "分發加密消息",
     "buzz"
   ],
   "communication": [
     "群體智慧",
     "去中心化溝通",
-    "發起群體讨論",
+    "發起群體討論",
     "組織去中心化會議",
     "進行匿名投票決策",
-    "建立社群自治机制",
+    "建立社群自治機制",
     "分發加密消息",
     "buzz"
   ],
   "p2p-messaging": [
     "群體智慧",
     "去中心化溝通",
-    "發起群體讨論",
+    "發起群體討論",
     "組織去中心化會議",
     "進行匿名投票決策",
-    "建立社群自治机制",
+    "建立社群自治機制",
     "分發加密消息",
     "buzz"
   ],
@@ -41089,7 +41091,7 @@ export const SYNONYM_MAP = {
     "communication",
     "p2p-messaging"
   ],
-  "發起群體讨論": [
+  "發起群體討論": [
     "buzz",
     "block-buzz",
     "hive-mind",
@@ -41113,7 +41115,7 @@ export const SYNONYM_MAP = {
     "communication",
     "p2p-messaging"
   ],
-  "建立社群自治机制": [
+  "建立社群自治機制": [
     "buzz",
     "block-buzz",
     "hive-mind",
@@ -41267,9 +41269,9 @@ export const SYNONYM_MAP = {
   "hermes-skill-factory": [
     "記錄工作流程",
     "自動生成技能",
-    "捕获重复任務",
+    "捕獲重複任務",
     "自動化項目設定",
-    "自動化代碼审查",
+    "自動化代碼審查",
     "factory",
     "meta-skill",
     "workflow-capture"
@@ -41277,9 +41279,9 @@ export const SYNONYM_MAP = {
   "factory": [
     "記錄工作流程",
     "自動生成技能",
-    "捕获重复任務",
+    "捕獲重複任務",
     "自動化項目設定",
-    "自動化代碼审查",
+    "自動化代碼審查",
     "hermes-skill-factory",
     "meta-skill",
     "workflow-capture"
@@ -41287,9 +41289,9 @@ export const SYNONYM_MAP = {
   "meta-skill": [
     "記錄工作流程",
     "自動生成技能",
-    "捕获重复任務",
+    "捕獲重複任務",
     "自動化項目設定",
-    "自動化代碼审查",
+    "自動化代碼審查",
     "hermes-skill-factory",
     "factory",
     "workflow-capture"
@@ -41297,9 +41299,9 @@ export const SYNONYM_MAP = {
   "workflow-capture": [
     "記錄工作流程",
     "自動生成技能",
-    "捕获重复任務",
+    "捕獲重複任務",
     "自動化項目設定",
-    "自動化代碼审查",
+    "自動化代碼審查",
     "hermes-skill-factory",
     "factory",
     "meta-skill"
@@ -41307,9 +41309,9 @@ export const SYNONYM_MAP = {
   "skill-generation": [
     "記錄工作流程",
     "自動生成技能",
-    "捕获重复任務",
+    "捕獲重複任務",
     "自動化項目設定",
-    "自動化代碼审查",
+    "自動化代碼審查",
     "hermes-skill-factory",
     "factory",
     "meta-skill"
@@ -41317,9 +41319,9 @@ export const SYNONYM_MAP = {
   "skill-automation": [
     "記錄工作流程",
     "自動生成技能",
-    "捕获重复任務",
+    "捕獲重複任務",
     "自動化項目設定",
-    "自動化代碼审查",
+    "自動化代碼審查",
     "hermes-skill-factory",
     "factory",
     "meta-skill"
@@ -41332,7 +41334,7 @@ export const SYNONYM_MAP = {
     "skill-generation",
     "skill-automation"
   ],
-  "捕获重复任務": [
+  "捕獲重複任務": [
     "hermes-skill-factory",
     "factory",
     "meta-skill",
@@ -41348,7 +41350,7 @@ export const SYNONYM_MAP = {
     "skill-generation",
     "skill-automation"
   ],
-  "自動化代碼审查": [
+  "自動化代碼審查": [
     "hermes-skill-factory",
     "factory",
     "meta-skill",
@@ -41847,7 +41849,7 @@ export const SYNONYM_MAP = {
     "訪問境外網路",
     "突破網路審查",
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容"
   ],
   "lightsocks": [
@@ -41935,7 +41937,7 @@ export const SYNONYM_MAP = {
   ],
   "reverse-skill": [
     "逆向分析二進制文件",
-    "渗透測試系統漏洞",
+    "滲透測試系統漏洞",
     "解構惡意軟件樣本",
     "分析可執行文件結構",
     "破解通信協議格式",
@@ -41945,7 +41947,7 @@ export const SYNONYM_MAP = {
   ],
   "reverse": [
     "逆向分析二進制文件",
-    "渗透測試系統漏洞",
+    "滲透測試系統漏洞",
     "解構惡意軟件樣本",
     "分析可執行文件結構",
     "破解通信協議格式",
@@ -41955,7 +41957,7 @@ export const SYNONYM_MAP = {
   ],
   "reverse-engineering": [
     "逆向分析二進制文件",
-    "渗透測試系統漏洞",
+    "滲透測試系統漏洞",
     "解構惡意軟件樣本",
     "分析可執行文件結構",
     "破解通信協議格式",
@@ -41965,7 +41967,7 @@ export const SYNONYM_MAP = {
   ],
   "binary-analysis": [
     "逆向分析二進制文件",
-    "渗透測試系統漏洞",
+    "滲透測試系統漏洞",
     "解構惡意軟件樣本",
     "分析可執行文件結構",
     "破解通信協議格式",
@@ -41975,7 +41977,7 @@ export const SYNONYM_MAP = {
   ],
   "security-research": [
     "逆向分析二進制文件",
-    "渗透測試系統漏洞",
+    "滲透測試系統漏洞",
     "解構惡意軟件樣本",
     "分析可執行文件結構",
     "破解通信協議格式",
@@ -41983,7 +41985,7 @@ export const SYNONYM_MAP = {
     "reverse",
     "reverse-engineering"
   ],
-  "渗透測試系統漏洞": [
+  "滲透測試系統漏洞": [
     "reverse-skill",
     "reverse",
     "reverse-engineering",
@@ -42783,38 +42785,38 @@ export const SYNONYM_MAP = {
     "串接 kimi api",
     "替換 codex 後端"
   ],
-  "故事轉手绘視頻": [
+  "故事轉手繪視頻": [
     "story-to-handdrawn-video",
     "handdrawn video",
     "story to video",
     "圖片變動畫",
     "文字轉漫畫視頻",
-    "手绘風格動畫生成",
+    "手繪風格動畫生成",
     "故事動畫化"
   ],
   "story-to-handdrawn-video": [
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "圖片變動畫",
     "文字轉漫畫視頻",
-    "手绘風格動畫生成",
+    "手繪風格動畫生成",
     "故事動畫化",
     "handdrawn video",
     "story to video"
   ],
   "handdrawn video": [
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "圖片變動畫",
     "文字轉漫畫視頻",
-    "手绘風格動畫生成",
+    "手繪風格動畫生成",
     "故事動畫化",
     "story-to-handdrawn-video",
     "story to video"
   ],
   "story to video": [
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "圖片變動畫",
     "文字轉漫畫視頻",
-    "手绘風格動畫生成",
+    "手繪風格動畫生成",
     "故事動畫化",
     "story-to-handdrawn-video",
     "handdrawn video"
@@ -42823,25 +42825,25 @@ export const SYNONYM_MAP = {
     "story-to-handdrawn-video",
     "handdrawn video",
     "story to video",
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "文字轉漫畫視頻",
-    "手绘風格動畫生成",
+    "手繪風格動畫生成",
     "故事動畫化"
   ],
   "文字轉漫畫視頻": [
     "story-to-handdrawn-video",
     "handdrawn video",
     "story to video",
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "圖片變動畫",
-    "手绘風格動畫生成",
+    "手繪風格動畫生成",
     "故事動畫化"
   ],
-  "手绘風格動畫生成": [
+  "手繪風格動畫生成": [
     "story-to-handdrawn-video",
     "handdrawn video",
     "story to video",
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "圖片變動畫",
     "文字轉漫畫視頻",
     "故事動畫化"
@@ -42850,10 +42852,10 @@ export const SYNONYM_MAP = {
     "story-to-handdrawn-video",
     "handdrawn video",
     "story to video",
-    "故事轉手绘視頻",
+    "故事轉手繪視頻",
     "圖片變動畫",
     "文字轉漫畫視頻",
-    "手绘風格動畫生成"
+    "手繪風格動畫生成"
   ],
   "用藍牙訊號找裝置": [
     "findphone",
@@ -42950,16 +42952,16 @@ export const SYNONYM_MAP = {
     "manychat alternative",
     "instagram automation",
     "dm automation",
-    "設置dm自動回复",
-    "分析instagram账號數據",
-    "监控instagram私信",
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
+    "監控instagram私信",
     "自動化instagram互動"
   ],
   "openreply": [
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "分析instagram账號數據",
-    "监控instagram私信",
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
+    "監控instagram私信",
     "自動化instagram互動",
     "manychat alternative",
     "instagram automation",
@@ -42967,9 +42969,9 @@ export const SYNONYM_MAP = {
   ],
   "manychat alternative": [
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "分析instagram账號數據",
-    "监控instagram私信",
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
+    "監控instagram私信",
     "自動化instagram互動",
     "openreply",
     "instagram automation",
@@ -42977,9 +42979,9 @@ export const SYNONYM_MAP = {
   ],
   "instagram automation": [
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "分析instagram账號數據",
-    "监控instagram私信",
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
+    "監控instagram私信",
     "自動化instagram互動",
     "openreply",
     "manychat alternative",
@@ -42987,42 +42989,42 @@ export const SYNONYM_MAP = {
   ],
   "dm automation": [
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "分析instagram账號數據",
-    "监控instagram私信",
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
+    "監控instagram私信",
     "自動化instagram互動",
     "openreply",
     "manychat alternative",
     "instagram automation"
   ],
-  "設置dm自動回复": [
+  "設置dm自動回覆": [
     "openreply",
     "manychat alternative",
     "instagram automation",
     "dm automation",
     "追蹤instagram評論",
-    "分析instagram账號數據",
-    "监控instagram私信",
+    "分析instagram賬號數據",
+    "監控instagram私信",
     "自動化instagram互動"
   ],
-  "分析instagram账號數據": [
+  "分析instagram賬號數據": [
     "openreply",
     "manychat alternative",
     "instagram automation",
     "dm automation",
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "监控instagram私信",
+    "設置dm自動回覆",
+    "監控instagram私信",
     "自動化instagram互動"
   ],
-  "监控instagram私信": [
+  "監控instagram私信": [
     "openreply",
     "manychat alternative",
     "instagram automation",
     "dm automation",
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "分析instagram账號數據",
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
     "自動化instagram互動"
   ],
   "自動化instagram互動": [
@@ -43031,9 +43033,9 @@ export const SYNONYM_MAP = {
     "instagram automation",
     "dm automation",
     "追蹤instagram評論",
-    "設置dm自動回复",
-    "分析instagram账號數據",
-    "监控instagram私信"
+    "設置dm自動回覆",
+    "分析instagram賬號數據",
+    "監控instagram私信"
   ],
   "調整滑鼠 dpi": [
     "openmouse",
@@ -43476,7 +43478,7 @@ export const SYNONYM_MAP = {
     "搜尋網路資訊",
     "爬取電商價格",
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容"
   ],
   "ai-search": [
@@ -43543,7 +43545,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43551,7 +43553,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43559,7 +43561,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43567,7 +43569,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43575,7 +43577,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43583,7 +43585,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43591,7 +43593,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43599,7 +43601,7 @@ export const SYNONYM_MAP = {
     "圖表設計",
     "畫流程圖",
     "制作架構圖",
-    "绘制系統架構",
+    "繪制系統架構",
     "把 mermaid 轉成圖",
     "生成 svg 圖表"
   ],
@@ -43613,7 +43615,7 @@ export const SYNONYM_MAP = {
     "mermaid",
     "drawio"
   ],
-  "绘制系統架構": [
+  "繪制系統架構": [
     "diagram-design",
     "diagram",
     "claude-diagram",
@@ -43643,7 +43645,7 @@ export const SYNONYM_MAP = {
     "mermaid",
     "drawio"
   ],
-  "建立知識圖谱": [
+  "建立知識圖譜": [
     "semantica",
     "ai-governance",
     "context-graphs",
@@ -43651,40 +43653,40 @@ export const SYNONYM_MAP = {
     "graph-rag"
   ],
   "semantica": [
-    "建立知識圖谱",
+    "建立知識圖譜",
     "記憶ai代理",
     "圖rag檢索",
-    "構建上下文圖谱",
+    "構建上下文圖譜",
     "治理ai系統",
     "ai-governance",
     "context-graphs",
     "ai-infrastructure"
   ],
   "ai-governance": [
-    "建立知識圖谱",
+    "建立知識圖譜",
     "記憶ai代理",
     "圖rag檢索",
-    "構建上下文圖谱",
+    "構建上下文圖譜",
     "治理ai系統",
     "semantica",
     "context-graphs",
     "ai-infrastructure"
   ],
   "context-graphs": [
-    "建立知識圖谱",
+    "建立知識圖譜",
     "記憶ai代理",
     "圖rag檢索",
-    "構建上下文圖谱",
+    "構建上下文圖譜",
     "治理ai系統",
     "semantica",
     "ai-governance",
     "ai-infrastructure"
   ],
   "ai-infrastructure": [
-    "建立知識圖谱",
+    "建立知識圖譜",
     "記憶ai代理",
     "圖rag檢索",
-    "構建上下文圖谱",
+    "構建上下文圖譜",
     "治理ai系統",
     "推導llm推理系統設計",
     "分析ai硬件約束",
@@ -43704,7 +43706,7 @@ export const SYNONYM_MAP = {
     "ai-infrastructure",
     "graph-rag"
   ],
-  "構建上下文圖谱": [
+  "構建上下文圖譜": [
     "semantica",
     "ai-governance",
     "context-graphs",
@@ -44003,7 +44005,7 @@ export const SYNONYM_MAP = {
     "用ai迭代改進工作",
     "設定並追蹤人生目標"
   ],
-  "預報天气": [
+  "預報天氣": [
     "weathernext",
     "weather",
     "weather-forecast",
@@ -44012,66 +44014,66 @@ export const SYNONYM_MAP = {
     "temperature prediction"
   ],
   "weathernext": [
-    "預報天气",
-    "預測温度",
+    "預報天氣",
+    "預測溫度",
     "查詢降水概率",
     "預報未來天氣",
-    "計算气温走勢",
+    "計算氣溫走勢",
     "weather",
     "weather-forecast",
     "forecast"
   ],
   "weather": [
-    "預報天气",
-    "預測温度",
+    "預報天氣",
+    "預測溫度",
     "查詢降水概率",
     "預報未來天氣",
-    "計算气温走勢",
+    "計算氣溫走勢",
     "weathernext",
     "weather-forecast",
     "forecast"
   ],
   "weather-forecast": [
-    "預報天气",
-    "預測温度",
+    "預報天氣",
+    "預測溫度",
     "查詢降水概率",
     "預報未來天氣",
-    "計算气温走勢",
+    "計算氣溫走勢",
     "weathernext",
     "weather",
     "forecast"
   ],
   "forecast": [
-    "預報天气",
-    "預測温度",
+    "預報天氣",
+    "預測溫度",
     "查詢降水概率",
     "預報未來天氣",
-    "計算气温走勢",
+    "計算氣溫走勢",
     "weathernext",
     "weather",
     "weather-forecast"
   ],
   "precipitation": [
-    "預報天气",
-    "預測温度",
+    "預報天氣",
+    "預測溫度",
     "查詢降水概率",
     "預報未來天氣",
-    "計算气温走勢",
+    "計算氣溫走勢",
     "weathernext",
     "weather",
     "weather-forecast"
   ],
   "temperature prediction": [
-    "預報天气",
-    "預測温度",
+    "預報天氣",
+    "預測溫度",
     "查詢降水概率",
     "預報未來天氣",
-    "計算气温走勢",
+    "計算氣溫走勢",
     "weathernext",
     "weather",
     "weather-forecast"
   ],
-  "預測温度": [
+  "預測溫度": [
     "weathernext",
     "weather",
     "weather-forecast",
@@ -44095,7 +44097,7 @@ export const SYNONYM_MAP = {
     "precipitation",
     "temperature prediction"
   ],
-  "計算气温走勢": [
+  "計算氣溫走勢": [
     "weathernext",
     "weather",
     "weather-forecast",
@@ -46071,7 +46073,7 @@ export const SYNONYM_MAP = {
   "theremotefreelancer": [
     "找遠程自由職業工作",
     "找合約開發職位",
-    "找設計兼职机會",
+    "找設計兼職機會",
     "找upwork平台",
     "找遠程工作機會",
     "freelance-talent",
@@ -46081,7 +46083,7 @@ export const SYNONYM_MAP = {
   "freelance-talent": [
     "找遠程自由職業工作",
     "找合約開發職位",
-    "找設計兼职机會",
+    "找設計兼職機會",
     "找upwork平台",
     "找遠程工作機會",
     "theremotefreelancer",
@@ -46091,7 +46093,7 @@ export const SYNONYM_MAP = {
   "freelancer": [
     "找遠程自由職業工作",
     "找合約開發職位",
-    "找設計兼职机會",
+    "找設計兼職機會",
     "找upwork平台",
     "找遠程工作機會",
     "theremotefreelancer",
@@ -46101,7 +46103,7 @@ export const SYNONYM_MAP = {
   "jobs": [
     "找遠程自由職業工作",
     "找合約開發職位",
-    "找設計兼职机會",
+    "找設計兼職機會",
     "找upwork平台",
     "找遠程工作機會",
     "theremotefreelancer",
@@ -46111,7 +46113,7 @@ export const SYNONYM_MAP = {
   "remote-work": [
     "找遠程自由職業工作",
     "找合約開發職位",
-    "找設計兼职机會",
+    "找設計兼職機會",
     "找upwork平台",
     "找遠程工作機會",
     "theremotefreelancer",
@@ -46121,7 +46123,7 @@ export const SYNONYM_MAP = {
   "upwork": [
     "找遠程自由職業工作",
     "找合約開發職位",
-    "找設計兼职机會",
+    "找設計兼職機會",
     "找upwork平台",
     "找遠程工作機會",
     "theremotefreelancer",
@@ -46136,7 +46138,7 @@ export const SYNONYM_MAP = {
     "remote-work",
     "upwork"
   ],
-  "找設計兼职机會": [
+  "找設計兼職機會": [
     "theremotefreelancer",
     "freelance-talent",
     "freelancer",
@@ -46679,47 +46681,47 @@ export const SYNONYM_MAP = {
     "claude skill",
     "agent tool"
   ],
-  "用ai操作手机屏幕": [
+  "用ai操作手機屏幕": [
     "phone-harness",
-    "讓agent自動控制手机app",
+    "讓agent自動控制手機app",
     "ai幫我在手機上點選",
-    "語音指令控制手机界面",
-    "用ai自動化手机操作流程"
+    "語音指令控制手機界面",
+    "用ai自動化手機操作流程"
   ],
   "phone-harness": [
-    "用ai操作手机屏幕",
-    "讓agent自動控制手机app",
+    "用ai操作手機屏幕",
+    "讓agent自動控制手機app",
     "ai幫我在手機上點選",
-    "語音指令控制手机界面",
-    "用ai自動化手机操作流程"
+    "語音指令控制手機界面",
+    "用ai自動化手機操作流程"
   ],
-  "讓agent自動控制手机app": [
+  "讓agent自動控制手機app": [
     "phone-harness",
-    "用ai操作手机屏幕",
+    "用ai操作手機屏幕",
     "ai幫我在手機上點選",
-    "語音指令控制手机界面",
-    "用ai自動化手机操作流程"
+    "語音指令控制手機界面",
+    "用ai自動化手機操作流程"
   ],
   "ai幫我在手機上點選": [
     "phone-harness",
-    "用ai操作手机屏幕",
-    "讓agent自動控制手机app",
-    "語音指令控制手机界面",
-    "用ai自動化手机操作流程"
+    "用ai操作手機屏幕",
+    "讓agent自動控制手機app",
+    "語音指令控制手機界面",
+    "用ai自動化手機操作流程"
   ],
-  "語音指令控制手机界面": [
+  "語音指令控制手機界面": [
     "phone-harness",
-    "用ai操作手机屏幕",
-    "讓agent自動控制手机app",
+    "用ai操作手機屏幕",
+    "讓agent自動控制手機app",
     "ai幫我在手機上點選",
-    "用ai自動化手机操作流程"
+    "用ai自動化手機操作流程"
   ],
-  "用ai自動化手机操作流程": [
+  "用ai自動化手機操作流程": [
     "phone-harness",
-    "用ai操作手机屏幕",
-    "讓agent自動控制手机app",
+    "用ai操作手機屏幕",
+    "讓agent自動控制手機app",
     "ai幫我在手機上點選",
-    "語音指令控制手机界面"
+    "語音指令控制手機界面"
   ],
   "影像生成": [
     "oil-motion",
@@ -47570,14 +47572,14 @@ export const SYNONYM_MAP = {
     "選股推薦",
     "分析個股走勢",
     "查詢股票數據",
-    "查看股市涨跌"
+    "查看股市漲跌"
   ],
   "tradingagents-cn": [
     "查a股行情",
     "選股推薦",
     "分析個股走勢",
     "查詢股票數據",
-    "查看股市涨跌",
+    "查看股市漲跌",
     "a-stock",
     "china"
   ],
@@ -47586,7 +47588,7 @@ export const SYNONYM_MAP = {
     "選股推薦",
     "分析個股走勢",
     "查詢股票數據",
-    "查看股市涨跌",
+    "查看股市漲跌",
     "查a股價格",
     "分析中國股市走勢",
     "推薦a股個股"
@@ -47598,7 +47600,7 @@ export const SYNONYM_MAP = {
     "查a股行情",
     "分析個股走勢",
     "查詢股票數據",
-    "查看股市涨跌"
+    "查看股市漲跌"
   ],
   "分析個股走勢": [
     "tradingagents-cn",
@@ -47607,7 +47609,7 @@ export const SYNONYM_MAP = {
     "查a股行情",
     "選股推薦",
     "查詢股票數據",
-    "查看股市涨跌"
+    "查看股市漲跌"
   ],
   "查詢股票數據": [
     "tradingagents-cn",
@@ -47616,9 +47618,9 @@ export const SYNONYM_MAP = {
     "查a股行情",
     "選股推薦",
     "分析個股走勢",
-    "查看股市涨跌"
+    "查看股市漲跌"
   ],
-  "查看股市涨跌": [
+  "查看股市漲跌": [
     "tradingagents-cn",
     "a-stock",
     "china",
@@ -48320,14 +48322,14 @@ export const SYNONYM_MAP = {
     "math-animation",
     "visualization",
     "畫幾何圖形",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "生成函數圖像動畫",
     "做線性代數動畫"
   ],
   "3b1b-manim": [
     "做數學動畫",
     "畫幾何圖形",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "生成函數圖像動畫",
     "做線性代數動畫",
     "manim",
@@ -48337,7 +48339,7 @@ export const SYNONYM_MAP = {
   "manim": [
     "做數學動畫",
     "畫幾何圖形",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "生成函數圖像動畫",
     "做線性代數動畫",
     "動畫演示幾何定理",
@@ -48347,7 +48349,7 @@ export const SYNONYM_MAP = {
   "math-animation": [
     "做數學動畫",
     "畫幾何圖形",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "生成函數圖像動畫",
     "做線性代數動畫",
     "3b1b-manim",
@@ -48360,11 +48362,11 @@ export const SYNONYM_MAP = {
     "math-animation",
     "visualization",
     "做數學動畫",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "生成函數圖像動畫",
     "做線性代數動畫"
   ],
-  "制作微积分可視化": [
+  "制作微積分可視化": [
     "3b1b-manim",
     "manim",
     "math-animation",
@@ -48381,7 +48383,7 @@ export const SYNONYM_MAP = {
     "visualization",
     "做數學動畫",
     "畫幾何圖形",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "做線性代數動畫"
   ],
   "做線性代數動畫": [
@@ -48391,7 +48393,7 @@ export const SYNONYM_MAP = {
     "visualization",
     "做數學動畫",
     "畫幾何圖形",
-    "制作微积分可視化",
+    "制作微積分可視化",
     "生成函數圖像動畫"
   ],
   "動畫演示幾何定理": [
@@ -48794,7 +48796,7 @@ export const SYNONYM_MAP = {
   "everyone-can-use-english": [
     "找自學英語教材",
     "推薦英語學習路徑",
-    "規划英語學習計畫",
+    "規劃英語學習計畫",
     "找免費英語課程",
     "學習英語基礎教程",
     "english-learning",
@@ -48804,7 +48806,7 @@ export const SYNONYM_MAP = {
   "english-learning": [
     "找自學英語教材",
     "推薦英語學習路徑",
-    "規划英語學習計畫",
+    "規劃英語學習計畫",
     "找免費英語課程",
     "學習英語基礎教程",
     "everyone-can-use-english",
@@ -48814,7 +48816,7 @@ export const SYNONYM_MAP = {
   "learning-resource": [
     "找自學英語教材",
     "推薦英語學習路徑",
-    "規划英語學習計畫",
+    "規劃英語學習計畫",
     "找免費英語課程",
     "學習英語基礎教程",
     "everyone-can-use-english",
@@ -48824,7 +48826,7 @@ export const SYNONYM_MAP = {
   "language-curriculum": [
     "找自學英語教材",
     "推薦英語學習路徑",
-    "規划英語學習計畫",
+    "規劃英語學習計畫",
     "找免費英語課程",
     "學習英語基礎教程",
     "everyone-can-use-english",
@@ -48838,7 +48840,7 @@ export const SYNONYM_MAP = {
     "language-curriculum",
     "education"
   ],
-  "規划英語學習計畫": [
+  "規劃英語學習計畫": [
     "everyone-can-use-english",
     "english-learning",
     "learning-resource",
@@ -49387,7 +49389,7 @@ export const SYNONYM_MAP = {
   ],
   "scrapling": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格",
@@ -49397,7 +49399,7 @@ export const SYNONYM_MAP = {
   ],
   "crawler": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格",
@@ -49407,28 +49409,28 @@ export const SYNONYM_MAP = {
   ],
   "crawling": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格"
   ],
   "crawling-python": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格"
   ],
   "stealth": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格"
   ],
   "stealthyfetcher": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格",
@@ -49438,7 +49440,7 @@ export const SYNONYM_MAP = {
   ],
   "cloudflare-bypass": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格",
@@ -49448,12 +49450,12 @@ export const SYNONYM_MAP = {
   ],
   "xpath": [
     "繞過 cloudflare 爬網頁",
-    "反檢測網頁爬虫",
+    "反檢測網頁爬蟲",
     "自適應抓取網站內容",
     "全站數據爬取",
     "隱匿抓取網頁表格"
   ],
-  "反檢測網頁爬虫": [
+  "反檢測網頁爬蟲": [
     "scrapling",
     "ai-scraping",
     "crawler",
@@ -50277,16 +50279,6 @@ export const SYNONYM_MAP = {
     "project-memory"
   ],
   "終端機自動化": [
-    "kilocode",
-    "kilo-code",
-    "agentic-engineering",
-    "vscode-extension",
-    "jetbrains",
-    "cli-agent",
-    "code-automation",
-    "project-memory"
-  ],
-  "審查代碼": [
     "kilocode",
     "kilo-code",
     "agentic-engineering",
@@ -51896,7 +51888,7 @@ export const SYNONYM_MAP = {
     "在桌面應用打開 .sqlite 文件",
     "寫 sql 查詢篩選表格數據",
     "可視化設計數據庫表結構",
-    "将 csv 或 excel 導入 sqlite",
+    "將 csv 或 excel 導入 sqlite",
     "sqlite-browser",
     "sqlite-gui",
     "database-browser"
@@ -51906,7 +51898,7 @@ export const SYNONYM_MAP = {
     "在桌面應用打開 .sqlite 文件",
     "寫 sql 查詢篩選表格數據",
     "可視化設計數據庫表結構",
-    "将 csv 或 excel 導入 sqlite",
+    "將 csv 或 excel 導入 sqlite",
     "sqlite-browser",
     "db4s",
     "database-browser"
@@ -51916,7 +51908,7 @@ export const SYNONYM_MAP = {
     "在桌面應用打開 .sqlite 文件",
     "寫 sql 查詢篩選表格數據",
     "可視化設計數據庫表結構",
-    "将 csv 或 excel 導入 sqlite",
+    "將 csv 或 excel 導入 sqlite",
     "sqlite-browser",
     "db4s",
     "sqlite-gui"
@@ -51926,7 +51918,7 @@ export const SYNONYM_MAP = {
     "在桌面應用打開 .sqlite 文件",
     "寫 sql 查詢篩選表格數據",
     "可視化設計數據庫表結構",
-    "将 csv 或 excel 導入 sqlite",
+    "將 csv 或 excel 導入 sqlite",
     "sqlite-browser",
     "db4s",
     "sqlite-gui"
@@ -51952,7 +51944,7 @@ export const SYNONYM_MAP = {
     "database-browser",
     "sqlite-manager"
   ],
-  "将 csv 或 excel 導入 sqlite": [
+  "將 csv 或 excel 導入 sqlite": [
     "sqlite-browser",
     "db4s",
     "sqlite-gui",
@@ -52336,14 +52328,14 @@ export const SYNONYM_MAP = {
     "dsh-web-ui",
     "dsh-web",
     "deepseek 移動端遠程運維",
-    "dsh web gui 插件安装",
+    "dsh web gui 插件安裝",
     "deepseek ssh 遠程管理",
     "dsh 皮膚主題配置"
   ],
   "dsh-web-ui": [
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
-    "dsh web gui 插件安装",
+    "dsh web gui 插件安裝",
     "deepseek ssh 遠程管理",
     "dsh 皮膚主題配置",
     "dsh-web"
@@ -52351,7 +52343,7 @@ export const SYNONYM_MAP = {
   "dsh-web": [
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
-    "dsh web gui 插件安装",
+    "dsh web gui 插件安裝",
     "deepseek ssh 遠程管理",
     "dsh 皮膚主題配置",
     "dsh-web-ui"
@@ -52360,11 +52352,11 @@ export const SYNONYM_MAP = {
     "dsh-web-ui",
     "dsh-web",
     "dsh 任務看板操作",
-    "dsh web gui 插件安装",
+    "dsh web gui 插件安裝",
     "deepseek ssh 遠程管理",
     "dsh 皮膚主題配置"
   ],
-  "dsh web gui 插件安装": [
+  "dsh web gui 插件安裝": [
     "dsh-web-ui",
     "dsh-web",
     "dsh 任務看板操作",
@@ -52377,7 +52369,7 @@ export const SYNONYM_MAP = {
     "dsh-web",
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
-    "dsh web gui 插件安装",
+    "dsh web gui 插件安裝",
     "dsh 皮膚主題配置"
   ],
   "dsh 皮膚主題配置": [
@@ -52385,7 +52377,7 @@ export const SYNONYM_MAP = {
     "dsh-web",
     "dsh 任務看板操作",
     "deepseek 移動端遠程運維",
-    "dsh web gui 插件安装",
+    "dsh web gui 插件安裝",
     "deepseek ssh 遠程管理"
   ],
   "檢查 typescript 程式碼品質": [
@@ -54145,7 +54137,7 @@ export const SYNONYM_MAP = {
     "前端型別重構",
     "收窄 prop 類型",
     "精簡 react 組件屬性",
-    "去掉多余 prop 類型",
+    "去掉多餘 prop 類型",
     "移除無用 prop",
     "修正 prop 類型範圍"
   ],
@@ -54155,7 +54147,7 @@ export const SYNONYM_MAP = {
     "前端型別重構",
     "收窄 prop 類型",
     "精簡 react 組件屬性",
-    "去掉多余 prop 類型",
+    "去掉多餘 prop 類型",
     "移除無用 prop",
     "修正 prop 類型範圍"
   ],
@@ -54165,7 +54157,7 @@ export const SYNONYM_MAP = {
     "前端型別重構",
     "收窄 prop 類型",
     "精簡 react 組件屬性",
-    "去掉多余 prop 類型",
+    "去掉多餘 prop 類型",
     "移除無用 prop",
     "修正 prop 類型範圍"
   ],
@@ -54175,7 +54167,7 @@ export const SYNONYM_MAP = {
     "前端型別重構",
     "收窄 prop 類型",
     "精簡 react 組件屬性",
-    "去掉多余 prop 類型",
+    "去掉多餘 prop 類型",
     "移除無用 prop",
     "修正 prop 類型範圍"
   ],
@@ -54185,7 +54177,7 @@ export const SYNONYM_MAP = {
     "前端型別重構",
     "收窄 prop 類型",
     "精簡 react 組件屬性",
-    "去掉多余 prop 類型",
+    "去掉多餘 prop 類型",
     "移除無用 prop",
     "修正 prop 類型範圍"
   ],
@@ -54195,7 +54187,7 @@ export const SYNONYM_MAP = {
     "前端型別重構",
     "收窄 prop 類型",
     "精簡 react 組件屬性",
-    "去掉多余 prop 類型",
+    "去掉多餘 prop 類型",
     "移除無用 prop",
     "修正 prop 類型範圍"
   ],
@@ -54231,7 +54223,7 @@ export const SYNONYM_MAP = {
     "component-refactoring",
     "clean-props"
   ],
-  "去掉多余 prop 類型": [
+  "去掉多餘 prop 類型": [
     "narrow-react-prop-types",
     "react-types",
     "prop-types-narrowing",
@@ -55239,7 +55231,7 @@ export const SYNONYM_MAP = {
     "storyboard",
     "script-to-visual"
   ],
-  "把地理脚本轉成地圖動畫": [
+  "把地理腳本轉成地圖動畫": [
     "geography-video-effects",
     "geography",
     "effects",
@@ -55248,66 +55240,66 @@ export const SYNONYM_MAP = {
     "cinematic maps"
   ],
   "geography-video-effects": [
-    "把地理脚本轉成地圖動畫",
-    "将歷史故事做成動態地圖",
+    "把地理腳本轉成地圖動畫",
+    "將歷史故事做成動態地圖",
     "制作地形變化視頻效果",
-    "把領土變迁渲染成影視級地圖動畫",
-    "将文化脚本轉成地圖視覺呈現",
+    "把領土變遷渲染成影視級地圖動畫",
+    "將文化腳本轉成地圖視覺呈現",
     "geography",
     "effects",
     "map animation"
   ],
   "geography": [
-    "把地理脚本轉成地圖動畫",
-    "将歷史故事做成動態地圖",
+    "把地理腳本轉成地圖動畫",
+    "將歷史故事做成動態地圖",
     "制作地形變化視頻效果",
-    "把領土變迁渲染成影視級地圖動畫",
-    "将文化脚本轉成地圖視覺呈現",
+    "把領土變遷渲染成影視級地圖動畫",
+    "將文化腳本轉成地圖視覺呈現",
     "geography-video-effects",
     "effects",
     "map animation"
   ],
   "effects": [
-    "把地理脚本轉成地圖動畫",
-    "将歷史故事做成動態地圖",
+    "把地理腳本轉成地圖動畫",
+    "將歷史故事做成動態地圖",
     "制作地形變化視頻效果",
-    "把領土變迁渲染成影視級地圖動畫",
-    "将文化脚本轉成地圖視覺呈現",
+    "把領土變遷渲染成影視級地圖動畫",
+    "將文化腳本轉成地圖視覺呈現",
     "geography-video-effects",
     "geography",
     "map animation"
   ],
   "map animation": [
-    "把地理脚本轉成地圖動畫",
-    "将歷史故事做成動態地圖",
+    "把地理腳本轉成地圖動畫",
+    "將歷史故事做成動態地圖",
     "制作地形變化視頻效果",
-    "把領土變迁渲染成影視級地圖動畫",
-    "将文化脚本轉成地圖視覺呈現",
+    "把領土變遷渲染成影視級地圖動畫",
+    "將文化腳本轉成地圖視覺呈現",
     "geography-video-effects",
     "geography",
     "effects"
   ],
   "historical visualization": [
-    "把地理脚本轉成地圖動畫",
-    "将歷史故事做成動態地圖",
+    "把地理腳本轉成地圖動畫",
+    "將歷史故事做成動態地圖",
     "制作地形變化視頻效果",
-    "把領土變迁渲染成影視級地圖動畫",
-    "将文化脚本轉成地圖視覺呈現",
+    "把領土變遷渲染成影視級地圖動畫",
+    "將文化腳本轉成地圖視覺呈現",
     "geography-video-effects",
     "geography",
     "effects"
   ],
   "cinematic maps": [
-    "把地理脚本轉成地圖動畫",
-    "将歷史故事做成動態地圖",
+    "把地理腳本轉成地圖動畫",
+    "將歷史故事做成動態地圖",
     "制作地形變化視頻效果",
-    "把領土變迁渲染成影視級地圖動畫",
-    "将文化脚本轉成地圖視覺呈現",
+    "把領土變遷渲染成影視級地圖動畫",
+    "將文化腳本轉成地圖視覺呈現",
     "geography-video-effects",
     "geography",
     "effects"
   ],
-  "将歷史故事做成動態地圖": [
+  "將歷史故事做成動態地圖": [
     "geography-video-effects",
     "geography",
     "effects",
@@ -55323,7 +55315,7 @@ export const SYNONYM_MAP = {
     "historical visualization",
     "cinematic maps"
   ],
-  "把領土變迁渲染成影視級地圖動畫": [
+  "把領土變遷渲染成影視級地圖動畫": [
     "geography-video-effects",
     "geography",
     "effects",
@@ -55331,7 +55323,7 @@ export const SYNONYM_MAP = {
     "historical visualization",
     "cinematic maps"
   ],
-  "将文化脚本轉成地圖視覺呈現": [
+  "將文化腳本轉成地圖視覺呈現": [
     "geography-video-effects",
     "geography",
     "effects",
@@ -55348,62 +55340,62 @@ export const SYNONYM_MAP = {
   ],
   "internet-ad-director": [
     "撰寫廣告文案",
-    "設計分鏡脚本",
-    "策划品牌营銷活動",
+    "設計分鏡腳本",
+    "策劃品牌營銷活動",
     "制作病毒式廣告",
-    "規划短視頻廣告",
+    "規劃短視頻廣告",
     "viral-ad",
     "short-video-ad",
     "ad-storyboard"
   ],
   "viral-ad": [
     "撰寫廣告文案",
-    "設計分鏡脚本",
-    "策划品牌营銷活動",
+    "設計分鏡腳本",
+    "策劃品牌營銷活動",
     "制作病毒式廣告",
-    "規划短視頻廣告",
+    "規劃短視頻廣告",
     "internet-ad-director",
     "short-video-ad",
     "ad-storyboard"
   ],
   "short-video-ad": [
     "撰寫廣告文案",
-    "設計分鏡脚本",
-    "策划品牌营銷活動",
+    "設計分鏡腳本",
+    "策劃品牌營銷活動",
     "制作病毒式廣告",
-    "規划短視頻廣告",
+    "規劃短視頻廣告",
     "internet-ad-director",
     "viral-ad",
     "ad-storyboard"
   ],
   "ad-storyboard": [
     "撰寫廣告文案",
-    "設計分鏡脚本",
-    "策划品牌营銷活動",
+    "設計分鏡腳本",
+    "策劃品牌營銷活動",
     "制作病毒式廣告",
-    "規划短視頻廣告",
+    "規劃短視頻廣告",
     "internet-ad-director",
     "viral-ad",
     "short-video-ad"
   ],
   "brand-campaign": [
     "撰寫廣告文案",
-    "設計分鏡脚本",
-    "策划品牌营銷活動",
+    "設計分鏡腳本",
+    "策劃品牌營銷活動",
     "制作病毒式廣告",
-    "規划短視頻廣告",
+    "規劃短視頻廣告",
     "internet-ad-director",
     "viral-ad",
     "short-video-ad"
   ],
-  "設計分鏡脚本": [
+  "設計分鏡腳本": [
     "internet-ad-director",
     "viral-ad",
     "short-video-ad",
     "ad-storyboard",
     "brand-campaign"
   ],
-  "策划品牌营銷活動": [
+  "策劃品牌營銷活動": [
     "internet-ad-director",
     "viral-ad",
     "short-video-ad",
@@ -55417,7 +55409,7 @@ export const SYNONYM_MAP = {
     "ad-storyboard",
     "brand-campaign"
   ],
-  "規划短視頻廣告": [
+  "規劃短視頻廣告": [
     "internet-ad-director",
     "viral-ad",
     "short-video-ad",
@@ -57505,7 +57497,7 @@ export const SYNONYM_MAP = {
     "搭建模型推理集群",
     "跑大模型api",
     "提供模型推理接口",
-    "搭建agent推理基础設施",
+    "搭建agent推理基礎設施",
     "inference-server",
     "superlinked",
     "model-serving"
@@ -57515,7 +57507,7 @@ export const SYNONYM_MAP = {
     "搭建模型推理集群",
     "跑大模型api",
     "提供模型推理接口",
-    "搭建agent推理基础設施",
+    "搭建agent推理基礎設施",
     "離線跑 llm",
     "本機部署大語言模型",
     "測試裝置能跑什麼模型"
@@ -57525,7 +57517,7 @@ export const SYNONYM_MAP = {
     "搭建模型推理集群",
     "跑大模型api",
     "提供模型推理接口",
-    "搭建agent推理基础設施",
+    "搭建agent推理基礎設施",
     "sie",
     "inference-server",
     "model-serving"
@@ -57535,7 +57527,7 @@ export const SYNONYM_MAP = {
     "搭建模型推理集群",
     "跑大模型api",
     "提供模型推理接口",
-    "搭建agent推理基础設施",
+    "搭建agent推理基礎設施",
     "sie",
     "inference-server",
     "superlinked"
@@ -57561,7 +57553,7 @@ export const SYNONYM_MAP = {
     "model-serving",
     "agent-infrastructure"
   ],
-  "搭建agent推理基础設施": [
+  "搭建agent推理基礎設施": [
     "sie",
     "inference-server",
     "superlinked",
@@ -57760,7 +57752,7 @@ export const SYNONYM_MAP = {
     "做網頁自動化測試",
     "讓ai agent瀏覽網頁",
     "繞過網站反爬檢測",
-    "批量访問網頁",
+    "批量訪問網頁",
     "antidetect",
     "antidetect-browser",
     "browser"
@@ -57770,7 +57762,7 @@ export const SYNONYM_MAP = {
     "做網頁自動化測試",
     "讓ai agent瀏覽網頁",
     "繞過網站反爬檢測",
-    "批量访問網頁",
+    "批量訪問網頁",
     "obscura",
     "antidetect-browser",
     "browser"
@@ -57780,7 +57772,7 @@ export const SYNONYM_MAP = {
     "做網頁自動化測試",
     "讓ai agent瀏覽網頁",
     "繞過網站反爬檢測",
-    "批量访問網頁",
+    "批量訪問網頁",
     "obscura",
     "antidetect",
     "browser"
@@ -57809,7 +57801,7 @@ export const SYNONYM_MAP = {
     "cdp",
     "headless"
   ],
-  "批量访問網頁": [
+  "批量訪問網頁": [
     "obscura",
     "antidetect",
     "antidetect-browser",
@@ -58856,7 +58848,7 @@ export const SYNONYM_MAP = {
   "knowledge graph from text": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58865,7 +58857,7 @@ export const SYNONYM_MAP = {
   "ancient text processing": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58874,7 +58866,7 @@ export const SYNONYM_MAP = {
   "agentic ontology": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58883,7 +58875,7 @@ export const SYNONYM_MAP = {
   "knowledge engineering": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58892,7 +58884,7 @@ export const SYNONYM_MAP = {
   "autonomous wiki agent": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58901,7 +58893,7 @@ export const SYNONYM_MAP = {
   "entity extraction": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58910,7 +58902,7 @@ export const SYNONYM_MAP = {
   "historical knowledge graph": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58919,7 +58911,7 @@ export const SYNONYM_MAP = {
   "ontology from corpus": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58928,7 +58920,7 @@ export const SYNONYM_MAP = {
   "butler agent": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58937,7 +58929,7 @@ export const SYNONYM_MAP = {
   "wiki automation": [
     "知識圖譜",
     "古籍處理",
-    "把古籍轉成知識圖谱",
+    "把古籍轉成知識圖譜",
     "整理歷史人物關系",
     "生成歷史事件時間線",
     "提取史書人物實體",
@@ -58953,7 +58945,7 @@ export const SYNONYM_MAP = {
     "historical knowledge graph",
     "ontology from corpus"
   ],
-  "把古籍轉成知識圖谱": [
+  "把古籍轉成知識圖譜": [
     "knowledge graph from text",
     "ancient text processing",
     "agentic ontology",
@@ -59128,7 +59120,7 @@ export const SYNONYM_MAP = {
     "畫界面草圖",
     "做可點擊原型",
     "鏈接屏幕原型",
-    "生成ai編碼提示词",
+    "生成ai編碼提示詞",
     "畫material 3界面"
   ],
   "material-3": [
@@ -59138,7 +59130,7 @@ export const SYNONYM_MAP = {
     "畫界面草圖",
     "做可點擊原型",
     "鏈接屏幕原型",
-    "生成ai編碼提示词",
+    "生成ai編碼提示詞",
     "畫material 3界面"
   ],
   "material3-expressive": [
@@ -59148,7 +59140,7 @@ export const SYNONYM_MAP = {
     "畫界面草圖",
     "做可點擊原型",
     "鏈接屏幕原型",
-    "生成ai編碼提示词",
+    "生成ai編碼提示詞",
     "畫material 3界面"
   ],
   "ui-sketch": [
@@ -59158,7 +59150,7 @@ export const SYNONYM_MAP = {
     "畫界面草圖",
     "做可點擊原型",
     "鏈接屏幕原型",
-    "生成ai編碼提示词",
+    "生成ai編碼提示詞",
     "畫material 3界面"
   ],
   "design-to-prompt": [
@@ -59168,7 +59160,7 @@ export const SYNONYM_MAP = {
     "畫界面草圖",
     "做可點擊原型",
     "鏈接屏幕原型",
-    "生成ai編碼提示词",
+    "生成ai編碼提示詞",
     "畫material 3界面"
   ],
   "設計稿": [
@@ -59216,7 +59208,7 @@ export const SYNONYM_MAP = {
     "design-to-prompt",
     "vibe-coding"
   ],
-  "生成ai編碼提示词": [
+  "生成ai編碼提示詞": [
     "m3e-canvas",
     "material-3",
     "material-design",
@@ -61127,61 +61119,41 @@ export const SYNONYM_MAP = {
     "coding-agents",
     "free-gpu"
   ],
-  "审查程式碼安全": [
-    "security-audit-skill",
-    "audit",
-    "檢查代碼弱點",
-    "找出程式缺陷",
-    "分析安全漏洞",
-    "审計系統風險"
-  ],
   "security-audit-skill": [
-    "审查程式碼安全",
+    "審查程式碼安全",
     "檢查代碼弱點",
     "找出程式缺陷",
     "分析安全漏洞",
-    "审計系統風險",
-    "audit"
+    "審計系統風險",
+    "claude-code-cybersecurity-skill",
+    "cybersecurity",
+    "threat-hunting"
   ],
   "audit": [
-    "审查程式碼安全",
+    "審查程式碼安全",
     "檢查代碼弱點",
     "找出程式缺陷",
     "分析安全漏洞",
-    "审計系統風險",
-    "security-audit-skill"
+    "審計系統風險",
+    "claude-code-cybersecurity-skill",
+    "cybersecurity",
+    "threat-hunting"
   ],
   "檢查代碼弱點": [
     "security-audit-skill",
-    "audit",
-    "审查程式碼安全",
-    "找出程式缺陷",
-    "分析安全漏洞",
-    "审計系統風險"
+    "audit"
   ],
   "找出程式缺陷": [
     "security-audit-skill",
-    "audit",
-    "审查程式碼安全",
-    "檢查代碼弱點",
-    "分析安全漏洞",
-    "审計系統風險"
+    "audit"
   ],
   "分析安全漏洞": [
     "security-audit-skill",
-    "audit",
-    "审查程式碼安全",
-    "檢查代碼弱點",
-    "找出程式缺陷",
-    "审計系統風險"
+    "audit"
   ],
-  "审計系統風險": [
+  "審計系統風險": [
     "security-audit-skill",
-    "audit",
-    "审查程式碼安全",
-    "檢查代碼弱點",
-    "找出程式缺陷",
-    "分析安全漏洞"
+    "audit"
   ],
   "監控股票即時價格": [
     "openstock",
@@ -61600,40 +61572,40 @@ export const SYNONYM_MAP = {
   "測試與自動化": [
     "niubigeo",
     "查看ai搜索中品牌出現次數",
-    "监控ai對話里品牌提及",
-    "分析竞品在ai平台表現",
+    "監控ai對話裡品牌提及",
+    "分析競品在ai平台表現",
     "優化ai搜索引擎品牌排名",
     "追蹤ai回答中品牌曝光"
   ],
   "niubigeo": [
     "測試與自動化",
     "查看ai搜索中品牌出現次數",
-    "监控ai對話里品牌提及",
-    "分析竞品在ai平台表現",
+    "監控ai對話裡品牌提及",
+    "分析競品在ai平台表現",
     "優化ai搜索引擎品牌排名",
     "追蹤ai回答中品牌曝光"
   ],
   "查看ai搜索中品牌出現次數": [
     "niubigeo",
     "測試與自動化",
-    "监控ai對話里品牌提及",
-    "分析竞品在ai平台表現",
+    "監控ai對話裡品牌提及",
+    "分析競品在ai平台表現",
     "優化ai搜索引擎品牌排名",
     "追蹤ai回答中品牌曝光"
   ],
-  "监控ai對話里品牌提及": [
+  "監控ai對話裡品牌提及": [
     "niubigeo",
     "測試與自動化",
     "查看ai搜索中品牌出現次數",
-    "分析竞品在ai平台表現",
+    "分析競品在ai平台表現",
     "優化ai搜索引擎品牌排名",
     "追蹤ai回答中品牌曝光"
   ],
-  "分析竞品在ai平台表現": [
+  "分析競品在ai平台表現": [
     "niubigeo",
     "測試與自動化",
     "查看ai搜索中品牌出現次數",
-    "监控ai對話里品牌提及",
+    "監控ai對話裡品牌提及",
     "優化ai搜索引擎品牌排名",
     "追蹤ai回答中品牌曝光"
   ],
@@ -61641,16 +61613,16 @@ export const SYNONYM_MAP = {
     "niubigeo",
     "測試與自動化",
     "查看ai搜索中品牌出現次數",
-    "监控ai對話里品牌提及",
-    "分析竞品在ai平台表現",
+    "監控ai對話裡品牌提及",
+    "分析競品在ai平台表現",
     "追蹤ai回答中品牌曝光"
   ],
   "追蹤ai回答中品牌曝光": [
     "niubigeo",
     "測試與自動化",
     "查看ai搜索中品牌出現次數",
-    "监控ai對話里品牌提及",
-    "分析竞品在ai平台表現",
+    "監控ai對話裡品牌提及",
+    "分析競品在ai平台表現",
     "優化ai搜索引擎品牌排名"
   ],
   "aircard": [
@@ -63375,23 +63347,23 @@ export const SYNONYM_MAP = {
     "文件生產力",
     "openwiki"
   ],
-  "艺术动画": [
+  "藝術動畫": [
     "huashu-art-motion",
     "art-animation",
     "animation-skill"
   ],
   "huashu-art-motion": [
-    "艺术动画",
+    "藝術動畫",
     "art-animation",
     "animation-skill"
   ],
   "art-animation": [
-    "艺术动画",
+    "藝術動畫",
     "huashu-art-motion",
     "animation-skill"
   ],
   "animation-skill": [
-    "艺术动画",
+    "藝術動畫",
     "huashu-art-motion",
     "art-animation"
   ],

@@ -347,7 +347,36 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-15（第七輪）快照，其次 2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-19 快照，其次 2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-19 GitHub Pages 工具庫空白：dist 漏檔導致 import 鏈斷裂
+
+**症狀**：live 站（`https://chun-chieh-chang.github.io/Tool-Calling/`）工具庫 0 筆、KPI 顯示 `--`、`hintToolCount` 停在 722。本機 `npm start` 完全正常。
+
+**RCA（實測，非推測）**
+- Playwright 直連 live：`GET /core/query-normalize.js` → **404**，`net::ERR_ABORTED`。
+- `core/search-engine.js` 在 2026-10-15（Q4=A）新增 `import { normalizeQuery } from './query-normalize.js'`；`scripts/build-web.js` 是**手寫清單**複製 `core/` 檔案，清單沒有同步。
+- 靜態 import 鏈失敗是**模組載入期錯誤**：`web/app.js` 整支不執行 → `init()` 從未跑 → 沒有 `fetch('./registry/tools.json')`。因此 `tools.json` 本身在 Pages 上是 200 且 3.0MB、內容 771 筆完全正常（已下載驗證）。
+- **本機看不出來的結構性原因**：`npm start` 由 `web/server.js` 直接供應 repo 檔案，完全不經過 `dist/`；只有靜態託管會踩到。
+- CI 也沒攔到：`deploy-pages.yml` 跑 `npm test` 與 `node scripts/build-web.js`，但沒有任何測試驗證「dist 的模組圖是否閉合」。
+
+**CAPA**
+1. 新增 `scripts/browser-module-graph.js`：從瀏覽器入口（`app.js`、`pipeline/add-tool-dialog.js`、`worker/index.js`）沿相對 import／動態 import **遞迴展開**，回傳 dist 相對路徑 → 原始碼路徑對照；解析不到任何一支就丟錯，**建置直接失敗**（CI 紅燈優於部署白畫面）。
+2. `scripts/build-web.js` 改呼叫 `copyBrowserModules()`，刪除全部手寫清單（含原本的 `core/`、`scripts/`、`pipeline/`、`worker/` 逐一複製）。
+3. 新增 `tests/browser-module-graph.test.js`（6 項）：依賴圖閉合、`core/query-normalize.js` 回歸釘死、動態 import 追蹤、複製後 dist 內每個相對 import 都存在、dist 不得出現未追蹤的 `.js`。
+
+**驗證**
+- 本機 `dist/` 以靜態伺服器（無 `/api/*`）載入：`kpiTotalTools=777`、`顯示 777 個工具`、`777` 張卡片、搜尋「把 PDF 轉成 Markdown」→ 4 筆、首筆 Markitdown（走主執行緒 fallback，符合靜態站預期）。
+- `node scripts/build-web.js` 輸出「瀏覽器模組：16 支」。
+- `npm test`：508 項，505 pass、2 skipped、1 fail —— **唯一失敗是 `tests/knowledge-graph.test.js` 的本機 Playwright 瀏覽器版本不符（`chromium_headless_shell-1234` 不存在），與本次改動無關**；CI 有 `npx playwright install --with-deps chromium`，不受影響。
+
+**順手同步（皆為門禁逼出來的）**
+- `npm run agents:init` → AGENTS.md 工具數 771 → **777**（star 數、分類統計同步）。
+- README 工具數 771 → **777**（另有 3 處 725 的舊錨點一併更新）；`docs/README.md` SSOT 表 771 → 777（日期錨點 2026-10-19）。
+- `npm run categories:sync` → `docs/CATEGORY-SYSTEM.md` 重新產生（777 筆統計）。
+- `core/synonyms.generated.js` 由 `build-web` 重算（7760 詞彙）。
+
+**待用戶操作**：commit + push。CI 通過後 Pages 會自動重建；本次沒有動任何部署設定。
 
 ### 2026-10-15（第七輪）七題裁決執行：Q1=A／Q2=A／Q3=A／Q4=A／Q5=A／Q6=A／Q7=A
 
