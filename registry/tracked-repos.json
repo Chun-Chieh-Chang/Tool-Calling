@@ -26096,8 +26096,8 @@
     "discoveredAt": "2026-09-28T08:16:28.494Z",
     "sourceSnapshotWeek": "2026-W40",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-19T07:21:38.547Z",
+    "status": "in_registry"
   },
   "Observal/Axl": {
     "fullName": "Observal/Axl",
@@ -26909,8 +26909,8 @@
     "discoveredAt": "2026-10-12T08:40:48.785Z",
     "sourceSnapshotWeek": "2026-W42",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-19T07:21:38.547Z",
+    "status": "in_registry"
   },
   "mhtsec/ARTEX": {
     "fullName": "mhtsec/ARTEX",
@@ -27107,8 +27107,8 @@
     "discoveredAt": "2026-10-13T14:26:14.374Z",
     "sourceSnapshotWeek": "2026-W42",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-19T07:21:38.547Z",
+    "status": "in_registry"
   },
   "alejandrobujan/tendedero": {
     "fullName": "alejandrobujan/tendedero",
@@ -27151,8 +27151,8 @@
     "discoveredAt": "2026-10-13T14:26:14.374Z",
     "sourceSnapshotWeek": "2026-W42",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-19T07:21:38.547Z",
+    "status": "in_registry"
   },
   "lucasmarkes/hairline": {
     "fullName": "lucasmarkes/hairline",
@@ -27206,8 +27206,8 @@
     "discoveredAt": "2026-10-13T14:26:14.374Z",
     "sourceSnapshotWeek": "2026-W42",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-19T07:21:38.547Z",
+    "status": "in_registry"
   },
   "CAPCOM-TD-OSS/REDox": {
     "fullName": "CAPCOM-TD-OSS/REDox",
@@ -27228,8 +27228,8 @@
     "discoveredAt": "2026-10-13T14:26:14.374Z",
     "sourceSnapshotWeek": "2026-W42",
     "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "addedAt": "2026-10-19T07:21:38.547Z",
+    "status": "in_registry"
   },
   "zed-industries/zed": {
     "fullName": "zed-industries/zed",
@@ -27405,7 +27405,7 @@
     "total": 2688,
     "inRegistry": 734,
     "trackedOnly": 1954,
-    "lastGenerated": "2026-10-14T00:01:53.364Z"
+    "lastGenerated": "2026-10-19T07:21:38.578Z"
   },
-  "lastGenerated": "2026-10-14T00:01:53.302Z"
+  "lastGenerated": "2026-10-19T07:21:38.547Z"
 }

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-18T02:27:49.830Z",
+  "lastUpdated": "2026-10-19T07:21:58.855Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -58627,6 +58627,201 @@
         "需要特定的外部相依套件，包括 uv、ffmpeg 與 Playwright Chromium，用於渲染及執行。",
         "不適合用於複雜的 3D 建模或即時互動式遊戲引擎，因其專注於 2D 程式碼渲染之影格與合成影像。"
       ]
+    },
+    {
+      "id": "digup",
+      "name": "DigUp",
+      "url": "https://github.com/ARahim3/DigUp",
+      "description": "Search your computer by what's in your files: photos, PDFs, documents, recordings, videos and code. On-device on Mac, Windows and Linux, built on Google DeepMind's EmbeddingGemma 2.",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "digup",
+        "embeddinggemma",
+        "embeddings",
+        "file-search",
+        "linux",
+        "llama-cpp"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ARahim3/DigUp"
+      },
+      "capabilities": [
+        "embeddinggemma",
+        "embeddings",
+        "file-search",
+        "linux",
+        "llama-cpp",
+        "local-first"
+      ],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 2090,
+      "addedAt": "2026-10-19T07:21:38.547Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W42",
+        "starsAtIngest": 2090,
+        "weeklyDelta": 2090,
+        "ingestedAt": "2026-10-19T07:21:38.547Z"
+      }
+    },
+    {
+      "id": "ccbaga",
+      "name": "CCBaga",
+      "url": "https://github.com/liseami/CCBaga",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "ccbaga"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/liseami/CCBaga"
+      },
+      "capabilities": [],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 1933,
+      "addedAt": "2026-10-19T07:21:38.547Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W42",
+        "starsAtIngest": 1933,
+        "weeklyDelta": 1933,
+        "ingestedAt": "2026-10-19T07:21:38.547Z"
+      }
+    },
+    {
+      "id": "deepseek-bot",
+      "name": "DeepSeek-Bot",
+      "url": "https://github.com/Fei2411/DeepSeek-Bot",
+      "description": "A team of long-lived bots for DeepSeek Harness, with main bots, bot-to-bot messages and group chats.",
+      "category": "AI 代理",
+      "language": "javascript",
+      "triggers": [
+        "deepseek-bot",
+        "bot",
+        "deepseek-harness",
+        "dsh-plugin",
+        "multi-agent"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Fei2411/DeepSeek-Bot"
+      },
+      "capabilities": [
+        "bot",
+        "deepseek-harness",
+        "dsh-plugin",
+        "multi-agent"
+      ],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 1570,
+      "addedAt": "2026-10-19T07:21:38.547Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W42",
+        "starsAtIngest": 1570,
+        "weeklyDelta": 1570,
+        "ingestedAt": "2026-10-19T07:21:38.547Z"
+      }
+    },
+    {
+      "id": "plexo",
+      "name": "plexo",
+      "url": "https://github.com/anmolkapil/plexo",
+      "description": "No description provided.",
+      "category": "開發工具",
+      "language": "other",
+      "triggers": [
+        "plexo"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/anmolkapil/plexo"
+      },
+      "capabilities": [],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 3618,
+      "addedAt": "2026-10-19T07:21:38.547Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W42",
+        "starsAtIngest": 3618,
+        "weeklyDelta": 1557,
+        "ingestedAt": "2026-10-19T07:21:38.547Z"
+      }
+    },
+    {
+      "id": "playgta5",
+      "name": "playgta5",
+      "url": "https://github.com/shadany7824/playgta5",
+      "description": "A source code for playgta5.com.",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "playgta5"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/shadany7824/playgta5"
+      },
+      "capabilities": [],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 1528,
+      "addedAt": "2026-10-19T07:21:38.547Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W42",
+        "starsAtIngest": 1528,
+        "weeklyDelta": 1528,
+        "ingestedAt": "2026-10-19T07:21:38.547Z"
+      }
+    },
+    {
+      "id": "cadcraft",
+      "name": "cadcraft",
+      "url": "https://github.com/storytold/cadcraft",
+      "description": "CADCraft: computer-aided design and drafting — an open-source, clean-room AutoCAD-style app in pure Rust",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "cadcraft"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/storytold/cadcraft"
+      },
+      "capabilities": [],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 3813,
+      "addedAt": "2026-10-19T07:21:38.547Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W42",
+        "starsAtIngest": 3813,
+        "weeklyDelta": 887,
+        "ingestedAt": "2026-10-19T07:21:38.547Z"
+      }
     }
   ]
 }
