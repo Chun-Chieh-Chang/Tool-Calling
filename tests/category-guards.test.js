@@ -56,7 +56,22 @@ function withRestore(files, fn) {
     try {
       for (const [f, b] of backups) {
         if (!existsSync(b)) continue;
-        copyFileSync(b, f);
+        // 2026-10-19 CAPA：還原的 copyFileSync 曾以 UNKNOWN（部分防毒／檔案
+        // 掃描鎖的暫時性鎖窗）失敗，把「注入的變異」留在真實檔案上，連鎖炸掉
+        // 之後所有讀取同一檔案的守衛測試（現況／tier1 Property 2b）。
+        // 採指數退避重試（0.5s→1s→2s），還原失敗不得靜默。
+        let restored = false;
+        for (let attempt = 0; attempt < 3 && !restored; attempt++) {
+          try {
+            if (attempt > 0) {
+              Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500 * 2 ** attempt);
+            }
+            copyFileSync(b, f);
+            restored = true;
+          } catch (err) {
+            if (attempt === 2) throw err;
+          }
+        }
         // 位元組比對，確保真的還原
         assert.ok(
           readFileSync(f).equals(readFileSync(b)),
