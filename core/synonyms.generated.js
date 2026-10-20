@@ -30443,9 +30443,9 @@ export const SYNONYM_MAP = {
     "產出 3mf 檔案",
     "文字轉 dxf 圖檔",
     "build123d 建參數化零件",
-    "text-to-cad",
-    "text",
-    "cad"
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代"
   ],
   "文字描述生成 3d 檔": [
     "text-to-cad",
@@ -45673,9 +45673,9 @@ export const SYNONYM_MAP = {
     "照片轉成3d模型",
     "平面圖變3d",
     "圖像轉立體模型",
-    "imgtothree",
-    "3d conversion",
-    "model generation"
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術"
   ],
   "model generation": [
     "圖片轉3d模型",
@@ -63367,6 +63367,154 @@ export const SYNONYM_MAP = {
     "huashu-art-motion",
     "art-animation"
   ],
+  "工程製圖": [
+    "cadcraft",
+    "cad",
+    "2d cad",
+    "3d cad",
+    "autocad",
+    "autocad alternative",
+    "rust cad",
+    "dxf"
+  ],
+  "cadcraft": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "2d cad": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "3d cad": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "autocad": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "autocad alternative": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "rust cad": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "object snap": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "layers": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "dimension": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "hatch": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "blueprint": [
+    "工程製圖",
+    "電腦繪圖",
+    "autocad 替代",
+    "畫工程圖",
+    "2d cad 工具",
+    "dxf 轉檔"
+  ],
+  "電腦繪圖": [
+    "cadcraft",
+    "cad",
+    "2d cad",
+    "3d cad",
+    "autocad",
+    "autocad alternative",
+    "rust cad",
+    "dxf"
+  ],
+  "autocad 替代": [
+    "cadcraft",
+    "cad",
+    "2d cad",
+    "3d cad",
+    "autocad",
+    "autocad alternative",
+    "rust cad",
+    "dxf"
+  ],
+  "畫工程圖": [
+    "cadcraft",
+    "cad",
+    "2d cad",
+    "3d cad",
+    "autocad",
+    "autocad alternative",
+    "rust cad",
+    "dxf"
+  ],
+  "2d cad 工具": [
+    "cadcraft",
+    "cad",
+    "2d cad",
+    "3d cad",
+    "autocad",
+    "autocad alternative",
+    "rust cad",
+    "dxf"
+  ],
+  "dxf 轉檔": [
+    "cadcraft",
+    "cad",
+    "2d cad",
+    "3d cad",
+    "autocad",
+    "autocad alternative",
+    "rust cad",
+    "dxf"
+  ],
   "3d建模": [
     "ingetrazo",
     "3d-modeler",
@@ -63519,6 +63667,112 @@ export const SYNONYM_MAP = {
     "cursor-plugin",
     "plugin-scaffold",
     "編碼代理插件"
+  ],
+  "ai 繪圖": [
+    "artcraft",
+    "ai art",
+    "image generation",
+    "video generation",
+    "ai painting",
+    "digital art",
+    "ai ide",
+    "image to 3d"
+  ],
+  "artcraft": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "ai art": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "ai painting": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "digital art": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "ai ide": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "compositing": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "kitbash": [
+    "ai 繪圖",
+    "ai 影片生成",
+    "數位藝術",
+    "圖像生成",
+    "ai 作畫",
+    "藝術家 ide"
+  ],
+  "ai 影片生成": [
+    "artcraft",
+    "ai art",
+    "image generation",
+    "video generation",
+    "ai painting",
+    "digital art",
+    "ai ide",
+    "image to 3d"
+  ],
+  "數位藝術": [
+    "artcraft",
+    "ai art",
+    "image generation",
+    "video generation",
+    "ai painting",
+    "digital art",
+    "ai ide",
+    "image to 3d"
+  ],
+  "ai 作畫": [
+    "artcraft",
+    "ai art",
+    "image generation",
+    "video generation",
+    "ai painting",
+    "digital art",
+    "ai ide",
+    "image to 3d"
+  ],
+  "藝術家 ide": [
+    "artcraft",
+    "ai art",
+    "image generation",
+    "video generation",
+    "ai painting",
+    "digital art",
+    "ai ide",
+    "image to 3d"
   ],
   "翻譯": [
     "translate",

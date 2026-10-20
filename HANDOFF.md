@@ -373,6 +373,24 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 - `cli.js validate` 0 錯誤；check-mece／categories:sync --check／rescan --ci／doc-stats／templates／UTF-8／traditional 全綠。
 - 工具數 777 → **780**：AGENTS.md（agents:init）、README.md、docs/README.md、docs/CATEGORY-SYSTEM.md、`core/synonyms.generated.js`（7780 詞彙）同步；`docs/knowledge-graph.html` 由 saveRegistry 自動重生成。
 
+### 2026-10-20 批次入庫第二輪：cadcraft 補齊 ＋ artcraft 新增 ＋ 長駐伺服器競寫止血
+
+**需求**：將使用者第二批 GitHub 網址入庫——`storytold/cadcraft`（重複：W43 cron 已收錄，空語意欄）與 `storytold/artcraft`（新：33,860★）。
+
+**RCA / CAPA（長駐伺服器競寫）**
+1. `cli.js add artcraft` 期間，port 3000 的 `web/server.js`（跨日檢查自動觸發）執行了 `trending-weekly.js` 探勘，**與本次 add 同時競寫 `registry/tools.json`**，並連帶改寫 `weekly-trending.json`／`tracked-repos.json`／W42 週報／star-snapshots（自動發現 6 支 experimental：solidcraft／filee／d2r-mobile／cleanyourtv／macnativegames／space）。HANDOFF.md:549「隱藏寫檔者」再現。
+2. 處置：先 `Stop-Process` 停掉伺服器止血；6 支自動發現工具與 4 個探勘資料檔**全部退回 HEAD 基準**（W42 週報改寫屬「臨時執行汙染基準」已知問題，不得隨本批提交；該 6 支會由下輪 cron 正常重新探勘）。僅保留本次目標 2 支，並手動補上 `storytold/artcraft` 快照扁平鍵（33,861，對齊 `attachStarsToTool` 形狀）。
+
+**入庫內容**
+- `cadcraft`：分類「開發工具」→ **3D工程繪圖**；triggers 清「開發工具」污染後依 README 重寫；補 useCase／advantages／negativeConstraints（＋`_zh`，純 Rust、clean-room AutoCAD 風格、鎖點／圖層／標註／剖面線／圖塊／DXF、WebAssembly 瀏覽器執行、MCP agent-drivable、early development 下界）；description_zh 補齊；`experimental` → `active`。拆解判定：單一應用（`crates/` 為內部模組），無子工具需求。
+- `artcraft`（新增）：AI 圖像／影片創作 IDE（2D／3D 合成、image-to-3D mesh、角色姿勢、kitbashing、Grok／Midjourney／Sora／World Labs 等可插拔模型提供商）；分類 scanner 誤判「AI 代理」→ **多媒體生成**；語意欄（＋`_zh`）依 README 重寫；`experimental` → `active`。拆解判定：單一桌面應用，無子工具需求。
+
+**驗證**
+- `cli.js validate`：0 錯誤（18 警告、低品質 5 = 既有 W43 cron 中間態，非本次引入、Contract 99.6/100）；check-mece／sync-categories --check／rescan --ci（Tier 1 = 0）／doc-stats（781 筆锚點）／templates（781 無樣板）／duplicate-ids／UTF-8／traditional／syntax 全綠。
+- `npm test`：510 項、507 pass、2 skipped、1 fail（單一本機 Playwright headless-shell 版本不符既有環境問題，與本次無關）。
+- 工具數 780 → **781**：AGENTS.md（agents:init）、README.md、docs/README.md、docs/CATEGORY-SYSTEM.md、`core/synonyms.generated.js`（7,809 詞彙）同步。
+- 過程插曲：PowerShell 5.1 `Get-Content -Raw`（無 `-Encoding`）把無 BOM UTF-8 的 README 當 ANSI 讀，`Set-Content -Encoding UTF8` 回寫後整檔亂碼（triecker 守門未種病——diff 爆量攔截）→ `git checkout` 還原後改用 Edit 工具逐點改錨點。**教訓：修改含中文的 md 一律走 Edit 工具或 Node 腳本，禁用 PS5.1 原生命令讀寫。**
+
 ### 2026-10-19 部署紅燈：validate 把 trending 中間態當缺陷
 
 **症狀**：`6b33a1e`（Pages 空白修復）push 後 `Deploy GitHub Pages` 失敗在 `Validate Registry (Software Validation)`，`Run Tests` 起全部 skipped，live 站仍停在舊版。

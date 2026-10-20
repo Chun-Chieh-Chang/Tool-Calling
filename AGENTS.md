@@ -32,16 +32,16 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 780 個工具
+工具庫規模: 781 個工具
 追蹤 repos: 2688 個
-總 star 數: 32,250,402 ⭐
-平均 star 數: 41,347 ⭐
+總 star 數: 32,284,263 ⭐
+平均 star 數: 41,337 ⭐
 最後更新: 2026/10/20
 ```
 
 ### Top 5 分類
 - `AI 代理`: 153 個工具
-- `開發工具`: 123 個工具
+- `開發工具`: 122 個工具
 - `AI 框架`: 85 個工具
 - `學習資源`: 66 個工具
 - `文件生產力`: 63 個工具
@@ -51,7 +51,7 @@
 - `typescript`: 183 個工具
 - `javascript`: 75 個工具
 - `other`: 59 個工具
-- `rust`: 45 個工具
+- `rust`: 46 個工具
 
 ---
 
@@ -100,7 +100,7 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (780+)
+node cli.js list                      # 列出所有工具 (781+)
 ```
 
 ### Git 工作流
@@ -134,7 +134,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 
 ### 部署前檢查清單
 - [ ] 所有測試通過 (402/402，另有 2 筆整合測試跳過)
-- [ ] 工具庫驗證通過 (780+ 工具)
+- [ ] 工具庫驗證通過 (781+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] HANDOFF.md 已更新（本輪日期快照）
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -213,7 +213,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 780 and add new features
+fix(README): update tool count from 381 to 781 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -244,7 +244,7 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 780+ 工具 (單一真理來源)
+│   ├── tools.json      # 781+ 工具 (單一真理來源)
 │   ├── tracked-repos.json  # 2688 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
@@ -479,4 +479,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-10-20T03:41:03.706Z
+> **最後更新**：2026-10-20T04:35:53.865Z

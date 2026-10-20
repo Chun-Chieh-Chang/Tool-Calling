@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-20T03:37:53.744Z",
+  "lastUpdated": "2026-10-20T04:35:09.154Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -58799,29 +58799,65 @@
       "name": "cadcraft",
       "url": "https://github.com/storytold/cadcraft",
       "description": "CADCraft: computer-aided design and drafting — an open-source, clean-room AutoCAD-style app in pure Rust",
-      "category": "開發工具",
+      "category": "3D工程繪圖",
       "language": "rust",
       "triggers": [
-        "cadcraft"
+        "cadcraft",
+        "cad",
+        "2d cad",
+        "3d cad",
+        "autocad",
+        "autocad alternative",
+        "rust cad",
+        "dxf",
+        "object snap",
+        "layers",
+        "dimension",
+        "hatch",
+        "blueprint",
+        "工程製圖",
+        "電腦繪圖",
+        "autocad 替代",
+        "畫工程圖",
+        "2d cad 工具",
+        "dxf 轉檔"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/storytold/cadcraft"
       },
       "capabilities": [],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "useCase": "Creating and editing precision 2D drawings and 3D models in a clean-room AutoCAD-style environment — object snaps, layers, dimensions, hatches, blocks and DXF interchange — running natively or in the browser, and drivable by AI coding agents over MCP.",
+      "advantages": [
+        "Pure-Rust implementation with no legacy dependencies, running on macOS, Windows, Linux, FreeBSD and in the browser via WebAssembly",
+        "Clean-room recreation of AutoCAD-style workflows (snaps, layers, dimensions, hatches, blocks) without licensing constraints",
+        "Agent-drivable over MCP, letting AI coding assistants operate the CAD editor directly"
+      ],
+      "negativeConstraints": [
+        "Status is early development — file formats and commands may change between versions",
+        "Not yet mature for production drafting pipelines as a full AutoCAD replacement"
+      ],
       "stars": 3813,
       "addedAt": "2026-10-19T07:21:38.547Z",
-      "status": "experimental",
+      "status": "active",
       "_provenance": {
         "source": "trending-weekly",
         "week": "2026-W42",
         "starsAtIngest": 3813,
         "weeklyDelta": 887,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
-      }
+      },
+      "useCase_zh": "在 clean-room AutoCAD 風格環境中建立與編輯精密 2D 圖面與 3D 模型：物件鎖點、圖層、標註、剖面線、圖塊與 DXF 交換；可原生或於瀏覽器執行，並可透過 MCP 由 AI 編碼代理驅動。",
+      "advantages_zh": [
+        "純 Rust 實作、無舊式相依，可在 macOS、Windows、Linux、FreeBSD 原生執行，亦可透過 WebAssembly 於瀏覽器執行",
+        "以 clean-room 方式重現 AutoCAD 風格工作流程（鎖點、圖層、標註、剖面線、圖塊），無授權限制",
+        "可透過 MCP 由 AI 編碼代理直接操作 CAD 編輯器"
+      ],
+      "negativeConstraints_zh": [
+        "專案仍處 early development 狀態，檔案格式與指令可能隨版本變動",
+        "尚未能用於正式出圖管線，未達完整取代 AutoCAD 工作流程的成熟度"
+      ],
+      "description_zh": "CADCraft：電腦輔助設計與製圖 — 以純 Rust 撰寫的開源 clean-room AutoCAD 風格應用程式。"
     },
     {
       "id": "ingetrazo",
@@ -59835,6 +59871,68 @@
         "第三方整合插件需要各服務的憑證與 OAuth 授權，離線環境多數不可用。"
       ],
       "lastEnrichedAt": "2026-10-20T03:40:42.923Z"
+    },
+    {
+      "id": "artcraft",
+      "name": "Artcraft",
+      "url": "https://github.com/storytold/artcraft",
+      "description": "ArtCraft is an intentional crafting engine for artists, designers, and filmmakers",
+      "category": "多媒體生成",
+      "language": "rust",
+      "triggers": [
+        "artcraft",
+        "ai art",
+        "image generation",
+        "video generation",
+        "ai painting",
+        "digital art",
+        "ai ide",
+        "image to 3d",
+        "compositing",
+        "kitbash",
+        "ai 繪圖",
+        "ai 影片生成",
+        "數位藝術",
+        "圖像生成",
+        "ai 作畫",
+        "藝術家 ide"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/storytold/artcraft",
+        "repoUrl": "https://github.com/storytold/artcraft"
+      },
+      "capabilities": [
+        "3d-graphics",
+        "ai",
+        "aivideo",
+        "filmmaking",
+        "imagegeneration"
+      ],
+      "useCase": "Iteratively composing AI image and video creations — artists layer, mask, edit and regenerate results on a 2D canvas and inside 3D scenes (image-to-3D mesh, character posing, kitbashing) while switching between model providers.",
+      "advantages": [
+        "2D/3D creative IDE built for artistic control — compositing, masking, character posing and kitbashing instead of one-shot prompt boxes",
+        "Pluggable model providers (Grok, Midjourney, Sora, World Labs and more) so creators keep their favorite image/video models in one workspace",
+        "Open-source desktop app designed for AI media creation workflows"
+      ],
+      "negativeConstraints": [
+        "Generation quality depends on external model providers and their API access",
+        "Not a general-purpose 3D modeling suite — mesh features serve art compositing rather than engineering precision"
+      ],
+      "addedAt": "2026-10-20T04:29:45.840Z",
+      "status": "active",
+      "stars": 33861,
+      "useCase_zh": "迭代式地進行 AI 圖像與影片創作——藝術家在 2D 畫布與 3D 場景中分層、遮罩、編輯並重新生成結果（圖像轉 3D 網格、角色姿勢調整、套件拼裝），並可在多個模型提供商之間切換。",
+      "advantages_zh": [
+        "為藝術控制而生的 2D／3D 創作 IDE——提供合成、遮罩、角色姿勢與套件拼裝，而非一次性提示框",
+        "可插拔的模型提供商整合（Grok、Midjourney、Sora、World Labs 等），多種圖像／影片模型集中在同一工作環境",
+        "開源桌面應用程式，專為 AI 媒體創作流程設計"
+      ],
+      "negativeConstraints_zh": [
+        "生成品質取決於外部模型提供商及其 API 存取能力",
+        "並非通用 3D 建模套裝軟體——網格功能服務於藝術合成而非工程精度"
+      ],
+      "description_zh": "ArtCraft — 藝術家的 IDE：用於 AI 圖像與影片創作的互動式桌面應用程式，具備 2D／3D 合成、圖像轉 3D 網格與可插拔模型提供商整合。"
     }
   ]
 }
