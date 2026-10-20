@@ -12,13 +12,33 @@ const TEMP_DIR = join(__dirname, '..', '.temp');
 /**
  * 從 Markdown 內容萃取描述（取代 scanner-utils.js）
  */
-function parseMarkdownDescription(content) {
+export function parseMarkdownDescription(content) {
   if (content.startsWith('---')) {
     const endIdx = content.indexOf('---', 3);
     if (endIdx > -1) {
       const fm = content.substring(3, endIdx);
-      const descMatch = fm.match(/description:\s*(.+)/);
-      if (descMatch) return descMatch[1].trim().replace(/^['"]|['"]$/g, '');
+      // 2026-10-19 RCA：cursor/plugins 的 SKILL.md 大量使用 YAML 折疊字串
+      // `description: >-`，舊 regex 只抓到 ">-" 就回傳，18 個子工具描述全是垃圾。
+      // 增補 block scalar（|、|-、|+、>、>-、>+）多行收斂：
+      //   |  literal → 以換行串接；>  folded → 以空白串接。
+      // 下一個非縮排行（下一個 key）即為 block 結束。
+      const fmLines = fm.split('\n');
+      const descIdx = fmLines.findIndex(l => /^description:\s*/.test(l));
+      if (descIdx > -1) {
+        let value = fmLines[descIdx].replace(/^description:\s*/, '').trim();
+        if (/^[|>][-+]?(\s*\d+)?\s*$/.test(value)) {
+          const literal = value.startsWith('|');
+          const blockLines = [];
+          for (let j = descIdx + 1; j < fmLines.length; j++) {
+            const line = fmLines[j];
+            if (/^\S/.test(line)) break;
+            blockLines.push(line.trim());
+          }
+          value = literal ? blockLines.join('\n') : blockLines.join(' ');
+        }
+        value = value.replace(/^['"]|['"]$/g, '').trim();
+        if (value) return value.slice(0, 200);
+      }
       content = content.substring(endIdx + 3).trim();
     }
   }
