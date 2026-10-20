@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-19T07:21:58.855Z",
+  "lastUpdated": "2026-10-20T03:37:53.744Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -58822,6 +58822,1019 @@
         "weeklyDelta": 887,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
       }
+    },
+    {
+      "id": "ingetrazo",
+      "name": "Ingetrazo",
+      "url": "https://github.com/ingelibre/ingetrazo",
+      "description": "Free 3D modeler for architecture, engineering and 3D design - hand-sketch-style freeform push/pull modeling, opens .skp files (2013-2026), optional BIM tagging (IfcWall/IfcSlab/IfcColumn) with IFC export and quantity takeoff.",
+      "category": "3D工程繪圖",
+      "language": "python",
+      "triggers": [
+        "ingetrazo",
+        "3d-modeler",
+        "bim",
+        "ifc",
+        "skp",
+        "3d建模",
+        "工程繪圖",
+        "建築設計",
+        "ifc匯出",
+        "push-pull建模"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/ingelibre/ingetrazo.git",
+        "repoUrl": "https://github.com/ingelibre/ingetrazo"
+      },
+      "capabilities": [
+        "freeform-3d-modeling",
+        "skp-import",
+        "bim-tagging",
+        "ifc-export",
+        "quantity-takeoff",
+        "georeferencing"
+      ],
+      "useCase": "Use when you need freeform 3D modeling for architecture or engineering on Linux/Windows/macOS, SketchUp .skp round-trips, or BIM tagging with IFC quantity takeoff instead of hand-tracing drawings.",
+      "advantages": [
+        "Freeform push/pull modeling that runs natively on Linux, where native CAD for civil engineers and architects is scarce.",
+        "Hermeticity guard: the geometry engine refuses to commit broken solids, keeping quantity takeoffs honest (~2,000 automated tests backing it).",
+        "Close the loop model → tag → quantity takeoff → budget with IFC export and its sister project IngePresupuestos."
+      ],
+      "negativeConstraints": [
+        "仍在 0.x 生命週期：檔案格式與外掛 API 在 minor 版間可能變動。",
+        "BIM 標註是選用層，不取代 Revit 等完整 BIM 製圖環境，不適合需要全 BIM 流程的團隊。"
+      ],
+      "addedAt": "2026-10-20T03:35:39.489Z",
+      "status": "active",
+      "stars": 1132,
+      "description_zh": "開源 3D 造型器，供建築、工程與 3D 設計——手繪式自由 push/pull 建模，可開啟 .skp 檔（2013–2026），選配 BIM 標註（IfcWall／IfcSlab／IfcColumn）並匯出 IFC 數量計算。",
+      "useCase_zh": "需要在 Linux／Windows／macOS 上做建築或工程的自由 3D 建模、往返 SketchUp .skp 檔、或做 BIM 標註與 IFC 數量結算時。",
+      "advantages_zh": [
+        "Linux 原生執行，補足土木與建築原生平 CAD 幾乎空白的平台缺口（push/pull 自由建模）。",
+        "幾何引擎內建密閉實體檢查（hermeticity guard），壞實體直接拒收，數量結算不失真（約 2,000 支自動化測試支撐）。",
+        "模型 → 標註 → 數量結算 → 預算閉環：IFC 匯出串接姊妹專案 IngePresupuestos。"
+      ],
+      "negativeConstraints_zh": [
+        "仍在 0.x 生命週期：檔案格式與外掛 API 在 minor 版間可能變動。",
+        "BIM 標註是選用層，不取代 Revit 等完整 BIM 製圖環境。"
+      ],
+      "lastEnrichedAt": "2026-10-20T03:40:42.923Z"
+    },
+    {
+      "id": "harness2",
+      "name": "Harness2",
+      "url": "https://github.com/google-research/harness2",
+      "description": "Plug-and-play framework for recursive agent harnessing: optimizes the system around a fixed-weight model (prompts, tools, memory, skills, orchestration) via Propose-Probe-Compose task recursion plus a persistent improvement harness.",
+      "category": "AI 代理",
+      "language": "python",
+      "triggers": [
+        "harness2",
+        "agent-harness",
+        "recursive-harnessing",
+        "propose-probe-compose",
+        "jobbench",
+        "代理框架",
+        "harness最佳化"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install git+https://github.com/google-research/harness2.git",
+        "repoUrl": "https://github.com/google-research/harness2"
+      },
+      "capabilities": [
+        "recursive-agent-harnessing",
+        "harness-optimization",
+        "jobb-bench",
+        "opencode-executor",
+        "codex-executor"
+      ],
+      "useCase": "Use when building agents that must improve their own harness (prompts, tools, memory, orchestration) for unseen tasks, e.g. running JobBench / LAB / WorkBuddy-Bench with OpenCode or Codex executors.",
+      "advantages": [
+        "Improves GLM-5 and Gemini 3.5 Flash over base harnesses: up to +11.5 pts on WorkBuddy-Bench, +4.5 on JobBench, +11.8 pp LAB partial pass - with model weights frozen.",
+        "Plug-and-play: supports OpenCode and Codex executors, plus parallel and sequential recursion.",
+        "Harnessing-level recursion accumulates adopted harnesses and evidence-backed lessons into a persistent improvement harness for future tasks."
+      ],
+      "negativeConstraints": [
+        "Research framework: harness refinement is tied to its benchmark suites (JobBench / LAB / WorkBuddy-Bench), not a turnkey production agent runtime.",
+        "Model weights stay fixed - it tunes the harness only, so it cannot be used for fine-tuning the underlying model."
+      ],
+      "addedAt": "2026-10-20T03:35:50.293Z",
+      "status": "active",
+      "stars": 12363,
+      "description_zh": "遞迴代理駕馭的即插即用框架：在模型權重固定的前提下，透過 Propose–Probe–Compose 任務遞迴與持續式改進 harness，自動最佳化模型周邊系統（提示詞、工具、記憶、技能、編排）。",
+      "useCase_zh": "建立的代理需要對未見任務自我改良 harness（提示詞、工具、記憶、編排）時，例如以 OpenCode 或 Codex executor 跑 JobBench／LAB／WorkBuddy-Bench 基準。",
+      "advantages_zh": [
+        "在模型權重凍結下改良 GLM-5／Gemini 3.5 Flash 的 harness：WorkBuddy-Bench 最高 +11.5 分、JobBench +4.5 分、LAB partial pass +11.8 個百分點。",
+        "即插即用：支援 OpenCode 與 Codex executor，平行與循序遞迴皆可。",
+        "harnessing 層遞迴會累積已採用的 harness 與有證據的教訓，形成持續改進改寫下一輪任務的改進 harness。"
+      ],
+      "negativeConstraints_zh": [
+        "研究原型：harness 改良綁定其基準套件（JobBench／LAB／WorkBuddy-Bench），非一鍵上線的代理執行環境。",
+        "模型權重固定——只調 harness，不可用來微調底層模型。"
+      ],
+      "lastEnrichedAt": "2026-10-20T03:40:42.923Z"
+    },
+    {
+      "id": "plugins",
+      "name": "Plugins",
+      "url": "https://github.com/cursor/plugins",
+      "description": "Cursor's plugin specification plus official plugins: each plugin is a standalone directory with a .cursor-plugin manifest, covering coding-agent skills (PR review, orchestration, teaching), SDK patterns, and SaaS integrations (GitHub, Playwright, Google Workspace and more).",
+      "category": "開發工具",
+      "language": "typescript",
+      "triggers": [
+        "cursor-plugins",
+        "cursor-plugin",
+        "plugin-scaffold",
+        "agent-skills",
+        "編碼代理插件",
+        "程式碼審查插件"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/cursor/plugins.git",
+        "repoUrl": "https://github.com/cursor/plugins"
+      },
+      "capabilities": [
+        "cursor-plugin-spec",
+        "agent-skills",
+        "orchestration",
+        "pr-review",
+        "saas-integrations",
+        "sdk-patterns"
+      ],
+      "useCase": "Use when you want a ready-made Cursor plugin for a scenario (CI checks, PR review, voice apps, orchestrating parallel cloud agents, Gmail/Docs/Sheets integrations) or need a valid scaffold and marketplace checklist for your own plugin.",
+      "advantages": [
+        "Monorepo with one manifest per plugin (169 indexed skills) - subtools support monorepo deep retrieval.",
+        "Maintained by Cursor: coding-workflow plugins plus first-party integrations in the same browsable catalog.",
+        "create-plugin and review-plugin skills enforce the spec, so new plugins are scaffolded and validated against marketplace expectations."
+      ],
+      "negativeConstraints": [
+        "Plugins target the Cursor coding agent (.cursor-plugin manifests) - not standalone CLIs executables.",
+        "Third-party integration plugins require each SaaS credentials and OAuth grants; most are unusable offline."
+      ],
+      "addedAt": "2026-10-20T03:35:57.489Z",
+      "status": "active",
+      "stars": 13079,
+      "subTools": [
+        {
+          "name": "Advisor",
+          "description": "Advisor mode. Consult a stronger (or different) model at key checkpoints: before major decisions, when stuck on an error, and before declaring a task done. Use when the user types /advisor, asks to tu",
+          "subpath": "advisor/skills/advisor"
+        },
+        {
+          "name": "Check Agent Compatibility",
+          "description": "Run the full repository compatibility pass: scanner score, startup path, validation loop, and docs reliability.",
+          "subpath": "agent-compatibility/skills/check-agent-compatibility"
+        },
+        {
+          "name": "Cli For Agents",
+          "description": "Designs or reviews CLIs so coding agents can run them reliably: non-interactive flags, layered --help with examples, stdin/pipelines, fast actionable errors, idempotency, dry-run, and predictable stru",
+          "subpath": "cli-for-agent/skills/cli-for-agents"
+        },
+        {
+          "name": "Continual Learning",
+          "description": "Orchestrate continual learning by delegating transcript mining and AGENTS.md updates to `agents-memory-updater`.",
+          "subpath": "continual-learning/skills/continual-learning"
+        },
+        {
+          "name": "Create Plugin Scaffold",
+          "description": "Create a new Cursor plugin scaffold with a valid manifest, component directories, and marketplace wiring. Use when starting a new plugin or adding a plugin to a multi-plugin repository.",
+          "subpath": "create-plugin/skills/create-plugin-scaffold"
+        },
+        {
+          "name": "Review Plugin Submission",
+          "description": "Audit a Cursor plugin for marketplace readiness. Use when validating manifests, component metadata, discovery paths, and submission quality before publishing.",
+          "subpath": "create-plugin/skills/review-plugin-submission"
+        },
+        {
+          "name": "Cursor Sdk",
+          "description": "Guide users building apps, scripts, CI pipelines, or automations on top of the Cursor TypeScript SDK (`@cursor/sdk`). Use this skill whenever the user mentions integrating, installing, or writing code",
+          "subpath": "cursor-sdk/skills/cursor-sdk"
+        },
+        {
+          "name": "Check Compiler Errors",
+          "description": "Run compile and type-check commands and report failures",
+          "subpath": "cursor-team-kit/skills/check-compiler-errors"
+        },
+        {
+          "name": "Control Cli",
+          "description": "Build or adapt a local harness to drive, inspect, and profile an interactive CLI or TUI without external services. Use for CLI UX checks, startup regressions, memory leaks, hangs, prompt flows, or ter",
+          "subpath": "cursor-team-kit/skills/control-cli"
+        },
+        {
+          "name": "Control Ui",
+          "description": "Build or adapt a local browser/CDP harness to drive and inspect a web, IDE, or Electron UI. Use for local UI verification, screenshots, accessibility snapshots, perf profiles, visual diffs, or reprodu",
+          "subpath": "cursor-team-kit/skills/control-ui"
+        },
+        {
+          "name": "Deslop",
+          "description": "Remove AI-generated code slop and clean up code style",
+          "subpath": "cursor-team-kit/skills/deslop"
+        },
+        {
+          "name": "Fix Ci",
+          "description": "Find failing PR checks, inspect logs or external check links, and apply focused fixes",
+          "subpath": "cursor-team-kit/skills/fix-ci"
+        },
+        {
+          "name": "Fix Merge Conflicts",
+          "description": "Resolve merge conflicts non-interactively, validate build and tests, and finalize conflict resolution",
+          "subpath": "cursor-team-kit/skills/fix-merge-conflicts"
+        },
+        {
+          "name": "Get Pr Comments",
+          "description": "Fetch and summarize review comments from the active pull request",
+          "subpath": "cursor-team-kit/skills/get-pr-comments"
+        },
+        {
+          "name": "Loop On Ci",
+          "description": "Monitor PR checks and fix failures until green. Uses gh pr checks as the source of truth for PR-attached checks.",
+          "subpath": "cursor-team-kit/skills/loop-on-ci"
+        },
+        {
+          "name": "Make Pr Easy To Review",
+          "description": "Prepare PRs for review by cleaning noisy history, improving PR descriptions, and adding reviewer guidance without changing code behavior. Use for \"make this easy to review\", \"tidy this PR\", \"clean up ",
+          "subpath": "cursor-team-kit/skills/make-pr-easy-to-review"
+        },
+        {
+          "name": "New Branch And Pr",
+          "description": "Create a fresh branch, complete work, and open a pull request",
+          "subpath": "cursor-team-kit/skills/new-branch-and-pr"
+        },
+        {
+          "name": "Pr Review Canvas",
+          "description": "Generate an interactive PR review walkthrough as an HTML page. Fetches PR data via gh API, categorizes files into core vs mechanical changes, adds reviewer annotations, and renders diffs with moved-co",
+          "subpath": "cursor-team-kit/skills/pr-review-canvas"
+        },
+        {
+          "name": "Review And Ship",
+          "description": "Review the current branch for bugs, intent fit, and test coverage; run or write tests; commit focused work; open or update a PR.",
+          "subpath": "cursor-team-kit/skills/review-and-ship"
+        },
+        {
+          "name": "Run Smoke Tests",
+          "description": "Run Playwright smoke tests, debug failures, and verify fixes",
+          "subpath": "cursor-team-kit/skills/run-smoke-tests"
+        },
+        {
+          "name": "Thermo Nuclear Code Quality Review",
+          "description": "Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth. Use for a thermo-nuclear code quality review, thermonuclear review, deep code quali",
+          "subpath": "cursor-team-kit/skills/thermo-nuclear-code-quality-review"
+        },
+        {
+          "name": "Verify This",
+          "description": "Verify a claim with fresh local evidence: restate it falsifiably, capture baseline and treatment, compare artifacts, and return VERIFIED, NOT VERIFIED, or INCONCLUSIVE.",
+          "subpath": "cursor-team-kit/skills/verify-this"
+        },
+        {
+          "name": "Weekly Review",
+          "description": "Produce a weekly synthesis of authored commits with highlights by bugfix, tech debt, and net-new work",
+          "subpath": "cursor-team-kit/skills/weekly-review"
+        },
+        {
+          "name": "What Did I Get Done",
+          "description": "Summarize authored commits over a user-specified time period into a concise update",
+          "subpath": "cursor-team-kit/skills/what-did-i-get-done"
+        },
+        {
+          "name": "Workflow From Chats",
+          "description": "Extract durable working preferences from recent Cursor chats and convert them into skills, rules, or workflow docs. Use when asked to learn preferences, mine feedback, personalize workflows, or genera",
+          "subpath": "cursor-team-kit/skills/workflow-from-chats"
+        },
+        {
+          "name": "Docs Canvas",
+          "description": "Render a documentation-style Cursor Canvas that organizes architecture notes, API references, walkthroughs, and how-tos into a navigable layout with sections, tables of contents, and cross-references.",
+          "subpath": "docs-canvas/skills/docs-canvas"
+        },
+        {
+          "name": "Build Figma",
+          "description": "Use for \\\"/build-figma\\\", a figma.com/design URL with node-id, or \\\"implement this Figma\\\" into a web, desktop, or shared UI. Orchestrates Figma MCP intake, maps nodes to the repo's own design system,",
+          "subpath": "dyl-stack/skills/build-figma"
+        },
+        {
+          "name": "Dyl Mode",
+          "description": "Dylan's agent style on top of pstack: concise verified delivery, root causes over symptom patches, The Algorithm before design, plain /bro replies, live UI proof, reuse/simplify, and hard merge gates.",
+          "subpath": "dyl-stack/skills/dyl-mode"
+        },
+        {
+          "name": "Dyl Ready Pr",
+          "description": "Get a PR merge-ready for Dylan: deep /dyl-review till 🟢, mark it ready, resolve conflicts, then babysit CI and comments. Use for /dyl-ready-pr, \"get PR green\", \"make the PR mergeable\", \"/dyl-review t",
+          "subpath": "dyl-stack/skills/dyl-ready-pr"
+        },
+        {
+          "name": "Dyl Review",
+          "description": "Review one or more PRs in Dylan's style: up to 7 copy-pasteable asks and one 🟢/🟡/🔴 call. Quick by default; \"deep\" adds thermos and Bugbot. Use for /dyl-review, \"review this PR like me\", or terse de",
+          "subpath": "dyl-stack/skills/dyl-review"
+        },
+        {
+          "name": "Principle The Algorithm",
+          "description": "Apply to any non-trivial change before designing it. Make the requirement less dumb, delete, optimize, accelerate, automate, in that order, then run it again on the result. The reply names the require",
+          "subpath": "dyl-stack/skills/principle-the-algorithm"
+        },
+        {
+          "name": "Add Dictation",
+          "description": "Use when the user runs /add-dictation or wants speech turned into text with Grok speech-to-text: a mic button that dictates into the composer, live captions, or transcribing recorded audio (files, upl",
+          "subpath": "grok-voice/skills/add-dictation"
+        },
+        {
+          "name": "Add Read Aloud",
+          "description": "Use when the user runs /add-read-aloud or wants the app to speak text with Grok text-to-speech: read-aloud button on assistant replies, auto-speak, TTS, voice output, narration, IVR prompts, speech ta",
+          "subpath": "grok-voice/skills/add-read-aloud"
+        },
+        {
+          "name": "Add Voice",
+          "description": "Use when the user runs /add-voice, types Voice Mode, or asks to add Grok realtime voice to an app, including replacing an STT-LLM-TTS cascade or OpenAI Realtime.   Wire speech-to-speech, safe auth, an",
+          "subpath": "grok-voice/skills/add-voice"
+        },
+        {
+          "name": "Debug Voice",
+          "description": "Use when the user runs /debug-voice, says voice mode has flaws, asks to see or capture what happened in a Grok realtime voice session, or a voice integration has no debug logging yet. Proposes a plan,",
+          "subpath": "grok-voice/skills/debug-voice"
+        },
+        {
+          "name": "Architect",
+          "description": "Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for /architect, 'architect this', 'design this', or non-trivial work where jumping ",
+          "subpath": "harness/pstack/claude-code/skills/architect"
+        },
+        {
+          "name": "Arena",
+          "description": "Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it. Use for /arena, 'arena this', 'throw it in the arena', or when one attempt at a non-trivial ",
+          "subpath": "harness/pstack/claude-code/skills/arena"
+        },
+        {
+          "name": "Automate Me",
+          "description": "Use for \\\"automate me\\\", \\\"create/update/refresh my -mode skill\\\", \\\"turn/capture my preferences or working style into a skill\\\", or wanting agents to follow how the user works. Drafts or revises a pe",
+          "subpath": "harness/pstack/claude-code/skills/automate-me"
+        },
+        {
+          "name": "Benchmark Checklist",
+          "description": "Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, and whether the work happened) before you report or act on it. Use when you run a benchmark or report a speedup or re",
+          "subpath": "harness/pstack/claude-code/skills/benchmark-checklist"
+        },
+        {
+          "name": "Blast Radius",
+          "description": "Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up. Use for 'blast radius of X', ",
+          "subpath": "harness/pstack/claude-code/skills/blast-radius"
+        },
+        {
+          "name": "Bro",
+          "description": "Restate the last message in plain human language, with no jargon.",
+          "subpath": "harness/pstack/claude-code/skills/bro"
+        },
+        {
+          "name": "Correct",
+          "description": "Find the mistakes agents keep repeating in this repo and make each one impossible. Try architecture first, then types, then a lint whose error names the fix, then a test, and write docs last. Prove ea",
+          "subpath": "harness/pstack/claude-code/skills/correct"
+        },
+        {
+          "name": "Create Formal Verification Skill",
+          "description": "Generate a project-local skill that formally verifies the code where a bug costs the most and tests reach the least, in any language, with whichever verification tool fits. Use for /create-formal-veri",
+          "subpath": "harness/pstack/claude-code/skills/create-formal-verification-skill"
+        },
+        {
+          "name": "Create Verification Skill",
+          "description": "Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform. Use for /create-verification-skill, \\\"make a control skill for this repo\\\",",
+          "subpath": "harness/pstack/claude-code/skills/create-verification-skill"
+        },
+        {
+          "name": "Figure It Out",
+          "description": "Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop",
+          "subpath": "harness/pstack/claude-code/skills/figure-it-out"
+        },
+        {
+          "name": "How",
+          "description": "Use for \\\"how does X work\\\", code walkthroughs before changing something, and placement / ownership / layering questions (\\\"where should this live\\\", \\\"which package owns this\\\", \\\"is this the right l",
+          "subpath": "harness/pstack/claude-code/skills/how"
+        },
+        {
+          "name": "In Your Own Words",
+          "description": "Restate in your own words what you think the user's goals are and what problem they're trying to solve. Use for /in-your-own-words.",
+          "subpath": "harness/pstack/claude-code/skills/in-your-own-words"
+        },
+        {
+          "name": "Interrogate",
+          "description": "Use for \\\"interrogate\\\", \\\"adversarial review\\\", \\\"multi-model review\\\", \\\"challenge this\\\", \\\"stress test this code\\\", \\\"find blind spots\\\", or \\\"tear this apart\\\". Multiple LLM reviewers challenge c",
+          "subpath": "harness/pstack/claude-code/skills/interrogate"
+        },
+        {
+          "name": "Ketchup",
+          "description": "Catch the user up on what changed in this chat since their last message, in plain words and small visuals. List every item waiting on them with what they need to decide it from the reply alone. Use fo",
+          "subpath": "harness/pstack/claude-code/skills/ketchup"
+        },
+        {
+          "name": "Maintain Formal Verification Skill",
+          "description": "Bring a project's formal verification back in line with the code after the code changes: find the commits that touched verified code, update the model, harness, or properties to describe the code as i",
+          "subpath": "harness/pstack/claude-code/skills/maintain-formal-verification-skill"
+        },
+        {
+          "name": "Maintain Verification Skill",
+          "description": "Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use f",
+          "subpath": "harness/pstack/claude-code/skills/maintain-verification-skill"
+        },
+        {
+          "name": "Make Bot Ui",
+          "description": "Use when building a custom UI (page, dashboard, buttons) that should wake a Grok Bot over a webhook, when the user must provide a webhook sender key, or when exposing that UI on Tailscale.",
+          "subpath": "harness/pstack/claude-code/skills/make-bot-ui"
+        },
+        {
+          "name": "No Comments",
+          "description": "Spawn Comment Sicko, fix accepted findings, and offer encodings for claimed constraints.",
+          "subpath": "harness/pstack/claude-code/skills/no-comments"
+        },
+        {
+          "name": "Poteto Help",
+          "description": "Guides users through pstack setup, /poteto-mode, and picking the skill, playbook, or principle for a task. Type /poteto-help with a question.",
+          "subpath": "harness/pstack/claude-code/skills/poteto-help"
+        },
+        {
+          "name": "Poteto Mode",
+          "description": "poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, /poteto-mode, or requests to work in this style.",
+          "subpath": "harness/pstack/claude-code/skills/poteto-mode"
+        },
+        {
+          "name": "Principle Attack The Premise",
+          "description": "Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it.",
+          "subpath": "harness/pstack/claude-code/skills/principle-attack-the-premise"
+        },
+        {
+          "name": "Principle Boundary Discipline",
+          "description": "Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure",
+          "subpath": "harness/pstack/claude-code/skills/principle-boundary-discipline"
+        },
+        {
+          "name": "Principle Build The Lever",
+          "description": "Apply to any non-trivial work, not just bulk work: edits, migrations, analyses, checks. Build the tool that does it or proves it (codemod, script, generator, or a skill your subagents follow) instead ",
+          "subpath": "harness/pstack/claude-code/skills/principle-build-the-lever"
+        },
+        {
+          "name": "Principle Encode Lessons In Structure",
+          "description": "Apply when you catch yourself writing the same instruction a second time, or notice a recurring correction. Encode the rule as a lint, metadata flag, runtime check, or script instead of more text.",
+          "subpath": "harness/pstack/claude-code/skills/principle-encode-lessons-in-structure"
+        },
+        {
+          "name": "Principle Exhaust The Design Space",
+          "description": "Apply when facing a novel UI interaction or architectural decision with no precedent in the codebase. Build 2-3 competing prototypes and compare side by side before committing.",
+          "subpath": "harness/pstack/claude-code/skills/principle-exhaust-the-design-space"
+        },
+        {
+          "name": "Principle Experience First",
+          "description": "Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones.",
+          "subpath": "harness/pstack/claude-code/skills/principle-experience-first"
+        },
+        {
+          "name": "Principle Explain The Number",
+          "description": "Apply before you trust, report, or act on a number you measured: a speedup, a regression, a throughput, a latency, or an eval result. Find what limits it, and rule out that it measured something other",
+          "subpath": "harness/pstack/claude-code/skills/principle-explain-the-number"
+        },
+        {
+          "name": "Principle Fix Root Causes",
+          "description": "Apply when debugging. Trace each symptom back to the first place the system went wrong and fix it there. A guard is a fix only when the state it handles is legitimate.",
+          "subpath": "harness/pstack/claude-code/skills/principle-fix-root-causes"
+        },
+        {
+          "name": "Principle Foundational Thinking",
+          "description": "Apply before writing logic: choosing core types and data structures, sequencing scaffold-vs-feature work, asking what concurrent actors share. Get the data structures right so downstream code becomes ",
+          "subpath": "harness/pstack/claude-code/skills/principle-foundational-thinking"
+        },
+        {
+          "name": "Principle Guard The Context Window",
+          "description": "Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads.",
+          "subpath": "harness/pstack/claude-code/skills/principle-guard-the-context-window"
+        },
+        {
+          "name": "Principle Laziness Protocol",
+          "description": "Apply when refactoring, evaluating diff size, or tempted to add abstractions, layers, or signal threading. Bias toward deletion and the smallest change that solves the problem.",
+          "subpath": "harness/pstack/claude-code/skills/principle-laziness-protocol"
+        },
+        {
+          "name": "Principle Make Operations Idempotent",
+          "description": "Apply when designing commands, lifecycle steps, or processing loops that run amid crashes, restarts, and retries. Converge to the same end state regardless of partial prior runs.",
+          "subpath": "harness/pstack/claude-code/skills/principle-make-operations-idempotent"
+        },
+        {
+          "name": "Principle Migrate Callers Then Delete Legacy Apis",
+          "description": "Apply when introducing a new internal API while old callers still exist. Migrate callers and delete the old API in the same wave instead of preserving compatibility layers.",
+          "subpath": "harness/pstack/claude-code/skills/principle-migrate-callers-then-delete-legacy-apis"
+        },
+        {
+          "name": "Principle Minimize Reader Load",
+          "description": "Apply when reviewing or shaping code that's hard to trace. Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope.",
+          "subpath": "harness/pstack/claude-code/skills/principle-minimize-reader-load"
+        },
+        {
+          "name": "Principle Model The Domain",
+          "description": "Apply when writing stateful logic, or when code branches a lot or repeats a shape assumption across files.",
+          "subpath": "harness/pstack/claude-code/skills/principle-model-the-domain"
+        },
+        {
+          "name": "Principle Never Block On The Human",
+          "description": "Apply when tempted to ask 'should I do X?' on reversible work.",
+          "subpath": "harness/pstack/claude-code/skills/principle-never-block-on-the-human"
+        },
+        {
+          "name": "Principle Outcome Oriented Execution",
+          "description": "Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code.",
+          "subpath": "harness/pstack/claude-code/skills/principle-outcome-oriented-execution"
+        },
+        {
+          "name": "Principle Prove It Works",
+          "description": "Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, or 'it compiles.'",
+          "subpath": "harness/pstack/claude-code/skills/principle-prove-it-works"
+        },
+        {
+          "name": "Principle Redesign From First Principles",
+          "description": "Apply when integrating a new requirement into an existing design.",
+          "subpath": "harness/pstack/claude-code/skills/principle-redesign-from-first-principles"
+        },
+        {
+          "name": "Principle Separate Before Serializing Shared State",
+          "description": "Apply when concurrent actors might write to the same file, branch, key, or state object. Eliminate the sharing first; serialize structurally only when one shared writer is a real invariant.",
+          "subpath": "harness/pstack/claude-code/skills/principle-separate-before-serializing-shared-state"
+        },
+        {
+          "name": "Principle Sequence Verifiable Units",
+          "description": "Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, ",
+          "subpath": "harness/pstack/claude-code/skills/principle-sequence-verifiable-units"
+        },
+        {
+          "name": "Principle Subtract Before You Add",
+          "description": "Apply when sequencing an addition, refactor, or rewrite. Remove dead code, redundant validators, and stub references first, then build on the simpler base.",
+          "subpath": "harness/pstack/claude-code/skills/principle-subtract-before-you-add"
+        },
+        {
+          "name": "Principle Test Behavior Not Implementation",
+          "description": "Apply when you write, change, or keep a test. Assert what the code's users can observe, so that the test fails when that behavior breaks and keeps passing when only the internals change.",
+          "subpath": "harness/pstack/claude-code/skills/principle-test-behavior-not-implementation"
+        },
+        {
+          "name": "Principle Type System Discipline",
+          "description": "Apply when designing types, reviewing a function signature, or writing code in any statically-typed language. Make illegal states unrepresentable, brand semantic primitives, parse external data at bou",
+          "subpath": "harness/pstack/claude-code/skills/principle-type-system-discipline"
+        },
+        {
+          "name": "Recall",
+          "description": "Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief. Use for 'recal",
+          "subpath": "harness/pstack/claude-code/skills/recall"
+        },
+        {
+          "name": "Reflect",
+          "description": "Spawn three parallel review subagents over the active transcript, surface learnings, and route each to a concrete edit on an existing skill. Use when the user says reflect.",
+          "subpath": "harness/pstack/claude-code/skills/reflect"
+        },
+        {
+          "name": "Setup Pstack",
+          "description": "Configure which models pstack uses per role and at what reasoning budget. Detects your available models and writes an always-applied rule that overrides the skill defaults. Use for /setup-pstack, \"con",
+          "subpath": "harness/pstack/claude-code/skills/setup-pstack"
+        },
+        {
+          "name": "Sharpen",
+          "description": "Make a task deeper, not bigger, then rewrite the prompt. Use for /sharpen.",
+          "subpath": "harness/pstack/claude-code/skills/sharpen"
+        },
+        {
+          "name": "Show Me Your Work",
+          "description": "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to ",
+          "subpath": "harness/pstack/claude-code/skills/show-me-your-work"
+        },
+        {
+          "name": "Swarm",
+          "description": "Fan out N parallel workers, drain them, and return one report. Use for /swarm, 'swarm this', or parallel coverage, races, gauntlets, and exploration.",
+          "subpath": "harness/pstack/claude-code/skills/swarm"
+        },
+        {
+          "name": "Tdd",
+          "description": "Use only when the user explicitly asks for TDD, a failing test, or a regression test, OR when the bug has an obvious cheap local test target. Skip when the test path is unclear, expensive, integration",
+          "subpath": "harness/pstack/claude-code/skills/tdd"
+        },
+        {
+          "name": "Teach",
+          "description": "Explain a body of work plainly so a person actually understands it. Runs the `how` and `why` skills and weaves what they find into one clear explanation. Use for 'teach me this', 'help me really under",
+          "subpath": "harness/pstack/claude-code/skills/teach"
+        },
+        {
+          "name": "Technical Writing",
+          "description": "Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for /technical-writing or when writing or reviewing docs, RF",
+          "subpath": "harness/pstack/claude-code/skills/technical-writing"
+        },
+        {
+          "name": "Typescript Best Practices",
+          "description": "TypeScript best practices. Use when reading or editing any .ts or .tsx file.",
+          "subpath": "harness/pstack/claude-code/skills/typescript-best-practices"
+        },
+        {
+          "name": "Unslop",
+          "description": "Cut AI tells from any writing.",
+          "subpath": "harness/pstack/claude-code/skills/unslop"
+        },
+        {
+          "name": "Why",
+          "description": "Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds. Discovers available MCPs and queries each evidence category (source contro",
+          "subpath": "harness/pstack/claude-code/skills/why"
+        },
+        {
+          "name": "Orchestrate",
+          "description": "Use only when the user explicitly types `/orchestrate <goal>` to decompose a large task, spawn a tree of parallel cloud-agent workers/subplanners/verifiers via the Cursor SDK, and collect structured h",
+          "subpath": "orchestrate/skills/orchestrate"
+        },
+        {
+          "name": "Origin Api",
+          "description": "Routes questions about the Cursor Origin API to the right section of the Origin docs and names the few rules to check first. Use when a task mentions Origin, the Origin API, Origin Apps, or Origin web",
+          "subpath": "origin-apps/skills/origin-api"
+        },
+        {
+          "name": "Port Github App To Origin",
+          "description": "Plans the port of an existing GitHub App to a Cursor Origin App. Use when the task is to bring a GitHub App to Origin or compare what it uses against the Origin API. Reads the app's needs out of its c",
+          "subpath": "origin-apps/skills/port-github-app-to-origin"
+        },
+        {
+          "name": "Pr Review Canvas",
+          "description": "Render a PR diff review as a Cursor Canvas that groups changes by reviewer importance, separates boilerplate from core logic, and highlights tricky or unexpected code. Use when reviewing a pull reques",
+          "subpath": "pr-review-canvas/skills/pr-review-canvas"
+        },
+        {
+          "name": "Reproduce And Fix Issues",
+          "description": "Reproduce triaged Slack bugs through a configured app-control adapter, verify existing fixes, and open a bounded draft pull request only after before-and-after proof. Use only from the configured Benn",
+          "subpath": "pstack/automations/benny/skills/reproduce-and-fix-issues"
+        },
+        {
+          "name": "Setup Benny",
+          "description": "Configure Benny and prepare its triage and repro automations. Use when installing Benny or changing its Slack, tracker, repository, routing, control, model, or budget settings.",
+          "subpath": "pstack/automations/benny/skills/setup-benny"
+        },
+        {
+          "name": "Triage Issue Reports",
+          "description": "Triage Slack issue reports with one thread-only verdict, evidence review, cause-aware routing, tracker dedupe, and fail-closed ticket creation. Use only from the configured Benny triage automation.",
+          "subpath": "pstack/automations/benny/skills/triage-issue-reports"
+        },
+        {
+          "name": "Architect",
+          "description": "Sketch types, signatures, and module structure before code, then stay in the loop while implementation fills in. Use for /architect, 'architect this', 'design this', or non-trivial work where jumping ",
+          "subpath": "pstack/skills/architect"
+        },
+        {
+          "name": "Arena",
+          "description": "Spawn N parallel candidates at the same task, pick a base, graft the strongest parts of the losers into it. Use for /arena, 'arena this', 'throw it in the arena', or when one attempt at a non-trivial ",
+          "subpath": "pstack/skills/arena"
+        },
+        {
+          "name": "Automate Me",
+          "description": "Use for \\\"automate me\\\", \\\"create/update/refresh my -mode skill\\\", \\\"turn/capture my preferences or working style into a skill\\\", or wanting agents to follow how the user works. Drafts or revises a pe",
+          "subpath": "pstack/skills/automate-me"
+        },
+        {
+          "name": "Benchmark Checklist",
+          "description": "Vet a perf measurement (limiter, tuning, limits, errors, repeatability, relevance, and whether the work happened) before you report or act on it. Use when you run a benchmark or report a speedup or re",
+          "subpath": "pstack/skills/benchmark-checklist"
+        },
+        {
+          "name": "Blast Radius",
+          "description": "Find what a change could break somewhere else before it ships, beyond the diff, and prove the one fact it's safe because of by running real code instead of writing it up. Use for 'blast radius of X', ",
+          "subpath": "pstack/skills/blast-radius"
+        },
+        {
+          "name": "Bro",
+          "description": "Restate the last message in plain human language, with no jargon.",
+          "subpath": "pstack/skills/bro"
+        },
+        {
+          "name": "Correct",
+          "description": "Find the mistakes agents keep repeating in this repo and make each one impossible. Try architecture first, then types, then a lint whose error names the fix, then a test, and write docs last. Prove ea",
+          "subpath": "pstack/skills/correct"
+        },
+        {
+          "name": "Create Formal Verification Skill",
+          "description": "Generate a project-local skill that formally verifies the code where a bug costs the most and tests reach the least, in any language, with whichever verification tool fits. Use for /create-formal-veri",
+          "subpath": "pstack/skills/create-formal-verification-skill"
+        },
+        {
+          "name": "Create Verification Skill",
+          "description": "Generate a project-local verification skill that drives your app the way a user does — any language, framework, or platform. Use for /create-verification-skill, \\\"make a control skill for this repo\\\",",
+          "subpath": "pstack/skills/create-verification-skill"
+        },
+        {
+          "name": "Figure It Out",
+          "description": "Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop",
+          "subpath": "pstack/skills/figure-it-out"
+        },
+        {
+          "name": "How",
+          "description": "Use for \\\"how does X work\\\", code walkthroughs before changing something, and placement / ownership / layering questions (\\\"where should this live\\\", \\\"which package owns this\\\", \\\"is this the right l",
+          "subpath": "pstack/skills/how"
+        },
+        {
+          "name": "In Your Own Words",
+          "description": "Restate in your own words what you think the user's goals are and what problem they're trying to solve. Use for /in-your-own-words.",
+          "subpath": "pstack/skills/in-your-own-words"
+        },
+        {
+          "name": "Interrogate",
+          "description": "Use for \\\"interrogate\\\", \\\"adversarial review\\\", \\\"multi-model review\\\", \\\"challenge this\\\", \\\"stress test this code\\\", \\\"find blind spots\\\", or \\\"tear this apart\\\". Multiple LLM reviewers challenge c",
+          "subpath": "pstack/skills/interrogate"
+        },
+        {
+          "name": "Ketchup",
+          "description": "Catch the user up on what changed in this chat since their last message, in plain words and small visuals. List every item waiting on them with what they need to decide it from the reply alone. Use fo",
+          "subpath": "pstack/skills/ketchup"
+        },
+        {
+          "name": "Maintain Formal Verification Skill",
+          "description": "Bring a project's formal verification back in line with the code after the code changes: find the commits that touched verified code, update the model, harness, or properties to describe the code as i",
+          "subpath": "pstack/skills/maintain-formal-verification-skill"
+        },
+        {
+          "name": "Maintain Verification Skill",
+          "description": "Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use f",
+          "subpath": "pstack/skills/maintain-verification-skill"
+        },
+        {
+          "name": "Make Bot Ui",
+          "description": "Use when building a custom UI (page, dashboard, buttons) that should wake a Grok Bot over a webhook, when the user must provide a webhook sender key, or when exposing that UI on Tailscale.",
+          "subpath": "pstack/skills/make-bot-ui"
+        },
+        {
+          "name": "No Comments",
+          "description": "Spawn Comment Sicko, fix accepted findings, and offer encodings for claimed constraints.",
+          "subpath": "pstack/skills/no-comments"
+        },
+        {
+          "name": "Poteto Help",
+          "description": "Guides users through pstack setup, /poteto-mode, and picking the skill, playbook, or principle for a task. Type /poteto-help with a question.",
+          "subpath": "pstack/skills/poteto-help"
+        },
+        {
+          "name": "Poteto Mode",
+          "description": "poteto's agent style for concise, detailed responses, deliberate subagents, unslopped prose, simple code, and verified work. Use for poteto, /poteto-mode, or requests to work in this style.",
+          "subpath": "pstack/skills/poteto-mode"
+        },
+        {
+          "name": "Principle Attack The Premise",
+          "description": "Apply when two or more fixes that share one premise have failed the same gate. Write the premise down and test it directly before you write another fix that assumes it.",
+          "subpath": "pstack/skills/principle-attack-the-premise"
+        },
+        {
+          "name": "Principle Boundary Discipline",
+          "description": "Apply when wiring validation, error handling, or framework adapters. Concentrate guards at system boundaries (CLI, config, network, external APIs); trust internal types and keep business logic in pure",
+          "subpath": "pstack/skills/principle-boundary-discipline"
+        },
+        {
+          "name": "Principle Build The Lever",
+          "description": "Apply to any non-trivial work, not just bulk work: edits, migrations, analyses, checks. Build the tool that does it or proves it (codemod, script, generator, or a skill your subagents follow) instead ",
+          "subpath": "pstack/skills/principle-build-the-lever"
+        },
+        {
+          "name": "Principle Encode Lessons In Structure",
+          "description": "Apply when you catch yourself writing the same instruction a second time, or notice a recurring correction. Encode the rule as a lint, metadata flag, runtime check, or script instead of more text.",
+          "subpath": "pstack/skills/principle-encode-lessons-in-structure"
+        },
+        {
+          "name": "Principle Exhaust The Design Space",
+          "description": "Apply when facing a novel UI interaction or architectural decision with no precedent in the codebase. Build 2-3 competing prototypes and compare side by side before committing.",
+          "subpath": "pstack/skills/principle-exhaust-the-design-space"
+        },
+        {
+          "name": "Principle Experience First",
+          "description": "Apply when product, UX, or feature-scope tradeoffs come up. Choose user delight over implementation convenience; ship fewer polished features over more rough ones.",
+          "subpath": "pstack/skills/principle-experience-first"
+        },
+        {
+          "name": "Principle Explain The Number",
+          "description": "Apply before you trust, report, or act on a number you measured: a speedup, a regression, a throughput, a latency, or an eval result. Find what limits it, and rule out that it measured something other",
+          "subpath": "pstack/skills/principle-explain-the-number"
+        },
+        {
+          "name": "Principle Fix Root Causes",
+          "description": "Apply when debugging. Trace each symptom back to the first place the system went wrong and fix it there. A guard is a fix only when the state it handles is legitimate.",
+          "subpath": "pstack/skills/principle-fix-root-causes"
+        },
+        {
+          "name": "Principle Foundational Thinking",
+          "description": "Apply before writing logic: choosing core types and data structures, sequencing scaffold-vs-feature work, asking what concurrent actors share. Get the data structures right so downstream code becomes ",
+          "subpath": "pstack/skills/principle-foundational-thinking"
+        },
+        {
+          "name": "Principle Guard The Context Window",
+          "description": "Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads.",
+          "subpath": "pstack/skills/principle-guard-the-context-window"
+        },
+        {
+          "name": "Principle Laziness Protocol",
+          "description": "Apply when refactoring, evaluating diff size, or tempted to add abstractions, layers, or signal threading. Bias toward deletion and the smallest change that solves the problem.",
+          "subpath": "pstack/skills/principle-laziness-protocol"
+        },
+        {
+          "name": "Principle Make Operations Idempotent",
+          "description": "Apply when designing commands, lifecycle steps, or processing loops that run amid crashes, restarts, and retries. Converge to the same end state regardless of partial prior runs.",
+          "subpath": "pstack/skills/principle-make-operations-idempotent"
+        },
+        {
+          "name": "Principle Migrate Callers Then Delete Legacy Apis",
+          "description": "Apply when introducing a new internal API while old callers still exist. Migrate callers and delete the old API in the same wave instead of preserving compatibility layers.",
+          "subpath": "pstack/skills/principle-migrate-callers-then-delete-legacy-apis"
+        },
+        {
+          "name": "Principle Minimize Reader Load",
+          "description": "Apply when reviewing or shaping code that's hard to trace. Count layers between question and answer, and hidden state in the reader's head; collapse one-caller wrappers and shrink mutable scope.",
+          "subpath": "pstack/skills/principle-minimize-reader-load"
+        },
+        {
+          "name": "Principle Model The Domain",
+          "description": "Apply when writing stateful logic, or when code branches a lot or repeats a shape assumption across files.",
+          "subpath": "pstack/skills/principle-model-the-domain"
+        },
+        {
+          "name": "Principle Never Block On The Human",
+          "description": "Apply when tempted to ask 'should I do X?' on reversible work.",
+          "subpath": "pstack/skills/principle-never-block-on-the-human"
+        },
+        {
+          "name": "Principle Outcome Oriented Execution",
+          "description": "Apply during planned rewrites and migrations with explicit phase boundaries. Converge on the target architecture; don't preserve smooth intermediate states with throwaway compatibility code.",
+          "subpath": "pstack/skills/principle-outcome-oriented-execution"
+        },
+        {
+          "name": "Principle Prove It Works",
+          "description": "Apply after completing a task, before declaring done. Verify against the real artifact (run the feature, read the actual value, inspect the diff), not a proxy, self-report, or 'it compiles.'",
+          "subpath": "pstack/skills/principle-prove-it-works"
+        },
+        {
+          "name": "Principle Redesign From First Principles",
+          "description": "Apply when integrating a new requirement into an existing design.",
+          "subpath": "pstack/skills/principle-redesign-from-first-principles"
+        },
+        {
+          "name": "Principle Separate Before Serializing Shared State",
+          "description": "Apply when concurrent actors might write to the same file, branch, key, or state object. Eliminate the sharing first; serialize structurally only when one shared writer is a real invariant.",
+          "subpath": "pstack/skills/principle-separate-before-serializing-shared-state"
+        },
+        {
+          "name": "Principle Sequence Verifiable Units",
+          "description": "Apply to multi-step work (sweeps, migrations, runs of similar edits) and to how you stack commits and PRs. Break work into small units that each end in a verifiable state, check each before the next, ",
+          "subpath": "pstack/skills/principle-sequence-verifiable-units"
+        },
+        {
+          "name": "Principle Subtract Before You Add",
+          "description": "Apply when sequencing an addition, refactor, or rewrite. Remove dead code, redundant validators, and stub references first, then build on the simpler base.",
+          "subpath": "pstack/skills/principle-subtract-before-you-add"
+        },
+        {
+          "name": "Principle Test Behavior Not Implementation",
+          "description": "Apply when you write, change, or keep a test. Assert what the code's users can observe, so that the test fails when that behavior breaks and keeps passing when only the internals change.",
+          "subpath": "pstack/skills/principle-test-behavior-not-implementation"
+        },
+        {
+          "name": "Principle Type System Discipline",
+          "description": "Apply when designing types, reviewing a function signature, or writing code in any statically-typed language. Make illegal states unrepresentable, brand semantic primitives, parse external data at bou",
+          "subpath": "pstack/skills/principle-type-system-discipline"
+        },
+        {
+          "name": "Recall",
+          "description": "Reconstruct your recent working context from your own chat history, live state, and the shared record (user reports, prior fixes, incidents), then hand back a tight current-state brief. Use for 'recal",
+          "subpath": "pstack/skills/recall"
+        },
+        {
+          "name": "Reflect",
+          "description": "Spawn three parallel review subagents over the active transcript, surface learnings, and route each to a concrete edit on an existing skill. Use when the user says reflect.",
+          "subpath": "pstack/skills/reflect"
+        },
+        {
+          "name": "Setup Pstack",
+          "description": "Configure which models pstack uses per role and at what reasoning budget. Detects your available models and writes an always-applied rule that overrides the skill defaults. Use for /setup-pstack, \"con",
+          "subpath": "pstack/skills/setup-pstack"
+        },
+        {
+          "name": "Sharpen",
+          "description": "Make a task deeper, not bigger, then rewrite the prompt. Use for /sharpen.",
+          "subpath": "pstack/skills/sharpen"
+        },
+        {
+          "name": "Show Me Your Work",
+          "description": "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to ",
+          "subpath": "pstack/skills/show-me-your-work"
+        },
+        {
+          "name": "Swarm",
+          "description": "Fan out N parallel workers, drain them, and return one report. Use for /swarm, 'swarm this', or parallel coverage, races, gauntlets, and exploration.",
+          "subpath": "pstack/skills/swarm"
+        },
+        {
+          "name": "Tdd",
+          "description": "Use only when the user explicitly asks for TDD, a failing test, or a regression test, OR when the bug has an obvious cheap local test target. Skip when the test path is unclear, expensive, integration",
+          "subpath": "pstack/skills/tdd"
+        },
+        {
+          "name": "Teach",
+          "description": "Explain a body of work plainly so a person actually understands it. Runs the `how` and `why` skills and weaves what they find into one clear explanation. Use for 'teach me this', 'help me really under",
+          "subpath": "pstack/skills/teach"
+        },
+        {
+          "name": "Technical Writing",
+          "description": "Layered technical-writing standard: Diátaxis structure, Google developer style sentences, STE instruction rules, Global English syntax. Use for /technical-writing or when writing or reviewing docs, RF",
+          "subpath": "pstack/skills/technical-writing"
+        },
+        {
+          "name": "Typescript Best Practices",
+          "description": "TypeScript best practices. Use when reading or editing any .ts or .tsx file.",
+          "subpath": "pstack/skills/typescript-best-practices"
+        },
+        {
+          "name": "Unslop",
+          "description": "Cut AI tells from any writing.",
+          "subpath": "pstack/skills/unslop"
+        },
+        {
+          "name": "Why",
+          "description": "Use for 'why does X work this way', 'why we picked Y', design rationale, regressions, postmortems, or data-backed thresholds. Discovers available MCPs and queries each evidence category (source contro",
+          "subpath": "pstack/skills/why"
+        },
+        {
+          "name": "Cancel Ralph",
+          "description": "Cancel an active Ralph Loop. Use when the user wants to stop, cancel, or abort a running ralph loop.",
+          "subpath": "ralph-loop/skills/cancel-ralph"
+        },
+        {
+          "name": "Ralph Loop",
+          "description": "Start a Ralph Loop for iterative self-referential development. Use when the user asks to run a ralph loop, start an iterative loop, or wants repeated autonomous iteration on a task until completion.",
+          "subpath": "ralph-loop/skills/ralph-loop"
+        },
+        {
+          "name": "Ralph Loop Help",
+          "description": "Explain the Ralph Loop plugin, how it works, and available skills. Use when the user asks for help with ralph loop, wants to understand the technique, or needs usage examples.",
+          "subpath": "ralph-loop/skills/ralph-loop-help"
+        },
+        {
+          "name": "Create Learning Path",
+          "description": "Build a personalized learning roadmap with milestones and practice checkpoints",
+          "subpath": "teaching/skills/create-learning-path"
+        },
+        {
+          "name": "Run Learning Retrospective",
+          "description": "Evaluate learning progress, identify blockers, and adjust the learning plan",
+          "subpath": "teaching/skills/run-learning-retrospective"
+        },
+        {
+          "name": "Thermo Nuclear Code Quality Review",
+          "description": "Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth. Use for a thermo-nuclear code quality review, thermonuclear review, deep code quali",
+          "subpath": "thermos/skills/thermo-nuclear-code-quality-review"
+        },
+        {
+          "name": "Thermo Nuclear Review",
+          "description": "Comprehensive security and correctness audit of a branch's changes. Use for thermo nuclear, thermonuclear, or deep review requests, or branch/PR diff audits focused on bugs, breaking changes, security",
+          "subpath": "thermos/skills/thermo-nuclear-review"
+        },
+        {
+          "name": "Thermos",
+          "description": "Launch both thermo-nuclear review subagents in parallel, then synthesize their findings. Use for thermos, double thermo review, or combined bug/security and code-quality branch audits.",
+          "subpath": "thermos/skills/thermos"
+        },
+        {
+          "name": "Google Docs",
+          "description": "Author and edit Google Docs with the google-docs tools - structured writing, character and paragraph styling, lists, tables, images, headers/footers. Use when creating a formatted document, editing do",
+          "subpath": "third_party/google-docs/skills/google-docs"
+        },
+        {
+          "name": "Google Drive",
+          "description": "Work with Google Drive through its MCP tools - search, read, create, organize, share, comment, and export files. Use when creating files in specific folders, moving or renaming, converting Markdown/CS",
+          "subpath": "third_party/google-drive/skills/google-drive"
+        },
+        {
+          "name": "Google Sheets",
+          "description": "Build and edit Google Sheets with the google-sheets tools - values, formatting, charts, conditional formatting, structure, validation, named and protected ranges. Use when creating a spreadsheet or da",
+          "subpath": "third_party/google-sheets/skills/google-sheets"
+        },
+        {
+          "name": "Google Slides",
+          "description": "Build and edit Google Slides through the google-slides MCP tools - slides, grids of cards and columns, text boxes, shapes, images, tables, styling, layout inspection, and per-slide PNG rendering. Use ",
+          "subpath": "third_party/google-slides/skills/google-slides"
+        },
+        {
+          "name": "Tailscale Setup",
+          "description": "Walk a user through connecting Grok Bot to their Tailscale tailnet - define tag:grokbot in the tailnet policy file, grant it only the MCP hosts and ports it should reach, sign in from the Tailscale pl",
+          "subpath": "third_party/tailscale/skills/tailscale-setup"
+        },
+        {
+          "name": "X Api Mcp Guide",
+          "description": "ALWAYS read this when a user connects the X plugin or any X MCP, before using any X tool, including Grok Bot's built-in public reads (no X connection or credits needed), and again on any X error. Do n",
+          "subpath": "third_party/x/skills/x-api-mcp-guide"
+        },
+        {
+          "name": "X Money Guide",
+          "description": "Read this before the first X Money action in a session and again on any X Money error, refusal, or missing capability. Covers the approval rule for every action that moves money (always ask, every tim",
+          "subpath": "third_party/x-money/skills/x-money-guide"
+        }
+      ],
+      "description_zh": "Cursor 官方插件規範與官方插件集：每支插件是帶 .cursor-plugin 清單的獨立目錄，涵蓋編碼代理技能（PR 審查、任務編排、教學）、SDK 模式與大量 SaaS 整合（GitHub、Playwright、Google Workspace 等）。",
+      "useCase_zh": "想直接取用現成 Cursor 插件（CI 檢查、PR 審查、語音應用、雲端代理編排、Gmail／文件／試算表整合），或需要為自家插件產生合規腳手架與上架檢查清單時。",
+      "advantages_zh": [
+        "Monorepo + 每插件一份清單（已索引 169 個 skill 子工具），支援 monorepo 深層檢索。",
+        "Cursor 官方維護：開發流程插件與第一方 SaaS 整合收在同一份可瀏覽目錄。",
+        "create-plugin 與 review-plugin 兩支 skill 鎖定規範，新插件從腳手架到上架檢都有標準流程。"
+      ],
+      "negativeConstraints_zh": [
+        "插件綁定 Cursor 編碼代理（.cursor-plugin 清單），不可當成獨立 CLI 直接執行。",
+        "第三方整合插件需要各服務的憑證與 OAuth 授權，離線環境多數不可用。"
+      ],
+      "lastEnrichedAt": "2026-10-20T03:40:42.923Z"
     }
   ]
 }

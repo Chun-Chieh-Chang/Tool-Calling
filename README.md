@@ -4,7 +4,7 @@
 
 ## 這是什麼？
 
-想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **777 個頂尖開源 AI 工具與 Agent 技能**（截至 2026-10-19，實際數量以 `registry/tools.json` 為準）：
+想像你有一個 **全功能 AI 工具箱**，裡面收錄了 **780 個頂尖開源 AI 工具與 Agent 技能**（截至 2026-10-19，實際數量以 `registry/tools.json` 為準）：
 
 - 📊 **數據與分析**：Grafana、Pandas-AI、PostHog、PyGWalker
 - 📄 **簡報與檔案生產力**：AIPPT、NotebookLM2PPT、Docling、Reader3、PPT Master
@@ -62,7 +62,7 @@
 ## ⚡ 核心亮點功能
 
 1. 🌌 **Obsidian 風格 2D / 3D 雙視角動態知識圖譜 (Interactive Knowledge Graph)**：
-   - 整合 777 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
+   - 整合 780 個 AI 工具與技能的深層拓撲星系，支援 2D Vis.js 平面與 3D Three.js 宇宙視角無縫切換。
    - **第一性原理零位移縮放 (Zero-Drift Mouse Pivot Zoom)**：滾輪縮放時精確鎖定滑鼠當前游標位置，支援 `0.05x ~ 20.0x` 雙向縮放，完全 0 像素偏移。
    - 支援 18 個領域分類篩選、多關鍵字即時檢索、一鍵「🔄 重置全景視角」與抽屜式詳細資料卡。
 2. 🗺️ **複雜任務多工具鏈自動規劃 (Tool Chain Planner)**：
@@ -190,7 +190,7 @@ Tool-Calling/
 │   └── check-mece.js       # MECE 分類檢查 ＋ 來源一致性守衛
 ├── registry/           # 工具函式庫（單一真理來源）
 │   ├── categories.json   # 18 個分類的單一機器可讀來源
-│   ├── tools.json        # 777 工具（截至 2026-10-19）
+│   ├── tools.json        # 780 工具（截至 2026-10-19）
 │   ├── eval-queries.json # 評測集 v1.3.0（267 題）
 │   └── compiled-entries.json # 知識編譯詞條（744 筆＝Tier 1 732＋Tier 0 12；新工具需重跑 compile:wiki）
 ├── docs/               # 文件（依主題分類的索引見 docs/README.md）
@@ -231,7 +231,7 @@ node scripts/rescan-classification.js --ci  # 全庫重掃，Tier 1 必須為 0
 ---
 
 > Developed by Wesley Chang, August-2026.  
-> Tool-Calling v2.0 - 777 個工具（截至 2026-10-19）、自動挖掘同義詞、即時更新與雙週趨勢
+> Tool-Calling v2.0 - 780 個工具（截至 2026-10-19）、自動挖掘同義詞、即時更新與雙週趨勢
 ---
 
 ## 🌐 網頁版 UI

@@ -9828,5 +9828,8 @@
         "browser-use/browser-use": 118459
       }
     }
-  ]
+  ],
+  "ingelibre/ingetrazo": 1132,
+  "google-research/harness2": 12363,
+  "cursor/plugins": 13079
 }

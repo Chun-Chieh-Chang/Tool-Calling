@@ -27397,7 +27397,7 @@ export const SYNONYM_MAP = {
     "做bim建築模型",
     "轉step格式",
     "匯出stl檔案",
-    "freecad"
+    "3d建模"
   ],
   "fem-analysis": [
     "開源cad",
@@ -63366,6 +63366,159 @@ export const SYNONYM_MAP = {
     "藝術動畫",
     "huashu-art-motion",
     "art-animation"
+  ],
+  "3d建模": [
+    "ingetrazo",
+    "3d-modeler",
+    "bim",
+    "ifc",
+    "skp"
+  ],
+  "ingetrazo": [
+    "3d建模",
+    "工程繪圖",
+    "建築設計",
+    "ifc匯出",
+    "push-pull建模",
+    "3d-modeler",
+    "bim",
+    "ifc"
+  ],
+  "3d-modeler": [
+    "3d建模",
+    "工程繪圖",
+    "建築設計",
+    "ifc匯出",
+    "push-pull建模",
+    "ingetrazo",
+    "bim",
+    "ifc"
+  ],
+  "ifc": [
+    "3d建模",
+    "工程繪圖",
+    "建築設計",
+    "ifc匯出",
+    "push-pull建模",
+    "ingetrazo",
+    "3d-modeler",
+    "bim"
+  ],
+  "skp": [
+    "3d建模",
+    "工程繪圖",
+    "建築設計",
+    "ifc匯出",
+    "push-pull建模",
+    "ingetrazo",
+    "3d-modeler",
+    "bim"
+  ],
+  "工程繪圖": [
+    "ingetrazo",
+    "3d-modeler",
+    "bim",
+    "ifc",
+    "skp"
+  ],
+  "建築設計": [
+    "ingetrazo",
+    "3d-modeler",
+    "bim",
+    "ifc",
+    "skp"
+  ],
+  "ifc匯出": [
+    "ingetrazo",
+    "3d-modeler",
+    "bim",
+    "ifc",
+    "skp"
+  ],
+  "push-pull建模": [
+    "ingetrazo",
+    "3d-modeler",
+    "bim",
+    "ifc",
+    "skp"
+  ],
+  "代理框架": [
+    "harness2",
+    "agent-harness",
+    "recursive-harnessing",
+    "propose-probe-compose",
+    "jobbench",
+    "harness最佳化"
+  ],
+  "harness2": [
+    "代理框架",
+    "harness最佳化",
+    "agent-harness",
+    "recursive-harnessing",
+    "propose-probe-compose",
+    "jobbench"
+  ],
+  "recursive-harnessing": [
+    "代理框架",
+    "harness最佳化",
+    "harness2",
+    "agent-harness",
+    "propose-probe-compose",
+    "jobbench"
+  ],
+  "propose-probe-compose": [
+    "代理框架",
+    "harness最佳化",
+    "harness2",
+    "agent-harness",
+    "recursive-harnessing",
+    "jobbench"
+  ],
+  "jobbench": [
+    "代理框架",
+    "harness最佳化",
+    "harness2",
+    "agent-harness",
+    "recursive-harnessing",
+    "propose-probe-compose"
+  ],
+  "harness最佳化": [
+    "harness2",
+    "agent-harness",
+    "recursive-harnessing",
+    "propose-probe-compose",
+    "jobbench",
+    "代理框架"
+  ],
+  "編碼代理插件": [
+    "cursor-plugins",
+    "cursor-plugin",
+    "plugin-scaffold",
+    "程式碼審查插件"
+  ],
+  "cursor-plugins": [
+    "編碼代理插件",
+    "程式碼審查插件",
+    "cursor-plugin",
+    "plugin-scaffold"
+  ],
+  "cursor-plugin": [
+    "編碼代理插件",
+    "程式碼審查插件",
+    "cursor-plugins",
+    "plugin-scaffold"
+  ],
+  "plugin-scaffold": [
+    "編碼代理插件",
+    "程式碼審查插件",
+    "cursor-plugins",
+    "cursor-plugin"
+  ],
+  "程式碼審查插件": [
+    "cursor-plugins",
+    "cursor-plugin",
+    "plugin-scaffold",
+    "編碼代理插件"
   ],
   "翻譯": [
     "translate",

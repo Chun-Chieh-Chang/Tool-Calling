@@ -347,7 +347,31 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-19（部署門禁）快照，其次 2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-20 批次入庫 3 支工具 + monorepo 拆解 + YAML `>-` 解析器修復
+
+**需求**：批量加入 4 個 GitHub URL，並「檢查是否需要拆解」：
+`ingelibre/ingetrazo`、`google-research/harness2`、`github/awesome-copilot`、`cursor/plugins`。
+
+**結果**
+- `awesome-copilot` **已在庫**（URL 精確比對命中既有 `awesome-copilot`），跳過。
+- 其餘 3 支以 `node cli.js add` 入庫，全數走完整管線（掃描 → stars 快照 → 語意補齊）。
+- 拆解判定：`cursor/plugins` 為 monorepo（每支插件獨立目錄 + `.cursor-plugin` 清單）→ `cli.js index-subtools plugins` 收錄 **169 個 skill 子工具**；`harness2` 單一 Python 套件、`ingetrazo` 單一桌面應用，皆無拆解需求。
+
+**RCA / CAPA（scanner 層）**
+1. **useCase 複製 description**：`scan-tool.js` 把 GitHub description 原句塞進 useCase（Worker 管線已明文禁止「useCase 前 60 字元與 description 相同」）。3 支才入庫就被餵了污染語意。→ 手動依 README 重寫 useCase／advantages／negativeConstraints（**不推測**），並附 `_zh` 繁中欄。
+2. **triggers 混入分類名**：自動 triggers 塞了「開發工具」字樣（batch-add-20260912.js 曾列為同類殘留）。→ 依 README 事實重寫。
+3. **分類錯置**：`ingetrazo`（3D 建模器）被判「開發工具」→ 修正為「3D工程繪圖」；`harness2`（agent harness 框架）→「AI 代理」。`rescan-classification --ci` 全綠（Tier 1 = 0）。
+4. **`scripts/scan-monorepo.js` YAML block scalar 無法解析**：cursor/plugins 的 SKILL.md 大量使用 `description: >-`，舊 regex 只抓到 `>-` 字面值，16/169 個子工具描述是垃圾。→ `parseMarkdownDescription` 增補 block scalar 支援（`|` 逐行、`>` 折疊收斂，下一個非縮排行結束），重掃後 0 壞描述。
+
+**RCA / CAPA（測試基建層）**
+- `category-guards.test.js` 的 `withRestore` 還原用 `copyFileSync` 曾以 `UNKNOWN`（防毒／檔案鎖暫時性）失敗，**把注入的變異留在真實檔案**（`AI 框架` 色碼變 `#1a1a1a`、CLASSIFICATION 變「（已刪除）」、INVENTORY 標記被改），連鎖炸掉後續所有讀同檔測試（現況／tier1 Property 2b）。→ 還原改指數退避重試（0.5s→1s→2s）＋位元組比對照舊。污染檔案已 `git checkout` 還原並重跑 `categories:sync`。
+
+**驗證**
+- `npm test`：510 項、507 pass、2 skipped、1 fail（唯一失敗仍是本機 Playwright 瀏覽器版本不符，與本次無關；CI 自行安裝）。
+- `cli.js validate` 0 錯誤；check-mece／categories:sync --check／rescan --ci／doc-stats／templates／UTF-8／traditional 全綠。
+- 工具數 777 → **780**：AGENTS.md（agents:init）、README.md、docs/README.md、docs/CATEGORY-SYSTEM.md、`core/synonyms.generated.js`（7780 詞彙）同步；`docs/knowledge-graph.html` 由 saveRegistry 自動重生成。
 
 ### 2026-10-19 部署紅燈：validate 把 trending 中間態當缺陷
 
