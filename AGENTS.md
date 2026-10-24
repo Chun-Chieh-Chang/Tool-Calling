@@ -88,6 +88,9 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
+npm run start:local       # 一鍵啟動本地工作台（自動偵測資料過期→必要時跑 trending+build→背景啟動→驗證 HTTP）
+npm run start:local:dev   # 一鍵啟動 dev 模式（服務 web/，前端改動即時生效）
+npm run start:local:force # 無條件跑 trending+build 後再啟動
 npm run tracked-repos     # 重建追蹤池 (2688 repos)
 npm test                  # 執行所有測試 (404 tests, 402 pass + 2 筆整合測試跳過)
 npm run enrich            # AI 批次補齊詮釋資料
@@ -115,6 +118,23 @@ git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
 # 推送流程
 git push origin main  # 僅在測試通過且獲得許可後執行
 ```
+
+### 一鍵啟動工作流 (start:local, 2026-10-24)
+整合實測踩坑的常規流程，自動觸發、不需人工重跑：
+
+| 場景 | 命令 | 行為 |
+|---|---|---|
+| 標準啟動 | `npm run start:local` | 偵測 `weekly-trending.json` 過期→必要時跑 `trending`+`build`→背景啟動→驗證 HTTP |
+| dev 模式 | `npm run start:local:dev` | 服務 `web/`，前端改動即時生效 |
+| 強制同步 | `npm run start:local:force` | 無條件跑 `trending`+`build` 後再啟動 |
+
+**踩坑防護**（腳本內建，scripts/start-local.js）：
+- `cmd /c start /b` 脫離 shell 背景啟動，不受 15s 超時中斷
+- 過期門檻預設 24h，可用 `--stale-hours 6` 調整
+- 輸出 PID、停止指令、HTTP 狀態，寫 `.agnes/dev-server.log`
+- 停止：`Stop-Process -Id <PID> -Force`
+
+**注意**：正式模式服務 `dist/`，改 `registry/` 或 `web/` 後需重跑 build 才會反映；dev 模式則即時生效。
 
 ---
 

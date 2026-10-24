@@ -136,6 +136,9 @@ node cli.js interview "網頁爬蟲"
 | `npm run enrich` | `node scripts/enrich-registry.js` | 補齊工具詮釋資料 |
 | `npm run reclassify` | `node scripts/hook-reclassify.js` | 全盤分類重構（建議模式） |
 | `npm run trending` | `node scripts/trending-weekly.js` | 每週漲星探勘 |
+| `npm run start:local` | `node scripts/start-local.js` | 一鍵啟動本地工作台（自動偵測資料過期→必要時跑 trending+build→背景啟動→驗證 HTTP） |
+| `npm run start:local:dev` | `node scripts/start-local.js --dev` | 一鍵啟動 dev 模式（服務 web/，前端改動即時生效） |
+| `npm run start:local:force` | `node scripts/start-local.js --force-trending` | 無條件跑 trending+build 後再啟動 |
 | `npm run daemon` | `node scripts/sync-daemon.js` | 背景 Star 同步精靈 |
 | `npm run mine-synonyms` | `node scripts/mine-synonyms.js` | 挖掘同義詞詞典 |
 | `npm run lint:wiki` | `node scripts/lint-wiki.js` | 知識編譯詞檔體檢（唯讀：來源漂移／幽靈詞條／缺詞條／雙重否定殘留；未掛進 `npm test`） |
@@ -236,16 +239,38 @@ node scripts/rescan-classification.js --ci  # 全庫重掃，Tier 1 必須為 0
 
 ## 🌐 網頁版 UI
 
-啟動本地數據工作台（**直接執行 npm start**）：
+啟動本地數據工作台（**一鍵自動化：`npm run start:local`**）：
 
 ```bash
-# 啟動零相依本地精密儀表伺服器
+# 推薦：一鍵啟動（自動偵測資料過期 → 必要時跑 trending+build → 背景啟動 → 驗證 HTTP）
+npm run start:local
+
+# dev 模式（前端改動即時生效，服務 web/ 而非 dist/）
+npm run start:local:dev
+
+# 無條件同步最新資料後再啟動（GitHub 探勘會消耗 API 配額）
+npm run start:local:force
+
+# 傳統手動方式（不自動同步資料）
 npm start
 
 # 開啟瀏覽器訪問
 # 主工作台：http://localhost:3000
 # 3D/2D 知識圖譜：http://localhost:3000/knowledge-graph.html
 ```
+
+### 為什麼要 `start:local`？
+整合 2026-10-24 實測踩坑的常規流程，避免以下常見問題：
+
+| 問題 | 如何避免 |
+|---|---|
+| 資料過期未偵測 | `start:local` 自動比對 `weekly-trending.json` 的 `lastUpdated`，超 24h 即觸發 `trending`+`build` |
+| `Start-Process` 解析 node 失敗 | 改用 `cmd /c start /b` 脫離 shell，獨立持續運行 |
+| 正式模式改動不反映 | 過期時自動 build 同步 dist/，否則檢查 dist/index.html 存在性 |
+| shell 超時杀掉服務 | `start /b` 不受 15s 超時影響 |
+| 啟動結果不明確 | 輸出 PID、停止指令、HTTP 狀態，寫 `.agnes/dev-server.log` |
+
+> **停止指令**：`Stop-Process -Id <PID> -Force`（PID 見啟動輸出或 `.agnes/dev-server.log`）
 
 > ⚠️ **重要**：不要直接打開 `web/index.html`（file:// 協議不支援 ES Module），必須透過 HTTP Server 才能正常載入！
 
