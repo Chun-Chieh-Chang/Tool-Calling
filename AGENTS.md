@@ -88,15 +88,8 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-
-# 2026-10-24 UI 精簡：移除「深度搜尋／多工具鏈／API 金鑰區」三個選用面板
-# 保留主搜尋框 + 分類下拉（/api/search 命脈）；後端 /api/chain /api/clarify
-# /api/ingest /api/keys 端點保留（前端已不再呼叫，MCP/CLI 仍可共用引擎）
-npm run start:local       # 一鍵啟動本地工作台（自動偵測資料過期→必要時跑 trending+build→背景啟動→驗證 HTTP）
-npm run start:local:dev   # 一鍵啟動 dev 模式（服務 web/，前端改動即時生效）
-npm run start:local:force # 無條件跑 trending+build 後再啟動
 npm run tracked-repos     # 重建追蹤池 (2688 repos)
-npm test                  # 執行所有測試 (404 tests, 402 pass + 2 筆整合測試跳過)
+npm test                  # 執行所有測試 (510 tests, 508 pass + 2 筆整合測試跳過)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 npm run plugin:install    # 一鍵安裝為各 Agentic IDE 外掛 (MCP + Skill)
@@ -114,7 +107,7 @@ node cli.js list                      # 列出所有工具 (781+)
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 404 測試全綠（跳過的 2 筆是整合測試，需 EMBED_API_TEST=1 或 npx skills，與 playwright 無關）
+npm test           # 確保 510 測試全綠（跳過的 2 筆是整合測試，需 EMBED_API_TEST=1 或 npx skills，與 playwright 無關）
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -123,23 +116,6 @@ git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
 git push origin main  # 僅在測試通過且獲得許可後執行
 ```
 
-### 一鍵啟動工作流 (start:local, 2026-10-24)
-整合實測踩坑的常規流程，自動觸發、不需人工重跑：
-
-| 場景 | 命令 | 行為 |
-|---|---|---|
-| 標準啟動 | `npm run start:local` | 偵測 `weekly-trending.json` 過期→必要時跑 `trending`+`build`→背景啟動→驗證 HTTP |
-| dev 模式 | `npm run start:local:dev` | 服務 `web/`，前端改動即時生效 |
-| 強制同步 | `npm run start:local:force` | 無條件跑 `trending`+`build` 後再啟動 |
-
-**踩坑防護**（腳本內建，scripts/start-local.js）：
-- `cmd /c start /b` 脫離 shell 背景啟動，不受 15s 超時中斷
-- 過期門檻預設 24h，可用 `--stale-hours 6` 調整
-- 輸出 PID、停止指令、HTTP 狀態，寫 `.agnes/dev-server.log`
-- 停止：`Stop-Process -Id <PID> -Force`
-
-**注意**：正式模式服務 `dist/`，改 `registry/` 或 `web/` 後需重跑 build 才會反映；dev 模式則即時生效。
-
 ---
 
 ## Build/Test/Verify — 建構與驗證
@@ -147,7 +123,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：404 tests 全綠 (402 pass + 2 筆整合測試跳過), 0 fail
+npm test  # 目標：510 tests 全綠 (508 pass + 2 筆整合測試跳過), 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -157,7 +133,7 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (402/402，另有 2 筆整合測試跳過)
+- [ ] 所有測試通過 (508/508，另有 2 筆整合測試跳過)
 - [ ] 工具庫驗證通過 (781+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] HANDOFF.md 已更新（本輪日期快照）
@@ -311,7 +287,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (404 tests)
+### 單元測試 (510 tests)
 ```bash
 npm test
 ```
@@ -331,7 +307,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (402/402 pass，2 筆整合測試跳過)
+1. `npm test` (508/508 pass，2 筆整合測試跳過)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -503,4 +479,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-10-20T04:35:53.865Z
+> **最後更新**：2026-10-24T12:07:55.392Z

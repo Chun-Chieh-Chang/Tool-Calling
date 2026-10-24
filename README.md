@@ -78,7 +78,7 @@
 6. 🔥 **雲端 Auto-Trending 自動探勘管線**：
    - 連線 GitHub Search API 自動探勘新漲星熱門 AI Agent 與 MCP 專案。
 7. 📈 **每週漲星排行榜 (Weekly Star Trending)**：
-   - 基於固定追蹤池（2,433 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
+   - 基於固定追蹤池（2,689 repos）與歷史快照，計算真實的週漲星數，每週自動入庫高潛力新工具。
    - **雙週展示**：同時展示「上週完整數據（LAST WEEK，列入工具箱納入判斷）」與「本週迄今即時數據（THIS WEEK，進行中，不列入判斷）」，清晰區隔正式與預覽數據。
    - 嚴格遵守 ISO-8601 World Week 國際標準（週一 00:00:00 UTC → 週日 23:59:59 UTC）。
 8. 🔄 **啟動自動按需更新與介面即時重新整理 (Startup Auto-Update & Live Refresh)**：
@@ -203,7 +203,7 @@ Tool-Calling/
 │   ├── CLASSIFICATION.md        # 分類判定規則（衍生檔，勿手改）
 │   └── CATEGORY-SYSTEM.md       # 分類統計（衍生檔，勿手改）
 └── tests/              # 測試
-    └── *.test.js       # 34 個測試檔，跑 `npm test` 看最新計數
+    └── *.test.js       # 61 個測試檔，跑 `npm test` 看最新計數
 ```
 
 > 各目錄的完整說明與文件清單，請見 [docs/README.md](./docs/README.md)。
