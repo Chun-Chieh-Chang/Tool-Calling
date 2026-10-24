@@ -7,6 +7,7 @@ import { getCurrentWorldWeek } from '../core/world-week.js';
 import { syncRegistryToDist } from '../scripts/dist-sync.js';
 import { classifyTool } from '../core/classifier.js';
 import { parseAllowedOrigins, isTelemetryOrigin, telemetryCorsHeaders } from './telemetry-origin.js';
+import { spawn } from 'node:child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -871,22 +872,96 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
+// ── 一鍵啟動自動化：啟動時自動偵測過期→必要時跑 trending+build→記錄 PID ──
+// 讓「啟動專案伺服器」（npm start / npm run dev）即自動觸發，不需另打 start:local。
+const STALE_HOURS = parseFloat(process.env.STALE_HOURS || '24');
+const DEV_SERVER_LOG = path.join(rootDir, '.agnes', 'dev-server.log');
+
+function checkStaleness() {
+  if (!fs.existsSync(trendingJsonPath)) return { stale: true, reason: 'weekly-trending.json 不存在' };
+  try {
+    const j = JSON.parse(fs.readFileSync(trendingJsonPath, 'utf8'));
+    const lastUpdated = j.lastUpdated ? new Date(j.lastUpdated) : null;
+    if (!lastUpdated || isNaN(lastUpdated.getTime())) return { stale: true, reason: 'lastUpdated 無效', asOf: j.asOfDate };
+    const ageH = (Date.now() - lastUpdated.getTime()) / 3600000;
+    const stale = ageH > STALE_HOURS;
+    return { stale, reason: stale ? `已 ${ageH.toFixed(1)}h 未更新（>${STALE_HOURS}h）` : `資料新鮮（${ageH.toFixed(1)}h 內）`, asOf: j.asOfDate || j.lastUpdated };
+  } catch { return { stale: true, reason: 'JSON 解析失敗' }; }
+}
+
+async function autoTrendingAndBuild() {
+  const s = checkStaleness();
+  console.log(`\n🔄 [一鍵啟動] 偵測週期漲星新鮮度: ${s.reason}（asOf=${s.asOf || 'n/a'}）`);
+  if (!s.stale) {
+    // 仍確保 dist 存在（正式模式需要）
+    if (!DEV_MODE) {
+      const distIndex = path.join(rootDir, 'dist', 'index.html');
+      if (!fs.existsSync(distIndex)) {
+        console.log('📦 [一鍵啟動] dist/index.html 不存在，先 build');
+        await runSubCommand('build');
+      }
+    }
+    return;
+  }
+  console.log('📡 [一鍵啟動] 資料過期，自動觸發 trending + build');
+  await runSubCommand('trending');
+  await runSubCommand('build');
+}
+
+function runSubCommand(script) {
+  return new Promise((resolve) => {
+    const p = spawn('npm', ['run', script], {
+      cwd: rootDir,
+      shell: process.platform === 'win32',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      env: process.env
+    });
+    let out = '';
+    p.stdout.on('data', (d) => (out += d));
+    p.stderr.on('data', (d) => (out += d));
+    p.on('close', (code) => {
+      if (code === 0) console.log(`  ✅ npm run ${script} 完成`);
+      else console.log(`  ⚠ npm run ${script} 結束 code=${code}`);
+      resolve(code);
+    });
+    p.on('error', () => { console.log(`  ❌ npm run ${script} spawn 失敗`); resolve(-1); });
+  });
+}
+
+function writeLaunchLog(pid) {
+  try {
+    const dir = path.dirname(DEV_SERVER_LOG);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(DEV_SERVER_LOG, JSON.stringify({
+      pid, port: String(PORT), dev: DEV_MODE,
+      startedAt: new Date().toISOString(),
+      stop: `Stop-Process -Id ${pid} -Force`
+    }, null, 2));
+  } catch { /* log write is best-effort */ }
+}
+
 server.listen(PORT, () => {
   console.log(`\n==================================================`);
   console.log(`🚀 本地精密儀表與數據工作台伺服器已啟動！`);
   console.log(`🌐 存取網址: http://localhost:${PORT}`);
   console.log(`📊 互動式工具圖譜: http://localhost:${PORT}/knowledge-graph.html`);
+  console.log(`⛔ 停止指令: Stop-Process -Id ${process.pid} -Force`);
   console.log(`==================================================\n`);
 
-  // 伺服器啟動後執行自動檢查（本機預設開；平台預設關，見 AUTO_TRENDING_ENABLED）
-  if (AUTO_TRENDING_ENABLED) {
-    checkAndAutoUpdateOnStartup();
+  writeLaunchLog(process.pid);
 
-    // 週期性自動更新：每 30 分鐘檢查跨日/跨週，保持「本週迄今」即時並於週初捕獲基準
-    setInterval(() => {
-      try { checkAndAutoUpdateOnStartup(); } catch { /* 忽略暫態錯誤 */ }
-    }, 30 * 60 * 1000);
+  // 一鍵啟動自動化：本機（非平台）自動偵測過期並同步；平台保持靜態
+  if (AUTO_TRENDING_ENABLED || isLocalHost()) {
+    autoTrendingAndBuild().catch((e) => console.warn('⚠ [一鍵啟動] 自動化失敗:', e.message));
+    checkAndAutoUpdateOnStartup();
+    setInterval(() => { try { checkAndAutoUpdateOnStartup(); } catch {} }, 30 * 60 * 1000);
   } else {
-    console.log('ℹ️ 探勘自動更新已停用（平台模式或 TRENDING_AUTO=0）——每週漲星資料維持靜態');
+    console.log('ℹ️ 探勘自動更新已停用（平台模式）——每週漲星資料維持靜態');
   }
 });
+
+// 判定當前是否本機啟動（Host 非平台注入）
+function isLocalHost() {
+  // 平台只注入 PORT；若 PORT 未設且無 TRENDING_AUTO，多半是本機
+  return !process.env.PORT || process.env.TRENDING_AUTO === '1' || AUTO_TRENDING_ENABLED;
+}
