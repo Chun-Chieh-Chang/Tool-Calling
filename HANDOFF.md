@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-14（第五輪：五項裁決執行完畢＋發佈上線＋推送後 CI 三連失敗處置完畢並全綠——詳見「三、目前狀態」頂部一節。此行以下為 10-09 十輪與 10-07 四節的快照式描述，保留作為歷史，數字已過期）
+> 最後更新：2026-10-24（全面盤點清理＋文件同步＋資安隱私盤點＋推送 origin/main 成功 31161a4..4611bcb——詳見「三、目前狀態」頂部兩節。此行以下為 10-14/10-09/10-07 的快照式描述，保留作為歷史，數字已過期）
 
 ---
 
@@ -367,6 +367,37 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 - 重啟正式模式：3000 監聽、首頁 HTTP 200、`/api/search`（query="ppt"）回 5 筆結果（decision=no-match，無匹配即誠實）。
 
 **未做（待裁）**：後端 `/api/chain`、`/api/clarify`、`/api/ingest`、`/api/keys` 端點與同義詞／TF-IDF 引擎未一併收掉——若要精簡需先跑 `registry/eval-queries.json`（267 題）對照 Hit@1 才能裁決。
+
+### 2026-10-24 全面盤點清理＋文件同步＋原子提交推送（方案 A：保留活碼）
+
+**需求**：五步任務——①全面盤點與清理（更新過時文件、移除死碼、零迴歸）②同步所有開發文件至 100% 準確 ③SSOT/MECE 整合 ④建立還原基準點（原子提交）⑤推送 GitHub（資安隱私盤點後）。
+
+**決策**
+- 方案 A：後端 `/api/chain`、`/api/clarify`、`/api/ingest`、`/api/keys` 端點與 `core/tool-chain.js`、`core/clarifier.js`、`core/ingestion.js`＝**活碼保留**（CLI/MCP 跨平台共用引擎，非死碼）。
+- `docs/` 歷史報告（round7/round8、semantic-failure、telemetry-diagnosis）＝歷史證據鏈，保留不歸檔（HANDOFF 不改寫歷史原則）。
+
+**改動（兩筆原子提交）**
+- `45487ea chore(package.json)`：移除 `start:local` 三個重複 scripts 定義。
+- `4611bcb docs(sync)`：全面對齊數字錨點——`AGENTS.md`（重生，TEST_STATS 510/508）、`README.md`（追蹤池 2433→2689、測試檔 34→61）、`scripts/generate-agents-md.js`（TEST_STATS 404/402→510/508）、`skills/tool-calling/SKILL.md`（725+→781）。
+
+**門禁（全綠）**
+- `npm test`：510 項，508 pass、0 fail、2 skip（整合測試跳過）。
+- `node cli.js validate`：0 錯誤。
+- `node scripts/check-mece.js`：全過、無「其他」殘留。
+
+**資安與隱私盤點（推送前，用戶 approve）**
+- 硬編碼 API key／金鑰值：**零命中**（全專案 `sk-` 命中皆為說明文字，金鑰全走 `process.env`）。
+- `.env`／`.pem`／金鑰檔案：**無**。
+- 私人路徑：僅存在於 `.agnes/`、`.agents/`（git 不追蹤）；`core/skill-discovery.js` 用 `process.env.USERNAME` 動態組路徑，非硬編碼。
+- 待推送 diff（5 檔 +12/−39）掃描機密：**零命中**。
+
+**推送**
+- 用戶 approve 後 `git push origin main` 成功：`31161a4..4611bcb`。
+- GitHub Dependabot 回報 1 項 moderate 漏洞（與本次 diff 無關，屬既有依賴），見 `security/dependabot/26`。
+
+**CAPA**
+- 文件數字錨點應隨門禁量測結果（TEST_STATS、追蹤池、測試檔數）同步更新，避免再次滯後。
+- 推送前資安盤點應固定檢查「待推送 diff」而非全庫，縮小掃描範圍與誤報。
 
 ### 2026-10-20 批次入庫 3 支工具 + monorepo 拆解 + YAML `>-` 解析器修復
 
