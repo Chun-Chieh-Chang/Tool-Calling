@@ -71,23 +71,13 @@
           <span class="wf-label">篩選領域</span>
         </button>
         <span class="wf-arrow" aria-hidden="true">›</span>
-        <button type="button" class="wf-step wf-step-opt" data-focus="#deepSearchToggle" aria-label="步驟 3：深度搜尋（選配）">
+        <button type="button" class="wf-step" data-focus=".view-tabs" aria-label="步驟 3：切換視圖">
           <span class="wf-num">3</span>
-          <span class="wf-label">深度搜尋 <em>選</em></span>
-        </button>
-        <span class="wf-arrow" aria-hidden="true">›</span>
-        <button type="button" class="wf-step wf-step-opt" data-focus="#chainModeToggle" aria-label="步驟 4：多工具鏈（選配）">
-          <span class="wf-num">4</span>
-          <span class="wf-label">多工具鏈 <em>選</em></span>
-        </button>
-        <span class="wf-arrow" aria-hidden="true">›</span>
-        <button type="button" class="wf-step" data-focus=".view-tabs" aria-label="步驟 5：切換視圖">
-          <span class="wf-num">5</span>
           <span class="wf-label">切換視圖</span>
         </button>
         <span class="wf-arrow" aria-hidden="true">›</span>
-        <button type="button" class="wf-step wf-step-end" data-focus="#shutdownBtn" aria-label="步驟 6：關閉系統">
-          <span class="wf-num">6</span>
+        <button type="button" class="wf-step wf-step-end" data-focus="#shutdownBtn" aria-label="步驟 4：關閉系統">
+          <span class="wf-num">4</span>
           <span class="wf-label">關閉系統</span>
         </button>
       </div>
@@ -107,49 +97,6 @@
           </select>
           <div class="hint"><span class="hint-num">②</span> 依 18 個領域縮小候選範圍</div>
         </div>
-        <div class="hint-cell">
-          <label id="deepSearchLabel" class="deep-search-toggle" title="用 LLM 重新排序候選工具，準確度較高但約需 5 秒">
-            <input type="checkbox" id="deepSearchToggle">
-            <span>深度搜尋</span>
-          </label>
-          <div class="hint"><span class="hint-num">③</span> LLM 重排：準確度 ↑／速度 ↓（+5s）</div>
-        </div>
-        <span id="deepSearchSpinner" class="deep-search-spinner" hidden aria-live="polite">重新排序中…</span>
-        <div class="hint-cell">
-          <label id="chainModeLabel" class="deep-search-toggle" title="把多步驟任務拆成一組可搭配的工具鏈（例如：抓取網頁資料然後做成簡報）">
-            <input type="checkbox" id="chainModeToggle">
-            <span>多工具鏈</span>
-          </label>
-          <div class="hint"><span class="hint-num">④</span> 拆解長任務 → 自動產出工具 DAG</div>
-        </div>
-        <select id="ingestSourceSelect" title="選擇素材來源，規劃「素材 → 可用筆記」的擷取管線" hidden>
-          <option value="">素材來源（擷取管線）…</option>
-          <option value="pdf">PDF／研究文獻</option>
-          <option value="web">網頁／線上文章</option>
-          <option value="audio">語音／會議錄音</option>
-          <option value="video">影片／課程錄影</option>
-          <option value="book">書籍／閱讀清單</option>
-        </select>
-      </div>
-
-      <!-- API 金鑰提示：未設定時才出現（背景補齊語意欄位需要） -->
-      <div id="keyPanel" class="key-panel" hidden>
-        <span class="key-panel-label">加入工具後要自動補齊中文描述與使用情境，需要 API 金鑰</span>
-        <input type="password" id="keyInput" placeholder="貼上 AGNES_API_KEY（多把用逗號分隔）" autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
-        <button type="button" id="keySaveBtn">儲存</button>
-        <span class="key-panel-hint" id="keyPanelHint">只存在伺服器記憶體，不寫入磁碟；重啟後需重新輸入</span>
-      </div>
-
-      <!-- 需求收斂追問：只在系統不確定時出現 -->
-      <div id="clarifyBar" class="clarify-bar" hidden>
-        <span class="clarify-label" id="clarifyLabel"></span>
-        <span class="clarify-options" id="clarifyOptions"></span>
-      </div>
-
-      <!-- 多工具鏈結果 -->
-      <div id="chainResult" class="chain-result" hidden>
-        <div class="chain-pipeline" id="chainPipeline"></div>
-        <div id="chainSteps"></div>
       </div>
     </header>
 

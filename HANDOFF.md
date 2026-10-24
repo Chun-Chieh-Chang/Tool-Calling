@@ -347,7 +347,26 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-10-24（UI 精簡），其次 2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-10-24 UI 精簡（方案 A）：移除選用面板，保留命脈
+
+**需求**：使用者認為主頁搜尋控制面板雜湊，選擇「方案 A」——砍掉「深度搜尋」「多工具鏈」「API 金鑰區」三個選用區塊，保留「主搜尋框＋分類下拉」命脈。
+
+**改動（前端 UI 層）**
+- `web/index.html`：`search-container` 內移除 `#deepSearchToggle`、`#deepSearchSpinner`、`#chainModeToggle`、`#ingestSourceSelect`、`#keyPanel`（keyInput/keySaveBtn/keyPanelHint）、`#clarifyBar`、`#chainResult`；「操作流程」步驟條由 6 步收為 4 步（移除深度搜尋、多工具鏈兩步）。
+- `web/app.js`：移除上述元件的全部 DOM 變數、事件綁定與函式（serverChain／serverClarify／serverIngest／renderChain／renderClarify／renderIngest／runChain／runClarify／renderRecipeCard／checkKeyStatus／saveKeys）；`handleSearch` 不再傳 rerank／chainMode／ingestSource；`setupAddToRegistryButtons` 不再觸碰 keyPanel。
+
+**保留（命脈，未動）**
+- `#searchInput`、`#categorySelect`（`/api/search` 工具目錄唯一來源）
+- 後端 `/api/chain`、`/api/clarify`、`/api/ingest`、`/api/keys` 端點（前端不再呼叫，MCP／CLI 仍可共用 core/ 引擎）
+- 儀表板、工具目錄、漲星榜、知識圖譜、加入工具庫流程
+
+**驗證**
+- `npm run build` exit 0；`dist/index.html` 已不含 deepSearchToggle／keyPanel／chainModeToggle，仍含 searchInput／categorySelect。
+- 重啟正式模式：3000 監聽、首頁 HTTP 200、`/api/search`（query="ppt"）回 5 筆結果（decision=no-match，無匹配即誠實）。
+
+**未做（待裁）**：後端 `/api/chain`、`/api/clarify`、`/api/ingest`、`/api/keys` 端點與同義詞／TF-IDF 引擎未一併收掉——若要精簡需先跑 `registry/eval-queries.json`（267 題）對照 Hit@1 才能裁決。
 
 ### 2026-10-20 批次入庫 3 支工具 + monorepo 拆解 + YAML `>-` 解析器修復
 

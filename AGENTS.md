@@ -88,6 +88,10 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
+
+# 2026-10-24 UI 精簡：移除「深度搜尋／多工具鏈／API 金鑰區」三個選用面板
+# 保留主搜尋框 + 分類下拉（/api/search 命脈）；後端 /api/chain /api/clarify
+# /api/ingest /api/keys 端點保留（前端已不再呼叫，MCP/CLI 仍可共用引擎）
 npm run start:local       # 一鍵啟動本地工作台（自動偵測資料過期→必要時跑 trending+build→背景啟動→驗證 HTTP）
 npm run start:local:dev   # 一鍵啟動 dev 模式（服務 web/，前端改動即時生效）
 npm run start:local:force # 無條件跑 trending+build 後再啟動

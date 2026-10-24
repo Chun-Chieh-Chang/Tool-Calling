@@ -10,25 +10,9 @@ let currentTab = 'dashboard';
 // DOM Elements
 const searchInput = document.getElementById('searchInput');
 const categorySelect = document.getElementById('categorySelect');
-const deepSearchToggle = document.getElementById('deepSearchToggle');
-const deepSearchSpinner = document.getElementById('deepSearchSpinner');
 const resultsGrid = document.getElementById('resultsGrid');
 const resultCount = document.getElementById('resultCount');
 const toolCardTemplate = document.getElementById('toolCardTemplate');
-// 多工具鏈與需求收斂（2026-09-20）
-const chainModeToggle = document.getElementById('chainModeToggle');
-const clarifyBar = document.getElementById('clarifyBar');
-const clarifyLabel = document.getElementById('clarifyLabel');
-const clarifyOptions = document.getElementById('clarifyOptions');
-const chainResult = document.getElementById('chainResult');
-const chainPipeline = document.getElementById('chainPipeline');
-const chainSteps = document.getElementById('chainSteps');
-const ingestSourceSelect = document.getElementById('ingestSourceSelect');
-// API 金鑰提示面板（背景補齊語意欄位用）
-const keyPanel = document.getElementById('keyPanel');
-const keyInput = document.getElementById('keyInput');
-const keySaveBtn = document.getElementById('keySaveBtn');
-const keyPanelHint = document.getElementById('keyPanelHint');
 
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
@@ -165,14 +149,6 @@ async function init() {
     // 事件監聽
     searchInput.addEventListener('input', debounce(handleSearch, 300));
     categorySelect.addEventListener('change', handleSearch);
-    // 切換深度搜尋後立即以新模式重跑當前查詢，讓使用者能直接比較差異
-    if (deepSearchToggle) deepSearchToggle.addEventListener('change', handleSearch);
-    if (chainModeToggle) chainModeToggle.addEventListener('change', handleSearch);
-    if (ingestSourceSelect) ingestSourceSelect.addEventListener('change', handleSearch);
-    // API 金鑰：未設定時顯示提示面板
-    if (keySaveBtn) keySaveBtn.addEventListener('click', saveKeys);
-    if (keyInput) keyInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') saveKeys(); });
-    checkKeyStatus();
 
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
@@ -816,15 +792,6 @@ function setupAddToRegistryButtons() {
       } else if (data.status === 'added') {
         btn.textContent = '✅ 已加入';
         btn.classList.add('added');
-        // 沒設金鑰時，背景補齊不會發生（工具會停在 experimental）——
-        // 這時把金鑰輸入面板叫出來，讓使用者知道可以補上
-        if (data.enriching === false && keyPanel) {
-          keyPanel.hidden = false;
-          if (keyPanelHint) {
-            keyPanelHint.textContent =
-              `「${toolName}」已加入，但沒有 API 金鑰，中文描述與使用情境尚未補齊（狀態為 experimental）。輸入金鑰後可再執行 npm run enrich:new 補齊。`;
-          }
-        }
       } else {
         btn.textContent = '❌ 失敗';
         btn.classList.add('failed');
@@ -880,43 +847,15 @@ function populateCategories() {
 
 // ─── 統一四視圖連動同步引擎 (Unified 4-View Sync Engine) ────────────────────
 
-async function handleSearch() {
+function handleSearch() {
   const startTime = Date.now();
   syncAllViews();
   const duration = Date.now() - startTime;
-  
+
   // 記錄搜尋行為
   const query = searchInput ? searchInput.value.trim() : '';
   if (query.length > 0) {
     behaviorTracker.recordSearch(query, [], duration);
-
-    // 查詢變了就清空先前的追問答案（否則會拿上一題的約束來問這一題）
-    if (query !== lastQueryForClarify) {
-      clarifyAnswers = {};
-      lastQueryForClarify = query;
-    }
-
-    const chainMode = chainModeToggle ? chainModeToggle.checked : false;
-    // 素材來源選單只在多工具鏈模式出現
-    if (ingestSourceSelect) ingestSourceSelect.hidden = !chainMode;
-    if (chainMode) {
-      if (clarifyBar) clarifyBar.hidden = true;
-      const source = ingestSourceSelect ? ingestSourceSelect.value : '';
-      if (source) {
-        // 擷取管線：素材 → 可用筆記
-        const plan = await serverIngest(source);
-        if (plan) renderIngest(plan);
-      } else {
-        runChain(query);
-      }
-    } else {
-      if (ingestSourceSelect) ingestSourceSelect.value = '';
-      if (chainResult) chainResult.hidden = true;
-      runClarify(query);
-    }
-  } else {
-    if (clarifyBar) clarifyBar.hidden = true;
-    if (chainResult) chainResult.hidden = true;
   }
 }
 
@@ -929,13 +868,12 @@ async function handleSearch() {
  *
  * 延遲實測（2026-09-16）：
  *   詞彙引擎（rerank=false）  平均 119ms  → 適合即時搜尋
- *   含 LLM rerank（rerank=true）平均 5365ms → 太慢，僅供使用者主動觸發
+ *   含 LLM rerank（rerank=true）平均 5365ms → 太慢，已移除「深度搜尋」開關
  *
  * 失敗時回傳 null，由呼叫端退回原本的 Worker / 主線程流程（離線安全）。
  *
  * @param {string} query
- * @param {{topK?: number, category?: string, deep?: boolean}} [options]
- *        deep=true 才啟用 LLM rerank（慢但準）
+ * @param {{topK?: number, category?: string}} [options]
  * @returns {Promise<Array|null>} 工具陣列，失敗時 null
  */
 async function serverSearch(query, options = {}) {
@@ -947,7 +885,6 @@ async function serverSearch(query, options = {}) {
         query,
         topK: options.topK || 100,
         category: options.category || undefined,
-        rerank: options.deep === true ? undefined : false,
       }),
     });
     if (!res.ok) throw new Error(`api ${res.status}`);
@@ -961,211 +898,6 @@ async function serverSearch(query, options = {}) {
     console.warn('[Search] server unavailable, falling back:', err.message);
     return null;
   }
-}
-
-// ── 多工具鏈與需求收斂（2026-09-20）──────────────────────────────────────
-//
-// 兩個既有功能原本只接在 CLI，Web 與 MCP 都看不到：
-//   planToolChain（多步驟 → 工具鏈）與需求引導問答。
-// 這裡一方面把它們接到前端，另一方面把工具鏈升級成走融合引擎（見 core/tool-chain.js），
-// 並把寫死的題庫換成由候選差異動態產生的問題（見 core/clarifier.js）。
-
-let clarifyAnswers = {};   // 已回答的維度 → 值
-let lastQueryForClarify = '';
-
-async function serverChain(task, topK = 3) {
-  try {
-    const res = await fetch('/api/chain', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ task, topK }),
-    });
-    if (!res.ok) throw new Error(`api ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[Chain] unavailable:', err.message);
-    return null;
-  }
-}
-
-async function serverClarify(query, answers) {
-  try {
-    const res = await fetch('/api/clarify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, answers }),
-    });
-    if (!res.ok) throw new Error(`api ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[Clarify] unavailable:', err.message);
-    return null;
-  }
-}
-
-function renderChain(plan) {
-  if (!chainResult || !plan) return;
-  if (!plan.steps || plan.steps.length === 0) { chainResult.hidden = true; return; }
-  chainPipeline.textContent = plan.asciiPipeline || '';
-  chainSteps.innerHTML = plan.steps.map((s) => {
-    const t = s.recommendedTool;
-    const alt = (s.alternatives || []).map((a) => escapeHtml(a.name || a.id)).join('、');
-    return `
-      <div class="chain-step">
-        <span class="chain-step-no">${s.stepIndex}</span>
-        <div class="chain-step-body">
-          <div><span class="chain-step-action">${escapeHtml(s.action)} →</span>
-            <span class="chain-step-tool">${t ? escapeHtml(t.name) : '（找不到合適工具）'}</span></div>
-          <div class="chain-step-io">${escapeHtml(s.inputFormat)} → ${escapeHtml(s.outputFormat)}</div>
-          ${alt ? `<div class="chain-step-alt">備選：${alt}</div>` : ''}
-        </div>
-      </div>`;
-  }).join('');
-  chainResult.hidden = false;
-}
-
-function renderClarify(data) {
-  if (!clarifyBar) return;
-  if (!data || !data.shouldAsk || !data.question) { clarifyBar.hidden = true; return; }
-  const q = data.question;
-  clarifyLabel.textContent = `不確定你要的是哪一個 — ${q.prompt}`;
-  clarifyOptions.innerHTML = '';
-  for (const value of q.options) {
-    const btn = document.createElement('button');
-    btn.className = 'clarify-opt';
-    btn.textContent = value === '__any__' ? '都可以／跳過' : value;
-    btn.addEventListener('click', () => {
-      clarifyAnswers[q.dimension] = value;
-      clarifyBar.hidden = true;
-      handleSearch();   // 帶著答案重新搜尋
-    });
-    clarifyOptions.appendChild(btn);
-  }
-  clarifyBar.hidden = false;
-}
-
-async function runChain(query) {
-  const plan = await serverChain(query);
-  if (!plan) return;
-  // 人工驗證配方庫（Batch 3b）：後端以 source 標記分流，配方走專屬卡片
-  if (plan.source === 'recipe-library') { renderRecipeCard(plan.recipe); return; }
-  renderChain(plan);
-}
-
-function renderRecipeCard(recipe) {
-  if (!chainResult || !recipe) return;
-  chainPipeline.textContent = `📐 人工驗證配方：${recipe.name}`;
-  chainSteps.innerHTML = `
-    <div class="chain-step">
-      <span class="chain-step-no">✓</span>
-      <div class="chain-step-body">
-        ${recipe.steps.map((s) => `
-          <div><span class="chain-step-action">${escapeHtml(`步驟 ${s.order}：${s.action}`)} →</span>
-            <span class="chain-step-tool">${escapeHtml(s.toolId)}</span></div>
-          ${s.input ? `<div class="chain-step-io">📥 輸入：${escapeHtml(s.input)}</div>` : ''}
-          ${s.output ? `<div class="chain-step-io">📤 輸出：${escapeHtml(s.output)}</div>` : ''}
-        `).join('')}
-        <div class="chain-step-alt">🔗 資料流：${escapeHtml(recipe.dataFlow)}</div>
-        <div class="chain-step-alt">驗證：${escapeHtml(recipe.validatedHow)}（${escapeHtml(recipe.validatedAt)}）</div>
-      </div>
-    </div>`;
-  chainResult.hidden = false;
-}
-
-async function runClarify(query) {
-  const data = await serverClarify(query, clarifyAnswers);
-  renderClarify(data);
-}
-
-// ── API 金鑰（背景補齊語意欄位用）────────────────────────────────────────
-//
-// 為什麼要在 UI 提示輸入：加入工具後會背景補齊 useCase／advantages／*_zh，
-// 那需要 LLM。若伺服器啟動時沒有設 AGNES_API_KEY，與其要使用者重啟伺服器，
-// 不如在這裡提示輸入——金鑰只存在伺服器記憶體，不落地。
-//
-// 生命週期：工具加入時一律 experimental；補齊完成才升級為 active。
-
-async function checkKeyStatus() {
-  if (!keyPanel) return;
-  try {
-    const res = await fetch('/api/keys/status');
-    if (!res.ok) return;
-    const s = await res.json();
-    keyPanel.hidden = Boolean(s.configured);
-    if (s.configured && keyPanelHint) {
-      keyPanelHint.textContent =
-        `已設定 ${s.count} 把金鑰（來源：${s.source === 'env' ? '環境變數' : s.source === 'runtime' ? '本次工作階段輸入' : '環境變數＋工作階段輸入'}）`;
-    }
-  } catch { /* 伺服器不可用時靜默，不影響其他功能 */ }
-}
-
-async function saveKeys() {
-  if (!keyInput || !keySaveBtn) return;
-  const keys = keyInput.value.trim();
-  if (!keys) { keyInput.focus(); return; }
-
-  keySaveBtn.disabled = true;
-  const original = keySaveBtn.textContent;
-  keySaveBtn.textContent = '儲存中…';
-  try {
-    const res = await fetch('/api/keys', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ keys }),
-    });
-    const data = await res.json();
-    if (res.ok && data.ok) {
-      keyInput.value = '';           // 不在前端留存金鑰
-      keyPanel.hidden = true;
-      console.log(`[Keys] 已設定 ${data.count} 把金鑰`);
-    } else {
-      keySaveBtn.textContent = '❌ 失敗';
-      setTimeout(() => { keySaveBtn.textContent = original; }, 2000);
-    }
-  } catch (err) {
-    console.warn('[Keys] 儲存失敗:', err.message);
-    keySaveBtn.textContent = '❌ 網路錯誤';
-    setTimeout(() => { keySaveBtn.textContent = original; }, 2000);
-  } finally {
-    keySaveBtn.disabled = false;
-    if (keySaveBtn.textContent === '儲存中…') keySaveBtn.textContent = original;
-  }
-}
-
-// 擷取管線（Capture 層）：素材 → 可用筆記
-async function serverIngest(source, topK = 3) {
-  try {
-    const res = await fetch('/api/ingest', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source, topK }),
-    });
-    if (!res.ok) throw new Error(`api ${res.status}`);
-    return await res.json();
-  } catch (err) {
-    console.warn('[Ingest] unavailable:', err.message);
-    return null;
-  }
-}
-
-function renderIngest(plan) {
-  if (!chainResult || !plan) return;
-  chainPipeline.textContent = plan.asciiPipeline || '';
-  chainSteps.innerHTML = plan.stages.map((s) => {
-    const t = s.recommendedTool;
-    const alt = (s.alternatives || []).map((a) => escapeHtml(a.name || a.id)).join('、');
-    return `
-      <div class="chain-step">
-        <span class="chain-step-no">${s.stepIndex}</span>
-        <div class="chain-step-body">
-          <div><span class="chain-step-action">${escapeHtml(s.label)} →</span>
-            <span class="chain-step-tool">${t ? escapeHtml(t.name) : '（無高置信度工具）'}</span></div>
-          ${s.warning ? `<div class="chain-step-alt">⚠ ${escapeHtml(s.warning)}</div>`
-                      : (alt ? `<div class="chain-step-alt">備選：${alt}</div>` : '')}
-        </div>
-      </div>`;
-  }).join('');
-  chainResult.hidden = false;
 }
 
 function syncAllViews() {
@@ -1205,18 +937,9 @@ function syncAllViews() {
       }
       
       // 優先走 server 檢索（與 MCP / CLI 共用 core/ 引擎）
-      // deep = 啟用 LLM rerank（約 5 秒），僅在使用者勾選「深度搜尋」時才用，
-      // 避免讓每次打字都等這麼久。
-      const deep = deepSearchToggle ? deepSearchToggle.checked : false;
-      if (deep && deepSearchSpinner) deepSearchSpinner.hidden = false;
-      const hideSpinner = () => { if (deepSearchSpinner) deepSearchSpinner.hidden = true; };
-
-      serverSearch(query, { topK: options.topK, category, deep }).then(serverResults => {
-        hideSpinner();
+      serverSearch(query, { topK: options.topK, category }).then(serverResults => {
         if (serverResults) {
-          // 深度搜尋的結果不寫入快取：它與快速路徑的排序不同，
-          // 混用會讓同一查詢在兩種模式下拿到不一致的結果。
-          if (!deep) setInMemoryCache(query, category, undefined, serverResults, registryVersion);
+          setInMemoryCache(query, category, undefined, serverResults, registryVersion);
           renderSearchResults(serverResults);
           return;
         }
