@@ -26092,12 +26092,12 @@
     "fullName": "anmolkapil/plexo",
     "owner": "anmolkapil",
     "repo": "plexo",
-    "initialStars": 1152,
-    "discoveredAt": "2026-09-28T08:16:28.494Z",
-    "sourceSnapshotWeek": "2026-W40",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-10-19T07:21:38.547Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 1152,
+    "sourceSnapshotWeek": "2026-W40",
+    "discoveredAt": "2026-09-28T08:16:28.494Z"
   },
   "Observal/Axl": {
     "fullName": "Observal/Axl",
@@ -26905,12 +26905,12 @@
     "fullName": "storytold/cadcraft",
     "owner": "storytold",
     "repo": "cadcraft",
-    "initialStars": 2926,
-    "discoveredAt": "2026-10-12T08:40:48.785Z",
-    "sourceSnapshotWeek": "2026-W42",
-    "category": null,
+    "category": "3D工程繪圖",
     "addedAt": "2026-10-19T07:21:38.547Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 2926,
+    "sourceSnapshotWeek": "2026-W42",
+    "discoveredAt": "2026-10-12T08:40:48.785Z"
   },
   "mhtsec/ARTEX": {
     "fullName": "mhtsec/ARTEX",
@@ -27103,12 +27103,12 @@
     "fullName": "ARahim3/DigUp",
     "owner": "ARahim3",
     "repo": "DigUp",
-    "initialStars": 2090,
-    "discoveredAt": "2026-10-13T14:26:14.374Z",
-    "sourceSnapshotWeek": "2026-W42",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-10-19T07:21:38.547Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 2090,
+    "sourceSnapshotWeek": "2026-W42",
+    "discoveredAt": "2026-10-13T14:26:14.374Z"
   },
   "alejandrobujan/tendedero": {
     "fullName": "alejandrobujan/tendedero",
@@ -27147,12 +27147,12 @@
     "fullName": "liseami/CCBaga",
     "owner": "liseami",
     "repo": "CCBaga",
-    "initialStars": 1933,
-    "discoveredAt": "2026-10-13T14:26:14.374Z",
-    "sourceSnapshotWeek": "2026-W42",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-10-19T07:21:38.547Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 1933,
+    "sourceSnapshotWeek": "2026-W42",
+    "discoveredAt": "2026-10-13T14:26:14.374Z"
   },
   "lucasmarkes/hairline": {
     "fullName": "lucasmarkes/hairline",
@@ -27202,12 +27202,12 @@
     "fullName": "Fei2411/DeepSeek-Bot",
     "owner": "Fei2411",
     "repo": "DeepSeek-Bot",
-    "initialStars": 1570,
-    "discoveredAt": "2026-10-13T14:26:14.374Z",
-    "sourceSnapshotWeek": "2026-W42",
-    "category": null,
+    "category": "AI 代理",
     "addedAt": "2026-10-19T07:21:38.547Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 1570,
+    "sourceSnapshotWeek": "2026-W42",
+    "discoveredAt": "2026-10-13T14:26:14.374Z"
   },
   "CAPCOM-TD-OSS/REDox": {
     "fullName": "CAPCOM-TD-OSS/REDox",
@@ -27224,12 +27224,12 @@
     "fullName": "shadany7824/playgta5",
     "owner": "shadany7824",
     "repo": "playgta5",
-    "initialStars": 1528,
-    "discoveredAt": "2026-10-13T14:26:14.374Z",
-    "sourceSnapshotWeek": "2026-W42",
-    "category": null,
+    "category": "開發工具",
     "addedAt": "2026-10-19T07:21:38.547Z",
-    "status": "in_registry"
+    "status": "tracking",
+    "initialStars": 1528,
+    "sourceSnapshotWeek": "2026-W42",
+    "discoveredAt": "2026-10-13T14:26:14.374Z"
   },
   "zed-industries/zed": {
     "fullName": "zed-industries/zed",
@@ -27401,11 +27401,340 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2688,
-    "inRegistry": 734,
-    "trackedOnly": 1954,
-    "lastGenerated": "2026-10-19T07:21:38.578Z"
+  "ingelibre/ingetrazo": {
+    "fullName": "ingelibre/ingetrazo",
+    "owner": "ingelibre",
+    "repo": "ingetrazo",
+    "category": "3D工程繪圖",
+    "addedAt": "2026-10-20T03:35:39.489Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-10-19T07:21:38.547Z"
+  "google-research/harness2": {
+    "fullName": "google-research/harness2",
+    "owner": "google-research",
+    "repo": "harness2",
+    "category": "AI 代理",
+    "addedAt": "2026-10-20T03:35:50.293Z",
+    "status": "tracking"
+  },
+  "cursor/plugins": {
+    "fullName": "cursor/plugins",
+    "owner": "cursor",
+    "repo": "plugins",
+    "category": "開發工具",
+    "addedAt": "2026-10-20T03:35:57.489Z",
+    "status": "tracking"
+  },
+  "storytold/artcraft": {
+    "fullName": "storytold/artcraft",
+    "owner": "storytold",
+    "repo": "artcraft",
+    "category": "多媒體生成",
+    "addedAt": "2026-10-20T04:29:45.840Z",
+    "status": "tracking"
+  },
+  "tangency-labs/solidcraft": {
+    "fullName": "tangency-labs/solidcraft",
+    "owner": "tangency-labs",
+    "repo": "solidcraft",
+    "initialStars": 6106,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "KnifeLemon/Filee": {
+    "fullName": "KnifeLemon/Filee",
+    "owner": "KnifeLemon",
+    "repo": "Filee",
+    "initialStars": 4935,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jhaizhou-ops/d2r-mobile": {
+    "fullName": "jhaizhou-ops/d2r-mobile",
+    "owner": "jhaizhou-ops",
+    "repo": "d2r-mobile",
+    "initialStars": 3959,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Saffsanity/sill": {
+    "fullName": "Saffsanity/sill",
+    "owner": "Saffsanity",
+    "repo": "sill",
+    "initialStars": 3480,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "onehumanbeing/esp32-iphone-agent": {
+    "fullName": "onehumanbeing/esp32-iphone-agent",
+    "owner": "onehumanbeing",
+    "repo": "esp32-iphone-agent",
+    "initialStars": 3186,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "T-Auto/dsh-ops": {
+    "fullName": "T-Auto/dsh-ops",
+    "owner": "T-Auto",
+    "repo": "dsh-ops",
+    "initialStars": 3150,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Arekejoker/qwen21-nsfw-pose-skill": {
+    "fullName": "Arekejoker/qwen21-nsfw-pose-skill",
+    "owner": "Arekejoker",
+    "repo": "qwen21-nsfw-pose-skill",
+    "initialStars": 3144,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Gathin23/tv-vibehack": {
+    "fullName": "Gathin23/tv-vibehack",
+    "owner": "Gathin23",
+    "repo": "tv-vibehack",
+    "initialStars": 2712,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "storytold/figcraft": {
+    "fullName": "storytold/figcraft",
+    "owner": "storytold",
+    "repo": "figcraft",
+    "initialStars": 2697,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "feder-cr/git-ai": {
+    "fullName": "feder-cr/git-ai",
+    "owner": "feder-cr",
+    "repo": "git-ai",
+    "initialStars": 2326,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "HeyPuter/everything": {
+    "fullName": "HeyPuter/everything",
+    "owner": "HeyPuter",
+    "repo": "everything",
+    "initialStars": 2254,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "deeplethe/solid-glass": {
+    "fullName": "deeplethe/solid-glass",
+    "owner": "deeplethe",
+    "repo": "solid-glass",
+    "initialStars": 2207,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "obsidianmd/pele": {
+    "fullName": "obsidianmd/pele",
+    "owner": "obsidianmd",
+    "repo": "pele",
+    "initialStars": 2066,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ahwootech/BRUTAL": {
+    "fullName": "ahwootech/BRUTAL",
+    "owner": "ahwootech",
+    "repo": "BRUTAL",
+    "initialStars": 1933,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Folkbench/folkbench": {
+    "fullName": "Folkbench/folkbench",
+    "owner": "Folkbench",
+    "repo": "folkbench",
+    "initialStars": 1906,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "SubmitGame/awesome-decomp-games": {
+    "fullName": "SubmitGame/awesome-decomp-games",
+    "owner": "SubmitGame",
+    "repo": "awesome-decomp-games",
+    "initialStars": 1847,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "academa-labs/manimgx": {
+    "fullName": "academa-labs/manimgx",
+    "owner": "academa-labs",
+    "repo": "manimgx",
+    "initialStars": 1832,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "oil-oil/oil-ui": {
+    "fullName": "oil-oil/oil-ui",
+    "owner": "oil-oil",
+    "repo": "oil-ui",
+    "initialStars": 1796,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "chenglou/handwired": {
+    "fullName": "chenglou/handwired",
+    "owner": "chenglou",
+    "repo": "handwired",
+    "initialStars": 1751,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "angusdevgo/Seep-Reverse-Lab": {
+    "fullName": "angusdevgo/Seep-Reverse-Lab",
+    "owner": "angusdevgo",
+    "repo": "Seep-Reverse-Lab",
+    "initialStars": 1687,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "jiwoochris/artex-global": {
+    "fullName": "jiwoochris/artex-global",
+    "owner": "jiwoochris",
+    "repo": "artex-global",
+    "initialStars": 1683,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "NVIDIA-Omniverse/usd-brep": {
+    "fullName": "NVIDIA-Omniverse/usd-brep",
+    "owner": "NVIDIA-Omniverse",
+    "repo": "usd-brep",
+    "initialStars": 1681,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "darrenprx/lolPing": {
+    "fullName": "darrenprx/lolPing",
+    "owner": "darrenprx",
+    "repo": "lolPing",
+    "initialStars": 1664,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "sganggs/Stronghold-Protocol": {
+    "fullName": "sganggs/Stronghold-Protocol",
+    "owner": "sganggs",
+    "repo": "Stronghold-Protocol",
+    "initialStars": 1630,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "opengeos/RustGIS": {
+    "fullName": "opengeos/RustGIS",
+    "owner": "opengeos",
+    "repo": "RustGIS",
+    "initialStars": 1615,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "HelixDB/helix-foundry": {
+    "fullName": "HelixDB/helix-foundry",
+    "owner": "HelixDB",
+    "repo": "helix-foundry",
+    "initialStars": 1615,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "shaongitbd/doory": {
+    "fullName": "shaongitbd/doory",
+    "owner": "shaongitbd",
+    "repo": "doory",
+    "initialStars": 1615,
+    "discoveredAt": "2026-10-19T07:21:38.547Z",
+    "sourceSnapshotWeek": "2026-W43",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2719,
+    "inRegistry": 744,
+    "trackedOnly": 1975,
+    "lastGenerated": "2026-10-26T07:27:31.296Z"
+  },
+  "lastGenerated": "2026-10-26T07:27:31.254Z"
 }
