@@ -22948,7 +22948,7 @@
         },
         {
           "name": "Baoyu Wechat Summary",
-          "description": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl), per-user profiles, and per-group fact memory (memory.md) across runs, with privacy guardrails baked in. Use when the user asks to \"總結羣聊\", \"羣聊精華\", \"羣聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"幫我看看 XX 羣最近聊了什麼\", \"XX 羣有什麼值得看的\", or asks to \"回溯畫像\" / \"初始化畫像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再來個毒舌的\", or similar.",
+          "description": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl), per-user profiles, and per-group fact memory (memory.md) across runs, with privacy guardrails baked in. Use when the user asks to \"總結群聊\", \"群聊精華\", \"群聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"幫我看看 XX 群最近聊了什麼\", \"XX 群有什麼值得看的\", or asks to \"回溯畫像\" / \"初始化畫像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再來個毒舌的\", or similar.",
           "subpath": "skills/baoyu-wechat-summary"
         },
         {
@@ -36259,7 +36259,7 @@
       "advantages": [
         "多種權重變體彈性高",
         "設計現代化",
-        "活躍社羣維護"
+        "活躍社群維護"
       ],
       "negativeConstraints": [
         "選擇較多需設計決策",
@@ -36511,7 +36511,7 @@
       "status": "active",
       "useCase": "提供美麗且一致的開源圖示集，適合網頁與應用程式的 UI 元件開發",
       "advantages": [
-        "社羣驅動持續更新",
+        "社群驅動持續更新",
         "一致的設計風格",
         "支援 Tree Shaking 最佳化"
       ],
@@ -36522,7 +36522,7 @@
       ],
       "stars": 25432,
       "description_zh": "由社群打造的精美且一致的圖示工具包。開源專案，為 Feather Icons 的分支版本。",
-      "advantages_zh": "社羣驅動持續更新,一致的設計風格,支援 Tree Shaking 最佳化",
+      "advantages_zh": "社群驅動持續更新,一致的設計風格,支援 Tree Shaking 最佳化",
       "negativeConstraints_zh": [
         "不適合照片級真實感圖形",
         "僅提供 SVG 格式",

@@ -26,6 +26,13 @@
  * 「引用簡體 bug 本身」的歷史文字（節錄的簡體分類名、簡體字形對照等），
  * 改了等於塗掉紀錄；但它們的新增行仍受預設模式管轄。
  *
+ * 🔴 2026-11-01：npm test 改跑**三條**——新增 `--full registry/`。
+ * 決策二（registry 納入檢查）的落點：過去 registry 是門禁的完全盲區，
+ * 而 tools.json 的 `_zh` 欄位正是繁中 UI 直接顯示給使用者的文字。
+ * 把它獨立成一條命令（而不是併進 `--code`）的理由：`--code` 的既有語意是
+ * 「原始碼目錄」，混進資料層會讓「程式寫錯字」與「資料殘留簡體」兩種
+ * 不同成因的紅燈混在同一個標籤裡，難以分辨。獨立後失敗訊息自帶成因。
+ *
  * 豁免機制（刻意引用簡體字的情況）
  * ──────────────────────────────
  * 有些簡體字是**資料**而非書寫瑕疵：檢索關鍵字（core/search-engine.js 收了
@@ -59,16 +66,34 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const LINE_ESCAPE = 'allow-simplified';
 const FILE_ESCAPE = 'check-traditional: skip-file';
 
-// 繁體官方用語本身就會這樣寫的字，額外從報警名單排除。
-// 「准」在簡體是「準」的簡化字，但 TW 公文寫「核准」「獲准」——沿用
-// fix-simplified 的主表會把它報成簡體，屬於誤報。門禁的原則是一定不能誤報：
-// 一旦誤報，開發者就會把門禁關掉。
-const GATE_AMBIGUOUS = new Set(['准']);
+// ── 語境相依字已改由 findSimplified 自行判斷（2026-11-01）────────────────
+// 舊版這裡有一組 GATE_AMBIGUOUS，把該字整個從報警名單排除，理由是它在 TW 公文裡
+// 有合法的「核准／獲准」用法——但那等於**連簡體的「准確」也不報**， // allow-simplified：引用簡體字形本身
+// 守門因此對該字完全失明（陷阱 19 的循環盲區的另一種形狀）。 // allow-simplified：引用簡體字形本身
+//
+// 現在 findSimplified 改用 opencc 的詞組級輸出做上下文判定：
+//   簡體的「准確」→ opencc 改成「準確」→ 報 ✅                    // allow-simplified：引用簡體字形本身
+//   「核准／獲准／准許」→ 屬合法繁體用法 → 不報 ✅                // allow-simplified：引用簡體字形本身
+// 因此這組例外可以安全移除，恢復對該字的偵測能力。
 
-// 整檔豁免的目錄／檔案：資料檔（工具庫本身含刻意收錄的簡體檢索詞）與
-// 巨檔（打包產物、依賴），掃描它們只會產生噪音。
+// 整檔豁免的目錄／檔案：產物（打包產物、依賴）與刻意收錄簡體的資料。
+//
+// 🔴 2026-11-01：registry 的**資料層自此納入門禁**——tools.json / zh-translation-state.json /
+// compiled-entries.json 是使用者實際看到的文字（繁中 UI 直接顯示 _zh 欄位），
+// 過去完全不掃，等於這一層沒有任何防護。以下子路徑仍排除，各有明確理由。
 const SKIP_PATH_PATTERNS = [
-  /^registry\//,
+  // 歷史快照：不可變更的過去狀態，掃了只會永遠紅。
+  /^registry\/backups\//,
+  // 歷史週報產物（自動生成的過往報告）。
+  /^registry\/weekly-reports\//,
+  // 分類關鍵詞表**刻意收錄簡體檢索詞**（「论文|論文|文献|學術|学术」）， // allow-simplified：引用簡體檢索詞本身
+  // 那是為了讓使用者輸入簡體時也能命中——簡體字是功能的一部分，不是缺陷。
+  /^registry\/categories\.json$/,
+  // 同上（分類提案含簡體別名做匹配用）。
+  /^registry\/category-proposals\.json$/,
+  // 漲星探索的**原始發現稿**：trending 寫入的未經清洗 LLM 描述，
+  // 只作暫存，入庫進 tools.json 前會另做清洗與語意補齊。
+  /^registry\/weekly-trending\.json$/,
   /^dist\//,
   /^node_modules\//,
   /^package-lock\.json$/,
@@ -108,7 +133,7 @@ export function isLineExempt(lineText, fileHeader = '') {
  */
 export function checkLine(lineText, lineNumber, fileHeader = '') {
   if (isLineExempt(lineText, fileHeader)) return null;
-  const chars = findSimplified(lineText).filter((ch) => !GATE_AMBIGUOUS.has(ch));
+  const chars = findSimplified(lineText);
   return chars.length ? { line: lineNumber, chars, text: lineText } : null;
 }
 

@@ -137,6 +137,14 @@ for (const k of Object.keys(S2T)) {
 
 const S2T_KEYS = new Set(Object.keys(S2T));
 
+// ── 語境相依字（第三類）：留在 S2T，但**不列入逐字偵測**──────────────────
+//
+// 准：繁體裡 准（批准／准許／核准）與 準（準確／準則）都合法。
+// 逐字判定必然誤報——「批准」「核准」「准許」全會被當成簡體。
+// 它必須留在 S2T（閘門要開，否則「准確」不會被轉成「準確」），
+// 但偵測改走 opencc 的詞組級比對（見 findContextSimplified）。
+const S2T_CONTEXT = new Set(['准']);
+
 // ── 安全單字對照表（S2T 的補充，不進偵測器）────────────────────────────────
 //
 // 🔴 2026-09-20 修掉一個循環盲區：
@@ -196,6 +204,16 @@ const S2T_SAFE = {
   职: '職', 尔: '爾', 涨: '漲', 积: '積', 虫: '蟲', 缀: '綴',
   揽: '攬', 尽: '盡', 迁: '遷', 营: '營', 拦: '攔', 胀: '脹',
   访: '訪', 许: '許', 竞: '競', 盘: '盤',
+
+  // ── 2026-11-01：registry 納入繁簡守門後挖出的兩個漏字 ──────────────────
+  // 枢：真簡體（繁體不存在同形字，正確為「樞」）。先前不在 S2T 也不在 SAFE，
+  //     偵測與轉換**雙雙失明**——實測「知識中枢」在守門下完全看不見，
+  //     而它正是繁中 UI 直接顯示給使用者的字。
+  枢: '樞',
+  // 羣：opencc cn→t 的異體偏好（會把「群組」改成「羣組」）。本庫主流是「群」
+  //     （全庫 群 105 vs 羣 1），cn→tw 已會正規化為「群」，此處補上單字對照，
+  //     讓閘門在 gate 未開時也能抓到並修正它。
+  羣: '群',
 };
 
 // ── opencc-js（優先）／內建表（備援） ──────────────────────────────────────
@@ -210,9 +228,101 @@ const S2T_SAFE = {
 let openccConvert = null;
 try {
   const OpenCC = await import('opencc-js');
-  openccConvert = OpenCC.Converter({ from: 'cn', to: 't' });
+  // 🔴 2026-11-01：cn→t → cn→tw（台灣正體）。
+  // 為什麼改：實測 cn→t 會把**已經正確的繁體**改壞——
+  //   核准與批准 → 覈准與批准　覈准的情況 → 覈準的情況
+  //   群組設定 → 羣組設定　　　跨平台支援 → 跨平臺支援
+  // cn→tw 保住群／核／准許／核准／系統／循環，只剩台與干需要還原（見 RESTORE_CHARS）。
+  openccConvert = OpenCC.Converter({ from: 'cn', to: 'tw' });
 } catch {
   openccConvert = null;
+}
+
+// ── 繁體合法但 opencc 會改寫的字形（逐位還原用）──────────────────────────
+// 這些字在繁體裡合法，且是**本工具庫的主流寫法**（全庫統計：台 160 vs 臺 7、
+// 干 13 vs 幹 0），但 opencc cn→tw 會把它們換成異體字。
+//
+// ⚠️ 必須「逐位比對後還原」，不能用全域 replace：否則「臺北」「幹部」這類
+// 本來就對的繁體會被改壞。只把 opencc **動過的那一處**換回原字。
+const RESTORE_CHARS = {
+  '台': '臺',   // opencc：跨平台 → 跨平臺
+  '干': '幹',   // opencc：減少干擾 → 減少幹擾
+};
+
+// ── 「准」的合法繁體用法（上下文規則）────────────────────────────────────
+//
+// 准在繁體裡是**一個合法字**，但它和「準」是兩個不同的字：
+//   准（准許、批准、核准、允准）—— 允許的意思
+//   準（準確、準則、標準）—— 精確的意思
+// opencc 會把「准許」也改成「準許」（實測 cn→tw 與 cn→t 都會），那是把
+// **已經正確的繁體改壞**。因此這裡用上下文判定：
+//   後面接 許／予／以／該／此 → 准（准許／准予／准以／准該／准此）
+//   前面接 批／允／獲／覈／核／不 → 准（批准／允准／獲准／覈准／核准／不准）
+// 其餘情境（如「准確」）才交給 opencc 判斷。
+const CONTEXT_KEEP_AFTER = '許予以該此';
+const CONTEXT_KEEP_BEFORE = '批允獲覈核不';
+
+/** 這一處的「准」是否屬於合法繁體用法（不需要轉成「準」）。 */
+function isLegitimateQuan(s, i) {
+  const next = s[i + 1] || '';
+  const prev = s[i - 1] || '';
+  if (next && CONTEXT_KEEP_AFTER.includes(next)) return true;
+  if (prev && CONTEXT_KEEP_BEFORE.includes(prev)) return true;
+  return false;
+}
+
+/**
+ * 還原 opencc 改寫掉的合法繁體字形（逐位比對，只還原被動過的那幾處）。
+ */
+function restoreVariants(converted, original) {
+  if (converted.length !== original.length) return converted;
+  let out = converted;
+  for (let i = 0; i < original.length; i++) {
+    const orig = original[i];
+    // ① 台／干 這類「合法但被換成異體字」
+    const want = RESTORE_CHARS[orig];
+    if (want && out[i] === want) {
+      out = out.slice(0, i) + orig + out.slice(i + 1);
+      continue;
+    }
+    // ② 「准許／批准／核准」被誤改成「準許／準准／覈准」
+    if (S2T_CONTEXT.has(orig) && out[i] === '準' && isLegitimateQuan(original, i)) {
+      out = out.slice(0, i) + orig + out.slice(i + 1);
+    }
+  }
+  return out;
+}
+
+/**
+ * 語境相依字的偵測（opencc 詞組級比對）。
+ *
+ * 准：繁體裡 准（批准／准許／核准／允准）與 準（準確／準則）**都合法**，
+ * 逐字判定必然誤報——「批准」「核准」「准許」會全被當成簡體。
+ * 改用 opencc cn→tw 的詞組級輸出判斷：只有當 opencc 真的會把「這一處」
+ * 改掉、**且**該處不是合法繁體用法時，才算真正的簡體。
+ *
+ *   准確的數值 → opencc 改成 準確的數值 → 判定為簡體 ✅
+ *   批准／核准／准許 → 合法繁體用法 → 不報 ✅
+ */
+function findContextSimplified(str) {
+  if (!openccConvert) return [];
+  const s = String(str);
+  // 效能：只有真的含語境相依字才呼叫 opencc。registry/tools.json 有 6 萬多行，
+  // 每行都呼叫一次會讓守門慢到不能用。
+  let hasContext = false;
+  for (const ch of s) {
+    if (S2T_CONTEXT.has(ch)) { hasContext = true; break; }
+  }
+  if (!hasContext) return [];
+  const converted = openccConvert(s);
+  if (converted.length !== s.length) return [];   // 長度變了就不逐位比對（保守不報）
+  const out = [];
+  for (let i = 0; i < s.length; i++) {
+    if (!S2T_CONTEXT.has(s[i])) continue;
+    if (isLegitimateQuan(s, i)) continue;
+    if (converted[i] !== s[i]) out.push(s[i]);
+  }
+  return out;
 }
 
 /** 將字串中的簡體字轉為繁體；非簡體字原樣保留。null/undefined → 空字串。 */
@@ -222,12 +332,11 @@ export function toTraditional(str) {
   if (!openccConvert) return [...s].map((ch) => S2T[ch] || S2T_SAFE[ch] || ch).join('');
 
   // ⚠️ 不可無條件交給 opencc：實測它會把**已經是繁體**的字串改錯
-  // （「減少干擾」→「減少幹擾」）。原因是干擾已是繁體、不在簡轉繁詞庫內，
-  // 於是退回單字規則 干→幹。
+  // （「減少干擾」→「減少幹擾」、「群組」→「羣組」）。
   // 因此這裡用內建表的「安全子集」當作偵測器（刻意排除干/复/于/后 等歧義字），
   // 只有確認含明確簡體字時才交給 opencc 做詞組級轉換。
   const hasSimplified = [...s].some((ch) => S2T_KEYS.has(ch));
-  if (hasSimplified) return openccConvert(s);
+  if (hasSimplified) return restoreVariants(openccConvert(s), s);
   // 閘門沒開：絕大部分是「本來就全是繁體」，但不排除只有 S2T 表外簡體字
   // （「没」就是這樣整批漏網的）。此時**不**整串交給 opencc（會誤改 台/群/干），
   // 只做無歧義的單字對照。
@@ -249,9 +358,14 @@ export function toTraditional(str) {
  */
 export function findSimplified(str) {
   if (str == null) return [];
+  const s = String(str);
   // 連 S2T_SAFE 一起查：這些字是無歧義簡體，但因不在主表內，
   // 過去不論轉換或偵測都抓不到（「没」曾整批漏網且複檢也顯示 0）。
-  return [...String(str)].filter((ch) => S2T_KEYS.has(ch) || S2T_SAFE[ch]);
+  const out = [...s].filter((ch) => (S2T_KEYS.has(ch) && !S2T_CONTEXT.has(ch)) || S2T_SAFE[ch]);
+  // 語境相依字（准）：逐字判定會誤報「批准／核准／准許」，
+  // 改用 opencc 的詞組級比對（只有 opencc 真會改的那一處才算）。
+  for (const ch of findContextSimplified(s)) out.push(ch);
+  return out;
 }
 
 /** 目前是否使用 opencc-js（false 表示降級為內建對照表）。 */
@@ -274,27 +388,52 @@ async function main() {
   const tools = j.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
   const fields = ['triggers', 'capabilities', 'advantages', 'negativeConstraints'];
+  // 🔴 2026-11-01：_zh 欄位一併納入修正範圍——它們正是繁中 UI 直接顯示的字，
+  // 而且自此被 check-traditional 門禁看守。守門抓得到、修不掉是半套，
+  // 這裡讓修正器與守門看同一批欄位。
+  const zhFields = ['description_zh', 'useCase_zh', 'advantages_zh', 'negativeConstraints_zh'];
   const changes = [];
   let changedItems = 0, changedChars = 0, changedTools = new Set();
 
   for (const t of tools) {
-    for (const f of fields) {
-      const arr = t[f];
-      if (!Array.isArray(arr)) continue;
+    for (const f of [...fields, ...zhFields]) {
+      const v = t[f];
+      // 欄位可能是陣列，也可能是單一字串（實測 lucide 的 advantages_zh 是字串）——
+      // 守門是掃「整行文字」，兩種形狀都會被看到，修正器就必須兩種都修得動。
+      const arr = Array.isArray(v) ? v : (typeof v === 'string' ? [v] : null);
+      if (!arr) continue;
+      let dirty = false;
       for (let i = 0; i < arr.length; i++) {
         const bad = findSimplified(arr[i]);
         if (!bad.length) continue;
         const fixed = toTraditional(arr[i]);
+        if (fixed === arr[i]) continue;
         changes.push({ id: t.id, field: f, from: arr[i], to: fixed });
         changedItems++;
         changedChars += bad.length;
         changedTools.add(t.id);
+        dirty = true;
         if (apply) arr[i] = fixed;
       }
+      if (apply && dirty && !Array.isArray(v)) t[f] = arr[0];
     }
     if (apply && typeof t.description === 'string') {
       const fixed = toTraditional(t.description);
       if (fixed !== t.description) t.description = fixed;
+    }
+    // subTools 的描述來自 GitHub README，可能是簡體中文（實測 baoyu-skills 有 5 處）。
+    // 門禁掃整份檔案會看到它們，修正器就得修得動——守門抓得到、修不掉是半套。
+    if (apply && Array.isArray(t.subTools)) {
+      for (const st of t.subTools) {
+        if (typeof st.description === 'string') {
+          const fixed = toTraditional(st.description);
+          if (fixed !== st.description) st.description = fixed;
+        }
+        if (typeof st.name === 'string') {
+          const fixed = toTraditional(st.name);
+          if (fixed !== st.name) st.name = fixed;
+        }
+      }
     }
   }
 

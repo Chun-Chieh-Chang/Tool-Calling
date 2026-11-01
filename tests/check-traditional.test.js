@@ -111,10 +111,20 @@ test('歧義字（簡繁同形或一對多）絕不誤報 —— 否則門禁會
   }
 });
 
-test('TW 官方用法「核准」「獲准」不得被誤報（簡體把准當準的簡化字，但繁體自己會寫准）', () => {
+test('TW 官方用法「核准」「獲准」不得被誤報（簡體把該字當「準」的簡化字，但繁體自己會寫該字）', () => {
   for (const s of ['該案已獲上級核准。', '申請已獲准，可以續辦。']) {
     assert.equal(checkLine(s, 1), null, `不應回報：${s}`);
   }
+});
+
+// 2026-11-01 決策二：門禁對該字恢復了偵測能力（不再整字豁免），
+// 但**上下文判定**必須把合法繁體用法放行。這條鎖住「恢復偵測 ≠ 開始誤報」。
+test('「准」的上下文判定：合法繁體用法放行、簡體用法照報', () => { // allow-simplified：引用簡體字形本身
+  for (const s of ['核准與批准', '准許', '准予', '准以', '准該', '不准', '允准']) {
+    assert.equal(checkLine(s, 1), null, `合法繁體用法不應回報：${s}`);
+  }
+  // 簡體寫法（該字當「準」用）必須照報——這正是舊版整字豁免漏掉的
+  assert.ok(checkLine('\u51c6\u78ba\u7684\u6578\u503c', 1), '簡體寫法應被回報');
 });
 
 // ── 豁免機制 ──────────────────────────────────────────────────────────────
@@ -137,12 +147,20 @@ test('標記必須是明確字串，相近寫法不生效', () => {
 });
 
 // ── 掃描範圍 ──────────────────────────────────────────────────────────────
-test('資料檔與產物目錄永不掃描', () => {
-  assert.equal(isSkippedPath('registry/tools.json'), true);
+test('產物目錄永不掃描；但 registry 資料層已納入門禁（決策二）', () => {
   assert.equal(isSkippedPath('dist/registry/tools.json'), true);
   assert.equal(isSkippedPath('package-lock.json'), true);
   assert.equal(isSkippedPath('.temp/x.md'), true);
   assert.equal(isSkippedPath('core/search-engine.js'), false);
+  // 🔴 2026-11-01 決策二：registry 過去整個被排除，等於這一層沒有任何防護。
+  // 現在只有少數子路徑排除（各自有明確理由），tools.json 等主資料必須納入。
+  assert.equal(isSkippedPath('registry/tools.json'), false, 'tools.json 應納入檢查');
+  assert.equal(isSkippedPath('registry/compiled-entries.json'), false, 'compiled-entries.json 應納入檢查');
+  assert.equal(isSkippedPath('registry/zh-translation-state.json'), false, 'zh-translation-state.json 應納入檢查');
+  // 刻意收錄簡體檢索詞的檔案仍排除——但排除必須是**精準**的
+  assert.equal(isSkippedPath('registry/categories.json'), true);
+  assert.equal(isSkippedPath('registry/category-proposals.json'), true);
+  assert.equal(isSkippedPath('registry/weekly-trending.json'), true);
 });
 
 // 2026-10-15 第八輪 Q2=A：產生的知識圖譜 HTML 走路徑排除。
@@ -275,7 +293,7 @@ test('DEV_LOG 的簡體歷史引用：證據仍在、且逐行有行內豁免（
   // 跑到 node --test，這個過時斷言被整條鏈掩蓋了兩天，直到前面幾關修好才曝光。
   const raw = readFileSync(path.join(ROOT, 'DEV_LOG.md'), 'utf8');
   const header = raw.split('\n').slice(0, 10).join('\n');
-  const AMBIG = '\u51c6'; // 准：繁體官方用語也這樣寫，門禁不報，不計入違規證據
+  const AMBIG = '\u51c6'; // 該字的簡體寫法：繁體官方用語也會這樣寫，不計入違規證據
   const evidenceLines = raw.split('\n').filter((l) => findSimplified(l).some((ch) => ch !== AMBIG));
   // 1. 證據仍在：未加標記前，這些歷史條目確實含簡體字（否則「逐字引用 bug 本身」消失）
   assert.ok(evidenceLines.length > 0, 'DEV_LOG 的歷史引用應仍可被原始內容掃到簡體字');
@@ -313,7 +331,8 @@ test('expandTargets：目錄遞迴展開成檔案清單，不外溢、不含跳�
 test('expandTargets：目錄與檔案混給；跳過目錄與鎖檔仍被擋', () => {
   const files = expandTargets(['.agents/', 'registry/tools.json', 'package-lock.json']);
   assert.ok(files.includes('.agents/AGENTS.md'), '.agents/ 應遞迴到根那支 AGENTS.md');
-  assert.ok(!files.some((f) => f.startsWith('registry/')), 'registry/ 應被 isSkippedPath 擋掉');
+  assert.ok(files.includes('registry/tools.json'), 'registry/tools.json 已納入檢查（決策二），不應被擋');
+  assert.ok(!files.includes('registry/categories.json'), '刻意收錄簡體檢索詞的檔案仍應被擋');
   assert.ok(!files.includes('package-lock.json'), '鎖檔永不掃描');
 });
 
@@ -373,9 +392,32 @@ test('CLI：--full 指定不存在的路徑必須失敗，而不是靜默通過'
 });
 
 test('CLI：--full 指向整條被 isSkippedPath 排除的目錄必須失敗', () => {
-  const r = runCliExpectFail(['--full', 'registry/']);
+  // .temp/ 屬產物目錄，整條排除（實際上不存在 → 同時觸發「路徑不存在」）。
+  // 🔴 2026-11-01 決策二：這條過去拿 registry/ 當例子，registry 資料層已納入檢查，
+  // 那個例子已失效——改用仍然整條排除的 .temp/，並另外補上 registry 的正向鎖。
+  const r = runCliExpectFail(['--full', '.temp/']);
   assert.equal(r.code, 1);
   assert.match(r.stderr, /掃描 0 個檔案/);
+});
+
+// ── 綠色鎖：registry 資料層（決策二）──────────────────────────────────────
+// 這條對應 package.json 裡 npm test 新增的 `check-traditional.js --full registry/`。
+// tools.json 的 _zh 欄位是繁中 UI 直接顯示給使用者的文字，過去整層沒有任何防護。
+test('CLI：--full registry/ 必須零違規（資料層綠色鎖）', () => {
+  const out = execFileSync(process.execPath, [SCRIPT, '--full', 'registry/'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+  });
+  assert.match(out, /未發現簡體字/);
+});
+
+test('registry 的排除必須精準：主資料納入、刻意收簡體的排除', () => {
+  const files = expandTargets(['registry/']);
+  assert.ok(files.includes('registry/tools.json'), '主資料必須納入');
+  assert.ok(files.includes('registry/compiled-entries.json'), '編譯詞條必須納入');
+  assert.ok(!files.includes('registry/categories.json'), '刻意收簡體檢索詞的檔案應排除');
+  assert.ok(!files.includes('registry/category-proposals.json'), '同上');
+  assert.ok(!files.includes('registry/weekly-trending.json'), '未清洗的原始發現稿應排除');
 });
 
 test('CLI：位置參數在預設模式會被當成整檔掃描目標（不再默默忽略）', () => {

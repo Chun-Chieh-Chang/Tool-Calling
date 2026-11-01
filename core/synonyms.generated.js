@@ -10122,7 +10122,10 @@ export const SYNONYM_MAP = {
     "nlp",
     "machine-learning",
     "pytorch",
-    "natural-language-processing"
+    "natural-language-processing",
+    "voxcpm",
+    "voxcpm2",
+    "voice-cloning"
   ],
   "分析文章情感": [
     "transformers",
@@ -36592,9 +36595,9 @@ export const SYNONYM_MAP = {
     "把文字讀給我用",
     "文字變語音",
     "文章轉語音播放",
-    "edge-tts",
-    "edge",
-    "microsoft-tts"
+    "文字轉語音",
+    "語音合成",
+    "聲音複製"
   ],
   "microsoft-tts": [
     "把文章唸出來",
@@ -36760,9 +36763,9 @@ export const SYNONYM_MAP = {
     "voice",
     "audio-generation",
     "text to speech",
-    "轉文字成語音",
-    "讀稿生音",
-    "生成語音檔案"
+    "voxcpm",
+    "voxcpm2",
+    "voice-cloning"
   ],
   "讀稿生音": [
     "edge",
@@ -43487,9 +43490,9 @@ export const SYNONYM_MAP = {
     "把網頁轉成 json",
     "搜尋網路資訊",
     "爬取電商價格",
-    "firecrawl",
-    "ai-crawler",
-    "ai-scraping"
+    "知識庫",
+    "知識管理",
+    "第二大腦"
   ],
   "抓網站內容": [
     "firecrawl",
@@ -54799,7 +54802,10 @@ export const SYNONYM_MAP = {
     "local-first ai",
     "agent orchestration",
     "personal memory",
-    "deep research"
+    "deep research",
+    "omnibox",
+    "ai-knowledge-hub",
+    "knowledge-base"
   ],
   "openhuman": [
     "知識管理",
@@ -54807,9 +54813,7 @@ export const SYNONYM_MAP = {
     "協調多個 ai 代理",
     "進行深度主題研究",
     "建立本地知識系統",
-    "整合跨平台資料",
-    "local-first ai",
-    "agent orchestration"
+    "整合跨平台資料"
   ],
   "local-first ai": [
     "知識管理",
@@ -54817,9 +54821,7 @@ export const SYNONYM_MAP = {
     "協調多個 ai 代理",
     "進行深度主題研究",
     "建立本地知識系統",
-    "整合跨平台資料",
-    "openhuman",
-    "agent orchestration"
+    "整合跨平台資料"
   ],
   "personal memory": [
     "知識管理",
@@ -54827,9 +54829,7 @@ export const SYNONYM_MAP = {
     "協調多個 ai 代理",
     "進行深度主題研究",
     "建立本地知識系統",
-    "整合跨平台資料",
-    "openhuman",
-    "local-first ai"
+    "整合跨平台資料"
   ],
   "deep research": [
     "知識管理",
@@ -54837,44 +54837,57 @@ export const SYNONYM_MAP = {
     "協調多個 ai 代理",
     "進行深度主題研究",
     "建立本地知識系統",
-    "整合跨平台資料",
-    "openhuman",
-    "local-first ai"
+    "整合跨平台資料"
   ],
   "管理個人記憶庫": [
     "openhuman",
     "local-first ai",
     "agent orchestration",
     "personal memory",
-    "deep research"
+    "deep research",
+    "知識管理",
+    "協調多個 ai 代理",
+    "進行深度主題研究"
   ],
   "協調多個 ai 代理": [
     "openhuman",
     "local-first ai",
     "agent orchestration",
     "personal memory",
-    "deep research"
+    "deep research",
+    "知識管理",
+    "管理個人記憶庫",
+    "進行深度主題研究"
   ],
   "進行深度主題研究": [
     "openhuman",
     "local-first ai",
     "agent orchestration",
     "personal memory",
-    "deep research"
+    "deep research",
+    "知識管理",
+    "管理個人記憶庫",
+    "協調多個 ai 代理"
   ],
   "建立本地知識系統": [
     "openhuman",
     "local-first ai",
     "agent orchestration",
     "personal memory",
-    "deep research"
+    "deep research",
+    "知識管理",
+    "管理個人記憶庫",
+    "協調多個 ai 代理"
   ],
   "整合跨平台資料": [
     "openhuman",
     "local-first ai",
     "agent orchestration",
     "personal memory",
-    "deep research"
+    "deep research",
+    "知識管理",
+    "管理個人記憶庫",
+    "協調多個 ai 代理"
   ],
   "畫布": [
     "canvas-project-manager",
@@ -63774,6 +63787,295 @@ export const SYNONYM_MAP = {
     "ai ide",
     "image to 3d"
   ],
+  "voxcpm": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "voxcpm2": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "voice-cloning": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "voice-design": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "multilingual-speech": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "minicpm": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "diffusion-autoregressive": [
+    "文字轉語音",
+    "語音合成",
+    "聲音複製",
+    "音色設計",
+    "多語言語音"
+  ],
+  "聲音複製": [
+    "voxcpm",
+    "voxcpm2",
+    "voice-cloning",
+    "voice-design",
+    "speech-synthesis",
+    "multilingual-speech",
+    "minicpm",
+    "diffusion-autoregressive"
+  ],
+  "音色設計": [
+    "voxcpm",
+    "voxcpm2",
+    "voice-cloning",
+    "voice-design",
+    "speech-synthesis",
+    "multilingual-speech",
+    "minicpm",
+    "diffusion-autoregressive"
+  ],
+  "多語言語音": [
+    "voxcpm",
+    "voxcpm2",
+    "voice-cloning",
+    "voice-design",
+    "speech-synthesis",
+    "multilingual-speech",
+    "minicpm",
+    "diffusion-autoregressive"
+  ],
+  "知識庫": [
+    "omnibox",
+    "ai-knowledge-hub",
+    "knowledge-base",
+    "note-taking",
+    "ai-search",
+    "wechat-bot",
+    "markdown-editor",
+    "knowledge-hub"
+  ],
+  "omnibox": [
+    "知識庫",
+    "知識管理",
+    "第二大腦",
+    "筆記系統",
+    "微信機器人",
+    "文件問答",
+    "ai-knowledge-hub",
+    "knowledge-base"
+  ],
+  "ai-knowledge-hub": [
+    "知識庫",
+    "知識管理",
+    "第二大腦",
+    "筆記系統",
+    "微信機器人",
+    "文件問答",
+    "omnibox",
+    "knowledge-base"
+  ],
+  "wechat-bot": [
+    "知識庫",
+    "知識管理",
+    "第二大腦",
+    "筆記系統",
+    "微信機器人",
+    "文件問答",
+    "omnibox",
+    "ai-knowledge-hub"
+  ],
+  "knowledge-hub": [
+    "知識庫",
+    "知識管理",
+    "第二大腦",
+    "筆記系統",
+    "微信機器人",
+    "文件問答",
+    "omnibox",
+    "ai-knowledge-hub"
+  ],
+  "第二大腦": [
+    "omnibox",
+    "ai-knowledge-hub",
+    "knowledge-base",
+    "note-taking",
+    "ai-search",
+    "wechat-bot",
+    "markdown-editor",
+    "knowledge-hub"
+  ],
+  "筆記系統": [
+    "omnibox",
+    "ai-knowledge-hub",
+    "knowledge-base",
+    "note-taking",
+    "ai-search",
+    "wechat-bot",
+    "markdown-editor",
+    "knowledge-hub"
+  ],
+  "微信機器人": [
+    "omnibox",
+    "ai-knowledge-hub",
+    "knowledge-base",
+    "note-taking",
+    "ai-search",
+    "wechat-bot",
+    "markdown-editor",
+    "knowledge-hub"
+  ],
+  "文件問答": [
+    "omnibox",
+    "ai-knowledge-hub",
+    "knowledge-base",
+    "note-taking",
+    "ai-search",
+    "wechat-bot",
+    "markdown-editor",
+    "knowledge-hub"
+  ],
+  "機械模擬": [
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation",
+    "cutaway-view",
+    "engineering-visualization",
+    "physics-simulation",
+    "threejs",
+    "claude-code-skill"
+  ],
+  "machine-skill": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-simulation",
+    "3d-machine-simulation",
+    "cutaway-view"
+  ],
+  "machine-simulation": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-skill",
+    "3d-machine-simulation",
+    "cutaway-view"
+  ],
+  "3d-machine-simulation": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-skill",
+    "machine-simulation",
+    "cutaway-view"
+  ],
+  "cutaway-view": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation"
+  ],
+  "engineering-visualization": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation"
+  ],
+  "physics-simulation": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation"
+  ],
+  "threejs": [
+    "機械模擬",
+    "3d機構模擬",
+    "剖面圖",
+    "工程視覺化",
+    "物理模擬",
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation"
+  ],
+  "3d機構模擬": [
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation",
+    "cutaway-view",
+    "engineering-visualization",
+    "physics-simulation",
+    "threejs",
+    "claude-code-skill"
+  ],
+  "剖面圖": [
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation",
+    "cutaway-view",
+    "engineering-visualization",
+    "physics-simulation",
+    "threejs",
+    "claude-code-skill"
+  ],
+  "工程視覺化": [
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation",
+    "cutaway-view",
+    "engineering-visualization",
+    "physics-simulation",
+    "threejs",
+    "claude-code-skill"
+  ],
+  "物理模擬": [
+    "machine-skill",
+    "machine-simulation",
+    "3d-machine-simulation",
+    "cutaway-view",
+    "engineering-visualization",
+    "physics-simulation",
+    "threejs",
+    "claude-code-skill"
+  ],
   "翻譯": [
     "translate",
     "translation",
@@ -63796,11 +64098,6 @@ export const SYNONYM_MAP = {
     "資料分析",
     "analytics",
     "dashboard"
-  ],
-  "知識庫": [
-    "knowledge base",
-    "rag",
-    "vector db"
   ],
   "knowledge base": [
     "知識庫",

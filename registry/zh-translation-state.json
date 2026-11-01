@@ -1442,7 +1442,7 @@
       "advantages_zh": "彙整 Reddit、X、YouTube、HN 與 Polymarket 等多元平台的見解，提供綜合摘要而非原始搜尋結果，專注於最近 30 天內的活動。",
       "at": "2026-09-20T03:00:29.648Z",
       "negativeConstraints_zh": [
-        "不適用于需要逐秒更新之即時新聞。",
+        "不適用於需要逐秒更新之即時新聞。",
         "不適合 30 天以上的歷史分析。",
         "進行深度學術文獻回顧或專有資料庫查詢時，請避免使用。"
       ]
@@ -1453,7 +1453,7 @@
       "advantages_zh": "涵蓋小紅書與 TikTok 等八大中國網際網路平台，產出附有近期內容可驗證引用的結構化報告，透過 Claude Code 整合自動化資料收集與分析。",
       "at": "2026-09-20T03:00:29.648Z",
       "negativeConstraints_zh": [
-        "不適用于需要小於一小時更新頻率之即時監控。",
+        "不適用於需要小於一小時更新頻率之即時監控。",
         "搜尋中國大陸以外之西方社交媒體平台時，請避免使用。",
         "不適合擷取超過指定 30 天範圍的歷史資料。"
       ]
@@ -2351,7 +2351,7 @@
       "useCase_zh": "人人可用的開源機器學習框架",
       "at": "2026-09-27T05:18:03.125Z",
       "negativeConstraints_zh": [
-        "非 Python 與 C++ 的 API 不保證相容性，且可能向后不相容。",
+        "非 Python 與 C++ 的 API 不保證相容性，且可能向後不相容。",
         "Nightly 二進位檔僅供測試使用，不適用於生產環境的穩定性。"
       ]
     },
@@ -3953,7 +3953,7 @@
     "lucide": {
       "description_zh": "由社群打造的精美且一致的圖示工具包。開源專案，為 Feather Icons 的分支版本。",
       "at": "2026-09-20T03:09:09.854Z",
-      "advantages_zh": "社羣驅動持續更新,一致的設計風格,支援 Tree Shaking 最佳化",
+      "advantages_zh": "社群驅動持續更新,一致的設計風格,支援 Tree Shaking 最佳化",
       "negativeConstraints_zh": [
         "不適合照片級真實感圖形",
         "僅提供 SVG 格式",
@@ -5857,7 +5857,7 @@
       "negativeConstraints_zh": [
         "需要支援 WebGL 的瀏覽器與足夠的 GPU 才能流暢執行",
         "沒有 TypeScript 經驗的新手可能難以設定 monorepo",
-        "單人 3D 視覺化場景中多人遊玩功能是多余的額外負荷"
+        "單人 3D 視覺化場景中多人遊玩功能是多餘的額外負荷"
       ],
       "at": "2026-09-20T03:19:14.748Z"
     },
@@ -6110,7 +6110,7 @@
       ]
     },
     "awesome-persona-skills": {
-      "description_zh": "同事.skill、老板.skill、前任.skill、自己.skill、永生.skill、女媧.skill……",
+      "description_zh": "同事.skill、老闆.skill、前任.skill、自己.skill、永生.skill、女媧.skill……",
       "negativeConstraints_zh": [
         "非可執行軟體；為 Markdown 索引，需使用者複製外部儲存庫方可運作",
         "技能依賴第三方外部連結，此精選列表中這些連結可能隨時失效或變更"
@@ -6927,6 +6927,32 @@
         "不適合用於複雜的 3D 建模或即時互動式遊戲引擎，因其專注於 2D 程式碼渲染之影格與合成影像。"
       ],
       "at": "2026-10-13T23:58:41.001Z"
+    },
+    "voxcpm": {
+      "description_zh": "VoxCPM2：無需 Tokenizer 的多語言語音生成、創意語音設計與高度逼真變聲技術",
+      "negativeConstraints_zh": [
+        "推論過程需要大量 GPU 資源，即時效能僅在 NVIDIA RTX 4090 等高階硬體上測試過。",
+        "不支援特定 30 種主要語言與 9 種中方言以外的其他語言。",
+        "裝置端推論僅限透過 llama.cpp-omni 進行特定量化格式，可能無法以同等品質支援所有進階功能（例如可控語音風格引導）。"
+      ],
+      "at": "2026-11-01T10:44:28.752Z"
+    },
+    "omnibox": {
+      "description_zh": "跨平台全方位 AI 知識中樞（OmniBox／小黑）：透過瀏覽器擴充功能、iOS Flash 擷取或微信機器人收集網頁、PDF、Word/PPT/MP3 等檔案，再結合 RAG 與豐富的 Markdown 編輯功能進行解析、索引與查詢。",
+      "negativeConstraints_zh": [
+        "部署需克隆包含子模組的 Git 儲存庫，並設定環境變數以進行本地開發。",
+        "RSS 訂閱功能尚未實作，目前規劃路徑中仍無此功能。"
+      ],
+      "at": "2026-11-01T10:44:28.753Z"
+    },
+    "machine-skill": {
+      "description_zh": "只需一行描述任何機器，Claude 就能在單一 HTML 檔案中建立具物理效果的照片級真實感互動模擬，並產出影片供發布。這是一個開源的 Claude Code 技能。",
+      "negativeConstraints_zh": [
+        "需具備 Claude Code 環境與特定相依套件（three.js 0.170）才能產生與錄製模擬內容。",
+        "僅限生成機器與機械系統；不適用於生物、抽象或非實體物件。",
+        "依賴 LLM 研究來取得機器規格，因此物理模擬的準確度取決於 Claude 的訓練資料與檢索能力。"
+      ],
+      "at": "2026-11-01T10:44:28.753Z"
     }
   },
   "failed": {}

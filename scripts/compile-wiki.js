@@ -75,6 +75,9 @@ const STATS = args.includes('--stats');
 // 只為既有詞條補上認識論標記（epistemic / compiled_at），不重新編譯內容。
 // 用於標記機制上線時回溯既有資料，避免為了加欄位而重跑 700+ 次 LLM。
 const BACKFILL_EPISTEMIC = args.includes('--backfill-epistemic');
+// 只把既有詞條洗成繁體（2026-11-01 新增）：不需要 API key、不重編譯、不改 tier。
+// 用於清理歷史編譯留下的簡體殘留。
+const SANITIZE_ONLY = args.includes('--sanitize-only');
 const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) || Infinity;
 const IDS_ARG = args.find((a) => a.startsWith('--ids='))?.split('=')[1];
 const BATCH = Number(args.find((a) => a.startsWith('--batch='))?.split('=')[1]) || 3;
@@ -126,7 +129,7 @@ function compileOffline(tool) {
   ];
   const intents = [];
   for (const raw of sources) {
-    const s = String(raw || '').trim();
+    const s = toTraditional(String(raw || '').trim());
     if (!isSentenceIntent(s)) continue;
     // 前 24 字相同視為同句：description 常是 useCase 的截斷，收兩句等於重複計數
     if (intents.some((k) => k.slice(0, 24) === s.slice(0, 24))) continue;
@@ -140,6 +143,42 @@ function compileOffline(tool) {
     constraints: [tool.install?.method, tool.language].filter(Boolean).map(String),
     negative: (tool.negativeConstraints_zh || tool.negativeConstraints || []).filter(Boolean).map(String),
   };
+}
+
+// ── 繁體化清理（2026-11-01）─────────────────────────────────────────────
+// compiled-entries.json 是**使用者實際看到的文字**（繁中 UI 直接顯示 intents），
+// 因此它必須和 tools.json 一樣受繁簡守門管轄。
+//
+// 2026-11-01 實測發現的既存缺陷：Tier 1 在 2026-09-20 編譯時寫入的 9 筆詞條
+// 仍含簡體字（审/础/满/监/显/环/旧）。根因是**當時的轉換器還沒有現在的正確實作** // allow-simplified：引用簡體字形本身
+// （cn→tw 設定 + 語境相依字的上下文規則 + 台/干 逐位還原），而 compile:wiki 只會 // allow-simplified：引用簡體字形本身
+// 覆寫本次 targets 的 entry，舊 entry 原樣保留 → 殘留永遠洗不掉。 // allow-simplified：引用簡體字形本身
+//
+// 解法不是手改 JSON（那會被下一次編譯覆蓋，等於沒修），而是**在寫檔路徑統一轉繁體**：
+// 任何一次編譯都會把全量 entries 洗成繁體，歷史殘留也一併清掉。
+// Tier 1 的 normalizeEntry() 雖然已經過 toTraditional，但那是「當次新編譯」才套用，
+// 不涵蓋既有 entry——sanitizeAll() 補上這個缺口。
+function sanitizeEntry(entry) {
+  if (!entry || typeof entry !== 'object') return entry;
+  const arr = (v) => (Array.isArray(v) ? v.map((x) => toTraditional(String(x ?? '').trim())).filter(Boolean) : []);
+  return {
+    ...entry,
+    intents: arr(entry.intents),
+    objects: arr(entry.objects),
+    actions: arr(entry.actions),
+    constraints: arr(entry.constraints),
+    negative: arr(entry.negative),
+  };
+}
+
+/** 全量轉繁體。回傳實際有變動的 entry 數。 */
+function sanitizeAll(entries) {
+  let changed = 0;
+  for (const [id, e] of Object.entries(entries)) {
+    const s = sanitizeEntry(e);
+    if (JSON.stringify(s) !== JSON.stringify(e)) { entries[id] = s; changed++; }
+  }
+  return changed;
 }
 
 // ── Tier 1：LLM 語意編譯 ───────────────────────────────────────────────────
@@ -301,6 +340,19 @@ if (!RESET && existsSync(OUT_PATH)) {
 }
 out.version = VERSION;
 
+// ── 只做繁體化清理（不需要 API key）──────────────────────────────────────
+// 用途：清理歷史編譯留下的簡體殘留。寫出路徑也會套用同一套 sanitizeAll()，
+// 所以這個旗標只是「不重編譯、只洗既有資料」的捷徑。
+if (SANITIZE_ONLY) {
+  if (!existsSync(OUT_PATH)) { console.error(`找不到 ${OUT_PATH}，無法清理`); process.exit(1); }
+  const changed = sanitizeAll(out.entries);
+  out.generatedAt = new Date().toISOString();
+  writeFileSync(OUT_PATH, JSON.stringify(out, null, 2));
+  console.log(`繁體化清理：${changed} 筆詞條有變動（共 ${Object.keys(out.entries).length} 筆）`);
+  console.log(`已寫入 ${OUT_PATH}`);
+  process.exit(0);
+}
+
 // 決定要處理哪些工具
 let targets = tools;
 if (IDS_ARG) {
@@ -343,6 +395,7 @@ if (BACKFILL_EPISTEMIC) {
   }, {});
   console.log(`補標認識論標記：${n} 筆`);
   console.log(`標記分佈：${JSON.stringify(dist)}（V=取自 metadata，S=LLM 綜合推論）`);
+  sanitizeAll(out.entries); // 寫檔前統一轉繁體（含未處理的歷史 entry）
   writeFileSync(OUT_PATH, JSON.stringify(out, null, 2));
   process.exit(0);
 }
@@ -408,6 +461,7 @@ if (OFFLINE) {
       }
       done += batch.length;
       if (done % 30 === 0) {
+        sanitizeAll(out.entries); // 寫檔前統一轉繁體
         writeFileSync(OUT_PATH, JSON.stringify(out, null, 2));
         process.stdout.write(` ${done}/${targets.length} `);
       }
@@ -430,6 +484,7 @@ if (DRY) {
   console.log('\n[dry] 範例詞條：');
   for (const [id, e] of sample) console.log(`  ${id}: ${JSON.stringify(e.intents.slice(0, 3))}`);
 } else {
+  sanitizeAll(out.entries); // 寫檔前統一轉繁體（含未處理的歷史 entry）
   writeFileSync(OUT_PATH, JSON.stringify(out, null, 2));
   console.log(`已寫入 ${OUT_PATH}`);
 }
