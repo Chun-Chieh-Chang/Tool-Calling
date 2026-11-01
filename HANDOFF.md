@@ -1,7 +1,7 @@
 ﻿# HANDOFF — 交接文檔
 
 > 給接手的 AI 助手（Claude）。閱讀順序建議：**先讀「關鍵陷阱」，再讀「目前狀態」**。
-> 最後更新：2026-10-24（全面盤點清理＋文件同步＋資安隱私盤點＋推送 origin/main 成功 31161a4..4611bcb——詳見「三、目前狀態」頂部兩節。此行以下為 10-14/10-09/10-07 的快照式描述，保留作為歷史，數字已過期）
+> 最後更新：2026-11-01（批次入庫 VoxCPM／OmniBox／machine-skill，工具數 781 → 784——詳見「三、目前狀態」頂部一節。此行以下為 10-24/10-20/10-14/10-09/10-07 的快照式描述，保留作為歷史，數字已過期）
 
 ---
 
@@ -213,7 +213,7 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 🔴 **不能直接把字加進 S2T**：那會讓閘門為「含『没』但其他部分是繁體」 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
 的字串打開，整串丟給 opencc 後會把繁體改錯——
-`跨平台→跨平臺`、`群組→羣組`、`減少干擾→減少幹擾`、`漏斗→漏鬥`。
+`跨平台→跨平臺`、`群組→羣組`、`減少干擾→減少幹擾`、`漏斗→漏鬥`。 <!-- allow-simplified：逐字引用轉換器誤判的證據（歷史紀錄） -->
 
 → 判定某字能否進 `S2T_SAFE`：opencc 單字轉換後不同、**且**該字在繁體裡
 不存在同樣字形（排除 台/群/干/斗/里/面/发/只/松/适/复/于/后…）。 <!-- allow-simplified：逐字引用簡體 bug 本身（歷史紀錄），改了等於塗掉證據 -->
@@ -345,9 +345,142 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 - 🔴 CI 是**淺層 checkout**（只掃得到最近 2 筆），所以「推幾筆新 commit 把壞訊息擠出範圍」這種
   便宜解法**只是把地雷往後推**——日後加深 fetch 深度會再次紅燈。
 
+### 31. 🔴 繁簡守門**不掃 registry JSON**，且內建對照表會漏字（2026-11-01）
+
+兩層漏洞疊在一起，資料層的簡體字會靜靜地躺在工具庫裡：
+
+1. **掃描範圍不含 registry**：`check-traditional.js` 的檔案清單是原始碼（`--full --code` 掃 159 個檔案），
+   `registry/tools.json` 不在內。所以 `_zh` 欄位（`description_zh`／`useCase_zh`／`advantages_zh`／
+   `negativeConstraints_zh`）從來沒有被這道門禁掃過——而這些欄位正是繁中 UI 直接顯示給使用者的文字。
+2. **內建對照表漏字**：即使手動檢查，`fix-simplified.js` 的 `findSimplified` 用內建對照表，
+   會漏判部分字——實測「中樞」的簡體寫法被判為無誤，而 opencc `cn→tw` 立刻指出差異。
+
+**可推廣的判準**：
+- 資料層（registry JSON）的繁簡檢查要用 **opencc `cn→tw`** 當尺，不要用 `findSimplified`；
+  兩者不一致時以 opencc 為準（opencc 是完整辭典）。
+- ⚠️ 但**不要直接套用 opencc `twp` 的輸出**——`twp` 會做台灣用語替換，把全庫主流寫法改掉：
+  工具庫既有慣例是 台（160）／文件（171）／腳本（91）／系統（313）／循環（25），
+  而 twp 會改成 臺／檔案／指令碼／繫統／迴圈。只換**字形簡繁**，不換**用詞**。
+- 這是 §二 第 19 點「偵測與轉換共用同一張表的循環盲區」的延伸：門禁的偵測表和轉換引擎
+  不是同一份真相，資料層又多一層「沒被掃到」的缺口。
+
 ---
 
-## 三、目前狀態（頂部一節為 2026-10-24（UI 精簡），其次 2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-11-01（批次入庫 VoxCPM／OmniBox／machine-skill），其次 2026-10-24（UI 精簡）、2026-10-24（全面盤點）、2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-11-01 深層索引 636 個 subTool ＋ 繁簡守門盲區完整修（決策一／二／三全執行）
+
+**需求**：上一節的「未做（待裁）」交由使用者裁決三題，全選 A：
+決策一＝`awesome-copilot` 全部深層索引；決策二＝registry 納入檢查＋補漏字（完整修）；決策三＝commit + push 到 `origin/main`。
+
+#### 決策一：awesome-copilot 深層索引
+
+**實際數量與當初告知不符**：決策頁上寫的是「448 個 skill」，實際 `index-subtools` 掃出 **636 個** subTool——
+skills 470、plugins 109、extensions 28、cookbook 12、hooks 8、`.github` 7、`eng` 1、`website` 1。
+448 是只看 `skills/` 目錄的估計值，漏掉了 plugins／extensions／cookbook／hooks 等其他目錄型 subpath。
+序列化後 **175.1 KB**（非決策頁說的 130 KB）。無描述／無名稱／重複 subpath 皆為 0。
+
+**改動**
+- `registry/tools.json`：`awesome-copilot` 條目內嵌 636 個 subTool（name／description／path／category）。
+
+**驗證（`node scripts/eval-benchmark.js`，索引前 → 索引後）**
+
+| 模式 | Hit@1 前 | Hit@1 後 | 變化 |
+|---|---|---|---|
+| fusion | 57.2% | **58.4%** | +1.2pt |
+| fusion（含近義） | 58.4% | **64.2%** | +5.8pt |
+| agent | 58.4% | 58.4% | 持平 |
+| L2 | 10.5% | 10.5% | 持平 |
+
+空集誠實率維持 10/10（100%）：10 道無解題仍然誠實回報 no-match，沒有為了提升命中率而放寬門檻。
+
+#### 決策二：繁簡守門盲區完整修
+
+**根因：守門只看程式碼，資料層完全沒有防護。** `tools.json` 的 `_zh` 欄位正是繁中 UI 直接顯示給使用者的文字，但過去 `check-traditional.js` 的 `--code` 範圍只有 `core|scripts|web|tests`，registry 整層被排除。
+
+**🔴 順手挖出轉換器腐化 bug（比預期的嚴重）**
+`fix-simplified.js` 的 opencc 設定原本是 `cn→t`。實測它會把**已經正確的繁體**改壞：
+
+| 原文（正確繁體） | `cn→t` 的輸出 | 結論 |
+|---|---|---|
+| 核准與批准 | 覈准與批准 | 壞（核准 ≠ 覈准） <!-- allow-simplified：逐字引用轉換器誤判的證據（歷史紀錄） --> |
+| 群組設定 | 羣組設定 | 壞（與全庫主流「群組」相反） <!-- allow-simplified：逐字引用轉換器誤判的證據（歷史紀錄） --> |
+| 跨平台支援 | 跨平臺支援 | 壞（全庫 160 筆「台」vs 7 筆「臺」） |
+| 減少干擾 | 減少幹擾 | 壞（干 → 幹 是歧義字） |
+
+改用 `cn→tw` 後保住群／核／准許／核准／系統／循環，但仍會把 `台→臺`、`干→幹`，因此再加一道**逐位還原**
+（`RESTORE_CHARS = { 台:'臺', 干:'幹' }`）——逐位比對而非全域 replace，避免把「臺北」「幹部」等本來就對的繁體改壞。
+
+**該字的上下文判定**（舊版 `GATE_AMBIGUOUS` 把整字排除，連簡體的「準確」寫法也不報，守門對該字完全失明）：
+改用 opencc 詞組級輸出做逐位比對 —— 簡體的「準確」寫法 → 會被改成「準確」→ 報；「核准／獲准／准許／准予／准以／准該／不准／允准」→ 合法繁體 → 不報。實測 9 條合法用法全不報、簡體用法照報。
+
+**補漏字**：`S2T_SAFE` 新增「中樞」與「群組」兩組簡體漏字（表項見 `scripts/fix-simplified.js` 的 `S2T_SAFE`）；`findSimplified` 改為上下文感知。
+只修**真正簡體** 5 筆（目標字為 核、遊、準、群、樞）——「游」在「游泳」是合法繁體，不動。
+
+**改動**
+- `scripts/fix-simplified.js`：opencc 設定 `cn→t` → `cn→tw`；新增 `isLegitimateQuan()` 上下文規則、`findContextSimplified()` 逐位比對、`restoreVariants()` 逐位還原、`S2T_SAFE` 補中樞／群組兩個漏字；`main()` 範圍擴及 `_zh` 欄位與字串形狀欄位（實測 `lucide.advantages_zh` 是字串不是陣列）、支援 `subTools` 的 name／description。
+- `scripts/check-traditional.js`：`SKIP_PATH_PATTERNS` 的 `^registry/` 整條排除改為**細項排除**（backups／weekly-reports／categories.json／category-proposals.json／weekly-trending.json，各有明確理由並記錄於程式碼註解）；移除 `GATE_AMBIGUOUS`。
+- `scripts/sync-zh-cache.js`（新增）：以 tools.json 為準同步 `zh-translation-state.json`，修正 7 個欄位。**必要原因是已知陷阱**——`translate-to-zh.js` 的 flush() 會把快取裡的舊譯文蓋回 tools.json，快取不修正則翻譯會「復活」簡體字。
+- `scripts/compile-wiki.js`：**寫出路徑**加 `sanitizeAll()`（每個 entry 的 intents／objects／actions／constraints／negative 統一轉繁體），並新增 `--sanitize-only` 旗標（不需 API key、不重編譯）。
+- `registry/compiled-entries.json`：8 筆詞條修正。**來源查清楚了**：Tier 1 在 2026-09-20 編譯時寫入的殘留，當時的轉換器還沒有現在的正確實作，而 `compile:wiki` 只覆寫本次 targets 的 entry、舊 entry 原樣保留 → 殘留永遠洗不掉。**解法是改寫進路徑而非手改 JSON**（手改會被下次編譯覆蓋，等於沒修）。
+- `package.json`：`npm test` 新增一條 `check-traditional.js --full registry/`；另增 `check:lang:registry` 捷徑。
+- `tests/check-traditional.test.js`：新增該字的上下文判定測試、registry 綠色鎖測試；更新兩條與新行為衝突的舊斷言（registry 已不再整條排除）。
+
+**為什麼 registry 獨立成一條命令而非併進 `--code`**：`--code` 的既有語意是「原始碼目錄」，混進資料層會讓「程式寫錯字」與「資料殘留簡體」兩種不同成因的紅燈混在同一個標籤裡，難以分辨。獨立後失敗訊息自帶成因。
+
+**排除項各有明確理由**（寫在程式碼註解裡，可稽核）：`categories.json`／`category-proposals.json` 刻意收錄簡體檢索詞（簡體字是功能的一部分）；`weekly-trending.json` 是未清洗的原始發現稿；`backups/`／`weekly-reports/` 是歷史產物。
+
+**既有紅燈不擴大處理**：`docs/round8-execution-2026-10-15.md` 的 13 行簡體字是**第八輪就存在**的問題（git 顯示該檔本輪之前未修改），其主體就是簡繁對照表 → 用整檔 `check-traditional: skip-file` 標記（證據保留，逐行標記反而會破壞對照表版面）。
+
+#### 決策三：commit + push
+
+使用者明確授權。三個原子提交推送至 `origin/main`。
+
+**驗證**
+- `npm test`：**510 項，508 pass、0 fail、2 skip**（整合測試需 `EMBED_API_TEST=1`）。
+- `node scripts/check-traditional.js --full`：**241 個檔案全綠**；`--full --code`：160 檔全綠；`--full registry/`：13 檔全綠。
+- `node cli.js validate`：0 錯誤。
+- `node scripts/check-mece.js`：全過。
+- `node scripts/rescan-classification.js --ci`：Tier 1 = 0。
+
+### 2026-11-01 批次入庫 VoxCPM／OmniBox／machine-skill（6 網址盤點，3 新增）
+
+**需求**：使用者提供 6 個 GitHub URL 批量加入工具庫，並要求「檢查是否需要拆解」。
+
+**盤點結論（拆解判斷，逐庫查證結構後決定）**
+
+| 網址 | 處置 | 理由 |
+|---|---|---|
+| `github/awesome-copilot` | 已在庫，略過 | 開發工具；`skills/` 有 448 個 skill（未做深層索引，見「未做」） |
+| `cursor/plugins` | 已在庫，略過 | 開發工具；上輪（1352984）已內嵌 169 個 subTools |
+| `google-research/harness2` | 已在庫，**不拆解** | AI 代理；單一 Python 套件，`scripts/` 僅為 benchmark／provenance 腳本，無可獨立安裝的子工具 |
+| `OpenBMB/VoxCPM` | **新增** → 音訊 | `pip install voxcpm`；30 語言、48kHz、Voice Design、可控聲音複製 |
+| `import-ai/omnibox` | **新增** → 知識管理 | 跨平台 AI 知識中心；有 `.gitmodules`，安裝須 `--recurse-submodules` |
+| `AirsupHQ/machine-skill` | **新增** → 3D工程繪圖 | 單一 Claude Code skill（根目錄 SKILL.md），不拆解 |
+
+**分類決策**
+- VoxCPM → 音訊、OmniBox → 知識管理：scanner 以 topics 自動命中，與規則引擎 D-T3 指向一致。
+- machine-skill 由 scanner 預設的「開發工具」**改判 3D工程繪圖**：其實質產出是依真實尺寸與物理求解器生成的 3D 機構剖面模擬（three.js），與 `threejs`／`img2threejs`／`ingetrazo` 同屬「3D 工程視覺化」語境；與 `SKILL_PACK_DOMAINS`（`3d|cad|blender|mesh` → 3D工程繪圖）的分類意旨一致。錄影是附加輸出，非主要價值。
+
+**改動**
+- `registry/tools.json`：3 支新工具（781 → 784），欄位依 README 事實校正——triggers（scanner 只給 topics，補中英領域詞）、capabilities（改為可檢索能力標籤）、install（改用 README 記載的實際安裝方式：`pip install voxcpm`／`git clone --recurse-submodules`／`npx skills add`）、`description_zh` 與 `negativeConstraints_zh`（經 `translate-to-zh.js`）、status 由 experimental 升為 active。
+- `scripts/batch-add-20261101.js`（新增）：本輪語意欄位校正腳本，記錄分類依據與可重現步驟。
+- `core/synonyms.generated.js`：重挖同義詞（7780 → 7839 詞彙）。
+- `AGENTS.md`（`npm run agents:init` 重生）、`README.md`、`docs/README.md`、`docs/CATEGORY-SYSTEM.md`（`sync-categories.js` 重生）：數字錨點同步至 784 筆／日期 2026-11-01。
+- `registry/star-snapshots.json`：3 筆新 repo 的 star 基線（40926／1542／476）由 `attachStarsToTool` 自動寫入，週漲星 delta 可用。
+
+**未做（待裁）**
+- `github/awesome-copilot` 的 448 個 skill 未做 `index-subtools` 深層索引（目前只有 2 支以獨立條目入庫）。上輪 cursor/plugins 的 169 個 subTools 是既有先例，但 awesome-copilot 數量更大，嵌入後 tools.json 會明顯膨脹，須先裁決要不要做。
+- `registry/tracked-repos.json` 未手改——該檔由週期性 trending（Step 1 重建）從 tools.json 產生，上一批入庫（ingetrazo／harness2／cursor/plugins）同樣未手改，保持一致。
+
+**驗證**
+- `npm test`：510 項，**508 pass、0 fail、2 skip**（整合測試需 `EMBED_API_TEST=1`，與本輪無關）。
+- `node cli.js validate`：0 錯誤（18 個警告全是既有工具 ccbaga／plexo／playgta5／deepseek-bot／digup，非本輪新增）。
+- `node scripts/check-mece.js`：全過，無「其他」殘留。
+- `node scripts/rescan-classification.js --ci`：**Tier 1 明確違反 0**。
+
+**環境註記**
+- 本機 Playwright 1.62.1 需 `chromium_headless_shell-1234`，原本只有 1208／1243，導致 `tests/knowledge-graph.test.js` 失敗（與資料無關的瀏覽器啟動錯誤）。已 `npx playwright install chromium-headless-shell` 補齊，該測試轉綠——這是本輪唯一改動到本機環境的地方。
 
 ### 2026-10-24 UI 精簡（方案 A）：移除選用面板，保留命脈
 
