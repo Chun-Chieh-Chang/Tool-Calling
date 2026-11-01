@@ -59933,6 +59933,203 @@
         "並非通用 3D 建模套裝軟體——網格功能服務於藝術合成而非工程精度"
       ],
       "description_zh": "ArtCraft — 藝術家的 IDE：用於 AI 圖像與影片創作的互動式桌面應用程式，具備 2D／3D 合成、圖像轉 3D 網格與可插拔模型提供商整合。"
+    },
+    {
+      "id": "voxcpm",
+      "name": "VoxCPM",
+      "url": "https://github.com/OpenBMB/VoxCPM",
+      "description": "VoxCPM2: Tokenizer-Free TTS for Multilingual Speech Generation, Creative Voice Design, and True-to-Life Cloning",
+      "category": "音訊",
+      "language": "python",
+      "triggers": [
+        "voxcpm",
+        "voxcpm2",
+        "tts",
+        "text-to-speech",
+        "voice-cloning",
+        "voice-design",
+        "speech-synthesis",
+        "multilingual-speech",
+        "minicpm",
+        "diffusion-autoregressive",
+        "文字轉語音",
+        "語音合成",
+        "聲音複製",
+        "音色設計",
+        "多語言語音"
+      ],
+      "install": {
+        "method": "pip",
+        "command": "pip install voxcpm",
+        "repoUrl": "https://github.com/OpenBMB/VoxCPM"
+      },
+      "capabilities": [
+        "tokenizer-free-tts",
+        "diffusion-autoregressive",
+        "multilingual-synthesis",
+        "voice-cloning",
+        "voice-design",
+        "controllable-style-guidance",
+        "48khz-studio-output",
+        "edge-deployment"
+      ],
+      "useCase": "A developer integrates an Apache-2.0 licensed TTS API into a multilingual content platform to generate studio-quality speech and design synthetic voices from text descriptions without requiring reference audio for every new character.",
+      "advantages": [
+        "Supports 30 languages including specific Chinese dialects without requiring language tags in the input.",
+        "Enables 'Voice Design' to create new voices from natural language descriptions alone, eliminating the need for reference audio.",
+        "Provides a tokenizer-free diffusion autoregressive architecture that outputs 48kHz studio-quality audio directly from 16kHz inputs.",
+        "Open-sourced under Apache-2.0 license with commercial-ready weights and code."
+      ],
+      "negativeConstraints": [
+        "Requires significant GPU resources for inference, with real-time performance benchmarked on high-end hardware like NVIDIA RTX 4090.",
+        "Does not support languages outside the specific list of 30 primary languages and 9 Chinese dialects.",
+        "On-device inference is limited to specific quantization formats via llama.cpp-omni and may not support all advanced features like controllable style guidance at the same quality level."
+      ],
+      "addedAt": "2026-11-01T10:38:28.247Z",
+      "status": "active",
+      "stars": 40926,
+      "useCase_zh": "開發者將一個採用 Apache-2.0 授權的 TTS API 整合到多語言內容平台中，無需為每個新角色提供參考音訊即可從文字描述生成演播室級別的語音並設計合成音聲。",
+      "advantages_zh": [
+        "支援 30 種語言（包含特定中國方言），且輸入文字時無需指定語言標籤。",
+        "透過「語音設計」功能，僅憑自然語言描述即可建立新聲音，無需參考音訊。",
+        "採用免分詞器的擴散自回歸架構，可直接將 16kHz 輸入轉為 48kHz 演播室級別音訊。",
+        "以 Apache-2.0 授權公開原始碼與權重，可自由用於商業目的。"
+      ],
+      "lastEnrichedAt": "2026-11-01T10:58:43.448Z",
+      "description_zh": "VoxCPM2：無需 Tokenizer 的多語言語音生成、創意語音設計與高度逼真變聲技術",
+      "negativeConstraints_zh": [
+        "推論過程需要大量 GPU 資源，即時效能僅在 NVIDIA RTX 4090 等高階硬體上測試過。",
+        "不支援特定 30 種主要語言與 9 種中方言以外的其他語言。",
+        "裝置端推論僅限透過 llama.cpp-omni 進行特定量化格式，可能無法以同等品質支援所有進階功能（例如可控語音風格引導）。"
+      ]
+    },
+    {
+      "id": "omnibox",
+      "name": "Omnibox",
+      "url": "https://github.com/import-ai/omnibox",
+      "description": "Cross-platform all-in-one AI knowledge hub (OmniBox / 小黑): collect web pages, PDFs, Word/PPT/MP3 files via browser extension, iOS Flash capture or WeChat bot, then parse, index and query them with RAG plus rich Markdown editing.",
+      "category": "知識管理",
+      "language": "python",
+      "triggers": [
+        "omnibox",
+        "ai-knowledge-hub",
+        "rag",
+        "knowledge-base",
+        "note-taking",
+        "ai-search",
+        "wechat-bot",
+        "markdown-editor",
+        "knowledge-hub",
+        "知識庫",
+        "知識管理",
+        "第二大腦",
+        "筆記系統",
+        "微信機器人",
+        "文件問答"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone --recurse-submodules https://github.com/import-ai/omnibox.git",
+        "repoUrl": "https://github.com/import-ai/omnibox"
+      },
+      "capabilities": [
+        "web-capture",
+        "document-parsing-indexing",
+        "rag-qa",
+        "markdown-rendering",
+        "flash-capture",
+        "wechat-bot",
+        "multi-tenant-workspace"
+      ],
+      "useCase": "A team captures diverse content like web pages, PDFs, and voice notes into a unified hub to perform cross-source Q&A and document generation.",
+      "advantages": [
+        "End-to-end parsing and indexing for heterogeneous file formats including PDF, Word, PPT, and MP3.",
+        "Integrated advanced Markdown rendering for complex visual elements such as formulas, mind maps, flowcharts, and Gantt charts.",
+        "Cross-platform capture via dedicated browser extension, iOS app, and WeChat bot."
+      ],
+      "negativeConstraints": [
+        "Deployment requires cloning the repository with submodules and configuring environment variables for local development.",
+        "RSS subscription features are not yet implemented according to the current roadmap."
+      ],
+      "addedAt": "2026-11-01T10:38:51.768Z",
+      "status": "active",
+      "stars": 1542,
+      "useCase_zh": "團隊將網頁、PDF 和語音筆記等多種內容收錄到統一中心，執行跨來源問答與文件生成。",
+      "advantages_zh": [
+        "支援 PDF、Word、PPT 和 MP3 等異質檔案格式之端對端解析與索引。",
+        "整合進階 Markdown 渲染，可處理公式、心智圖、流程圖和甘特圖等複雜視覺元素。",
+        "透過瀏覽器擴充功能、iOS 應用程式和 WeChat 機器人實現跨平台內容擷取。"
+      ],
+      "lastEnrichedAt": "2026-11-01T10:58:43.448Z",
+      "description_zh": "跨平台全方位 AI 知識中樞（OmniBox／小黑）：透過瀏覽器擴充功能、iOS Flash 擷取或微信機器人收集網頁、PDF、Word/PPT/MP3 等檔案，再結合 RAG 與豐富的 Markdown 編輯功能進行解析、索引與查詢。",
+      "negativeConstraints_zh": [
+        "部署需克隆包含子模組的 Git 儲存庫，並設定環境變數以進行本地開發。",
+        "RSS 訂閱功能尚未實作，目前規劃路徑中仍無此功能。"
+      ]
+    },
+    {
+      "id": "machine-skill",
+      "name": "Machine Skill",
+      "url": "https://github.com/AirsupHQ/machine-skill",
+      "description": "Describe any machine in one line. Claude builds a photoreal, physics based, interactive simulation of it in one HTML file, plus the film to post it. An open source Claude Code skill.",
+      "category": "3D工程繪圖",
+      "language": "javascript",
+      "triggers": [
+        "machine-skill",
+        "machine-simulation",
+        "3d-machine-simulation",
+        "cutaway-view",
+        "engineering-visualization",
+        "physics-simulation",
+        "threejs",
+        "claude-code-skill",
+        "機械模擬",
+        "3D機構模擬",
+        "剖面圖",
+        "工程視覺化",
+        "物理模擬"
+      ],
+      "install": {
+        "method": "npx",
+        "command": "npx skills add AirsupHQ/machine-skill -g -a claude-code",
+        "repoUrl": "https://github.com/AirsupHQ/machine-skill"
+      },
+      "capabilities": [
+        "interactive-3d-simulation",
+        "real-dimension-modeling",
+        "cutaway-exploded-view",
+        "physics-solver",
+        "single-html-delivery",
+        "video-recording",
+        "claude-code-skill"
+      ],
+      "useCase": "An engineer or educator in Claude Code generates a photoreal, physics-based 3D simulation of a specific machine (like a turbofan or pump) from a single line of description and exports a video film of it.",
+      "advantages": [
+        "Uses Claude Code and three.js to generate interactive 3D simulations from natural language without requiring a traditional build step or compiler.",
+        "Integrs computed physics (e.g., Brayton cycle, affinity laws) and material properties directly into the visual simulation, rather than using static tables or pre-baked assets.",
+        "Includes a built-in recording script that allows the user to automatically generate shareable video films from the interactive HTML simulation."
+      ],
+      "negativeConstraints": [
+        "Requires the Claude Code environment and specific dependencies (three.js 0.170) to generate and record the simulations.",
+        "Limited to generating machines and mechanical systems; not applicable for biological, abstract, or non-physical entities.",
+        "Relies on LLM research for machine specifications, meaning the accuracy of the physics depends on Claude's training data and retrieval capabilities."
+      ],
+      "addedAt": "2026-11-01T10:39:06.749Z",
+      "status": "active",
+      "stars": 476,
+      "useCase_zh": "工程師或教育者在使用 Claude Code 時，透過一行文字生成特定機器（如渦扇發動機或泵浦）的光學逼真、物理驅動 3D 模擬，並可直接匯出影片。",
+      "advantages_zh": [
+        "利用 Claude Code 和 three.js，透過自然語言生成互動式 3D 模擬，無需傳統建置步驟或編譯器。",
+        "將計算出的物理法則（如布雷頓循環、相似定律）與材料特性直接整合至視覺模擬中，而非使用靜態表格或預製資產。",
+        "內建錄製腳本，可自動將互動式 HTML 模擬轉換為可分享的影片。"
+      ],
+      "lastEnrichedAt": "2026-11-01T10:58:43.448Z",
+      "description_zh": "只需一行描述任何機器，Claude 就能在單一 HTML 檔案中建立具物理效果的照片級真實感互動模擬，並產出影片供發布。這是一個開源的 Claude Code 技能。",
+      "negativeConstraints_zh": [
+        "需具備 Claude Code 環境與特定相依套件（three.js 0.170）才能產生與錄製模擬內容。",
+        "僅限生成機器與機械系統；不適用於生物、抽象或非實體物件。",
+        "依賴 LLM 研究來取得機器規格，因此物理模擬的準確度取決於 Claude 的訓練資料與檢索能力。"
+      ]
     }
   ]
 }
