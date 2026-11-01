@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-09T13:59:18.623Z",
+  "generatedAt": "2026-11-01T13:26:40.681Z",
   "entries": {
     "ppt-master": {
       "intents": [
@@ -14970,10 +14970,10 @@
         "版本更新"
       ],
       "actions": [
-        "监控",
+        "監控",
         "查看",
         "追蹤狀態",
-        "显示"
+        "顯示"
       ],
       "constraints": [
         "僅限 macOS 系統",
@@ -22861,318 +22861,1515 @@
     },
     "claude-howto": {
       "intents": [
-        "一位已安裝 Claude Code 但缺乏結構化學習路徑的開發人員，透過此指南結合斜線命令、鉤子、記憶與子代理，構建自動化的程式碼審查與部署管線。",
-        "一個視覺化、以範例為導向的 Claude Code 指南——從基本概念到進階 agents，提供可直接複製貼上的範本，立即發揮實用價值。"
+        "想學會 Claude Code 的斜線命令、鉤子和記憶功能，但不確定怎麼配置才能自動化程式碼審查",
+        "安裝了 Claude Code 卻不知道如何建立結構化的學習路徑，希望有可以直接複製貼上的設定範本",
+        "想要整合子代理（sub-agents）來自動處理部署流程，但官方文件沒講清楚實際操作步驟",
+        "需要檢查自己對 Claude Code 功能是否熟悉，希望能透過自測找出知識盲點並調整學習順序"
       ],
       "objects": [
-        "claude-code",
-        "guide",
-        "tutorial",
-        "學習資源"
+        "CLAUDE.md 設定檔",
+        "鉤子腳本",
+        "MCP 伺服器配置",
+        "學習路徑圖表"
       ],
-      "actions": [],
+      "actions": [
+        "生成配置範本",
+        "提供視覺化學習指引",
+        "執行知識檢核"
+      ],
       "constraints": [
-        "none",
-        "python"
+        "需已安裝 Claude Code 並設定 Anthropic API 金鑰",
+        "假設使用者具備通用技術背景，不需從程式設計基礎教起"
       ],
       "negative": [
-        "僅適用於 Claude Code；範本與工作流程不適用於其他基於 LLM 的 IDE 或 CLI agents。",
-        "使用者需已安裝 Claude Code 並設定 Anthropic API 金鑰；不提供底層程式碼執行環境。",
-        "學習路徑假設使用者具有通用技術背景；不適合需要從頭學習 Python 程式撰寫或通用程式設計基礎的使用者。"
+        "不適用於其他基於 LLM 的 IDE 或 CLI agents",
+        "不提供底層程式碼執行環境"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:24.241Z"
     },
     "osiris": {
       "intents": [
-        "情報分析師透過將即時航班追蹤、監控攝影機串流與地震數據整合至單一 GPU 加速儀表板，來監測全球態勢感知。",
-        "開源全球情報平台 - 即時 OSINT 儀表板 - Palantir 替代方案 - 2nZNHm3Lr9umG3DVrzYwHgktwkuKuJRXqqRqs3ewpump"
+        "要把即時航班追蹤、監控攝影機串流和地震數據整合到同一個儀表板，方便隨時掌握全球態勢",
+        "需要一個能快速渲染大量地理標記點的圖表，且能結合自然語言查詢來分析情資",
+        "想追蹤加密錢包的資金流向，同時對照海事和航空資料來交叉比對異常活動"
       ],
       "objects": [
-        "osint-dashboard",
-        "gpu-map-rendering",
-        "multi-domain-data-aggregation",
-        "real-time-cctv-monitoring",
-        "crypto-wallet-tracing",
-        "安全性"
+        "OpenSky 航班數據",
+        "USGS 地震資訊",
+        "監控攝影機串流",
+        "加密錢包交易紀錄"
       ],
-      "actions": [],
+      "actions": [
+        "GPU 加速地圖渲染",
+        "聚合多域情資數據",
+        "執行自然語言查詢",
+        "預測市場趨勢"
+      ],
       "constraints": [
-        "git-clone",
-        "typescript"
+        "需自行提供 OI Assist 和 OI Forecast 的 API 金鑰",
+        "依賴外部 API（如 OpenSky、USGS）的可用性"
       ],
       "negative": [
-        "需要使用者自行提供 OI Assist 和 OI Forecast 功能的 API 金鑰。",
-        "依賴靜態 OSINT 情報來呈現衝突區和海事資料，可能落後於即時動態變化。",
-        "核心資料流（如 OpenSky 和 USGS）仰賴外部 API 可用性。"
+        "核心數據源可能非完全即時，衝突區或海事資料或有延遲"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:24.241Z"
     },
     "quilt": {
       "intents": [
-        "設計師使用 Quilt 透過文字描述生成多螢幕 HTML 原型，並讓本機編碼代理透過 MCP 讀取與修改畫布以迭代 UI。",
-        "AI原生無限畫布設計工具：描述一個App，在無限畫布上取得多螢幕HTML設計，點擊流覽它們作為原型，並讓你的本機編碼代理透過MCP讀寫畫布。"
+        "想用文字描述一個 App 的介面，直接產出多螢幕的 HTML 原型，不用手動畫圖",
+        "希望設計師能在無限畫布上快速迭代 UI，並且讓本地的編碼代理自動讀取或修改設計",
+        "需要追蹤每次設計生成的版本，以便隨時回退或分支調整專案方向"
       ],
       "objects": [
-        "ai",
-        "claude",
-        "design-tool",
-        "infinite-canvas",
-        "mcp",
-        "UI/UX設計"
+        "HTML 設計稿",
+        "UI 原型網頁",
+        "無限畫布元素"
       ],
-      "actions": [],
+      "actions": [
+        "根據描述生成多螢幕設計",
+        "透過 MCP 與編碼代理互動",
+        "管理版本_revision 歷史"
+      ],
       "constraints": [
-        "git-clone",
-        "typescript"
+        "需 Node.js 22 以上及 pnpm 11",
+        "需安裝瀏覽器（Chrome/Edge）或 Playwright 用於截取畫面",
+        "需配置生成通道（如本機 Claude CLI 訂閱或外部 API 金鑰）"
       ],
       "negative": [
-        "需要Node.js 22或更新版本以及pnpm 11才能執行。",
-        "需要安裝瀏覽器（Chrome/Edge）或Playwright用於截取生成畫面的截圖。",
-        "依賴已配置的生成通道，例如本機Claude CLI訂閱或Anthropic/Gemini/OpenAI的API金鑰。"
+        "僅在本地執行，不依賴雲端後台；但需要正確的環境設定才能運作"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:24.242Z"
     },
     "ow-bridge": {
       "intents": [
-        "開發者使用此工具自動掃描本地 OpenCode 的免費模型，並一鍵導入 WorkBuddy，以實現零成本的 AI 推理，無需手動設定模型端點。",
-        "OW Bridge — 讓 WorkBuddy 使用 OpenCode 免費模型。支援 macOS / Windows，自動偵測模型、一鍵匯入。"
+        "想把 WorkBuddy 連上本地免費的 AI 模型，不想花錢開 API key",
+        "裝了 OpenCode 之後，希望一鍵把裡面的模型導入 WorkBuddy，不用手動填端點",
+        "想要在 WorkBuddy 裡用免費模型做程式碼輔助，又不想每次重設代理"
       ],
       "objects": [
-        "model-discovery",
-        "workbuddy-integration",
-        "electron-desktop",
-        "automatic-proxy-configuration",
-        "system-tray-management",
-        "cross-platform-support",
-        "開發工具"
+        "WorkBuddy",
+        "OpenCode",
+        "免費 AI 模型",
+        "模型端點設定"
       ],
-      "actions": [],
+      "actions": [
+        "匯入",
+        "偵測",
+        "自動代理設定"
+      ],
       "constraints": [
-        "git-clone",
-        "javascript"
+        "需在 macOS 或 Windows 上執行",
+        "需先安裝 OpenCode 並有免費模型"
       ],
       "negative": [
-        "不支援 PAC 或 SOCKS 系統代理，限制依賴這些協定的企業環境使用。",
-        "macOS 版本採用自行簽署，未通過 Apple 認證，使用者需手動略過 Gatekeeper 安全警告。"
+        "不適用需要 PAC 或 SOCKS 系統代理的企業環境",
+        "macOS 使用者需手動略過 Gatekeeper 安全警告"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:21.483Z"
     },
     "voicestudio": {
       "intents": [
-        "當內容創作者需要將影片翻譯配音成多種語言，或為有聲書克隆特定嗓音，又不想將資料上傳至雲端時，會使用 VoiceStudio 的本地桌面環境完成任務。",
-        "VoiceStudio 是開源、完全本機的 ElevenLabs 替代品——提供語音克隆、語音設計、影片配音、聽寫、文字轉語音及有聲書建立，支援 646 種語言。"
+        "想把影片配音成好幾種語言，但不想把原始錄音上傳到雲端服務",
+        "需要克隆某個人的嗓音來錄有聲書，希望全部在本機完成",
+        "想把文字稿轉成不同語言的語音，用來製作多語字幕配音"
       ],
       "objects": [
-        "ai",
-        "audiobook",
-        "cuda",
-        "dubbing",
-        "elevenlabs-alternative",
-        "音訊"
+        "影片",
+        "有聲書文字稿",
+        "嗓音檔案",
+        "六四六種語言"
       ],
-      "actions": [],
+      "actions": [
+        "語音克隆",
+        "影片配音",
+        "文字轉語音",
+        "聽寫"
+      ],
       "constraints": [
-        "git-clone",
-        "python"
+        "需要較多本機硬體資源，建議有 CUDA 顯卡",
+        "至少需 5 GB 可用磁碟空間",
+        "Intel Mac 只能使用 UI，語音模型需連遠端後端"
       ],
       "negative": [
-        "需要較多的本機硬體資源，僅使用 CPU 時速度較慢，且需至少 5 GB 的可用磁碟空間來存放 PyTorch 相依元件。",
-        "Intel Mac 僅能使用 UI，必須連接遠端後端而非在本地執行語音模型。"
+        "不適用沒有足夠本機資源的電腦",
+        "不適用需要雲端託管的方案"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:21.483Z"
     },
     "awesome-vibecoding-guide": {
       "intents": [
-        "自由接案開發者選擇商業化路徑並執行交付工作流，透過 AI 輔助程式開發技術，建立在地商業網站、AI 自動化系統或微型 SaaS 軟體來賺取收入。",
-        "一本匯萃自真實商業專案與數十萬行 AI 輔助程式的實戰指南。可從頭讀到尾，或將這個倉庫餵給你的 AI 代理以取得摘要與問答。歡迎給星與加 watch！⭐"
+        "想靠 AI 輔助寫程式，接案賺錢，但不知道從哪裡開始商業化",
+        "需要一份實戰指南，教你怎麼用便宜模型做出能賣錢的網站和工具",
+        "想把 AI 寫出來的程式碼整合成正式交付流程，讓專案品質穩穩定"
       ],
       "objects": [
-        "ai-agents",
-        "awesome",
-        "coding-standards",
-        "guide",
-        "vibe-coded",
-        "學習資源"
+        "AI 輔助程式碼",
+        "商業網站",
+        "微型 SaaS",
+        "自動化系統"
       ],
-      "actions": [],
+      "actions": [
+        "餵給 AI 代理讀取",
+        "取得摘要與問答",
+        "建立交付工作流"
+      ],
       "constraints": [
-        "git-clone",
-        "other"
+        "適合有基礎程式能力的自由接案者或獨立開發者"
       ],
       "negative": [
-        "專門針對希望立即創造收入的商業自由接案者與獨立開發者設計",
-        "不是技術參考書籍或工具目錄；缺乏深入的理論程式設計概念"
+        "不適用只想查語法或學習理論程式設計概念的人",
+        "不適用沒有商業化意圖、純做開源專案的使用者"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:21.483Z"
     },
     "video-shotcraft-dsh": {
       "intents": [
-        "創意開發者或 Agent 使用者希望透過替換產品截圖與文案，使用「Ink Press」Remotion 模板生成一段具有 2.5D 鏡頭移動與音節同步音效的 10 鏡頭電影感產品宣傳影片。",
-        "針對 DeepSeek Harness 的電影感產品影片 Agent Skill，包含 152 張鏡頭配方卡、Remotion 模板、程式碼組件與音訊資產。"
+        "我想把產品的截圖跟文案丟進去，自動產出一支 10 鏡頭、帶有 2.5D 鏡頭移動與音效同步的電影感宣傳短片。",
+        "我需要一套可直接用在 Remotion 上的模板，替換圖片和文字就能輸出 1920x1080、30fps 的產品廣告影片。",
+        "我想要把生成的影片直接匯出到剪映草稿，保留分離的音軌與可編輯的字幕，方便後續再微調。",
+        "我有 152 張鏡頭配方卡可用，想快速套用到新產品的宣傳影片中，省去逐一設計鏡頭構圖的時間。"
       ],
       "objects": [
-        "agent-skills",
-        "deepseek-harness",
-        "motion-design",
-        "remotion",
-        "typescript",
-        "影片"
+        "產品截圖",
+        "宣傳文案",
+        "Remotion 模板",
+        "音訊資產",
+        "剪映草稿",
+        "鏡頭配方卡"
       ],
-      "actions": [],
+      "actions": [
+        "生成",
+        "匯出",
+        "替換",
+        "套用"
+      ],
       "constraints": [
-        "git-clone",
-        "typescript"
+        "使用 DeepSeek Harness 環境",
+        "需具備 Remotion 與 TypeScript 開發環境",
+        "匯出剪映功能僅在 macOS 版 JianYing Pro 11.2 驗證過"
       ],
       "negative": [
-        "由於 Remotion 並發限制，需要在低核心頭端 Linux 環境中進行特定處理。",
-        "剪映匯出功能僅在 macOS 版 JianYing Pro 11.2 上驗證過。"
+        "不適合需要即時渲染或互動式影片編輯的情境",
+        "不支援非 Remotion 框架的專案",
+        "無法直接用於無需鏡頭移動效果的簡易宣傳影片"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:33.117Z"
     },
     "sc-datav": {
       "intents": [
-        "開發人員建置一個響應式網頁儀表板，以四川地區的 3D 地理數據為基礎，並結合同步的 ECharts 分析面板進行視覺化。",
-        "數據可視化大型顯示器專案，基於 Three.js + React 19 + ECharts，提供 3D 地圖渲染、輪廓飛線、側邊掃光、多圖表聯動等功能。"
+        "我想搭建一個大型顯示器用的數據可視化儀表板，需要 3D 地圖與多個 ECharts 圖表聯動顯示。",
+        "我需要一個基於 React 與 Three.js 的專案模板，能快速實作輪廓飛線、側邊掃光等動態效果。",
+        "我想在網頁上呈現四川地區的 3D 地理數據，並搭配同步更新的分析面板進行視覺化展示。",
+        "我需要一個響應式設計的數據可視化系統，能自適應不同螢幕尺寸的大型顯示器。"
       ],
       "objects": [
-        "3dmap",
-        "react",
-        "threejs",
-        "UI/UX設計"
+        "3D 地圖",
+        "ECharts 圖表",
+        "地理數據",
+        "網頁儀表板",
+        "數據可視化面板",
+        "大型顯示器"
       ],
-      "actions": [],
+      "actions": [
+        "渲染",
+        "聯動",
+        "部署",
+        "調整"
+      ],
       "constraints": [
-        "git-clone",
-        "typescript"
+        "需 Node.js >= 18 與 PNPM >= 8 環境",
+        "使用 React 19 與 Three.js 技術棧",
+        "地理資料目前硬編碼為四川省數據"
       ],
       "negative": [
-        "建置與執行需 Node.js >= 18 與 PNPM >= 8。",
-        "地理資料硬編碼為四川省，未修改資產檔就難以直接用於其他地區。"
+        "不適合需要其他地區地理數據的可視化需求",
+        "不支援非 React 框架的專案整合",
+        "無法用於不需要 3D 效果的平面數據展示情境"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:33.117Z"
     },
     "heterogeneous-gpu-pd-lab": {
       "intents": [
-        "研究人員或推論工程師在結合兩張 RTX 6000D GPU 與四節點 DGX Spark 的集群上部署 DeepSeek-V4.1-Flash，透過 Prefill 與 Decode 分離架構，在不於所有加速器載入完整模型的情況下，實現 16000+ tok/s 的 Prefill 與 442+ tok/s 的 Decode 高吞吐量。",
-        "使用稠密算力卡對稀疏大顯存主機進行加速，主機包括 AI Max+ 395、M3 512G、DGX Spark 等。"
+        "我想結合不同類型的 GPU（如 RTX 6000D 與 DGX Spark）來加速大語言模型的推論，提高整體吞吐量。",
+        "我需要一個將 Prefill 與 Decode 階段分離的架構，讓不同硬體專門處理不同階段以提升效能。",
+        "我的硬體資源不齊全，想透過異質 GPU 組合部署 DeepSeek-V4.1-Flash，在不載入完整模型的情況下實現高併發推論。",
+        "我需要支援 32K 輸入 token 的長上下文推論方案，並能處理大量並發請求而不犧牲正確性。"
       ],
       "objects": [
-        "heterogeneous-gpu",
-        "llama-cpp",
-        "pipeline-parallelism",
-        "prefill-decode",
-        "rtx-3060",
-        "AI 框架"
+        "GPU 集群",
+        "大語言模型",
+        "推論請求",
+        "Prefill 階段",
+        "Decode 階段",
+        "模型權重"
       ],
-      "actions": [],
+      "actions": [
+        "部署",
+        "加速",
+        "分離",
+        "載入"
+      ],
       "constraints": [
-        "git-clone",
-        "python"
+        "需特定異質硬體拓撲（如 2x RTX 6000D + 4x DGX Spark）",
+        "依賴 vLLM 與 SGLang 整合的跨引擎修補程式",
+        "使用者須自行準備符合環境的模型檔案"
       ],
       "negative": [
-        "需要特定的異質硬體拓撲：Prefill 使用兩張 RTX 6000D（或同等級）GPU，Decode 使用四個 DGX Spark/GB10 節點。",
-        "依賴 vLLM 與 SGLang 整合的跨引擎修補程式（V8）；標準未修改的 vLLM 或 SGLang 部署將不支援所述之 NIXL cache-page 適配。",
-        "不提供 510 GB 官方 DeepSeek-V4.1-Flash 權重；使用者須自行準備符合凍結 V8 環境的模型檔案。"
+        "不適合單一類型 GPU 或標準未修改的 vLLM/SGLang 部署",
+        "無法用於不需要高併發推論的低流量情境",
+        "不支援非 DeepSeek-V4.1-Flash 以外的模型架構"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:33.117Z"
     },
     "ollama": {
       "intents": [
-        "一位開發者在 macOS、Windows 或 Linux 本機環境上，想要立即啟動 Gemma 或 DeepSeek 等開放權重語言模型，以驅動 CLI 代理程式、聊天介面或本機 API，而無須配置分散式叢集。",
-        "快速上手使用 Kimi、GLM、MiniMax、DeepSeek、gpt-oss、Qwen、Gemma 及其他模型。"
+        "想在本機快速架設 DeepSeek、Gemma 或 GLM 等開放權重模型，用來跑 CLI 工具或聊天介面",
+        "需要透過簡單的 API 呼叫本機語言模型，不想手動設定複雜的叢集環境",
+        "想在 macOS、Windows 或 Linux 上一鍵部署模型，並結合 Python 或 JavaScript 客戶端進行開發",
+        "希望用整合好的方式直接啟動模型來驅動自動化代理程式或腳本工作流程"
       ],
       "objects": [
-        "deepseek",
-        "gemma",
-        "gemma3",
-        "glm",
-        "go",
-        "AI 框架"
+        "語言模型權重檔案",
+        "本機 API 端點",
+        "CLI 代理工具",
+        "Python/JavaScript 客戶端程式",
+        "llama.cpp 後端"
       ],
-      "actions": [],
+      "actions": [
+        "部署",
+        "呼叫",
+        "整合",
+        "啟動"
+      ],
       "constraints": [
-        "git-clone",
-        "go"
+        "僅支援單一節點的 macOS、Windows 或 Linux 環境",
+        "需使用 compatible 的模型架構與量化格式（受限於 llama.cpp 後端）",
+        "不內建企業級 RAG 框架，需自行處理文件結構化"
       ],
       "negative": [
-        "主要針對在 macOS、Windows 或 Linux 上的單節點本地執行，因此並未設計用於分佈式多節點 GPU 叢集編排。",
-        "效能和可用的模型架構受到底層 llama.cpp 後端的限制，表示可能不支援每種前沿的模型拓撲或量化格式。",
-        "雖然提供聊天和本地整合功能，但缺乏原生、即用的企業級 RAG 框架來處理複雜的結構化文件處理。"
+        "不適用於分佈式多節點 GPU 叢集編排",
+        "無法支援所有前沿模型拓撲或量化格式"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-09T04:20:32.803Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:34.046Z"
     },
     "compositor": {
       "intents": [
-        "對 GIMP 介面不熟悉、但希望使用免費且類似 Photoshop 的環境進行圖層合成、修圖與專業影像輸出的 Mac 使用者。",
-        "Mac 上的 Photoshop 替代品",
-        "處理 RAW 檔",
-        "非破壞性縮放圖片"
+        "想要在 Mac 上使用免費且類似 Photoshop 的圖層編輯工具進行影像合成與修圖",
+        "需要處理相機 RAW 檔或非破壞性縮放圖片，但不想花錢買授權軟體",
+        "偏好直接操作圖層與blend mode，並希望透過 AI 代理或直接編輯 .comp 專案格式進行自動化處理",
+        "習慣用 Photoshop 的工作流，但想找開源替代品來合併圖片或套用 GPU 特效"
       ],
       "objects": [
-        "layer-based-editing",
-        "non-destructive-transforms",
-        "gpu-layer-effects",
-        "camera-raw-processing",
-        "content-aware-fill",
-        "scriptable-project-format",
-        "UI/UX設計"
+        "PSD／PSB 匯入檔案",
+        "RAW 影像檔",
+        ".comp 專案資料夾",
+        "圖層與遮罩配置",
+        "像素化向量圖形"
       ],
-      "actions": [],
+      "actions": [
+        "編輯",
+        "匯入",
+        "合併",
+        "套用特效"
+      ],
       "constraints": [
-        "none",
-        "swift"
+        "需要 macOS 26.0 以上且為 Apple Silicon 晶片",
+        "PSD/PSB 僅支援 8 位元 RGB，不支援 CMYK 及進階向量文字",
+        "原始碼編譯需 Xcode 26 以上環境"
       ],
       "negative": [
-        "需要 macOS 26.0 以上，且須為 Apple Silicon 的 Mac",
-        "PSD／PSB 匯入僅支援 8 位元 RGB（不支援 CMYK）；簡單形狀以外的向量與直排文字在匯入時會轉成像素",
-        "原始碼需 Xcode 26 以上才能建置"
+        "不適用於 Windows 或 Linux 平台",
+        "無法完整處理專業出版級 CMYK 或直排文字向量"
       ],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:34.047Z"
     },
     "clash-verge-rev": {
       "intents": [
-        "想要跨平台圖形化客戶端來管理 Clash Meta（mihomo）代理配置檔案的用戶，包含 TUN 模式、系統代理與圖形化的節點與規則編輯。",
-        "基於 Tauri 的現代化圖形客戶端，可在 Windows、macOS 與 Linux 上執行，提供量身打造的代理體驗",
-        "匯入代理訂閱連結"
+        "想用圖形化介面管理 Clash.Meta 代理設定檔，並靈活切換不同代理節點",
+        "需要在 Windows、Mac 或 Linux 上啟用 TUN 虛擬網卡模式來接管系統流量",
+        "希望透過 WebDAV 備份與同步代理規則，或編寫腳本自動優化連線策略",
+        "已有 Clash 訂閱連結，想找整合性高的客戶端來匯入並視覺化調整轉發規則"
       ],
       "objects": [
-        "clash",
-        "clash-meta",
-        "clash-verge",
-        "mihomo",
-        "安全性"
+        "Clash.Meta (mihomo) 設定檔",
+        "代理訂閱連結",
+        "TUN 虛擬網卡介面",
+        "轉發規則與節點清單",
+        "WebDAV 備份存儲"
       ],
-      "actions": [],
+      "actions": [
+        "匯入",
+        "切換",
+        "編輯",
+        "同步"
+      ],
       "constraints": [
-        "none",
-        "rust"
+        "需要 macOS 11+、Windows 或 Linux 環境",
+        "使用者必須已持有可用的 Clash 代理設定檔",
+        "GPL-3.0 授權條款可能影響專有商業部署"
+      ],
+      "negative": [
+        "不負責提供或建立基礎網路架構與代理伺服器",
+        "不支援非 Clash 系列的代理協議或自訂核心"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:34.047Z"
+    },
+    "how-to-live-better": {
+      "intents": [
+        "我想在沒有網路的手機上讀一本基於證據的人生建議指南",
+        "有一個單檔案的 HTML 書，希望能在任何裝置上雙擊開啟閱讀",
+        "想要 searchable 的人生精華清單，能關鍵字搜尋並直接印成紙本",
+        "希望閱讀時不用裝任何軟體，且支援黑暗模式護眼",
+        "想把這本書的內容匯出成 PDF，方便離線時攜帶參考"
+      ],
+      "objects": [
+        "單頁 HTML 檔案",
+        "人生建議清單",
+        "電子書頁面",
+        "列印輸出檔",
+        "關鍵字搜尋結果"
+      ],
+      "actions": [
+        "開啟",
+        "搜尋",
+        "列印",
+        "切換暗色模式"
+      ],
+      "constraints": [
+        "無需安裝或建置，直接雙擊 HTML 即可執行",
+        "不需要帳號或網路連線",
+        "僅支援靜態內容閱讀，無即時更新功能"
+      ],
+      "negative": [
+        "需要登入帳號或資料同步的使用情境",
+        "期望能動態連線抓取最新書籍內容",
+        "需要互動式測驗或進度追蹤功能"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:45.293Z"
+    },
+    "magpie": {
+      "intents": [
+        "我想在 Mac 或 Windows 上一個介面裡切換 Claude Code、Codex 等不同 AI 編程代理",
+        "某個 AI 代理額度用完了，希望能自動改用另一個備用帳號繼續工作",
+        "不想手動編輯各個 Agent 的設定檔，想要一個統一的地方管理所有模型權限",
+        "在 Linux 終端機也想用選單列或 TUI 快速切換底層 LLM",
+        "希望整合 Gemini CLI 跟 DeepSeek 等服務，在同一個閘道裡控制"
+      ],
+      "objects": [
+        "Claude Code",
+        "Codex",
+        "Gemini CLI",
+        "DeepSeek",
+        "AI 代理設定檔",
+        "本地閘道實例"
+      ],
+      "actions": [
+        "切換模型",
+        "設定權限排程",
+        "自動失敗轉移",
+        "統一管理帳號"
+      ],
+      "constraints": [
+        "需在本機安裝閘道或執行桌面應用程式",
+        "支援 macOS、Windows、Linux 環境",
+        "可搭配 Docker 或 Termux 部署"
+      ],
+      "negative": [
+        "只使用單一 AI 編程代理且無多帳號需求",
+        "純雲端託管且無法注入本地設定的服務",
+        "不需要模型路由或自動備援機制"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:45.294Z"
+    },
+    "qingjian": {
+      "intents": [
+        "我在打字時想順便學習外語，希望輸入法的候選詞旁邊能顯示譯文",
+        "想要一套拼音輸入法，能在不打斷流暢度的情況下自然記憶新單字",
+        "希望全句子輸入、雙拼或五筆模式都能自動學我的用字習慣",
+        "不想讓翻譯功能上傳我的打字資料，所有處理都要在本機完成",
+        "在 Linux 上用 Fcitx5，也想有同一套能邊打邊學的輸入法"
+      ],
+      "objects": [
+        "拼音輸入法",
+        "候選詞譯文",
+        "語言學習詞彙表",
+        "本地字典與模型",
+        "輸入紀錄統計"
+      ],
+      "actions": [
+        "轉換拼音為文字",
+        "顯示目標語言譯詞",
+        "追蹤常用詞彙",
+        "修正輸入錯誤"
+      ],
+      "constraints": [
+        "支援 macOS 與 Windows 獨立桌面應用",
+        "Linux 僅支援 Fcitx5 並需手動啟動背景服務",
+        "可選啟用雲端補全功能，預設完全離線運行"
+      ],
+      "negative": [
+        "不需要語言學習功能的純文字輸入需求",
+        "習慣使用非拼音方案（如倉頡、注音）且不願切換",
+        "希望翻譯資料自動同步至雲端帳號"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:45.294Z"
+    },
+    "rea": {
+      "intents": [
+        "我想跟同事說 Electron 軟體裡某個按鈕的邏輯在哪，能不能追蹤程式流程？",
+        "我手上有個原生應用程式，想逆向看它的通訊協定然後自己做一個類似的。"
+      ],
+      "objects": [
+        "原生二進位檔案（如 .exe、.dll、.so）",
+        "Electron 應用程式",
+        "JavaScript 網頁應用",
+        "反組譯結果報告",
+        "二進位元件分析"
+      ],
+      "actions": [
+        "分析二進位檔案結構",
+        "追蹤程式邏輯流程",
+        "逆向工程應用程式行為",
+        "產出分析報告與建議"
+      ],
+      "constraints": [
+        "需搭配 Claude Code、Codex、Cursor 或 Gemini CLI 等 agent 平台使用",
+        "原生二進位分析需額外安裝 Hopper、Ghidra 或 IDA 等外部引擎",
+        "需定期執行更新指令以保持工具最新"
+      ],
+      "negative": [
+        "純靜態 JavaScript 分析不支援原生分析引擎，適用範圍限於 JS/Electron 情境",
+        "不適合需要完整圖形介面或視覺化除錯的工作流"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:47.363Z"
+    },
+    "photocraft": {
+      "intents": [
+        "我不想付 Adobe 訂閱費，有沒有能離線編輯 PSD 圖層檔的工具？",
+        "我想要一個不需要網路也能開圖、存檔，而且不用登入帳號的圖片編輯器。",
+        "我的 PSD 文件有很多圖層和濾鏡效果，想試試看能不能完整保留並重新輸出。",
+        "我習慣在終端機用指令批量處理圖片，有沒有支援 Command Line 的照片編輯器？"
+      ],
+      "objects": [
+        "PSD 檔案（Photoshop 文件）",
+        "圖層式影像檔",
+        "離線圖片編輯需求",
+        "CLI 批次處理圖片",
+        "Rust 生態系開發者工具"
+      ],
+      "actions": [
+        "開啟與編輯 PSD 檔案",
+        "離線處理具圖層與濾鏡效果的影像",
+        "透過 CLI 或 MCP 介面執行圖片編輯動作",
+        "儲存符合 Photoshop 標準的輸出檔"
+      ],
+      "constraints": [
+        "目前處於早期 alpha 階段，穩定性與成熟度有限",
+        "功能僅為 Photoshop 部分能力子集，不具備完整 Creative Cloud 生態系支援",
+        "適合離線使用與命令行整合，不適合需要雲端協作或高階專業功能的場景"
+      ],
+      "negative": [
+        "不適用於需要 Adobe 全系列工具（如 Illustrator、Premiere）整合的工作流",
+        "不適合對穩定性要求極高的生產環境，例如商業廣告製圖或大量客戶交付"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:47.364Z"
+    },
+    "droiddeck": {
+      "intents": [
+        "我的 Android 手機有 Adreno 730 以上的 GPU，想用它玩 Windows 遊戲，有沒有像 Steam Deck 那樣的方法？",
+        "我想在手機上同時玩 Steam、GOG 和 Epic Games 的遊戲，能不能整合到一個介面上？",
+        "不需要 root 就能在 Android 上執行 Linux 應用程式和 Windows 遊戲的工具，有什麼選擇？",
+        "我的手機是 Adreno 8xx 系列，想測試一下 LSFG 生成幀率的遊戲效能。"
+      ],
+      "objects": [
+        "Android 行動裝置（支援 Adreno 730/8xx GPU）",
+        "Windows 遊戲（透過 Proton 模擬）",
+        "Steam 客戶端整合",
+        "GOG 與 Epic Games 等遊戲商店",
+        "Linux 應用程式"
+      ],
+      "actions": [
+        "在 Android 上安裝與執行 Windows 遊戲",
+        "整合多平台遊戲商店至統一介面",
+        "透過 Proton 模擬執行跨平台應用",
+        "測試與啟用實驗性幀率生成技術"
+      ],
+      "constraints": [
+        "需要 Android 9 以上系統與特定 Adreno GPU（730 系列或更高版本）",
+        "不需 root 權限，但部分功能（如 DirectX 12 遊戲）在 Adreno 6xx 上仍屬實驗性",
+        "軟體渲染僅用於桌面合成，不適合非遊戲環境的效能需求"
+      ],
+      "negative": [
+        "不兼容 Mali、Xclipse、PowerVR 與 Adreno 710 等 GPU 型號",
+        "不適用於需要完整 PC 級效能或官方支援的商業遊戲，僅提供模擬層解決方案"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:47.364Z"
+    },
+    "wordcraft": {
+      "intents": [
+        "我想寫個程式自動化產生上百份合約書，每份都要填不同名稱和日期，還得要追蹤修改紀錄",
+        "在伺服器環境裡跑批次任務，把資料庫資料匯入Word檔案，但不能裝Microsoft Office",
+        "用MCP協定讓AI代理直接操控Word文件，例如自動插入報告章節或轉換格式",
+        "在網頁瀏覽器裡執行文件生成腳本，不用在客戶端安裝任何軟體",
+        "處理包含圖片和複雜表格的公文，且需要跨Windows和macOS運行無誤"
+      ],
+      "objects": [
+        ".docx檔案",
+        "Rust程式碼專案",
+        "MCP協議介接",
+        "批次生成腳本",
+        "郵件合併資料"
+      ],
+      "actions": [
+        "建立",
+        "編輯",
+        "檢視",
+        "郵件合併"
+      ],
+      "constraints": [
+        "需部署於支援WebAssembly的環境（瀏覽器或Rust runtime）",
+        "透過CLI或MCP介面操作，不依賴圖形界面"
+      ],
+      "negative": [
+        "處理舊版.doc（Word 97-2003）檔案格式",
+        "需要執行VBA巨集或嵌入OLE物件",
+        "依賴Microsoft專有擴展功能"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:55.866Z"
+    },
+    "filmcraft": {
+      "intents": [
+        "想剪輯阿波羅11號的4K修復影片，預算有限不想買Adobe訂閱，又要精準對齊逐格時間線",
+        "用指令列腳本自動化多層時間軸剪輯，輸出不同尺寸的版本給社群媒體",
+        "在瀏覽器直接進行影片剪輯，但需要支援HEVC編碼和精確幀率計算",
+        "替換舊版Premiere Pro的工程文件，保持原始時間軸結構和效果參數",
+        "開發自動化影片處理流程，例如批量轉檔並套用色彩校正"
+      ],
+      "objects": [
+        "H.264/HEVC影像素材",
+        "ProRes工程檔",
+        "跨平台剪輯腳本",
+        "AI代理控制介面",
+        "開源視頻處理管線"
+      ],
+      "actions": [
+        "導入素材",
+        "剪輯時間軸",
+        "套用色彩調校",
+        "輸出多格式影片"
+      ],
+      "constraints": [
+        "需熟悉Adobe Premiere Pro工作流",
+        "安裝Rust編譯環境或使用預建版本"
+      ],
+      "negative": [
+        "需要穩定性等同商業級編輯器的生產環境",
+        "依賴封閉專有插件或第三方編解碼器",
+        "初次使用者不熟悉非線性剪輯邏輯"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:55.866Z"
+    },
+    "dsh-our-free-model": {
+      "intents": [
+        "想在本機工具裡無縫呼叫免費的DeepSeek V4.1 Flash，不用麻煩申請API金鑰",
+        "把多個第三方AI模型聚合到同一個本地閘道，方便專案切換不同服務商",
+        "開發需要大量token消耗的批處理性務，但不想因為用量上限被卡住",
+        "用開源方案替代付費LLM服務，且希望壓縮冗長上下文來節省傳輸成本",
+        "在團隊內部快速部署免註冊的AI能力，讓其他工具透過標準協定接入"
+      ],
+      "objects": [
+        "DeepSeek/Kimi等前沿模型",
+        "OpenAI/Anthropic相容API",
+        "本地工具串接管線",
+        "git diff等大上下文資料"
+      ],
+      "actions": [
+        "安裝輕量插件",
+        "切換模型來源",
+        "壓縮token上下文",
+        "啟動本地API閘道"
+      ],
+      "constraints": [
+        "需運行DeepSeek Harness核心版本0.1.5至0.1.7-rc.2",
+        "免費頻道可能記錄提示內容，不適配敏感資料處理"
+      ],
+      "negative": [
+        "需要付費訂閱或複雜的API金鑰設定",
+        "處理高度敏感或合規要求嚴格的資料",
+        "依賴單一模型供應商且不需多源切換"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:17:55.866Z"
+    },
+    "pdfcraft": {
+      "intents": [
+        "手上有幾份散落的 PDF，想合併成一整份，不用傳到雲端處理",
+        "PDF 有損壞或壞檔，我想看看能不能修復或直接開啟它"
+      ],
+      "objects": [
+        "PDF 檔案"
+      ],
+      "actions": [
+        "分割",
+        "合併",
+        "編輯",
+        "保護"
+      ],
+      "constraints": [
+        "需在本機安裝或使用網頁版，無需網路連線即可完成"
+      ],
+      "negative": [
+        "需要上傳 PDF 至雲端服務處理的情境",
+        "依賴專有設計軟體才能完成的複雜向量版面設計"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:36.629Z"
+    },
+    "strata": {
+      "intents": [
+        "我有 NVIDIA 或 AMD 顯卡，想在本地跑大模型來輔助寫程式碼",
+        "我不想把提示傳給外部 API，希望在本地電腦上部署 AI 模型來自己調用",
+        "我的工具想透過標準 API 連接到本地跑的 Qwen 模型，不需要帳號或金鑰",
+        "我有兩張顯示卡，想把它們一起用上加速本地模型的推理速度"
+      ],
+      "objects": [
+        "NVIDIA 顯卡",
+        "AMD 顯示卡",
+        "Qwen 模型",
+        "本機 API"
+      ],
+      "actions": [
+        "本地運行",
+        "提供 API",
+        "推理"
+      ],
+      "constraints": [
+        "至少需要 12 GB VRAM 與 32 GB 系統記憶體，Windows 或 Linux 環境"
+      ],
+      "negative": [
+        "沒有滿足最低硬體規格（12 GB 以上 VRAM）的舊款或低階設備",
+        "需要伺服器端雲端 API、無法在本機執行的批次處理流程"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:36.630Z"
+    },
+    "vectorcraft": {
+      "intents": [
+        "我想設計複雜的向量圖示或插圖，但不想用 Adobe Illustrator 付費訂閱",
+        "我有一個 SVG 檔案需要修改，想在本地自由編輯而不依賴線上工具",
+        "我想在本地離線環境下繪製向量圖形，不用上傳任何檔案到雲端",
+        "我希望 AI 助手能直接操控我的向量設計工作，不需要人為介入每一步"
+      ],
+      "objects": [
+        "SVG 檔案",
+        "向量圖形",
+        "向量插圖"
+      ],
+      "actions": [
+        "繪製",
+        "編輯",
+        "設計"
+      ],
+      "constraints": [
+        "需在本機安裝或使用 WebAssembly 網頁版，無帳號或訂閱需求"
+      ],
+      "negative": [
+        "需要專業設計軟體才能完成的極度複雜向量版面設計",
+        "超出標準頁面管理範圍的 PDF 內容結構修改"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:36.630Z"
+    },
+    "effectcraft": {
+      "intents": [
+        "我想用類似 After Effects 的工具做動態圖形，但最好能直接匯出 Lottie 給 Web 和手機端用",
+        "我的動畫專案希望儲存成 JSON 格式，這樣在 Git 裡面可以清楚看到每次改動的差異",
+        "我需要有命令列介面或能用指令自動化處理動畫編碼流程，不要依賴 FFmpeg",
+        "我想要支援 VP9、AV1、HEVC 這類現代編碼器，而且最好是純 Rust 實作的工具"
+      ],
+      "objects": [
+        ".ecproj 專案檔",
+        "Lottie 動畫格式",
+        "VP9/AV1/HEVC 影片",
+        "Opus 音訊",
+        "版本控制系統（Git）"
+      ],
+      "actions": [
+        "建立與編輯動態圖形",
+        "匯出 Lottie 動畫",
+        "透過命令列腳本化操作",
+        "編碼影片與音訊"
+      ],
+      "constraints": [
+        "使用純 Rust 編寫的開源工具",
+        "支援命令行介面、JSON 通道與 MCP Agent"
+      ],
+      "negative": [
+        "專案穩定性較低，功能成熟度不如商業軟體",
+        "可能無法完整相容現有 After Effects 專案或外掛",
+        "瀏覽器版本處理厚重 3D 或複雜合成時效能較差"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:48.464Z"
+    },
+    "diplay": {
+      "intents": [
+        "我的比亞迪車上有 Android 主機，想透過 USB 或 Wi-Fi 連接 iPhone 的 CarPlay，不用越獄或外接轉接器",
+        "我希望 CarPlay 的導航資訊（箭頭、距離、路名）能直接顯示在比亞迪的 HUD 擋風玻璃上",
+        "我在 Android 7.1 以上的車載主機上安裝 APK，就能有線或無線串流 CarPlay，不需要 Mac 或外部認證伺服器",
+        "我想查看車輛診斷報告，例如儀表板、電池、輪速等資料，但核心 CarPlay 功能不需要 ADB 存取權限"
+      ],
+      "objects": [
+        "比亞迪（BYD）車載主機",
+        "iPhone CarPlay",
+        "Android 7.1+ 系統",
+        "HUD 擋風玻璃導航顯示",
+        "有線 USB 與無線 Wi-Fi Direct/熱點連線"
+      ],
+      "actions": [
+        "安裝獨立 APK 到車載主機",
+        "有線或無線串流 CarPlay",
+        "顯示 HUD 導航資訊",
+        "生成車輛診斷報告"
+      ],
+      "constraints": [
+        "僅適用於比亞迪（BYD）車輛，其他品牌不支援",
+        "需要 Android 7.1 以上的車載主機",
+        "部分功能（如診斷報告）需 ADB 存取權限"
+      ],
+      "negative": [
+        "不支援其他廠牌車輛",
+        "私密金鑰可能被提取，配件身分處於實驗階段，相容性無法保證",
+        "iOS 未來更新可能影響可靠性"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:48.464Z"
+    },
+    "shaders": {
+      "intents": [
+        "我在 React、Vue 或 Svelte 專案裡想用 GPU 加速的視覺效果（像是漸層或游標軌跡），但不想手寫原始 WebGL 或 WebGPU 程式碼",
+        "我希望透過視覺設計編輯器（shaders.com）在無限畫布上設計效果，然後直接匯出對應框架的元件程式碼",
+        "我需要在不同前端框架（React、Vue、Svelte、Solid、純 JS、Framer）中保持一致的 props 介面，方便跨框架使用",
+        "我想讓 AI 編碼助手（如 Claude 或 Cursor）能直接幫我尋找、安裝和編輯 shader 元件，透過 MCP 伺服器整合"
+      ],
+      "objects": [
+        "React、Vue、Svelte、Solid、JS、Framer 專案",
+        "WebGPU 視覺效果（漸層、游標軌跡等）",
+        "shaders.com 視覺編輯器輸出",
+        "MCP 伺服器與 AI 編碼助手",
+        "CLI 工具產生的元件檔案"
+      ],
+      "actions": [
+        "匯入聲明式 shader 元件到前端專案",
+        "使用視覺編輯器設計並匯出效果",
+        "透過 CLI 自動偵測框架並寫入元件檔案",
+        "整合 MCP 伺服器與 AI 編碼助手進行元件管理"
+      ],
+      "constraints": [
+        "目標瀏覽器或環境必須支援 WebGPU",
+        "進階設計工作流程與視覺編輯需要 Shaders 帳號（核心匯出功能免費）"
+      ],
+      "negative": [
+        "不適用於不支援 WebGPU 的舊版瀏覽器或環境",
+        "需要純 WebGL 或舊式圖形 API 的專案不適用"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:48.465Z"
+    },
+    "wheresryan22-anatomy": {
+      "intents": [
+        "想把速率限制器的運作流程畫成互動式等距插圖，讓人一眼看懂怎麼擋掉過載請求",
+        "需要把技術概念轉成帶有 3D 效果的 SVG 圖示，讓文件看起來不只是靜態圖片",
+        "在做開發者工具時，希望圖表裡能顯示即時數值並加上動畫效果",
+        "想要零依賴地在專案裡產生可自驗證的互動圖形，不用額外裝套件"
+      ],
+      "objects": [
+        "SVG 檔案",
+        "等距圖示",
+        "技術概念圖",
+        "互動式插圖",
+        "WebGL 著色器效果"
+      ],
+      "actions": [
+        "生成",
+        "視覺化",
+        "渲染",
+        "動畫化"
+      ],
+      "constraints": [
+        "Node.js 版本需 20.10 或更高"
+      ],
+      "negative": [
+        "非技術用戶不需要此工具",
+        "只需要靜態資訊圖表不適用",
+        "非 Claude Code / OpenCode / Codex 環境不適用"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:55.444Z"
+    },
+    "lightcraft": {
+      "intents": [
+        "在地端工作站直接修 RAW 檔，不想把原始照片傳到雲端服務",
+        "想要用 AI 代理自動批量修一整個資料夾的 RAW 影像",
+        "需要一個以 Rust 撰寫的高效 RAW 編輯器，追求效能與穩定性",
+        "想在瀏覽器裡透過 WebAssembly 使用 RAW 編輯工具"
+      ],
+      "objects": [
+        "RAW 檔案",
+        "照片",
+        "MCP 介面",
+        "AI 代理"
+      ],
+      "actions": [
+        "編輯",
+        "處理",
+        "批處理",
+        "轉換"
+      ],
+      "constraints": [
+        "支援 macOS、Windows、Linux 本機環境，或在瀏覽器透過 WebAssembly 執行"
+      ],
+      "negative": [
+        "需要無 UI 伺服器端持續處理不適用",
+        "需要專有 AI 模型整合不適用",
+        "開發階段不穩定，不適合正式工作流"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:55.444Z"
+    },
+    "math": {
+      "intents": [
+        "想查閱 OpenAI 模型產出的數學研究手稿，看看有沒有 Lean 形式化可以機器驗證",
+        "需要引用數學論文的推理軌跡摘要與 BibTeX 格式，不用自己重新整理",
+        "想做形式化證明檢查，需要找附有 Lean 程式碼的數學論文",
+        "想瀏覽 372 個研究家族共 719 篇數學手稿，了解不同領域的形式化進度"
+      ],
+      "objects": [
+        "數學研究手稿",
+        "Lean 形式化證明",
+        "BibTeX 引用",
+        "推理軌跡摘要"
+      ],
+      "actions": [
+        "查閱",
+        "驗證",
+        "引用",
+        "瀏覽"
+      ],
+      "constraints": [
+        "檢視 Lean 形式化需準備 Lean 工具鏈與足夠運算資源"
+      ],
+      "negative": [
+        "需要可安裝或匯入為程式庫不適用",
+        "需要作為 API 服務呼叫不適用",
+        "未形式化的成果可能存在錯誤，引用前需自行驗證"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:55.444Z"
+    },
+    "removemacai": {
+      "intents": [
+        "我的 Mac 突然變慢，想清掉 Apple Intelligence 相關模型和背景程式",
+        "不想讓系統追蹤我的使用習慣，想要一鍵關閉分析與廣告彈窗",
+        "預設裝了 GarageBand 和 iMovie 根本用不到，想刪除以釋放磁碟空間",
+        "希望停用 Apple Intelligence 的特定功能（如 Genmoji 或寫作工具）但不影響其他設定",
+        "發現 Google 之類的第三方背景更新程式一直在跑，想強制關閉它們"
+      ],
+      "objects": [
+        "macOS 系統設定",
+        "Apple Intelligence 模型檔案",
+        "預設應用程式",
+        "背景更新程式",
+        "彈出視窗"
+      ],
+      "actions": [
+        "移除",
+        "關閉",
+        "撤銷",
+        "偵測"
+      ],
+      "constraints": [
+        "需要 macOS 作業系統（支援 macOS 27）",
+        "首次執行需手動允許未驗證應用程式"
+      ],
+      "negative": [
+        "不適用於 Windows 或 Linux 系統",
+        "無法提供防毒或防火牆功能"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:56.624Z"
+    },
+    "gridcraft": {
+      "intents": [
+        "想用純開源工具自動生成 Excel 格式的報告，不想依賴微軟授權",
+        "想在瀏覽器環境中操作試算表而不安裝 Microsoft Office",
+        "程式開發時需要支援 500 多個函數的試算表引擎"
+      ],
+      "objects": [
+        "XLSX 檔案",
+        "圖表",
+        "樞紐分析表",
+        "試算表資料",
+        "MCP 協議連線"
+      ],
+      "actions": [
+        "生成",
+        "渲染",
+        "自動化處理",
+        "匯出"
+      ],
+      "constraints": [
+        "需安裝 Rust 編譯環境或使用 WebAssembly 版本"
+      ],
+      "negative": [
+        "不支援 Microsoft Office 專有格式（DOCX/PPTX/XLS）",
+        "無法替代雲端同步功能"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:56.624Z"
+    },
+    "ultramotion": {
+      "intents": [
+        "想用文字提示詞直接生成帶同步音樂的垂直動態影片",
+        "需要製作帶有中文書寫筆順動畫的教學影片",
+        "想快速產出不同風格的動效模板（如流動玻璃效果或扁平解說影片）",
+        "要將歷史事件資料轉換成帶有時間軸的動態重現影片"
+      ],
+      "objects": [
+        "動態圖影片",
+        "音樂軌道",
+        "WebGL 粒子特效",
+        "手繪筆順動畫",
+        "字幕檔案"
+      ],
+      "actions": [
+        "生成",
+        "渲染",
+        "同步配音",
+        "套用模板"
+      ],
+      "constraints": [
+        "需安裝無頭 Chromium 瀏覽器、ffmpeg 和 Python 環境",
+        "部分樣式依賴 Playwright、Pillow 或語音合成工具"
+      ],
+      "negative": [
+        "不支援無法執行 WebGL2 的瀏覽器",
+        "需要額外安裝特定語音識別工具"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:18:56.625Z"
+    },
+    "answer-me-with-html": {
+      "intents": [
+        "想把專案的模組關係用圖表視覺化，一次丟給 AI 後拿到一個能直接打開的 HTML 頁面",
+        "解釋複雜系統架構時不想寫一堆文字，希望 AI 幫我把圖表、說明統整成單檔 HTML，離線也能看",
+        "做影片腳本或 explainer 內容，想省 token 又想要快速產出可用的展示頁面"
+      ],
+      "objects": [
+        "HTML 檔案",
+        "SVG 圖表",
+        "專案架構圖",
+        "模組關係圖",
+        "技術說明頁"
+      ],
+      "actions": [
+        "生成",
+        "渲染",
+        "輸出",
+        "構建"
+      ],
+      "constraints": [
+        "需要 Node.js 20 以上版本",
+        "僅支援 Claude Code、Codex、Cursor、OpenCode、Pi、DeepSeek Harness 等代理框架"
       ],
       "negative": [],
-      "tier": 0,
-      "epistemic": "V",
-      "compiled_at": "2026-10-07T10:54:56.445Z"
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:01.500Z"
+    },
+    "vibe-coding-cn": {
+      "intents": [
+        "想用中文系統性學習 vibe coding 的完整工作流，包含提示設計和上下文管理",
+        "團隊想建立一套可持續維護的 AI 協作程式方式，不想看零散的部落格文章",
+        "想找到有研究佐證的 vibe coding 方法，並直接拿可用的 Codex 設定和技能目錄來用"
+      ],
+      "objects": [
+        "提示工程檔案",
+        "教學課程",
+        "Codex 設定檔",
+        "技能目錄",
+        "線上提示庫"
+      ],
+      "actions": [
+        "學習",
+        "套用",
+        "配置",
+        "查閱"
+      ],
+      "constraints": [
+        "非可執行工具，為教學資源與教程集合"
+      ],
+      "negative": [
+        "不適合需要直接安裝執行的工具或程式庫"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:01.501Z"
+    },
+    "huashu-art-motion": {
+      "intents": [
+        "想把一張靜態圖轉成動畫，用 35 種藝術風格之一讓畫裡的人動起來",
+        "製作短片時不想額外找音樂，希望 AI 直接用程式碼合成背景音樂跟音效",
+        "需要把多張畫面串成有轉場效果的動畫，還要自動檢查畫面流暢度跟穩定性"
+      ],
+      "objects": [
+        "靜態圖像",
+        "藝術動畫影片",
+        "背景音樂",
+        "音效檔",
+        "影格序列"
+      ],
+      "actions": [
+        "渲染",
+        "合成",
+        "轉換",
+        "驗證"
+      ],
+      "constraints": [
+        "需要安裝 uv、ffmpeg 與 Playwright Chromium"
+      ],
+      "negative": [
+        "不適合用於複雜的 3D 建模",
+        "不適合即時互動式遊戲引擎的開發"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:01.501Z"
+    },
+    "plexo": {
+      "intents": [
+        "想找一支叫 plexo 的工具來用看看。",
+        "不知道 plexo 能做什麼，想先了解它的功能。"
+      ],
+      "objects": [],
+      "actions": [],
+      "constraints": [],
+      "negative": [],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:11.611Z"
+    },
+    "playgta5": {
+      "intents": [
+        "想找 playgta5.com 這個網站的相關資源。",
+        "想了解 playgta5 這個專案在做什麼。"
+      ],
+      "objects": [],
+      "actions": [],
+      "constraints": [],
+      "negative": [],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:11.611Z"
+    },
+    "cadcraft": {
+      "intents": [
+        "要畫二維工程圖，需要像 AutoCAD 那樣有鎖點、圖層和標註的功能，但不想用付費軟體。",
+        "想做 3D 零件模型，然後匯出成 DXF 格式給工廠使用。",
+        "希望 AI 能透過 MCP 直接操作 CAD 軟體，讓我用自然語言下指令改圖面。",
+        "想在瀏覽器裡開圖就好，不要安裝任何東西，也不用擔心版權授權問題。",
+        "想自己手動建立 2D 圖面和 3D 模型，練習繪圖、切換圖層和設定尺寸標註。"
+      ],
+      "objects": [
+        "DXF 檔案",
+        "二維工程圖面",
+        "三維零件模型",
+        "鎖點（物件捕捉）",
+        "圖層",
+        "尺寸標註"
+      ],
+      "actions": [
+        "建立圖面",
+        "編輯圖面",
+        "匯出檔案",
+        "繪製圖形"
+      ],
+      "constraints": [
+        "執行環境：macOS、Windows、Linux、FreeBSD 或瀏覽器（WebAssembly）",
+        "需要透過 MCP 才能讓 AI 代理驅動",
+        "專案仍在 early development 階段，檔案格式與指令可能隨版本變動"
+      ],
+      "negative": [
+        "不適合正式出圖管線，尚未達完整取代 AutoCAD 工作流程的成熟度",
+        "不應用於需要商業支援與法律授權的正式工程文件"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:11.611Z"
+    },
+    "digup": {
+      "intents": [
+        "我電腦裡一堆 PDF 和照片，不知道哪份文件或哪張照片有提到那個專案的關鍵字。",
+        "我有段長錄音，想找裡面有出現某個話題的段落。",
+        "我的影片資料夾太多，想找哪支影片有包含某個特定場景。",
+        "我的專案裡有很多程式碼檔案，想知道某個函數或變數在哪些檔案裡被呼叫。",
+        "我電腦裡雜亂的檔案，想找某個特定內容的檔案，像是合約或報告。"
+      ],
+      "objects": [
+        "照片",
+        "PDF 檔案",
+        "文件",
+        "錄音檔",
+        "影片",
+        "程式碼檔案"
+      ],
+      "actions": [
+        "搜尋檔案內容",
+        "提取文字與影像特徵",
+        "比對嵌入向量",
+        "在本地進行計算"
+      ],
+      "constraints": [
+        "需在 Mac、Windows 或 Linux 上執行",
+        "需要安裝 embeddinggemma 或 llama-cpp 模型",
+        "無需網路連線即可使用（本地處理）"
+      ],
+      "negative": [
+        "不適合雲端搜尋",
+        "不適合需要即時更新的線上資料",
+        "不適合非檔案內容的搜尋（例如網頁內容）"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:21.703Z"
+    },
+    "deepseek-bot": {
+      "intents": [
+        "我想在 Discord 伺服器上設定多個機器人，讓它們互相訊息交流，並回覆用戶問題。",
+        "我在開發一個多代理系統，需要機器人之間能自動傳遞訊息，不用人工介入。",
+        "我想建立一個群組聊天機器人，讓用戶可以透過對話驅動某些自動化任務。",
+        "我需要一個能長期運行的機器人，可以在後台持續監控和回應事件。",
+        "我想整合 DeepSeek 模型到現有的機器人框架，並擴充多個機器人協作的能力。"
+      ],
+      "objects": [
+        "Discord 頻道",
+        "Slack 聊天室",
+        "機器人帳號",
+        "代理程式",
+        "多代理系統",
+        "群組對話"
+      ],
+      "actions": [
+        "發送訊息",
+        "接收訊息",
+        "協調多個機器人",
+        "執行自動化任務"
+      ],
+      "constraints": [
+        "需搭配 DeepSeek Harness 使用",
+        "需安裝 dsh-plugin 擴充功能",
+        "需設定多個機器人帳號以進行互動"
+      ],
+      "negative": [
+        "不適合僅需單一機器人的簡易應用",
+        "不支援非 DeepSeek Harness 的環境",
+        "不適用於需要即時反應的單線程任務"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:19:21.703Z"
+    },
+    "artcraft": {
+      "intents": [
+        "我在做 AI 生成的插畫，但想自己在 2D 畫布上重新分層、加遮罩、拼貼多個素材，而不是直接吐出一張完成的圖",
+        "想把 AI 生成的角色平面圖像轉成 3D 網格，方便在 3D 場景裡調整姿勢、組裝套件",
+        "我同時用 Midjourney 出圖、用 Sora 產影片，想在同一個桌面工作區裡切換不同模型provider，不用在各網頁之間跑來跑去",
+        "想做 AI 輔助的動態分鏡或定格動畫，需要可重複迭代、分階段編輯的合成環境"
+      ],
+      "objects": [
+        "AI 生成的圖像（PNG、JPG）",
+        "2D 合成素材（PSD、AE 工程）",
+        "3D 網格模型（OBJ、GLB、FBX）",
+        "多模態 AI 生成工作區",
+        "角色姿勢與套裝配件"
+      ],
+      "actions": [
+        "合成",
+        "轉換",
+        "切換模型",
+        "編輯"
+      ],
+      "constraints": [
+        "macOS / Windows 桌面環境",
+        "需取得對應 AI 模型 provider 的 API key（如 Grok、Midjourney、Sora 等）",
+        "需 GPU 硬體支援圖像與 3D 渲染"
+      ],
+      "negative": [
+        "不需要人工干預、純粹大批量自動化生圖生片的流程",
+        "追求工程級精確度（CAD / 工業建模），非藝術創作用途",
+        "行動裝置（iOS / Android）的輕量編輯需求"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:13.526Z"
+    },
+    "voxcpm": {
+      "intents": [
+        "我要做一部多國語言的動畫或遊戲，不想為每個角色去找真實配音員錄製，希望直接由文字腳本就生成不同口音的演播室品質語音",
+        "我想用文字描述（像是「溫柔的女聲、帶點鼻音、語速中等」）來設計一個全新的聲音角色，不需要先錄一段參考音訊",
+        "我需要支援台灣國語、四川話等中方言的多語音 TTS，而且輸出品質要夠高，能直接放到正片裡用",
+        "我想把現有 16kHz 的低品質語音轉成 48kHz  studio 級別的音檔，或是要在推論時直接控制語音風格"
+      ],
+      "objects": [
+        "文字腳本（多國語言含中方言）",
+        "TTS API / 音頻合成服務",
+        "語音克隆或語音設計目標",
+        "16kHz 低解析度音頻",
+        "48kHz 高解析度音頻輸出",
+        "iOS / 網頁 / 後端部署平台"
+      ],
+      "actions": [
+        "生成語音",
+        "設計語音",
+        "變聲",
+        "上採樣"
+      ],
+      "constraints": [
+        "Apache-2.0 授權，商用可接受",
+        "推論需較高階 GPU（如 NVIDIA RTX 4090 等級）",
+        "邊緣部署僅支援特定量化格式（llama.cpp-omni）"
+      ],
+      "negative": [
+        "需要錄製真實人聲的場景（非 AI 生成語音）",
+        "只有一個簡單英語 TTS 需求，不需要多語或方言支援",
+        "無 GPU 環境的輕量級部署需求"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:13.526Z"
+    },
+    "omnibox": {
+      "intents": [
+        "我們團隊散落在各個網頁、PDF、簡報和 Word 檔裡的知識很亂，想把它們抓到同一個地方，然後用自然語言問系統要答案",
+        "我希望用瀏覽器擴充功能或手機 app 一鍵把看到的網頁內容存起來，之後不用重新找，直接問就好",
+        "我的會議筆記、微信上收到的文件都丟在不同的地方，想要一個能跨平台收集、再用 Markdown 編輯和索引的工具",
+        "我想要一個類似內部知識庫的東西，能跨檔案格式（PDF、PPT、MP3 錄音檔）進行檢索和問答"
+      ],
+      "objects": [
+        "網頁內容（HTML）",
+        "PDF 檔案",
+        "Word / PPT 簡報檔",
+        "MP3 音頻錄音檔",
+        "微信訊息與收藏",
+        "iOS 裝置上的擷取內容"
+      ],
+      "actions": [
+        "抓取",
+        "解析",
+        "索引",
+        "檢索"
+      ],
+      "constraints": [
+        "需克隆 Git 儲存庫（含子模組）並設定環境變數進行本地部署",
+        "需瀏覽器擴充功能、iOS app 或微信機器人作為收集入口",
+        "多租戶工作區設定"
+      ],
+      "negative": [
+        "不需要集中管理、單人簡單的筆記應用",
+        "需要 RSS 訂閱功能的知識聚合需求（目前尚無此功能）",
+        "純雲端 SaaS 產品（此工具為本地部署方案）"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:13.527Z"
+    },
+    "machine-skill": {
+      "intents": [
+        "我要做一架渦扇發動機的內部構造模擬，葉片和齒輪都要能自己轉，最好還能錄成影片給客戶看",
+        "想幫學生做一個泵浦運作的互動 3D 模擬，讓它們能清楚看到葉輪怎麼轉、水流怎麼被推動，直接匯出成教學影片",
+        "需要把一台往復式壓縮機的切面圖做出來，piston 要能上下運動，缸內壓力變化也要跟著顯示出來",
+        "想用一句話就把一台柴油引擎的互動式 3D 模型生成出來，每個零件都能拉開來看內部結構，並輸出成影片檔",
+        "想要把離心風機的運作原理做成可互動的網頁，風扇葉片轉動時氣流的速度也要跟著變化"
+      ],
+      "objects": [
+        "渦扇發動機",
+        "泵浦",
+        "往復式壓縮機",
+        "柴油引擎",
+        "離心風機",
+        "機械系統"
+      ],
+      "actions": [
+        "生成",
+        "錄製",
+        "匯出"
+      ],
+      "constraints": [
+        "需具備 Claude Code 環境",
+        "需安裝 three.js 0.170 版本"
+      ],
+      "negative": [
+        "不適用於生物或非實體物件",
+        "僅限機器與機械系統"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:20.642Z"
+    },
+    "ingetrazo": {
+      "intents": [
+        "我想在 Linux 上開 SketchUp 的 .skp 檔來做自由建模，不用切換到其他軟體。",
+        "我需要把 3D 模型裡的牆壁、樓板標註成 BIM 物件，並直接算出建材數量。",
+        "我想把建模好的結構匯出成 IFC 檔，讓預算團隊能直接對接。",
+        "我的專案需要在地圖上定位（georeferencing），同時又能手動推拉改變形狀。",
+        "我想快速產出一個可驗證數量的建築模型，避免幾何破損導致算錯料。"
+      ],
+      "objects": [
+        ".skp（SketchUp 檔）",
+        "IFC 數量計算報告",
+        "BIM 標註物件（IfcWall、IfcSlab、IfcColumn）",
+        "3D 幾何模型",
+        "地理定位座標"
+      ],
+      "actions": [
+        "開啟與編輯 .skp 檔",
+        "推擠（push/pull）建立自由形狀",
+        "標註 BIM 屬性",
+        "匯出 IFC 檔案"
+      ],
+      "constraints": [
+        "需在 Linux、Windows 或 macOS 環境執行",
+        "BIM 標註為選配功能，需額外啟用模組",
+        "仍處 0.x 生命週期，格式與 API 可能隨 minor 版變動"
+      ],
+      "negative": [
+        "不需要完整 BIM 製圖環境（如 Revit）的複雜協作流程",
+        "無法容忍幾何破損風險、要求穩定出版級輸出的場景"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:30.589Z"
+    },
+    "harness2": {
+      "intents": [
+        "我想在模型權重固定的情況下，讓代理自動改進提示詞、工具編排與記憶設定。",
+        "我需要一個能遞迴優化代理行為的框架，用來跑 JobBench 或 WorkBuddy-Bench 基準測試。",
+        "我希望代理能透過提案‑探測‑組裝的流程，持續吸收經驗並提升後續任務表現。",
+        "我打算用 OpenCode 或 Codex 執行器來驅動這個遞迴 harness，並比較不同基準的進步幅度。",
+        "我需要在模型參數不更動的前提下，把周邊系統（如工具呼叫順序）最佳化到更高分數。"
+      ],
+      "objects": [
+        "模型權重",
+        "提示詞模板",
+        "工具與記憶配置",
+        "JobBench / LAB / WorkBuddy‑Bench 基準套件",
+        "OpenCode 與 Codex 執行器"
+      ],
+      "actions": [
+        "遞迴最佳化 harness 配置",
+        "執行提案‑探測‑組裝循環",
+        "累積已採納的 harness 與實證經驗",
+        "在基準測試上評估分數提升"
+      ],
+      "constraints": [
+        "模型權重必須保持固定，僅允許調整 harness 層",
+        "需搭配 OpenCode 或 Codex 執行器使用",
+        "目前為研究原型，基準套件綁定特定測試集"
+      ],
+      "negative": [
+        "需要直接微調底層模型權重（fine‑tuning）的情境",
+        "要求一鍵上線、即戰型代理執行環境的生產部署"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:30.590Z"
+    },
+    "plugins": {
+      "intents": [
+        "我想在 Cursor 裡直接安裝現成的插件，用來自動審查 PR 或編排 CI 流程。",
+        "我需要為自己的插件產生符合 .cursor‑plugin 規範的腳手架，並檢查是否能上架。",
+        "我希望能透過插件串接 GitHub、Playwright 或 Google Workspace（Gmail、文件、試算表）來自動化日常任務。",
+        "我想在 monorepo 專案中一次性取得多個插件技能（如語音應用、雲端代理編排），並保持目錄結構一致。",
+        "我需要一鍵產生符合官方規格的新插件，省去手動對照清單的時間。"
+      ],
+      "objects": [
+        ".cursor‑plugin 清單檔",
+        "插件目錄結構",
+        "GitHub / Playwright / Google Workspace 整合介面",
+        "PR 審查規則與 CI 檢查設定",
+        "monorepo 中的子工具（subtools）"
+      ],
+      "actions": [
+        "安裝與管理 Cursor 官方插件",
+        "產生合規插件腳手架",
+        "驗證插件規格並輸出檢查清單",
+        "串接第三方 SaaS 服務"
+      ],
+      "constraints": [
+        "插件必須在 Cursor 編輯器環境中執行，無法當成獨立 CLI 使用",
+        "第三方整合插件需各服務的憑證與 OAuth 授權",
+        "離線環境下多數外部整合功能無法運作"
+      ],
+      "negative": [
+        "需要完全離線、不依賴外部 API 或 OAuth 授權的場景",
+        "希望將插件行為獨立於 Cursor 編輯器之外自行驅動的應用"
+      ],
+      "tier": 1,
+      "epistemic": "S",
+      "compiled_at": "2026-11-01T13:20:30.590Z"
     }
   },
   "generatedBy": "compile-wiki LLM (Tier 1, agnes-2.5-flash)"
