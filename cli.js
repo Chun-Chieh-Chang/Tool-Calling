@@ -244,6 +244,26 @@ function cmdListSkills() {
   });
 }
 
+// ─── 語意編譯缺口提示（2026-11-01）────────────────────────────────────────
+//
+// 入庫 ≠ 已進入語意檢索。compile-wiki 產生的 intents 是 L3（語意）與 V5（知識圖譜）
+// 的主要輸入；新工具若沒有 Tier 1 詞條，搜尋時只剩字面匹配（name／triggers），
+// 使用者用「自己的語言」描述需求時找不到它。
+//
+// 2026-11-01 實測的問題：這個缺口是**隱形的**——沒有任何地方提示，
+// 784 筆工具裡有 4 筆從未被編譯過，直到有人專門去查才發現。
+// 讀不到詞條檔時不擾動使用者（回 false＝假定已編譯）。
+function lacksCompiledEntry(id) {
+  try {
+    const p = join(dirname(fileURLToPath(import.meta.url)), 'registry', 'compiled-entries.json');
+    if (!existsSync(p)) return false;
+    const ce = JSON.parse(readFileSync(p, 'utf8'));
+    return (ce.entries || {})[id]?.tier !== 1;
+  } catch {
+    return false;
+  }
+}
+
 // ─── 命令：add ──────────────────────────────────────────────────────────────
 
 async function cmdAdd(url, isBatch = false) {
@@ -349,6 +369,9 @@ async function cmdAdd(url, isBatch = false) {
     if (missingFields.length) {
       console.log(`  ${c.yellow}⚠ 缺少 ${missingFields.join(', ')}${c.reset}`);
       console.log(`  ${c.dim}建議執行 ${c.cyan}npm run enrich${c.dim} 以 AI 自動補完，或手動編輯 registry/tools.json${c.reset}`);
+    }
+    if (lacksCompiledEntry(newTool.id)) {
+      console.log(`  ${c.yellow}⚠ 尚未語意編譯${c.reset} ${c.dim}（搜尋時只有字面匹配；執行 ${c.cyan}npm run compile:wiki${c.dim} 可補齊）${c.reset}`);
     }
     console.log();
   } catch (err) {

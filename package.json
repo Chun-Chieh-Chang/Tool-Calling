@@ -46,6 +46,7 @@
     "lint": "echo \"No linter configured, skipping...\"",
     "ceiling": "node scripts/ceiling-analysis.js",
     "compile:wiki": "node scripts/compile-wiki.js",
+    "compile:wiki:pending": "node scripts/compile-wiki.js --pending",
     "lint:wiki": "node scripts/lint-wiki.js",
     "enrich:new": "node scripts/enrich-new-tools.js",
     "ablate:v5": "node scripts/v5-ablate.js"

@@ -1,9 +1,9 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "created": "2026-09-14",
   "description": "工具選用評測集。查詢刻意避開工具名與 trigger 詞，以衡量真正的匹配能力。expected 為可接受答案集合，任一命中即算對。empty-set 類型用於衡量引擎是否誠實回報「無對應工具」。",
   "methodology": {
-    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。\n2026-09-20 擴充至 v1.3.0：以 scripts/expand-eval-set.js **可重現地**新增 98 題（依分類輪替取樣、優先補薄分類；題型比例維持 direct 28%／semantic 50%／constrained 22%，以免類型分佈再次改變）。四道關卡：漏詞檢查（剔除 1）→ 天花板驗證（答案需在 top-50，剔除 1）→ 去重（0）→ 人工未介入。**新基線與舊基線不可直接比較**（題數改變，標準誤由 ~3.6pp 降至 ~3.0pp）。\n⚠️ v1.3.0 已知偏差（使用時必須知道）：\n  1. 新增題目的天花板通過率 99.0%，高於 v1.2.0 的 92.6% —— 代表新題目\n     在「召回」上偏簡單（答案幾乎都在 top-50），但在「排序」上不一定：\n     實測 semantic 天花板 93.7% → 96.1%，但 top1 並未同步提升。\n     成因：題目由工具 metadata 反推，詞彙仍比真實使用者查詢更接近語料庫。\n  2. 因此 v1.3.0 的基線**不能**與 v1.2.0 直接比較（題數、難度分佈皆已改變）：\n     agent Hit@1 62.3% → 58.8%、fusion 61.0% → 58.0%。\n  3. 17/98 題與工具 trigger 用詞重疊（既有評測集亦有此情形），保留但應留意。\n\n  後續若再擴充，建議改用「真人實際問句」或「跨工具混淆題」以提高難度，\n  而不是繼續由 metadata 反推。\n2026-10-15 修訂至 v1.4.0（簡繁清洗，題數不變 267）：發現 257 筆非空集查詢中有 9 筆（c14／c77／c79／c106／c144～c148）混入簡體字，係產生流程的瑕疵而非刻意設計——methodology 未記載任何「刻意保留簡體查詢」的意圖。以 scripts/fix-simplified.js 的 toTraditional() 逐題轉為繁體，**僅動 query 欄位**。\n配對 A/B（同批題目、僅字形不同）實測：改善 6／不變 3／變差 0（符號檢定單尾 p≈0.016），其中 c144 由「完全找不到」→ 第 7 名；但 9 題中有 4 題帶簡體時照樣命中，故簡繁只解釋 42 題失敗中的 5 題，不是萬用解釋。\n⚠️ 轉換器是 opencc cn→t（純字形轉換，非台灣詞彙本地化），產出「軟件」；本專案語料慣例為台灣用語（評測集既有 5 處全用「軟體」、registry 為 1352:23），故 c146 手工覆寫「軟件」→「軟體」。\n⚠️ **v1.4.0 與 v1.3.0 基線不可直接比較**（題目內容已變）。v1.3.0 的數字保留為歷史，不重算。清洗後仍須重跑所有可離線量測的基線（天花板、benchmark）與 `npm run ablate:v5`。",
+    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。\n2026-09-20 擴充至 v1.3.0：以 scripts/expand-eval-set.js **可重現地**新增 98 題（依分類輪替取樣、優先補薄分類；題型比例維持 direct 28%／semantic 50%／constrained 22%，以免類型分佈再次改變）。四道關卡：漏詞檢查（剔除 1）→ 天花板驗證（答案需在 top-50，剔除 1）→ 去重（0）→ 人工未介入。**新基線與舊基線不可直接比較**（題數改變，標準誤由 ~3.6pp 降至 ~3.0pp）。\n⚠️ v1.3.0 已知偏差（使用時必須知道）：\n  1. 新增題目的天花板通過率 99.0%，高於 v1.2.0 的 92.6% —— 代表新題目\n     在「召回」上偏簡單（答案幾乎都在 top-50），但在「排序」上不一定：\n     實測 semantic 天花板 93.7% → 96.1%，但 top1 並未同步提升。\n     成因：題目由工具 metadata 反推，詞彙仍比真實使用者查詢更接近語料庫。\n  2. 因此 v1.3.0 的基線**不能**與 v1.2.0 直接比較（題數、難度分佈皆已改變）：\n     agent Hit@1 62.3% → 58.8%、fusion 61.0% → 58.0%。\n  3. 17/98 題與工具 trigger 用詞重疊（既有評測集亦有此情形），保留但應留意。\n\n  後續若再擴充，建議改用「真人實際問句」或「跨工具混淆題」以提高難度，\n  而不是繼續由 metadata 反推。\n2026-10-15 修訂至 v1.4.0（簡繁清洗，題數不變 267）：發現 257 筆非空集查詢中有 9 筆（c14／c77／c79／c106／c144～c148）混入簡體字，係產生流程的瑕疵而非刻意設計——methodology 未記載任何「刻意保留簡體查詢」的意圖。以 scripts/fix-simplified.js 的 toTraditional() 逐題轉為繁體，**僅動 query 欄位**。\n配對 A/B（同批題目、僅字形不同）實測：改善 6／不變 3／變差 0（符號檢定單尾 p≈0.016），其中 c144 由「完全找不到」→ 第 7 名；但 9 題中有 4 題帶簡體時照樣命中，故簡繁只解釋 42 題失敗中的 5 題，不是萬用解釋。\n⚠️ 轉換器是 opencc cn→t（純字形轉換，非台灣詞彙本地化），產出「軟件」；本專案語料慣例為台灣用語（評測集既有 5 處全用「軟體」、registry 為 1352:23），故 c146 手工覆寫「軟件」→「軟體」。\n⚠️ **v1.4.0 與 v1.3.0 基線不可直接比較**（題目內容已變）。v1.3.0 的數字保留為歷史，不重算。清洗後仍須重跑所有可離線量測的基線（天花板、benchmark）與 `npm run ablate:v5`。\n2026-11-01 擴充至 v1.5.0：新增 20 題 **monorepo** 題型（獨立的 id 命名空間 m01~m20），題型**不併入**既有的 direct／semantic／constrained，因此那三型的 Hit@1 基線不受影響、可直接比較。\n  動機：2026-11-01 量測發現，既有 267 題**沒有任何一題的答案是集合工具**（答案為 11 個大型 subTools 集合工具的題數 = 0），因此當時的 Hit@1 完全測不出「集合工具子功能檢索失效」這個缺口 —— 這是評測集自身的盲區。\n  每題都先驗證兩個前提：① 該子功能確實存在於該工具的 subTools；② 期望答案經人工判斷（存在更專門的工具時，該專門工具才是期望，集合工具降為 alsoAcceptable）。\n  實測現況：#1 命中 1／20，落在前 5 但非 #1 0 題，完全進不了前 5 19 題。\n  ⚠️ 與 v1.4.0 的整體基線不可直接比較（總題數 287，且新增題刻意集中在既有評測未覆蓋的盲區）；但 direct／semantic／constrained／empty-set 四型的分組數字不變。",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
     "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。\n2026-09-19（第三輪）：譯文納入索引後重新審視失敗清單，接受 c32/c51/c15；駁回 c09/c37/c38（皆為描述未載明該能力，放行屬推測）。",
@@ -2554,7 +2554,239 @@
       "type": "direct",
       "category": "安全性",
       "note": "v1.3.0 新增（安全性）"
+    },
+    {
+      "id": "m01",
+      "query": "向量資料庫的搜尋結果品質要怎麼評估跟調校",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/qdrant-search-quality",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m02",
+      "query": "手上的資料庫是 Oracle，想搬到 Postgres",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "plugins/oracle-to-postgres-migration-expert",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m03",
+      "query": "AI 系統本身有沒有供應鏈上的安全風險",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "alsoAcceptableReason": "同一需求的另一個合理承接者",
+      "subpath": "skills/agent-supply-chain",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m04",
+      "query": "Azure 雲端資源花太多錢，想檢討成本",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/az-cost-optimize",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m05",
+      "query": "分析這次廣告投放的成效好在哪、壞在哪",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/ad-campaign-analyzer",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m06",
+      "query": "想知道競爭對手都在投什麼廣告",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/competitor-ad-intelligence",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m07",
+      "query": "把一個 bug 整理成可以重現的案例說明",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/bug-reproduction-brief",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m08",
+      "query": "把零散的 commit 紀錄寫成像故事一樣的敘述",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/commit-message-storyteller",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m09",
+      "query": "幫我找符合我技術條件的工作機會",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/technical-job-search",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m10",
+      "query": "英文文章寫起來很像翻譯，想改得像母語者寫的",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "humanizer"
+      ],
+      "alsoAcceptableReason": "同一需求的另一個合理承接者",
+      "subpath": "skills/finnish-humanizer",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m11",
+      "query": "幫我草擬一封得體的專業電子郵件",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/email-drafter",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m12",
+      "query": "線上服務出狀況了，要寫一份事故檢討報告",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/incident-postmortem",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m13",
+      "query": "新專案剛接手，要整理一份讓人快速上手的說明",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/onboard-context-matic",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m14",
+      "query": "開發遊戲引擎相關的功能",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/game-engine",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m15",
+      "query": "幫我審查 protobuf 跟 gRPC 的介面設計",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/protobuf-grpc-api-review",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m16",
+      "query": "想在 Penpot 上做產品的介面設計",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/penpot-uiux-design",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m17",
+      "query": "用 FreeCAD 的腳本做 3D 模型",
+      "expected": [
+        "freecad"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "awesome-copilot"
+      ],
+      "alsoAcceptableReason": "同一需求的另一個合理承接者",
+      "subpath": "skills/freecad-scripts",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m18",
+      "query": "手上的資料處理流程要符合 GDPR 的規範",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/gdpr-compliant",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m19",
+      "query": "今天的重點工作是什麼，幫我排一下優先順序",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/daily-focus-board",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+    },
+    {
+      "id": "m20",
+      "query": "AI 代理的行為要符合 OWASP 的安全要求",
+      "expected": [
+        "awesome-copilot"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "alsoAcceptableReason": "同一需求的另一個合理承接者",
+      "subpath": "skills/agent-owasp-compliance",
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
     }
   ],
-  "updated": "2026-10-15"
+  "updated": "2026-11-01T14:50:34.611Z"
 }

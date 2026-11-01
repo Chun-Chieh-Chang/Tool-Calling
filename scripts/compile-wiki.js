@@ -78,6 +78,8 @@ const BACKFILL_EPISTEMIC = args.includes('--backfill-epistemic');
 // 只把既有詞條洗成繁體（2026-11-01 新增）：不需要 API key、不重編譯、不改 tier。
 // 用於清理歷史編譯留下的簡體殘留。
 const SANITIZE_ONLY = args.includes('--sanitize-only');
+// 只看編譯缺口（唯讀）：2026-11-01 新增，讓「哪些工具還沒被編譯過」變成可見事實。
+const PENDING = args.includes('--pending');
 const LIMIT = Number(args.find((a) => a.startsWith('--limit='))?.split('=')[1]) || Infinity;
 const IDS_ARG = args.find((a) => a.startsWith('--ids='))?.split('=')[1];
 const BATCH = Number(args.find((a) => a.startsWith('--batch='))?.split('=')[1]) || 3;
@@ -350,6 +352,33 @@ if (SANITIZE_ONLY) {
   writeFileSync(OUT_PATH, JSON.stringify(out, null, 2));
   console.log(`繁體化清理：${changed} 筆詞條有變動（共 ${Object.keys(out.entries).length} 筆）`);
   console.log(`已寫入 ${OUT_PATH}`);
+  process.exit(0);
+}
+
+// ── 只看缺口（唯讀，不寫檔、不需要 API key）───────────────────────────────
+// 為什麼需要：compile-wiki 的 LLM 模式「只處理還沒有 Tier 1 詞條的工具」可以續跑，
+// 但**沒有入口看缺口**——新入庫的工具何時被編譯過，全靠人記憶與人工觸發。
+// 2026-11-01 實測：784 筆工具裡有 4 筆從沒被編譯過，缺口是隱形的。
+// 這個旗標把缺口變成可見、可交接的事實（唯讀，不改任何檔案）。
+if (PENDING) {
+  const pending = tools.filter((t) => out.entries[t.id]?.tier !== 1);
+  const orphan = Object.keys(out.entries).filter((id) => !tools.some((t) => t.id === id));
+  console.log(`工具總數      : ${tools.length}`);
+  console.log(`已有 Tier 1   : ${tools.length - pending.length}`);
+  console.log(`待編譯        : ${pending.length}`);
+  if (pending.length) {
+    console.log('\n待編譯清單（執行 `npm run compile:wiki` 即可續跑，需 AGNES_API_KEY）：');
+    for (const t of pending) {
+      const why = !out.entries[t.id] ? '從未編譯' : `僅 Tier ${out.entries[t.id].tier}`;
+      console.log(`  - ${t.id.padEnd(34)} ${why.padEnd(10)} ${(t.description || '').slice(0, 60)}`);
+    }
+    console.log(`\n一次補齊：npm run compile:wiki`);
+  } else {
+    console.log('\n✅ 全部工具都有 Tier 1 詞條，無待編譯項目。');
+  }
+  if (orphan.length) {
+    console.log(`\n⚠️ 詞條檔有 ${orphan.length} 筆對應不到現行工具（工具已移除？）：${orphan.slice(0, 10).join(', ')}`);
+  }
   process.exit(0);
 }
 
