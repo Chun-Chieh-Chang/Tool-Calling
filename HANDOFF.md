@@ -366,7 +366,64 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-11-02（L1.5 詞邊界修正），其次 2026-11-01（中文子功能層：636 個 subTool 產生中文描述）、2026-11-01（批次入庫 VoxCPM／OmniBox／machine-skill）、2026-11-01（決策三後續：檢索缺口診斷）、2026-10-24（UI 精簡）、2026-10-24（全面盤點）、2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-11-02（建立「擴大翻譯 3,235 筆 subTool」的尺子：評測集 v1.6.0，327 題），其次 2026-11-02（L1.5 詞邊界修正）、2026-11-01（中文子功能層：636 個 subTool 產生中文描述）、2026-11-01（批次入庫 VoxCPM／OmniBox／machine-skill）、2026-11-01（決策三後續：檢索缺口診斷）、2026-10-24（UI 精簡）、2026-10-24（全面盤點）、2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-11-02 建立「擴大翻譯 3,235 筆 subTool」的尺子（評測集 v1.5.0 → v1.6.0，287 → 327 題）
+
+**需求**：使用者指示「先為其餘集合工具補齊 monorepo 評測題，以量化 3,235 筆 subTool 擴大翻譯的效益」。
+
+**為什麼必須先建尺子**：2026-11-01 的試點證明了機制有效（L2 的 monorepo Hit@1 從 0% → 75%），但**只有 awesome-copilot 有中文描述**，所以那個數字無法回答「擴大到其餘 3,235 筆值不值得」。要回答這題，必須先有一組**針對尚未中文化的集合**的題目，並在擴大翻譯「之前」把它固定下來 —— 擴大後用同一組題目重測，才是配對 A/B。
+
+#### 題目設計
+
+新增 40 題（`b01`～`b40`），涵蓋 subTool 數量前 10 名的集合工具，每個 4 題：
+
+| 集合 | subTool 數 | 集合 | subTool 數 | 集合 | subTool 數 | 集合 | subTool 數 |
+|---|---|---|---|---|---|---|---|
+| anthropic-cybersecurity-skills | 817 | claude-skills | 798 | knowledge-work-plugins | 212 | plugins | 169 |
+| scientific-agent-skills | 163 | claude-for-legal | 151 | financial-services | 117 | agent-toolkit | 86 |
+| generative-media-skills | 73 | skill | 66 | | | | |
+
+每題依 v1.5.0 的既有規則判定期望答案（**不是**一律指向集合）：
+
+- ① 目標子功能必須真實存在於該集合的 subTools（40/40 通過 `scratch/validate-monorepo-candidates.mjs` 驗證）
+- ② 存在**更專門的工具**覆蓋同一需求 → 該專門工具才是期望，集合工具降為 `alsoAcceptable`：
+  - b21 保密協議審查、b22 盡職調查 → `claude-legal-skill`（另有 `taiwan-claude-legal`）
+  - b37 股票分析 → `daily-stock-analysis`
+  - b38 論文拆解 → `academic-research-skills`
+  - b39 YouTube 字幕 → `youtube-skills`（該工具本身就含 transcript 技能）
+- ③ 若競爭對手**本身也是集合** → 目標子功能所在的集合為期望，對方為 `alsoAcceptable`：
+  - b09（scvi）、b11（單細胞 RNA QC）在 `knowledge-work-plugins` 與 `scientific-agent-skills` **兩邊都有** → 兩邊互為 alsoAcceptable
+
+刻意避開的坑：`scientific-agent-skills` 也有 nextflow／scvi，與 `knowledge-work-plugins` 重疊 → b10 改用只有它有的 `scientific-problem-selection`；`financial-services` 的 `audit-xls`／`xlsx-author` 在旗下 9 個插件重複 → 改用 `gl-reconciler/break-trace` 與 `valuation-reviewer/portfolio-monitoring`。
+
+#### 評測腳本的改動
+
+`scripts/eval-benchmark.js` 新增兩層分組（評分邏輯未動）：
+
+1. **依目標集合分組** —— 每題加 `collection` 欄位；「該集合是否已中文化」由 registry 現況**推導**（任一 subTool 有 `description_zh`），不寫死旗標（旗標會過期）。
+2. **四象限分組** —— 依「集合是否已中文化 × 期望答案是否就是該集合本身」交叉。
+
+第二層才是決策讀數：期望＝專用工具的題目本來就與翻譯無關（翻譯不會改變答案），把它們混進去會掩蓋真正的效果。
+
+#### v1.6.0 基準數（327 題，擴大翻譯「之前」）
+
+| 分組 | 筆數 | L2 Hit@1 | fusion Hit@1 | fusion Hit@3 |
+|---|---|---|---|---|
+| 已中文化 × 期望＝集合本身 | 19 | **73.7%** | 10.5% | 78.9% |
+| 已中文化 × 期望＝專用工具 | 1 | 100.0% | 100.0% | 100.0% |
+| **未中文化 × 期望＝集合本身** | **35** | **2.9%** | **5.7%** | **14.3%** |
+| 未中文化 × 期望＝專用工具 | 5 | 20.0% | 80.0% | 80.0% |
+
+既有四型**完全未動**：direct 69.7%／semantic 50.4%／constrained 61.5%／空集誠實率 10/10。
+
+**這就是擴大翻譯的讀數口徑**：把「未中文化 × 期望＝集合本身」這 35 題的 L2 Hit@1 從 **2.9%** 拉到接近「已中文化 × 期望＝集合本身」的 **73.7%**，就是擴大翻譯的邊際效益；fusion 那欄則會受 agent 引擎看不到 subTools 的天花板限制（見 2026-11-01 快照），提升幅度會小於 L2。
+
+#### 驗證
+
+- `npm test`：**535 項，533 pass、0 fail、2 skip**（題目與評測腳本的改動不影響既有測試）。
+- `node scripts/check-traditional.js --full registry/`：14 檔全綠（40 題新查詢無簡體字）。
+- 327 題全部無重複查詢；60 題 monorepo 全部具備 `collection` 與 `subpath` 欄位。
 
 ### 2026-11-02 L1.5 詞邊界修正：長詞片段不再偽命中（14 筆 → 0）
 
