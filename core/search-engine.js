@@ -241,6 +241,44 @@ export function getRegistryCacheFingerprint(tools = []) {
 }
 
 /**
+ * L1.5 的 trigger 命中是否對齊「完整詞」
+ *
+ * 問題：L1.5 原本用純子字串包含判定，導致長詞的片段偽命中：
+ *   'wasp' ⊂ 'owasp'、'free' ⊂ 'freecad'、'java' ⊂ 'javascript'、
+ *   'code' ⊂ 'codex'、'postgres' ⊂ 'postgresql'
+ * 這類偽命中會讓 L1.5 提前 return，**整條 L2／L3 管線都被跳過**。
+ *
+ * 修法：ASCII trigger 拆成詞序列，要求它必須在查詢的 ASCII 詞序列中
+ * **依序相鄰**出現。
+ *   trigger `open-source-project` 對查詢 "open source project 工具" → 對齊 ✅
+ *   trigger `java`           對查詢 "用 JavaScript 動態產生內容" → 不對齊 ❌
+ *
+ * ⚠️ 相鄰性只看 ASCII 詞序，中文不參與（中文句子里夾英文術語很常見，
+ *    套嚴格相鄰反而會誤傷：「用 OpenAI 串接 API 服務」仍應命中 `openai api`）。
+ *
+ * 中文 trigger 維持原本的子字串規則：中文沒有空白分詞，詞邊界不明確，
+ * 硬訂規則反而會誤傷（例如 trigger「向量資料庫」出現在「向量資料庫的搜尋品質」）。
+ *
+ * @param {string} tNorm - trigger 的正規化字串
+ * @param {string} qNorm - 查詢的正規化字串
+ * @param {string[]} qWords - 查詢的詞序列（由呼叫端預先算好，避免重複切分）
+ * @returns {boolean}
+ */
+function l15TriggerAligned(tNorm, qNorm, qWords) {
+  if (/[\u4e00-\u9fff]/.test(tNorm)) return qNorm.includes(tNorm);
+  const trigWords = tNorm.split(/[^a-z0-9]+/).filter(Boolean);
+  if (!trigWords.length) return qNorm.includes(tNorm);
+  for (let i = 0; i + trigWords.length <= qWords.length; i++) {
+    let ok = true;
+    for (let j = 0; j < trigWords.length; j++) {
+      if (qWords[i + j] !== trigWords[j]) { ok = false; break; }
+    }
+    if (ok) return true;
+  }
+  return false;
+}
+
+/**
  * 產生查詢快取鍵
  */
 function buildCacheKey(query, category, language, registryVersion = 'default-registry') {
@@ -1083,15 +1121,31 @@ export function search(registryTools, query, options = {}) {
   //  - trigger 整串字元 >= 4（排除 1~3 字的單字 trigger 如 `c`、`ppt`、`h3`）
   //  - 查詢字串整段「包含」trigger（不做 token 共現，單字 trigger 易偽命中）
   //  - trigger 非停用（全 token 皆語境詞的不計）
+  //
+  // 2026-11-02：加上「詞邊界」條件（ASCII trigger）
+  // ────────────────────────────────────────────────
+  // 原條件是純子字串包含，沒有詞邊界檢查 → 長詞的片段會偽命中：
+  //   'wasp'  ⊂ 'owasp'      'free'  ⊂ 'freecad'
+  //   'java'  ⊂ 'javascript' 'code'  ⊂ 'codex'／'claude-code'
+  //   'postgres' ⊂ 'postgresql'
+  // 實測 287 題中有 14 筆 L1.5 命中屬這類偽命中（影響 7 題）。
+  //
+ // 修法：ASCII trigger 改比對「詞序列」——trigger 拆出的詞必須在查詢的 ASCII
+  // 詞序列中依序相鄰出現。中文 trigger 維持原規則（中文無空白分詞，詞邊界不明確）。
+  //
+  // ⚠️ 只改 L1.5，不改 L2 的 trigger 比對：L2 是「召回層」，
+  //    'postgres' 命中 'postgresql' 在那裡是合理的寬鬆比對；
+  //    L1.5 是「高精度層」，偽命中會直接**頂掉**整條 L2／L3 管線。
   const triggerExactHits = [];
   {
     const qNorm = normalize(targetQuery);
     const idfMap = getTriggerIdf(tools);
+    const qWords = qNorm.split(/[^a-z0-9]+/).filter(Boolean);
     for (const tool of tools) {
       for (const trig of (tool.triggers || [])) {
         const tNorm = getTriggerNorm(trig);
         if (tNorm.length < 4) continue;           // 太短的 trigger 不參與精確命中
-        if (!qNorm.includes(tNorm)) continue;      // 查詢必須整段包含 trigger
+        if (!l15TriggerAligned(tNorm, qNorm, qWords)) continue;  // 查詢必須整段包含 trigger 且對齊詞邊界
         const discrim = triggerDiscriminativeScore(trig, idfMap);
         if (discrim <= 0) continue;               // 停用 trigger 不計
         // 2026-10-02 量尺對齊：L1.5 原回傳 3*discrim（0~3 量級），與 L2 的 0~0.99
