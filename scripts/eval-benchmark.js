@@ -147,12 +147,19 @@ if (looseCases > 0) {
   }
 }
 
-console.log('\n【按類型分組 — fusion】');
+console.log('\n【按類型分組 — 三引擎 Hit@1】');
+// 2026-11-01：原本只印 fusion 的分組結果。子功能層的改動主要發生在
+// L2（詞彙層），只看 fusion 會看不出底層到底變好還是變壞 → 三引擎都列出。
 const f = stats.fusion;
-console.log('  類型          筆數   Hit@1      Hit@3      MRR');
-console.log('  ──────────────────────────────────────────────────');
-for (const [type, bt] of Object.entries(f.byType)) {
-  console.log(`  ${type.padEnd(12)} ${String(bt.n).padStart(4)}   ${pct(bt.hit1, bt.n).padStart(7)}   ${pct(bt.hit3, bt.n).padStart(7)}   ${(bt.mrr / (bt.n || 1)).toFixed(3).padStart(6)}`);
+const allTypes = [...new Set(cases.filter((c) => c.type !== 'empty-set').map((c) => c.type))];
+for (const [name, s] of Object.entries(stats)) {
+  console.log(`  ── ${name} ──`);
+  console.log('  類型          筆數   Hit@1      Hit@3      MRR');
+  for (const type of allTypes) {
+    const bt = s.byType[type];
+    if (!bt) continue;
+    console.log(`  ${type.padEnd(12)} ${String(bt.n).padStart(4)}   ${pct(bt.hit1, bt.n).padStart(7)}   ${pct(bt.hit3, bt.n).padStart(7)}   ${(bt.mrr / (bt.n || 1)).toFixed(3).padStart(6)}`);
+  }
 }
 
 const agentHonest = empties.filter((e) => e.agent).length;
