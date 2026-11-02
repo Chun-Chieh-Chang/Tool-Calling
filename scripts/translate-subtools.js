@@ -2,9 +2,9 @@
 /**
  * translate-subtools.js — 為集合工具的 subTools 產生繁體中文描述
  *
- * 為什麼需要這支腳本（2026-11-01）
- * ─────────────────────────────────
- * 決策一「深層索引」把 awesome-copilot 的 636 個 subTools 索引進來了，但實測顯示
+ * 為什麼需要這支腳本（2026-11-01 建立，2026-11-02 改為多工具版）
+ * ─────────────────────────────────────────────────────────────────────
+ * 決策一「深層索引」把集合工具的 subTools 索引進來了，但實測顯示
  * 使用者用中文查「向量資料庫的搜尋結果品質要怎麼評估跟調校」時，**一個都命中不了**。
  *
  * 根因是資料層缺中文，不是引擎調參（三條引擎側修法皆已被實測否決，見 HANDOFF）：
@@ -14,13 +14,30 @@
  *   · 即使加了中文描述，共現門檻要求「命中全部查詢詞」仍會擋掉（門檻需改比例式）
  *
  * 本腳本只負責第一件事：**產生中文描述**。引擎側的改動在 core/search-engine.js，
- * 兩者分開才能各自用 eval-queries.json 的 287 題獨立驗證。
+ * 兩者分開才能各自用 eval-queries.json 的題目獨立驗證。
+ *
+ * 2026-11-02 擴充為多工具版的原因
+ * ──────────────────────────────
+ * 試點只翻了 awesome-copilot 的 636 筆，驗證有效後要擴大到其餘 48 個集合
+ * 共 3,235 筆。單工具版的兩個限制擋住了：
+ *   1. `--tool=<id>` 一次只能翻一個工具 → 48 次手動啟動
+ *   2. 快取結構是單一物件 `{ tool, entries, failed }` → 多工具會互相覆蓋
+ *
+ * 改動摘要：
+ *   · 快取升級為 v2：`{ version, tools: { <toolId>: { entries, failed } } }`
+ *     並保留 v1 自動遷移（讀到舊結構就搬到 tools 底下，不丟既有 636 筆）
+ *   · `--tool=all` 一次處理所有有 subTools 的集合，依 subTool 數由多到少排
+ *     （大的先做 → 尺子量測到的那 10 個集合優先完成）
+ *   · 批次輸出截斷會「自動切半重試」（2026-11-01 實測 batch=10 有截斷，
+ *     手動改 batch=4 才解掉；改成自適應後不需要人為盯著調參）
+ *   · 主批次結束後自動跑「補救批次」（失敗項目以 batch=1 重試一次）
  *
  * 用法
  * ────
- *   node scripts/translate-subtools.js --tool=awesome-copilot --dry
- *   node scripts/translate-subtools.js --tool=awesome-copilot --apply
- *   node scripts/translate-subtools.js --tool=awesome-copilot --apply --limit=50
+ *   node scripts/translate-subtools.js --tool=all --batch=8             # 全量翻譯
+ *   node scripts/translate-subtools.js --tool=all --apply               # 套用到 tools.json
+ *   node scripts/translate-subtools.js --tool=awesome-copilot --dry     # 單工具（舊用法仍可用）
+ *   node scripts/translate-subtools.js --status                         # 只看進度
  *
  * 快取：registry/subtool-zh-state.json（獨立於 zh-translation-state.json，
  * 不污染既有的翻譯機制，也不會被 translate-to-zh.js 的 flush() 蓋掉）
@@ -33,6 +50,7 @@ import { toTraditional, findSimplified } from './fix-simplified.js';
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const REGISTRY = path.join(ROOT, 'registry', 'tools.json');
 const STATE_PATH = path.join(ROOT, 'registry', 'subtool-zh-state.json');
+const STATE_VERSION = 2;
 
 const SYS = `你是繁體中文（台灣）技術文件翻譯者。
 任務：把開源專案的子工具（skill／plugin／extension）英文說明譯成繁體中文。
@@ -70,43 +88,95 @@ async function getKey() {
   return process.env.AGNES_API_KEY || null;
 }
 
-async function translateBatch(batch, model) {
+/**
+ * 送出一次請求並解析回應
+ * @returns {{ok: true, items: any[]}|{ok: false, reason: string, kind: string}}
+ */
+async function requestOnce(payload, model) {
   const body = {
     model,
     messages: [
       { role: 'system', content: SYS },
-      { role: 'user', content: JSON.stringify(batch) },
+      { role: 'user', content: JSON.stringify(payload) },
     ],
     temperature: 0.2,
   };
-  let lastErr = 'unknown';
-  for (let attempt = 0; attempt < 6; attempt++) {
-    if (attempt > 0) await sleep(2000 * 2 ** (attempt - 1));
-    const key = await getKey();
-    if (!key) return { ok: null, reason: '沒有可用的 API key' };
-    try {
-      const res = await fetch('https://apihub.agnes-ai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-        body: JSON.stringify(body),
-      });
-      if (!res.ok) { lastErr = `http ${res.status}`; continue; }
-      const j = await res.json();
-      const raw = String(j?.choices?.[0]?.message?.content || '').trim();
-      const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
+  let key;
+  try { key = await getKey(); } catch { key = null; }
+  if (!key) return { ok: false, reason: '沒有可用的 API key', kind: 'nokey' };
+  try {
+    const res = await fetch('https://apihub.agnes-ai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
       try {
-        const parsed = JSON.parse(cleaned);
-        if (!Array.isArray(parsed)) { lastErr = `shape: ${cleaned.slice(0, 60)}`; continue; }
-        return { ok: parsed };
-      } catch {
-        lastErr = `parse: ${cleaned.slice(0, 60)}`;
-        continue;
-      }
-    } catch (e) {
-      lastErr = `net: ${String(e?.message || e).slice(0, 60)}`;
+        const { reportFailure } = await import('../core/llm-keys.js');
+        reportFailure(key, res.status);
+      } catch { /* 統計失敗不影響主流程 */ }
+      return { ok: false, reason: `http ${res.status}`, kind: 'http' };
     }
+    const j = await res.json();
+    try {
+      const { reportSuccess } = await import('../core/llm-keys.js');
+      reportSuccess(key);
+    } catch { /* 統計失敗不影響主流程 */ }
+    const raw = String(j?.choices?.[0]?.message?.content || '').trim();
+    const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/```\s*$/, '').trim();
+    try {
+      const parsed = JSON.parse(cleaned);
+      if (!Array.isArray(parsed)) return { ok: false, reason: `shape: ${cleaned.slice(0, 60)}`, kind: 'shape' };
+      return { ok: true, items: parsed };
+    } catch {
+      return { ok: false, reason: `parse: ${cleaned.slice(0, 60)}`, kind: 'parse' };
+    }
+  } catch (e) {
+    return { ok: false, reason: `net: ${String(e?.message || e).slice(0, 60)}`, kind: 'net' };
   }
-  return { ok: null, reason: lastErr };
+}
+
+/**
+ * 翻譯一批（失敗時自動切半重試）
+ *
+ * 為什麼要自動切半（2026-11-02）：
+ * 2026-11-01 實測 batch=10 時有批次輸出被截斷 → JSON 解析失敗 → 該批全數失敗，
+ * 最後是靠手動改跑 `--batch=4` 才補回來。手動調參在 3,235 筆的規模上不現實，
+ * 所以改成：解析失敗（輸出截斷的典型症狀）重試一次仍失敗 → 批次對半重試，
+ * 最多切到 1 筆為止。HTTP／網路錯誤則照原樣用退避重試（那是暫時性問題，
+ * 切半沒有用）。
+ *
+ * @param {Array} batch - [{subpath, name, description}]
+ * @param {string} model
+ * @param {number} depth - 目前遞迴深度（防止無限切分）
+ * @returns {{ok: true, items: any[]}|{ok: false, reason: string, kind: string}}
+ */
+async function translateBatch(batch, model, depth = 0) {
+  const payload = batch.map((s) => ({
+    subpath: s.subpath,
+    name: s.name,
+    description: String(s.description || '').slice(0, 400),
+  }));
+
+  let last = null;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    if (attempt > 0) await sleep(1500 * 2 ** (attempt - 1));
+    const r = await requestOnce(payload, model);
+    if (r.ok) return r;
+    last = r;
+    // 解析／形狀失敗＝輸出多半是被截斷，用同一個 payload 再試一次沒有意義
+    if ((r.kind === 'parse' || r.kind === 'shape') && attempt >= 1) break;
+  }
+
+  if (batch.length > 1 && depth < 6) {
+    const mid = Math.ceil(batch.length / 2);
+    const a = await translateBatch(batch.slice(0, mid), model, depth + 1);
+    if (!a.ok) return a;
+    const b = await translateBatch(batch.slice(mid), model, depth + 1);
+    if (!b.ok) return b;
+    return { ok: true, items: [...a.items, ...b.items] };
+  }
+  return last || { ok: false, reason: 'unknown', kind: 'unknown' };
 }
 
 /**
@@ -168,23 +238,30 @@ function hasNoTranslatableProse(original) {
  *     而 description_zh 才是檢索真正依賴的欄位。名稱退回英文原名即可；
  *     英文名對 subTool 反而是有效檢索字（與 name 欄位重疊）。
  *
+ * 原文本身沒有自然語言時（只有圖片／影片連結，或像 `>` 這種佔位符），
+ * 模型原樣回傳是**正確**行為 —— 但那筆譯文不能算進「已中文化」，
+ * 否則覆蓋率會灌水。改為保留原文字串並標記 noProse，
+ * 讓統計口徑誠實（2026-11-02 實測：claude-for-legal 前 8 筆原文全是 `>`）。
+ *
  * @param {object} item - LLM 回傳的單筆
  * @param {string} originalName - 原 subTool 名稱（name_zh 留空時的退路）
  * @param {string} originalDesc - 原 subTool 描述（判定是否無可譯內容）
- * @returns {{problems: string[], name_zh: string, description_zh: string}}
+ * @returns {{problems: string[], name_zh: string, description_zh: string, noProse: boolean}}
  */
 function validate(item, originalName, originalDesc) {
   const problems = [];
-  if (!item || typeof item !== 'object') return { problems: ['不是物件'], name_zh: '', description_zh: '' };
+  if (!item || typeof item !== 'object') return { problems: ['不是物件'], name_zh: '', description_zh: '', noProse: false };
   if (!item.subpath) problems.push('缺 subpath');
 
   const descZh = applyTaiwanTerms(toTraditional(String(item.description_zh || '').trim()));
   const noProse = hasNoTranslatableProse(originalDesc);
+  let noProseFlag = false;
   if (!descZh) {
     if (!noProse) problems.push('description_zh 為空');
   } else if (!/[\u4e00-\u9fff]/.test(descZh)) {
-    // 原文本來就沒有自然語言（純連結）→ 模型原樣回傳是正確的，不判失敗
+    // 原文本來就沒有自然語言（純連結／佔位符）→ 模型原樣回傳是正確的，不判失敗
     if (!noProse) problems.push('description_zh 不含中文');
+    else noProseFlag = true;
   } else {
     const simp = findSimplified(descZh);
     if (simp.length) problems.push(`含殘留簡體字 ${[...new Set(simp)].join('')}`);
@@ -194,104 +271,247 @@ function validate(item, originalName, originalDesc) {
   if (!nameZh) nameZh = String(originalName || '').trim();   // 留空 → 退回英文原名
   if (!nameZh) problems.push('name_zh 與原名皆為空');
 
-  return { problems, name_zh: nameZh, description_zh: descZh };
+  // 沒有可譯內容 → 保留**原文**而不是模型的逐字回傳，並標記供統計使用。
+  const finalDesc = noProseFlag ? String(originalDesc || '').trim() : descZh;
+  return { problems, name_zh: nameZh, description_zh: finalDesc, noProse: noProseFlag };
+}
+
+// ── 快取（v2：分工具存放；相容 v1 單工具結構）───────────────────────────────
+
+/**
+ * 把快取結構正規化為 v2（純函式，方便單元測試）
+ *
+ * v1 結構：`{ tool: 'awesome-copilot', entries: {...}, failed: {...} }`
+ * v2 結構：`{ version: 2, tools: { <toolId>: { entries, failed } } }`
+ *
+ * 相容是必要的：2026-11-01 已完成的 636 筆在版控裡，不能因為改版就重翻。
+ *
+ * @param {any} raw - 讀到的原始 JSON
+ * @returns {{version:number, tools:Record<string,{entries:object,failed:object}>}}
+ */
+function migrateState(raw) {
+  if (!raw || typeof raw !== 'object') return { version: STATE_VERSION, tools: {} };
+  if (!raw.tools && (raw.entries || raw.tool)) {
+    const tools = {};
+    if (raw.tool) tools[raw.tool] = { entries: raw.entries || {}, failed: raw.failed || {} };
+    return { version: STATE_VERSION, tools };
+  }
+  raw.version ??= STATE_VERSION;
+  raw.tools ??= {};
+  return raw;
+}
+
+/**
+ * 讀取快取，並把 v1 的單工具結構自動遷移成 v2
+ * @returns {{version:number, tools:Record<string,{entries:object,failed:object}>}}
+ */
+function loadState() {
+  if (!existsSync(STATE_PATH)) return { version: STATE_VERSION, tools: {} };
+  let raw;
+  try { raw = JSON.parse(readFileSync(STATE_PATH, 'utf8')); } catch { return { version: STATE_VERSION, tools: {} }; }
+  return migrateState(raw);
+}
+
+/** 取得（並建立）某個工具的快取區塊 */
+function toolState(state, id) {
+  state.tools[id] ??= { entries: {}, failed: {} };
+  state.tools[id].entries ??= {};
+  state.tools[id].failed ??= {};
+  return state.tools[id];
 }
 
 // ── 主流程 ────────────────────────────────────────────────────────────────
 async function main() {
   const args = process.argv.slice(2);
   const argOf = (name, dflt) => args.find((a) => a.startsWith(`--${name}=`))?.split('=')[1] ?? dflt;
-  const TOOL_ID = argOf('tool', 'awesome-copilot');
+  const TOOL_ARG = argOf('tool', 'awesome-copilot');
+  const IS_ALL = TOOL_ARG === 'all';
   const LIMIT = Number(argOf('limit', 0)) || Infinity;
-  const BATCH = Number(argOf('batch', 10));
-  const CONCURRENCY = Number(process.env.TRANSLATE_CONCURRENCY || 3);
+  const BATCH = Number(argOf('batch', 8));
+  const CONCURRENCY = Number(argOf('concurrency', process.env.TRANSLATE_CONCURRENCY || 3));
   const MODEL = argOf('model', 'agnes-2.5-flash');
   const APPLY = args.includes('--apply');
+  const STATUS_ONLY = args.includes('--status');
 
   const reg = JSON.parse(readFileSync(REGISTRY, 'utf8'));
-  const tool = reg.tools.find((t) => t.id === TOOL_ID);
-  if (!tool) { console.error(`找不到工具 ${TOOL_ID}`); process.exit(1); }
-  const subTools = tool.subTools || [];
-  if (!subTools.length) { console.error(`${TOOL_ID} 沒有 subTools`); process.exit(1); }
+  const collections = reg.tools.filter((t) => (t.subTools || []).length > 0);
 
-  let state = { tool: TOOL_ID, entries: {}, failed: {} };
-  if (existsSync(STATE_PATH)) {
-    try { state = JSON.parse(readFileSync(STATE_PATH, 'utf8')); } catch { /* 損壞就重來 */ }
+  let targets = IS_ALL
+    ? [...collections].sort((a, b) => (b.subTools || []).length - (a.subTools || []).length)
+    : collections.filter((t) => t.id === TOOL_ARG);
+  if (!targets.length) { console.error(`找不到工具 ${TOOL_ARG}`); process.exit(1); }
+
+  const state = loadState();
+
+  // ── 進度模式：只印統計，不翻譯 ────────────────────────────────────────
+  if (STATUS_ONLY) {
+    let tTotal = 0, tDone = 0, tNoProse = 0;
+    for (const t of targets) {
+      const ts = toolState(state, t.id);
+      const total = t.subTools.length;
+      const done = t.subTools.filter((s) => ts.entries[s.subpath]?.description_zh).length;
+      const noProse = t.subTools.filter((s) => ts.entries[s.subpath]?.noProse).length;
+      const failed = Object.keys(ts.failed).length;
+      tTotal += total; tDone += done; tNoProse += noProse;
+      console.log(`${t.id.padEnd(34)} ${String(done).padStart(5)}/${String(total).padEnd(5)}`
+        + `${noProse ? `（無正文 ${noProse}）` : ''}${failed ? ` 失敗 ${failed}` : ''}`);
+    }
+    console.log(`\n合計 已翻 ${tDone}/${tTotal}（${((tDone / tTotal) * 100).toFixed(1)}%）　其中原文本來就沒有可譯內容 ${tNoProse} 筆`);
+    return;
   }
-  state.entries ??= {};
-  state.failed ??= {};
 
-  const pending = subTools
-    .filter((s) => !state.entries[s.subpath]?.description_zh)
-    .slice(0, LIMIT);
+  // ── 收集待翻譯項目 ────────────────────────────────────────────────────
+  const pendingByTool = new Map();
+  for (const t of targets) {
+    const ts = toolState(state, t.id);
+    // 已有譯文、或原文本來就沒有可譯內容（noProse）→ 不需要再翻
+    const pending = t.subTools.filter((s) => {
+      const e = ts.entries[s.subpath];
+      return !(e?.description_zh || e?.noProse);
+    }).slice(0, LIMIT);
+    pendingByTool.set(t.id, pending);
+  }
+  const pendingTotal = [...pendingByTool.values()].reduce((n, a) => n + a.length, 0);
+  const scopeTotal = targets.reduce((n, t) => n + t.subTools.length, 0);
+  console.log(`工具：${IS_ALL ? `全部集合（${targets.length} 個）` : TOOL_ARG}　`
+    + `subTools 總數 ${scopeTotal}　待翻譯 ${pendingTotal}　`
+    + `批次 ${BATCH}　並行 ${CONCURRENCY}　模型 ${MODEL}`);
 
-  console.log(`工具：${TOOL_ID}　subTools 總數 ${subTools.length}　待翻譯 ${pending.length}　已翻 ${subTools.length - pending.length}`);
-
-  // 沒有待翻譯項目時**不能直接結束** —— --apply 仍需把快取套用到 tools.json
-  // （2026-11-01 實測踩到的 bug：快取已滿時提前 process.exit(0)，
-  //  導致 --apply 靜默不動作，tools.json 裡仍是 0 筆中文描述）。
-  if (pending.length) {
+  // ── 翻譯 ──────────────────────────────────────────────────────────────
+  if (pendingTotal) {
+    // 全域批次佇列：把所有工具的待翻譯項目混在同一條隊列裡，由多個 worker 平行取用。
+    // 順序刻意是「工具依 subTool 數由多到少、工具內依 registry 順序」——
+    // 尺子量測到的那 10 個大集合會最先完成。
     const batches = [];
-    for (let i = 0; i < pending.length; i += BATCH) batches.push(pending.slice(i, i + BATCH));
+    for (const t of targets) {
+      const pending = pendingByTool.get(t.id) || [];
+      for (let i = 0; i < pending.length; i += BATCH) {
+        batches.push({ toolId: t.id, items: pending.slice(i, i + BATCH) });
+      }
+    }
 
     let okN = 0, failN = 0, badN = 0;
     let cursor = 0;
+    let lastWrite = 0;
+    const startedAt = Date.now();
+
+    const saveState = (force = false) => {
+      const now = Date.now();
+      if (!force && now - lastWrite < 4000) return;
+      lastWrite = now;
+      writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), 'utf8');
+    };
+
+    const handleBatch = (batch, res) => {
+      const ts = toolState(state, batch.toolId);
+      if (!res?.ok) {
+        for (const b of batch.items) ts.failed[b.subpath] = { at: new Date().toISOString(), why: res?.reason };
+        failN += batch.items.length;
+        process.stdout.write('!');
+        return;
+      }
+      const byPath = new Map(res.items.map((x) => [String(x?.subpath || '').trim(), x]));
+      for (const b of batch.items) {
+        const item = byPath.get(String(b.subpath).trim());
+        const { problems, name_zh, description_zh, noProse } = validate(item, b.name, b.description);
+        if (problems.length) {
+          ts.failed[b.subpath] = { at: new Date().toISOString(), why: problems.join('；') };
+          badN++;
+          process.stdout.write('x');
+          continue;
+        }
+        ts.entries[b.subpath] = { name_zh, description_zh, at: new Date().toISOString(), ...(noProse ? { noProse: true } : {}) };
+        okN++;
+        process.stdout.write('.');
+      }
+    };
 
     async function worker() {
       while (cursor < batches.length) {
         const batch = batches[cursor++];
-        const payload = batch.map((s) => ({ subpath: s.subpath, name: s.name, description: String(s.description || '').slice(0, 400) }));
-        const res = await translateBatch(payload, MODEL);
-        if (!res?.ok) {
-          for (const b of batch) state.failed[b.subpath] = { at: new Date().toISOString(), why: res?.reason };
-          failN += batch.length;
-          process.stdout.write('!');
-        } else {
-          const byPath = new Map(res.ok.map((x) => [String(x?.subpath || '').trim(), x]));
-          for (const b of batch) {
-            const item = byPath.get(String(b.subpath).trim());
-            const { problems, name_zh, description_zh } = validate(item, b.name, b.description);
-            if (problems.length) {
-              state.failed[b.subpath] = { at: new Date().toISOString(), why: problems.join('；') };
-              badN++;
-              process.stdout.write('x');
-              continue;
-            }
-            state.entries[b.subpath] = {
-              name_zh,
-              description_zh,
-              at: new Date().toISOString(),
-            };
-            okN++;
-            process.stdout.write('.');
-          }
-        }
-        if ((okN + failN + badN) % 50 < BATCH) {
-          writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), 'utf8');
-        }
+        const res = await translateBatch(batch.items, MODEL);
+        handleBatch(batch, res);
+        saveState();
       }
     }
 
     await Promise.all(Array.from({ length: Math.min(CONCURRENCY, batches.length) }, worker));
-    writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), 'utf8');
+    saveState(true);
+
+    // ── 補救批次：主批次失敗的項目以 batch=1 再試一次 ───────────────────
+    // 2026-11-01 實測：636 筆裡曾有 31 筆因模型漏欄位而失敗，改用單筆重試全部補回。
+    const repair = [];
+    for (const t of targets) {
+      const ts = toolState(state, t.id);
+      for (const [subpath, info] of Object.entries(ts.failed)) {
+        const sub = t.subTools.find((s) => s.subpath === subpath);
+        if (sub) repair.push({ toolId: t.id, items: [sub] });
+      }
+    }
+    if (repair.length) {
+      console.log(`\n補救批次：${repair.length} 筆（單筆重試）…`);
+      let rOk = 0, rFail = 0;
+      let rCursor = 0;
+      async function repairWorker() {
+        while (rCursor < repair.length) {
+          const batch = repair[rCursor++];
+          const res = await translateBatch(batch.items, MODEL);
+          const ts = toolState(state, batch.toolId);
+          if (res?.ok) {
+            const byPath = new Map(res.items.map((x) => [String(x?.subpath || '').trim(), x]));
+            for (const b of batch.items) {
+              const item = byPath.get(String(b.subpath).trim());
+              const { problems, name_zh, description_zh } = validate(item, b.name, b.description);
+              if (problems.length) {
+                ts.failed[b.subpath] = { at: new Date().toISOString(), why: problems.join('；') };
+                rFail++;
+                process.stdout.write('x');
+                continue;
+              }
+              ts.entries[b.subpath] = { name_zh, description_zh, at: new Date().toISOString(), ...(noProse ? { noProse: true } : {}) };
+              delete ts.failed[b.subpath];
+              rOk++;
+              process.stdout.write('.');
+            }
+          } else {
+            for (const b of batch.items) ts.failed[b.subpath] = { at: new Date().toISOString(), why: res?.reason };
+            rFail++;
+            process.stdout.write('!');
+          }
+          saveState();
+        }
+      }
+      await Promise.all(Array.from({ length: Math.min(CONCURRENCY, repair.length) }, repairWorker));
+      saveState(true);
+      console.log(`\n補救批次完成：成功 ${rOk}　仍失敗 ${rFail}`);
+    }
 
     // 清掉「已成功但仍留著舊失敗紀錄」的項目（重跑時會補回來，不該一直掛著失敗）
     let cleaned = 0;
-    for (const k of Object.keys(state.failed)) {
-      if (state.entries[k]) { delete state.failed[k]; cleaned++; }
+    for (const t of targets) {
+      const ts = toolState(state, t.id);
+      for (const k of Object.keys(ts.failed)) {
+        if (ts.entries[k]) { delete ts.failed[k]; cleaned++; }
+      }
     }
     if (cleaned) {
-      writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), 'utf8');
+      saveState(true);
       console.log(`清除 ${cleaned} 筆過期的失敗紀錄（已重跑成功）`);
     }
 
-    console.log(`\n完成：成功 ${okN}　批次失敗 ${failN}　內容不合格 ${badN}`);
+    const mins = ((Date.now() - startedAt) / 60000).toFixed(1);
+    console.log(`\n完成：成功 ${okN}　批次失敗 ${failN}　內容不合格 ${badN}　耗時 ${mins} 分`);
   } else {
     console.log('沒有待翻譯項目（沿用既有快取）。');
   }
-  const stillFailed = Object.keys(state.failed);
-  if (stillFailed.length) {
-    console.log(`仍未完成 ${stillFailed.length} 筆，前 5 筆：${stillFailed.slice(0, 5).map((k) => `${k}(${state.failed[k].why})`).join(', ')}`);
+
+  for (const t of targets) {
+    const ts = toolState(state, t.id);
+    const stillFailed = Object.keys(ts.failed);
+    if (stillFailed.length) {
+      console.log(`${t.id}：仍有 ${stillFailed.length} 筆未完成，前 3 筆：`
+        + stillFailed.slice(0, 3).map((k) => `${k}(${ts.failed[k].why})`).join(', '));
+    }
   }
 
   if (!APPLY) {
@@ -300,21 +520,37 @@ async function main() {
   }
 
   // ── 套用到 tools.json ──────────────────────────────────────────────────
+  // --tool=all → 套用快取裡的**所有**工具；--tool=<id> → 只套用該工具。
+  const applyIds = IS_ALL
+    ? Object.keys(state.tools).filter((id) => collections.some((t) => t.id === id))
+    : [TOOL_ARG];
+
   const fresh = JSON.parse(readFileSync(REGISTRY, 'utf8'));
-  const ft = fresh.tools.find((t) => t.id === TOOL_ID);
   let applied = 0;
-  for (const st of ft.subTools || []) {
-    const e = state.entries[st.subpath];
-    if (!e?.description_zh) continue;
-    // 同一套台灣用語後處理：快取裡的譯文可能在修正規則加入前就產生了，
-    // 套用時再過一次 → 舊快取也能被修正到（實測：636 筆有 14 筆需要修正）。
-    st.name_zh = applyTaiwanTerms(e.name_zh);
-    st.description_zh = applyTaiwanTerms(e.description_zh);
-    applied++;
+  const appliedPerTool = [];
+  for (const id of applyIds) {
+    const ft = fresh.tools.find((t) => t.id === id);
+    if (!ft) continue;
+    const ts = state.tools[id];
+    let n = 0;
+    for (const st of ft.subTools || []) {
+      const e = ts?.entries?.[st.subpath];
+      if (!e?.description_zh) continue;
+      // 原文本來就沒有可譯內容的項目（只有圖片／連結／佔位符）→ 不套用。
+      // 套上去只會在 tools.json 多一筆沒有資訊的欄位，蓋蓋率卻會被灌水。
+      if (e.noProse) continue;
+      // 同一套台灣用語後處理：快取裡的譯文可能在修正規則加入前就產生了，
+      // 套用時再過一次 → 舊快取也能被修正到（實測：636 筆有 14 筆需要修正）。
+      st.name_zh = applyTaiwanTerms(e.name_zh);
+      st.description_zh = applyTaiwanTerms(e.description_zh);
+      n++; applied++;
+    }
+    if (n) appliedPerTool.push(`  ${id}：${n}/${ft.subTools.length}`);
   }
   fresh.lastUpdated = new Date().toISOString();
   writeFileSync(REGISTRY, JSON.stringify(fresh, null, 2), 'utf8');
-  console.log(`\n已套用 ${applied} 筆中文描述到 registry/tools.json 的 ${TOOL_ID}`);
+  console.log(`\n已套用 ${applied} 筆中文描述到 registry/tools.json`);
+  if (appliedPerTool.length) console.log(appliedPerTool.join('\n'));
 }
 
 // 只有直接執行本檔時才跑主流程；被 import 時只提供函式（供單元測試使用）。
@@ -326,4 +562,8 @@ export {
   hasNoTranslatableProse,
   validate,
   TAIWAN_TERM_FIXES,
+  loadState,
+  migrateState,
+  toolState,
+  STATE_VERSION,
 };
