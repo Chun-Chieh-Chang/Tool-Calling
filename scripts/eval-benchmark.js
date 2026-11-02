@@ -32,8 +32,6 @@ import { extractIntent, weightsForIntent } from '../core/query-intent.js';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const bench = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'eval-queries.json'), 'utf8'));
-const registry = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8'));
-const tools = registry.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
 const args = process.argv.slice(2);
 const topK = Number(args.find((a) => a.startsWith('--topK='))?.split('=')[1]) || 5;
@@ -42,6 +40,12 @@ const verbose = args.includes('--verbose');
 // 用途只有一個 —— **重新定基準**（例如評測集升版時）。一般情況不要用：
 // 擴大翻譯套用後現況全是「已中文化」，會讓四象限的分組失效。
 const livePartition = args.includes('--live-partition');
+// --registry=<path>：改用別的 registry 檔（例如重建的「擴大前」版本）來跑。
+// 用途：做**配對 A/B** 時，兩邊必須跑同一支程式碼、同一組題目、只差資料層。
+const registryPath = args.find((a) => a.startsWith('--registry='))?.split('=')[1]
+  || path.join(ROOT, 'registry', 'tools.json');
+const registry = JSON.parse(readFileSync(registryPath, 'utf8'));
+const tools = registry.tools.filter((t) => t.status === 'active' || t.status === 'experimental');
 
 // 命中位置：expected 中任一 id 出現在 ids 的最小索引；沒中回傳 -1
 function firstHitIndex(ids, expected) {
@@ -100,7 +104,7 @@ for (const name of Object.keys(engines)) {
 // 因此：尺子建立當下的分組凍結在 registry/eval-queries.json 的
 // methodology.collectionTranslationBaseline（附版本與擷取時間），
 // 預設讀它；--live-partition 才走現況推導（只在重新定基準時用）。
-const registryTools = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8')).tools;
+const registryTools = registry.tools;
 const frozen = bench.methodology?.collectionTranslationBaseline?.partition || null;
 const liveTranslated = new Map(
   registryTools.map((t) => [t.id, (t.subTools || []).some((s) => s.description_zh)])
