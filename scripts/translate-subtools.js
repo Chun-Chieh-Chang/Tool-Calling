@@ -415,13 +415,24 @@ async function main() {
       writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), 'utf8');
     };
 
+    /**
+     * 處理一個批次的回應，寫入快取。
+     *
+     * 主批次與補救批次**共用同一份實作** —— 2026-11-02 實測踩到的坑：
+     * 兩邊原本各有一份看起來一樣的程式碼，改動只改到其中一份，
+     * 補救批次就因為未定義變數而整段崩潰（main pass 全白跑）。
+     * 重複的邏輯就是分歧的來源 → 合併成一個函式，各自只負責累加統計。
+     *
+     * @returns {{ok:number, fail:number, bad:number}}
+     */
     const handleBatch = (batch, res) => {
       const ts = toolState(state, batch.toolId);
+      const stat = { ok: 0, fail: 0, bad: 0 };
       if (!res?.ok) {
         for (const b of batch.items) ts.failed[b.subpath] = { at: new Date().toISOString(), why: res?.reason };
-        failN += batch.items.length;
+        stat.fail = batch.items.length;
         process.stdout.write('!');
-        return;
+        return stat;
       }
       const byPath = new Map(res.items.map((x) => [String(x?.subpath || '').trim(), x]));
       for (const b of batch.items) {
@@ -429,21 +440,24 @@ async function main() {
         const { problems, name_zh, description_zh, noProse } = validate(item, b.name, b.description);
         if (problems.length) {
           ts.failed[b.subpath] = { at: new Date().toISOString(), why: problems.join('；') };
-          badN++;
+          stat.bad++;
           process.stdout.write('x');
           continue;
         }
         ts.entries[b.subpath] = { name_zh, description_zh, at: new Date().toISOString(), ...(noProse ? { noProse: true } : {}) };
-        okN++;
+        delete ts.failed[b.subpath];
+        stat.ok++;
         process.stdout.write('.');
       }
+      return stat;
     };
 
     async function worker() {
       while (cursor < batches.length) {
         const batch = batches[cursor++];
         const res = await translateBatch(batch.items, MODEL);
-        handleBatch(batch, res);
+        const s = handleBatch(batch, res);
+        okN += s.ok; failN += s.fail; badN += s.bad;
         saveState();
       }
     }
@@ -469,28 +483,8 @@ async function main() {
         while (rCursor < repair.length) {
           const batch = repair[rCursor++];
           const res = await translateBatch(batch.items, MODEL);
-          const ts = toolState(state, batch.toolId);
-          if (res?.ok) {
-            const byPath = new Map(res.items.map((x) => [String(x?.subpath || '').trim(), x]));
-            for (const b of batch.items) {
-              const item = byPath.get(String(b.subpath).trim());
-              const { problems, name_zh, description_zh } = validate(item, b.name, b.description);
-              if (problems.length) {
-                ts.failed[b.subpath] = { at: new Date().toISOString(), why: problems.join('；') };
-                rFail++;
-                process.stdout.write('x');
-                continue;
-              }
-              ts.entries[b.subpath] = { name_zh, description_zh, at: new Date().toISOString(), ...(noProse ? { noProse: true } : {}) };
-              delete ts.failed[b.subpath];
-              rOk++;
-              process.stdout.write('.');
-            }
-          } else {
-            for (const b of batch.items) ts.failed[b.subpath] = { at: new Date().toISOString(), why: res?.reason };
-            rFail++;
-            process.stdout.write('!');
-          }
+          const s = handleBatch(batch, res);
+          rOk += s.ok; rFail += s.fail + s.bad;
           saveState();
         }
       }
