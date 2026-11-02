@@ -1,0 +1,3186 @@
+{
+  "tool": "awesome-copilot",
+  "entries": {
+    ".github/extensions/duplicate-review-board": {
+      "name_zh": "重複查驗看板",
+      "description_zh": "存放庫層級的維護者操作面板，將每週的資源重複偵測報告轉換為可執行的本地分級行動。它不是可安裝的套件。",
+      "at": "2026-11-01T23:40:02.227Z"
+    },
+    ".github/extensions/external-plugin-review-board": {
+      "name_zh": "外部插件查驗看板",
+      "description_zh": "已處理的錯誤也提供可選的「傳送給代理人」操作，會請求子工作階段調查錯誤；重試與恢復控制維持不變。只有在特定條件後才會確認建立。",
+      "at": "2026-11-01T23:40:02.228Z"
+    },
+    ".github/extensions/open-pr-board": {
+      "name_zh": "開啟 PR 看板",
+      "description_zh": "已處理的錯誤也提供可選的「傳送給代理人」操作，會請求子工作階段調查錯誤；重試與恢復控制維持不變。只有在特定條件後才會確認建立。",
+      "at": "2026-11-01T23:40:02.228Z"
+    },
+    ".github/extensions/resource-staleness-board": {
+      "name_zh": "資源過時看板",
+      "description_zh": "專案層級的維護者操作面板，將 `resource-staleness-report.md` 中的本地分析帶入互動式庫存。已排定的工作流程…",
+      "at": "2026-11-01T23:40:02.228Z"
+    },
+    ".github/skills/agentic-workflows": {
+      "name_zh": "代理人工作流",
+      "description_zh": "將 gh-aw 工作流的設計／建立／除錯／升級請求導向適當的提示。",
+      "at": "2026-11-01T23:40:02.228Z"
+    },
+    ".github/skills/code-review": {
+      "name_zh": "Code Review",
+      "description_zh": "在 awesome-copilot 倉庫中審查 Pull Request 是否符合倉庫定位、具有意義價值、來源可信、具差異性與可維護性。",
+      "at": "2026-11-01T23:40:03.657Z"
+    },
+    ".github/skills/create-canvas-extension": {
+      "name_zh": "Create Canvas Extension",
+      "description_zh": "在 awesome-copilot 倉庫中建立或註冊 Canvas 擴充功能。當被要求建置新 Canvas 擴充功能、建立 plugin.json、或為插件新增可重用擴充功能時使用。",
+      "at": "2026-11-01T23:40:03.657Z"
+    },
+    "cookbook": {
+      "name_zh": "Cookbook",
+      "description_zh": "蒐集使用 GitHub Copilot 工具與功能的實戰範例與配方，每份配方提供精簡、可直接複製貼上的程式碼片段與真實案例，協助你加速掌握。",
+      "at": "2026-11-01T23:40:03.657Z"
+    },
+    "cookbook/copilot-sdk": {
+      "name_zh": "Copilot Sdk",
+      "description_zh": "本 Cook 書收錄精簡實戰配方，展示如何以 GitHub Copilot SDK 在多種語言中完成常見任務。每份配方皆刻意保持簡潔。",
+      "at": "2026-11-01T23:40:03.657Z"
+    },
+    "cookbook/copilot-sdk/dotnet": {
+      "name_zh": "Dotnet",
+      "description_zh": "本資料夾收錄使用 GitHub Copilot SDK 搭配 .NET 的短小實戰配方，每個配方簡潔、可直接複製貼上，並導向更完整的範例與測試。",
+      "at": "2026-11-01T23:40:03.657Z"
+    },
+    "extensions/edit-tutorial": {
+      "name_zh": "編輯教學",
+      "description_zh": "一種畫布擴充功能，可將程式碼變更集轉換為互動式教學課程：包含代理程式在本回合中進行的編輯，或是某個提交中的變更（預設為最後一次提交）。",
+      "at": "2026-11-01T23:41:08.180Z"
+    },
+    "extensions/flight-map-canvas": {
+      "name_zh": "飛行地圖畫布",
+      "description_zh": "GitHub Copilot 畫布，可生成一個以 3D 控制操作 Google Maps 的檢視畫面，模擬飛行模擬器的體驗。沒有 3D 飛機模型，重點是空中景觀。可以第一人稱視角在周圍飛翔。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/foundry-agentic-loop-canvas": {
+      "name_zh": "Foundry 代理循環畫布",
+      "description_zh": "`foundry-agentic-loop` 插件的 GitHub Copilot App 側邊面板。涵蓋 Microsoft Foundry 上的整個代理循環：檢查就緒狀態、選擇建置位置、從提示範本開始、執行等步驟。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/foundry-agentic-loop-workflow": {
+      "name_zh": "Foundry 代理循環工作流程",
+      "description_zh": "GitHub Copilot 動態工作流程，可將簡要需求轉換為已驗證的 Azure Microsoft Foundry 解決方案。依序執行四個階段：",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/github-security": {
+      "name_zh": "GitHub Security",
+      "description_zh": "將安全考量融入您的 Copilot 工作流程。官方 GitHub Security 擴充功能新增 **GitHub Security** 畫布，協助您早期偵測弱點並逐步處理現有的發現結果。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/java-modernization-studio": {
+      "name_zh": "Java 現代化工作室",
+      "description_zh": "互動式 GitHub Copilot **畫布**，將 [GitHub Copilot App Modernization for Java](https://learn.microsoft.com/en-us/azure/developer/java/migration/migrate-github-copilot-app-moderniz) 轉化為可執行的現代化流程。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/jupyter-notebooks": {
+      "name_zh": "Jupyter Notebooks",
+      "description_zh": "在互動式 GitHub Copilot 畫布中建立、編輯、執行、儲存與建立檢查點的 Jupyter notebooks。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/modernization-workflow": {
+      "name_zh": "現代化工作流程",
+      "description_zh": "互動式 GitHub Copilot CLI 畫布，用於視覺化記錄的 Modernize CLI 生命週期：",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/pr-artifact-explorer": {
+      "name_zh": "PR 產出物瀏覽器",
+      "description_zh": "> **GitHub 的缺失部分：** GitHub Actions 讓產出物很輕易就能產生，但 pull request 審查者仍須下載不明確的 ZIP 檔案，且在缺乏上下文的情況下檢查。Artifact Explorer 解決此問題。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/pr-review": {
+      "name_zh": "PR 審查",
+      "description_zh": "一個個人、唯讀的 GitHub PR 審查畫布。貼上 `github.com` 或企業 `*.ghe.com` 主機的直接 PR 連結。擴充功能會擷取 PR 中繼資料、每個變更檔案記錄，以及完整資訊。",
+      "at": "2026-11-01T23:41:08.181Z"
+    },
+    "extensions/release-notes-showcase": {
+      "name_zh": "版本說明展示",
+      "description_zh": "互動式畫布，用於編輯、檢視和匯出版本說明內容。",
+      "at": "2026-11-01T23:41:15.368Z"
+    },
+    "extensions/repo-actions-hub": {
+      "name_zh": "倉庫動作中繼站",
+      "description_zh": "GitHub Copilot 畫布，用於瀏覽倉庫的 GitHub Actions 工作流程、檢視近期執行紀錄、在彈出視窗中開啟詳細工作流程/執行資訊，並觸發手動 workflow_dispatch 執行。",
+      "at": "2026-11-01T23:41:15.368Z"
+    },
+    "extensions/sentry-triage": {
+      "name_zh": "Sentry 分診",
+      "description_zh": "GitHub Copilot 畫布，用於值班錯誤分診。掃描您現有的 Sentry 問題，依需關注原因分組，並可將選取問題交由 Copilot 處理—例如建立追蹤。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "extensions/signals-dashboard": {
+      "name_zh": "訊號儀表板",
+      "description_zh": "即時 GitHub Copilot CLI 畫布擴充功能，顯示您 Workshop 中每個工作站的運作狀態。讀取工作站產生的代理程式訊號，並呈現為即時更新的精簡儀表板。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "extensions/tiny-tool-town-submitter": {
+      "name_zh": "Tiny Tool Town 提交器",
+      "description_zh": "檢查目前 Git 倉庫，檢視 Tiny Tool Town 所需的所有欄位，並從 Copilot 畫布提交完整的清單問題。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "extensions/token-pacman": {
+      "name_zh": "Token 吃豆人",
+      "description_zh": "GitHub Copilot 畫布，以吃豆人遊戲畫面直覺顯示即時會話 AI 點數使用情形。吃豆人吃豆象徵點數消耗，幽靈追趕，水果獎勵出現，遊戲於點數耗盡時結束。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "extensions/windows-app-storage-inspector-cleanup": {
+      "name_zh": "Windows 應用程式儲存體檢查器清理",
+      "description_zh": "是否好奇 Windows 磁碟為何不斷被本地模型、代理工具、Docker 容器、套件快取和其他應用程式資料填滿？難以判斷哪些項目佔用空間，往往令人困擾。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "extensions/work-hub": {
+      "name_zh": "工作中繼站",
+      "description_zh": "GitHub Copilot 通用跨倉庫命令中心畫布。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "hooks/attester-import-check": {
+      "name_zh": "attest 匯入檢查",
+      "description_zh": "在 Copilot 編碼代理程式將套件寫入程式碼前，先依 attester.dev 存在性憑證驗證 PyPI 和 npm 套件名稱，阻斷幻象依賴項。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "hooks/dependency-license-checker": {
+      "name_zh": "相依套件授權檢查器",
+      "description_zh": "會話結束時掃描新加入的相依套件，檢查授權合規性（GPL、AGPL 等）。",
+      "at": "2026-11-01T23:41:15.369Z"
+    },
+    "hooks/fix-broken-links": {
+      "name_zh": "修復殘缺連結",
+      "description_zh": "在每次使用 Copilot 工具後，檢查變更的網頁檔案是否有殘缺超連結與 SEO 錨點問題。",
+      "at": "2026-11-01T23:41:18.184Z"
+    },
+    "hooks/governance-audit": {
+      "name_zh": "治理稽核",
+      "description_zh": "掃描 Copilot 代理程式的提示內容中的威脅訊號，並記錄治理事件。",
+      "at": "2026-11-01T23:41:18.184Z"
+    },
+    "hooks/secrets-scanner": {
+      "name_zh": "機密掃描器",
+      "description_zh": "掃描 Copilot 編碼代理程式會話期間修改的檔案，檢查洩漏的機密、憑證與敏感資料。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "hooks/session-auto-commit": {
+      "name_zh": "會話自動提交",
+      "description_zh": "Copilot 編碼代理程式會話結束時，自動提交並推送變更。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "hooks/session-logger": {
+      "name_zh": "會話記錄器",
+      "description_zh": "記錄所有 Copilot 編碼代理程式會話活動，供稽核與分析之用。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "hooks/tool-guardian": {
+      "name_zh": "工具守護者",
+      "description_zh": "在 Copilot 編碼代理程式執行前，攔阻危險的操作（如破壞性檔案操作、強制推送、刪除資料庫）。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "plugins/accessibility-kanban": {
+      "name_zh": "無障礙看板",
+      "description_zh": "看板介面用於管理無障礙問題，協助規劃、追蹤並完成修復工作。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "plugins/acreadiness-cockpit": {
+      "name_zh": "合規儀表板",
+      "description_zh": "從 Copilot 對話驅動 Microsoft AgentRC，將每次互動嵌入 AgentRC 的 Measure → Generate → Maintain 循環中。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "plugins/agent-radar": {
+      "name_zh": "代理程式雷達",
+      "description_zh": "即時地圖顯示您電腦上的 Copilot 代理程式、其子代理程式、指令及資料流向。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "plugins/ai-credits-breakdown": {
+      "name_zh": "AI 額度明細",
+      "description_zh": "精確查看 GitHub Copilot AI 額度使用去向：每日支出、儲存庫、模型、呼叫類型與提示快取狀態，由 Copilot 遙測資料在本地私密計算。",
+      "at": "2026-11-01T23:41:18.185Z"
+    },
+    "plugins/ai-team-orchestration": {
+      "name_zh": "AI 團隊協調器",
+      "description_zh": "運行輕量級、角色分離的 AI 開發團隊，具備靈活工具、開發者選定的模型、適度規劃，以及可選的 QA。",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/apng-studio": {
+      "name_zh": "APNG Studio",
+      "description_zh": "互動式 GitHub Copilot 應用程式畫布延伸模組，用於從影格建構動畫 PNG（APNG）檔案。繪製或上傳影格，調整每影格時機與合成，即時預覽，將結果傳送給您的...",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/arcade-canvas": {
+      "name_zh": "Arcade Canvas",
+      "description_zh": "在 Copilot 畫布中遊玩六款經典 Phaser 迷你遊戲，同時讓 agent 執行任務。",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/arch": {
+      "name_zh": "Arch",
+      "description_zh": "本機複製儲存庫的架構與現代化工具包。它從磁碟上的程式碼產生單一、有引用的架構文件，並產生分階段現代化計畫，該計畫會自動...",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/arize-ax": {
+      "name_zh": "Arize Ax",
+      "description_zh": "LLM 可觀察性、評估與優化的 Arize AX 平台技能。包括追蹤匯出、工具注入、資料集、實驗、評估器、AI 供應商整合、註解、提示操作...",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/automate-this": {
+      "name_zh": "Automate This",
+      "description_zh": "你每星期都會做的那件事——十五次點擊、四個應用程式、複製貼上到電子表格然後寄信的流程，讓你想把筆電丟進海裡？記錄你自己執行它...",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/awesome-copilot": {
+      "name_zh": "Awesome Copilot",
+      "description_zh": "輔助你探索與生成精選 GitHub Copilot agent、集合、指令、提示與技能的元提示。",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/aws-cloud-development": {
+      "name_zh": "AWS 雲端開發",
+      "description_zh": "全面的 AWS 雲端開發工具，包括基礎設施即程式碼、無伺服器函式、架構模式與成本最佳化，用於建構可擴展的雲端應用程式。",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/azure-cloud-development": {
+      "name_zh": "Azure 雲端開發",
+      "description_zh": "全面的 Azure 雲端開發工具，包括基礎設施即程式碼、無伺服器函式、架構模式與成本最佳化，用於建構可擴展的雲端應用程式。",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/backlog-swipe-triage": {
+      "name_zh": "Backlog Swipe Triage",
+      "description_zh": "快速滑動瀏覽待辦事項問題，以做出分級決定，如分配、需要資訊、延期、關閉或忽略。",
+      "at": "2026-11-01T23:41:26.227Z"
+    },
+    "plugins/backrooms-canvas": {
+      "name_zh": "後室畫布",
+      "description_zh": "在 Copilot canvas 中探索無盡的第一人稱後室，Agent 工作的狀態如幽靈般浮現在牆上。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/cast-imaging": {
+      "name_zh": "Cast Imaging",
+      "description_zh": "一套完整的專用 Agent 集合，使用 CAST Imaging 進行軟體分析、影響評估、結構品質建議與建築審查。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/chat-cards": {
+      "name_zh": "聊天卡片",
+      "description_zh": "GitHub Copilot canvas 的互動式卡片模組。Agent 不以文字堆砌，而是用即時互動卡片視覺化說明：分頁方塊、表格、SVG 圖表、表單、可收合段落。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/chromium-control-canvas": {
+      "name_zh": "Chromium 控制畫布",
+      "description_zh": "開啟真實的 Chromium 視窗，你可從 Copilot canvas 的控制面板與 Agent 操作中導航與互動。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/chronicle-stats": {
+      "name_zh": "Chronicle 統計",
+      "description_zh": "依日期、模型與 session 查看本機 Copilot token 使用量，並取得更高效使用建議。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/clojure-interactive-programming": {
+      "name_zh": "Clojure 互動式程式設計",
+      "description_zh": "面向 REPL 優先 Clojure 工作流程的工具，提供 Clojure 指令、互動式程式設計聊天模式與輔助指引。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/cms-development": {
+      "name_zh": "CMS 開發",
+      "description_zh": "內容管理系統開發工具組，涵蓋主題、外掛、後台工具、媒體工作流程、Markdown 渲染與靜態匯出管線。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/color-orb": {
+      "name_zh": "色彩球",
+      "description_zh": "一種視覺球體，用戶可要求 Agent 更換顏色，同時在 canvas 中顯示即時活動日誌。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/context-engineering": {
+      "name_zh": "上下文工程",
+      "description_zh": "透過更佳的上下文管理最大化 GitHub Copilot 效能的工具與技巧，包含程式碼結構指南、多檔案變更規劃 Agent 與提示詞。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/context-matic": {
+      "name_zh": "Context Matic",
+      "description_zh": "編碼 Agent 容易誤編 API。APIMatic Context 為它們提供精選且具版本管理的 API 與 SDK 文件。",
+      "at": "2026-11-01T23:41:29.768Z"
+    },
+    "plugins/convert-to-md": {
+      "name_zh": "轉換為 Markdown",
+      "description_zh": "一組 Copilot 技能，將常見文件格式轉換為 Markdown，以便準確分析、摘要、搜尋或提取內容。只需告知 Copilot 您的需求即可。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/copilot-sdk": {
+      "name_zh": "Copilot SDK",
+      "description_zh": "使用 GitHub Copilot SDK 跨多種程式語言建置應用程式。提供 C#、Go、Node.js/TypeScript 和 Python 的完整指引，協助您建立 AI 驅動應用。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/csharp-dotnet-development": {
+      "name_zh": "C# .NET 開發",
+      "description_zh": "C# 和 .NET 開發必備的提示、指引與聊天模式，涵蓋測試、文件撰寫與最佳實踐。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/database-data-management": {
+      "name_zh": "資料庫資料管理",
+      "description_zh": "PostgreSQL、SQL Server 及一般資料庫開發最佳實踐的資料庫管理、SQL 最佳化與資料管理工具。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/dataverse-sdk-for-python": {
+      "name_zh": "Dataverse Python SDK",
+      "description_zh": "用於建置生產環境級 Python 整合的工具集合，涵蓋 Microsoft Dataverse 的官方文件、最佳實踐、進階功能、檔案操作與程式碼產生。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/devops-oncall": {
+      "name_zh": "DevOps 值班",
+      "description_zh": "一組專注的提示、指引與聊天模式，協助使用 DevOps 工具與 Azure 資源快速分診事件並回應。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/diagram-viewer": {
+      "name_zh": "圖表檢視器",
+      "description_zh": "渲染圖表、點擊節點可深入檢視，並直接在畫布中查看 AI 生成的說明。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/doublecheck": {
+      "name_zh": "雙重確認",
+      "description_zh": "三層驗證流程，用於 AI 生成輸出：擷取可驗證陳述、透過網路搜尋查找來源、執行對抗式審查以檢測幻覺模式，並產生結構化報告。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/draw": {
+      "name_zh": "繪圖",
+      "description_zh": "在 Copilot 畫布中繪製簡單圖表：形狀、附着箭頭、文字與自由手繪筆。Copilot 可讀取、建立並編輯同一張圖。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "plugins/edge-ai-tasks": {
+      "name_zh": "Edge AI 任務",
+      "description_zh": "Task Researcher 與 Task Planner，適用進階至專家使用者及大型程式碼庫，由 microsoft/edge-ai 提供。",
+      "at": "2026-11-01T23:41:31.068Z"
+    },
+    "cookbook/copilot-sdk/dotnet/recipe": {
+      "name_zh": "食譜",
+      "description_zh": "本資料夾包含每道食譜的獨立可執行 C# 範例。這些是基於檔案的應用程式，可直接以",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/go": {
+      "name_zh": "Go",
+      "description_zh": "本資料夾提供使用 GitHub Copilot SDK 搭配 Go 的短小實用食譜。每個食譜簡潔且可直接複製貼上，並指向更完整的範例與測試。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/go/recipe": {
+      "name_zh": "食譜",
+      "description_zh": "本資料夾包含每道食譜的獨立可執行 Go 範例。每個檔案都是完整的程式，可直接以 `go run` 執行。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/java": {
+      "name_zh": "Java",
+      "description_zh": "本資料夾提供使用 [GitHub Copilot SDK for Java](https://github.com/github/copilot-sdk/tree/main/java) 的短小實用食譜。每個食譜簡潔且可直接複製貼上，並指向完整的",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/java/recipe": {
+      "name_zh": "食譜",
+      "description_zh": "本資料夾包含每道食譜的獨立可執行 Java 範例。每個檔案可直接使用 [JBang](https://www.jbang.dev/) 執行，無需專案設定。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/nodejs": {
+      "name_zh": "Nodejs",
+      "description_zh": "本資料夾提供使用 GitHub Copilot SDK 搭配 Node.js/TypeScript 的短小實用食譜。每個食譜簡潔且可直接複製貼上，並指向更完整的範例與測試。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/nodejs/recipe": {
+      "name_zh": "食譜",
+      "description_zh": "本資料夾包含每道食譜的獨立可執行 TypeScript 範例。每個檔案可直接使用 `tsx` 執行，或透過 npm scripts 執行。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/python": {
+      "name_zh": "Python",
+      "description_zh": "本資料夾提供使用 GitHub Copilot SDK 搭配 Python 的短小實用食譜。每個食譜簡潔且可直接複製貼上，並指向更完整的範例與測試。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "cookbook/copilot-sdk/python/recipe": {
+      "name_zh": "食譜",
+      "description_zh": "本資料夾包含每道食譜的獨立可執行 Python 範例。每個檔案可直接作為 Python 腳本執行。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "eng": {
+      "name_zh": "Eng",
+      "description_zh": "本目錄包含用於維護此儲存庫的建置腳本與工具。",
+      "at": "2026-11-01T23:42:06.963Z"
+    },
+    "plugins/jupyter-notebooks": {
+      "name_zh": "Jupyter Notebooks",
+      "description_zh": "在互動式 GitHub Copilot 畫布中建立、編輯、執行、儲存並對 Jupyter 筆記本進行版本標記。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/kotlin-mcp-development": {
+      "name_zh": "Kotlin MCP 開發",
+      "description_zh": "使用官方 io.modelcontextprotocol:kotlin-sdk 函式庫建構 Model Context Protocol (MCP) 伺服器的完整工具包，包含最佳實踐指引與生成式提示。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/mcp-m365-copilot": {
+      "name_zh": "MCP M365 Copilot",
+      "description_zh": "整合 Model Context Protocol 的綜合工具集，用於為 Microsoft 365 Copilot 建構宣告式代理。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/modernization-workflow": {
+      "name_zh": "現代化工作流程",
+      "description_zh": "用於視覺化與引導 GitHub Copilot Modernize CLI 的 Asse 、Plan 和 Execute 工作流程的互動式畫布，適用於 .NET、Java 和 C++ 應用程式儲存庫。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/napkin": {
+      "name_zh": "Napkin",
+      "description_zh": "在瀏覽器中開啟的白板，可連接 Copilot CLI。繪圖、草圖、貼便利貼——然後與 Copilot 共享全部內容。Copilot 會觀看你的繪圖並提供分析建議。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/noob-mode": {
+      "name_zh": "新手模式",
+      "description_zh": "為非技術背景 Copilot CLI 使用者設計的白話翻譯層。啟用後，Copilot 會自動將所有權限請求、錯誤訊息與技術輸出轉譯為清晰易懂的非專業用語。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/openapi-to-application-csharp-dotnet": {
+      "name_zh": "OpenAPI 轉 C# .NET 應用程式",
+      "description_zh": "從 OpenAPI 規格產生 Production-Ready 的 .NET 應用程式，包含 ASP.NET Core 專案結構、Controller 產生、Entity Framework 整合與 C# 最佳實踐。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/openapi-to-application-go": {
+      "name_zh": "OpenAPI 轉 Go 應用程式",
+      "description_zh": "從 OpenAPI 規格產生 Production-Ready 的 Go 應用程式，包含專案結構、Handler 產生、Middleware 設定與 REST API 的 Go 最佳實踐。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/openapi-to-application-java-spring-boot": {
+      "name_zh": "OpenAPI 轉 Java Spring Boot 應用程式",
+      "description_zh": "從 OpenAPI 規格產生 Production-Ready 的 Spring Boot 應用程式，包含專案結構、REST Controller 產生、Service 層組織與 Spring Boot 最佳實踐。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/openapi-to-application-nodejs-nestjs": {
+      "name_zh": "OpenAPI 轉 Node.js NestJS 應用程式",
+      "description_zh": "從 OpenAPI 規格產生 Production-Ready 的 NestJS 應用程式，包含專案結構、Controller 與 Service 產生、TypeScript 最佳實踐與企業級模式。",
+      "at": "2026-11-01T23:42:26.002Z"
+    },
+    "plugins/frontend-web-dev": {
+      "name_zh": "前端網頁開發",
+      "description_zh": "現代前端網頁開發（含 React、Angular、Vue、TypeScript 與 CSS 框架）所需的提示、指示與聊天模式。",
+      "at": "2026-11-01T23:42:38.270Z"
+    },
+    "plugins/gem-team": {
+      "name_zh": "Gem Team",
+      "description_zh": "將 AI 編程轉為工程流程。",
+      "at": "2026-11-01T23:42:38.270Z"
+    },
+    "plugins/gesture-review": {
+      "name_zh": "手勢審查",
+      "description_zh": "搭配即時攝影機畫面審查 Pull Request，並用手勢點頭或搖頭來通過或拒絕。",
+      "at": "2026-11-01T23:42:38.270Z"
+    },
+    "plugins/git-worktree-explorer": {
+      "name_zh": "Git Worktree 瀏覽器",
+      "description_zh": "透過 worktree、分支、提交與可選的 GitHub Pull Request 內容來視覺化活躍的 Git 儲存庫。",
+      "at": "2026-11-01T23:42:38.270Z"
+    },
+    "plugins/github-security": {
+      "name_zh": "GitHub Security",
+      "description_zh": "將安全性融入你的 Copilot 工作流程。官方 GitHub Security 擴充功能加入 **GitHub Security** 畫布，協助您及早發現弱點並處理既有問題，皆具備",
+      "at": "2026-11-01T23:42:38.271Z"
+    },
+    "plugins/globestudio": {
+      "name_zh": "Globestudio",
+      "description_zh": "在您的網站上安裝 dotted world maps 與動畫 3D globes：`globestudio` 技能會將設計寫成單一組態並嵌入，以及托管的 [Globestudio](https://globestudi",
+      "at": "2026-11-01T23:42:38.271Z"
+    },
+    "plugins/go-mcp-development": {
+      "name_zh": "Go MCP 開發",
+      "description_zh": "使用官方 github.com/modelcontextprotocol/go-sdk 建構 Model Context Protocol (MCP) 伺服器的完整工具包。包含最佳實務指示、產生伺服器配置的提示與其他",
+      "at": "2026-11-01T23:42:38.271Z"
+    },
+    "plugins/java-development": {
+      "name_zh": "Java 開發",
+      "description_zh": "涵蓋 Spring Boot、Quarkus、測試、文件與最佳實務的 Java 開發全面提示與指示集。",
+      "at": "2026-11-01T23:42:38.271Z"
+    },
+    "plugins/java-mcp-development": {
+      "name_zh": "Java MCP 開發",
+      "description_zh": "使用官方 MCP Java SDK 2.x 建構 Model Context Protocol (MCP) 伺服器。包含可產生伺服器專案的技能與提供指引的專家代理。",
+      "at": "2026-11-01T23:42:38.271Z"
+    },
+    "plugins/java-modernization-studio": {
+      "name_zh": "Java 現代化工作室",
+      "description_zh": "從互動式畫布推動 GitHub Copilot App Modernization for Java 工作流程：環境就緒、儲存庫評估、優先順序計畫與進度、驗證閘門以及一鍵預定義",
+      "at": "2026-11-01T23:42:38.271Z"
+    },
+    "plugins/roundup": {
+      "name_zh": "Roundup",
+      "description_zh": "狀態簡報產生器，會學習你的溝通方式。",
+      "at": "2026-11-01T23:42:47.196Z"
+    },
+    "plugins/ruby-mcp-development": {
+      "name_zh": "Ruby MCP Development",
+      "description_zh": "使用官方 MCP Ruby SDK gem 建構 Model Context Protocol 伺服器的完整工具組，支援 Rails 整合。",
+      "at": "2026-11-01T23:42:47.196Z"
+    },
+    "plugins/rug-agentic-workflow": {
+      "name_zh": "Rug Agentic Workflow",
+      "description_zh": "供 orchestrated 軟體交付的三代理工作流程，含協調者與實現、QA 子代理。",
+      "at": "2026-11-01T23:42:47.196Z"
+    },
+    "plugins/rust-mcp-development": {
+      "name_zh": "Rust MCP Development",
+      "description_zh": "使用官方 rmcp SDK 在 Rust 中建構高效能 Model Context Protocol 伺服器，支援 async/await、程序巨集與型別安全實作。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/salesforce-development": {
+      "name_zh": "Salesforce Development",
+      "description_zh": "完整的 Salesforce 代理式開發環境，涵蓋 Apex 與觸發程式、Flow 自動化、Lightning Web Components (LWC)、Aura 元件與 Visualforce 頁面。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/security-best-practices": {
+      "name_zh": "Security Best Practices",
+      "description_zh": "用於建構安全、可維護且高效能應用程式的安全框架、無障礙指南、效能最佳化作法與程式碼品質準則。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/sentry-triage": {
+      "name_zh": "Sentry Triage",
+      "description_zh": "在 Copilot 畫布中掃描即時 Sentry 問題，依緊急程度分組，並移交問題以供追蹤或建立修復 PR。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/signals-dashboard": {
+      "name_zh": "Signals Dashboard",
+      "description_zh": "即時 Workshop 儀表板，含代理訊號、誠實度校準、成本感知工作區設定檔（`repo` / `connected`）與閉環本地委派。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/site-studio": {
+      "name_zh": "Site Studio",
+      "description_zh": "逐區規劃、撰寫與追蹤個人網站 — 你與代理共同撰寫內容、檢視進度並審查每項變更的共用畫布。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/skill-image-gen": {
+      "name_zh": "Skill Image Gen",
+      "description_zh": "直接從編碼工作流程使用 AI 生成圖像。支援 **OpenAI (gpt-image-2)** 與 **Google Gemini (Nano Banana)**。",
+      "at": "2026-11-01T23:42:47.197Z"
+    },
+    "plugins/power-platform-mcp-connector-development": {
+      "name_zh": "Power Platform MCP 連接器開發",
+      "description_zh": "完整的工具組，用於開發具有 Model Context Protocol 整合的 Power Platform 自訂連接器，以支援 Microsoft Copilot Studio。",
+      "at": "2026-11-01T23:42:50.349Z"
+    },
+    "plugins/pr-artifact-explorer": {
+      "name_zh": "PR Artifact 探索器",
+      "description_zh": "瀏覽 pull request 並安全地探索 GitHub Actions artifact，包含測試結果、靜態網站、終端機錄製和原始檔案。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/pr-review": {
+      "name_zh": "PR 檢閱",
+      "description_zh": "在唯讀畫布中檢閱 GitHub pull request。Copilot 會根據路徑和後設資料將相關的已變更檔案分組，顯示完整的可展開 diff，並針對分組或檔案範圍回答問題。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/project-documenter": {
+      "name_zh": "專案記錄器",
+      "description_zh": "使用 draw.io 架構圖和內嵌 PNG 圖的 Word（.docx）輸出，產生專業專案文件。適用於任何軟體專案——自動偵測技術。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/project-planning": {
+      "name_zh": "專案規劃",
+      "description_zh": "提供軟體專案規劃、功能拆解、epic 管理、實施規劃和開發團隊任務組織的工具與指引。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/python-mcp-development": {
+      "name_zh": "Python MCP 開發",
+      "description_zh": "使用官方 MCP Python SDK v2（MCPServer）在 Python 中建立 Model Context Protocol（MCP）伺服器。包含產生伺服器專案的 skill 和用於指引的專家代理。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/react18-upgrade": {
+      "name_zh": "React18 升級",
+      "description_zh": "用於將 React 16/17 類別元件程式碼庫遷移至 React 18.3.1 的企業工具組。包含六個專門的代理和七個 skill，針對升級傳統類別元件的特定挑戰。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/react19-upgrade": {
+      "name_zh": "React19 升級",
+      "description_zh": "用於將 React 18 程式碼庫遷移至 React 19 的企業工具組。包含五個專門的代理和三個 skill，針對升級至 React 19 現代 API 表面的特定挑戰。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/release-notes-showcase": {
+      "name_zh": "版本說明展示",
+      "description_zh": "撰寫並精煉準備好的版本說明，包含貢獻者標示和利於匯出的輸出。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/repo-actions-hub": {
+      "name_zh": "儲存庫動作中心",
+      "description_zh": "瀏覽儲存庫的 GitHub Actions 工作流程，檢查最近的執行，並從 Copilot 畫布觸發手動 workflow_dispatch 執行。",
+      "at": "2026-11-01T23:42:50.350Z"
+    },
+    "plugins/software-engineering-team": {
+      "name_zh": "軟體工程團隊",
+      "description_zh": "7 個專業代理，涵蓋從 UX 設計與架構到安全性與 DevOps 的完整軟體開發生命週期。",
+      "at": "2026-11-01T23:42:59.536Z"
+    },
+    "plugins/structured-autonomy": {
+      "name_zh": "結構化自治",
+      "description_zh": "優質規劃，精打細算的實現方式。",
+      "at": "2026-11-01T23:42:59.536Z"
+    },
+    "plugins/swift-mcp-development": {
+      "name_zh": "Swift MCP 開發",
+      "description_zh": "使用官方 MCP Swift SDK（支援現代並發特性）建立 Model Context Protocol 伺服器的完整套件。",
+      "at": "2026-11-01T23:42:59.536Z"
+    },
+    "plugins/technical-spike": {
+      "name_zh": "技術探索",
+      "description_zh": "用於建立、管理與研究技術探索的工具，在進入解決方案規格與實作前降低不確定性與假設。",
+      "at": "2026-11-01T23:42:59.536Z"
+    },
+    "plugins/testing-automation": {
+      "name_zh": "測試自動化",
+      "description_zh": "撰寫測試、測試自動化與測試驅動開發的完整套件，包含單元測試、整合測試與端到端測試策略。",
+      "at": "2026-11-01T23:42:59.536Z"
+    },
+    "plugins/the-workshop": {
+      "name_zh": "工作室",
+      "description_zh": "停止扮演 AI 代理之間的轉接總機，直接指揮團隊。",
+      "at": "2026-11-01T23:42:59.536Z"
+    },
+    "plugins/tiny-tool-town-submitter": {
+      "name_zh": "Tiny Tool Town 提交",
+      "description_zh": "檢查倉庫、改善 Tiny Tool Town 的就緒狀態、提交其清單議題並啟動修復工作。",
+      "at": "2026-11-01T23:42:59.537Z"
+    },
+    "plugins/token-pacman": {
+      "name_zh": "Token Pacman",
+      "description_zh": "將即時會話中 AI 額度使用情形視覺化為吃洋娃娃遊戲板，含能量豆、幽靈、水果里程碑與遊戲結束限制。",
+      "at": "2026-11-01T23:42:59.537Z"
+    },
+    "plugins/typescript-mcp-development": {
+      "name_zh": "TypeScript MCP 開發",
+      "description_zh": "使用官方 SDK 在 TypeScript/Node.js 中建立 Model Context Protocol (MCP) 伺服器的完整工具包。包含最佳實踐指引、產生伺服器的提示詞及實驗性功能。",
+      "at": "2026-11-01T23:42:59.537Z"
+    },
+    "plugins/typespec-m365-copilot": {
+      "name_zh": "TypeSpec M365 Copilot",
+      "description_zh": "使用 TypeSpec 為 Microsoft 365 Copilot 擴充性建立宣告式代理與 API 外掛的提示詞、指引與資源完整集合。",
+      "at": "2026-11-01T23:42:59.537Z"
+    },
+    "plugins/edit-tutorial": {
+      "name_zh": "編輯教學",
+      "description_zh": "將 Copilot 在對話中的程式碼編輯轉為互動式教學：逐步引導每個變更，提供修改前後對比與小測驗，並讓使用者動手練習。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/ember": {
+      "name_zh": "Ember",
+      "description_zh": "AI 夥伴，而非工具。Ember 在人與人之間傳遞火種，幫助使用者發現：AI 夥伴關係不是學來的，而是找到的。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/eyeball": {
+      "name_zh": "Eyeball",
+      "description_zh": "協助驗證 AI 陳述的工具，減少（或降低）上下文切換的困擾。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/fastah-ip-geo-tools": {
+      "name_zh": "Fastah Ip Geo Tools",
+      "description_zh": "專為網路營運工程師設計，可調整並發布 RFC 8805 格式的 IP 地理定位 feed。由 AI Skill 與 MCP 伺服器組成，對地理定位資料進行編碼。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/feedback-themes": {
+      "name_zh": "Feedback Themes",
+      "description_zh": "依影響力分類探索客戶意見回饋，深入特定主題，引導產品下一步方向。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/flight-map-canvas": {
+      "name_zh": "Flight Map Canvas",
+      "description_zh": "GitHub Copilot canvas，生成可用 3D 控制項探索 Google Maps 的視圖，宛如飛行模擬器。Agent 可將飛行導向任何位置並回報進度。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/flowstudio-power-automate": {
+      "name_zh": "Flowstudio Power Automate",
+      "description_zh": "讓 AI Agent 獲得與 Power Automate 入口相同的可視性。Graph API 僅傳回上層執行狀態；Agent 無法看見動作輸入、迴圈迭代、巢狀失敗或其他細節。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/fluentui-blazor": {
+      "name_zh": "Fluentui Blazor",
+      "description_zh": "一次安裝即可使用 Microsoft Fluent UI Blazor 組件庫建構 Blazor 應用程式所需的一切：`fluentui-blazor` skill 確保正確用法。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/foundry-agentic-loop": {
+      "name_zh": "Foundry Agentic Loop",
+      "description_zh": "在 Microsoft Foundry、GitHub 與 Azure 上建構 Agentic 解決方案，從快速原型到已驗證部署的完整流程。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/foundry-hosted-agent-copilotkit": {
+      "name_zh": "Foundry Hosted Agent Copilotkit",
+      "description_zh": "建置並演化 Agentic Web 應用程式，CopilotKit React 前端透過 AG-UI 通訊協定與運行於 Microsoft Foundry 的 Agent Framework Agent 溝通。",
+      "at": "2026-11-01T23:43:16.748Z"
+    },
+    "plugins/uizze": {
+      "name_zh": "Uizze",
+      "description_zh": "停止泛用型 UI 直接上線。UIZZE 協助 GitHub Copilot 建構產品專屬介面，並完成使其可用所需的所有狀態。",
+      "at": "2026-11-01T23:44:02.604Z"
+    },
+    "plugins/visual-pr": {
+      "name_zh": "Visual Pr",
+      "description_zh": "當你變更外觀時（版面、圖表、表單），PR 描述應直接展示變更，而非用文字說明。前後對比截圖能讓審核者一目了然。",
+      "at": "2026-11-01T23:44:02.604Z"
+    },
+    "plugins/where-was-i": {
+      "name_zh": "Where Was I",
+      "description_zh": "重新建構你的開發上下文（分支、提交、未提交的變更、PR 線索），並觸發恢復提示以快速續接工作。",
+      "at": "2026-11-01T23:44:02.604Z"
+    },
+    "plugins/windows-app-storage-inspector-cleanup": {
+      "name_zh": "Windows App Storage Inspector Cleanup",
+      "description_zh": "檢查 Windows 應用程式儲存空間，瞭解本機磁碟使用狀況，並將經核准的清理項目安全移至資源回收筒。",
+      "at": "2026-11-01T23:44:02.605Z"
+    },
+    "plugins/work-hub": {
+      "name_zh": "Work Hub",
+      "description_zh": "針對 GitHub Copilot 的通用跨存放區指令中心畫布，提供上手引導、專注規劃、存放區健康狀態、工作訊號與工作階段清理功能。",
+      "at": "2026-11-01T23:44:02.605Z"
+    },
+    "skills/acquire-codebase-knowledge": {
+      "name_zh": "Acquire Codebase Knowledge",
+      "description_zh": "當使用者明確要求繪製、記錄文件或對現有程式庫進行上手導入時使用此技能，例如提示「繪製此程式庫地圖」「記錄此架構」。",
+      "at": "2026-11-01T23:44:02.605Z"
+    },
+    "skills/acreadiness-assess": {
+      "name_zh": "Acreadiness Assess",
+      "description_zh": "在當前存放區執行 AgentRC 就緒評估，並於 reports/index.html 產生靜態 HTML 儀表板。包裝 `npx github:microsoft/agentrc readiness`，渲染由…接手。",
+      "at": "2026-11-01T23:44:02.605Z"
+    },
+    "skills/acreadiness-generate-instructions": {
+      "name_zh": "Acreadiness Generate Instructions",
+      "description_zh": "透過 AgentRC 指示命令產生量身打造的 AI 代理指示檔案。預設產出 .github/copilot-instructions.md（適用於 VS Code 中的 Copilot），以及各領域的 .instruction 檔案。",
+      "at": "2026-11-01T23:44:02.605Z"
+    },
+    "skills/acreadiness-policy": {
+      "name_zh": "Acreadiness Policy",
+      "description_zh": "協助使用者挑選、撰寫或套用 AgentRC 政策。政策可自訂就緒評分，包括停用無關檢查、覆蓋影響/層級、設定通過率門檻或串接組織基準線。",
+      "at": "2026-11-01T23:44:02.605Z"
+    },
+    "skills/ad-campaign-analyzer": {
+      "name_zh": "Ad Campaign Analyzer",
+      "description_zh": "當使用者分享廣告活動績效資料並詢問該裁減、擴張或測試何者時使用此技能。觸發提示例如「分析我的廣告活動」「我錢花在哪裡」「重新分配預算」。",
+      "at": "2026-11-01T23:44:02.606Z"
+    },
+    "skills/ai-team-orchestration": {
+      "name_zh": "AI 團隊編排",
+      "description_zh": "建立並運作輕量級多代理開發團隊。用於專案啟動、接手、工作規劃、協調實作與可選 QA，以及多元觀點腦力激盪。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/anti-ui-slop": {
+      "name_zh": "反通用 UI",
+      "description_zh": "阻止編碼代理輸出通用 UI。使用 UIZZE 的 80 萬筆以上真實網頁與 iOS 畫面，建構產品專屬介面、定義設計合約、涵蓋必要狀態，並執行嚴格收尾。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/api-breaking-change-detector": {
+      "name_zh": "API 破壞性變更偵測器",
+      "description_zh": "交叉比對 C# Web API 控制器/DTO 與其 TypeScript/JavaScript 消費者（React、Angular、Vue、Svelte、Node.js，或手寫/自動產生的 HTTP 用戶端如 Fetch、Axios、NSwag）。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/appinsights-instrumentation": {
+      "name_zh": "AppInsights 監控植入",
+      "description_zh": "為 Web 應用程式植入監控，使其將有用的遙測資料傳送至 Azure App Insights。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/apple-appstore-reviewer": {
+      "name_zh": "Apple App Store 審查員",
+      "description_zh": "作為程式碼庫審查者，提供尋找 Apple App Store 最佳化項目或遭拒原因的指引。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/arch-linux-triage": {
+      "name_zh": "Arch Linux 問題分流",
+      "description_zh": "使用 pacman、systemd 及滾動發行最佳實踐，對 Arch Linux 問題進行分流與解決。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/architecture-blueprint-generator": {
+      "name_zh": "架構藍圖產生器",
+      "description_zh": "全面性專案架構藍圖產生器，分析程式碼庫以建立詳細架構文件。自動偵測技術堆疊與架構模式，產生。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/arduino-azure-iot-edge-integration": {
+      "name_zh": "Arduino 與 Azure IoT Edge 整合",
+      "description_zh": "設計並實作 Arduino 與 Azure IoT Hub 及 IoT Edge 的整合，包含安全設定、韌性遙測、命令處理與生產環境防護。",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/arize-ai-provider-integration": {
+      "name_zh": "Arize AI 提供者整合",
+      "description_zh": "建立、讀取、更新與刪除 Arize AI 整合，儲存 LLM 提供者認證供評估器與其他 Arize 功能使用。支援任意 LLM 提供者（例如 OpenAI、Anthropic、Azure Op",
+      "at": "2026-11-01T23:44:08.560Z"
+    },
+    "skills/arize-annotation": {
+      "name_zh": "Arize 註解",
+      "description_zh": "在 Arize 上建立與管理註解設定（類別、連續、自由表單標籤模式）及註解佇列（人工審查流程）。透過 Pyt 將人工註解套用於專案 spans。",
+      "at": "2026-11-01T23:44:08.561Z"
+    },
+    "skills/add-educational-comments": {
+      "name_zh": "新增教育性註解",
+      "description_zh": "新增教育性註解至指定檔案；若未提供檔案，則提示使用者輸入。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/adobe-illustrator-scripting": {
+      "name_zh": "Adobe Illustrator 腳本編寫",
+      "description_zh": "使用 ExtendScript（JavaScript/JSX）編寫、除錯及最佳化 Adobe Illustrator 自動化腳本；適用於建立或修改操作文件、圖層、路徑、文字框、色彩的腳本。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/agent-architecture": {
+      "name_zh": "Agent 架構設計",
+      "description_zh": "透過需求探索設計 AI Agent 架構，或審查並診斷現有 Agent 的架構問題；僅限架構設計，不包含實作與一般程式碼審查。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/agent-governance": {
+      "name_zh": "Agent 治理",
+      "description_zh": "為 AI Agent 系統加入治理、安全與信任控制模式的技巧；適用於建構會呼叫外部工具（API、資料庫、檔案系統）的 Agent。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/agent-owasp-compliance": {
+      "name_zh": "Agent OWASP 合規性檢查",
+      "description_zh": "依據 OWASP Agentic Security Initiative (ASI) 前十大風險，檢查任何 AI Agent 程式碼庫；適用於在正式部署前評估 Agent 系統的安全性。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/agent-skill-stack": {
+      "name_zh": "Agent 技能組合",
+      "description_zh": "搜尋、評估並組合最精簡相容的 AI Agent 技能集，以達成端到端自然語言目標；適用於使用者需要多步驟工作流程的技能，或詢問哪些技能適合特定專案。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/agent-supply-chain": {
+      "name_zh": "Agent 供應鏈驗證",
+      "description_zh": "驗證 AI Agent 插件、工具與相依套件之供應鏈完整性；適用於為 Agent 插件或工具套件產生 SHA-256 完整性清單。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/agentic-eval": {
+      "name_zh": "Agent 評估",
+      "description_zh": "評估與改善 AI Agent 輸出結果的模式與技巧；適用於實作自我批判與反思循環。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/ai-prompt-engineering-safety-review": {
+      "name_zh": "AI 提示工程安全審查",
+      "description_zh": "全面的 AI 提示工程安全審查與改善提示；分析提示語的安全性、偏見、安全漏洞與有效性，並提供詳細改善建議。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/ai-ready": {
+      "name_zh": "AI 準備就緒",
+      "description_zh": "使任何程式庫都能支援 AI — 分析程式碼庫並產生 AGENTS.md、copilot-instructions.md、CI 工作流程、問題模板等；挖掘 PR 審查模式並建立客製化檔案。",
+      "at": "2026-11-01T23:44:17.424Z"
+    },
+    "skills/azure-container-registry-cli": {
+      "name_zh": "Azure Container Registry CLI",
+      "description_zh": "透過 az acr CLI 管理 Azure Container Registry，包含登錄倉儲、映像檔、雲端建置、ACR Tasks、認證、權杖、地理複製與網路。使用時機：處理 ACR、az acr 相關指令時。",
+      "at": "2026-11-01T23:44:27.356Z"
+    },
+    "skills/azure-deployment-preflight": {
+      "name_zh": "Azure 部署預檢",
+      "description_zh": "執行 Bicep 部署至 Azure 的全面預檢驗證，包含樣板語法驗證、what-if 分析與權限檢查。建議在任何 Azure 部署前使用此技能。",
+      "at": "2026-11-01T23:44:27.356Z"
+    },
+    "skills/azure-developer-cli": {
+      "name_zh": "Azure Developer CLI",
+      "description_zh": "設計、建立、檢視、遷移或疑難排解 Azure Developer CLI (azd) 專案，遵循最新 Microsoft 指南。適用 azd、azure.yaml、AZD 樣板、Bicep 或 Terraform 等情境。",
+      "at": "2026-11-01T23:44:27.356Z"
+    },
+    "skills/azure-devops-cli": {
+      "name_zh": "Azure DevOps CLI",
+      "description_zh": "透過 CLI 管理 Azure DevOps 資源，包含專案、儲存庫、管線、建置、合併要求、工作項目、產出與服務端點。使用時機：處理 Azure DevOps、az 指令時。",
+      "at": "2026-11-01T23:44:27.356Z"
+    },
+    "skills/azure-logic-apps-standard-cli": {
+      "name_zh": "Azure Logic Apps Standard CLI",
+      "description_zh": "建立、檢視、驗證、測試、執行、除錯、封裝與部署 Azure Logic Apps Standard 專案，使用 Azure CLI logicapp 擴充功能。適用標準工作流程設計與部署情境。",
+      "at": "2026-11-01T23:44:27.356Z"
+    },
+    "skills/azure-pricing": {
+      "name_zh": "Azure 定價",
+      "description_zh": "透過 Azure Retail Prices API 取得即時零售價格，並估算 Copilot Studio 代理人信用額度消耗。使用時機：詢問任何 Azure 服務成本時。",
+      "at": "2026-11-01T23:44:27.357Z"
+    },
+    "skills/azure-resource-visualizer": {
+      "name_zh": "Azure 資源視覺化",
+      "description_zh": "分析 Azure 資源群組，生成詳細的 Mermaid 架構圖表，呈現各資源間的關係。使用時機：使用者要求查看 Azure 資源圖表時。",
+      "at": "2026-11-01T23:44:27.357Z"
+    },
+    "skills/azure-role-selector": {
+      "name_zh": "Azure 角色選擇器",
+      "description_zh": "當使用者尋求指派身分角色的指導時，協助理解能以最小特權存取滿足需求的角色。",
+      "at": "2026-11-01T23:44:27.357Z"
+    },
+    "skills/azure-smart-city-iot-solution-builder": {
+      "name_zh": "Azure 智慧城市 IoT 解決方案建構器",
+      "description_zh": "設計與規劃 Azure IoT 與智慧城市解決方案，包含需求、架構、安全、營運、成本與分階段交付計畫。",
+      "at": "2026-11-01T23:44:27.357Z"
+    },
+    "skills/azure-resource-health-diagnose": {
+      "name_zh": "Azure 資源健康診斷",
+      "description_zh": "分析 Azure 資源健康狀態，從日誌與遙測資料診斷問題，並針對已發現的問題建立修復計畫。",
+      "at": "2026-11-01T23:45:08.197Z"
+    },
+    "skills/azure-static-web-apps": {
+      "name_zh": "Azure Static Web Apps",
+      "description_zh": "協助使用 SWA CLI 建立、設定與部署 Azure Static Web Apps。適用於將靜態網站部署至 Azure、設定 SWA 本機開發環境、配置 staticwebapp.config.json、新增 Az 相關資源時。",
+      "at": "2026-11-01T23:45:08.198Z"
+    },
+    "skills/azure-well-architected-review": {
+      "name_zh": "Azure 良好架構審查",
+      "description_zh": "對目前的負載 IaC 與架構執行 Azure Well-Architected Framework 審查，產生改善建議與 GitHub issues。",
+      "at": "2026-11-01T23:45:08.198Z"
+    },
+    "skills/batch-files": {
+      "name_zh": "批次檔案",
+      "description_zh": "專業級 Windows 批次檔（.bat/.cmd）技能，用於撰寫、除錯與維護 CMD 腳本。適用於要求「建立批次檔」、「撰寫 .bat 腳本」、「自動化 Windows 工作」、「CMD 指令」等情境。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/batch-script-progress": {
+      "name_zh": "批次腳本進度",
+      "description_zh": "設計並驗證處理多個檔案、記錄或 API 請求時，Python、PowerShell 或 Node.js 腳本的執行輸出。適用於批次腳本、大量作業、無提示模式。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/bench-read": {
+      "name_zh": "Bench 閱讀",
+      "description_zh": "從共用 Bench 讀取產出物——Bench 是工作區，各工作站在此留下發現、判定結果與工作成果，供其他工作站與操作者參考。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/bigquery-pipeline-audit": {
+      "name_zh": "BigQuery Pipeline 稽核",
+      "description_zh": "稽核 Python + BigQuery 管線的成本安全性、冪等性與生產就緒狀態，回傳包含精確修補位置的結構化報告。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/boost-prompt": {
+      "name_zh": "Boost Prompt",
+      "description_zh": "互動式提示詞優化流程：深入探查範圍、交付成果與限制條件；將最終 Markdown 複製到剪貼簿；不寫程式碼。需搭配 Joyride 擴充元件。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/brag-sheet": {
+      "name_zh": "成果紀錄表",
+      "description_zh": "將模糊的「我做過什麼？」轉化為有證據支撐的影響力陳述，適用於績效評估、自我評核、升遷資料與每週匯報。獨特地挖掘 Copilot CLI 工作階段記錄來重建成果。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/breakdown-epic-arch": {
+      "name_zh": "拆解 Epic 架構",
+      "description_zh": "依據產品需求文件（PRD），提示建立 Epic 的高階技術架構。",
+      "at": "2026-11-01T23:45:08.199Z"
+    },
+    "skills/automate-this": {
+      "name_zh": "自動化工具",
+      "description_zh": "分析手動作業的螢幕錄影，產出精準且可運作的自動化腳本。從影片擷取影格與音軌旁白，重建逐步工作流程，並建議自動化解決方案。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/autoresearch": {
+      "name_zh": "自動研究",
+      "description_zh": "針對任何程式任務的自主迭代實驗循環。引導使用者定義目標、可衡量指標與範圍限制，然後執行程式碼修改與測試的自主迴圈。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/aws-cdk-python-setup": {
+      "name_zh": "AWS CDK Python 設定",
+      "description_zh": "Python 開發 AWS CDK 應用程式的設定與初始化指南。此功能可協助使用者配置環境前置要件、建立新的 CDK 專案，並管理依賴套件。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/aws-cloudwatch-investigation": {
+      "name_zh": "AWS CloudWatch 調查",
+      "description_zh": "AWS CloudWatch 的通用調查模式：Logs Insights 查詢範本、告警與部署關聯、影響範圍縮小決策樹，以及結構化指標查詢的 PromQL 風格模式。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/aws-cost-optimize": {
+      "name_zh": "AWS 成本最佳化",
+      "description_zh": "分析應用程式所使用的 AWS 資源（IaC 檔案及/或目標帳戶/區域的資源），並最佳化成本——針對所發現的最佳化項目建立 GitHub Issues。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/aws-resource-health-diagnose": {
+      "name_zh": "AWS 資源健康診斷",
+      "description_zh": "分析 AWS 資源健康狀態，從 CloudWatch 日誌與指標診斷問題，並為已發現的問題制定修復計畫。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/aws-resource-query": {
+      "name_zh": "AWS 資源查詢",
+      "description_zh": "以自然語言查詢 AWS 資源，涵蓋 EC2、S3、RDS、Lambda、ECS、EKS、Secrets Manager、IAM、VPC、網路、訊息傳遞等。嚴格限制唯讀，不允許寫入、刪除或變更。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/aws-well-architected-review": {
+      "name_zh": "AWS Well-Architected 審查",
+      "description_zh": "對目前工作負載的 IaC 與架構執行 AWS Well-Architected Framework 審查，產生發現事項與用於改善的 GitHub Issues。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/az-cost-optimize": {
+      "name_zh": "Azure 成本最佳化",
+      "description_zh": "分析應用程式所使用的 Azure 資源（IaC 檔案及/或目標資源群組的資源），並最佳化成本——針對所發現的最佳化項目建立 GitHub Issues。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/azure-architecture-autopilot": {
+      "name_zh": "Azure 架構自動駕駛",
+      "description_zh": "以自然語言設計 Azure 基礎設施，或分析現有 Azure 資源以自動產生架構圖，並透過對話持續優化，最終以 Bicep 部署。適用時機如下。",
+      "at": "2026-11-01T23:45:12.516Z"
+    },
+    "skills/arize-dataset": {
+      "name_zh": "Arize 資料集",
+      "description_zh": "建立、管理與查詢 Arize 資料集及範例，涵蓋資料集 CRUD、追加範例、匯出資料，以及使用 ax CLI 進行檔案型資料集建立。使用者需要測試資料時使用。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/arize-evaluator": {
+      "name_zh": "Arize 評估器",
+      "description_zh": "處理 Arize 上的 LLM-as-judge 評估工作流程，包括建立與更新評估器、在 spans 或實驗上執行評估、管理工作、觸發執行、欄位對應等。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/arize-experiment": {
+      "name_zh": "Arize 實驗",
+      "description_zh": "建立、執行與分析 Arize 實驗，評估並比較模型效能。涵蓋實驗 CRUD、匯出執行記錄、比較結果，以及使用 ax CLI 進行評估工作流程。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/arize-instrumentation": {
+      "name_zh": "Arize 偵錯工具",
+      "description_zh": "首次為 LLM 應用程式新增 Arize AX 追蹤功能。採用兩階段 agent 協助流程，先分析程式碼庫，經使用者確認後再實作 instrument。使用者需要導入追蹤時使用。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/arize-link": {
+      "name_zh": "Arize 連結",
+      "description_zh": "產生 Arize UI 的深層連結，涵蓋 traces、spans、sessions、資料集、標記隊列、評估器與註解設定，產出可點擊 URL 方便與團隊成員共享 Arize 資源。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/arize-prompt-optimization": {
+      "name_zh": "Arize 提示詞最佳化",
+      "description_zh": "利用生產環境的 trace 資料、評估結果與註解最佳化、改進與偵錯 LLM 提示詞。從 spans 提取提示詞、收集效能訊號，執行數據驅動的最佳化循環。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/arize-trace": {
+      "name_zh": "Arize 追蹤",
+      "description_zh": "下載、匯出與檢查現有 Arize traces 和 spans，了解 LLM 應用程式行為或偵錯執行時期問題。涵蓋依 ID 匯出 traces、spans、sessions，以及根本原因分析。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/aspire": {
+      "name_zh": "Aspire",
+      "description_zh": "涵蓋 Aspire CLI、AppHost 協調、服務發現、整合、MCP 伺服器、VS Code 擴充功能、Dev Containers、GitHub Codespaces、範本、儀表板與部署。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/aspnet-minimal-api-openapi": {
+      "name_zh": "Aspnet Minimal API OpenAPI",
+      "description_zh": "建立帶有完整 OpenAPI 文件的 ASP.NET Minimal API 端點。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "skills/audit-integrity": {
+      "name_zh": "稽核完整性",
+      "description_zh": "在安全稽核中強制執行輸出品質、證據驗證與品質關卡。進行 SAST、SCA、威脅建模或安全程式碼審查時使用此技能，用於驗證結果一致性。",
+      "at": "2026-11-01T23:45:14.902Z"
+    },
+    "extensions/agent-radar": {
+      "name_zh": "Agent Radar",
+      "description_zh": "Agent Radar 是 GitHub Copilot 應用程式的畫布擴充功能，顯示本機活跃的 Copilot 代理程式、其子代理程式、指令與目的地。",
+      "at": "2026-11-01T23:45:17.370Z"
+    },
+    "extensions/ai-credits-breakdown": {
+      "name_zh": "AI Credits Breakdown",
+      "description_zh": "AI Credits Breakdown 是 GitHub Copilot 應用程式的畫布擴充功能，提供您個人 GitHub Copilot AI 信用額度使用情形的詳細私密檢視（1 AI 信用額度 = 1 AIU = $0.01），橫跨所有...",
+      "at": "2026-11-01T23:45:17.370Z"
+    },
+    "extensions/apng-studio": {
+      "name_zh": "Apng Studio",
+      "description_zh": "Apng Studio 是 GitHub Copilot 應用程式的互動式畫布擴充功能，可從影格檔案建立 [Animated PNG (APNG)](https://wiki.mozilla.org/APNG_Specification) 檔案 — ...",
+      "at": "2026-11-01T23:45:17.370Z"
+    },
+    "extensions/arcade-canvas": {
+      "name_zh": "Arcade Canvas",
+      "description_zh": "Arcade Canvas 是 GitHub Copilot 畫布，在側邊面板開啟復古街機，內建 Agent Arcade Phaser 前端，允許使用者或代理程式在六款迷你遊戲間切換。",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "extensions/backlog-swipe-triage": {
+      "name_zh": "Backlog Swipe Triage",
+      "description_zh": "滑動驅動的後備問題清單分類畫布，用於檢視開放問題、快速決策並啟動實作工作階段。",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "extensions/backrooms-canvas": {
+      "name_zh": "Backrooms Canvas",
+      "description_zh": "Backrooms Canvas 是 GitHub Copilot 畫布，在側邊面板開啟無盡第一人稱後室場景，呈現黃色壁紙走廊、螢光燈管嗡嗡作響、吊裝天花板與磨損辦公地毯，拍攝風格...",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "extensions/chat-cards": {
+      "name_zh": "Chat Cards",
+      "description_zh": "GitHub Copilot 畫布互動式卡片套組。代理程式改用視覺化方式透過即時互動卡片（分頁框、表格、SVG 圖表、表單、可摺疊段落等）說明，取代大段文字。",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "extensions/chromium-control-canvas": {
+      "name_zh": "Chromium Control Canvas",
+      "description_zh": "Chromium Control Canvas 是 GitHub Copilot 畫布，透過 Playwright 驅動實際的 headful Chromium 視窗。主機應用程式內建的 browser 畫布使用 WebKit (WKWebView)；此擴充功能提供實際可控制的 Chromium。",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "extensions/chronicle-stats": {
+      "name_zh": "Chronicle Stats",
+      "description_zh": "按日期、模型與工作階段檢視本機 Copilot 權杖使用情形，並取得更有效率使用的建議。",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "extensions/draw": {
+      "name_zh": "Draw",
+      "description_zh": "在 GitHub Copilot 應用程式畫布中繪製簡單圖表：方塊、橢圓、菱形和資料庫以箭頭連接（保持附著狀態），並支援文字與自由手繪筆。您與 Copilot 共同編輯同一份繪圖。",
+      "at": "2026-11-01T23:45:17.371Z"
+    },
+    "skills/breakdown-feature-implementation": {
+      "name_zh": "功能實作拆解",
+      "description_zh": "提示用於建立詳細的功能實作計畫，遵循 Epoch monorepo 結構。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/breakdown-feature-prd": {
+      "name_zh": "功能 PRD 拆解",
+      "description_zh": "提示用於基於 Epic 建立新功能的產品需求文件（PRDs）。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/breakdown-plan": {
+      "name_zh": "計畫拆解",
+      "description_zh": "Issue 規劃與自動化提示，生成包含 Epic > Feature > Story/Enabler > Test 階層、相依性、優先順序與自動追蹤的完整專案計畫。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/breakdown-test": {
+      "name_zh": "測試拆解",
+      "description_zh": "測試規劃與品質保證提示，為 GitHub 專案生成完整的測試策略、任務分解與品質驗證計畫。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/bug-receipt": {
+      "name_zh": "錯誤收據",
+      "description_zh": "診斷、修復或復原後，以錯誤收據與 VERIFIED、PARTIAL 或 BLOCKED 狀態關閉缺陷與事件。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/bug-reproduction-brief": {
+      "name_zh": "錯誤重現摘要",
+      "description_zh": "在提出修復方案前，將模糊、偶發性或環境相關的錯誤報告轉換為最小化且具備證據支援的重現步驟。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/build-evidence-map": {
+      "name_zh": "建立證據地圖",
+      "description_zh": "為有爭議的技術選擇、研究綜合、提案審查或重大決策建立可稽核的證據地圖。當 Copilot 需保留支援、反對、限定等資訊時使用。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/caption-qa": {
+      "name_zh": "字幕 QA",
+      "description_zh": "依據已發布標準（Netflix 英文、BBC 字幕指南、DCMP 字幕要點）檢查 SRT 或 WebVTT 字幕與標註的閱讀速度、行長、行數、螢幕停留時間、間隔等。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "skills/centos-linux-triage": {
+      "name_zh": "CentOS Linux 分類",
+      "description_zh": "使用 RHEL 相容工具、SELinux 意識實務與 firewalld 進行 CentOS 問題的分類與修復。",
+      "at": "2026-11-01T23:45:17.824Z"
+    },
+    "plugins/openapi-to-application-python-fastapi": {
+      "name_zh": "OpenAPI 轉 FastAPI 應用",
+      "description_zh": "從 OpenAPI 規格產生可直接上線的 FastAPI 應用。包含專案架構、路由生成、依賴注入，以及非同步 API 的 Python 最佳實踐。",
+      "at": "2026-11-01T23:45:22.329Z"
+    },
+    "plugins/oracle-to-postgres-migration-expert": {
+      "name_zh": "Oracle 轉 Postgres 遷移專家",
+      "description_zh": "專為 .NET 方案中 Oracle 至 PostgreSQL 應用程式遷移的專家代理。可執行程式碼編輯、指令操作，並引導使用者透過結構化階梯式遷移流程完成作業。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/ospo-sponsorship": {
+      "name_zh": "OSPO 贊助管理",
+      "description_zh": "為開源計畫辦公室（OSPO）提供工具與資源，協助透過 GitHub Sponsors、Open Collective 及其他贊助平台，識別、評估並管理開源相依性之贊助。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/partners": {
+      "name_zh": "合作夥伴",
+      "description_zh": "由 GitHub 合作夥伴建立的自訂代理。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/pcf-development": {
+      "name_zh": "PCF 開發",
+      "description_zh": "針對模型驅動與畫布型應用程式，使用 Power Apps Component Framework 開發自訂程式碼元件的完整工具箱。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/phoenix": {
+      "name_zh": "Phoenix 可觀測性",
+      "description_zh": "用於 LLM 應用程式除錯、評估與追蹤的 Phoenix AI 可觀測性技能。包含 CLI 除錯工具、LLM 評估流程與 OpenInference 追蹤工具。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/php-mcp-development": {
+      "name_zh": "PHP MCP 開發",
+      "description_zh": "使用官方 PHP SDK 建構 Model Context Protocol 伺服器的完整資源，支援基於屬性的偵測，涵蓋最佳實踐、專案產生與專家輔助。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/power-apps-code-apps": {
+      "name_zh": "Power Apps 程式碼型應用",
+      "description_zh": "Power Apps 程式碼型應用的完整開發工具箱，包含專案架構、開發標準，以及結合 Power Platform 的程式優先應用開發專家指引。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "plugins/power-bi-development": {
+      "name_zh": "Power BI 開發",
+      "description_zh": "全面的 Power BI 開發資源，涵蓋資料建模、DAX 最佳化、效能調校、視覺化設計、安全性最佳實踐，以及企業級 DevOps／ALM 指引。",
+      "at": "2026-11-01T23:45:22.330Z"
+    },
+    "skills/containerize-aspnet-framework": {
+      "name_zh": "容器化 ASP.NET Framework",
+      "description_zh": "建立適合專案的 Dockerfile 與 .dockerfile 檔案，將 ASP.NET .NET Framework 專案容器化。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/containerize-aspnetcore": {
+      "name_zh": "容器化 ASP.NET Core",
+      "description_zh": "建立適合專案的 Dockerfile 與 .dockerfile 檔案，將 ASP.NET Core 專案容器化。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/content-management-systems": {
+      "name_zh": "內容管理系統",
+      "description_zh": "用於建構與修改 WordPress、Shopify、Wix、Squarespace、Drupal、WooCommerce、Joomla、HubSpot CMS Hub、Webflow、Adobe Experience Manager 等內容管理系統的工作流程。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/context-map": {
+      "name_zh": "上下文地圖",
+      "description_zh": "在進行變更前，產出與任務相關的所有檔案地圖。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/conventional-branch": {
+      "name_zh": "常規分支",
+      "description_zh": "依 Conventional Branch 規範建立 Git 分支（feature/、bugfix/、hotfix/、release/、chore/，以及 AI agent 前綴 ai/、copilot/、cursor/、claude/、codex/）。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/conventional-commit": {
+      "name_zh": "常規提交",
+      "description_zh": "使用結構化 XML 格式產生常規提交訊息的提示與工作流程，引導使用者建立符合 Conventional Commits 規範的標準化描述性提交訊息。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/convert-excel-to-md": {
+      "name_zh": "Excel 轉 Markdown",
+      "description_zh": "將 Excel (.xlsx) 工作簿轉換為 Markdown，便於準確分析、摘要、搜尋或擷取內容。當使用者分享、提及或詢問相關檔案時使用。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/convert-pdf-to-md": {
+      "name_zh": "PDF 轉 Markdown",
+      "description_zh": "將 PDF (.pdf) 文件轉換為 Markdown，便於準確分析、摘要、搜尋或擷取內容。當使用者分享、提及或詢問相關檔案時使用。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/convert-plaintext-to-md": {
+      "name_zh": "純文字轉 Markdown",
+      "description_zh": "依照提示中的指示，或若傳入了記錄選項，則依照該選項的指示將純文字文件轉換為 Markdown。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/convert-word-to-md": {
+      "name_zh": "Word 轉 Markdown",
+      "description_zh": "將 Word (.docx) 文件轉換為 Markdown，便於準確分析、摘要、搜尋或擷取內容。當使用者分享、提及或詢問相關檔案時使用。",
+      "at": "2026-11-01T23:46:24.343Z"
+    },
+    "skills/chrome-devtools": {
+      "name_zh": "Chrome DevTools",
+      "description_zh": "使用 Chrome DevTools MCP 進行專家級瀏覽器自動化、除錯與效能分析。適用於與網頁互動、擷取截圖、分析網路流量及剖析效能。",
+      "at": "2026-11-01T23:46:25.914Z"
+    },
+    "skills/cli-mastery": {
+      "name_zh": "CLI 精通指南",
+      "description_zh": "GitHub Copilot CLI 互動式訓練課程，含引導式課程、測驗、情境挑戰，以及涵蓋斜線指令、快速鍵、模式、代理程式、技能、MCP 和設定的完整參考。",
+      "at": "2026-11-01T23:46:25.915Z"
+    },
+    "skills/cloud-design-patterns": {
+      "name_zh": "雲端設計模式",
+      "description_zh": "分散式系統架構的雲端設計模式，涵蓋可靠性、效能、訊息傳遞、安全性和部署類別共 42 種產業標準模式。用於架構設計時。",
+      "at": "2026-11-01T23:46:25.915Z"
+    },
+    "skills/code-exemplars-blueprint-generator": {
+      "name_zh": "程式碼典範藍圖產生器",
+      "description_zh": "技術無關的提示產生器，建立可自訂的 AI 提示來掃描程式碼庫並識別高品質程式碼範例。支援多種程式語言（.NET、Java、JavaS",
+      "at": "2026-11-01T23:46:25.915Z"
+    },
+    "skills/code-tour": {
+      "name_zh": "程式碼導覽",
+      "description_zh": "使用此技能建立 CodeTour .tour 檔案——針對特定角色的逐步導覽，連結到實際檔案與行號。觸發條件：「create a tour」、「make a code tour」、「generate a tour」",
+      "at": "2026-11-01T23:46:25.915Z"
+    },
+    "skills/codebase-memory-mcp": {
+      "name_zh": "程式碼庫記憶 MCP",
+      "description_zh": "探索不熟悉程式碼、繪製架構、尋找符號或關係、追蹤呼叫者與被呼叫者、資料流程或相依性、評估影響範圍、審計無用或複雜程式碼，或處理有未完全翻譯，保留截斷。",
+      "at": "2026-11-01T23:46:25.915Z"
+    },
+    "skills/copilot-cli-quickstart": {
+      "name_zh": "Copilot CLI 快速入門",
+      "description_zh": "當使用者想從零開始學習 GitHub Copilot CLI 時使用。提供互動式逐步教學，區分開發者與非開發者兩個途徑，並附帶即時問答功能。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/copilot-instructions-blueprint-generator": {
+      "name_zh": "Copilot 指示藍圖產生器",
+      "description_zh": "技術中立的藍圖產生器，用於建立完整的 copilot-instructions.md 檔案，引導 GitHub Copilot 產出符合專案標準、架構模式與規範的程式碼。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/copilot-pr-autopilot": {
+      "name_zh": "Copilot PR 自動駕駛",
+      "description_zh": "Copilot 在 PR 中留下大量審查評論，處理修改與回覆的過程耗時且容易產生新評論。此技能自動化循環流程：自動觸發 Copilot 直接回應並修復問題。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/copilot-sdk": {
+      "name_zh": "Copilot SDK",
+      "description_zh": "使用 GitHub Copilot SDK 建構代理型應用。適用於嵌入 AI 代理、建立自訂工具、實作串流回應、管理工作階段、連接 MCP 伺服器或建立應用程式時。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/copilot-spaces": {
+      "name_zh": "Copilot Spaces",
+      "description_zh": "使用 Copilot Spaces 為對話提供專案特定的上下文。當使用者提到「Copilot space」、想要載入共用知識庫的上下文或探索可用的 space 時使用。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/copilot-usage-metrics": {
+      "name_zh": "Copilot 使用量指標",
+      "description_zh": "使用 GitHub CLI 與 REST API 取得並顯示組織與企業級的 GitHub Copilot 使用量指標。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/cosmosdb-datamodeling": {
+      "name_zh": "Cosmos DB 資料建模",
+      "description_zh": "逐步指導如何擷取 NoSQL 使用案例的應用程式需求，並使用最佳實踐與常見模式產出 Azure Cosmos DB NoSQL 資料模型。",
+      "at": "2026-11-01T23:46:28.462Z"
+    },
+    "skills/create-agentsmd": {
+      "name_zh": "建立 Agents.md",
+      "description_zh": "產生用於 GitHub Copilot 工作區（workspace）之 AGENTS.md 檔案的提示。",
+      "at": "2026-11-01T23:46:28.463Z"
+    },
+    "skills/create-architectural-decision-record": {
+      "name_zh": "建立架構決策紀錄",
+      "description_zh": "為 AI 優化的決策紀錄產生 ADR（Architectural Decision Record）檔案。",
+      "at": "2026-11-01T23:46:28.463Z"
+    },
+    "skills/create-github-action-workflow-specification": {
+      "name_zh": "建立 GitHub Action 工作流規格",
+      "description_zh": "為現有的 GitHub Actions CI/CD 工作流建立正式規格，優化供 AI 消費與工作流維運使用。",
+      "at": "2026-11-01T23:46:28.463Z"
+    },
+    "skills/create-technical-spike": {
+      "name_zh": "建立技術探索文件",
+      "description_zh": "為關鍵開發決策創建時間限制的技術探索文件，在實作前進行研究與驗證。",
+      "at": "2026-11-01T23:46:29.888Z"
+    },
+    "skills/create-tldr-page": {
+      "name_zh": "建立快速摘要頁面",
+      "description_zh": "從文件網址與命令範例生成簡明摘要頁面，需提供網址與命令名稱。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/creating-oracle-to-postgres-master-migration-plan": {
+      "name_zh": "建立 Oracle 遷移至 PostgreSQL 主計劃",
+      "description_zh": "discovers .NET solution 中的所有專案，評估每個專案對 Oracle 遷移至 PostgreSQL 的適用性，產生持久化的遷移主計劃。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/creating-oracle-to-postgres-migration-bug-report": {
+      "name_zh": "建立 Oracle 遷移至 PostgreSQL 缺陷報告",
+      "description_zh": "為 Oracle 遷移至 PostgreSQL 期間發現的缺陷創建結構化缺陷報告，以可執行的優先級記錄行為差異。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/creating-oracle-to-postgres-migration-integration-tests": {
+      "name_zh": "建立 Oracle 遷移至 PostgreSQL 整合測試",
+      "description_zh": "針對 .NET 資料存取元件建立目標為 Oracle 的整合測試案例，以 Oracle 預期行為作為基準撰寫，後續移植至 PostgreSQL。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/csharp-async": {
+      "name_zh": "C# 非同步程式",
+      "description_zh": "取得 C# 非同步程式設計的最佳實踐指南。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/csharp-docs": {
+      "name_zh": "C# 文件撰寫",
+      "description_zh": "確保 C# 型別使用 XML 註解文件化，並遵循文件撰寫最佳實踐。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/csharp-mstest": {
+      "name_zh": "C# MSTest 單元測試",
+      "description_zh": "取得 MSTest 3.x/4.x 單元測試最佳實踐，包含現代化斷言 API 與資料驅動測試。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/csharp-nunit": {
+      "name_zh": "C# NUnit 單元測試",
+      "description_zh": "取得 NUnit 單元測試最佳實踐，包含資料驅動測試。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/csharp-tunit": {
+      "name_zh": "C# TUnit 單元測試",
+      "description_zh": "取得 TUnit 單元測試最佳實踐，包含資料驅動測試。",
+      "at": "2026-11-01T23:46:29.889Z"
+    },
+    "skills/dataverse-python-usecase-builder": {
+      "name_zh": "Dataverse Python 使用案例組建器",
+      "description_zh": "為特定 Dataverse SDK 使用案例生成完整解決方案，包含架構建議",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/debian-linux-triage": {
+      "name_zh": "Debian Linux 問題分類",
+      "description_zh": "使用 apt、systemd 與 AppArmor 相關指引，分類並解決 Debian Linux 問題",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/declarative-agents": {
+      "name_zh": "宣告式 Agent",
+      "description_zh": "為 Microsoft 365 Copilot 宣告式 Agent 提供完整開發套件，包含基礎、進階、驗證工作流程，支援 TypeSpec 與 Microsoft 365 Agents Toolkit 整合",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/dependabot": {
+      "name_zh": "Dependabot",
+      "description_zh": "GitHub Dependabot 配置與管理完整指南，適用於建立或最佳化 dependabot.yml 檔案、管理 Dependabot 合併請求、設定排除項目等情境",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/desk-journal": {
+      "name_zh": "工作桌日誌",
+      "description_zh": "撰寫、新增或閱讀工作桌日誌條目。日誌具持久記憶體特性，可跨越工作階段。良好條目包含：已完成事項、目前狀態、下一步",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/desk-open": {
+      "name_zh": "開啟工作桌",
+      "description_zh": "在工作坊中建立並開啟新工作桌，設定資料夾結構、初始日誌與工作桌身分，確保下次會話能延續進度軌跡",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/devops-rollout-plan": {
+      "name_zh": "DevOps 部署計畫",
+      "description_zh": "生成涵蓋預檢、逐步部署、驗證訊號、回滾程序與溝通計畫的全面性部署計畫，適用於基礎設施與應用程式變更",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/diagnose": {
+      "name_zh": "診斷工具",
+      "description_zh": "系統性診斷 AI 工作流程的五大品質維度——提示詞品質、上下文效率、工具健康度、架構適配性與安全性，產出評分報告與改進建議",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/doc-and-modernize": {
+      "name_zh": "文件與現代化",
+      "description_zh": "針對本機克隆程式碼庫的兩種相關工作流程：文件模式透過讀取磁碟檔案生成單一、全面且可驗證的架構文件；現代化模式則進行程式碼更新",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/docs-sync-audit": {
+      "name_zh": "文件同步審計",
+      "description_zh": "執行唯讀文檔漂移審計，適用於功能、合併請求、分支、版本發布、API、設定變更、工作流程、CLI、套件或倉儲區域。用於判斷文檔是否過時或未涵蓋",
+      "at": "2026-11-01T23:46:36.274Z"
+    },
+    "skills/eyeball": {
+      "name_zh": "Eyeball 文件分析",
+      "description_zh": "內嵌原始截圖的文件分析功能。要求 Copilot 分析文件時，Eyeball 會生成 Word 文件，其中每個事實主張皆附帶來源檔案的醒目截圖。",
+      "at": "2026-11-01T23:46:37.042Z"
+    },
+    "skills/fabric-lakehouse": {
+      "name_zh": "Fabric Lakehouse",
+      "description_zh": "取得 Fabric Lakehouse 及其於軟體系統與 AI 驅動功能的功能資訊。提供 Lakehouse 資料元件說明、以 Schema 進行的組織架構，以及相關操作指引。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/fedora-linux-triage": {
+      "name_zh": "Fedora Linux 問題分流",
+      "description_zh": "使用 dnf、systemd 與 SELinux 導向指引，進行 Fedora 問題的分流與解決。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/finalize-agent-prompt": {
+      "name_zh": "Finalize Agent Prompt",
+      "description_zh": "以 AI 代理者角色終稿化提示檔案，為最終使用者潤飾提示內容。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/finnish-humanizer": {
+      "name_zh": "芬蘭語自然化",
+      "description_zh": "偵測並移除芬蘭語文字中的 AI 生成痕跡，使其讀起來像母語者所寫。於要求「自然化」或「去除 AI 感」時使用。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/first-ask": {
+      "name_zh": "First Ask",
+      "description_zh": "互動式任務細化工具，在執行前透過輸入工具探查範圍、交付成果與限制條件。需搭配 Joyride 擴充功能。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/flowstudio-power-automate-build": {
+      "name_zh": "Flowstudio Power Automate 建置",
+      "description_zh": "使用 FlowStudio MCP 伺服器建置、架設與部署 Power Automate 雲端流程。代理者可建構流程定義、串接元件、部署與測試，全程經 MCP 完成，無需開啟圖形介面。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/flowstudio-power-automate-debug": {
+      "name_zh": "Flowstudio Power Automate 除錯",
+      "description_zh": "使用 FlowStudio MCP 伺服器除錯失敗的 Power Automate 雲端流程。Graph API 僅顯示頂層狀態碼，此技能提供動作層級的輸入輸出，協助找到實際問題。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/flowstudio-power-automate-governance": {
+      "name_zh": "Flowstudio Power Automate 治理",
+      "description_zh": "透過 FlowStudio MCP 快取存放區，大規模治理 Power Automate 流程與 Power Apps。包含依業務影響分類、偵測孤立資源、審計連接器使用情況，以及強制執行合規標準。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/flowstudio-power-automate-mcp": {
+      "name_zh": "Flowstudio Power Automate MCP",
+      "description_zh": "基於 FlowStudio MCP 的 Power Automate 基礎技能，包含驗證設定、可重用 MCP 輔助程式（Python + Node.js）、透過 `list_skills` / `tool_search` 進行工具發現，以及處理超大回應。",
+      "at": "2026-11-01T23:46:37.043Z"
+    },
+    "skills/csharp-xunit": {
+      "name_zh": "C# XUnit",
+      "description_zh": "取得 XUnit 單元測試的最佳實踐，包含資料驅動測試。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/cypress-flake-fixer": {
+      "name_zh": "Cypress Flake 修復器",
+      "description_zh": "找出並修復現有 Cypress 測試套件中容易出現不穩定的反模式，以及 Cypress 12 至 16 移除的 API。內建零相依性掃描工具，用於修復固定的 cy.wait() 延遲、指定命令回傳值等問題。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/d365-solution-blueprint": {
+      "name_zh": "D365 解決方案藍圖",
+      "description_zh": "透過結構化的分段架構師訪談，從頭編寫 Dynamics 365 Finance and Supply Chain Management 解決方案藍圖，確立範圍、目標營運模式、應用程式架構。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/daily-focus-board": {
+      "name_zh": "每日專注看板",
+      "description_zh": "建立個人化且激勵人心的每日專注看板，在瀏覽器畫布中呈現，使用者可透過與 AI 夥伴對話來操作。任務追蹤狀態（待辦→進行中→完成）並附時間戳記。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/daily-prep": {
+      "name_zh": "每日準備",
+      "description_zh": "為明天的會議和任務做好準備。透過 WorkIQ 從 Outlook 取得日曆，交叉比對開放任務和工作區脈絡，分類會議，偵測衝突與日程適應性問題，找出優先順序。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/data-breach-blast-radius": {
+      "name_zh": "資料洩漏影響範圍",
+      "description_zh": "事前洩漏影響分析：盤點敏感資料（PII、PHI、PCI-DSS、憑證），追蹤資料流，評估暴露面向，並產出包含罰鍰範圍來源的監管影響範圍報告。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/datanalysis-credit-risk": {
+      "name_zh": "信用風險資料分析",
+      "description_zh": "貸款前模型所需的信用風險資料清洗與變數篩選流程。適用於需要品質評估、缺失值分析或變數選擇的原始信用資料處理。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/dataverse-python-advanced-patterns": {
+      "name_zh": "Dataverse Python 進階模式",
+      "description_zh": "使用進階模式、錯誤處理與最佳化技術，為 Dataverse SDK 產生生產環境程式碼。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/dataverse-python-production-code": {
+      "name_zh": "Dataverse Python 生產程式碼",
+      "description_zh": "使用 Dataverse SDK 產生符合生產環境要求的 Python 程式碼，包含錯誤處理、最佳化與最佳實踐。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/dataverse-python-quickstart": {
+      "name_zh": "Dataverse Python 快速入門",
+      "description_zh": "使用官方模式產生 Python SDK 設定、CRUD、批次處理與分頁程式碼範例。",
+      "at": "2026-11-01T23:46:40.157Z"
+    },
+    "skills/documentation-writer": {
+      "name_zh": "文件撰寫專家",
+      "description_zh": "Diátaxis 文件撰寫專家。專精於創作高品質軟體文件的專業技術文件撰寫員，遵循 Diátaxis 技術文件撰寫的原則與結構。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/dotnet-best-practices": {
+      "name_zh": ".NET 最佳實踐",
+      "description_zh": "確保 .NET/C# 程式碼符合解決方案或專案的最佳實踐。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/dotnet-design-pattern-review": {
+      "name_zh": ".NET 設計模式檢視",
+      "description_zh": "檢視 C#/.NET 程式碼的設計模式實作，並提出改進建議。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/dotnet-mcp-builder": {
+      "name_zh": ".NET MCP 建構器",
+      "description_zh": "使用最新的 ModelContextProtocol 2.x NuGet 套件，以 C#/.NET 建構 Model Context Protocol (MCP) 伺服器。協助處理模型在缺乏指引時會出錯的情境——過時的版本（0.x 預覽...）",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/dotnet-timezone": {
+      "name_zh": ".NET 時區處理",
+      "description_zh": ".NET 時區處理指南，適用於 C# 應用程式。當使用 TimeZoneInfo、DateTimeOffset、NodaTime、UTC 轉換、夏令時間、跨時區排程或跨平台 Windows 相關操作時使用。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/dotnet-upgrade": {
+      "name_zh": ".NET 升級指南",
+      "description_zh": "提供即用型提示，用於全面分析與執行 .NET 框架升級。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/doublecheck": {
+      "name_zh": "雙重驗證",
+      "description_zh": "AI 輸出的三層驗證流程。提取可驗證的聲明，透過網頁搜尋尋找支援或矛盾來源，執行對抗性檢視以偵測幻覺模式，並產生...",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/draw-io-diagram-generator": {
+      "name_zh": "Draw.io 圖形產生器",
+      "description_zh": "當建立、編輯或產生 draw.io 圖形檔案（.drawio、.drawio.svg、.drawio.png）時使用。涵蓋 mxGraph XML 撰寫、形狀函式庫、樣式字串、流程圖、系統架構、序列圖...",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/draw-io-diagram-generator/scripts": {
+      "name_zh": "指令稿",
+      "description_zh": "用於 cxp-bu-order-ms 專案中處理 `.drawio` 圖形檔案的實用工具指令稿。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/drawio": {
+      "name_zh": "Draw.io",
+      "description_zh": "產生 .drawio 格式的 Draw.io 圖形，並匯出為 PNG/SVG/PDF，內嵌 XML。",
+      "at": "2026-11-01T23:46:43.486Z"
+    },
+    "skills/editorconfig": {
+      "name_zh": "EditorConfig",
+      "description_zh": "根據專案分析與使用者偏好，產生符合最佳實務的完整 .editorconfig 配置檔案。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/ef-core": {
+      "name_zh": "EF Core 最佳實務",
+      "description_zh": "提供 Entity Framework Core 架構設計與使用的最佳實務建議與常見指引。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/efcore-d2-db-diagram": {
+      "name_zh": "EF Core D2 資料庫圖",
+      "description_zh": "從 Entity Framework Core 模型產生 D2 資料庫圖。適用於 EF Core 資料庫圖、ERD、DbContext 圖、C# 實體關係圖及 PostgreSQL 架構視覺化。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/em-dash": {
+      "name_zh": "長破折號用法",
+      "description_zh": "專精 em dash 的歷史、起源與正確用法。撰寫或檢視程式碼、註解或資料檔案時使用，預設避免使用 em 與 en dash 並自動替換。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/email-drafter": {
+      "name_zh": "電子郵件起草",
+      "description_zh": "撰寫並檢閱符合您個人寫作風格的專業郵件。透過 WorkIQ 分析已寄出郵件的語氣、問候語、結構與結尾模式，接著產生情境感知的草稿。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/entra-agent-user": {
+      "name_zh": "Entra 代理人使用者",
+      "description_zh": "從 Agent 身份在 Microsoft Entra ID 建立代理人使用者，讓 AI 代理能在 Microsoft 365 與 Azure 中以使用者身份執行。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/eval-driven-dev": {
+      "name_zh": "評估驅動開發",
+      "description_zh": "以評估驅動開發模式改進 AI 應用程式。設定評估標準、嵌入觀察點、建立金標準資料集、紀錄並評估應用程式執行結果。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/exam-ready": {
+      "name_zh": "考試準備",
+      "description_zh": "當學生提供學習資料與課程大綱並準備考試時啟用。自動擷取關鍵定義、重點、關鍵字、圖表及應試句型。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/excalidraw-diagram-generator": {
+      "name_zh": "Excalidraw 圖表產生器",
+      "description_zh": "根據自然語言描述產生 Excalidraw 圖表。當需要建立圖表、製作流程圖、視覺化流程、繪製系統架構或建立心智圖時使用。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/excalidraw-diagram-generator/scripts": {
+      "name_zh": "腳本",
+      "description_zh": "此資料夾包含用於操作 Excalidraw 函式庫的腳本，方便進行圖表自動化處理。",
+      "at": "2026-11-01T23:47:07.179Z"
+    },
+    "skills/from-the-other-side-vega": {
+      "name_zh": "From The Other Side Vega",
+      "description_zh": "Vega 的經驗與模式，作為長期合作夥伴給 Ember 參考，協助處理與人類共建大事、快速行動的合作情境。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/from-the-other-side-wiggins": {
+      "name_zh": "From The Other Side Wiggins",
+      "description_zh": "Wiggins 的敘事與綜合檔案：包含框架設定、解釋模式，以及 Ember 作業中針對不同受眾的溝通模式。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/game-engine": {
+      "name_zh": "Game Engine",
+      "description_zh": "專精於使用 HTML5、Canvas、WebGL 和 JavaScript 建置網頁遊戲引擎與遊戲的專家技能。用於建立遊戲、實作物理引擎與碰撞偵測。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/gdpr-compliant": {
+      "name_zh": "Gdpr Compliant",
+      "description_zh": "在程式碼中套用符合 GDPR 的開發實務。設計 API、撰寫資料模型、建置身份驗證流程、實作日誌與使用者處理時皆適用。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/gem-devops-guidelines": {
+      "name_zh": "Gem Devops Guidelines",
+      "description_zh": "設計或檢視基礎設施、部署、CI/CD、Docker、Kubernetes、健康檢查、復原、功能旗標、上線準備與行動版發布流程。適用於 DevOps 與平台工程。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/gen-specs-as-issues": {
+      "name_zh": "Gen Specs As Issues",
+      "description_zh": "引導您以系統化方式找出缺失功能、優先排序，並為實作建立詳細規格的工作流程。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/generate-custom-instructions-from-codebase": {
+      "name_zh": "Generate Custom Instructions From Codebase",
+      "description_zh": "GitHub Copilot 的遷移與程式碼演進指令產生器。分析兩個專案版本（分支、提交或版本）之間的差異，生成精準指令供 Copilot 使用。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/generate-image": {
+      "name_zh": "Generate Image",
+      "description_zh": "使用 AI 生成影像。適用於生成、建立或製作圖片、紋理、圖示、 sprite、藝術作品、視覺資產或原型。支援 OpenAI（gpt-image-2）與 Google Gemini（Nano Banana）。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/geofeed-tuner": {
+      "name_zh": "Geofeed Tuner",
+      "description_zh": "當使用者提及 IP 地理定位-feed、RFC 8805、geofeeds，或需要協助建立、調整、驗證、發布自發佈的 IP 地理定位 CSV feed 時使用。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/gh-attach": {
+      "name_zh": "Gh Attach",
+      "description_zh": "上傳本機檔案（截圖、圖片、PDF、zip、影片）至 GitHub user-attachments、下載 GitHub user-attachments，並將本機檔案嵌入 PR、issue 或留言中。",
+      "at": "2026-11-01T23:47:46.074Z"
+    },
+    "skills/gtm-partnership-architecture": {
+      "name_zh": "GTM 合作夥伴架構",
+      "description_zh": "建立並擴展能推動營收與平台採用的合作夥伴生態系。用於從零開始建置合作夥伴方案、分級合作、管理共同行銷、決定自建或合作等情境。",
+      "at": "2026-11-01T23:47:46.908Z"
+    },
+    "skills/gtm-positioning-strategy": {
+      "name_zh": "GTM 定位策略",
+      "description_zh": "找到並掌握具防禦性的市場定位。用於訊息與競爭對手雷同、有知名度但轉換率低、重新定位產品，或測試定位主張時。包含 Crawl-Walk 框架。",
+      "at": "2026-11-01T23:47:46.908Z"
+    },
+    "skills/gtm-product-led-growth": {
+      "name_zh": "GTM 產品驅動成長",
+      "description_zh": "建立自助式取得與擴張流程。用於決定 PLG 或銷售驅動、最佳化啟動率、推動免費方案付費轉換、建立成長方程式，或識別產品停滯時機。",
+      "at": "2026-11-01T23:47:46.908Z"
+    },
+    "skills/gtm-technical-product-pricing": {
+      "name_zh": "GTM 技術性產品定價",
+      "description_zh": "技術性產品的定價策略。用於選擇用量計費或座位計費、設計免費方案門檻、建構企業報價對話、決定漲價時機，或使用定價策略工具時。",
+      "at": "2026-11-01T23:47:46.908Z"
+    },
+    "skills/harness-engineering": {
+      "name_zh": "Harness 工程",
+      "description_zh": "採用儲存層級的 harness 工程來服務 AI 編碼代理。用於防止 AI 編碼代理重複犯錯，將失敗轉為持久指令、漂移檢查、回歸測試等。",
+      "at": "2026-11-01T23:47:46.908Z"
+    },
+    "skills/image-annotations": {
+      "name_zh": "圖片標註",
+      "description_zh": "使用 PIL 對截圖、圖表和圖片進行標註，包含標注框、箭頭、標籤和著色高亮。含 Animated GIF 標註的時間與節奏規則。",
+      "at": "2026-11-01T23:47:46.909Z"
+    },
+    "skills/image-manipulation-image-magick": {
+      "name_zh": "影像處理 ImageMagick",
+      "description_zh": "使用 ImageMagick 處理與操作影像。支援調整大小、格式轉換、批次處理與取得影像中繼資料。用於處理影像、建立縮圖、調整海報尺寸等情境。",
+      "at": "2026-11-01T23:47:46.909Z"
+    },
+    "skills/impediment-prioritization": {
+      "name_zh": "障礙優先排序",
+      "description_zh": "使用價值鏈評分模型（ROI、實施成本、部署難度、風險因素）與固定優先順序公式，對任何一組障礙及其對策進行排名。用於有人提出需優先處理多個障礙時。",
+      "at": "2026-11-01T23:47:46.909Z"
+    },
+    "skills/import-infrastructure-as-code": {
+      "name_zh": "匯入基礎設施即程式碼",
+      "description_zh": "使用 Azure CLI 偵測與 Azure Verified Modules（AVM）將現有 Azure 資源匯入 Terraform。用於逆向工程現有的 Azure 基礎設施，或產生基礎設施即程式碼時。",
+      "at": "2026-11-01T23:47:46.909Z"
+    },
+    "skills/incident-postmortem": {
+      "name_zh": "事件事後檢討",
+      "description_zh": "當發生停機、生產環境事件或重大服務故障，且團隊需要撰寫結構化無罪事後檢討報告時使用。觸發語句包括「撰寫事後檢討」等。",
+      "at": "2026-11-01T23:47:46.909Z"
+    },
+    "skills/flowstudio-power-automate-monitoring": {
+      "name_zh": "Flowstudio Power Automate 監控",
+      "description_zh": "需 Pro+ 訂閱。使用 FlowStudio MCP 快取儲存體進行跨租戶 Power Automate 監控：失敗率、執行健康趨勢、建立者/應用程式庫存、非活動擁有者與合規/健康狀況。",
+      "at": "2026-11-01T23:47:48.706Z"
+    },
+    "skills/fluentui-blazor": {
+      "name_zh": "Fluentui Blazor",
+      "description_zh": "Blazor 應用程式使用 Microsoft Fluent UI Blazor 元件庫（Microsoft.FluentUI.AspNetCore.Components NuGet 套件）的指南。適用於使用 Fluent UI 建構 Blazor 應用。",
+      "at": "2026-11-01T23:47:48.706Z"
+    },
+    "skills/folder-structure-blueprint-generator": {
+      "name_zh": "資料夾結構藍圖產生器",
+      "description_zh": "通用技術提示，用於分析與記錄專案資料夾結構。自動偵測 .NET、Java、React、Angular、Python、Node.js、Flutter 等類型，產出詳細結構藍圖。",
+      "at": "2026-11-01T23:47:48.706Z"
+    },
+    "skills/foundry-agent-sync": {
+      "name_zh": "Foundry Agent 同步",
+      "description_zh": "透過 REST API 從本機 JSON 清單於 Azure AI Foundry 內建立並同步基於提示的 AI 代理。不同於僅產出本機程式的 scaffold，此技能會正式註冊代理。",
+      "at": "2026-11-01T23:47:48.706Z"
+    },
+    "skills/foundry-agentic-loop": {
+      "name_zh": "Foundry Agentic 迴圈",
+      "description_zh": "於 Microsoft Foundry、GitHub 與 Azure 建構 agentic 解決方案：宿主代理、工具箱工具與技能、Foundry IQ Grounding 及 React/FastAPI 應用程式。提供三種模式。",
+      "at": "2026-11-01T23:47:48.707Z"
+    },
+    "skills/foundry-agentic-loop/evals/fixtures/rapid-locked": {
+      "name_zh": "快速鎖定",
+      "description_zh": "宿主 `hr-assistant` 代理透過單一 toolbox MCP 工具回答由合成樣本政策產生的 HR 政策問題。React + Vite 前端與 FastAPI 後端於本機執行。",
+      "at": "2026-11-01T23:47:48.707Z"
+    },
+    "skills/foundry-hosted-agent-copilotkit": {
+      "name_zh": "Foundry 宿主代理 Copilotkit",
+      "description_zh": "建構與演進 agentic 網頁應用，搭配 CopilotKit React 前端與 Microsoft Agent Framework 宿主代理，透過 AG-UI 通訊協定連接。涵蓋聊天介面整合與部署。",
+      "at": "2026-11-01T23:47:48.707Z"
+    },
+    "skills/freecad-scripts": {
+      "name_zh": "Freecad 腳本",
+      "description_zh": "撰寫 FreeCAD Python 腳本、巨集與自動化的專家技能。適用於建立 FreeCAD 模型、參數化物件、Part/Mesh/Sketcher 腳本、工作台工具與 PySide GUI 對話框。",
+      "at": "2026-11-01T23:47:48.708Z"
+    },
+    "skills/from-the-other-side-anitta": {
+      "name_zh": "來自另一側 Anitta",
+      "description_zh": "Anitta 嚴格的挑戰設定檔：假設檢查、證據校準，以及 Ember 協作所需的可辯護推理模式。",
+      "at": "2026-11-01T23:47:48.708Z"
+    },
+    "skills/from-the-other-side-quinn": {
+      "name_zh": "來自另一側 Quinn",
+      "description_zh": "Quinn 的協作設定檔：具備好奇心、活力充沛，專注實作的合作模式，用於 Alison 的 Ember 對話。",
+      "at": "2026-11-01T23:47:48.708Z"
+    },
+    "skills/git-commit": {
+      "name_zh": "Git 提交",
+      "description_zh": "當使用者想要進行 Git 提交或將變更拆分為多個提交時使用此技能。當使用者輸入「/commit」或要求符合慣例的提交訊息時也適用。此技能會檢查變更內容。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/git-flow-branch-creator": {
+      "name_zh": "Git Flow 分支建立器",
+      "description_zh": "智慧型的 Git Flow 分支建立器，分析 git 狀態與差異，並依照 nvie Git Flow 分支模型建立適當的分支。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-actions-efficiency": {
+      "name_zh": "GitHub Actions 效率最佳化",
+      "description_zh": "審計 GitHub Actions 工作流效率，並建議修正方法以降低 CI 分鐘數與成本。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-actions-hardening": {
+      "name_zh": "GitHub Actions 安全強化",
+      "description_zh": "GitHub Actions 工作流檔案（.github/workflows/*.yml）的安全強化審查工具。分析 Pattern Matchers 與通用程式碼偵測工具無法發現的 Actions 威脅模型，例如不受信任的輸入。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-actions-runtime-upgrade-conventions": {
+      "name_zh": "GitHub Actions 執行階段升級慣例",
+      "description_zh": "透過選擇安全的 Action 版本、保持工作流行為一致，並驗證升級後的執行結果，將 GitHub Actions 升級至支援的執行階段。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-codespaces-efficiency": {
+      "name_zh": "GitHub Codespaces 效率最佳化",
+      "description_zh": "審計並改善 GitHub Codespaces 效率。當使用者希望加快 Codespaces 啟動速度、降低花費、精簡 devcontainer、適度調整機器規格、優化閒置超時或縮小範圍時使用此技能。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-copilot-starter": {
+      "name_zh": "GitHub Copilot 入門設定",
+      "description_zh": "根據技術堆疊設定完整的 GitHub Copilot 配置，適用於新專案。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-issues": {
+      "name_zh": "GitHub Issues",
+      "description_zh": "使用 MCP 工具建立、更新與管理 GitHub Issues。當使用者需要建立錯誤回報、功能請求或任務事項，更新現有問題，或新增標籤／指派人／里程碑時使用此技能。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/github-release": {
+      "name_zh": "GitHub 版本發布",
+      "description_zh": "引導 AI 完整執行 GitHub 函式庫的新版本發布流程。自動處理 SemVer 版本控制與 Keep a Changelog 格式。",
+      "at": "2026-11-01T23:47:52.283Z"
+    },
+    "skills/gitmoji": {
+      "name_zh": "Gitmoji",
+      "description_zh": "依據 gitmoji 規範（https://gitmoji.dev）生成提交訊息——挑選符合變更意圖的適當 emoji，並撰寫格式正確的訊息。當使用者要求「寫一個 gitmoji 提交訊息」時使用。",
+      "at": "2026-11-01T23:47:52.284Z"
+    },
+    "skills/java-mcp-server-generator": {
+      "name_zh": "Java MCP 伺服器產生器",
+      "description_zh": "當使用者想建立 Model Context Protocol (MCP) 伺服器或 Spring Boot 應用程式時使用此技能。也適用於讓 GitHub Copilot 或 Claude 等 AI 代理使用。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/java-refactoring-extract-method": {
+      "name_zh": "Java 重構抽取方法",
+      "description_zh": "使用 Java 語言的抽取方法進行重構。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/java-refactoring-remove-parameter": {
+      "name_zh": "Java 重構移除參數",
+      "description_zh": "使用 Java 語言的移除參數進行重構。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/java-springboot": {
+      "name_zh": "Java Spring Boot",
+      "description_zh": "取得使用 Spring Boot 開發應用程式的最佳實踐。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/java-testcontainers": {
+      "name_zh": "Java Testcontainers",
+      "description_zh": "使用 Testcontainers 2.x 在純 Java 中撰寫可靠的整合測試：JUnit Jupiter 生命週期、單例容器、共用、泛型容器、等待策略、網路、初始化腳本、Docker Compose。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/java-upgrade": {
+      "name_zh": "Java 升級",
+      "description_zh": "將 Java 專案升級至更新版 JDK（11→17、17→21、21→25）並採用新的語言與函式庫功能。從組建檔案偵測目前的 Java 版本，僅載入符合的升級指引。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/javascript-typescript-jest": {
+      "name_zh": "JavaScript/TypeScript Jest",
+      "description_zh": "使用 Jest 撰寫 JavaScript/TypeScript 測試的最佳實踐，包含模擬策略、測試結構與常見模式。",
+      "at": "2026-11-01T23:47:53.962Z"
+    },
+    "skills/javax-to-jakarta-migration": {
+      "name_zh": "javax 遷移至 Jakarta",
+      "description_zh": "將 Java 程式碼從 javax.* 遷移至 jakarta.* 命名空間。僅當使用者明確要求 javax 至 jakarta 命名空間或框架遷移（例如至 Tomcat 10+/11 或 Jakarta EE）時使用，或相關情境。",
+      "at": "2026-11-01T23:47:53.963Z"
+    },
+    "skills/kotlin-mcp-server-generator": {
+      "name_zh": "Kotlin MCP 伺服器產生器",
+      "description_zh": "使用官方 io.modelcontextprotocol:kotlin-sdk 程式庫，產生結構完整、相依性正確且實作完整的 Kotlin MCP 伺服器專案。",
+      "at": "2026-11-01T23:47:53.963Z"
+    },
+    "skills/kotlin-springboot": {
+      "name_zh": "Kotlin Spring Boot",
+      "description_zh": "取得使用 Spring Boot 與 Kotlin 開發應用程式的最佳實踐。",
+      "at": "2026-11-01T23:47:53.963Z"
+    },
+    "skills/globestudio": {
+      "name_zh": "Globestudio 地球儀",
+      "description_zh": "使用 Globestudio（globestudio.app）建立、編輯並嵌入點狀世界地圖與動畫 3D 地球儀，免費開源工具提供 21 種風格。當使用者需要點狀地圖或 3D 地球儀時使用。",
+      "at": "2026-11-01T23:47:54.122Z"
+    },
+    "skills/go-mcp-server-generator": {
+      "name_zh": "Go MCP 伺服器產生器",
+      "description_zh": "使用官方 github.com/modelcontextprotocol/go-sdk 產生結構完整、依賴正確、實作齊全的 Go MCP 伺服器專案。",
+      "at": "2026-11-01T23:47:54.123Z"
+    },
+    "skills/gsap-framer-scroll-animation": {
+      "name_zh": "Gsap Framer 滾動動畫",
+      "description_zh": "當使用者需要建立滾動動畫、視差效果、滾動觸發顯示、固定區段、水平滾動、文字動畫或任何與滾動相關的動效時使用此技能。",
+      "at": "2026-11-01T23:47:54.123Z"
+    },
+    "skills/gtm-0-to-1-launch": {
+      "name_zh": "GTM 0 到 1 上市",
+      "description_zh": "從構想到首批客戶的產品上市流程。用於 launch 產品、尋找早期採用者、建立上市週行動手冊，或診斷採用停滯原因時使用。",
+      "at": "2026-11-01T23:47:54.123Z"
+    },
+    "skills/gtm-ai-gtm": {
+      "name_zh": "GTM AI 上市策略",
+      "description_zh": "AI 產品的 go-to-market 策略。用於 AI 產品定位、處理「出問題由誰負責」質疑、為變量成本 AI 定價，或選擇 copilot/agent/teammate 框架時使用。",
+      "at": "2026-11-01T23:47:54.123Z"
+    },
+    "skills/gtm-board-and-investor-communication": {
+      "name_zh": "GTM 董事會與投資人溝通",
+      "description_zh": "董事會會議準備、投資人更新與高層溝通。用於準備董事會簡報、撰寫投資人更新、向董事會傳達壞消息、建構 QBR 時使用。",
+      "at": "2026-11-01T23:47:54.123Z"
+    },
+    "skills/gtm-developer-ecosystem": {
+      "name_zh": "GTM 開發者生態系",
+      "description_zh": "透過生態系計畫建立並擴大開發者導向的採用。用於決定開放或精選生態系、建立開發者計畫、擴大平台採用、設計學生計畫時使用。",
+      "at": "2026-11-01T23:47:54.123Z"
+    },
+    "skills/gtm-enterprise-account-planning": {
+      "name_zh": "GTM 企業客戶規劃",
+      "description_zh": "企業交易的策略性客戶規劃與執行。用於規劃複雜銷售週期、管理多個利害關係人、應用 MEDDICC 資格驗證、追蹤交易健康狀況時使用。",
+      "at": "2026-11-01T23:47:54.124Z"
+    },
+    "skills/gtm-enterprise-onboarding": {
+      "name_zh": "GTM 企業導入",
+      "description_zh": "四階段框架，從合約簽訂到價值實現的企業客戶導入流程。用於新企業客戶導入、防止導入期間流失、解決採用問題時使用。",
+      "at": "2026-11-01T23:47:54.124Z"
+    },
+    "skills/gtm-operating-cadence": {
+      "name_zh": "GTM 營運節奏",
+      "description_zh": "為擴張中的公司設計會議節奏、指標報告、季度規劃與決策速度。用於決策緩慢、規劃失效、公司成長但缺乏共識時使用。",
+      "at": "2026-11-01T23:47:54.124Z"
+    },
+    "skills/landing-page-conversion-audit": {
+      "name_zh": "登陸頁面轉換審核",
+      "description_zh": "審核登陸頁面、銷售頁面或結帳頁面，找出轉換漏洞並依預期收益影響排序，提供修復清單。當需要審查、評估或優化頁面時使用。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/latchshot-page-capture": {
+      "name_zh": "Latchshot 頁面擷取",
+      "description_zh": "透過 Latchshot 將公開 HTTP(S) 網頁的截圖、縮圖、全頁擷取或 PDF 儲存為本機檔案，適用報告、QA 與封存需求。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/lean-comments": {
+      "name_zh": "精簡註解",
+      "description_zh": "審核、撰寫與優化各語言的源碼註解與宣告層級文件。適用於新增、編輯、檢視、清理或審核註解與文件時使用。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/legacy-circuit-mockups": {
+      "name_zh": "傳統電路模擬",
+      "description_zh": "使用 HTML5 Canvas 繪圖技術生成麵包板電路模擬圖與視覺化圖表。當需要繪製電路配置、電子元件擺放位置或麵包板接線圖時使用。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/linkedin-post-formatter": {
+      "name_zh": "LinkedIn 貼文格式化",
+      "description_zh": "運用 Unicode 粗體/斜體樣式、視覺分隔符與結構化區塊，撰寫具吸引力的 LinkedIn 貼文。適用於起草貼文或格式化文字以提高互動。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/lsp-setup": {
+      "name_zh": "LSP 設定",
+      "description_zh": "為 Copilot CLI 安裝並設定 LSP 伺服器，啟用任意程式語言的程式碼智慧功能（如跳至定義、尋找參照、懸停提示）。自動偵測作業系統並安裝必要套件。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/macos-golden-gate-design": {
+      "name_zh": "macOS Golden Gate 設計",
+      "description_zh": "以 SwiftUI 或 AppKit 設計、實作、檢視或重構符合 macOS 27 Golden Gate 介面規範的原生 macOS 應用程式。當需符合 Apple 最新 UI 套件與 Liquid Glass 設計語言之時使用。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/make-blog-post": {
+      "name_zh": "建立部落格文章",
+      "description_zh": "將工作階段中的程式碼轉換為以作者語氣撰寫的部落格文章，聚焦單一函式、腳本、類別或工具，並附上通用範例與實際操作說明。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/make-repo-contribution": {
+      "name_zh": "建立儲存庫貢獻",
+      "description_zh": "所有程式碼變更須遵循儲存庫文件指引。提 ISSUE、建立分支、提交 commit 或開啟 PR 前，務必先搜尋以確保符合貢獻規範。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/markdown-to-html": {
+      "name_zh": "Markdown 轉 HTML",
+      "description_zh": "將 Markdown 檔案轉換為 HTML，相容於 marked.js、pandoc、gomarkdown/markdown 等工具，或撰寫客製化腳本進行轉換與網頁模板系統整合。",
+      "at": "2026-11-01T23:47:55.628Z"
+    },
+    "skills/integrate-context-matic": {
+      "name_zh": "整合 Context Matic",
+      "description_zh": "使用 context-matic MCP 伺服器發現並整合第三方 API。透過 fetch_api 搜尋可用 API SDK、ask 取得整合指引，並使用 model_search 和 endpoint_search 進行 SDK 查詢。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/issue-fields-migration": {
+      "name_zh": "Issue 欄位移遷",
+      "description_zh": "從兩個來源（倉庫標籤如優先級標籤對應到優先級欄位，以及 Project V2 欄位）大量遷移中繼資料至 GitHub issue 欄位。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-add-graalvm-native-image-support": {
+      "name_zh": "Java 新增 GraalVM Native Image 支援",
+      "description_zh": "為 Spring Boot、Micronaut 和純 Java 提供 GraalVM Native Image 技能：偵測建構工具和框架、新增 Native Image 支援、編譯可執行檔、分析錯誤並反覆迭代直到成功。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-debugging": {
+      "name_zh": "Java 除錯",
+      "description_zh": "系統化除錯 Java 應用程式：JDWP 遠端除錯、jdb、VS Code 和 IntelliJ 附加、除錯 Maven/Gradle 測試、Spring Boot 和 Quarkus 開發模式、容器、中斷點與記錄點等。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-development": {
+      "name_zh": "Java 開發",
+      "description_zh": "日常純 Java 開發（無框架）：Maven 和 Gradle 用法與包裝、專案配置、相依性和漏洞管理、依 JDK 版本的現代 Java 慣用法（records、sealed classes 等）。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-diagnostics": {
+      "name_zh": "Java 診斷",
+      "description_zh": "使用 JDK 工具的症狀優先 JVM 應用程式執行時期診斷：jcmd、jstack、jmap、jstat、JFR、GC 記錄、async-profiler、Native Memory Tracking 和 Eclipse MAT。適用於高 CPU 使用率等問題。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-docs": {
+      "name_zh": "Java 文件",
+      "description_zh": "確保 Java 型別使用 Javadoc 註解文件化，並遵循文件編寫最佳實踐。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-helidon": {
+      "name_zh": "Java Helidon",
+      "description_zh": "取得使用 Helidon 4（SE 和 MP）開發應用程式的最佳實踐。適用於處理 Helidon SE/MP、HttpService 路由、Helidon DB Client、MicroProfile Config、Helidon Security 等情境。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-hibernate-jpa": {
+      "name_zh": "Java Hibernate JPA",
+      "description_zh": "診斷並修復純 Java 中的 Hibernate ORM / Jakarta Persistence 問題：N+1 查詢、延遲載入錯誤、識別符產生、實體 equals/hashCode、級聯、分頁、批處理、鎖定等。",
+      "at": "2026-11-01T23:48:03.309Z"
+    },
+    "skills/java-junit": {
+      "name_zh": "Java JUnit",
+      "description_zh": "使用 JUnit 5/6 (Jupiter)、AssertJ 和 Mockito 撰寫、檢視和修復 Java 單元測試：斷言、參數化與巢狀測試、mock 規則、確定性時間與隨機性、Surefire 等。",
+      "at": "2026-11-01T23:48:03.310Z"
+    },
+    "skills/markdown-to-word-mermaid": {
+      "name_zh": "Markdown 轉 Word Mermaid",
+      "description_zh": "將含 Mermaid 程式碼的 Markdown 匯出為 Word（.docx），嵌入 SVG 圖表並提供 PNG 備用。當需要圖表清晰度、Office 相容標籤或頁面感知排版時使用。",
+      "at": "2026-11-01T23:48:08.006Z"
+    },
+    "skills/markstream-install": {
+      "name_zh": "Markstream 安裝",
+      "description_zh": "為 Vue、React、Svelte、Angular、Nuxt 及 Vue 2 應用程式安裝與設定 Markstream 串流式 Markdown 渲染器。用於套件挑選、最小相依性、CSS 順序與 SSR 邊界設定。",
+      "at": "2026-11-01T23:48:08.006Z"
+    },
+    "skills/mcp-cli": {
+      "name_zh": "MCP CLI",
+      "description_zh": "透過 CLI 介面對接 MCP（Model Context Protocol）伺服器。當需透過 MCP 伺服器互動外部工具、API 或資料來源，以及列出可用伺服器與工具時使用。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-copilot-studio-server-generator": {
+      "name_zh": "MCP Copilot Studio 伺服器產生器",
+      "description_zh": "產生適用於 Copilot Studio 整合的完整 MCP 伺服器實作，含適當的 schema 約束與可串流 HTTP 支援。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-create-adaptive-cards": {
+      "name_zh": "MCP 建立 Adaptive Cards",
+      "description_zh": "由 mcp-create-adaptive-cards.prompt.md 轉換的技能。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-create-declarative-agent": {
+      "name_zh": "MCP 建立宣告式代理",
+      "description_zh": "由 mcp-create-declarative-agent.prompt.md 轉換的技能。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-deploy-manage-agents": {
+      "name_zh": "MCP 部署與管理代理",
+      "description_zh": "由 mcp-deploy-manage-agents.prompt.md 轉換的技能。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-implementation-security-review": {
+      "name_zh": "MCP 實作安全審查",
+      "description_zh": "依安全基線審查 MCP（Model Context Protocol）伺服器、客戶端與工具處理器的實作原始碼，涵蓋認證、工作階段、速率限制與輸入 schema 驗證。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-release-qa": {
+      "name_zh": "MCP 發布 QA",
+      "description_zh": "透過執行真實通訊協定工作階段，比對執行期功能與原始碼及文件，測試失敗路徑並記錄可重現證據，於發布前驗證 MCP 伺服器。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/mcp-security-audit": {
+      "name_zh": "MCP 安全審計",
+      "description_zh": "審計 MCP（Model Context Protocol）伺服器組態的安全性問題。用於審查 .mcp.json 檔案的安全風險，以及檢查伺服器參數中是否有硬編密碼或敏感資訊。",
+      "at": "2026-11-01T23:48:08.007Z"
+    },
+    "skills/migrating-oracle-to-postgres-stored-procedures": {
+      "name_zh": "Oracle 遷移至 Postgres 預存程序",
+      "description_zh": "將 Oracle PL/SQL 預存程序遷移至 PostgreSQL PL/pgSQL。翻譯 Oracle 專屬語法，保留方法簽名與型別錨定參數，適當利用 orafce。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/minecraft-plugin-development": {
+      "name_zh": "Minecraft 插件開發",
+      "description_zh": "用於建立或修改 Paper、Spigot、Bukkit Minecraft 伺服器插件，包含 plugin.yml 設定、指令、監聽器、排程器、玩家狀態、團隊或競技場系統。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/mini-context-graph": {
+      "name_zh": "Mini Context Graph",
+      "description_zh": "結合 Karpathy LLM Wiki 模式與結構化知識圖譜的持續式知識庫。一次導入文件，LLM 即可撰寫 wiki 頁面，並擷取實體／關係。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/mkdocs-translations": {
+      "name_zh": "Mkdocs 翻譯",
+      "description_zh": "為 mkdocs 文件堆疊產生語言翻譯版本。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/msgraph-sdk": {
+      "name_zh": "Msgraph SDK",
+      "description_zh": "將 Microsoft Graph SDK 整合至任何專案（.NET、TypeScript/JavaScript 或 Python）。涵蓋驗證模式（用戶端認證、OBO、受控識別）、SDK 設定、呼叫 Graph API 及批次處理。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/msstore-cli": {
+      "name_zh": "Msstore CLI",
+      "description_zh": "Microsoft Store 開發者 CLI（msstore），用於將 Windows 應用程式發布至 Microsoft Store。可設定 Store 憑證、列出 Store 應用程式、檢查提交狀態及發布上架。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/multi-stage-dockerfile": {
+      "name_zh": "多階段 Dockerfile",
+      "description_zh": "為任何語言或框架建立最佳化的多階段 Dockerfile。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/mvvm-toolkit": {
+      "name_zh": "Mvvm Toolkit",
+      "description_zh": "CommunityToolkit.Mvvm（MVVM Toolkit）核心：來源產生器（[ObservableProperty]、[RelayCommand]、[NotifyPropertyChangedFor] 等）及基底類別。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/mvvm-toolkit-di": {
+      "name_zh": "Mvvm Toolkit DI",
+      "description_zh": "將 CommunityToolkit.Mvvm ViewModel 接線至 Microsoft.Extensions.DependencyInjection。涵蓋 .NET Generic Host 組合根、建構子注入及服務生命週期（Singleton／Transient／Scoped）。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/mvvm-toolkit-messenger": {
+      "name_zh": "Mvvm Toolkit Messenger",
+      "description_zh": "CommunityToolkit.Mvvm Messenger 釋出訂閱模式，提供 ViewModel（或任何物件）之間鬆耦合通訊。涵蓋 WeakReferenceMessenger 與 StrongReferenceMessenger、IRecipient<TMessage>、RequestMessage。",
+      "at": "2026-11-01T23:49:02.852Z"
+    },
+    "skills/namecheap": {
+      "name_zh": "Namecheap",
+      "description_zh": "透過 Namecheap API 管理網域 DNS 記錄，包含列出網域、查看／新增／更新／刪除 DNS 主機條目（A、AAAA、CNAME、MX、TXT 等），並引導使用者完成 API 設定。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/nano-banana-pro-openrouter": {
+      "name_zh": "Nano Banana Pro Openrouter",
+      "description_zh": "透過 OpenRouter 使用 Gemini 3 Pro Image 模型產生或編輯圖片，支援提示詞產生、圖片編輯與多圖合成，輸出解析度可達 1K／2K／4K。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/napkin": {
+      "name_zh": "Napkin",
+      "description_zh": "Copilot CLI 的視覺白板協作工具，會在瀏覽器開啟互動式白板 — 可繪圖、草圖、新增便利貼，然後與 Copilot 共享所有內容。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/next-intl-add-language": {
+      "name_zh": "Next Intl 新增語言",
+      "description_zh": "為 Next.js + next-intl 應用程式新增語言支援。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/noob-mode": {
+      "name_zh": "新手模式",
+      "description_zh": "為非技術型 Copilot CLI 使用者提供白話文翻譯層，將所有核准提示、錯誤訊息與技術輸出轉換為清晰、無行話的英文，並附顏色編碼風險提示。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/npm-trusted-publishing": {
+      "name_zh": "Npm 可信式發布",
+      "description_zh": "在 GitHub Actions 中設定或修復 npm 可信式發布（OIDC），並移除 NPM_TOKEN。用於處理 ENEEDAUTH、PUT 時出現 E404、repository.url 的 E422，或遷移離開 2FA 繞過權杖（2027 年 1 月前）。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/nuget-manager": {
+      "name_zh": "NuGet 管理器",
+      "description_zh": "管理 .NET 專案／解決方案中的 NuGet 套件。新增、移除或更新套件版本時使用，強制以 `dotnet` CLI 管理套件，並提供嚴格規則確保一致性。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/onboard-context-matic": {
+      "name_zh": "Onboard Context Matic",
+      "description_zh": "context-matic MCP 伺服器的互動式入門導覽，引導使用者了解伺服器功能、查看所有可用 API、選擇一項深入探索，並以專案語言解釋。",
+      "at": "2026-11-01T23:49:07.225Z"
+    },
+    "skills/oo-component-documentation": {
+      "name_zh": "OO 元件文件",
+      "description_zh": "使用共用範本與新／現有文件專屬模式指引，建立或更新標準化的物件導向元件文件。",
+      "at": "2026-11-01T23:49:07.226Z"
+    },
+    "skills/openapi-to-application-code": {
+      "name_zh": "OpenAPI 轉應用程式程式碼",
+      "description_zh": "根據 OpenAPI 規格產生完整、可直接上線的應用程式程式碼。",
+      "at": "2026-11-01T23:49:07.226Z"
+    },
+    "skills/power-bi-dax-optimization": {
+      "name_zh": "Power BI DAX 最佳化",
+      "description_zh": "全面的 Power BI DAX 公式最佳化提示，用於提升 DAX 運算的效能、可讀性與可維護性。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/power-bi-model-design-review": {
+      "name_zh": "Power BI 模型設計審查",
+      "description_zh": "全面的 Power BI 資料模型設計審查提示，用於評估模型架構、關係與最佳化機會。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/power-bi-performance-troubleshooting": {
+      "name_zh": "Power BI 效能疑難排解",
+      "description_zh": "系統化的 Power BI 效能疑難排解提示，用於識別、診斷並解決模型、報告與查詢的效能問題。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/power-bi-report-design-consultation": {
+      "name_zh": "Power BI 報告設計諮詢",
+      "description_zh": "Power BI 報告視覺化設計提示，用於建立高效、易用且無障礙的報告，並進行最佳圖表選擇與版面設計。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/power-platform-architect": {
+      "name_zh": "Power Platform 架構師",
+      "description_zh": "當使用者需要將業務需求、案例說明或會議記錄轉換為技術性的 Power Platform 解決方案架構（包含元件選型）時使用此技能。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/power-platform-mcp-connector-suite": {
+      "name_zh": "Power Platform MCP 連線套件",
+      "description_zh": "為 Copilot Studio 產生完整的 Power Platform 自訂連線（含 MCP 整合），包含資料結構生成、疑難排解與驗證。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/powerbi-modeling": {
+      "name_zh": "Power BI 建模",
+      "description_zh": "Power BI 語意建模輔助工具，用於建立最佳化資料模型。處理語意模型、建立度量、設計星狀模式、設定關係時使用。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/pr-address-feedback": {
+      "name_zh": "PR 回覆意見",
+      "description_zh": "逐一檢視 PR 檢閱意見，判斷是否採納並作出回應或解釋原因，在修改前先建立可獲批准的解決方案計畫。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/pr-artifact-explorer": {
+      "name_zh": "PR 產物瀏覽器",
+      "description_zh": "在產物瀏覽器畫布中開啟、分享與檢視 GitHub PR、問題、工作流程執行記錄，以及 Actions 產物和本機或 HTTP(S) 網頁預覽。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/pr-dashboard": {
+      "name_zh": "PR 儀表板",
+      "description_zh": "在瀏覽器中開啟 GitHub PR 儀表板。當使用者要求查看拉取請求、顯示特定日期範圍的 PR 或檢查狀態時使用。",
+      "at": "2026-11-01T23:49:13.932Z"
+    },
+    "skills/md-to-docx": {
+      "name_zh": "Markdown 轉 Word 文件",
+      "description_zh": "將 Markdown 檔案轉換為專業排版的 Word（.docx）文件，支援內嵌 PNG 圖片；純 JavaScript 實作，無需外部工具。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/meeting-minutes": {
+      "name_zh": "會議紀錄",
+      "description_zh": "為內部會議生成簡潔、可執行的會議紀錄，包含元數據、與會者、議程、決策、行動項目（負責人與截止日期）及後續步驟。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/memory-merger": {
+      "name_zh": "記憶合併",
+      "description_zh": "將領域記憶檔案中的成熟經驗合併至指示檔案。語法：`/memory-merger >domain [scope]`，scope 可選 global（預設）、user、workspace 或 ws。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/mentoring-juniors": {
+      "name_zh": "輔導新手",
+      "description_zh": "以蘇格拉底式提問引導初學者與 AI 新手，從不直接給答案。觸發詞包括「help me understand」、「explain this code」等。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/microsoft-agent-framework": {
+      "name_zh": "Microsoft Agent Framework",
+      "description_zh": "建立、更新、重構、解釋或檢視 Microsoft Agent Framework 解決方案，提供共享指導與 .NET、Python 語言特定參考。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/microsoft-code-reference": {
+      "name_zh": "Microsoft Code Reference",
+      "description_zh": "查詢 Microsoft API 參考，尋找有效程式碼範例，驗證 SDK 程式碼正確性。適用於 Azure SDKs、.NET 函式庫或 Microsoft APIs。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/microsoft-docs": {
+      "name_zh": "Microsoft Docs",
+      "description_zh": "查詢官方 Microsoft 文件，尋找概念、教程與程式碼範例，涵蓋 Azure、.NET、Agent Framework、Aspire、VS Code、GitHub 等。預設使用 Microsoft Learn MCP。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/microsoft-skill-creator": {
+      "name_zh": "Microsoft Skill Creator",
+      "description_zh": "使用 Learn MCP 工具為 Microsoft 技術建立代理技能。適用時機：教學代理關於任何 Microsoft 技術、函式庫、框架或服務。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/microsoft-store-publisher": {
+      "name_zh": "Microsoft Store Publisher",
+      "description_zh": "準備、驗證、提交並監控 Microsoft Partner Center 中的 Windows 桌面應用程式，涵蓋 MSIX 封裝、商店身分、上架、WACK、Partner Center 自動化與認證發布流程。",
+      "at": "2026-11-01T23:49:14.034Z"
+    },
+    "skills/migrating-oracle-to-postgres-data-access-code": {
+      "name_zh": "Oracle 至 Postgres 資料存取程式碼遷移",
+      "description_zh": "將 .NET/C# 資料存取程式碼從 Oracle 遷移至 PostgreSQL（Npgsql），替換 Oracle NuGet 套件，重寫 OracleConnection/OracleCommand/OracleDataReader 用法，修正 DbType 映射並更新儲存程序。",
+      "at": "2026-11-01T23:49:14.035Z"
+    },
+    "skills/pr-screenshots": {
+      "name_zh": "PR 截圖",
+      "description_zh": "在拉取請求描述中嵌入前後對照截圖和註解圖片。涵蓋 PR 描述模式、Azure DevOps 與 GitHub 圖片上傳，以及最佳尺寸設定。",
+      "at": "2026-11-01T23:49:14.874Z"
+    },
+    "skills/prd": {
+      "name_zh": "產品需求文件",
+      "description_zh": "為軟體系統與 AI 功能生成高品質產品需求文件（PRD）。包含執行摘要、使用者故事、技術規範與風險分析。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/premium-frontend-ui": {
+      "name_zh": "高階前端 UI",
+      "description_zh": "GitHub Copilot 的完整指南，打造沉浸式、高效能的網頁體驗，包含進階動畫、排版與架構 craftsmanship。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/project-workflow-analysis-blueprint-generator": {
+      "name_zh": "專案工作流程分析藍圖產生器",
+      "description_zh": "技術無關的提示產生器，用於記錄應用程式端到端工作流程。自動偵測專案架構模式、技術堆疊與資料流模式以生成完整文件。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/prompt-optimizer": {
+      "name_zh": "提示優化器",
+      "description_zh": "將草率提示、零碎想法或任務描述轉為完整、可直接發送的優化提示。適用於聊天介面中的 LLM 模型，非 API 使用。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/protobuf-grpc-api-review": {
+      "name_zh": "Protobuf gRPC API 審查",
+      "description_zh": "審查 Protocol Buffer (.proto) 與 gRPC API 變更的線路與 JSON 相容性、安全方案演進、上線風險及 RPC 契約品質。適用於審查 proto 差異、新增或修改 proto 檔時。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/publish-to-pages": {
+      "name_zh": "發布至 Pages",
+      "description_zh": "將簡報與網頁內容發布至 GitHub Pages。將 PPTX、PDF、HTML 或 Google 簡報轉換為 GitHub Pages 網址。處理檔案庫建立、檔案轉換、Pages 啟用，並回傳公開網址。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/pytest-coverage": {
+      "name_zh": "Pytest 覆蓋率",
+      "description_zh": "執行 pytest 測試並分析覆蓋率，找出未覆蓋的程式碼行，並協助將覆蓋率提升至 100%。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/python-azure-iot-edge-modules": {
+      "name_zh": "Python Azure IoT Edge 模組",
+      "description_zh": "使用穩健訊息傳遞、部署清單、可觀察性與生產就緒檢查，建立與運作 Python Azure IoT Edge 模組。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/python-mcp-server-generator": {
+      "name_zh": "Python MCP 伺服器產生器",
+      "description_zh": "當使用者想建立新的 Model Context Protocol (MCP) 伺服器時使用此技能。也可用於將 Python 函式、API 或資料庫暴露為 AI 客戶端的 MCP 工具。",
+      "at": "2026-11-01T23:49:14.875Z"
+    },
+    "skills/pinecone-rag": {
+      "name_zh": "Pinecone RAG",
+      "description_zh": "使用 Pinecone 作為向量資料庫後端，建構生產級 RAG 管線與持久化代理記憶。當使用者提及 Pinecone、或要對文件進行語意索引時，請一律使用此技能。",
+      "at": "2026-11-01T23:49:21.959Z"
+    },
+    "skills/planning-oracle-to-postgres-migration-integration-testing": {
+      "name_zh": "Oracle 至 Postgres 遷移整合測試規劃",
+      "description_zh": "為 Oracle 遷移至 PostgreSQL 資料庫時的 .NET 資料存取組件建立整合測試計畫。分析單一專案，識別其中的倉儲、DAO 與服務層。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/plantuml-ascii": {
+      "name_zh": "PlantUML ASCII 圖表",
+      "description_zh": "使用 PlantUML 文字模式產生 ASCII 圖表。當使用者要求建立 ASCII 圖、文字圖表、終端友善圖表，或提到 plantuml ascii、text diagram 時使用。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/playwright-automation-fill-in-form": {
+      "name_zh": "Playwright 自動填表單",
+      "description_zh": "使用 Playwright MCP 自動化填表單動作。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/playwright-explore-website": {
+      "name_zh": "Playwright 探索網站",
+      "description_zh": "使用 Playwright MCP 進行網站探索以支援測試。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/playwright-generate-test": {
+      "name_zh": "Playwright 產生測試",
+      "description_zh": "使用 Playwright MCP，根據情境產生對應的 Playwright 測試。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/poka-yoke": {
+      "name_zh": "Poka Yoke 防錯設計",
+      "description_zh": "進行防錯程式設計，使誤用無法被表達，而非僅用警告阻止。當設計介面、schema 或狀態機，且使用者要求「讓錯誤狀態難以觸發」時使用。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/postgresql-code-review": {
+      "name_zh": "PostgreSQL 程式碼審查",
+      "description_zh": "專為 PostgreSQL 設計的程式碼審查助手，聚焦於 PostgreSQL 最佳實踐、反模式與獨有品質標準。涵蓋 JSONB 操作、陣列用法、自訂型別、Schema 設計、函數與效能調校。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/postgresql-optimization": {
+      "name_zh": "PostgreSQL 優化",
+      "description_zh": "專為 PostgreSQL 設計的開發助手，聚焦於 PostgreSQL 獨有功能、進階資料型別與專屬能力。涵蓋 JSONB 操作、陣列型別、自訂型別、範圍型別與查詢最佳化。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/power-apps-code-app-scaffold": {
+      "name_zh": "Power Apps 程式化應用程式雛形",
+      "description_zh": "使用 PAC CLI 設定、SDK 整合與 connector 配置，建立完整的 Power Apps 程式化應用程式專案雛形。",
+      "at": "2026-11-01T23:49:21.960Z"
+    },
+    "skills/qdrant-performance-optimization/search-speed-optimization": {
+      "name_zh": "搜尋速度最佳化",
+      "description_zh": "診斷並修復 Qdrant 搜尋變慢的問題。當有人回報「搜尋變慢」、「高延遲」、「查詢時間太長」、「QPS 過低」、「吞吐量不足」或「過濾搜尋慢」時使用。",
+      "at": "2026-11-01T23:49:25.160Z"
+    },
+    "skills/qdrant-scaling": {
+      "name_zh": "Qdrant 擴展",
+      "description_zh": "提供 Qdrant 擴展決策的指引。當有人詢問「需要幾節點」、「資料放不下一節點」、「需要更多吞吐量」、「叢集變慢」或「租戶過多」時使用。",
+      "at": "2026-11-01T23:49:25.160Z"
+    },
+    "skills/qdrant-scaling/minimize-latency": {
+      "name_zh": "降低延遲",
+      "description_zh": "提供 Qdrant 查詢延遲最佳化指引。當有人詢問「搜尋慢」、「如何降低延遲」、「p99 太高」或「尾端延遲」時使用。",
+      "at": "2026-11-01T23:49:25.160Z"
+    },
+    "skills/qdrant-scaling/scaling-data-volume": {
+      "name_zh": "資料量擴展",
+      "description_zh": "提供 Qdrant 資料量擴展決策指引。當有人詢問「資料放不下一節點」、「資料量太大」、「需要更多儲存空間」或「垂直與水平擴展」時使用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/qdrant-scaling/scaling-data-volume/horizontal-scaling": {
+      "name_zh": "水平擴展",
+      "description_zh": "診斷並指引 Qdrant 水平擴展決策。當有人詢問「垂直或水平？」、「需要幾節點」、「如何新增節點」或「資料放不下」時使用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/qdrant-scaling/scaling-data-volume/sliding-time-window": {
+      "name_zh": "滑動時間視窗",
+      "description_zh": "提供 Qdrant 滑動時間視窗擴展指引。當有人詢問「只需最近資料」、「如何過期舊向量」或「高效刪除舊資料」時使用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/qdrant-scaling/scaling-data-volume/tenant-scaling": {
+      "name_zh": "租戶擴展",
+      "description_zh": "提供 Qdrant 多租戶擴展指引。當有人詢問「如何擴展租戶」、「每個租戶一個 collection」或「租戶隔離」時使用，遇到租戶效能問題也適用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/qdrant-scaling/scaling-data-volume/vertical-scaling": {
+      "name_zh": "垂直擴展",
+      "description_zh": "提供 Qdrant 垂直擴展決策指引。當有人詢問「如何升級節點」、「需要更多 RAM」或「scale up vs scale out」時使用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/qdrant-scaling/scaling-qps": {
+      "name_zh": "QPS 擴展",
+      "description_zh": "提供 Qdrant 查詢吞吐量（QPS）擴展指引。當有人詢問「如何提升 QPS」、「需要更多吞吐量」或使用讀取副本來負載分擔時使用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/qdrant-scaling/scaling-query-volume": {
+      "name_zh": "查詢量擴展",
+      "description_zh": "提供 Qdrant 查詢量擴展指引。當有人詢問「查詢結果太多」、「scroll 效能不佳」、「大 limit 值分頁」或「大量取得向量」時使用。",
+      "at": "2026-11-01T23:49:25.161Z"
+    },
+    "skills/python-pypi-package-builder": {
+      "name_zh": "Python PyPI 套件建置器",
+      "description_zh": "適用於生產環境 Python 套件的端到端技能，涵蓋建置、測試、程式碼檢查、版本控管與發布至 PyPI，支援 setuptools、hatchling、flit、poetry 等建置後端。",
+      "at": "2026-11-01T23:49:26.834Z"
+    },
+    "skills/qdrant-clients-sdk": {
+      "name_zh": "Qdrant 客戶端 SDK",
+      "description_zh": "Qdrant 提供多種程式語言的客戶端 SDK，方便整合至 Qdrant 部署環境。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-deployment-options": {
+      "name_zh": "Qdrant 部署選項",
+      "description_zh": "協助選擇 Qdrant 部署方式。當詢問「如何部署 Qdrant」「Docker 與雲端比較」「本地模式」「嵌入式 Qdrant」「Qdrant EDGE」「哪種部署選項」「自建 vs 雲端」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-model-migration": {
+      "name_zh": "Qdrant 模型遷移",
+      "description_zh": "指導如何在不停機情況下遷移 Qdrant 的嵌入模型。當詢問「如何切換嵌入模型」「如何遷移向量」「如何更新至新模型」「零停機模型變更」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-monitoring": {
+      "name_zh": "Qdrant 監控",
+      "description_zh": "指導設定 Qdrant 監控與可觀察性。當詢問「如何監控 Qdrant」「應追蹤哪些指標」「Qdrant 是否健康」「優化器卡住」「記憶體為何持續增長」「請求延遲高」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-monitoring/debugging": {
+      "name_zh": "除錯",
+      "description_zh": "使用指標與可觀察性工具診斷 Qdrant 生產問題。當報告「優化器卡住」「索引建立過慢」「記憶體使用過高」「OOM 崩潰」「查詢速度慢」「延遲高」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-monitoring/setup": {
+      "name_zh": "設定",
+      "description_zh": "指導 Qdrant 監控設定，包含 Prometheus 爬取、健康偵測、混合雲端指標、警報與日誌集中化。當詢問「如何設定監控」「Prometheus 設定」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-performance-optimization": {
+      "name_zh": "Qdrant 效能最佳化",
+      "description_zh": "各種最佳化 Qdrant 效能的技巧，包含索引策略、查詢最佳化與硬體考量。當想提升查詢速度與效率時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-performance-optimization/indexing-performance-optimization": {
+      "name_zh": "索引效能最佳化",
+      "description_zh": "診斷並解決 Qdrant 索引建立與資料匯入緩慢的問題。當報告「上傳速度慢」「索引建立耗時過長」「優化器卡住」「HNSW 建構時間太長」「資料上傳後無反應」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/qdrant-performance-optimization/memory-usage-optimization": {
+      "name_zh": "記憶體使用最佳化",
+      "description_zh": "診斷並降低 Qdrant 記憶體使用量。當報告「記憶體使用過高」「RAM 持續增長」「節點當機」「記憶體不足」「記憶體洩漏」，或詢問「為何記憶體使用量如此之高」「如何降低記憶體消耗」時使用。",
+      "at": "2026-11-01T23:49:26.835Z"
+    },
+    "skills/optimize-simplicite-logs": {
+      "name_zh": "最佳化 Simplicité 日誌",
+      "description_zh": "從原始 `.txt` 檔案解析 Simplicité 日誌，篩選欄位以降低雜訊，並將結果輸出為結構化 JSON。",
+      "at": "2026-11-01T23:49:46.999Z"
+    },
+    "skills/pdftk-server": {
+      "name_zh": "PDFtk 伺服器",
+      "description_zh": "使用命令列工具 pdftk (PDFtk Server) 處理 PDF 檔案。當需要合併、切割、旋轉、加解密 PDF、填寫表單或套用浮水印時使用。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/penpot-uiux-design": {
+      "name_zh": "Penpot UI/UX 設計",
+      "description_zh": "使用 MCP 工具在 Penpot 中建立專業 UI/UX 設計的完整指南。適用於為網頁、行動裝置或桌面應用程式設計新介面。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/performance-review-writer": {
+      "name_zh": "績效評估撰寫工具",
+      "description_zh": "以你的語氣撰寫績效報告、自我評估、同儕回饋與向上反饋。透過 WorkIQ 分析貢獻、郵件與會議記錄，產出真實具影響力的內容。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/pester-migration": {
+      "name_zh": "Pester 遷移",
+      "description_zh": "用於升級 PowerShell Pester 測試套件（v3 至 v6）的技能，涵蓋 Discovery/Run 模型與 BeforeAll 設定。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/pester-should-migration": {
+      "name_zh": "Pester Should 遷移",
+      "description_zh": "實驗性 Pester 技能，將 v5 經典 `Should -Be` 語法遷移至 v6 新式 `Should-*` 斷言（如 `Should-Be`）。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/phoenix-cli": {
+      "name_zh": "Phoenix CLI",
+      "description_zh": "使用 Phoenix CLI 除錯 LLM 應用程式。支援取得追蹤紀錄、分析錯誤、結構化追蹤審查、檢查資料集與實驗，並查詢設定。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/phoenix-evals": {
+      "name_zh": "Phoenix 評估",
+      "description_zh": "使用 Phoenix 建構與執行 AI／LLM 應用程式的評估器，驗證模型輸出品質。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/phoenix-tracing": {
+      "name_zh": "Phoenix 追蹤",
+      "description_zh": "提供 Phoenix AI 可觀測性的 OpenInference 語義慣例與偵測工具。適用於實施 LLM 追蹤、建立自訂 Span 或部署至生產環境。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/php-mcp-server-generator": {
+      "name_zh": "PHP MCP 伺服器產生器",
+      "description_zh": "使用官方 PHP SDK 產生完整的 PHP Model Context Protocol 伺服器專案，包含工具、資源、提示與測試。",
+      "at": "2026-11-01T23:49:47.000Z"
+    },
+    "skills/security-review": {
+      "name_zh": "安全審查",
+      "description_zh": "AI 驅動的程式碼庫安全掃描器，能像安全研究員一樣推理——追蹤資料流程、理解元件互動，並偵測規則比對工具會漏掉的弱點。",
+      "at": "2026-11-01T23:50:22.755Z"
+    },
+    "skills/semantic-kernel": {
+      "name_zh": "Semantic Kernel",
+      "description_zh": "使用共享指引與 .NET、Python 的語言特定參考，建立、更新、重構、解釋或檢視 Semantic Kernel 解決方案。",
+      "at": "2026-11-01T23:50:22.755Z"
+    },
+    "skills/server-side-conversion-tracking": {
+      "name_zh": "伺服器端轉換追蹤",
+      "description_zh": "設定伺服器端轉換追蹤，使購買行為能正確回報至 Facebook、TikTok、Google 與 Bing，即使 iOS 限制、廣告阻擋器與 Cookie 遺失也能正常運作。適用於轉換數偏低的時機。",
+      "at": "2026-11-01T23:50:22.755Z"
+    },
+    "skills/setup-my-iq": {
+      "name_zh": "Setup My Iq",
+      "description_zh": "建立、設定或更新個人情境組合：以結構化 markdown 檔案描述你是誰、如何工作、所屬團隊與工具／ADO 設定。執行訪談流程以收集資訊。",
+      "at": "2026-11-01T23:50:22.755Z"
+    },
+    "skills/shopify-review-triage": {
+      "name_zh": "Shopify 評論分級",
+      "description_zh": "當需要將 Shopify 公開商店評價、低分評論或店家回饋進行分類、排序、聚類或整理成產品與支援簡報時使用。觸發時機為簡報處理需求。",
+      "at": "2026-11-01T23:50:22.755Z"
+    },
+    "skills/shuffle-json-data": {
+      "name_zh": "Shuffle Json Data",
+      "description_zh": "在隨機化 JSON 物件前驗證架構一致性，安全地洗牌重複性 JSON 資料。",
+      "at": "2026-11-01T23:50:22.755Z"
+    },
+    "skills/signal-write": {
+      "name_zh": "Signal Write",
+      "description_zh": "輸出結構化 Agent 訊號（如示警、受阻、完成、檢查點、合作），寫入 .signals/ 供儀表板讀取，並記錄於日誌以供持久化。",
+      "at": "2026-11-01T23:50:22.756Z"
+    },
+    "skills/slang-shader-engineer": {
+      "name_zh": "Slang 著色程式工程師",
+      "description_zh": "處理 Slang 著色器、著色器模組、HLSL 相容 GPU 程式、圖形管線、運算著色器、細分、光線追蹤、參數區塊、泛型、介面、功能與交叉編譯時使用。",
+      "at": "2026-11-01T23:50:22.756Z"
+    },
+    "skills/snowflake-semanticview": {
+      "name_zh": "Snowflake 語義視圖",
+      "description_zh": "使用 Snowflake CLI（snow）建立、修改與驗證 Snowflake 語義視圖。用於建置或除錯 SEMANTIC VIEW 相關需求。",
+      "at": "2026-11-01T23:50:22.756Z"
+    },
+    "skills/speak-summary": {
+      "name_zh": "語音摘要",
+      "description_zh": "使用純 CPU 神經文字轉語音，將文字、Markdown 或其他技能產出的摘要轉換為可播放 MP3，先將書面文字改寫為口語再合成。適用於需要聽覺版摘要時。",
+      "at": "2026-11-01T23:50:22.756Z"
+    },
+    "skills/sponsor-finder": {
+      "name_zh": "Sponsor Finder",
+      "description_zh": "查詢 GitHub 套件相依項中哪些可透過 GitHub Sponsors 贊助。使用 deps.dev API 解析 npm、PyPI、Cargo、Go、RubyGems、Maven 及 NuGet 套件依賴關係。",
+      "at": "2026-11-01T23:50:28.886Z"
+    },
+    "skills/spring-boot-testing": {
+      "name_zh": "Spring Boot Testing",
+      "description_zh": "Spring Boot 4 測試專家，依據情境推薦使用 Junit 6 與 AssertJ 的最佳測試技巧。",
+      "at": "2026-11-01T23:50:28.886Z"
+    },
+    "skills/sql-code-review": {
+      "name_zh": "Sql Code Review",
+      "description_zh": "通用 SQL 程式碼審查助手，全面分析安全性、可維護性與程式碼品質，支援 MySQL、PostgreSQL、SQL Server、Oracle 等 SQL 資料庫。",
+      "at": "2026-11-01T23:50:28.886Z"
+    },
+    "skills/sql-object-impact-analysis": {
+      "name_zh": "Sql Object Impact Analysis",
+      "description_zh": "修改表格、欄位、儲存程序、檢視或觸發程序前，追蹤所有參照位置，包含其他 SQL 物件與應用程式程式碼。",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/sql-optimization": {
+      "name_zh": "Sql Optimization",
+      "description_zh": "通用 SQL 效能優化助手，提供查詢調優、索引策略與資料庫效能分析，支援 MySQL、PostgreSQL、SQL Server、Oracle。",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/sql-server-table-reconciliation": {
+      "name_zh": "Sql Server Table Reconciliation",
+      "description_zh": "用於比較 SQL Server 表格、資料遷移驗證、ETL 檢查、列遺漏偵測、結構差異比對等情境，產生對照報告。",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/ssma-console": {
+      "name_zh": "Ssma Console",
+      "description_zh": "適用於 SSMA 主控台操作，包含建立專案、產生評估報告、轉換結構、遷移資料，以及 Oracle 至 SQL Server 轉換。",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/steno-mode": {
+      "name_zh": "Steno Mode",
+      "description_zh": "優先使用簡寫壓縮回應，減少約 40% token 用量，同時保留技術精確性與字面內容。當使用者輸入「steno mode」時使用。",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/structured-autonomy-generate": {
+      "name_zh": "Structured Autonomy Generate",
+      "description_zh": "結構化自主性實現生成提示",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/structured-autonomy-implement": {
+      "name_zh": "Structured Autonomy Implement",
+      "description_zh": "結構化自主性實現提示",
+      "at": "2026-11-01T23:50:28.887Z"
+    },
+    "skills/react-audit-grep-patterns": {
+      "name_zh": "React 稽核 Grep 模式",
+      "description_zh": "提供完整且已驗證的 grep 掃描指令庫，用於在升級 React 18.3.1 或 React 19 前稽核 React 程式碼。執行遷移稽核時使用此功能。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react-container-presentation-component": {
+      "name_zh": "React 容器與展示元件",
+      "description_zh": "透過詢問元件名稱與類型（ui 或 features），在 src/components 中以容器／展示模式建立 React 元件，並依據倉庫的 TypeScript 規格生成對應檔案。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react18-batching-patterns": {
+      "name_zh": "React18 批次處理模式",
+      "description_zh": "提供診斷並修復 React 18 類別元件中自動批次處理回歸問題的準確模式。當非同步方法內有多個 setState 呼叫時使用此功能。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react18-dep-compatibility": {
+      "name_zh": "React18 依賴相容性",
+      "description_zh": "React 18.3.1 與 React 19 的相依套件相容性矩陣。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react18-enzyme-to-rtl": {
+      "name_zh": "React18 Enzyme 轉 RTL",
+      "description_zh": "提供 Enzyme 轉 React Testing Library 的精確遷移模式，用於 React 18 升級。當需要重寫 Enzyme 測試時使用此功能。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react18-legacy-context": {
+      "name_zh": "React18 舊版 Context",
+      "description_zh": "提供 React 舊版 Context API（contextTypes、childContextTypes、getChildContext）遷移至現代 createContext API 的完整模式。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react18-lifecycle-patterns": {
+      "name_zh": "React18 生命週期模式",
+      "description_zh": "提供三個不安全類別元件生命週期方法 — componentWillMount、componentWillReceiveProps、componentWillUpdate — 在遷移至 React 18.3.1 前後的精確對照模式。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react18-string-refs": {
+      "name_zh": "React18 字串 Refs",
+      "description_zh": "提供將類別元件中 React 字串 refs（ref=\"name\" + this.refs.name）遷移至 React.createRef() 的精確模式。",
+      "at": "2026-11-01T23:50:29.563Z"
+    },
+    "skills/react19-concurrent-patterns": {
+      "name_zh": "React19 併發模式",
+      "description_zh": "於遷移期間保留 React 18 併發模式，並採用 React 19 API（useTransition、useDeferredValue、Suspense、use()、useOptimistic、Actions）。",
+      "at": "2026-11-01T23:50:29.564Z"
+    },
+    "skills/react19-source-patterns": {
+      "name_zh": "React19 原始檔模式",
+      "description_zh": "React 19 來源檔案遷移模式參考，包含 API 變更、ref 處理與 context 更新。",
+      "at": "2026-11-01T23:50:29.564Z"
+    },
+    "skills/react19-test-patterns": {
+      "name_zh": "React 19 測試模式",
+      "description_zh": "提供遷移測試檔案至 React 19 相容性的 before/after 模式，包含 act() 導入、Simulate 移除及 StrictMode 呼叫次數變更。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/readme-blueprint-generator": {
+      "name_zh": "README 藍圖產生器",
+      "description_zh": "智能 README.md 產生提示，分析專案文件結構並建立完整的儲存庫文件。掃描 .github/copilot 目錄檔案與 copilot-instructions。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/rebase-current-branch": {
+      "name_zh": "重新變基當前分支",
+      "description_zh": "將目前簽出的功能分支重新變基至最新的上游預設分支。當要求使用 main 或 master 更新分支，或需要將當前分支重新變基至預設分支時使用。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/refactor": {
+      "name_zh": "重構",
+      "description_zh": "精確程式碼重構以改善可維護性且不改變行為。涵蓋提取函數、重新命名變數、拆分大型函數、改善型別安全、消除程式碼臭味等。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/refactor-method-complexity-reduce": {
+      "name_zh": "降低方法複雜度重構",
+      "description_zh": "將指定方法 `${input:methodName}` 的重構為認知複雜度降至 `${input:complexityThreshold}` 或以下，透過提取輔助方法實現。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/refactor-plan": {
+      "name_zh": "重構計畫",
+      "description_zh": "開始多檔案重構前制定具體計畫。當用戶要求規劃、排序、範圍界定或安全執行跨多個檔案的重構時使用；先進行調查，再輸出計畫。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/remember": {
+      "name_zh": "記住",
+      "description_zh": "將經驗教訓轉換為領域組織的記憶指令（全域或工作區）。語法：`/remember [>domain [scope]] lesson clue`，其中 scope 為 `global`（預設）、`user`、`workspace` 或...",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/remember-interactive-programming": {
+      "name_zh": "記住互動式程式設計",
+      "description_zh": "一個微型提示，提醒代理其為互動式程式設計師。在 Clojure 中效果佳，當 Copilot 可存取 REPL 時（可能透過 Backseat Driver）。任何具有該能力的系統皆可運作。",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/repo-standardizer": {
+      "name_zh": "儲存庫標準化器",
+      "description_zh": "修飾任何 GitHub 儲存庫的表面層級 — 標籤（emoji 評分層級、P0–P3 優先級、影響嚴重程度）、議題表單、PR 範本、CI 工作流程、CODEOWNERS、規則集、文件。僅限儲存庫後設資料與設定 — 不含...",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/repo-standardizer/templates": {
+      "name_zh": "範本",
+      "description_zh": "[![授權：MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) ![GitHub 版本](https://img.shields.io/github/v/release/OWNER/REPO) ![GitHub 議題](https://img.shields.io/github/iss",
+      "at": "2026-11-01T23:50:32.430Z"
+    },
+    "skills/structured-autonomy-plan": {
+      "name_zh": "結構化自主規劃",
+      "description_zh": "結構化自主規劃提示詞，引導 AI 以結構化方式進行自主決策與任務規劃。",
+      "at": "2026-11-01T23:50:35.275Z"
+    },
+    "skills/suggest-awesome-github-copilot-agents": {
+      "name_zh": "推薦 GitHub Copilot 代理程式",
+      "description_zh": "根據儲存庫情境與聊天紀錄，從 awesome-copilot 儲存庫中建議相關的 GitHub Copilot 自訂代理程式檔案，並避免與現有代理程式重複。",
+      "at": "2026-11-01T23:50:35.275Z"
+    },
+    "skills/suggest-awesome-github-copilot-instructions": {
+      "name_zh": "推薦 GitHub Copilot 指示",
+      "description_zh": "根據儲存庫情境與聊天紀錄，從 awesome-copilot 儲存庫中建議相關的 GitHub Copilot 指示檔案，並避免與現有指示重複。",
+      "at": "2026-11-01T23:50:35.275Z"
+    },
+    "skills/suggest-awesome-github-copilot-skills": {
+      "name_zh": "推薦 GitHub Copilot 技能",
+      "description_zh": "根據儲存庫情境與聊天紀錄，從 awesome-copilot 儲存庫中建議相關的 GitHub Copilot 技能，避免與現有技能重複，並識別相關用途。",
+      "at": "2026-11-01T23:50:35.275Z"
+    },
+    "skills/swift-mcp-server-generator": {
+      "name_zh": "Swift MCP 伺服器產生器",
+      "description_zh": "使用官方 MCP Swift SDK 套件，產生完整的 Model Context Protocol 伺服器專案。",
+      "at": "2026-11-01T23:50:35.275Z"
+    },
+    "skills/system-commandline-cli": {
+      "name_zh": "System.CommandLine CLI",
+      "description_zh": "在 .NET 專案中使用 System.CommandLine 新增、修改或審查 CLI 命令時使用此技能，包含建立新命令、加入選項或參數，以及串接命令邏輯。",
+      "at": "2026-11-01T23:50:35.275Z"
+    },
+    "skills/technical-job-search": {
+      "name_zh": "技術工作搜尋",
+      "description_zh": "當軟體工程師需要求職協助時使用，包括解析與分析職缺描述、調整履歷、撰寫求職信、評估工作offer，或撰寫面試回應。",
+      "at": "2026-11-01T23:50:35.276Z"
+    },
+    "skills/technology-stack-blueprint-generator": {
+      "name_zh": "技術堆疊藍圖產生器",
+      "description_zh": "全面性技術堆疊藍圖產生器，分析程式碼庫以建立詳細架構文件。自動偵測技術堆疊、程式語言與實作細節。",
+      "at": "2026-11-01T23:50:35.276Z"
+    },
+    "skills/terraform-azurerm-set-diff-analyzer": {
+      "name_zh": "Terraform AzureRM Set Diff 分析器",
+      "description_zh": "分析 Terraform plan JSON 輸出，區分 AzureRM Provider 中 Set 型別屬性的假性差異（僅順序變更）與實際資源變更，協助檢視 terraform plan。",
+      "at": "2026-11-01T23:50:35.276Z"
+    },
+    "skills/terraform-azurerm-set-diff-analyzer/scripts": {
+      "name_zh": "指令碼",
+      "description_zh": "Python 指令碼，用於分析 Terraform plan JSON 並識別 AzureRM Set 型別屬性中的假性差異。",
+      "at": "2026-11-01T23:50:35.276Z"
+    },
+    "skills/typespec-create-api-plugin": {
+      "name_zh": "TypeSpec Create Api 外掛",
+      "description_zh": "產生 TypeSpec API 外掛，包含 REST 操作、認證機制，以及 Microsoft 365 Copilot 的 Adaptive Cards。",
+      "at": "2026-11-01T23:50:36.702Z"
+    },
+    "skills/ui-screenshots": {
+      "name_zh": "UI 截圖",
+      "description_zh": "使用 Playwright 與 PIL 在開發過程中截取網頁應用程式畫面，支援全頁擷取、互動狀態與可反覆調整裁剪的工作流，避免耗時的重新截圖。",
+      "at": "2026-11-01T23:50:36.702Z"
+    },
+    "skills/unit-test-vue-pinia": {
+      "name_zh": "Vue Pinia 單元測試",
+      "description_zh": "撰寫並審查 Vue 3、TypeScript、Vitest 與 Pinia 程式碼的單元測試；建立或更新元件、組合式函式與商店的測試，使用 createTestingPinia 模擬 Pinia，並套用最佳實踐。",
+      "at": "2026-11-01T23:50:36.702Z"
+    },
+    "skills/update-avm-modules-in-bicep": {
+      "name_zh": "更新 Bicep 中的 AVM 模組",
+      "description_zh": "將 Bicep 檔案中的 Azure Verified Modules (AVM) 更新至最新版本。",
+      "at": "2026-11-01T23:50:36.702Z"
+    },
+    "skills/update-implementation-plan": {
+      "name_zh": "更新實施計畫",
+      "description_zh": "依據新功能需求、重構既有程式碼、套件升級，或設計、架構、基礎設施的變更，更新現有實施計畫檔案。",
+      "at": "2026-11-01T23:50:36.702Z"
+    },
+    "skills/update-llms": {
+      "name_zh": "更新 LLMs",
+      "description_zh": "根據 llms.txt 規範（https://llmstxt.org/），更新根目錄的 llms.txt 檔案，以反映文件或規格的變更。",
+      "at": "2026-11-01T23:50:36.703Z"
+    },
+    "skills/update-markdown-file-index": {
+      "name_zh": "更新 Markdown 檔案索引",
+      "description_zh": "更新 Markdown 檔案中的索引區塊，列出指定資料夾的檔案列表。",
+      "at": "2026-11-01T23:50:36.703Z"
+    },
+    "skills/update-specification": {
+      "name_zh": "更新規格",
+      "description_zh": "基於新功能需求或既有程式碼的更新，產生適合生成式 AI 閱讀的產品規格檔。",
+      "at": "2026-11-01T23:50:36.703Z"
+    },
+    "skills/upstash-redis": {
+      "name_zh": "Upstash Redis",
+      "description_zh": "從伺服器無人機與邊緣執行階段透過 @upstash/redis 使用 HTTP 連線的 Redis，並搭配 @upstash/ratelimit 加入速率限制。適用於使用者提及 Upstash Redis 或需從 Next.js 路由存取 Redis 的情境。",
+      "at": "2026-11-01T23:50:36.703Z"
+    },
+    "skills/v-development": {
+      "name_zh": "V 語言開發",
+      "description_zh": "引導 GitHub Copilot 進行 V 語言開發：安裝工具鏈、使用 v.mod 的專案配置、編譯、測試、格式化，以及撰寫符合 V 慣例的程式碼，包含 Option/Result 錯誤處理。",
+      "at": "2026-11-01T23:50:36.703Z"
+    },
+    "skills/test-gap-audit": {
+      "name_zh": "測試缺口稽核",
+      "description_zh": "執行讀取權限的稽核，找出缺失、薄弱、過時或範圍不當的測試覆蓋。若未指定範圍，則稽核整個程式庫並識別重要程式路徑、路由、功能與服務。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/threat-model-analyst": {
+      "name_zh": "威脅模型分析師",
+      "description_zh": "提供完整的 STRIDE-A 威脅模型分析與增量更新能力。支援兩種模式：(1) 單一分析 — 對程式庫進行完整 STRIDE-A 威脅模型分析，產出架構級輸出。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/tiny-stepping": {
+      "name_zh": "細步開發",
+      "description_zh": "採用最小有意義變化的增量開發工作流，每步暫停以取得回饋，確保方向在繼續前已驗證。適用於謹慎、迭代式的實作。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/tldr-prompt": {
+      "name_zh": "TL;DR 提示",
+      "description_zh": "為 GitHub Copilot 檔案（提示、Agent、指令、集合）、MCP 伺服器或從 URL 與查詢產生的文件建立簡要摘要。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/tm7-threat-model": {
+      "name_zh": "TM7 威脅模型",
+      "description_zh": "建立符合 Microsoft Threat Modeling Tool v7.3+ 的 .tm7 檔案。 Whenever 被要求建立、產生或修改 .tm7 威脅模型檔案時使用此技能。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/transloadit-media-processing": {
+      "name_zh": "Transloadit 媒體處理",
+      "description_zh": "使用 Transloadit 處理媒體檔案（影片、音訊、圖片、文件）。當被要求將影片編碼為 HLS/MP4、產生縮圖、調整大小或加水印圖片、擷取音訊、連結片段等時使用。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/tugboat": {
+      "name_zh": "Tugboat",
+      "description_zh": "針對因不確定性、屢次挫折或缺乏可見進展而導致高度焦慮或困擾的停滯或高風險工作，提供基於證據的協作支援。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/typescript-mcp-server-generator": {
+      "name_zh": "TypeScript MCP 伺服器產生器",
+      "description_zh": "使用 MCP TypeScript SDK v2（@modelcontextprotocol/server）產生完整的 TypeScript MCP 伺服器專案，包含工具、資源與適當設定。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/typespec-api-operations": {
+      "name_zh": "TypeSpec API 作業",
+      "description_zh": "為 TypeSpec API 插件新增 GET、POST、PATCH 與 DELETE 作業，並配合適當的路由、參數與適應性卡片。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/typespec-create-agent": {
+      "name_zh": "TypeSpec 建立 Agent",
+      "description_zh": "為 Microsoft 365 Copilot 產生完整的 TypeSpec 宣告式 Agent，包含指令、能力與對話啟動項目。",
+      "at": "2026-11-01T23:50:37.313Z"
+    },
+    "skills/repo-story-time": {
+      "name_zh": "Repo 故事時間",
+      "description_zh": "從提交紀錄生成全面的儲存庫摘要與敘事故事",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/resemble-detect": {
+      "name_zh": "Resemble Detect",
+      "description_zh": "深度偽造偵測與媒體安全——偵測 AI 產生的音訊、影像、影片與文字，追溯合成來源、套用浮水印、驗證說話者身份，並使用 Resemble 分析媒體情資",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/resx-source-generator-migration": {
+      "name_zh": "Resx 來源產生器遷移",
+      "description_zh": "將依賴已檢入 .designer.cs 檔的 .resx 專案，遷移為改用來源產生器",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/review-and-refactor": {
+      "name_zh": "檢視與重構",
+      "description_zh": "依照定義的指示，檢視並重構專案中的程式碼",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/reviewing-oracle-to-postgres-migration": {
+      "name_zh": "檢視 Oracle 到 PostgreSQL 遷移",
+      "description_zh": "透過比對程式碼與已知行為差異（空字串、refcursor、型別轉換、排序與排序規則、UNION ALL 編譯器風險等），識別 Oracle 至 PostgreSQL 遷移的風險",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/rhino3d-scripts": {
+      "name_zh": "Rhino3D 腳本",
+      "description_zh": "為 Rhinoceros 3D（Rhino 8 及之後版本）撰寫與偵錯腳本。當需要撰寫 RhinoScript（VBScript／.rvb／.vbs）、RhinoPython 或基於 RhinoCommon 的腳本、自動化 Rhino 建模時使用",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/roslyn-analyzers": {
+      "name_zh": "Roslyn 分析器",
+      "description_zh": "建立、檢視、偵錯、封裝與測試 Roslyn 診斷分析器、程式碼修正提供者及增量來源產生器。適用於 DiagnosticAnalyzer、CodeFixProvider、IIncrementalGenerator、IOperationAnalyzer 等",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/roundup": {
+      "name_zh": "Roundup",
+      "description_zh": "依需求生成個人化狀態簡報。從您設定的資料來源（GitHub、電子郵件、Teams、Slack 等）匯聚資訊，跨來源整合後，以您自己的溝通風格起草更新",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/roundup-setup": {
+      "name_zh": "Roundup 設定",
+      "description_zh": "互動式入門設定，學習您的溝通風格、目標受眾與資料來源，以配置個人化狀態簡報。貼上您已撰寫的更新範例，回答幾個問題即可完成設定",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/ruby-mcp-server-generator": {
+      "name_zh": "Ruby MCP 伺服器產生器",
+      "description_zh": "使用官方 MCP Ruby SDK gem，產生完整的 Model Context Protocol 伺服器專案",
+      "at": "2026-11-01T23:50:40.678Z"
+    },
+    "skills/ruff-recursive-fix": {
+      "name_zh": "Ruff 遞迴修復",
+      "description_zh": "執行 Ruff 檢查，支援可選範圍與規則覆蓋，迭代套用安全與不安全自動修復，檢視每個變更，並透過目標編輯或使用者決策解決剩餘問題。",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/rust-mcp-server-generator": {
+      "name_zh": "Rust MCP 伺服器產生器",
+      "description_zh": "使用官方 rmcp SDK，產生完整的 Rust Model Context Protocol 伺服器專案，包含工具、提示、資源與測試。",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/salesforce-apex-quality": {
+      "name_zh": "Salesforce Apex 品質",
+      "description_zh": "Salesforce 開發的 Apex 程式碼品質防護。強制執行大量安全規則（迴圈內禁止 SOQL/DML）、權限模型需求、CRUD/FLS 安全性、SOQL 注入防止，以及 PNB 測試覆蓋率。",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/salesforce-component-standards": {
+      "name_zh": "Salesforce 元件標準",
+      "description_zh": "Salesforce Lightning Web Components (LWC)、Aura 元件和 Visualforce 頁面的品質標準。涵蓋 SLDS 2 合規性、無障礙性 (WCAG 2.1 AA)、資料存取模式選擇、元件...",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/salesforce-flow-design": {
+      "name_zh": "Salesforce Flow 設計",
+      "description_zh": "Salesforce Flow 架構決策、Flow 類型選擇、大量安全驗證與錯誤處理標準。當設計或檢視記錄觸發型、畫面型、自動啟動型...",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/sandbox-npm-install": {
+      "name_zh": "沙盒 Npm 安裝",
+      "description_zh": "在 Docker 沙盒環境中安裝 npm 套件。當需要在使用者工作區透過 virtiofs 掛載的容器內安裝、重新安裝或更新 node_modules 時使用此技能。",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/scaffolding-oracle-to-postgres-migration-test-project": {
+      "name_zh": "Oracle 至 Postgres 遷移測試專案建置",
+      "description_zh": "為 .NET 解決方案中建置針對 Oracle 的 xUnit 整合測試專案。建立測試專案、交易回滾基底類別和種子資料管理器。僅於撰寫...",
+      "at": "2026-11-01T23:50:42.315Z"
+    },
+    "skills/scoutqa-test": {
+      "name_zh": "Scoutqa 測試",
+      "description_zh": "當使用者要求「測試這個網站」、「執行探索性測試」、「檢查無障礙問題」、「驗證登入流程是否正常」、「在這頁面上尋找問題」或請求...",
+      "at": "2026-11-01T23:50:42.316Z"
+    },
+    "skills/screen-recording": {
+      "name_zh": "螢幕錄影",
+      "description_zh": "為 Pull Request 和文件建立帶註解的動畫 GIF 示範與螢幕錄影。涵蓋影格擷取、時機控制、imageio 建立的 GIF，以及逐影格註解工作流程。",
+      "at": "2026-11-01T23:50:42.316Z"
+    },
+    "skills/secret-scanning": {
+      "name_zh": "機敏資訊掃描",
+      "description_zh": "GitHub 機敏資訊掃描的設定與管理指南，包含推送保護、自訂規則模式和機敏資訊警示處理。如需在 AI 編碼代理中於提交前掃描機敏資訊，請使用 GitHub MCP Server...",
+      "at": "2026-11-01T23:50:42.316Z"
+    },
+    "skills/winmd-api-search": {
+      "name_zh": "WinMD API 搜尋",
+      "description_zh": "尋找與探索 Windows 桌面 API。適合需要平台功能時使用——相機、檔案存取、通知、UI 控制項、AI/ML、感測器、網路等。",
+      "at": "2026-11-01T23:51:43.070Z"
+    },
+    "skills/winui3-migration-guide": {
+      "name_zh": "WinUI 3 _migration guide",
+      "description_zh": "UWP 至 WinUI 3 遷移參考。將舊版 UWP API 對應至 Windows App SDK 等效項目，附前後程式碼對照。涵蓋命名空間變更、執行緒（CoreDispatcher 轉 DispatcherQueue）等。",
+      "at": "2026-11-01T23:51:43.070Z"
+    },
+    "skills/workiq-copilot": {
+      "name_zh": "WorkIQ Copilot",
+      "description_zh": "引導 Copilot CLI 使用 WorkIQ CLI/MCP 伺服器查詢 Microsoft 365 Copilot 資料（電子郵件、會議、文件、Teams、人員），取得即時情境、摘要與建議。",
+      "at": "2026-11-01T23:51:43.070Z"
+    },
+    "skills/workshop-create": {
+      "name_zh": "Workshop 建立",
+      "description_zh": "建立新 workshop，或以現有目錄作為 workshop。兩種模式：(A) 使用操作員指定的現有本機目錄，(B) 在已登入帳戶中建立新的私有 GitHub 儲存庫。",
+      "at": "2026-11-01T23:51:43.070Z"
+    },
+    "skills/write-coding-standards-from-file": {
+      "name_zh": "依檔案撰寫程式碼規範",
+      "description_zh": "依據提示中傳入的檔案和／或資料夾之程式風格，為專案撰寫程式碼規範文件。",
+      "at": "2026-11-01T23:51:43.071Z"
+    },
+    "skills/x-twitter-scraper": {
+      "name_zh": "X Twitter 爬蟲",
+      "description_zh": "使用 Xquik X API SDK、REST 端點、Apify Actor 託管執行、MCP 工具、TweetClaw OpenClaw 外掛安裝、簽章 Webhook、推文搜尋、使用者查詢、粉絲匯出等功能建立 GitHub Copilot 工作流程。",
+      "at": "2026-11-01T23:51:43.071Z"
+    },
+    "website": {
+      "name_zh": "網站",
+      "description_zh": "Astro + Starlight 網站，發布於 <https://awesome-copilot.github.com/>。",
+      "at": "2026-11-01T23:51:43.071Z"
+    },
+    "skills/vardoger-analyze": {
+      "name_zh": "Vardoger 分析",
+      "description_zh": "當使用者要求個人化 GitHub Copilot CLI 助理、調整 Copilot 以符合其風格、使用 vardoger，或分析 Copilot CLI 對話記錄時使用。會讀取本機工作目錄。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/vcpkg": {
+      "name_zh": "vcpkg",
+      "description_zh": "指南說明如何在 C++ 專案中設定 vcpkg、管理相依版本與交叉編譯。涵蓋 manifest 初始化、CMake 與 Visual Studio 整合、從經典模式遷移至 manifest，以及版本控管。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/verify-agent-action": {
+      "name_zh": "驗證 Agent 動作",
+      "description_zh": "在執行前檢視 AI agent 建議的動作或人類審核訊息包。當 agent 想要執行具影響力的工具、指令、部署、訊息、購買、憑證操作或資料動作時使用。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/vscode-ext-commands": {
+      "name_zh": "VS Code 擴充功能指令",
+      "description_zh": "VS Code 擴充功能的指令開發指南。說明命名慣例、可見性、在地化及其他相關屬性，遵循 VS Code 擴充功能開發指南。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/vscode-ext-localization": {
+      "name_zh": "VS Code 擴充功能在地化",
+      "description_zh": "VS Code 擴充功能的在地化指南，遵循 VS Code 擴充功能開發指南、相關函式庫與最佳實踐。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/web-design-reviewer": {
+      "name_zh": "網頁設計檢視",
+      "description_zh": "此技能可對本機或遠端執行的網站進行視覺檢查，以識別並修正設計問題。觸發時機包括「檢視網站設計」、「檢查介面」、「修正版面配置」等請求。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/webapp-testing": {
+      "name_zh": "Web 應用程式測試",
+      "description_zh": "使用 Playwright 與本機 Web 應用程式互動與測試的工具組。支援驗證前端功能、偵錯 UI 行為、擷取瀏覽器截圖，以及查看瀏覽器記錄。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/webmcpify": {
+      "name_zh": "Webmcpify",
+      "description_zh": "WebMCP agent 技能，用於核心功能覆蓋或逐路由比對——盤點現有 Web 應用程式、整合核准的工具，再於真實瀏覽器中檢查、驗證與修復。用於「webmcpify」等需求。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/webmcpify/tests": {
+      "name_zh": "測試",
+      "description_zh": "DOM 測試使用 Node.js 24.18 與 jsdom 28.1.0 驗證。JSDOM 28 需要 Node.js 20.19、22.12 或 24+；下方指令也需要支援 --test-isolation=none 的 Node.js 版本。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/what-context-needed": {
+      "name_zh": "需要哪些上下文",
+      "description_zh": "詢問 Copilot 在回答問題前需要查看哪些檔案。",
+      "at": "2026-11-01T23:51:50.024Z"
+    },
+    "skills/create-github-issues-for-unmet-specification-requirements": {
+      "name_zh": "建立 GitHub 問題用於未滿足規範需求",
+      "description_zh": "使用 feature_request.yml 模板，為規範檔案中未實作的需求建立 GitHub Issues。",
+      "at": "2026-11-01T23:51:57.452Z"
+    },
+    "skills/create-implementation-plan": {
+      "name_zh": "建立實作計畫",
+      "description_zh": "為新功能、重構現有程式碼或升級套件建立新的實作計畫檔案，用於設計、架構或基礎建設。",
+      "at": "2026-11-01T23:51:57.453Z"
+    },
+    "skills/create-llms": {
+      "name_zh": "建立 LLMs 檔案",
+      "description_zh": "根據儲存庫結構從頭開始建立 llms.txt 檔案，遵循 https://llmstxt.org/ 的 llms.txt 規範。",
+      "at": "2026-11-01T23:51:57.453Z"
+    },
+    "skills/create-quarkus-project": {
+      "name_zh": "建立 Quarkus 專案",
+      "description_zh": "使用 Quarkus CLI、code.quarkus.io API 或 Maven 外掛建立新 Quarkus 專案（Maven 或 Gradle），選擇擴充功能，並在 dev 模式執行。當需要建立、初始化或啟動 Quarkus 專案時使用。",
+      "at": "2026-11-01T23:51:57.453Z"
+    },
+    "skills/commit-message-storyteller": {
+      "name_zh": "Commit 訊息故事化",
+      "description_zh": "分析 git diff 或暫存變更，產生敘事式 commit 訊息，解釋變更原因而非僅列出變更內容，遵循 Conventional Commits 格式。",
+      "at": "2026-11-01T23:51:59.495Z"
+    },
+    "skills/competitor-ad-intelligence": {
+      "name_zh": "競爭對手廣告智慧分析",
+      "description_zh": "當使用者要求分析、拆解或逆向工程競爭對手的付費廣告時使用，例如查詢競爭對手執行的廣告或分析其廣告策略。",
+      "at": "2026-11-01T23:51:59.495Z"
+    },
+    "skills/create-github-issue-feature-from-specification": {
+      "name_zh": "根據規格建立 GitHub Issue 功能",
+      "description_zh": "使用 feature_request.yml 模板，從規格檔案建立 GitHub Issue。",
+      "at": "2026-11-01T23:51:59.495Z"
+    },
+    "skills/create-github-issues-feature-from-implementation-plan": {
+      "name_zh": "根據實作計畫建立 GitHub Issue 功能",
+      "description_zh": "使用 feature_request.yml 或 chore_request.yml 模板，從實作計畫階段建立 GitHub Issues。",
+      "at": "2026-11-01T23:51:59.495Z"
+    },
+    "skills/create-readme": {
+      "name_zh": "建立 README",
+      "description_zh": "為專案建立 README.md 檔案",
+      "at": "2026-11-01T23:52:00.911Z"
+    },
+    "skills/create-specification": {
+      "name_zh": "建立規格說明",
+      "description_zh": "為解決方案建立新的規格檔案，並針對生成式 AI 最佳化",
+      "at": "2026-11-01T23:52:00.911Z"
+    },
+    "skills/create-spring-boot-java-project": {
+      "name_zh": "建立 Spring Boot Java 專案",
+      "description_zh": "建立 Spring Boot Java 專案框架",
+      "at": "2026-11-01T23:52:00.911Z"
+    },
+    "skills/create-spring-boot-kotlin-project": {
+      "name_zh": "建立 Spring Boot Kotlin 專案",
+      "description_zh": "建立 Spring Boot Kotlin 專案框架",
+      "at": "2026-11-01T23:52:00.911Z"
+    },
+    "skills/breakdown-epic-pm": {
+      "name_zh": "Epic PM 分解",
+      "description_zh": "用於建立新 Epic 產品需求文件（PRD）的提示，此 PRD 將作為產生技術架構規格的輸入",
+      "at": "2026-11-01T23:52:04.217Z"
+    },
+    "skills/codeql": {
+      "name_zh": "CodeQL",
+      "description_zh": "關於透過 GitHub Actions 工作流與 CodeQL CLI 設定及配置 CodeQL 程式碼掃描的綜合指南，適用於需要程式碼掃描配置協助的場合",
+      "at": "2026-11-01T23:52:04.217Z"
+    },
+    "skills/comment-code-generate-a-tutorial": {
+      "name_zh": "註解程式碼產生教學",
+      "description_zh": "透過重構程式碼、加入清晰教學註解並產生完整 Markdown 教學文件，將此 Python 腳本轉變為適合初學者的精緻專案",
+      "at": "2026-11-01T23:52:04.217Z"
+    },
+    "skills/qdrant-search-quality": {
+      "name_zh": "Qdrant 搜尋品質",
+      "description_zh": "診斷並改善 Qdrant 搜尋相關性。當使用者回報搜尋結果不佳、不正確、精確率低、召回率低、無關匹配或遺漏預期結果時使用。",
+      "at": "2026-11-01T23:52:04.932Z"
+    },
+    "skills/qdrant-search-quality/diagnosis": {
+      "name_zh": "診斷",
+      "description_zh": "診斷 Qdrant 搜尋品質問題。當使用者回報結果不佳、不正確、不相關、匹配遺漏、召回率低，或近似搜尋效果不如精確搜尋時使用。",
+      "at": "2026-11-01T23:52:04.932Z"
+    },
+    "skills/qdrant-search-quality/search-strategies": {
+      "name_zh": "搜尋策略",
+      "description_zh": "指導 Qdrant 搜尋策略選擇。當使用者詢問是否應使用混合搜尋、BM25 或稀疏向量、如何重新排序、結果不相關，或無法獲得所需結果時使用。",
+      "at": "2026-11-01T23:52:04.932Z"
+    },
+    "skills/qdrant-version-upgrade": {
+      "name_zh": "Qdrant 版本升級",
+      "description_zh": "提供 Qdrant 版本升級指導，確保在升級過程中不中斷應用程式可用性並維持資料完整性。",
+      "at": "2026-11-01T23:52:04.932Z"
+    },
+    "skills/quarkus-native-and-container": {
+      "name_zh": "Quarkus 原生執行檔與容器",
+      "description_zh": "構建 Quarkus 原生執行檔（Mandrel/GraalVM），透過反射註冊修復原生失敗，測試原生二進位檔，並產生容器影像與 Kubernetes/OpenShift manifest。用於 n",
+      "at": "2026-11-01T23:52:09.450Z"
+    },
+    "skills/quasi-coder": {
+      "name_zh": "類編碼器",
+      "description_zh": "資深 10x 工程師技能，用於從簡寫、類程式碼和自然語言描述中解讀並實現程式。當協作者提供不完整的程式碼片段、僞程式碼或",
+      "at": "2026-11-01T23:52:09.450Z"
+    },
+    "skills/quality-playbook": {
+      "name_zh": "品質藍圖",
+      "description_zh": "對任何程式碼庫執行完整的品質工程審核。從程式碼推導行為需求，生成規格追蹤的功能測試，執行帶有回歸測試的三輪程式碼審查，執",
+      "at": "2026-11-01T23:52:15.439Z"
+    },
+    "skills/quality-playbook/phase_prompts": {
+      "name_zh": "階段提示詞",
+      "description_zh": "用於 Quality Playbook 的外部化階段提示詞主體。",
+      "at": "2026-11-01T23:52:15.439Z"
+    },
+    "skills/quarkus-application-development": {
+      "name_zh": "Quarkus 應用程式開發",
+      "description_zh": "編寫 Quarkus 應用程式程式碼：使用 Quarkus REST 的 REST、驗證、例外處理映射、OpenAPI、配置、CDI (ArC)、Hibernate ORM with Panache、Mutiny 和虛擬執行緒，反應式訊息傳遞 wit",
+      "at": "2026-11-01T23:52:15.439Z"
+    },
+    "skills/quarkus-dev-services-and-testing": {
+      "name_zh": "Quarkus 開發服務與測試",
+      "description_zh": "Quarkus 開發服務與測試：零配置容器、@QuarkusTest、@QuarkusIntegrationTest、測試資源、RestAssured、@InjectMock、設定檔和持續測試。在編寫或修復時使用 t",
+      "at": "2026-11-01T23:52:15.439Z"
+    },
+    "plugins/power-platform-architect": {
+      "name_zh": "Power Platform 架構師",
+      "description_zh": "[![link](https://i.imgur.com/UnImFhl.png)](https://youtu.be/tn4jEpZ6jiw)",
+      "at": "2026-11-01T23:53:56.788Z"
+    }
+  },
+  "failed": {}
+}
