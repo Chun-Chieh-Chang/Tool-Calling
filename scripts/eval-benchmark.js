@@ -38,6 +38,10 @@ const tools = registry.tools.filter((t) => t.status === 'active' || t.status ===
 const args = process.argv.slice(2);
 const topK = Number(args.find((a) => a.startsWith('--topK='))?.split('=')[1]) || 5;
 const verbose = args.includes('--verbose');
+// --live-partition：改用 registry 現況推導「集合是否已中文化」，忽略凍結的分組。
+// 用途只有一個 —— **重新定基準**（例如評測集升版時）。一般情況不要用：
+// 擴大翻譯套用後現況全是「已中文化」，會讓四象限的分組失效。
+const livePartition = args.includes('--live-partition');
 
 // 命中位置：expected 中任一 id 出現在 ids 的最小索引；沒中回傳 -1
 function firstHitIndex(ids, expected) {
@@ -87,11 +91,30 @@ for (const name of Object.keys(engines)) {
 // （awesome-copilot）**已有**中文描述，b01～b40 的目標集合**尚未**中文化。
 // 兩者混在一起算總分會掩蓋「擴大翻譯」的邊際效益 → 分開呈現。
 //
-// 「是否已中文化」由 registry 現況推導，不寫死旗標（旗標會過期）。
+// 🔴 「是否已中文化」的分組必須是**凍結值**，不能永遠由 registry 現況推導：
+// 原本的寫法是「某集合只要有任一筆 subTool 有 description_zh 就算已中文化」，
+// 在量「擴大前基準」時是對的（旗標會過期 → 不寫死），
+// 但**擴大翻譯套用後所有集合都會變成已中文化** →「未中文化」那一象限直接消失，
+// 四象限表失去可比性，配對 A/B 讀不出來。
+//
+// 因此：尺子建立當下的分組凍結在 registry/eval-queries.json 的
+// methodology.collectionTranslationBaseline（附版本與擷取時間），
+// 預設讀它；--live-partition 才走現況推導（只在重新定基準時用）。
 const registryTools = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8')).tools;
-const collectionTranslated = new Map(
+const frozen = bench.methodology?.collectionTranslationBaseline?.partition || null;
+const liveTranslated = new Map(
   registryTools.map((t) => [t.id, (t.subTools || []).some((s) => s.description_zh)])
 );
+const collectionTranslated = new Map(
+  [...liveTranslated.keys()].map((id) => [
+    id,
+    livePartition || !frozen ? liveTranslated.get(id) : Boolean(frozen[id]),
+  ])
+);
+if (!livePartition && frozen) {
+  console.log(`【分組依據】凍結於 ${bench.methodology.collectionTranslationBaseline.version}`
+    + `（${bench.methodology.collectionTranslationBaseline.capturedAt}）`);
+}
 
 const empties = [];
 const cases = bench.cases;

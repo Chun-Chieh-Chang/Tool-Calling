@@ -62,6 +62,24 @@
         "v1.1.0",
         "v1.0.0"
       ]
+    },
+    "collectionTranslationBaseline": {
+      "version": "1.6.0",
+      "capturedAt": "2026-11-02T13:16:37.413Z",
+      "note": "尺子建立當下（擴大翻譯套用前）的集合中文化狀態。四象限分組用它當分組依據；擴大翻譯後 registry 現況會全部變成「已中文化」，若不凍結就無法做配對 A/B。重新定基準時請同步更新此快照與評測集版本。",
+      "partition": {
+        "awesome-copilot": true,
+        "anthropic-cybersecurity-skills": false,
+        "claude-skills": false,
+        "knowledge-work-plugins": false,
+        "plugins": false,
+        "scientific-agent-skills": false,
+        "claude-for-legal": false,
+        "financial-services": false,
+        "agent-toolkit": false,
+        "generative-media-skills": false,
+        "skill": false
+      }
     }
   },
   "cases": [
