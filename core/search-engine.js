@@ -121,11 +121,92 @@ const subToolNormCache = new WeakMap();
 function getSubToolNorm(subTool) {
   let entry = subToolNormCache.get(subTool);
   if (!entry) {
-    entry = { name: normalize(subTool.name), desc: normalize(subTool.description) };
+    entry = {
+      name: normalize(subTool.name),
+      desc: normalize(subTool.description),
+      // 中文欄位（2026-11-01）：集合工具的 subTools 補上 name_zh／description_zh，
+      // 中文查詢才有東西可比對。欄位不存在時一律空字串，比對時自然跳過。
+      nameZh: normalize(subTool.name_zh || ''),
+      descZh: normalize(subTool.description_zh || ''),
+    };
     subToolNormCache.set(subTool, entry);
   }
   return entry;
 }
+
+// ─── subTool 比對專用斷詞（2026-11-01）───────────────────────────────
+//
+// 為什麼需要專用斷詞
+// ──────────────────
+// 本檔的 tokenize() 對中文是「依空白切分」，一句中文查詢會變成**單一 token**
+// （整句），而整句不可能整段出現在子工具描述裡 → 中文查詢在子功能層必然 0 命中。
+//
+// 為什麼不直接用 core/tokenize.js 的 tokenize()
+// ────────────────────────────────
+// 它的英文字元類含 '-'`，'oracle-to-postgres' 會被當成單一 token；
+// 但 subTool 名稱是空格分寫（'Oracle to Postgres Migration Expert'）→ 整串比對必然落空。
+// 因此本處沿用本檔的風格：英文整段取出後再依連字號拆細。
+//
+// 中文功能詞 bigram 過濾
+// ─────────────────────
+// 一句中文切出的 bigram 裡，「的X」「X的」「是什」「麼幫」這類功能詞組合佔相當比例。
+// 它們既不可能命中子工具描述，卻把共現門檻的分母 n 灌大 → 門檻被灌高 → 該命中的沒命中。
+// 離線模擬（scratch/simulate-noise-filter.mjs，20 題 monorepo）：
+//   純 bigram ＋ 比例 0.25 → 目標子工具命中 7/20
+//   過濾功能詞 ＋ 比例 0.25 → 目標子工具命中 13/20
+//
+// ⚠️ 「對」刻意不列入功能字：'對手'（競爭對手）是實詞。
+// ⚠️ 「項目」不列入：台灣用法「清理項目／工作項目／行動項目」都是 item，不是大陸的「專案」。
+const CJK_FUNCTION_CHARS = new Set(
+  '的了是在和與或也都就而但這那我你他她它們要能可會把被給從到用之其所以於更最很太再又才只已未不沒別嗎呢吧啊呀麼怎樣什'
+);
+
+const isFunctionBigram = (b) => CJK_FUNCTION_CHARS.has(b[0]) || CJK_FUNCTION_CHARS.has(b[1]);
+
+function subToolTokens(text) {
+  const t = String(text || '').toLowerCase();
+  const out = new Set();
+  // 英文／數字：整段取出後再依連字號拆細
+  for (const run of t.match(/[a-z][a-z0-9+.#_-]{1,}/g) || []) {
+    out.add(run);
+    for (const p of run.split(/[-_]+/)) if (p.length >= 2) out.add(p);
+  }
+  // 中文：切成 2 字滑動窗（bigram）。單字中文不進 token 集（比對時永遠用不上，
+  // 留在集內只會稀釋共現比例的分母）。功能詞組合（的X／X的／是什）直接丟棄。
+  for (const run of t.match(/[\u4e00-\u9fff]+/g) || []) {
+    if (run.length < 2) continue;
+    for (let i = 0; i < run.length - 1; i++) {
+      const bg = run.slice(i, i + 2);
+      if (isFunctionBigram(bg)) continue;
+      out.add(bg);
+    }
+  }
+  return Array.from(out);
+}
+
+/** CJK 字元偵測（判定查詢是否為中文導向） */
+const CJK_RE = /[\u4e00-\u9fff]/;
+
+/**
+ * 中文 subTool 共現門檻比例
+ *
+ * 為什麼要比例式：中文 bigram 一句話就產生 10~20 個 token，
+ * 要求「命中全部」等於不可能 → 門檻必須是比例而非絕對值。
+ *
+ * 為什麼是 0.25（實測選定的值，不是猜的）
+ * ──────────────────────────────────────
+ * 離線模擬（scratch/simulate-noise-filter.mjs，20 題 monorepo 的目標子工具命中數）：
+ *   純 bigram ＋ 0.30 → 5/20　　純 bigram ＋ 0.25 → 7/20　　純 bigram ＋ 0.20 → 11/20
+ *   過濾功能詞 ＋ 0.30 → 8/20　　過濾功能詞 ＋ 0.25 → 13/20　過濾功能詞 ＋ 0.20 → 14/20
+ *
+ * 端到端評測（287 題，scratch/experiment-matrix2.mjs，L2 引擎的 monorepo Hit@1）：
+ *   純 bigram 0.30 → 30.0%　純 bigram 0.25 → 45.0%
+ *   過濾 0.30 → 40.0%　　 過濾 0.25 → **70.0%**　　　過濾 0.20 → 70.0%
+ *
+ * 0.20 與 0.25 的 monorepo 相同，但 0.20 讓 semantic 從 7.8% 掉到 7.0%
+ * → 0.25 是「拿到同樣效果、不傷其他題型」的最小放寬。
+ */
+const CJK_COOC_RATIO = 0.25;
 
 // ─── 查詢結果快取（searchResultCache）─────────────────────────────────
 //
@@ -340,6 +421,16 @@ function keywordMatch(tools, query) {
   // 剔除語境停用詞，只保留有鑑別力的 token 參與比對
   const queryTokens = allQueryTokens.filter((t) => !isGenericStopword(t));
 
+  // subTool 比對專用 token（2026-11-01）
+  //
+  // 查詢含中文時改用 bigram 斷詞（subToolTokens），否則整句中文會是單一
+  // token 而永遠比對不到子工具描述。**英文查詢沿用原 queryTokens**，
+  // 行為與改動前完全一致。
+  const hasCJK = CJK_RE.test(normQuery);
+  const subQueryTokens = hasCJK
+    ? subToolTokens(query).filter((t) => !isGenericStopword(t))
+    : queryTokens;
+
   // 取得 trigger IDF 表（首次建置，之後快取）
   const idfMap = getTriggerIdf(tools);
 
@@ -448,24 +539,50 @@ function keywordMatch(tools, query) {
     // 「database migration」在該工具的 817 個子工具中，"database" 命中了
     // 4 個跟資料庫遷移無關的憑證竊取/機密管理子工具，"migration" 又命中了
     // 1 個後量子加密遷移的子工具——湊在一起讓整個工具被誤判為高相關。
-    // 修正做法：多詞查詢時，要求同一個子工具「同時」命中所有查詢詞
+    // 修正做法：多詞查詢時，要求同一個子工具「同時」命中足夠的查詢詞
     // （詞語共現），才視為真正相關；單詞查詢則維持原本行為。
+    //
+    // 中文導向查詢（2026-11-01）：三個條件缺一即為 0 命中
+    // ────────────────────────────────────────────────────────────
+    //   1. subTool 有中文描述（name_zh／description_zh）——資料層由
+    //      scripts/translate-subtools.js 產生
+    //   2. 中文查詢切成 bigram——本檔的 tokenize() 對中文是「依空白切分」
+    //   3. 共現門檻改比例式——bigram 數量多，「命中全部」等於不可能
+    //
+    // 範圍刻意只限在 subTool 比對內：全域 L2 的 tokenize() 與門檻不動，
+    // 因此**英文查詢的行為完全維持原狀**（中文欄位也只在查詢含 CJK 時才比對）。
     if (tool.subTools) {
+      // 共現門檻（與子工具無關，先算一次）
+      // 英文維持「命中全部」（避免不相干子工具各自命中不同詞而拉高整體分數）；
+      // 中文 bigram 數量多，改用比例式。
+      const requiredCount = subQueryTokens.length > 1
+        ? (hasCJK
+          ? Math.max(1, Math.ceil(subQueryTokens.length * CJK_COOC_RATIO))
+          : subQueryTokens.length)
+        : 1;
+
       let subToolScore = 0;
+      const subToolKeywordSet = new Set(matchedKeywords);
       for (const subTool of tool.subTools) {
-        const { name: subName, desc: subDesc } = getSubToolNorm(subTool);
+        const { name: subName, desc: subDesc, nameZh: subNameZh, descZh: subDescZh } = getSubToolNorm(subTool);
 
-        const nameMatchedTokens = queryTokens.filter(t => t.length >= 2 && subName.includes(t));
-        const descMatchedTokens = queryTokens.filter(t => t.length >= 3 && subDesc.includes(t));
+        const nameMatchedTokens = subQueryTokens.filter(t =>
+          t.length >= 2 && (subName.includes(t) || (hasCJK && subNameZh.includes(t))));
+        // 描述比對的長度門檻：英文 >=3（避免 2 字元偽命中）；
+        // 中文 bigram 恆為 2 字 → 必須對 CJK 放寬到 >=2，否則中文子工具永遠 0 命中。
+        const descMatchedTokens = subQueryTokens.filter(t => {
+          if (t.length >= 3) return subDesc.includes(t) || (hasCJK && subDescZh.includes(t));
+          if (t.length === 2 && CJK_RE.test(t)) return hasCJK && (subDescZh.includes(t) || subDesc.includes(t));
+          return false;
+        });
         const matchedTokenCount = new Set([...nameMatchedTokens, ...descMatchedTokens]).size;
-
-        // 多詞查詢要求同一子工具內詞語共現；單詞查詢只需命中該詞
-        const requiredCount = queryTokens.length > 1 ? queryTokens.length : 1;
         if (matchedTokenCount < requiredCount) continue;
 
         subToolScore += nameMatchedTokens.length * 1.5 + descMatchedTokens.length * 1.0;
-        if (!matchedKeywords.includes(`subtool:${subTool.name}`)) {
-          matchedKeywords.push(`subtool:${subTool.name}`);
+        const kw = `subtool:${subTool.name}`;
+        if (!subToolKeywordSet.has(kw)) {
+          subToolKeywordSet.add(kw);
+          matchedKeywords.push(kw);
         }
       }
       // 限制子工具的加分上限，避免包含上百個工具的 Monorepo 霸榜
