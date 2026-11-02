@@ -113,6 +113,31 @@ test('validate：純路徑原文即使模型給了中文也只保留原文（不
   assert.equal(r.description_zh, '../../../c-level-advisor/skills/agent-protocol/SKILL.md');
 });
 
+test('validate：純路徑原文遇到模型回傳錯誤物件時不判失敗（檢查順序的修法）', () => {
+  // 實測（2026-11-02）：模型對著路徑會去「讀檔」，回傳
+  // {"error": "找不到說明檔案內容"} 或 {"openapi": "3.1.0"}。
+  // 舊順序先檢查 subpath → 判「缺 subpath」→ 193 筆白跑。
+  const r = validate(
+    { error: '找不到說明檔案內容：../..' },
+    'agent-protocol',
+    '../../../engineering/skills/agent-protocol/SKILL.md'
+  );
+  assert.deepEqual(r.problems, [], '原文本來就沒有正文，模型回傳什麼都不該判失敗');
+  assert.equal(r.noProse, true);
+  assert.equal(r.description_zh, '../../../engineering/skills/agent-protocol/SKILL.md');
+  assert.equal(r.name_zh, 'agent-protocol', '名稱退回英文原名');
+});
+
+test('validate：原文有正文但模型回傳錯誤物件 → 仍然判失敗', () => {
+  const r = validate(
+    { error: '找不到說明檔案內容' },
+    'search-quality',
+    'Evaluate search quality for vector databases.'
+  );
+  assert.ok(r.problems.length > 0, '有正文的原文不該被放行');
+  assert.equal(r.noProse, false);
+});
+
 test('validate：有正文的譯文不會被誤標 noProse', () => {
   const r = validate(
     { subpath: 'skills/x', name_zh: '搜尋品質', description_zh: '評估搜尋結果品質' },

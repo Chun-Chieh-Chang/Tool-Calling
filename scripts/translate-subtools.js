@@ -198,6 +198,19 @@ const TAIWAN_TERM_FIXES = [
   [/變量/g, '變數', '變量 → 變數'],
   [/運行/g, '執行', '運行 → 執行'],
   [/用戶(?!端)/g, '使用者', '用戶 → 使用者（保留「用戶端」）'],
+  // ── 2026-11-02：擴大翻譯 3,237 筆後實測抓到的 40 筆違規 ────────────────
+  // 做法：用一份大陸用語清單掃全部譯文，逐筆人工看過情境才加規則。
+  [
+    /(?<!大)數據(?!長)/g, '資料',
+    '數據 → 資料（但保留「大數據」（台灣通用）與「數據長」（CDO 職稱，兩岸通用））',
+  ],
+  [/編程/g, '程式設計', '編程 → 程式設計'],
+  [/代碼/g, '程式碼', '代碼 → 程式碼'],
+  [/支持/g, '支援', '支持 → 支援'],
+  [/默認/g, '預設', '默認 → 預設'],
+  [/網絡/g, '網路', '網絡 → 網路'],
+  [/視頻/g, '影片', '視頻 → 影片'],
+  [/信息/g, '資訊', '信息 → 資訊'],
 ];
 
 /**
@@ -249,10 +262,13 @@ function hasNoTranslatableProse(original) {
  *     而 description_zh 才是檢索真正依賴的欄位。名稱退回英文原名即可；
  *     英文名對 subTool 反而是有效檢索字（與 name 欄位重疊）。
  *
- * 原文本身沒有自然語言時（只有圖片／影片連結，或像 `>` 這種佔位符），
- * 模型原樣回傳是**正確**行為 —— 但那筆譯文不能算進「已中文化」，
- * 否則覆蓋率會灌水。改為保留原文字串並標記 noProse，
- * 讓統計口徑誠實（2026-11-02 實測：claude-for-legal 前 8 筆原文全是 `>`）。
+ * 🔴 檢查順序（2026-11-02 實測踩到的坑）：
+ * 原文本來就沒有可譯內容時，**模型回傳的東西不一定是譯文**——
+ * 對著 `../../../skills/foo/SKILL.md` 這種路徑，模型會去「讀檔」，
+ * 然後回傳 `{"error": "找不到說明檔案內容"}` 或 `{"openapi": "3.1.0"}`。
+ * 舊順序先檢查 `item.subpath` → 判「缺 subpath」→ 誤判失敗（193 筆白跑）。
+ * 所以**先判斷原文本來有沒有正文**：沒有正文就保留原文、不採信模型輸出，
+ * 模型的回傳是什麼都不影響結果。
  *
  * @param {object} item - LLM 回傳的單筆
  * @param {string} originalName - 原 subTool 名稱（name_zh 留空時的退路）
@@ -261,17 +277,29 @@ function hasNoTranslatableProse(original) {
  */
 function validate(item, originalName, originalDesc) {
   const problems = [];
-  if (!item || typeof item !== 'object') return { problems: ['不是物件'], name_zh: '', description_zh: '', noProse: false };
+  const noProse = hasNoTranslatableProse(originalDesc);
+
+  // 名稱：模型有給就用，沒有就退回英文原名（英文名對 subTool 反而是有效檢索字）
+  let nameZh = '';
+  if (item && typeof item === 'object') {
+    nameZh = applyTaiwanTerms(toTraditional(String(item.name_zh || '').trim()));
+  }
+  if (!nameZh) nameZh = String(originalName || '').trim();
+  if (!nameZh) problems.push('name_zh 與原名皆為空');
+
+  // 原文本來就沒有可譯的內容（純連結／純路徑／佔位符）→ 保留原文。
+  // 模型對這類原文的回傳不可信（可能是錯誤物件），一律不採信。
+  if (noProse) {
+    return { problems, name_zh: nameZh, description_zh: String(originalDesc || '').trim(), noProse: true };
+  }
+
+  if (!item || typeof item !== 'object') {
+    return { problems: [...problems, '不是物件'], name_zh: nameZh, description_zh: '', noProse: false };
+  }
   if (!item.subpath) problems.push('缺 subpath');
 
   const descZh = applyTaiwanTerms(toTraditional(String(item.description_zh || '').trim()));
-  const noProse = hasNoTranslatableProse(originalDesc);
-  let noProseFlag = false;
-  if (noProse) {
-    // 原文本來就沒有可譯的內容（純連結／純路徑／佔位符）：
-    // 一律保留原文，**不採信模型產出的中文** —— 那是憑空補充原文沒有的資訊。
-    noProseFlag = true;
-  } else if (!descZh) {
+  if (!descZh) {
     problems.push('description_zh 為空');
   } else if (!/[\u4e00-\u9fff]/.test(descZh)) {
     problems.push('description_zh 不含中文');
@@ -280,13 +308,7 @@ function validate(item, originalName, originalDesc) {
     if (simp.length) problems.push(`含殘留簡體字 ${[...new Set(simp)].join('')}`);
   }
 
-  let nameZh = applyTaiwanTerms(toTraditional(String(item.name_zh || '').trim()));
-  if (!nameZh) nameZh = String(originalName || '').trim();   // 留空 → 退回英文原名
-  if (!nameZh) problems.push('name_zh 與原名皆為空');
-
-  // 沒有可譯內容 → 保留**原文**而不是模型的逐字回傳，並標記供統計使用。
-  const finalDesc = noProseFlag ? String(originalDesc || '').trim() : descZh;
-  return { problems, name_zh: nameZh, description_zh: finalDesc, noProse: noProseFlag };
+  return { problems, name_zh: nameZh, description_zh: descZh, noProse: false };
 }
 
 // ── 快取（v2：分工具存放；相容 v1 單工具結構）───────────────────────────────
@@ -467,10 +489,18 @@ async function main() {
 
     // ── 補救批次：主批次失敗的項目以 batch=1 再試一次 ───────────────────
     // 2026-11-01 實測：636 筆裡曾有 31 筆因模型漏欄位而失敗，改用單筆重試全部補回。
+    //
+    // 🔴 只挑「真的還沒有譯文」的項目（2026-11-02 實測踩到的坑）：
+    // `failed` 裡會殘留「早已翻好、只是失敗紀錄沒清掉」的項目 ——
+    // 實測 220 筆失敗紀錄中有 193 筆其實已經有譯文了。
+    // 把它们一起重翻 → 每筆都白打一次 API、而且對純路徑原文模型會回錯誤物件， // allow-simplified：逐字引用要防治的簡體字，該字即本行的說明對象
+    // 補救批次等於在原地打轉（實測 5 分鐘只修好 56 筆）。
+    // 那些陳舊紀錄交給最後的「清除過期失敗紀錄」處理就好。
     const repair = [];
     for (const t of targets) {
       const ts = toolState(state, t.id);
-      for (const [subpath, info] of Object.entries(ts.failed)) {
+      for (const [subpath] of Object.entries(ts.failed)) {
+        if (ts.entries[subpath]) continue;   // 已經有譯文 → 只是紀錄沒清
         const sub = t.subTools.find((s) => s.subpath === subpath);
         if (sub) repair.push({ toolId: t.id, items: [sub] });
       }
@@ -543,19 +573,41 @@ async function main() {
     for (const st of ft.subTools || []) {
       const e = ts?.entries?.[st.subpath];
       if (!e?.description_zh) continue;
-      // 原文本來就沒有可譯內容的項目（只有圖片／連結／佔位符）→ 不套用。
-      // 套上去只會在 tools.json 多一筆沒有資訊的欄位，蓋蓋率卻會被灌水。
-      if (e.noProse) continue;
-      // 同一套台灣用語後處理：快取裡的譯文可能在修正規則加入前就產生了，
-      // 套用時再過一次 → 舊快取也能被修正到（實測：636 筆有 14 筆需要修正）。
-      st.name_zh = applyTaiwanTerms(e.name_zh);
-      st.description_zh = applyTaiwanTerms(e.description_zh);
+      // 原文本來就沒有可譯內容的項目（只有圖片／連結／佔位符）→ 不寫 description_zh
+      // （寫了只是灌水）。但**名稱仍可譯**，照樣寫入並正規化 ——
+      // 名稱是有效的檢索字，略過它等於白翻一次。
+      if (e.noProse) {
+        const nzh = applyTaiwanTerms(toTraditional(e.name_zh || ''));
+        if (nzh) st.name_zh = nzh;
+        if (ts.entries[st.subpath]) {
+          ts.entries[st.subpath].name_zh = nzh;
+          ts.entries[st.subpath].description_zh = applyTaiwanTerms(toTraditional(e.description_zh));
+        }
+        n++;
+        continue;
+      }
+      // 同一套後處理：台灣用語 + 轉繁體。
+      // 轉繁體不能省 —— 快取裡的譯文是在**當時**的 S2T_SAFE 表下轉換的，
+      // 之後新增的漏字（例如 2026-11-02 挖出的 栈／缝／诗）不會自動補回。 // allow-simplified：逐字引用要防治的簡體字，該字即本行的說明對象
+      // 套用時再過一次 → 新規則與新表都能套用到既有譯文（不用重跑翻譯）。
+      st.name_zh = applyTaiwanTerms(toTraditional(e.name_zh));
+      st.description_zh = applyTaiwanTerms(toTraditional(e.description_zh));
+      // 同步回寫快取：快取要保存**最終值**。否則 tools.json 修好了、
+      // 快取裡還留著修正前的舊值 → 繁簡守門會在 registry/subtool-zh-state.json
+      // 抓到簡體字（2026-11-02 實測：19 行違規裡有 11 行來自快取）。
+      if (ts?.entries?.[st.subpath]) {
+        ts.entries[st.subpath].name_zh = st.name_zh;
+        ts.entries[st.subpath].description_zh = st.description_zh;
+      }
       n++; applied++;
     }
     if (n) appliedPerTool.push(`  ${id}：${n}/${ft.subTools.length}`);
   }
   fresh.lastUpdated = new Date().toISOString();
   writeFileSync(REGISTRY, JSON.stringify(fresh, null, 2), 'utf8');
+  // 快取也要落盤：上面把修正後的值回寫進 state.entries 了，
+  // 不寫回磁碟的話這次回寫等於沒發生 → 下次讀到的還是舊值。
+  writeFileSync(STATE_PATH, JSON.stringify(state, null, 2), 'utf8');
   console.log(`\n已套用 ${applied} 筆中文描述到 registry/tools.json`);
   if (appliedPerTool.length) console.log(appliedPerTool.join('\n'));
 }
