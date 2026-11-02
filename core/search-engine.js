@@ -208,6 +208,42 @@ const CJK_RE = /[\u4e00-\u9fff]/;
  */
 const CJK_COOC_RATIO = 0.25;
 
+// ─── 集合工具的子功能分數：專精優先（2026-11-02）─────────────────────
+//
+// 問題：集合工具的子功能分數原本是「加總」。
+//
+// 加總會讓「子功能數量」變成分數的主要驅動因子：一個有 798 個 subTool 的
+// 集合（claude-skills），只要其中 14 個的描述碰巧出現「簡報」，加總就撞到
+// 6 分上限 —— 與「專用工具本身精準命中查詢」取得同樣分數。
+// 鑑別力因此被稀釋（這正是 AGENTS.md §「擴充過度會退步」講的情況）。
+//
+// 實測危害（327 題 v1.6.0 尺子）：查詢「做簡報」時，
+//   #1 = minimax-ppt-skills（純子功能命中 4 個，raw 4.00）
+//   #2 = ppt-master（工具層 trigger 直接命中「簡報」「做簡報」，raw 7.01）
+// 專用工具明明證據更強卻輸，因為加總把「碰巧提到」的次數當成相關度。
+//
+// 解法：分數改由「最相關的那一個子功能」決定，其餘子功能只給小幅權重。
+//
+//   subToolScore = maxSubToolScore + BREADTH_WEIGHT × breadthScore
+//
+// 其中 breadthScore 是「**佐證**」不是「次數」，兩道限制（見程式內註解）：
+//   1. 只計最相關子功能尚未涵蓋的詞彙（避免重複提及同一個詞刷分）
+//   2. 只計至少命中 2 個查詢詞彙的子功能（單詞命中是詞彙巧合，不是佐證）
+//
+// 三種候選公式的實測對照（327 題 L2 尺子，after registry）：
+//   公式            整體H1  目標組H1  目標組H3  對照組H1  對照組H3  「做簡報」
+//   加總（原本）     12.8%    17.1%     34.3%     52.6%     73.7%    ✗ 集合搶走
+//   加總廣度 β=0.25  13.1%    17.1%     34.3%     57.9%     78.9%    ✓
+//   覆蓋率廣度 β=0.25 13.5%   14.3%     31.4%     68.4%     78.9%    ✓
+//   混合廣度 β=0.25   13.5%   17.1%     31.4%     63.2%     78.9%    ✓ ← 採用
+//   混合廣度 β=0.50   13.1%    17.1%     31.4%     57.9%     78.9%
+//   混合廣度 β=1.00   13.1%    17.1%     31.4%     57.9%     73.7%
+//
+// 採用「混合廣度 β=0.25」：目標組（翻譯效益的直接指標）Hit@1 完整保住 17.1%，
+// 對照組（原本因翻譯而倒退的那一組）Hit@1 從 52.6% 回升到 63.2%，
+// 同時「20 個子功能各重複提一次簡報」刷不出分（mock 守門測試已鎖住）。
+const SUBTOOL_BREADTH_WEIGHT = 0.25;
+
 // ─── 查詢結果快取（searchResultCache）─────────────────────────────────
 //
 // 問題：相同查詢每次都重新計算。
@@ -371,23 +407,64 @@ function exactMatch(tools, query) {
 // ── Trigger IDF 快取 ─────────────────────────────────────────────────────
 // 把 trigger 詞頻換成 IDF：罕見 trigger（如 kubernetes、js-rendered）分數高，
 // 通用 trigger（如 ai、agent、data、automation）分數低。這是修正「通用
-// trigger 偽命中」的根本方法。以 trigger 正規化字串為 key 做整程序快取。
-const triggerIdfCache = new Map();   // normTrigger → idfScore
-let triggerIdfBuilt = false;
-let triggerIdfMax = 0;              // 全庫最大 IDF，首次建置時填入
+// trigger 偽命中」的根本方法。
+//
+// 🔴 2026-11-02 修正：原本是**無鍵的模組級單例**（triggerIdfBuilt 旗標），
+// 由「程序中第一個呼叫的工具庫」建置，之後所有呼叫共用同一張表。
+// 後果：同一個程序內跑兩份工具庫時，第二份會拿到第一份的 IDF → 分數全錯，
+// 而且錯得很安靜（只差在 df 計數上，看不出來）。
+//
+// 實測踩到的地方：
+//   - 評測的 before／after 配對 A/B 必須同程式碼，但兩個 registry 跑在同一
+//     程序 → 第二份的 IDF 其實是第一份的。
+//   - 測試檔裡的 mock 工具庫（2 支）會污染同一程序內後續的真實工具庫查詢。
+//
+// 本輪的配對 A/B 已驗證**未受污染**（before／after 的 trigger 集合逐字相同，
+// 兩份 IDF 逐值一致），但這個地雷必須拔掉。
+//
+// 修法：以「工具庫陣列的身分」為鍵（WeakMap），每份工具庫各自建置。
+const triggerIdfCacheByTools = new WeakMap(); // tools[] → { map, max }
+
+// ── 可檢索工具集（status 過濾）記憶化 ───────────────────────────────────
+// 為什麼要記憶化：IDF 快取以「工具庫陣列身分」為鍵，若 search() 每次都
+// filter 出新陣列，IDF 每次都要重算（全庫 781 支 × 每支的 trigger 掃描）。
+// 以 registry 陣列身分記憶化後，過濾結果的陣列身分穩定 → IDF 只算一次。
+const activeToolsCache = new WeakMap(); // registryTools → tools[]
+
+/**
+ * 取得可檢索的工具集（status 過濾），陣列身分穩定（供 IDF 快取當鍵）。
+ * @param {object[]} registryTools
+ * @returns {object[]}
+ */
+function getActiveTools(registryTools) {
+  let cached = activeToolsCache.get(registryTools);
+  if (!cached) {
+    cached = registryTools.filter(t => t.status === 'active' || t.status === 'experimental');
+    activeToolsCache.set(registryTools, cached);
+  }
+  return cached;
+}
 
 // L1.5 同分破解的身分加權：0.017 ≈ df ≤ 6 相鄰 IDF 階梯的最小間距下限，
 // 足以破同分、又只可能重排「近等價 trigger」（保證範圍見 search() 內 L1.5 註解）。
 const L15_IDENTITY_BOOST = 0.017;
 
 /**
- * 建立 / 回傳 trigger IDF 表（首次呼叫時建置，之後快取）。
+ * 建立 / 回傳 trigger IDF 表（每份工具庫各建置一次，之後快取）。
+ *
+ * 統計母體刻意是「整份工具庫的 status 過濾集」，而不是當次查詢篩選後的
+ * 子集：IDF 是「這個詞在全庫有多常見」的統計量，若用子集算，同一個 trigger
+ * 在不同分類篩選下會有不同鑑別度 → 同一個查詢的排名會隨篩選條件漂移，
+ * 無法解釋也無法重現。
+ *
  * @param {object[]} tools
- * @returns {Map<string, number>} normTrigger → idf
+ * @returns {{ map: Map<string, number>, max: number }}
  */
 function getTriggerIdf(tools) {
-  if (triggerIdfBuilt) return triggerIdfCache;
+  const cached = triggerIdfCacheByTools.get(tools);
+  if (cached) return cached;
   // 以 token 為單位統計 df：把每個 trigger 拆成子 token，每個 token 出現於幾個工具
+  const map = new Map();
   const df = new Map();
   for (const t of tools) {
     const seenTokens = new Set();
@@ -408,11 +485,11 @@ function getTriggerIdf(tools) {
     // 平滑 IDF：df 越大分越低。N=693 時：
     //   df=1 → 7.25（罕見）；df=10 → 4.26；df=50 → 2.62；df=200 → 1.70；df=693 → 1.01（極常見）
     const idf = Math.log((N + 1) / (count + 1)) + 1;
-    triggerIdfCache.set(tok, idf);
+    map.set(tok, idf);
   }
-  triggerIdfMax = maxRaw; // 填正則化常數
-  triggerIdfBuilt = true;
-  return triggerIdfCache;
+  const bundle = { map, max: maxRaw };
+  triggerIdfCacheByTools.set(tools, bundle);
+  return bundle;
 }
 
 /**
@@ -422,10 +499,10 @@ function getTriggerIdf(tools) {
  *  - 複合 trigger `youtube-transcript` → 非停用（youtube/transcript 皆有意義）
  *  - 複合 trigger `open-source` → 停用（open/source 皆語境詞）
  * @param {string} trigger
- * @param {Map<string, number>} idfMap
+ * @param {{ map: Map<string, number>, max: number }} idf
  * @returns {number}
  */
-function triggerDiscriminativeScore(trigger, idfMap) {
+function triggerDiscriminativeScore(trigger, idf) {
   const norm = String(trigger).toLowerCase().trim();
   if (!norm) return 0;
   const tokens = norm.split(/[-\s]+/).filter(Boolean);
@@ -434,42 +511,48 @@ function triggerDiscriminativeScore(trigger, idfMap) {
   // 取該 trigger 各有意義 token 中 IDF 最低者（最保守），避免被高 IDF 子詞拉高
   let raw = Infinity;
   for (const t of meaningful) {
-    const v = idfMap.get(t);
+    const v = idf.map.get(t);
     if (v != null && v < raw) raw = v;
   }
-  if (!Number.isFinite(raw)) raw = 0.5 * triggerIdfMax; // 全未見過 → 中階
+  if (!Number.isFinite(raw)) raw = 0.5 * idf.max; // 全未見過 → 中階
   // 相對正規化：除以全庫最大 IDF（≈7.54），df=0 → 1.0，df=693 → ~0.13
-  return Math.max(0, Math.min(1.0, raw / triggerIdfMax));
+  return Math.max(0, Math.min(1.0, raw / idf.max));
 }
 
 // ── 查詢 token 鑑別分數快取 ──────────────────────────────────────────────
 // 對查詢中的每個 token，回傳 0~1 的「資訊量分數」。
 // 常見停用詞（ai/doc/data）→ 0；罕見詞（kubernetes/js-rendered）→ 1。
-const queryTokenDiscrimCache = new Map();
+// 以 IDF 表為鍵：不同工具庫的 df 不同，鑑別分數也必須分開算。
+const queryTokenDiscrimCacheByIdf = new WeakMap(); // idf → Map<token, number>
 
 /**
  * 取得查詢 token 的「鑑別分數」（0~1）：依該 token 在全庫 trigger 的出現頻率。
  * token 出現越多分越低（越像語境詞）；罕見 token 分高。
  * @param {string} token
- * @param {Map<string, number>} idfMap
+ * @param {{ map: Map<string, number>, max: number }} idf
  * @returns {number}
  */
-function tokenDiscriminativeScore(token, idfMap) {
+function tokenDiscriminativeScore(token, idf) {
   const t = String(token || '').toLowerCase().trim();
   if (!t) return 0;
   if (isGenericStopword(t)) return 0;
-  const cached = queryTokenDiscrimCache.get(t);
+  let cache = queryTokenDiscrimCacheByIdf.get(idf);
+  if (!cache) {
+    cache = new Map();
+    queryTokenDiscrimCacheByIdf.set(idf, cache);
+  }
+  const cached = cache.get(t);
   if (cached !== undefined) return cached;
-  const raw = idfMap.get(t);
+  const raw = idf.map.get(t);
   let v;
   if (raw == null) {
     // 未在 trigger 出現過：罕見詞，給高鑑別分
     v = 0.95;
   } else {
     // 相對正規化：df=0 → ~1.0，df=693 → ~0.13
-    v = Math.max(0, Math.min(1.0, raw / triggerIdfMax));
+    v = Math.max(0, Math.min(1.0, raw / idf.max));
   }
-  queryTokenDiscrimCache.set(t, v);
+  cache.set(t, v);
   return v;
 }
 
@@ -477,9 +560,10 @@ function tokenDiscriminativeScore(token, idfMap) {
  * L2 關鍵字匹配：查詢字串與工具觸發關鍵字 + 分類 + 描述 交叉匹配
  * @param {object[]} tools - 工具列表
  * @param {string} query - 查詢字串
+ * @param {{ map: Map<string, number>, max: number }} idf - 該工具庫的 trigger IDF 表
  * @returns {object[]} 匹配結果（含分數，按分數降序）
  */
-function keywordMatch(tools, query) {
+function keywordMatch(tools, query, idf) {
   const allQueryTokens = tokenize(query);
   if (allQueryTokens.length === 0) return [];
   const normQuery = normalize(query); // 提到迴圈外，避免對每個 tool 的每個 trigger 重複正規化同一個查詢字串
@@ -497,9 +581,6 @@ function keywordMatch(tools, query) {
     ? subToolTokens(query).filter((t) => !isGenericStopword(t))
     : queryTokens;
 
-  // 取得 trigger IDF 表（首次建置，之後快取）
-  const idfMap = getTriggerIdf(tools);
-
   const results = [];
 
   for (const tool of tools) {
@@ -512,7 +593,7 @@ function keywordMatch(tools, query) {
     // 但 video-to-text 的 video 會匹配）。
     for (const trigger of tool.triggers) {
       const triggerNorm = getTriggerNorm(trigger);
-      const discrim = triggerDiscriminativeScore(trigger, idfMap);
+      const discrim = triggerDiscriminativeScore(trigger, idf);
       if (discrim === 0) continue; // 停用 trigger 完全不加權
 
       // 強命中：查詢字串整段包含 trigger（如查 `ppt-master`）
@@ -555,7 +636,7 @@ function keywordMatch(tools, query) {
     for (const token of queryTokens) {
       if (token.length < 3) continue;
       if (categoryNorm.includes(token)) {
-        const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+        const tokDiscrim = tokenDiscriminativeScore(token, idf);
         score += 2 * tokDiscrim;
         if (!matchedKeywords.includes(`[category:${tool.category}]`)) matchedKeywords.push(`[category:${tool.category}]`);
       }
@@ -566,7 +647,7 @@ function keywordMatch(tools, query) {
     for (const token of queryTokens) {
       if (token.length < 3) continue;
       if (descNorm.includes(token)) {
-        const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+        const tokDiscrim = tokenDiscriminativeScore(token, idf);
         score += 1 * tokDiscrim;
       }
     }
@@ -627,7 +708,10 @@ function keywordMatch(tools, query) {
           : subQueryTokens.length)
         : 1;
 
-      let subToolScore = 0;
+      let maxSubToolScore = 0;
+      let bestNameTokens = null;
+      let bestDescTokens = null;
+      const subToolHits = [];
       const subToolKeywordSet = new Set(matchedKeywords);
       for (const subTool of tool.subTools) {
         const { name: subName, desc: subDesc, nameZh: subNameZh, descZh: subDescZh } = getSubToolNorm(subTool);
@@ -644,15 +728,49 @@ function keywordMatch(tools, query) {
         const matchedTokenCount = new Set([...nameMatchedTokens, ...descMatchedTokens]).size;
         if (matchedTokenCount < requiredCount) continue;
 
-        subToolScore += nameMatchedTokens.length * 1.5 + descMatchedTokens.length * 1.0;
+        const perSubToolScore = nameMatchedTokens.length * 1.5 + descMatchedTokens.length * 1.0;
+        const hitNameTokens = new Set(nameMatchedTokens);
+        const hitDescTokens = new Set(descMatchedTokens);
+        subToolHits.push({
+          perSubToolScore,
+          hitNameTokens,
+          hitDescTokens,
+          matchedTokenCount: new Set([...nameMatchedTokens, ...descMatchedTokens]).size,
+        });
+        if (perSubToolScore > maxSubToolScore) {
+          maxSubToolScore = perSubToolScore;
+          bestNameTokens = hitNameTokens;
+          bestDescTokens = hitDescTokens;
+        }
         const kw = `subtool:${subTool.name}`;
         if (!subToolKeywordSet.has(kw)) {
           subToolKeywordSet.add(kw);
           matchedKeywords.push(kw);
         }
       }
+      // 專精優先（2026-11-02）：分數由「最相關的那個子功能」決定，
+      // 其餘子功能只給小幅權重，避免集合工具靠「子功能數量多」稀釋鑑別力。
+      // 詳見 SUBTOOL_BREADTH_WEIGHT 的量測紀錄。
+      //
+      // 「廣度」是**佐證**不是**次數**，兩道限制：
+      //   1. 只計「最相關子功能尚未涵蓋的詞彙」→ 重複提及同一個詞不算廣度
+      //      （20 個子功能都只是重複提到「簡報」→ 廣度 = 0，無法靠刷字數取勝）
+      //   2. 只計「至少命中 2 個查詢詞彙」的子功能 → 只命中一個詞是詞彙巧合，
+      //      不是「這個集合確實涵蓋這個需求」的佐證
+      let breadthScore = 0;
+      if (bestNameTokens || bestDescTokens) {
+        for (const hit of subToolHits) {
+          if (hit.matchedTokenCount < 2) continue;   // 單詞命中＝巧合，不計入廣度
+          let newName = 0;
+          let newDesc = 0;
+          for (const t of hit.hitNameTokens) if (!bestNameTokens.has(t)) newName++;
+          for (const t of hit.hitDescTokens) if (!bestDescTokens.has(t)) newDesc++;
+          breadthScore += newName * 1.5 + newDesc * 1.0;
+        }
+      }
+      const concentratedSubToolScore = maxSubToolScore + SUBTOOL_BREADTH_WEIGHT * breadthScore;
       // 限制子工具的加分上限，避免包含上百個工具的 Monorepo 霸榜
-      score += Math.min(subToolScore, 6);
+      score += Math.min(concentratedSubToolScore, 6);
     }
 
     // 場景與優勢匹配（IDF 加權：只對有鑑別力的 token 加分，避免 `doc`/`data` 白拿分）
@@ -660,7 +778,7 @@ function keywordMatch(tools, query) {
       const useCaseNorm = normalize(tool.useCase);
       for (const token of queryTokens) {
         if (useCaseNorm.includes(token) && token.length >= 2) {
-          const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+          const tokDiscrim = tokenDiscriminativeScore(token, idf);
           score += 2 * tokDiscrim;
           if (!matchedKeywords.includes(`場景匹配`)) matchedKeywords.push(`場景匹配`);
         }
@@ -672,7 +790,7 @@ function keywordMatch(tools, query) {
         const advNorm = normalize(adv);
         for (const token of queryTokens) {
           if (advNorm.includes(token) && token.length >= 2) {
-            const tokDiscrim = tokenDiscriminativeScore(token, idfMap);
+            const tokDiscrim = tokenDiscriminativeScore(token, idf);
             score += 2 * tokDiscrim;
             if (!matchedKeywords.includes(`優勢匹配`)) matchedKeywords.push(`優勢匹配`);
           }
@@ -696,7 +814,7 @@ function keywordMatch(tools, query) {
       if (isNegativeMatch) {
         if (!matchedKeywords.includes(`🚫 禁用場景`)) matchedKeywords.push(`🚫 禁用場景`);
       }
-      
+
       // 正規化分數到 0~1 範圍
       const maxPossible = tool.triggers.length * 4.5 + 2 + 5 + (tool.capabilities?.length || 0) * 2 + (tool.subTools ? 6 : 0);
       // 如果命中負樣本，強制給予極低分數 (0.01)
@@ -1106,7 +1224,11 @@ export function search(registryTools, query, options = {}) {
     return cached;
   }
   
-  let tools = registryTools.filter(t => t.status === 'active' || t.status === 'experimental');
+  // 可檢索工具集（status 過濾）。陣列身分穩定 → trigger IDF 只建一次。
+  const activeTools = getActiveTools(registryTools);
+  // 該工具庫的 trigger IDF 表（L1.5 與 L2 共用同一份）
+  const idf = getTriggerIdf(activeTools);
+  let tools = activeTools;
 
   // 處理自然語言口語字眼前綴 (例如: "我想做簡報" -> "做簡報", "請幫我 scan" -> "scan")
   let targetQuery = (query || '').trim();
@@ -1167,14 +1289,13 @@ export function search(registryTools, query, options = {}) {
   const triggerExactHits = [];
   {
     const qNorm = normalize(targetQuery);
-    const idfMap = getTriggerIdf(tools);
     const qWords = qNorm.split(/[^a-z0-9]+/).filter(Boolean);
     for (const tool of tools) {
       for (const trig of (tool.triggers || [])) {
         const tNorm = getTriggerNorm(trig);
         if (tNorm.length < 4) continue;           // 太短的 trigger 不參與精確命中
         if (!l15TriggerAligned(tNorm, qNorm, qWords)) continue;  // 查詢必須整段包含 trigger 且對齊詞邊界
-        const discrim = triggerDiscriminativeScore(trig, idfMap);
+        const discrim = triggerDiscriminativeScore(trig, idf);
         if (discrim <= 0) continue;               // 停用 trigger 不計
         // 2026-10-02 量尺對齊：L1.5 原回傳 3*discrim（0~3 量級），與 L2 的 0~0.99
         // 不一致，融合與顯示層乘 100 後出現「213%」。改回 discrim 本身（0~1），
@@ -1206,7 +1327,7 @@ export function search(registryTools, query, options = {}) {
   }
 
   // L2 關鍵字匹配
-  const l2Results = keywordMatch(tools, targetQuery);
+  const l2Results = keywordMatch(tools, targetQuery, idf);
 
   // L3 語義檢索（作為補充）
   const l3Results = semanticSearch(tools, targetQuery);
@@ -1300,6 +1421,7 @@ export function rerankCandidates(candidates, context, options = {}) {
     const tool = item.tool;
     let newScore = item.score;
     const reasons = [];
+
 
     // 維度 A: 語言偏好對齊
     if (targetLang && tool.language) {
