@@ -27730,11 +27730,442 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2719,
-    "inRegistry": 744,
-    "trackedOnly": 1975,
-    "lastGenerated": "2026-10-26T07:27:31.296Z"
+  "OpenBMB/VoxCPM": {
+    "fullName": "OpenBMB/VoxCPM",
+    "owner": "OpenBMB",
+    "repo": "VoxCPM",
+    "category": "音訊",
+    "addedAt": "2026-11-01T10:38:28.247Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-10-26T07:27:31.254Z"
+  "import-ai/omnibox": {
+    "fullName": "import-ai/omnibox",
+    "owner": "import-ai",
+    "repo": "omnibox",
+    "category": "知識管理",
+    "addedAt": "2026-11-01T10:38:51.768Z",
+    "status": "tracking"
+  },
+  "AirsupHQ/machine-skill": {
+    "fullName": "AirsupHQ/machine-skill",
+    "owner": "AirsupHQ",
+    "repo": "machine-skill",
+    "category": "3D工程繪圖",
+    "addedAt": "2026-11-01T10:39:06.749Z",
+    "status": "tracking"
+  },
+  "Gathin23/cleanyourtv": {
+    "fullName": "Gathin23/cleanyourtv",
+    "owner": "Gathin23",
+    "repo": "cleanyourtv",
+    "initialStars": 36514,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "deepseek-ai/DeepInfer": {
+    "fullName": "deepseek-ai/DeepInfer",
+    "owner": "deepseek-ai",
+    "repo": "DeepInfer",
+    "initialStars": 22651,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Zagitta/gpu-unlock": {
+    "fullName": "Zagitta/gpu-unlock",
+    "owner": "Zagitta",
+    "repo": "gpu-unlock",
+    "initialStars": 7724,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ly05010419/MacNativeGames": {
+    "fullName": "ly05010419/MacNativeGames",
+    "owner": "ly05010419",
+    "repo": "MacNativeGames",
+    "initialStars": 5574,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "pengchujin/aerial-tv": {
+    "fullName": "pengchujin/aerial-tv",
+    "owner": "pengchujin",
+    "repo": "aerial-tv",
+    "initialStars": 5473,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "seedds/nxnative": {
+    "fullName": "seedds/nxnative",
+    "owner": "seedds",
+    "repo": "nxnative",
+    "initialStars": 4675,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "simbasjungles/free-my-tv": {
+    "fullName": "simbasjungles/free-my-tv",
+    "owner": "simbasjungles",
+    "repo": "free-my-tv",
+    "initialStars": 4670,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Fei2411/DS-Bot": {
+    "fullName": "Fei2411/DS-Bot",
+    "owner": "Fei2411",
+    "repo": "DS-Bot",
+    "initialStars": 4014,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xiaoyang111222/cn-math-taxonomy": {
+    "fullName": "xiaoyang111222/cn-math-taxonomy",
+    "owner": "xiaoyang111222",
+    "repo": "cn-math-taxonomy",
+    "initialStars": 3879,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "JustAResearcher/gpu-unlock-ada": {
+    "fullName": "JustAResearcher/gpu-unlock-ada",
+    "owner": "JustAResearcher",
+    "repo": "gpu-unlock-ada",
+    "initialStars": 3212,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "t4t5/owly": {
+    "fullName": "t4t5/owly",
+    "owner": "t4t5",
+    "repo": "owly",
+    "initialStars": 3066,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "openfilm/openfilm": {
+    "fullName": "openfilm/openfilm",
+    "owner": "openfilm",
+    "repo": "openfilm",
+    "initialStars": 2892,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Leonxlnx/earshot": {
+    "fullName": "Leonxlnx/earshot",
+    "owner": "Leonxlnx",
+    "repo": "earshot",
+    "initialStars": 2826,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "aicodeking/leanrea": {
+    "fullName": "aicodeking/leanrea",
+    "owner": "aicodeking",
+    "repo": "leanrea",
+    "initialStars": 2638,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "JoasASantos/REA-Prompts": {
+    "fullName": "JoasASantos/REA-Prompts",
+    "owner": "JoasASantos",
+    "repo": "REA-Prompts",
+    "initialStars": 2542,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "AhmadHassan-BTed/.github": {
+    "fullName": "AhmadHassan-BTed/.github",
+    "owner": "AhmadHassan-BTed",
+    "repo": ".github",
+    "initialStars": 2402,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mmparko/dsh-purge": {
+    "fullName": "mmparko/dsh-purge",
+    "owner": "mmparko",
+    "repo": "dsh-purge",
+    "initialStars": 2395,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "oxc-project/tsrs": {
+    "fullName": "oxc-project/tsrs",
+    "owner": "oxc-project",
+    "repo": "tsrs",
+    "initialStars": 2295,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "rohit267/net-merge": {
+    "fullName": "rohit267/net-merge",
+    "owner": "rohit267",
+    "repo": "net-merge",
+    "initialStars": 2266,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ludovic111/horizon": {
+    "fullName": "ludovic111/horizon",
+    "owner": "ludovic111",
+    "repo": "horizon",
+    "initialStars": 2244,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Vincentwei1021/mg-styles-15": {
+    "fullName": "Vincentwei1021/mg-styles-15",
+    "owner": "Vincentwei1021",
+    "repo": "mg-styles-15",
+    "initialStars": 2150,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "EthanArbuckle/fairplay-decrypt": {
+    "fullName": "EthanArbuckle/fairplay-decrypt",
+    "owner": "EthanArbuckle",
+    "repo": "fairplay-decrypt",
+    "initialStars": 2133,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Supermedo/uncharted_pc": {
+    "fullName": "Supermedo/uncharted_pc",
+    "owner": "Supermedo",
+    "repo": "uncharted_pc",
+    "initialStars": 1985,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wesbos/3d-model-anything": {
+    "fullName": "wesbos/3d-model-anything",
+    "owner": "wesbos",
+    "repo": "3d-model-anything",
+    "initialStars": 1976,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "xevrion/hatchzip": {
+    "fullName": "xevrion/hatchzip",
+    "owner": "xevrion",
+    "repo": "hatchzip",
+    "initialStars": 1975,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "perplexityai/SPACE": {
+    "fullName": "perplexityai/SPACE",
+    "owner": "perplexityai",
+    "repo": "SPACE",
+    "initialStars": 1954,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "yeqv111/mccarbon": {
+    "fullName": "yeqv111/mccarbon",
+    "owner": "yeqv111",
+    "repo": "mccarbon",
+    "initialStars": 1935,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "trhhubsd/ARTEX": {
+    "fullName": "trhhubsd/ARTEX",
+    "owner": "trhhubsd",
+    "repo": "ARTEX",
+    "initialStars": 1934,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mw00/project-maya": {
+    "fullName": "mw00/project-maya",
+    "owner": "mw00",
+    "repo": "project-maya",
+    "initialStars": 1916,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wuyoscar/AISafetyHot": {
+    "fullName": "wuyoscar/AISafetyHot",
+    "owner": "wuyoscar",
+    "repo": "AISafetyHot",
+    "initialStars": 1894,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "OpenMOSS/MOSS-Image": {
+    "fullName": "OpenMOSS/MOSS-Image",
+    "owner": "OpenMOSS",
+    "repo": "MOSS-Image",
+    "initialStars": 1887,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "amosblomqvist/learnharness": {
+    "fullName": "amosblomqvist/learnharness",
+    "owner": "amosblomqvist",
+    "repo": "learnharness",
+    "initialStars": 1825,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "peiikai/LASRecomp": {
+    "fullName": "peiikai/LASRecomp",
+    "owner": "peiikai",
+    "repo": "LASRecomp",
+    "initialStars": 1813,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "ikow/php2shell-poc": {
+    "fullName": "ikow/php2shell-poc",
+    "owner": "ikow",
+    "repo": "php2shell-poc",
+    "initialStars": 1805,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "zhuyansen/new-term-radar": {
+    "fullName": "zhuyansen/new-term-radar",
+    "owner": "zhuyansen",
+    "repo": "new-term-radar",
+    "initialStars": 1794,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Niiiiikiiiiii/McLife-Desk": {
+    "fullName": "Niiiiikiiiiii/McLife-Desk",
+    "owner": "Niiiiikiiiiii",
+    "repo": "McLife-Desk",
+    "initialStars": 1789,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Jakeschincariol/founder-skill": {
+    "fullName": "Jakeschincariol/founder-skill",
+    "owner": "Jakeschincariol",
+    "repo": "founder-skill",
+    "initialStars": 1784,
+    "discoveredAt": "2026-10-26T07:27:31.254Z",
+    "sourceSnapshotWeek": "2026-W44",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2759,
+    "inRegistry": 747,
+    "trackedOnly": 2012,
+    "lastGenerated": "2026-11-02T08:55:16.832Z"
+  },
+  "lastGenerated": "2026-11-02T08:55:16.796Z"
 }
