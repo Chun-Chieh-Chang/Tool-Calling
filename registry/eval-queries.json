@@ -1,9 +1,9 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "created": "2026-09-14",
   "description": "工具選用評測集。查詢刻意避開工具名與 trigger 詞，以衡量真正的匹配能力。expected 為可接受答案集合，任一命中即算對。empty-set 類型用於衡量引擎是否誠實回報「無對應工具」。",
   "methodology": {
-    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。\n2026-09-20 擴充至 v1.3.0：以 scripts/expand-eval-set.js **可重現地**新增 98 題（依分類輪替取樣、優先補薄分類；題型比例維持 direct 28%／semantic 50%／constrained 22%，以免類型分佈再次改變）。四道關卡：漏詞檢查（剔除 1）→ 天花板驗證（答案需在 top-50，剔除 1）→ 去重（0）→ 人工未介入。**新基線與舊基線不可直接比較**（題數改變，標準誤由 ~3.6pp 降至 ~3.0pp）。\n⚠️ v1.3.0 已知偏差（使用時必須知道）：\n  1. 新增題目的天花板通過率 99.0%，高於 v1.2.0 的 92.6% —— 代表新題目\n     在「召回」上偏簡單（答案幾乎都在 top-50），但在「排序」上不一定：\n     實測 semantic 天花板 93.7% → 96.1%，但 top1 並未同步提升。\n     成因：題目由工具 metadata 反推，詞彙仍比真實使用者查詢更接近語料庫。\n  2. 因此 v1.3.0 的基線**不能**與 v1.2.0 直接比較（題數、難度分佈皆已改變）：\n     agent Hit@1 62.3% → 58.8%、fusion 61.0% → 58.0%。\n  3. 17/98 題與工具 trigger 用詞重疊（既有評測集亦有此情形），保留但應留意。\n\n  後續若再擴充，建議改用「真人實際問句」或「跨工具混淆題」以提高難度，\n  而不是繼續由 metadata 反推。\n2026-10-15 修訂至 v1.4.0（簡繁清洗，題數不變 267）：發現 257 筆非空集查詢中有 9 筆（c14／c77／c79／c106／c144～c148）混入簡體字，係產生流程的瑕疵而非刻意設計——methodology 未記載任何「刻意保留簡體查詢」的意圖。以 scripts/fix-simplified.js 的 toTraditional() 逐題轉為繁體，**僅動 query 欄位**。\n配對 A/B（同批題目、僅字形不同）實測：改善 6／不變 3／變差 0（符號檢定單尾 p≈0.016），其中 c144 由「完全找不到」→ 第 7 名；但 9 題中有 4 題帶簡體時照樣命中，故簡繁只解釋 42 題失敗中的 5 題，不是萬用解釋。\n⚠️ 轉換器是 opencc cn→t（純字形轉換，非台灣詞彙本地化），產出「軟件」；本專案語料慣例為台灣用語（評測集既有 5 處全用「軟體」、registry 為 1352:23），故 c146 手工覆寫「軟件」→「軟體」。\n⚠️ **v1.4.0 與 v1.3.0 基線不可直接比較**（題目內容已變）。v1.3.0 的數字保留為歷史，不重算。清洗後仍須重跑所有可離線量測的基線（天花板、benchmark）與 `npm run ablate:v5`。\n2026-11-01 擴充至 v1.5.0：新增 20 題 **monorepo** 題型（獨立的 id 命名空間 m01~m20），題型**不併入**既有的 direct／semantic／constrained，因此那三型的 Hit@1 基線不受影響、可直接比較。\n  動機：2026-11-01 量測發現，既有 267 題**沒有任何一題的答案是集合工具**（答案為 11 個大型 subTools 集合工具的題數 = 0），因此當時的 Hit@1 完全測不出「集合工具子功能檢索失效」這個缺口 —— 這是評測集自身的盲區。\n  每題都先驗證兩個前提：① 該子功能確實存在於該工具的 subTools；② 期望答案經人工判斷（存在更專門的工具時，該專門工具才是期望，集合工具降為 alsoAcceptable）。\n  實測現況：#1 命中 1／20，落在前 5 但非 #1 0 題，完全進不了前 5 19 題。\n  ⚠️ 與 v1.4.0 的整體基線不可直接比較（總題數 287，且新增題刻意集中在既有評測未覆蓋的盲區）；但 direct／semantic／constrained／empty-set 四型的分組數字不變。",
+    "generation": "由工具反推需求（讀 description 後改寫為 agent 風格的口語描述）\n2026-09-19 擴充：針對只有 2 筆答案的薄弱分類（音訊/影片/3D工程繪圖/數據分析/安全性/學習資源/UIUX設計/開發工具）新增 22 筆，並標註 category 以便分組分析。評測集規模 47 → 69 筆，**新基線與舊基線不可直接比較**。\n2026-09-20 擴充至 v1.2.0：新增 95 題（18 分類均勻取樣、由工具 metadata 反推、經漏詞檢查與天花板驗證：92.6% 答案在 top-50）＋ 5 題空集。評測集規模 69 → 169 題；標準誤由 ~5.4pp 降至 ~3.6pp。**新基線與舊基線不可直接比較**（類型分佈已改變，semantic 佔比提高）。\n2026-09-20 擴充至 v1.3.0：以 scripts/expand-eval-set.js **可重現地**新增 98 題（依分類輪替取樣、優先補薄分類；題型比例維持 direct 28%／semantic 50%／constrained 22%，以免類型分佈再次改變）。四道關卡：漏詞檢查（剔除 1）→ 天花板驗證（答案需在 top-50，剔除 1）→ 去重（0）→ 人工未介入。**新基線與舊基線不可直接比較**（題數改變，標準誤由 ~3.6pp 降至 ~3.0pp）。\n⚠️ v1.3.0 已知偏差（使用時必須知道）：\n  1. 新增題目的天花板通過率 99.0%，高於 v1.2.0 的 92.6% —— 代表新題目\n     在「召回」上偏簡單（答案幾乎都在 top-50），但在「排序」上不一定：\n     實測 semantic 天花板 93.7% → 96.1%，但 top1 並未同步提升。\n     成因：題目由工具 metadata 反推，詞彙仍比真實使用者查詢更接近語料庫。\n  2. 因此 v1.3.0 的基線**不能**與 v1.2.0 直接比較（題數、難度分佈皆已改變）：\n     agent Hit@1 62.3% → 58.8%、fusion 61.0% → 58.0%。\n  3. 17/98 題與工具 trigger 用詞重疊（既有評測集亦有此情形），保留但應留意。\n\n  後續若再擴充，建議改用「真人實際問句」或「跨工具混淆題」以提高難度，\n  而不是繼續由 metadata 反推。\n2026-10-15 修訂至 v1.4.0（簡繁清洗，題數不變 267）：發現 257 筆非空集查詢中有 9 筆（c14／c77／c79／c106／c144～c148）混入簡體字，係產生流程的瑕疵而非刻意設計——methodology 未記載任何「刻意保留簡體查詢」的意圖。以 scripts/fix-simplified.js 的 toTraditional() 逐題轉為繁體，**僅動 query 欄位**。\n配對 A/B（同批題目、僅字形不同）實測：改善 6／不變 3／變差 0（符號檢定單尾 p≈0.016），其中 c144 由「完全找不到」→ 第 7 名；但 9 題中有 4 題帶簡體時照樣命中，故簡繁只解釋 42 題失敗中的 5 題，不是萬用解釋。\n⚠️ 轉換器是 opencc cn→t（純字形轉換，非台灣詞彙本地化），產出「軟件」；本專案語料慣例為台灣用語（評測集既有 5 處全用「軟體」、registry 為 1352:23），故 c146 手工覆寫「軟件」→「軟體」。\n⚠️ **v1.4.0 與 v1.3.0 基線不可直接比較**（題目內容已變）。v1.3.0 的數字保留為歷史，不重算。清洗後仍須重跑所有可離線量測的基線（天花板、benchmark）與 `npm run ablate:v5`。\n2026-11-01 擴充至 v1.5.0：新增 20 題 **monorepo** 題型（獨立的 id 命名空間 m01~m20），題型**不併入**既有的 direct／semantic／constrained，因此那三型的 Hit@1 基線不受影響、可直接比較。\n  動機：2026-11-01 量測發現，既有 267 題**沒有任何一題的答案是集合工具**（答案為 11 個大型 subTools 集合工具的題數 = 0），因此當時的 Hit@1 完全測不出「集合工具子功能檢索失效」這個缺口 —— 這是評測集自身的盲區。\n  每題都先驗證兩個前提：① 該子功能確實存在於該工具的 subTools；② 期望答案經人工判斷（存在更專門的工具時，該專門工具才是期望，集合工具降為 alsoAcceptable）。\n  實測現況：#1 命中 1／20，落在前 5 但非 #1 0 題，完全進不了前 5 19 題。\n  ⚠️ 與 v1.4.0 的整體基線不可直接比較（總題數 287，且新增題刻意集中在既有評測未覆蓋的盲區）；但 direct／semantic／constrained／empty-set 四型的分組數字不變。\n2026-11-02 擴充至 v1.6.0：新增 40 題 monorepo（b01～b40），涵蓋 subTool 數量前 10 名的集合工具（每個 4 題）：anthropic-cybersecurity-skills（817）／claude-skills（798）／knowledge-work-plugins（212）／plugins（169）／scientific-agent-skills（163）／claude-for-legal（151）／financial-services（117）／agent-toolkit（86）／generative-media-skills（73）／skill（66）。評測集規模 287 → 327 題。\n⚠️ **這批題目的用途是「配對 A/B 的基準端」**，與 v1.5.0 的 20 題（m01～m20，目標集合 awesome-copilot 已有中文描述）分屬兩組，不可混為一談：\n  · m01～m20：目標集合**已中文化** → 這組衡量的是「機制是否有效」\n  · b01～b40：目標集合**尚未中文化** → 這組衡量的是「擴大翻譯的邊際效益」\n  · 兩組皆為 type 'monorepo'，另加 collection 欄位標明目標集合，由 scripts/eval-benchmark.js 分組輸出。\n⚠️ v1.6.0 與 v1.5.0 的 monorepo 總數不可直接比較（新增 40 題且目標集合已中文化與否不同）；direct／semantic／constrained／empty-set 四型的題目與基線完全未動，仍可直接比較。\n每題依 v1.5.0 的既有規則判定期望答案：① 目標子功能真實存在於該集合的 subTools；② 存在**更專門的工具**覆蓋同一需求 → 該專門工具才是期望，集合工具降為 alsoAcceptable（b21／b22 保密協議與盡職調查 → claude-legal-skill；b37 股票 → daily-stock-analysis；b38 論文 → academic-research-skills；b39 字幕 → youtube-skills）；③ 若競爭對手本身也是集合 → 目標子功能所在的集合為期望，對方為 alsoAcceptable（b09／b11 的 scvi 與 RNA QC 同時存在於兩個集合）。",
     "bias_control": "查詢措辭刻意不同於工具的 description 用詞，避免詞彙重疊造成的循環論證",
     "language_check": "已驗證中英文非主要混淆變數：同一需求的中英文版本命中率無顯著差異（4 組對照，中英文各 2 組 MISS）。低分的成因是匹配能力本身，不是語言不對齊。",
     "expected_widening": "2026-09-16：c02 加入 mermaid-syntax-skill、c09 加入 imaginairy——兩者經查證確實能滿足該查詢，原標註過嚴。放寬僅在「該工具實際具備該能力」時進行，非為提高分數；查證後判定不符者（如 c10 的 imaginairy 是 Python 套件、不符『網頁介面』需求）一律不放寬。\n2026-09-19：c38 加入 firecrawl-skills、c41 加入 selenium——兩者經查證確實滿足查詢全部限制。同日審視 24 筆失敗，僅此 2 筆通過「同一類工具且滿足全部限制」判準，其餘 9 筆已記入 rejected 避免日後重複爭論。\n2026-09-19（第二輪）：改以 rerank 路徑（topK=50，實際上線設定）的失敗清單為準，發現 5 筆先前未評估的近義案例——先前那輪是看 benchmark（topK=5）的失敗，兩者失敗集合不同。 本輪接受 c04/c09/c19/c31/c40，駁回 c24。\n2026-09-19（第三輪）：譯文納入索引後重新審視失敗清單，接受 c32/c51/c15；駁回 c09/c37/c38（皆為描述未載明該能力，放行屬推測）。",
@@ -2564,7 +2564,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/qdrant-search-quality",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m02",
@@ -2575,7 +2576,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "plugins/oracle-to-postgres-migration-expert",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m03",
@@ -2589,7 +2591,8 @@
       ],
       "alsoAcceptableReason": "同一需求的另一個合理承接者",
       "subpath": "skills/agent-supply-chain",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m04",
@@ -2600,7 +2603,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/az-cost-optimize",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m05",
@@ -2611,7 +2615,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/ad-campaign-analyzer",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m06",
@@ -2622,7 +2627,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/competitor-ad-intelligence",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m07",
@@ -2633,7 +2639,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/bug-reproduction-brief",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m08",
@@ -2644,7 +2651,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/commit-message-storyteller",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m09",
@@ -2655,7 +2663,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/technical-job-search",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m10",
@@ -2669,7 +2678,8 @@
       ],
       "alsoAcceptableReason": "同一需求的另一個合理承接者",
       "subpath": "skills/finnish-humanizer",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m11",
@@ -2680,7 +2690,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/email-drafter",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m12",
@@ -2691,7 +2702,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/incident-postmortem",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m13",
@@ -2702,7 +2714,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/onboard-context-matic",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m14",
@@ -2713,7 +2726,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/game-engine",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m15",
@@ -2724,7 +2738,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/protobuf-grpc-api-review",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m16",
@@ -2735,7 +2750,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/penpot-uiux-design",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m17",
@@ -2749,7 +2765,8 @@
       ],
       "alsoAcceptableReason": "同一需求的另一個合理承接者",
       "subpath": "skills/freecad-scripts",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m18",
@@ -2760,7 +2777,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/gdpr-compliant",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m19",
@@ -2771,7 +2789,8 @@
       "type": "monorepo",
       "alsoAcceptable": [],
       "subpath": "skills/daily-focus-board",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
     },
     {
       "id": "m20",
@@ -2785,8 +2804,542 @@
       ],
       "alsoAcceptableReason": "同一需求的另一個合理承接者",
       "subpath": "skills/agent-owasp-compliance",
-      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能"
+      "note": "集合工具內的具體子功能：測的是「使用者用自己的話描述需求」能否命中英文 metadata 底下的子功能",
+      "collection": "awesome-copilot"
+    },
+    {
+      "id": "b01",
+      "query": "我要逆向分析 Android 惡意程式套件，用 apktool 拆開它的程式碼",
+      "expected": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "reverse-skill"
+      ],
+      "subpath": "skills/analyzing-android-malware-with-apktool",
+      "collection": "anthropic-cybersecurity-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b02",
+      "query": "想把某個駭客組織的攻擊手法依 MITRE ATT&CK 對照表整理出來",
+      "expected": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/analyzing-apt-group-with-mitre-navigator",
+      "collection": "anthropic-cybersecurity-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b03",
+      "query": "伺服器疑似被入侵，要從記憶體殘留找出可疑行程與外連紀錄",
+      "expected": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/analyzing-memory-forensics-with-lime-and-volatility",
+      "collection": "anthropic-cybersecurity-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b04",
+      "query": "收到一封可疑郵件，想從信件標頭追查釣魚 mail server 的來源",
+      "expected": [
+        "anthropic-cybersecurity-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/analyzing-email-headers-for-phishing-investigation",
+      "collection": "anthropic-cybersecurity-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b05",
+      "query": "想檢查網站的無障礙缺陷，看鍵盤能不能操作、螢幕閱讀器讀不讀得懂",
+      "expected": [
+        "claude-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "web-quality-skills"
+      ],
+      "subpath": ".gemini/skills/a11y-audit",
+      "collection": "claude-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b06",
+      "query": "產品頁要上 A/B 測試實驗，該怎麼設計分流跟統計顯著性",
+      "expected": [
+        "claude-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "posthog"
+      ],
+      "subpath": ".gemini/skills/ab-test-setup",
+      "collection": "claude-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b07",
+      "query": "請用最挑剔的審查角度幫我挑出這份技術設計提案的漏洞",
+      "expected": [
+        "claude-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "code-review-skill"
+      ],
+      "subpath": ".gemini/skills/adversarial-reviewer",
+      "collection": "claude-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b08",
+      "query": "想幫代理程式搭一個測試用的執行框架，可以跑各種任務情境",
+      "expected": [
+        "claude-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "engineering/agent-harness/skills/agent-harness",
+      "collection": "claude-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b09",
+      "query": "要用 scvi 處理單細胞基因表現資料，做降維與批次校正",
+      "expected": [
+        "knowledge-work-plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "scientific-agent-skills"
+      ],
+      "subpath": "bio-research/skills/scvi-tools",
+      "collection": "knowledge-work-plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b10",
+      "query": "要從一堆研究想法裡挑出值得做的題目，評估新穎性與可行性",
+      "expected": [
+        "knowledge-work-plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "ai-research-skills"
+      ],
+      "subpath": "bio-research/skills/scientific-problem-selection",
+      "collection": "knowledge-work-plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b11",
+      "query": "單細胞 RNA 定序的品質要怎麼檢查，要看哪些指標",
+      "expected": [
+        "knowledge-work-plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "scientific-agent-skills"
+      ],
+      "subpath": "bio-research/skills/single-cell-rna-qc",
+      "collection": "knowledge-work-plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b12",
+      "query": "要為這個工作區打造一個專屬的插件外掛",
+      "expected": [
+        "knowledge-work-plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "cowork-plugin-management/skills/create-cowork-plugin",
+      "collection": "knowledge-work-plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b13",
+      "query": "想確認我的代理設定在不同 AI 工具之間能不能通用",
+      "expected": [
+        "plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "agent-compatibility/skills/check-agent-compatibility",
+      "collection": "plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b14",
+      "query": "要從零建立一個外掛專案的骨架，該放哪些檔案",
+      "expected": [
+        "plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "knowledge-work-plugins"
+      ],
+      "subpath": "create-plugin/skills/create-plugin-scaffold",
+      "collection": "plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b15",
+      "query": "插件要上架前想先自我審查，看看有沒有可能被退件",
+      "expected": [
+        "plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "create-plugin/skills/review-plugin-submission",
+      "collection": "plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b16",
+      "query": "編譯錯誤訊息看不太懂，想要有人逐條幫我解釋",
+      "expected": [
+        "plugins"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "cursor-team-kit/skills/check-compiler-errors",
+      "collection": "plugins",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b17",
+      "query": "要做天文觀測資料的處理，分析光度與天體座標",
+      "expected": [
+        "scientific-agent-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/astropy",
+      "collection": "scientific-agent-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b18",
+      "query": "要處理單細胞的 AnnData 資料結構，做跨樣本的批次整合",
+      "expected": [
+        "scientific-agent-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/anndata",
+      "collection": "scientific-agent-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b19",
+      "query": "想用機器學習做分子的性質預測與藥物篩選",
+      "expected": [
+        "scientific-agent-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/deepchem",
+      "collection": "scientific-agent-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b20",
+      "query": "要用蛋白質語言模型做序列設計與功能預測",
+      "expected": [
+        "scientific-agent-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/esm",
+      "collection": "scientific-agent-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b21",
+      "query": "對方給來的保密協議要審一下有沒有風險條款",
+      "expected": [
+        "claude-legal-skill"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "claude-for-legal",
+        "taiwan-claude-legal"
+      ],
+      "subpath": "commercial-legal/skills/nda-review",
+      "collection": "claude-for-legal",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b22",
+      "query": "盡職調查的資料很多，要抽出其中的法律風險議題",
+      "expected": [
+        "claude-legal-skill"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "claude-for-legal"
+      ],
+      "subpath": "corporate-legal/skills/diligence-issue-extraction",
+      "collection": "claude-for-legal",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b23",
+      "query": "個人資料保護影響評估要怎麼產出，評估範圍包括哪些",
+      "expected": [
+        "claude-for-legal"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "privacy-legal/skills/pia-generation",
+      "collection": "claude-for-legal",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b24",
+      "query": "合約裡的智慧財產權條款要審，看看權利歸屬有沒有問題",
+      "expected": [
+        "claude-for-legal"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "claude-legal-skill"
+      ],
+      "subpath": "ip-legal/skills/ip-clause-review",
+      "collection": "claude-for-legal",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b25",
+      "query": "財報出來了，要分析這一季的獲利表現與變化原因",
+      "expected": [
+        "financial-services"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "plugins/agent-plugins/earnings-reviewer/skills/earnings-analysis",
+      "collection": "financial-services",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b26",
+      "query": "要產出每天開盤前的晨間研究簡報",
+      "expected": [
+        "financial-services"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "plugins/agent-plugins/earnings-reviewer/skills/morning-note",
+      "collection": "financial-services",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b27",
+      "query": "總帳跟分記對不上，要找出差異是什麼造成的",
+      "expected": [
+        "financial-services"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "plugins/agent-plugins/gl-reconciler/skills/break-trace",
+      "collection": "financial-services",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b28",
+      "query": "要定期監控投資組合的持倉變化與績效",
+      "expected": [
+        "financial-services"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "plugins/agent-plugins/valuation-reviewer/skills/portfolio-monitoring",
+      "collection": "financial-services",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b29",
+      "query": "要畫 C4 架構圖，把系統脈絡跟容器分開呈現",
+      "expected": [
+        "agent-toolkit"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "lanshu-animated-architecture-diagram",
+        "diagram-design"
+      ],
+      "subpath": "dist/plugins/c4-architecture/skills/c4-architecture",
+      "collection": "agent-toolkit",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b30",
+      "query": "幫我整理這批變更成規範的 commit 訊息",
+      "expected": [
+        "agent-toolkit"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "aider"
+      ],
+      "subpath": "dist/plugins/commit-work/skills/commit-work",
+      "collection": "agent-toolkit",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b31",
+      "query": "README 寫得很亂，想重寫成讓人看得懂的版本",
+      "expected": [
+        "agent-toolkit"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "dist/plugins/crafting-effective-readmes/skills/crafting-effective-readmes",
+      "collection": "agent-toolkit",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b32",
+      "query": "要新增一個客製指令，讓代理可以用斜線指令執行",
+      "expected": [
+        "agent-toolkit"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "dist/plugins/command-creator/skills/command-creator",
+      "collection": "agent-toolkit",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b33",
+      "query": "要為品牌設計一個 logo",
+      "expected": [
+        "generative-media-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": ".opencode/skills/muapi-logo-creator",
+      "collection": "generative-media-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b34",
+      "query": "幫我產出適合 Instagram 貼文的圖片",
+      "expected": [
+        "generative-media-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": ".opencode/skills/muapi-instagram-post",
+      "collection": "generative-media-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b35",
+      "query": "想要電影感的運鏡與分鏡效果",
+      "expected": [
+        "generative-media-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": ".opencode/skills/muapi-cinema-director",
+      "collection": "generative-media-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b36",
+      "query": "要用 AI 從長影片裡剪出精華片段",
+      "expected": [
+        "generative-media-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": ".opencode/skills/muapi-ai-clipping",
+      "collection": "generative-media-skills",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
+    },
+    {
+      "id": "b37",
+      "query": "幫我分析這檔股票的技術面與基本面",
+      "expected": [
+        "daily-stock-analysis"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "skill",
+        "tradingagents",
+        "openstock"
+      ],
+      "subpath": "skills/stock-analysis/stock-analysis",
+      "collection": "skill",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b38",
+      "query": "我要讀一篇論文，請幫我拆解它的研究方法與結論",
+      "expected": [
+        "academic-research-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "skill",
+        "ai-research-skills"
+      ],
+      "subpath": "skills/paper-analysis-assistant/paper-analysis-assistant",
+      "collection": "skill",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b39",
+      "query": "想抓 YouTube 影片的字幕檔",
+      "expected": [
+        "youtube-skills"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [
+        "skill"
+      ],
+      "subpath": "skills/video-transcript-downloader/video-transcript-downloader",
+      "collection": "skill",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）",
+      "alsoAcceptableReason": "同一需求的另一個合理承接者"
+    },
+    {
+      "id": "b40",
+      "query": "把這個網頁包成可以安裝的 app",
+      "expected": [
+        "skill"
+      ],
+      "type": "monorepo",
+      "alsoAcceptable": [],
+      "subpath": "skills/web-to-app/web-to-app",
+      "collection": "skill",
+      "note": "集合工具內的具體子功能（2026-11-02 新增，量化「擴大翻譯其餘 3,235 筆 subTool」的效益；本批集合在擴大翻譯前尚未有中文描述）"
     }
   ],
-  "updated": "2026-11-01T14:50:34.611Z"
+  "updated": "2026-11-02"
 }

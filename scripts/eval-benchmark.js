@@ -74,12 +74,24 @@ function emptySetHonest(q) {
 const stats = {};
 for (const name of Object.keys(engines)) {
   stats[name] = {
-    hit1: 0, hit3: 0, mrr: 0, n: 0, byType: {}, failures: [],
+    hit1: 0, hit3: 0, mrr: 0, n: 0, byType: {}, byCollection: {}, byCollectionRole: {}, failures: [],
     // loose = 計入 alsoAcceptable（經查證確實滿足需求的近義工具）
     // 保留嚴格分數同時呈現，避免放寬標註掩蓋真實能力
     loose: { hit1: 0, hit3: 0, mrr: 0 },
   };
 }
+
+// 2026-11-02（v1.6.0）：monorepo 題型加上「目標集合是否已中文化」的分組。
+//
+// 為什麼需要這個分組：v1.6.0 的 60 題 monorepo 裡，m01～m20 的目標集合
+// （awesome-copilot）**已有**中文描述，b01～b40 的目標集合**尚未**中文化。
+// 兩者混在一起算總分會掩蓋「擴大翻譯」的邊際效益 → 分開呈現。
+//
+// 「是否已中文化」由 registry 現況推導，不寫死旗標（旗標會過期）。
+const registryTools = JSON.parse(readFileSync(path.join(ROOT, 'registry', 'tools.json'), 'utf8')).tools;
+const collectionTranslated = new Map(
+  registryTools.map((t) => [t.id, (t.subTools || []).some((s) => s.description_zh)])
+);
 
 const empties = [];
 const cases = bench.cases;
@@ -104,6 +116,27 @@ for (const c of cases) {
       const rr = 1 / (idx + 1);
       s.mrr += rr;
       bt.mrr += rr;
+    }
+
+    // 依目標集合分組（僅 monorepo 題型有 collection 欄位）
+    if (c.collection) {
+      s.byCollection[c.collection] ??= { hit1: 0, hit3: 0, mrr: 0, n: 0, translated: collectionTranslated.get(c.collection) };
+      const bc = s.byCollection[c.collection];
+      bc.n++;
+      if (idx === 0) bc.hit1++;
+      if (idx !== -1 && idx < 3) bc.hit3++;
+      if (idx !== -1) bc.mrr += 1 / (idx + 1);
+
+      // 依「集合是否已中文化 × 期望答案是否就是該集合本身」再分一層。
+      // 這是「擴大翻譯」最直接的讀數：期望=集合的題目，理論上只有
+      // 該集合有中文描述時才可能被命中。
+      const role = c.expected[0] === c.collection ? 'collection' : 'dedicated';
+      const key = `${bc.translated ? 'translated' : 'untranslated'}|${role}`;
+      s.byCollectionRole[key] ??= { hit1: 0, hit3: 0, n: 0 };
+      const br = s.byCollectionRole[key];
+      br.n++;
+      if (idx === 0) br.hit1++;
+      if (idx !== -1 && idx < 3) br.hit3++;
     }
 
     // 寬鬆判定：expected ∪ alsoAcceptable
@@ -162,8 +195,60 @@ for (const [name, s] of Object.entries(stats)) {
   }
 }
 
-const agentHonest = empties.filter((e) => e.agent).length;
-const fusionHonest = empties.filter((e) => e.fusion).length;
+// ── monorepo 依「目標集合是否已中文化」分組（2026-11-02 / v1.6.0）────────
+//
+// 這是「擴大翻譯其餘 3,235 筆 subTool」的配對 A/B 讀法：
+//   已中文化組（目前只有 awesome-copilot）→ 機制有效性的證據
+//   未中文化組（其餘 10 個集合）        → 擴大翻譯的**基準端**
+// 擴大翻譯後重跑同一份評測集，未中文化組的數字就是「邊際效益」。
+const monoCollections = Object.keys(stats.fusion.byCollection);
+if (monoCollections.length) {
+  console.log('\n【monorepo 依目標集合分組 — Hit@1】');
+  console.log('  目標集合'.padEnd(34) + '中文描述'.padEnd(8) + '筆數' + 'L2'.padStart(9) + 'fusion'.padStart(9) + 'fusion Hit@3'.padStart(14));
+  const rows = monoCollections
+    .map((cid) => ({ cid, ...stats.fusion.byCollection[cid] }))
+    .sort((a, b) => (a.translated === b.translated ? b.n - a.n : (a.translated ? -1 : 1)));
+  for (const r of rows) {
+    const l2s = stats.L2.byCollection[r.cid];
+    console.log(
+      `  ${r.cid.padEnd(32)} ${(r.translated ? '有' : '無').padEnd(6)}${String(r.n).padStart(4)}` +
+      `${pct(l2s?.hit1 ?? 0, l2s?.n ?? 1).padStart(9)}${pct(r.hit1, r.n).padStart(9)}${pct(r.hit3, r.n).padStart(14)}`
+    );
+  }
+  // 兩組的匯總（這才是 A/B 的讀數）
+  console.log('  ── 分組匯總 ──');
+  for (const [label, want] of [['已中文化的集合', true], ['未中文化的集合', false]]) {
+    const ids = rows.filter((r) => r.translated === want).map((r) => r.cid);
+    if (!ids.length) continue;
+    const n = ids.reduce((a, c) => a + stats.fusion.byCollection[c].n, 0);
+    const h1 = ids.reduce((a, c) => a + stats.fusion.byCollection[c].hit1, 0);
+    const h3 = ids.reduce((a, c) => a + stats.fusion.byCollection[c].hit3, 0);
+    const l2n = ids.reduce((a, c) => a + (stats.L2.byCollection[c]?.n ?? 0), 0);
+    const l2h1 = ids.reduce((a, c) => a + (stats.L2.byCollection[c]?.hit1 ?? 0), 0);
+    console.log(`  ${label.padEnd(18)} ${String(n).padStart(3)} 題　L2 ${pct(l2h1, l2n).padStart(7)}　fusion ${pct(h1, n).padStart(7)}　fusion Hit@3 ${pct(h3, n).padStart(7)}`);
+  }
+
+  // 再細分一層：期望答案「就是」該集合本身的題目（擴大翻譯直接作用於這一組）
+  console.log('\n【monorepo 依「集合是否已中文化 × 期望是否為集合本身」分組】');
+  console.log('  分組'.padEnd(32) + '筆數' + 'L2 Hit@1'.padStart(11) + 'fusion Hit@1'.padStart(15) + 'fusion Hit@3'.padStart(15));
+  const ROLE_LABEL = {
+    'translated|collection': '已中文化 × 期望＝集合本身',
+    'translated|dedicated': '已中文化 × 期望＝專用工具',
+    'untranslated|collection': '未中文化 × 期望＝集合本身',
+    'untranslated|dedicated': '未中文化 × 期望＝專用工具',
+  };
+  for (const key of ['translated|collection', 'translated|dedicated', 'untranslated|collection', 'untranslated|dedicated']) {
+    const fr = stats.fusion.byCollectionRole[key];
+    const lr = stats.L2.byCollectionRole[key];
+    if (!fr?.n) continue;
+    console.log(
+      `  ${ROLE_LABEL[key].padEnd(30)}${String(fr.n).padStart(4)}` +
+      `${pct(lr?.hit1 ?? 0, lr?.n ?? 1).padStart(11)}${pct(fr.hit1, fr.n).padStart(15)}${pct(fr.hit3, fr.n).padStart(15)}`
+    );
+  }
+}
+
+const agentHonest = empties.filter((e) => e.agent).length;const fusionHonest = empties.filter((e) => e.fusion).length;
 console.log('\n【空集誠實率（越高越好）】');
 console.log(`  agent-retrieval : ${agentHonest}/${empties.length}  ${pct(agentHonest, empties.length)}`);
 console.log(`  fusion          : ${fusionHonest}/${empties.length}  ${pct(fusionHonest, empties.length)}`);
