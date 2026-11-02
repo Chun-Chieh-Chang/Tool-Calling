@@ -215,8 +215,29 @@ const CJK_COOC_RATIO = 0.25;
 const searchResultCache = new Map();
 const CACHE_TTL = 5 * 60 * 1000; // 5 分鐘
 
+/**
+ * 產生工具庫指紋（快取鍵的一部分）
+ *
+ * 🔴 2026-11-02 修正：**指紋必須包含 subTools 的內容**。
+ *
+ * 原本只雜湊工具層欄位（id／name／status／category／language／description／
+ * triggers／useCase）。subTools 明明是檢索的重要素材（3,871 筆），
+ * 卻完全沒進指紋 → 改了 subTools 之後，指紋不變 → **查詢快取回傳過期結果**。
+ *
+ * 這個 bug 在做「擴大翻譯」的配對 A/B 時直接把量測結果搞錯：
+ * before／after 兩份 registry 的指紋相同，先跑的那一份把結果寫進快取，
+ * 後跑的那一份直接命中快取 → 讀到的是**同一份**結果，卻看起來像「前後無差異」。
+ *
+ * 正式服務的影響同樣真實：registry 更新後最多 5 分鐘內的回應是舊的。
+ *
+ * 效能：用 WeakMap 依工具庫陣列的身分快取指紋，同一份 registry 只算一次。
+ */
+const fingerprintCache = new WeakMap();
+
 export function getRegistryCacheFingerprint(tools = []) {
   if (!Array.isArray(tools)) return 'invalid-registry';
+  const memo = fingerprintCache.get(tools);
+  if (memo) return memo;
 
   let hash = 2166136261;
   for (const tool of tools) {
@@ -228,7 +249,12 @@ export function getRegistryCacheFingerprint(tools = []) {
       tool?.language,
       tool?.description,
       Array.isArray(tool?.triggers) ? tool.triggers.join(',') : tool?.triggers,
-      tool?.useCase
+      tool?.useCase,
+      // subTools：名稱、原文與中文欄位都要進來
+      // （擴大翻譯只動 description_zh／name_zh，沒有它們就偵測不到變更）
+      (tool?.subTools || [])
+        .map((st) => `${st.subpath}\u0000${st.name}\u0000${st.description}\u0000${st.name_zh || ''}\u0000${st.description_zh || ''}`)
+        .join('\u0001'),
     ].join('|');
 
     for (let i = 0; i < text.length; i++) {
@@ -237,7 +263,9 @@ export function getRegistryCacheFingerprint(tools = []) {
     }
   }
 
-  return `${tools.length}:${(hash >>> 0).toString(36)}`;
+  const fingerprint = `${tools.length}:${(hash >>> 0).toString(36)}`;
+  fingerprintCache.set(tools, fingerprint);
+  return fingerprint;
 }
 
 /**
