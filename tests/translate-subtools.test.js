@@ -88,6 +88,31 @@ test('validate：原文本來就沒有正文時保留原文並標記 noProse（�
   assert.equal(r.description_zh, '>', '保留原文而不是模型的逐字回傳');
 });
 
+test('原文是純檔案路徑時視為沒有可譯內容（實測 199 筆誤判的修法）', () => {
+  // 實測（2026-11-02）：claude-skills 有 199 筆的 description 就是這種路徑，
+  // 舊判準算成「有正文」→ 模型照抄路徑 → 被判「不含中文」的失敗 → 白跑 199 筆。
+  assert.equal(
+    hasNoTranslatableProse('../../../engineering/skills/agent-protocol/SKILL.md'),
+    true
+  );
+  assert.equal(hasNoTranslatableProse('./SKILL.md'), true);
+  assert.equal(
+    hasNoTranslatableProse('這是 normal 描述，後面有路徑 ./docs/README.md 但仍有正文'),
+    false
+  );
+});
+
+test('validate：純路徑原文即使模型給了中文也只保留原文（不憑空補充資訊）', () => {
+  const r = validate(
+    { subpath: 'x', name_zh: '代理協定', description_zh: '指向 c-level-advisor 技能的 SKILL.md 檔案' },
+    'agent-protocol',
+    '../../../c-level-advisor/skills/agent-protocol/SKILL.md'
+  );
+  assert.deepEqual(r.problems, []);
+  assert.equal(r.noProse, true);
+  assert.equal(r.description_zh, '../../../c-level-advisor/skills/agent-protocol/SKILL.md');
+});
+
 test('validate：有正文的譯文不會被誤標 noProse', () => {
   const r = validate(
     { subpath: 'skills/x', name_zh: '搜尋品質', description_zh: '評估搜尋結果品質' },

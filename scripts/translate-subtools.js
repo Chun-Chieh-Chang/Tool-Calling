@@ -218,9 +218,20 @@ function applyTaiwanTerms(text) {
  * `[![link](https://i.imgur.com/xxx.png)](https://youtu.be/xxx)`），
  * 裡面根本沒有自然語言 → 模型原樣回傳是**正確**行為，不該判失敗。
  * 判準：去掉 markdown 連結與裸 URL 後，剩下的文字少於 5 個字元即視為無內容。
+ *
+ * 🔴 2026-11-02 補上「純檔案路徑」這一類：
+ * 實測 claude-skills 有 199 筆的 description 就是
+ * `../../../engineering/skills/agent-protocol/SKILL.md` 這種路徑。
+ * 舊判準會把它算成「有正文」（去掉空白後長度遠大於 5），
+ * 模型照抄路徑 → 被判成「description_zh 不含中文」的失敗 → 199 筆白跑，
+ * 還會在補救批次裡被再試一次。這是**誤判**，不是翻譯失敗。
  */
 function hasNoTranslatableProse(original) {
-  const stripped = String(original || '')
+  const raw = String(original || '');
+  // 整段就是一個檔案路徑 → 沒有自然語言可譯
+  const trimmed = raw.trim();
+  if (/^\S*[\\/]\S*\.[A-Za-z0-9]{1,6}$/.test(trimmed)) return true;
+  const stripped = raw
     .replace(/!?\[[^\]]*\]\([^)]*\)/g, '')   // markdown 圖片／連結
     .replace(/https?:\/\/\S+/g, '')           // 裸 URL
     .replace(/[#*_>`~\-\s]/g, '')             // markdown 裝飾符號
@@ -256,12 +267,14 @@ function validate(item, originalName, originalDesc) {
   const descZh = applyTaiwanTerms(toTraditional(String(item.description_zh || '').trim()));
   const noProse = hasNoTranslatableProse(originalDesc);
   let noProseFlag = false;
-  if (!descZh) {
-    if (!noProse) problems.push('description_zh 為空');
+  if (noProse) {
+    // 原文本來就沒有可譯的內容（純連結／純路徑／佔位符）：
+    // 一律保留原文，**不採信模型產出的中文** —— 那是憑空補充原文沒有的資訊。
+    noProseFlag = true;
+  } else if (!descZh) {
+    problems.push('description_zh 為空');
   } else if (!/[\u4e00-\u9fff]/.test(descZh)) {
-    // 原文本來就沒有自然語言（純連結／佔位符）→ 模型原樣回傳是正確的，不判失敗
-    if (!noProse) problems.push('description_zh 不含中文');
-    else noProseFlag = true;
+    problems.push('description_zh 不含中文');
   } else {
     const simp = findSimplified(descZh);
     if (simp.length) problems.push(`含殘留簡體字 ${[...new Set(simp)].join('')}`);
