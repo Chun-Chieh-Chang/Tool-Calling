@@ -70810,7 +70810,11 @@
         "weeklyDelta": 9087,
         "ingestedAt": "2026-11-14T13:20:47.404Z"
       },
-      "description_zh": "高度實驗性的 Nintendo Switch 2 模擬器"
+      "description_zh": "高度實驗性的 Nintendo Switch 2 模擬器",
+      "negativeConstraints_zh": [
+        "處於高度實驗階段，不適用於追求穩定商業級遊玩體驗的生產環境",
+        "不適用於缺乏合法遊戲備份與系統金鑰的一般終端使用者"
+      ]
     },
     {
       "id": "hghub",
@@ -70858,7 +70862,11 @@
         "weeklyDelta": 8837,
         "ingestedAt": "2026-11-14T13:20:47.404Z"
       },
-      "description_zh": "YellowFruit 第三方客戶端"
+      "description_zh": "YellowFruit 第三方客戶端",
+      "negativeConstraints_zh": [
+        "屬於第三方非官方串流客戶端，不適用於企業級合規媒體託管或正式商業影音發行系統",
+        "依賴外部 YellowFruit 來源服務可用性，無法作為離線本地影片轉檔或剪輯工具"
+      ]
     },
     {
       "id": "agent-skills",
@@ -70905,7 +70913,11 @@
         "weeklyDelta": 8437,
         "ingestedAt": "2026-11-14T13:20:47.404Z"
       },
-      "description_zh": "Jane Street 開源的 AI 代理技能集合，內含 socratic-tutor 結構化 SKILL.md 技能，可將程式開發代理轉換為具備診斷評量、技能樹追蹤與間隔複習機制的嚴謹蘇格拉底式導師。"
+      "description_zh": "Jane Street 開源的 AI 代理技能集合，內含 socratic-tutor 結構化 SKILL.md 技能，可將程式開發代理轉換為具備診斷評量、技能樹追蹤與間隔複習機制的嚴謹蘇格拉底式導師。",
+      "negativeConstraints_zh": [
+        "雖然由 Jane Street 發布，但本專案並非量化交易演算法或金融交易機器人",
+        "不適用於只需快速取得現成程式碼或直接代寫任務的日常開發工作流"
+      ]
     },
     {
       "id": "rea-video",
@@ -70954,7 +70966,11 @@
         "weeklyDelta": 8287,
         "ingestedAt": "2026-11-14T13:20:47.404Z"
       },
-      "description_zh": "逆向解構任何影片，逐鏡頭分析是拍攝、AI 生成還是程式碼製作，以及重製方法；拆解結果以開放式 VIDEO.md 格式輸出。"
+      "description_zh": "逆向解構任何影片，逐鏡頭分析是拍攝、AI 生成還是程式碼製作，以及重製方法；拆解結果以開放式 VIDEO.md 格式輸出。",
+      "negativeConstraints_zh": [
+        "必須本機具備 Python 3.10+ 與 FFmpeg 環境，不適用於純瀏覽器無後端或無法安裝系統二進位檔的環境",
+        "不適用於僅需單純影片格式轉檔、基礎裁切或即時直播串流處理的任務"
+      ]
     },
     {
       "id": "cleanyourtv",
