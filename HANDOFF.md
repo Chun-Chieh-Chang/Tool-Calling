@@ -366,7 +366,32 @@ skill `i18n-coverage` 的 `audit.js` 會獨立回報「偷懶譯文」。
 
 ---
 
-## 三、目前狀態（頂部一節為 2026-11-03（擴大翻譯落地 3,237 筆 ＋ 配對 A/B 量化 ＋ 子功能分數「專精優先」修正），其次 2026-11-02（建立「擴大翻譯 3,235 筆 subTool」的尺子：評測集 v1.6.0，327 題）、2026-11-02（L1.5 詞邊界修正）、2026-11-01（中文子功能層：636 個 subTool 產生中文描述）、2026-11-01（批次入庫 VoxCPM／OmniBox／machine-skill）、2026-11-01（決策三後續：檢索缺口診斷）、2026-10-24（UI 精簡）、2026-10-24（全面盤點）、2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+## 三、目前狀態（頂部一節為 2026-11-14（桌面版 12 款 AI Agents 整合 ＋ Web UI「AI Agents 使用指南」分頁 ＋ Cline 安裝器支援），其次 2026-11-03（擴大翻譯落地 3,237 筆 ＋ 配對 A/B 量化 ＋ 子功能分數「專精優先」修正），其次 2026-11-02（建立「擴大翻譯 3,235 筆 subTool」的尺子：評測集 v1.6.0，327 題）、2026-11-02（L1.5 詞邊界修正）、2026-11-01（中文子功能層：636 個 subTool 產生中文描述）、2026-11-01（批次入庫 VoxCPM／OmniBox／machine-skill）、2026-11-01（決策三後續：檢索缺口診斷）、2026-10-24（UI 精簡）、2026-10-24（全面盤點）、2026-10-20（批次入庫）快照，其次 2026-10-19（部署門禁）、2026-10-19（Pages 空白）、2026-10-15（第七輪）、2026-10-15（第六輪）、2026-10-14（第五輪）、第三輪、第二輪、第一輪，其下九節為 2026-10-09，四節為 2026-10-07；再下方舊快照與 2026-09-21 分析結論仍有效，數字已過期）
+
+### 2026-11-14 桌面版 12 款 AI Agents 整合 ＋ Web UI「AI Agents 使用指南」分頁 ＋ Cline 安裝器支援
+
+**需求**：將本專案改為搭配使用者桌面「AI Agents」資料夾內的 12 款桌面版 GUI 工具使用（`Agnes Code`、`Antigravity`、`ChatGPT Classic`、`Cline`、`DeepSeek Harness`、`Kiro`、`KiroCrew`、`MiniMax Code`、`OpenCode`、`Qoder`、`TRAE`、`WorkBuddy AI`），並保留既有相容 IDE 支援，在 Web UI 新增專屬使用方法說明與一鍵複製設定。
+
+#### 一、實作與檔案盤點
+
+- `scripts/install-plugin.js`：`IDE_MATRIX` 新增 `cline`（專案級 `.vscode/mcp.json`，`servers` 鍵），保留既有 12 款 IDE 定義。
+- `web/index.html`、`web/agents-guide.js`、`web/app.js`、`web/style.css`：新增「AI Agents 使用指南」分頁視圖，置頂顯示 12 款桌面版 AI Agents、可折疊展開 8 款其他相容 IDE；支援自訂本機 `Tool-Calling` 專案路徑，即時產生一鍵安裝 CLI 指令、MCP JSON/TOML 設定（含 OpenCode 專屬 `mcp` 格式與 Cline 全域 `cline_mcp_settings.json` 用 `mcpServers` 格式）及對話協作提示詞範本。
+- `docs/PLUGIN-INSTALL.md`、`README.md`：同步補充 `Cline` 與 Web UI「AI Agents 使用指南」說明。
+
+#### 二、RCA 與 CAPA
+
+- **問題 1（建置依賴遺漏）**：`scripts/build-web.js` 透過 `scripts/browser-module-graph.js` 追蹤瀏覽器相對 import，新增 `web/agents-guide.js` 時因未加入 `DIST_TO_SRC` 導致 `build-web.js` 中止。
+  - **CAPA**：於 `DIST_TO_SRC` 註冊 `'agents-guide.js': 'web/agents-guide.js'`，並以 `node scripts/build-web.js` 驗證 17 支瀏覽器模組展開無誤。
+- **問題 2（SSOT 計數不一致）**：UI 折疊按鈕原硬編碼為「7 款」，實際 `AGENTS_CATALOG` 中 `other` 群組有 8 款相容 IDE。
+  - **CAPA**：改由 `AGENTS_CATALOG` 陣列長度動態計算並同步修正 `web/index.html` 初始文字。
+
+#### 三、驗證結果
+
+- `node scripts/build-web.js`：成功建置 `./dist`（17 支瀏覽器模組）。
+- `node cli.js validate`：0 錯誤（99.5/100 平均品質）。
+- `npm test`：573 tests（571 pass / 0 fail / 2 skip），含新增之 [tests/agents-guide.test.js](file:///d:/Self-developed_Apps/G2/Tool-Calling/tests/agents-guide.test.js) 與 `Cline` 安裝計畫測試。
+
+---
 
 ### 2026-11-03 擴大翻譯落地 3,237 筆 ＋ 配對 A/B 量化 ＋ 子功能分數「專精優先」修正
 

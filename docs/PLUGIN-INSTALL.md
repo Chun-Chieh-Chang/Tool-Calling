@@ -44,6 +44,7 @@ node scripts/install-plugin.js --ide claude --scope project --uninstall
 | Antigravity IDE | ✅ `~/.gemini/antigravity/mcp_config.json` | — | `mcpServers` 鍵 | JSON |
 | Windsurf | ✅ `~/.codeium/windsurf/mcp_config.json` | — | `mcpServers` 鍵 | JSON |
 | VS Code (Copilot/Cline) | — | ✅ `<proj>/.vscode/mcp.json` | `servers` 鍵 | JSON |
+| Cline (VS Code 擴充) | ⚠️ 存在擴充 globalStorage（`cline_mcp_settings.json` 用 `mcpServers`） | ✅ `<proj>/.vscode/mcp.json` | `servers` 鍵 | JSON |
 | Kiro | ✅ `~/.kiro/settings/mcp.json` | ✅ `<proj>/.kiro/settings/mcp.json` | `mcpServers` 鍵 | JSON |
 | Zed | ✅ `~/.config/zed/settings.json`（Win: `%APPDATA%\Zed\settings.json`） | ✅ `<proj>/.zed/settings.json` | `context_servers` 鍵 | JSON |
 | Trae | ⚠️ 僅能 UI 手動貼上 | ✅ `<proj>/.trae/mcp.json` | `mcpServers` 鍵 | JSON |

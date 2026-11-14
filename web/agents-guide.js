@@ -742,29 +742,34 @@ export function initAgentsGuide() {
     return btn;
   }
 
+  const featuredAgents = AGENTS_CATALOG.filter((a) => a.group === 'featured');
+  const otherAgents = AGENTS_CATALOG.filter((a) => a.group === 'other');
+
   featuredGrid.innerHTML = '';
-  for (const agent of AGENTS_CATALOG.filter((a) => a.group === 'featured')) {
+  for (const agent of featuredAgents) {
     featuredGrid.appendChild(createAgentCard(agent));
   }
 
   if (othersGrid) {
     othersGrid.innerHTML = '';
-    for (const agent of AGENTS_CATALOG.filter((a) => a.group === 'other')) {
+    for (const agent of otherAgents) {
       othersGrid.appendChild(createAgentCard(agent));
     }
   }
 
   if (toggleOthersBtn && othersGrid) {
+    const otherCount = otherAgents.length;
+    toggleOthersBtn.textContent = `展開其他相容 IDE（${otherCount} 款）`;
     toggleOthersBtn.addEventListener('click', () => {
       const isHidden = othersGrid.hasAttribute('hidden');
       if (isHidden) {
         othersGrid.removeAttribute('hidden');
         toggleOthersBtn.setAttribute('aria-expanded', 'true');
-        toggleOthersBtn.textContent = '收合其他相容 IDE（7 款）';
+        toggleOthersBtn.textContent = `收合其他相容 IDE（${otherCount} 款）`;
       } else {
         othersGrid.setAttribute('hidden', '');
         toggleOthersBtn.setAttribute('aria-expanded', 'false');
-        toggleOthersBtn.textContent = '展開其他相容 IDE（7 款）';
+        toggleOthersBtn.textContent = `展開其他相容 IDE（${otherCount} 款）`;
       }
     });
   }

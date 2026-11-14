@@ -216,7 +216,7 @@ node cli.js interview "網頁爬蟲"
 
 ## 🔌 作為 Agentic IDE 外掛（任意 IDE 通用）
 
-本專案可作為外掛掛載到 **任何支援 MCP 的 Agentic IDE**（Claude Code、Cursor、Gemini CLI、Codex、Windsurf、Antigravity、VS Code、Kiro、Zed、Trae、Roo Code、OpenCode 等）：
+本專案可作為外掛掛載到 **任何支援 MCP 的 Agentic IDE**（Claude Code、Cursor、Gemini CLI、Codex、Windsurf、Antigravity、VS Code、Cline、Kiro、Zed、Trae、Roo Code、OpenCode 等），並於 Web UI「AI Agents 使用指南」分頁提供 12 款桌面版 AI Agents（含 Agnes Code、ChatGPT Classic、DeepSeek Harness、KiroCrew、MiniMax Code、Qoder、WorkBuddy AI 等）的專屬接入步驟與一鍵複製設定：
 
 ```bash
 npm run plugin:install -- --list                              # 查看支援矩陣
@@ -242,6 +242,7 @@ Tool-Calling/
 │   └── ...
 ├── web/                # 前端精密儀表數據工作台
 │   ├── app.js              # 主應用（server 檢索 + 快取）
+│   ├── agents-guide.js     # 桌面版 AI Agents 使用方法與接入指南
 │   ├── server.js           # 本地伺服器（/api/search 走 core/ 檢索引擎）
 │   ├── persist-cache.js    # IndexedDB 持久化快取
 │   ├── behavior-tracker.js # 使用者行為追蹤
