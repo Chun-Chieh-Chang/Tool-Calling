@@ -70773,16 +70773,33 @@
       "category": "開發工具",
       "language": "c++",
       "triggers": [
-        "lichii"
+        "lichii",
+        "switch-emulator",
+        "switch-2",
+        "game-emulator",
+        "cpp-emulator",
+        "模擬器"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/zortos293/Lichii"
       },
-      "capabilities": [],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "switch-emulation",
+        "hdr-output",
+        "lan-play",
+        "upscaling"
+      ],
+      "useCase": "適用於在桌面環境中測試、研究或遊玩實驗性 Nintendo Switch／Switch 2 相容遊戲與渲染管線（HDR 輸出、區域網路連線、畫面升頻）的開發與模擬場景。",
+      "advantages": [
+        "基於 yuzu／Sudachi／Eden 等專案累積進行相容性與渲染器修復",
+        "支援原生 HDR10／scRGB 輸出與 XeSS／DLSS 等畫質升頻路徑",
+        "內建 LAN Play 區域無線網路連線模擬功能"
+      ],
+      "negativeConstraints": [
+        "處於高度實驗階段，不適用於追求穩定商業級遊玩體驗的生產環境",
+        "不適用於缺乏合法遊戲備份與系統金鑰的一般終端使用者"
+      ],
       "stars": 9087,
       "addedAt": "2026-11-14T13:20:47.404Z",
       "status": "experimental",
@@ -70822,9 +70839,15 @@
         "reels",
         "windows"
       ],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "useCase": "適用於在 Windows、macOS 或 Android 裝置上透過 Rust 與 Tauri 2 輕量化桌面／行動客戶端瀏覽與播放 YellowFruit 相關短劇及影視串流內容的場景。",
+      "advantages": [
+        "採用 Rust 與 Tauri 2 框架打造，具備輕量體積與較低記憶體佔用",
+        "提供跨平台原生支援（涵蓋 Windows、macOS 與 Android）"
+      ],
+      "negativeConstraints": [
+        "屬於第三方非官方串流客戶端，不適用於企業級合規媒體託管或正式商業影音發行系統",
+        "依賴外部 YellowFruit 來源服務可用性，無法作為離線本地影片轉檔或剪輯工具"
+      ],
       "stars": 8837,
       "addedAt": "2026-11-14T13:20:47.404Z",
       "status": "experimental",
@@ -70841,20 +70864,37 @@
       "id": "agent-skills",
       "name": "agent_skills",
       "url": "https://github.com/janestreet/agent_skills",
-      "description": "Agent skills",
+      "description": "Official AI agent skills collection by Jane Street featuring socratic-tutor, a structured SKILL.md skill that turns coding agents into strict, anti-sycophancy Socratic tutors with diagnostic placement and spaced review.",
       "category": "AI 代理",
       "language": "other",
       "triggers": [
-        "agent-skills"
+        "agent-skills",
+        "socratic-tutor",
+        "janestreet",
+        "ai-tutor",
+        "skill-md",
+        "蘇格拉底式教學"
       ],
       "install": {
         "method": "none",
         "repoUrl": "https://github.com/janestreet/agent_skills"
       },
-      "capabilities": [],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "socratic-tutoring",
+        "diagnostic-assessment",
+        "skill-tree-tracking",
+        "spaced-repetition"
+      ],
+      "useCase": "適用於希望讓 AI 程式代理（如 Claude Code、Cursor 等支援 SKILL.md 的環境）進入嚴謹蘇格拉底式教學模式，透過診斷測驗、反迎合提問與間隔複習深度學習技術概念的場景。",
+      "advantages": [
+        "內建意圖護欄，僅在明確要求學習或測驗時啟動教學迴圈，不干擾日常問答",
+        "具備 4–10 項子技能診斷定位與 Level 0–5 ASCII 技能樹進度追蹤",
+        "嚴格禁止直接洩漏答案或迎合錯誤回答，搭配間隔複習強化長期記憶"
+      ],
+      "negativeConstraints": [
+        "雖然由 Jane Street 發布，但本專案並非量化交易演算法或金融交易機器人",
+        "不適用於只需快速取得現成程式碼或直接代寫任務的日常開發工作流"
+      ],
       "stars": 8437,
       "addedAt": "2026-11-14T13:20:47.404Z",
       "status": "experimental",
@@ -70865,7 +70905,7 @@
         "weeklyDelta": 8437,
         "ingestedAt": "2026-11-14T13:20:47.404Z"
       },
-      "description_zh": "Agent 技能"
+      "description_zh": "Jane Street 開源的 AI 代理技能集合，內含 socratic-tutor 結構化 SKILL.md 技能，可將程式開發代理轉換為具備診斷評量、技能樹追蹤與間隔複習機制的嚴謹蘇格拉底式導師。"
     },
     {
       "id": "rea-video",
@@ -70894,9 +70934,16 @@
         "codex",
         "ffmpeg"
       ],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "useCase": "適用於需要將既有影片逐鏡頭逆向拆解，辨識實拍、AI 生成或程式碼動畫來源，並產出結構化 VIDEO.md 報告與復刻藍圖（含分鏡、提示詞、字幕時間軸與音訊節奏）的場景。",
+      "advantages": [
+        "支援離線確定性拆解與多模態視覺模型輔助，可區分實拍、AIGC 與動畫鏡頭",
+        "自動輸出開放式 VIDEO.md 藍圖與互動式 report.html，並支援匯出 .SRT／.ASS 字幕軸",
+        "整合 Claude Code 與 Codex 等 AI 代理技能，將復刻步驟分為拍攝、生成與程式實作三類"
+      ],
+      "negativeConstraints": [
+        "必須本機具備 Python 3.10+ 與 FFmpeg 環境，不適用於純瀏覽器無後端或無法安裝系統二進位檔的環境",
+        "不適用於僅需單純影片格式轉檔、基礎裁切或即時直播串流處理的任務"
+      ],
       "stars": 8287,
       "addedAt": "2026-11-14T13:20:47.404Z",
       "status": "experimental",
