@@ -115,6 +115,10 @@
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           <span>每週漲星榜</span>
         </button>
+        <button id="agentsGuideTabBtn" class="tab-btn">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M7 20h10M9 16v4M15 16v4"></path></svg>
+          <span>AI Agents 使用指南</span>
+        </button>
         <a href="knowledge-graph.html" target="_blank" class="tab-btn external-link-tab" style="text-decoration: none;">
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
           <span>互動式工具圖譜</span>
@@ -124,7 +128,7 @@
           <span>全鏈路流程圖</span>
         </a>
       </nav>
-      <div class="hint hint-tabs"><span class="hint-num">⑤</span> 切換視圖 · 「儀表板」看統計／「目錄」看檢索結果／「漲星榜」追蹤 GitHub 新星／「圖譜・流程圖」開新分頁深入探索</div>
+      <div class="hint hint-tabs"><span class="hint-num">⑤</span> 切換視圖 · 「儀表板」看統計／「目錄」看檢索結果／「漲星榜」追蹤 GitHub 新星／「AI Agents 使用指南」查桌面代理接入教學／「圖譜・流程圖」開新分頁</div>
     </div>
 
     <!-- 儀表板視圖 (Dashboard View) -->
@@ -350,6 +354,44 @@
       </div>
       <div id="newlyAddedGrid" class="grid">
         <!-- 上週新納入工具卡片將由 JS 動態生成 -->
+      </div>
+    </div>
+
+    <!-- AI Agents 使用指南視圖 (Desktop AI Agents Guide View) -->
+    <div id="agentsGuideView" style="display: none;">
+      <div class="ag-header-card">
+        <div class="ag-header-info">
+          <div class="ag-title-group">
+            <h2>桌面版 AI Agents 使用方法與接入指南</h2>
+            <span class="ag-count-pill">12 款專屬桌面代理 + 7 款相容 IDE</span>
+          </div>
+          <p class="ag-desc">選擇您桌面上的 AI Agent，取得對應的一鍵安裝指令、MCP 設定 JSON（支援即時替換專案路徑）或本機 CLI 協作提示詞範本。</p>
+        </div>
+        <div class="ag-path-control">
+          <label for="agentProjectPathInput" class="ag-path-label">本機 Tool-Calling 專案路徑（自動帶入下方設定與指令）：</label>
+          <input type="text" id="agentProjectPathInput" class="ag-path-input" placeholder="例如：D:\Self-developed_Apps\G2\Tool-Calling" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="ag-layout">
+        <aside class="ag-sidebar" aria-label="AI Agents 清單">
+          <div class="ag-group-title">
+            <span class="section-badge">推薦</span>
+            桌面版 AI Agents（12 款）
+          </div>
+          <div id="agFeaturedGrid" class="ag-agent-grid"></div>
+
+          <div class="ag-others-wrap">
+            <button type="button" id="agToggleOthersBtn" class="ag-toggle-others-btn" aria-expanded="false" aria-controls="agOthersGrid">
+              展開其他相容 IDE（7 款）
+            </button>
+            <div id="agOthersGrid" class="ag-agent-grid ag-others-grid" hidden></div>
+          </div>
+        </aside>
+
+        <section id="agDetailPanel" class="ag-detail-panel" aria-live="polite">
+          <!-- 由 agents-guide.js 動態渲染 -->
+        </section>
       </div>
     </div>
 

@@ -101,6 +101,14 @@ export const IDE_MATRIX = {
     format: 'json',
     rootKey: 'servers', // VS Code 原生 MCP 使用 "servers" 鍵
   },
+  cline: {
+    label: 'Cline (VS Code 擴充 / 專案級)',
+    // Cline 全域設定存放於 VS Code 擴充 globalStorage，路徑隨安裝而異；專案級相容 .vscode/mcp.json
+    scopes: ['project'],
+    file: (scope, project) => join(project, '.vscode', 'mcp.json'),
+    format: 'json',
+    rootKey: 'servers',
+  },
   kiro: {
     label: 'Kiro',
     scopes: ['global', 'project'],

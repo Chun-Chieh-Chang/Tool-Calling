@@ -29,6 +29,7 @@ export const DIST_TO_SRC = {
   'app.js': 'web/app.js',
   'persist-cache.js': 'web/persist-cache.js',
   'behavior-tracker.js': 'web/behavior-tracker.js',
+  'agents-guide.js': 'web/agents-guide.js',
 };
 
 /** 瀏覽器端入口（dist 相對路徑）。 */

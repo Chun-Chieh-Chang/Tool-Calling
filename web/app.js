@@ -1,6 +1,7 @@
 import { search, listByCategory, warmSearchIndex, getCachedSearch as getInMemoryCache, cacheSearchResults as setInMemoryCache, getRegistryCacheFingerprint } from './core/search-engine.js';
 import { persistCache } from './persist-cache.js';
 import { behaviorTracker } from './behavior-tracker.js';
+import { initAgentsGuide } from './agents-guide.js';
 
 let registryTools = [];
 let categoryChartInstance = null;
@@ -17,10 +18,12 @@ const toolCardTemplate = document.getElementById('toolCardTemplate');
 const dashboardTabBtn = document.getElementById('dashboardTabBtn');
 const toolsTabBtn = document.getElementById('toolsTabBtn');
 const trendingTabBtn = document.getElementById('trendingTabBtn');
+const agentsGuideTabBtn = document.getElementById('agentsGuideTabBtn');
 
 const dashboardView = document.getElementById('dashboardView');
 const toolsView = document.getElementById('toolsView');
 const trendingView = document.getElementById('trendingView');
+const agentsGuideView = document.getElementById('agentsGuideView');
 
 const kpiTotalTools = document.getElementById('kpiTotalTools');
 const kpiTotalCategories = document.getElementById('kpiTotalCategories');
@@ -153,6 +156,9 @@ async function init() {
     if (dashboardTabBtn) dashboardTabBtn.addEventListener('click', () => switchTab('dashboard'));
     if (toolsTabBtn) toolsTabBtn.addEventListener('click', () => switchTab('tools'));
     if (trendingTabBtn) trendingTabBtn.addEventListener('click', () => switchTab('trending'));
+    if (agentsGuideTabBtn) agentsGuideTabBtn.addEventListener('click', () => switchTab('agents-guide'));
+
+    initAgentsGuide();
 
     // 綁定每週漲星榜即時刷新按鈕
     setupRefreshTrendingButton();
@@ -253,10 +259,12 @@ function switchTab(tabName) {
   dashboardView.style.display = tabName === 'dashboard' ? 'block' : 'none';
   toolsView.style.display = tabName === 'tools' ? 'block' : 'none';
   if (trendingView) trendingView.style.display = tabName === 'trending' ? 'block' : 'none';
+  if (agentsGuideView) agentsGuideView.style.display = tabName === 'agents-guide' ? 'block' : 'none';
 
   dashboardTabBtn.classList.toggle('active', tabName === 'dashboard');
   toolsTabBtn.classList.toggle('active', tabName === 'tools');
   if (trendingTabBtn) trendingTabBtn.classList.toggle('active', tabName === 'trending');
+  if (agentsGuideTabBtn) agentsGuideTabBtn.classList.toggle('active', tabName === 'agents-guide');
 
   if (tabName === 'trending') {
     loadWeeklyTrending();

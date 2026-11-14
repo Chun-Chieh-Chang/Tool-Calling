@@ -178,4 +178,15 @@ describe('install-plugin：外掛安裝器', () => {
       if (def.format === 'json') assert.ok(def.rootKey, `${ide} 缺 rootKey`);
     }
   });
+
+  test('buildPlan：Cline 專案級寫入 .vscode/mcp.json 且使用 "servers" 鍵', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'tc-cline-'));
+    const plan = buildPlan({ ides: ['cline'], scope: 'project', targetDir: dir });
+    assert.equal(plan.length, 1);
+    assert.equal(plan[0].ide, 'cline');
+    assert.ok(plan[0].file.endsWith(join('.vscode', 'mcp.json')));
+    const parsed = JSON.parse(plan[0].after);
+    assert.ok(parsed.servers['tool-calling']);
+    rmSync(dir, { recursive: true, force: true });
+  });
 });
