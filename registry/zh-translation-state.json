@@ -6953,6 +6953,182 @@
         "依賴 LLM 研究來取得機器規格，因此物理模擬的準確度取決於 Claude 的訓練資料與檢索能力。"
       ],
       "at": "2026-11-01T10:44:28.753Z"
+    },
+    "cadcraft": {
+      "at": "2026-11-14T13:39:58.383Z",
+      "skipped": "already zh or empty"
+    },
+    "ingetrazo": {
+      "at": "2026-11-14T13:39:58.384Z",
+      "skipped": "already zh or empty"
+    },
+    "harness2": {
+      "at": "2026-11-14T13:39:58.384Z",
+      "skipped": "already zh or empty"
+    },
+    "plugins": {
+      "at": "2026-11-14T13:39:58.384Z",
+      "skipped": "already zh or empty"
+    },
+    "artcraft": {
+      "at": "2026-11-14T13:39:58.384Z",
+      "skipped": "already zh or empty"
+    },
+    "digup": {
+      "description_zh": "根據檔案內容搜尋你的電腦：照片、PDF、文件、錄音、影片與程式碼。在 Mac、Windows 和 Linux 上本機執行，基於 Google DeepMind 的 EmbeddingGemma 2 建構。",
+      "negativeConstraints_zh": [
+        "需要具備 Apple Silicon 硬體且為 macOS 14 或更新版本，才能使用穩定的 macOS 版本。",
+        "Windows 和 Linux 版本目前處於測試階段，可能不如 Mac 發布版穩定。",
+        "Windows 安裝程式未簽署，安裝時需手動略過安全警告。"
+      ],
+      "at": "2026-11-14T13:40:07.612Z"
+    },
+    "ccbaga": {
+      "description_zh": "無說明。",
+      "negativeConstraints_zh": [
+        "限用於 macOS 12+ 的 Apple Silicon、Linux x86_64 (GTK3/WebKitGTK) 以及 Windows 10/11 x86_64；Intel macOS 與 Linux ARM64 不支援。",
+        "Windows 安裝程式未經 Authenticode 簽署，可能會觸發 SmartScreen 警告或被企業安全政策封鎖。",
+        "僅供居住或旅外國外的使用者管理自身身分；禁止任何違反 Anthropic 服務條款的使用行為。"
+      ],
+      "at": "2026-11-14T13:40:07.612Z"
+    },
+    "deepseek-bot": {
+      "description_zh": "DeepSeek Harness 的長期運作機器人團隊，包含主機器人、機器人之間訊息與群組聊天功能。",
+      "negativeConstraints_zh": [
+        "私人機器人無法擔任主機器人或加入群組聊天。",
+        "DSH Web 安裝需要 Node.js 22.19 或以上版本以及 pnpm。",
+        "若桌面應用程式安裝程式未簽署，Windows 和 macOS 使用者需手動略過安全警告。"
+      ],
+      "at": "2026-11-14T13:40:07.612Z"
+    },
+    "plexo": {
+      "description_zh": "無說明。",
+      "negativeConstraints_zh": [
+        "若多個網卡連接至同一路由器或共用單一上游連線，不會提升速度。",
+        "Windows 安裝程式未進行程式碼簽署，需手動略過安全警告。",
+        "需要不同的實體或邏輯網路路徑，才能達到宣稱的速度效益。"
+      ],
+      "at": "2026-11-14T13:40:07.612Z"
+    },
+    "playgta5": {
+      "description_zh": "playgta5.com 的原始碼。",
+      "negativeConstraints_zh": [
+        "若未準備單獨的 19.7 GB .mirror 資料夾（包含受版權保護的 Rockstar Games 素材），則無法直接使用；該資料夾已明確排除於存放區之外。",
+        "此程式碼庫為公開客戶端的封存快照，而非原始開發存放區，因此缺乏官方開發工具或 CI/CD 管道。",
+        "執行腳本需要 Python 3.11 或更新版本；較舊版本無法支援內建執行時間或下載復原機制。"
+      ],
+      "at": "2026-11-14T13:40:07.613Z"
+    },
+    "dsh-go": {
+      "description_zh": "dsh-go — DeepSeek Harness 裝進口袋：手機本機運行，也能遙控你的電腦。",
+      "negativeConstraints_zh": [
+        "需要 Android 8.0 以上；不支援 iOS 或 HarmonyOS。",
+        "若裝置已安裝以不同憑證簽署的舊版，無法覆蓋安裝；需先解除安裝舊版，這會清除本地端資料。",
+        "僅適用於 DeepSeek Harness 生態系統。"
+      ],
+      "at": "2026-11-14T13:40:15.504Z"
+    },
+    "dsh-superagent-prototype": {
+      "description_zh": "朝向更自主的 Agent 系統邁進",
+      "negativeConstraints_zh": [
+        "作為研究原型，尚未達產品級強度；可能含有 bug 與不一致的工程實踐，使用前需經檢視與調整。",
+        "公布的程式碼與相關論文所描述的內部版本不同，部分未來設計方向尚未實作。"
+      ],
+      "at": "2026-11-14T13:40:15.504Z"
+    },
+    "unslop": {
+      "description_zh": "Claude 技能：將隨手寫出、帶有 AI 感的 UI 轉換為經過設計的介面",
+      "negativeConstraints_zh": [
+        "需要本機安裝 Playwright 與 Chromium，以便對線上網站進行截圖或產生故事影片。",
+        "需要 ffmpeg 已安裝且可於 PATH 中存取，用於故事影片產生。",
+        "付費圖像生成服務（fal、Replicate、OpenAI、Higgsfield）需另行串接 API，產生視覺素材會產生費用。"
+      ],
+      "at": "2026-11-14T13:40:15.504Z"
+    },
+    "misterdownloadmanager": {
+      "description_zh": "misterdownloadmanager：一款完全重新撰寫、乾淨實作的開放原始碼下載管理工具，以純 Rust 打造，支援 Windows、Mac 與 Linux",
+      "negativeConstraints_zh": [
+        "macOS 支援為實驗性質，無論 Apple Silicon 與 Intel 皆然。",
+        "以 Rust 與 GPL-3.0 授權撰寫，可能與 proprietary 軟體整合需求衝突。"
+      ],
+      "at": "2026-11-14T13:40:15.504Z"
+    },
+    "lichii": {
+      "description_zh": "高度實驗性的 Nintendo Switch 2 模擬器",
+      "at": "2026-11-14T13:40:15.504Z"
+    },
+    "hghub": {
+      "description_zh": "YellowFruit 第三方客戶端",
+      "at": "2026-11-14T13:40:22.437Z"
+    },
+    "agent-skills": {
+      "description_zh": "Agent 技能",
+      "at": "2026-11-14T13:40:22.437Z"
+    },
+    "rea-video": {
+      "description_zh": "逆向解構任何影片，逐鏡頭分析是拍攝、AI 生成還是程式碼製作，以及重製方法；拆解結果以開放式 VIDEO.md 格式輸出。",
+      "at": "2026-11-14T13:40:22.437Z"
+    },
+    "cleanyourtv": {
+      "description_zh": "透過 Wi-Fi 對 Android 或 Google TV 進行 debloat，獲得類 Apple TV 的主畫面體驗。",
+      "negativeConstraints_zh": [
+        "不適用於 Samsung、LG、Roku、Vizio 或 Hisense VIDAA 電視；僅支援 Android TV 與 Google TV。",
+        "必須在電視上啟用開發者選項並開啟 USB 除錯（Adb），且主機電腦需能存取該電視。",
+        "主機環境需具備 Python 3、JDK 17–22，以及含 build-tools 34 的 Android SDK platform 34，用於建置與安裝啟動器。"
+      ],
+      "at": "2026-11-14T13:40:22.437Z"
+    },
+    "gestaltx": {
+      "description_zh": "一款用於 iOS 27.x 的 MobileGestalt 編輯器，支援地區碼微調、裝置預設檔與備份功能。",
+      "negativeConstraints_zh": [
+        "需 iOS 27.x 或以上版本；iOS 26.x 明確不支援裝置上的 MobileGestalt 存取。",
+        "強制要求以特定憑證進行 ad-hoc 簽名及 App Group 權限，不適合標準 App Store 發行。",
+        "Apple Intelligence 功能啟用屬實驗性質，取決於特定裝置型號、OS 版本及 Apple 服務可用性。"
+      ],
+      "at": "2026-11-14T13:40:22.437Z"
+    },
+    "rune": {
+      "description_zh": "Rune：原生 UI 框架",
+      "negativeConstraints_zh": [
+        "原始版本狀態需鎖定特定 Git 修訂版，導致相較穩定函式庫可能有較不穩定的風險。",
+        "不接收程式碼合併請求；貢獻者需透過問題與代理人進行提交。"
+      ],
+      "at": "2026-11-14T13:40:35.553Z"
+    },
+    "kiri": {
+      "description_zh": "一套輕量快速的容器執行階段，支援 macOS、Windows 與 Linux",
+      "negativeConstraints_zh": [
+        "原生 macOS 版本需 macOS 14 或以上版本。",
+        "Windows 支援需依賴 WSL 2 才能執行。",
+        "目前缺乏內建組建工具，複雜組建需依賴外部 buildx 或未來規劃的功能。"
+      ],
+      "at": "2026-11-14T13:40:35.553Z"
+    },
+    "craft-anything": {
+      "description_zh": "Craft Anything：理解任何軟體的運作方式，並自行打造。",
+      "negativeConstraints_zh": [
+        "目前處於早期 Alpha 階段，不適合用於產線關鍵型工作流程。",
+        "需指定特定目標成果（網站、應用程式或遊戲）以啟動學習階段。",
+        "並非通用型 IDE；功能嚴格限制在「打造」（複製）工作流程中。"
+      ],
+      "at": "2026-11-14T13:40:35.553Z"
+    },
+    "apkstart": {
+      "description_zh": "Windows 上的安卓應用程式執行器：雙擊 APK 即可安裝，應用程式以獨立視窗與桌面圖示執行，內建 QEMU 執行階段",
+      "negativeConstraints_zh": [
+        "僅支援 Windows 10/11 x64 架構；不兼容 macOS 或 Linux 系統。",
+        "因內建 QEMU 模擬器與 Android 系統映像檔，資源消耗較重，需大量 RAM 與儲存空間以維持效能。"
+      ],
+      "at": "2026-11-14T13:40:35.553Z"
+    },
+    "sheeridverify": {
+      "description_zh": "sheeridVerify 是一個基於 Node.js 的驗證流程學習專案，提供本機 Web 工作台、任務佇列、瀏覽器表單互動及 HTTP 狀態查詢功能，供學校教學、學術研究與合法授權的流程測試使用。",
+      "negativeConstraints_zh": [
+        "僅限教育或研究用途；禁止未經授權的使用或身分詐欺行為。",
+        "需 Node.js >= 22.15 版，並需手動安裝 Camoufox 以支援基於瀏覽器的流程。",
+        "不得產生、修改或偽造驗證文件或相關材料。"
+      ],
+      "at": "2026-11-14T13:40:35.554Z"
     }
   },
   "failed": {}

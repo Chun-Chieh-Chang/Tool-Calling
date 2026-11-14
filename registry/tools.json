@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-11-02T16:34:55.136Z",
+  "lastUpdated": "2026-11-14T13:37:02.480Z",
   "tools": [
     {
       "id": "ppt-master",
@@ -68596,19 +68596,41 @@
         "llama-cpp",
         "local-first"
       ],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "useCase": "A knowledge worker needing to locate specific content within their local file system describes a scene in a video or a clause in a PDF to retrieve the exact moment or page without opening multiple files.",
+      "advantages": [
+        "Supports multimodal semantic search across text, images, audio, and video using a shared embedding space.",
+        "Operates entirely on-device with no data leaving the computer, ensuring privacy for sensitive files.",
+        "Handles content in over 100 languages simultaneously, allowing cross-lingual retrieval (e.g., searching in English to find notes in Arabic).",
+        "Utilizes the compact 740M parameter EmbeddingGemma 2 model, enabling high-quality local inference on standard laptop hardware."
+      ],
+      "negativeConstraints": [
+        "Requires Apple Silicon hardware with macOS 14 or later for the stable macOS build.",
+        "Windows and Linux builds are currently in beta stage and may lack the stability of the Mac release.",
+        "Windows installer is unsigned, requiring users to manually override security warnings during installation."
+      ],
       "stars": 6068,
       "addedAt": "2026-10-19T07:21:38.547Z",
-      "status": "experimental",
+      "status": "active",
       "_provenance": {
         "source": "trending-weekly",
         "week": "2026-W42",
         "starsAtIngest": 2090,
         "weeklyDelta": 2090,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
-      }
+      },
+      "useCase_zh": "需要在本機檔案系統中定位特定內容的知識工作者，可透過描述影片場景或 PDF 條款來擷取精確的時刻或頁面，無須逐一開啟檔案。",
+      "advantages_zh": [
+        "支援多模態語意搜尋，涵蓋文字、圖片、音訊與影片，並使用共享嵌入空間。",
+        "完全在本機執行，資料不出離電腦，確保敏感檔案的隱私安全。",
+        "同時處理超過 100 種語言的內容，允許跨語言檢索（例如用英文搜尋找到阿拉伯語筆記）。",
+        "使用輕量級 7 億參數的 EmbeddingGemma 2 模型，可在標準筆記型電腦硬體上進行高品質的本地推理。"
+      ],
+      "description_zh": "根據檔案內容搜尋你的電腦：照片、PDF、文件、錄音、影片與程式碼。在 Mac、Windows 和 Linux 上本機執行，基於 Google DeepMind 的 EmbeddingGemma 2 建構。",
+      "negativeConstraints_zh": [
+        "需要具備 Apple Silicon 硬體且為 macOS 14 或更新版本，才能使用穩定的 macOS 版本。",
+        "Windows 和 Linux 版本目前處於測試階段，可能不如 Mac 發布版穩定。",
+        "Windows 安裝程式未簽署，安裝時需手動略過安全警告。"
+      ]
     },
     {
       "id": "ccbaga",
@@ -68624,20 +68646,46 @@
         "method": "none",
         "repoUrl": "https://github.com/liseami/CCBaga"
       },
-      "capabilities": [],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "claude-identity-management",
+        "browser-fingerprint-rotation",
+        "system-settings-alignment",
+        "network-exit-verification",
+        "cross-platform-desktop-app"
+      ],
+      "useCase": "A developer residing abroad manages their local Claude CLI identities, rotates their browser fingerprint to match a specific region, and verifies that system settings align with their network exit.",
+      "advantages": [
+        "Uses a dual-application architecture where a host app manages native system settings while an isolated Chromium instance verifies the environment.",
+        "Provides a verification workflow that compares real browser readings with machine and network exit to confirm configuration success.",
+        "Integrates AI-guided network setup that generates copyable Skill installation prompts for automated configuration."
+      ],
+      "negativeConstraints": [
+        "Restricted to macOS 12+ on Apple Silicon, Linux x86_64 (GTK3/WebKitGTK), and Windows 10/11 x86_64; Intel macOS and Linux ARM64 are unsupported.",
+        "Windows installers are not Authenticode signed, which may trigger SmartScreen warnings or be blocked by managed security policies.",
+        "Intended solely for users residing or traveling abroad to manage their own identities; use violating Anthropic's terms of service is prohibited."
+      ],
       "stars": 3325,
       "addedAt": "2026-10-19T07:21:38.547Z",
-      "status": "experimental",
+      "status": "active",
       "_provenance": {
         "source": "trending-weekly",
         "week": "2026-W42",
         "starsAtIngest": 1933,
         "weeklyDelta": 1933,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
-      }
+      },
+      "useCase_zh": "旅居海外的開發人員管理本機 Claude CLI 身份，旋轉瀏覽器指紋以符合特定區域設定，並驗證系統設定是否與其網路出口一致。",
+      "advantages_zh": [
+        "採用雙應用程式架構，主機應用程式管理原生系統設定，隔離的 Chromium 實例驗證環境狀態。",
+        "提供驗證工作流程，比對實際瀏覽器讀數與機器及網路出口，確認設定是否成功。",
+        "整合 AI 引導的網路設定，產生可複製的 Skill 安裝提示詞以實現自動化配置。"
+      ],
+      "description_zh": "無說明。",
+      "negativeConstraints_zh": [
+        "限用於 macOS 12+ 的 Apple Silicon、Linux x86_64 (GTK3/WebKitGTK) 以及 Windows 10/11 x86_64；Intel macOS 與 Linux ARM64 不支援。",
+        "Windows 安裝程式未經 Authenticode 簽署，可能會觸發 SmartScreen 警告或被企業安全政策封鎖。",
+        "僅供居住或旅外國外的使用者管理自身身分；禁止任何違反 Anthropic 服務條款的使用行為。"
+      ]
     },
     {
       "id": "deepseek-bot",
@@ -68663,19 +68711,39 @@
         "dsh-plugin",
         "multi-agent"
       ],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "useCase": "A developer creates a team of long-lived AI agents for a desktop or server environment to collaborate on complex software tasks via group chats and direct messaging.",
+      "advantages": [
+        "Provides a standalone desktop app that bundles DeepSeek Harness, removing the need to install DSH separately.",
+        "Features a 'Main Bot' (Chief) that automates the setup and management of other bots and group chats.",
+        "Supports private bot isolation where folders, memory, and chat history are protected from other agents and require explicit approval for external actions."
+      ],
+      "negativeConstraints": [
+        "Private bots cannot function as main bots or join group chats.",
+        "DSH Web installation requires Node.js version 22.19 or later and pnpm.",
+        "Users must manually bypass security warnings on Windows and macOS if the desktop app installer is unsigned."
+      ],
       "stars": 4740,
       "addedAt": "2026-10-19T07:21:38.547Z",
-      "status": "experimental",
+      "status": "active",
       "_provenance": {
         "source": "trending-weekly",
         "week": "2026-W42",
         "starsAtIngest": 1570,
         "weeklyDelta": 1570,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
-      }
+      },
+      "useCase_zh": "開發者為桌面或伺服器環境建立一組長期存續的 AI 代理團隊，透過群組聊天與直接訊息協作完成複雜軟體任務。",
+      "advantages_zh": [
+        "提供獨立桌面應用程式，內建 DeepSeek Harness，無需單獨安裝 DSH。",
+        "具備「主管機器」（Chief）功能，可自動化管理其他機器與群組聊天的建立與維護。",
+        "支援隱私機器隔離，其資料夾、記憶與聊天記錄與其他代理隔離，且對外動作需明確批准。"
+      ],
+      "description_zh": "DeepSeek Harness 的長期運作機器人團隊，包含主機器人、機器人之間訊息與群組聊天功能。",
+      "negativeConstraints_zh": [
+        "私人機器人無法擔任主機器人或加入群組聊天。",
+        "DSH Web 安裝需要 Node.js 22.19 或以上版本以及 pnpm。",
+        "若桌面應用程式安裝程式未簽署，Windows 和 macOS 使用者需手動略過安全警告。"
+      ]
     },
     {
       "id": "plexo",
@@ -68691,20 +68759,48 @@
         "method": "none",
         "repoUrl": "https://github.com/anmolkapil/plexo"
       },
-      "capabilities": [],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "multi-network-bonding",
+        "torrent-downloading",
+        "usenet-nzb",
+        "bandwidth-throttling",
+        "browser-integration"
+      ],
+      "useCase": "A user downloads a large software update or a high-resolution video file by combining their home Wi-Fi and a mobile data hotspot to maximize throughput.",
+      "advantages": [
+        "Combines multiple internet connections (Wi-Fi, Ethernet, mobile) to boost download speeds",
+        "Supports downloading direct links, magnet links, .torrent files, and Usenet NZBs",
+        "Features per-network speed limits, data allowances, and scheduled downloads",
+        "Integrates with browsers to capture downloads using authenticated sessions"
+      ],
+      "negativeConstraints": [
+        "Does not increase speed if multiple adapters are connected to the same router or share one upstream connection",
+        "Windows installer is not code-signed, requiring users to manually bypass security warnings",
+        "Requires distinct physical or logical network paths to achieve the claimed speed benefits"
+      ],
       "stars": 5398,
       "addedAt": "2026-10-19T07:21:38.547Z",
-      "status": "experimental",
+      "status": "active",
       "_provenance": {
         "source": "trending-weekly",
         "week": "2026-W42",
         "starsAtIngest": 3618,
         "weeklyDelta": 1557,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
-      }
+      },
+      "useCase_zh": "使用者在下載大型軟體更新或高畫質影片時，結合家用 Wi-Fi 與行動數據熱點來最大化傳輸速度。",
+      "advantages_zh": [
+        "結合多個網路連線（Wi-Fi、乙太網、行動網路）以提升下載速度",
+        "支援下載直接連結、Magnet 連結、.torrent 檔案及 Usenet NZB",
+        "提供各網路的限速、資料量配額及排程下載功能",
+        "整合瀏覽器功能，可利用已驗證的會話捕獲下載"
+      ],
+      "description_zh": "無說明。",
+      "negativeConstraints_zh": [
+        "若多個網卡連接至同一路由器或共用單一上游連線，不會提升速度。",
+        "Windows 安裝程式未進行程式碼簽署，需手動略過安全警告。",
+        "需要不同的實體或邏輯網路路徑，才能達到宣稱的速度效益。"
+      ]
     },
     {
       "id": "playgta5",
@@ -68720,20 +68816,46 @@
         "method": "none",
         "repoUrl": "https://github.com/shadany7824/playgta5"
       },
-      "capabilities": [],
-      "useCase": "",
-      "advantages": [],
-      "negativeConstraints": [],
+      "capabilities": [
+        "browser-game-archival",
+        "local-static-server",
+        "large-file-resume",
+        "portable-python-runtime",
+        "gaming-community-mirror"
+      ],
+      "useCase": "A gaming enthusiast or tech-savvy user wanting to locally host and archive the V1 port of the Grand V browser game by placing their own 19.7 GB .mirror folder into the directory and running the provided local launcher script.",
+      "advantages": [
+        "Serves as a complete source code archival for the V1 port of the Grand V browser game before it was taken down.",
+        "Includes a portable runtime\\python.exe and double-click launcher (Launch-Local.cmd) that automatically opens http://localhost:8000/ without requiring separate global Python installations.",
+        "Provides a download resumption system with progress tracking (inventory sizes, hash samples, and HTTP isolation checks) for handling the large 19.7 GB .mirror folder."
+      ],
+      "negativeConstraints": [
+        "Cannot be run out-of-the-box without sourcing a separate 19.7 GB .mirror folder containing copyrighted Rockstar Games assets, which is explicitly excluded from the repository.",
+        "The codebase is an archived snapshot of a public client, not the original development repository, so it lacks official development tools or CI/CD pipelines.",
+        "Requires Python 3.11 or newer for script execution; older versions will not support the bundled runtime or download resumption logic."
+      ],
       "stars": 1742,
       "addedAt": "2026-10-19T07:21:38.547Z",
-      "status": "experimental",
+      "status": "active",
       "_provenance": {
         "source": "trending-weekly",
         "week": "2026-W42",
         "starsAtIngest": 1528,
         "weeklyDelta": 1528,
         "ingestedAt": "2026-10-19T07:21:38.547Z"
-      }
+      },
+      "useCase_zh": "一位玩家或技術使用者希望本地主機並保存已下架的 Grand V 瀏覽器遊戲 V1 版本，透過將自行準備的 19.7 GB .mirror 資料夾放入指定路徑，並執行提供的本地啟動腳本即可啟動遊戲。",
+      "advantages_zh": [
+        "作為 Grand V 瀏覽器遊戲 V1 版本的完整原始碼存檔，保留其被下架前的狀態。",
+        "內建可攜式 runtime\\python.exe 與雙擊啟動器 Launch-Local.cmd，可自動開啟 http://localhost:8000/，無需額外安裝全域 Python。",
+        "提供大型檔案下載續傳機制，包含進度追蹤（如清單大小、雜湊樣本、HTTP 隔離檢查），方便處理 19.7 GB 的 .mirror 資料夾。"
+      ],
+      "description_zh": "playgta5.com 的原始碼。",
+      "negativeConstraints_zh": [
+        "若未準備單獨的 19.7 GB .mirror 資料夾（包含受版權保護的 Rockstar Games 素材），則無法直接使用；該資料夾已明確排除於存放區之外。",
+        "此程式碼庫為公開客戶端的封存快照，而非原始開發存放區，因此缺乏官方開發工具或 CI/CD 管道。",
+        "執行腳本需要 Python 3.11 或更新版本；較舊版本無法支援內建執行時間或下載復原機制。"
+      ]
     },
     {
       "id": "cadcraft",
@@ -70408,6 +70530,775 @@
         "需具備 Claude Code 環境與特定相依套件（three.js 0.170）才能產生與錄製模擬內容。",
         "僅限生成機器與機械系統；不適用於生物、抽象或非實體物件。",
         "依賴 LLM 研究來取得機器規格，因此物理模擬的準確度取決於 Claude 的訓練資料與檢索能力。"
+      ]
+    },
+    {
+      "id": "dsh-go",
+      "name": "dsh-Go",
+      "url": "https://github.com/ccch1mneyyy/dsh-Go",
+      "description": "dsh-go — DeepSeek Harness 裝進口袋：手機本機運行，也能遙控你的電腦。",
+      "category": "AI 框架",
+      "language": "other",
+      "triggers": [
+        "dsh-go",
+        "ai-agent",
+        "android",
+        "android-app",
+        "coding-agent",
+        "deepseek"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/ccch1mneyyy/dsh-Go"
+      },
+      "capabilities": [
+        "ai-agent",
+        "android",
+        "android-app",
+        "coding-agent",
+        "deepseek",
+        "deepseek-harness"
+      ],
+      "useCase": "Mobile users who need to interact with the DeepSeek coding agent locally or remotely to execute tasks on their phone without a root environment.",
+      "advantages": [
+        "Runs a built-in Linux environment on the phone without requiring Root or Termux.",
+        "Supports one-click remote control and seamless switching to a DSH instance running on a computer.",
+        "Allows interrupting or queuing messages during AI response generation with automatic process folding."
+      ],
+      "negativeConstraints": [
+        "Requires Android 8.0 or higher; does not support iOS or HarmonyOS.",
+        "Cannot overlay-install if the device has a previous version signed with a different certificate; requires uninstalling old versions which clears local data.",
+        "Tied specifically to the DeepSeek Harness ecosystem."
+      ],
+      "stars": 22395,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 22395,
+        "weeklyDelta": 17131,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "需要在手機上本地運行或遠端操控 DeepSeek 編碼代理，且不想依賴 Root 環境的行動裝置使用者。",
+      "advantages_zh": [
+        "手機內建 Linux 環境，免 Root、免 Termux 即可運行。",
+        "支援一鍵遠端操控電腦上的 DSH，並無縫切換對話。",
+        "允許在 AI 回應過程中插話或排隊訊息，完成後自動折疊過程。"
+      ],
+      "description_zh": "dsh-go — DeepSeek Harness 裝進口袋：手機本機運行，也能遙控你的電腦。",
+      "negativeConstraints_zh": [
+        "需要 Android 8.0 以上；不支援 iOS 或 HarmonyOS。",
+        "若裝置已安裝以不同憑證簽署的舊版，無法覆蓋安裝；需先解除安裝舊版，這會清除本地端資料。",
+        "僅適用於 DeepSeek Harness 生態系統。"
+      ]
+    },
+    {
+      "id": "dsh-superagent-prototype",
+      "name": "dsh-superagent-prototype",
+      "url": "https://github.com/deepseek-ai/dsh-superagent-prototype",
+      "description": "Towards a More Autonomous Agent System",
+      "category": "AI 代理",
+      "language": "typescript",
+      "triggers": [
+        "dsh-superagent-prototype"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/deepseek-ai/dsh-superagent-prototype"
+      },
+      "capabilities": [
+        "proactive-coding-agent",
+        "github-listening",
+        "feishu-integration",
+        "automated-pull-requests",
+        "attention-management-panel",
+        "deepseek-harness-bundle"
+      ],
+      "useCase": "A development team operates a proactive coding agent that listens to GitHub and Feishu, allowing authorized users to request work which results in automated pull requests managed through a web panel that highlights items requiring human attention.",
+      "advantages": [
+        "Proactively monitors GitHub and Feishu to initiate work items and generate pull requests when requested by authorized users.",
+        "Implements a 'minimal attention' philosophy where the agent acts only when explicitly asked or permitted by team-defined rules, reducing unnecessary interruptions.",
+        "Includes a dedicated web panel to visually track tasks that require human intervention or result review."
+      ],
+      "negativeConstraints": [
+        "Intended as a research prototype and not production-ready; may contain bugs and inconsistent engineering practices, requiring review and adaptation before use.",
+        "The published code differs from the internal version described in the related paper, as some future design directions are not implemented."
+      ],
+      "stars": 23099,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 23099,
+        "weeklyDelta": 12688,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "開發團隊操作一個主動型編碼代理，該代理監控 GitHub 與飛書，允許授權使用者請求任務並自動生成 Pull Request，同時透過網頁面板標識需要人工關注的事項。",
+      "advantages_zh": [
+        "主動監控 GitHub 和飛書，在獲授權使用者請求時自動建立工作項目並生成 Pull Request。",
+        "採用「最小注意力」原則，代理僅在明確請求或符合團隊預設規則時行動，減少不必要的干擾。",
+        "內建網頁面板，便於追蹤需要人工介入或結果審查的任務。"
+      ],
+      "description_zh": "朝向更自主的 Agent 系統邁進",
+      "negativeConstraints_zh": [
+        "作為研究原型，尚未達產品級強度；可能含有 bug 與不一致的工程實踐，使用前需經檢視與調整。",
+        "公布的程式碼與相關論文所描述的內部版本不同，部分未來設計方向尚未實作。"
+      ]
+    },
+    {
+      "id": "unslop",
+      "name": "unslop",
+      "url": "https://github.com/heydamir/unslop",
+      "description": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface",
+      "category": "AI 框架",
+      "language": "javascript",
+      "triggers": [
+        "unslop"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/heydamir/unslop"
+      },
+      "capabilities": [
+        "ui-audit",
+        "design-refactoring",
+        "visual-story-video-generation",
+        "live-site-snapshotting",
+        "cross-framework-support"
+      ],
+      "useCase": "A developer or designer uses this skill in Claude Code, Codex, or Google Antigravity to audit and refactor 'vibecoded' AI-generated UIs into polished, character-driven interfaces across various frontend stacks.",
+      "advantages": [
+        "Framework-agnostic support for Next.js, React, Vue, Svelte, Tailwind, and plain HTML/CSS",
+        "Automated generation of square 'story videos' (under 10s) using Playwright and ffmpeg to showcase the transformation",
+        "Ability to snapshot and fix live websites when only a URL is available",
+        "CC BY 4.0 license allowing commercial use and modification with attribution"
+      ],
+      "negativeConstraints": [
+        "Requires Playwright and Chromium installed locally for snapshotting live sites or generating story videos",
+        "Requires ffmpeg installed and available on PATH for story video creation",
+        "Paid image generation services (fal, Replicate, OpenAI, Higgsfield) require separate API connections and incur costs for visual assets"
+      ],
+      "stars": 15859,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 15859,
+        "weeklyDelta": 10594,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "開發者或設計師在 Claude Code、Codex 或 Google Antigravity 中，使用此技能審計並重構「vibecoded」的 AI 生成 UI，將其轉換為具備風格與設計感的介面，支援多種前端技術棧。",
+      "advantages_zh": [
+        "跨框架支援 Next.js、React、Vue、Svelte、Tailwind 及純 HTML/CSS",
+        "可自動生成低於 10 秒的方形「故事影片」，使用 Playwright 與 ffmpeg 展示轉化過程",
+        "當僅有網址時，可快照並修復線上網站",
+        "採用 CC BY 4.0 授權，允許商業使用與修改（需標註來源）"
+      ],
+      "description_zh": "Claude 技能：將隨手寫出、帶有 AI 感的 UI 轉換為經過設計的介面",
+      "negativeConstraints_zh": [
+        "需要本機安裝 Playwright 與 Chromium，以便對線上網站進行截圖或產生故事影片。",
+        "需要 ffmpeg 已安裝且可於 PATH 中存取，用於故事影片產生。",
+        "付費圖像生成服務（fal、Replicate、OpenAI、Higgsfield）需另行串接 API，產生視覺素材會產生費用。"
+      ]
+    },
+    {
+      "id": "misterdownloadmanager",
+      "name": "misterdownloadmanager",
+      "url": "https://github.com/anefzaoui/misterdownloadmanager",
+      "description": "misterdownloadmanager: The ultimate open-source, clean-room download manager written from scratch in pure Rust for Windows, Mac, and Linux",
+      "category": "影片",
+      "language": "rust",
+      "triggers": [
+        "misterdownloadmanager",
+        "bittorrent-client",
+        "debrid",
+        "download-accelerator",
+        "download-manager",
+        "downloadmanager"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/anefzaoui/misterdownloadmanager"
+      },
+      "capabilities": [
+        "bittorrent-client",
+        "debrid",
+        "download-accelerator",
+        "download-manager",
+        "downloadmanager",
+        "egui"
+      ],
+      "useCase": "A user on Windows, macOS, or Linux wants to download large files or manage torrent/magnet links using a browser-integrated, free download manager that is significantly faster than IDM.",
+      "advantages": [
+        "5x faster than IDM, completing a 1GB download in 1 second versus 5.5 seconds",
+        "Full support for BitTorrent features including magnet links, .torrent files, and seeding",
+        "Supports 86 languages, significantly more than IDM's 40, with no ads, trials, or sign-ups required",
+        "Open-source (GPL-3.0) and clean-room implementation written from scratch in pure Rust"
+      ],
+      "negativeConstraints": [
+        "macOS support is experimental for both Apple Silicon and Intel",
+        "Written in Rust with GPL-3.0 license, which may conflict with proprietary software integration requirements"
+      ],
+      "stars": 9310,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 9310,
+        "weeklyDelta": 9310,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "使用 Windows、macOS 或 Linux 的使用者，想要透過瀏覽器整合、免費的下載管理員來下載大檔案或管理 BitTorrent/磁鐵鏈接，且速度遠超 IDM。",
+      "advantages_zh": [
+        "速度比 IDM 快 5 倍，下載 1GB 檔案僅需 1 秒（IDM 需 5.5 秒）",
+        "完整支援 BitTorrent 功能，包括磁鐵鏈接、.torrent 檔案與種子傳播",
+        "支援 86 種語言（IDM 僅 40 種），無廣告、無試用期、無需註冊",
+        "採用 GPL-3.0 授權的開源軟體，以純 Rust 從零編寫（清潔室實現）"
+      ],
+      "description_zh": "misterdownloadmanager：一款完全重新撰寫、乾淨實作的開放原始碼下載管理工具，以純 Rust 打造，支援 Windows、Mac 與 Linux",
+      "negativeConstraints_zh": [
+        "macOS 支援為實驗性質，無論 Apple Silicon 與 Intel 皆然。",
+        "以 Rust 與 GPL-3.0 授權撰寫，可能與 proprietary 軟體整合需求衝突。"
+      ]
+    },
+    {
+      "id": "lichii",
+      "name": "Lichii",
+      "url": "https://github.com/zortos293/Lichii",
+      "description": "VERY experimental Nintendo Switch 2 emulator",
+      "category": "開發工具",
+      "language": "c++",
+      "triggers": [
+        "lichii"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/zortos293/Lichii"
+      },
+      "capabilities": [],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 9087,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 9087,
+        "weeklyDelta": 9087,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "description_zh": "高度實驗性的 Nintendo Switch 2 模擬器"
+    },
+    {
+      "id": "hghub",
+      "name": "HGhub",
+      "url": "https://github.com/Minireel/HGhub",
+      "description": "YellowFruit third-party client",
+      "category": "影片",
+      "language": "other",
+      "triggers": [
+        "hghub",
+        "android",
+        "drama",
+        "free",
+        "movie-web-app",
+        "reels"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Minireel/HGhub"
+      },
+      "capabilities": [
+        "android",
+        "drama",
+        "free",
+        "movie-web-app",
+        "reels",
+        "windows"
+      ],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 8837,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 8837,
+        "weeklyDelta": 8837,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "description_zh": "YellowFruit 第三方客戶端"
+    },
+    {
+      "id": "agent-skills",
+      "name": "agent_skills",
+      "url": "https://github.com/janestreet/agent_skills",
+      "description": "Agent skills",
+      "category": "AI 代理",
+      "language": "other",
+      "triggers": [
+        "agent-skills"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/janestreet/agent_skills"
+      },
+      "capabilities": [],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 8437,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 8437,
+        "weeklyDelta": 8437,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "description_zh": "Agent 技能"
+    },
+    {
+      "id": "rea-video",
+      "name": "rea-video",
+      "url": "https://github.com/JuneYaooo/rea-video",
+      "description": "Reverse-engineer any video, shot by shot: filmed, AI-generated or coded, and how to remake it. Breakdowns in the open VIDEO.md format. 逆向一切視頻，逐個鏡頭看是拍的、AI 生成的還是代碼做的，再告訴你怎麼復刻；拆解結果按 VIDEO.md 格式輸出。",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "rea-video",
+        "agent-skills",
+        "ai-video",
+        "aigc-detection",
+        "claude-code",
+        "codex"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/JuneYaooo/rea-video"
+      },
+      "capabilities": [
+        "agent-skills",
+        "ai-video",
+        "aigc-detection",
+        "claude-code",
+        "codex",
+        "ffmpeg"
+      ],
+      "useCase": "",
+      "advantages": [],
+      "negativeConstraints": [],
+      "stars": 8287,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "experimental",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 8287,
+        "weeklyDelta": 8287,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "description_zh": "逆向解構任何影片，逐鏡頭分析是拍攝、AI 生成還是程式碼製作，以及重製方法；拆解結果以開放式 VIDEO.md 格式輸出。"
+    },
+    {
+      "id": "cleanyourtv",
+      "name": "cleanyourtv",
+      "url": "https://github.com/Gathin23/cleanyourtv",
+      "description": "Debloat any Android or Google TV over Wi-Fi and get an Apple TV-style home.",
+      "category": "AI 框架",
+      "language": "python",
+      "triggers": [
+        "cleanyourtv",
+        "adb",
+        "adblock",
+        "android-tv",
+        "android-tv-launcher",
+        "apple-tv"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/Gathin23/cleanyourtv"
+      },
+      "capabilities": [
+        "adb",
+        "adblock",
+        "android-tv",
+        "android-tv-launcher",
+        "apple-tv",
+        "bloatware-removal"
+      ],
+      "useCase": "A user wants to remove ads and bloatware from a specific Android TV or Google TV device by connecting via Wi-Fi to enable USB debugging, running a script to disable manufacturer services, and installing a custom launcher.",
+      "advantages": [
+        "Operates over Wi-Fi without requiring physical USB cable connection or root access.",
+        "Uses 'pm disable-user' instead of uninstalling, allowing complete restoration with a one-line command if the user changes their mind.",
+        "Features a native, lightweight launcher (572 KB) that replaces the stock ad-filled home screen with an Apple TV-like interface.",
+        "Automatically discovers brand-specific bloatware differences and prompts for confirmation before disabling potentially needed services."
+      ],
+      "negativeConstraints": [
+        "Cannot be used on Samsung, LG, Roku, Vizio, or Hisense VIDAA TVs; it supports only Android TV and Google TV.",
+        "Requires the TV to have developer options enabled with USB debugging (Adb) active and network accessibility from the host computer.",
+        "Host environment requires Python 3, JDK 17-22, and Android SDK platform 34 with build-tools 34 to build and install the launcher."
+      ],
+      "stars": 57656,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 57656,
+        "weeklyDelta": 8062,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "使用者希望透過 Wi-Fi 連接 Android TV 或 Google TV，啟用 USB 偵錯後執行腳本停用製造商服務並安裝自訂啟動器，以去除廣告與冗餘軟體。",
+      "advantages_zh": [
+        "透過 Wi-Fi 操作，無需實體 USB 線材或 Root 權限。",
+        "使用「pm disable-user」而非直接 uninstall，可透過單行指令完整還原，降低風險。",
+        "提供輕量級原生啟動器（572 KB），將充滿廣告的主畫面替換為類似 Apple TV 的介面。",
+        "能自動偵測不同品牌的冗餘軟體差異，並在停用可能需要的服務前請求確認。"
+      ],
+      "description_zh": "透過 Wi-Fi 對 Android 或 Google TV 進行 debloat，獲得類 Apple TV 的主畫面體驗。",
+      "negativeConstraints_zh": [
+        "不適用於 Samsung、LG、Roku、Vizio 或 Hisense VIDAA 電視；僅支援 Android TV 與 Google TV。",
+        "必須在電視上啟用開發者選項並開啟 USB 除錯（Adb），且主機電腦需能存取該電視。",
+        "主機環境需具備 Python 3、JDK 17–22，以及含 build-tools 34 的 Android SDK platform 34，用於建置與安裝啟動器。"
+      ]
+    },
+    {
+      "id": "gestaltx",
+      "name": "GestaltX",
+      "url": "https://github.com/huamidev/GestaltX",
+      "description": "An MobileGestalt editor for iOS 27.x, featuring region-code tweaks, device presets, backups.",
+      "category": "開發工具",
+      "language": "swift",
+      "triggers": [
+        "gestaltx"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/huamidev/GestaltX"
+      },
+      "capabilities": [
+        "mobilegestalt-editing",
+        "region-code-tweaking",
+        "feature-flag-toggling",
+        "plist-management",
+        "hardware-identity-recovery",
+        "ios-respring"
+      ],
+      "useCase": "iOS developers or advanced users on iOS 27.x modify their device's MobileGestalt to enable Apple Intelligence features, change region codes, or adjust hardware flags using a native SwiftUI app.",
+      "advantages": [
+        "Native SwiftUI interface optimized for iOS 27.x with automatic backup creation and restoration for device safety.",
+        "Includes a dedicated recovery workflow to fix hardware identity spoofing issues that might have broken Face ID or dictation in previous tools.",
+        "Supports local plist import/export allowing for safe offline inspection and modification of system configuration files.",
+        "Uses a safer activation approach that avoids permanent hardware identity spoofing, unlike older tools like YumEdit."
+      ],
+      "negativeConstraints": [
+        "Requires iOS 27.x or later; on-device MobileGestalt access is explicitly not supported on iOS 26.x.",
+        "Mandatory ad-hoc signing with a specific certificate and App Group entitlements, which is not suitable for standard App Store distribution.",
+        "Apple Intelligence feature activation is experimental and depends on specific device models, OS versions, and Apple service availability."
+      ],
+      "stars": 7488,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 7488,
+        "weeklyDelta": 7488,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "iOS 開發人員或進階使用者在 iOS 27.x 裝置上，透過原生 SwiftUI 應用修改 MobileGestalt 以啟用 Apple Intelligence 功能、調整區域代碼或硬體標誌。",
+      "advantages_zh": [
+        "優化於 iOS 27.x 的原生 SwiftUI 介面，具備自動備份與還原機制以確保裝置安全。",
+        "包含專門的恢復流程，可修復先前工具造成的硬體身份偽裝問題（如 Face ID 或語音聽寫失效）。",
+        "支援本地 plist 匯入與匯出，允許安全地離線檢查與修改系統設定檔。",
+        "採用較安全的啟用方式，避免像 YumEdit 這類舊工具常見的永久硬體身份偽裝風險。"
+      ],
+      "description_zh": "一款用於 iOS 27.x 的 MobileGestalt 編輯器，支援地區碼微調、裝置預設檔與備份功能。",
+      "negativeConstraints_zh": [
+        "需 iOS 27.x 或以上版本；iOS 26.x 明確不支援裝置上的 MobileGestalt 存取。",
+        "強制要求以特定憑證進行 ad-hoc 簽名及 App Group 權限，不適合標準 App Store 發行。",
+        "Apple Intelligence 功能啟用屬實驗性質，取決於特定裝置型號、OS 版本及 Apple 服務可用性。"
+      ]
+    },
+    {
+      "id": "rune",
+      "name": "rune",
+      "url": "https://github.com/anomalyco/rune",
+      "description": "Rune: Native UI framework",
+      "category": "UI/UX設計",
+      "language": "rust",
+      "triggers": [
+        "rune"
+      ],
+      "install": {
+        "method": "none",
+        "repoUrl": "https://github.com/anomalyco/rune"
+      },
+      "capabilities": [
+        "gpu-rendering",
+        "headless-testing",
+        "cross-platform-ui",
+        "rust-framework",
+        "element-tree-inspection",
+        "scriptable-input"
+      ],
+      "useCase": "Developers building native desktop or web applications in Rust use Rune to create GPU-accelerated user interfaces, and automation scripts use its headless mode to render PNG screenshots and inspect element trees for testing agents.",
+      "advantages": [
+        "Native GPU-rendering engine with custom text, layout, and spring physics.",
+        "Supports headless execution to render PNGs and dump element trees for agent-driven automation.",
+        "Cross-platform compatibility for macOS, Windows, Linux, and web environments."
+      ],
+      "negativeConstraints": [
+        "Pre-release status requires pinning specific git revisions, leading to potential instability compared to stable libraries.",
+        "Does not accept pull requests; contributors must use issues and agents for submissions."
+      ],
+      "stars": 7085,
+      "addedAt": "2026-11-14T13:20:47.404Z",
+      "status": "active",
+      "_provenance": {
+        "source": "trending-weekly",
+        "week": "2026-W45",
+        "starsAtIngest": 7085,
+        "weeklyDelta": 7085,
+        "ingestedAt": "2026-11-14T13:20:47.404Z"
+      },
+      "useCase_zh": "使用 Rust 開發原生桌面或 Web 應用程式的開發者，利用 Rune 建構 GPU 加速的使用者介面；自動化腳本則可利用其離頭模式渲染 PNG 截圖並檢查元素樹，以支援智能體的測試與驗證。",
+      "advantages_zh": [
+        "具備原生 GPU 繪製引擎，內含自有的文字、排版與彈簧物理效果。",
+        "支援離頭（headless）執行，可將介面渲染為 PNG 並傾印元素樹，方便智能體驅動自動化。",
+        "跨平台相容性，涵蓋 macOS、Windows、Linux 及 Web 環境。"
+      ],
+      "description_zh": "Rune：原生 UI 框架",
+      "negativeConstraints_zh": [
+        "原始版本狀態需鎖定特定 Git 修訂版，導致相較穩定函式庫可能有較不穩定的風險。",
+        "不接收程式碼合併請求；貢獻者需透過問題與代理人進行提交。"
+      ]
+    },
+    {
+      "id": "kiri",
+      "name": "Kiri",
+      "url": "https://github.com/libracoder/kiri",
+      "description": "A small, fast container runtime for macOS, Windows and Linux",
+      "category": "AI 代理",
+      "language": "rust",
+      "triggers": [
+        "kiri",
+        "containers",
+        "docker",
+        "kubernetes",
+        "linux",
+        "macos",
+        "oci",
+        "windows"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/libracoder/kiri",
+        "repoUrl": "https://github.com/libracoder/kiri"
+      },
+      "capabilities": [
+        "containers",
+        "docker",
+        "kubernetes",
+        "linux",
+        "macos"
+      ],
+      "useCase": "A developer on macOS or Windows needs to run Docker images quickly without the resource overhead of Docker Desktop, using the standard docker CLI and Kiri's native UI for local domains and one-command Kubernetes.",
+      "advantages": [
+        "Starts and exits containers in ~2.5ms, which is approximately 80 times faster than Docker Desktop.",
+        "Low memory footprint with the daemon staying at ~15MB and the VM sleeping after 60s of idle time, waking in ~0.15s.",
+        "Includes a one-command Kubernetes cluster launcher and local domain support (http://<name>.kiri.local) with HTTPS certificates.",
+        "Written in Rust with a custom 10MB kernel and ~900KB agent, avoiding runc, shim, and dockerd for improved efficiency."
+      ],
+      "negativeConstraints": [
+        "Requires macOS 14 or later for the native macOS version.",
+        "Windows support depends on WSL 2 for execution.",
+        "Currently lacks a built-in builder, relying on external buildx or upcoming roadmap features for complex builds."
+      ],
+      "addedAt": "2026-11-14T13:22:08.897Z",
+      "status": "active",
+      "stars": 2780,
+      "useCase_zh": "在 macOS 或 Windows 上，開發者需要快速執行 Docker 映像檔，且希望避免 Docker Desktop 的高資源佔用，可使用標準 docker CLI 搭配 Kiri 的原生介面來管理本地域名與一鍵啟動的 Kubernetes 叢集。",
+      "advantages_zh": [
+        "容器啟動與結束約需 2.5 毫秒，比 Docker Desktop 快約 80 倍。",
+        "記憶體佔用低，守護程序僅約 15 MB，閒置 60 秒後虛擬機休眠，醒來僅需約 0.15 秒。",
+        "支援一鍵啟動 Kubernetes 叢集，並提供本地域名（http://<name>.kiri.local）及 HTTPS 憑證。",
+        "使用 Rust 撰寫，配備自訂 10 MB 核心與約 900 KB 代理程式，無需 runc、shim 或 dockerd，效率更高。"
+      ],
+      "description_zh": "一套輕量快速的容器執行階段，支援 macOS、Windows 與 Linux",
+      "negativeConstraints_zh": [
+        "原生 macOS 版本需 macOS 14 或以上版本。",
+        "Windows 支援需依賴 WSL 2 才能執行。",
+        "目前缺乏內建組建工具，複雜組建需依賴外部 buildx 或未來規劃的功能。"
+      ]
+    },
+    {
+      "id": "craft-anything",
+      "name": "Craft Anything",
+      "url": "https://github.com/storytold/craft-anything",
+      "description": "Craft Anything: understand how any software works, and craft your own.",
+      "category": "開發工具",
+      "language": "rust",
+      "triggers": [
+        "craft-anything",
+        "craft",
+        "anything"
+      ],
+      "install": {
+        "method": "cargo",
+        "command": "cargo install --git https://github.com/storytold/craft-anything",
+        "repoUrl": "https://github.com/storytold/craft-anything"
+      },
+      "capabilities": [
+        "clean-room-replication",
+        "automated-inspection",
+        "multi-stack-generation",
+        "comparative-verification",
+        "mcp-integration",
+        "cross-platform-native"
+      ],
+      "useCase": "A developer points Craft Anything at a target website or game, instructs a coding agent to recreate it in a specific stack, and reviews the automated comparison before running the new build.",
+      "advantages": [
+        "Uses 320 dedicated inspection tools to study targets without requiring an LLM for the analysis phase",
+        "Operates as a clean-room engine in pure Rust with dual MIT/Apache-2.0 licensing",
+        "Automatically compares generated builds against originals using multi-width checks and self-tests to refine results",
+        "Exposes all functionality as both CLI commands and MCP tools for seamless integration with external agents"
+      ],
+      "negativeConstraints": [
+        "Currently in early alpha status, making it unsuitable for production-critical workflows",
+        "Requires a specific target artifact (website, app, or game) to initiate the study phase",
+        "Not a general-purpose IDE; functionality is strictly bound to the 'craft' (replicate) workflow"
+      ],
+      "addedAt": "2026-11-14T13:22:17.187Z",
+      "status": "active",
+      "stars": 32181,
+      "useCase_zh": "開發者將 Craft Anything 指向目標網站或遊戲，指示 AI 代理人以特定技術棧重構專案，並在執行新構建前審查自動比對結果。",
+      "advantages_zh": [
+        "使用 320 個專用檢測工具分析目標，無需依賴大型語言模型即可進行結構分析",
+        "以純 Rust 撰寫的清潔室引擎，採 MIT/Apache-2.0 雙授權模式",
+        "自動將生成結果與原始目標進行多寬度畫面與自我測試比對，持續優化差異",
+        "所有功能均暴露為 CLI 指令與 MCP 工具，便於與外部 AI 代理人整合"
+      ],
+      "description_zh": "Craft Anything：理解任何軟體的運作方式，並自行打造。",
+      "negativeConstraints_zh": [
+        "目前處於早期 Alpha 階段，不適合用於產線關鍵型工作流程。",
+        "需指定特定目標成果（網站、應用程式或遊戲）以啟動學習階段。",
+        "並非通用型 IDE；功能嚴格限制在「打造」（複製）工作流程中。"
+      ]
+    },
+    {
+      "id": "apkstart",
+      "name": "Apkstart",
+      "url": "https://github.com/RoutineMiku/apkstart",
+      "description": "Windows 上的安卓應用運行器：雙擊 APK 即裝，應用以獨立窗口與桌面圖標運行，自持 QEMU 運行時",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "apkstart",
+        "android",
+        "android-x86",
+        "apk",
+        "electron",
+        "emulator",
+        "freeform",
+        "qemu"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/RoutineMiku/apkstart.git",
+        "repoUrl": "https://github.com/RoutineMiku/apkstart"
+      },
+      "capabilities": [
+        "android",
+        "android-x86",
+        "apk",
+        "electron",
+        "emulator"
+      ],
+      "useCase": "A Windows user wants to run specific Android APK files locally without using a mobile device or complex cloud services, installing them by double-clicking the APK file to generate native desktop shortcuts.",
+      "advantages": [
+        "Allows running Android apps as native Windows desktop windows with independent icons and start menu entries.",
+        "Uses host network NAT via QEMU user-mode instead of creating virtual network adapters, avoiding driver installation and network configuration changes.",
+        "Self-contained runtime management that automatically downloads and verifies ADB, Emulator, and Android images from official sources without relying on third-party emulators."
+      ],
+      "negativeConstraints": [
+        "Requires Windows 10/11 x64 architecture; incompatible with macOS or Linux systems.",
+        "Heavy resource consumption due to bundled QEMU emulator and Android system image, requiring significant RAM and storage for performance."
+      ],
+      "addedAt": "2026-11-14T13:22:23.846Z",
+      "status": "active",
+      "stars": 2841,
+      "useCase_zh": "Windows 使用者希望在本地執行特定的 Android APK 檔案，無需使用手機或複雜的雲端服務，透過雙擊 APK 檔案即可安裝並生成原生桌面捷徑。",
+      "advantages_zh": [
+        "允許將 Android 應用程式作為原生 Windows 桌面視窗執行，並具備獨立的桌面圖示與開始選單項目。",
+        "使用 QEMU 使用者態 NAT 橋接主機網路，而非建立虛擬網卡，避免安裝驅動程式或更改網路設定。",
+        "自帶的時區管理系統可自動下載並驗證 ADB、模擬器與 Android 映像，無需依賴第三方模擬器。"
+      ],
+      "description_zh": "Windows 上的安卓應用程式執行器：雙擊 APK 即可安裝，應用程式以獨立視窗與桌面圖示執行，內建 QEMU 執行階段",
+      "negativeConstraints_zh": [
+        "僅支援 Windows 10/11 x64 架構；不兼容 macOS 或 Linux 系統。",
+        "因內建 QEMU 模擬器與 Android 系統映像檔，資源消耗較重，需大量 RAM 與儲存空間以維持效能。"
+      ]
+    },
+    {
+      "id": "sheeridverify",
+      "name": "SheeridVerify",
+      "url": "https://github.com/JenkinWoo/sheeridVerify",
+      "description": "sheeridVerify 是一個基於 Node.js 的驗證流程學習項目，提供本地 Web 工作台、任務隊列、瀏覽器表單交互及 HTTP 狀態查詢，供學校教學、學術研究和獲得授權的流程測試使用。",
+      "category": "開發工具",
+      "language": "javascript",
+      "triggers": [
+        "sheeridverify",
+        "開發工具"
+      ],
+      "install": {
+        "method": "git-clone",
+        "command": "git clone https://github.com/JenkinWoo/sheeridVerify.git",
+        "repoUrl": "https://github.com/JenkinWoo/sheeridVerify"
+      },
+      "capabilities": [
+        "task-queue",
+        "status-polling",
+        "browser-automation",
+        "file-upload",
+        "local-web-dashboard",
+        "concurrency-control"
+      ],
+      "useCase": "Researchers use the local web dashboard to queue and monitor automated SheerID verification tasks while manually completing interactive real-person checks.",
+      "advantages": [
+        "Local-first architecture keeps personal data and configuration on the user's machine by default",
+        "Built-in retry and backoff logic distinguishes network failures from verification rejections",
+        "Supports concurrent task management with configurable limits and automatic state polling"
+      ],
+      "negativeConstraints": [
+        "Intended only for educational or research purposes; unauthorized use or identity fraud is prohibited",
+        "Requires Node.js >= 22.15 and manual installation of Camoufox for browser-based workflows",
+        "Does not generate, modify, or fake verification documents or materials"
+      ],
+      "addedAt": "2026-11-14T13:22:39.702Z",
+      "status": "active",
+      "stars": 2968,
+      "useCase_zh": "研究人員使用本機 Web 工作台排程並監控 SheerID 驗證任務，同時手動完成需要真人互動的驗證步驟。",
+      "advantages_zh": [
+        "本機優先架構，預設將個人資料與設定檔保留在用戶裝置上",
+        "內建重試與退避邏輯，能區分網路故障與驗證被拒的狀態",
+        "支援並行任務管理，可設定並發上限並自動輪詢查詢狀態"
+      ],
+      "description_zh": "sheeridVerify 是一個基於 Node.js 的驗證流程學習專案，提供本機 Web 工作台、任務佇列、瀏覽器表單互動及 HTTP 狀態查詢功能，供學校教學、學術研究與合法授權的流程測試使用。",
+      "negativeConstraints_zh": [
+        "僅限教育或研究用途；禁止未經授權的使用或身分詐欺行為。",
+        "需 Node.js >= 22.15 版，並需手動安裝 Camoufox 以支援基於瀏覽器的流程。",
+        "不得產生、修改或偽造驗證文件或相關材料。"
       ]
     }
   ]
