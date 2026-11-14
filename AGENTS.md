@@ -33,9 +33,9 @@
 
 ```yaml
 工具庫規模: 799 個工具
-追蹤 repos: 2840 個
-總 star 數: 33,600,676 ⭐
-平均 star 數: 42,053 ⭐
+追蹤 repos: 2795 個
+總 star 數: 34,056,953 ⭐
+平均 star 數: 42,624 ⭐
 最後更新: 2026/11/14
 ```
 
@@ -88,7 +88,7 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2840 repos)
+npm run tracked-repos     # 重建追蹤池 (2795 repos)
 npm test                  # 執行所有測試 (513 tests, 511 pass + 2 筆整合測試跳過)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
@@ -245,7 +245,7 @@ Tool-Calling/
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
 │   ├── tools.json      # 799+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2840 追蹤 repos
+│   ├── tracked-repos.json  # 2795 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -479,4 +479,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-11-14T13:35:37.914Z
+> **最後更新**：2026-11-14T13:50:47.002Z
