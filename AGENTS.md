@@ -32,26 +32,26 @@
 ## Project Stats — 專案統計
 
 ```yaml
-工具庫規模: 784 個工具
-追蹤 repos: 2719 個
-總 star 數: 33,382,366 ⭐
-平均 star 數: 42,580 ⭐
-最後更新: 2026/11/1
+工具庫規模: 799 個工具
+追蹤 repos: 2840 個
+總 star 數: 33,600,676 ⭐
+平均 star 數: 42,053 ⭐
+最後更新: 2026/11/14
 ```
 
 ### Top 5 分類
-- `AI 代理`: 153 個工具
-- `開發工具`: 122 個工具
-- `AI 框架`: 85 個工具
+- `AI 代理`: 156 個工具
+- `開發工具`: 127 個工具
+- `AI 框架`: 89 個工具
 - `學習資源`: 66 個工具
 - `文件生產力`: 63 個工具
 
 ### Top 5 語言
-- `python`: 266 個工具
-- `typescript`: 183 個工具
-- `javascript`: 76 個工具
-- `other`: 59 個工具
-- `rust`: 46 個工具
+- `python`: 268 個工具
+- `typescript`: 184 個工具
+- `javascript`: 79 個工具
+- `other`: 62 個工具
+- `rust`: 50 個工具
 
 ---
 
@@ -88,8 +88,8 @@
 ```bash
 # 核心命令 (必記)
 npm run trending          # 每週 GitHub 漲星探勘 (v4: Search API only)
-npm run tracked-repos     # 重建追蹤池 (2719 repos)
-npm test                  # 執行所有測試 (535 tests, 533 pass + 2 筆整合測試跳過)
+npm run tracked-repos     # 重建追蹤池 (2840 repos)
+npm test                  # 執行所有測試 (513 tests, 511 pass + 2 筆整合測試跳過)
 npm run enrich            # AI 批次補齊詮釋資料
 npm run agents:init       # 生成/驗證 AGENTS.md
 npm run plugin:install    # 一鍵安裝為各 Agentic IDE 外掛 (MCP + Skill)
@@ -100,14 +100,14 @@ node cli.js plan "<長任務>"           # 多工具鏈 DAG 規劃
 node cli.js interview "<需求>"        # 白話互動問答
 node cli.js validate                  # 詮釋資料品質門禁
 node cli.js add <github-url>          # 新增單一工具
-node cli.js list                      # 列出所有工具 (784+)
+node cli.js list                      # 列出所有工具 (799+)
 ```
 
 ### Git 工作流
 ```bash
 # 提交前檢查
 git diff --cached  # 確認變更範圍
-npm test           # 確保 535 測試全綠（跳過的 2 筆是整合測試，需 EMBED_API_TEST=1 或 npx skills，與 playwright 無關）
+npm test           # 確保 513 測試全綠（跳過的 2 筆是整合測試，需 EMBED_API_TEST=1 或 npx skills，與 playwright 無關）
 
 # 原子化提交原則
 git commit -m "type: 簡潔描述 (符合 Conventional Commits)"
@@ -123,7 +123,7 @@ git push origin main  # 僅在測試通過且獲得許可後執行
 ### 本地驗證流程 (Mandatory)
 ```bash
 # Phase 1: 單元測試
-npm test  # 目標：535 tests 全綠 (533 pass + 2 筆整合測試跳過), 0 fail
+npm test  # 目標：513 tests 全綠 (511 pass + 2 筆整合測試跳過), 0 fail
 
 # Phase 2: 工具庫驗證
 node cli.js validate  # 目標：100% 工具通過詮釋資料完整性檢查
@@ -133,8 +133,8 @@ node scripts/check-mece.js  # 目標：無「其他」殘留分類
 ```
 
 ### 部署前檢查清單
-- [ ] 所有測試通過 (533/533，另有 2 筆整合測試跳過)
-- [ ] 工具庫驗證通過 (784+ 工具)
+- [ ] 所有測試通過 (511/511，另有 2 筆整合測試跳過)
+- [ ] 工具庫驗證通過 (799+ 工具)
 - [ ] MECE 分類無殘留
 - [ ] HANDOFF.md 已更新（本輪日期快照）
 - [ ] README.md 已同步（如有 CLI 變更）
@@ -213,7 +213,7 @@ Types:
 ```
 refactor(trending): 重構 weekly star delta calculation to use merged snapshots
 feat(scripts): add tracked-repos.js module for fixed pool management
-fix(README): update tool count from 381 to 784 and add new features
+fix(README): update tool count from 381 to 799 and add new features
 chore: merge origin/main fast-forward (83aa1ec)
 ```
 
@@ -244,8 +244,8 @@ Tool-Calling/
 ├── cli.js              # 主入口點
 ├── mcp-server.js       # MCP 通訊伺服器
 ├── registry/           # 工具庫與快照
-│   ├── tools.json      # 784+ 工具 (單一真理來源)
-│   ├── tracked-repos.json  # 2719 追蹤 repos
+│   ├── tools.json      # 799+ 工具 (單一真理來源)
+│   ├── tracked-repos.json  # 2840 追蹤 repos
 │   ├── star-snapshots.json  # 歷史星數快照
 │   └── weekly-reports/    # 每週報告
 ├── core/               # 核心模組
@@ -287,7 +287,7 @@ cli.js → core/search-engine.js → registry/tools.json
 
 ## Testing Strategy — 測試策略
 
-### 單元測試 (535 tests)
+### 單元測試 (513 tests)
 ```bash
 npm test
 ```
@@ -297,10 +297,7 @@ npm test
 - ✅ 沙盒環境預檢 (Node, Python, Docker 等)
 - ✅ L1 精確匹配搜尋
 - ✅ L2 關鍵字匹配 (英文)
-- ✅ L1.5 trigger 命中的詞邊界（長詞片段不得偽命中）
 - ✅ L3 同義詞擴展 (中文)
-- ✅ 中文子功能層比對（subTool 的 name_zh／description_zh；bigram 斷詞 + 比例式共現門檻）
-- ✅ subTool 翻譯腳本的台灣用語後處理與譯文驗證
 - ✅ TF-IDF 語義檢索
 - ✅ 分類過濾
 - ✅ 無匹配結果處理
@@ -310,7 +307,7 @@ npm test
 
 ### 質保流程
 任何 PR 必須通過：
-1. `npm test` (533/533 pass，2 筆整合測試跳過)
+1. `npm test` (511/511 pass，2 筆整合測試跳過)
 2. `node cli.js validate` (100% 工具通過)
 3. `node scripts/check-mece.js` (無殘留分類)
 
@@ -482,4 +479,4 @@ GAP 設定: GAP = Math.ceil(tip_offset) + margin → GAP = 5（緊貼）或 6（
 
 > **協議版本**：2026-09-03 v1.3 (AgnesCode × Antigravity IDE 統一協議)
 > **維護者**：chun-chieh-chang
-> **最後更新**：2026-11-01T14:15:19.666Z
+> **最後更新**：2026-11-14T13:35:37.914Z

@@ -13231,7 +13231,7 @@ export const SYNONYM_MAP = {
   "project-based-learning": [
     "用 javascript 做專案",
     "用 python 練習實作",
-    "跟着教做 golang 程式",
+    "跟著教做 golang 程式",
     "c++ 專案動手寫",
     "javascript 實作教學",
     "golang",
@@ -13241,7 +13241,7 @@ export const SYNONYM_MAP = {
   "tutorial": [
     "用 javascript 做專案",
     "用 python 練習實作",
-    "跟着教做 golang 程式",
+    "跟著教做 golang 程式",
     "c++ 專案動手寫",
     "javascript 實作教學",
     "搜索 nlp 入門教程",
@@ -13251,7 +13251,7 @@ export const SYNONYM_MAP = {
   "cpp": [
     "用 javascript 做專案",
     "用 python 練習實作",
-    "跟着教做 golang 程式",
+    "跟著教做 golang 程式",
     "c++ 專案動手寫",
     "javascript 實作教學",
     "project-based-learning",
@@ -13261,7 +13261,7 @@ export const SYNONYM_MAP = {
   "hands-on": [
     "用 javascript 做專案",
     "用 python 練習實作",
-    "跟着教做 golang 程式",
+    "跟著教做 golang 程式",
     "c++ 專案動手寫",
     "javascript 實作教學",
     "project-based-learning",
@@ -13276,7 +13276,7 @@ export const SYNONYM_MAP = {
     "programming",
     "hands-on"
   ],
-  "跟着教做 golang 程式": [
+  "跟著教做 golang 程式": [
     "project-based-learning",
     "golang",
     "tutorial",

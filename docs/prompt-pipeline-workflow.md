@@ -410,3 +410,4 @@ dec_auth → process_x     route=v    label="否"
 - [ ] `desc` ≤ 60 字，無模糊形容詞
 - [ ] Dark / Light 兩種主題均無對比度問題
 - [ ] 無外部依賴請求（CDN、API）
+

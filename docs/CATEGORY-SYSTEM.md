@@ -30,14 +30,14 @@
 
 | 分類 | 數量 | 定義 |
 |---|---:|---|
-| `AI 代理` | 153 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
-| `開發工具` | 122 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
-| `AI 框架` | 85 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
+| `AI 代理` | 156 | 成品 Agent 產品、agent harness、通用型 skill・plugin 集合（領域專屬 skill 包歸該領域，見 CLASSIFICATION.md §2-4） |
+| `開發工具` | 127 | CLI、IDE、代碼審查、token 壓縮、開發流程 proxy |
+| `AI 框架` | 89 | LLM SDK、模型本體、推理／訓練框架、本地模型運行時（不含 skill・plugin 包） |
 | `學習資源` | 66 | 教程、課程、書籍、Awesome Lists（以閱讀學習為主要價值） |
 | `文件生產力` | 63 | 簡報／PPT、Office、PDF |
-| `UI/UX設計` | 60 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
+| `UI/UX設計` | 61 | 前端框架、設計系統、網頁動畫、原型、圖標庫 |
 | `知識管理` | 36 | agent 記憶、RAG、知識圖譜、codebase 索引 |
-| `影片` | 26 | 影片編輯、影片串流、影片客戶端 |
+| `影片` | 28 | 影片編輯、影片串流、影片客戶端 |
 | `金融與投資` | 24 | 交易、量化、股票分析 |
 | `研究` | 22 | 學術研究、文獻、論文、學術資料集 |
 | `多媒體生成` | 21 | AI 圖像／影片生成 |
@@ -49,7 +49,7 @@
 | `數據分析` | 12 | Pandas/Polars、資料框架、產品分析 |
 | `測試與自動化` | 10 | 測試框架、CI/CD、自動化腳本 |
 
-**合計**: 784 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
+**合計**: 799 個工具, 18 個分類, 無「其他」殘留（MECE 強制 100% 覆蓋）。
 <!-- CATEGORIES:INVENTORY:END -->
 
 > 本表為**衍生內容**，由 `registry/tools.json` ＋ `registry/categories.json` 自動產生，
