@@ -55,6 +55,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 // 抽出的同時保留既有行為（停用詞、bigram、IDF 公式完全不變）。
 import { tokenize, bagOf, buildIdentityIdf, weightedSim } from './tokenize.js';
 import { normalizeQuery } from './query-normalize.js';
+import { getSubToolIndex } from './subtool-index.js';
 
 // 身分欄位的「完整 trigger 命中」：query 內的某 trigger 整段出現 → 強信號
 // 這是 V1 的核心：agent 寫 query 時常直接包含 trigger 字串。
@@ -316,12 +317,13 @@ function negativePenalty(q, tool, idf) {
   return Math.min(0.15, (sim - 0.25) * 0.5);
 }
 
-function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null, boostIds = null) {
+function fuse(q, tool, idf, weights = DIM_WEIGHTS, v0 = null, v5 = null, boostIds = null, subCov = 0) {
   const s1 = scoreV1Identity(q, tool, idf);
   const s2 = scoreV2Capability(q, tool, idf);
   const s3 = scoreV3Scenario(q, tool, idf);
   const s4 = scoreV4Constraint(q, tool, idf);
-  const per = { V1: s1.value, V2: s2.value, V3: s3.value, V4: s4.value };
+  const v2Value = subCov > s2.value ? subCov : s2.value;
+  const per = { V1: s1.value, V2: v2Value, V3: s3.value, V4: s4.value };
   if (v0 !== null) per.V0 = v0;       // 僅當提供查詢向量時才有 V0
   if (v5 !== null) per.V5 = v5;       // 僅當有知識編譯詞檔時才有 V5
 
@@ -390,13 +392,25 @@ export function agentRetrieve(tools, query, { topK = 5, intentWeights, vectors =
   //   明確傳 null / false → 強制停用（評測對照組用）
   const wikiDoc = wiki === undefined ? loadWikiCached() : (wiki || null);
   const wikiMap = wikiDoc ? wikiScore(query, getWikiIndex(wikiDoc), { enableGraph: wikiGraph }) : null;
+  // SubTool 子功能能力通道（集合工具專精補充：有效覆蓋率 = 集合最佳覆蓋率 − 專用工具最佳覆蓋率）
+  const subIdx = getSubToolIndex(tools);
+  const subQuery = subIdx ? subIdx.prepareQuery(query) : null;
+  const dedicatedBaseline = (subIdx && subQuery && subQuery.norm > 0)
+    ? subIdx.bestDedicatedCoverage(subQuery.tokens, subQuery.norm)
+    : 0;
   const scored = tools.map((tool) => {
     const v0 = v0Enabled
       ? (vectors?.tools?.[tool.id] ? cosine(queryVector, vectors.tools[tool.id]) : 0)
       : null;
     const wv = wikiMap ? wikiMap.get(tool.id) : null;
     const v5 = wikiMap ? (wv?.V5 ?? 0) : null;
-    return { tool, ...fuse(q, tool, idf, w, v0, v5, boostIds), matchedIntent: wv?.intent || '' };
+    let subCov = 0;
+    if (subIdx && subQuery && subQuery.norm > 0 && subIdx.hasSubTools(tool.id)) {
+      const minHits = subQuery.tokens.length >= 2 ? 2 : 1;
+      const rawCov = subIdx.coverageOf(tool.id, subQuery.tokens, subQuery.norm, minHits);
+      subCov = Math.max(0, rawCov - dedicatedBaseline);
+    }
+    return { tool, ...fuse(q, tool, idf, w, v0, v5, boostIds, subCov), matchedIntent: wv?.intent || '' };
   }).filter((x) => x.bestDim > 0);
 
   // 按 weighted 分數排序（意圖權重已反映在 w 中；V0 啟用時已納入 weighted）
