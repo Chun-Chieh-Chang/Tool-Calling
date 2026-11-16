@@ -27758,12 +27758,12 @@
     "fullName": "Gathin23/cleanyourtv",
     "owner": "Gathin23",
     "repo": "cleanyourtv",
+    "category": "AI 框架",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking",
     "initialStars": 36514,
-    "discoveredAt": "2026-10-26T07:27:31.254Z",
     "sourceSnapshotWeek": "2026-W44",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-10-26T07:27:31.254Z"
   },
   "deepseek-ai/DeepInfer": {
     "fullName": "deepseek-ai/DeepInfer",
@@ -28165,12 +28165,12 @@
     "fullName": "deepseek-ai/dsh-superagent-prototype",
     "owner": "deepseek-ai",
     "repo": "dsh-superagent-prototype",
+    "category": "AI 代理",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking",
     "initialStars": 10411,
-    "discoveredAt": "2026-11-02T08:55:16.796Z",
     "sourceSnapshotWeek": "2026-W45",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-11-02T08:55:16.796Z"
   },
   "unclebob/ub-mode": {
     "fullName": "unclebob/ub-mode",
@@ -28209,23 +28209,23 @@
     "fullName": "heydamir/unslop",
     "owner": "heydamir",
     "repo": "unslop",
+    "category": "AI 框架",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking",
     "initialStars": 5265,
-    "discoveredAt": "2026-11-02T08:55:16.796Z",
     "sourceSnapshotWeek": "2026-W45",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-11-02T08:55:16.796Z"
   },
   "ccch1mneyyy/dsh-Go": {
     "fullName": "ccch1mneyyy/dsh-Go",
     "owner": "ccch1mneyyy",
     "repo": "dsh-Go",
+    "category": "AI 框架",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking",
     "initialStars": 5264,
-    "discoveredAt": "2026-11-02T08:55:16.796Z",
     "sourceSnapshotWeek": "2026-W45",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-11-02T08:55:16.796Z"
   },
   "wangzan101/Mika": {
     "fullName": "wangzan101/Mika",
@@ -28473,12 +28473,12 @@
     "fullName": "storytold/craft-anything",
     "owner": "storytold",
     "repo": "craft-anything",
+    "category": "開發工具",
+    "addedAt": "2026-11-14T13:22:17.187Z",
+    "status": "tracking",
     "initialStars": 1954,
-    "discoveredAt": "2026-11-02T08:55:16.796Z",
     "sourceSnapshotWeek": "2026-W45",
-    "category": null,
-    "addedAt": null,
-    "status": "tracked_not_in_registry"
+    "discoveredAt": "2026-11-02T08:55:16.796Z"
   },
   "Tencent-Hunyuan/Hy-Memory": {
     "fullName": "Tencent-Hunyuan/Hy-Memory",
@@ -28557,11 +28557,443 @@
     "addedAt": null,
     "status": "tracked_not_in_registry"
   },
-  "_meta": {
-    "total": 2795,
-    "inRegistry": 747,
-    "trackedOnly": 2048,
-    "lastGenerated": "2026-11-09T09:12:40.265Z"
+  "anefzaoui/misterdownloadmanager": {
+    "fullName": "anefzaoui/misterdownloadmanager",
+    "owner": "anefzaoui",
+    "repo": "misterdownloadmanager",
+    "category": "影片",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
   },
-  "lastGenerated": "2026-11-09T09:12:40.212Z"
+  "zortos293/Lichii": {
+    "fullName": "zortos293/Lichii",
+    "owner": "zortos293",
+    "repo": "Lichii",
+    "category": "開發工具",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
+  },
+  "Minireel/HGhub": {
+    "fullName": "Minireel/HGhub",
+    "owner": "Minireel",
+    "repo": "HGhub",
+    "category": "影片",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
+  },
+  "janestreet/agent_skills": {
+    "fullName": "janestreet/agent_skills",
+    "owner": "janestreet",
+    "repo": "agent_skills",
+    "category": "AI 代理",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
+  },
+  "JuneYaooo/rea-video": {
+    "fullName": "JuneYaooo/rea-video",
+    "owner": "JuneYaooo",
+    "repo": "rea-video",
+    "category": "AI 框架",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
+  },
+  "huamidev/GestaltX": {
+    "fullName": "huamidev/GestaltX",
+    "owner": "huamidev",
+    "repo": "GestaltX",
+    "category": "開發工具",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
+  },
+  "anomalyco/rune": {
+    "fullName": "anomalyco/rune",
+    "owner": "anomalyco",
+    "repo": "rune",
+    "category": "UI/UX設計",
+    "addedAt": "2026-11-14T13:20:47.404Z",
+    "status": "tracking"
+  },
+  "libracoder/kiri": {
+    "fullName": "libracoder/kiri",
+    "owner": "libracoder",
+    "repo": "kiri",
+    "category": "AI 代理",
+    "addedAt": "2026-11-14T13:22:08.897Z",
+    "status": "tracking"
+  },
+  "RoutineMiku/apkstart": {
+    "fullName": "RoutineMiku/apkstart",
+    "owner": "RoutineMiku",
+    "repo": "apkstart",
+    "category": "開發工具",
+    "addedAt": "2026-11-14T13:22:23.846Z",
+    "status": "tracking"
+  },
+  "JenkinWoo/sheeridVerify": {
+    "fullName": "JenkinWoo/sheeridVerify",
+    "owner": "JenkinWoo",
+    "repo": "sheeridVerify",
+    "category": "開發工具",
+    "addedAt": "2026-11-14T13:22:39.702Z",
+    "status": "tracking"
+  },
+  "Eglantine-Community/Eglantine": {
+    "fullName": "Eglantine-Community/Eglantine",
+    "owner": "Eglantine-Community",
+    "repo": "Eglantine",
+    "initialStars": 5499,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "BryceYuuu/RUN": {
+    "fullName": "BryceYuuu/RUN",
+    "owner": "BryceYuuu",
+    "repo": "RUN",
+    "initialStars": 4302,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "KKKKhazix/agent-autoloop": {
+    "fullName": "KKKKhazix/agent-autoloop",
+    "owner": "KKKKhazix",
+    "repo": "agent-autoloop",
+    "initialStars": 4208,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "NotRexed/Hookshot": {
+    "fullName": "NotRexed/Hookshot",
+    "owner": "NotRexed",
+    "repo": "Hookshot",
+    "initialStars": 3539,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "worldonlyu/Google_AI_Pro_2Year_ZeroCost_Auto": {
+    "fullName": "worldonlyu/Google_AI_Pro_2Year_ZeroCost_Auto",
+    "owner": "worldonlyu",
+    "repo": "Google_AI_Pro_2Year_ZeroCost_Auto",
+    "initialStars": 3313,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Verlintas/NOIR": {
+    "fullName": "Verlintas/NOIR",
+    "owner": "Verlintas",
+    "repo": "NOIR",
+    "initialStars": 3131,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "benjitaylor/skills": {
+    "fullName": "benjitaylor/skills",
+    "owner": "benjitaylor",
+    "repo": "skills",
+    "initialStars": 2756,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "modelflare-ai/AnyModelBot": {
+    "fullName": "modelflare-ai/AnyModelBot",
+    "owner": "modelflare-ai",
+    "repo": "AnyModelBot",
+    "initialStars": 2741,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "elvarofficial/teardown": {
+    "fullName": "elvarofficial/teardown",
+    "owner": "elvarofficial",
+    "repo": "teardown",
+    "initialStars": 2709,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "mromidev/claude-animated-shorts": {
+    "fullName": "mromidev/claude-animated-shorts",
+    "owner": "mromidev",
+    "repo": "claude-animated-shorts",
+    "initialStars": 2489,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "herdrdev/herdr-app": {
+    "fullName": "herdrdev/herdr-app",
+    "owner": "herdrdev",
+    "repo": "herdr-app",
+    "initialStars": 2465,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "govijr/terminal-mac": {
+    "fullName": "govijr/terminal-mac",
+    "owner": "govijr",
+    "repo": "terminal-mac",
+    "initialStars": 2443,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "DhvanilPatel/swarm-cursors": {
+    "fullName": "DhvanilPatel/swarm-cursors",
+    "owner": "DhvanilPatel",
+    "repo": "swarm-cursors",
+    "initialStars": 2382,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "DenisSergeevitch/ex-ussr-kinship-research": {
+    "fullName": "DenisSergeevitch/ex-ussr-kinship-research",
+    "owner": "DenisSergeevitch",
+    "repo": "ex-ussr-kinship-research",
+    "initialStars": 2225,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "reacher-z/Awesome-REA": {
+    "fullName": "reacher-z/Awesome-REA",
+    "owner": "reacher-z",
+    "repo": "Awesome-REA",
+    "initialStars": 2192,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "longbridge/nsh": {
+    "fullName": "longbridge/nsh",
+    "owner": "longbridge",
+    "repo": "nsh",
+    "initialStars": 2181,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "caru-ini/stack-diagram": {
+    "fullName": "caru-ini/stack-diagram",
+    "owner": "caru-ini",
+    "repo": "stack-diagram",
+    "initialStars": 2167,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "UniXNU/UniXNU": {
+    "fullName": "UniXNU/UniXNU",
+    "owner": "UniXNU",
+    "repo": "UniXNU",
+    "initialStars": 2142,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "physicsdolphin/nv-uefi-unlocker": {
+    "fullName": "physicsdolphin/nv-uefi-unlocker",
+    "owner": "physicsdolphin",
+    "repo": "nv-uefi-unlocker",
+    "initialStars": 2136,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Murea-Labs/InWorld": {
+    "fullName": "Murea-Labs/InWorld",
+    "owner": "Murea-Labs",
+    "repo": "InWorld",
+    "initialStars": 2124,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "UnderleveledBuilder/awesome-short-drama-skills": {
+    "fullName": "UnderleveledBuilder/awesome-short-drama-skills",
+    "owner": "UnderleveledBuilder",
+    "repo": "awesome-short-drama-skills",
+    "initialStars": 2062,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "wquguru/cicada": {
+    "fullName": "wquguru/cicada",
+    "owner": "wquguru",
+    "repo": "cicada",
+    "initialStars": 2032,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "windows-GPU-UNLOCK/Windows-GPU-UNLOCK": {
+    "fullName": "windows-GPU-UNLOCK/Windows-GPU-UNLOCK",
+    "owner": "windows-GPU-UNLOCK",
+    "repo": "Windows-GPU-UNLOCK",
+    "initialStars": 2023,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "cranebeaker/coop-anything": {
+    "fullName": "cranebeaker/coop-anything",
+    "owner": "cranebeaker",
+    "repo": "coop-anything",
+    "initialStars": 1987,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "D3voz/openjutsu": {
+    "fullName": "D3voz/openjutsu",
+    "owner": "D3voz",
+    "repo": "openjutsu",
+    "initialStars": 1985,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "enesozturk/dimensional-drawing": {
+    "fullName": "enesozturk/dimensional-drawing",
+    "owner": "enesozturk",
+    "repo": "dimensional-drawing",
+    "initialStars": 1964,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "lexifina/global-law": {
+    "fullName": "lexifina/global-law",
+    "owner": "lexifina",
+    "repo": "global-law",
+    "initialStars": 1892,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "andyhuo520/digital-human-koubo": {
+    "fullName": "andyhuo520/digital-human-koubo",
+    "owner": "andyhuo520",
+    "repo": "digital-human-koubo",
+    "initialStars": 1891,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "Motionsites-AI/claude-skill": {
+    "fullName": "Motionsites-AI/claude-skill",
+    "owner": "Motionsites-AI",
+    "repo": "claude-skill",
+    "initialStars": 1880,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "DUNHKpcc/Claude-Guardian": {
+    "fullName": "DUNHKpcc/Claude-Guardian",
+    "owner": "DUNHKpcc",
+    "repo": "Claude-Guardian",
+    "initialStars": 1877,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "udhaykumarbala/cleanyourtv-app": {
+    "fullName": "udhaykumarbala/cleanyourtv-app",
+    "owner": "udhaykumarbala",
+    "repo": "cleanyourtv-app",
+    "initialStars": 1858,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "aschmelyun/print-my-profile-pic": {
+    "fullName": "aschmelyun/print-my-profile-pic",
+    "owner": "aschmelyun",
+    "repo": "print-my-profile-pic",
+    "initialStars": 1824,
+    "discoveredAt": "2026-11-09T09:12:40.212Z",
+    "sourceSnapshotWeek": "2026-W46",
+    "category": null,
+    "addedAt": null,
+    "status": "tracked_not_in_registry"
+  },
+  "_meta": {
+    "total": 2837,
+    "inRegistry": 762,
+    "trackedOnly": 2075,
+    "lastGenerated": "2026-11-16T09:03:03.112Z"
+  },
+  "lastGenerated": "2026-11-16T09:03:03.065Z"
 }
